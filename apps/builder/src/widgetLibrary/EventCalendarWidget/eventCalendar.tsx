@@ -127,7 +127,6 @@ export const WrappedEventCalendar: FC<WrappedEventCalendarProps> = (props) => {
   }, [showResource, view])
   return (
     <div
-      style={{ height: "100%", width: "100%" }}
       className={displayName}
       css={ApplyCustomStyle(
         dayjs(currentTime).format("HH:mm"),
@@ -245,9 +244,9 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
   }, [
     displayName,
     eventList,
-    handleUpdateMultiExecutionResult,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
+    handleUpdateMultiExecutionResult,
   ])
 
   useEffect(() => {
@@ -297,7 +296,7 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
                 },
               ],
               changeEventValue: {
-                ...filtered,
+                ...existing,
                 start: dayjs(start).format(formatDateTime),
                 end: dayjs(end).format(formatDateTime),
               },
@@ -334,6 +333,11 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
                   end: dayjs(end).format(formatDateTime),
                 },
               ],
+              changeEventValue: {
+                ...existing,
+                start: dayjs(start).format(formatDateTime),
+                end: dayjs(end).format(formatDateTime),
+              },
             },
           },
         ])

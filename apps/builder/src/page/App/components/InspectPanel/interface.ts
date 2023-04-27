@@ -36,6 +36,12 @@ export interface PanelFieldConfig extends PanelLabelProps {
   allowClear?: boolean
   detailedDescription?: string
   canShowLabel?: boolean
+  // DynamicSelectSetter props
+  inputPlaceholder?: string
+  selectPlaceholder?: string
+  isDynamicAttrName?: string
+  selectAttrName?: string
+  inputAttrName?: string
 }
 
 export interface PanelFieldGroupConfig {

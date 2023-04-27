@@ -1,6 +1,6 @@
 import dayjs from "dayjs"
 import { v4 } from "uuid"
-import { ReactComponent as SwitchWidgetIcon } from "@/assets/widgetCover/switch.svg"
+import { ReactComponent as EventCalendarWidgetIcon } from "@/assets/widgetCover/eventCalendar.svg"
 import i18n from "@/i18n/config"
 import { formatDateTime } from "@/widgetLibrary/EventCalendarWidget/utils"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
@@ -28,7 +28,7 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
   h: 55,
   w: 45,
   type: "EVENT_CALENDAR_WIDGET",
-  icon: <SwitchWidgetIcon />,
+  icon: <EventCalendarWidgetIcon />,
   keywords: ["EventCalendar", "活动日历"],
   sessionType: "CALENDAR",
   resizeDirection: RESIZE_DIRECTION.ALL,

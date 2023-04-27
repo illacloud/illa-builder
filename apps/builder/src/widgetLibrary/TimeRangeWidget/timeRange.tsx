@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { RangePicker } from "@illa-design/react"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -112,7 +111,6 @@ export const TimeRangeWidget: FC<TimeRangeWidgetProps> = (props) => {
     required,
     labelHidden,
     tooltipText,
-    updateComponentHeight,
     validateMessage,
     customRule,
     hideValidationMessage,
@@ -223,10 +221,10 @@ export const TimeRangeWidget: FC<TimeRangeWidgetProps> = (props) => {
     showClear,
     disabled,
     colorScheme,
-    handleValidate,
-    handleUpdateMultiExecutionResult,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
+    handleValidate,
+    handleUpdateMultiExecutionResult,
   ])
 
   useEffect(() => {
@@ -245,7 +243,7 @@ export const TimeRangeWidget: FC<TimeRangeWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
+    <div style={{ width: "100%" }}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -278,7 +276,7 @@ export const TimeRangeWidget: FC<TimeRangeWidgetProps> = (props) => {
           <InvalidMessage validateMessage={validateMessage} />
         </div>
       )}
-    </AutoHeightContainer>
+    </div>
   )
 }
 TimeRangeWidget.displayName = "TimeRangeWidget"

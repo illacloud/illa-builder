@@ -1,0 +1,2846 @@
+{
+  "Logout": "Wyloguj się",
+  "Setting": "Ustawienie",
+  "apps": "Aplikacje",
+  "back": "Powrót",
+  "btn": {
+    "choose_file": "Wybierz plik"
+  },
+  "change_fail": "Nie udało się zmienić",
+  "change_success": "Zmieniono pomyślnie",
+  "collision_message": "Naciśnij D lub K i przeciągnij komponent do pojemnika",
+  "create_fail": "Nie udało się utworzyć",
+  "create_new": "Utwórz nowy",
+  "create_new_app": "Utwórz nowy",
+  "created_at": "Utworzono w",
+  "dashboard": {
+    "app": {
+      "all_apps": "Wszystkie aplikacje",
+      "create_app": "Utwórz aplikację",
+      "duplicate_fail": "Nie udało się zduplikować",
+      "duplicate_placeholder": "Wprowadź nazwę aplikacji tutaj",
+      "edited_time": "Edytowano w {{ time }} przez {{ user }}",
+      "name_empty": "Wprowadź nazwę",
+      "name_existed": "Nazwa już zajęta",
+      "rename_app": "Zmień nazwę aplikacji",
+      "rename_fail": "Nie udało się zmienić nazwy",
+      "rename_success": "Zmieniono nazwę",
+      "trash_failure": "Nie udało się usunąć",
+      "trash_success": "Usunięto pomyślnie"
+    },
+    "common": {
+      "cancel": "Anuluj",
+      "delete": "Usuń",
+      "delete_cancel_text": "Anuluj",
+      "delete_content": "Spowoduje to przerwanie zapytań do aplikacji i biblioteki zapytań które używają tego zasobu",
+      "delete_ok_text": "Usuń",
+      "delete_title": "Jesteś pewien?",
+      "error_button": "Ponów próbę",
+      "error_description": "Wystąpił problem z twoją operacją.",
+      "error_title": "Błąd"
+    },
+    "resource": {
+      "create_resource": "Utwórz nowy",
+      "created": "Utworzono",
+      "dbname": "Nazwa bazy danych",
+      "delete_fail": "Nie udało się usunąć",
+      "delete_success": "Usunięto pomyślnie",
+      "resource_name": "Nazwisko",
+      "resource_type": "Typ",
+      "save_fail": "Nie udało się zapisać",
+      "save_success": "Zapisano pomyślnie",
+      "test_fail": "Nie udało się przetestować",
+      "test_success": "Test pomyślnie"
+    }
+  },
+  "dayjs": {
+    "just_now": "Właśnie teraz"
+  },
+  "deploy": "Wdrożenie",
+  "description": {
+    "part1": "Jest to przykład bez przedziału nazw."
+  },
+  "dont_need_save": "ILLA będzie nadal próbować automatycznie zapisywać swoją pracę.",
+  "duplicate": "Duplicate",
+  "edit": "Edytuj",
+  "edit_at": "Edytowano w",
+  "edit_failed": "Nie udało się zapisać, sprawdź swoją sieć.",
+  "edit_success": "Edytowano pomyślnie",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Powrót",
+            "create_action": "Utwórz akcję",
+            "new_resource": "Nowy zasób"
+          },
+          "selector": {
+            "title": "Wybierz typ akcji"
+          },
+          "title": {
+            "choose_resource": "Wybierz zasób "
+          }
+        },
+        "btn": {
+          "close": "zamknij",
+          "new": "Nowy"
+        },
+        "contextMenu": {
+          "delete": "Usuń",
+          "duplicate": "Duplicate",
+          "rename": "Zmień nazwę"
+        },
+        "message": {
+          "confirm_switch": "Nie zapisałeś swojego zapytania. Czy na pewno chcesz odrzucić zmiany?",
+          "failed": "Nie udało się połączyć z serwerem",
+          "load_action_list_fail": "Nie udało się uzyskać listy akcji: {{message}}",
+          "load_resource_fail": "Nie udało się pobrać listy zasobów: {{message}}",
+          "name_already_exist": "Już istnieje",
+          "please_input_name": "Proszę wpisać nazwę",
+          "success_created": "Utworzono pomyślnie",
+          "success_deleted": "Usunięto pomyślnie",
+          "success_saved": "Zapisano pomyślnie",
+          "valid_name": "Może zawierać tylko litery, cyfry, '_' lub '$', zaczynając od '_' lub literę"
+        },
+        "placeholder": {
+          "search": "Szukaj"
+        },
+        "runtime": {
+          "backend": "Backend",
+          "execute_resource": "wykonaj zasób",
+          "frontend": "Witryna",
+          "handle_response": "obsługa odpowiedzi",
+          "post_processing": "przetwarzanie postowe",
+          "prepare_query": "Przygotuj zapytanie",
+          "response_size": "Rozmiar odpowiedzi",
+          "total": "Łącznie",
+          "transfer_data": "Prześlij dane",
+          "transformer": "transformator"
+        },
+        "tips": {
+          "empty": "Dodaj akcję, aby rozpocząć pracę z danymi z podłączonego zasobu.",
+          "not_found": "Brak wyników wyszukiwania"
+        },
+        "title": "Lista akcji"
+      },
+      "form": {
+        "btn": {
+          "back": "Powrót",
+          "save_changes": "Zapisz zasób",
+          "test_connection": "Testuj połączenie"
+        },
+        "required": "To jest wymagane",
+        "title": {
+          "api": "API",
+          "configure": "Konfiguruj {{ name }}",
+          "database": "Baza danych",
+          "select": "Wybierz typ zasobu",
+          "huggingface": "Ociosanie twarzy",
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "KuchDB"
+          },
+          "oracle": {
+            "oracle": "DB Oracle"
+          },
+          "gs": {
+            "google_sheets": "Arkusze Google"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} jest wymagane"
+        },
+        "label": {
+          "inference_api": "API Inference",
+          "inference_endpoint": "Punkt końcowy Inferencji",
+          "s3": "Nieprawidłowe w publicznych aplikacjach",
+          "acl": "S3 ACL dla przesłanych plików",
+          "appwrite": {
+            "host": "Host",
+            "dbid": "ID bazy danych",
+            "projectid": "ID projektu",
+            "secret": "Klucz Api",
+            "collectionid": "ID kolekcji",
+            "documentid": "ID dokumentu",
+            "data": "Dane",
+            "filter": "Filtr",
+            "order": "Sortuj według",
+            "limit": "Ograniczenie"
+          },
+          "oracle": {
+            "sid": "Traktuj nazwę bazy danych jako",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Certyfikaty",
+            "verification_mode": "Tryb weryfikacji"
+          },
+          "gs": {
+            "private_key": "Klucz prywatny",
+            "action_type": "Typ akcji",
+            "spreadsheet": "Arkusz kalkulacyjny",
+            "sheet_name": "Nazwa arkusza",
+            "data_range": "Zakres danych",
+            "limit": "Ograniczenie",
+            "offset": "Przesunięcie",
+            "a1_notation": "Notacja A1",
+            "values_to_append": "Wartości do dodania",
+            "filter_by": "Filtruj według",
+            "update_value": "Aktualizuj wartość",
+            "primary_key_column": "Kolumna klucza głównego",
+            "array_of_rows_to_upd": "Tablica wierszy do aktualizacji",
+            "filters_to_match_row": "Indeks wiersza",
+            "consider_queries_tha": "Rozważ zapytania, które nie usuwają żadnych wierszy jako sukcesy",
+            "title_of_spreadsheet": "Nazwa arkusza kalkulacyjnego",
+            "sheet_id_to_copy": "ID arkusza do skopiowania",
+            "sheet_to_copy_to": "Arkusz do skopiowania",
+            "authentication": "Uwierzytelnianie",
+            "connect_with_oauth": "Połącz z OAuth i Zapisz",
+            "reconnect_with_oauth": "Połącz ponownie z OAuth",
+            "access_type": "Typ dostępu"
+          }
+        },
+        "placeholder": {
+          "url": "Wprowadź adres URL żądania",
+          "appwrite": {
+            "host": "HOSTNAME LUB IP",
+            "dbid": "ID bazy danych",
+            "projectid": "ID projektu",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "atrybut",
+              "value": "1234"
+            },
+            "order": "atrybut",
+            "collectionid": "Wybierz kolekcję",
+            "data": "Obiekt zamknięty w {{ }}. Na przykład, \n{{ \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "oracki",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"1000000000000000000000000\",\r\n  \"auth_uri\": \"https://accounts oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "nazwa_kolumny",
+              "value": "wartość"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "primary_key_column": "nazwa_kolumny",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } }}",
+            "filters_to_match_row": {
+              "key": "klucz",
+              "value": "wartość"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Podana zawartość jest konfiguracją PUBLICZNą. Pozostaw puste dla PRIVATE. Nie zapomnij skonfigurować CORS na swoim wiaderku. <0>Zobacz Współdzielenie Zasobów Cross-Origin (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Wygląda na to, że próbujesz połączyć się z bazą danych, która jest lokalna z Twoim urządzeniem lub częścią prywatnej sieci. Może to nie działać w chmurze ILLA. Sprawdź naszą <0>dokumentację</0>, aby dowiedzieć się jak korzystać z autohosta.",
+            "selfhost": "Wygląda na to, że próbujesz połączyć się z bazą danych, która jest lokalna do Twojego komputera. Proszę użyć lokalnego adresu IP komputera zamiast \"localhost\" lub \"127.0.0.1\".",
+            "title": {
+              "tips": "Porady"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Twój serwer może być podatny na ataki."
+            }
+          },
+          "gs": {
+            "private_key": "Używane do łączenia się z Arkuszami Google. Kliknij <0>tutaj</0> aby utworzyć projekt i uzyskać dane uwierzytelniające OAuth. Dzięki uwierzytelnieniu konta serwisowego będziemy mieć dostęp tylko do arkuszy kalkulacyjnych, które udostępniasz z adresem e-mail odpowiadającym używanemu kontowi serwisowemu. Zobacz <1>tutaj</1> dokumentację dotyczącą utworzenia konta usługowego i klucza dostępu.\n\nUżytkownicy mogą doświadczać limitów różnych komponentów przetwarzania, które nie są kontrolowane przez arkusze. Dowiedz się więcej o <2>limitach ilościowych</2>",
+            "leave_blank_to_selec": "Pozostaw puste, aby wybrać pierwszy arkusz",
+            "to_select_the_first_": "Aby wybrać pierwsze pięć komórek w pierwszej kolumnie arkusza z tytułem1, adnotacja A1 jest arkuszem1!A1:A5. <0>Zobacz dokumenty Google, aby uzyskać więcej informacji. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
+            "a1_notation": "Aby wybrać pierwsze pięć komórek w pierwszej kolumnie arkusza z tytułem1, adnotacja A1 jest arkuszem1!A1:A5. <0>Zobacz dokumenty Google, aby uzyskać więcej informacji. </0>",
+            "sheet_id_to_copy": "Znajdź to, patrząc na ?gid=123123 w adresie URL twoich arkuszy Google",
+            "copy_to_sheet_name": "Wymagane. Zmień nazwę skopiowanego arkusza.",
+            "successfully_authent": "Uwierzytelniono pomyślnie",
+            "failed_to_authentica": "Nie udało się uwierzytelnić"
+          },
+          "tidb": {
+            "ca_certificate": "Wypełniamy certyfikat CA używany domyślnie dla połączeń TLS do poziomu bezserwera. Jeśli potrzebujesz połączenia TLS z edytowanym Tierzem, <0>Kliknij tutaj</0> aby wyświetlić metodę konfiguracji."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Utwórz dokument",
+              "list": "Lista dokumentów",
+              "get": "Uzyskaj dokument",
+              "update": "Aktualizuj dokument",
+              "delete": "Usuń dokument"
+            },
+            "filter": {
+              "and": "ORAZ",
+              "or": "LUB",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Asc",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Nazwa usługi"
+            },
+            "ssl": "Użyj SSL jeśli jest dostępny"
+          },
+          "couchdb": {
+            "ssl": "Użyj SSL/TLS jeśli jest dostępny"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Autoryzacja Digest",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Uwierzytelnianie Hawk",
+              "aws_v4": "Podpis AWS V4",
+              "session_based_auth": "Autoryzacja sesji (przestarzała)"
+            },
+            "certificates": "Użyj certyfikatów z własnym podpisem",
+            "ca_certificate": "Certyfikat CA",
+            "client_key": "Klucz klienta",
+            "client_certificate": "Certyfikat klienta",
+            "verification_mode": {
+              "full_verification": "Pełna weryfikacja",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Pomiń weryfikację certyfikatu CA"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Odczytuj dane z arkusza kalkulacyjnego",
+              "append_data_to_a_spr": "Dołącz dane do arkusza kalkulacyjnego",
+              "update_a_spreadsheet": "Aktualizuj arkusz kalkulacyjny",
+              "bulk_update_a_spread": "Zbiorcza aktualizacja arkusza kalkulacyjnego według klucza głównego",
+              "delete_a_single_row_": "Usuń pojedynczy wiersz z arkusza kalkulacyjnego",
+              "create_a_spreadsheet": "Utwórz arkusz kalkulacyjny",
+              "copy_a_single_sheet_": "Skopiuj pojedynczy arkusz do innego arkusza kalkulacyjnego",
+              "list_available_sprea": "Lista dostępnych arkuszy kalkulacyjnych",
+              "get_spreadsheet_info": "Uzyskaj informacje o arkuszu kalkulacyjnym"
+            },
+            "data_range": {
+              "use_a1_notation": "Użyj adnotacji A1",
+              "use_limit_and_offset": "Użyj limitu i przesunięcia"
+            },
+            "filter_by": {
+              "use_a1_notation": "Użyj adnotacji A1",
+              "use_row_filters": "Użyj filtrów wierszy"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Konto serwisu",
+            "read_and_write": "Czytaj i zapisuj",
+            "read_only": "Tylko do odczytu"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Konto serwisu"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Wyłącz",
+          "enable": "Włącz",
+          "new": "Nowy",
+          "run": "Uruchom",
+          "save": "Zapisz",
+          "save_and_run": "Zapisz i uruchom",
+          "save_fail": "Nie udało się zapisać",
+          "test_run": "Wykonanie testu"
+        },
+        "elastic": {
+          "action_type": "Typ akcji",
+          "body": "Ciało",
+          "id": "Id",
+          "index": "Wielkość sprzedaży i udział w rynku",
+          "query": "Zapytanie"
+        },
+        "error": {
+          "max_file": "Rozmiar pliku nie może przekraczać 5M."
+        },
+        "firebase": {
+          "action_type": "Typ akcji",
+          "collection": "Kolekcja",
+          "database_ref": "Nr bazy danych",
+          "document_id": "ID dokumentu",
+          "email": "E-mail",
+          "end_at": "Koniec o",
+          "len_of_list": "Długość listy ",
+          "limit": "granica",
+          "next_page_token": "Następny token strony",
+          "object_to_set": "Obiekt do ustawienia",
+          "order_by": "Sortuj według",
+          "ordering_direction": "Kierunek sortowania",
+          "parent_document_id": "ID dokumentu nadrzędnego",
+          "phone_number": "Numer telefonu",
+          "placeholder": {
+            "asc": "rosnąco",
+            "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Wprowadź kolekcję",
+            "key": "klucz",
+            "select_an_action": "Wybierz akcję",
+            "select_collection": "Wybierz kolekcję",
+            "value": "wartość"
+          },
+          "service_type": "Typ usługi",
+          "start_at": "Rozpocznij od",
+          "tips": {
+            "document_id": "Pozostaw puste dla automatycznego generowania identyfikatora.",
+            "parent_document_id_tips": "Pozostaw puste dla kolekcji najwyższego poziomu."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Użyj listy rozwijanej",
+          "use_end_at": "Użyj endat",
+          "use_raw_id": "Użyj surowego identyfikatora",
+          "use_start_at": "Use startAt",
+          "user_object": "Obiekt użytkownika ",
+          "value": "wartość",
+          "where": "gdzie"
+        },
+        "label": {
+          "event_handler": "Obsługa zdarzeń",
+          "failure": "Niepowodzenie",
+          "resource": "Zasoby",
+          "success": "Sukces",
+          "transformer": "Transformator",
+          "couchdb": {
+            "database": "Baza danych",
+            "action_type": "Typ akcji"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Wybierz bazę danych",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Klucz klienta",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@example.com",
+              "ext": "niektóre aplikacje poza danymi",
+              "app": "Identyfikator aplikacji",
+              "dig": "delegowany przez",
+              "us-east-1": "us-east-1",
+              "authenticate_using_t": "Uwierzytelnianie za pomocą nagłówka autoryzacji HTTP zamiast parametrów zapytania",
+              "find_instructions_on": "Znajdź instrukcje gdzie znaleźć klucze dostępu <0>w dokumentacji AWS</0>.",
+              "role_to_assume": "Użyj <0>different role </0> podczas uzyskiwania dostępu do API"
+            },
+            "advanced": {
+              "select_pages": "Wybierz strony"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Lista rekordów",
+                "retrieve": "Pobierz rekord",
+                "create": "Utwórz rekord",
+                "update": "Aktualizuj rekord",
+                "delete": "Usuń rekord",
+                "find": "Znajdź",
+                "get": "Pobierz widok"
+              },
+              "skip": "Pomiń",
+              "limit": "Ograniczenie",
+              "include": "Dołącz dokumenty",
+              "des": "Zamówienie",
+              "id": "_id",
+              "rev": "_rev",
+              "record": "Rekord",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "Podgląd URL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Dokumenty zawarte w zwróconych wynikach",
+              "des_option": "Użyj porządku malejącego"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "GRACZ"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Plik",
+                "text": "Tekst"
+              },
+              "method": {
+                "options": "OPCJE",
+                "head": "GŁÓWNY"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Parametry zapytania",
+                "header_authorization": "Autoryzacja nagłówka"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Wyzwalaj tę akcję podczas ładowania strony",
+              "show_a_loading_page_": "Pokaż stronę wczytywania na stronie",
+              "on_page_loading": "Na wczytywaniu strony",
+              "on_app_loading": "Wczytano APP",
+              "none": "Brak"
+            }
+          },
+          "restapi": {
+            "signature_method": "Metoda podpisu",
+            "consumer_key": "Klucz klienta",
+            "consumer_secret": "Klucz tajny konsumenta",
+            "access_token": "Token dostępu",
+            "token_secret": "Tajny token",
+            "private_key": "Klucz prywatny",
+            "realm": "Domena",
+            "hawk_auth_id": "Identyfikator uwierzytelniania Hawk",
+            "hawk_auth_key": "Klucz uwierzytelniania Hawk",
+            "algorithm": "Algorytm",
+            "user": "Użytkownik",
+            "nonce": "Nonce",
+            "ext": "ekst.",
+            "app": "aplikacja",
+            "dig": "dig",
+            "timestamp": "Znacznik czasu",
+            "aws_region": "Region AWS",
+            "aws_service": "Usługa AWS",
+            "aws_access_key_id": "Identyfikator klucza dostępu AWS",
+            "aws_secret_key_id": "Klucz tajny AWS",
+            "role_to_assume": "Rola do przyjęcia (ARN)",
+            "list_of_cookies_to_f": "Lista ciasteczek do przesłania",
+            "add_access_token_to": "Dodaj token dostępu do"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Ciąg binarny lub obiekt: {{ data: binary string, nazwa?: string } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Żadne działania nie zostaną uruchomione po załadowaniu strony. Możesz ręcznie uruchomić akcję i włączyć \"Wyzwalaj tę akcję po załadowaniu strony\" w ustawieniach zaawansowanych."
+            }
+          },
+          "advanced": {
+            "advanced": "ZASTOSOWANE",
+            "page_trigger": "Czas wyzwalania",
+            "loading_page": "Ładowanie strony",
+            "page_load_delay": "Opóźnienie (ms)",
+            "run_this_action_peri": "Wykonaj tę akcję okresowo",
+            "interval": "Interwał (s)",
+            "actions_running_when": "Akcje uruchomione po załadowaniu strony",
+            "pages": "Strony",
+            "periodically_run": "Uruchom okresowo"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Usuń",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Typ akcji",
+          "aggregation": "Agregacja",
+          "collection": "Kolekcja",
+          "document": "Dokument",
+          "field": "Pole",
+          "filter": "Filtr",
+          "limit": "Ograniczenie",
+          "operations": "Operacje",
+          "options": "Opcje",
+          "projection": "Projektowanie",
+          "query": "Zapytanie",
+          "skip": "Pomiń",
+          "sort_by": "Sortuj wg",
+          "update": "Aktualizuj"
+        },
+        "option": {
+          "resource": {
+            "new": "Utwórz nowy zasób"
+          },
+          "trigger": {
+            "manually": "Uruchom akcję tylko po ręcznym uruchomieniu",
+            "on_change": "Uruchom działanie automatycznie po zmianie danych wejściowych"
+          }
+        },
+        "s3": {
+          "action_type": "Typ akcji",
+          "bucket_name": "Nazwa wiadra",
+          "content_type": "Typ zawartości",
+          "delimiter": "Separator",
+          "error": {
+            "max_file": "Rozmiar pliku nie może przekraczać 5M."
+          },
+          "expiry_duration_of_signed_url": "Czas ważności podpisanego adresu URL (minuty)",
+          "generate_signed_url": "Generuj podpisany adres URL",
+          "max_keys": "Maksymalna liczba kluczy",
+          "object_key": "Klucz obiektu",
+          "object_key_list": "Lista kluczy obiektów",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "eksport.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Prefiks do filtrowania wyników",
+          "tips": {
+            "delimiter": "Separator to znak, którego używasz do grupowania kluczy.",
+            "max_keys": "Ustawia maksymalną liczbę kluczy zwróconych w odpowiedzi. Domyślnie akcja wraca do 1000 nazw kluczy."
+          },
+          "upload_data": "Prześlij dane",
+          "upload_data_list": "Prześlij listę danych",
+          "upload_object_name": "Załaduj nazwę obiektu",
+          "upload_object_name_list": "Prześlij listę nazw obiektów",
+          "timeout_upload": "Przekroczono limit czasu przesyłania pliku (Minute)",
+          "timeout_upload_multiple": "Limit czasu na przesłanie pojedynczego pliku (Minute) "
+        },
+        "smtp": {
+          "attachment": "Załącznik(i)",
+          "bcc_email": "Wiadomość Bcc",
+          "body": "Ciało",
+          "cc_email": "Cc email(s)",
+          "from_email": "Z adresu e-mail",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Użyj przecinków do oddzielania wiadomości e-mail, np. {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Odpowiedz na e-mail",
+          "set_replay_email": "Ustaw odpowiedź na e-mail",
+          "subject": "Temat",
+          "tips": {
+            "port": "Niektórzy dostawcy usług internetowych mogą zablokować port 25.Jeśli połączenie się nie powiedzie, proszę zmienić port \n."
+          },
+          "to_email": "Do e-mail(ów)",
+          "use_html": "Użyj HTML",
+          "use_raw": "Użyj nieprzetworzonego tekstu"
+        },
+        "tips": {
+          "transformer": "Włącz transformatory, aby przekształcić wynik zapytania w inny format."
+        },
+        "graphql": {
+          "query": "Zapytanie",
+          "variables": "Zmienne",
+          "headers": "Nagłówki",
+          "placeholder": {
+            "query": "# Użyj $ aby dodać zmienną do swojego zapytania (np. $category ) \r\nzapytanie ($owner: String!, $name: String! {\r\n  repozytorium (właściciel: $owner, nazwa: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "Identyfikator modelu",
+          "placeholder": {
+            "mode_id": "kajdanka bez kęsów",
+            "text": "Odpowiedź na świat to [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Który film jest najlepszy ?\"], \r\n\"generated_responses\": [\"To jest Twarde na pewno.\"], \r\n\"text\": \"Czy możesz wyjaśnić dlaczego ?\" \r\n}",
+            "binary": "np. {{ upload1.file[0] }}. Pliki binarne bez przedrostka pliku",
+            "use_cache": "Boolean, pozostaw puste dla prawdy",
+            "min_length": "Integer definiuje minimalną długość w tokenach podsumowania",
+            "top_k": "Liczba całkowita do zdefiniowania górnych tokenów",
+            "top_p": "Upływ, aby zdefiniować tokeny",
+            "temperature": "Float(0.0-100,0),pozostaw puste dla 1,0",
+            "repetition_penalty": "Pływający (0,0-100.0)",
+            "max_time": "Pływaj (0.0-120.0) aby określić ilość czasu w sekundach"
+          },
+          "tips": {
+            "mode_id": "Przejdź do <0>Model Hub</0> i wybierz model, którego chcesz użyć.",
+            "use_detail_parameters": "<0>Kliknij tutaj</0> aby dowiedzieć się więcej o parametrach szczegółów",
+            "temperature": "1 oznacza regularne pobieranie próbek, 0 oznacza, że zawsze przyjmuje najwyższy wynik, 100.0 zbliża się do jednolitego prawdopodobieństwa.",
+            "repetition_penalty": "Im bardziej token jest używany w generacji, tym bardziej jest karany, aby nie być wybieranym w kolejnych generacjach."
+          },
+          "parameter": "Parametr",
+          "use_detail_parameters": "Użyj parametrów szczegółów",
+          "use_cache": "Użyj pamięci podręcznej",
+          "wait_for_model": "Poczekaj na model",
+          "min_length": "Minimalna długość",
+          "max_length": "Maksymalna długość",
+          "top_k": "Górny k",
+          "top_p": "Górny p",
+          "temperature": "Temperatura",
+          "repetition_penalty": "Kara za powtórzenie",
+          "max_time": "Maksymalny czas"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Jaką instrukcję SQL chcesz wygenerować"
+          },
+          "button": {
+            "text": "Generowanie SQL"
+          }
+        },
+        "mssql": {
+          "config_type": "Typ konfiguracji",
+          "query": "Zapytanie",
+          "placeholder": {
+            "query": "wybiera * spośród użytkowników;",
+            "table": "Wybierz tabelę",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Tabela",
+          "insert_record": "Tablica rekordów do wstawienia",
+          "dropdown": {
+            "retry": "Kliknij, aby spróbować ponownie"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Metoda",
+            "table": "Tabela",
+            "json_input": "Użyj edytora parametrów JSON",
+            "parameters": "Parametry",
+            "index": "Nazwa indeksu",
+            "key_condition": "Wyrażenie kluczowego warunku",
+            "projection_expression": "Wyrażenie projekcji",
+            "filter_expression": "Wyrażenie filtra",
+            "attribute_name": "Nazwy atrybutów wyrażenia",
+            "attribute_value": "Wartości atrybutów wyrażeń",
+            "limit": "Ograniczenie",
+            "select": "Wybierz",
+            "item": "Artykuł 1 1 0 – Ogółem",
+            "condition_expression": "Wyrażenie warunku",
+            "key": "Klucz",
+            "update_expression": "Aktualizuj wyrażenie"
+          },
+          "option": {
+            "query": "zapytanie",
+            "scan": "skanowanie",
+            "put_item": "Element",
+            "get_item": "getItem",
+            "update_item": "aktualizuj Element",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, dla exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Niepowodzenie",
+          "ran_successfully": "Sukces"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status",
+            "headers": "Nagłówki",
+            "response": "Odpowiedź"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Wkrótce"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Nieprawidłowy klucz prywatny. "
+          },
+          "label": {
+            "ca_certificate": "Certyfikat CA",
+            "client_certificate": "Certyfikat klienta",
+            "client_key": "Klucz klienta",
+            "config_type": "Typ konfiguracji",
+            "connect_type": "Typ połączenia",
+            "connection_format": "Format połączenia",
+            "connection_string": "Ciąg połączenia",
+            "database": "Baza danych",
+            "database_index": "Indeks bazy danych",
+            "firebase_database_url": "Adres URL bazy danych Firebase",
+            "firebase_project_id": "ID Projektu Firestore",
+            "hostname": "Hostname",
+            "hostname_port": "Nazwa hosta/Port",
+            "hosturl": "Adres URL hosta",
+            "mongodb_connection_dns_seed_list": "Połączenie z listą seedów DNS",
+            "mongodb_connection_standard": "Standardowe połączenie",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Certyfikat klienta i klucz",
+            "name": "Nazwisko",
+            "port": "Port",
+            "private_key": "Klucz prywatny",
+            "private_key_hover": "Klucz prywatny jest powiązany z kontem usługowym z uprawnieniami Firebase.",
+            "ssl_options": "Opcje SSL",
+            "username_password": "Nazwa użytkownika/hasło",
+            "self_signed_certificate": "Użyj certyfikatu podpisanego przez siebie",
+            "disable_introspection": "Wyłącz Introspection",
+            "value": "Wartość",
+            "add_to": "Dodaj do",
+            "header_prefix": "Prefiks nagłówka",
+            "key": "Klucz",
+            "introspection": "Introspection",
+            "bear_token": "Token",
+            "connection_options": "Opcje połączenia",
+            "account_name": "Nazwa konta",
+            "warehouse": "Magazyn",
+            "schema": "Schemat",
+            "snowflake_basic_auth": "Podstawowa Autoryzacja",
+            "snowflake_key_auth": "Para kluczy (obsługiwane są tylko szyfrowane klucze prywatne)",
+            "role": "Rola",
+            "username": "Nazwa użytkownika",
+            "password": "Hasło",
+            "dynamo_region": "Region AWS",
+            "dynamo_access_key_id": "Identyfikator klucza dostępu AWS",
+            "dynamo_secret_key": "Sekretny klucz AWS"
+          },
+          "placeholder": {
+            "certificate": "CERTYFIKAT BEGIN-----\nMIIEMDCCApigAwIBAgIDI2GMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYG1UEAwwvYWY1ZjU4\n\n",
+            "database": "akme_produkcja",
+            "database_index": "domyślnie 0",
+            "hostname": "Hostname",
+            "hosturl": "np. https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "np.\"Użytkownicy DB(tylko do odczytu)\" lub \"Wewnętrzne API administratora",
+            "password": "Hasło",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"1000000000000000000000000\",\n  \"auth_uri\": \"https://accounts oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Nazwa użytkownika",
+            "default": "domyślny",
+            "hugging_face_url": "Użyj bezwzględnego adresu URL (np. https://api-inference.huggingface.co/models/). ",
+            "database_name": "Nazwa bazy danych",
+            "account_name": "ksy12345.us-east-2.aws",
+            "warehouse": "Obliczyć wysokość",
+            "snowflake_database": "Szerokość danych",
+            "schema": "PUBLICZNE",
+            "role": "Rola",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN WSKAŹNIK PRYWATNY-----\r\n••••••\r\n -----ENKRYPOWANY KLUCZY-----",
+            "dynamo_region": "us-west-1"
+          },
+          "tip": {
+            "connect_type": "Chmura: serwery ILLA bezpiecznie połączą się z bazą danych.",
+            "name": "Nazwa zasobu podczas tworzenia akcji w ILLA.",
+            "private_key": "<0>Kliknij tutaj</0> aby zobaczyć jak uzyskać ten klucz",
+            "ssl_options": "SSL jest używany, gdy jest dostępny",
+            "username_password": "Dane logowania będą szyfrowane i przechowywane bezpiecznie na naszych serwerach.",
+            "introspection": "Włącz to, jeśli Twój punkt końcowy GraphQL nie obsługuje zapytań introspekcyjnych. Zauważ, że wyłączenie introspekcji zmniejsza użyteczność GraphQL, ponieważ automatyczne uzupełnianie i linkowanie tego zasobu nie będzie już działać.",
+            "hugging_face_url": "<0>Kliknij tutaj</0>, aby dowiedzieć się więcej o twarzy.",
+            "bear_token": "Uzyskaj dostęp użytkownika lub token API <0>w ustawieniach profilu twarzy.</0>",
+            "connection_options": "Dodaj opcje połączenia dla Twojego połączenia. Gdy opcja SSL jest włączona, domyślnie dodamy szyfrowanie i zaufany Certyfikat."
+          },
+          "title": {
+            "advanced_option": "Opcje zaawansowane",
+            "general_option": "OGÓLNE",
+            "graphql_introspection": "INTROSPEKCJA GRAPHQL"
+          }
+        },
+        "error": {
+          "invalid_url": "Wprowadź poprawny adres URL, na przykład, https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Nowy"
+          },
+          "label": {
+            "access_token": "Token dostępu",
+            "access_token_lifespan": "Token dostępu\n żywotność (optykalna)",
+            "access_token_url": "Adres URL tokenu dostępu",
+            "action_type": "Typ akcji",
+            "audience": "Widzowie",
+            "authentication": "Uwierzytelnianie",
+            "authorization_url": "URL autoryzacji",
+            "base_url": "Podstawowy adres URL",
+            "basic_auth_password": "Podstawowe hasło uwierzytelniania",
+            "basic_auth_username": "Podstawowa nazwa użytkownika Auth",
+            "bearerToken": "Token Bearer",
+            "body": "Ciało",
+            "client_id": "Identyfikator klienta",
+            "client_secret": "Klucz tajny klienta",
+            "configure_oauth2": "Konfigurowanie OAuth 2.0",
+            "cookies": "Pliki cookie",
+            "copy_url_to_application": "Skopiuj ten adres URL do aplikacji",
+            "enable_auth_verification_endpoint": "Włącz punkt końcowy weryfikacji autoryzacji",
+            "extra_body_values": "Dodatkowe wartości ciała",
+            "forward_all_cookies": "Przekaż wszystkie ciasteczka",
+            "headers": "Nagłówki",
+            "list_of_cookies_to_forward": "Lista ciasteczek do\n do przodu",
+            "name": "Nazwisko",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Odśwież token",
+            "scopes": "Zakresy (oddzielone\n spacją)",
+            "share_oauth2_credentials_between_users": "Udostępnij poświadczenia OAuth2.0 pomiędzy użytkownikami",
+            "url_parameters": "Parametry URL",
+            "use_client_credentials_auth": "Użyj autoryzacji poświadczenia klienta",
+            "digest_auth_username": "Nazwa użytkownika",
+            "digest_auth_password": "Hasło"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Podstawowa Autoryzacja",
+              "bearer": "Niedźwiedź",
+              "none": "Brak",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Token Lifespan w sekundach",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "np.\"Wewnętrzny API administratora\"",
+            "authorization_url": "https://accounts.google.com/oauth2/v2/auth",
+            "base_url": "Użyj bezwzględnego adresu URL (np. https://example.com)",
+            "database": "np.\"Użytkownicy DB(tylko do odczytu)\"",
+            "name": "np.\"Użytkownicy DB(tylko do odczytu)\" lub \"Wewnętrzne API administratora",
+            "param_key": "klucz",
+            "param_value": "wartość",
+            "password": "hasło",
+            "username": "nazwa użytkownika"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 jest złożoną specyfikacją. ILLA obsługuje obecnie przepływ uwierzytelniania OAuth 2.0 po stronie serwera oraz przepływ poświadczeń klienta. W obu przypadkach musisz użyć zastępczego symbolu OAUTH2_TOKEN w celu poinformowania ILLI, gdzie umieścić token dostępu OAuth w żądaniu API. Wspólną lokalizacją dla tego jest nagłówek, taki jak autoryzacja: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Dodatkowe wartości ciała nie są przekazywane dla żądań GET lub HEAD",
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATYCZNIE ZMIANY PARAMETRU",
+            "name": "Nazwa zasobu podczas tworzenia akcji w ILLA."
+          },
+          "title": {
+            "advanced_option": "OGÓLNE"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Klucz dostępu",
+            "base_url": "Podstawowy adres URL",
+            "bucket_name": "Nazwa wiadra",
+            "custome_s3_endpoint": "Niestandardowy punkt końcowy S3",
+            "region": "Region",
+            "secret_access_key": "Tajny klucz dostępu",
+            "use_custome_s3_endpoint": "Użyj niestandardowego punktu końcowego S3"
+          },
+          "placeholder": {
+            "base_url": "np. https://example.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Jest to używane do łączenia się z innymi usługami niebędącymi usługami S3, takimi jak cyfrowa przestrzeń oceaniczna czy Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Wskazówka: przypisz zewnętrzne odniesienia do zmiennych zamiast łańcuchowania z nawiasów klamrowych."
+          },
+          "tip": {
+            "external_reference": "Możesz tworzyć zewnętrzne odniesienia do zmiennych, które zdefiniowałeś. Na przykład {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Dowiedz się więcej o Ociggging Face:",
+            "hf_endpoint": "Punkt końcowy Inferencji"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Uzyskaj tokeny API organizacji <0>w ustawieniach profilu twarzy</0>.",
+            "hf_endpoint": "dowiedz się więcej o <0>Koniecy</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Zezwalaj na adresy IP",
+            "message": "Jeśli twoje zasoby nie są publicznie dostępne, zaktualizuj ustawienia sieci lub zapory, aby dodać adresy IP ILLI do listy dozwolonych, aby ILLA mogła łączyć się z twoimi zasobami."
+          }
+        },
+        "button": {
+          "copy_ip": "Kopiuj adres IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Usunięto"
+      },
+      "result": {
+        "title": {
+          "api_request": "Żądanie API",
+          "error": "Zapytanie uruchomione nie powiodło się",
+          "json": "JSON",
+          "response": "Odpowiedź",
+          "success": "Zapytanie uruchomione pomyślnie",
+          "table": "Tabela"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Baza danych",
+        "js_transformer": "Transformator JavaScript"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Nie udało się wyświetlić tabel. Spróbuj ponownie później."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "prywatny",
+          "public_read": "czytanie publiczne",
+          "public_read_write": "publicznoczyt-zapis",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "uwierzytelniony odczyt",
+          "bucket_owner_read": "wiaderko-właściciel odczytany",
+          "bucket_owner_full_control": "wiaderko-właściciel-pełne sterowanie"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Anuluj",
+      "delete": "Usuń",
+      "delete_content": "Usunięcie może spowodować pewne błędy, proszę potwierdzić.",
+      "delete_title": "Czy na pewno chcesz usunąć {{ displayName}}?",
+      "editor_list": "Bieżące edytory"
+    },
+    "context_menu": {
+      "delete": "Usuń",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "DZIAŁANIA I TRANSFORMY ",
+      "components_title": "ELEMENTY ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "STRONY",
+      "global_data_modal": {
+        "title": "Edytuj dane globalne",
+        "variable_name": {
+          "tooltips": "Nazwa zmiennej. Użyj wartości początkowej w tej aplikacji za pośrednictwem {{name}}",
+          "label": "Nazwisko",
+          "message": "Wprowadź nazwę zmiennej"
+        },
+        "initial_value": {
+          "label": "Wartość początkowa",
+          "tooltips": "Obsługuje obiekty lub prymitywne wartości. Przykład: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Nie udało się wdrożyć"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" już istnieje",
+      "validate_error": "\"{{ displayName }}\" musi zaczynać się literą lub \"_\" i może zawierać tylko litery, cyfry, \"_\" lub \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Usuń",
+          "reset_state": "Reset state",
+          "view_documentation": "Zobacz dokumentację"
+        }
+      },
+      "multi_selected_header": "Wybrano {{ number }} komponentów",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Wykres paskowy",
+          "line": "Wykres linii",
+          "pie": "Wykres Pie",
+          "scatterplot": "Powierzchnia"
+        },
+        "color_picker": {
+          "prefabricated": "Kolor prefabrykowany",
+          "title": "Edytuj kolor"
+        },
+        "column_setter": {
+          "label": "Kolumny ({{number}})",
+          "new": "Nowy",
+          "title": "Rozporządzenie Rady (EWG) nr 2658/87 z dnia 23 lipca 1987 r. w sprawie nomenklatury taryfowej i statystycznej oraz w sprawie Wspólnej Taryfy Celnej (Dz.U. L 256 z 7.9.1987, s. 1)."
+        },
+        "event_handler_list": {
+          "empty": "Wyzwalacz zapytań, sterowanie komponentami lub wywoływanie innych interfejsów API w odpowiedzi na zdarzenia komponentów.",
+          "incomplete_selection": "Niekompletny wybór",
+          "new": "Nowy",
+          "title": "Edycja obsługi zdarzeń"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Usuń",
+          "label": "Menus ({{number}})",
+          "new": "Nowy",
+          "sub": "Subb"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Usuń",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Brak etykiety",
+          "model_title": "Edytuj opcje",
+          "new": "Nowy",
+          "title": "Opcje"
+        },
+        "select_page_setter": {
+          "placeholder": "Wybierz stronę"
+        },
+        "select_view_setter": {
+          "placeholder": "Wybierz widok"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Widoki"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Zmiana",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Zmiana filtra",
+          "fail": "Nieudane",
+          "focus": "Skupienie się",
+          "invalid": "Niepoprawny",
+          "paginationChange": "Zmiana strony",
+          "row_select": "Wybór wiersza",
+          "sortingChange": "Sortuj zmiany",
+          "submit": "Prześlij",
+          "success": "Sukces",
+          "onOpenModal": "Otwórz modalny",
+          "onCloseModal": "Zamknij modalny",
+          "play": "Odtwórz",
+          "pause": "Wstrzymaj",
+          "ended": "Zakończono",
+          "loaded": "Załadowano",
+          "rowSelect": "Wybór wiersza",
+          "markerSelected": "znacznik zaznaczony",
+          "markerCreated": "markerUtworzono",
+          "select": "Wybierz"
+        },
+        "image_list": {
+          "title": "Obrazy",
+          "empty": "Brak obrazów",
+          "model_title": "Edytuj obrazy",
+          "config": {
+            "model_label": "Etykieta",
+            "image_url": "Adres URL obrazu"
+          }
+        },
+        "image_setter": {
+          "new": "Nowy"
+        },
+        "Change": "Zmiana",
+        "Select": "Wybierz",
+        "eventCalendar": {
+          "no_title": "Brak tytułu"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Wypełnij",
+        "message_type": {
+          "error": "Błąd",
+          "info": "Informacje",
+          "success": "Sukces",
+          "warning": "Ostrzeżenie"
+        },
+        "outline": "Kontury",
+        "validation_pattern": {
+          "email": "E-mail",
+          "regex": "Regex",
+          "url": "Adres URL"
+        },
+        "height": {
+          "fixed": "Naprawione",
+          "auto": "Auto"
+        },
+        "upload_type": {
+          "button": "Przycisk",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Pojedynczy plik",
+          "multiple_files": "Wiele plików",
+          "directory": "Katalog"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "Wybierz czas"
+        },
+        "time_range": {
+          "start_placeholder": "Godzina rozpoczęcia",
+          "end_placeholder": "Czas zakończenia"
+        }
+      },
+      "setter_group": {
+        "adornments": "DOKUMENTY",
+        "basic": "PODSTAWOWE",
+        "column": "KOLUMNY",
+        "data": "DANE",
+        "interaction": "INTERDZIAŁALNOŚĆ",
+        "label": "ETYKIETA",
+        "layout": "ŁADUNEK",
+        "menu": "MENU",
+        "options": "OPCJE",
+        "pagination": "STRUKTURA",
+        "row_selection": "WYBÓR ROW",
+        "sort": "SORTUJ",
+        "style": "STYLIA",
+        "tabs": "TABS",
+        "toolbar": "OBSŁUGA",
+        "validation": "ZWALIDACJA",
+        "views": "PRZEGLĄDY",
+        "images": "PRZEPISY",
+        "primary_value": "WARTOŚĆ PIERWOTNA",
+        "secValue": "Wartość drugorzędna",
+        "border": "Border",
+        "color": "Kolor",
+        "icon": "Ikona",
+        "secondary_value": "WARTOŚĆ DRUGA",
+        "resource": "ZASOBY",
+        "eventCalendar": {
+          "calendar": "Kalendarz"
+        },
+        "event": "Wydarzenie"
+      },
+      "setter_label": {
+        "action": "Akcja",
+        "align": "Align",
+        "allow_clear": "Zezwól na czyszczenie",
+        "allow_half": "Zezwól na połowę",
+        "alt_text": "Tekst alternatywny",
+        "alt_text_desc": "Dostępny opis obrazu dla czytników ekranów. Jest on również renderowany jako rezerwowy, jeśli obraz nie zostanie załadowany.",
+        "background": "Kontekst",
+        "background_color": "Kontekst",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Podpis",
+        "chart_title": "Rozporządzenie Rady (EWG) nr 2658/87 z dnia 23 lipca 1987 r. w sprawie nomenklatury taryfowej i statystycznej oraz w sprawie Wspólnej Taryfy Celnej (Dz.U. L 256 z 7.9.1987, s. 1).",
+        "chart_type": "Typ wykresu",
+        "color": "Kolor",
+        "colors": "Kolory",
+        "column_title": "Tytuł kolumny",
+        "column_type": "Typ kolumny",
+        "columns": "Kwota, którą należy zgłosić w kolumnie 060 tego wiersza: pierwotne odliczenie, art. 36 ust. 1 lit. b) CRR.",
+        "component": "Komponent",
+        "config_type": "Typ konfiguracji",
+        "container": "Pojemnik",
+        "content": "Zawartość",
+        "control_component": "Komponent kontrolny",
+        "custom_rule": "Własna reguła",
+        "data": "Dane",
+        "data_source": "Źródło danych",
+        "data_sources": "Źródła danych",
+        "dataset": {
+          "aggregation_method": "Metoda agregacji",
+          "name": "Nazwa zbioru danych",
+          "remove": "Remove dataset",
+          "value": "Wartości zbioru danych"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Miejsce dziesiętne",
+        "decimal_places": "Miejsca dziesiętne",
+        "default_sort_key": "Kolumna",
+        "default_sort_order": "Kierunek",
+        "default_tab": "Default tab",
+        "default_value": "Wartość domyślna",
+        "default_views": "Widok domyślny",
+        "description": "Opis",
+        "direction": "Kierunek",
+        "disable_submit": "Wyłącz wysyłanie",
+        "disabled": "Wyłączone",
+        "download": "Pobierz",
+        "duration": "Czas trwania",
+        "empty_state": "Pusty stan",
+        "enable_sorting": "Włącz sortowanie",
+        "end_data": "Data zakończenia",
+        "end_placeholder": "Koniec zastępczy",
+        "event": "Wydarzenie",
+        "event_handler": "Obsługa zdarzeń",
+        "expansion_method": "Metoda rozszerzenia",
+        "failure": "Niepowodzenie",
+        "filter": "Filtr",
+        "font_size": "Font size",
+        "form_data_key": "Klucz danych formularza",
+        "format": "Formatowanie",
+        "go_to_url": "Przejdź do adresu URL",
+        "group_by": "Grupuj według",
+        "group_layout": "Układ grupy",
+        "hidden": "Hidden",
+        "hidden_label": "Ukryta etykieta",
+        "hide_validation_message": "Ukryj komunikat potwierdzający",
+        "hide_value_label": "Ukryj etykietę wartości",
+        "horizontal_alignment": "Wyrównanie poziome",
+        "icon": "Ikona",
+        "image_source": "Źródło obrazu",
+        "img_height": "Wysokość",
+        "img_width": "Width",
+        "index": "Wielkość sprzedaży i udział w rynku",
+        "item_background_color": "Tło elementu",
+        "items": "Przedmioty",
+        "key": "Klucz",
+        "label": "Etykieta",
+        "label_alignment": "Wyrównanie",
+        "label_position": "Położenie",
+        "label_width": "Width(%)",
+        "layout": "Układ",
+        "legend_position": "Pozycja Legendy",
+        "link_to_container": "Link do kontenera",
+        "links_color": "Linki",
+        "loading": "Ładowanie",
+        "loop_back_to_start": "Wróć do startu",
+        "loop_start_to_back": "Pętla zaczyna się wstecz",
+        "mapped_option": "Opcja mapowania",
+        "mapped_value": "Wartość odwzorowana",
+        "max_count": "Maksymalna liczba",
+        "max_date": "Maksymalna data",
+        "max_length": "Maksymalna długość",
+        "maximum": "Maksymalnie",
+        "method": "Metoda",
+        "min_date": "Data min.",
+        "min_length": "Minimalna długość",
+        "minimum": "Minimalny",
+        "multi_row_selection": "Wybór wielu wierszy",
+        "new_tab": "New tab",
+        "only_run_when": "Uruchom tylko gdy",
+        "overFlow": "Przepływ",
+        "page": "Strona",
+        "pageSize": "Rozmiar strony",
+        "pattern": "Wzorzec",
+        "pending": "Oczekujące",
+        "placeholder": "Zastępca",
+        "prefix_text": "Tekst prefiksu",
+        "radius": "Radius",
+        "read_only": "Tylko do odczytu",
+        "regex": "Regex",
+        "required_field": "Pole wymagane",
+        "reset_after_successful_submit": "Resetuj po pomyślnym wysłaniu",
+        "router": "Węzeł",
+        "run_script": "Uruchom skrypt",
+        "scale_type": "Typ skali",
+        "set_router": "Ustaw router",
+        "set_temporary_state": "Ustaw stan tymczasowy",
+        "shadow": {
+          "shadow": "Cień"
+        },
+        "show_character_count": "Pokaż liczbę znaków",
+        "show_clear_button": "Pokaż przycisk wyczyść",
+        "show_footer": "Pokaż stopkę",
+        "show_header": "Pokaż nagłówek",
+        "show_notification": "Pokaż powiadomienie",
+        "sort": "Sortuj",
+        "start_date": "Data rozpoczęcia",
+        "start_placeholder": "Rozpocznij symbol zastępczy",
+        "step_size": "Rozmiar kroku",
+        "stroke_width": "Szerokość obrysu",
+        "style": "Styl",
+        "styles": "Styles",
+        "submit_form": "Wyślij formularz",
+        "success": "Sukces",
+        "suffix_text": "Tekst sufiksu",
+        "text": "Tekst",
+        "text_align": "Text align",
+        "text_size": "Rozmiar tekstu",
+        "theme_color": "Kolor motywu",
+        "thousand_separator": "Separator tysiąca",
+        "time_format": "Format czasu",
+        "title": "Rozporządzenie Rady (EWG) nr 2658/87 z dnia 23 lipca 1987 r. w sprawie nomenklatury taryfowej i statystycznej oraz w sprawie Wspólnej Taryfy Celnej (Dz.U. L 256 z 7.9.1987, s. 1).",
+        "tooltip": "Wskazówka",
+        "trail_color": "Kolor śladu",
+        "trigger_query": "Wyzwalacz zapytania",
+        "type": "Typ",
+        "validate_inputs_on_submit": "Zatwierdź dane wejściowe przy przedłożeniu",
+        "value": "Wartość",
+        "value_labels": "Etykiety wartości",
+        "variant": "Wariant",
+        "vertical_alignment": "Wyrównanie pionowe",
+        "width": "Width",
+        "x_axis_name": "Nazwa osi X",
+        "x_axis_title": "Tytuł osi X",
+        "x_axis_type": "Typ osi X",
+        "x_axis_value": "Wartość osi X",
+        "y_axis_name": "Nazwa osi Y",
+        "y_axis_title": "Tytuł osi Y",
+        "height": "Wysokość",
+        "min_height": "Min height (px)",
+        "show_underline": "Pokaż podkreślenie",
+        "auto_play": "Automatyczne odtwarzanie",
+        "interval": "Interwał (ms)",
+        "show_button": "Pokaż strzałki",
+        "show_dot": "Pokaż kropki na dole",
+        "hidden_images": "Ukryte obrazy",
+        "file_type": "Typy plików",
+        "selection_types": "Typy zaznaczenia",
+        "append_newly_files": "Dołącz nowo wybrane pliki",
+        "file_list": "Lista plików",
+        "parse_value": "530***Parse value",
+        "max_files": "Maksymalna ilość plików",
+        "min_files": "Min. pliki",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Przepełnienie",
+        "file_url": "Źródło PDF",
+        "show_tool_bar": "Pokaż pasek narzędzi",
+        "scale": "Skaluj stronę do",
+        "scroll": "Przyciągnij przewijanie do każdej strony",
+        "min_max_size": "Min rozmiar ~ Maksymalny rozmiar",
+        "video_url": "Źródło wideo",
+        "autoplay": "Automatyczne odtwarzanie",
+        "loop": "Pętla",
+        "volume": "Objętość",
+        "show_controls": "Pokaż ustawienia",
+        "img_url_array": "Tablica URL obrazu",
+        "statistics": {
+          "label": "Etykieta",
+          "primary_value": "Wartość podstawowa",
+          "secValue": "Wartość drugorzędna",
+          "decimal": "Miejsce dziesiętne",
+          "trend_sign": "Pokaż znak trendu",
+          "positive_sign": "Znak dodatni",
+          "negative_sign": "Znak ujemny",
+          "thousand_separator": "Pokaż separator tysięcy",
+          "trend_color": "Włącz kolor trendu",
+          "prefix_text": "Tekst prefiksu",
+          "suffix_text": "Tekst sufiksu"
+        },
+        "mute": "Wycisz",
+        "collapse": {
+          "type": "Typ",
+          "accordin_mode": "Tryb Accordion",
+          "header_color": "Nagłówek",
+          "body_color": "Ciało",
+          "expand_icon": "Rozwiń",
+          "collapse_icon": "Zwiń",
+          "icon_color": "Kolor"
+        },
+        "choose_at_least": "Wybierz co najmniej",
+        "choose_up_to": "Wybierz do",
+        "copy_to_clipboard": "Kopiuj do schowka",
+        "file_download": {
+          "file_data": "Dane pliku",
+          "file_name": "Nazwa pliku z rozszerzeniem",
+          "file_type": "Typ pliku"
+        },
+        "action_name": "Nazwa akcji",
+        "variable": {
+          "path_of_value": "Ścieżka wartości",
+          "variable": "Dane globalne"
+        },
+        "code": {
+          "write_code": "Napisz kod"
+        },
+        "slider": {
+          "step_size": "Rozmiar kroku",
+          "minimum": "Minimalny",
+          "maximum": "Maksymalnie",
+          "hide_output": "Ukryj wyjście",
+          "prefix_icon": "Ikona prefiksu",
+          "suffix_icon": "Ikona przyrostu",
+          "allow_wrapping": "Zezwól na pakowanie"
+        },
+        "range_slider": {
+          "start_value": "Wartość początkowa",
+          "end_value": "Wartość końcowa"
+        },
+        "name": "Nazwisko",
+        "audio": {
+          "audio_url": "Źródło dźwięku"
+        },
+        "map": {
+          "markers": "Znaczniki",
+          "initial_location": "Lokalizacja początkowa",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Nazwa pola szerokości geograficznej",
+          "longitude_field_name": "Nazwa pola długości geograficznej",
+          "zoom": "Powiększ",
+          "enable_add_markers": "Włącz dodawanie znaczników",
+          "enable_search_locati": "Włącz lokalizację wyszukiwania",
+          "enable_clustering": "Włącz grupowanie"
+        },
+        "time_range": {
+          "start_time": "Godzina rozpoczęcia",
+          "end_time": "Czas zakończenia"
+        },
+        "eventCalendar": {
+          "event_value": "Wartość zdarzenia",
+          "event_id": "Identyfikator wydarzenia",
+          "title": "Rozporządzenie Rady (EWG) nr 2658/87 z dnia 23 lipca 1987 r. w sprawie nomenklatury taryfowej i statystycznej oraz w sprawie Wspólnej Taryfy Celnej (Dz.U. L 256 z 7.9.1987, s. 1).",
+          "description": "Opis",
+          "start": "Rozpocznij",
+          "end": "Koniec",
+          "resource_id": "ID zasobu",
+          "resource_title": "Tytuł zasobu",
+          "all_day": "Cały dzień",
+          "data_source": "Źródło danych",
+          "default_date": "Domyślna data",
+          "resource_grid": "Siatka zasobów",
+          "default_view": "Widok domyślny",
+          "show_current_time": "Pokaż bieżący czas",
+          "background": "Kontekst",
+          "calendar_background": "Kontekst",
+          "calendar_border": "Border",
+          "calendar_text": "Tekst",
+          "event_background": "Kontekst",
+          "event_text": "Tekst",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
+        },
+        "table": {
+          "page_index": "Indeks strony",
+          "index": "Wielkość sprzedaży i udział w rynku",
+          "scroll_to_the_select": "Przewiń do wybranego wiersza",
+          "filters": "Filtry",
+          "filter_mode": "Tryb filtrowania",
+          "show_thousands_separ": "Pokaż separator tysięcy",
+          "tag_label": "Etykieta tagu",
+          "tag_color": "Kolor tagu",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
+        "cascader_data": "Każda opcja musi mieć format JSON i zawierać dwa klucze, wartość i etykietę. Używając tablic, możesz tworzyć opcje na tym samym poziomie. A opcje podrzędne mogą być tworzone za pomocą atrybutu \"podrzędne\". ",
+        "component_default_value": "Początkowa wartość komponentu. Możesz dynamicznie zmienić wartość początkową wpisując JavaScript w {{}}.",
+        "custom_rule": "Utwórz swoją logikę sprawdzania poprawności tutaj. Reguły powinny być wykonane w JavaScript i pokryte przez {{}}.",
+        "date_format": "Prawidłowy ciąg formatu daty. Zobacz [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Początkowa wartość pola wejściowego. Możesz dynamicznie zmienić początkową wartość pola wejściowego, wpisując JavaScript w {{}}.",
+        "disabled": "Kontroluj status czy komponent jest wyłączony. Komponent nie może być modyfikowany lub skupiony gdy jest wyłączony.",
+        "disabled_submit": "Po wyłączeniu, komponenty, które wywołują metodę zgłoszenia(), również zostaną wyłączone.",
+        "download": "Pokaż przycisk pobierania na pasku narzędzi.",
+        "filter": "Pokaż przycisk filtra na pasku narzędzi.",
+        "form_data_key": "Określ klucz komponentu opakowania formularza podczas konstruowania atrybutu danych.",
+        "hidden": "Dynamicznie kontrolować, czy komponent jest ukryty. Możesz zmienić ukryty stan poprzez dynamiczną wartość logiczną.",
+        "hide_validation_message": "Możesz ukryć komunikat o błędzie przełączając status ukrycia, gdy wartość wejściowa jest nieprawidłowa. Możesz dynamicznie zmienić status ukryty przez JavaScript.",
+        "input_default_value": "Początkowa wartość pola wejściowego. Możesz dynamicznie zmienić początkową wartość pola wejściowego, wpisując JavaScript w {{}}.",
+        "loading": "Czy komponent powinien pokazywać wskaźnik obciążenia.",
+        "map_data_option": "Użyj tablicy wartości lub obiektu kluczy zamapowanych do tablic. Każdy element w źródle danych jest mapowany do każdej opcji.",
+        "mapped_value": "Użyj {{ currentRow }} aby uzyskać dostęp do danych bieżącego wiersza. Na przykład, aby obliczyć \"koszt za kliknięcie\" na podstawie kolumn \"koszt\" i \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Użyj {{table.selectedRow[n].columnName}} aby uzyskać dostęp do danych.",
+        "only_run_when": "Warunki, które muszą być spełnione przed wykonaniem zdarzenia.",
+        "placeholder": "Wartość będzie wyświetlana, gdy pole wejściowe jest puste.",
+        "progress_percentage": "Wartość procentowa wynosi od 0 do 100.",
+        "read_only": "Kontroluj status czy komponent jest tylko do odczytu. Komponent tylko do odczytu może być wybrany i aktywny, ale nie może być modyfikowany.",
+        "required_field": "Ważne tylko wtedy, gdy przełącznik jest włączony.",
+        "switch_default_value": "Ustaw początkowy status przełącznika. Możesz dynamicznie zmienić domyślną wartość za pomocą JavaScript.",
+        "table_only_run_when": "Warunki, które muszą być spełnione przed wykonaniem wydarzenia. Użyj {{ currentRow }} aby uzyskać dostęp do danych bieżącego wiersza. Na przykład, uruchom tylko gdy \"imgSize\" jest mniejszy niż 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Użyj bieżącego wiersza, aby uzyskać dostęp do danych bieżącego wiersza. Na przykład, aby ustawić wartość komponentu edytowalnego na podstawie \"email\":  {{ currentRow.email }}.\n  I także możesz ustawić wartość w INSPECT składnika używając {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Użyj {{ currentRow }} aby uzyskać dostęp do danych bieżącego wiersza. Na przykład, aby przejść do adresu url z parametrem \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "Możesz wybrać wartość w trybie Markdown lub zwykłego tekstu. Tylko linki w trybie markdown mogą być rozpoznane.",
+        "timeline_direction": "Zmień kierunek osi czasu.",
+        "timeline_pending": "Czy pokazać węzeł o oczekującym statusie.",
+        "tooltip": "Użytkownik może tutaj wprowadzić podpowiedź komponentu. Podpowiedź zostanie wyświetlona, gdy jest skoncentrowana. Format Markdown jest obsługiwany.",
+        "file_types": "Lista rozszerzeń plików dozwolonych do przesłania. Żadna wartość nie będzie zezwalać na wszystkie typy plików.",
+        "file_list": "Aby wyświetlić listę wybranych plików poniżej uploadera. Wysokość uploadera zmieni się dynamicznie w zależności od długości listy plików.",
+        "parse_value": "Próba przeanalizowania wybranych plików, z obsługą plików JSON, CSV, TSV, Excel i TXT.\nPrzeanalizowane dane mogą być dostępne przez {{uploader1.parsedValue}}. Pliki, które nie mogą być analizowane, będą puste.\nWszystkie pliki są dostępne jako kodowane ciąg znaków w tablicy wartości, niezależnie od tej opcji.",
+        "file_url": "Obsługuje adresy PDF w Internecie lub kodowane przez base64 dane plików pdf. Na przykład: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Skaluj każdą stronę, aby wypełnić szerokość lub wysokość komponentu.",
+        "scroll": "Automatycznie zlokalizuj na początku każdej strony podczas przewijania.",
+        "video_url": "Obsługuje większość usług wideo lub bezpośredni link do dowolnego powszechnie używanego typu pliku wideo lub kodowanych danych w formacie base64 plików wideo. Na przykład: {{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "Lista złożona: lista, wszystkie elementy automatycznie skopiują styl pierwszego elementu. Możesz określić dane komponentu w każdym elemencie za pośrednictwem {{ currentItem.columnName }}. Zwijalny panel: każdy panel jest niezależny, możesz określić styl komponentu i dane każdego elementu oddzielnie.",
+          "items": "Liczba elementów",
+          "accordin_mode": "W trybie akordionowym, gdy przedmiot jest rozbudowany, inne przedmioty się załamają."
+        }
+      },
+      "tab_title": "Zbadaj",
+      "unselected_tip1": "Nie wybrano komponentów.",
+      "unselected_tip2": "Kliknij komponent, aby go wybrać.",
+      "setter": {
+        "click_mask_close": "Kliknij maskę, aby zamknąć modalny",
+        "modal": {
+          "blank": "Brak ikon"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Użyj {{ item }} , aby uzyskać wartość ze źródła danych. Na przykład w źródle danych znajdują się dwa atrybuty. Są to adres URL obrazu i URL. Jeśli chcesz przejść do innego adresu url po kliknięciu obrazu, użyj {{ item.url }} aby ustawić adres URL.",
+        "data_source": "Źródło danych do definiowania elementów obrazu za pomocą mapowanej oceny. Użyj tablicy wartości lub obiektu kluczy zamapowanych do tablic. Na przykład: {{[{ x:1, y:1 },{ x:2, y:2 },...]}}. Możesz również użyć danych w akcjach. Na przykład: {{ mysql1.data }} ",
+        "img_url_array": "Użyj {{ item.attributeName }} , aby uzyskać adres URL obrazu ze źródła danych. ",
+        "carousel": {
+          "data_source": "Źródło danych do definiowania elementów obrazu za pomocą mapowanej oceny. Użyj tablicy wartości lub obiektu kluczy zamapowanych do tablic. Na przykład: {{[{ x:1, y:1 },{ x:2, y:2 },...]}}. Możesz również użyć danych w akcjach. Na przykład: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Dane bazowe64, surowe dane, mapowane dane w tabeli. "
+        },
+        "variable": {
+          "available_in_objects": "Dostępne w obiektach i tablicach. Ścieżka atrybutu w obiekcie: {{objectName.attributeName}}. Indeks wartości w tablicy: {{1}}. Tablica w obiekcie: {{objectName.attributeName.1}}",
+          "the_target_value": "Wartość docelowa"
+        },
+        "slider": {
+          "default_value": "Początkowa wartość suwaka. Możesz dynamicznie zmienić wartość początkową wpisując JavaScript w {{}}.",
+          "minimum": "Minimalna wartość suwaka",
+          "maximum": "Maksymalna wartość suwaka",
+          "step_size": "Jednostka minimalnej zmiany slajdu",
+          "label": "Nazwa pola wyświetlanego użytkownikowi",
+          "caption": "Podpis używany do szczegółowego opisu pola",
+          "hide_label": "Ustaw czy wyświetlić etykietę",
+          "allow_wrapping": "Ustaw czy zezwolić na pakowanie etykiet",
+          "position": "Ustaw położenie etykiety względem komponentu",
+          "alignment": "Ustaw wyrównanie etykiety",
+          "width": "Kiedy etykieta znajduje się po lewej stronie składnika, ustaw stosunek szerokości etykiety",
+          "prefix_icon": "Ikona wyświetlana przed komponentem",
+          "suffix_icon": "Ikona wyświetlana po komponencie",
+          "hide_output": "Ustaw czy chcesz ukryć wartość podczas przesuwania"
+        },
+        "step": {
+          "default_step": "Domyślny krok",
+          "show_step_number": "Pokaż numery kroku",
+          "indicate_completed_steps": "Wskaż ukończone kroki"
+        },
+        "range_slider": {
+          "start_value": "Aby ustawić minimalną wartość zakresu",
+          "end_value": "Aby ustawić maksymalną wartość zakresu"
+        },
+        "audio": {
+          "audio_url": "Obsługuje bezpośrednie linki do dowolnego wspólnego typu pliku audio lub linków do niektórych usług audio lub kodowanych danych plików audio base64. Na przykład: {{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "Aby ustawić znaczniki na mapie. Znaczniki powinny być tablicą obiektów o takich samych właściwościach jak domyślne znaczniki.",
+          "initial_location": "Podczas inicjowania mapy, domyślna pozycja wyświetlania wyśrodkowanego",
+          "default_markers": "Domyślne znaczniki wyświetlane podczas inicjowania mapy. Możesz ustawić je dynamicznie z JavaScript w {{}}. ",
+          "latitude_field_name": "Szerokość geograficzna jest pobierana, z której właściwość początkowej lokalizacji i domyślnych obiektów znaczników.",
+          "longitude_field_name": "Długość geograficzna jest pobierana, z której pochodzi własność początkowej lokalizacji i domyślnych obiektów znaczników.",
+          "zoom": "Aby ustawić powiększenie mapy",
+          "enable_add_markers": "Czy zezwolić użytkownikom na dodawanie znaczników klikając na mapę",
+          "enable_search_locati": "Czy zezwolić użytkownikom na wyszukiwanie lokalizacji",
+          "enable_clustering": "Czy zezwolić wielu znacznikom na agregowanie gdy mapa jest powiększona"
+        },
+        "time_picker": {
+          "format": "Prawidłowy ciąg formatów czasu. Więcej informacji na temat formatu: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "Rozpiętość wartości w minutach",
+          "show_a_clear_button_": "Pokaż przycisk czyszczenia, gdy mysz jest nad komponentem. "
+        },
+        "time_range": {
+          "start_time": "Początkowy czas rozpoczęcia komponentu. ",
+          "end_time": "Początkowy czas zakończenia komponentu. ",
+          "start_placeholder": "Wartość będzie wyświetlana, gdy pole czasu rozpoczęcia jest puste.",
+          "end_placeholder": "Wartość będzie wyświetlana, gdy pole czasu zakończenia jest puste."
+        },
+        "eventCalendar": {
+          "event_value": "Użyj obiektu zamkniętego w {{ aby ustawić wartość zdarzenia. Na przykład, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Unikalny identyfikator używany do identyfikacji zdarzenia",
+          "title": "Tytuł wydarzenia",
+          "description": "Opis wydarzenia",
+          "start": "Godzina rozpoczęcia wydarzenia",
+          "end": "Czas zakończenia wydarzenia",
+          "resource_id": "Zasób może być osobą, salą spotkań itp. Możesz ustawić ID zasobu i połączyć go z wydarzeniem. ",
+          "resource_title": "Nazwa zasobu wyświetlana w widoku zasobów",
+          "all_day": "Czy całodniowe wydarzenie",
+          "data_source": "Źródło danych zdarzeń. Źródło danych powinno być szeregiem obiektów. Każdy obiekt jest zdarzeniem. Na przykład, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "Domyślna data uruchomienia aplikacji",
+          "resource_grid": "Czy pokazać siatkę zasobów",
+          "default_view": "Domyślny widok przy uruchamianiu aplikacji",
+          "show_current_time": "Ustaw czy pokazywać bieżącą linię czasu",
+          "calendar_background": "Ustaw tło kalendarza",
+          "calendar_border": "Ustaw kolor obramowania",
+          "calendar_text": "Ustaw kolor tekstu",
+          "event_background": "Ustaw tło karty wydarzenia",
+          "event_text": "Ustaw kolor tekstu karty wydarzenia",
+          "couldnot_drag": "Jeśli chcesz przeciągnąć w celu dostosowania zakresu czasu, przejdź do strony podglądu dla operacji.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "The icon displayed in the table",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download row data icon.",
+          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object. Set the original column name as key ",
+          "filter_mode": "The filter mode. AND or OR.",
+          "currency_code": "USD"
+        }
+      },
+      "setter_option": {
+        "fixed": "Naprawione",
+        "auto_limited": "Automatyczna wysokość z limitami",
+        "auto_height": "Automatyczna wysokość",
+        "text_ellipsis": "Elipsa",
+        "text_scroll": "Przewiń",
+        "text_clip": "Clip",
+        "scale_height": "Wysokość",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Zwijany panel"
+        },
+        "file_download": {
+          "auto": "Auto",
+          "plain_text": "Zwykły tekst",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Brak",
+          "large": "Duży",
+          "medium": "Średni",
+          "small": "Mały"
+        },
+        "eventCalendar": {
+          "sunday": "Niedziela",
+          "monday": "Poniedziałek",
+          "tuesday": "Wtorek",
+          "wednesday": "Środa",
+          "thursday": "Czwartek",
+          "friday": "Piątek",
+          "saturday": "Sobota",
+          "month": "Miesiąc",
+          "week": "Tydzień",
+          "day": "Dzień",
+          "agenda": "Harmonogram"
+        },
+        "table": {
+          "set_sort": "Ustaw sortowanie",
+          "column": "Kolumna",
+          "number": "Numer",
+          "percent": "Procent",
+          "currency": "Waluta",
+          "text": "Tekst",
+          "tag": "Znacznik",
+          "button_group": "Grupa przycisków",
+          "date": "Data",
+          "time": "Czas",
+          "date_time": "Data Godzina",
+          "link": "Link",
+          "rating": "Ocena",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Przycisk",
+          "icon": "Ikona",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Brak limitów",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Dodatni kolor",
+          "negative_color": "Kolor ujemny"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "nowe_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Liczba pomiędzy 0 a 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Proszę wybrać co najmniej {{ min }} opcji.",
+        "choose_up_to": "Wybierz do {{max}} opcji.",
+        "map": {
+          "zoom": "Proszę ustawić wartość pomiędzy 1 a 22"
+        },
+        "upload": {
+          "size_exceed": "Pliki o pojemności powyżej 500MB mogą nie zostać przetworzone.",
+          "single_file": "Dozwolony jest tylko pojedynczy plik.",
+          "file": "Nieobsługiwane typy plików zostały usunięte",
+          "directory": "Dozwolone są tylko katalogi."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Napisz tutaj swój kod. Użyj JavaScript wewnątrz {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Dodaj",
+        "body": "Ciało",
+        "default_view": "Widok domyślny",
+        "edit_view": "Edytuj widok",
+        "footer": "Stopka",
+        "header": "Nagłówek",
+        "key": "Klucz",
+        "left_panel": "Lewy panel",
+        "preset": "Preset",
+        "right_panel": "Prawy panel",
+        "set_as_homepage": "Ustaw jako stronę główną",
+        "show_fold_icon": "Pokaż ikonę złożenia",
+        "view_path": "Pokaż ścieżkę",
+        "views": "Widoki",
+        "width": "Width",
+        "height": "Wysokość",
+        "columns": "Kwota, którą należy zgłosić w kolumnie 060 tego wiersza: pierwotne odliczenie, art. 36 ust. 1 lit. b) CRR."
+      },
+      "model_tips": {
+        "cancel_button": "Anuluj",
+        "change_layout_message": "Po zmianie układu wszystkie dane zostaną wyczyszczone. Tej operacji nie można odzyskać, potwierdź",
+        "delete_section_message": "Po ukryciu, dane w tej sekcji zostaną wyczyszczone. Tej operacji nie można odzyskać, proszę potwierdzić",
+        "ok_button": "Potwierdź"
+      },
+      "panel_bar_title": {
+        "basic": "PODSTAWOWE",
+        "frame": "FRAME"
+      },
+      "tab_title": "Strona",
+      "tooltips": {
+        "show_fold_icon": "Pokaż przycisk do zwinięcia lub rozwinięcia panelu",
+        "view_path": "Ciąg znaków po przykład.com/app/page/ aby uzyskać dostęp do tego widoku",
+        "auto_canvas_width": "Szerokość strony wyrażona jako procent szerokości przeglądarki."
+      }
+    },
+    "validate_message": {
+      "email": "Wprowadź poprawny adres e-mail",
+      "max_length": "Nie może być więcej niż {{ number }} znaków",
+      "max_value": "Musi być mniejsze niż {{ number }}",
+      "min_length": "Musi mieć co najmniej {{ number }} znaków",
+      "min_value": "Musi być większa niż {{ number }}",
+      "regex": "Proszę dopasować żądany format",
+      "required": "To pole jest wymagane",
+      "url": "Wprowadź poprawny adres URL",
+      "max_size": "Rozmiar pliku nie może przekraczać {{maxSize }} {{ type }}.",
+      "min_files": "Wymagane jest co najmniej {{ minFiles }} plików.",
+      "max_files": "Obsługa maksymalnie {{ maxFiles }} plików.",
+      "min_size": "Rozmiar pliku nie może być mniejszy niż {{minSize }} {{ type }}.",
+      "min_max_size": "Min rozmiar ~ Maksymalny rozmiar"
+    },
+    "widget_picker": {
+      "empty_tip": "Przepraszamy, brak wyników wyszukiwania",
+      "search_placeholder": "Szukaj",
+      "sessions": {
+        "calendar": "Kalendarz wejścia",
+        "commonly": "Składniki powszechne",
+        "container": "Pojemnik i forma",
+        "data": "Dane",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Prezentacja",
+        "selects": "Wybierz wejścia"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Ustaw ukryte",
+      "set_file_url": "Ustaw źródło PDF",
+      "play": "Odtwórz",
+      "pause": "Wstrzymaj",
+      "seek_to": {
+        "time": "Czas",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Źródło wideo"
+      },
+      "speed": {
+        "speed": "Prędkość",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Zatrzymaj",
+      "mute": "Wycisz",
+      "loop": "Pętla",
+      "show_controls": "Pokaż ustawienia",
+      "set_volumn": "Ustaw kolumnę",
+      "set_volume": {
+        "volume": "Objętość",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "resetPrimaryValue",
+        "primary_value": "Wartość podstawowa"
+      },
+      "collapse": {
+        "expand_all_items": "Rozwiń wszystkie elementy",
+        "collapse_all_items": "Zwiń wszystkie elementy"
+      },
+      "carousel": {
+        "showNext": "Pokaż następny widoczny obraz",
+        "showPrevious": "Pokaż poprzedni widoczny obraz"
+      },
+      "file_download": {
+        "download": "Pobierz",
+        "message": {
+          "suc": "Rozpocznij pobieranie",
+          "fail": "Żądanie nie powiodło się",
+          "download_failed": "Pobieranie nie powiodło się"
+        }
+      },
+      "setGlobalData": "Ustaw dane globalne",
+      "setLocalStorage": "Ustaw pamięć lokalną",
+      "audio": {
+        "set_audio_url": "Ustaw źródło dźwięku"
+      },
+      "map": {
+        "marker_selected": "Zaznaczony znacznik",
+        "marker_created": "Znacznik utworzony",
+        "markers_changed": "Znaczniki zmienione"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "dodaj zdarzenie",
+        "deleteevent": "usuń zdarzenie"
+      },
+      "table": {
+        "clear_filters": "Wyczyść filtry",
+        "clear_column_setting": "Wyczyść ustawienia kolumny",
+        "refresh": "Odśwież",
+        "select_page": "Wybierz stronę",
+        "select_row": "Wybierz wiersz",
+        "clear_selection": "Wyczyść zaznaczenie",
+        "set_filters": "Ustaw filtry",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Samouczek"
+          },
+          "title": {
+            "tutorial": "Samouczek",
+            "templates": "Szablony"
+          },
+          "onboarding_app": {
+            "name": "Aplikacja do wdrażania",
+            "description": "Śledź samouczek ILLA, aby dowiedzieć się jak zbudować aplikację.",
+            "action": "Idź"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Forkuj ten szablon jako nową aplikację"
+          },
+          "templates_name": {
+            "table": "Pulpit",
+            "form": "Ankieta",
+            "list": "Panel administracyjny"
+          },
+          "templates_description": {
+            "table": "Użyj tabel do tworzenia tablic rozdzielczych.",
+            "form": "Użyj formularzy i elementów wejściowych do tworzenia aplikacji formularza.",
+            "list": "Użyj komponentu listy do wyświetlania i zarządzania informacjami"
+          },
+          "modal": {
+            "title": "Fork i rozmieszczenie",
+            "placeholder": "Nazwa aplikacji",
+            "cancel": "Anuluj",
+            "fork": "Fork i rozmieszczenie"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Krok 1: Przeciągnij tutaj dane wejściowe",
+          "drag_button": "Krok 2: Przeciągnij tutaj przycisk",
+          "drag_table": "Krok 3: Przeciągnij tabelę tutaj",
+          "exit": "Anuluj",
+          "do_it": "Zrób to dla mnie",
+          "drag_title": "Przeciągnij elementy do ramki",
+          "modify_action_title": "Modyfikuj akcję",
+          "modify_action_description_modify": "Modyfikuj akcję aby uzyskać dane. Możemy użyć {{input1.value}} , aby uzyskać dane wprowadzone do komponentu wejściowego. \n\nwybierz * \nod użytkowników\ndołącz do zamówień\nna users.id = zamówienia.id\n, gdzie {{!input1.value}} lub lower(users.name) jak '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Kliknij Zapisz, a następnie uruchom",
+          "display_data_title": "Wyświetl dane na tabeli",
+          "display_data_description_select": "Wybierz tabelę na ramce",
+          "display_data_description_modify": "Modyfikuj źródło danych na odpowiednim panelu. Możemy użyć {{postgresql1.data}} , aby uzyskać dane.",
+          "event_handler_title": "Kliknij przycisk, aby uruchomić akcję",
+          "event_handler_description_1": "Wybierz przycisk na ramce",
+          "event_handler_description_2": "Dodaj obsługę zdarzeń",
+          "event_handler_description_3": "Kliknij na obsługę zdarzeń",
+          "event_handler_description_4": "Zmień akcję na wyzwalanie akcji",
+          "event_handler_description_5": "Zmień zapytanie na postgre1",
+          "test_it_title": "Przetestuj",
+          "test_it_description": "Wprowadź nazwę użytkownika, którą chcesz wyszukać i kliknij przycisk",
+          "test_it_button": "Następny",
+          "congratulations_title": "Gratulacje 🎉",
+          "congratulations_description": "Właśnie zbudowałeś swoją pierwszą aplikację. Jeśli masz jakiekolwiek pytania podczas używania, możesz skontaktować się z nami za pośrednictwem <0>Discord</0>. ",
+          "congratulations_button": "Gotowe",
+          "event_handler_description_all": "1. Dodaj program obsługi zdarzeń\r\n2. Kliknij w program obsługi zdarzeń\r\n3. Zmień akcję na działanie\r\n4. Zmień zapytanie na postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Rozmiar danych przekracza limit (aktualny rozmiar: {{current_size}} bajtów, limit: {{limit_size}} bajtów)"
+    }
+  },
+  "exit_preview": "Wyjdź z podglądu",
+  "freeze_collision": "Zamroź kolizję",
+  "freeze_messages": "Płótno jest zamrożone. Możesz przeciągać elementy do lub z pojemników.",
+  "freeze_tips": "Płótno jest zamrożone. Kliknij tutaj, aby je odblokować.",
+  "link_copied": "Link skopiowany",
+  "network_error": "Sieć rozłączona. Sprawdź sieć tego urządzenia",
+  "not_online_tips": "Sieć rozłączona. Sprawdź sieć tego urządzenia",
+  "preview": {
+    "viewport": {
+      "size": "Rozmiar",
+      "reset": "Reset",
+      "save": "Zapisz",
+      "tooltip": {
+        "fluid_width": "Szerokość płynu",
+        "desktop": "Pulpit (szerokość = 1280px)",
+        "tablet": "Tablet(szerokość = 1080px)",
+        "custom": "Własny"
+      }
+    },
+    "button_text": "Podgląd"
+  },
+  "remove_fail": "Nie udało się usunąć",
+  "rename": "Zmień nazwę",
+  "resources": "Zasoby",
+  "retry": "Ponów próbę",
+  "save": "Zapisz",
+  "setting": {
+    "account": {
+      "email": "E-mail",
+      "empty_username": "Wprowadź nazwę użytkownika",
+      "error_username": "Nazwa użytkownika musi mieć 3~15 znaków",
+      "save": "Zapisz zmiany",
+      "save_fail": "Nie udało się zapisać",
+      "title": "KONTO",
+      "username": "Nazwa użytkownika"
+    },
+    "other": {
+      "language": "Język",
+      "save": "Zapisz zmiany",
+      "title": "USTAWIENIE"
+    },
+    "password": {
+      "confirm_password": "Potwierdź hasło",
+      "current_password": "Stare hasło",
+      "empty_password": "Wprowadź hasło",
+      "error_format_password": "Hasło musi mieć 6~20 znaków",
+      "error_match_password": "Twoje hasło i hasło nie pasują do siebie",
+      "error_password_has_empty": "Hasło nie może zawierać spacji",
+      "error_validate_password": "Hasło może zawierać tylko cyfry, litery i znaki interpunkcyjne",
+      "new_password": "Nowe hasło",
+      "submit_button": "Prześlij",
+      "title": "HASŁO"
+    }
+  },
+  "share": "Udostępnij",
+  "status": {
+    "403": {
+      "des": "Odmowa dostępu"
+    },
+    "404": {
+      "again": "Odśwież",
+      "des": "Wygląda na to, że strona, której szukasz, nie została znaleziona."
+    },
+    "500": {
+      "des": "Ups, coś poszło nie tak. Spróbuj ponownie później."
+    },
+    "back": "Powrót do strony głównej",
+    "mobile_forbidden": "Aby uzyskać lepsze doświadczenia w edytowaniu, odwiedź tę stronę na komputerze stacjonarnym",
+    "back_to_cloud": "Wróć do chmury ILLA",
+    "no_permission_title": "Niewystarczające uprawnienia",
+    "no_permission_description": "Nie masz uprawnień do wykonania żądanej operacji. Skontaktuj się z administratorami w zespole."
+  },
+  "title": "Witaj w illi",
+  "unfreeze_tips": "Zamroź płótno i przeciągnij elementy do lub z kontenerów. (D lub K)",
+  "user": {
+    "description": "Otwarta platforma o niskim kodzie dla programistów.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Wyślij kod"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Wprowadź poprawny adres e-mail",
+          "registered": "Adres e-mail nie jest powiązany z kontem.",
+          "require": "Wprowadź swój adres e-mail"
+        },
+        "newPassword": {
+          "require": "Wprowadź hasło"
+        },
+        "verification_code": {
+          "expired": "Kod weryfikacyjny wygasł",
+          "invalid": "Nieprawidłowy kod weryfikacyjny",
+          "require": "Wprowadź kod weryfikacyjny"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "newPassword": "Nowe hasło",
+        "verification_code": "Kod weryfikacyjny"
+      },
+      "placeholder": {
+        "email": "Wprowadź swój adres e-mail",
+        "verification_code": "Wprowadź kod weryfikacyjny"
+      },
+      "subtitle": "Powrót do logowania",
+      "tips": {
+        "fail": "Nie udało się zresetować hasła",
+        "fail_sent": "Nie udało się wysłać kodu weryfikacyjnego",
+        "success": "Resetowanie hasła zakończone pomyślnie",
+        "verification_code": "Kod weryfikacyjny wysłany"
+      },
+      "title": "Resetuj hasło"
+    },
+    "password": {
+      "placeholder": "Wprowadź nowe hasło (co najmniej 6 znaków)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Zaloguj się"
+      },
+      "description": {
+        "forgot_password": "Zapomniałeś hasła?",
+        "policy": "Klikając przycisk Zaloguj się akceptuję <0>Politykę prywatności</0> i <1>warunki</1>",
+        "register": "Nowy użytkownik? <0>Utwórz konto</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Wprowadź poprawny adres e-mail",
+          "registered": "Adres e-mail nie jest powiązany z kontem.",
+          "require": "Wprowadź swój adres e-mail"
+        },
+        "password": {
+          "incorrect": "Nieprawidłowy adres e-mail lub hasło",
+          "locked": "Zbyt wiele nieprawidłowych prób, zresetuj hasło lub spróbuj ponownie po 1 godzinie",
+          "min_length": "Hasło musi mieć co najmniej 6 znaków",
+          "require": "Wprowadź hasło"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "password": "Hasło"
+      },
+      "placeholder": {
+        "email": "Wprowadź swój adres e-mail"
+      },
+      "tips": {
+        "fail": "Nie udało się zalogować",
+        "success": "Zalogowano pomyślnie"
+      },
+      "title": "Witaj z powrotem"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Utwórz konto",
+        "send": "Wyślij kod"
+      },
+      "description": {
+        "login": "Masz już konto? <0>Zaloguj się</0>",
+        "policy": "Klikając przycisk Utwórz konto, akceptuję <0>Politykę prywatności</0> i <1>warunki</1>",
+        "subscribe": "Jestem gotów otrzymywać aktualizacje i wiadomości o ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Wprowadź poprawny adres e-mail",
+          "registered": "Konto o podanym adresie e-mail już istnieje.",
+          "require": "Wprowadź swój adres e-mail"
+        },
+        "password": {
+          "require": "Wprowadź hasło"
+        },
+        "username": {
+          "length": "Nazwa użytkownika musi mieć 3~15 znaków",
+          "require": "Wprowadź nazwę użytkownika"
+        },
+        "verification_code": {
+          "expired": "Kod weryfikacyjny wygasł",
+          "invalid": "Nieprawidłowy kod weryfikacyjny",
+          "require": "Wprowadź kod weryfikacyjny"
+        }
+      },
+      "fields": {
+        "email": "E-mail",
+        "password": "Hasło",
+        "username": "Nazwa użytkownika",
+        "verification_code": "Kod weryfikacyjny"
+      },
+      "placeholder": {
+        "email": "Wprowadź swój adres e-mail",
+        "username": "Wprowadź swoją nazwę użytkownika",
+        "verification_code": "Wprowadź kod weryfikacyjny"
+      },
+      "tips": {
+        "fail": "Nie udało się zarejestrować",
+        "fail_sent": "Nie udało się wysłać kodu weryfikacyjnego",
+        "success": "Zarejestrowano pomyślnie",
+        "verification_code": "Kod weryfikacyjny wysłany"
+      },
+      "title": "Zarejestruj",
+      "agreement": {
+        "privacy_policy": "Polityka prywatności",
+        "terms_of_service": "Warunki korzystania z usługi"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Postęp paska"
+    },
+    "button": {
+      "default_text": "Przycisk",
+      "name": "Przycisk"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Wykres"
+    },
+    "check_box_group": {
+      "name": "Grupa pól wyboru"
+    },
+    "circle_progress": {
+      "name": "Postęp okręgu"
+    },
+    "container": {
+      "empty": "Naciśnij <keyPress>D</keyPress> lub <keyPress>K</keyPress> i przeciągnij tutaj elementy",
+      "key_duplicated": "Klucz jest zduplikowany. Użyj unikalnych kluczy aby uniknąć błędów.",
+      "name": "Pojemnik",
+      "value_duplicated": "Wartość jest zduplikowana. Proszę użyć unikalnych wartości, aby uniknąć błędów."
+    },
+    "date": {
+      "name": "Data"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Data Godzina",
+      "placeholder": "Wybierz czas"
+    },
+    "divider_progress": {
+      "name": "Dystrybucja"
+    },
+    "editable_text": {
+      "name": "Edytowalny tekst"
+    },
+    "form": {
+      "name": "Formularz"
+    },
+    "image": {
+      "name": "Obraz"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Użyj {{ currentItem }} aby uzyskać dostęp do danych bieżącego elementu. Na przykład, aby ustawić wartość komponentu tekstowego, który znajduje się na komponencie listy w oparciu o \"userName\": {{ currentItem.userName }}",
+      "doc2": "Użyj {{list.selectedItem.data}} aby uzyskać dostęp do danych wybranego elementu w komponencie listy. Na przykład aby ustawić wartość komponentu tekstowego, który jest poza komponentem listy na podstawie \"username\" wybranego elementu na liście: {{ list.selectedItem.userName }}",
+      "name": "Lista"
+    },
+    "menu": {
+      "name": "Menu"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "W lewo",
+      "right": "Prawy",
+      "select_options": {
+        "manual": "Ręcznie",
+        "mapped": "Mapowane"
+      },
+      "top": "Góra"
+    },
+    "radio_button": {
+      "name": "Przycisk Radio"
+    },
+    "radio_group": {
+      "name": "Grupa radiowa"
+    },
+    "rate": {
+      "name": "Oceń"
+    },
+    "select": {
+      "name": "Wybierz"
+    },
+    "switch": {
+      "name": "Przełącz"
+    },
+    "table": {
+      "ascend": "Asc",
+      "descend": "Desc",
+      "name": "Tabela",
+      "pagination": "Strony",
+      "scroll": "Przewiń"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Witaj!",
+      "name": "Tekst",
+      "text_model": "Zwykły tekst"
+    },
+    "timeline": {
+      "horizontal": "Poziomy",
+      "name": "Oś czasu",
+      "vertical": "pionowy"
+    },
+    "modal": {
+      "name": "Modalne"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Prześlij",
+      "default_button_text": "Prześlij",
+      "default_dropzone_text": "Wybierz lub upuść plik tutaj"
+    },
+    "icon": {
+      "name": "Ikona"
+    },
+    "pdf": {
+      "empty": "Brak plików PDF",
+      "failed": "Nie można załadować pliku PDF"
+    },
+    "video": {
+      "name": "Wideo",
+      "empty": "Brak filmów",
+      "fail": "Nie udało się załadować"
+    },
+    "statistics": {
+      "name": "Statystyki"
+    },
+    "collapse": {
+      "name": "Zwiń"
+    },
+    "multiselect": {
+      "name": "Wielokrotny wybór"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Etapy"
+    },
+    "slider": {
+      "name": "Suwak"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Dźwięk",
+      "no_audio": "Brak dźwięku"
+    },
+    "collaborative": {
+      "no_name": "Brak nazwy"
+    },
+    "map": {
+      "name": "Mapa"
+    },
+    "time_picker": {
+      "name": "Wybór czasu"
+    },
+    "time_range": {
+      "name": "Zakres czasowy"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Kalendarz wydarzeń"
+      },
+      "name_duplicated": "Ten identyfikator zasobu jest sprzeczny z tymi wydarzeniami, proszę użyć tej samej nazwy lub innego identyfikatora"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Naprawione",
+        "auto": "Auto"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Wyślij kod"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Wprowadź poprawny adres e-mail",
+            "registered": "Adres e-mail nie jest powiązany z kontem.",
+            "require": "Wprowadź swój adres e-mail"
+          },
+          "newPassword": {
+            "require": "Wprowadź hasło"
+          },
+          "verification_code": {
+            "expired": "Kod weryfikacyjny wygasł",
+            "invalid": "Nieprawidłowy kod weryfikacyjny",
+            "require": "Wprowadź kod weryfikacyjny"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "newPassword": "Nowe hasło",
+          "verification_code": "Kod weryfikacyjny"
+        },
+        "placeholder": {
+          "email": "Wprowadź swój adres e-mail",
+          "verification_code": "Wprowadź kod weryfikacyjny"
+        },
+        "subtitle": "Powrót do logowania",
+        "tips": {
+          "fail": "Nie udało się zresetować hasła",
+          "fail_sent": "Nie udało się wysłać kodu weryfikacyjnego",
+          "success": "Resetowanie hasła zakończone pomyślnie",
+          "verification_code": "Kod weryfikacyjny wysłany"
+        },
+        "title": "Resetuj hasło"
+      },
+      "password": {
+        "placeholder": "Wprowadź nowe hasło (co najmniej 6 znaków)"
+      },
+      "policy": "Korzystając z ILLA zgadzasz się na naszą <0>Politykę prywatności</0> i <1>Warunki korzystania z usługi</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Zaloguj się"
+        },
+        "description": {
+          "forgot_password": "Zapomniałeś hasła?",
+          "policy": "Klikając przycisk Zaloguj się akceptuję <0>Politykę prywatności</0> i <1>warunki</1>",
+          "register": "Nowy użytkownik? <0>Utwórz konto</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Wprowadź poprawny adres e-mail",
+            "registered": "Adres e-mail nie jest powiązany z kontem.",
+            "require": "Wprowadź swój adres e-mail"
+          },
+          "password": {
+            "incorrect": "Nieprawidłowy adres e-mail lub hasło",
+            "locked": "Zbyt wiele nieprawidłowych prób, zresetuj hasło lub spróbuj ponownie po 1 godzinie",
+            "min_length": "Hasło musi mieć co najmniej 6 znaków",
+            "require": "Wprowadź hasło"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "password": "Hasło"
+        },
+        "placeholder": {
+          "email": "Wprowadź swój adres e-mail"
+        },
+        "tips": {
+          "fail": "Nie udało się zalogować",
+          "success": "Zalogowano pomyślnie",
+          "fail_account": "Nieprawidłowy adres e-mail lub hasło"
+        },
+        "title": "Witaj z powrotem",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Zarejestruj się pomyślnie. Możesz ustawić hasło dla swojego konta e-mail później",
+            "auth_failed": "Uwierzytelnianie nie powiodło się"
+          }
+        },
+        "option": {
+          "github": "Zaloguj się przez GitHub",
+          "google": "Zaloguj się przez Google",
+          "or": "LUB"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Utwórz konto",
+          "send": "Wyślij kod"
+        },
+        "description": {
+          "login": "Masz już konto? <0>Zaloguj się</0>",
+          "policy": "Klikając przycisk Utwórz konto, akceptuję <0>Politykę prywatności</0> i <1>warunki</1>",
+          "subscribe": "Jestem gotów otrzymywać aktualizacje i wiadomości o ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Wprowadź poprawny adres e-mail",
+            "registered": "Konto o podanym adresie e-mail już istnieje.",
+            "require": "Wprowadź swój adres e-mail"
+          },
+          "password": {
+            "require": "Wprowadź hasło"
+          },
+          "username": {
+            "length": "Nazwa użytkownika musi mieć 3~15 znaków",
+            "require": "Wprowadź nazwę użytkownika"
+          },
+          "verification_code": {
+            "expired": "Kod weryfikacyjny wygasł",
+            "invalid": "Nieprawidłowy kod weryfikacyjny",
+            "require": "Wprowadź kod weryfikacyjny"
+          }
+        },
+        "fields": {
+          "email": "E-mail",
+          "password": "Hasło",
+          "username": "Nazwa użytkownika",
+          "verification_code": "Kod weryfikacyjny"
+        },
+        "placeholder": {
+          "email": "Wprowadź swój adres e-mail",
+          "username": "Wprowadź swoją nazwę użytkownika",
+          "verification_code": "Wprowadź kod weryfikacyjny"
+        },
+        "tips": {
+          "fail": "Nie udało się zarejestrować",
+          "fail_sent": "Nie udało się wysłać kodu weryfikacyjnego",
+          "success": "Zarejestrowano pomyślnie",
+          "verification_code": "Kod weryfikacyjny wysłany"
+        },
+        "title": "Zarejestruj",
+        "option": {
+          "github": "Zarejestruj się w GitHub",
+          "google": "Zarejestruj się przez Google"
+        }
+      },
+      "description": "Otwarta platforma o niskim kodzie dla programistów."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Samouczek"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Wprowadź wartość nie mniejszą niż {{ size }}."
+  },
+  "failed_to_copy": "Nie udało się skopiować",
+  "copied": "Skopiowano!",
+  "user_management": {
+    "role": {
+      "owner": "Właściciel",
+      "admin": "Administer",
+      "editor": "Edytor",
+      "viewer": "Przeglądarka"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Zaproś członków"
+      },
+      "link": {
+        "invite_title": "Link zaproszenia",
+        "copy": "Kopiuj",
+        "turn_off": "Wyłącz linki z zaproszeniem",
+        "update": "Aktualizuj linki z zaproszeniem",
+        "description": "Podziel się tajnym linkiem osoby mogą użyć do dołączenia do Twojego zespołu.",
+        "turn_on": "Włącz linki z zaproszeniem",
+        "fail": "Nie udało się uzyskać linku, spróbuj ponownie później",
+        "copied_suc": "Skopiowano!",
+        "failed_to_copy": "Nie udało się skopiować",
+        "turn_off_fail": "Nie udało się wyłączyć",
+        "turn_on_fail": "Nie udało się włączyć",
+        "make_public_title": "Upublicznij aplikację",
+        "make_public_copy": "Kopiuj"
+      },
+      "email": {
+        "invite_title": "Zaproś przez e-mail",
+        "invite": "Zaproś",
+        "placeholder": "Wprowadź adres e-mail",
+        "invited": "Zaproszono",
+        "in_list": "Ten użytkownik jest już w twoim zespole.",
+        "notmail": "{{ email }} nie jest adresem e-mail",
+        "duplicate": "{{ email }} jest zduplikowane"
+      },
+      "invalid_email": "Wprowadź poprawny adres e-mail",
+      "message": {
+        "make_public_suc": "Pomyślnie ustawiono",
+        "make_public_failed": "Nie udało się ustawić",
+        "app_share_in_team": "{{ email }} jest już w Twoim zespole, proszę podziel się z nim linkiem. "
+      },
+      "tab": {
+        "invite": "Zaproś",
+        "public": "Publiczne"
+      }
+    },
+    "mes": {
+      "invite_suc": "Zaproszono pomyślnie",
+      "invite_fail": "Nie udało się zaprosić",
+      "update_suc": "Zaktualizowano pomyślnie",
+      "update_fail": "Aktualizacja nie powiodła się",
+      "transfer_suc": "Pomyślnie przeniesiono",
+      "transfer_fail": "Nie udało się przenieść",
+      "remove_suc": "Usunięto pomyślnie",
+      "remove_fail": "Nie udało się usunąć",
+      "change_role_fail": "Aktualizacja nie powiodła się",
+      "change_role_suc": "Zaktualizowano pomyślnie"
+    },
+    "page": {
+      "member": "Członek",
+      "invite": "Zaproś",
+      "permission": "Uprawnienie",
+      "operation": "Operacja",
+      "transfer": "Przenieś własność",
+      "remove": "Usuń"
+    },
+    "transfer_modal": {
+      "title": "Czy na pewno chcesz przenieść własność?",
+      "description": "Po transferze Twoje zezwolenie zmieni się na administratora.",
+      "transfer": "Przelew",
+      "cancel": "Anuluj"
+    },
+    "remove_modal": {
+      "title": "Czy na pewno chcesz usunąć {{ username }}?",
+      "description": "Po usunięciu, użytkownik nie będzie miał dostępu do zespołu.",
+      "remove": "Usuń",
+      "cancel": "Anuluj"
+    },
+    "status": {
+      "pending": "Oczekujące"
+    },
+    "settings": {
+      "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami"
+    }
+  },
+  "copy_failed": "Nie udało się skopiować",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Ustawienia zespołu",
+      "member": "Członek",
+      "leave": "Opuść zespół",
+      "delete": "Usuń zespół"
+    },
+    "leave_modal": {
+      "title": "Czy na pewno chcesz opuścić ten zespół?",
+      "description": "Po opuszczeniu zespołu nie będziesz mógł uzyskać dostępu do żadnych zasobów zespołu.",
+      "leave": "Opuść",
+      "cancel": "Anuluj"
+    },
+    "delete_modal": {
+      "title": "Czy na pewno chcesz usunąć ten zespół?",
+      "delete": "Usuń",
+      "cancel": "Anuluj",
+      "desctiption": "Identyfikator zespołu będzie niedostępny po usunięciu, a wszyscy członkowie zostaną usunięci z tego zespołu."
+    },
+    "team_info": {
+      "title": "Informacje o drużynie",
+      "team_name": "Nazwa zespołu",
+      "domain": ".illacloud.com",
+      "existed": "Już istnieje",
+      "available": "Dostępny",
+      "edit": "Edytuj",
+      "save": "Zapisz zmiany",
+      "adjust_avater": "Dostosuj awater",
+      "avater_crop": "Uprawa",
+      "team_name_empty": "Wprowadź nazwę zespołu",
+      "team_id_empty": "Wprowadź identyfikator zespołu",
+      "team_name_placeholder": "Wprowadź nazwę zespołu",
+      "team_id_placeholder": "Wprowadź identyfikator zespołu",
+      "leave_title": "Opuść zespół",
+      "leave_button": "Opuść zespół",
+      "delete_title": "Usuń zespół",
+      "delete_button": "Usuń zespół",
+      "team_domain": "Identyfikator zespołu"
+    },
+    "message": {
+      "save_suc": "Zapisano pomyślnie",
+      "save_fail": "Nie udało się zapisać"
+    },
+    "mes": {
+      "domain_suc": "Utworzono pomyślnie.",
+      "delete_suc": "Usunięto pomyślnie",
+      "delete_fail": "Nie udało się usunąć",
+      "leave_suc": "Opuść pomyślnie",
+      "leave_fail": "Nie udało się opuścić"
+    }
+  },
+  "members": "Członkowie",
+  "invite_new_member": "Zaproś",
+  "launch": "Uruchom",
+  "homepage": {
+    "message": {
+      "join_failed": "Nie udało się dołączyć do zespołu: Twój e-mail nie jest zaproszeniem e-mail."
+    }
+  },
+  "image_exceed": "Rozmiar obrazu nie może przekraczać 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Uprawa",
+        "save": "Zapisz",
+        "cancel": "Anuluj"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Zapisano pomyślnie",
+        "save_fail": "Nie udało się zapisać"
+      },
+      "password": {
+        "title": "Hasło"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Zwijana lista"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Okrągła zależność występuje na {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Polityka prywatności",
+      "description": "Niniejsza polityka prywatności wyjaśnia nasze praktyki w zakresie gromadzenia, wykorzystywania i ujawniania informacji, które otrzymujemy za pośrednictwem naszych usług."
+    },
+    "terms": {
+      "description": "Niniejszy Regulamin reguluje dostęp do naszej Strony Internetowej i korzystanie z niej oraz nasze świadczenie różnorodnych usług.",
+      "title": "Warunki korzystania z usługi"
+    }
+  },
+  "empty_copied_tips": "Zawartość do skopiowania jest pusta",
+  "copy_empty": "Zawartość do skopiowania jest pusta",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Dowiedz się, jak zbudować aplikację w ciągu 5 minut",
+          "description": "Śledź samouczek ILLA, aby dowiedzieć się jak zbudować aplikację. To zajmie około 5 minut.",
+          "cancel": "Anuluj",
+          "take": "Zrób samouczek"
+        },
+        "exit_confirm": {
+          "title": "Zatrzymać samouczek?",
+          "description": "Następnym razem, gdy wejdziesz do aplikacji do wdrożenia polecone kroki zostaną powtórzone ",
+          "cancel": "Anuluj",
+          "exit": "Zatrzymaj"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Przekieruj",
+  "oauth_redirect_description": "Przekierowanie do <0>ILLA Cloud</0>",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
+}

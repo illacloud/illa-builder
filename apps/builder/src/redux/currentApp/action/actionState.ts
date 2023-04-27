@@ -89,6 +89,7 @@ export type ActionType =
   | "postgresql"
   | "mariadb"
   | "tidb"
+  | "neon"
   | "smtp"
   | "googlesheets"
   | "s3"

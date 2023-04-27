@@ -1,0 +1,2846 @@
+{
+  "Logout": "Logga ut",
+  "Setting": "Inställning",
+  "apps": "Appar",
+  "back": "Tillbaka",
+  "btn": {
+    "choose_file": "Välj en fil"
+  },
+  "change_fail": "Det gick inte att ändra",
+  "change_success": "Ändringen lyckades",
+  "collision_message": "Tryck på D eller K och dra komponenten i behållaren",
+  "create_fail": "Det gick inte att skapa",
+  "create_new": "Skapa ny",
+  "create_new_app": "Skapa ny",
+  "created_at": "Skapad den",
+  "dashboard": {
+    "app": {
+      "all_apps": "Alla appar",
+      "create_app": "Skapa app",
+      "duplicate_fail": "Det gick inte att duplicera",
+      "duplicate_placeholder": "Ange ditt appnamn här",
+      "edited_time": "Redigerad vid {{ time }} av {{ user }}",
+      "name_empty": "Ange ett namn",
+      "name_existed": "Namnet är redan upptaget",
+      "rename_app": "Döp om app",
+      "rename_fail": "Det gick inte att byta namn",
+      "rename_success": "Namnbytet lyckades",
+      "trash_failure": "Kunde inte ta bort",
+      "trash_success": "Borttaget framgångsrikt"
+    },
+    "common": {
+      "cancel": "Avbryt",
+      "delete": "Radera",
+      "delete_cancel_text": "Avbryt",
+      "delete_content": "Detta kommer att bryta apparna och frågebibliotekets frågor som använder denna resurs",
+      "delete_ok_text": "Radera",
+      "delete_title": "Är du säker?",
+      "error_button": "Försök igen",
+      "error_description": "Det finns ett problem med din operation.",
+      "error_title": "Fel"
+    },
+    "resource": {
+      "create_resource": "Skapa ny",
+      "created": "Skapad",
+      "dbname": "Databasens namn",
+      "delete_fail": "Kunde inte ta bort",
+      "delete_success": "Borttaget framgångsrikt",
+      "resource_name": "Namn",
+      "resource_type": "Typ",
+      "save_fail": "Det gick inte att spara",
+      "save_success": "Sparades framgångsrikt",
+      "test_fail": "Det gick inte att testa",
+      "test_success": "Testet lyckades"
+    }
+  },
+  "dayjs": {
+    "just_now": "Just nu"
+  },
+  "deploy": "Distribuera",
+  "description": {
+    "part1": "Detta är ett exempel utan namnrymder."
+  },
+  "dont_need_save": "ILLA fortsätter att försöka spara ditt arbete automatiskt.",
+  "duplicate": "Duplicate",
+  "edit": "Redigera",
+  "edit_at": "Redigerad den",
+  "edit_failed": "Det gick inte att spara, kontrollera ditt nätverk.",
+  "edit_success": "Redigeringen lyckades",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Tillbaka",
+            "create_action": "Skapa åtgärd",
+            "new_resource": "Ny resurs"
+          },
+          "selector": {
+            "title": "Välj åtgärdstyp"
+          },
+          "title": {
+            "choose_resource": "Välj en resurs "
+          }
+        },
+        "btn": {
+          "close": "stäng",
+          "new": "Ny"
+        },
+        "contextMenu": {
+          "delete": "Radera",
+          "duplicate": "Duplicate",
+          "rename": "Döp om"
+        },
+        "message": {
+          "confirm_switch": "Du sparade inte din fråga. Är du säker på att du vill kasta ändringar?",
+          "failed": "Det gick inte att ansluta till servern",
+          "load_action_list_fail": "Misslyckades att hämta åtgärdslista: {{message}}",
+          "load_resource_fail": "Det gick inte att hämta resurslista: {{message}}",
+          "name_already_exist": "Finns redan",
+          "please_input_name": "Vänligen ange namn",
+          "success_created": "Skapades framgångsrikt",
+          "success_deleted": "Tog bort",
+          "success_saved": "Sparades framgångsrikt",
+          "valid_name": "Kan endast innehålla bokstäver, siffror, '_' eller '$', börja med '_' eller en bokstav"
+        },
+        "placeholder": {
+          "search": "Sök"
+        },
+        "runtime": {
+          "backend": "Baksida",
+          "execute_resource": "kör resurs",
+          "frontend": "Frontend",
+          "handle_response": "hantera svar",
+          "post_processing": "efterbehandling",
+          "prepare_query": "Förbered fråga",
+          "response_size": "Storlek på svar",
+          "total": "Totalt",
+          "transfer_data": "överför data",
+          "transformer": "transformator"
+        },
+        "tips": {
+          "empty": "Lägg till en åtgärd för att börja arbeta med data från en ansluten resurs.",
+          "not_found": "Inga sökresultat"
+        },
+        "title": "Åtgärdslista"
+      },
+      "form": {
+        "btn": {
+          "back": "Tillbaka",
+          "save_changes": "Spara resurs",
+          "test_connection": "Testa anslutning"
+        },
+        "required": "Detta är obligatoriskt",
+        "title": {
+          "api": "API:er",
+          "configure": "Konfigurera {{ name }}",
+          "database": "DATABASER",
+          "select": "Välj resurstyp",
+          "huggingface": "Huggande Ansikte",
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "SoffaDB"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google Kalkylark"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} krävs"
+        },
+        "label": {
+          "inference_api": "Inferens API",
+          "inference_endpoint": "Inferens slutpunkt",
+          "s3": "Ogiltig i offentliga appar",
+          "acl": "S3 ACL för uppladdade filer",
+          "appwrite": {
+            "host": "Värd",
+            "dbid": "Databas ID",
+            "projectid": "Projekt ID",
+            "secret": "Api nyckel",
+            "collectionid": "Samlings-ID",
+            "documentid": "Dokument ID",
+            "data": "Data",
+            "filter": "Filtrera",
+            "order": "Sortera efter",
+            "limit": "Gräns"
+          },
+          "oracle": {
+            "sid": "Behandla databasens namn som",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Certifikat",
+            "verification_mode": "Verifieringsläge"
+          },
+          "gs": {
+            "private_key": "Privat nyckel",
+            "action_type": "Typ av åtgärd",
+            "spreadsheet": "Kalkylblad",
+            "sheet_name": "Namn på blad",
+            "data_range": "Datasortiment",
+            "limit": "Gräns",
+            "offset": "Förskjutning",
+            "a1_notation": "A1 notation",
+            "values_to_append": "Värden att lägga till",
+            "filter_by": "Filtrera efter",
+            "update_value": "Uppdatera värde",
+            "primary_key_column": "Kolumn med primär nyckel",
+            "array_of_rows_to_upd": "Array med rader att uppdatera",
+            "filters_to_match_row": "Rad index",
+            "consider_queries_tha": "Överväg frågor som tar bort inga rader som framgångar",
+            "title_of_spreadsheet": "Titel på kalkylblad",
+            "sheet_id_to_copy": "Id för att kopiera",
+            "sheet_to_copy_to": "Ark att kopiera till",
+            "authentication": "Autentisering",
+            "connect_with_oauth": "Anslut med OAuth & Spara",
+            "reconnect_with_oauth": "Återanslut med OAuth",
+            "access_type": "Åtkomsttyp"
+          }
+        },
+        "placeholder": {
+          "url": "Ange begärans URL här",
+          "appwrite": {
+            "host": "HOSTNAMN ELLER IP",
+            "dbid": "Databas ID",
+            "projectid": "Projekt ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribut",
+              "value": "1234"
+            },
+            "order": "attribut",
+            "collectionid": "Välj en samling",
+            "data": "Ett objekt inneslutet i {{ }}. Till exempel \n{{ \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "orakel",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"10000000000000000000000\",\r\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "kolumnnamn",
+              "value": "värde"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "kolumnnamn",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
+            "filters_to_match_row": {
+              "key": "nyckel",
+              "value": "värde"
+            }
+          }
+        },
+        "tips": {
+          "acl": "Det angivna innehållet är en PUBLIC-konfiguration. Lämna tomt för PRIVATER. Glöm inte att konfigurera CORS på din hink. <0>Se Cross-Origin Resource Sharing (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Det verkar som om du försöker ansluta till en databas som är lokal till din maskin eller en del av ett privat nätverk. Det kanske inte fungerar i ILLA Cloud-versionen. Kolla in vår <0>docs</0> för hur du använder egenvärdversionen.",
+            "selfhost": "Det verkar som om du försöker ansluta till en databas som är lokal till din maskin. Använd maskinens lokala nätverksadress istället för \"localhost\" eller \"127.0.1\".",
+            "title": {
+              "tips": "Tips"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Din server kan vara sårbar för attacker."
+            }
+          },
+          "gs": {
+            "private_key": "Används för att ansluta till Google Kalkylark. Klicka <0>här</0> för att skapa ett projekt och få OAuth inloggningsuppgifter. Med autentisering av servicekonto har vi bara tillgång till kalkylark som du delar med den e-postadress som motsvarar det servicekonto som används. Se <1>här</1> för dokumentation om att skapa ett servicekonto och åtkomstnyckel.\n\nAnvändare kan uppleva begränsningar från olika bearbetningskomponenter som inte kontrolleras av Kalkylark. Läs mer om kvotbegränsningarna <2></2>",
+            "leave_blank_to_selec": "Lämna tomt för att välja det första bladet",
+            "to_select_the_first_": "För att välja de fem första cellerna i den första kolumnen i ett ark med titeln ark 1 är A1 notation ark1!A1:A5. <0>Se Googles dokument för mer information. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "För att välja de fem första cellerna i den första kolumnen i ett ark med titeln ark 1 är A1 notation ark1!A1:A5. <0>Se Googles dokument för mer information. </0>",
+            "sheet_id_to_copy": "Hitta detta genom att titta på ?gid=123123 i URL:en till dina Google-ark",
+            "copy_to_sheet_name": "Krävs. Byt namn på kopierat blad.",
+            "successfully_authent": "Lyckad autentisering",
+            "failed_to_authentica": "Det gick inte att autentisera"
+          },
+          "tidb": {
+            "ca_certificate": "Vi fyller i CA-certifikatet som används för TLS Connections till Serverless Tier som standard. Om du behöver TLS Connections to Dedicated Tier, <0>Klicka här</0> för att se konfigurationsmetoden."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Skapa ett dokument",
+              "list": "Lista dokument",
+              "get": "Hämta ett dokument",
+              "update": "Uppdatera ett dokument",
+              "delete": "Ta bort ett dokument"
+            },
+            "filter": {
+              "and": "OCH",
+              "or": "ELLER",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "Stigande",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "SID",
+              "service": "Tjänstens namn"
+            },
+            "ssl": "Använd SSL när tillgängligt"
+          },
+          "couchdb": {
+            "ssl": "Använd SSL/TLS när tillgängligt"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Sammandrag av Auth",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk autentisering",
+              "aws_v4": "AWS Signatur V4",
+              "session_based_auth": "Sessionsbaserad Auth (föråldrad)"
+            },
+            "certificates": "Använd självsignerade certifikat",
+            "ca_certificate": "Certifikat från CA",
+            "client_key": "Klientnyckel",
+            "client_certificate": "Klientcertifikat",
+            "verification_mode": {
+              "full_verification": "Fullständig verifiering",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "Hoppa över CA-certifikatsverifiering"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Läs data från ett kalkylark",
+              "append_data_to_a_spr": "Lägg till data i ett kalkylblad",
+              "update_a_spreadsheet": "Uppdatera ett kalkylblad",
+              "bulk_update_a_spread": "Bulk uppdatera ett kalkylblad med primär nyckel",
+              "delete_a_single_row_": "Ta bort en enda rad från ett kalkylblad",
+              "create_a_spreadsheet": "Skapa ett kalkylblad",
+              "copy_a_single_sheet_": "Kopiera ett enda ark till ett annat kalkylblad",
+              "list_available_sprea": "Lista tillgängliga kalkylark",
+              "get_spreadsheet_info": "Hämta kalkylarksinformation"
+            },
+            "data_range": {
+              "use_a1_notation": "Använd A1 notation",
+              "use_limit_and_offset": "Använd gräns och förskjutning"
+            },
+            "filter_by": {
+              "use_a1_notation": "Använd A1 notation",
+              "use_row_filters": "Använd radfilter"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Tjänstens konto",
+            "read_and_write": "Läs och skriv",
+            "read_only": "Skrivskyddad"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Tjänstens konto"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Inaktivera",
+          "enable": "Aktivera",
+          "new": "Ny",
+          "run": "Kör",
+          "save": "Spara",
+          "save_and_run": "Spara & Kör",
+          "save_fail": "Det gick inte att spara",
+          "test_run": "Testkörning"
+        },
+        "elastic": {
+          "action_type": "Typ av åtgärd",
+          "body": "Kropp",
+          "id": "Id",
+          "index": "Index",
+          "query": "Fråga"
+        },
+        "error": {
+          "max_file": "Filens storlek får inte överstiga 5M."
+        },
+        "firebase": {
+          "action_type": "Typ av åtgärd",
+          "collection": "Samling",
+          "database_ref": "Databas ref",
+          "document_id": "Dokument ID",
+          "email": "E-post",
+          "end_at": "Avsluta vid",
+          "len_of_list": "Längd på listan ",
+          "limit": "gräns",
+          "next_page_token": "Nästa sidtoken",
+          "object_to_set": "Objekt att ställa in",
+          "order_by": "Sortera efter",
+          "ordering_direction": "Sorteringsriktning",
+          "parent_document_id": "Överordnat dokument-ID",
+          "phone_number": "Telefonnummer",
+          "placeholder": {
+            "asc": "stigande",
+            "document_value": "{{ \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Ange en samling",
+            "key": "nyckel",
+            "select_an_action": "Välj en åtgärd",
+            "select_collection": "Välj en samling",
+            "value": "värde"
+          },
+          "service_type": "Typ av tjänst",
+          "start_at": "Börja på",
+          "tips": {
+            "document_id": "Lämna tomt för autogenererat ID.",
+            "parent_document_id_tips": "Lämna tomt för förstklassiga samlingar."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Använd en rullgardin",
+          "use_end_at": "Använd endAt",
+          "use_raw_id": "Använd raw-id",
+          "use_start_at": "Use startAt",
+          "user_object": "Användarobjekt ",
+          "value": "värde",
+          "where": "där"
+        },
+        "label": {
+          "event_handler": "Händelsehanterare",
+          "failure": "Misslyckande",
+          "resource": "Resurs",
+          "success": "Klart",
+          "transformer": "Transformator",
+          "couchdb": {
+            "database": "Databas",
+            "action_type": "Typ av åtgärd"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Välj en databas",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Nyckel till konsument",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@exempel.se",
+              "ext": "visa-app-extra-data",
+              "app": "Applikationens ID",
+              "dig": "delegerat av",
+              "us-east-1": "us-östra-1",
+              "authenticate_using_t": "Autentisera med HTTP Authorization header istället för frågeparametrar",
+              "find_instructions_on": "Hitta instruktioner om var du kan hitta åtkomstnycklar <0>i AWS docs</0>.",
+              "role_to_assume": "Använd en <0>annan roll</0> när du öppnar API:et"
+            },
+            "advanced": {
+              "select_pages": "Välj sidor"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Lista poster",
+                "retrieve": "Hämta post",
+                "create": "Skapa post",
+                "update": "Uppdatera post",
+                "delete": "Ta bort post",
+                "find": "Sök",
+                "get": "Hämta vy"
+              },
+              "skip": "Hoppa",
+              "limit": "Gräns",
+              "include": "Inkludera dokument",
+              "des": "Beställning",
+              "id": "_id",
+              "rev": "_Varv",
+              "record": "Spela in",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "VisaURL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Dokument som ingår i de returnerade resultaten",
+              "des_option": "Använd fallande ordning"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "LAINTEXT"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Fil",
+                "text": "Text"
+              },
+              "method": {
+                "options": "ALTERNATIV",
+                "head": "HEAD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Frågeparametrar",
+                "header_authorization": "Auktorisering av sidhuvud"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Utlösa denna åtgärd när sidan laddas",
+              "show_a_loading_page_": "Visa en sida när sidan laddas",
+              "on_page_loading": "På sidan laddar",
+              "on_app_loading": "På APP laddad",
+              "none": "Ingen"
+            }
+          },
+          "restapi": {
+            "signature_method": "Signatur metod",
+            "consumer_key": "Nyckel till konsument",
+            "consumer_secret": "Hemlighet för konsument",
+            "access_token": "Åtkomst-token",
+            "token_secret": "Hemlighet för token",
+            "private_key": "Privat nyckel",
+            "realm": "Realm",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth nyckel",
+            "algorithm": "Algoritm",
+            "user": "Användare",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "Tidsstämpel",
+            "aws_region": "AWS Region",
+            "aws_service": "AWS Service",
+            "aws_access_key_id": "ID för AWS åtkomstnyckel",
+            "aws_secret_key_id": "AWS hemliga nyckel-ID",
+            "role_to_assume": "Roll att anta (ARN)",
+            "list_of_cookies_to_f": "Lista över cookies att vidarebefordra",
+            "add_access_token_to": "Lägg till åtkomsttoken till"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Antingen en binär sträng, eller ett objekt: {{ data: binär sträng, filnamn?: sträng } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Inga åtgärder kommer att utlösas när sidan laddas. Du kan manuellt utlösa åtgärden och aktivera \"Utlösa denna åtgärd när sidan laddas\" i de avancerade inställningarna."
+            }
+          },
+          "advanced": {
+            "advanced": "AVANCERAD",
+            "page_trigger": "Trigger Timing",
+            "loading_page": "Laddar sida",
+            "page_load_delay": "Fördröjning (ms)",
+            "run_this_action_peri": "Kör denna åtgärd regelbundet",
+            "interval": "Intervall (er)",
+            "actions_running_when": "Åtgärder som körs när sidan laddas",
+            "pages": "Sidor",
+            "periodically_run": "Kör regelbundet"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Radera",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Typ av åtgärd",
+          "aggregation": "Aggregation",
+          "collection": "Samling",
+          "document": "Dokument",
+          "field": "Fält",
+          "filter": "Filtrera",
+          "limit": "Gräns",
+          "operations": "Åtgärder",
+          "options": "Alternativ",
+          "projection": "Projektion",
+          "query": "Fråga",
+          "skip": "Hoppa",
+          "sort_by": "Sortera efter",
+          "update": "Uppdatera"
+        },
+        "option": {
+          "resource": {
+            "new": "Skapa en ny resurs"
+          },
+          "trigger": {
+            "manually": "Kör åtgärd endast när manuellt utlöst",
+            "on_change": "Kör åtgärden automatiskt när inmatningen ändras"
+          }
+        },
+        "s3": {
+          "action_type": "Typ av åtgärd",
+          "bucket_name": "Hink namn",
+          "content_type": "Innehållstyp",
+          "delimiter": "Avgränsare",
+          "error": {
+            "max_file": "Filens storlek får inte överstiga 5M."
+          },
+          "expiry_duration_of_signed_url": "Förfallodatum varaktighet för undertecknade URL(protokoll)",
+          "generate_signed_url": "Generera signerad URL",
+          "max_keys": "Max antal nycklar",
+          "object_key": "Objekt nyckel",
+          "object_key_list": "Lista över objektnyckel",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Prefix för att filtrera resultat",
+          "tips": {
+            "delimiter": "En avgränsare är ett tecken som du använder för gruppnycklar.",
+            "max_keys": "Sätter det maximala antalet nycklar som returneras i svaret. Som standard returnerar åtgärden upp till 1000 nyckelnamn."
+          },
+          "upload_data": "Ladda upp data",
+          "upload_data_list": "Ladda upp datalista",
+          "upload_object_name": "Ladda upp objektnamn",
+          "upload_object_name_list": "Ladda upp objektnamnlista",
+          "timeout_upload": "Timeout för att ladda upp en fil (minut)",
+          "timeout_upload_multiple": "Timeout för att ladda upp en enda fil (minut) "
+        },
+        "smtp": {
+          "attachment": "Bilagor",
+          "bcc_email": "Bcc e-post(er)",
+          "body": "Kropp",
+          "cc_email": "Cc email(s)",
+          "from_email": "Från e-post",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Use commas to separate emails. i.e. {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Svara-till e-post",
+          "set_replay_email": "Ställ in svar till e-post",
+          "subject": "Ämne",
+          "tips": {
+            "port": "Vissa Internetleverantörer kan blockera port 25.Om anslutningen misslyckas, vänligen ändra \n-porten."
+          },
+          "to_email": "Till e-post(er)",
+          "use_html": "Använd HTML",
+          "use_raw": "Använd råtext"
+        },
+        "tips": {
+          "transformer": "Aktivera transformatorer för att omvandla resultatet av frågan till ett annat format."
+        },
+        "graphql": {
+          "query": "Fråga",
+          "variables": "Variabler",
+          "headers": "Sidhuvuden",
+          "placeholder": {
+            "query": "# Använd $ för att lägga till en variabel i din fråga (t.ex. $category ) \r\nfråga ($owner: Sträng!, $name: Sträng! {\r\n  utvecklingskatalog(ägare: $owner, namn: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "Modell ID",
+          "placeholder": {
+            "mode_id": "bert-bas-ohöljd",
+            "text": "Svaret till universum är [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Vilken film är den bästa?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Kan du förklara varför ?\" \r\n}",
+            "binary": "dvs {{ upload1.file[0] }}. En binär fil utan filprefix",
+            "use_cache": "Boolean, lämna tomt för sant",
+            "min_length": "Heltal för att definiera den minsta längden i tokens av utdatasammanfattningen",
+            "top_k": "Heltal för att definiera de översta tokens",
+            "top_p": "Float för att definiera tokens",
+            "temperature": "Float(0.0-100.0), lämna tomt för 1,0",
+            "repetition_penalty": "Flyt (0,0-100,0)",
+            "max_time": "Float (0,0-120,0) för att definiera tiden i sekunder"
+          },
+          "tips": {
+            "mode_id": "Gå till <0>Modell Hub</0> och välj den modell du vill använda.",
+            "use_detail_parameters": "<0>Klicka här</0> för att läsa mer om detaljparametrarna",
+            "temperature": "1 innebär regelbunden provtagning, 0 innebär att alltid ta den högsta poängen, 100,0 närmar sig enhetlig sannolikhet.",
+            "repetition_penalty": "Ju mer en token används inom generation ju mer det straffas att inte plockas i successiva generationens passer."
+          },
+          "parameter": "Parameter",
+          "use_detail_parameters": "Använd detaljer parametrar",
+          "use_cache": "Använd cache",
+          "wait_for_model": "Vänta på modell",
+          "min_length": "Minsta längd",
+          "max_length": "Max längd",
+          "top_k": "Topp k",
+          "top_p": "Topp p",
+          "temperature": "Temperatur",
+          "repetition_penalty": "Repetition straff",
+          "max_time": "Max tid"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Vilken SQL-sats vill du generera"
+          },
+          "button": {
+            "text": "SQL Generera"
+          }
+        },
+        "mssql": {
+          "config_type": "Konfigurationstyp",
+          "query": "Fråga",
+          "placeholder": {
+            "query": "välj * från användare",
+            "table": "Välj en tabell",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Tabell",
+          "insert_record": "Array av poster att infoga",
+          "dropdown": {
+            "retry": "Klicka för att försöka igen"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Metod",
+            "table": "Tabell",
+            "json_input": "Använd JSON-parameterredigerare",
+            "parameters": "Parametrar",
+            "index": "Index namn",
+            "key_condition": "Uttryck för nyckelvillkor",
+            "projection_expression": "Projektionsuttryck",
+            "filter_expression": "Filtrera uttryck",
+            "attribute_name": "Namn på expressionsattribut",
+            "attribute_value": "Attributvärden för uttryck",
+            "limit": "Gräns",
+            "select": "Välj",
+            "item": "Objekt",
+            "condition_expression": "Uttryck för tillstånd",
+            "key": "Nyckel",
+            "update_expression": "Uppdatera uttryck"
+          },
+          "option": {
+            "query": "fråga",
+            "scan": "skanna",
+            "put_item": "putItem",
+            "get_item": "getItem",
+            "update_item": "uppdateringsobjekt",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, för exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Misslyckades",
+          "ran_successfully": "Klart"
+        },
+        "result": {
+          "restapi": {
+            "status": "Status",
+            "headers": "Sidhuvuden",
+            "response": "Svar"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Kommer snart"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Ogiltig privat nyckel. "
+          },
+          "label": {
+            "ca_certificate": "Certifikat från CA",
+            "client_certificate": "Klientcertifikat",
+            "client_key": "Klientnyckel",
+            "config_type": "Konfigurationstyp",
+            "connect_type": "Anslut typ",
+            "connection_format": "Anslutningsformat",
+            "connection_string": "Anslutning sträng",
+            "database": "Databas",
+            "database_index": "Databas Index",
+            "firebase_database_url": "Firebase databasens URL",
+            "firebase_project_id": "Firestore Project ID",
+            "hostname": "Hostname",
+            "hostname_port": "Värdnamn/port",
+            "hosturl": "Värd URL",
+            "mongodb_connection_dns_seed_list": "Anslutning till DNS-frölista",
+            "mongodb_connection_standard": "Standard anslutning",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Klient Cert och nyckel",
+            "name": "Namn",
+            "port": "Port",
+            "private_key": "Privat nyckel",
+            "private_key_hover": "Den privata nyckeln är associerad med ett servicekonto med Firebase privilegier.",
+            "ssl_options": "SSL-alternativ",
+            "username_password": "Användarnamn/Lösenord",
+            "self_signed_certificate": "Använd självsignerat certifikat",
+            "disable_introspection": "Inaktivera introduktion",
+            "value": "Värde",
+            "add_to": "Lägg till i",
+            "header_prefix": "Prefix för sidhuvud",
+            "key": "Nyckel",
+            "introspection": "Introspektion",
+            "bear_token": "Token",
+            "connection_options": "Anslutningsalternativ",
+            "account_name": "Konto namn",
+            "warehouse": "Lager",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Grundläggande Auth",
+            "snowflake_key_auth": "Key Pair (endast krypterade privata nycklar stöds)",
+            "role": "Roll",
+            "username": "Användarnamn",
+            "password": "Lösenord",
+            "dynamo_region": "AWS region",
+            "dynamo_access_key_id": "ID för AWS åtkomstnyckel",
+            "dynamo_secret_key": "AWS hemliga nyckel"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "Produktion",
+            "database_index": "standard 0",
+            "hostname": "Hostname",
+            "hosturl": "dvs https://example.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "dvs \"Användare DB(readonly)\" eller \"Internal Admin API\"",
+            "password": "Lösenord",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"10000000000000000000000\",\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Användarnamn",
+            "default": "standard",
+            "hugging_face_url": "Använd den absoluta URL:en (ex. https://api-inference.huggingface.co/models/). ",
+            "database_name": "Databasens namn",
+            "account_name": "xy12345.us-öst-2.aws",
+            "warehouse": "KOMPUTE_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIC",
+            "role": "Roll",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN KRYPTED PRIVATA KEY-----\r\n•••••••\r\n -----END ENKRYPTED PRIVATA KEY-----",
+            "dynamo_region": "us-väst-1"
+          },
+          "tip": {
+            "connect_type": "Moln: ILLA-servrar ansluter säkert till din databas.",
+            "name": "Namnet på resursen när du skapar åtgärder i ILLA.",
+            "private_key": "<0>Klicka här</0> för att se hur du skaffar denna nyckel",
+            "ssl_options": "SSL används när tillgänglig",
+            "username_password": "Användaruppgifter kommer att krypteras och lagras säkert på våra servrar.",
+            "introspection": "Aktivera detta om din GraphQL-slutpunkt inte stöder introspektionsfrågor. Observera att inaktivering av introspektion minskar GraphQL:s användbarhet, eftersom automatisk komplettering och linting för denna resurs inte längre kommer att fungera.",
+            "hugging_face_url": "<0>Klicka här</0> för att läsa mer om Hugging Face.",
+            "bear_token": "Skaffa en användaråtkomst eller API-token <0>i dina inställningar för Hugging Face-profil.</0>",
+            "connection_options": "Lägg till anslutningsalternativ för din anslutning. När SSL-alternativet är aktiverat kommer vi att lägga till kryptering och trustServerCertificate som standard."
+          },
+          "title": {
+            "advanced_option": "Avancerade alternativ",
+            "general_option": "ALLMÄNNA",
+            "graphql_introspection": "GRAFQL INTROSPECTION"
+          }
+        },
+        "error": {
+          "invalid_url": "Ange en giltig URL, till exempel https://example.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Ny"
+          },
+          "label": {
+            "access_token": "Åtkomsttoken",
+            "access_token_lifespan": "Åtkomsttoken\n lifespan(optiinal)",
+            "access_token_url": "URL för åtkomsttoken",
+            "action_type": "Typ av åtgärd",
+            "audience": "Målgrupp",
+            "authentication": "Autentisering",
+            "authorization_url": "URL för auktorisering",
+            "base_url": "Bas URL",
+            "basic_auth_password": "Grundläggande lösenord för Auth",
+            "basic_auth_username": "Grundläggande användarnamn för Auth",
+            "bearerToken": "Bärartoken",
+            "body": "Kropp",
+            "client_id": "Klient ID",
+            "client_secret": "Klienthemlighet",
+            "configure_oauth2": "Konfigurerar OAuth 2.0",
+            "cookies": "Cookies",
+            "copy_url_to_application": "Kopiera denna URL till din ansökan",
+            "enable_auth_verification_endpoint": "Aktivera en auth verifieringsslutpunkt",
+            "extra_body_values": "Extra kroppsvärden",
+            "forward_all_cookies": "Vidarebefordra alla cookies",
+            "headers": "Sidhuvuden",
+            "list_of_cookies_to_forward": "Lista över cookies att\n Vidarebefordra",
+            "name": "Namn",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Uppdatera token",
+            "scopes": "Omfattar (separerade med\n ett mellanslag)",
+            "share_oauth2_credentials_between_users": "Dela OAuth2.0 användaruppgifter mellan användare",
+            "url_parameters": "URL Parametrar",
+            "use_client_credentials_auth": "Använd klientautentiseringsuppgifter auth",
+            "digest_auth_username": "Användarnamn",
+            "digest_auth_password": "Lösenord"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Grundläggande Auth",
+              "bearer": "Bärare",
+              "none": "Ingen",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Token Lifespan på några sekunder",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "api": "dvs \"Internt Admin API\"",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "base_url": "Använd den absoluta URL:en (t.ex. https://example.com)",
+            "database": "dvs.: \"Användarens DB(skrivskydd)\"",
+            "name": "dvs \"Användare DB(readonly)\" eller \"Internal Admin API\"",
+            "param_key": "nyckel",
+            "param_value": "värde",
+            "password": "lösenord",
+            "username": "användarnamn"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 är en komplex spec. ILLA stöder för närvarande server-side OAuth 2.0 autentiseringsflöde samt klientautentiseringsflödet. I båda fallen måste du använda OAUTH2_TOKEN platshållaren för att informera ILLA om var du ska placera OAuth åtkomsttoken i API-begäran. En gemensam plats för detta är som en header såsom Auktorisering: Bearer OAUTH2_TOKEN.",
+            "extra_body_values": "Extra kroppsvärden skickas inte för GET eller HEAD förfrågningar",
+            "get_req_auto_run": "(GET REQ) KOMMER KÖR AUTOMATISkt, VAR EN PARAMETER CHANGES.",
+            "name": "Namnet på resursen när du skapar åtgärder i ILLA."
+          },
+          "title": {
+            "advanced_option": "ALLMÄNNA"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Åtkomstnyckel",
+            "base_url": "Bas URL",
+            "bucket_name": "Hink namn",
+            "custome_s3_endpoint": "Anpassad S3-slutpunkt",
+            "region": "Region",
+            "secret_access_key": "Hemlig åtkomstnyckel",
+            "use_custome_s3_endpoint": "Använd anpassad S3-slutpunkt"
+          },
+          "placeholder": {
+            "base_url": "dvs https://example.com",
+            "region": "us-väst-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Detta används för att ansluta till andra icke-S3-tjänster, som Digital Ocean Spaces eller Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tips: tilldela dina externa referenser till variabler istället för att kedja av de lockiga konsolerna."
+          },
+          "tip": {
+            "external_reference": "Du kan skapa externa referenser till variabler som du har definierat. Exempelvis {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Läs mer om Hugging Face:",
+            "hf_endpoint": "Inferens slutpunkt"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Skaffa en Organisations-API-Tokens <0>i inställningarna för din Hugging Face profil</0>.",
+            "hf_endpoint": "Lär dig mer om <0>Endpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "Tillåt IP-adresser",
+            "message": "Om dina resurser inte är tillgängliga för allmänheten uppdatera din nätverks- eller brandväggsinställning för att lägga till ILLA:s IP-adresser till den tillåtna listan så att ILLA kan ansluta till dina resurser."
+          }
+        },
+        "button": {
+          "copy_ip": "Kopiera IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Borttagen"
+      },
+      "result": {
+        "title": {
+          "api_request": "API begäran",
+          "error": "Frågan kördes misslyckades",
+          "json": "JSON",
+          "response": "Svar",
+          "success": "Frågan kördes framgångsrikt",
+          "table": "Tabell"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Databas",
+        "js_transformer": "Transformator för JavaScript"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Kunde inte visa tabeller. Försök igen senare."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "privat",
+          "public_read": "offentligt lästa",
+          "public_read_write": "public-read-write",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "autentiserad-läs",
+          "bucket_owner_read": "hink-ägare-läsa",
+          "bucket_owner_full_control": "hink-ägare-full kontroll"
+        }
+      }
+    },
+    "component": {
+      "cancel": "Avbryt",
+      "delete": "Radera",
+      "delete_content": "Ta bort det kanske göra några buggar, bekräfta.",
+      "delete_title": "Är du säker på att du vill radera {{ displayName}}?",
+      "editor_list": "Nuvarande redaktörer"
+    },
+    "context_menu": {
+      "delete": "Radera",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIONER & TRANSFORMERS ",
+      "components_title": "KOMPONENTER ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "Sidor",
+      "global_data_modal": {
+        "title": "Redigera globala data",
+        "variable_name": {
+          "tooltips": "Namn på variabeln. Använd det initiala värdet i denna app via {{name}}",
+          "label": "Namn",
+          "message": "Ange variabelns namn"
+        },
+        "initial_value": {
+          "label": "Inledande värde",
+          "tooltips": "Stöder objekt eller primitiva värden. Exempel: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Det gick inte att distribuera"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" finns redan",
+      "validate_error": "\"{{ displayName }}\" måste börja med en bokstav eller \"_\", och kan bara innehålla bokstäver, siffror, \"_\" eller \"$\""
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Radera",
+          "reset_state": "Reset state",
+          "view_documentation": "Visa dokumentation"
+        }
+      },
+      "multi_selected_header": "{{ number }} komponenter valda",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Stapeldiagram",
+          "line": "Linje diagram",
+          "pie": "Cirkeldiagram",
+          "scatterplot": "Scatterplot"
+        },
+        "color_picker": {
+          "prefabricated": "Prefabricerad färg",
+          "title": "Redigera färg"
+        },
+        "column_setter": {
+          "label": "Kolumner ({{number}})",
+          "new": "Ny",
+          "title": "Titel"
+        },
+        "event_handler_list": {
+          "empty": "Utlösa frågor, styra komponenter, eller ringa andra API:er som svar på komponenthändelser.",
+          "incomplete_selection": "Ofullständig markering",
+          "new": "Ny",
+          "title": "Redigera händelsehanterare"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Radera",
+          "label": "Menus ({{number}})",
+          "new": "Ny",
+          "sub": "Sub"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Radera",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Ingen etikett",
+          "model_title": "Redigera alternativ",
+          "new": "Ny",
+          "title": "Alternativ"
+        },
+        "select_page_setter": {
+          "placeholder": "Välj en sida"
+        },
+        "select_view_setter": {
+          "placeholder": "Välj en vy"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Visningar"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Ändra",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Filtrera ändring",
+          "fail": "Misslyckades",
+          "focus": "Fokus",
+          "invalid": "Ogiltig",
+          "paginationChange": "Ändrad sida",
+          "row_select": "Välj rad",
+          "sortingChange": "Ändra sortering",
+          "submit": "Skicka",
+          "success": "Klart",
+          "onOpenModal": "Öppna modal",
+          "onCloseModal": "Stäng modal",
+          "play": "Spela",
+          "pause": "Pausa",
+          "ended": "Avslutad",
+          "loaded": "Laddad",
+          "rowSelect": "Välj rad",
+          "markerSelected": "markerMarkerad",
+          "markerCreated": "markerSkapad",
+          "select": "Välj"
+        },
+        "image_list": {
+          "title": "Bilder",
+          "empty": "Inga bilder",
+          "model_title": "Redigera bilder",
+          "config": {
+            "model_label": "Etikett",
+            "image_url": "Bild URL"
+          }
+        },
+        "image_setter": {
+          "new": "Ny"
+        },
+        "Change": "Ändra",
+        "Select": "Välj",
+        "eventCalendar": {
+          "no_title": "Ingen titel"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Fyll",
+        "message_type": {
+          "error": "Fel",
+          "info": "Information",
+          "success": "Klart",
+          "warning": "Varning"
+        },
+        "outline": "Kontur",
+        "validation_pattern": {
+          "email": "E-post",
+          "regex": "Regex",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "Fast",
+          "auto": "Automatiskt"
+        },
+        "upload_type": {
+          "button": "Knapp",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "En fil",
+          "multiple_files": "Flera filer",
+          "directory": "Katalog"
+        },
+        "size_type": {
+          "kb": "KB",
+          "mb": "MB"
+        },
+        "time_picker": {
+          "select_time": "Välj tid"
+        },
+        "time_range": {
+          "start_placeholder": "Starttid",
+          "end_placeholder": "Slut tid"
+        }
+      },
+      "setter_group": {
+        "adornments": "ANVÄNDNINGAR",
+        "basic": "BASIC",
+        "column": "KOLMMER",
+        "data": "DATA",
+        "interaction": "INTERAKTION",
+        "label": "LABEL",
+        "layout": "LAYOUT",
+        "menu": "MENY",
+        "options": "ALTERNATIV",
+        "pagination": "PAGINATION",
+        "row_selection": "VARV VÄLJ",
+        "sort": "SORTA",
+        "style": "STIL",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "VALIDATION",
+        "views": "VISAR",
+        "images": "BILDER",
+        "primary_value": "PRIMÄRA VÄRDE",
+        "secValue": "Sekundärt värde",
+        "border": "Border",
+        "color": "Färg",
+        "icon": "Ikon",
+        "secondary_value": "SEKUNDER VÄRDE",
+        "resource": "RESURS",
+        "eventCalendar": {
+          "calendar": "Kalender"
+        },
+        "event": "Händelse"
+      },
+      "setter_label": {
+        "action": "Åtgärd",
+        "align": "Align",
+        "allow_clear": "Tillåt rensning",
+        "allow_half": "Tillåt hälften",
+        "alt_text": "Alt text",
+        "alt_text_desc": "En tillgänglig beskrivning av bilden för skärmläsare. Detta återges också som en reserv om bilden inte laddas.",
+        "background": "Bakgrund",
+        "background_color": "Bakgrund",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Bildtext",
+        "chart_title": "Titel",
+        "chart_type": "Typ av diagram",
+        "color": "Färg",
+        "colors": "Färger",
+        "column_title": "Kolumnens titel",
+        "column_type": "Kolumn typ",
+        "columns": "Kolumner",
+        "component": "Komponent",
+        "config_type": "Konfigurationstyp",
+        "container": "Behållare",
+        "content": "Innehåll",
+        "control_component": "Kontrollera komponent",
+        "custom_rule": "Anpassad regel",
+        "data": "Data",
+        "data_source": "Datakälla",
+        "data_sources": "Datakällor",
+        "dataset": {
+          "aggregation_method": "Aggregation metod",
+          "name": "Dataset namn",
+          "remove": "Remove dataset",
+          "value": "Dataset värden"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Decimal plats",
+        "decimal_places": "Decimala platser",
+        "default_sort_key": "Kolumn",
+        "default_sort_order": "Riktning",
+        "default_tab": "Default tab",
+        "default_value": "Förvalt värde",
+        "default_views": "Förvald vy",
+        "description": "Beskrivning",
+        "direction": "Riktning",
+        "disable_submit": "Inaktivera inlämning",
+        "disabled": "Inaktiverad",
+        "download": "Hämta",
+        "duration": "Varaktighet",
+        "empty_state": "Tomt tillstånd",
+        "enable_sorting": "Aktivera sortering",
+        "end_data": "Slutdatum",
+        "end_placeholder": "Slut platshållare",
+        "event": "Händelse",
+        "event_handler": "Händelsehanterare",
+        "expansion_method": "Expansionsmetod",
+        "failure": "Misslyckande",
+        "filter": "Filtrera",
+        "font_size": "Font size",
+        "form_data_key": "Formulär dataknapp",
+        "format": "Formatera",
+        "go_to_url": "Gå till URL",
+        "group_by": "Gruppera efter",
+        "group_layout": "Gruppens layout",
+        "hidden": "Hidden",
+        "hidden_label": "Dold etikett",
+        "hide_validation_message": "Dölj valideringsmeddelande",
+        "hide_value_label": "Dölj värde-etikett",
+        "horizontal_alignment": "Horisontell justering",
+        "icon": "Ikon",
+        "image_source": "Bild källa",
+        "img_height": "Höjd",
+        "img_width": "Width",
+        "index": "Index",
+        "item_background_color": "Objekt bakgrund",
+        "items": "Objekt",
+        "key": "Nyckel",
+        "label": "Etikett",
+        "label_alignment": "Justering",
+        "label_position": "Befattning",
+        "label_width": "Width(%)",
+        "layout": "Layout",
+        "legend_position": "Legend position",
+        "link_to_container": "Länk till en behållare",
+        "links_color": "Länkar",
+        "loading": "Laddar",
+        "loop_back_to_start": "Loopa tillbaka för att starta",
+        "loop_start_to_back": "Loop börjar bakåt",
+        "mapped_option": "Mappad Alternativ",
+        "mapped_value": "Mappat värde",
+        "max_count": "Max antal",
+        "max_date": "Max datum",
+        "max_length": "Max längd",
+        "maximum": "Maximal",
+        "method": "Metod",
+        "min_date": "Minsta datum",
+        "min_length": "Minsta längd",
+        "minimum": "Minsta",
+        "multi_row_selection": "Flerrads markering",
+        "new_tab": "New tab",
+        "only_run_when": "Kör endast när",
+        "overFlow": "Överflöde",
+        "page": "Sida",
+        "pageSize": "Sidstorlek",
+        "pattern": "Mönster",
+        "pending": "Väntande",
+        "placeholder": "Platshållare",
+        "prefix_text": "Prefix text",
+        "radius": "Radius",
+        "read_only": "Endast läsning",
+        "regex": "Regex",
+        "required_field": "Obligatoriskt fält",
+        "reset_after_successful_submit": "Återställ efter lyckad inlämning",
+        "router": "Router",
+        "run_script": "Kör skript",
+        "scale_type": "Skala typ",
+        "set_router": "Ange router",
+        "set_temporary_state": "Ange temporär status",
+        "shadow": {
+          "shadow": "Skugga"
+        },
+        "show_character_count": "Visa antal tecken",
+        "show_clear_button": "Visa tydlig knapp",
+        "show_footer": "Visa sidfot",
+        "show_header": "Visa sidhuvud",
+        "show_notification": "Visa avisering",
+        "sort": "Sortera",
+        "start_date": "Startdatum",
+        "start_placeholder": "Starta platshållare",
+        "step_size": "Stegstorlek",
+        "stroke_width": "Stroke bredd",
+        "style": "Stil",
+        "styles": "Styles",
+        "submit_form": "Skicka formulär",
+        "success": "Klart",
+        "suffix_text": "Suffix text",
+        "text": "Text",
+        "text_align": "Text align",
+        "text_size": "Textens storlek",
+        "theme_color": "Tema färg",
+        "thousand_separator": "Tusen separator",
+        "time_format": "Tidsformat",
+        "title": "Titel",
+        "tooltip": "Verktygstips",
+        "trail_color": "Färg på spår",
+        "trigger_query": "Utlösarfråga",
+        "type": "Typ",
+        "validate_inputs_on_submit": "Validera inmatningar vid inmatning",
+        "value": "Värde",
+        "value_labels": "Värde etiketter",
+        "variant": "Variant",
+        "vertical_alignment": "Vertikal justering",
+        "width": "Width",
+        "x_axis_name": "Namn på X-axel",
+        "x_axis_title": "X-axel titel",
+        "x_axis_type": "Typ av X-axel",
+        "x_axis_value": "X-axel värde",
+        "y_axis_name": "Y-axel namn",
+        "y_axis_title": "Y-axel titel",
+        "height": "Höjd",
+        "min_height": "Min height (px)",
+        "show_underline": "Visa understrykning",
+        "auto_play": "Spela automatiskt",
+        "interval": "Intervall (ms)",
+        "show_button": "Visa pilar",
+        "show_dot": "Visa prickar längst ner",
+        "hidden_images": "Dolda bilder",
+        "file_type": "Typ av fil",
+        "selection_types": "Urvalstyper",
+        "append_newly_files": "Lägg till nyvalda filer",
+        "file_list": "Lista över filer",
+        "parse_value": "Tolka värde",
+        "max_files": "Max antal filer",
+        "min_files": "Minsta filer",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Överflöde",
+        "file_url": "PDF källa",
+        "show_tool_bar": "Visa verktygsfält",
+        "scale": "Skala sidan till",
+        "scroll": "Fäst rullning till varje sida",
+        "min_max_size": "Min storlek ~ Max storlek",
+        "video_url": "Videokälla",
+        "autoplay": "Autospela",
+        "loop": "Loop",
+        "volume": "Volym",
+        "show_controls": "Visa kontroller",
+        "img_url_array": "Bild URL Array",
+        "statistics": {
+          "label": "Etikett",
+          "primary_value": "Primär värde",
+          "secValue": "Sekundärt värde",
+          "decimal": "Decimal plats",
+          "trend_sign": "Visa trendskylt",
+          "positive_sign": "Positivt tecken",
+          "negative_sign": "Negativt tecken",
+          "thousand_separator": "Visa tusen avgränsare",
+          "trend_color": "Aktivera trendfärg",
+          "prefix_text": "Prefix text",
+          "suffix_text": "Suffix text"
+        },
+        "mute": "Tysta",
+        "collapse": {
+          "type": "Typ",
+          "accordin_mode": "Dragspel läge",
+          "header_color": "Rubrik",
+          "body_color": "Kropp",
+          "expand_icon": "Expandera",
+          "collapse_icon": "Komprimera",
+          "icon_color": "Färg"
+        },
+        "choose_at_least": "Välj minst",
+        "choose_up_to": "Välj upp till",
+        "copy_to_clipboard": "Kopiera till urklipp",
+        "file_download": {
+          "file_data": "Fil data",
+          "file_name": "Filnamn med tillägg",
+          "file_type": "Typ av fil"
+        },
+        "action_name": "Åtgärdens namn",
+        "variable": {
+          "path_of_value": "Sökväg till värde",
+          "variable": "Globala data"
+        },
+        "code": {
+          "write_code": "Skriv kod"
+        },
+        "slider": {
+          "step_size": "Stegstorlek",
+          "minimum": "Minsta",
+          "maximum": "Maximal",
+          "hide_output": "Dölj utdata",
+          "prefix_icon": "Prefix ikon",
+          "suffix_icon": "Ikon för suffix",
+          "allow_wrapping": "Tillåt omslagning"
+        },
+        "range_slider": {
+          "start_value": "Starta värde",
+          "end_value": "Avsluta värde"
+        },
+        "name": "Namn",
+        "audio": {
+          "audio_url": "Ljudkälla"
+        },
+        "map": {
+          "markers": "Markörer",
+          "initial_location": "Inledande plats",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Latitud fältnamn",
+          "longitude_field_name": "Longitud fältnamn",
+          "zoom": "Zooma",
+          "enable_add_markers": "Aktivera lägga till markörer",
+          "enable_search_locati": "Aktivera sökplats",
+          "enable_clustering": "Aktivera kluster"
+        },
+        "time_range": {
+          "start_time": "Starttid",
+          "end_time": "Slut tid"
+        },
+        "eventCalendar": {
+          "event_value": "Händelse värde",
+          "event_id": "Händelse ID",
+          "title": "Titel",
+          "description": "Beskrivning",
+          "start": "Starta",
+          "end": "Slut",
+          "resource_id": "Resurs id",
+          "resource_title": "Resurens titel",
+          "all_day": "Hela dagen",
+          "data_source": "Datakälla",
+          "default_date": "Förvalt datum",
+          "resource_grid": "Resursrutnät",
+          "default_view": "Förvald vy",
+          "show_current_time": "Visa aktuell tid",
+          "background": "Bakgrund",
+          "calendar_background": "Bakgrund",
+          "calendar_border": "Border",
+          "calendar_text": "Text",
+          "event_background": "Bakgrund",
+          "event_text": "Text",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
+        },
+        "table": {
+          "page_index": "Sidans index",
+          "index": "Index",
+          "scroll_to_the_select": "Bläddra till den markerade raden",
+          "filters": "Filter",
+          "filter_mode": "Filtrera läge",
+          "show_thousands_separ": "Visa tusentals avgränsare",
+          "tag_label": "Etikett tagg",
+          "tag_color": "Etikettens färg",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
+        "cascader_data": "Varje alternativ måste vara JSON-format och innehålla två nycklar, värde och etikett. Genom att använda arrayer, kan du skapa alternativ på samma nivå. Och barnalternativ kan skapas genom att använda \"barn\" attribut. ",
+        "component_default_value": "Komponentens initiala värde. Du kan dynamiskt ändra det initiala värdet genom att skriva JavaScript i {{}}.",
+        "custom_rule": "Skapa din valideringslogik här. Reglerna ska göras i JavaScript och omfattas av {{}}.",
+        "date_format": "Ett giltigt datumformat. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "Det ursprungliga värdet i inmatningsrutan. Du kan dynamiskt ändra initialvärdet för inmatningsfältet genom att skriva JavaScript i {{}}.",
+        "disabled": "Kontrollera status för om komponenten är inaktiverad. Komponenten kan inte ändras eller fokuseras när den är inaktiverad.",
+        "disabled_submit": "När den är inaktiverad kommer de komponenter som anropar form.submit() metoden också att inaktiveras.",
+        "download": "Visa nedladdningsknappen i verktygsfältet.",
+        "filter": "Visa filterknapp i verktygsfältet.",
+        "form_data_key": "Ange en nyckel till en omslagningsformulärkomponent när du konstruerar data-attributet.",
+        "hidden": "Kontrollera dynamiskt om komponenten är dold. Du kan ändra den dolda statusen genom dynamiskt booleskt värde.",
+        "hide_validation_message": "Du kan dölja felmeddelandet genom att byta dold status när inmatningsvärdet är felaktigt. Du kan dynamiskt ändra den dolda statusen med JavaScript.",
+        "input_default_value": "Det ursprungliga värdet i inmatningsrutan. Du kan dynamiskt ändra initialvärdet för inmatningsfältet genom att skriva JavaScript i {{}}.",
+        "loading": "Om komponenten ska visa en laddningsindikator.",
+        "map_data_option": "Använd antingen en matris av värden eller ett objekt med tangenter mappade till arrayer. Varje objekt i din datakälla är mappad till varje alternativ.",
+        "mapped_value": "Använd {{ currentRow }} för att komma åt data från den aktuella raden. Till exempel för att beräkna \"kostnad per klick\" baserat på kolumner \"cost\" och \"clickTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Använd {{table.selectedRow[n].columnName}} för att komma åt data.",
+        "only_run_when": "Villkor som måste uppfyllas innan evenemanget genomförs.",
+        "placeholder": "Värdet kommer att visas när inmatningsfältet är tomt.",
+        "progress_percentage": "Procentuellt värde är mellan 0 och 100.",
+        "read_only": "Kontrollera status på om komponenten är läst. En skrivskyddad komponent kan väljas och fokuseras men kan inte ändras.",
+        "required_field": "Gäller endast när strömbrytaren är aktiverad.",
+        "switch_default_value": "Ange den initiala statusen för switchen. Du kan dynamiskt ändra standardvärdet med JavaScript.",
+        "table_only_run_when": "Villkor som måste uppfyllas innan händelsen utförs. Använd {{ currentRow }} för att komma åt data från den aktuella raden. Till exempel, kör bara när \"imgSize\" mindre än 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Använd currentRow för att komma åt data från aktuell rad. Till exempel för att ange värdet på editableText komponent baserat på \"e-post\":  {{ currentRow.email }}.\n  Och också, du kan ställa in värde i INSPECT av komponenten genom att använda {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Använd {{ currentRow }} för att komma åt data från aktuell rad. Till exempel för att gå till url med parametern \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "Du kan välja att ange värde antingen i markdown-läge eller i klartext läge. Endast länkar i markdown-läge kan identifieras.",
+        "timeline_direction": "Ändra riktningen på tidslinjen.",
+        "timeline_pending": "Om du vill visa en nod med väntande status.",
+        "tooltip": "Användaren kan ange komponentverktygstips här. Verktygstipen kommer att visas när den är fokuserad. Markdown format stöds.",
+        "file_types": "En lista över tillägg som tillåts ladda upp. Inget värde tillåter alla filtyper.",
+        "file_list": "För att visa en lista över valda filer under uppladdaren. Höjden på uppladdaren kommer att ändras dynamiskt baserat på längden på fillistan.",
+        "parse_value": "Försök att tolka de valda filerna, med stöd för JSON, CSV, TSV, Excel och TXT-filer.\nAnalyserade data kan nås via {{uploader1.parsedValue}}. Filer som inte kan tolkas kommer att vara noll i matrisen.\nAlla filer är tillgängliga som base64-kodade strängar på värdematrisen, oavsett detta alternativ.",
+        "file_url": "Stöder PDF-URL:er på webben, eller base64-kodade data för pdf-filer. Till exempel: \n{{ data:application/pdf;base64, exempeldata }}",
+        "scale": "Skala varje sida för att fylla bredden eller höjden på komponenten.",
+        "scroll": "Lokalisera automatiskt till början av varje sida när du rullar.",
+        "video_url": "Stöder de flesta videotjänster eller en direkt länk till alla vanliga videofilstyper eller base64-kodade data för videofiler. Till exempel: {{ data:audio/mp4;base64,exempelDate}}",
+        "collapse": {
+          "type": "Kollapsbar lista: lista, alla objekt kopierar automatiskt stilen på det första objektet. Du kan ange komponentdata i varje objekt via {{ currentItem.columnName }}. Kollapsbar panel: varje panel är oberoende, du kan ange komponentens stil och data för varje objekt separat.",
+          "items": "Antal artiklar",
+          "accordin_mode": "I dragspelsläge, när ett föremål expanderas, kommer andra objekt att kollapsa."
+        }
+      },
+      "tab_title": "Inspektera",
+      "unselected_tip1": "Inga komponenter valda.",
+      "unselected_tip2": "Klicka på en komponent för att välja den.",
+      "setter": {
+        "click_mask_close": "Klicka på masken för att stänga modal",
+        "modal": {
+          "blank": "Inga ikoner"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Använd {{ item }} för att hämta värde från datakällan. Till exempel finns det två attribut i datakällan. De är imageUrl och webbadress. Om du vill gå till en annan webbadress när du klickar på bilden, använd {{ item.url }} för att ställa in webbadressen.",
+        "data_source": "En datakälla för att definiera bildobjekt med hjälp av mappad utvärdering. Använd antingen en array av värden eller ett objekt med tangenter mappade till arrayer. Till exempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan också använda data i handlingar. Till exempel: {{ mysql1.data }} ",
+        "img_url_array": "Använd {{ item.attributeName }} för att hämta bild-URL från datakällan. ",
+        "carousel": {
+          "data_source": "En datakälla för att definiera bildobjekt med hjälp av mappad utvärdering. Använd antingen en array av värden eller ett objekt med tangenter mappade till arrayer. Till exempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan också använda data i handlingar. Till exempel: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Stöd base64-data, rådata, mappade data i tabellen. "
+        },
+        "variable": {
+          "available_in_objects": "Finns i objekt och arrayer. Sökvägen till attributet i objektet: {{objectName.attributeName}}. Indexet för värdet i en matris: {{1}}. En matris i objektet: {{objectName.attributeName.1}}",
+          "the_target_value": "Målets värde"
+        },
+        "slider": {
+          "default_value": "Det ursprungliga värdet på reglaget. Du kan dynamiskt ändra det ursprungliga värdet genom att skriva JavaScript i {{}}.",
+          "minimum": "Minsta värde för reglaget",
+          "maximum": "Det maximala värdet på reglaget",
+          "step_size": "Minsta ändringsenhet för bilden",
+          "label": "Namnet på fältet som visas för användaren",
+          "caption": "En text som används för att beskriva fältet i detalj",
+          "hide_label": "Ange om etiketten ska visas",
+          "allow_wrapping": "Ange om etikettinslagning ska tillåtas",
+          "position": "Ställ in positionen för etiketten i förhållande till komponenten",
+          "alignment": "Ställ in riktningen på etiketten",
+          "width": "När etiketten är på vänster sida av komponenten, ange breddförhållandet för etiketten",
+          "prefix_icon": "Ikonen som visas framför komponenten",
+          "suffix_icon": "Ikonen som visas efter komponenten",
+          "hide_output": "Ange om värdet ska döljas när du skjuter"
+        },
+        "step": {
+          "default_step": "Förvalt steg",
+          "show_step_number": "Visa steg nummer",
+          "indicate_completed_steps": "Ange slutförda steg"
+        },
+        "range_slider": {
+          "start_value": "För att ställa in minimivärdet för intervallet",
+          "end_value": "För att ställa in det maximala värdet för intervallet"
+        },
+        "audio": {
+          "audio_url": "Stöder direkta länkar till alla vanliga ljudfilstyper eller länkar till vissa ljudtjänster eller base64-kodade data för ljudfiler. Till exempel: {{ data:audio/mp3;base64,exempelDate}}"
+        },
+        "map": {
+          "markers": "För att ställa in markörer på kartan. Markörerna bör vara en samling av objekt med samma egenskaper som standardmarkörerna.",
+          "initial_location": "När kartan initieras, den förvalda centrerade visningspositionen",
+          "default_markers": "Standardmarkörerna som visas vid initiering av kartan. Du kan ställa in den dynamiskt med JavaScript i {{}}. ",
+          "latitude_field_name": "Latituden är tagen från vilken egendom av den initiala platsen och standard markörer objekt.",
+          "longitude_field_name": "longitud tas från vilken egenskap av den ursprungliga platsen och standard markörer objekt.",
+          "zoom": "För att ställa in kartzoomen",
+          "enable_add_markers": "Om du vill tillåta användare att lägga till markörer genom att klicka på kartan",
+          "enable_search_locati": "Om användare ska kunna söka efter plats",
+          "enable_clustering": "Om du vill tillåta flera markörer att aggregera när kartan zoomas ut"
+        },
+        "time_picker": {
+          "format": "En giltig tidsformatsträng. För mer information om formatet: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "Spännvidden av värdet i minuter",
+          "show_a_clear_button_": "Visa en tydlig knapp när musen är över komponenten. "
+        },
+        "time_range": {
+          "start_time": "Den första starttiden för komponenten. ",
+          "end_time": "Den inledande sluttiden för komponenten. ",
+          "start_placeholder": "Värdet kommer att visas när startfältet är tomt.",
+          "end_placeholder": "Värdet kommer att visas när sluttidsfältet är tomt."
+        },
+        "eventCalendar": {
+          "event_value": "Använd objekt bifogat i {{ för att ställa in händelsevärdet. Till exempel, {{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Ett unikt ID som används för att identifiera händelsen",
+          "title": "Titeln på händelsen",
+          "description": "Beskrivningen av händelsen",
+          "start": "Starttid för händelsen",
+          "end": "Sluttid för händelsen",
+          "resource_id": "Resursen kan vara en person, ett mötesrum, etc. Du kan ställa in ett resurs-id och ansluta det till evenemanget. ",
+          "resource_title": "Namnet på resursen som visas i resursvyn",
+          "all_day": "Om en heldagshändelse",
+          "data_source": "Datakällan för händelserna. En datakälla bör vara en samling objekt. Varje objekt är en händelse. Till exempel, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "Standarddatumet när appen startas",
+          "resource_grid": "Om du vill visa ett resursrutnät",
+          "default_view": "Standardvyn när appen startas",
+          "show_current_time": "Ange om den aktuella tidslinjen ska visas",
+          "calendar_background": "Ange bakgrunden till kalendern",
+          "calendar_border": "Ange färg på gränsen",
+          "calendar_text": "Ange färg på texten",
+          "event_background": "Ange bakgrunden till händelsekortet",
+          "event_text": "Ställ in textfärgen på händelsekortet",
+          "couldnot_drag": "Om du vill dra för att justera tidsintervallet, gå vidare till förhandsgranskningssidan för operationen.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "The icon displayed in the table",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download row data icon.",
+          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object. Set the original column name as key ",
+          "filter_mode": "The filter mode. AND or OR.",
+          "currency_code": "USD"
+        }
+      },
+      "setter_option": {
+        "fixed": "Fast",
+        "auto_limited": "Automatisk höjd med gränser",
+        "auto_height": "Automatisk höjd",
+        "text_ellipsis": "Ellips",
+        "text_scroll": "Rulla",
+        "text_clip": "Clip",
+        "scale_height": "Höjd",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Kollapsbar panel"
+        },
+        "file_download": {
+          "auto": "Automatiskt",
+          "plain_text": "Oformaterad text",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "CSV",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "Ingen",
+          "large": "Stor",
+          "medium": "Medel",
+          "small": "Liten"
+        },
+        "eventCalendar": {
+          "sunday": "Söndag",
+          "monday": "Måndag",
+          "tuesday": "Tisdag",
+          "wednesday": "Onsdag",
+          "thursday": "Torsdag",
+          "friday": "Fredag",
+          "saturday": "Lördag",
+          "month": "Månad",
+          "week": "Vecka",
+          "day": "Dag",
+          "agenda": "Föredragningslista"
+        },
+        "table": {
+          "set_sort": "Ange sortering",
+          "column": "Kolumn",
+          "number": "Nummer",
+          "percent": "Procent",
+          "currency": "Valuta",
+          "text": "Text",
+          "tag": "Tagg",
+          "button_group": "Knapp grupp",
+          "date": "Datum",
+          "time": "Tid",
+          "date_time": "Datum Tid",
+          "link": "Länk",
+          "rating": "Betyg",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Knapp",
+          "icon": "Ikon",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Inga gränser",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Positiv färg",
+          "negative_color": "Negativ färg"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "new_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Ett tal mellan 0 och 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Välj alternativ för hyresavtal {{ min }}.",
+        "choose_up_to": "Välj upp till {{max}} alternativ.",
+        "map": {
+          "zoom": "Ange ett värde mellan 1 och 22"
+        },
+        "upload": {
+          "size_exceed": "Filer över 500 MB kan misslyckas med att tolka.",
+          "single_file": "Endast en enda fil är tillåten.",
+          "file": "Filtyper som inte stöds tas bort",
+          "directory": "Endast kataloger är tillåtna."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Skriv din kod här. Använd JavaScript inuti {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Lägg till",
+        "body": "Kropp",
+        "default_view": "Förvald vy",
+        "edit_view": "Redigera vy",
+        "footer": "Sidfot",
+        "header": "Rubrik",
+        "key": "Nyckel",
+        "left_panel": "Vänster panel",
+        "preset": "Preset",
+        "right_panel": "Höger panel",
+        "set_as_homepage": "Ange som hemsida",
+        "show_fold_icon": "Visa vik-ikon",
+        "view_path": "Visa sökväg",
+        "views": "Visningar",
+        "width": "Width",
+        "height": "Höjd",
+        "columns": "Kolumner"
+      },
+      "model_tips": {
+        "cancel_button": "Avbryt",
+        "change_layout_message": "Efter att du ändrat layouten kommer all data att rensas. Denna åtgärd kan inte återställas, vänligen bekräfta",
+        "delete_section_message": "Efter att ha gömt kommer data i det här avsnittet att rensas. Denna åtgärd kan inte återställas, vänligen bekräfta",
+        "ok_button": "Bekräfta"
+      },
+      "panel_bar_title": {
+        "basic": "BASIC",
+        "frame": "FRAME"
+      },
+      "tab_title": "Sida",
+      "tooltips": {
+        "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
+        "view_path": "En sträng efter example.com/app/page/ för att komma åt denna vy",
+        "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
+      }
+    },
+    "validate_message": {
+      "email": "Ange en giltig e-postadress",
+      "max_length": "Måste inte vara mer än {{ number }} tecken",
+      "max_value": "Måste vara mindre än {{ number }}",
+      "min_length": "Måste vara minst {{ number }} tecken",
+      "min_value": "Måste vara större än {{ number }}",
+      "regex": "Vänligen matcha det begärda formatet",
+      "required": "Detta fält är tvingande",
+      "url": "Ange en giltig URL",
+      "max_size": "Filstorleken får inte överstiga {{maxSize }} {{ type }}.",
+      "min_files": "Minst {{ minFiles }} filer krävs.",
+      "max_files": "Stöd upp till {{ maxFiles }} filer.",
+      "min_size": "Filstorleken kan inte vara mindre än {{minSize }} {{ type }}.",
+      "min_max_size": "Min storlek ~ Max storlek"
+    },
+    "widget_picker": {
+      "empty_tip": "Tyvärr, inga sökresultat",
+      "search_placeholder": "Sök",
+      "sessions": {
+        "calendar": "Kalender ingångar",
+        "commonly": "Vanligt komponenter",
+        "container": "Behållare och form",
+        "data": "Data",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Presentation",
+        "selects": "Välj indata"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Ställ in dold",
+      "set_file_url": "Ange PDF-källa",
+      "play": "Spela",
+      "pause": "Pausa",
+      "seek_to": {
+        "time": "Tid",
+        "unit": "(er)"
+      },
+      "set_video_url": {
+        "video": "Videokälla"
+      },
+      "speed": {
+        "speed": "Hastighet",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stoppa",
+      "mute": "Tysta",
+      "loop": "Loop",
+      "show_controls": "Visa kontroller",
+      "set_volumn": "Ange volym",
+      "set_volume": {
+        "volume": "Volym",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "setPrimaryValue",
+        "reset_primary_value": "återställPrimaryVärde",
+        "primary_value": "Primär värde"
+      },
+      "collapse": {
+        "expand_all_items": "Expandera alla objekt",
+        "collapse_all_items": "Komprimera alla objekt"
+      },
+      "carousel": {
+        "showNext": "Visa nästa synliga bild",
+        "showPrevious": "Visa föregående synliga bild"
+      },
+      "file_download": {
+        "download": "Hämta",
+        "message": {
+          "suc": "Börja ladda ner",
+          "fail": "Begäran misslyckades",
+          "download_failed": "Det gick inte att ladda ner"
+        }
+      },
+      "setGlobalData": "Ange global data",
+      "setLocalStorage": "Ställ in lokal lagring",
+      "audio": {
+        "set_audio_url": "Ställ in ljudkälla"
+      },
+      "map": {
+        "marker_selected": "Markör vald",
+        "marker_created": "Markör skapad",
+        "markers_changed": "Markörer ändrade"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "tilläggHändelse",
+        "deleteevent": "raderaHändelse"
+      },
+      "table": {
+        "clear_filters": "Rensa filter",
+        "clear_column_setting": "Rensa kolumninställning",
+        "refresh": "Uppdatera",
+        "select_page": "Välj sida",
+        "select_row": "Välj rad",
+        "clear_selection": "Rensa markering",
+        "set_filters": "Ställ in filter",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Handledning"
+          },
+          "title": {
+            "tutorial": "Handledning",
+            "templates": "Mallar"
+          },
+          "onboarding_app": {
+            "name": "Onboarding app",
+            "description": "Följ ILLA:s handledning för att lära dig att bygga en app.",
+            "action": "Kör"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Forka denna mall som en ny app"
+          },
+          "templates_name": {
+            "table": "Instrumentpanel",
+            "form": "Enkät",
+            "list": "Admin panel"
+          },
+          "templates_description": {
+            "table": "Använd tabeller för att skapa instrumentpaneler.",
+            "form": "Använd form- och inmatningskomponenter för att skapa formulärappar.",
+            "list": "Använd en listkomponent för att visa och hantera information"
+          },
+          "modal": {
+            "title": "Gaffla och distribuera",
+            "placeholder": "Appens namn",
+            "cancel": "Avbryt",
+            "fork": "Gaffla och distribuera"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Steg 1: Dra en ingång hit",
+          "drag_button": "Steg 2: Dra en knapp hit",
+          "drag_table": "Steg 3: Dra en tabell hit",
+          "exit": "Avbryt",
+          "do_it": "Gör det för mig",
+          "drag_title": "Dra komponenter till ramen",
+          "modify_action_title": "Ändra åtgärden",
+          "modify_action_description_modify": "Ändra åtgärd för att få data. Vi kan använda {{input1.value}} för att få data inmatade i inmatningskomponenten. \n\nselect * \nfrom users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Klicka på Spara och klicka sedan på Kör",
+          "display_data_title": "Visa data på tabellen",
+          "display_data_description_select": "Välj tabellen på ramen",
+          "display_data_description_modify": "Ändra datakällan på den högra panelen. Vi kan använda {{postgresql1.data}} för att hämta data.",
+          "event_handler_title": "Klicka på knappen för att utlösa åtgärd",
+          "event_handler_description_1": "Välj knappen på ramen",
+          "event_handler_description_2": "Lägg till en händelsehanterare",
+          "event_handler_description_3": "Klicka på händelsehanteraren",
+          "event_handler_description_4": "Ändra åtgärden för att utlösa åtgärd",
+          "event_handler_description_5": "Ändra frågan till postgre1",
+          "test_it_title": "Testa det",
+          "test_it_description": "Skriv in ett användarnamn som du vill söka efter och klicka på knappen",
+          "test_it_button": "Nästa",
+          "congratulations_title": "Grattis 🎉",
+          "congratulations_description": "Du har precis byggt din första app. Om du har några frågor under användning, kan du kontakta oss via <0>Discord</0>. ",
+          "congratulations_button": "Klar",
+          "event_handler_description_all": "1. Lägg till en händelsehanterare\r\n2. Klicka på händelsehanteraren\r\n3. Ändra åtgärden för att utlösa åtgärden\r\n4. Ändra frågan till postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Datastorleken överskrider gränsen (nuvarande storlek: {{current_size}} bytes, gräns: {{limit_size}} bytes)"
+    }
+  },
+  "exit_preview": "Avsluta förhandsgranskning",
+  "freeze_collision": "Frys kollision",
+  "freeze_messages": "Tyget är fruset. Du kan dra komponenter till eller ut ur behållare.",
+  "freeze_tips": "Tyget är fruset. Klicka här för att avfrysa det.",
+  "link_copied": "Länk kopierad",
+  "network_error": "Nätverk frånkopplad. Kontrollera enhetens nätverk",
+  "not_online_tips": "Nätverk frånkopplad. Kontrollera enhetens nätverk",
+  "preview": {
+    "viewport": {
+      "size": "Storlek",
+      "reset": "Reset",
+      "save": "Spara",
+      "tooltip": {
+        "fluid_width": "Vätskans bredd",
+        "desktop": "Desktop(bredd = 1280px)",
+        "tablet": "Surfplatta (bredd = 1080px)",
+        "custom": "Anpassad"
+      }
+    },
+    "button_text": "Förhandsgranska"
+  },
+  "remove_fail": "Misslyckades att ta bort",
+  "rename": "Döp om",
+  "resources": "Resurser",
+  "retry": "Försök igen",
+  "save": "Spara",
+  "setting": {
+    "account": {
+      "email": "E-post",
+      "empty_username": "Ange ditt användarnamn",
+      "error_username": "Användarnamnet måste vara 3 ~ 15 tecken",
+      "save": "Spara ändringar",
+      "save_fail": "Det gick inte att spara",
+      "title": "KONTO",
+      "username": "Användarnamn"
+    },
+    "other": {
+      "language": "Språk",
+      "save": "Spara ändringar",
+      "title": "INSTÄLLNINGAR"
+    },
+    "password": {
+      "confirm_password": "Bekräftelse lösenord",
+      "current_password": "Gammalt lösenord",
+      "empty_password": "Ange ditt lösenord",
+      "error_format_password": "Lösenordet måste vara 6 ~ 20 tecken",
+      "error_match_password": "Lösenordet och bekräftelsen stämmer inte överens",
+      "error_password_has_empty": "Lösenordet kan inte innehålla mellanslag",
+      "error_validate_password": "Ditt lösenord får endast innehålla siffror, bokstäver och skiljetecken",
+      "new_password": "Nytt lösenord",
+      "submit_button": "Skicka",
+      "title": "LÖSENORD"
+    }
+  },
+  "share": "Dela",
+  "status": {
+    "403": {
+      "des": "Åtkomst nekad"
+    },
+    "404": {
+      "again": "Uppdatera",
+      "des": "Det verkar som om sidan du letade efter inte kunde hittas."
+    },
+    "500": {
+      "des": "Hoppsan, något gick fel. Försök igen senare."
+    },
+    "back": "Tillbaka till startsidan",
+    "mobile_forbidden": "För bättre redigeringserfarenhet, besök denna sida på skrivbordet",
+    "back_to_cloud": "Tillbaka till ILLA Cloud",
+    "no_permission_title": "Otillräckliga behörigheter",
+    "no_permission_description": "Du har inte behörighet att utföra den begärda åtgärden. Kontakta administratörerna i ditt team."
+  },
+  "title": "Välkommen till illa",
+  "unfreeze_tips": "Frysa duken och dra komponenter till eller ut ur behållare. (D eller K)",
+  "user": {
+    "description": "En öppen källkodsplattform för utvecklare.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Skicka kod"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Ange en giltig e-postadress",
+          "registered": "E-postadressen associerar inte med ett konto.",
+          "require": "Ange din e-postadress"
+        },
+        "newPassword": {
+          "require": "Ange ditt lösenord"
+        },
+        "verification_code": {
+          "expired": "Verifikationskoden har löpt ut",
+          "invalid": "Ogiltig verifieringskod",
+          "require": "Ange verifieringskod"
+        }
+      },
+      "fields": {
+        "email": "E-post",
+        "newPassword": "Nytt lösenord",
+        "verification_code": "Verifieringskod"
+      },
+      "placeholder": {
+        "email": "Ange din e-postadress",
+        "verification_code": "Ange verifieringskod"
+      },
+      "subtitle": "Tillbaka för att logga in",
+      "tips": {
+        "fail": "Kunde inte återställa lösenordet",
+        "fail_sent": "Det gick inte att skicka verifieringskoden",
+        "success": "Lösenordet har återställts",
+        "verification_code": "Verifikationskod skickad"
+      },
+      "title": "Återställ lösenord"
+    },
+    "password": {
+      "placeholder": "Ange ditt nya lösenord (minst 6 tecken)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Logga in"
+      },
+      "description": {
+        "forgot_password": "Glömt lösenordet?",
+        "policy": "Genom att klicka på Logga in godkänner jag <0>Sekretesspolicy</0> och <1>villkor</1>",
+        "register": "Ny användare? <0>Skapa ett konto</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Ange en giltig e-postadress",
+          "registered": "E-postadressen associerar inte med ett konto.",
+          "require": "Ange din e-postadress"
+        },
+        "password": {
+          "incorrect": "Felaktig e-post eller lösenord",
+          "locked": "För många dåliga försök, vänligen återställ ditt lösenord eller försök igen efter 1 timme",
+          "min_length": "Lösenordet måste vara minst 6 tecken",
+          "require": "Ange lösenord"
+        }
+      },
+      "fields": {
+        "email": "E-post",
+        "password": "Lösenord"
+      },
+      "placeholder": {
+        "email": "Ange din e-postadress"
+      },
+      "tips": {
+        "fail": "Det gick inte att logga in",
+        "success": "Inloggad framgångsrikt"
+      },
+      "title": "Välkommen tillbaka"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Skapa konto",
+        "send": "Skicka kod"
+      },
+      "description": {
+        "login": "Har du redan ett konto? <0>Logga in</0>",
+        "policy": "Genom att klicka på Skapa konto godkänner jag <0>Sekretesspolicy</0> och <1>villkor</1>",
+        "subscribe": "Jag är villig att ta emot uppdateringar och nyheter om ILLA"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Ange en giltig e-postadress",
+          "registered": "Ett konto med den e-postadressen finns redan.",
+          "require": "Ange din e-postadress"
+        },
+        "password": {
+          "require": "Ange lösenord"
+        },
+        "username": {
+          "length": "Användarnamnet måste vara 3 ~ 15 tecken",
+          "require": "Ange användarnamn"
+        },
+        "verification_code": {
+          "expired": "Verifikationskoden har löpt ut",
+          "invalid": "Ogiltig verifieringskod",
+          "require": "Ange verifieringskod"
+        }
+      },
+      "fields": {
+        "email": "E-post",
+        "password": "Lösenord",
+        "username": "Användarnamn",
+        "verification_code": "Verifieringskod"
+      },
+      "placeholder": {
+        "email": "Ange din e-postadress",
+        "username": "Ange ditt användarnamn",
+        "verification_code": "Ange verifieringskod"
+      },
+      "tips": {
+        "fail": "Det gick inte att registrera sig",
+        "fail_sent": "Det gick inte att skicka verifieringskoden",
+        "success": "Registreringen lyckades",
+        "verification_code": "Verifikationskod skickad"
+      },
+      "title": "Registrera dig",
+      "agreement": {
+        "privacy_policy": "Integritetspolicy",
+        "terms_of_service": "användarvillkor"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Fältets framsteg"
+    },
+    "button": {
+      "default_text": "Knapp",
+      "name": "Knapp"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Diagram"
+    },
+    "check_box_group": {
+      "name": "Kryssruta grupp"
+    },
+    "circle_progress": {
+      "name": "Cirkel framsteg"
+    },
+    "container": {
+      "empty": "Tryck på <keyPress>D</keyPress> eller <keyPress>K</keyPress> och dra komponenter hit",
+      "key_duplicated": "Nyckeln är duplicerad. Använd unika nycklar för att undvika fel.",
+      "name": "Behållare",
+      "value_duplicated": "Värdet dupliceras. Använd unika värden för att undvika fel."
+    },
+    "date": {
+      "name": "Datum"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Datum Tid",
+      "placeholder": "Välj tid"
+    },
+    "divider_progress": {
+      "name": "Delare"
+    },
+    "editable_text": {
+      "name": "Redigerbar text"
+    },
+    "form": {
+      "name": "Formulär"
+    },
+    "image": {
+      "name": "Bild"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Använd {{ currentItem }} för att komma åt data för aktuellt objekt. Till exempel för att ange värdet på textkomponenten som finns i listkomponenten baserat på \"användarnamn\": {{ currentItem.userName }}",
+      "doc2": "Använd {{list.selectedItem.data}} för att komma åt data för valda objekt i listkomponenten. Till exempel, för att ange värdet på textkomponenten som är utanför listkomponenten baserat på \"användarnamn\" för det valda objektet i listan: {{ list.selectedItem.userName }}",
+      "name": "Lista"
+    },
+    "menu": {
+      "name": "Meny"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Vänster",
+      "right": "Höger",
+      "select_options": {
+        "manual": "Manuell",
+        "mapped": "Mappad"
+      },
+      "top": "Överst"
+    },
+    "radio_button": {
+      "name": "Radioknapp"
+    },
+    "radio_group": {
+      "name": "Radio grupp"
+    },
+    "rate": {
+      "name": "Betygsätt"
+    },
+    "select": {
+      "name": "Välj"
+    },
+    "switch": {
+      "name": "Växla"
+    },
+    "table": {
+      "ascend": "Stigande",
+      "descend": "Desc",
+      "name": "Tabell",
+      "pagination": "Sidnumrering",
+      "scroll": "Rulla"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Hej!",
+      "name": "Text",
+      "text_model": "Oformaterad text"
+    },
+    "timeline": {
+      "horizontal": "Horisontell",
+      "name": "Tidslinje",
+      "vertical": "vertikal"
+    },
+    "modal": {
+      "name": "Modal"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Ladda upp",
+      "default_button_text": "Ladda upp",
+      "default_dropzone_text": "Välj eller släpp en fil här"
+    },
+    "icon": {
+      "name": "Ikon"
+    },
+    "pdf": {
+      "empty": "Inga PDF-filer",
+      "failed": "PDF kunde inte laddas"
+    },
+    "video": {
+      "name": "Video",
+      "empty": "Inga videor",
+      "fail": "Det gick inte att ladda"
+    },
+    "statistics": {
+      "name": "Statistik"
+    },
+    "collapse": {
+      "name": "Komprimera"
+    },
+    "multiselect": {
+      "name": "Multival"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Steg"
+    },
+    "slider": {
+      "name": "Reglage"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Ljud",
+      "no_audio": "Inget ljud"
+    },
+    "collaborative": {
+      "no_name": "Inget namn"
+    },
+    "map": {
+      "name": "Karta"
+    },
+    "time_picker": {
+      "name": "Tidväljare"
+    },
+    "time_range": {
+      "name": "Tidsintervall"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Händelse kalender"
+      },
+      "name_duplicated": "Detta resurs-ID konflikter i dessa händelser, använd samma namn eller annat id"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Fast",
+        "auto": "Automatiskt"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Skicka kod"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Ange en giltig e-postadress",
+            "registered": "E-postadressen associerar inte med ett konto.",
+            "require": "Ange din e-postadress"
+          },
+          "newPassword": {
+            "require": "Ange ditt lösenord"
+          },
+          "verification_code": {
+            "expired": "Verifikationskoden har löpt ut",
+            "invalid": "Ogiltig verifieringskod",
+            "require": "Ange verifieringskod"
+          }
+        },
+        "fields": {
+          "email": "E-post",
+          "newPassword": "Nytt lösenord",
+          "verification_code": "Verifieringskod"
+        },
+        "placeholder": {
+          "email": "Ange din e-postadress",
+          "verification_code": "Ange verifieringskod"
+        },
+        "subtitle": "Tillbaka för att logga in",
+        "tips": {
+          "fail": "Kunde inte återställa lösenordet",
+          "fail_sent": "Det gick inte att skicka verifieringskoden",
+          "success": "Lösenordet har återställts",
+          "verification_code": "Verifikationskod skickad"
+        },
+        "title": "Återställ lösenord"
+      },
+      "password": {
+        "placeholder": "Ange ditt nya lösenord (minst 6 tecken)"
+      },
+      "policy": "Genom att använda ILLA godkänner du vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Logga in"
+        },
+        "description": {
+          "forgot_password": "Glömt lösenordet?",
+          "policy": "Genom att klicka på Logga in godkänner jag <0>Sekretesspolicy</0> och <1>villkor</1>",
+          "register": "Ny användare? <0>Skapa ett konto</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Ange en giltig e-postadress",
+            "registered": "E-postadressen associerar inte med ett konto.",
+            "require": "Ange din e-postadress"
+          },
+          "password": {
+            "incorrect": "Felaktig e-post eller lösenord",
+            "locked": "För många dåliga försök, vänligen återställ ditt lösenord eller försök igen efter 1 timme",
+            "min_length": "Lösenordet måste vara minst 6 tecken",
+            "require": "Ange lösenord"
+          }
+        },
+        "fields": {
+          "email": "E-post",
+          "password": "Lösenord"
+        },
+        "placeholder": {
+          "email": "Ange din e-postadress"
+        },
+        "tips": {
+          "fail": "Det gick inte att logga in",
+          "success": "Inloggad framgångsrikt",
+          "fail_account": "Felaktig e-post eller lösenord"
+        },
+        "title": "Välkommen tillbaka",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Registreringen lyckades. Du kan ange ett lösenord för ditt e-postkonto senare",
+            "auth_failed": "Autentisering misslyckades"
+          }
+        },
+        "option": {
+          "github": "Logga in med GitHub",
+          "google": "Logga in med Google",
+          "or": "ELLER"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Skapa konto",
+          "send": "Skicka kod"
+        },
+        "description": {
+          "login": "Har du redan ett konto? <0>Logga in</0>",
+          "policy": "Genom att klicka på Skapa konto godkänner jag <0>Sekretesspolicy</0> och <1>villkor</1>",
+          "subscribe": "Jag är villig att ta emot uppdateringar och nyheter om ILLA"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Ange en giltig e-postadress",
+            "registered": "Ett konto med den e-postadressen finns redan.",
+            "require": "Ange din e-postadress"
+          },
+          "password": {
+            "require": "Ange lösenord"
+          },
+          "username": {
+            "length": "Användarnamnet måste vara 3 ~ 15 tecken",
+            "require": "Ange användarnamn"
+          },
+          "verification_code": {
+            "expired": "Verifikationskoden har löpt ut",
+            "invalid": "Ogiltig verifieringskod",
+            "require": "Ange verifieringskod"
+          }
+        },
+        "fields": {
+          "email": "E-post",
+          "password": "Lösenord",
+          "username": "Användarnamn",
+          "verification_code": "Verifieringskod"
+        },
+        "placeholder": {
+          "email": "Ange din e-postadress",
+          "username": "Ange ditt användarnamn",
+          "verification_code": "Ange verifieringskod"
+        },
+        "tips": {
+          "fail": "Det gick inte att registrera sig",
+          "fail_sent": "Det gick inte att skicka verifieringskoden",
+          "success": "Registreringen lyckades",
+          "verification_code": "Verifikationskod skickad"
+        },
+        "title": "Registrera dig",
+        "option": {
+          "github": "Registrera dig med GitHub",
+          "google": "Registrera dig med Google"
+        }
+      },
+      "description": "En öppen källkodsplattform för utvecklare."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Handledning"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Ange ett värde som inte är mindre än {{ size }}."
+  },
+  "failed_to_copy": "Det gick inte att kopiera",
+  "copied": "Kopierad!",
+  "user_management": {
+    "role": {
+      "owner": "Ägare",
+      "admin": "Administer",
+      "editor": "Redigerare",
+      "viewer": "Läsare"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Bjud in medlemmar"
+      },
+      "link": {
+        "invite_title": "Bjud in länk",
+        "copy": "Kopiera",
+        "turn_off": "Stäng av inbjudningslänkar",
+        "update": "Uppdatera inbjudningslänkar",
+        "description": "Dela en hemlig länk människor kan använda för att gå med i ditt team.",
+        "turn_on": "Slå på inbjudningslänkar",
+        "fail": "Det gick inte att få länken, försök igen senare",
+        "copied_suc": "Kopierad!",
+        "failed_to_copy": "Det gick inte att kopiera",
+        "turn_off_fail": "Det gick inte att stänga av",
+        "turn_on_fail": "Det gick inte att slå på",
+        "make_public_title": "Gör appen publik",
+        "make_public_copy": "Kopiera"
+      },
+      "email": {
+        "invite_title": "Bjud in via e-post",
+        "invite": "Bjud in",
+        "placeholder": "Ange e-postadress",
+        "invited": "Har bjudit in",
+        "in_list": "Den här användaren är redan i ditt team.",
+        "notmail": "{{ email }} är inte en e-postadress",
+        "duplicate": "{{ email }} är duplicerad"
+      },
+      "invalid_email": "Ange en giltig e-postadress",
+      "message": {
+        "make_public_suc": "Inställningen lyckades",
+        "make_public_failed": "Misslyckades att ange",
+        "app_share_in_team": "{{ email }} är redan i ditt team, vänligen dela länken med honom. "
+      },
+      "tab": {
+        "invite": "Bjud in",
+        "public": "Publik"
+      }
+    },
+    "mes": {
+      "invite_suc": "Inbjuden lyckades",
+      "invite_fail": "Misslyckades att bjuda in",
+      "update_suc": "Uppdateringen lyckades",
+      "update_fail": "Det gick inte att uppdatera",
+      "transfer_suc": "Framgångsrikt överförd",
+      "transfer_fail": "Misslyckades att överföra",
+      "remove_suc": "Har tagits bort",
+      "remove_fail": "Misslyckades att ta bort",
+      "change_role_fail": "Det gick inte att uppdatera",
+      "change_role_suc": "Uppdateringen lyckades"
+    },
+    "page": {
+      "member": "Medlem",
+      "invite": "Bjud in",
+      "permission": "Behörighet",
+      "operation": "Åtgärd",
+      "transfer": "Överför ägarskap",
+      "remove": "Radera"
+    },
+    "transfer_modal": {
+      "title": "Är du säker på att du vill överföra ägande?",
+      "description": "Efter överföring, kommer din tillåtelse att ändras till administratör.",
+      "transfer": "Överföring",
+      "cancel": "Avbryt"
+    },
+    "remove_modal": {
+      "title": "Är du säker du vill ta bort {{ username }}?",
+      "description": "Efter borttagningen kommer användaren inte att kunna komma åt teamet.",
+      "remove": "Radera",
+      "cancel": "Avbryt"
+    },
+    "status": {
+      "pending": "Väntande"
+    },
+    "settings": {
+      "allow_editors_invite": "Tillåt redaktörer och tittare att hantera medlemmar"
+    }
+  },
+  "copy_failed": "Det gick inte att kopiera",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Team inställningar",
+      "member": "Medlem",
+      "leave": "Lämna lag",
+      "delete": "Ta bort team"
+    },
+    "leave_modal": {
+      "title": "Är du säker på att du vill lämna detta team?",
+      "description": "Du kommer inte att kunna komma åt några teamresurser efter att du lämnat.",
+      "leave": "Lämna",
+      "cancel": "Avbryt"
+    },
+    "delete_modal": {
+      "title": "Är du säker på att du vill ta bort detta team?",
+      "delete": "Radera",
+      "cancel": "Avbryt",
+      "desctiption": "Team-identifieraren kommer inte att vara tillgänglig efter radering, och alla medlemmar kommer att tas bort från detta team."
+    },
+    "team_info": {
+      "title": "Lag information",
+      "team_name": "Lag namn",
+      "domain": ".illacloud.com",
+      "existed": "Finns redan",
+      "available": "Tillgänglig",
+      "edit": "Redigera",
+      "save": "Spara ändringar",
+      "adjust_avater": "Justera avatern",
+      "avater_crop": "Beskär",
+      "team_name_empty": "Ange teamets namn",
+      "team_id_empty": "Ange teamets identifierare",
+      "team_name_placeholder": "Ange teamets namn",
+      "team_id_placeholder": "Ange teamets identifierare",
+      "leave_title": "Lämna lag",
+      "leave_button": "Lämna lag",
+      "delete_title": "Ta bort team",
+      "delete_button": "Ta bort team",
+      "team_domain": "Team Identifierare"
+    },
+    "message": {
+      "save_suc": "Sparades framgångsrikt",
+      "save_fail": "Det gick inte att spara"
+    },
+    "mes": {
+      "domain_suc": "Skapa framgångsrikt.",
+      "delete_suc": "Borttaget framgångsrikt",
+      "delete_fail": "Kunde inte ta bort",
+      "leave_suc": "Lämna framgångsrikt",
+      "leave_fail": "Misslyckades att lämna"
+    }
+  },
+  "members": "Medlemmar",
+  "invite_new_member": "Bjud in",
+  "launch": "Starta",
+  "homepage": {
+    "message": {
+      "join_failed": "Det gick inte att gå med i teamet: din e-post är inte den inbjudna e-postadressen."
+    }
+  },
+  "image_exceed": "Bildstorleken får inte överstiga 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Beskär",
+        "save": "Spara",
+        "cancel": "Avbryt"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Sparades framgångsrikt",
+        "save_fail": "Det gick inte att spara"
+      },
+      "password": {
+        "title": "Lösenord"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Kollapsbar lista"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Ett cirkulärt beroende sker på {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Integritetspolicy",
+      "description": "Denna integritetspolicy förklarar våra rutiner för insamling, användning och utlämnande av information som vi får via våra Tjänster."
+    },
+    "terms": {
+      "description": "Dessa användarvillkor styr din tillgång till och användning av vår webbplats och vårt tillhandahållande av en mängd olika tjänster.",
+      "title": "Villkor för tjänsten"
+    }
+  },
+  "empty_copied_tips": "Innehållet som ska kopieras är tomt",
+  "copy_empty": "Innehållet som ska kopieras är tomt",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Lär dig att bygga en app på 5 minuter",
+          "description": "Följ ILLA:s handledning för att lära dig att bygga en app. Detta tar cirka 5 minuter.",
+          "cancel": "Avbryt",
+          "take": "Ta en handledning"
+        },
+        "exit_confirm": {
+          "title": "Stoppa handledningen?",
+          "description": "Nästa gång du går in i registreringsappen kommer de guidade stegen att spelas upp ",
+          "cancel": "Avbryt",
+          "exit": "Stoppa det"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Omdirigera",
+  "oauth_redirect_description": "Omdirigering till <0>ILLA Cloud</0>",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
+}

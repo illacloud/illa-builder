@@ -50,50 +50,47 @@ const applyTimeView = (date: string, indicatorTop: number) => {
     }
   }
   return css`
-  .rbc-time-view {
-    .rbc-time-gutter::after {
-      position: absolute;
-      z-index: 11;
-      left: 0;
-      width: 100%;
-      content: " ${date}";
-      top: ${indicatorTop}px;
-      visibility: ${indicatorTop ? "visible" : "hidden"};
-      color: ${getColor("red", "03")};
-      transform: translateY(-50%);
-      text-align: right;
-      white-space: nowrap;
-      padding: 0 5px;
-    }
-    .rbc-time-gutter {
-      position: sticky;
-      left: 0;
-      background-color: white;
-      border-right: 1px solid #EBEBEB;;
-      z-index: 10!important;
-      margin-right: -1px;
-      ${applyCalendarFont}
-      font-family: "SF Pro Display";
-      line-height: 24px;
-    }
-    .rbc-timeslot-group .rbc-time-slot:first-of-type {
-      transform: translateY(-50%);
-    }
-    .rbc-time-gutter .rbc-timeslot-group {
-      border-bottom: none;
-    }
-    .rbc-timeslot-group:nth-of-type(${needHiddenLabel + 1}) .rbc-label,
-    .rbc-timeslot-group:first-of-type .rbc-label {
-      visibility: hidden;
+    .rbc-time-view {
+      .rbc-time-gutter::after {
+        position: absolute;
+        z-index: 11;
+        left: 0;
+        width: 100%;
+        content: " ${date}";
+        top: ${indicatorTop}px;
+        visibility: ${indicatorTop ? "visible" : "hidden"};
+        color: ${getColor("red", "03")};
+        transform: translateY(-50%);
+        text-align: right;
+        white-space: nowrap;
+        padding: 0 5px;
+      }
+      .rbc-time-gutter {
+        position: sticky;
+        left: 0;
+        background-color: white;
+        border-right: 1px solid #EBEBEB;;
+        z-index: 10!important;
+        margin-right: -1px;
+        ${applyCalendarFont}
+        font-family: "SF Pro Display";
+        line-height: 24px;
+      }
+      .rbc-timeslot-group .rbc-time-slot:first-of-type {
+        transform: translateY(-50%);
+      }
+      .rbc-time-gutter .rbc-timeslot-group {
+        border-bottom: none;
+      }
+      .rbc-timeslot-group:nth-of-type(${needHiddenLabel + 1}) .rbc-label,
+      .rbc-timeslot-group:first-of-type .rbc-label {
+        visibility: hidden;
+      }
     }
   }
+  `
 }
-`
-}
-const applyMonthView = (
-  titleColor: string,
-  eventTextColor: string,
-) => {
+const applyMonthView = (titleColor: string, eventTextColor: string) => {
   return css`
     .rbc-month-view {
       color: ${getColor(titleColor, "01")};
@@ -149,10 +146,7 @@ const applyIndicatorStyle = (indicatorTop: number) => {
   `
 }
 
-const buttonGroupStyle = (
-  titleColor: string,
-  isLight: boolean,
-) => {
+const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
   const color = css`
     color: ${getColor(titleColor, "01")}!important;
   `
@@ -190,15 +184,15 @@ const buttonGroupStyle = (
 }
 const applyCalendarBg = (slotBackground: string) => {
   return css`
+    background-color: ${getColor(slotBackground, "01")}!important;
+    .rbc-header,
+    .rbc-row-bg,
+    .rbc-label,
+    .rbc-time-gutter,
+    .rbc-day-slot,
+    .rbc-calendar,
+    tbody {
       background-color: ${getColor(slotBackground, "01")}!important;
-      .rbc-header,
-      .rbc-row-bg,
-      .rbc-label,
-      .rbc-time-gutter,
-      .rbc-day-slot,
-      .rbc-calendar,
-      tbody {
-        background-color: ${getColor(slotBackground, "01")}!important;
     }
   `
 }
@@ -272,11 +266,11 @@ export const ApplyCustomStyle = (
   showResource: boolean,
 ) => {
   return css`
+    height: 100%;
+    width: 100%;
     .rbc-today {
       background: none !important;
     }
-    height: 100%;
-    width: 100%;
     [data-target="${displayName}"] {
       color: ${getColor(titleColor, "01")} !important;
       visibility: ${showCurrentTime ? "visible" : "hidden"} !important;

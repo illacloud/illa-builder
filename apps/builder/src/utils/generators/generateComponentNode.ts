@@ -61,9 +61,13 @@ export const generateComponentNode = (
     Array.isArray(props.events)
   ) {
     props.events = props.events.map((event) => {
-      return {
-        ...event,
-        widgetID: pathToChildren[pathToChildren.length - 1] || "unknown",
+      if (event.actionType !== "widget") {
+        return event
+      } else {
+        return {
+          ...event,
+          widgetID: pathToChildren[pathToChildren.length - 1] || "unknown",
+        }
       }
     })
   }

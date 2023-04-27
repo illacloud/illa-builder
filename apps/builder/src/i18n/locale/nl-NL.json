@@ -1,0 +1,2846 @@
+{
+  "Logout": "Log uit",
+  "Setting": "Instellingen",
+  "apps": "Applicaties",
+  "back": "Achterzijde",
+  "btn": {
+    "choose_file": "Kies een bestand"
+  },
+  "change_fail": "Wijzigen mislukt",
+  "change_success": "Succesvol gewijzigd",
+  "collision_message": "Druk op D of K en sleep het onderdeel naar container",
+  "create_fail": "Aanmaken mislukt",
+  "create_new": "Nieuwe aanmaken",
+  "create_new_app": "Nieuwe aanmaken",
+  "created_at": "Aangemaakt op",
+  "dashboard": {
+    "app": {
+      "all_apps": "Alle apps",
+      "create_app": "App maken",
+      "duplicate_fail": "Dubbelen mislukt",
+      "duplicate_placeholder": "Voer hier uw appnaam in",
+      "edited_time": "Bewerkt op {{ time }} door {{ user }}",
+      "name_empty": "Voer een naam in",
+      "name_existed": "Naam al in gebruik",
+      "rename_app": "Hernoem app",
+      "rename_fail": "Hernoemen mislukt",
+      "rename_success": "Succesvol hernoemd",
+      "trash_failure": "Verwijderen mislukt",
+      "trash_success": "Succesvol verwijderd"
+    },
+    "common": {
+      "cancel": "annuleren",
+      "delete": "Verwijderen",
+      "delete_cancel_text": "annuleren",
+      "delete_content": "Dit zal Apps en Query Bibliotheek vragen die deze bron gebruiken breken",
+      "delete_ok_text": "Verwijderen",
+      "delete_title": "Weet je het zeker?",
+      "error_button": "Opnieuw",
+      "error_description": "Er is een probleem met uw operatie.",
+      "error_title": "Foutmelding"
+    },
+    "resource": {
+      "create_resource": "Nieuwe aanmaken",
+      "created": "Aangemaakt",
+      "dbname": "Database Naam",
+      "delete_fail": "Verwijderen mislukt",
+      "delete_success": "Succesvol verwijderd",
+      "resource_name": "naam",
+      "resource_type": "Type",
+      "save_fail": "Opslaan mislukt",
+      "save_success": "Succesvol opgeslagen",
+      "test_fail": "Test mislukt",
+      "test_success": "Test succesvol"
+    }
+  },
+  "dayjs": {
+    "just_now": "Op dit moment"
+  },
+  "deploy": "Implementeren",
+  "description": {
+    "part1": "Dit is een voorbeeld zonder namespaces."
+  },
+  "dont_need_save": "ILLA blijft proberen om je werk automatisch op te slaan.",
+  "duplicate": "Duplicate",
+  "edit": "Bewerken",
+  "edit_at": "Gewijzigd op",
+  "edit_failed": "Opslaan mislukt, controleer je netwerk.",
+  "edit_success": "Succesvol bewerkt",
+  "editor": {
+    "action": {
+      "action_list": {
+        "action_generator": {
+          "btns": {
+            "back": "Achterzijde",
+            "create_action": "Actie aanmaken",
+            "new_resource": "Nieuw document"
+          },
+          "selector": {
+            "title": "Selecteer actietype"
+          },
+          "title": {
+            "choose_resource": "Kies een bron "
+          }
+        },
+        "btn": {
+          "close": "Sluiten",
+          "new": "Nieuw"
+        },
+        "contextMenu": {
+          "delete": "Verwijderen",
+          "duplicate": "Duplicate",
+          "rename": "Hernoem"
+        },
+        "message": {
+          "confirm_switch": "U heeft uw zoekopdracht niet opgeslagen. Weet u zeker dat u de wijzigingen wilt verwerpen?",
+          "failed": "Kan geen verbinding maken met de server",
+          "load_action_list_fail": "Ophalen van actielijst mislukt: {{message}}",
+          "load_resource_fail": "Bronlijst ophalen mislukt: {{message}}",
+          "name_already_exist": "Bestaat al",
+          "please_input_name": "Voer naam in",
+          "success_created": "Succesvol aangemaakt",
+          "success_deleted": "Succesvol verwijderd",
+          "success_saved": "Succesvol opgeslagen",
+          "valid_name": "Mag alleen letters, cijfers, '_' of '$' bevatten, begin met '_' of een letter"
+        },
+        "placeholder": {
+          "search": "Zoeken"
+        },
+        "runtime": {
+          "backend": "Backend",
+          "execute_resource": "resource uitvoeren",
+          "frontend": "Frontend",
+          "handle_response": "antwoord beheren",
+          "post_processing": "na verwerking",
+          "prepare_query": "Query voorbereiden",
+          "response_size": "Antwoord grootte",
+          "total": "Totaal",
+          "transfer_data": "overdracht gegevens",
+          "transformer": "Transformator"
+        },
+        "tips": {
+          "empty": "Voeg een actie toe om te beginnen met het werken met gegevens van een aangesloten resource.",
+          "not_found": "Geen zoekresultaten"
+        },
+        "title": "Actie Lijst"
+      },
+      "form": {
+        "btn": {
+          "back": "Achterzijde",
+          "save_changes": "Sla Resource op",
+          "test_connection": "Verbinding testen"
+        },
+        "required": "Dit is vereist",
+        "title": {
+          "api": "API's",
+          "configure": "{{ name }} configureren",
+          "database": "DATABASES",
+          "select": "Selecteer Resource Type",
+          "huggingface": "Knuffel Gezicht",
+          "appwrite": "Appwrite",
+          "couchdb": {
+            "couchdb": "Kortingsdatabase"
+          },
+          "oracle": {
+            "oracle": "Oracle DB"
+          },
+          "gs": {
+            "google_sheets": "Google platen"
+          },
+          "neon": {
+            "neon": "Neon"
+          }
+        },
+        "validate": {
+          "required": "{name} is verplicht"
+        },
+        "label": {
+          "inference_api": "Inferentie API",
+          "inference_endpoint": "Volgorde eindpunt",
+          "s3": "Ongeldig in openbare apps",
+          "acl": "S3 ACL voor geüploade bestanden",
+          "appwrite": {
+            "host": "Hostnaam",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "API sleutel",
+            "collectionid": "Verzameling ID",
+            "documentid": "Document ID",
+            "data": "Gegevens",
+            "filter": "Filteren",
+            "order": "Sorteer op",
+            "limit": "Limiet"
+          },
+          "oracle": {
+            "sid": "Behandel Database Naam als",
+            "ssl": "SSL"
+          },
+          "couchdb": {
+            "ssl": "SSL/TLS"
+          },
+          "restapi": {
+            "certificates": "Certificaten",
+            "verification_mode": "Verificatie modus"
+          },
+          "gs": {
+            "private_key": "Privé sleutel",
+            "action_type": "Actie type",
+            "spreadsheet": "Werkblad",
+            "sheet_name": "Plaat naam",
+            "data_range": "Data bereik",
+            "limit": "Limiet",
+            "offset": "Verschuiving",
+            "a1_notation": "A1 notatie",
+            "values_to_append": "Waarden om toe te voegen",
+            "filter_by": "Filteren op",
+            "update_value": "Waarde bijwerken",
+            "primary_key_column": "Primaire kolom sleutel",
+            "array_of_rows_to_upd": "Array van rijen om bij te werken",
+            "filters_to_match_row": "Rij index",
+            "consider_queries_tha": "Queries die geen rijen verwijderen als successen beschouwen",
+            "title_of_spreadsheet": "Titel van spreadsheet",
+            "sheet_id_to_copy": "Plaats-ID om te kopiëren",
+            "sheet_to_copy_to": "Tafel om naar te kopiëren",
+            "authentication": "Authenticatie",
+            "connect_with_oauth": "Maak verbinding met OAuth & Opslaan",
+            "reconnect_with_oauth": "Opnieuw verbinden met OAuth",
+            "access_type": "Type toegang"
+          }
+        },
+        "placeholder": {
+          "url": "Voer de aanvraag-URL hier in",
+          "appwrite": {
+            "host": "OF IP HOSTNAAM",
+            "dbid": "Database ID",
+            "projectid": "Project ID",
+            "secret": "••••••••••••••••••••",
+            "filter": {
+              "attribute": "attribuut",
+              "value": "1234"
+            },
+            "order": "attribuut",
+            "collectionid": "Selecteer een collectie",
+            "data": "Een object omhelsde in {{ }}. Bijvoorbeeld, \n{{ \"key\": \"value\" } }}"
+          },
+          "couchdb": {
+            "port": {
+              "5984": "5984"
+            }
+          },
+          "oracle": {
+            "username": "orakel",
+            "password": "••••••••"
+          },
+          "gs": {
+            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "row_filter": {
+              "column_name": "Naam",
+              "value": "waarde"
+            },
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "primary_key_column": "Naam",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } } }}",
+            "filters_to_match_row": {
+              "key": "sleutel",
+              "value": "waarde"
+            }
+          }
+        },
+        "tips": {
+          "acl": "De verstrekte inhoud is een PUBLIC-configuratie. Laat leeg voor PRIVATE. Vergeet niet CORS op uw bucket te configureren. <0>Zie Cross-Origin Resource Sharing (CORS).</0>",
+          "connect_to_local": {
+            "cloud": "Het lijkt erop dat je probeert verbinding te maken met een database die lokaal is op jouw machine of onderdeel van een privé netwerk. Het werkt mogelijk niet in de ILLA Cloud versie. Bekijk onze <0>documenten</0> voor de self-host versie.",
+            "selfhost": "Het lijkt erop dat je probeert verbinding te maken met een database die lokaal is op je computer. Gebruik het IP-adres van het lokale netwerk van de machine in plaats van \"localhost\" of \"127.0.0.1\".",
+            "title": {
+              "tips": "Tips"
+            }
+          },
+          "restapi": {
+            "verification_mode": {
+              "skip_ca_certificate": "Uw server is mogelijk kwetsbaar voor aanvallen."
+            }
+          },
+          "gs": {
+            "private_key": "Gebruikt om verbinding te maken met Google Sheets. Klik <0>hier</0> om een project aan te maken en de OAuth inloggegevens te krijgen. Met authenticatie voor een serviceaccount hebben we alleen toegang tot spreadsheets die je deelt met het e-mailadres dat overeenkomt met het gebruikte serviceaccount. Zie <1>hier</1> voor documentatie over het aanmaken van een serviceaccount en toegangssleutel.\n\nGebruikers kunnen beperkingen ervaren van verschillende verwerkingscomponenten die niet worden beheerd door Sheets. Meer informatie over de quota voor <2></2>",
+            "leave_blank_to_selec": "Laat leeg om het eerste vel te selecteren",
+            "to_select_the_first_": "Om de eerste vijf cellen in de eerste kolom van een vel getiteld blad te selecteren, is A1 notatie velet1!A1:A5. <0>Zie Google-documenten voor meer informatie. </0>",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "a1_notation": "Om de eerste vijf cellen in de eerste kolom van een vel getiteld blad te selecteren, is A1 notatie velet1!A1:A5. <0>Zie Google-documenten voor meer informatie. </0>",
+            "sheet_id_to_copy": "Vind dit door naar de ?gid=123123 in de URL van je Google-pagina's te kijken",
+            "copy_to_sheet_name": "Vereist. Hernoem de gekopieerde sheet.",
+            "successfully_authent": "Succesvol geverifieerd",
+            "failed_to_authentica": "Authenticatie mislukt"
+          },
+          "tidb": {
+            "ca_certificate": "We vullen het CA-certificaat dat standaard wordt gebruikt voor TLS-verbindingen naar Serverless Tires. Als je TLS verbindingen nodig hebt naar Dedicated Tier, <0>Klik hier</0> om de configuratiemethode te bekijken."
+          },
+          "neon": {
+            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "failed": "Failed to parse the string. Please check your string or configure manually.",
+            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          }
+        },
+        "option": {
+          "appwrite": {
+            "method": {
+              "create": "Een document aanmaken",
+              "list": "Documenten weergeven",
+              "get": "Document ophalen",
+              "update": "Een document bijwerken",
+              "delete": "Verwijder een document"
+            },
+            "filter": {
+              "and": "en",
+              "or": "of",
+              "equal": "=",
+              "notequal": "<>",
+              "lessthan": "<",
+              "lessthanEqual": "<=",
+              "greaterthan": ">",
+              "greaterthanequal": ">="
+            },
+            "order": {
+              "asc": "oplopend",
+              "desc": "Desc"
+            }
+          },
+          "oracle": {
+            "sid": {
+              "sid": "ID",
+              "service": "Service Naam"
+            },
+            "ssl": "SSL gebruiken wanneer beschikbaar"
+          },
+          "couchdb": {
+            "ssl": "Gebruik SSL/TLS indien beschikbaar"
+          },
+          "restapi": {
+            "authentication": {
+              "digest_auth": "Auth Digest",
+              "auth_1": "OAuth 1.0",
+              "hawk_authentication": "Hawk Authenticatie",
+              "aws_v4": "AWS-handtekening V4",
+              "session_based_auth": "Sessie gebaseerde authenticatie (verouderd)"
+            },
+            "certificates": "Gebruik zelfondertekende certificaten",
+            "ca_certificate": "CA-certificaat",
+            "client_key": "Client sleutel",
+            "client_certificate": "Client Certificaat",
+            "verification_mode": {
+              "full_verification": "Volledige verificatie",
+              "verify_ca_certificat": "Verify CA Certificate",
+              "skip_ca_certificate_": "CA-certificaatverificatie overslaan"
+            }
+          },
+          "gs": {
+            "action_type": {
+              "read_data_from_a_spr": "Gegevens uit een rekenblad lezen",
+              "append_data_to_a_spr": "Gegevens aan een rekenblad toevoegen",
+              "update_a_spreadsheet": "Een rekenblad bijwerken",
+              "bulk_update_a_spread": "Bulk update een spreadsheet via primaire sleutel",
+              "delete_a_single_row_": "Verwijder een enkele rij van een rekenblad",
+              "create_a_spreadsheet": "Maak een rekenblad",
+              "copy_a_single_sheet_": "Een enkel blad naar een ander rekenblad kopiëren",
+              "list_available_sprea": "Toon beschikbare spreadsheets",
+              "get_spreadsheet_info": "Rekenblad info ophalen"
+            },
+            "data_range": {
+              "use_a1_notation": "Gebruik A1 notatie",
+              "use_limit_and_offset": "Gebruik limiet en verschuiving"
+            },
+            "filter_by": {
+              "use_a1_notation": "Gebruik A1 notatie",
+              "use_row_filters": "Gebruik rij filters"
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "Service account",
+            "read_and_write": "Lezen en schrijven",
+            "read_only": "Alleen-lezen"
+          },
+          "neon": {
+            "parse": "Parse",
+            "connection_string": "Connection string"
+          }
+        },
+        "default": {
+          "appwrite": {
+            "limit": " {{ 1000 }}"
+          }
+        },
+        "group": {
+          "gs": {
+            "service_account": "Service Account"
+          }
+        }
+      },
+      "panel": {
+        "btn": {
+          "disable": "Uitschakelen",
+          "enable": "Inschakelen",
+          "new": "Nieuw",
+          "run": "Uitvoeren",
+          "save": "Opslaan",
+          "save_and_run": "Opslaan & uitvoeren",
+          "save_fail": "Opslaan mislukt",
+          "test_run": "Test uitvoeren"
+        },
+        "elastic": {
+          "action_type": "Actie Type",
+          "body": "Lichaam",
+          "id": "Id",
+          "index": "Indexeren",
+          "query": "Zoekopdracht"
+        },
+        "error": {
+          "max_file": "De bestandsgrootte kan niet groter zijn dan 5M."
+        },
+        "firebase": {
+          "action_type": "Actie Type",
+          "collection": "Collectie",
+          "database_ref": "Database referentie",
+          "document_id": "Document ID",
+          "email": "E-mailadres",
+          "end_at": "Eindigt op",
+          "len_of_list": "Lengte van de lijst ",
+          "limit": "limiet",
+          "next_page_token": "Volgende pagina token",
+          "object_to_set": "Object instellen",
+          "order_by": "Sorteer op",
+          "ordering_direction": "Richting bestellen",
+          "parent_document_id": "Bovenliggend document ID",
+          "phone_number": "Telefoon nummer",
+          "placeholder": {
+            "asc": "oplopend",
+            "document_value": "{{ \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } }}",
+            "input_collection": "Voer een verzameling in",
+            "key": "sleutel",
+            "select_an_action": "Selecteer een actie",
+            "select_collection": "Selecteer een collectie",
+            "value": "waarde"
+          },
+          "service_type": "Service type",
+          "start_at": "Start bij",
+          "tips": {
+            "document_id": "Laat leeg voor automatisch gegenereerde ID.",
+            "parent_document_id_tips": "Laat leeg voor toplevel collecties."
+          },
+          "uid": "UID",
+          "use_a_dropdown": "Gebruik een dropdown",
+          "use_end_at": "Gebruik endat",
+          "use_raw_id": "Gebruik ruwe ID",
+          "use_start_at": "Use startAt",
+          "user_object": "Gebruiker object ",
+          "value": "waarde",
+          "where": "waar"
+        },
+        "label": {
+          "event_handler": "Event Handler",
+          "failure": "Fout",
+          "resource": "Bron",
+          "success": "Geslaagd",
+          "transformer": "Transformator",
+          "couchdb": {
+            "database": "Database",
+            "action_type": "Actie type"
+          },
+          "placeholder": {
+            "couchdb": {
+              "database": "Selecteer een database",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "mangoquery": "{{\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+            },
+            "restapi": {
+              "consumer_key": "Consument sleutel",
+              "consumer_secret": "••••••••••••••••••••••",
+              "realm": "testrealm@voorbeeld.com",
+              "ext": "een-app-extra-gegevens",
+              "app": "Applicatie id",
+              "dig": "gedelegeerd-door",
+              "us-east-1": "us-oost-1",
+              "authenticate_using_t": "Verifieer met behulp van de HTTP Authorization header in plaats van de query parameters",
+              "find_instructions_on": "Vind instructies waar toegangssleutels kunnen worden gevonden <0>in de AWS-documenten</0>.",
+              "role_to_assume": "Gebruik een <0>andere rol</0> bij toegang tot de API"
+            },
+            "advanced": {
+              "select_pages": "Pagina's selecteren"
+            }
+          },
+          "option": {
+            "couchdb": {
+              "action_type": {
+                "list": "Lijst records",
+                "retrieve": "Ophalen record",
+                "create": "Record aanmaken",
+                "update": "Update Record",
+                "delete": "Verwijder record",
+                "find": "Zoeken",
+                "get": "Weergave ophalen"
+              },
+              "skip": "Overslaan",
+              "limit": "Limiet",
+              "include": "Documenten opnemen",
+              "des": "Bestelling",
+              "id": "_id",
+              "rev": "_omw",
+              "record": "Opnemen",
+              "mangoquery": "MangoQuery",
+              "ViewURL": "Weergave URL",
+              "StartKey": "StartKey",
+              "EndKey": "EndKey",
+              "include_doc_option": "Docs opgenomen in de geretourneerde resultaten",
+              "des_option": "Gebruik aflopende volgorde"
+            },
+            "restapi": {
+              "signature_method": {
+                "hmac_sha1": "HMAC-SHA1",
+                "hmac_sha256": "HMAC-SHA256",
+                "hmac_sha512": "HMAC-SHA512",
+                "rsa_sha1": "RSA-SHA1",
+                "rsa_sha256": "RSA-SHA256",
+                "rsa_sha512": "RSA-SHA512",
+                "plaintext": "PLAATSEN"
+              },
+              "algorithm": {
+                "sha256": "sha256",
+                "sha1": "sha1"
+              },
+              "body_type": {
+                "file": "Bestand",
+                "text": "Tekstveld"
+              },
+              "method": {
+                "options": "OPTIES",
+                "head": "HOOFD"
+              },
+              "add_access_token_to": {
+                "query_parameters": "Query parameters",
+                "header_authorization": "Koptekst autorisatie"
+              }
+            },
+            "advanced": {
+              "trigger_this_action_": "Activeer deze actie wanneer pagina wordt geladen",
+              "show_a_loading_page_": "Toon een laadpagina bij laden van de pagina",
+              "on_page_loading": "Bij het laden van pagina's",
+              "on_app_loading": "Bij APP geladen",
+              "none": "geen"
+            }
+          },
+          "restapi": {
+            "signature_method": "Handtekening methode",
+            "consumer_key": "Consument sleutel",
+            "consumer_secret": "Consument geheim",
+            "access_token": "Toegangstoken token",
+            "token_secret": "Token geheim",
+            "private_key": "Privé sleutel",
+            "realm": "Gedeelte",
+            "hawk_auth_id": "Hawk Auth ID",
+            "hawk_auth_key": "Hawk Auth Sleutel",
+            "algorithm": "Algoritme",
+            "user": "Gebruiker",
+            "nonce": "Nonce",
+            "ext": "ext",
+            "app": "app",
+            "dig": "dig",
+            "timestamp": "Artikeldatering",
+            "aws_region": "AWS Regio",
+            "aws_service": "AWS service",
+            "aws_access_key_id": "AWS toegangssleutel ID",
+            "aws_secret_key_id": "AWS Secret Key ID",
+            "role_to_assume": "Rol om aan te nemen (ARN)",
+            "list_of_cookies_to_f": "Lijst van cookies om door te sturen",
+            "add_access_token_to": "Toegangstoken toevoegen aan"
+          },
+          "tips": {
+            "restapi": {
+              "body_type": {
+                "file": "Ofwel een binaire string, of een object: {{ { data: binaire string, bestandsnaam?: string } }}"
+              }
+            },
+            "advanced": {
+              "no_actions_will_be_t": "Geen acties worden geactiveerd wanneer de pagina wordt geladen. U kunt handmatig de actie activeren en \"Activeer deze actie wanneer pagina wordt geladen\" inschakelen in de geavanceerde instellingen."
+            }
+          },
+          "advanced": {
+            "advanced": "GEAVANCEERD",
+            "page_trigger": "Trigger tijd",
+            "loading_page": "Pagina laden",
+            "page_load_delay": "Vertraging (ms)",
+            "run_this_action_peri": "Voer deze actie periodiek uit",
+            "interval": "Interval (s)",
+            "actions_running_when": "Acties die worden uitgevoerd wanneer de pagina wordt geladen",
+            "pages": "Pagina's",
+            "periodically_run": "Periodiek uitvoeren"
+          }
+        },
+        "menu": {
+          "more": {
+            "delete": "Verwijderen",
+            "duplicate": "Duplicate"
+          }
+        },
+        "mongodb": {
+          "action_type": "Actie Type",
+          "aggregation": "Aggregatie",
+          "collection": "Collectie",
+          "document": "Document",
+          "field": "Veld",
+          "filter": "Filteren",
+          "limit": "Limiet",
+          "operations": "Bewerkingen",
+          "options": "Instellingen",
+          "projection": "Projectie",
+          "query": "Zoekopdracht",
+          "skip": "Overslaan",
+          "sort_by": "Sorteren op",
+          "update": "Vernieuwen"
+        },
+        "option": {
+          "resource": {
+            "new": "Maak een nieuwe bron aan"
+          },
+          "trigger": {
+            "manually": "Actie alleen uitvoeren wanneer handmatig wordt geactiveerd",
+            "on_change": "Actie automatisch uitvoeren wanneer inputs veranderen"
+          }
+        },
+        "s3": {
+          "action_type": "Actie Type",
+          "bucket_name": "Emmer naam",
+          "content_type": "Inhoudstype",
+          "delimiter": "Scheidingsteken",
+          "error": {
+            "max_file": "De bestandsgrootte kan niet groter zijn dan 5M."
+          },
+          "expiry_duration_of_signed_url": "Vervalduur van ondertekende URL(minuten)",
+          "generate_signed_url": "Ondertekende URL genereren",
+          "max_keys": "Max toetsen",
+          "object_key": "Object sleutel",
+          "object_key_list": "Object key lijst",
+          "placeholder": {
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_name": "export.csv",
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
+          },
+          "prefix_to_filter_reseults": "Voorvoegsel om resultaten te filteren",
+          "tips": {
+            "delimiter": "Een scheidingsteken is een teken dat je gebruikt om sleutels te groeperen.",
+            "max_keys": "Stelt het maximum aantal in het antwoord geretourneerde sleutels in. Standaard keert de actie terug naar 1000 sleutelnamen."
+          },
+          "upload_data": "Gegevens uploaden",
+          "upload_data_list": "Gegevenslijst uploaden",
+          "upload_object_name": "Objectnaam uploaden",
+          "upload_object_name_list": "Upload objectnaam lijst",
+          "timeout_upload": "Time-out voor het uploaden van een bestand (minuut)",
+          "timeout_upload_multiple": "Time-out voor het uploaden van een enkel bestand (minuut) "
+        },
+        "smtp": {
+          "attachment": "Bijlage(s)",
+          "bcc_email": "Bcc e-mail(s)",
+          "body": "Lichaam",
+          "cc_email": "Cc email(s)",
+          "from_email": "Afzender e-mail",
+          "placeholder": {
+            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "emails": "Gebruik komma's om e-mails te scheiden. Bijvoorbeeld {{[\"A\", \"B\"]}}"
+          },
+          "replay_email": "Reply-to e-mail",
+          "set_replay_email": "Antwoord-Aan e-mail instellen",
+          "subject": "Onderwerp",
+          "tips": {
+            "port": "Sommige ISP's kunnen poort 25 blokkeren. Als de verbinding mislukt, wijzig dan de \npoort."
+          },
+          "to_email": "Naar e-mail(s)",
+          "use_html": "Gebruik HTML",
+          "use_raw": "Gebruik ruwe tekst"
+        },
+        "tips": {
+          "transformer": "Gebruik transformatoren om het resultaat van de zoekopdracht om te zetten naar een ander formaat."
+        },
+        "graphql": {
+          "query": "Zoekopdracht",
+          "variables": "Variabelen",
+          "headers": "Kopteksten",
+          "placeholder": {
+            "query": "# Gebruik $ om een variabele toe te voegen aan uw query (bijv. $category ) \r\nquery ($owner: String!, $name: String! {\r\n  repository(eigenaar: $owner, naam: $name) \r\n}"
+          }
+        },
+        "hugging_face": {
+          "mode_id": "Model ID",
+          "placeholder": {
+            "mode_id": "bert-base-uncased",
+            "text": "Het antwoord op het universum is [MASK].",
+            "json": "{ \r\n\"past_user_inputs\": [\"Welke film is de beste ?\"], \r\n\"gegenereerde_respons\": [\"Het is Die Hard voor zeker.\"], \r\n\"text\": \"Kan je uitleggen waarom?\" \r\n}",
+            "binary": "b.v. {{ upload1.file[0] }}. Een binaire bestanden zonder voorvoegsel",
+            "use_cache": "Boolean, laat leeg voor waar",
+            "min_length": "Geheel getal om de minimale lengte van de tokens van de output samenvatting te definiëren",
+            "top_k": "Geheel getal om de top tokens te definiëren",
+            "top_p": "Zweef om de tokens te definiëren",
+            "temperature": "Float(0.0-100.0),laat leeg voor 1.0",
+            "repetition_penalty": "Zweef (0.0-100.0)",
+            "max_time": "Zweef (0,0-120.0) om de hoeveelheid tijd in seconden te bepalen"
+          },
+          "tips": {
+            "mode_id": "Ga naar <0>Model Hub</0> en selecteer het model dat je wilt gebruiken.",
+            "use_detail_parameters": "<0>Klik hier</0> voor meer informatie over de detailparameters",
+            "temperature": "1 betekent regelmatige monstering, 0 betekent altijd de hoogste score nemen, 100.0 komt dichter bij de uniforme waarschijnlijkheid.",
+            "repetition_penalty": "Hoe meer een token wordt gebruikt binnen de generatie, hoe meer deze wordt gestraft om niet gekozen te worden bij opeenvolgende generatie passes."
+          },
+          "parameter": "Parameter",
+          "use_detail_parameters": "Gebruik detailparameters",
+          "use_cache": "Gebruik cache",
+          "wait_for_model": "Wachten op model",
+          "min_length": "Min. lengte",
+          "max_length": "Maximale lengte",
+          "top_k": "Bovenkant k",
+          "top_p": "Boven p",
+          "temperature": "Temperatuur",
+          "repetition_penalty": "Herhaling boete",
+          "max_time": "Maximale tijd"
+        },
+        "sqlgc": {
+          "placeholder": {
+            "text": "Welke SQL-instructie wilt u genereren"
+          },
+          "button": {
+            "text": "SQL genereren"
+          }
+        },
+        "mssql": {
+          "config_type": "Configuratietype",
+          "query": "Zoekopdracht",
+          "placeholder": {
+            "query": "* selecteren van gebruikers;",
+            "table": "Selecteer een tabel",
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+          },
+          "table": "Tabel",
+          "insert_record": "Array of records om in te voegen",
+          "dropdown": {
+            "retry": "Klik om opnieuw te proberen"
+          }
+        },
+        "dynamo": {
+          "label": {
+            "method": "Methode",
+            "table": "Tabel",
+            "json_input": "Gebruik JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index naam",
+            "key_condition": "Sleutelvoorwaarde expressie",
+            "projection_expression": "Projectie expressie",
+            "filter_expression": "Filter expressie",
+            "attribute_name": "Expressie attribuutnamen",
+            "attribute_value": "Expressie attribuut waarden",
+            "limit": "Limiet",
+            "select": "Selecteren",
+            "item": "Artikel",
+            "condition_expression": "Voorwaarde expressie",
+            "key": "Sleutel",
+            "update_expression": "Update expressie"
+          },
+          "option": {
+            "query": "vraag",
+            "scan": "scannen",
+            "put_item": "invoeritem",
+            "get_item": "getItem",
+            "update_item": "bijwerken Item",
+            "delete_item": "deleteItem"
+          },
+          "placeholder": {
+            "parameters": "JSON, voor exmaple:\n {\n\"TableName\":\"abc\",\n\"KeyConditionExpression\":\"abc\",\n\"ExpressionAtt...\n}"
+          }
+        },
+        "status": {
+          "ran_failed": "Mislukt",
+          "ran_successfully": "Geslaagd"
+        },
+        "result": {
+          "restapi": {
+            "status": "status",
+            "headers": "Kopteksten",
+            "response": "Antwoord"
+          }
+        },
+        "placeholder": {
+          "restapi": {
+            "body_type": {
+              "file": "{{ { data: binary string, filename: string } }}"
+            }
+          }
+        }
+      },
+      "resource": {
+        "card": {
+          "coming_soon": "Binnenkort beschikbaar"
+        },
+        "db": {
+          "invalid_private": {
+            "key": "Ongeldige privésleutel. "
+          },
+          "label": {
+            "ca_certificate": "CA-certificaat",
+            "client_certificate": "Client Certificaat",
+            "client_key": "Client sleutel",
+            "config_type": "Configuratietype",
+            "connect_type": "Type verbinding",
+            "connection_format": "Verbindingsformaat",
+            "connection_string": "Connectie String",
+            "database": "Database",
+            "database_index": "Database index",
+            "firebase_database_url": "Firebase database URL",
+            "firebase_project_id": "ProjectID herstellen",
+            "hostname": "Hostname",
+            "hostname_port": "Hostnaam/Poort",
+            "hosturl": "Host Url",
+            "mongodb_connection_dns_seed_list": "Verbinding DNS-seed lijst",
+            "mongodb_connection_standard": "Standaard verbinding",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Client Cert en sleutel",
+            "name": "naam",
+            "port": "Poort",
+            "private_key": "Persoonlijke sleutel",
+            "private_key_hover": "De private key is verbonden met een Service Account met Firebase privileges.",
+            "ssl_options": "SSL opties",
+            "username_password": "Gebruikersnaam/Wachtwoord",
+            "self_signed_certificate": "Gebruik zelfondertekende certificaat",
+            "disable_introspection": "Introspectie uitschakelen",
+            "value": "Waarde",
+            "add_to": "Toevoegen aan",
+            "header_prefix": "Voorvoegsel koptekst",
+            "key": "Sleutel",
+            "introspection": "Introspectie",
+            "bear_token": "Token",
+            "connection_options": "Connectie opties",
+            "account_name": "Klant naam",
+            "warehouse": "Magazijn",
+            "schema": "Schema",
+            "snowflake_basic_auth": "Basis authenticatie",
+            "snowflake_key_auth": "Sleutelpaar (alleen versleutelde privé sleutels worden ondersteund)",
+            "role": "Functie",
+            "username": "Gebruikersnaam",
+            "password": "Wachtwoord",
+            "dynamo_region": "AWS regio",
+            "dynamo_access_key_id": "AWS toegangssleutel ID",
+            "dynamo_secret_key": "AWS geheime sleutel"
+          },
+          "placeholder": {
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "database": "acme_productie",
+            "database_index": "standaard 0",
+            "hostname": "Hostname",
+            "hosturl": "d.w.z. https://voorbeeld.com",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
+            "name": "d.w.z. \"Gebruikers DB(alleen-lezen)\" of \"Interne Admin API\"",
+            "password": "Wachtwoord",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts. oogle.com/o/oauth2/auth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
+            "username": "Gebruikersnaam",
+            "default": "standaard",
+            "hugging_face_url": "Gebruik de absolute URL (bijv. https://api-inference.huggingface.co/models/). ",
+            "database_name": "Naam database",
+            "account_name": "xy12345.us-oost-2.aws",
+            "warehouse": "COMPUTE_WEEK",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "schema": "PUBLIEK",
+            "role": "Functie",
+            "snowflake_username": "illa",
+            "snowflake_password": "••••••••",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n• • • • • • • • • • •\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "dynamo_region": "us-west-1"
+          },
+          "tip": {
+            "connect_type": "Cloud: ILLA servers zullen veilig verbinding maken met uw database.",
+            "name": "De naam voor resource bij het maken van acties in de ILLA.",
+            "private_key": "<0>Klik hier</0> om te zien hoe deze sleutel te verkrijgen",
+            "ssl_options": "SSL wordt gebruikt wanneer beschikbaar",
+            "username_password": "Referenties worden veilig versleuteld en opgeslagen op onze servers.",
+            "introspection": "Schakel dit in als je GraphQL-eindpunt geen ondersteuning biedt voor introspection queries. Merk op dat het uitschakelen van introspectie de bruikbaarheid van GraphQL vermindert, omdat automatisch aanvullen en linten voor deze bron niet meer zullen werken.",
+            "hugging_face_url": "<0>Klik hier</0> om meer te weten te komen over Hugging Face.",
+            "bear_token": "Krijg gebruikerstoegang of API-token <0>in je Hugging gezichtsprofielinstellingen.</0>",
+            "connection_options": "Voeg verbindingsopties toe voor uw verbinding. Als de SSL-optie is ingeschakeld, voegen we standaard versleuteling en vertrouwen ServerCertificate toe."
+          },
+          "title": {
+            "advanced_option": "Geavanceerde Opties",
+            "general_option": "ALGEMEEN",
+            "graphql_introspection": "GRAPHQL INTROSPECTIE"
+          }
+        },
+        "error": {
+          "invalid_url": "Voer een geldige URL in, bijvoorbeeld https://voorbeeld.com"
+        },
+        "restapi": {
+          "btns": {
+            "new": "Nieuw"
+          },
+          "label": {
+            "access_token": "Toegangs-token",
+            "access_token_lifespan": "Toegangstoken\n levensduur (optiinal)",
+            "access_token_url": "URL toegangstoken",
+            "action_type": "Actie Type",
+            "audience": "Auditie",
+            "authentication": "Authenticatie",
+            "authorization_url": "URL autorisatie",
+            "base_url": "Basis URL",
+            "basic_auth_password": "Basis Auth wachtwoord",
+            "basic_auth_username": "Basis auth-gebruikersnaam",
+            "bearerToken": "Betere Token",
+            "body": "Lichaam",
+            "client_id": "Klant ID",
+            "client_secret": "Client Secret",
+            "configure_oauth2": "OAuth 2.0 configureren",
+            "cookies": "Koekjes",
+            "copy_url_to_application": "Kopieer deze URL naar uw applicatie",
+            "enable_auth_verification_endpoint": "Schakel een verificatieeindpunt voor authenticatie in",
+            "extra_body_values": "Extra Body Waarden",
+            "forward_all_cookies": "Alle cookies doorsturen",
+            "headers": "Kopteksten",
+            "list_of_cookies_to_forward": "Lijst van Koekjes naar\n doorsturen",
+            "name": "naam",
+            "oauth_callback_url": "OAuth callback URL",
+            "refresh_token": "Token vernieuwen",
+            "scopes": "Scopes (gescheiden door\n een spatie)",
+            "share_oauth2_credentials_between_users": "Deel OAuth2.0 inloggegevens tussen gebruikers",
+            "url_parameters": "URL parameters",
+            "use_client_credentials_auth": "Gebruik client-inloggegevens authenticatie",
+            "digest_auth_username": "Gebruikersnaam",
+            "digest_auth_password": "Wachtwoord"
+          },
+          "option": {
+            "authentication": {
+              "basic_auth": "Basis authenticatie",
+              "bearer": "Drager",
+              "none": "geen",
+              "oauth2": "OAuth 2.0"
+            }
+          },
+          "placeholder": {
+            "access_token_lifespan": "Tokenlevensduur in seconden",
+            "access_token_url": "https://www.googleapis.com/nl/auth2/v4/token",
+            "api": "d.w.z. \"Interne Admin API\"",
+            "authorization_url": "https://accounts.google.com/nl/oauth2/v2/auth",
+            "base_url": "Gebruik de absolute URL (bijv. https://example.com)",
+            "database": "d.w.z. \"Gebruikers DB(alleen-lezen)\"",
+            "name": "d.w.z. \"Gebruikers DB(alleen-lezen)\" of \"Interne Admin API\"",
+            "param_key": "sleutel",
+            "param_value": "waarde",
+            "password": "Wachtwoord",
+            "username": "gebruikersnaam"
+          },
+          "tip": {
+            "configure_oauth2": "OAuth 2.0 is een complexe spec. ILLA ondersteunt momenteel zowel de server-side OAuth 2.0 authenticatie stroom als de Client Credentials flow. In beide gevallen moet je de OAUTH2_TOKEN placeholder gebruiken om ILLA te informeren waar de OAuth toegangstoken moet worden geplaatst in de API-aanvraag. Een gemeenschappelijke locatie hiervoor is als een header zoals autorisatie: AAUTH2_TOKEN.",
+            "extra_body_values": "Extra lichaam waarden worden niet doorgegeven voor GET of HEAD verzoeken",
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLIJKE WENEVER EEN PARAMETER CHANGES.",
+            "name": "De naam voor resource bij het maken van acties in de ILLA."
+          },
+          "title": {
+            "advanced_option": "ALGEMEEN"
+          }
+        },
+        "s3": {
+          "label": {
+            "access_key": "Toegang tot sleutel",
+            "base_url": "Basis URL",
+            "bucket_name": "Emmer naam",
+            "custome_s3_endpoint": "Eigen S3-eindpunt",
+            "region": "Regio",
+            "secret_access_key": "Geheime toegangssleutel",
+            "use_custome_s3_endpoint": "Gebruik aangepast S3 eindpunt"
+          },
+          "placeholder": {
+            "base_url": "d.w.z. https://voorbeeld.com",
+            "region": "us-west-1"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "Dit wordt gebruikt om verbinding te maken met andere niet-S3 diensten, zoals ruimtes in de Digital Ocean of Wasabi."
+          }
+        },
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: wijs je externe referenties toe aan variabelen in plaats van de accolades te ketenen."
+          },
+          "tip": {
+            "external_reference": "Je kunt externe verwijzingen maken naar variabelen die je hebt gedefinieerd. Bijvoorbeeld, {{ transformer2.value }}. "
+          }
+        },
+        "api": {
+          "description": {
+            "hf": "Meer informatie over Hugging vlak:",
+            "hf_endpoint": "Volgorde eindpunt"
+          },
+          "label": {
+            "hf_endpoint_token": "Token",
+            "hf_endpoint": "Endpoint URL"
+          },
+          "tips": {
+            "hf_endpoint_token": "Krijg een API sleutels van organisaties <0>in je Huging-gezichtsprofiel instellingen</0>.",
+            "hf_endpoint": "meer informatie over <0>Eindpoint</0>"
+          },
+          "placeholder": {
+            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+          }
+        },
+        "tip": {
+          "allowlist": {
+            "title": "IP-adressen toestaan",
+            "message": "Als uw bronnen niet publiekelijk toegankelijk zijn, Werk uw netwerk of firewall instelling bij om ILLA's IP-adressen toe te voegen aan de allowlist zodat ILLA verbinding kan maken met uw bronnen."
+          }
+        },
+        "button": {
+          "copy_ip": "Kopieer IP"
+        }
+      },
+      "resource_choose": {
+        "deleted": "Verwijderd"
+      },
+      "result": {
+        "title": {
+          "api_request": "API verzoek",
+          "error": "Query is uitgevoerd",
+          "json": "JSON",
+          "response": "Antwoord",
+          "success": "Query met succes uitgevoerd",
+          "table": "Tabel"
+        }
+      },
+      "type": {
+        "api": "API",
+        "database": "Database",
+        "js_transformer": "JavaScript transformator"
+      },
+      "message": {
+        "mssql": {
+          "table_error": "Tonen van tabellen mislukt. Probeer het later opnieuw."
+        }
+      },
+      "acl": {
+        "option": {
+          "blank": "—",
+          "private": "Privé",
+          "public_read": "publiek-gelezen",
+          "public_read_write": "publiek-lezen-schrijven",
+          "aws_exec_read": "aws-exec-read",
+          "auth": "geverifieerd",
+          "bucket_owner_read": "bucket-eigenaar-gelezen",
+          "bucket_owner_full_control": "bucket-eigenaar-volledige controle"
+        }
+      }
+    },
+    "component": {
+      "cancel": "annuleren",
+      "delete": "Verwijderen",
+      "delete_content": "Misschien maak het wat bugs uit, bevestig dit alstublieft.",
+      "delete_title": "Weet u zeker dat u {{ displayName}} wilt verwijderen?",
+      "editor_list": "Huidige editors"
+    },
+    "context_menu": {
+      "delete": "Verwijderen",
+      "duplicate": "Duplicate"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIES & TRANSFORMERS ",
+      "components_title": "COMPONENTEN ",
+      "globals_title": "GLOBALS ",
+      "pages_title": "BETALEN",
+      "global_data_modal": {
+        "title": "Globale gegevens bewerken",
+        "variable_name": {
+          "tooltips": "Naam van de variabele. Gebruik de initiële waarde in deze app via {{name}}",
+          "label": "naam",
+          "message": "Voer de naam van de variabele in"
+        },
+        "initial_value": {
+          "label": "Initiële waarde",
+          "tooltips": "Ondersteunt objecten of primitieve waarden. Voorbeeld: { count: 0 }",
+          "placeholder": "{{ { count: 0 } }}"
+        }
+      }
+    },
+    "deploy": {
+      "fail": "Fout bij implementatie"
+    },
+    "display_name": {
+      "duplicate_error": "\"{{ displayName }}\" bestaat al",
+      "validate_error": "\"{{ displayName }}\" moet beginnen met een letter of \"_\" en kan alleen letters, cijfers, \"_\" of \"$\" bevatten"
+    },
+    "inspect": {
+      "header": {
+        "action_menu": {
+          "delete": "Verwijderen",
+          "reset_state": "Reset state",
+          "view_documentation": "Bekijk documentatie"
+        }
+      },
+      "multi_selected_header": "{{ number }} componenten geselecteerd",
+      "setter_content": {
+        "chart_type": {
+          "bar": "Staaf diagram",
+          "line": "Lijn diagram",
+          "pie": "Taart diagram",
+          "scatterplot": "Scatterplot"
+        },
+        "color_picker": {
+          "prefabricated": "Prefabricate kleur",
+          "title": "Kleur bewerken"
+        },
+        "column_setter": {
+          "label": "Kolommen ({{number}})",
+          "new": "Nieuw",
+          "title": "Aanspreektitel"
+        },
+        "event_handler_list": {
+          "empty": "Trigger query's, beheer componenten of bel andere API's in reactie op gebeurtenissen in component.",
+          "incomplete_selection": "Onvolledige selectie",
+          "new": "Nieuw",
+          "title": "Afhandelaar bewerken"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Verwijderen",
+          "label": "Menus ({{number}})",
+          "new": "Nieuw",
+          "sub": "Sub"
+        },
+        "option_list": {
+          "action_menu": {
+            "delete": "Verwijderen",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "Geen label",
+          "model_title": "Opties bewerken",
+          "new": "Nieuw",
+          "title": "Instellingen"
+        },
+        "select_page_setter": {
+          "placeholder": "Selecteer een pagina"
+        },
+        "select_view_setter": {
+          "placeholder": "Selecteer een weergave"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Weergaven"
+        },
+        "widget_action_type_name": {
+          "blur": "Blur",
+          "change": "Veranderen",
+          "click": "Click",
+          "clickMenuItem": "Click",
+          "columnFiltersChange": "Filter wijzigen",
+          "fail": "Mislukt",
+          "focus": "Focus",
+          "invalid": "Ongeldig",
+          "paginationChange": "Pagina wijzigen",
+          "row_select": "Rij selecteren",
+          "sortingChange": "Sorteer wijzigingen",
+          "submit": "Bevestigen",
+          "success": "Geslaagd",
+          "onOpenModal": "Open modal",
+          "onCloseModal": "Sluit venster",
+          "play": "Afspelen",
+          "pause": "Onderbreken",
+          "ended": "Eindigde",
+          "loaded": "Geladen",
+          "rowSelect": "Rij selecteren",
+          "markerSelected": "markerSelected",
+          "markerCreated": "markerCreated",
+          "select": "Selecteren"
+        },
+        "image_list": {
+          "title": "Afbeeldingen",
+          "empty": "Geen afbeeldingen",
+          "model_title": "Afbeeldingen bewerken",
+          "config": {
+            "model_label": "Omschrijving",
+            "image_url": "Afbeelding URL"
+          }
+        },
+        "image_setter": {
+          "new": "Nieuw"
+        },
+        "Change": "Veranderen",
+        "Select": "Selecteren",
+        "eventCalendar": {
+          "no_title": "Geen titel"
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
+      },
+      "setter_default_value": {
+        "fill": "Invullen",
+        "message_type": {
+          "error": "Foutmelding",
+          "info": "Informatie",
+          "success": "Geslaagd",
+          "warning": "Waarschuwing"
+        },
+        "outline": "Omlijning",
+        "validation_pattern": {
+          "email": "E-mailadres",
+          "regex": "Regex",
+          "url": "URL"
+        },
+        "height": {
+          "fixed": "Opgelost",
+          "auto": "Automatisch"
+        },
+        "upload_type": {
+          "button": "Knop",
+          "dropzone": "Dropzone"
+        },
+        "selection_types": {
+          "single_file": "Enkel bestand",
+          "multiple_files": "Meerdere bestanden",
+          "directory": "Catalogus"
+        },
+        "size_type": {
+          "kb": "kB",
+          "mb": "Mb"
+        },
+        "time_picker": {
+          "select_time": "Selecteer tijd"
+        },
+        "time_range": {
+          "start_placeholder": "Start Time",
+          "end_placeholder": "Einde tijd"
+        }
+      },
+      "setter_group": {
+        "adornments": "ADORNMENTEN",
+        "basic": "BASIC",
+        "column": "COLUMNS",
+        "data": "GATA",
+        "interaction": "INTERACTIE",
+        "label": "LABEL",
+        "layout": "LAUW",
+        "menu": "MENU",
+        "options": "OPTIES",
+        "pagination": "PAGINATIE",
+        "row_selection": "ROW SELECTIE",
+        "sort": "SORT",
+        "style": "STIJL",
+        "tabs": "TABS",
+        "toolbar": "TOOLBAR",
+        "validation": "WAARDERING",
+        "views": "BEKIJKEN",
+        "images": "AFBEELDINGEN",
+        "primary_value": "PRIMAIRE WAARDE",
+        "secValue": "Secundaire waarde",
+        "border": "Border",
+        "color": "Kleur",
+        "icon": "Pictogram",
+        "secondary_value": "SECONDARISCH WAARDE",
+        "resource": "GRONDSTOFFEN",
+        "eventCalendar": {
+          "calendar": "Kalender"
+        },
+        "event": "Gebeurtenis"
+      },
+      "setter_label": {
+        "action": "actie",
+        "align": "Align",
+        "allow_clear": "Wissen toestaan",
+        "allow_half": "Halve toestaan",
+        "alt_text": "Alternatieve tekst",
+        "alt_text_desc": "Een toegankelijke beschrijving van de afbeelding voor schermlezers. Dit wordt ook weergegeven als fallback als de afbeelding niet wordt geladen.",
+        "background": "Achtergrond",
+        "background_color": "Achtergrond",
+        "border": "Border",
+        "border_width": "Border Width",
+        "caption": "Onderschrift",
+        "chart_title": "Aanspreektitel",
+        "chart_type": "Grafiek type",
+        "color": "Kleur",
+        "colors": "Kleuren",
+        "column_title": "Kolom titel",
+        "column_type": "Kolom type",
+        "columns": "Kolommen",
+        "component": "Onderdeel",
+        "config_type": "Configuratie type",
+        "container": "Container",
+        "content": "Inhoud",
+        "control_component": "Beheer component",
+        "custom_rule": "Aangepaste regel",
+        "data": "Gegevens",
+        "data_source": "Data bron",
+        "data_sources": "Data bronnen",
+        "dataset": {
+          "aggregation_method": "Aggregatie methode",
+          "name": "Dataset naam",
+          "remove": "Remove dataset",
+          "value": "Dataset waarden"
+        },
+        "dataset_config": "Dataset config",
+        "datasets": "Datasets",
+        "decimal_place": "Decimaal plaats",
+        "decimal_places": "Decimaal plaatsen",
+        "default_sort_key": "Kolom",
+        "default_sort_order": "Richting",
+        "default_tab": "Default tab",
+        "default_value": "Standaard waarde",
+        "default_views": "Standaard weergave",
+        "description": "Beschrijving",
+        "direction": "Richting",
+        "disable_submit": "Verzenden uitschakelen",
+        "disabled": "Uitgeschakeld",
+        "download": "downloaden",
+        "duration": "Duur",
+        "empty_state": "Lege staat",
+        "enable_sorting": "Sorteren inschakelen",
+        "end_data": "End Date",
+        "end_placeholder": "Einde placeholder",
+        "event": "Gebeurtenis",
+        "event_handler": "Event handler",
+        "expansion_method": "Uitbreiding methode",
+        "failure": "Fout",
+        "filter": "Filteren",
+        "font_size": "Font size",
+        "form_data_key": "Formulier gegevenssleutel",
+        "format": "Formatteren",
+        "go_to_url": "Ga naar URL",
+        "group_by": "Groeperen op",
+        "group_layout": "Groep lay-out",
+        "hidden": "Hidden",
+        "hidden_label": "Verborgen label",
+        "hide_validation_message": "Validatiebericht verbergen",
+        "hide_value_label": "Verberg waarde label",
+        "horizontal_alignment": "Horizontale uitlijning",
+        "icon": "Pictogram",
+        "image_source": "Bron afbeelding",
+        "img_height": "Højde",
+        "img_width": "Width",
+        "index": "Indexeren",
+        "item_background_color": "Artikel achtergrond",
+        "items": "Artikelen",
+        "key": "Sleutel",
+        "label": "Omschrijving",
+        "label_alignment": "Uitlijning",
+        "label_position": "Positie",
+        "label_width": "Width(%)",
+        "layout": "Indeling",
+        "legend_position": "Legende positie",
+        "link_to_container": "Link naar een container",
+        "links_color": "Koppelingen",
+        "loading": "Laden...",
+        "loop_back_to_start": "Terug naar begin herhalen",
+        "loop_start_to_back": "Start begin naar terug",
+        "mapped_option": "Toegewezen optie",
+        "mapped_value": "Toegewezen waarde",
+        "max_count": "Max aantal",
+        "max_date": "Maximale datum",
+        "max_length": "Maximale lengte",
+        "maximum": "Maximum",
+        "method": "Methode",
+        "min_date": "Min. datum",
+        "min_length": "Min. lengte",
+        "minimum": "Minimum",
+        "multi_row_selection": "Multi-rij selectie",
+        "new_tab": "New tab",
+        "only_run_when": "Alleen uitvoeren wanneer",
+        "overFlow": "OverFlow",
+        "page": "Pagina",
+        "pageSize": "Paginagrootte",
+        "pattern": "Patroon",
+        "pending": "Lopende",
+        "placeholder": "Plaatsaanduiding",
+        "prefix_text": "Voorvoegsel tekst",
+        "radius": "Radius",
+        "read_only": "Alleen lezen",
+        "regex": "Regex",
+        "required_field": "Verplicht veld",
+        "reset_after_successful_submit": "Reset na succesvol verzenden",
+        "router": "Router",
+        "run_script": "Script uitvoeren",
+        "scale_type": "Scale Type",
+        "set_router": "Instellen router",
+        "set_temporary_state": "Tijdelijke provincie instellen",
+        "shadow": {
+          "shadow": "Schaduw"
+        },
+        "show_character_count": "Aantal tekens weergeven",
+        "show_clear_button": "Toon wissen knop",
+        "show_footer": "Toon voettekst",
+        "show_header": "Toon koptekst",
+        "show_notification": "Melding weergeven",
+        "sort": "Sorteren",
+        "start_date": "Start datum",
+        "start_placeholder": "Start placeholder",
+        "step_size": "Stap grootte",
+        "stroke_width": "Stroke breedte",
+        "style": "CSS",
+        "styles": "Styles",
+        "submit_form": "Formulier verzenden",
+        "success": "Geslaagd",
+        "suffix_text": "Achtervoegsel tekst",
+        "text": "Tekstveld",
+        "text_align": "Text align",
+        "text_size": "Tekst grootte",
+        "theme_color": "Thema kleur",
+        "thousand_separator": "Scheidingsteken voor duizendtallen",
+        "time_format": "Tijd formaat",
+        "title": "Aanspreektitel",
+        "tooltip": "Knopinfo",
+        "trail_color": "Spoor kleur",
+        "trigger_query": "Trigger query",
+        "type": "Type",
+        "validate_inputs_on_submit": "Valideer ingangen bij verzenden",
+        "value": "Waarde",
+        "value_labels": "Waarde labels",
+        "variant": "Variant",
+        "vertical_alignment": "Verticale uitlijning",
+        "width": "Width",
+        "x_axis_name": "X-as naam",
+        "x_axis_title": "Titel X-as",
+        "x_axis_type": "X-as type",
+        "x_axis_value": "X-as waarde",
+        "y_axis_name": "Y-as naam",
+        "y_axis_title": "Titel Y-as",
+        "height": "Højde",
+        "min_height": "Min height (px)",
+        "show_underline": "Toon onderstreping",
+        "auto_play": "Automatisch spelen",
+        "interval": "Interval(ms)",
+        "show_button": "Pijlen weergeven",
+        "show_dot": "Toon stippen aan de onderkant",
+        "hidden_images": "Verborgen afbeeldingen",
+        "file_type": "Bestand types",
+        "selection_types": "Type selectie",
+        "append_newly_files": "Nieuwe geselecteerde bestanden toevoegen",
+        "file_list": "Bestand lijst",
+        "parse_value": "Parse Waarde",
+        "max_files": "Max. bestanden",
+        "min_files": "Min. bestanden",
+        "max_size": "Max size",
+        "min_size": "Min size",
+        "text_overflow": "Overloop",
+        "file_url": "PDF Bron",
+        "show_tool_bar": "Toon werkbalk",
+        "scale": "Pagina schalen naar",
+        "scroll": "Scrollen naar elke pagina",
+        "min_max_size": "Minimale grootte ~ Max grootte",
+        "video_url": "Video bron",
+        "autoplay": "Automatisch afspelen",
+        "loop": "Herhalen",
+        "volume": "Volume",
+        "show_controls": "Bediening weergeven",
+        "img_url_array": "Afbeelding URL matrix",
+        "statistics": {
+          "label": "Omschrijving",
+          "primary_value": "Primaire waarde",
+          "secValue": "Secundaire waarde",
+          "decimal": "Decimaal plaats",
+          "trend_sign": "Toon trendbord",
+          "positive_sign": "Positief teken",
+          "negative_sign": "Negatief teken",
+          "thousand_separator": "Toon duizend scheidingsteken",
+          "trend_color": "Schakel trend kleur in",
+          "prefix_text": "Voorvoegsel tekst",
+          "suffix_text": "Achtervoegsel tekst"
+        },
+        "mute": "Dempen",
+        "collapse": {
+          "type": "Type",
+          "accordin_mode": "Accordeon modus",
+          "header_color": "Koptekst",
+          "body_color": "Lichaam",
+          "expand_icon": "Uitklappen",
+          "collapse_icon": "Samenvouwen",
+          "icon_color": "Kleur"
+        },
+        "choose_at_least": "Kies ten minste",
+        "choose_up_to": "Kies tot",
+        "copy_to_clipboard": "Kopiëren naar klembord",
+        "file_download": {
+          "file_data": "Bestand gegevens",
+          "file_name": "Bestandsnaam met extensie",
+          "file_type": "Soort bestand"
+        },
+        "action_name": "Actie naam",
+        "variable": {
+          "path_of_value": "Pad van waarde",
+          "variable": "Globale gegevens"
+        },
+        "code": {
+          "write_code": "Schrijf code"
+        },
+        "slider": {
+          "step_size": "Stap grootte",
+          "minimum": "Minimum",
+          "maximum": "Maximum",
+          "hide_output": "Verberg uitvoer",
+          "prefix_icon": "Pictogram voorvoegsel",
+          "suffix_icon": "Achtervoegsel pictogram",
+          "allow_wrapping": "Afwikkeling toestaan"
+        },
+        "range_slider": {
+          "start_value": "Start waarde",
+          "end_value": "Einde waarde"
+        },
+        "name": "naam",
+        "audio": {
+          "audio_url": "Audio bron"
+        },
+        "map": {
+          "markers": "Markeerpunten",
+          "initial_location": "Initiële locatie",
+          "default_markers": "Default markers",
+          "latitude_field_name": "Latitude veld naam",
+          "longitude_field_name": "Lengtegraad veldnaam",
+          "zoom": "Inzoomen",
+          "enable_add_markers": "Voeg markeringen toe",
+          "enable_search_locati": "Schakel zoeklocatie in",
+          "enable_clustering": "clustering inschakelen"
+        },
+        "time_range": {
+          "start_time": "Start Time",
+          "end_time": "Einde tijd"
+        },
+        "eventCalendar": {
+          "event_value": "Event waarde",
+          "event_id": "Gebeurtenis id",
+          "title": "Aanspreektitel",
+          "description": "Beschrijving",
+          "start": "Beginnen",
+          "end": "Beëindigen",
+          "resource_id": "Document ID",
+          "resource_title": "Titel document",
+          "all_day": "De hele dag",
+          "data_source": "Data bron",
+          "default_date": "Standaard datum",
+          "resource_grid": "Raster grondstoffen",
+          "default_view": "Standaard weergave",
+          "show_current_time": "Huidige tijd weergeven",
+          "background": "Achtergrond",
+          "calendar_background": "Achtergrond",
+          "calendar_border": "Border",
+          "calendar_text": "Tekstveld",
+          "event_background": "Achtergrond",
+          "event_text": "Tekstveld",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
+        },
+        "table": {
+          "page_index": "Pagina index",
+          "index": "Indexeren",
+          "scroll_to_the_select": "Scroll naar de geselecteerde rij",
+          "filters": "Filters",
+          "filter_mode": "Filter modus",
+          "show_thousands_separ": "Toon duizenden scheidingsteken",
+          "tag_label": "Label label",
+          "tag_color": "Tag kleur",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code"
+        }
+      },
+      "setter_tooltip": {
+        "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
+        "cascader_data": "Elke optie moet JSON formaat zijn en twee sleutels, waarde en label bevatten. Door arrays te gebruiken, kunt u opties op hetzelfde niveau maken. En subopties kunnen worden gemaakt door gebruik te maken van het 'kinder'-attribuut. ",
+        "component_default_value": "De initiële waarde van het component. U kunt de initiële waarde dynamisch wijzigen door JavaScript in {{}}.",
+        "custom_rule": "Maak hier uw validatiecode. De regels moeten gemaakt worden in JavaScript en gedekt worden door {{}}.",
+        "date_format": "Een geldige datumnotatie string. Zie [dayJS](https://day.js.org/docs/en/parse/string-format).",
+        "default_value": "De initiële waarde van het invoerveld. U kunt de oorspronkelijke waarde van het invoerveld dynamisch wijzigen door JavaScript te typen in {{}}.",
+        "disabled": "Bepaal de status of de component is uitgeschakeld. De component kan niet worden gewijzigd of gefocust wanneer het is uitgeschakeld.",
+        "disabled_submit": "Indien uitgeschakeld, worden de componenten die het formulier.submit() methode aanroepen ook uitgeschakeld.",
+        "download": "Toon downloadknop in werkbalk.",
+        "filter": "Toon filterknop in werkbalk.",
+        "form_data_key": "Specificeer een sleutel van een inpakformulier component bij het maken van de gegevensattribuut.",
+        "hidden": "Dynamisch bepalen of het component is verborgen. Je kunt de verborgen status wijzigen door middel van dynamische booleaanse waarde.",
+        "hide_validation_message": "U kunt de foutmelding verbergen door te schakelen naar verborgen status wanneer de ingevoerde waarde onjuist is. Je kunt de verborgen status dynamisch wijzigen per JavaScript.",
+        "input_default_value": "De initiële waarde van het invoerveld. U kunt de oorspronkelijke waarde van het invoerveld dynamisch wijzigen door JavaScript te typen in {{}}.",
+        "loading": "Of de component een laadindicator moet tonen.",
+        "map_data_option": "Gebruik een reeks waarden of een object van sleutels toegewezen aan arrays. Elk item in je gegevensbron wordt toegewezen aan elke optie.",
+        "mapped_value": "Gebruik {{ currentRow }} voor toegang tot de gegevens van de huidige rij. Bijvoorbeeld, om \"kosten per klik\" te berekenen op basis van kolommen \"kosten\" en \"klikTimes\": \n  {{ currentRow.cost / currentRow.clickTimes }}",
+        "multi_row_selection": "Gebruik {{table.selectedRow[n].columnName}} voor toegang tot data.",
+        "only_run_when": "Voorwaarden waaraan moet worden voldaan voordat de gebeurtenis wordt uitgevoerd.",
+        "placeholder": "De waarde wordt getoond wanneer het invoerveld leeg is.",
+        "progress_percentage": "Het percentage is tussen 0 en 100.",
+        "read_only": "Bepaal de status of de component alleen wordt gelezen. Een alleen-lezen component kan worden geselecteerd en gefocust maar kan niet worden gewijzigd.",
+        "required_field": "Geldig alleen wanneer de schakelaar ingeschakeld is.",
+        "switch_default_value": "Stel de initiële status van de schakelaar in. Je kunt de standaardwaarde dynamisch wijzigen via JavaScript.",
+        "table_only_run_when": "Voorwaarden waaraan moet worden voldaan voordat de gebeurtenis wordt uitgevoerd. Gebruik {{ currentRow }} om toegang te krijgen tot de gegevens van de huidige rij. Bijvoorbeeld, alleen draaien wanneer \"imgSize\" minder dan 5120: {{ currentRow.imgSize <= 5120 }}.",
+        "table_set_value": "Gebruik currentRow voor toegang tot de gegevens van huidige rij. Bijvoorbeeld, om de waarde van de editableText component in te stellen op basis van \"email\":  {{ currentRow.email }}.\n  En je kunt ook waarde instellen in INSPECT van de component door {{ table. selectedRow[n] }}te gebruiken: {{ table1.selectedRow[n].email }}.",
+        "table_url": "Gebruik {{ currentRow }} voor toegang tot de gegevens van de huidige rij. Om bijvoorbeeld naar URL te gaan met parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
+        "text_value": "U kunt kiezen om waarde in te voeren in de Markdown modus of platte tekst modus. Alleen koppelingen in markdown modus kunnen worden herkend.",
+        "timeline_direction": "Verander de richting van de tijdlijn.",
+        "timeline_pending": "Toon of verberg een node met een status in behandeling",
+        "tooltip": "Gebruiker kan hier de tooltip van de component invoeren. De tooltip wordt weergegeven wanneer hij gefocust is. Markdown formaat wordt ondersteund.",
+        "file_types": "Een lijst met bestandsextensies die mogen uploaden. Geen waarde staat alle bestandstypes toe.",
+        "file_list": "Om een lijst met geselecteerde bestanden onder de uploader weer te geven. De hoogte van de uploader zal dynamisch wijzigen op basis van de lengte van de bestandslijst.",
+        "parse_value": "Poging om de geselecteerde bestanden te parsen, met ondersteuning voor JSON, CSV, TSV, Excel, en TXT-bestanden.\nGeparseerde gegevens kunnen worden geopend via {{uploader1.parsedValue}}. Bestanden die niet kunnen worden geparseerd, worden leeg in de array.\nAlle bestanden zijn beschikbaar als base64 gecodeerde tekenreeksen op de waarde, ongeacht deze optie.",
+        "file_url": "Ondersteunt PDF-URL's op het web, of base64 gecodeerde gegevens van pdf bestanden. Bijvoorbeeld: \n{{ data:application/pdf;base64, example-data }}",
+        "scale": "Schaal elke pagina om de breedte of hoogte van het component te vullen.",
+        "scroll": "Automatisch het begin van elke pagina vinden bij het scrollen.",
+        "video_url": "Ondersteunt de meeste videoservices of een directe link naar een standaard videobestandstype of de base64 gecodeerde data van videobestanden. Bijvoorbeeld: {{ data:audio/mp4;base64,exampleDate}}",
+        "collapse": {
+          "type": "Inklapbare lijst: lijst, alle artikelen zullen automatisch de stijl van het eerste item kopiëren. U kunt de componentgegevens in elk item opgeven via {{ currentItem.columnName }}. Inklapbaar paneel: elk paneel is onafhankelijk, u kunt de componentstijl en -gegevens van elk item afzonderlijk specificeren.",
+          "items": "Aantal items",
+          "accordin_mode": "In accordion modus, wanneer een item is uitgevouwen zullen andere items instorten."
+        }
+      },
+      "tab_title": "Inspecteren",
+      "unselected_tip1": "Geen componenten geselecteerd.",
+      "unselected_tip2": "Klik op een onderdeel om het te selecteren.",
+      "setter": {
+        "click_mask_close": "Klik op masker om modaal te sluiten",
+        "modal": {
+          "blank": "Geen pictogrammen"
+        }
+      },
+      "setter_tips": {
+        "carousel_tips": "Gebruik {{ item }} om waarde uit de gegevensbron te krijgen. Er zijn bijvoorbeeld twee attributen in de gegevensbron. Ze zijn imageUrl en url. Als je naar de verschillende url wilt gaan wanneer je op de afbeelding klikt, gebruik dan {{ item.url }} om de url in te stellen.",
+        "data_source": "Een gegevensbron om afbeeldingsitems te definiëren met behulp van toegewezen evaluatie. Gebruik een reeks van waarden of een object van sleutels toegewezen aan arrays. Bijvoorbeeld: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . U kunt de gegevens ook gebruiken in acties. Bijvoorbeeld: {{ mysql1.data }} ",
+        "img_url_array": "Gebruik {{ item.attributeName }} om een afbeeldings-URL van de gegevensbron te verkrijgen. ",
+        "carousel": {
+          "data_source": "Een gegevensbron om afbeeldingsitems te definiëren met behulp van toegewezen evaluatie. Gebruik een reeks van waarden of een object van sleutels toegewezen aan arrays. Bijvoorbeeld: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . U kunt de gegevens ook gebruiken in acties. Bijvoorbeeld: {{ mysql1.data }} "
+        },
+        "file_download": {
+          "file_data": "Steun base64-data, rauwe data, mapped data van tabel. "
+        },
+        "variable": {
+          "available_in_objects": "Beschikbaar in objecten en arrays. Het pad van het attribuut in het object: {{objectName.attributeName}}. De index van de waarde in een array: {{1}}. Een array in het object: {{objectName.attributeName.1}}",
+          "the_target_value": "De doelwaarde"
+        },
+        "slider": {
+          "default_value": "De initiële waarde van de schuifregelaar. U kunt de initiële waarde dynamisch wijzigen door JavaScript te typen in {{}}.",
+          "minimum": "De minimale waarde van de slider",
+          "maximum": "De maximale waarde van de slider",
+          "step_size": "De minimale verandering eenheid van de slide",
+          "label": "De naam van het veld weergegeven aan de gebruiker",
+          "caption": "Een onderschrift gebruikt om het veld in detail te beschrijven",
+          "hide_label": "Stel in of het label moet worden weergegeven",
+          "allow_wrapping": "Instellen of labelverpakking toegestaan is",
+          "position": "Stel de positie van het label in ten opzichte van het component",
+          "alignment": "Stel de uitlijning van het label in",
+          "width": "Wanneer het label aan de linkerkant van het onderdeel staat, stel de breedteverhouding van het label in",
+          "prefix_icon": "Het pictogram weergegeven voor het onderdeel",
+          "suffix_icon": "Het pictogram dat wordt weergegeven na het onderdeel",
+          "hide_output": "Stel in of de waarde bij het glijden moet worden verborgen"
+        },
+        "step": {
+          "default_step": "Standaard stap",
+          "show_step_number": "Toon stapnummers",
+          "indicate_completed_steps": "Geef voltooide stappen op"
+        },
+        "range_slider": {
+          "start_value": "Om de minimumwaarde van het bereik in te stellen",
+          "end_value": "Om de maximale waarde van het bereik in te stellen"
+        },
+        "audio": {
+          "audio_url": "Ondersteunt directe links naar het gebruikelijke audiobestandstype of de links naar sommige audioservices of de base64 gecodeerde data van audiobestanden. Bijvoorbeeld: {{ data:audio/mp3;base64,exampleDate}}"
+        },
+        "map": {
+          "markers": "Om markers in te stellen op de map. De markers moeten een array van objecten zijn met dezelfde eigenschappen als de standaard markers.",
+          "initial_location": "Bij het initialiseren van de kaart, de standaard gecentreerd weergave positie",
+          "default_markers": "De standaard markers die worden weergegeven bij het initialiseren van de kaart. U kunt deze dynamisch instellen met de JavaScript in {{}}. ",
+          "latitude_field_name": "De breedtegraad wordt afgenomen van welke eigenschap van de initiële locatie en standaard markers objecten.",
+          "longitude_field_name": "De lengtegraad wordt overgenomen van welke eigenschap van de initiële locatie en standaard markers objecten.",
+          "zoom": "Om de kaart in te stellen zoomen",
+          "enable_add_markers": "Sta gebruikers toe om markeringen toe te voegen door te klikken op de kaart",
+          "enable_search_locati": "Sta gebruikers toe om te zoeken naar locatie",
+          "enable_clustering": "Toestaan dat meerdere markeringen worden geaggregeerd wanneer de kaart wordt uitzoomd"
+        },
+        "time_picker": {
+          "format": "Een geldige tijdnotatie. Voor meer informatie over het formaat: [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "the_span_of_the_valu": "De overspanning van de waarde in minuten",
+          "show_a_clear_button_": "Toon een wissen knop wanneer de muis over het onderdeel gaat. "
+        },
+        "time_range": {
+          "start_time": "De begintijd van het component. ",
+          "end_time": "De eerste eindtijd van het component. ",
+          "start_placeholder": "The value will be shown when the start time field is empty",
+          "end_placeholder": "De waarde wordt weergegeven wanneer het eindveld leeg is."
+        },
+        "eventCalendar": {
+          "event_value": "Gebruik Object ingesloten in {{ om de event-waarde in te stellen. Bijvoorbeeld, {{ {\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"} }}",
+          "event_id": "Een uniek ID gebruikt om het evenement te identificeren",
+          "title": "De titel van het evenement",
+          "description": "De beschrijving van het evenement",
+          "start": "Begintijd van de gebeurtenis",
+          "end": "Einde tijd van de gebeurtenis",
+          "resource_id": "De bron kan een persoon, een vergaderruimte, etc. Je kunt een bron-id instellen en verbinden met het evenement. ",
+          "resource_title": "De bronnaam weergegeven in de bronweergave",
+          "all_day": "Of een alledaagse gebeurtenis",
+          "data_source": "Gegevensbron van de gebeurtenissen. Een gegevensbron moet een reeks objecten zijn. Elk object is een gebeurtenis. Bijvoorbeeld, {{[{\"event_name\": \"name1\", \"event_id\":\"id1\",\"event_description\":\"description\"},\"event_name\": \"name2\", \"event_id\":\"id2\",\"event_description\":\"description\"} ]}}",
+          "default_date": "Standaard datum wanneer de app wordt gestart",
+          "resource_grid": "Toon of laat een grondstofrooster zien",
+          "default_view": "Standaard weergave bij het starten van de app",
+          "show_current_time": "Stel in of de huidige tijdlijn moet worden weergegeven",
+          "calendar_background": "Stel de achtergrond van de agenda in",
+          "calendar_border": "Kleur instellen van de rand",
+          "calendar_text": "Stel de kleur van de tekst in",
+          "event_background": "Stel de achtergrond van de event kaart in",
+          "event_text": "Stel de tekstkleur van de event kaart in",
+          "couldnot_drag": "Als u wilt slepen om het tijdsbereik aan te passen, ga dan naar de voorbeeldpagina voor de bewerking.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "The icon displayed in the table",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download row data icon.",
+          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object. Set the original column name as key ",
+          "filter_mode": "The filter mode. AND or OR.",
+          "currency_code": "USD"
+        }
+      },
+      "setter_option": {
+        "fixed": "Opgelost",
+        "auto_limited": "Automatische hoogte met limieten",
+        "auto_height": "Automatische hoogte",
+        "text_ellipsis": "Ellipse",
+        "text_scroll": "Scrollen",
+        "text_clip": "Clip",
+        "scale_height": "Højde",
+        "scale_width": "Width",
+        "collapse": {
+          "collapsible_panel": "Paneel inklappen"
+        },
+        "file_download": {
+          "auto": "Automatisch",
+          "plain_text": "Onopgemaakte tekst",
+          "jpeg": "JPEG",
+          "png": "PNG",
+          "svg": "SVG",
+          "json": "JSON",
+          "csv": "csv",
+          "tsv": "TSV",
+          "excel": "Excel(.xlsx)"
+        },
+        "shadow": {
+          "none": "geen",
+          "large": "groot",
+          "medium": "Middelgroot",
+          "small": "Klein"
+        },
+        "eventCalendar": {
+          "sunday": "zondag",
+          "monday": "maandag",
+          "tuesday": "dinsdag",
+          "wednesday": "woensdag",
+          "thursday": "donderdag",
+          "friday": "vrijdag",
+          "saturday": "zaterdag",
+          "month": "maand",
+          "week": "week",
+          "day": "dag",
+          "agenda": "Agenda"
+        },
+        "table": {
+          "set_sort": "Sorteren instellen",
+          "column": "Kolom",
+          "number": "Nummer",
+          "percent": "Percentage",
+          "currency": "valuta",
+          "text": "Tekstveld",
+          "tag": "Tagnaam",
+          "button_group": "Knop groep",
+          "date": "Datum:",
+          "time": "Tijd",
+          "date_time": "Datum tijd",
+          "link": "Koppeling",
+          "rating": "Beoordeling",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Knop",
+          "icon": "Pictogram",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        }
+      },
+      "setter_placeholder": {
+        "min_max_size": "Geen limieten",
+        "volume": "2",
+        "statistics": {
+          "decimal": "{{ 2 }}",
+          "prefix_text": "US$",
+          "suffix_text": "%",
+          "positive_color": "Positieve kleur",
+          "negative_color": "Negatieve kleur"
+        },
+        "multiselect": {
+          "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "img_url_array": "{{ item.image_url }} ",
+        "alt_text_mapped": "{{ item.alt_text }} ",
+        "file_download": {
+          "file_data": "{{ mysql1.data }}",
+          "file_name": "nieuwe_data.csv"
+        },
+        "variable": {
+          "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        }
+      },
+      "setter_tootip": {
+        "volume": "Een getal tussen 0 en 1"
+      },
+      "setter_message": {
+        "choose_at_least": "Kies bij lease {{ min }} opties.",
+        "choose_up_to": "Kies a.u.b. maximaal {{max}} opties.",
+        "map": {
+          "zoom": "Stel een waarde in tussen 1 en 22"
+        },
+        "upload": {
+          "size_exceed": "Bestanden boven de 500MB kunnen mogelijk niet verwerkt worden.",
+          "single_file": "Slechts één bestand is toegestaan.",
+          "file": "Niet-ondersteunde bestandstypen worden verwijderd",
+          "directory": "Alleen mappen zijn toegestaan."
+        }
+      },
+      "setter_description": {
+        "code": {
+          "write_code": "Schrijf hier uw code. Gebruik JavaScript in {{ }}"
+        }
+      }
+    },
+    "page": {
+      "label_name": {
+        "add": "Toevoegen",
+        "body": "Lichaam",
+        "default_view": "Standaard weergave",
+        "edit_view": "Weergave bewerken",
+        "footer": "Voettekst",
+        "header": "Koptekst",
+        "key": "Sleutel",
+        "left_panel": "Linker paneel",
+        "preset": "Preset",
+        "right_panel": "Rechter paneel",
+        "set_as_homepage": "Instellen als startpagina",
+        "show_fold_icon": "Plooi icoon weergeven",
+        "view_path": "View pad",
+        "views": "Weergaven",
+        "width": "Width",
+        "height": "Højde",
+        "columns": "Kolommen"
+      },
+      "model_tips": {
+        "cancel_button": "annuleren",
+        "change_layout_message": "Na het wijzigen van de lay-out, worden alle gegevens gewist. Deze bewerking kan niet worden hersteld, bevestig alstublieft",
+        "delete_section_message": "Na het verbergen zullen de gegevens in deze sectie worden gewist. Deze bewerking kan niet worden hersteld, bevestig alstublieft",
+        "ok_button": "Bevestigen"
+      },
+      "panel_bar_title": {
+        "basic": "BASIC",
+        "frame": "FRAME"
+      },
+      "tab_title": "Pagina",
+      "tooltips": {
+        "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
+        "view_path": "Een string na example.com/app/page/ voor toegang tot deze weergave",
+        "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
+      }
+    },
+    "validate_message": {
+      "email": "Voer een geldig e-mailadres in",
+      "max_length": "Moet niet meer dan {{ number }} tekens bevatten",
+      "max_value": "Moet kleiner zijn dan {{ number }}",
+      "min_length": "Moet ten minste {{ number }} tekens bevatten",
+      "min_value": "Moet groter zijn dan {{ number }}",
+      "regex": "Gelieve met het gevraagde formaat te komen",
+      "required": "Dit veld is verplicht",
+      "url": "Voer een geldige URL in",
+      "max_size": "De bestandsgrootte kan niet meer zijn dan {{maxSize }} {{ type }}.",
+      "min_files": "Ten minste {{ minFiles }} bestanden zijn vereist.",
+      "max_files": "Ondersteuning tot {{ maxFiles }} bestanden.",
+      "min_size": "De bestandsgrootte kan niet kleiner zijn dan {{minSize }} {{ type }}.",
+      "min_max_size": "Minimale grootte ~ Max grootte"
+    },
+    "widget_picker": {
+      "empty_tip": "Sorry, geen zoekresultaten",
+      "search_placeholder": "Zoeken",
+      "sessions": {
+        "calendar": "Kalender invoer",
+        "commonly": "Algemeen onderdeel",
+        "container": "Container en formulier",
+        "data": "Gegevens",
+        "inputs": "Inputs",
+        "navigation": "Navigation",
+        "presentation": "Presentatie",
+        "selects": "Selecteer invoer"
+      },
+      "tab_title": "Insert"
+    },
+    "method": {
+      "set_hidden": "Verborgen instellen",
+      "set_file_url": "PDF-bron instellen",
+      "play": "Afspelen",
+      "pause": "Onderbreken",
+      "seek_to": {
+        "time": "Tijd",
+        "unit": "(s)"
+      },
+      "set_video_url": {
+        "video": "Video bron"
+      },
+      "speed": {
+        "speed": "Snelheid",
+        "placeholder": {
+          "speed": "1.5"
+        }
+      },
+      "stop": "Stoppen",
+      "mute": "Dempen",
+      "loop": "Herhalen",
+      "show_controls": "Bediening weergeven",
+      "set_volumn": "Volumn instellen",
+      "set_volume": {
+        "volume": "Volume",
+        "placeholder": {
+          "volume": "2"
+        }
+      },
+      "statistics": {
+        "set_primary_value": "stelPrimaryWaarde",
+        "reset_primary_value": "reset PrimaryWaarde",
+        "primary_value": "Primaire waarde"
+      },
+      "collapse": {
+        "expand_all_items": "Alle items uitklappen",
+        "collapse_all_items": "Klap alle items in"
+      },
+      "carousel": {
+        "showNext": "Toon volgende zichtbare afbeelding",
+        "showPrevious": "Toon vorige zichtbare afbeelding"
+      },
+      "file_download": {
+        "download": "downloaden",
+        "message": {
+          "suc": "Start om te downloaden",
+          "fail": "Verzoek mislukt",
+          "download_failed": "Downloaden mislukt"
+        }
+      },
+      "setGlobalData": "Algemene gegevens instellen",
+      "setLocalStorage": "Lokale opslag instellen",
+      "audio": {
+        "set_audio_url": "Audio-bron instellen"
+      },
+      "map": {
+        "marker_selected": "Markering geselecteerd",
+        "marker_created": "Markering aangemaakt",
+        "markers_changed": "Markeerpunten veranderd"
+      },
+      "time_range": {
+        "setstarttime": "setStartTime",
+        "setendtime": "setEndTime"
+      },
+      "eventCalendar": {
+        "addevent": "toevoegen Event",
+        "deleteevent": "Event verwijderen"
+      },
+      "table": {
+        "clear_filters": "Filters wissen",
+        "clear_column_setting": "Kolominstelling wissen",
+        "refresh": "Vernieuwen",
+        "select_page": "Selecteer pagina",
+        "select_row": "Rij selecteren",
+        "clear_selection": "Selectie wissen",
+        "set_filters": "Filters instellen",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
+      }
+    },
+    "tutorial": {
+      "panel": {
+        "tutorial": {
+          "tab": {
+            "title": "Handleiding"
+          },
+          "title": {
+            "tutorial": "Handleiding",
+            "templates": "Sjablonen"
+          },
+          "onboarding_app": {
+            "name": "Onboarding app",
+            "description": "Volg ILLA's tutorial om te leren hoe je een app moet bouwen.",
+            "action": "Gaan"
+          },
+          "templates_action": {
+            "fork": "Fork",
+            "fork_description": "Fork deze template als een nieuwe app"
+          },
+          "templates_name": {
+            "table": "Dashboard",
+            "form": "Vragenlijst",
+            "list": "Beheerder paneel"
+          },
+          "templates_description": {
+            "table": "Gebruik tabellen om dashboards te maken.",
+            "form": "Gebruik formulier- en invoercomponenten om formulierapps te maken.",
+            "list": "Gebruik een lijstcomponent om informatie weer te geven en te beheren"
+          },
+          "modal": {
+            "title": "Fork en implementatie",
+            "placeholder": "App naam",
+            "cancel": "annuleren",
+            "fork": "Fork en implementatie"
+          }
+        },
+        "onboarding_app": {
+          "drag_input": "Stap 1: Sleep een invoer hierheen",
+          "drag_button": "Stap 2: Sleep een knop hierheen",
+          "drag_table": "Stap 3: Sleep een tabel hierheen",
+          "exit": "annuleren",
+          "do_it": "Doe het voor mij",
+          "drag_title": "Sleep de componenten naar het frame",
+          "modify_action_title": "De actie wijzigen",
+          "modify_action_description_modify": "Wijzig actie om gegevens op te halen. We kunnen {{input1.value}} gebruiken om de gegevens die zijn ingevoerd in het invoeronderdeel te krijgen. \n\nselecteer * \nvan gebruikers\njoin orders\nop gebruikers.id = orders.id\nwaar {{!input1.value}} of lager (users.name) zoals '%{{input1.value.toLowerCase()}}%'",
+          "modify_action_description_click": "Klik op Opslaan en klik vervolgens op Uitvoeren",
+          "display_data_title": "Gegevens in tabel weergeven",
+          "display_data_description_select": "Selecteer de tabel op het frame",
+          "display_data_description_modify": "Wijzig de gegevensbron in het juiste paneel. We kunnen {{postgresql1.data}} gebruiken om de gegevens te krijgen.",
+          "event_handler_title": "Klik knop om actie te activeren",
+          "event_handler_description_1": "Selecteer de knop op het frame",
+          "event_handler_description_2": "Voeg een event handler toe",
+          "event_handler_description_3": "Klik op de event-afhandelaar",
+          "event_handler_description_4": "Wijzig de actie voor trigger actie",
+          "event_handler_description_5": "Query wijzigen in postgre1",
+          "test_it_title": "Test het uit",
+          "test_it_description": "Voer een gebruikersnaam in waarnaar u wilt zoeken en klik op de knop",
+          "test_it_button": "Volgende",
+          "congratulations_title": "Gefeliciteerd 🎉",
+          "congratulations_description": "Je hebt zojuist je eerste app gemaakt. Als je tijdens het gebruik vragen hebt, kun je ons bereiken via <0>Discord</0>. ",
+          "congratulations_button": "Voltooid",
+          "event_handler_description_all": "1. Voeg een event-handler toe\r\n2. Klik op de event-handler\r\n3. Verander de actie om actie te activeren\r\n4. Verander de zoekopdracht in postgresql1"
+        }
+      }
+    },
+    "global": {
+      "size_exceed": "Data grootte overschrijdt de limiet (huidige grootte: {{current_size}} bytes, limiet: {{limit_size}} bytes)"
+    }
+  },
+  "exit_preview": "Voorvertoning afsluiten",
+  "freeze_collision": "Blokkeer botsing",
+  "freeze_messages": "Het canvas is bevroren. Je kunt onderdelen naar of uit containers slepen.",
+  "freeze_tips": "Het canvas is bevroren. Klik hier om het te ontdooien.",
+  "link_copied": "Koppeling gekopieerd",
+  "network_error": "Verbinding met het netwerk verbroken. Controleer het netwerk van dit apparaat",
+  "not_online_tips": "Verbinding met het netwerk verbroken. Controleer het netwerk van dit apparaat",
+  "preview": {
+    "viewport": {
+      "size": "Grootte",
+      "reset": "Reset",
+      "save": "Opslaan",
+      "tooltip": {
+        "fluid_width": "Vloeistof breedte",
+        "desktop": "Bureaublad (breedte = 1280px)",
+        "tablet": "Tablet(breedte = 1080px)",
+        "custom": "Aangepaste"
+      }
+    },
+    "button_text": "Voorvertoning"
+  },
+  "remove_fail": "Verwijderen mislukt",
+  "rename": "Hernoem",
+  "resources": "Hulpmiddelen",
+  "retry": "Opnieuw",
+  "save": "Opslaan",
+  "setting": {
+    "account": {
+      "email": "E-mailadres",
+      "empty_username": "Voer uw gebruikersnaam in",
+      "error_username": "Gebruikersnaam moet 3~15 tekens zijn",
+      "save": "Wijzigingen opslaan",
+      "save_fail": "Opslaan mislukt",
+      "title": "ACCOUNT",
+      "username": "Gebruikersnaam"
+    },
+    "other": {
+      "language": "Taal",
+      "save": "Wijzigingen opslaan",
+      "title": "INSTELLING"
+    },
+    "password": {
+      "confirm_password": "Bevestiging wachtwoord",
+      "current_password": "Oud wachtwoord",
+      "empty_password": "Voer uw wachtwoord in",
+      "error_format_password": "Wachtwoord moet 6~20 tekens zijn",
+      "error_match_password": "Uw wachtwoord en bevestigingswachtwoord komen niet overeen",
+      "error_password_has_empty": "Wachtwoord kan geen spaties bevatten",
+      "error_validate_password": "Uw wachtwoord kan alleen cijfers, letters en leestekens bevatten",
+      "new_password": "Nieuw wachtwoord",
+      "submit_button": "Bevestigen",
+      "title": "WACHTWOORD"
+    }
+  },
+  "share": "Delen",
+  "status": {
+    "403": {
+      "des": "Toegang geweigerd"
+    },
+    "404": {
+      "again": "Vernieuwen",
+      "des": "Het lijkt erop dat de pagina die u zocht niet kon worden gevonden."
+    },
+    "500": {
+      "des": "Oeps, er ging iets mis. Probeer het later opnieuw."
+    },
+    "back": "Terug naar homepage",
+    "mobile_forbidden": "Bezoek deze pagina op het bureaublad voor het verbeteren van de bewerkingservaring.",
+    "back_to_cloud": "Terug naar ILLA Cloud",
+    "no_permission_title": "Onvoldoende machtigingen",
+    "no_permission_description": "U heeft geen rechten om de gevraagde bewerking uit te voeren. Neem contact op met de beheerders in uw team."
+  },
+  "title": "Welkom bij de illa",
+  "unfreeze_tips": "Bevries het canvas en sleep componenten naar of uit containers. (D of K)",
+  "user": {
+    "description": "Een open-source low-code platform voor ontwikkelaars.",
+    "forgot_password": {
+      "actions": {
+        "reset": "Reset",
+        "send": "Code versturen"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Voer een geldig e-mailadres in",
+          "registered": "Het e-mailadres is niet gekoppeld aan een account.",
+          "require": "Voer uw e-mailadres in"
+        },
+        "newPassword": {
+          "require": "Voer uw wachtwoord in"
+        },
+        "verification_code": {
+          "expired": "Verificatiecode is verlopen",
+          "invalid": "Ongeldige verificatiecode",
+          "require": "Voer de verificatiecode in"
+        }
+      },
+      "fields": {
+        "email": "E-mailadres",
+        "newPassword": "Nieuw wachtwoord",
+        "verification_code": "Verificatie code"
+      },
+      "placeholder": {
+        "email": "Voer je e-mailadres in",
+        "verification_code": "Voer de verificatiecode in"
+      },
+      "subtitle": "Terug naar aanmelden",
+      "tips": {
+        "fail": "Wachtwoord opnieuw instellen mislukt",
+        "fail_sent": "Verificatiecode versturen mislukt",
+        "success": "Wachtwoord succesvol opnieuw instellen",
+        "verification_code": "Verificatiecode verzonden"
+      },
+      "title": "Wachtwoord opnieuw instellen"
+    },
+    "password": {
+      "placeholder": "Voer uw nieuwe wachtwoord in (ten minste 6 tekens)"
+    },
+    "sign_in": {
+      "actions": {
+        "login": "Log in"
+      },
+      "description": {
+        "forgot_password": "Wachtwoord Vergeten?",
+        "policy": "Door op Aanmelden te klikken, ga ik akkoord met <0>Privacybeleid</0> en <1>voorwaarden</1>",
+        "register": "Nieuwe gebruiker? <0>Maak een account aan</0>"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Voer een geldig e-mailadres in",
+          "registered": "Het e-mailadres is niet gekoppeld aan een account.",
+          "require": "Voer uw e-mailadres in"
+        },
+        "password": {
+          "incorrect": "Onjuist e-mailadres of wachtwoord",
+          "locked": "Te veel slechte pogingen, gelieve uw wachtwoord opnieuw in te stellen of probeer het na 1 uur opnieuw",
+          "min_length": "Het wachtwoord moet uit ten minste 6 tekens bestaan",
+          "require": "Voer wachtwoord in"
+        }
+      },
+      "fields": {
+        "email": "E-mailadres",
+        "password": "Wachtwoord"
+      },
+      "placeholder": {
+        "email": "Voer je e-mailadres in"
+      },
+      "tips": {
+        "fail": "Aanmelden mislukt",
+        "success": "Succesvol ingelogd"
+      },
+      "title": "Welkom terug"
+    },
+    "sign_up": {
+      "actions": {
+        "create": "Account Aanmaken",
+        "send": "Code versturen"
+      },
+      "description": {
+        "login": "Heeft u al een account? <0>Aanmelden </0>",
+        "policy": "Door te klikken op Account Aanmaken, ga ik akkoord met <0>Privacybeleid</0> en <1>terms</1>",
+        "subscribe": "Ik ben bereid om updates en nieuws over ILLA te ontvangen"
+      },
+      "error_message": {
+        "email": {
+          "invalid_pattern": "Voer een geldig e-mailadres in",
+          "registered": "Er bestaat al een account met dat e-mailadres.",
+          "require": "Voer uw e-mailadres in"
+        },
+        "password": {
+          "require": "Voer wachtwoord in"
+        },
+        "username": {
+          "length": "De gebruikersnaam moet 3~15 tekens zijn",
+          "require": "Voer gebruikersnaam in"
+        },
+        "verification_code": {
+          "expired": "Verificatiecode is verlopen",
+          "invalid": "Ongeldige verificatiecode",
+          "require": "Voer de verificatiecode in"
+        }
+      },
+      "fields": {
+        "email": "E-mailadres",
+        "password": "Wachtwoord",
+        "username": "Gebruikersnaam",
+        "verification_code": "Verificatie code"
+      },
+      "placeholder": {
+        "email": "Voer je e-mailadres in",
+        "username": "Vul je gebruikersnaam in",
+        "verification_code": "Voer de verificatiecode in"
+      },
+      "tips": {
+        "fail": "Registratie mislukt",
+        "fail_sent": "Verificatiecode versturen mislukt",
+        "success": "Succesvol geregistreerd",
+        "verification_code": "Verificatiecode verzonden"
+      },
+      "title": "Registreer nu",
+      "agreement": {
+        "privacy_policy": "privacy beleid",
+        "terms_of_service": "Algemene gebruiksvoorwaarden"
+      }
+    }
+  },
+  "widget": {
+    "bar_progress": {
+      "name": "Balk Voortgang"
+    },
+    "button": {
+      "default_text": "Knop",
+      "name": "Knop"
+    },
+    "cascader": {
+      "name": "Cascader"
+    },
+    "chart": {
+      "name": "Grafiek"
+    },
+    "check_box_group": {
+      "name": "Selectievakje groep"
+    },
+    "circle_progress": {
+      "name": "Voortgang cirkel"
+    },
+    "container": {
+      "empty": "Druk op <keyPress>D</keyPress> of <keyPress>K</keyPress> en sleep componenten hier",
+      "key_duplicated": "De sleutel wordt gedupliceerd. Gebruik unieke sleutels om fouten te voorkomen.",
+      "name": "Container",
+      "value_duplicated": "Deze waarde wordt gedupliceerd. Gebruik unieke waarden om fouten te voorkomen."
+    },
+    "date": {
+      "name": "Datum:"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "date_time": {
+      "name": "Datum tijd",
+      "placeholder": "Selecteer tijd"
+    },
+    "divider_progress": {
+      "name": "Scheidingslijn"
+    },
+    "editable_text": {
+      "name": "Bewerkbare tekst"
+    },
+    "form": {
+      "name": "Vorm"
+    },
+    "image": {
+      "name": "Afbeelding"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "list": {
+      "doc1": "Gebruik {{ currentItem }} voor toegang tot de gegevens van dit item. Bijvoorbeeld, om de waarde van de tekstcomponent in de lijstcomponent in te stellen op basis van \"gebruikersnaam\": {{ currentItem.userName }}",
+      "doc2": "Gebruik {{list.selectedItem.data}} voor toegang tot de gegevens van het geselecteerde item in de lijst component. Bijvoorbeeld om de waarde in te stellen van het tekstcomponent dat buiten de lijst component is gebaseerd op \"gebruikersnaam\" van het geselecteerde item in de lijst: {{ list.selectedItem.userName }}",
+      "name": "Klantenlijst"
+    },
+    "menu": {
+      "name": "Menu"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "public": {
+      "left": "Linkerkant",
+      "right": "Rechterkant",
+      "select_options": {
+        "manual": "Handleiding",
+        "mapped": "Toegewezen"
+      },
+      "top": "Bovenkant"
+    },
+    "radio_button": {
+      "name": "Radio Knop"
+    },
+    "radio_group": {
+      "name": "Radio groep"
+    },
+    "rate": {
+      "name": "Beoordelen"
+    },
+    "select": {
+      "name": "Selecteren"
+    },
+    "switch": {
+      "name": "Schakelaar"
+    },
+    "table": {
+      "ascend": "oplopend",
+      "descend": "Desc",
+      "name": "Tabel",
+      "pagination": "Paginering",
+      "scroll": "Scrollen"
+    },
+    "tabs": {
+      "name": "Tabs"
+    },
+    "text": {
+      "default_value": "👋 Hallo",
+      "name": "Tekstveld",
+      "text_model": "Onopgemaakte tekst"
+    },
+    "timeline": {
+      "horizontal": "Horizontaal",
+      "name": "Tijdlijn",
+      "vertical": "verticaal"
+    },
+    "modal": {
+      "name": "Modal"
+    },
+    "textarea": {
+      "name": "Textarea Input"
+    },
+    "upload": {
+      "name": "Uploaden",
+      "default_button_text": "Uploaden",
+      "default_dropzone_text": "Selecteer of plaats een bestand hier"
+    },
+    "icon": {
+      "name": "Pictogram"
+    },
+    "pdf": {
+      "empty": "Geen PDF-bestanden",
+      "failed": "PDF kon niet geladen worden"
+    },
+    "video": {
+      "name": "Video",
+      "empty": "Geen video's",
+      "fail": "Laden mislukt"
+    },
+    "statistics": {
+      "name": "Statistieken"
+    },
+    "collapse": {
+      "name": "Samenvouwen"
+    },
+    "multiselect": {
+      "name": "Multiselect"
+    },
+    "carousel": {
+      "name": "Carousel"
+    },
+    "step": {
+      "name": "Stappen"
+    },
+    "slider": {
+      "name": "Schuifbalk"
+    },
+    "range_slider": {
+      "name": "Range slider"
+    },
+    "audio": {
+      "name": "Geluid",
+      "no_audio": "Geen audio"
+    },
+    "collaborative": {
+      "no_name": "Geen naam"
+    },
+    "map": {
+      "name": "Kaart"
+    },
+    "time_picker": {
+      "name": "Tijd kiezer"
+    },
+    "time_range": {
+      "name": "Tijdsbereik"
+    },
+    "eventCalendar": {
+      "name": {
+        "event_calendar": "Evenement kalender"
+      },
+      "name_duplicated": "Deze resource ID conflicteert in deze evenementen, gebruik alstublieft dezelfde naam of andere id"
+    }
+  },
+  "page": {
+    "size": {
+      "model": {
+        "fixed": "Opgelost",
+        "auto": "Automatisch"
+      }
+    },
+    "user": {
+      "forgot_password": {
+        "actions": {
+          "reset": "Reset",
+          "send": "Code versturen"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Voer een geldig e-mailadres in",
+            "registered": "Het e-mailadres is niet gekoppeld aan een account.",
+            "require": "Voer uw e-mailadres in"
+          },
+          "newPassword": {
+            "require": "Voer uw wachtwoord in"
+          },
+          "verification_code": {
+            "expired": "Verificatiecode is verlopen",
+            "invalid": "Ongeldige verificatiecode",
+            "require": "Voer de verificatiecode in"
+          }
+        },
+        "fields": {
+          "email": "E-mailadres",
+          "newPassword": "Nieuw wachtwoord",
+          "verification_code": "Verificatie code"
+        },
+        "placeholder": {
+          "email": "Voer je e-mailadres in",
+          "verification_code": "Voer de verificatiecode in"
+        },
+        "subtitle": "Terug naar aanmelden",
+        "tips": {
+          "fail": "Wachtwoord opnieuw instellen mislukt",
+          "fail_sent": "Verificatiecode versturen mislukt",
+          "success": "Wachtwoord succesvol opnieuw instellen",
+          "verification_code": "Verificatiecode verzonden"
+        },
+        "title": "Wachtwoord opnieuw instellen"
+      },
+      "password": {
+        "placeholder": "Voer uw nieuwe wachtwoord in (ten minste 6 tekens)"
+      },
+      "policy": "Door ILLA te gebruiken gaat u akkoord met ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+      "sign_in": {
+        "actions": {
+          "login": "Log in"
+        },
+        "description": {
+          "forgot_password": "Wachtwoord Vergeten?",
+          "policy": "Door op Aanmelden te klikken, ga ik akkoord met <0>Privacybeleid</0> en <1>voorwaarden</1>",
+          "register": "Nieuwe gebruiker? <0>Maak een account aan</0>"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Voer een geldig e-mailadres in",
+            "registered": "Het e-mailadres is niet gekoppeld aan een account.",
+            "require": "Voer uw e-mailadres in"
+          },
+          "password": {
+            "incorrect": "Onjuist e-mailadres of wachtwoord",
+            "locked": "Te veel slechte pogingen, gelieve uw wachtwoord opnieuw in te stellen of probeer het na 1 uur opnieuw",
+            "min_length": "Het wachtwoord moet uit ten minste 6 tekens bestaan",
+            "require": "Voer wachtwoord in"
+          }
+        },
+        "fields": {
+          "email": "E-mailadres",
+          "password": "Wachtwoord"
+        },
+        "placeholder": {
+          "email": "Voer je e-mailadres in"
+        },
+        "tips": {
+          "fail": "Aanmelden mislukt",
+          "success": "Succesvol ingelogd",
+          "fail_account": "Onjuist e-mailadres of wachtwoord"
+        },
+        "title": "Welkom terug",
+        "oauth": {
+          "message": {
+            "auth_suc_no_password": "Registreren is gelukt. U kunt later een wachtwoord voor uw e-mailaccount instellen",
+            "auth_failed": "Authenticatie mislukt"
+          }
+        },
+        "option": {
+          "github": "Log in met GitHub",
+          "google": "Meld u aan met Google",
+          "or": "of"
+        }
+      },
+      "sign_up": {
+        "actions": {
+          "create": "Account Aanmaken",
+          "send": "Code versturen"
+        },
+        "description": {
+          "login": "Heeft u al een account? <0>Aanmelden </0>",
+          "policy": "Door te klikken op Account Aanmaken, ga ik akkoord met <0>Privacybeleid</0> en <1>terms</1>",
+          "subscribe": "Ik ben bereid om updates en nieuws over ILLA te ontvangen"
+        },
+        "error_message": {
+          "email": {
+            "invalid_pattern": "Voer een geldig e-mailadres in",
+            "registered": "Er bestaat al een account met dat e-mailadres.",
+            "require": "Voer uw e-mailadres in"
+          },
+          "password": {
+            "require": "Voer wachtwoord in"
+          },
+          "username": {
+            "length": "De gebruikersnaam moet 3~15 tekens zijn",
+            "require": "Voer gebruikersnaam in"
+          },
+          "verification_code": {
+            "expired": "Verificatiecode is verlopen",
+            "invalid": "Ongeldige verificatiecode",
+            "require": "Voer de verificatiecode in"
+          }
+        },
+        "fields": {
+          "email": "E-mailadres",
+          "password": "Wachtwoord",
+          "username": "Gebruikersnaam",
+          "verification_code": "Verificatie code"
+        },
+        "placeholder": {
+          "email": "Voer je e-mailadres in",
+          "username": "Vul je gebruikersnaam in",
+          "verification_code": "Voer de verificatiecode in"
+        },
+        "tips": {
+          "fail": "Registratie mislukt",
+          "fail_sent": "Verificatiecode versturen mislukt",
+          "success": "Succesvol geregistreerd",
+          "verification_code": "Verificatiecode verzonden"
+        },
+        "title": "Registreer nu",
+        "option": {
+          "github": "Registreer met GitHub",
+          "google": "Registreer met Google"
+        }
+      },
+      "description": "Een open-source low-code platform voor ontwikkelaars."
+    },
+    "left": {
+      "menu": {
+        "tutorial": {
+          "tutorial": "Handleiding"
+        }
+      }
+    }
+  },
+  "frame_size": {
+    "invalid_tips": "Voer een waarde in die niet kleiner is dan {{ size }}."
+  },
+  "failed_to_copy": "Kopiëren mislukt",
+  "copied": "Gekopieerd!",
+  "user_management": {
+    "role": {
+      "owner": "Eigenaar",
+      "admin": "Administer",
+      "editor": "Tekstverwerker",
+      "viewer": "Bekijker"
+    },
+    "modal": {
+      "title": {
+        "invite_members": "Nodig leden uit"
+      },
+      "link": {
+        "invite_title": "Uitnodigings link",
+        "copy": "Kopiëren",
+        "turn_off": "Uitnodigingslinks uitschakelen",
+        "update": "Uitnodigingslinks bijwerken",
+        "description": "Deel een geheime link die mensen kunnen gebruiken om deel te nemen aan je team.",
+        "turn_on": "Uitnodigingslinks inschakelen",
+        "fail": "Fout bij het verkrijgen van de link, probeer het later opnieuw",
+        "copied_suc": "Gekopieerd!",
+        "failed_to_copy": "Kopiëren mislukt",
+        "turn_off_fail": "Uitschakelen mislukt",
+        "turn_on_fail": "Fout bij inschakelen",
+        "make_public_title": "Maak de app openbaar",
+        "make_public_copy": "Kopiëren"
+      },
+      "email": {
+        "invite_title": "Uitnodigen per e-mail",
+        "invite": "Uitnodigen",
+        "placeholder": "Voer e-mailadres in",
+        "invited": "Heeft u uitgenodigd",
+        "in_list": "Deze gebruiker is al lid van je team.",
+        "notmail": "{{ email }} is geen e-mail",
+        "duplicate": "{{ email }} wordt gedupliceerd"
+      },
+      "invalid_email": "Voer een geldig e-mailadres in",
+      "message": {
+        "make_public_suc": "Succesvol ingesteld",
+        "make_public_failed": "Fout bij instellen",
+        "app_share_in_team": "{{ email }} zit al in uw team, deel de link met hem. "
+      },
+      "tab": {
+        "invite": "Uitnodigen",
+        "public": "Openbaar"
+      }
+    },
+    "mes": {
+      "invite_suc": "Succesvol uitgenodigd",
+      "invite_fail": "Uitnodiging mislukt",
+      "update_suc": "Succesvol bijgewerkt",
+      "update_fail": "Bijwerken mislukt",
+      "transfer_suc": "Succesvol overgedragen",
+      "transfer_fail": "Overdracht mislukt",
+      "remove_suc": "Succesvol verwijderd",
+      "remove_fail": "Verwijderen mislukt",
+      "change_role_fail": "Bijwerken mislukt",
+      "change_role_suc": "Succesvol bijgewerkt"
+    },
+    "page": {
+      "member": "Lid",
+      "invite": "Uitnodigen",
+      "permission": "Bevoegdheden",
+      "operation": "Bewerking",
+      "transfer": "Transfer Ownership",
+      "remove": "Verwijderen"
+    },
+    "transfer_modal": {
+      "title": "Weet u zeker dat u de eigenaarschap wilt overmaken?",
+      "description": "Na het overzetten zal uw machtiging veranderen in de beheerder.",
+      "transfer": "Overschrijving",
+      "cancel": "annuleren"
+    },
+    "remove_modal": {
+      "title": "Weet u zeker dat u {{ username }} wilt verwijderen?",
+      "description": "Na verwijdering heeft de gebruiker geen toegang tot het team.",
+      "remove": "Verwijderen",
+      "cancel": "annuleren"
+    },
+    "status": {
+      "pending": "Lopende"
+    },
+    "settings": {
+      "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren"
+    }
+  },
+  "copy_failed": "Kopiëren mislukt",
+  "team_setting": {
+    "left_panel": {
+      "setting_title": "Team instellingen",
+      "member": "Lid",
+      "leave": "Verlaat het team",
+      "delete": "Verwijder team"
+    },
+    "leave_modal": {
+      "title": "Weet je zeker dat je dit team wilt verlaten?",
+      "description": "Na vertrek hebt u geen toegang tot teammiddelen.",
+      "leave": "Verlaat",
+      "cancel": "annuleren"
+    },
+    "delete_modal": {
+      "title": "Weet u zeker dat u dit team wilt verwijderen?",
+      "delete": "Verwijderen",
+      "cancel": "annuleren",
+      "desctiption": "De team-id zal niet beschikbaar zijn na verwijdering, en alle deelnemers zullen verwijderd worden uit dit team."
+    },
+    "team_info": {
+      "title": "Team informatie",
+      "team_name": "Team naam",
+      "domain": ".illacloud.com",
+      "existed": "Bestaat al",
+      "available": "Beschikbaar",
+      "edit": "Bewerken",
+      "save": "Wijzigingen opslaan",
+      "adjust_avater": "Pas de lamer aan",
+      "avater_crop": "Bijsnijden",
+      "team_name_empty": "Voer de naam van het team in",
+      "team_id_empty": "Voer het team-id in",
+      "team_name_placeholder": "Voer de teamnaam in",
+      "team_id_placeholder": "Voer de team-id in",
+      "leave_title": "Verlaat het team",
+      "leave_button": "Verlaat het team",
+      "delete_title": "Verwijder team",
+      "delete_button": "Verwijder team",
+      "team_domain": "Team id"
+    },
+    "message": {
+      "save_suc": "Succesvol opgeslagen",
+      "save_fail": "Opslaan mislukt"
+    },
+    "mes": {
+      "domain_suc": "Succesvol aangemaakt.",
+      "delete_suc": "Succesvol verwijderd",
+      "delete_fail": "Verwijderen mislukt",
+      "leave_suc": "Vertrek met succes",
+      "leave_fail": "Verlaten mislukt"
+    }
+  },
+  "members": "leden",
+  "invite_new_member": "Uitnodigen",
+  "launch": "Starten",
+  "homepage": {
+    "message": {
+      "join_failed": "Kan niet deelnemen aan het team: je e-mailadres is niet de uitgenodigde e-mail."
+    }
+  },
+  "image_exceed": "Afbeeldingsgrootte mag niet groter zijn dan 500KB",
+  "image": {
+    "crop": {
+      "modal": {
+        "title": "Bijsnijden",
+        "save": "Opslaan",
+        "cancel": "annuleren"
+      }
+    }
+  },
+  "profile": {
+    "setting": {
+      "message": {
+        "save_suc": "Succesvol opgeslagen",
+        "save_fail": "Opslaan mislukt"
+      },
+      "password": {
+        "title": "Wachtwoord"
+      }
+    }
+  },
+  "ditor": {
+    "inspect": {
+      "setter_option": {
+        "collapse": {
+          "collapsible_list": "Inklapbare lijst"
+        }
+      }
+    }
+  },
+  "message": {
+    "circular_dependency": "Een circulaire afhankelijkheid doet zich voor op {{ nodeName }}"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Privacy Beleid",
+      "description": "Dit privacybeleid verklaart onze praktijken met betrekking tot het verzamelen, gebruiken en openbaar maken van informatie die we via onze diensten ontvangen."
+    },
+    "terms": {
+      "description": "Deze gebruiksvoorwaarden bepalen uw toegang tot en gebruik van onze site en onze levering van een verscheidenheid aan diensten.",
+      "title": "Algemene gebruiksvoorwaarden"
+    }
+  },
+  "empty_copied_tips": "De te kopiëren inhoud is leeg",
+  "copy_empty": "De te kopiëren inhoud is leeg",
+  "tutorial": {
+    "modal": {
+      "tutorial": {
+        "first_time": {
+          "title": "Leer hoe je een app bouwt in 5 minuten",
+          "description": "Volg ILLA's tutorial om te leren hoe je een app bouwt. Dit duurt ongeveer 5 minuten.",
+          "cancel": "annuleren",
+          "take": "Neem een tutorial"
+        },
+        "exit_confirm": {
+          "title": "Stop de tutorial?",
+          "description": "De volgende keer dat u de onboarding app invoert, worden de begeleide stappen herhaald ",
+          "cancel": "annuleren",
+          "exit": "Stop het"
+        }
+      }
+    }
+  },
+  "oauth_redirect_title": "Doorverwijzen",
+  "oauth_redirect_description": "Omleiden naar <0>ILLA Cloud</0>",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
+}

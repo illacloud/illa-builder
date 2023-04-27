@@ -235,6 +235,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
         transItem,
         eventPath,
         handleOnClickMenuItem,
+        index,
       )
       res.push(transItem)
     })

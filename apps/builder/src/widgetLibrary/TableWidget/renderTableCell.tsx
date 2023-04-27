@@ -1,9 +1,27 @@
 import { CellContext } from "@tanstack/table-core"
 import { FC } from "react"
-import { Button, Image, Link } from "@illa-design/react"
+import {
+  Button,
+  ButtonGroup,
+  Image,
+  Link,
+  Rate,
+  Tag,
+  getColor,
+} from "@illa-design/react"
+import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { overFlowStyle } from "@/widgetLibrary/TableWidget/style"
+import { getIcon } from "@/widgetLibrary/IconWidget/utils"
+import {
+  ColumnItemShape,
+  TableCellButtonGroupItemProps,
+  TableCellIconGroupItemProps,
+  tagColorSchemeOptions,
+} from "@/widgetLibrary/TableWidget/interface"
+import {
+  applyIconContainerStyle,
+  overFlowStyle,
+} from "@/widgetLibrary/TableWidget/style"
 import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
 
 export const RenderTableLink: FC<{
@@ -45,6 +63,36 @@ export const RenderTableImage: FC<{
   )
 }
 
+export const RenderTableTag: FC<{
+  cell: CellContext<any, any>
+  value?: string
+  color: string | "auto"
+}> = (props) => {
+  const { cell, value, color } = props
+  const cellValue = value ?? cell.getValue()
+  const rowIndex = cell.row.index
+  const tagDefaultColor = [
+    "techPink",
+    "purple",
+    "red",
+    "green",
+    "orange",
+    "cyan",
+  ]
+  const colorScheme =
+    color === "auto"
+      ? tagDefaultColor[rowIndex % tagDefaultColor.length]
+      : tagColorSchemeOptions.includes(color)
+      ? color
+      : getColor(color, "03")
+
+  return cellValue ? (
+    <Tag colorScheme={colorScheme}>{`${cellValue}`}</Tag>
+  ) : (
+    <span>{"-"}</span>
+  )
+}
+
 export const RenderTableButton: FC<{
   cell: CellContext<any, any>
   value?: string
@@ -83,4 +131,98 @@ export const RenderTableButton: FC<{
       {`${value ?? "-"}`}
     </Button>
   )
+}
+
+export const RenderTableButtonGroup: FC<{
+  cell: CellContext<any, any>
+  value?: TableCellButtonGroupItemProps[]
+  eventPath: string
+  handleOnClick?: (path: string) => void
+}> = (props) => {
+  const { value, eventPath, handleOnClick } = props
+
+  const handleOnClickButtonItem = (index: number) => {
+    const paths = [`${eventPath}`, "buttonGroupContent", `${index}`, "events"]
+    handleOnClick?.(convertPathToString(paths))
+  }
+  return value ? (
+    <ButtonGroup spacing="8px">
+      {value.map((item, index) => {
+        const { cellValue, colorScheme, disabled, variant } = item
+        return (
+          <Button
+            key={index}
+            colorScheme={colorScheme}
+            disabled={disabled}
+            variant={variant}
+            onClick={() => handleOnClickButtonItem(index)}
+          >
+            {cellValue ? cellValue : "-"}
+          </Button>
+        )
+      })}
+    </ButtonGroup>
+  ) : (
+    <span>{"-"}</span>
+  )
+}
+
+export const RenderTableIconGroup: FC<{
+  cell: CellContext<any, any>
+  value?: TableCellIconGroupItemProps[]
+  eventPath: string
+  handleOnClick?: (path: string) => void
+}> = (props) => {
+  const { value, eventPath, handleOnClick } = props
+
+  const handleOnClickIconItem = (index: number) => {
+    const paths = [`${eventPath}`, "iconGroupContent", `${index}`, "events"]
+    handleOnClick?.(convertPathToString(paths))
+  }
+
+  return value ? (
+    <div>
+      {value.map((item, index) => {
+        const { cellValue, colorScheme, disabled } = item
+        const Icon = getIcon(cellValue)
+
+        return Icon ? (
+          <Icon
+            css={applyIconContainerStyle(colorScheme, disabled)}
+            key={index}
+            onClick={() => !disabled && handleOnClickIconItem(index)}
+          />
+        ) : (
+          "-"
+        )
+      })}
+    </div>
+  ) : (
+    <span>{"-"}</span>
+  )
+}
+
+export const RenderTableMarkdown: FC<{
+  value?: string
+}> = (props) => {
+  const { value } = props
+
+  return value ? (
+    <ILLAMarkdown
+      textString={value}
+      textColor={getColor("grayBlue", "02")}
+      urlColor="grayBlue"
+    />
+  ) : (
+    <span>-</span>
+  )
+}
+
+export const RenderTableRating: FC<{
+  value?: unknown
+}> = (props) => {
+  const { value } = props
+  const maxCount = 5
+
+  return <Rate count={maxCount} readonly value={Number(value) || 0} />
 }

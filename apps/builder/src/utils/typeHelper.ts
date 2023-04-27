@@ -38,15 +38,14 @@ export const getType = (value: unknown) => {
 
 export function isURL(str: string) {
   const pattern = new RegExp(
-    "^((blob:)?https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
-    "i",
+    /^(((ht|f)tps?):\/\/)?(([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})\/?/,
   ) // fragment locator
   return !!pattern.test(str)
+}
+
+export function isBlobURLOrUrl(url: string): boolean {
+  if (!url) return false
+  return url.startsWith("blob:") || isURL(url)
 }
 
 export const isValidUrlScheme = (url: string): boolean => {

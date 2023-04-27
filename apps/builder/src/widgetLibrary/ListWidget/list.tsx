@@ -1,4 +1,4 @@
-import { chunk, cloneDeep, get, isEqual, set } from "lodash"
+import { chunk, cloneDeep, get, isEqual, set, toPath } from "lodash"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
@@ -18,6 +18,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 import {
@@ -494,7 +495,8 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
               const { displayName } = currentItem
               const { $dynamicAttrPaths } = currentItem.props
               $dynamicAttrPaths.forEach((path) => {
-                const requireEvalString = get(currentItem.props, path, "")
+                const finalPath = convertPathToString(toPath(path))
+                const requireEvalString = get(currentItem.props, finalPath, "")
                 let evalResult: unknown
                 try {
                   evalResult = evaluateDynamicString(
@@ -511,7 +513,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                   const rawWidget = rawTree[displayName]
                   if (rawWidget && isObject(rawWidget.$validationPaths)) {
                     const validationPaths = rawWidget.$validationPaths
-                    const validationType = validationPaths[path]
+                    const validationType = validationPaths[finalPath]
                     if (validationType === VALIDATION_TYPES.ARRAY) {
                       const validationFunc = validationFactory[validationType]
                       const { safeValue } = validationFunc(evalResult, "")
@@ -524,7 +526,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                     }
                   }
                 }
-                set(currentItem, `props.${path}`, value)
+                set(currentItem, `props.${finalPath}`, value)
               })
             }
             if (index !== 0) {

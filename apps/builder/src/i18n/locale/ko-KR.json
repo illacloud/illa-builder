@@ -146,6 +146,9 @@
           },
           "gs": {
             "google_sheets": "Google Sheets"
+          },
+          "neon": {
+            "neon": "Neon"
           }
         },
         "validate": {
@@ -197,7 +200,11 @@
             "consider_queries_tha": "행을 삭제하지 않는 쿼리를 성공으로 간주",
             "title_of_spreadsheet": "스프레드시트 제목",
             "sheet_id_to_copy": "복사할 시트 ID",
-            "sheet_to_copy_to": "복사할 시트"
+            "sheet_to_copy_to": "복사할 시트",
+            "authentication": "입증",
+            "connect_with_oauth": "OAuth 와 연결 및 저장",
+            "reconnect_with_oauth": "OAuth로 다시 연결",
+            "access_type": "액세스 유형"
           }
         },
         "placeholder": {
@@ -225,12 +232,12 @@
             "password": "••••••••"
           },
           "gs": {
-            "private_key": "{\r\n  \"type\": \"service_account\",\r\n  \"project_id\": \"projectId\",\r\n  \"private_key_id\": \"privateKeyId\",\r\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\r\nprivateKey\r\n-----END PRIVATE KEY-----\",\r\n  \"client_email\": \"clientEmail\",\r\n  \"client_id\": \"100000000000000000000\",\r\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\r\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\r\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\r\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\r\n}",
+            "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "row_filter": {
               "column_name": "column_name",
               "value": "값"
             },
-            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "update_value": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "primary_key_column": "column_name",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
@@ -257,13 +264,20 @@
             "private_key": "Google 스프레드시트에 연결하는 데 사용됩니다. <0>여기</0>를 클릭하여 프로젝트를 만들고 OAuth 자격 증명을 받으세요. 서비스 계정 인증을 사용하면 사용된 서비스 계정에 해당하는 이메일 주소와 공유하는 스프레드시트에만 액세스할 수 있습니다. 서비스 계정 및 액세스 키 생성에 대한 문서는 <1>여기</1>를 참조하세요. 사용자는 스프레드시트에서 제어하지 않는 다양한 처리 구성요소의 제한을 경험할 수 있습니다. <2>할당량 한도</2>에 대해 자세히 알아보기",
             "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
-            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
             "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오.",
-            "copy_to_sheet_name": "필수의. 복사된 시트의 이름을 바꿉니다."
+            "copy_to_sheet_name": "필수의. 복사된 시트의 이름을 바꿉니다.",
+            "successfully_authent": "성공적으로 인증됨",
+            "failed_to_authentica": "인증 실패"
           },
           "tidb": {
             "ca_certificate": "기본적으로 서버리스 계층에 대한 TLS 연결에 사용되는 CA 인증서를 입력합니다. 전용 계층에 대한 TLS 연결이 필요한 경우 구성 방법을 보려면 <0>여기를 클릭</0>하세요."
+          },
+          "neon": {
+            "normal": "Neon 프로젝트를 만들고 <0>프로젝트 대시보드</0>에서 문자열을 가져옵니다.",
+            "failed": "문자열을 구문 분석하지 못했습니다. 문자열을 확인하거나 수동으로 구성하십시오.",
+            "no_password": "문자열에 암호가 없습니다. 복사하기 전에 Neon 대시보드에 암호를 표시하십시오."
           }
         },
         "option": {
@@ -337,7 +351,17 @@
             "filter_by": {
               "use_a1_notation": "A1 표기법 사용",
               "use_row_filters": "행 필터 사용"
-            }
+            },
+            "oauth_2": {
+              "0": "OAuth 2.0"
+            },
+            "service_account": "서비스 계정",
+            "read_and_write": "읽고 쓰기",
+            "read_only": "읽기 전용"
+          },
+          "neon": {
+            "parse": "구문 분석",
+            "connection_string": "연결 문자열"
           }
         },
         "default": {
@@ -730,8 +754,8 @@
           }
         },
         "status": {
-          "ran_failed": "실행하지 못했습니다",
-          "ran_successfully": "성공적으로 실행"
+          "ran_failed": "실패하다",
+          "ran_successfully": "실행 성공"
         },
         "result": {
           "restapi": {
@@ -950,7 +974,7 @@
             "hf_endpoint": "Endpoint URL"
           },
           "tips": {
-            "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
+            "hf_endpoint_token": "<0>Hugging Face 프로필 설정</0>에서 Organizations API 토큰을 받으세요.",
             "hf_endpoint": "learn more about <0>Endpoint</0>"
           },
           "placeholder": {
@@ -1125,7 +1149,7 @@
           "rowSelect": "행 선택",
           "markerSelected": "마커 선택",
           "markerCreated": "마커 만들기",
-          "select": "select"
+          "select": "선택"
         },
         "image_list": {
           "title": "이미지",
@@ -1143,7 +1167,14 @@
         "Select": "Select",
         "eventCalendar": {
           "no_title": "제목 없음"
-        }
+        },
+        "oncellselect": "onCellSelect",
+        "onRowSelectChange": "onRowSelectChange",
+        "onRowClickChange": "onRowClickChange",
+        "filterChange": "filterChange",
+        "sortChange": "sortChange",
+        "pageChange": "pageChange",
+        "refresh": "refresh"
       },
       "setter_default_value": {
         "fill": "충전재",
@@ -1211,9 +1242,9 @@
         "secondary_value": "SECONDARY VALUE",
         "resource": "RESOURCE",
         "eventCalendar": {
-          "calendar": "달력",
-          "event": "이벤트"
-        }
+          "calendar": "달력"
+        },
+        "event": "이벤트"
       },
       "setter_label": {
         "action": "동작",
@@ -1494,7 +1525,40 @@
           "calendar_border": "프레임",
           "calendar_text": "텍스트 양",
           "event_background": "배경",
-          "event_text": "프레임"
+          "event_text": "프레임",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
+        },
+        "table": {
+          "page_index": "Page index",
+          "index": "Index",
+          "scroll_to_the_select": "Scroll to the selected row",
+          "filters": "Filters",
+          "filter_mode": "Filter mode",
+          "show_thousands_separ": "Show thousands separator ",
+          "tag_label": "Tag label",
+          "tag_color": "Tag color",
+          "open_in_new_tab": "Open in new tab",
+          "variant": "Variant",
+          "icon": "Icon",
+          "color": "Color",
+          "sort_by_mapped_value": "Sort by mapped value",
+          "background": "Background",
+          "alignment": "Alignment",
+          "column_width": "Column width",
+          "width": "Width",
+          "disable_user_selecti": "Disable user selection",
+          "default_selected_row": "Default selected row",
+          "refresh": "Refresh",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
+          "cell_overflow": "Cell overflow",
+          "enable_server_side_p": "Enable server side pagination",
+          "pagination_type": "Pagination type",
+          "total_row_count": "Total row count",
+          "next_cursor": "Next cursor",
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code"
         }
       },
       "setter_tooltip": {
@@ -1635,7 +1699,39 @@
           "calendar_text": "텍스트 색상 설정",
           "event_background": "이벤트 카드 배경 설정",
           "event_text": "이벤트 카드의 텍스트 색상 설정",
-          "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오."
+          "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "The icon displayed in the table",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download row data icon.",
+          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object. Set the original column name as key ",
+          "filter_mode": "The filter mode. AND or OR.",
+          "currency_code": "USD"
         }
       },
       "setter_option": {
@@ -1679,6 +1775,32 @@
           "week": "주",
           "day": "낮",
           "agenda": "의제"
+        },
+        "table": {
+          "set_sort": "Set sort",
+          "column": "Column",
+          "number": "Number",
+          "percent": "Percent",
+          "currency": "Currency",
+          "text": "Text",
+          "tag": "Tag",
+          "button_group": "Button group",
+          "date": "Date",
+          "time": "Time",
+          "date_time": "Date Time",
+          "link": "Link",
+          "rating": "Rating",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "button": "Button",
+          "icon": "Icon",
+          "solid": "Solid",
+          "outline": "Outline",
+          "auto": "Auto",
+          "limited": "Limited",
+          "limit_offset_based": "Limit offset based",
+          "cursor_based": "Cursor based",
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
         }
       },
       "setter_placeholder": {
@@ -1702,6 +1824,9 @@
         },
         "variable": {
           "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -1860,6 +1985,18 @@
       "eventCalendar": {
         "addevent": "addEvent",
         "deleteevent": "deleteEvent"
+      },
+      "table": {
+        "clear_filters": "Clear filters",
+        "clear_column_setting": "Clear column setting",
+        "refresh": "Refresh",
+        "select_page": "Select page",
+        "select_row": "Select row",
+        "clear_selection": "Clear selection",
+        "set_filters": "Set filters",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
@@ -2682,5 +2819,28 @@
     }
   },
   "oauth_redirect_title": "이동",
-  "oauth_redirect_description": "<0>ILLA Cloud</0>(으)로 리디렉션 중..."
+  "oauth_redirect_description": "<0>ILLA Cloud</0>(으)로 리디렉션 중...",
+  "language": {
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ko-KR": "한국인",
+    "ja-JP": "日本語",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
+    "da-DK": "dansk",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
+    "fi-FI": "suomi",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
+    "no-NO": "norsk",
+    "pl-PL": "polski",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
+    "sv-SE": "svenska",
+    "uk-UA": "українська"
+  }
 }

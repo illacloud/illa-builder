@@ -25,3 +25,7 @@ export const AllData: Record<string, RiLib.IconType> = Object.keys(
   result = { ...result, ...data }
   return result
 }, {})
+
+export const getIcon = (iconName?: string) => {
+  return iconName ? AllData[iconName] : null
+}
