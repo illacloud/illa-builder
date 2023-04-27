@@ -26,7 +26,7 @@ export enum Columns {
   IconGroup = "icongroup",
   Rating = "rating",
   Markdown = "markdown",
-  HTML = "html",
+  // HTML = "html",
   Currency = "currency",
 }
 
@@ -47,6 +47,7 @@ export const defaultColumnItem: Partial<ColumnItemShape> = {
   colorScheme: "blue",
   objectFit: "scale-down",
   tagColor: "auto",
+  alignment: "left",
 }
 
 export interface ColumnItemShape
@@ -69,6 +70,7 @@ export interface ColumnItemShape
   fromCurrentRow?: Record<string, boolean>
   events?: any[]
   columnIndex?: number
+  alignment?: TableCellAlign
   // icon type
   iconName?: string
   iconGroupContent?: TableCellIconGroupItemProps[]
@@ -81,6 +83,8 @@ export interface ColumnItemShape
   // button group type
   buttonGroupContent?: TableCellButtonGroupItemProps[]
 }
+
+export type TableCellAlign = "left" | "center" | "right"
 
 export interface TableCellButtonGroupItemProps extends CellItemProps {
   colorScheme?: ButtonColorScheme

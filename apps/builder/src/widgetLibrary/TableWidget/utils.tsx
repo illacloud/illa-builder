@@ -23,6 +23,7 @@ import {
   RenderTableLink,
   RenderTableMarkdown,
   RenderTableRating,
+  RenderTableStringCell,
   RenderTableTag,
 } from "@/widgetLibrary/TableWidget/renderTableCell"
 
@@ -225,6 +226,7 @@ export const getCellForType = (
     tagColorMode = "select",
     buttonGroupContent,
     iconGroupContent,
+    alignment,
   } = data
 
   const locale = getLocalLanguage()
@@ -233,39 +235,14 @@ export const getCellForType = (
   switch (type) {
     case Columns.Text:
       return (props: CellContext<any, any>) => {
-        return getStringPropertyValue(props, mappedValue, fromCurrentRow)
-      }
-    case Columns.Link:
-      return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        return RenderTableLink({
-          cell: props,
-          value,
-        })
-      }
-    case Columns.Tag:
-      let color = (tagColorMode === "select" ? tagColor : tagColorJs) || "auto"
-      return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        return RenderTableTag({
-          cell: props,
-          value,
-          color,
-        })
-      }
-    case Columns.Image:
-      return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        return RenderTableImage({
-          cell: props,
-          value,
-          data,
-        })
+        return RenderTableStringCell({ value, alignment })
       }
     case Columns.Boolean:
       return (props: CellContext<any, any>) => {
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
-        return isBoolean(value) ? value.toString() : "-"
+        const currentVal = isBoolean(value) ? value.toString() : "-"
+        return RenderTableStringCell({ value: currentVal, alignment })
       }
     case Columns.Number:
       return (props: CellContext<any, any>) => {
@@ -277,7 +254,10 @@ export const getCellForType = (
           maximumFractionDigits: decimalPlaces,
           useGrouping: showThousandsSeparator,
         })
-        return isNumber(formatVal) ? numberFormat.format(formatVal) : "-"
+        const currentVal = isNumber(formatVal)
+          ? numberFormat.format(formatVal)
+          : "-"
+        return RenderTableStringCell({ value: currentVal, alignment })
       }
     case Columns.Percent:
       return (props: CellContext<any, any>) => {
@@ -289,8 +269,10 @@ export const getCellForType = (
           maximumFractionDigits: decimalPlaces,
           useGrouping: showThousandsSeparator,
         })
-
-        return isNumber(formatVal) ? numberFormat.format(formatVal) : "-"
+        const currentVal = isNumber(formatVal)
+          ? numberFormat.format(formatVal)
+          : "-"
+        return RenderTableStringCell({ value: currentVal, alignment })
       }
     case Columns.Currency:
       return (props: CellContext<any, any>) => {
@@ -309,26 +291,57 @@ export const getCellForType = (
                 style: "decimal",
               }),
         })
-
-        return isNumber(formatVal) ? currencyFormatter.format(formatVal) : "-"
+        const currentVal = isNumber(formatVal)
+          ? currencyFormatter.format(formatVal)
+          : "-"
+        return RenderTableStringCell({ value: currentVal, alignment })
       }
     case Columns.Date:
     case Columns.Time:
     case Columns.DateTime:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        const formatVal = dayjsPro(value).format(format)
-        return formatVal ? formatVal : "-"
+        const currentVal = dayjsPro(value).format(format)
+        return RenderTableStringCell({ value: currentVal, alignment })
+      }
+    case Columns.Link:
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        return RenderTableLink({
+          cell: props,
+          value,
+          alignment,
+        })
+      }
+    case Columns.Tag:
+      let color = (tagColorMode === "select" ? tagColor : tagColorJs) || "auto"
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        return RenderTableTag({
+          cell: props,
+          value,
+          color,
+          alignment,
+        })
+      }
+    case Columns.Image:
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        return RenderTableImage({
+          cell: props,
+          value,
+          data,
+        })
       }
     case Columns.Markdown:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        return RenderTableMarkdown({ value })
+        return RenderTableMarkdown({ value, alignment })
       }
     case Columns.Rating:
       return (props: CellContext<any, any>) => {
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
-        return RenderTableRating({ value })
+        return RenderTableRating({ value, alignment })
       }
     case Columns.Button:
       return (props: CellContext<any, any>) => {
@@ -360,7 +373,8 @@ export const getCellForType = (
 
         return RenderTableButtonGroup({
           cell: props,
-          value: value,
+          value,
+          alignment,
           eventPath: columnEventPath,
           handleOnClick: handleOnClickMenuItem,
         })
@@ -369,6 +383,7 @@ export const getCellForType = (
       return (props: CellContext<any, any>) => {
         return RenderTableIconGroup({
           cell: props,
+          alignment,
           value: iconGroupContent,
           eventPath: columnEventPath,
           handleOnClick: handleOnClickMenuItem,
@@ -378,13 +393,22 @@ export const getCellForType = (
       return (props: CellContext<any, any>) => {
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
         if (isBoolean(value)) {
-          return value.toString()
+          return RenderTableStringCell({ value: value.toString(), alignment })
         } else if (isNumber(value)) {
-          return value.toFixed(decimalPlaces)
+          return RenderTableStringCell({
+            value: value.toFixed(decimalPlaces),
+            alignment,
+          })
         } else if (!isNaN(Number(value))) {
-          return Number(value).toFixed(decimalPlaces)
+          return RenderTableStringCell({
+            value: Number(value).toFixed(decimalPlaces),
+            alignment,
+          })
         } else if (dayjsPro(value).isValid()) {
-          return dayjsPro(value).format(format)
+          return RenderTableStringCell({
+            value: dayjsPro(value).format(format),
+            alignment,
+          })
         } else if (isImageUrl(value)) {
           const stringValue = getStringPropertyValue(
             props,
@@ -405,9 +429,13 @@ export const getCellForType = (
           return RenderTableLink({
             cell: props,
             value,
+            alignment,
           })
         } else {
-          return getStringPropertyValue(props, mappedValue, fromCurrentRow)
+          return RenderTableStringCell({
+            value: getStringPropertyValue(props, mappedValue, fromCurrentRow),
+            alignment,
+          })
         }
       }
   }

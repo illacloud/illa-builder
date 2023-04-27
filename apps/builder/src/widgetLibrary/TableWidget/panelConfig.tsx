@@ -1,3 +1,8 @@
+import {
+  HorizontalCenterIcon,
+  HorizontalEndIcon,
+  HorizontalStartIcon,
+} from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -292,6 +297,26 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             options: ["container", "cover", "fill", "none", "scale-down"],
             bindAttrName: ["type"],
             shown: (value) => value === Columns.Image,
+          },
+          {
+            id: `${baseWidgetName}-column-alignment`,
+            setterType: "RADIO_GROUP_SETTER",
+            labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
+            attrName: "alignment",
+            options: [
+              {
+                label: <HorizontalStartIcon />,
+                value: "left",
+              },
+              {
+                label: <HorizontalCenterIcon />,
+                value: "center",
+              },
+              {
+                label: <HorizontalEndIcon />,
+                value: "right",
+              },
+            ],
           },
         ],
       },

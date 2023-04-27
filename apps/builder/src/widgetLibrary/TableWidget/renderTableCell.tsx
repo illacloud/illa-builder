@@ -14,27 +14,43 @@ import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import {
   ColumnItemShape,
+  TableCellAlign,
   TableCellButtonGroupItemProps,
   TableCellIconGroupItemProps,
   tagColorSchemeOptions,
 } from "@/widgetLibrary/TableWidget/interface"
 import {
+  applyAlignmentStyle,
   applyIconContainerStyle,
+  applyTableButtonGroupStyle,
   overFlowStyle,
 } from "@/widgetLibrary/TableWidget/style"
 import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
 
+export const RenderTableStringCell: FC<{
+  value?: string
+  alignment?: TableCellAlign
+}> = (props) => {
+  const { value, alignment } = props
+  return <div css={applyAlignmentStyle(alignment)}>{value ? value : "-"}</div>
+}
+
 export const RenderTableLink: FC<{
   cell: CellContext<any, any>
   value?: string
+  alignment?: TableCellAlign
 }> = (props) => {
-  const { cell, value } = props
+  const { cell, value, alignment } = props
   const cellValue = value ?? cell.getValue()
 
-  return cellValue ? (
-    <Link href={cellValue} target="_blank">{`${cellValue}`}</Link>
-  ) : (
-    <span>{"-"}</span>
+  return (
+    <div css={applyAlignmentStyle(alignment)}>
+      {cellValue ? (
+        <Link href={cellValue} target="_blank">{`${cellValue}`}</Link>
+      ) : (
+        "-"
+      )}
+    </div>
   )
 }
 
@@ -67,9 +83,9 @@ export const RenderTableTag: FC<{
   cell: CellContext<any, any>
   value?: string
   color: string | "auto"
+  alignment?: TableCellAlign
 }> = (props) => {
-  const { cell, value, color } = props
-  const cellValue = value ?? cell.getValue()
+  const { cell, value, color, alignment } = props
   const rowIndex = cell.row.index
   const tagDefaultColor = [
     "techPink",
@@ -86,10 +102,10 @@ export const RenderTableTag: FC<{
       ? color
       : getColor(color, "03")
 
-  return cellValue ? (
-    <Tag colorScheme={colorScheme}>{`${cellValue}`}</Tag>
-  ) : (
-    <span>{"-"}</span>
+  return (
+    <div css={applyAlignmentStyle(alignment)}>
+      {value ? <Tag colorScheme={colorScheme}>{`${value}`}</Tag> : "-"}
+    </div>
   )
 }
 
@@ -136,17 +152,18 @@ export const RenderTableButton: FC<{
 export const RenderTableButtonGroup: FC<{
   cell: CellContext<any, any>
   value?: TableCellButtonGroupItemProps[]
+  alignment?: TableCellAlign
   eventPath: string
   handleOnClick?: (path: string) => void
 }> = (props) => {
-  const { value, eventPath, handleOnClick } = props
+  const { value, alignment, eventPath, handleOnClick } = props
 
   const handleOnClickButtonItem = (index: number) => {
     const paths = [`${eventPath}`, "buttonGroupContent", `${index}`, "events"]
     handleOnClick?.(convertPathToString(paths))
   }
   return value ? (
-    <ButtonGroup spacing="8px">
+    <ButtonGroup css={applyTableButtonGroupStyle(alignment)} spacing="8px">
       {value.map((item, index) => {
         const { cellValue, colorScheme, disabled, variant } = item
         return (
@@ -170,59 +187,72 @@ export const RenderTableButtonGroup: FC<{
 export const RenderTableIconGroup: FC<{
   cell: CellContext<any, any>
   value?: TableCellIconGroupItemProps[]
+  alignment?: TableCellAlign
   eventPath: string
   handleOnClick?: (path: string) => void
 }> = (props) => {
-  const { value, eventPath, handleOnClick } = props
+  const { value, alignment, eventPath, handleOnClick } = props
 
   const handleOnClickIconItem = (index: number) => {
     const paths = [`${eventPath}`, "iconGroupContent", `${index}`, "events"]
     handleOnClick?.(convertPathToString(paths))
   }
 
-  return value ? (
-    <div>
-      {value.map((item, index) => {
-        const { cellValue, colorScheme, disabled } = item
-        const Icon = getIcon(cellValue)
+  return (
+    <div css={applyAlignmentStyle(alignment)}>
+      {value ? (
+        value.map((item, index) => {
+          const { cellValue, colorScheme, disabled } = item
+          const Icon = getIcon(cellValue)
 
-        return Icon ? (
-          <Icon
-            css={applyIconContainerStyle(colorScheme, disabled)}
-            key={index}
-            onClick={() => !disabled && handleOnClickIconItem(index)}
-          />
-        ) : (
-          "-"
-        )
-      })}
+          return Icon ? (
+            <Icon
+              css={applyIconContainerStyle(colorScheme, disabled)}
+              key={index}
+              onClick={() => !disabled && handleOnClickIconItem(index)}
+            />
+          ) : (
+            <span>{"-"}</span>
+          )
+        })
+      ) : (
+        <span>{"-"}</span>
+      )}
     </div>
-  ) : (
-    <span>{"-"}</span>
   )
 }
 
 export const RenderTableMarkdown: FC<{
   value?: string
+  alignment?: TableCellAlign
 }> = (props) => {
-  const { value } = props
+  const { value, alignment } = props
 
-  return value ? (
-    <ILLAMarkdown
-      textString={value}
-      textColor={getColor("grayBlue", "02")}
-      urlColor="grayBlue"
-    />
-  ) : (
-    <span>-</span>
+  return (
+    <div css={applyAlignmentStyle(alignment)}>
+      {value ? (
+        <ILLAMarkdown
+          textString={value}
+          textColor={getColor("grayBlue", "02")}
+          urlColor="grayBlue"
+        />
+      ) : (
+        <span>-</span>
+      )}
+    </div>
   )
 }
 
 export const RenderTableRating: FC<{
   value?: unknown
+  alignment?: TableCellAlign
 }> = (props) => {
-  const { value } = props
+  const { value, alignment } = props
   const maxCount = 5
 
-  return <Rate count={maxCount} readonly value={Number(value) || 0} />
+  return (
+    <div css={applyAlignmentStyle(alignment)}>
+      <Rate count={maxCount} readonly value={Number(value) || 0} />
+    </div>
+  )
 }
