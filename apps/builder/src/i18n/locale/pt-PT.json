@@ -1149,7 +1149,8 @@
           "rowSelect": "Seleção de linha",
           "markerSelected": "Selecionado",
           "markerCreated": "Criado",
-          "select": "Selecionar"
+          "select": "Selecionar",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Imagens",
