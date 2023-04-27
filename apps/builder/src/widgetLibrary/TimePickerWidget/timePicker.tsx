@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect } from "react"
 import { TimePicker } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -78,9 +79,6 @@ export const TimePickerWidget: FC<TimePickerWidgetProps> = (props) => {
   const {
     value,
     displayName,
-    updateComponentRuntimeProps,
-    deleteComponentRuntimeProps,
-    handleUpdateMultiExecutionResult,
     labelPosition,
     labelFull,
     label,
@@ -95,6 +93,10 @@ export const TimePickerWidget: FC<TimePickerWidgetProps> = (props) => {
     hideValidationMessage,
     validateMessage,
     triggerEventHandler,
+    updateComponentHeight,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
+    handleUpdateMultiExecutionResult,
   } = props
 
   const getValidateMessage = useCallback(
@@ -182,7 +184,7 @@ export const TimePickerWidget: FC<TimePickerWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <div style={{ width: "100%" }}>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -215,7 +217,7 @@ export const TimePickerWidget: FC<TimePickerWidgetProps> = (props) => {
           <InvalidMessage validateMessage={validateMessage} />
         </div>
       )}
-    </div>
+    </AutoHeightContainer>
   )
 }
 
