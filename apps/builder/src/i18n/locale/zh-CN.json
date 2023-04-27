@@ -1525,7 +1525,9 @@
           "calendar_border": "边框",
           "calendar_text": "文本",
           "event_background": "背景",
-          "event_text": "文本"
+          "event_text": "文本",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
         },
         "table": {
           "page_index": "页面索引",
@@ -1697,7 +1699,9 @@
           "calendar_text": "设置文字颜色",
           "event_background": "设置事件卡片的背景",
           "event_text": "设置事件卡片的文字颜色",
-          "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。"
+          "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
         },
         "table": {
           "page_index": "Index of the page you wish to select.",
@@ -1989,7 +1993,10 @@
         "select_page": "Select page",
         "select_row": "Select row",
         "clear_selection": "Clear selection",
-        "set_filters": "Set filters"
+        "set_filters": "Set filters",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
