@@ -1149,7 +1149,8 @@
           "rowSelect": "행 선택",
           "markerSelected": "마커 선택",
           "markerCreated": "마커 만들기",
-          "select": "선택"
+          "select": "선택",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "이미지",
