@@ -1527,8 +1527,8 @@
           "calendar_text": "文本",
           "event_background": "背景",
           "event_text": "文本",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "是否可拖拽",
+          "resizable": "是否可调整大小"
         },
         "table": {
           "page_index": "页面索引",
