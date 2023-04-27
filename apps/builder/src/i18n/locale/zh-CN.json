@@ -1701,8 +1701,8 @@
           "event_background": "设置事件卡片的背景",
           "event_text": "设置事件卡片的文字颜色",
           "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "是否允许用户通过拖动移动事件来更新事件时间范围",
+          "resizable": "是否允许用户通过拖动事件的边框来延长或缩短时间跨度来更新事件时间范围和更改时间跨度"
         },
         "table": {
           "page_index": "Index of the page you wish to select.",
@@ -1730,7 +1730,7 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
         }
@@ -2444,7 +2444,7 @@
       "name": {
         "event_calendar": "事件日历"
       },
-      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
+      "name_duplicated": "该资源ID在这些事件中冲突，请使用相同的名称或不同的ID"
     }
   },
   "page": {
