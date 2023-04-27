@@ -1525,7 +1525,9 @@
           "calendar_border": "Border",
           "calendar_text": "Texto",
           "event_background": "Fondo",
-          "event_text": "Texto"
+          "event_text": "Texto",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
         },
         "table": {
           "page_index": "Índice de página",
@@ -1697,7 +1699,9 @@
           "calendar_text": "Establecer el color del texto",
           "event_background": "Establecer el fondo de la tarjeta de eventos",
           "event_text": "Establecer el color del texto de la tarjeta de evento",
-          "couldnot_drag": "Si desea arrastrar para ajustar el intervalo de tiempo, por favor proceda a la página de vista previa de la operación."
+          "couldnot_drag": "Si desea arrastrar para ajustar el intervalo de tiempo, por favor proceda a la página de vista previa de la operación.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
         },
         "table": {
           "page_index": "Index of the page you wish to select.",
@@ -1989,7 +1993,10 @@
         "select_page": "Seleccionar página",
         "select_row": "Seleccionar fila",
         "clear_selection": "Borrar selección",
-        "set_filters": "Definir filtros"
+        "set_filters": "Definir filtros",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
