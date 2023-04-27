@@ -1149,7 +1149,8 @@
           "rowSelect": "Výběr řádku",
           "markerSelected": "markerVybráno",
           "markerCreated": "markerCreated",
-          "select": "Vybrat"
+          "select": "Vybrat",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Obrázky",
