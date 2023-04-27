@@ -1525,7 +1525,9 @@
           "calendar_border": "フレーム",
           "calendar_text": "テクストヤン",
           "event_background": "バックグラウンド",
-          "event_text": "テクストヤン"
+          "event_text": "テクストヤン",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
         },
         "table": {
           "page_index": "Page index",
@@ -1697,7 +1699,9 @@
           "calendar_text": "テキストの色を設定する",
           "event_background": "イベントカードの背景を設定する",
           "event_text": "イベントカードの文字色を設定",
-          "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。"
+          "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
         },
         "table": {
           "page_index": "Index of the page you wish to select.",
@@ -1989,7 +1993,10 @@
         "select_page": "Select page",
         "select_row": "Select row",
         "clear_selection": "Clear selection",
-        "set_filters": "Set filters"
+        "set_filters": "Set filters",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
