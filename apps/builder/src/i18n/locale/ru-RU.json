@@ -1150,7 +1150,7 @@
           "markerSelected": "маркер выбран",
           "markerCreated": "маркер создан",
           "select": "Выбрать",
-          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
+          "DragOrClickNoEventArea": "Drag or click no event area"
         },
         "image_list": {
           "title": "Изображения",
