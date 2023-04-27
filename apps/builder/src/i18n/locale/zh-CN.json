@@ -1913,7 +1913,7 @@
         "container": "容器类组件",
         "data": "数据类组件",
         "inputs": "输入类组件",
-        "navigation": "Navigation",
+        "navigation": "导航类组件",
         "presentation": "展示类组件",
         "selects": "选择类组件"
       },
