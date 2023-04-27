@@ -725,7 +725,7 @@
         "dynamo": {
           "label": {
             "method": "Method",
-            "table": "Table",
+            "table": "시트",
             "json_input": "Use JSON parameter editor",
             "parameters": "Parameters",
             "index": "Index name",
@@ -1149,7 +1149,8 @@
           "rowSelect": "행 선택",
           "markerSelected": "마커 선택",
           "markerCreated": "마커 만들기",
-          "select": "선택"
+          "select": "선택",
+          "DragOrClickNoEventArea": "이벤트가 없는 영역을 드래그 또는 클릭"
         },
         "image_list": {
           "title": "이미지",
@@ -1525,29 +1526,31 @@
           "calendar_border": "프레임",
           "calendar_text": "텍스트 양",
           "event_background": "배경",
-          "event_text": "프레임"
+          "event_text": "프레임",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
         },
         "table": {
-          "page_index": "Page index",
-          "index": "Index",
-          "scroll_to_the_select": "Scroll to the selected row",
-          "filters": "Filters",
-          "filter_mode": "Filter mode",
-          "show_thousands_separ": "Show thousands separator ",
-          "tag_label": "Tag label",
-          "tag_color": "Tag color",
-          "open_in_new_tab": "Open in new tab",
-          "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
-          "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "page_index": "페이지 색인",
+          "index": "색인",
+          "scroll_to_the_select": "선택한 행으로 스크롤",
+          "filters": "필터",
+          "filter_mode": "필터 모드",
+          "show_thousands_separ": "천 단위 구분 기호 표시 ",
+          "tag_label": "태그 레이블",
+          "tag_color": "태그 색상",
+          "open_in_new_tab": "새 탭으로 열기",
+          "variant": "스타일",
+          "icon": "상",
+          "color": "색깔",
+          "sort_by_mapped_value": "매핑된 값으로 정렬",
+          "background": "배경색",
+          "alignment": "조정",
+          "column_width": "열 너비",
+          "width": "너비",
+          "disable_user_selecti": "사용자 선택 비활성화",
+          "default_selected_row": "기본 선택 행",
+          "refresh": "새로 고치다",
           "download_row_data": "Download Row data",
           "column_setting": "Column setting",
           "cell_overflow": "Cell overflow",
@@ -1555,7 +1558,8 @@
           "pagination_type": "Pagination type",
           "total_row_count": "Total row count",
           "next_cursor": "Next cursor",
-          "has_next_page": "Has next page"
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code"
         }
       },
       "setter_tooltip": {
@@ -1696,7 +1700,39 @@
           "calendar_text": "텍스트 색상 설정",
           "event_background": "이벤트 카드 배경 설정",
           "event_text": "이벤트 카드의 텍스트 색상 설정",
-          "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오."
+          "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "테이블에 표시되는 아이콘",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "사용자 선택을 비활성화할지 여부입니다. 비활성화하면 이벤트 핸들러로 테이블 구성 요소를 제어하여 행을 선택할 수 있습니다.",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download row data icon.",
+          "column_setting": "열 설정을 표시할지 여부입니다. 열 설정을 통해 사용자는 표시할 열과 열 정렬을 설정할 수 있습니다. 이 설정은 테이블 데이터를 변경하지 않습니다.",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object. Set the original column name as key ",
+          "filter_mode": "The filter mode. AND or OR.",
+          "currency_code": "USD"
         }
       },
       "setter_option": {
@@ -1789,6 +1825,9 @@
         },
         "variable": {
           "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -1950,12 +1989,15 @@
       },
       "table": {
         "clear_filters": "Clear filters",
-        "clear_column_setting": "Clear column setting",
-        "refresh": "Refresh",
-        "select_page": "Select page",
+        "clear_column_setting": "열 설정 지우기",
+        "refresh": "새로 고치다",
+        "select_page": "페이지 선택",
         "select_row": "Select row",
         "clear_selection": "Clear selection",
-        "set_filters": "Set filters"
+        "set_filters": "Set filters",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
@@ -2801,5 +2843,6 @@
     "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
-  }
+  },
+  "logout_failed": "로그아웃 실패"
 }

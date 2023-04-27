@@ -713,7 +713,7 @@
           "query": "クエリ",
           "placeholder": {
             "query": "select * from users;",
-            "table": "テーブルを選択",
+            "table": "リフレッシュ",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
           "table": "テーブル",
@@ -725,7 +725,7 @@
         "dynamo": {
           "label": {
             "method": "Method",
-            "table": "Table",
+            "table": "テーブル",
             "json_input": "Use JSON parameter editor",
             "parameters": "Parameters",
             "index": "Index name",
@@ -1149,7 +1149,8 @@
           "rowSelect": "行を選択",
           "markerSelected": "マーカーを選択",
           "markerCreated": "マーカーを作成",
-          "select": "選択"
+          "select": "選択",
+          "DragOrClickNoEventArea": "イベントのないエリアをドラッグ"
         },
         "image_list": {
           "title": "イメージ",
@@ -1525,29 +1526,31 @@
           "calendar_border": "フレーム",
           "calendar_text": "テクストヤン",
           "event_background": "バックグラウンド",
-          "event_text": "テクストヤン"
+          "event_text": "テクストヤン",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
         },
         "table": {
-          "page_index": "Page index",
-          "index": "Index",
-          "scroll_to_the_select": "Scroll to the selected row",
-          "filters": "Filters",
-          "filter_mode": "Filter mode",
-          "show_thousands_separ": "Show thousands separator ",
-          "tag_label": "Tag label",
-          "tag_color": "Tag color",
-          "open_in_new_tab": "Open in new tab",
-          "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
-          "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "page_index": "ページの索引",
+          "index": "索引",
+          "scroll_to_the_select": "選択した行までスクロール",
+          "filters": "選択した行までスクロール",
+          "filter_mode": "フィルターモード",
+          "show_thousands_separ": "千単位の区切り文字を表示",
+          "tag_label": "タグのラベル",
+          "tag_color": "タグの色",
+          "open_in_new_tab": "新しいタブで開く",
+          "variant": "スタイル",
+          "icon": "アイコン",
+          "color": "色",
+          "sort_by_mapped_value": "マップ値でソート",
+          "background": "背景色",
+          "alignment": "アラインメント",
+          "column_width": "列幅",
+          "width": "幅",
+          "disable_user_selecti": "ユーザー選択を無効",
+          "default_selected_row": "デフォルトの選択行",
+          "refresh": "リフレッシュ",
           "download_row_data": "Download Row data",
           "column_setting": "Column setting",
           "cell_overflow": "Cell overflow",
@@ -1555,7 +1558,8 @@
           "pagination_type": "Pagination type",
           "total_row_count": "Total row count",
           "next_cursor": "Next cursor",
-          "has_next_page": "Has next page"
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code"
         }
       },
       "setter_tooltip": {
@@ -1696,7 +1700,39 @@
           "calendar_text": "テキストの色を設定する",
           "event_background": "イベントカードの背景を設定する",
           "event_text": "イベントカードの文字色を設定",
-          "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。"
+          "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "表に表示されるアイコン",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "ユーザー選択を無効にするかどうか。 無効にすると、イベント ハンドラでテーブル コンポーネントを制御して行を選択できます。",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download row data icon.",
+          "column_setting": "列の設定を表示するかどうか。 列の設定により、ユーザーは表示する列と列の並べ替えを設定できます。 この設定は、テーブル データを変更しません。",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object. Set the original column name as key ",
+          "filter_mode": "The filter mode. AND or OR.",
+          "currency_code": "USD"
         }
       },
       "setter_option": {
@@ -1789,6 +1825,9 @@
         },
         "variable": {
           "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -1950,12 +1989,15 @@
       },
       "table": {
         "clear_filters": "Clear filters",
-        "clear_column_setting": "Clear column setting",
-        "refresh": "Refresh",
-        "select_page": "Select page",
+        "clear_column_setting": "列の設定をクリア",
+        "refresh": "リフレッシュ",
+        "select_page": "ページを選択",
         "select_row": "Select row",
         "clear_selection": "Clear selection",
-        "set_filters": "Set filters"
+        "set_filters": "Set filters",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
@@ -2801,5 +2843,6 @@
     "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
-  }
+  },
+  "logout_failed": "ログアウトできませんでした"
 }

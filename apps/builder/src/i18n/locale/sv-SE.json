@@ -1149,7 +1149,8 @@
           "rowSelect": "Välj rad",
           "markerSelected": "markerMarkerad",
           "markerCreated": "markerSkapad",
-          "select": "Välj"
+          "select": "Välj",
+          "DragOrClickNoEventArea": "Drag or click no event area"
         },
         "image_list": {
           "title": "Bilder",
@@ -1525,7 +1526,9 @@
           "calendar_border": "Border",
           "calendar_text": "Text",
           "event_background": "Bakgrund",
-          "event_text": "Text"
+          "event_text": "Text",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
         },
         "table": {
           "page_index": "Sidans index",
@@ -1555,7 +1558,8 @@
           "pagination_type": "Pagination type",
           "total_row_count": "Total row count",
           "next_cursor": "Next cursor",
-          "has_next_page": "Has next page"
+          "has_next_page": "Has next page",
+          "currency_code": "Currency code"
         }
       },
       "setter_tooltip": {
@@ -1696,7 +1700,39 @@
           "calendar_text": "Ange färg på texten",
           "event_background": "Ange bakgrunden till händelsekortet",
           "event_text": "Ställ in textfärgen på händelsekortet",
-          "couldnot_drag": "Om du vill dra för att justera tidsintervallet, gå vidare till förhandsgranskningssidan för operationen."
+          "couldnot_drag": "Om du vill dra för att justera tidsintervallet, gå vidare till förhandsgranskningssidan för operationen.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+        },
+        "table": {
+          "page_index": "Index of the page you wish to select.",
+          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
+          "scroll_to_the_select": "Whether to scroll to the row.",
+          "show_thousands_separ": "Whether to show the thousands separator",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
+          "variant": "Variant of the button",
+          "icon": "The icon displayed in the table",
+          "color": "Set the color.",
+          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "alignment": "Set the alignment of the column.",
+          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
+          "width": "Set the adaptation method of column width.",
+          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
+          "default_selected_row": "The row selected by default.  ",
+          "refresh": "Whether to show the refresh icon. ",
+          "download_row_data": "Whether to show the download row data icon.",
+          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
+          "cell_overflow": "How to display when cell overflow. ",
+          "enable_server_side_p": "Whether to enable server pagination",
+          "pagination_type": "The pagination type. ",
+          "total_row_count": "The number of rows used to count the page number.",
+          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
+          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "filters": "An array of object. Set the original column name as key ",
+          "filter_mode": "The filter mode. AND or OR.",
+          "currency_code": "USD"
         }
       },
       "setter_option": {
@@ -1789,6 +1825,9 @@
         },
         "variable": {
           "abc": "{{abc.a}}"
+        },
+        "table": {
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -1955,7 +1994,10 @@
         "select_page": "Välj sida",
         "select_row": "Välj rad",
         "clear_selection": "Rensa markering",
-        "set_filters": "Ställ in filter"
+        "set_filters": "Ställ in filter",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
@@ -2801,5 +2843,6 @@
     "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
-  }
+  },
+  "logout_failed": "Failed to log out. Please try again later."
 }

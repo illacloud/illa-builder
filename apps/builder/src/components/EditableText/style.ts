@@ -46,7 +46,10 @@ export const textStyle = css`
 
 export const innerTextStyle = css`
   position: relative;
+  display: flex;
+  align-items: center;
   svg {
     position: absolute;
+    right: -22px;
   }
 `
