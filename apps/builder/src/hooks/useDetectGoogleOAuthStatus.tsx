@@ -84,7 +84,8 @@ export const useDetectGoogleOAuthStatus = () => {
     if (!canOperationRef.current) {
       return
     }
-    if (status === String(GoogleSheetAuthStatus.Authenticated)) {
+    // redirect url: 1 success, 2 failed, reverse with resource
+    if (status === String(GoogleSheetAuthStatus.NotAuthenticated)) {
       message.success({
         content: i18n.t("editor.action.form.tips.gs.successfully_authent"),
       })
@@ -93,7 +94,7 @@ export const useDetectGoogleOAuthStatus = () => {
       message.error({
         content: i18n.t("editor.action.form.tips.gs.failed_to_authentica"),
       })
-      setOAuthStatus(GoogleSheetAuthStatus.NotAuthenticated)
+      setOAuthStatus(GoogleSheetAuthStatus.Authenticated)
     }
     const selectedAction = getSelectedAction(actions, resourceID)
     if (selectedAction) {
