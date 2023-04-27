@@ -1149,7 +1149,8 @@
           "rowSelect": "Выбор строки",
           "markerSelected": "маркер выбран",
           "markerCreated": "маркер создан",
-          "select": "Выбрать"
+          "select": "Выбрать",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Изображения",
