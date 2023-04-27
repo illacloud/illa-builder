@@ -1551,15 +1551,15 @@
           "disable_user_selecti": "ユーザー選択を無効",
           "default_selected_row": "デフォルトの選択行",
           "refresh": "リフレッシュ",
-          "download_row_data": "Download raw data",
-          "column_setting": "Column settings",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "download_row_data": "生データのダウンロード",
+          "column_setting": "カラムの設定",
+          "cell_overflow": "セルオーバーフロー",
+          "enable_server_side_p": "サーバー側のページネーションを有効にする",
+          "pagination_type": "ページネーションタイプ",
+          "total_row_count": "総行数",
+          "next_cursor": "次のカーソル",
+          "has_next_page": "次のページあり",
+          "currency_code": "通貨コード"
         }
       },
       "setter_tooltip": {
@@ -1705,9 +1705,9 @@
           "resizable": "ユーザーがイベントの時間範囲を更新し、イベントの境界線をドラッグして期間を延長または短縮して期間を変更できるようにするかどうか"
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
+          "page_index": "選択するページの索引",
+          "index": "選択したい行のインデックス。 インデックスは、複数の行を指定するために使用できる配列である必要があります。",
+          "scroll_to_the_select": "行までスクロールするかどうか。",
           "show_thousands_separ": "Whether to show the thousands separator",
           "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
