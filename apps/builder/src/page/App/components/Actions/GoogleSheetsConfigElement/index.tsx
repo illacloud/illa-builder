@@ -221,7 +221,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
                 oAuthStatus === GoogleSheetAuthStatus.NotAuthenticated,
               )}
             >
-              {oAuthStatus === GoogleSheetAuthStatus.NotAuthenticated ? (
+              {oAuthStatus === GoogleSheetAuthStatus.Authenticated ? (
                 <>
                   <WarningCircleIcon css={oAuthErrorIconStyle} />
                   <>{t("editor.action.form.tips.gs.failed_to_authentica")}</>
