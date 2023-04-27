@@ -103,24 +103,6 @@ export const getOAuthAccessToken = async (
   )
 }
 
-export const redirectToGoogleOAuth = async (
-  resourceId: string,
-  accessToken: string,
-) => {
-  return builderRequest(
-    {
-      method: "POST",
-      url: `/resources/${resourceId}/oauth2`,
-      data: {
-        accessToken,
-      },
-    },
-    {
-      needTeamID: true,
-    },
-  )
-}
-
 export const getOAuthRefreshData = async (
   resourceId: string,
   signal: AbortSignal,

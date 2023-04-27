@@ -9,6 +9,10 @@ import {
   PreviousIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
+import {
+  BUILDER_REQUEST_PREFIX,
+  HTTP_REQUEST_PUBLIC_BASE_URL,
+} from "@/api/http/constant"
 import { GoogleOAuthContext } from "@/context/GoogleOAuthContext"
 import { useOAuthRefresh } from "@/hooks/useOAuthRefresh"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
@@ -30,7 +34,7 @@ import {
   GoogleSheetResourceInitial,
 } from "@/redux/resource/googleSheetResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { getOAuthAccessToken, redirectToGoogleOAuth } from "@/services/resource"
+import { getOAuthAccessToken } from "@/services/resource"
 import { validate } from "@/utils/form"
 import { ILLABuilderStorage } from "@/utils/storage"
 
@@ -84,7 +88,9 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
       const { accessToken } = response.data
       if (accessToken) {
         ILLABuilderStorage.setLocalStorage("accessToken", accessToken)
-        await redirectToGoogleOAuth(id, accessToken)
+        window.location.assign(
+          `${HTTP_REQUEST_PUBLIC_BASE_URL}/${BUILDER_REQUEST_PREFIX}/resources/${resourceId}/oauth2?accessToken=${accessToken}`,
+        )
       }
     } catch (e) {
       ILLABuilderStorage.removeLocalStorage("accessToken")
