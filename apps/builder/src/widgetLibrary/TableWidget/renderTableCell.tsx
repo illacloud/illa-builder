@@ -144,7 +144,7 @@ export const RenderTableButtonGroup: FC<{
     handleOnClick?.(convertPathToString(paths))
   }
   return value ? (
-    <ButtonGroup>
+    <ButtonGroup spacing="8px">
       {value.map((item, index) => {
         const { cellValue, colorScheme, disabled, variant } = item
         return (
