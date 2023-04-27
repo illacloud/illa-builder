@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
@@ -10,6 +10,7 @@ import {
   Tabs,
   globalColor,
   illaPrefix,
+  useMessage,
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -22,6 +23,7 @@ import { Avatar } from "@/page/App/components/Avatar"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
+import { fetchLogout } from "@/services/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import {
@@ -36,10 +38,33 @@ import {
   usernameStyle,
 } from "./style"
 
-const SettingTrigger: FC = () => {
+interface PageLoadingProps {
+  loadingCallBack?: (loading: boolean) => void
+}
+
+const SettingTrigger: FC<PageLoadingProps> = (props) => {
+  const { loadingCallBack } = props
   const { t } = useTranslation()
   const navigate = useNavigate()
   const userInfo = useSelector(getCurrentUser)
+  const message = useMessage()
+
+  const handleClickLogout = async () => {
+    loadingCallBack?.(true)
+    try {
+      await fetchLogout()
+      ILLABuilderStorage.clearLocalStorage()
+      ILLARoute.navigate("/login", {
+        replace: true,
+      })
+    } catch (e) {
+      message.error({
+        content: t("logout_failed"),
+      })
+    }
+    loadingCallBack?.(false)
+  }
+
   return (
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
@@ -52,12 +77,7 @@ const SettingTrigger: FC = () => {
       </div>
       <Divider />
       <div css={settingListStyle}>
-        <div
-          css={settingItemStyle}
-          onClick={() => {
-            navigate("/setting")
-          }}
-        >
+        <div css={settingItemStyle} onClick={handleClickLogout}>
           {t("Setting")}
         </div>
         <div
@@ -76,7 +96,9 @@ const SettingTrigger: FC = () => {
   )
 }
 
-export const DashboardTitleBar: FC = () => {
+export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
+  const { loadingCallBack } = props
+
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
@@ -139,7 +161,7 @@ export const DashboardTitleBar: FC = () => {
               position="bottom-end"
               trigger="click"
               triggerProps={{ closeDelay: 0, openDelay: 0, zIndex: 2 }}
-              dropList={<SettingTrigger />}
+              dropList={<SettingTrigger loadingCallBack={loadingCallBack} />}
             >
               <div>
                 <Avatar

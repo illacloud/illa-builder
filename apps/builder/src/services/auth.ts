@@ -19,6 +19,13 @@ export const fetchSignUp = async (data: unknown) => {
   })
 }
 
+export const fetchLogout = async () => {
+  return cloudRequest<RegisterResult>({
+    method: "POST",
+    url: "/users/logout",
+  })
+}
+
 interface ISendEmail {
   email: string
   usage: "signup" | "forgetpwd"
