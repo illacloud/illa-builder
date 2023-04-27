@@ -17,9 +17,9 @@ import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
   container,
   footerStyle,
+  getOAuthStatusContentStyle,
   oAuthErrorIconStyle,
   oAuthStatusContainerStyle,
-  oAuthStatusContentStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
@@ -216,7 +216,11 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
         )}
         {isAuthenticated && (
           <div css={oAuthStatusContainerStyle}>
-            <div css={oAuthStatusContentStyle}>
+            <div
+              css={getOAuthStatusContentStyle(
+                oAuthStatus === GoogleSheetAuthStatus.NotAuthenticated,
+              )}
+            >
               {oAuthStatus === GoogleSheetAuthStatus.NotAuthenticated ? (
                 <>
                   <WarningCircleIcon css={oAuthErrorIconStyle} />
