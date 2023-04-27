@@ -1149,7 +1149,8 @@
           "rowSelect": "选择行",
           "markerSelected": "选中点",
           "markerCreated": "创建点",
-          "select": "选择"
+          "select": "选择",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "图片",
