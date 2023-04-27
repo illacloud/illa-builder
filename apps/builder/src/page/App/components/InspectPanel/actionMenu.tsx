@@ -32,7 +32,7 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
     }
     newComponentNode.props = getNewWidgetPropsByUpdateSlice(
       newComponentNode.props || {},
-      newComponentNode.props || {},
+      {},
     )
     dispatch(componentsActions.resetComponentPropsReducer(newComponentNode))
   }, [componentType, dispatch, widgetDisplayName])
