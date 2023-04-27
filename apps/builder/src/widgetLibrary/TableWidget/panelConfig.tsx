@@ -117,7 +117,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             childrenSetter: [
               {
                 id: `${baseWidgetName}-column-buttonGroupContent-cellValue`,
-                labelName: i18n.t("editor.inspect.setter_label.column_title"),
+                labelName: i18n.t("editor.inspect.setter_label.mapped_value"),
                 attrName: "cellValue",
                 setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
               },
@@ -203,7 +203,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-column-tag-color`,
-            labelName: i18n.t("editor.inspect.setter_label.tag_color"),
+            labelName: i18n.t("editor.inspect.setter_label.table.tag_color"),
+            labelDesc: i18n.t("editor.inspect.setter_tips.table.tag_color"),
             attrName: "tagColor",
             selectAttrName: "tagColor",
             inputAttrName: "tagColorJs",
@@ -216,8 +217,13 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-column-currencyCode`,
-            labelName: i18n.t("editor.inspect.setter_label.currencyCode"),
-            labelDesc: i18n.t("editor.inspect.setter_tooltip.currencyCode"),
+            labelName: i18n.t(
+              "editor.inspect.setter_label.table.currency_code",
+            ),
+            labelDesc: i18n.t("editor.inspect.setter_tips.table.currency_code"),
+            placeholder: i18n.t(
+              "editor.inspect.setter_placeholder.table.currency_code",
+            ),
             attrName: "currencyCode",
             setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
             bindAttrName: ["type"],
@@ -226,7 +232,10 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-column-showThousandsSeparator`,
             labelName: i18n.t(
-              "editor.inspect.setter_label.showThousandsSeparator",
+              "editor.inspect.setter_label.table.show_thousands_separ",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.table.show_thousands_separ",
             ),
             attrName: "showThousandsSeparator",
             setterType: "DYNAMIC_SWITCH_SETTER",
