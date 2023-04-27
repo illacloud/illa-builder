@@ -1149,7 +1149,8 @@
           "rowSelect": "Rivin valinta",
           "markerSelected": "merkkiValittu",
           "markerCreated": "merkkiLuotu",
-          "select": "Valitse"
+          "select": "Valitse",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Kuvat",
