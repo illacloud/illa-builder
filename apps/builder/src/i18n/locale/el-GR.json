@@ -1525,7 +1525,9 @@
           "calendar_border": "Border",
           "calendar_text": "Κείμενο",
           "event_background": "Φόντο",
-          "event_text": "Κείμενο"
+          "event_text": "Κείμενο",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
         },
         "table": {
           "page_index": "Ευρετήριο σελίδας",
@@ -1697,7 +1699,9 @@
           "calendar_text": "Ορισμός χρώματος του κειμένου",
           "event_background": "Ορίστε το φόντο της κάρτας συμβάντων",
           "event_text": "Ορίστε το χρώμα κειμένου της κάρτας συμβάντων",
-          "couldnot_drag": "Αν θέλετε να σύρετε για να προσαρμόσετε το χρονικό εύρος, παρακαλούμε προχωρήστε στη σελίδα προεπισκόπησης για τη λειτουργία."
+          "couldnot_drag": "Αν θέλετε να σύρετε για να προσαρμόσετε το χρονικό εύρος, παρακαλούμε προχωρήστε στη σελίδα προεπισκόπησης για τη λειτουργία.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
         },
         "table": {
           "page_index": "Index of the page you wish to select.",
@@ -1989,7 +1993,10 @@
         "select_page": "Επιλέξτε σελίδα",
         "select_row": "Επιλογή γραμμής",
         "clear_selection": "Καθαρισμός επιλογής",
-        "set_filters": "Ορισμός φίλτρων"
+        "set_filters": "Ορισμός φίλτρων",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
