@@ -1149,7 +1149,8 @@
           "rowSelect": "Zeilenauswahl",
           "markerSelected": "markiert ausgewählt",
           "markerCreated": "markerErstellt",
-          "select": "Auswählen"
+          "select": "Auswählen",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Bilder",
