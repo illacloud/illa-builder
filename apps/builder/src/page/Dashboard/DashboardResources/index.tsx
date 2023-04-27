@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useBeforeUnload } from "react-router-dom"
 import { Button, Empty, Space, Table } from "@illa-design/react"
+import { useDetectGoogleOAuthStatus } from "@/hooks/useDetectGoogleOAuthStatus"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -65,6 +66,7 @@ export const DashboardResources: FC = () => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)
   const resourcesList: ResourceListState = useSelector(getAllResources)
+  const {} = useDetectGoogleOAuthStatus()
 
   const [newResourceVisible, setNewResourceVisible] = useState(false)
 
