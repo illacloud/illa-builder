@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-import { builderRequest } from "@/api/http"
 import {
   GoogleSheetAuthStatus,
   GoogleSheetResource,
 } from "@/redux/resource/googleSheetResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { getOAuthRefreshData } from "@/services/resource"
 import { ILLABuilderStorage } from "@/utils/storage"
 
 const getCurrentResource = (
@@ -35,20 +35,11 @@ export const useOAuthRefresh = (resourceId?: string) => {
   }
 
   useEffect(() => {
-    if (!requestRef.current) {
+    if (!requestRef.current || !resourceId) {
       return
     }
     const controller = new AbortController()
-    builderRequest<Resource<ResourceContent>>(
-      {
-        url: `/resources/${resourceId}/refresh`,
-        method: "POST",
-        signal: controller.signal,
-      },
-      {
-        needTeamID: true,
-      },
-    ).then((response) => {
+    getOAuthRefreshData(resourceId, controller.signal).then((response) => {
       const resourceData = response.data
       const content = resourceData?.content as GoogleSheetResource
       ILLABuilderStorage.setLocalStorage(

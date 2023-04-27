@@ -145,7 +145,5 @@ export const oAuthStatusContainerStyle = css`
 
 export const oAuthErrorIconStyle: SerializedStyles = css`
   font-size: 16px;
-  line-height: 0;
-
   color: ${getColor("orange", "03")};
 `
