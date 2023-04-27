@@ -1,5 +1,6 @@
 import { debounce } from "lodash"
 import { FC, useCallback, useMemo, useRef, useState } from "react"
+import { useSelector } from "react-redux"
 import { ReactComponent as OpenWindowIcon } from "@/assets/public/openWindow.svg"
 import { ILLACodeMirrorCore } from "@/components/CodeEditor/CodeMirror/core"
 import { IExpressionShape } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -11,11 +12,15 @@ import {
   openWindowIconHotspotStyle,
 } from "@/components/CodeEditor/style"
 import i18n from "@/i18n/config"
+import {
+  getExecutionResultToCurrentPageCodeMirror,
+  getExecutionResultToGlobalCodeMirror,
+} from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 import { LIMIT_MEMORY, estimateMemoryUsage } from "@/utils/calculateMemoryUsage"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
-import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const getResultType = (result: unknown) => {
@@ -90,7 +95,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     maxWidth,
     height,
     maxHeight,
-    editable,
+    editable = true,
     readOnly,
     extensions,
     expectValueType,
@@ -114,6 +119,14 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const popupContainerRef = useRef<HTMLDivElement>(null)
   const innerCanExpand = canExpand && !readOnly && editable
 
+  const calcContext = useSelector<RootState, Record<string, unknown>>(
+    (rootState) => {
+      return scopeOfAutoComplete === "global"
+        ? getExecutionResultToGlobalCodeMirror(rootState)
+        : getExecutionResultToCurrentPageCodeMirror(rootState)
+    },
+  )
+
   const stringSnippets = useMemo(() => {
     const realInput = wrappedCodeFunc ? wrappedCodeFunc(value) : value
     const dynamicStrings = getStringSnippets(realInput)
@@ -127,13 +140,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         isDynamicString(dynamicString)
       ) {
         try {
-          const calcRes = evaluateDynamicString(
-            "",
-            dynamicString,
-            scopeOfAutoComplete === "global"
-              ? ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext()
-              : ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext(),
-          )
+          const calcRes = evaluateDynamicString("", dynamicString, calcContext)
           calcResultArray.push(calcRes)
           const res = { value: dynamicString, hasError: false }
           result.push(res)
@@ -200,7 +207,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       )
     }
     return result
-  }, [wrappedCodeFunc, value, expectValueType, scopeOfAutoComplete])
+  }, [wrappedCodeFunc, value, expectValueType, calcContext])
 
   const debounceHandleChange = useMemo(() => {
     return debounce(onChange, 160)
