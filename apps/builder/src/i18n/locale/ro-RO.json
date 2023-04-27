@@ -1149,7 +1149,8 @@
           "rowSelect": "Selectare rând",
           "markerSelected": "markerSelectate",
           "markerCreated": "markerCreat",
-          "select": "Selectare"
+          "select": "Selectare",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Imagini",
