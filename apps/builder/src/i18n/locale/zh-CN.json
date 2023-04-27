@@ -1150,7 +1150,7 @@
           "markerSelected": "选中点",
           "markerCreated": "创建点",
           "select": "选择",
-          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
+          "DragOrClickNoEventArea": "拖拽或点击无事件区域"
         },
         "image_list": {
           "title": "图片",
