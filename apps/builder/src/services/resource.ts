@@ -1,4 +1,5 @@
 import { basicRequest, builderRequest } from "@/api/http"
+import { AccessType } from "@/redux/resource/googleSheetResource"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
 export const requestCreateResource = async (data: unknown) => {
@@ -73,6 +74,62 @@ export const fetchDeleteResource = async (resourceID: string) => {
     {
       url: `/resources/${resourceID}`,
       method: "DELETE",
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const getOAuthAccessToken = async (
+  resourceId: string,
+  redirectURL: string,
+  accessType: AccessType,
+) => {
+  return builderRequest<{
+    accessToken: string
+  }>(
+    {
+      method: "POST",
+      url: `/resources/${resourceId}/token`,
+      data: {
+        accessType,
+        redirectURL,
+      },
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const redirectToGoogleOAuth = async (
+  resourceId: string,
+  accessToken: string,
+) => {
+  return builderRequest(
+    {
+      method: "POST",
+      url: `/resources/${resourceId}/oauth2`,
+      data: {
+        accessToken,
+      },
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const getOAuthRefreshData = async (
+  resourceId: string,
+  signal: AbortSignal,
+) => {
+  return builderRequest<Resource<ResourceContent>>(
+    {
+      url: `/resources/${resourceId}/refresh`,
+      method: "POST",
+      signal,
     },
     {
       needTeamID: true,
