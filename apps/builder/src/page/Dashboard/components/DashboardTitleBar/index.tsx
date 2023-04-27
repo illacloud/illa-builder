@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
@@ -22,7 +22,6 @@ import {
 import { Avatar } from "@/page/App/components/Avatar"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { ILLARoute } from "@/router"
 import { fetchLogout } from "@/services/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
@@ -54,7 +53,7 @@ const SettingTrigger: FC<PageLoadingProps> = (props) => {
     try {
       await fetchLogout()
       ILLABuilderStorage.clearLocalStorage()
-      ILLARoute.navigate("/login", {
+      navigate("/login", {
         replace: true,
       })
     } catch (e) {
@@ -77,18 +76,8 @@ const SettingTrigger: FC<PageLoadingProps> = (props) => {
       </div>
       <Divider />
       <div css={settingListStyle}>
+        <div css={settingItemStyle}>{t("Setting")}</div>
         <div css={settingItemStyle} onClick={handleClickLogout}>
-          {t("Setting")}
-        </div>
-        <div
-          css={settingItemStyle}
-          onClick={() => {
-            ILLABuilderStorage.clearLocalStorage()
-            ILLARoute.navigate("/login", {
-              replace: true,
-            })
-          }}
-        >
           {t("Logout")}
         </div>
       </div>
