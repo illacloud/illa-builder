@@ -1560,6 +1560,9 @@
           "next_cursor": "Next cursor",
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
+        },
+        "switch_group": {
+          "option_label_alignment": "Option label position"
         }
       },
       "setter_tooltip": {
@@ -1733,6 +1736,18 @@
           "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
+        },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "A primary value of the option",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
         }
       },
       "setter_option": {
@@ -1828,6 +1843,9 @@
         },
         "table": {
           "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         }
       },
       "setter_tootip": {
@@ -2445,6 +2463,9 @@
         "event_calendar": "Calendário dos eventos"
       },
       "name_duplicated": "Este ID de recurso conflita nestes eventos, por favor, use o mesmo nome ou ID diferente"
+    },
+    "switch_group": {
+      "switch_group": "Switch group"
     }
   },
   "page": {
