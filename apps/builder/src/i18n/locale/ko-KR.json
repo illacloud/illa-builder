@@ -210,7 +210,7 @@
         "placeholder": {
           "url": "여기에 요청 URL 입력",
           "appwrite": {
-            "host": "HOSTNAME OR IP",
+            "host": "호스트 이름 또는 IP",
             "dbid": "데이터베이스 ID",
             "projectid": "프로젝트 ID",
             "secret": "••••••••••••••••••••",
@@ -283,11 +283,11 @@
         "option": {
           "appwrite": {
             "method": {
-              "create": "Create a document",
-              "list": "List documents",
-              "get": "Get a document",
-              "update": "Update a document",
-              "delete": "Delete a document"
+              "create": "문서 만들기",
+              "list": "문서 나열",
+              "get": "문서 받기",
+              "update": "문서 업데이트",
+              "delete": "문서 삭제"
             },
             "filter": {
               "and": "AND",
@@ -456,10 +456,10 @@
               "consumer_secret": "••••••••••••••••••••••",
               "realm": "testrealm@example.com",
               "ext": "some-app-extra-data",
-              "app": "Application id",
+              "app": "애플리케이션 ID",
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
-              "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
+              "authenticate_using_t": "쿼리 매개변수 대신 HTTP Authorization 헤더를 사용하여 인증",
               "find_instructions_on": "<0>AWS 문서</0>에서 액세스 키를 찾을 수 있는 위치에 대한 지침을 찾아보세요.",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
             },
@@ -480,16 +480,16 @@
               },
               "skip": "Skip",
               "limit": "Limit",
-              "include": "Include docs",
+              "include": "문서 포함",
               "des": "Descending order",
               "id": "_id",
               "rev": "_rev",
-              "record": "Record",
+              "record": "기록",
               "mangoquery": "MangoQuery",
-              "ViewURL": "ViewURL",
+              "ViewURL": "보기URL",
               "StartKey": "StartKey",
               "EndKey": "EndKey",
-              "include_doc_option": "Docs included in the returned results",
+              "include_doc_option": "반환된 결과에 포함된 문서",
               "des_option": "Use descending order"
             },
             "restapi": {
@@ -516,7 +516,7 @@
               },
               "add_access_token_to": {
                 "query_parameters": "Query Parameters",
-                "header_authorization": "Header Authorization"
+                "header_authorization": "Header권한 부여"
               }
             },
             "advanced": {
@@ -529,11 +529,11 @@
           },
           "restapi": {
             "signature_method": "서명 방법",
-            "consumer_key": "Consumer key",
-            "consumer_secret": "Consumer secret",
-            "access_token": "Access token",
-            "token_secret": "Token secret",
-            "private_key": "Private key",
+            "consumer_key": "소비자 키",
+            "consumer_secret": "소비자 비밀",
+            "access_token": "토큰 접근하기",
+            "token_secret": "토큰 암호",
+            "private_key": "개인 키",
             "realm": "Realm",
             "hawk_auth_id": "Hawk Auth ID",
             "hawk_auth_key": "Hawk Auth Key",
@@ -688,8 +688,8 @@
             "temperature": "1 means regular sampling, 0 means always taking the highest score, 100.0 is getting closer to uniform probability.",
             "repetition_penalty": "The more a token is used within generation the more it is penalized to not be picked in successive generation passes."
           },
-          "parameter": "Parameter",
-          "use_detail_parameters": "Use detail parameters",
+          "parameter": "매개 변수",
+          "use_detail_parameters": "세부 매개변수 사용",
           "use_cache": "Use cache",
           "wait_for_model": "Wait for model",
           "min_length": "Min length",
@@ -724,9 +724,9 @@
         },
         "dynamo": {
           "label": {
-            "method": "Method",
+            "method": "방법",
             "table": "시트",
-            "json_input": "Use JSON parameter editor",
+            "json_input": "JSON 매개변수 편집기 사용",
             "parameters": "Parameters",
             "index": "Index name",
             "key_condition": "Key condition expression",
