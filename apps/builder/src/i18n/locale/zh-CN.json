@@ -1551,15 +1551,15 @@
           "disable_user_selecti": "禁用用户选择",
           "default_selected_row": "默认选中行",
           "refresh": "刷新",
-          "download_row_data": "Download raw data",
-          "column_setting": "Column settings",
+          "download_row_data": "下载原始数据",
+          "column_setting": "列设置",
           "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "enable_server_side_p": "启用服务器端分页",
+          "pagination_type": "分页类型",
+          "total_row_count": "总行数",
+          "next_cursor": "下一个光标",
+          "has_next_page": "是否有下一页",
+          "currency_code": "货币代码"
         }
       },
       "setter_tooltip": {
@@ -1705,10 +1705,10 @@
           "resizable": "是否允许用户通过拖动事件的边框来延长或缩短时间跨度来更新事件时间范围和更改时间跨度"
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
+          "page_index": "您要选择的页面的索引",
+          "index": "您要选择的行的索引。 索引应该是一个数组，可用于指定多行。",
+          "scroll_to_the_select": "是否滚动到该行。",
+          "show_thousands_separ": "是否显示千位分隔符",
           "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
           "variant": "Variant of the button",
