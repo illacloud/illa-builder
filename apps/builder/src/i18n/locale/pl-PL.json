@@ -1149,7 +1149,8 @@
           "rowSelect": "Wybór wiersza",
           "markerSelected": "znacznik zaznaczony",
           "markerCreated": "markerUtworzono",
-          "select": "Wybierz"
+          "select": "Wybierz",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Obrazy",
