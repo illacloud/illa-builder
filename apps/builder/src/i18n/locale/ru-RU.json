@@ -1551,7 +1551,7 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Обновить",
-          "download_row_data": "Download Row data",
+          "download_row_data": "Download raw data",
           "column_setting": "Настройка колонки",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
