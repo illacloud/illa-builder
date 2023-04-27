@@ -1,18 +1,15 @@
 import { CellContext } from "@tanstack/table-core"
 import { isBoolean } from "lodash"
 import {
-  Rate,
   dayjsPro,
   isFunction,
   isNumber,
   isObject,
   isString,
 } from "@illa-design/react"
-import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 import { isValidCurrencyCode } from "@/constants/currency"
 import { getLocalLanguage } from "@/page/User/Register"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
-import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import {
   ColumnItemShape,
   Columns,
@@ -24,6 +21,8 @@ import {
   RenderTableIconGroup,
   RenderTableImage,
   RenderTableLink,
+  RenderTableMarkdown,
+  RenderTableRating,
   RenderTableTag,
 } from "@/widgetLibrary/TableWidget/renderTableCell"
 
@@ -219,7 +218,6 @@ export const getCellForType = (
     format = "YYYY-MM-DD",
     mappedValue,
     fromCurrentRow,
-    iconName,
     currencyCode = "XXX",
     showThousandsSeparator,
     tagColor = "auto",
@@ -325,14 +323,12 @@ export const getCellForType = (
     case Columns.Markdown:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        return value ? <ILLAMarkdown textString={value} /> : "-"
+        return RenderTableMarkdown({ value })
       }
     case Columns.Rating:
       return (props: CellContext<any, any>) => {
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
-        const maxCount = 5
-
-        return <Rate count={maxCount} readonly value={Number(value) || 0} />
+        return RenderTableRating({ value })
       }
     case Columns.Button:
       return (props: CellContext<any, any>) => {

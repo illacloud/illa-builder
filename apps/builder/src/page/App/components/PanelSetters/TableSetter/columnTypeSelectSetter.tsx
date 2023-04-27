@@ -16,7 +16,7 @@ interface ColumnTypeSelectSetterProps extends BaseSelectSetterProps {}
 export const ColumnTypeSelectSetter: FC<ColumnTypeSelectSetterProps> = (
   props,
 ) => {
-  const { widgetDisplayName, parentAttrName, handleUpdateMultiAttrDSL } = props
+  const { parentAttrName, handleUpdateMultiAttrDSL } = props
 
   const handleUpdateDsl = useCallback(
     (attrName: string, value: ColumnType) => {
@@ -48,7 +48,7 @@ export const ColumnTypeSelectSetter: FC<ColumnTypeSelectSetterProps> = (
         [attrName]: value,
       })
     },
-    [handleUpdateMultiAttrDSL],
+    [handleUpdateMultiAttrDSL, parentAttrName],
   )
 
   return (

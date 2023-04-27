@@ -5,9 +5,11 @@ import {
   ButtonGroup,
   Image,
   Link,
+  Rate,
   Tag,
   getColor,
 } from "@illa-design/react"
+import { ILLAMarkdown } from "@/components/ILLAMarkdown"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import {
@@ -137,7 +139,7 @@ export const RenderTableButtonGroup: FC<{
   eventPath: string
   handleOnClick?: (path: string) => void
 }> = (props) => {
-  const { cell, value, eventPath, handleOnClick } = props
+  const { value, eventPath, handleOnClick } = props
 
   const handleOnClickButtonItem = (index: number) => {
     const paths = [`${eventPath}`, "buttonGroupContent", `${index}`, "events"]
@@ -171,7 +173,7 @@ export const RenderTableIconGroup: FC<{
   eventPath: string
   handleOnClick?: (path: string) => void
 }> = (props) => {
-  const { cell, value, eventPath, handleOnClick } = props
+  const { value, eventPath, handleOnClick } = props
 
   const handleOnClickIconItem = (index: number) => {
     const paths = [`${eventPath}`, "iconGroupContent", `${index}`, "events"]
@@ -181,7 +183,7 @@ export const RenderTableIconGroup: FC<{
   return value ? (
     <div>
       {value.map((item, index) => {
-        const { label, cellValue, colorScheme, disabled } = item
+        const { cellValue, colorScheme, disabled } = item
         const Icon = getIcon(cellValue)
 
         return Icon ? (
@@ -198,4 +200,29 @@ export const RenderTableIconGroup: FC<{
   ) : (
     <span>{"-"}</span>
   )
+}
+
+export const RenderTableMarkdown: FC<{
+  value?: string
+}> = (props) => {
+  const { value } = props
+
+  return value ? (
+    <ILLAMarkdown
+      textString={value}
+      textColor={getColor("grayBlue", "02")}
+      urlColor="grayBlue"
+    />
+  ) : (
+    <span>-</span>
+  )
+}
+
+export const RenderTableRating: FC<{
+  value?: unknown
+}> = (props) => {
+  const { value } = props
+  const maxCount = 5
+
+  return <Rate count={maxCount} readonly value={Number(value) || 0} />
 }

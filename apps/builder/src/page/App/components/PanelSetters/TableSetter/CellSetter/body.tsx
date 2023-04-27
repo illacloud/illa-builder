@@ -17,6 +17,7 @@ export const ListBody: FC = () => {
     if (!isEqual(columnItems, items)) {
       setItems(columnItems)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columnItems])
 
   const updateItem = (values: CellItemProps[]) => {
