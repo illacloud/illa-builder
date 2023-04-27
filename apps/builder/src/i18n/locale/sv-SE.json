@@ -1525,7 +1525,9 @@
           "calendar_border": "Border",
           "calendar_text": "Text",
           "event_background": "Bakgrund",
-          "event_text": "Text"
+          "event_text": "Text",
+          "draggable": "Draggable",
+          "resizable": "Resizable"
         },
         "table": {
           "page_index": "Sidans index",
@@ -1697,7 +1699,9 @@
           "calendar_text": "Ange färg på texten",
           "event_background": "Ange bakgrunden till händelsekortet",
           "event_text": "Ställ in textfärgen på händelsekortet",
-          "couldnot_drag": "Om du vill dra för att justera tidsintervallet, gå vidare till förhandsgranskningssidan för operationen."
+          "couldnot_drag": "Om du vill dra för att justera tidsintervallet, gå vidare till förhandsgranskningssidan för operationen.",
+          "draggable": "Whether allow users to update the event time range by dragging to move the event",
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
         },
         "table": {
           "page_index": "Index of the page you wish to select.",
@@ -1989,7 +1993,10 @@
         "select_page": "Välj sida",
         "select_row": "Välj rad",
         "clear_selection": "Rensa markering",
-        "set_filters": "Ställ in filter"
+        "set_filters": "Ställ in filter",
+        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onEventDrag": "onEventDrag",
+        "onEventResize": "onEventResize"
       }
     },
     "tutorial": {
