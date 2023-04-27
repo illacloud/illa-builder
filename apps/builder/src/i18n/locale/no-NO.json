@@ -1149,7 +1149,8 @@
           "rowSelect": "Velg rad",
           "markerSelected": "markervalgt",
           "markerCreated": "markeropprettet",
-          "select": "Velg"
+          "select": "Velg",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Bilder",
