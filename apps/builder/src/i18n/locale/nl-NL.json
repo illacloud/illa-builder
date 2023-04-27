@@ -1149,7 +1149,8 @@
           "rowSelect": "Rij selecteren",
           "markerSelected": "markerSelected",
           "markerCreated": "markerCreated",
-          "select": "Selecteren"
+          "select": "Selecteren",
+          "DragOrClickNoEventArea": "DragOrClickNoEventArea"
         },
         "image_list": {
           "title": "Afbeeldingen",
