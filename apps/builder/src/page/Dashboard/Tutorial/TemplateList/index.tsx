@@ -41,7 +41,11 @@ export const TemplateList: FC<TemplateListProps> = (props) => {
           content: e?.response?.data?.errorMessage,
         })
       }
-      if (e?.response == undefined && e?.request != undefined) {
+      if (
+        e?.response == undefined &&
+        e?.request != undefined &&
+        e.request.status !== 401
+      ) {
         message.warning({
           content: t("network_error"),
         })
