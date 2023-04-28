@@ -759,8 +759,8 @@
         },
         "result": {
           "restapi": {
-            "status": "Status",
-            "headers": "Headers",
+            "status": "상태",
+            "headers": "헤더",
             "response": "Response"
           }
         },
