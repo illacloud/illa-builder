@@ -196,8 +196,8 @@
             "update_value": "待更新的值",
             "primary_key_column": "主键列名",
             "array_of_rows_to_upd": "待更新的行数据的数组",
-            "filters_to_match_row": "Filters to match row",
-            "consider_queries_tha": "将不删除任何行的查询视为成功",
+            "filters_to_match_row": "行索引",
+            "consider_queries_tha": "将未删除任何行的查询视为成功",
             "title_of_spreadsheet": "电子表格的标题",
             "sheet_id_to_copy": "要复制的工作表ID",
             "sheet_to_copy_to": "要复制到的工作表",
@@ -265,7 +265,7 @@
             "leave_blank_to_selec": "留空以选择第一张表",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
-            "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
+            "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 </0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
             "copy_to_sheet_name": "必填。重命名复制后的表",
             "successfully_authent": "认证成功",
@@ -1998,8 +1998,8 @@
         "markers_changed": "更改标记"
       },
       "time_range": {
-        "setstarttime": "setStartTime",
-        "setendtime": "setEndTime"
+        "setstarttime": "设置开始时间",
+        "setendtime": "设置结束时间"
       },
       "eventCalendar": {
         "addevent": "addEvent",
