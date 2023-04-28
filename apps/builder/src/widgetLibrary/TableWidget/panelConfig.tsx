@@ -299,6 +299,13 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             shown: (value) => value === Columns.Image,
           },
           {
+            id: `${baseWidgetName}-column-background-color`,
+            labelName: i18n.t("editor.inspect.setter_label.table.background"),
+            labelDesc: i18n.t("editor.inspect.setter_tips.table.background"),
+            attrName: "backgroundColor",
+            setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+          },
+          {
             id: `${baseWidgetName}-column-alignment`,
             setterType: "RADIO_GROUP_SETTER",
             labelName: i18n.t("editor.inspect.setter_label.label_alignment"),

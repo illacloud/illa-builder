@@ -71,6 +71,7 @@ export interface ColumnItemShape
   events?: any[]
   columnIndex?: number
   alignment?: TableCellAlign
+  backgroundColor?: string
   // icon type
   iconName?: string
   iconGroupContent?: TableCellIconGroupItemProps[]

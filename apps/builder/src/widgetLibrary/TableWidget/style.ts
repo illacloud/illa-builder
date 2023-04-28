@@ -1,4 +1,5 @@
-import { css } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 import { TableCellAlign } from "@/widgetLibrary/TableWidget/interface"
 
 export const overFlowStyle = css`
@@ -11,7 +12,7 @@ export const overFlowStyle = css`
 export const applyIconContainerStyle = (
   colorScheme?: string,
   disabled?: boolean,
-) => {
+): SerializedStyles => {
   const svgColor = colorScheme
     ? css`
         color: ${colorScheme};
@@ -29,7 +30,9 @@ export const applyIconContainerStyle = (
   `
 }
 
-export const applyAlignmentStyle = (align?: TableCellAlign) => {
+export const applyAlignmentStyle = (
+  align?: TableCellAlign,
+): SerializedStyles => {
   switch (align) {
     case "left":
       return css`
@@ -47,7 +50,9 @@ export const applyAlignmentStyle = (align?: TableCellAlign) => {
   return css``
 }
 
-export const applyTableButtonGroupStyle = (align?: TableCellAlign) => {
+export const applyTableButtonGroupStyle = (
+  align?: TableCellAlign,
+): SerializedStyles => {
   let alignmentStyle
   switch (align) {
     case "left":
@@ -70,4 +75,15 @@ export const applyTableButtonGroupStyle = (align?: TableCellAlign) => {
     width: 100%;
     ${alignmentStyle};
   `
+}
+
+export const applyTableCellBackgroundStyle = (
+  color?: string,
+): SerializedStyles => {
+  if (color) {
+    return css`
+      background-color: ${getColor(color, "03")};
+    `
+  }
+  return css``
 }
