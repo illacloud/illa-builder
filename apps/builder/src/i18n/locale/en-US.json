@@ -975,7 +975,7 @@
           },
           "tips": {
             "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
-            "hf_endpoint": "learn more about <0>Endpoint</0>"
+            "hf_endpoint": "learn more about <0>Hugging Face Endpoint</0>"
           },
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
