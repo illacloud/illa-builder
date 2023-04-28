@@ -1,0 +1,35 @@
+import { v4 } from "uuid"
+import { ReactComponent as SelectWidgetIcon } from "@/assets/widgetCover/select.svg"
+import i18n from "@/i18n/config"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+
+export const SWITCH_GROUP_WIDGET_CONFIG: WidgetConfig = {
+  type: "SWITCH_GROUP_WIDGET",
+  displayName: "switchGroup",
+  widgetName: i18n.t("widget.select.name"),
+  icon: <SelectWidgetIcon />,
+  keywords: ["Select", "选择器"],
+  sessionType: "SELECT",
+  w: 20,
+  h: 5,
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  defaults: {
+    optionConfigureMode: "static",
+    label: "Label",
+    labelAlign: "left",
+    labelPosition: "left",
+    labelWidth: "{{33}}",
+    manualOptions: [
+      { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },
+      { id: `option-${v4()}`, label: "Option 2", value: "Option 2" },
+      { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },
+    ],
+    dataSources: "{{[]}}",
+    colorScheme: "blue",
+    hidden: false,
+    formDataKey: "switchGroup",
+
+    layoutPosition: "left",
+    value: "{{[]}}",
+  },
+}
