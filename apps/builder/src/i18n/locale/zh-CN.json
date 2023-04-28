@@ -843,7 +843,7 @@
             "account_name": "xy12345.us-east-2.aws",
             "warehouse": "WH_WH",
             "snowflake_database": "SNOWFLAKE_SAMPE_DATA",
-            "schema": "公开的",
+            "schema": "PUBLIC",
             "role": "用户角色",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
@@ -975,7 +975,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>在您的 Hugging Face 配置文件设置</0>中获取 Organizations API 令牌。",
-            "hf_endpoint": "了解更多关于 <0>端点</0>"
+            "hf_endpoint": "了解更多关于 <0>Hugging Face Endpoint</0>"
           },
           "placeholder": {
             "hf_endpoint": "https://u149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -983,7 +983,7 @@
         },
         "tip": {
           "allowlist": {
-            "title": "允许IP地址",
+            "title": "添加允许的IP地址",
             "message": "如果您的资源不可公开访问，请更新您的网络或防火墙设置，将 ILLA 的 IP 地址添加到白名单，以便 ILLA 可以连接到您的资源。"
           }
         },
@@ -1017,13 +1017,13 @@
       "acl": {
         "option": {
           "blank": "—",
-          "private": "私人的",
-          "public_read": "公开读",
-          "public_read_write": "公开读写",
+          "private": "private",
+          "public_read": "public-read",
+          "public_read_write": "public-read-write",
           "aws_exec_read": "aws-exec-read",
           "auth": "authenticated-read",
-          "bucket_owner_read": "bucket-所有者已读",
-          "bucket_owner_full_control": "bucket-所有者-完全控制"
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full-control"
         }
       }
     },
@@ -1164,7 +1164,7 @@
         "image_setter": {
           "new": "新增"
         },
-        "Change": "更改",
+        "Change": "内容更改",
         "Select": "选择",
         "eventCalendar": {
           "no_title": "无标题"
