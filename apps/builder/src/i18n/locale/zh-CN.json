@@ -459,7 +459,7 @@
               "app": "应用程序ID",
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
-              "authenticate_using_t": "使用 HTTP Authorization 标头代替查询参数",
+              "authenticate_using_t": "使用 HTTP Authorization header代替查询参数",
               "find_instructions_on": "<0>在 AWS 文档</0>中找到关于在哪里可以找到访问密钥的说明。",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
             },
@@ -760,8 +760,8 @@
         "result": {
           "restapi": {
             "status": "状态",
-            "headers": "信头",
-            "response": "答复"
+            "headers": "Headers",
+            "response": "响应"
           }
         },
         "placeholder": {
@@ -1021,7 +1021,7 @@
           "public_read": "公开读",
           "public_read_write": "公开读写",
           "aws_exec_read": "aws-exec-read",
-          "auth": "已认证的已读",
+          "auth": "authenticated-read",
           "bucket_owner_read": "bucket-所有者已读",
           "bucket_owner_full_control": "bucket-所有者-完全控制"
         }
