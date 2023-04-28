@@ -163,7 +163,7 @@
             "host": "主机",
             "dbid": "数据库 ID",
             "projectid": "项目ID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "API Key",
             "collectionid": "集合ID",
             "documentid": "文档ID",
             "data": "数据",
@@ -399,14 +399,14 @@
         "firebase": {
           "action_type": "Action Type",
           "collection": "集合",
-          "database_ref": "Database ref",
+          "database_ref": "数据库参考",
           "document_id": "文档ID",
           "email": "邮箱",
           "end_at": "End At",
           "len_of_list": "列表长度",
           "limit": "Limit",
           "next_page_token": "下一页token",
-          "object_to_set": "Object to set",
+          "object_to_set": "要设置的对象",
           "order_by": "Order by",
           "ordering_direction": "Ordering direction",
           "parent_document_id": "父文档ID",
@@ -415,10 +415,10 @@
             "asc": "asc",
             "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
             "input_collection": "输入一个集合",
-            "key": "key",
-            "select_an_action": "Select an action",
+            "key": "键",
+            "select_an_action": "选择一个行为",
             "select_collection": "选择一个集合",
-            "value": "value"
+            "value": "值"
           },
           "service_type": "Service Type",
           "start_at": "Start At",
@@ -427,9 +427,9 @@
             "parent_document_id_tips": "为空时选择最外层目录"
           },
           "uid": "UID",
-          "use_a_dropdown": "Use a dropdown",
+          "use_a_dropdown": "使用下拉选择",
           "use_end_at": "Use endAt",
-          "use_raw_id": "Use raw id",
+          "use_raw_id": "使用原始ID",
           "use_start_at": "Use startAt",
           "user_object": "用户对象",
           "value": "值",
@@ -1733,9 +1733,9 @@
           "total_row_count": "用于计算页码的行数。",
           "next_cursor": "用于定位一组数据的下一个起点的标识符，以便分页并检索分批数据",
           "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
-          "filters": "一个包含在 {{ }}中的对象数组。 例如：{□ {{\"**columnName**\":\"name of the 列 to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
-          "filter_mode": "过滤模式 AND 或 OR。",
-          "currency_code": "美元"
+          "filters": "一个包含在 {{ }}中的对象数组。 例如：{[{{\"**columnName**\":\"name of the 列 to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
+          "filter_mode": "过滤器的模式，选择AND 或 OR。",
+          "currency_code": "使用在[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)中定义的货币代码"
         },
         "switch_group": {
           "label": "选项的标签",
@@ -1842,7 +1842,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "货币代码在 [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) 中定义"
+          "currency_code": "USD"
         },
         "switch_group": {
           "default_value": "{{[\"value1\",\"value2\"]}}"
@@ -1967,8 +1967,8 @@
         }
       },
       "statistics": {
-        "set_primary_value": "设置初级值",
-        "reset_primary_value": "重置原始值",
+        "set_primary_value": "设置主要数值",
+        "reset_primary_value": "重置主要数值",
         "primary_value": "主要数值"
       },
       "collapse": {
@@ -2012,10 +2012,7 @@
         "select_page": "选择页面",
         "select_row": "选择行",
         "clear_selection": "清除选择",
-        "set_filters": "设置筛选器",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
-        "onEventResize": "onEventResize"
+        "set_filters": "设置筛选器"
       }
     },
     "tutorial": {
@@ -2079,7 +2076,7 @@
           "congratulations_title": "恭喜🎉",
           "congratulations_description": "您刚刚构建了您的第一个应用程序。 如果您在使用过程中有任何疑问，可以通过<0>Discord<0>联系我们",
           "congratulations_button": "完成",
-          "event_handler_description_all": "1. 添加事件处理程序\r\n2. 点击事件处理程序\r\n3。 更改触发动作的动作\r\n4。更改查询为后台查询1"
+          "event_handler_description_all": "1. 添加事件处理器\n2. 点击事件处理器\n3. 将触发的行为改为触发Action\n4. 更改Action为postgresql1"
         }
       }
     },
