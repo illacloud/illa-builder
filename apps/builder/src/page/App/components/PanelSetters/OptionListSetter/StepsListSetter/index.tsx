@@ -10,7 +10,6 @@ export const StepsListSetter: FC<StepsListSetterProps> = (props) => {
       headerName={i18n.t("widget.step.name")}
       itemName="Step"
       emptyNode={<div css={emptyEmptyBodyStyle}>No Steps</div>}
-      showDuplicationKeyError={true}
       {...props}
     />
   )

@@ -22,7 +22,13 @@ import {
 import { formatSwitchOptions } from "@/widgetLibrary/SwitchGroupWidget/utils"
 
 export const WrappedSwitchGroup: FC<WrappedSwitchGroupProps> = (props) => {
-  const { options, layoutPosition, value: finalValue, handleOnChange } = props
+  const {
+    options,
+    layoutPosition,
+    value: finalValue,
+    colorScheme,
+    handleOnChange,
+  } = props
 
   return (
     <div css={applyContainer}>
@@ -33,9 +39,10 @@ export const WrappedSwitchGroup: FC<WrappedSwitchGroupProps> = (props) => {
             key={`${index}-${value}`}
           >
             <Switch
+              colorScheme={colorScheme}
               disabled={disabled}
               data-value={value}
-              checked={finalValue.includes(value)}
+              checked={Array.isArray(finalValue) && finalValue.includes(value)}
               onChange={(status, event) =>
                 handleOnChange(
                   status,
@@ -57,7 +64,7 @@ WrappedSwitchGroup.displayName = "WrappedSwitchGroup"
 
 export const SwitchGroupWidget: FC<SwitchGroupWidgetProps> = (props) => {
   const {
-    value: finalValue,
+    value: finalValue = [],
     optionConfigureMode,
     mappedOption,
     manualOptions,

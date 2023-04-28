@@ -30,7 +30,7 @@ export const SWITCH_GROUP_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-options`,
         useCustomLayout: true,
         attrName: "manualOptions",
-        setterType: "SWITCH_GROUP_LIST_SETTER",
+        setterType: "OPTION_LIST_SETTER",
         bindAttrName: ["optionConfigureMode"],
         shown: (value) => !value || value === "static",
         childrenSetter: [
@@ -134,8 +134,9 @@ export const SWITCH_GROUP_PANEL_CONFIG: PanelConfig[] = [
         ),
         attrName: "value",
         isSetterSingleRow: true,
-        placeholder: "{{ [value1, value2] }}",
+        placeholder: `{{ ["value1", "value2"] }}`,
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.ARRAY,
       },
     ],
   },
@@ -254,7 +255,6 @@ export const SWITCH_GROUP_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         attrName: "required",
       },
-      // TODO 最多和最少的错误提示信息
       {
         id: `${baseWidgetName}-validation-leastNumber`,
         labelName: i18n.t("editor.inspect.setter_label.choose_at_least"),
@@ -306,6 +306,7 @@ export const SWITCH_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.form_data_key"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.form_data_key"),
         setterType: "INPUT_SETTER",
+        isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "formDataKey",
       },
