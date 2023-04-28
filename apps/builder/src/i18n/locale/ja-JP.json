@@ -761,7 +761,7 @@
           "restapi": {
             "status": "ステータス",
             "headers": "ヘッダー",
-            "response": "回答"
+            "response": "応答"
           }
         },
         "placeholder": {
