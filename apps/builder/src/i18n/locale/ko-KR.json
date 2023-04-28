@@ -163,7 +163,7 @@
             "host": "주인",
             "dbid": "데이터베이스 ID",
             "projectid": "프로젝트 ID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "API Key",
             "collectionid": "컬렉션 ID",
             "documentid": "문서 ID",
             "data": "데이터",
@@ -1735,7 +1735,7 @@
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "currency_code": "[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)에 정의된 통화 코드"
         },
         "switch_group": {
           "label": "The label of the option",
@@ -1842,7 +1842,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "USD"
         },
         "switch_group": {
           "default_value": "{{[\"value1\",\"value2\"]}}"
@@ -1967,8 +1967,8 @@
         }
       },
       "statistics": {
-        "set_primary_value": "setPrimaryValue",
-        "reset_primary_value": "resetPrimaryValue",
+        "set_primary_value": "기본 값 설정",
+        "reset_primary_value": "기본 값 재설정",
         "primary_value": "기본 값"
       },
       "collapse": {
@@ -2012,10 +2012,7 @@
         "select_page": "페이지 선택",
         "select_row": "Select row",
         "clear_selection": "Clear selection",
-        "set_filters": "Set filters",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
-        "onEventResize": "onEventResize"
+        "set_filters": "Set filters"
       }
     },
     "tutorial": {
@@ -2079,7 +2076,7 @@
           "congratulations_title": "축하해요",
           "congratulations_description": "첫 번째 애플리케이션을 구축했습니다. 사용 중 궁금한 점이 있으면 <0>Discord<0>를 통해 문의하실 수 있습니다.",
           "congratulations_button": "마치다",
-          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
+          "event_handler_description_all": "1. 이벤트 핸들러 추가\n2. 이벤트 핸들러 클릭\n3. 액션을 트리거 액션으로 변경\n4. 액션을 postgresql1로 변경"
         }
       }
     },
