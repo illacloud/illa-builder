@@ -196,7 +196,7 @@
             "update_value": "업데이트할 값",
             "primary_key_column": "기본 키 열 이름",
             "array_of_rows_to_upd": "업데이트할 행의 배열",
-            "filters_to_match_row": "Filters to match row",
+            "filters_to_match_row": "행 인덱스",
             "consider_queries_tha": "행을 삭제하지 않는 쿼리를 성공으로 간주",
             "title_of_spreadsheet": "스프레드시트 제목",
             "sheet_id_to_copy": "복사할 시트 ID",
@@ -265,7 +265,7 @@
             "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
-            "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
+            "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요.  </0>",
             "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오.",
             "copy_to_sheet_name": "필수의. 복사된 시트의 이름을 바꿉니다.",
             "successfully_authent": "성공적으로 인증됨",
@@ -1998,7 +1998,7 @@
         "markers_changed": "마커가 변경됨"
       },
       "time_range": {
-        "setstarttime": "setStartTime",
+        "setstarttime": "시작 시간 설정",
         "setendtime": "setEndTime"
       },
       "eventCalendar": {
