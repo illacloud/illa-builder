@@ -1021,7 +1021,7 @@
           "public_read": "public-read",
           "public_read_write": "public-read-write",
           "aws_exec_read": "aws-exec-read",
-          "auth": "認証された読み取り",
+          "auth": "authenticated-read",
           "bucket_owner_read": "Bucket-owner-read",
           "bucket_owner_full_control": "Bucket-owner-full control"
         }
