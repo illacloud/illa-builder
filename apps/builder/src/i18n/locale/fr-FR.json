@@ -1716,7 +1716,7 @@
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
           "variant": "Variant of the button",
           "icon": "The icon displayed in the table",
-          "color": "Set the color.",
+          "color": "Set the color",
           "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
           "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
           "alignment": "Set the alignment of the column.",
