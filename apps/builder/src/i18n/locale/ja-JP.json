@@ -163,7 +163,7 @@
             "host": "ホスト",
             "dbid": "データベースID",
             "projectid": "プロジェクトID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "API Key",
             "collectionid": "コレクション ID",
             "documentid": "ドキュメント ID",
             "data": "データ",
@@ -1733,9 +1733,9 @@
           "total_row_count": "ページ番号を数えるために使用される行数。",
           "next_cursor": "バッチ内のデータをページネーションおよび取得するために、一連のデータの次の出発点を特定するために使用される識別子",
           "has_next_page": "利用可能なデータの別のページがあるかどうかを示すために使用されるブール値。 ペジネーションされたクエリでのデータ検索の制御を改善し、クエリのパフォーマンスを最適化するのに役立ちます",
-          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
+          "filters": "{{ }} で囲まれたオブジェクトの配列。 たとえば、{{ [{\"**columnName**\":\"フィルターする列の名前\", \"**filterValue**\"：\"一致する値\", \"**operator**\":\"contains, 等しい、...\"}] }}",
           "filter_mode": "フィルタモード。ANDまたはOR。",
-          "currency_code": "USD"
+          "currency_code": "[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) で定義されている通貨コード"
         },
         "switch_group": {
           "label": "オプションのラベル",
@@ -1842,7 +1842,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "USD"
         },
         "switch_group": {
           "default_value": "{{[\"value1\",\"value2\"]}}"
@@ -1967,8 +1967,8 @@
         }
       },
       "statistics": {
-        "set_primary_value": "setPrimaryValue",
-        "reset_primary_value": "ResetPrimaryValue",
+        "set_primary_value": "プライマリ値を設定",
+        "reset_primary_value": "主な値をリセット",
         "primary_value": "主な値"
       },
       "collapse": {
@@ -2012,10 +2012,7 @@
         "select_page": "ページを選択",
         "select_row": "行を選択",
         "clear_selection": "選択をクリア",
-        "set_filters": "フィルターを設定",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
-        "onEventResize": "onEventResize"
+        "set_filters": "フィルターを設定"
       }
     },
     "tutorial": {
@@ -2079,7 +2076,7 @@
           "congratulations_title": "おめでとう🎉",
           "congratulations_description": "最初のアプリケーションを作成しました。 使用中に質問がある場合は、<0>Discord<0> からご連絡ください",
           "congratulations_button": "完成済み",
-          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
+          "event_handler_description_all": "1. イベント ハンドラーを追加する\n2. イベント ハンドラーをクリックします\n3.アクションをトリガーアクションに変更する\n4. アクションを postgresql1 に変更します"
         }
       }
     },
@@ -2843,7 +2840,7 @@
   "oauth_redirect_title": "이동",
   "oauth_redirect_description": "<0>ILLA Cloud</0> にリダイレクトしています...",
   "language": {
-    "en-US": "日本語",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
