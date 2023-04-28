@@ -843,7 +843,7 @@
             "account_name": "xy12345.us-east-2.aws",
             "warehouse": "WH",
             "snowflake_database": "SNOWFLAKE_SAMPLE_DATA_DESC",
-            "schema": "公開",
+            "schema": "PUBLIC",
             "role": "役割",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
@@ -975,7 +975,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>Hugging Face プロフィール設定</0>で Organizations API トークンを取得してください。",
-            "hf_endpoint": "<0>エンドポイント</0>の詳細"
+            "hf_endpoint": "<0>Hugging Face Endpoint</0>の詳細"
           },
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -1017,13 +1017,13 @@
       "acl": {
         "option": {
           "blank": "—",
-          "private": "非公開",
+          "private": "private",
           "public_read": "public-read",
           "public_read_write": "public-read-write",
           "aws_exec_read": "aws-exec-read",
           "auth": "authenticated-read",
-          "bucket_owner_read": "Bucket-owner-read",
-          "bucket_owner_full_control": "Bucket-owner-full control"
+          "bucket_owner_read": "bucket-owner-read",
+          "bucket_owner_full_control": "bucket-owner-full control"
         }
       }
     },
