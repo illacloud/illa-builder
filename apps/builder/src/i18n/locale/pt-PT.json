@@ -1735,7 +1735,7 @@
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         },
         "switch_group": {
           "label": "The label of the option",
@@ -1842,7 +1842,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "USD"
         },
         "switch_group": {
           "default_value": "{{[\"value1\",\"value2\"]}}"
@@ -2012,10 +2012,7 @@
         "select_page": "Selecionar página",
         "select_row": "Selecione a linha",
         "clear_selection": "Limpar seleção",
-        "set_filters": "Configurar filtros",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
-        "onEventResize": "onEventResize"
+        "set_filters": "Configurar filtros"
       }
     },
     "tutorial": {
