@@ -196,7 +196,7 @@
             "update_value": "更新する値",
             "primary_key_column": "主キー列名",
             "array_of_rows_to_upd": "更新する行の配列",
-            "filters_to_match_row": "Filters to match row",
+            "filters_to_match_row": "行インデックス",
             "consider_queries_tha": "行を削除しないクエリを成功と見なす",
             "title_of_spreadsheet": "タイトル",
             "sheet_id_to_copy": "コピーするシートID",
@@ -265,7 +265,7 @@
             "leave_blank_to_selec": "空白のままにして最初のシートを選択します",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
-            "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。 <0>",
+            "a1_notation": "sheet1 というタイトルのシートの最初の列の最初の 5 つのセルを選択するには、A1 表記は sheet1!A1:A5 です。 <0>詳細については、Google のドキュメントを参照してください。<0>",
             "sheet_id_to_copy": "これは、Google スプレッドシートの URL の ?gid=123123 を参照してください。",
             "copy_to_sheet_name": "必要。 コピーしたシートの名前を変更します。",
             "successfully_authent": "認証に成功しました",
@@ -1998,7 +1998,7 @@
         "markers_changed": "マーカーが変更されました"
       },
       "time_range": {
-        "setstarttime": "setStartTime",
+        "setstarttime": "開始時刻を設定",
         "setendtime": "setEndTime"
       },
       "eventCalendar": {
