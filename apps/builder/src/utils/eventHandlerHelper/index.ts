@@ -267,6 +267,7 @@ export const transformEvents = (
         "deleteEvent",
         "setStartTime",
         "setEndTime",
+        "setValueInArray",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
