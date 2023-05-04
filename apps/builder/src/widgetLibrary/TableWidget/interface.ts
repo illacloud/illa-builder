@@ -1,19 +1,43 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { HTMLAttributes } from "react"
-import { ButtonColorScheme, ImageProps, TableProps } from "@illa-design/react"
+import {
+  ButtonColorScheme,
+  ButtonProps,
+  ImageProps,
+  TableProps,
+} from "@illa-design/react"
+import { CellItemProps } from "@/page/App/components/PanelSetters/TableSetter/CellSetter/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
-export const ColumnTypeOption = [
-  { label: "Auto", value: "auto" },
-  { label: "Text", value: "text" },
-  { label: "Date", value: "date" },
-  { label: "Number", value: "number" },
-  { label: "Percent", value: "percent" },
-  { label: "Link", value: "link" },
-  { label: "Button", value: "button" },
-  { label: "Boolean", value: "boolean" },
-  { label: "Image", value: "image" },
-]
+export enum Columns {
+  Auto = "auto",
+  Text = "text",
+  Date = "date",
+  Tag = "tag",
+  Time = "time",
+  DateTime = "datetime",
+  Number = "number",
+  Percent = "percent",
+  Link = "link",
+  Button = "button",
+  ButtonGroup = "buttongroup",
+  Boolean = "boolean",
+  Image = "image",
+  IconGroup = "icongroup",
+  Rating = "rating",
+  Markdown = "markdown",
+  // HTML = "html",
+  Currency = "currency",
+}
+
+export type ColumnType = Lowercase<keyof typeof Columns>
+
+export const ColumnTypeOption = Object.entries(Columns).map(([key, value]) => {
+  return {
+    label: key,
+    value: value as ColumnType,
+  }
+})
 
 export const defaultColumnItem: Partial<ColumnItemShape> = {
   enableSorting: true,
@@ -22,18 +46,9 @@ export const defaultColumnItem: Partial<ColumnItemShape> = {
   format: "YYYY-MM-DD",
   colorScheme: "blue",
   objectFit: "scale-down",
+  tagColor: "auto",
+  alignment: "left",
 }
-
-export type ColumnType =
-  | "auto"
-  | "text"
-  | "date"
-  | "number"
-  | "percent"
-  | "link"
-  | "button"
-  | "boolean"
-  | "image"
 
 export interface ColumnItemShape
   extends Pick<ColumnDef<object>, "cell" | "id"> {
@@ -48,13 +63,57 @@ export interface ColumnItemShape
   enableSorting?: boolean
   visible?: boolean
   decimalPlaces?: number
+  showThousandsSeparator?: boolean
   format?: string
   mappedValue?: string
   custom?: boolean
   fromCurrentRow?: Record<string, boolean>
   events?: any[]
   columnIndex?: number
+  alignment?: TableCellAlign
+  // icon type
+  iconName?: string
+  iconGroupContent?: TableCellIconGroupItemProps[]
+  // currency type
+  currencyCode?: string
+  // tag type
+  tagColor?: string | "auto"
+  tagColorJs?: string | "auto"
+  tagColorMode?: "select" | "dynamic"
+  // button group type
+  buttonGroupContent?: TableCellButtonGroupItemProps[]
 }
+
+export type TableCellAlign = "left" | "center" | "right"
+
+export interface TableCellButtonGroupItemProps extends CellItemProps {
+  colorScheme?: ButtonColorScheme
+  disabled?: boolean
+  variant?: ButtonProps["variant"]
+  fromCurrentRow?: Record<string, boolean>
+}
+
+export interface TableCellIconGroupItemProps extends CellItemProps {
+  colorScheme?: string
+  disabled?: boolean
+  fromCurrentRow?: Record<string, boolean>
+}
+
+export const tagColorSchemeOptions = [
+  "auto",
+  "blackAlpha",
+  "gray",
+  "grayBlue",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+  "techPurple",
+  "techPink",
+]
 
 export interface WrappedTableProps
   extends HTMLAttributes<HTMLDivElement>,

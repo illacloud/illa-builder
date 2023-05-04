@@ -1,3 +1,8 @@
+import {
+  HorizontalCenterIcon,
+  HorizontalEndIcon,
+  HorizontalStartIcon,
+} from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -7,7 +12,10 @@ import {
   TABLE_BUTTON_EVENT_HANDLER_CONFIG,
   TABLE_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
-import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
+import {
+  Columns,
+  tagColorSchemeOptions,
+} from "@/widgetLibrary/TableWidget/interface"
 
 const baseWidgetName = "table"
 
@@ -65,15 +73,17 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-column-type`,
             labelName: i18n.t("editor.inspect.setter_label.column_type"),
             attrName: "type",
-            setterType: "BASE_SELECT_SETTER",
-            options: ColumnTypeOption,
+            setterType: "COLUMN_TYPE_SELECT_SETTER",
           },
           {
             id: `${baseWidgetName}-column-decimalPlaces`,
             labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
             attrName: "decimalPlaces",
             bindAttrName: ["type"],
-            shown: (value) => value === "number" || value === "percent",
+            shown: (value) =>
+              value === Columns.Number ||
+              value === Columns.Percent ||
+              value === Columns.Currency,
             placeholder: "{{ 0 }}",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.NUMBER,
@@ -83,7 +93,10 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.format"),
             attrName: "format",
             bindAttrName: ["type"],
-            shown: (value) => value === "date",
+            shown: (value) =>
+              value === Columns.Date ||
+              value === Columns.DateTime ||
+              value === Columns.Time,
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
@@ -94,6 +107,151 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             attrName: "mappedValue",
             setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
             placeholder: "{{currentRow.col}}",
+            bindAttrName: ["type"],
+            shown: (value) =>
+              value !== Columns.ButtonGroup || value !== Columns.IconGroup,
+          },
+          {
+            id: `${baseWidgetName}-column-buttonGroupContent`,
+            useCustomLayout: true,
+            attrName: "buttonGroupContent",
+            setterType: "CELL_SETTER",
+            openDynamic: true,
+            bindAttrName: ["type"],
+            shown: (value) => value === Columns.ButtonGroup,
+            childrenSetter: [
+              {
+                id: `${baseWidgetName}-column-buttonGroupContent-cellValue`,
+                labelName: i18n.t("editor.inspect.setter_label.mapped_value"),
+                attrName: "cellValue",
+                setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+              },
+              {
+                id: `${baseWidgetName}-column-buttonGroupContent-variant`,
+                setterType: "RADIO_GROUP_SETTER",
+                labelName: i18n.t("editor.inspect.setter_label.variant"),
+                attrName: "variant",
+                options: [
+                  {
+                    label: i18n.t("editor.inspect.setter_default_value.fill"),
+                    value: "fill",
+                  },
+                  {
+                    label: i18n.t(
+                      "editor.inspect.setter_default_value.outline",
+                    ),
+                    value: "outline",
+                  },
+                ],
+              },
+              {
+                ...generatorEventHandlerConfig(
+                  baseWidgetName,
+                  TABLE_BUTTON_EVENT_HANDLER_CONFIG.events,
+                ),
+              },
+              {
+                id: `${baseWidgetName}-column-buttonGroupContent-disabled`,
+                labelName: i18n.t("editor.inspect.setter_label.disabled"),
+                attrName: "disabled",
+                setterType: "DYNAMIC_SWITCH_SETTER",
+                expectedType: VALIDATION_TYPES.BOOLEAN,
+                openDynamic: true,
+                useCustomLayout: true,
+              },
+              {
+                id: `${baseWidgetName}-column-buttonGroupContent-colorScheme`,
+                labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+                setterType: "COLOR_PICKER_SETTER",
+                attrName: "colorScheme",
+              },
+            ],
+          },
+          {
+            id: `${baseWidgetName}-column-iconGroupContent`,
+            useCustomLayout: true,
+            attrName: "iconGroupContent",
+            setterType: "CELL_SETTER",
+            openDynamic: true,
+            bindAttrName: ["type"],
+            shown: (value) => value === Columns.IconGroup,
+            childrenSetter: [
+              {
+                id: `${baseWidgetName}-column-iconGroupContent-cellValue`,
+                labelName: i18n.t("editor.inspect.setter_label.icon"),
+                attrName: "cellValue",
+                expectedType: VALIDATION_TYPES.STRING,
+                setterType: "ICON_SETTER",
+              },
+              {
+                id: `${baseWidgetName}-column-buttonGroupContent-colorScheme`,
+                labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+                setterType: "COLOR_PICKER_SETTER",
+                attrName: "colorScheme",
+              },
+              {
+                ...generatorEventHandlerConfig(
+                  baseWidgetName,
+                  TABLE_BUTTON_EVENT_HANDLER_CONFIG.events,
+                ),
+              },
+              {
+                id: `${baseWidgetName}-column-buttonGroupContent-disabled`,
+                labelName: i18n.t("editor.inspect.setter_label.disabled"),
+                attrName: "disabled",
+                setterType: "DYNAMIC_SWITCH_SETTER",
+                expectedType: VALIDATION_TYPES.BOOLEAN,
+                openDynamic: true,
+                useCustomLayout: true,
+              },
+            ],
+          },
+          {
+            id: `${baseWidgetName}-column-tag-color`,
+            labelName: i18n.t("editor.inspect.setter_label.table.tag_color"),
+            labelDesc: i18n.t("editor.inspect.setter_tips.table.tag_color"),
+            attrName: "tagColor",
+            selectAttrName: "tagColor",
+            inputAttrName: "tagColorJs",
+            isDynamicAttrName: "tagColorMode",
+            setterType: "DYNAMIC_SELECT_SETTER",
+            options: tagColorSchemeOptions,
+            useCustomLayout: true,
+            bindAttrName: ["type"],
+            shown: (value) => value === Columns.Tag,
+          },
+          {
+            id: `${baseWidgetName}-column-currencyCode`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.table.currency_code",
+            ),
+            labelDesc: i18n.t("editor.inspect.setter_tips.table.currency_code"),
+            placeholder: i18n.t(
+              "editor.inspect.setter_placeholder.table.currency_code",
+            ),
+            attrName: "currencyCode",
+            setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+            bindAttrName: ["type"],
+            shown: (value) => value === Columns.Currency,
+          },
+          {
+            id: `${baseWidgetName}-column-showThousandsSeparator`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.table.show_thousands_separ",
+            ),
+            labelDesc: i18n.t(
+              "editor.inspect.setter_tips.table.show_thousands_separ",
+            ),
+            attrName: "showThousandsSeparator",
+            setterType: "DYNAMIC_SWITCH_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+            openDynamic: true,
+            useCustomLayout: true,
+            bindAttrName: ["type"],
+            shown: (value) =>
+              value === Columns.Number ||
+              value === Columns.Percent ||
+              value === Columns.Currency,
           },
           {
             id: `${baseWidgetName}-column-enableSorting`,
@@ -106,7 +264,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             bindAttrName: ["type"],
-            shown: (value) => value === "button",
+            shown: (value) => value === Columns.Button,
             ...generatorTableEventHandlerConfig(
               baseWidgetName,
               TABLE_BUTTON_EVENT_HANDLER_CONFIG.events,
@@ -120,7 +278,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             attrName: "disabled",
             setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
             bindAttrName: ["type"],
-            shown: (value) => value === "button",
+            shown: (value) => value === Columns.Button,
           },
           {
             id: `${baseWidgetName}-column-colorScheme`,
@@ -129,7 +287,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             attrName: "colorScheme",
             defaultValue: "blue",
             bindAttrName: ["type"],
-            shown: (value) => value === "button",
+            shown: (value) => value === Columns.Button,
           },
           {
             id: `${baseWidgetName}-column-scale-type`,
@@ -138,7 +296,27 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             setterType: "BASE_SELECT_SETTER",
             options: ["container", "cover", "fill", "none", "scale-down"],
             bindAttrName: ["type"],
-            shown: (value) => value === "image",
+            shown: (value) => value === Columns.Image,
+          },
+          {
+            id: `${baseWidgetName}-column-alignment`,
+            setterType: "RADIO_GROUP_SETTER",
+            labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
+            attrName: "alignment",
+            options: [
+              {
+                label: <HorizontalStartIcon />,
+                value: "left",
+              },
+              {
+                label: <HorizontalCenterIcon />,
+                value: "center",
+              },
+              {
+                label: <HorizontalEndIcon />,
+                value: "right",
+              },
+            ],
           },
         ],
       },

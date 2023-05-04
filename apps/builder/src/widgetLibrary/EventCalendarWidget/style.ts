@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { View } from "react-big-calendar"
 import { getColor } from "@illa-design/react"
 
 const applyCalendarFont = css`
@@ -10,7 +11,7 @@ const applyCalendarFont = css`
 
 export const applyEventStyle = css`
   line-height: 14px;
-  ${applyCalendarFont}
+  ${applyCalendarFont};
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -24,6 +25,7 @@ export const applyEventStyle = css`
 const applyEventCardStyle = (
   eventBackground: string,
   eventTextColor: string,
+  view: View,
 ) => {
   return css`
     .rbc-event {
@@ -36,64 +38,15 @@ const applyEventCardStyle = (
       border-left: 2px solid ${getColor(eventBackground, "03")}!important;
       border-radius: 4px;
       color: ${getColor(eventTextColor, "01")};
+      padding: ${view !== "month" ? "12px 16px" : ""};
+      overflow: hidden;
+    }
+    .rbc-month-view .rbc-event {
+      padding: 5px 8px;
     }
   `
 }
-const applyTimeView = (date: string, indicatorTop: number) => {
-  let needHiddenLabel = -1
-  if (date) {
-    const [hour, minus] = Array.from(date.split(":"), (v) => parseInt(v))
-    if (minus <= 15) {
-      needHiddenLabel = hour
-    } else if (minus >= 45) {
-      needHiddenLabel = hour + 1
-    }
-  }
-  return css`
-  .rbc-time-view {
-    .rbc-time-gutter::after {
-      position: absolute;
-      z-index: 11;
-      left: 0;
-      width: 100%;
-      content: " ${date}";
-      top: ${indicatorTop}px;
-      visibility: ${indicatorTop ? "visible" : "hidden"};
-      color: ${getColor("red", "03")};
-      transform: translateY(-50%);
-      text-align: right;
-      white-space: nowrap;
-      padding: 0 5px;
-    }
-    .rbc-time-gutter {
-      position: sticky;
-      left: 0;
-      background-color: white;
-      border-right: 1px solid #EBEBEB;;
-      z-index: 10!important;
-      margin-right: -1px;
-      ${applyCalendarFont}
-      font-family: "SF Pro Display";
-      line-height: 24px;
-    }
-    .rbc-timeslot-group .rbc-time-slot:first-of-type {
-      transform: translateY(-50%);
-    }
-    .rbc-time-gutter .rbc-timeslot-group {
-      border-bottom: none;
-    }
-    .rbc-timeslot-group:nth-of-type(${needHiddenLabel + 1}) .rbc-label,
-    .rbc-timeslot-group:first-of-type .rbc-label {
-      visibility: hidden;
-    }
-  }
-}
-`
-}
-const applyMonthView = (
-  titleColor: string,
-  eventTextColor: string,
-) => {
+const applyMonthView = (titleColor: string, eventTextColor: string) => {
   return css`
     .rbc-month-view {
       color: ${getColor(titleColor, "01")};
@@ -108,7 +61,7 @@ const applyMonthView = (
         display: none;
       }
       .rbc-show-more {
-        ${applyCalendarFont}
+        ${applyCalendarFont};
         background-color: transparent !important;
         &:focus,
         &:hover {
@@ -149,26 +102,23 @@ const applyIndicatorStyle = (indicatorTop: number) => {
   `
 }
 
-const buttonGroupStyle = (
-  titleColor: string,
-  isLight: boolean,
-) => {
+const buttonGroupStyle = (titleColor: string, isLight: boolean) => {
   const color = css`
     color: ${getColor(titleColor, "01")}!important;
   `
   return css`
     .rbc-btn-group {
       background-color: transparent !important;
-      ${color}
+      ${color};
       button {
         background-color: transparent !important;
-        ${color}
+        ${color};
         &:active,
         &:hover,
         &:focus {
           background-color: transparent !important;
-          ${color}
-          box-shadow: none!important;
+          ${color};
+          box-shadow: none !important;
         }
       }
       .rbc-active {
@@ -176,10 +126,10 @@ const buttonGroupStyle = (
         background-color: ${isLight
           ? getColor("blackAlpha", "09")
           : getColor("white", "09")}!important;
-        ${color}
+        ${color};
         &:focus,
         &:active {
-          ${color}
+          ${color};
           background-color: ${isLight
             ? getColor("blackAlpha", "09")
             : getColor("white", "09")}!important;
@@ -190,16 +140,16 @@ const buttonGroupStyle = (
 }
 const applyCalendarBg = (slotBackground: string) => {
   return css`
+    background-color: ${getColor(slotBackground, "01")}!important;
+    .rbc-header,
+    .rbc-row-bg,
+    .rbc-label,
+    .rbc-time-gutter,
+    .rbc-day-slot,
+    .rbc-calendar,
+    tbody {
       background-color: ${getColor(slotBackground, "01")}!important;
-      .rbc-header,
-      .rbc-row-bg,
-      .rbc-label,
-      .rbc-time-gutter,
-      .rbc-day-slot,
-      .rbc-calendar,
-      tbody {
-        background-color: ${getColor(slotBackground, "01")}!important;
-      }
+    }
   `
 }
 const applyBorderStyle = (isLight: boolean) => {
@@ -270,7 +220,17 @@ export const ApplyCustomStyle = (
   isLight: boolean,
   displayName: string,
   showResource: boolean,
+  view: View,
 ) => {
+  let needHiddenLabel = -1
+  if (date) {
+    const [hour, minus] = Array.from(date.split(":"), (v) => parseInt(v))
+    if (minus <= 15) {
+      needHiddenLabel = hour
+    } else if (minus >= 45) {
+      needHiddenLabel = hour + 1
+    }
+  }
   return css`
     height: 100%;
     width: 100%;
@@ -286,11 +246,77 @@ export const ApplyCustomStyle = (
       flex-direction: column;
       gap: 4px;
     }
+    .rbc-time-view {
+      .rbc-time-gutter::after {
+        position: absolute;
+        z-index: 11;
+        left: 0;
+        width: 100%;
+        content: " ${date}";
+        top: ${indicatorTop}px;
+        visibility: ${indicatorTop ? "visible" : "hidden"};
+        color: ${getColor("red", "03")};
+        transform: translateY(-50%);
+        text-align: right;
+        white-space: nowrap;
+        padding: 0 5px;
+      }
+      .rbc-time-gutter {
+        position: sticky;
+        left: 0;
+        background-color: white;
+        border-right: 1px solid #EBEBEB;;
+        z-index: 10!important;
+        margin-right: -1px;
+        ${applyCalendarFont};
+        font-family: "SF Pro Display";
+        line-height: 24px;
+      }
+      .rbc-timeslot-group .rbc-time-slot:first-of-type {
+        transform: translateY(-50%);
+      }
+      .rbc-time-gutter .rbc-timeslot-group {
+        border-bottom: none;
+      }
+      .rbc-timeslot-group:nth-of-type(${needHiddenLabel + 1}) .rbc-label,
+      .rbc-timeslot-group:first-of-type .rbc-label {
+        visibility: hidden;
+      }
+      }
+    }
+    .rbc-addons-dnd-resizable {
+      overflow: hidden;
+    }
+    .rbc-month-row{
+      min-height: 80px;
+    }
+    .rbc-row-content  {
+      min-height: 60px;
+    }
+    .rbc-day-slot {
+      min-width: 140px;
+    }
+    .rbc-day-slot .rbc-events-container {
+      margin: 0 8px;
+      padding: 8px;
+    }
+    .rbc-time-header-cell .rbc-header, .rbc-allday-cell .rbc-day-bg {
+      box-sizing: border-box;
+      min-width: 140px;
+    }
+    .rbc-event-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
     .${displayName} {
       .rbc-event {
         border-right: none;
         border-top: none;
         border-bottom: none;
+        min-height: ${view !== "month" ? "40px" : "24px"};
+        overflow: hidden;
+        margin-left: ${view !== "month" ? "1px" : "0"};
+        border-radius: ${view !== "month" ? "4px" : "0"}!important;
       }
       .rbc-selected {
         background-color: ${getColor(eventBackground, "07")};
@@ -311,16 +337,22 @@ export const ApplyCustomStyle = (
       .rbc-day-slot .rbc-time-slot {
         border: none;
       }
-      ${applyTimeView(date, indicatorTop)}
-      ${applyIndicatorStyle(indicatorTop)}
-      ${applyMonthView(titleColor, eventTextColor)}
-      ${applyCalendarBg(slotBackground)}
-      ${applyAgenda}
-      ${buttonGroupStyle(titleColor, isLight)}
-      ${applyTitleColor(titleColor)}
-      ${applyEventCardStyle(eventBackground, eventTextColor)}
-      ${applyBorderStyle(isLight)}
-      ${hiddenToolBarStyle(showResource)}
+      .rbc-timeslot-group {
+        min-height: 80px;
+      }
+      ${applyIndicatorStyle(indicatorTop)};
+      ${applyMonthView(titleColor, eventTextColor)};
+      ${applyCalendarBg(slotBackground)};
+      ${applyAgenda};
+      ${buttonGroupStyle(titleColor, isLight)};
+      ${applyTitleColor(titleColor)};
+      ${applyEventCardStyle(eventBackground, eventTextColor, view)};
+      ${applyBorderStyle(isLight)};
+      ${hiddenToolBarStyle(showResource)};
     }
   `
 }
+
+export const applyEventWrapper = css`
+  margin: 4px;
+`

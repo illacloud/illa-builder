@@ -16,9 +16,7 @@ import {
 import { EditableText } from "@/components/EditableText"
 import { SimpleTabs } from "@/components/Tabs"
 import { ACTION_PANEL_TABS } from "@/components/Tabs/constant"
-import i18n from "@/i18n/config"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import {
   onCopyActionItem,
@@ -59,25 +57,6 @@ import {
 
 const Item = DropListItem
 export type RunMode = "save" | "run" | "test_run" | "save_and_run"
-const FILE_SIZE_LIMIT_TYPE = ["s3", "smtp"]
-
-const getCanRunAction = (cachedAction: ActionItem<ActionContent> | null) => {
-  if (
-    !cachedAction ||
-    !FILE_SIZE_LIMIT_TYPE.includes(cachedAction.actionType)
-  ) {
-    return [true, ""]
-  }
-  switch (cachedAction.actionType) {
-    case "smtp":
-      const smtpContent = cachedAction.content as SMPTAction
-      return [
-        !isFileOversize(smtpContent?.attachment || "", "smtp"),
-        i18n.t("editor.action.panel.error.max_file"),
-      ]
-  }
-  return [true, ""]
-}
 
 const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
   let cachedActionValue: ActionItem<ActionContent> | null = cachedAction
@@ -157,7 +136,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const [canRunAction, canNotRunMessage] = getCanRunAction(cachedAction)
 
   const executionResult = useSelector(getExecutionResult)
   const isGuideOpen = useSelector(getIsILLAGuideMode)
@@ -255,12 +233,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
     switch (runMode) {
       case "test_run":
-        if (!canRunAction) {
-          message.error({
-            content: canNotRunMessage,
-          })
-          return
-        }
         updateAndRunCachedAction(cachedActionValue)
         break
       case "run":
@@ -269,12 +241,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           parameter1: cachedAction.actionType,
           parameter2: cachedAction,
         })
-        if (!canRunAction) {
-          message.error({
-            content: canNotRunMessage,
-          })
-          return
-        }
         runCachedAction(cachedActionValue)
         break
       case "save":
@@ -308,12 +274,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           parameter1: cachedAction.actionType,
           parameter2: cachedAction,
         })
-        if (!canRunAction) {
-          message.error({
-            content: canNotRunMessage,
-          })
-          return
-        }
         setSaveLoading(true)
         try {
           await fetchUpdateAction(cachedActionValue)
@@ -328,8 +288,6 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     }
   }, [
     cachedAction,
-    canNotRunMessage,
-    canRunAction,
     dispatch,
     isGuideOpen,
     message,
