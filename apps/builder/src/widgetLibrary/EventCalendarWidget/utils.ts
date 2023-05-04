@@ -33,6 +33,8 @@ export const formatEventOptions = (
     const description = mappedOption.descriptions ?? []
     const resourceTitle = mappedOption.resourceTitles ?? []
     const allDay = mappedOption.allDays ?? []
+    const draggable = mappedOption.draggables ?? []
+    const resizable = mappedOption.resizables ?? []
     const maxLength = Math.max(
       title.length,
       id.length,
@@ -42,6 +44,8 @@ export const formatEventOptions = (
       description.length,
       resourceTitle.length,
       allDay.length,
+      resizable.length,
+      draggable.length
     )
     const eventList: Event[] = []
     const resourceMap = new Map()
@@ -56,6 +60,8 @@ export const formatEventOptions = (
       const resourceIdTitleItem = resourceTitle[i]
       const descriptionItem = description[i] || ""
       const allDayItem = allDay[i] ?? false
+      const resizableItem = resizable[i] ?? true
+      const draggableItem = draggable[i] ?? true
       resourceIdTitleItem &&
         resourceMap.set(
           safeNodeValue(resourceIdItem),
@@ -72,6 +78,8 @@ export const formatEventOptions = (
           resourceTitle: safeNodeValue(resourceIdTitleItem),
           description: safeNodeValue(descriptionItem),
           allDay: allDayItem,
+          draggable: draggableItem,
+          resizable: resizableItem
         })
     }
     return [
@@ -98,6 +106,8 @@ export const formatEventOptions = (
       const descriptionItem = option.description || `Event-${i + 1}`
       const resourceIdTitleItem = option.resourceTitle || `Resource-${i + 1}`
       const allDayItem = option.allDay ?? false
+      const draggableItem = option.draggable ?? true
+      const resizableItem = option.resizable ?? true
       resourceIdTitleItem &&
         resourceMap.set(
           safeNodeValue(resourceIdItem),
@@ -114,6 +124,8 @@ export const formatEventOptions = (
           resourceTitle: safeNodeValue(resourceIdTitleItem),
           description: safeNodeValue(descriptionItem),
           allDay: allDayItem,
+          draggable: draggableItem,
+          resizable: resizableItem
         })
     })
     return [
