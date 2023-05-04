@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom"
 import { clearRequestPendingPool } from "@/api/http/utils/axiosPendingPool"
+import { getIllaLanguage } from "@/illa-public-component/MixpanelUtils/utils"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { cloudRedirect } from "@/router/routerConfig"
@@ -57,8 +58,17 @@ export const requireAuth = async (
       return redirect(cloudRedirect)
     } else {
       const userInfo = await getUserInfo()
+
       if (!userInfo) {
         return redirect(cloudRedirect)
+      }
+      // todo: very hack,need loader refactor
+      const { language } = userInfo
+      const localLanguage = getIllaLanguage()
+      if (localLanguage !== language) {
+        window.localStorage.setItem("i18nextLng", language)
+        window.location.reload()
+        return null
       }
     }
   }

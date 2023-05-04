@@ -9,10 +9,6 @@ import {
   PreviousIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
-import {
-  BUILDER_REQUEST_PREFIX,
-  HTTP_REQUEST_PUBLIC_BASE_URL,
-} from "@/api/http/constant"
 import { GoogleOAuthContext } from "@/context/GoogleOAuthContext"
 import { useOAuthRefresh } from "@/hooks/useOAuthRefresh"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
@@ -21,9 +17,9 @@ import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
   container,
   footerStyle,
+  getOAuthStatusContentStyle,
   oAuthErrorIconStyle,
   oAuthStatusContainerStyle,
-  oAuthStatusContentStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
@@ -34,7 +30,7 @@ import {
   GoogleSheetResourceInitial,
 } from "@/redux/resource/googleSheetResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { getOAuthAccessToken } from "@/services/resource"
+import { getOAuthAccessToken, redirectToGoogleOAuth } from "@/services/resource"
 import { validate } from "@/utils/form"
 import { ILLABuilderStorage } from "@/utils/storage"
 
@@ -88,9 +84,10 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
       const { accessToken } = response.data
       if (accessToken) {
         ILLABuilderStorage.setLocalStorage("accessToken", accessToken)
-        window.location.assign(
-          `${HTTP_REQUEST_PUBLIC_BASE_URL}/${BUILDER_REQUEST_PREFIX}/resources/${resourceId}/oauth2?accessToken=${accessToken}`,
-        )
+        const res = await redirectToGoogleOAuth(id, accessToken)
+        if (res.data.url) {
+          window.location.assign(res.data.url)
+        }
       }
     } catch (e) {
       ILLABuilderStorage.removeLocalStorage("accessToken")
@@ -219,8 +216,12 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
         )}
         {isAuthenticated && (
           <div css={oAuthStatusContainerStyle}>
-            <div css={oAuthStatusContentStyle}>
-              {oAuthStatus === GoogleSheetAuthStatus.NotAuthenticated ? (
+            <div
+              css={getOAuthStatusContentStyle(
+                oAuthStatus === GoogleSheetAuthStatus.NotAuthenticated,
+              )}
+            >
+              {oAuthStatus === GoogleSheetAuthStatus.Authenticated ? (
                 <>
                   <WarningCircleIcon css={oAuthErrorIconStyle} />
                   <>{t("editor.action.form.tips.gs.failed_to_authentica")}</>

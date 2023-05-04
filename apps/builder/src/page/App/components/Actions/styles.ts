@@ -127,16 +127,20 @@ export const privateKeyItem = css`
   align-items: flex-start;
 `
 
-export const oAuthStatusContentStyle = css`
-  width: 100%;
-  padding: 9px 16px;
-  display: flex;
-  gap: 8px;
-  height: 40px;
-  background: ${getColor("orange", "07")};
-  border-radius: 4px;
-  align-items: center;
-`
+export const getOAuthStatusContentStyle = (isSuccess: boolean) => {
+  return css`
+    width: 100%;
+    padding: 9px 16px;
+    display: flex;
+    gap: 8px;
+    height: 40px;
+    background: ${isSuccess
+      ? getColor("green", "07")
+      : getColor("orange", "07")};
+    border-radius: 4px;
+    align-items: center;
+  `
+}
 
 export const oAuthStatusContainerStyle = css`
   width: 100%;
