@@ -1150,7 +1150,7 @@
           "markerSelected": "マーカーを選択",
           "markerCreated": "マーカーを作成",
           "select": "選択",
-          "DragOrClickNoEventArea": "イベントのないエリアをドラッグ"
+          "DragOrClickNoEventArea": "イベント領域をドラッグしない"
         },
         "image_list": {
           "title": "イメージ",
