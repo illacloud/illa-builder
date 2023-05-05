@@ -73,6 +73,30 @@ export const handleCheckMinLength = (value: unknown, minLength?: number) => {
     return true
 }
 
+export const handleCheckMinDuration = (
+  value: unknown,
+  minDuration?: number,
+) => {
+  if (
+    typeof minDuration === "number" &&
+    ((typeof value === "number" && value < minDuration) ||
+      typeof value === "undefined")
+  )
+    return true
+}
+
+export const handleCheckMaxDuration = (
+  value: unknown,
+  maxDuration?: number,
+) => {
+  if (
+    typeof maxDuration === "number" &&
+    ((typeof value === "number" && value > maxDuration) ||
+      typeof value === "undefined")
+  )
+    return true
+}
+
 export const handleCheckPattern = (
   value: unknown,
   pattern: ValidateCheckProps["pattern"],
@@ -249,6 +273,18 @@ export const handleValidateCheck = (
 
   if (handleCheckMinLength(options.value, options.minLength)) {
     return i18n.t("editor.validate_message.min_value", {
+      number: options.minLength,
+    })
+  }
+
+  if (handleCheckMaxDuration(options.value, options.maxDuration)) {
+    return i18n.t("editor.inspect.setter_message.recording.max_duration", {
+      number: options.minLength,
+    })
+  }
+
+  if (handleCheckMinDuration(options.value, options.minDuration)) {
+    return i18n.t("editor.inspect.setter_message.recording.min_duration", {
       number: options.minLength,
     })
   }

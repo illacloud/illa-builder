@@ -96,4 +96,5 @@ export const FORM_CAN_BIND_WIDGET_TYPE = new Map([
   ["MULTISELECT_WIDGET", true],
   ["TIME_PICKER_WIDGET", true],
   ["TIME_RANGE_WIDGET", true],
+  ["AUDIO_RECORDER_WIDGET", true],
 ])
