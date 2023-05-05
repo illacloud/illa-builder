@@ -139,6 +139,15 @@ export interface WrappedTableProps
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
   selectedRow?: any[]
+  enableServerSidePagination?: boolean
+  paginationType?:
+    | "limitOffsetBased"
+    | "cursorBased"
+    | "graphqlRelayCursorBased"
+  totalRowCount?: number
+  previousCursor?: number
+  nextCursor?: number
+  hasNextPage?: boolean
   handleOnClickMenuItem?: (path: string) => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void

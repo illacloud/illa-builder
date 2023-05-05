@@ -28,6 +28,12 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     defaultSort,
     columnVisibility,
     multiRowSelection,
+    enableServerSidePagination,
+    totalRowCount,
+    paginationType,
+    previousCursor,
+    nextCursor,
+    hasNextPage,
     handleOnSortingChange,
     handleOnPaginationChange,
     handleOnColumnFiltersChange,
@@ -109,6 +115,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
         displayedData,
         displayedDataIndices,
       }
+      if (paginationType === "cursorBased") {
+        updateValue["previousCursor"] = nextCursor
+      }
       // only update execution result
       handleUpdateMultiExecutionResult([
         {
@@ -130,6 +139,8 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       w="100%"
       h="100%"
       enableColumnResizing={mode === "edit"}
+      serverSidePagination={enableServerSidePagination}
+      total={totalRowCount}
       colorScheme={"techPurple"}
       rowSelection={rowSelection}
       data={formatData}
@@ -139,7 +150,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       loading={loading}
       download={download}
       overFlow={overFlow}
-      pagination={{ pageSize }}
+      pagination={{
+        pageSize: enableServerSidePagination ? 1 : pageSize,
+      }}
       emptyProps={{ description: emptyState }}
       defaultSort={defaultSort}
       columnVisibility={columnVisibility}
