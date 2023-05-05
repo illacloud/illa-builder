@@ -1150,7 +1150,7 @@
           "markerSelected": "markerSelectate",
           "markerCreated": "markerCreat",
           "select": "Selectare",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Drag no event area"
         },
         "image_list": {
           "title": "Imagini",
