@@ -6,6 +6,10 @@ import { useSelector } from "react-redux"
 import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
 import {
+  applyAlignmentStyle,
+  applyTableCellBackgroundStyle,
+} from "@/widgetLibrary/TableWidget/style"
+import {
   ColumnItemShape,
   TableWidgetProps,
   WrappedTableProps,
@@ -31,9 +35,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     enableServerSidePagination,
     totalRowCount,
     paginationType,
-    previousCursor,
+    // previousCursor,
     nextCursor,
-    hasNextPage,
+    // hasNextPage,
     handleOnSortingChange,
     handleOnPaginationChange,
     handleOnColumnFiltersChange,
@@ -109,7 +113,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       })
       const { pageIndex, pageSize } = paginationState
       const paginationOffset = pageIndex > 0 ? pageIndex * pageSize : 0
-      const updateValue = {
+      const updateValue: Record<string, unknown> = {
         pageIndex,
         paginationOffset,
         displayedData,
@@ -127,7 +131,13 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       ])
       handleOnPaginationChange?.()
     },
-    [displayName, handleUpdateMultiExecutionResult, handleOnPaginationChange],
+    [
+      displayName,
+      handleUpdateMultiExecutionResult,
+      handleOnPaginationChange,
+      nextCursor,
+      paginationType,
+    ],
   )
 
   return (
@@ -244,6 +254,13 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     columns?.forEach((item, index) => {
       const eventPath = `rowEvents.${index}`
       const transItem = cloneDeep(item) as ColumnItemShape
+      transItem["meta"] = {
+        // align: transItem.alignment,
+        style: [
+          applyAlignmentStyle(item.alignment),
+          applyTableCellBackgroundStyle(item.backgroundColor),
+        ],
+      }
       transItem["cell"] = getCellForType(
         transItem,
         eventPath,

@@ -35,14 +35,14 @@ export const RenderTableStringCell: FC<{
 }> = (props) => {
   const { value, alignment, bgColor } = props
   return (
-    <div
+    <span
       css={[
         applyAlignmentStyle(alignment),
         applyTableCellBackgroundStyle(bgColor),
       ]}
     >
       {value ? value : "-"}
-    </div>
+    </span>
   )
 }
 

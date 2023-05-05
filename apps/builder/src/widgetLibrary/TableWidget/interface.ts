@@ -51,7 +51,7 @@ export const defaultColumnItem: Partial<ColumnItemShape> = {
 }
 
 export interface ColumnItemShape
-  extends Pick<ColumnDef<object>, "cell" | "id"> {
+  extends Pick<ColumnDef<object>, "cell" | "id" | "meta"> {
   accessorKey: string
   header: string
   value?: string
