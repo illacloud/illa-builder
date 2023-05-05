@@ -1562,7 +1562,7 @@
           "currency_code": "Currency code"
         },
         "switch_group": {
-          "option_label_alignment": "Option label position"
+          "option_label_alignment": "Position of the option label"
         }
       },
       "setter_tooltip": {
@@ -1739,7 +1739,7 @@
         },
         "switch_group": {
           "label": "The label of the option",
-          "value": "A primary value of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
           "value_error": "The value is duplicated. Please use unique values to avoid errors.",
           "caption": "A caption displayed under the label",
           "disabled": "Whether to disable the option",
