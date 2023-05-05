@@ -1562,7 +1562,7 @@
           "currency_code": "货币代码"
         },
         "switch_group": {
-          "option_label_alignment": "选项标签位置"
+          "option_label_alignment": "选项标签的位置"
         }
       },
       "setter_tooltip": {
@@ -1739,7 +1739,7 @@
         },
         "switch_group": {
           "label": "选项的标签",
-          "value": "选项的主要值",
+          "value": "一个包含在{{中的数组。例如 {{ [\"Option 1\", \"Option 2\"] }}",
           "value_error": "值重复。请使用唯一的值来避免错误。",
           "caption": "标签下显示的标题",
           "disabled": "是否禁用此选项",
@@ -2462,7 +2462,7 @@
       "name_duplicated": "该资源ID在这些事件中冲突，请使用相同的名称或不同的ID"
     },
     "switch_group": {
-      "switch_group": "切换组"
+      "switch_group": "开关组"
     }
   },
   "page": {
