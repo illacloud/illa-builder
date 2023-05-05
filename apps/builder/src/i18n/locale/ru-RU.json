@@ -1562,7 +1562,7 @@
           "currency_code": "Currency code"
         },
         "switch_group": {
-          "option_label_alignment": "Option label position"
+          "option_label_alignment": "Position of the option label"
         }
       },
       "setter_tooltip": {
@@ -1716,10 +1716,10 @@
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
           "variant": "Variant of the button",
           "icon": "The icon displayed in the table",
-          "color": "Set the color",
+          "color": "Установить цвет",
           "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
           "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
+          "alignment": "Задать выравнивание колонки.",
           "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
           "width": "Set the adaptation method of column width.",
           "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
@@ -1739,7 +1739,7 @@
         },
         "switch_group": {
           "label": "The label of the option",
-          "value": "A primary value of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
           "value_error": "The value is duplicated. Please use unique values to avoid errors.",
           "caption": "A caption displayed under the label",
           "disabled": "Whether to disable the option",
