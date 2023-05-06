@@ -124,7 +124,9 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             placeholder: "{{currentRow.col}}",
             bindAttrName: ["type"],
             shown: (value) =>
-              value !== Columns.ButtonGroup || value !== Columns.IconGroup,
+              value !== Columns.ButtonGroup &&
+              value !== Columns.IconGroup &&
+              value !== Columns.Tag,
           },
           {
             id: `${baseWidgetName}-column-buttonGroupContent`,
@@ -222,7 +224,17 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             ],
           },
           {
-            id: `${baseWidgetName}-column-tag-color`,
+            id: `${baseWidgetName}-column-tagLabel`,
+            labelName: i18n.t("editor.inspect.setter_label.table.tag_label"),
+            labelDesc: i18n.t("editor.inspect.setter_tooltip.mapped_value"),
+            attrName: "tagLabel",
+            setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+            placeholder: "{{currentRow.col}}",
+            bindAttrName: ["type"],
+            shown: (value) => value === Columns.Tag,
+          },
+          {
+            id: `${baseWidgetName}-column-tagColor`,
             labelName: i18n.t("editor.inspect.setter_label.table.tag_color"),
             labelDesc: i18n.t("editor.inspect.setter_tips.table.tag_color"),
             attrName: "tagColor",

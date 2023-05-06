@@ -78,6 +78,7 @@ export interface ColumnItemShape
   // currency type
   currencyCode?: string
   // tag type
+  tagLabel?: string
   tagColor?: string | "auto"
   tagColorJs?: string | "auto"
   tagColorMode?: "select" | "dynamic"
