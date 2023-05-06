@@ -9,7 +9,7 @@
 <p align="center">ILLA est une plate-forme open source à code faible robuste pour les développeurs de construire des outils internes. En utilisant la bibliothèque de composants et d'actions d'ILLA, les développeurs peuvent gagner énormément de temps sur les outils de construction. </p>
 
 <div align="center">
-English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+English | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_zh-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_ko-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_ja-JP.md">日本語</a>
 </div>
 
 <br>

@@ -9,7 +9,7 @@
 <p align="center">ILLA는 개발자가 내부 도구를 구축할 수 있는 강력한 오픈 소스 로우 코드 플랫폼입니다. ILLA의 구성 요소 및 작업 라이브러리를 사용하여 개발자는 도구를 구축하는 데 엄청난 시간을 절약할 수 있습니다. </p>
 
 <div align="center">
-<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | 한국어 | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_zh-CN.md">简体中文</a> | 한국어 | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_ja-JP.md">日本語</a>
 </div>
 
 <br>
@@ -32,7 +32,7 @@
 ## 🚀Get Started
 ILLA를 사용하는 가장 쉬운 방법은 [ILLA Cloud](https://cloud.illacloud.com/)에 등록하고 로그인하는 것입니다. 초대 코드를 받으려면 이 [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA)을 작성하고 최대한 많은 정보를 제공해 주세요. 최대 2일 이내에 제출 내용을 검토하고 곧 연락드리겠습니다. 검토 과정을 가속화하기 위해 Discord 커뮤니티에 가입하시면 초대 코드를 더 빨리 받으실 수 있습니다.
 
-또한 ILLA 유틸리티를 수동으로(Docker, docker-compose 및 k8s) 배포 및 [자체 호스팅](https://github.com/illacloud/illa-builder/blob/main/README-KR.md#%EC%9E%90%EC%B2%B4-%ED%98%B8%EC%8A%A4%ED%8C%85)할 수도 있습니다.
+또한 ILLA 유틸리티를 수동으로(Docker, docker-compose 및 k8s) 배포 및 [자체 호스팅](https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_ko-KR.md#%EC%9E%90%EC%B2%B4-%ED%98%B8%EC%8A%A4%ED%8C%85)할 수도 있습니다.
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />

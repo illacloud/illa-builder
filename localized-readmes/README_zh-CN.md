@@ -9,7 +9,7 @@
 <p align="center">ILLA 是一个强大的开源低代码平台，供开发人员构建内部工具。 通过使用 ILLA 的组件和操作库，开发人员可以节省大量构建工具的时间。 </p>
 
 <div align="center">
-<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | 简体中文 | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | 简体中文 | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_ko-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_ja-JP.md">日本語</a>
 </div>
 
 <br>
@@ -32,7 +32,7 @@
 ## 🚀开始体验ILLA
 试用ILLA的最方便的方式是注册并登录 [ILLA Cloud](https://cloud.illacloud.com/)。 要获取邀请码，请填写此 [Google 表单](https://forms.gle/XFRSUc3yFpzbCdcWA)并尽可能提供更多信息。 我们将在两个工作日内审核您的提交，并尽快与您联系。 为加快审核过程，我们邀请您加入我们的[Discord 社区](https://discord.gg/illacloud)，在那里您可以更快地获得邀请码。
 
-您还可以[本地部署](https://github.com/illacloud/illa-builder/blob/main/README-CN.md#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2)ILLA工具（Docker、Docker Compose和Kubernetes）。
+您还可以[本地部署](https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_zh-CN.md#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2)ILLA工具（Docker、Docker Compose和Kubernetes）。
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />

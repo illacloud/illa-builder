@@ -9,7 +9,7 @@
 <p align="center">ILLA jest solidną otwarto-źródłową platformą niskiego kodu dla programistów do budowania narzędzi wewnętrznych. Korzystając z Biblioteki Komponentów i Akcji ILLA, deweloperzy mogą zaoszczędzić ogromną ilość czasu na narzędziach budowlanych. </p>
 
 <div align="center">
-English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+English | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_zh-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_ko-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/localized-readmes/README_ja-JP.md">日本語</a>
 </div>
 
 <br>
