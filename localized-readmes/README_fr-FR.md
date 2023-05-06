@@ -63,8 +63,6 @@ Le CLI ILLA vous permet de déployer ILLA Builder plus rapidement que votre imag
   </a>
 </p>
 
-
-
 #### 🎨 Étape 2 : Construisez l'interface avec des composants intégrés
 Construisez votre interface utilisateur en faisant glisser des composants sur la toile. Nous fournissons des douzaines de composants, y compris des graphiques, des tableaux, des formulaires, et bien plus encore dans Illa Builder et Illa Design. Lorsque les composants se chevauchent, leur position sera automatiquement ajustée, ce qui rend le développement de la mise en page facile et flexible.
 

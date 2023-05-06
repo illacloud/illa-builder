@@ -96,12 +96,16 @@ Despliega tu aplicación y la aloja automáticamente.
 
 ## 🌱 Contribuyendo
 
-¿Pensar en contribuir? Todo tipo de contribuciones a ILLA son muy apreciadas y bienvenidas. Revisa [Guía de Contribución](./CONTRIBUTING.md) para más detalles sobre cómo puedes involucrarte.
+¿Pensar en contribuir? Todo tipo de contribuciones a ILLA son muy apreciadas y bienvenidas. Todo tipo de contribuciones a ILLA son muy apreciadas y bienvenidas. Revisa [Guía de Contribución](./CONTRIBUTING.md) para más detalles sobre cómo puedes involucrarte.
 <p>Apreciar todas las contribuciones de ❤️  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">colaboradores</a></p>
 
 ## 📢 Traduciendo
 
 El `apps/builder/src/i18n/locale/*` dirs se mantienen actualizados automáticamente a través de Crowdin. Mira nuestra [página oficial de traducción](https://crowdin.com/project/illa-builder) en caso de que te guste contribuir.
+
+## 🔥 Estamos contratando
+
+¿Buscando un equipo pasionado y creativo? Mira nuestra [página oficial de traducción](https://crowdin.com/project/illa-builder) en caso de que te guste contribuir.
 
 ## 🔥 Estamos contratando
 
