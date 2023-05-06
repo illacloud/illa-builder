@@ -23,6 +23,7 @@ import {
   applyAlignmentStyle,
   applyIconContainerStyle,
   applyTableButtonGroupStyle,
+  applyTableCellBackgroundStyle,
   overFlowStyle,
 } from "@/widgetLibrary/TableWidget/style"
 import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
@@ -30,9 +31,19 @@ import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
 export const RenderTableStringCell: FC<{
   value?: string
   alignment?: TableCellAlign
+  bgColor?: string
 }> = (props) => {
-  const { value, alignment } = props
-  return <div css={applyAlignmentStyle(alignment)}>{value ? value : "-"}</div>
+  const { value, alignment, bgColor } = props
+  return (
+    <span
+      css={[
+        applyAlignmentStyle(alignment),
+        applyTableCellBackgroundStyle(bgColor),
+      ]}
+    >
+      {value ? value : "-"}
+    </span>
+  )
 }
 
 export const RenderTableLink: FC<{

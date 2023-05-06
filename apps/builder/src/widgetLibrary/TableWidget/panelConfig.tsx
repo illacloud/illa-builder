@@ -19,6 +19,21 @@ import {
 
 const baseWidgetName = "table"
 
+export const TABLE_PAGENATION_OPTIONS = [
+  {
+    label: i18n.t("editor.inspect.setter_option.table.limit_offset_based"),
+    value: "limitOffsetBased",
+  },
+  {
+    label: i18n.t("editor.inspect.setter_option.table.cursor_based"),
+    value: "cursorBased",
+  },
+  {
+    label: i18n.t("editor.inspect.setter_option.table.graphql_relay_cursor"),
+    value: "graphqlRelayCursorBased",
+  },
+]
+
 export const TABLE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-data`,
@@ -299,6 +314,13 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             shown: (value) => value === Columns.Image,
           },
           {
+            id: `${baseWidgetName}-column-background-color`,
+            labelName: i18n.t("editor.inspect.setter_label.table.background"),
+            labelDesc: i18n.t("editor.inspect.setter_tips.table.background"),
+            attrName: "backgroundColor",
+            setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
+          },
+          {
             id: `${baseWidgetName}-column-alignment`,
             setterType: "RADIO_GROUP_SETTER",
             labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
@@ -379,11 +401,97 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
+        id: `${baseWidgetName}-basic-enableServerSidePagination`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.table.enable_server_side_p",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.table.enable_server_side_p",
+        ),
+        attrName: "enableServerSidePagination",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
+      {
+        id: `${baseWidgetName}-column-paginationType`,
+        labelName: i18n.t("editor.inspect.setter_label.table.pagination_type"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.table.pagination_type"),
+        attrName: "paginationType",
+        setterType: "BASE_SELECT_SETTER",
+        bindAttrName: ["enableServerSidePagination"],
+        shown: (value) => value,
+        options: [
+          {
+            label: i18n.t(
+              "editor.inspect.setter_option.table.limit_offset_based",
+            ),
+            value: "limitOffsetBased",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.table.cursor_based"),
+            value: "cursorBased",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_option.table.graphql_relay_cursor",
+            ),
+            value: "graphqlRelayCursorBased",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-basic-totalRowCount`,
+        labelName: i18n.t("editor.inspect.setter_label.totalRowCount"),
+        attrName: "totalRowCount",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: ["enableServerSidePagination"],
+        shown: (value) => value,
+      },
+      {
+        id: `${baseWidgetName}-basic-previousCursor`,
+        labelName: i18n.t("editor.inspect.setter_label.previousCursor"),
+        attrName: "previousCursor",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: ["enableServerSidePagination", "paginationType"],
+        shown: (enable, paginationType) =>
+          enable && paginationType === "graphqlRelayCursorBased",
+      },
+      {
+        id: `${baseWidgetName}-basic-nextCursor`,
+        labelName: i18n.t("editor.inspect.setter_label.nextCursor"),
+        attrName: "nextCursor",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: ["enableServerSidePagination", "paginationType"],
+        shown: (enable, paginationType) =>
+          enable &&
+          (paginationType === "cursorBased" ||
+            paginationType === "graphqlRelayCursorBased"),
+      },
+      {
+        id: `${baseWidgetName}-basic-hasNextPage`,
+        labelName: i18n.t("editor.inspect.setter_label.hasNextPage"),
+        attrName: "hasNextPage",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        bindAttrName: ["enableServerSidePagination", "paginationType"],
+        shown: (enable, paginationType) =>
+          enable &&
+          (paginationType === "cursorBased" ||
+            paginationType === "graphqlRelayCursorBased"),
+      },
+      {
         id: `${baseWidgetName}-basic-pageSize`,
         labelName: i18n.t("editor.inspect.setter_label.pageSize"),
         attrName: "pageSize",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: ["enableServerSidePagination"],
+        shown: (value) => !value,
       },
     ],
   },

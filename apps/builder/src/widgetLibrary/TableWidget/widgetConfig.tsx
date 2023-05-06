@@ -50,5 +50,7 @@ export function initTableWidgetDefaultProps() {
     download: false,
     filter: false,
     pageSize: `{{10}}`,
+    pageIndex: 0,
+    paginationOffset: 0,
   }
 }

@@ -6,6 +6,10 @@ import { useSelector } from "react-redux"
 import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
 import {
+  applyAlignmentStyle,
+  applyTableCellBackgroundStyle,
+} from "@/widgetLibrary/TableWidget/style"
+import {
   ColumnItemShape,
   TableWidgetProps,
   WrappedTableProps,
@@ -28,6 +32,12 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     defaultSort,
     columnVisibility,
     multiRowSelection,
+    enableServerSidePagination,
+    totalRowCount,
+    paginationType,
+    // previousCursor,
+    nextCursor,
+    // hasNextPage,
     handleOnSortingChange,
     handleOnPaginationChange,
     handleOnColumnFiltersChange,
@@ -103,11 +113,14 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       })
       const { pageIndex, pageSize } = paginationState
       const paginationOffset = pageIndex > 0 ? pageIndex * pageSize : 0
-      const updateValue = {
+      const updateValue: Record<string, unknown> = {
         pageIndex,
         paginationOffset,
         displayedData,
         displayedDataIndices,
+      }
+      if (paginationType === "cursorBased") {
+        updateValue["previousCursor"] = nextCursor
       }
       // only update execution result
       handleUpdateMultiExecutionResult([
@@ -118,7 +131,13 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       ])
       handleOnPaginationChange?.()
     },
-    [displayName, handleUpdateMultiExecutionResult, handleOnPaginationChange],
+    [
+      displayName,
+      handleUpdateMultiExecutionResult,
+      handleOnPaginationChange,
+      nextCursor,
+      paginationType,
+    ],
   )
 
   return (
@@ -130,6 +149,8 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       w="100%"
       h="100%"
       enableColumnResizing={mode === "edit"}
+      serverSidePagination={enableServerSidePagination}
+      total={totalRowCount}
       colorScheme={"techPurple"}
       rowSelection={rowSelection}
       data={formatData}
@@ -139,7 +160,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       loading={loading}
       download={download}
       overFlow={overFlow}
-      pagination={{ pageSize }}
+      pagination={{
+        pageSize: enableServerSidePagination ? 1 : pageSize,
+      }}
       emptyProps={{ description: emptyState }}
       defaultSort={defaultSort}
       columnVisibility={columnVisibility}
@@ -231,6 +254,13 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     columns?.forEach((item, index) => {
       const eventPath = `rowEvents.${index}`
       const transItem = cloneDeep(item) as ColumnItemShape
+      transItem["meta"] = {
+        // align: transItem.alignment,
+        style: [
+          applyAlignmentStyle(item.alignment),
+          applyTableCellBackgroundStyle(item.backgroundColor),
+        ],
+      }
       transItem["cell"] = getCellForType(
         transItem,
         eventPath,

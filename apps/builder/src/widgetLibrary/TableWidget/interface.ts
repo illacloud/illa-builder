@@ -51,7 +51,7 @@ export const defaultColumnItem: Partial<ColumnItemShape> = {
 }
 
 export interface ColumnItemShape
-  extends Pick<ColumnDef<object>, "cell" | "id"> {
+  extends Pick<ColumnDef<object>, "cell" | "id" | "meta"> {
   accessorKey: string
   header: string
   value?: string
@@ -71,6 +71,7 @@ export interface ColumnItemShape
   events?: any[]
   columnIndex?: number
   alignment?: TableCellAlign
+  backgroundColor?: string
   // icon type
   iconName?: string
   iconGroupContent?: TableCellIconGroupItemProps[]
@@ -138,6 +139,15 @@ export interface WrappedTableProps
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
   selectedRow?: any[]
+  enableServerSidePagination?: boolean
+  paginationType?:
+    | "limitOffsetBased"
+    | "cursorBased"
+    | "graphqlRelayCursorBased"
+  totalRowCount?: number
+  previousCursor?: number
+  nextCursor?: number
+  hasNextPage?: boolean
   handleOnClickMenuItem?: (path: string) => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
