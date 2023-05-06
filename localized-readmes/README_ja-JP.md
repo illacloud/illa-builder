@@ -6,10 +6,10 @@
 
 <h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder</a> </h1>
 
-<p align="center">ILLA is a robust open source low-code platform for developers to build internal tools. By using ILLA's library of Components and Actions, developers can save massive amounts of time on building tools. </p>
+<p align="center">ILLA は、開発者が内部ツールを構築するための堅牢なオープン ソースのローコード プラットフォームです。 コンポーネントとアクションのILLAのライブラリを使用することで、開発者はツールの構築にかかる時間を大幅に節約できます。 </p>
 
 <div align="center">
-English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+<a href="https://github.com/illacloud/illa-builder/blob/main/README.md">English</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | 日本語
 </div>
 
 <br>
@@ -29,32 +29,31 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
   <a href="./CONTRIBUTING.md"><img src="https://badgen.net/badge/PRs/Welcome/green?icon=storybook" height=18></a>
 </p>
 
-## 🚀Get Started
-To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/). To obtain an invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible. To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/illacloud), where you can obtain an invitation code faster.
+## 🚀始めましょう
+[ILLA Cloud](https://cloud.illacloud.com/) にサインアップしてログインするのが最も便利です。 招待コードを入手するには、この [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) に記入し、できるだけ多くの情報を提供してください。 提出物を2営業日以内に確認し、できるだけ早くご連絡いたします。 ご提出いただいた内容は、最大2営業日以内にレビューし、できるだけ早くご連絡いたします。 レビュープロセスを迅速化するために、[Discordコミュニティ](https://discord.gg/illacloud) に参加して、より迅速に招待コードを入手できるようにすることもできます。
 
-You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually(Docker, docker-compose, and k8s).
+また、ILLAユーティリティを手動で（Docker、docker-compose、k8s）展開および自己ホストすることもできます。
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
   <a href="https://cloud.illacloud.com/"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 
-## ✨ Features
+## ✨ 特徴
 
-1. ⚽ **Real-time Collaboration:** We can create everything in real-time together.
-2. 🛠 **Custom Plugin:** Build any custom plugin to do what you want.
-3. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
-4. 🖥 **Self-hosted:** supports Docker & k8s
-5. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
-6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
-
+1. ⚽ **リアルタイム コラボレーション:** すべてをリアルタイムで一緒に作成できます。
+2. 🛠 **カスタム プラグイン:** カスタム プラグインを作成して、必要なことを行います。
+3. 🤖 **サポートの自動化:** すべてを接続して 5 秒で自動化します。
+4. 🖥 **自己ホスト型:** Docker と k8s をサポート
+5. 📝 **ページのサポート:** コンテンツが豊富で UI に適したツールを作成するための基盤。
+6. 🎨 **[ILLA Design](https://github.com/illacloud/illa-design) を利用:** コンポーネントによって想像力が制約されることはありません。
 ## Self-hosted
 
-The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [Click here](https://www.illacloud.com/docs/illa-cli) for more details. After successfully deployed, you can register with email address or log in with the following information:
+ILLA CLI を使用すると、ILLA Builder を想像よりも速く展開できます。 [詳細はこちら](https://www.illacloud.com/docs/illa-cli) をご覧ください。 [ここをクリック](https://www.illacloud.com/docs/illa-cli) 詳細については。 デプロイが正常に完了したら、電子メール アドレスで登録するか、次の情報でログインできます。
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>
 
-## How to build your tool
+## ツールの作成方法
 
 #### 🎯 Step 1: Connect to your database
 <p align="center">
@@ -63,8 +62,8 @@ The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [C
   </a>
 </p>
 
-#### 🎨 Step 2: Build UI with built-in components
-Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
+#### 🎨 ステップ 2: 組み込みコンポーネントを使用して UI を構築する
+コンポーネントをキャンバスにドラッグして、UI を構築します。 Illa Builder および Illa Design には、チャート、テーブル、フォームなど、多数のコンポーネントが用意されています。 コンポーネントが重なっている場合、それらの位置は自動的に調整されるため、レイアウト開発が容易かつ柔軟になります。
 
 <p align="center">
   <a href="https://cloud.illacloud.com/">
@@ -72,8 +71,8 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
   </a>
 </p>
 
-#### 🔌 Step 3: Connect to your data
-Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
+#### 🔌 ステップ 3: データに接続する
+GUI データ コネクタを介して MySQL または REST API に接続します。 10以上のデータベースとAPIをすぐに追加します。
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
@@ -81,37 +80,43 @@ Connect to MySQL or REST API through our GUI data connectors. And we will add mo
 </p>
 
 #### 🚀 Step 4: Deploy your app
-Deploy your app and self host it.
+Deploy your app and self host it. また、近日中に 10 を超えるデータベースと API を追加する予定です。
+<p align="center">
+  <a href="https://cloud.illacloud.com/">
+    <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
+  </a>
+</p>
+
+#### 🚀 ステップ 4: アプリをデプロイする
+アプリをデプロイして自己ホストします。
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
   </a>
 </p>
 
-## 💬 Community
+## 💬 コミュニティ
 
-Join ILLA Community to share your ideas, suggestions, or questions and connect with other users and contributors.
+ILLA コミュニティに参加して、アイデア、提案、質問を共有し、他のユーザーや貢献者とつながりましょう。 </br>[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)   [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
 
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)   [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
+## 🌱 貢献
 
-## 🌱 Contributing
-
-Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
+貢献を考えていますか？ ILLA へのあらゆる種類の貢献を歓迎します。 参加方法については、 [コントリビューションガイド](./CONTRIBUTING.md) をご覧ください。
 <p>Appreciate all the contributions from ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
 
 ## 📢 Translating
 
-The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. See our [official translation page](https://crowdin.com/project/illa-builder) in case you like to contribute.
+The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. 貢献したい場合は、[公式翻訳ページ](https://crowdin.com/project/illa-builder) を参照してください。
 
-## 🔥 We're Hiring
+## 🔥 募集中
 
-Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
+情熱的でクリエイティブなチームをお探しですか? 以下の職種のエンジニアを積極的に採用しています。
 
-- Frontend Engineer
-- Golang Engineer
+- フロントエンドエンジニア
+- Golang エンジニア
 
-Contact Us: hr@illasoft.com
+お問い合わせ: hr@illasoft.com
 
-## License
+## 免許証
 
-This project is [Apache License 2.0](./LICENSE).
+このプロジェクトは [Apache License 2.0](./LICENSE) です。
