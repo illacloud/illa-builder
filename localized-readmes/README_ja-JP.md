@@ -49,7 +49,7 @@
 6. 🎨 **[ILLA Design](https://github.com/illacloud/illa-design) を利用:** コンポーネントによって想像力が制約されることはありません。
 ## Self-hosted
 
-ILLA CLI を使用すると、ILLA Builder を想像よりも速く展開できます。 [詳細はこちら](https://www.illacloud.com/docs/illa-cli) をご覧ください。 [ここをクリック](https://www.illacloud.com/docs/illa-cli) 詳細については。 デプロイが正常に完了したら、電子メール アドレスで登録するか、次の情報でログインできます。
+ILLA CLI を使用すると、ILLA Builder を想像よりも速く展開できます。 [ここをクリック](https://www.illacloud.com/docs/illa-cli) 詳細については。 [ここをクリック](https://www.illacloud.com/docs/illa-cli) 詳細については。 デプロイが正常に完了したら、電子メール アドレスで登録するか、次の情報でログインできます。
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>
 
@@ -72,7 +72,7 @@ ILLA CLI を使用すると、ILLA Builder を想像よりも速く展開でき�
 </p>
 
 #### 🔌 ステップ 3: データに接続する
-GUI データ コネクタを介して MySQL または REST API に接続します。 10以上のデータベースとAPIをすぐに追加します。
+GUI データ コネクタを介して MySQL または REST API に接続します。 10以上のデータベースとAPIをすぐに追加します。 10以上のデータベースとAPIをすぐに追加します。
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
@@ -101,7 +101,7 @@ ILLA コミュニティに参加して、アイデア、提案、質問を共有
 
 ## 🌱 貢献
 
-貢献を考えていますか？ ILLA へのあらゆる種類の貢献を歓迎します。 参加方法については、 [コントリビューションガイド](./CONTRIBUTING.md) をご覧ください。
+貢献を考えていますか？ ILLA へのあらゆる種類の貢献を歓迎します。 参加方法については、 [コントリビューションガイド](./CONTRIBUTING.md) をご覧ください。 参加方法については、 [コントリビューションガイド](./CONTRIBUTING.md) をご覧ください。
 <p>Appreciate all the contributions from ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
 
 ## 📢 Translating
