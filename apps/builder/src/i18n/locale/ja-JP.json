@@ -1816,7 +1816,7 @@
           "limited": "制限",
           "limit_offset_based": "リミットオフセットベース",
           "cursor_based": "カーソルベース",
-          "graphql_relay_cursor": "GraphQLリレーカーソルベース"
+          "graphql_relay_cursor": "GraphQL Relay cursor"
         }
       },
       "setter_placeholder": {
