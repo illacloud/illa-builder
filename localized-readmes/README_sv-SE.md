@@ -1,15 +1,15 @@
 <div align="center">
   <a href="https://cloud.illacloud.com/">
-    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
+    <img alt="ILLA design-logotyp" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
   </a>
 </div>
 
 <h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder</a> </h1>
 
-<p align="center">ILLA is a robust open source low-code platform for developers to build internal tools. By using ILLA's library of Components and Actions, developers can save massive amounts of time on building tools. </p>
+<p align="center">ILLA är en robust plattform med låg källkod för utvecklare att bygga interna verktyg. Genom att använda ILLA:s bibliotek med komponenter och åtgärder kan utvecklare spara mycket tid på att bygga verktyg. </p>
 
 <div align="center">
-English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
 </div>
 
 <br>
@@ -29,42 +29,42 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
   <a href="./CONTRIBUTING.md"><img src="https://badgen.net/badge/PRs/Welcome/green?icon=storybook" height=18></a>
 </p>
 
-## 🚀Get Started
-To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/). To obtain an invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible. To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/illacloud), where you can obtain an invitation code faster.
+## :raket:Kom igång
+För att prova ILLA är det lämpligaste sättet att registrera sig och logga in på [ILLA Cloud](https://cloud.illacloud.com/). För att få en inbjudningskod, fyll i detta [Google-formulär](https://forms.gle/XFRSUc3yFpzbCdcWA) och ge så mycket information som möjligt. Vi kommer att granska din ansökan inom två arbetsdagar och kontakta dig så snart som möjligt. För att påskynda granskningsprocessen inbjuder vi dig att gå med i vår [Discord-gemenskap](https://discord.gg/illacloud), där du kan få en inbjudningskod snabbare.
 
-You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually(Docker, docker-compose, and k8s).
+Du kan också distribuera och [själv-värd](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manuellt(Docker, docker-compose, och k8s).
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
   <a href="https://cloud.illacloud.com/"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 
-## ✨ Features
+## ✨ Funktioner
 
-1. ⚽ **Real-time Collaboration:** We can create everything in real-time together.
-2. 🛠 **Custom Plugin:** Build any custom plugin to do what you want.
-3. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
-4. 🖥 **Self-hosted:** supports Docker & k8s
-5. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
-6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
+1. ⚽ **Samarbete i realtid:** Vi kan skapa allt i realtid tillsammans.
+2. 🛠️ **Anpassad plugin:** Bygg en anpassad plugin för att göra vad du vill.
+3. 🤖 **Automate Support:** Anslut allt och automatisera dem på 5 sekunder.
+4. 🖥️ **Självvärd:** stöder Docker & k8s
+5. 📝 **Page Support:** Basen för att skapa ett innehållsrikt och UI-vänligt verktyg.
+6. 🎨 **Drivs av [ILLA Design](https://github.com/illacloud/illa-design):** Komponenter bör inte begränsa din fantasi.
 
-## Self-hosted
+## Självvärd
 
-The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [Click here](https://www.illacloud.com/docs/illa-cli) for more details. After successfully deployed, you can register with email address or log in with the following information:
-<p align="left">Username (email): root</p>
-<p align="left">Password: password</p>
+Med ILLA CLI kan du distribuera ILLA Builder snabbare än din fantasi. [Klicka här](https://www.illacloud.com/docs/illa-cli) för mer information. Efter framgångsrikt installerat, du kan registrera dig med e-postadress eller logga in med följande information:
+<p align="left">Användarnamn (e-post): rot</p>
+<p align="left">Lösenord: lösenord</p>
 
-## How to build your tool
+## Så här bygger du ditt verktyg
 
-#### 🎯 Step 1: Connect to your database
+#### 🎯 Steg 1: Anslut till din databas
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/sql.jpeg">
   </a>
 </p>
 
-#### 🎨 Step 2: Build UI with built-in components
-Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
+#### :artist_palett: Steg 2: Bygg användargränssnitt med inbyggda komponenter
+Bygg ditt användargränssnitt genom att dra komponenter till duken. Vi erbjuder dussintals komponenter inklusive diagram, tabeller, former och många fler i Illa Builder och Illa Design. När komponenterna överlappar justeras deras position automatiskt, vilket gör layoututvecklingen enkel och flexibel.
 
 <p align="center">
   <a href="https://cloud.illacloud.com/">
@@ -72,16 +72,16 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
   </a>
 </p>
 
-#### 🔌 Step 3: Connect to your data
-Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
+#### 🔌 Steg 3: Anslut till dina data
+Anslut till MySQL eller REST API via våra GUI-datakopplingar. Och vi kommer snart att lägga till mer än 10 databaser och API:er.
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
   </a>
 </p>
 
-#### 🚀 Step 4: Deploy your app
-Deploy your app and self host it.
+#### 🚀 Steg 4: Distribuera din app
+Distribuera din app och själv värd den.
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
@@ -90,28 +90,28 @@ Deploy your app and self host it.
 
 ## 💬 Community
 
-Join ILLA Community to share your ideas, suggestions, or questions and connect with other users and contributors.
+Gå med i ILLA Community för att dela dina idéer, förslag, eller frågor och ansluta med andra användare och bidragsgivare.
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)   [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
 
-## 🌱 Contributing
+## 🌱 Bidragande
 
-Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
-<p>Appreciate all the contributions from ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
+Funderar du på bidrag? Alla typer av bidrag till ILLA är mycket uppskattade och välkomna! Kolla in [Bidragsguide](./CONTRIBUTING.md) för detaljer om hur du kan engagera dig.
+<p>Uppskatta alla bidrag från ❤️  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">bidragsgivare</a></p>
 
-## 📢 Translating
+## 📢 Översätt
 
-The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. See our [official translation page](https://crowdin.com/project/illa-builder) in case you like to contribute.
+`apps/builder/src/i18n/locale/*` dirs hålls automatiskt uppdaterade via Crowdin. Se vår [officiella översättningssida](https://crowdin.com/project/illa-builder) om du vill bidra.
 
-## 🔥 We're Hiring
+## 🔥 Vi anställer
 
-Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
+Letar du efter ett passionerat och kreativt team? Vi anställer aktivt ingenjörer för följande positioner:
 
 - Frontend Engineer
 - Golang Engineer
 
-Contact Us: hr@illasoft.com
+Kontakta oss: hr@illasoft. om
 
-## License
+## Licens
 
-This project is [Apache License 2.0](./LICENSE).
+Detta projekt är [Apache License 2.0](./LICENSE).
