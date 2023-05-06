@@ -171,7 +171,7 @@ const getPropertyValue = (
   const value = props.getValue()
   const index = props.row.index
 
-  if (mappedValue !== undefined && mappedValue !== null) {
+  if (mappedValue != null && mappedValue !== "") {
     if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
       return mappedValue[index] ?? "-"
     }
@@ -237,6 +237,7 @@ export const getCellForType = (
     fromCurrentRow,
     currencyCode = "XXX",
     showThousandsSeparator,
+    tagLabel,
     tagColor = "auto",
     tagColorJs,
     tagColorMode = "select",
@@ -312,7 +313,12 @@ export const getCellForType = (
     case Columns.Tag:
       let color = (tagColorMode === "select" ? tagColor : tagColorJs) || "auto"
       return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(
+          props,
+          tagLabel,
+          fromCurrentRow,
+          "tagLabel",
+        )
         return RenderTableTag({
           cell: props,
           value,

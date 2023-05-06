@@ -1,5 +1,5 @@
 import { CellContext } from "@tanstack/table-core"
-import { FC } from "react"
+import { FC, SyntheticEvent } from "react"
 import {
   Button,
   ButtonGroup,
@@ -143,7 +143,8 @@ export const RenderTableButton: FC<{
     rowIndex,
     fromCurrentRow,
   )
-  const clickEvent = () => {
+  const clickEvent = (e: SyntheticEvent) => {
+    cell.row.getIsSelected() && e.stopPropagation()
     handleOnClickMenuItem?.(convertPathToString(paths))
   }
 
@@ -167,9 +168,10 @@ export const RenderTableButtonGroup: FC<{
   eventPath: string
   handleOnClick?: (path: string) => void
 }> = (props) => {
-  const { value, alignment, eventPath, handleOnClick } = props
+  const { cell, value, alignment, eventPath, handleOnClick } = props
 
-  const handleOnClickButtonItem = (index: number) => {
+  const handleOnClickButtonItem = (e: SyntheticEvent, index: number) => {
+    cell.row.getIsSelected() && e.stopPropagation()
     const paths = [`${eventPath}`, "buttonGroupContent", `${index}`, "events"]
     handleOnClick?.(convertPathToString(paths))
   }
@@ -183,7 +185,7 @@ export const RenderTableButtonGroup: FC<{
             colorScheme={colorScheme}
             disabled={disabled}
             variant={variant}
-            onClick={() => handleOnClickButtonItem(index)}
+            onClick={(e) => handleOnClickButtonItem(e, index)}
           >
             {cellValue ? cellValue : "-"}
           </Button>
@@ -202,9 +204,10 @@ export const RenderTableIconGroup: FC<{
   eventPath: string
   handleOnClick?: (path: string) => void
 }> = (props) => {
-  const { value, alignment, eventPath, handleOnClick } = props
+  const { cell, value, alignment, eventPath, handleOnClick } = props
 
-  const handleOnClickIconItem = (index: number) => {
+  const handleOnClickIconItem = (e: SyntheticEvent, index: number) => {
+    cell.row.getIsSelected() && e.stopPropagation()
     const paths = [`${eventPath}`, "iconGroupContent", `${index}`, "events"]
     handleOnClick?.(convertPathToString(paths))
   }
@@ -220,7 +223,7 @@ export const RenderTableIconGroup: FC<{
             <Icon
               css={applyIconContainerStyle(colorScheme, disabled)}
               key={index}
-              onClick={() => !disabled && handleOnClickIconItem(index)}
+              onClick={(e) => !disabled && handleOnClickIconItem(e, index)}
             />
           ) : (
             <span>{"-"}</span>
