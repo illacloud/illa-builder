@@ -163,7 +163,7 @@
             "host": "主机",
             "dbid": "数据库 ID",
             "projectid": "项目ID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "API Key",
             "collectionid": "集合ID",
             "documentid": "文档ID",
             "data": "数据",
@@ -196,8 +196,8 @@
             "update_value": "待更新的值",
             "primary_key_column": "主键列名",
             "array_of_rows_to_upd": "待更新的行数据的数组",
-            "filters_to_match_row": "Filters to match row",
-            "consider_queries_tha": "将不删除任何行的查询视为成功",
+            "filters_to_match_row": "行索引",
+            "consider_queries_tha": "将未删除任何行的查询视为成功",
             "title_of_spreadsheet": "电子表格的标题",
             "sheet_id_to_copy": "要复制的工作表ID",
             "sheet_to_copy_to": "要复制到的工作表",
@@ -210,7 +210,7 @@
         "placeholder": {
           "url": "在此处输入请求 URL",
           "appwrite": {
-            "host": "HOSTNAME OR IP",
+            "host": "主机名或IP",
             "dbid": "数据库 ID",
             "projectid": "项目ID",
             "secret": "••••••••••••••••••••",
@@ -265,7 +265,7 @@
             "leave_blank_to_selec": "留空以选择第一张表",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
-            "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 <0>",
+            "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 </0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
             "copy_to_sheet_name": "必填。重命名复制后的表",
             "successfully_authent": "认证成功",
@@ -283,15 +283,15 @@
         "option": {
           "appwrite": {
             "method": {
-              "create": "Create a document",
-              "list": "List documents",
-              "get": "Get a document",
-              "update": "Update a document",
-              "delete": "Delete a document"
+              "create": "创建文档",
+              "list": "文件列表",
+              "get": "获取文档",
+              "update": "更新文档",
+              "delete": "删除文档"
             },
             "filter": {
               "and": "AND",
-              "or": "OR",
+              "or": "或",
               "equal": "=",
               "notequal": "<>",
               "lessthan": "<",
@@ -399,14 +399,14 @@
         "firebase": {
           "action_type": "Action Type",
           "collection": "集合",
-          "database_ref": "Database ref",
+          "database_ref": "数据库参考",
           "document_id": "文档ID",
           "email": "邮箱",
           "end_at": "End At",
           "len_of_list": "列表长度",
           "limit": "Limit",
           "next_page_token": "下一页token",
-          "object_to_set": "Object to set",
+          "object_to_set": "要设置的对象",
           "order_by": "Order by",
           "ordering_direction": "Ordering direction",
           "parent_document_id": "父文档ID",
@@ -415,10 +415,10 @@
             "asc": "asc",
             "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
             "input_collection": "输入一个集合",
-            "key": "key",
-            "select_an_action": "Select an action",
+            "key": "键",
+            "select_an_action": "选择一个行为",
             "select_collection": "选择一个集合",
-            "value": "value"
+            "value": "值"
           },
           "service_type": "Service Type",
           "start_at": "Start At",
@@ -427,9 +427,9 @@
             "parent_document_id_tips": "为空时选择最外层目录"
           },
           "uid": "UID",
-          "use_a_dropdown": "Use a dropdown",
+          "use_a_dropdown": "使用下拉选择",
           "use_end_at": "Use endAt",
-          "use_raw_id": "Use raw id",
+          "use_raw_id": "使用原始ID",
           "use_start_at": "Use startAt",
           "user_object": "用户对象",
           "value": "值",
@@ -448,18 +448,18 @@
           "placeholder": {
             "couchdb": {
               "database": "选择数据库",
-              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
+              "record": "{* {\"x\":1, \"y\":2, ...} }}",
               "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             },
             "restapi": {
-              "consumer_key": "Consumer key",
+              "consumer_key": "消费者密钥",
               "consumer_secret": "••••••••••••••••••••••",
               "realm": "testrealm@example.com",
               "ext": "some-app-extra-data",
-              "app": "Application id",
+              "app": "应用程序ID",
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
-              "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
+              "authenticate_using_t": "使用 HTTP Authorization header代替查询参数",
               "find_instructions_on": "<0>在 AWS 文档</0>中找到关于在哪里可以找到访问密钥的说明。",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
             },
@@ -480,17 +480,17 @@
               },
               "skip": "Skip",
               "limit": "Limit",
-              "include": "Include docs",
+              "include": "包含文档",
               "des": "Descending order",
               "id": "_id",
-              "rev": "_rev",
+              "rev": "rev",
               "record": "记录",
               "mangoquery": "MangoQuery",
-              "ViewURL": "ViewURL",
+              "ViewURL": "查看网址",
               "StartKey": "StartKey",
               "EndKey": "EndKey",
-              "include_doc_option": "Docs included in the returned results",
-              "des_option": "Use descending order"
+              "include_doc_option": "包含在返回结果中的文档",
+              "des_option": "按降序排序"
             },
             "restapi": {
               "signature_method": {
@@ -500,23 +500,23 @@
                 "rsa_sha1": "RSA-SHA1",
                 "rsa_sha256": "RSA-SHA256",
                 "rsa_sha512": "RSA-SHA512",
-                "plaintext": "PLAINTEXT"
+                "plaintext": "游戏"
               },
               "algorithm": {
                 "sha256": "sha256",
                 "sha1": "sha1"
               },
               "body_type": {
-                "file": "File",
-                "text": "Text"
+                "file": "文件",
+                "text": "文本"
               },
               "method": {
-                "options": "OPTIONS",
-                "head": "HEAD"
+                "options": "选项",
+                "head": "黑色"
               },
               "add_access_token_to": {
-                "query_parameters": "Query Parameters",
-                "header_authorization": "Header Authorization"
+                "query_parameters": "查询参数",
+                "header_authorization": "Header认证"
               }
             },
             "advanced": {
@@ -529,33 +529,33 @@
           },
           "restapi": {
             "signature_method": "签名方式",
-            "consumer_key": "Consumer key",
-            "consumer_secret": "Consumer secret",
-            "access_token": "Access token",
-            "token_secret": "Token secret",
-            "private_key": "Private key",
+            "consumer_key": "消费者密钥",
+            "consumer_secret": "消费者密钥",
+            "access_token": "访问令牌",
+            "token_secret": "令牌密钥",
+            "private_key": "私钥",
             "realm": "Realm",
             "hawk_auth_id": "Hawk Auth ID",
             "hawk_auth_key": "Hawk Auth Key",
             "algorithm": "Algorithm",
-            "user": "用户",
+            "user": "User",
             "nonce": "Nonce",
             "ext": "ext",
             "app": "app",
             "dig": "dig",
-            "timestamp": "Timestamp",
+            "timestamp": "时间戳",
             "aws_region": "AWS 区域",
             "aws_service": "亚马逊服务",
             "aws_access_key_id": "AWS 访问密钥 ID",
             "aws_secret_key_id": "AWS 密钥 ID",
             "role_to_assume": "使用的角色 (ARN)",
             "list_of_cookies_to_f": "要转发的 cookie 列表",
-            "add_access_token_to": "Add Access Token To"
+            "add_access_token_to": "添加访问令牌到"
           },
           "tips": {
             "restapi": {
               "body_type": {
-                "file": "Either a binary string, or an object: {{ { data: binary string, filename?: string } }}"
+                "file": "要么是二进制字符串，要么是一个对象：{哇，数据：二进制字符串，文件名?：字符串} }}"
               }
             },
             "advanced": {
@@ -668,28 +668,28 @@
           }
         },
         "hugging_face": {
-          "mode_id": "Model ID",
+          "mode_id": "模型 ID",
           "placeholder": {
-            "mode_id": "bert-base-uncased",
-            "text": "The answer to the universe is [MASK].",
-            "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
+            "mode_id": "不间断的浆果底座",
+            "text": "宇宙的答案是 [MASK]。",
+            "json": "很抱歉， \r\n\"past_user_inputs\": [\"哪部电影是最好的?\"], \r\n\"生成的响应\": [\"It Die Hard for sure.\"], \r\n\"text\": \"你能解释为什么?\" \r\n}",
             "binary": "'@cats.jpg' \\",
             "use_cache": "Boolean，为空时默认true",
             "min_length": "整数，用于定义输出摘要的最小标记长度",
             "top_k": "整数，用于定义在创建新文本的示例操作中的顶级标记。",
             "top_p": "浮点数，用于定义在文本生成示例操作中的标记。",
             "temperature": "Float(0.0-100.0)，为空时默认1.0",
-            "repetition_penalty": "Float (0.0-100.0)",
+            "repetition_penalty": "浮点数(0.0-100.0)",
             "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）"
           },
           "tips": {
-            "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
+            "mode_id": "转到<0>Model Hub</0>并选择您想要使用的模型。",
             "use_detail_parameters": "<0>点击这里</0>以了解更多详细参数",
             "temperature": "1表示定期抽样，0表示总是取最高分，100.0越来越接近均匀概率。",
-            "repetition_penalty": "The more a token is used within generation the more it is penalized to not be picked in successive generation passes."
+            "repetition_penalty": "代内使用的令牌越多，它就会受到更多的惩罚，以免在下一代人的通行证中被挑选。"
           },
-          "parameter": "Parameter",
-          "use_detail_parameters": "Use detail parameters",
+          "parameter": "参数",
+          "use_detail_parameters": "使用详细参数",
           "use_cache": "Use cache",
           "wait_for_model": "Wait for model",
           "min_length": "Min length",
@@ -724,26 +724,26 @@
         },
         "dynamo": {
           "label": {
-            "method": "Method",
+            "method": "方法",
             "table": "数据表",
-            "json_input": "Use JSON parameter editor",
-            "parameters": "Parameters",
-            "index": "Index name",
-            "key_condition": "Key condition expression",
-            "projection_expression": "Projection expression",
-            "filter_expression": "Filter expression",
-            "attribute_name": "Expression attribute names",
-            "attribute_value": "Expression attribute values",
-            "limit": "Limit",
-            "select": "Select",
-            "item": "Item",
-            "condition_expression": "Condition expression",
-            "key": "Key",
-            "update_expression": "Update expression"
+            "json_input": "使用 JSON 参数编辑器",
+            "parameters": "参数",
+            "index": "索引名称",
+            "key_condition": "关键条件表达式",
+            "projection_expression": "投影表达式",
+            "filter_expression": "滤镜表达式",
+            "attribute_name": "表达式属性名称",
+            "attribute_value": "表达式属性值",
+            "limit": "限制",
+            "select": "选择",
+            "item": "项目",
+            "condition_expression": "条件表达式",
+            "key": "关键字",
+            "update_expression": "更新表达式"
           },
           "option": {
-            "query": "query",
-            "scan": "scan",
+            "query": "查询",
+            "scan": "扫描",
             "put_item": "putItem",
             "get_item": "getItem",
             "update_item": "updateItem",
@@ -759,9 +759,9 @@
         },
         "result": {
           "restapi": {
-            "status": "Status",
+            "status": "状态",
             "headers": "Headers",
-            "response": "Response"
+            "response": "响应"
           }
         },
         "placeholder": {
@@ -817,8 +817,8 @@
             "account_name": "账号名称",
             "warehouse": "仓库",
             "schema": "模式",
-            "snowflake_basic_auth": "Basic Auth",
-            "snowflake_key_auth": "Key Pair (only encrypted private keys are supported)",
+            "snowflake_basic_auth": "基本认证",
+            "snowflake_key_auth": "密钥对 (仅支持加密私钥)",
             "role": "用户角色",
             "username": "用户名",
             "password": "密码",
@@ -838,16 +838,16 @@
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "用户名",
             "default": "default",
-            "hugging_face_url": "Use the absolute URL (e.g https://api-inference.huggingface.co/models/). ",
+            "hugging_face_url": "使用绝对URL (eg https://api-inference.huggingface.co/models/)。 ",
             "database_name": "数据库名称",
             "account_name": "xy12345.us-east-2.aws",
-            "warehouse": "COMPUTE_WH",
-            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
+            "warehouse": "WH_WH",
+            "snowflake_database": "SNOWFLAKE_SAMPE_DATA",
             "schema": "PUBLIC",
             "role": "用户角色",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
-            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\r\n••••••••\r\n -----END ENCRYPTED PRIVATE KEY-----",
+            "snowflake_private_key": "------------ -\r\n························\r\n ----结束私钥---",
             "dynamo_region": "us-west-1"
           },
           "tip": {
@@ -857,7 +857,7 @@
             "ssl_options": "可用时使用 SSL",
             "username_password": "凭证将被加密并安全存储在我们的服务器上",
             "introspection": "如果你的GraphQL端点不支持introspection查询，就开启该开关。请注意，禁用introspection会降低GraphQL的可用性，因为该资源的自动完成和提示将不再工作。",
-            "hugging_face_url": "<0>Click here</0> to learn more about Hugging Face.",
+            "hugging_face_url": "<0>点击这里</0>以了解更多有关悬浮面的信息。",
             "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
             "connection_options": "为您的连接添加连接选项。当SSL选项开启时，我们会默认添加encrypt和trustServerCertificate。"
           },
@@ -966,24 +966,24 @@
         },
         "api": {
           "description": {
-            "hf": "Learn more about Hugging Face:",
-            "hf_endpoint": "Inference Endpoint"
+            "hf": "了解更多关于 Hugging Facebook：",
+            "hf_endpoint": "灵敏度终点"
           },
           "label": {
-            "hf_endpoint_token": "Token",
+            "hf_endpoint_token": "令牌",
             "hf_endpoint": "Endpoint URL"
           },
           "tips": {
             "hf_endpoint_token": "<0>在您的 Hugging Face 配置文件设置</0>中获取 Organizations API 令牌。",
-            "hf_endpoint": "learn more about <0>Endpoint</0>"
+            "hf_endpoint": "了解更多关于 <0>Hugging Face Endpoint</0>"
           },
           "placeholder": {
-            "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
+            "hf_endpoint": "https://u149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
           }
         },
         "tip": {
           "allowlist": {
-            "title": "Allow IP addresses",
+            "title": "添加允许的IP地址",
             "message": "如果您的资源不可公开访问，请更新您的网络或防火墙设置，将 ILLA 的 IP 地址添加到白名单，以便 ILLA 可以连接到您的资源。"
           }
         },
@@ -1164,18 +1164,18 @@
         "image_setter": {
           "new": "新增"
         },
-        "Change": "Change",
-        "Select": "Select",
+        "Change": "内容更改",
+        "Select": "选择",
         "eventCalendar": {
           "no_title": "无标题"
         },
         "oncellselect": "onCellSelect",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "过滤器更改",
+        "sortChange": "更改排序",
+        "pageChange": "修改页面",
+        "refresh": "刷新"
       },
       "setter_default_value": {
         "fill": "填充",
@@ -1241,7 +1241,7 @@
         "color": "颜色",
         "icon": "图标",
         "secondary_value": "次要值",
-        "resource": "RESOURCE",
+        "resource": "资源",
         "eventCalendar": {
           "calendar": "日历"
         },
@@ -1527,8 +1527,8 @@
           "calendar_text": "文本",
           "event_background": "背景",
           "event_text": "文本",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "是否可拖拽",
+          "resizable": "是否可调整大小"
         },
         "table": {
           "page_index": "页面索引",
@@ -1551,15 +1551,18 @@
           "disable_user_selecti": "禁用用户选择",
           "default_selected_row": "默认选中行",
           "refresh": "刷新",
-          "download_row_data": "Download Row data",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "download_row_data": "下载原始数据",
+          "column_setting": "列设置",
+          "cell_overflow": "单元格溢出",
+          "enable_server_side_p": "启用服务器端分页",
+          "pagination_type": "分页类型",
+          "total_row_count": "总行数",
+          "next_cursor": "下一个光标",
+          "has_next_page": "是否有下一页",
+          "currency_code": "货币代码"
+        },
+        "switch_group": {
+          "option_label_alignment": "选项标签的位置"
         }
       },
       "setter_tooltip": {
@@ -1701,38 +1704,50 @@
           "event_background": "设置事件卡片的背景",
           "event_text": "设置事件卡片的文字颜色",
           "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "是否允许用户通过拖动移动事件来更新事件时间范围",
+          "resizable": "是否允许用户通过拖动事件的边框来延长或缩短时间跨度来更新事件时间范围和更改时间跨度"
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
+          "page_index": "您要选择的页面的索引",
+          "index": "您要选择的行的索引。 索引应该是一个数组，可用于指定多行。",
+          "scroll_to_the_select": "是否滚动到该行。",
+          "show_thousands_separ": "是否显示千位分隔符",
+          "tag_label": "设置标签标签。数组将被分隔为多个标签。",
+          "tag_color": "设定标签的颜色。使用 {voir 写一个条件语句来设置每个标签在不同条件下显示的颜色。",
+          "variant": "按钮的样式",
           "icon": "表中显示的图标",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
+          "color": "设置颜色",
+          "sort_by_mapped_value": "是否按映射值排序。如果选择否，我们将根据原始数据排序。",
+          "background": "设定列的背景。使用{{写一个条件语句来设置每个单元格在不同条件下显示的颜色。",
+          "alignment": "设置列对齐。",
+          "column_width": "用数字设定列宽度。您也可以通过拖动帧来调整列宽度。 调整后，此配置项的值也将相应改变",
+          "width": "设置列宽度的调整方法.",
           "disable_user_selecti": "是否禁用用户选择。 如果禁用，您可以通过事件处理程序控制表组件来选择行。",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
-          "download_row_data": "Whether to show the download row data icon.",
+          "default_selected_row": "默认选择的行。  ",
+          "refresh": "是否显示刷新图标。 ",
+          "download_row_data": "是否显示下载行数据图标。",
           "column_setting": "是否显示列设置。 列设置将允许用户设置要显示的列和列排序。 此设置不会更改表数据。",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "cell_overflow": "当单元格溢出时如何显示。 ",
+          "enable_server_side_p": "是否启用服务器分页",
+          "pagination_type": "分页类型。 ",
+          "total_row_count": "用于计算页码的行数。",
+          "next_cursor": "用于定位一组数据的下一个起点的标识符，以便分页并检索分批数据",
+          "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
+          "filters": "一个包含在 {{ }}中的对象数组。 例如：{[{{\"**columnName**\":\"name of the 列 to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
+          "filter_mode": "过滤器的模式，选择AND 或 OR。",
+          "currency_code": "使用在[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)中定义的货币代码"
+        },
+        "switch_group": {
+          "label": "选项的标签",
+          "value": "一个包含在{{中的数组。例如 {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "值重复。请使用唯一的值来避免错误。",
+          "caption": "标签下显示的标题",
+          "disabled": "是否禁用此选项",
+          "datasource": "切换组的数据源。使用 {{actionName.data}} 来使用您的数据库或 API 的数据",
+          "default_value": "包含 {{ }}的数组。例如， {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "允许选择的最小项目",
+          "choose_up_to": "允许选择的最大项目",
+          "option_label_alignment": "标签位置"
         }
       },
       "setter_option": {
@@ -1750,7 +1765,7 @@
         "file_download": {
           "auto": "自动",
           "plain_text": "纯文本",
-          "jpeg": "JPEG",
+          "jpeg": "跳过",
           "png": "PNG",
           "svg": "SVG",
           "json": "JSON",
@@ -1778,30 +1793,30 @@
           "agenda": "议程"
         },
         "table": {
-          "set_sort": "Set sort",
-          "column": "Column",
-          "number": "Number",
-          "percent": "Percent",
-          "currency": "Currency",
-          "text": "Text",
-          "tag": "Tag",
-          "button_group": "Button group",
-          "date": "Date",
-          "time": "Time",
-          "date_time": "Date Time",
-          "link": "Link",
-          "rating": "Rating",
+          "set_sort": "设置排序",
+          "column": "列",
+          "number": "号码",
+          "percent": "百分比",
+          "currency": "货币",
+          "text": "文本",
+          "tag": "标签",
+          "button_group": "按钮组",
+          "date": "日期",
+          "time": "时间",
+          "date_time": "日期时间",
+          "link": "链接",
+          "rating": "评分",
           "markdown": "Markdown",
           "html": "HTML",
-          "button": "Button",
-          "icon": "Icon",
+          "button": "按钮",
+          "icon": "图标",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "outline": "轮廓：",
+          "auto": "自动操作",
+          "limited": "限量的",
+          "limit_offset_based": "基于限制偏移量",
+          "cursor_based": "光标基于",
+          "graphql_relay_cursor": "基于图形QL继电器光标"
         }
       },
       "setter_placeholder": {
@@ -1827,20 +1842,23 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "USD"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         }
       },
       "setter_tootip": {
         "volume": "0到1之间的数字"
       },
       "setter_message": {
-        "choose_at_least": "Please choose at lease {{ min }} options.",
-        "choose_up_to": "Please choose up to {{max}} options.",
+        "choose_at_least": "请选择 {{ min }} 的租约选项。",
+        "choose_up_to": "请最多选择 {{max}} 个选项。",
         "map": {
           "zoom": "请设置一个介于 1 和 22 之间的值"
         },
         "upload": {
-          "size_exceed": "Files over 500MB may fail to parse.",
+          "size_exceed": "超过 500 MB 的文件可能无法解析。",
           "single_file": "只允许一个文件。",
           "file": "サポートされていないファイル タイプは削除されます",
           "directory": "只允许目录。"
@@ -1913,14 +1931,14 @@
         "container": "容器类组件",
         "data": "数据类组件",
         "inputs": "输入类组件",
-        "navigation": "Navigation",
+        "navigation": "导航类组件",
         "presentation": "展示类组件",
         "selects": "选择类组件"
       },
       "tab_title": "组件"
     },
     "method": {
-      "set_hidden": "Set hidden",
+      "set_hidden": "设置隐藏",
       "set_file_url": "Set file URL",
       "play": "播放",
       "pause": "暂停",
@@ -1941,7 +1959,7 @@
       "mute": "静音",
       "loop": "循环播放",
       "show_controls": "Show Controls",
-      "set_volumn": "Set Volumn",
+      "set_volumn": "设置音量",
       "set_volume": {
         "volume": "音量",
         "placeholder": {
@@ -1949,13 +1967,13 @@
         }
       },
       "statistics": {
-        "set_primary_value": "setPrimaryValue",
-        "reset_primary_value": "resetPrimaryValue",
+        "set_primary_value": "设置主要数值",
+        "reset_primary_value": "重置主要数值",
         "primary_value": "主要数值"
       },
       "collapse": {
         "expand_all_items": "展开所有项目",
-        "collapse_all_items": "Collapse all items"
+        "collapse_all_items": "折叠所有项目"
       },
       "carousel": {
         "showNext": "显示下一个可见图像",
@@ -1980,24 +1998,21 @@
         "markers_changed": "更改标记"
       },
       "time_range": {
-        "setstarttime": "setStartTime",
-        "setendtime": "setEndTime"
+        "setstarttime": "设置开始时间",
+        "setendtime": "设置结束时间"
       },
       "eventCalendar": {
         "addevent": "addEvent",
         "deleteevent": "deleteEvent"
       },
       "table": {
-        "clear_filters": "Clear filters",
+        "clear_filters": "清除过滤器",
         "clear_column_setting": "清除列设置",
         "refresh": "刷新",
         "select_page": "选择页面",
-        "select_row": "Select row",
-        "clear_selection": "Clear selection",
-        "set_filters": "Set filters",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
-        "onEventResize": "onEventResize"
+        "select_row": "选择行",
+        "clear_selection": "清除选择",
+        "set_filters": "设置筛选器"
       }
     },
     "tutorial": {
@@ -2061,7 +2076,7 @@
           "congratulations_title": "恭喜🎉",
           "congratulations_description": "您刚刚构建了您的第一个应用程序。 如果您在使用过程中有任何疑问，可以通过<0>Discord<0>联系我们",
           "congratulations_button": "完成",
-          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
+          "event_handler_description_all": "1. 添加事件处理器\n2. 点击事件处理器\n3. 将触发的行为改为触发Action\n4. 更改Action为postgresql1"
         }
       }
     },
@@ -2139,7 +2154,7 @@
     "mobile_forbidden": "为获得更好的编辑体验，请通过电脑端访问",
     "back_to_cloud": "返回ILLA Cloud",
     "no_permission_title": "权限不足",
-    "no_permission_description": "You don't have permissions to perform the requested operation. Please contact the administers in your team."
+    "no_permission_description": "您没有权限执行请求的操作。请联系您团队中的管理员。"
   },
   "title": "欢迎来到艾拉云",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
@@ -2407,7 +2422,7 @@
       "name": "数值统计"
     },
     "collapse": {
-      "name": "Collapse"
+      "name": "收起"
     },
     "multiselect": {
       "name": "多项选择"
@@ -2444,7 +2459,10 @@
       "name": {
         "event_calendar": "事件日历"
       },
-      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
+      "name_duplicated": "该资源ID在这些事件中冲突，请使用相同的名称或不同的ID"
+    },
+    "switch_group": {
+      "switch_group": "开关组"
     }
   },
   "page": {
@@ -2800,7 +2818,7 @@
     }
   },
   "empty_copied_tips": "复制的内容为空",
-  "copy_empty": "The content to be copied is empty",
+  "copy_empty": "要复制的内容为空",
   "tutorial": {
     "modal": {
       "tutorial": {
