@@ -1,15 +1,15 @@
 <div align="center">
   <a href="https://cloud.illacloud.com/">
-    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
+    <img alt="Logo Projektowe ILLA" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
   </a>
 </div>
 
 <h1 align="center"><a href="https://cloud.illacloud.com/">ILLA Builder</a> </h1>
 
-<p align="center">ILLA is a robust open source low-code platform for developers to build internal tools. By using ILLA's library of Components and Actions, developers can save massive amounts of time on building tools. </p>
+<p align="center">ILLA jest solidną otwarto-źródłową platformą niskiego kodu dla programistów do budowania narzędzi wewnętrznych. Korzystając z Biblioteki Komponentów i Akcji ILLA, deweloperzy mogą zaoszczędzić ogromną ilość czasu na narzędziach budowlanych. </p>
 
 <div align="center">
-English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
+English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN.md">简体中文</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-KR.md">한국어</a> | <a href="https://github.com/illacloud/illa-builder/blob/main/README-JP.md">日本語</a>
 </div>
 
 <br>
@@ -29,28 +29,28 @@ English | <a href="https://github.com/illacloud/illa-builder/blob/main/README-CN
   <a href="./CONTRIBUTING.md"><img src="https://badgen.net/badge/PRs/Welcome/green?icon=storybook" height=18></a>
 </p>
 
-## 🚀Get Started
-To try ILLA, the most convenient way is to sign up and log in to [ILLA Cloud](https://cloud.illacloud.com/). To obtain an invitation code, please fill out this [Google Form](https://forms.gle/XFRSUc3yFpzbCdcWA) and provide as much information as possible. We will review your submission within two business days and contact you as soon as possible. To expedite the review process, we invite you to join our [Discord Community](https://discord.gg/illacloud), where you can obtain an invitation code faster.
+## 🚀Zacznij
+Aby wypróbować ILLA, najwygodniejszym sposobem jest zarejestrowanie się i zalogowanie się do [Cloud](https://cloud.illacloud.com/). Aby otrzymać kod zaproszenia, wypełnij ten [formularz Google](https://forms.gle/XFRSUc3yFpzbCdcWA) i podaj jak najwięcej informacji. Sprawdzimy Twoje zgłoszenie w ciągu dwóch dni roboczych i skontaktujemy się z Tobą tak szybko, jak to możliwe. Aby przyspieszyć proces weryfikacji, zapraszamy do dołączenia do naszej [społeczności Discorda](https://discord.gg/illacloud), gdzie możesz otrzymać kod zaproszenia szybciej.
 
-You can also deploy and [self-host](https://github.com/illacloud/illa-builder#self-hosted) ILLA utils manually(Docker, docker-compose, and k8s).
+Możesz również ręcznie rozmieszczać [hosta własnego](https://github.com/illacloud/illa-builder#self-hosted) ILLA (Docker, dockera i k8s).
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/selfhost.png" height=120 />
   <a href="https://cloud.illacloud.com/"><img src="https://raw.githubusercontent.com/illacloud/.github/main/assets/images/ILLA%20Cloud.png" height=120 />
 </p>
 
-## ✨ Features
+## ✨ Funkcje
 
-1. ⚽ **Real-time Collaboration:** We can create everything in real-time together.
-2. 🛠 **Custom Plugin:** Build any custom plugin to do what you want.
-3. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
-4. 🖥 **Self-hosted:** supports Docker & k8s
-5. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
-6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
+1. ⚽ **Współpraca w czasie rzeczywistym:** Razem możemy stworzyć wszystko w czasie rzeczywistym.
+2. 🛠️ **Własna wtyczka:** Zbuduj dowolną wtyczkę, aby zrobić to, co chcesz.
+3. 🤖 **Automatyczne wsparcie:** Połącz wszystko i zautomatyzuj je w 5 sekund.
+4. 🖥️ **Samodzielny hosted:** obsługuje Docker & k8s
+5. 📝 **Wsparcie strony:** Podstawa stworzenia bogatego w zawartość i przyjaznego użytkownikowi narzędzia.
+6. 🎨 **Wspierane przez [ILLA Design](https://github.com/illacloud/illa-design):** Komponenty nie powinny ograniczać Twojej wyobraźni.
 
-## Self-hosted
+## Prowadzone samodzielnie
 
-The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [Click here](https://www.illacloud.com/docs/illa-cli) for more details. After successfully deployed, you can register with email address or log in with the following information:
+CLI ILLA pozwala na szybsze niż twoja wyobraźnia. [Kliknij tutaj](https://www.illacloud.com/docs/illa-cli) , aby uzyskać więcej informacji. After successfully deployed, you can register with email address or log in with the following information:
 <p align="left">Username (email): root</p>
 <p align="left">Password: password</p>
 
@@ -64,7 +64,7 @@ The ILLA CLI enables you to deploy ILLA Builder faster than your imagination. [C
 </p>
 
 #### 🎨 Step 2: Build UI with built-in components
-Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
+Build your UI by dragging components to the canvas. Dostarczamy dziesiątki komponentów, w tym wykresy, tabele, formularze i wiele innych elementów w Illa Builder i Illa Design. Gdy elementy nakładają się na siebie, ich pozycja zostanie automatycznie dostosowana, co ułatwia i uelastycznia rozwój układu.
 
 <p align="center">
   <a href="https://cloud.illacloud.com/">
@@ -72,46 +72,46 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
   </a>
 </p>
 
-#### 🔌 Step 3: Connect to your data
-Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
+#### 🔌 Krok 3: Połącz ze swoimi danymi
+Połącz się z MySQL lub REST API za pośrednictwem naszych łączników danych GUI. I wkrótce dodamy ponad 10 baz danych i API.
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
   </a>
 </p>
 
-#### 🚀 Step 4: Deploy your app
-Deploy your app and self host it.
+#### 🚀 Krok 4: Wdrożenie aplikacji
+Wdrożenie aplikacji i zarządzanie nią.
 <p align="center">
   <a href="https://cloud.illacloud.com/">
     <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
   </a>
 </p>
 
-## 💬 Community
+## 💬 Społeczność
 
-Join ILLA Community to share your ideas, suggestions, or questions and connect with other users and contributors.
+Dołącz do społeczności ILLA, aby podzielić się swoimi pomysłami, sugestie lub pytania i połącz się z innymi użytkownikami i współpracownikami.
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)   [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
 
-## 🌱 Contributing
+## 🌱 Wkład
 
-Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
-<p>Appreciate all the contributions from ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
+Rozważanie na temat wkładu? Wszystkie rodzaje wkładu w ILLA są bardzo doceniane i mile widziane! Zapoznaj się z [Przewodnikiem współdziałania](./CONTRIBUTING.md) , aby dowiedzieć się jak można się zaangażować.
+<p>Dopasuj wszystkie wkłady ❤️  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">współtwórców</a></p>
 
-## 📢 Translating
+## 📢 Tłumaczenie
 
-The `apps/builder/src/i18n/locale/*` dirs are kept up-to-date automatically via Crowdin. See our [official translation page](https://crowdin.com/project/illa-builder) in case you like to contribute.
+`apps/builder/src/i18n/locale/*` dirs są aktualizowane automatycznie przez Crowdin. Zobacz naszą [oficjalną stronę tłumaczenia](https://crowdin.com/project/illa-builder) na wypadek, gdyby chcesz.
 
-## 🔥 We're Hiring
+## 🔥 Zatrudniamy
 
-Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
+Szukasz pasjonatu i kreatywnego zespołu? Aktywnie zatrudniamy inżynierów na następujące pozycje:
 
-- Frontend Engineer
+- Inżynier Frontend
 - Golang Engineer
 
-Contact Us: hr@illasoft.com
+Skontaktuj się z nami: hr@illasoft. om
 
-## License
+## Licencja
 
-This project is [Apache License 2.0](./LICENSE).
+Ten projekt to [Licencja Apache 2.0](./LICENSE)
