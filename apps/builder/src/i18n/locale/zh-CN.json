@@ -1816,7 +1816,7 @@
           "limited": "限量的",
           "limit_offset_based": "基于限制偏移量",
           "cursor_based": "光标基于",
-          "graphql_relay_cursor": "基于图形QL继电器光标"
+          "graphql_relay_cursor": "GraphQL Relay cursor"
         }
       },
       "setter_placeholder": {
