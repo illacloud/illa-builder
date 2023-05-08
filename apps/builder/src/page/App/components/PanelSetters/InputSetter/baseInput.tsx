@@ -47,6 +47,15 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     return ""
   }, [listWidgets, widgetDisplayName])
 
+  const finalWrapperCode = useMemo(() => {
+    if (currentListDisplayName) {
+      return (value: string) => {
+        return getNeedComputedValueWithList(value, currentListDisplayName)
+      }
+    }
+    return wrappedCodeFunc
+  }, [currentListDisplayName, wrappedCodeFunc])
+
   const finalValue = useMemo(() => {
     if (currentListDisplayName) {
       return realInputValueWithList(value, currentListDisplayName)
@@ -93,7 +102,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         onChange={onChange}
         showLineNumbers={false}
         placeholder={placeholder}
-        expectValueType={expectedType}
+        expectValueType={currentListDisplayName ? undefined : expectedType}
         lang={CODE_LANG.JAVASCRIPT}
         maxHeight="208px"
         maxWidth="100%"
@@ -102,7 +111,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         modalDescription={detailedDescription ?? labelDesc}
         onFocus={onFocus}
         onBlur={onBlur}
-        wrappedCodeFunc={wrappedCodeFunc}
+        wrappedCodeFunc={finalWrapperCode}
       />
     </div>
   )

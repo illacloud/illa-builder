@@ -18,6 +18,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
+import { canManageApp } from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
@@ -42,7 +43,7 @@ import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
-  const { appId, canEditApp, canManageApp, isDeploy } = props
+  const { appId, canEditApp, isDeploy } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -76,6 +77,12 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     allowViewerManageTeamMember:
       teamInfo?.permission.allowViewerManageTeamMember ?? false,
   }
+
+  const canSetPublic = canManageApp(
+    currentUserRole,
+    teamInfo?.permission?.allowEditorManageTeamMember,
+    teamInfo?.permission?.allowViewerManageTeamMember,
+  )
 
   const handleInviteByEmail = (email: string, userRole: USER_ROLE) => {
     return shareAppByEmail(email, userRole, appId).then((res) => {
@@ -117,14 +124,14 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   }
 
   useEffect(() => {
-    if (canEditApp || (isDeploy && canManageApp)) {
+    if (canEditApp || (isDeploy && canSetPublic)) {
       track(
         ILLA_MIXPANEL_EVENT_TYPE.SHOW,
         ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
         { element: "app_more", parameter5: appId },
       )
     }
-  }, [canEditApp, isDeploy, canManageApp, appId])
+  }, [canEditApp, isDeploy, canSetPublic, appId])
 
   useEffect(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
@@ -372,7 +379,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
               />
             </Dropdown>
           </>
-        ) : isDeploy && canManageApp ? (
+        ) : isDeploy && canSetPublic ? (
           // for viewer
           <Dropdown
             position="bottom-end"

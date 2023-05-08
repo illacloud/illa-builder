@@ -158,20 +158,6 @@ export const updateMembers = async () => {
   return response.data
 }
 
-export const getTeamsInfo = async (teamIdentifier?: string) => {
-  const response = await fetchMyTeamsInfo()
-  const data = response.data ?? []
-  const currentTeamInfo = data.find(
-    (item) => item.identifier === teamIdentifier,
-  )
-  if (currentTeamInfo) {
-    store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
-    store.dispatch(teamActions.updateTeamItemsReducer(data))
-    return currentTeamInfo
-  }
-  return Promise.reject("have no team match")
-}
-
 export const updateTeamsInfo = async (teamIdentifier?: string) => {
   const response = await fetchMyTeamsInfo()
   const data = response.data
