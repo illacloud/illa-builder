@@ -1150,7 +1150,7 @@
           "markerSelected": "маркер выбран",
           "markerCreated": "маркер создан",
           "select": "Выбрать",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Drag no event area"
         },
         "image_list": {
           "title": "Изображения",
@@ -1551,7 +1551,7 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Обновить",
-          "download_row_data": "Download Row data",
+          "download_row_data": "Download raw data",
           "column_setting": "Настройка колонки",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
@@ -1560,6 +1560,9 @@
           "next_cursor": "Next cursor",
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
+        },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
         }
       },
       "setter_tooltip": {
@@ -1713,10 +1716,10 @@
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
           "variant": "Variant of the button",
           "icon": "The icon displayed in the table",
-          "color": "Set the color.",
+          "color": "Установить цвет",
           "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
           "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
+          "alignment": "Задать выравнивание колонки.",
           "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
           "width": "Set the adaptation method of column width.",
           "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
@@ -1730,9 +1733,21 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
         }
       },
       "setter_option": {
@@ -1827,7 +1842,10 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "USD"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         }
       },
       "setter_tootip": {
@@ -1994,10 +2012,7 @@
         "select_page": "Выберите страницу",
         "select_row": "Выберите строку",
         "clear_selection": "Очистить выделенное",
-        "set_filters": "Установить фильтры",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
-        "onEventResize": "onEventResize"
+        "set_filters": "Установить фильтры"
       }
     },
     "tutorial": {
@@ -2445,6 +2460,9 @@
         "event_calendar": "Календарь событий"
       },
       "name_duplicated": "Этот идентификатор ресурса конфликтует в ходе этих событий, пожалуйста, используйте одно и то же имя или другой идентификатор"
+    },
+    "switch_group": {
+      "switch_group": "Switch group"
     }
   },
   "page": {
