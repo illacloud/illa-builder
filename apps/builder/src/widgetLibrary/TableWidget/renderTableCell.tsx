@@ -21,6 +21,7 @@ import {
 } from "@/widgetLibrary/TableWidget/interface"
 import {
   applyAlignmentStyle,
+  applyFlexAlignmentStyle,
   applyIconContainerStyle,
   applyTableButtonGroupStyle,
   applyTableCellBackgroundStyle,
@@ -90,14 +91,7 @@ export const RenderTableImage: FC<{
   )
 }
 
-export const RenderTableTag: FC<{
-  cell: CellContext<any, any>
-  value?: string
-  color: string | "auto"
-  alignment?: TableCellAlign
-}> = (props) => {
-  const { cell, value, color, alignment } = props
-  const rowIndex = cell.row.index
+const getTagColor = (color: string, rowIndex: number, index: number) => {
   const tagDefaultColor = [
     "techPink",
     "purple",
@@ -106,16 +100,37 @@ export const RenderTableTag: FC<{
     "orange",
     "cyan",
   ]
-  const colorScheme =
-    color === "auto"
-      ? tagDefaultColor[rowIndex % tagDefaultColor.length]
-      : tagColorSchemeOptions.includes(color)
-      ? color
-      : getColor(color, "03")
+
+  return color === "auto"
+    ? tagDefaultColor[(rowIndex + index) % tagDefaultColor.length]
+    : tagColorSchemeOptions.includes(color)
+    ? color
+    : getColor(color, "03")
+}
+
+export const RenderTableTag: FC<{
+  cell: CellContext<any, any>
+  value?: Array<unknown>
+  color: string | "auto"
+  alignment?: TableCellAlign
+}> = (props) => {
+  const { cell, value, color, alignment } = props
+  const rowIndex = cell.row.index
 
   return (
-    <div css={applyAlignmentStyle(alignment)}>
-      {value ? <Tag colorScheme={colorScheme}>{`${value}`}</Tag> : "-"}
+    <div css={applyFlexAlignmentStyle(alignment)}>
+      {value?.length ? (
+        value?.map((itemValue, index) => {
+          const colorScheme = getTagColor(color, rowIndex, index)
+          return (
+            <Tag key={index} colorScheme={colorScheme}>
+              {`${itemValue}`}
+            </Tag>
+          )
+        })
+      ) : (
+        <Tag colorScheme={getTagColor(color, rowIndex, 0)}>{"-"}</Tag>
+      )}
     </div>
   )
 }

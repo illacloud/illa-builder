@@ -49,6 +49,16 @@ export const applyAlignmentStyle = (
   }
   return css``
 }
+export const applyFlexAlignmentStyle = (
+  align?: TableCellAlign,
+): SerializedStyles => {
+  return css`
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: ${align};
+  `
+}
 
 export const applyTableButtonGroupStyle = (
   align?: TableCellAlign,

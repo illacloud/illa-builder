@@ -12,10 +12,7 @@ import {
   TABLE_BUTTON_EVENT_HANDLER_CONFIG,
   TABLE_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
-import {
-  Columns,
-  tagColorSchemeOptions,
-} from "@/widgetLibrary/TableWidget/interface"
+import { Columns } from "@/widgetLibrary/TableWidget/interface"
 
 const baseWidgetName = "table"
 
@@ -237,13 +234,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-column-tagColor`,
             labelName: i18n.t("editor.inspect.setter_label.table.tag_color"),
             labelDesc: i18n.t("editor.inspect.setter_tips.table.tag_color"),
+            setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
             attrName: "tagColor",
-            selectAttrName: "tagColor",
-            inputAttrName: "tagColorJs",
-            isDynamicAttrName: "tagColorMode",
-            setterType: "DYNAMIC_SELECT_SETTER",
-            options: tagColorSchemeOptions,
-            useCustomLayout: true,
             bindAttrName: ["type"],
             shown: (value) => value === Columns.Tag,
           },
