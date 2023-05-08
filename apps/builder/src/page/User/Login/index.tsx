@@ -3,10 +3,12 @@ import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
+import { ERROR_FLAG } from "@/api/errorFlag"
 import LoginPage from "@/illa-public-component/User/login"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignIn } from "@/services/auth"
 import { mobileAdaptationStyle } from "@/style"
 import { ILLABuilderStorage } from "@/utils/storage"
@@ -20,9 +22,6 @@ const UserLogin: FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const dispatch = useDispatch()
-  const [searchParams] = useSearchParams()
-  const appID = searchParams.get("appID")
-  const teamIdentifier = searchParams.get("teamIdentifier")
 
   const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = async (requestBody) => {
@@ -41,10 +40,10 @@ const UserLogin: FC = () => {
           avatar: res.data.avatar,
         }),
       )
-      if (!isCloudVersion && appID && teamIdentifier) {
-        navigate(`/${teamIdentifier}/deploy/app/${appID}`, {
-          replace: true,
-        })
+      if (!isCloudVersion) {
+        const urlSearchParams = new URLSearchParams(location.search)
+        const path = translateSearchParamsToURLPathWithSelfHost(urlSearchParams)
+        navigate(`${path}`)
       } else {
         navigate(location.state?.from ?? "/", {
           replace: true,
@@ -55,23 +54,17 @@ const UserLogin: FC = () => {
       })
     } catch (error) {
       if (isILLAAPiError(error)) {
-        message.error({
-          content: t("user.sign_in.tips.fail"),
-        })
-        switch (error.data.errorMessage) {
-          case "no such user":
-            setErrorMsg({
-              ...errorMsg,
-              email: t("user.sign_in.error_message.email.registered"),
-            })
-            break
-          case "invalid password":
+        switch (error.data.errorFlag) {
+          case ERROR_FLAG.ERROR_FLAG_SIGN_IN_FAILED:
             setErrorMsg({
               ...errorMsg,
               password: t("user.sign_in.error_message.password.incorrect"),
             })
             break
           default:
+            message.error({
+              content: t("user.sign_in.tips.fail"),
+            })
         }
       } else {
         message.warning({
