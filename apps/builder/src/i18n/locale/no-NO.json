@@ -1801,7 +1801,7 @@
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
-          "graphql_relay_cursor": "GraphQL Relay cursor"
+          "graphql_relay_cursor": "GraphQL Relay cursor-based"
         }
       },
       "setter_placeholder": {
