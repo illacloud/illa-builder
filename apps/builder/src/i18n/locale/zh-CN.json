@@ -239,9 +239,9 @@
             },
             "update_value": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "primary_key_column": "column_name",
-            "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
+            "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
             "filters_to_match_row": {
-              "key": "键值",
+              "key": "键",
               "value": "值"
             }
           }
@@ -263,7 +263,7 @@
           "gs": {
             "private_key": "用于连接到 Google 表格。 单击<0>此处</0>创建项目并获取 OAuth 凭据。 通过服务帐户身份验证，我们将只能访问您使用与所用服务帐户对应的电子邮件地址共享的电子表格。 有关创建服务帐户和访问密钥的文档，请参阅<1>此处</1>。用户可能会遇到不受表格控制的不同处理组件的限制。 详细了解<2>配额限制</2>",
             "leave_blank_to_selec": "留空以选择第一张表",
-            "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
+            "to_select_the_first_": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 </0>",
             "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
             "a1_notation": "要选择标题为 sheet1 的工作表第一列中的前五个单元格，A1 表示法是 sheet1!A1:A5。 <0>有关详细信息，请参阅 Google 文档。 </0>",
             "sheet_id_to_copy": "通过查看 Google 表格 URL 中的 ?gid=123123 找到它",
@@ -472,7 +472,7 @@
               "action_type": {
                 "list": "列出记录",
                 "retrieve": "检索记录",
-                "create": "创造记录",
+                "create": "创建记录",
                 "update": "更新记录",
                 "delete": "删除记录",
                 "find": "查找",
@@ -500,7 +500,7 @@
                 "rsa_sha1": "RSA-SHA1",
                 "rsa_sha256": "RSA-SHA256",
                 "rsa_sha512": "RSA-SHA512",
-                "plaintext": "游戏"
+                "plaintext": "纯文本"
               },
               "algorithm": {
                 "sha256": "sha256",
@@ -511,11 +511,11 @@
                 "text": "文本"
               },
               "method": {
-                "options": "选项",
-                "head": "黑色"
+                "options": "OPTIONS",
+                "head": "HEAD"
               },
               "add_access_token_to": {
-                "query_parameters": "查询参数",
+                "query_parameters": "Query Parameters",
                 "header_authorization": "Header认证"
               }
             },
@@ -555,7 +555,7 @@
           "tips": {
             "restapi": {
               "body_type": {
-                "file": "要么是二进制字符串，要么是一个对象：{哇，数据：二进制字符串，文件名?：字符串} }}"
+                "file": "要么是二进制字符串，要么是一个对象：{{ { data: binary string, filename?: string } }}"
               }
             },
             "advanced": {
@@ -670,10 +670,10 @@
         "hugging_face": {
           "mode_id": "模型 ID",
           "placeholder": {
-            "mode_id": "不间断的浆果底座",
-            "text": "宇宙的答案是 [MASK]。",
-            "json": "很抱歉， \r\n\"past_user_inputs\": [\"哪部电影是最好的?\"], \r\n\"生成的响应\": [\"It Die Hard for sure.\"], \r\n\"text\": \"你能解释为什么?\" \r\n}",
-            "binary": "'@cats.jpg' \\",
+            "mode_id": "bert-base-uncased",
+            "text": "The answer to the universe is [MASK].",
+            "json": "{ \n\"past_user_inputs\": [\"Which movie is the best ?\"], \n\"generated_responses\": [\"It's Die Hard for sure.\"], \n\"text\": \"Can you explain why ?\" \n}",
+            "binary": "i.e. {{ upload1.file[0] }}. A binary files without file prefix",
             "use_cache": "Boolean，为空时默认true",
             "min_length": "整数，用于定义输出摘要的最小标记长度",
             "top_k": "整数，用于定义在创建新文本的示例操作中的顶级标记。",
@@ -686,7 +686,7 @@
             "mode_id": "转到<0>Model Hub</0>并选择您想要使用的模型。",
             "use_detail_parameters": "<0>点击这里</0>以了解更多详细参数",
             "temperature": "1表示定期抽样，0表示总是取最高分，100.0越来越接近均匀概率。",
-            "repetition_penalty": "代内使用的令牌越多，它就会受到更多的惩罚，以免在下一代人的通行证中被挑选。"
+            "repetition_penalty": "Token在一代中使用得越多，在连续的一代传递中不被挑选的惩罚就越多。"
           },
           "parameter": "参数",
           "use_detail_parameters": "使用详细参数",
@@ -724,26 +724,26 @@
         },
         "dynamo": {
           "label": {
-            "method": "方法",
-            "table": "数据表",
-            "json_input": "使用 JSON 参数编辑器",
-            "parameters": "参数",
-            "index": "索引名称",
-            "key_condition": "关键条件表达式",
-            "projection_expression": "投影表达式",
-            "filter_expression": "滤镜表达式",
-            "attribute_name": "表达式属性名称",
-            "attribute_value": "表达式属性值",
-            "limit": "限制",
-            "select": "选择",
-            "item": "项目",
-            "condition_expression": "条件表达式",
-            "key": "关键字",
-            "update_expression": "更新表达式"
+            "method": "Method",
+            "table": "Table",
+            "json_input": "Use JSON parameter editor",
+            "parameters": "Parameters",
+            "index": "Index name",
+            "key_condition": "Key condition expression",
+            "projection_expression": "Projection expression",
+            "filter_expression": "Filter expression",
+            "attribute_name": "Expression attribute names",
+            "attribute_value": "Expression attribute values",
+            "limit": "Limit",
+            "select": "Select",
+            "item": "Item",
+            "condition_expression": "Condition expression",
+            "key": "Key",
+            "update_expression": "Update expression"
           },
           "option": {
-            "query": "查询",
-            "scan": "扫描",
+            "query": "query",
+            "scan": "scan",
             "put_item": "putItem",
             "get_item": "getItem",
             "update_item": "updateItem",
@@ -817,7 +817,7 @@
             "account_name": "账号名称",
             "warehouse": "仓库",
             "schema": "模式",
-            "snowflake_basic_auth": "基本认证",
+            "snowflake_basic_auth": "基础认证",
             "snowflake_key_auth": "密钥对 (仅支持加密私钥)",
             "role": "用户角色",
             "username": "用户名",
@@ -842,12 +842,12 @@
             "database_name": "数据库名称",
             "account_name": "xy12345.us-east-2.aws",
             "warehouse": "WH_WH",
-            "snowflake_database": "SNOWFLAKE_SAMPE_DATA",
+            "snowflake_database": "SNOWFLAKE_SAMPLE_DATA",
             "schema": "PUBLIC",
             "role": "用户角色",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
-            "snowflake_private_key": "------------ -\r\n························\r\n ----结束私钥---",
+            "snowflake_private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----\n••••••••\n -----END ENCRYPTED PRIVATE KEY-----",
             "dynamo_region": "us-west-1"
           },
           "tip": {
@@ -857,7 +857,7 @@
             "ssl_options": "可用时使用 SSL",
             "username_password": "凭证将被加密并安全存储在我们的服务器上",
             "introspection": "如果你的GraphQL端点不支持introspection查询，就开启该开关。请注意，禁用introspection会降低GraphQL的可用性，因为该资源的自动完成和提示将不再工作。",
-            "hugging_face_url": "<0>点击这里</0>以了解更多有关悬浮面的信息。",
+            "hugging_face_url": "<0>点击这里</0>以了解更多有关Hugging Face的信息。",
             "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
             "connection_options": "为您的连接添加连接选项。当SSL选项开启时，我们会默认添加encrypt和trustServerCertificate。"
           },
@@ -966,8 +966,8 @@
         },
         "api": {
           "description": {
-            "hf": "了解更多关于 Hugging Facebook：",
-            "hf_endpoint": "灵敏度终点"
+            "hf": "了解更多关于 Hugging Face: ",
+            "hf_endpoint": "Inference Endpoint"
           },
           "label": {
             "hf_endpoint_token": "令牌",
@@ -1722,7 +1722,7 @@
           "disable_user_selecti": "是否禁用用户选择。 如果禁用，您可以通过事件处理程序控制表组件来选择行。",
           "default_selected_row": "默认选择的行。  ",
           "refresh": "是否显示刷新图标。 ",
-          "download_row_data": "是否显示下载行数据图标。",
+          "download_row_data": "是否显示下载原始数据图标。",
           "column_setting": "是否显示列设置。 列设置将允许用户设置要显示的列和列排序。 此设置不会更改表数据。",
           "cell_overflow": "当单元格溢出时如何显示。 ",
           "enable_server_side_p": "是否启用服务器分页",
@@ -1750,7 +1750,7 @@
         "file_download": {
           "auto": "自动",
           "plain_text": "纯文本",
-          "jpeg": "跳过",
+          "jpeg": "JPEG",
           "png": "PNG",
           "svg": "SVG",
           "json": "JSON",
@@ -1780,7 +1780,7 @@
         "table": {
           "set_sort": "设置排序",
           "column": "列",
-          "number": "号码",
+          "number": "数值",
           "percent": "百分比",
           "currency": "货币",
           "text": "文本",
@@ -1795,12 +1795,12 @@
           "html": "HTML",
           "button": "按钮",
           "icon": "图标",
-          "solid": "Solid",
-          "outline": "轮廓：",
-          "auto": "自动操作",
-          "limited": "限量的",
+          "solid": "实心",
+          "outline": "描边",
+          "auto": "自适应",
+          "limited": "限制",
           "limit_offset_based": "基于限制偏移量",
-          "cursor_based": "光标基于",
+          "cursor_based": "Cursor based",
           "graphql_relay_cursor": "GraphQL Relay cursor"
         }
       },
@@ -1834,7 +1834,7 @@
         "volume": "0到1之间的数字"
       },
       "setter_message": {
-        "choose_at_least": "请选择 {{ min }} 的租约选项。",
+        "choose_at_least": "请至少选择 {{ min }} 个选项。",
         "choose_up_to": "请最多选择 {{max}} 个选项。",
         "map": {
           "zoom": "请设置一个介于 1 和 22 之间的值"
@@ -1842,7 +1842,7 @@
         "upload": {
           "size_exceed": "超过 500 MB 的文件可能无法解析。",
           "single_file": "只允许一个文件。",
-          "file": "サポートされていないファイル タイプは削除されます",
+          "file": "已移除不支持的文件类型",
           "directory": "只允许目录。"
         }
       },
@@ -1995,9 +1995,7 @@
         "select_row": "选择行",
         "clear_selection": "清除选择",
         "set_filters": "设置筛选器",
-        "onFreeTimeDragOrClick": "点击空闲时间",
-        "onEventDrag": "Drag event",
-        "onEventResize": "onEventResize"
+        "onFreeTimeDragOrClick": "点击空闲时间"
       }
     },
     "tutorial": {
@@ -2061,7 +2059,7 @@
           "congratulations_title": "恭喜🎉",
           "congratulations_description": "您刚刚构建了您的第一个应用程序。 如果您在使用过程中有任何疑问，可以通过<0>Discord<0>联系我们",
           "congratulations_button": "完成",
-          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
+          "event_handler_description_all": "1. 添加事件处理器\n2. 点击事件处理器\n3. 将触发的行为改为触发Action\n4. 更改Action为postgresql1"
         }
       }
     },
@@ -2141,7 +2139,7 @@
     "no_permission_title": "权限不足",
     "no_permission_description": "您没有权限执行请求的操作。请联系您团队中的管理员。"
   },
-  "title": "欢迎来到艾拉云",
+  "title": "欢迎使用ILLA",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
   "user": {
     "description": "专属于开发者的开源低代码平台。",
@@ -2407,7 +2405,7 @@
       "name": "数值统计"
     },
     "collapse": {
-      "name": "收起"
+      "name": "折叠面板"
     },
     "multiselect": {
       "name": "多项选择"
