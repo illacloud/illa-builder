@@ -149,8 +149,8 @@ const getMappedValue = (
   return defaultValue
 }
 
-const getMappedValueFromCellContext = (
-  props: CellContext<any, any>,
+export const getMappedValueFromCellContext = (
+  props: CellContext<unknown, unknown>,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",
@@ -168,7 +168,7 @@ const getMappedValueFromCellContext = (
 }
 
 const getPropertyValue = (
-  props: CellContext<any, any>,
+  props: CellContext<unknown, unknown>,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",
@@ -190,7 +190,7 @@ const getPropertyValue = (
 }
 
 const getStringPropertyValue = (
-  props: CellContext<any, any>,
+  props: CellContext<unknown, unknown>,
   mappedValue?: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",

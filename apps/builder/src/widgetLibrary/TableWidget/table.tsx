@@ -1,20 +1,25 @@
 import { PaginationState } from "@tanstack/react-table"
-import { Table as ReactTable, RowSelectionState } from "@tanstack/table-core"
+import {
+  CellContext,
+  Table as ReactTable,
+  RowSelectionState,
+} from "@tanstack/table-core"
 import { cloneDeep, debounce } from "lodash"
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
-import {
-  applyAlignmentStyle,
-  applyTableCellBackgroundStyle,
-} from "@/widgetLibrary/TableWidget/style"
+import { applyAlignmentStyle } from "@/widgetLibrary/TableWidget/style"
 import {
   ColumnItemShape,
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { getCellForType, transTableColumnEvent } from "./utils"
+import {
+  getCellForType,
+  getMappedValueFromCellContext,
+  transTableColumnEvent,
+} from "./utils"
 
 export const WrappedTable: FC<WrappedTableProps> = (props) => {
   const {
@@ -275,11 +280,16 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       const eventPath = `rowEvents.${index}`
       const transItem = cloneDeep(item) as ColumnItemShape
       transItem["meta"] = {
-        // align: transItem.alignment,
-        style: [
-          applyAlignmentStyle(item.alignment),
-          applyTableCellBackgroundStyle(item.backgroundColor),
-        ],
+        getBackgroundColor: (props: CellContext<unknown, unknown>) => {
+          return getMappedValueFromCellContext(
+            props,
+            transItem.backgroundColor,
+            transItem.fromCurrentRow,
+            "backgroundColor",
+            "",
+          )
+        },
+        style: [applyAlignmentStyle(item.alignment)],
       }
       transItem["cell"] = getCellForType(
         transItem,
