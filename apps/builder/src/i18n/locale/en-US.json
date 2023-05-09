@@ -1551,7 +1551,7 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Refresh",
-          "download_row_data": "Download Row data",
+          "download_row_data": "Download Raw data",
           "column_setting": "Column setting",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
@@ -1730,7 +1730,7 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
         }
@@ -1995,7 +1995,7 @@
         "select_row": "Select row",
         "clear_selection": "Clear selection",
         "set_filters": "Set filters",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onFreeTimeDragOrClick": "Click free time",
         "onEventDrag": "onEventDrag",
         "onEventResize": "onEventResize"
       }
