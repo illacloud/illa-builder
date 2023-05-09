@@ -1,5 +1,7 @@
 import { LoaderFunction, redirect } from "react-router-dom"
-import { getCurrentUserIsLogin } from "@/redux/currentUser/currentUserSelector"
+import i18n from "@/i18n/config"
+import { ILLAMixpanel } from "@/illa-public-component/MixpanelUtils"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { teamActions } from "@/redux/team/teamSlice"
@@ -8,7 +10,6 @@ import { fetchUserInfo } from "@/services/users"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { ILLAMixpanel } from "../../illa-public-component/MixpanelUtils"
 
 export const setTokenToLocalStorageLoader: LoaderFunction = async (args) => {
   const url = new URL(args.request.url)
@@ -22,14 +23,26 @@ export const setTokenToLocalStorageLoader: LoaderFunction = async (args) => {
 
 export const getUserInfoLoader: LoaderFunction = async () => {
   const authToken = getAuthToken()
-  const isLogin = getCurrentUserIsLogin(store.getState())
+  const userInfo = getCurrentUser(store.getState())
+  const currentLng = window.localStorage.getItem("i18nextLng")
 
-  if (isLogin) {
+  if (userInfo.userId) {
+    const lng = userInfo.language
+    if (lng && currentLng !== lng) {
+      i18n.changeLanguage(lng)
+      window.location.reload()
+    }
     return null
   }
   if (authToken) {
     try {
       const response = await fetchUserInfo()
+      const lng = response.data.language
+      if (lng && currentLng !== lng) {
+        i18n.changeLanguage(lng)
+        window.location.reload()
+      }
+
       store.dispatch(
         currentUserActions.updateCurrentUserReducer({
           ...response.data,
