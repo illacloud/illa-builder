@@ -65,17 +65,20 @@ const getPageInfo = () => {
     childrenNode.forEach((node) => {
       const nodeInfo = executionResult[node]
       if (!nodeInfo) return
-      const { displayName } = nodeInfo
+      const { displayName, viewSortedKey } = nodeInfo
+      const viewsNumber = Array.isArray(viewSortedKey)
+        ? viewSortedKey.length
+        : 0
       if (displayName.startsWith("left")) {
-        leftViews++
+        leftViews = viewsNumber
       } else if (displayName.startsWith("right")) {
-        rightViews++
+        rightViews = viewsNumber
       } else if (displayName.startsWith("header")) {
-        headerViews++
+        headerViews = viewsNumber
       } else if (displayName.startsWith("footer")) {
-        footerViews++
+        footerViews = viewsNumber
       } else if (displayName.startsWith("body")) {
-        bodyViews++
+        bodyViews = viewsNumber
       }
     })
     const item = {
