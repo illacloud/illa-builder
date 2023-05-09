@@ -46,8 +46,8 @@ async function handleUpdateActionItem(
   const currentAction = actionExecutionResult[displayName]
   if (
     currentAction &&
-    currentAction.config.advancedConfig.isPeriodically &&
-    currentAction.config.advancedConfig.periodInterval
+    currentAction?.config?.advancedConfig.isPeriodically &&
+    currentAction?.config?.advancedConfig.periodInterval
   ) {
     const mergedAction = {
       ...currentAction,

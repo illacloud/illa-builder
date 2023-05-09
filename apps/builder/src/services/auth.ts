@@ -1,10 +1,10 @@
-import { cloudRequest } from "@/api/http"
+import { authRequest } from "@/api/http"
 import { RegisterResult } from "@/page/User/Register/interface"
 import { ResetPwdFields } from "@/page/User/ResetPassword/interface"
 import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
 
 export const fetchSignIn = async (data: unknown) => {
-  return cloudRequest<UserInfoResponse>({
+  return authRequest<UserInfoResponse>({
     method: "POST",
     url: "/auth/signin",
     data,
@@ -12,7 +12,7 @@ export const fetchSignIn = async (data: unknown) => {
 }
 
 export const fetchSignUp = async (data: unknown) => {
-  return cloudRequest<RegisterResult>({
+  return authRequest<RegisterResult>({
     method: "POST",
     url: "/auth/signup",
     data,
@@ -24,7 +24,7 @@ interface ISendEmail {
   usage: "signup" | "forgetpwd"
 }
 export const fetchSendEmail = async (data: ISendEmail) => {
-  return await cloudRequest<{ verificationToken: string }>({
+  return await authRequest<{ verificationToken: string }>({
     method: "POST",
     url: "/auth/verification",
     data,
@@ -36,7 +36,7 @@ interface IFetchUpdatePassword extends ResetPwdFields {
 }
 
 export const fetchUpdatePassword = async (data: IFetchUpdatePassword) => {
-  return cloudRequest({
+  return authRequest({
     method: "POST",
     url: "/auth/forgetPassword",
     data,

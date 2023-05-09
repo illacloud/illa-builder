@@ -1,8 +1,19 @@
 import { AxiosError } from "axios"
 import { ILLARoute } from "@/router"
-import { cloudRedirect } from "@/router/routerConfig"
+import { cloudRedirect } from "@/router/constant"
+import { getQS } from "@/router/utils/translateQS"
 import { removeAuthToken } from "@/utils/auth"
 import { isCloudVersion } from "@/utils/typeHelper"
+
+const getRedirectPathWhen401 = (searchParams: URLSearchParams) => {
+  const inviteToken = searchParams.get("inviteToken")
+  const qs = getQS(searchParams)
+  if (inviteToken) {
+    return `/register${qs}`
+  } else {
+    return `/login${qs}`
+  }
+}
 
 export const errorHandlerInterceptor = (error: AxiosError) => {
   const { response } = error
@@ -19,7 +30,11 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
           window.location.href = cloudRedirect
         }
       } else {
-        ILLARoute.navigate("/login", {
+        const { href } = location
+        const url = new URL(href)
+        const searchParams = url.searchParams
+        const path = getRedirectPathWhen401(searchParams)
+        ILLARoute.navigate(`${path}`, {
           replace: true,
           state: {
             from: pathname || "/",
@@ -36,6 +51,12 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
     }
     case 500: {
       ILLARoute.navigate("/500", {
+        replace: true,
+      })
+      break
+    }
+    default: {
+      ILLARoute.navigate("/404", {
         replace: true,
       })
       break
