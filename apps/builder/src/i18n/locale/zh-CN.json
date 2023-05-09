@@ -975,7 +975,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>在您的 Hugging Face 配置文件设置</0>中获取 Organizations API 令牌。",
-            "hf_endpoint": "learn more about <0>Endpoint</0>"
+            "hf_endpoint": "了解更多有关 <0>Hugging Face Endpoint</0>的内容"
           },
           "placeholder": {
             "hf_endpoint": "https://u149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -1551,8 +1551,8 @@
           "disable_user_selecti": "禁用用户选择",
           "default_selected_row": "默认选中行",
           "refresh": "刷新",
-          "download_row_data": "Download Row data",
-          "column_setting": "Column setting",
+          "download_row_data": "下载原始数据",
+          "column_setting": "列设置",
           "cell_overflow": "单元格溢出",
           "enable_server_side_p": "启用服务器端分页",
           "pagination_type": "分页类型",
@@ -1713,7 +1713,7 @@
           "tag_color": "设定标签的颜色。使用 {voir 写一个条件语句来设置每个标签在不同条件下显示的颜色。",
           "variant": "按钮的样式",
           "icon": "表中显示的图标",
-          "color": "Set the color.",
+          "color": "设置颜色",
           "sort_by_mapped_value": "是否按映射值排序。如果选择否，我们将根据原始数据排序。",
           "background": "设定列的背景。使用{{写一个条件语句来设置每个单元格在不同条件下显示的颜色。",
           "alignment": "设置列对齐。",
@@ -1730,7 +1730,7 @@
           "total_row_count": "用于计算页码的行数。",
           "next_cursor": "用于定位一组数据的下一个起点的标识符，以便分页并检索分批数据",
           "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**columnName**\":\"待过滤的列名\", \"**filterValue**\"：\"待匹配的值\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "过滤器的模式，选择AND 或 OR。",
           "currency_code": "USD"
         }
@@ -1827,7 +1827,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "货币代码定义[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -1995,8 +1995,8 @@
         "select_row": "选择行",
         "clear_selection": "清除选择",
         "set_filters": "设置筛选器",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
+        "onFreeTimeDragOrClick": "点击空闲时间",
+        "onEventDrag": "Drag event",
         "onEventResize": "onEventResize"
       }
     },
