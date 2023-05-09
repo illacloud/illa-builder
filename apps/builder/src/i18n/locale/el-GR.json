@@ -1551,7 +1551,7 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Refresh",
-          "download_row_data": "Download Row data",
+          "download_row_data": "Download Raw data",
           "column_setting": "Column setting",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
@@ -1995,7 +1995,7 @@
         "select_row": "Επιλογή γραμμής",
         "clear_selection": "Καθαρισμός επιλογής",
         "set_filters": "Ορισμός φίλτρων",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
+        "onFreeTimeDragOrClick": "Click free time",
         "onEventDrag": "onEventDrag",
         "onEventResize": "onEventResize"
       }
