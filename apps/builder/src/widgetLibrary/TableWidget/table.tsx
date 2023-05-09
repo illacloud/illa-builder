@@ -177,7 +177,11 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       download={download}
       overFlow={overFlow}
       pagination={{
-        pageSize: enableServerSidePagination ? 1 : pageSize,
+        pageSize: enableServerSidePagination
+          ? pageSize
+            ? pageSize
+            : data?.length
+          : pageSize,
       }}
       emptyProps={{ description: emptyState }}
       defaultSort={defaultSort}

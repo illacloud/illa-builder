@@ -447,7 +447,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-totalRowCount`,
-        labelName: i18n.t("editor.inspect.setter_label.totalRowCount"),
+        labelName: i18n.t("editor.inspect.setter_label.table.total_row_count"),
         attrName: "totalRowCount",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -466,7 +466,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-nextCursor`,
-        labelName: i18n.t("editor.inspect.setter_label.nextCursor"),
+        labelName: i18n.t("editor.inspect.setter_label.table.next_cursor"),
         attrName: "nextAfterCursor",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -478,7 +478,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-hasNextPage`,
-        labelName: i18n.t("editor.inspect.setter_label.hasNextPage"),
+        labelName: i18n.t("editor.inspect.setter_label.table.has_next_page"),
         attrName: "hasNextPage",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
