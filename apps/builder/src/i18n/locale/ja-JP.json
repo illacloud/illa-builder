@@ -1551,7 +1551,7 @@
           "disable_user_selecti": "ユーザー選択を無効",
           "default_selected_row": "デフォルトの選択行",
           "refresh": "リフレッシュ",
-          "download_row_data": "Download Row data",
+          "download_row_data": "Download Raw data",
           "column_setting": "Column setting",
           "cell_overflow": "セルオーバーフロー",
           "enable_server_side_p": "サーバー側のページネーションを有効にする",
@@ -1730,7 +1730,7 @@
           "total_row_count": "ページ番号を数えるために使用される行数。",
           "next_cursor": "バッチ内のデータをページネーションおよび取得するために、一連のデータの次の出発点を特定するために使用される識別子",
           "has_next_page": "利用可能なデータの別のページがあるかどうかを示すために使用されるブール値。 ペジネーションされたクエリでのデータ検索の制御を改善し、クエリのパフォーマンスを最適化するのに役立ちます",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "{{ }} で囲まれたオブジェクトの配列。 たとえば、{{ [{\"**columnName**\":\"フィルターする列の名前\", \"**filterValue**\"：\"一致する値\", \"**operator**\":\"contains, 等しい、...\"}] }}",
           "filter_mode": "フィルタモード。ANDまたはOR。",
           "currency_code": "USD"
         }
@@ -1995,8 +1995,8 @@
         "select_row": "行を選択",
         "clear_selection": "選択をクリア",
         "set_filters": "フィルターを設定",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
+        "onFreeTimeDragOrClick": "Click free time",
+        "onEventDrag": "Drag event",
         "onEventResize": "onEventResize"
       }
     },
