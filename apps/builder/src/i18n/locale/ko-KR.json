@@ -1551,7 +1551,7 @@
           "disable_user_selecti": "사용자 선택 비활성화",
           "default_selected_row": "기본 선택 행",
           "refresh": "새로 고치다",
-          "download_row_data": "Download Row data",
+          "download_row_data": "Download Raw data",
           "column_setting": "Column setting",
           "cell_overflow": "셀 오버플로",
           "enable_server_side_p": "서버 측 페이지 매김 활성화",
@@ -1995,8 +1995,8 @@
         "select_row": "Select row",
         "clear_selection": "Clear selection",
         "set_filters": "Set filters",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
+        "onFreeTimeDragOrClick": "Click free time",
+        "onEventDrag": "Drag event",
         "onEventResize": "onEventResize"
       }
     },
