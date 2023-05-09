@@ -13,13 +13,8 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import {
-  fetchAPPPublicStatus,
-  fetchPrivateAppInitData,
-  fetchPubicAppInitData,
-} from "@/services/apps"
+import { fetchPrivateAppInitData } from "@/services/apps"
 import { fetchResources } from "@/services/resource"
-import { getTeamsInfo } from "@/services/team"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { fixedActionToNewAction } from "./utils/fixedAction"
@@ -52,7 +47,6 @@ export const useInitBuilderApp = (mode: IllaMode) => {
   const dispatch = useDispatch()
   const isOnline = useSelector(getIsOnline)
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const { teamIdentifier } = useParams()
 
   const [loadingState, setLoadingState] = useState(true)
   const [errorState, setErrorState] = useState(false)
@@ -100,57 +94,13 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     [appId, dispatch, handleCurrentApp, versionId],
   )
 
-  const handleUnPublicApps = useCallback(
-    async (
-      controller: AbortController,
-      resolve: (value: CurrentAppResp) => void,
-      reject: (reason?: any) => void,
-    ) => {
-      if (teamInfo && teamInfo.identifier !== teamIdentifier) {
-        reject("failure")
-        throw new Error("have no team match")
-      }
-      try {
-        if (!teamInfo) {
-          await getTeamsInfo(teamIdentifier)
-        }
-        await initApp(controller, resolve, reject)
-      } catch (e) {
-        reject("failure")
-        if (e === "have no team match") {
-          setErrorState(true)
-          throw new Error(e)
-        }
-      }
-    },
-    [initApp, teamIdentifier, teamInfo],
-  )
-
   useEffect(() => {
     const controller = new AbortController()
     if (isOnline) {
       new Promise<CurrentAppResp>(async (resolve, reject) => {
         setErrorState(false)
         setLoadingState(true)
-        if (mode === "production") {
-          const publicState = await fetchAPPPublicStatus(
-            appId,
-            controller.signal,
-          )
-          if (publicState.data.isPublic) {
-            const response = await fetchPubicAppInitData(
-              appId,
-              versionId,
-              controller.signal,
-            )
-            handleCurrentApp(response.data)
-            resolve(response.data)
-          } else {
-            await handleUnPublicApps(controller, resolve, reject)
-          }
-        } else {
-          await initApp(controller, resolve, reject)
-        }
+        await initApp(controller, resolve, reject)
         setLoadingState(false)
       })
     }
@@ -159,17 +109,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       controller.abort()
       dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
     }
-  }, [
-    appId,
-    dispatch,
-    mode,
-    versionId,
-    isOnline,
-    teamIdentifier,
-    handleCurrentApp,
-    handleUnPublicApps,
-    initApp,
-  ])
+  }, [dispatch, initApp, isOnline])
 
   return { loadingState, errorState }
 }

@@ -1,6 +1,5 @@
 export interface DashboardItemMenuProps {
   appId: string
-  canManageApp?: boolean
   canEditApp: boolean
   isDeploy: boolean
 }

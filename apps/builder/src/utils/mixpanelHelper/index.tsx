@@ -65,50 +65,29 @@ const getPageInfo = () => {
     childrenNode.forEach((node) => {
       const nodeInfo = executionResult[node]
       if (!nodeInfo) return
-      const { displayName } = nodeInfo
+      const { displayName, viewSortedKey } = nodeInfo
+      const viewsNumber = Array.isArray(viewSortedKey)
+        ? viewSortedKey.length
+        : 0
       if (displayName.startsWith("left")) {
-        leftViews++
+        leftViews = viewsNumber
       } else if (displayName.startsWith("right")) {
-        rightViews++
+        rightViews = viewsNumber
       } else if (displayName.startsWith("header")) {
-        headerViews++
+        headerViews = viewsNumber
       } else if (displayName.startsWith("footer")) {
-        footerViews++
-      } else {
-        bodyViews++
+        footerViews = viewsNumber
+      } else if (displayName.startsWith("body")) {
+        bodyViews = viewsNumber
       }
     })
     const item = {
       homepage: (homepageDisplayName || pageSortedKey[0]) === key,
-      frame: pageInfo.canvasSize,
-      width: pageInfo.canvasWidth,
-      preset: pageInfo.layout,
-      left_panel: {
-        views: leftViews,
-        width: pageInfo.hasLeft ? pageInfo.leftWidth : 0,
-        columns: pageInfo.hasLeft ? pageInfo.leftColumns : 0,
-        fold_icon: pageInfo.hasLeft ? pageInfo.showLeftFoldIcon : false,
-      },
-      right_panel: {
-        views: rightViews,
-        width: pageInfo.hasRight ? pageInfo.rightWidth : 0,
-        columns: pageInfo.hasRight ? pageInfo.rightColumns : 0,
-        fold_icon: pageInfo.hasRight ? pageInfo.showRightFoldIcon : false,
-      },
-      header: {
-        views: headerViews,
-        width: pageInfo.hasHeader ? pageInfo.headerHeight : 0,
-        columns: pageInfo.hasHeader ? pageInfo.headerColumns : 0,
-      },
-      footer: {
-        views: footerViews,
-        width: pageInfo.hasFooter ? pageInfo.footerHeight : 0,
-        columns: pageInfo.hasFooter ? pageInfo.leftColumns : 0,
-      },
-      body: {
-        views: bodyViews,
-        columns: pageInfo.bodyColumns,
-      },
+      left: leftViews,
+      right: rightViews,
+      header: headerViews,
+      footer: footerViews,
+      body: bodyViews,
     }
     result.push(item)
   })
