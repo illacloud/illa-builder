@@ -121,20 +121,19 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
         displayedData,
         displayedDataIndices,
       }
-      // if (paginationType === "cursorBased") {
-      //   if (pageIndex > _pageIndex) {
-      //     updateValue["beforeCursor"] = nextAfterCursor
-      //   } else {
-      //     // updateValue["nextCursor"] = nextAfterCursor
-      //   }
-      // } else
-      if (paginationType === "graphqlRelayCursorBased") {
+      if (paginationType === "cursorBased") {
+        if (pageIndex > _pageIndex) {
+          // updateValue["beforeCursor"] = nextAfterCursor
+        } else {
+          updateValue["afterCursor"] = nextAfterCursor
+        }
+      } else if (paginationType === "graphqlRelayCursorBased") {
         if (pageIndex > _pageIndex) {
           updateValue["beforeCursor"] = nextBeforeCursor
-          updateValue["nextCursor"] = null
+          updateValue["afterCursor"] = null
         } else {
           updateValue["beforeCursor"] = null
-          updateValue["nextCursor"] = nextAfterCursor
+          updateValue["afterCursor"] = nextAfterCursor
         }
       }
       // only update execution result
