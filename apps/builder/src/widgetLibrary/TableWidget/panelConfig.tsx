@@ -12,10 +12,7 @@ import {
   TABLE_BUTTON_EVENT_HANDLER_CONFIG,
   TABLE_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
-import {
-  Columns,
-  tagColorSchemeOptions,
-} from "@/widgetLibrary/TableWidget/interface"
+import { Columns } from "@/widgetLibrary/TableWidget/interface"
 
 const baseWidgetName = "table"
 
@@ -237,13 +234,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-column-tagColor`,
             labelName: i18n.t("editor.inspect.setter_label.table.tag_color"),
             labelDesc: i18n.t("editor.inspect.setter_tips.table.tag_color"),
+            setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
             attrName: "tagColor",
-            selectAttrName: "tagColor",
-            inputAttrName: "tagColorJs",
-            isDynamicAttrName: "tagColorMode",
-            setterType: "DYNAMIC_SELECT_SETTER",
-            options: tagColorSchemeOptions,
-            useCustomLayout: true,
             bindAttrName: ["type"],
             shown: (value) => value === Columns.Tag,
           },
@@ -455,7 +447,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-totalRowCount`,
-        labelName: i18n.t("editor.inspect.setter_label.totalRowCount"),
+        labelName: i18n.t("editor.inspect.setter_label.table.total_row_count"),
         attrName: "totalRowCount",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -465,19 +457,19 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-previousCursor`,
         labelName: i18n.t("editor.inspect.setter_label.previousCursor"),
-        attrName: "previousCursor",
+        attrName: "nextBeforeCursor",
         setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
+        expectedType: VALIDATION_TYPES.STRING,
         bindAttrName: ["enableServerSidePagination", "paginationType"],
         shown: (enable, paginationType) =>
           enable && paginationType === "graphqlRelayCursorBased",
       },
       {
         id: `${baseWidgetName}-basic-nextCursor`,
-        labelName: i18n.t("editor.inspect.setter_label.nextCursor"),
-        attrName: "nextCursor",
+        labelName: i18n.t("editor.inspect.setter_label.table.next_cursor"),
+        attrName: "nextAfterCursor",
         setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
+        expectedType: VALIDATION_TYPES.STRING,
         bindAttrName: ["enableServerSidePagination", "paginationType"],
         shown: (enable, paginationType) =>
           enable &&
@@ -486,7 +478,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-hasNextPage`,
-        labelName: i18n.t("editor.inspect.setter_label.hasNextPage"),
+        labelName: i18n.t("editor.inspect.setter_label.table.has_next_page"),
         attrName: "hasNextPage",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -502,8 +494,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "pageSize",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
-        bindAttrName: ["enableServerSidePagination"],
-        shown: (value) => !value,
+        // bindAttrName: ["enableServerSidePagination"],
+        // shown: (value) => !value,
       },
     ],
   },

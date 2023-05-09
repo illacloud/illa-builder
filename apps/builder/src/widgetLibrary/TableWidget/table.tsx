@@ -28,6 +28,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     download,
     overFlow,
     pageSize,
+    pageIndex = 0,
     rowSelection,
     defaultSort,
     columnVisibility,
@@ -36,7 +37,8 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     totalRowCount,
     paginationType,
     // previousCursor,
-    nextCursor,
+    nextBeforeCursor,
+    nextAfterCursor,
     // hasNextPage,
     handleOnSortingChange,
     handleOnPaginationChange,
@@ -111,16 +113,28 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       const displayedDataIndices = data?.map((item) => {
         return item.index
       })
-      const { pageIndex, pageSize } = paginationState
-      const paginationOffset = pageIndex > 0 ? pageIndex * pageSize : 0
+      const { pageIndex: _pageIndex, pageSize } = paginationState
+      const paginationOffset = _pageIndex > 0 ? _pageIndex * pageSize : 0
       const updateValue: Record<string, unknown> = {
-        pageIndex,
+        pageIndex: _pageIndex,
         paginationOffset,
         displayedData,
         displayedDataIndices,
       }
       if (paginationType === "cursorBased") {
-        updateValue["previousCursor"] = nextCursor
+        if (pageIndex > _pageIndex) {
+          // updateValue["beforeCursor"] = nextAfterCursor
+        } else {
+          updateValue["afterCursor"] = nextAfterCursor
+        }
+      } else if (paginationType === "graphqlRelayCursorBased") {
+        if (pageIndex > _pageIndex) {
+          updateValue["beforeCursor"] = nextBeforeCursor
+          updateValue["afterCursor"] = null
+        } else {
+          updateValue["beforeCursor"] = null
+          updateValue["afterCursor"] = nextAfterCursor
+        }
       }
       // only update execution result
       handleUpdateMultiExecutionResult([
@@ -135,8 +149,10 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       displayName,
       handleUpdateMultiExecutionResult,
       handleOnPaginationChange,
-      nextCursor,
+      nextBeforeCursor,
+      nextAfterCursor,
       paginationType,
+      pageIndex,
     ],
   )
 
@@ -161,7 +177,11 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       download={download}
       overFlow={overFlow}
       pagination={{
-        pageSize: enableServerSidePagination ? 1 : pageSize,
+        pageSize: enableServerSidePagination
+          ? pageSize
+            ? pageSize
+            : data?.length
+          : pageSize,
       }}
       emptyProps={{ description: emptyState }}
       defaultSort={defaultSort}

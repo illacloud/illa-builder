@@ -295,7 +295,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
               "editor.inspect.setter_tips.eventCalendar.draggable",
             ),
             attrName: "draggables",
-            placeholder: "{{item.draggable}}",
+            placeholder: "{{false}}",
             isSetterSingleRow: true,
             setterType: "OPTION_MAPPED_INPUT_SETTER",
             expectedType: VALIDATION_TYPES.ARRAY,
@@ -309,7 +309,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
               "editor.inspect.setter_tips.eventCalendar.resizable",
             ),
             attrName: "resizables",
-            placeholder: "{{item.resizable}}",
+            placeholder: "{{false}}",
             isSetterSingleRow: true,
             setterType: "OPTION_MAPPED_INPUT_SETTER",
             expectedType: VALIDATION_TYPES.ARRAY,
@@ -409,7 +409,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: `${baseWidgetName}-custom_message_draggable`,
+        id: `${baseWidgetName}-custom_message_resizable`,
         labelName: i18n.t(
           "editor.inspect.setter_label.eventCalendar.custom_message_resizable",
         ),
@@ -477,7 +477,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
             ),
             attrName: "slotBackground",
             setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "#FFFFFF",
+            defaultValue: "white",
           },
           {
             id: `${baseWidgetName}-style-cal-text`,
@@ -496,7 +496,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-style-color`,
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_group.eventCalendar.event"),
+        labelName: i18n.t("editor.inspect.setter_group.event"),
         attrName: "event",
         useCustomLayout: true,
         childrenSetter: [

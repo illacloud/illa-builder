@@ -137,6 +137,7 @@ export interface WrappedTableProps
     Omit<BaseWidgetProps, "triggerEventHandler"> {
   emptyState?: string
   pageSize?: number
+  pageIndex?: number
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
   selectedRow?: any[]
@@ -146,8 +147,8 @@ export interface WrappedTableProps
     | "cursorBased"
     | "graphqlRelayCursorBased"
   totalRowCount?: number
-  previousCursor?: number
-  nextCursor?: number
+  nextBeforeCursor?: number
+  nextAfterCursor?: number
   hasNextPage?: boolean
   handleOnClickMenuItem?: (path: string) => void
   handleOnSortingChange?: () => void

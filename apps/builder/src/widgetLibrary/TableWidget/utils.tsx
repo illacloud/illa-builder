@@ -2,6 +2,7 @@ import { CellContext } from "@tanstack/table-core"
 import { isBoolean } from "lodash"
 import {
   dayjsPro,
+  isArray,
   isFunction,
   isNumber,
   isObject,
@@ -134,17 +135,18 @@ const getMappedValue = (
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",
+  defaultValue: string = "-",
 ) => {
-  if (mappedValue !== undefined && mappedValue !== null) {
+  if (mappedValue != null && mappedValue !== "") {
     if (
       fromCurrentRow?.[`${mappedValuePrefix}`] &&
       Array.isArray(mappedValue)
     ) {
-      return mappedValue[rowIndex] ?? "-"
+      return mappedValue[rowIndex] ?? defaultValue
     }
-    return mappedValue ?? "-"
+    return mappedValue ?? defaultValue
   }
-  return "-"
+  return defaultValue
 }
 
 const getMappedValueFromCellContext = (
@@ -152,6 +154,7 @@ const getMappedValueFromCellContext = (
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",
+  defaultValue: string = "-",
 ) => {
   const rowIndex = props.row.index
 
@@ -160,6 +163,7 @@ const getMappedValueFromCellContext = (
     mappedValue,
     fromCurrentRow,
     mappedValuePrefix,
+    defaultValue,
   )
 }
 
@@ -167,15 +171,19 @@ const getPropertyValue = (
   props: CellContext<any, any>,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
+  mappedValuePrefix: string = "mappedValue",
 ) => {
   const value = props.getValue()
   const index = props.row.index
 
   if (mappedValue != null && mappedValue !== "") {
-    if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
+    if (
+      fromCurrentRow?.[`${mappedValuePrefix}`] &&
+      Array.isArray(mappedValue)
+    ) {
       return mappedValue[index] ?? "-"
     }
-    return mappedValue
+    return mappedValue ?? "-"
   }
 
   return value ?? "-"
@@ -239,8 +247,6 @@ export const getCellForType = (
     showThousandsSeparator,
     tagLabel,
     tagColor = "auto",
-    tagColorJs,
-    tagColorMode = "select",
     buttonGroupContent,
     iconGroupContent,
     alignment,
@@ -311,17 +317,23 @@ export const getCellForType = (
         })
       }
     case Columns.Tag:
-      let color = (tagColorMode === "select" ? tagColor : tagColorJs) || "auto"
       return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(
+        const value = getPropertyValue(
           props,
           tagLabel,
           fromCurrentRow,
           "tagLabel",
         )
+        const color = getMappedValueFromCellContext(
+          props,
+          tagColor,
+          fromCurrentRow,
+          "tagColor",
+          "auto",
+        )
         return RenderTableTag({
           cell: props,
-          value,
+          value: isArray(value) ? value : [`${value}`],
           color,
           alignment,
         })

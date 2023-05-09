@@ -115,13 +115,11 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
     changeEventValue: emptyEvent,
     selectStartTime: "",
     selectEndTime: "",
+    selectResource: {
+      resourceId: "",
+      resourceTitle: "",
+    },
     draggable: "{{true}}",
     resizable: "{{true}}",
-    dragMsg: i18n.t(
-      "editor.inspect.setter_label.eventCalendar.default_message_draggable",
-    ),
-    resizeMsg: i18n.t(
-      "editor.inspect.setter_label.eventCalendar.default_message_resizable",
-    ),
   },
 }

@@ -14,7 +14,7 @@ export const WrappedCascaderWidget: FC<WrappedCascaderWidgetProps> = (
 ) => {
   const {
     options,
-    value,
+    value = [],
     expandTrigger,
     placeholder,
     allowClear,
@@ -111,7 +111,7 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
   } = props
 
   const finalOptions = useMemo(() => {
-    return dataSourceMode === "dynamic" ? dataSourceJS : dataSource
+    return dataSourceMode === "dynamic" ? dataSourceJS || [] : dataSource || []
   }, [dataSource, dataSourceJS, dataSourceMode])
 
   useEffect(() => {
@@ -165,7 +165,7 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
             hasTooltip={!!tooltipText}
           />
           <WrappedCascaderWidget
-            options={finalOptions}
+            options={Array.isArray(finalOptions) ? finalOptions : []}
             value={value}
             handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
             displayName={displayName}

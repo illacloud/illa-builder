@@ -1560,6 +1560,9 @@
           "next_cursor": "Next cursor",
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
+        },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
         }
       },
       "setter_tooltip": {
@@ -1733,6 +1736,18 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
+        },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
         }
       },
       "setter_option": {
@@ -1828,6 +1843,9 @@
         },
         "table": {
           "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         }
       },
       "setter_tootip": {
@@ -1994,10 +2012,7 @@
         "select_page": "Vælg side",
         "select_row": "Vælg række",
         "clear_selection": "Ryd valg",
-        "set_filters": "Angiv filtre",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
-        "onEventResize": "onEventResize"
+        "set_filters": "Angiv filtre"
       }
     },
     "tutorial": {
@@ -2445,6 +2460,9 @@
         "event_calendar": "Begivenhed kalender"
       },
       "name_duplicated": "Denne ressource ID konflikter i disse begivenheder, brug venligst det samme navn eller andet id"
+    },
+    "switch_group": {
+      "switch_group": "Switch group"
     }
   },
   "page": {

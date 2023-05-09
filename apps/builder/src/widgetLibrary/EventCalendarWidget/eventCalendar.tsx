@@ -303,7 +303,11 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     }: EventInteractionArgs) => {
       if (!event.draggable) {
         message.info({
-          content: dragMsg,
+          content:
+            dragMsg ??
+            i18n.t(
+              "editor.inspect.setter_label.eventCalendar.default_message_draggable",
+            ),
         })
         return
       }
@@ -355,7 +359,11 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     ({ event, start, end }: EventInteractionArgs) => {
       if (!event.resizable) {
         message.info({
-          content: resizeMsg,
+          content:
+            resizeMsg ??
+            i18n.t(
+              "editor.inspect.setter_label.eventCalendar.default_message_resizable",
+            ),
         })
         return
       }
@@ -449,12 +457,15 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
           value: {
             selectStartTime: dayjs(start).format(formatDateTime),
             selectEndTime: dayjs(end).format(formatDateTime),
+            selectResource: resourceMapList.find(
+              (v) => v.resourceId === e.resourceId,
+            ),
           },
         },
       ])
       resolve(true)
     }).then(() => {
-      triggerEventHandler("dragOrClickNoEventArea")
+      triggerEventHandler("DragOrClickNoEventArea")
     })
   }
 

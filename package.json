@@ -25,6 +25,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
+    "@rollup/plugin-typescript": "^11.1.0",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
