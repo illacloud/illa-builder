@@ -1722,7 +1722,7 @@
           "disable_user_selecti": "사용자 선택을 비활성화할지 여부입니다. 비활성화하면 이벤트 핸들러로 테이블 구성 요소를 제어하여 행을 선택할 수 있습니다.",
           "default_selected_row": "The row selected by default.  ",
           "refresh": "Whether to show the refresh icon. ",
-          "download_row_data": "Whether to show the download row data icon.",
+          "download_row_data": "Whether to show the download raw data icon.",
           "column_setting": "열 설정을 표시할지 여부입니다. 열 설정을 통해 사용자는 표시할 열과 열 정렬을 설정할 수 있습니다. 이 설정은 테이블 데이터를 변경하지 않습니다.",
           "cell_overflow": "How to display when cell overflow. ",
           "enable_server_side_p": "Whether to enable server pagination",
@@ -1995,9 +1995,7 @@
         "select_row": "Select row",
         "clear_selection": "Clear selection",
         "set_filters": "Set filters",
-        "onFreeTimeDragOrClick": "Click free time",
-        "onEventDrag": "Drag event",
-        "onEventResize": "onEventResize"
+        "onFreeTimeDragOrClick": "Click free time"
       }
     },
     "tutorial": {
