@@ -1551,8 +1551,8 @@
           "disable_user_selecti": "禁用用户选择",
           "default_selected_row": "默认选中行",
           "refresh": "刷新",
-          "download_row_data": "下载原始数据",
-          "column_setting": "列设置",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
           "cell_overflow": "单元格溢出",
           "enable_server_side_p": "启用服务器端分页",
           "pagination_type": "分页类型",
@@ -1816,7 +1816,7 @@
           "limited": "限量的",
           "limit_offset_based": "基于限制偏移量",
           "cursor_based": "光标基于",
-          "graphql_relay_cursor": "基于图形QL继电器光标"
+          "graphql_relay_cursor": "GraphQL Relay cursor"
         }
       },
       "setter_placeholder": {

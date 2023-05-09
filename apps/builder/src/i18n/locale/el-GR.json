@@ -1150,7 +1150,7 @@
           "markerSelected": "markerSelected",
           "markerCreated": "markerΔημιουργήθηκε",
           "select": "Επιλογή",
-          "DragOrClickNoEventArea": "Drag no event area"
+          "DragOrClickNoEventArea": "Drag or click no event area"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1551,8 +1551,8 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Refresh",
-          "download_row_data": "Download raw data",
-          "column_setting": "Column settings",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
           "pagination_type": "Pagination type",
@@ -1716,7 +1716,7 @@
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
           "variant": "Variant of the button",
           "icon": "The icon displayed in the table",
-          "color": "Set the color",
+          "color": "Set the color.",
           "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
           "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
           "alignment": "Set the alignment of the column.",
@@ -1733,9 +1733,9 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
+          "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "USD"
         },
         "switch_group": {
           "label": "The label of the option",
@@ -1842,7 +1842,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "USD"
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         },
         "switch_group": {
           "default_value": "{{[\"value1\",\"value2\"]}}"

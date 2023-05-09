@@ -1551,8 +1551,8 @@
           "disable_user_selecti": "ユーザー選択を無効",
           "default_selected_row": "デフォルトの選択行",
           "refresh": "リフレッシュ",
-          "download_row_data": "生データのダウンロード",
-          "column_setting": "カラムの設定",
+          "download_row_data": "Download Row data",
+          "column_setting": "Column setting",
           "cell_overflow": "セルオーバーフロー",
           "enable_server_side_p": "サーバー側のページネーションを有効にする",
           "pagination_type": "ページネーションタイプ",
@@ -1816,7 +1816,7 @@
           "limited": "制限",
           "limit_offset_based": "リミットオフセットベース",
           "cursor_based": "カーソルベース",
-          "graphql_relay_cursor": "GraphQLリレーカーソルベース"
+          "graphql_relay_cursor": "GraphQL Relay cursor"
         }
       },
       "setter_placeholder": {
