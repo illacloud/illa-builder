@@ -1995,9 +1995,7 @@
         "select_row": "行を選択",
         "clear_selection": "選択をクリア",
         "set_filters": "フィルターを設定",
-        "onFreeTimeDragOrClick": "Click free time",
-        "onEventDrag": "Drag event",
-        "onEventResize": "onEventResize"
+        "onFreeTimeDragOrClick": "Click free time"
       }
     },
     "tutorial": {
