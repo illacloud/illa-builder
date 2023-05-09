@@ -34,3 +34,5 @@ export const Page403: FC = () => {
     </ErrorPage>
   )
 }
+
+export default Page403

@@ -1,53 +1,62 @@
-import { lazy } from "react"
 import { createBrowserRouter } from "react-router-dom"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
 import { RoutesObjectPro } from "@/router/interface"
-import { requireAuth } from "@/router/loader"
-import { layLoad, routerConfig } from "@/router/routerConfig"
-import { requireSelfAuth } from "@/router/selfLoader"
+import { routerConfig } from "@/router/routerConfig"
 import { isCloudVersion } from "@/utils/typeHelper"
+import { beautifyURLLoader } from "./loader/beautifyURLLoader"
+import { setTokenToLocalStorageLoader } from "./loader/cloudAuthLoader"
+import {
+  combineCloudAuthLoader,
+  combineSelfHostAuthLoader,
+} from "./loader/index"
 
 const wrappedRouter = (
   routesConfig: RoutesObjectPro[],
-  isChildren?: boolean,
+  _isChildren?: boolean,
 ) => {
   return routesConfig.map((routeItem: RoutesObjectPro) => {
-    const { element, children, needLogin, ...otherRouteProps } = routeItem
+    const {
+      element,
+      children,
+      needLogin,
+      loader: originLoader,
+      ...otherRouteProps
+    } = routeItem
     const newRouteItem: RoutesObjectPro = {
       ...otherRouteProps,
     }
-    if (needLogin && !isChildren) {
-      if (isCloudVersion) {
-        newRouteItem.errorElement = layLoad(
-          lazy(() => import("@/page/status/404")),
-        )
-        newRouteItem.loader = async ({ params, request }) => {
-          const url = new URL(request.url)
-          const token = url?.searchParams?.get("token")
-          const teamIdentifier = params.teamIdentifier
-          return await requireAuth(token, teamIdentifier)
-        }
-        if (!newRouteItem.accessByMobile) {
-          newRouteItem.element = <LayoutAutoChange desktopPage={element} />
-        } else {
-          newRouteItem.element = element
-        }
-      } else {
-        newRouteItem.loader = async (args) => {
-          return await requireSelfAuth(args)
-        }
-        if (!newRouteItem.accessByMobile) {
-          newRouteItem.element = <LayoutAutoChange desktopPage={element} />
-        } else {
-          newRouteItem.element = element
-        }
-      }
+    if (!newRouteItem.accessByMobile) {
+      newRouteItem.element = <LayoutAutoChange desktopPage={element} />
     } else {
-      if (!newRouteItem.accessByMobile) {
-        newRouteItem.element = <LayoutAutoChange desktopPage={element} />
+      newRouteItem.element = element
+    }
+    newRouteItem.loader = async (args) => {
+      if (isCloudVersion) {
+        await setTokenToLocalStorageLoader(args)
+        const beautifyURLResponse = await beautifyURLLoader(args)
+        if (beautifyURLResponse) {
+          return beautifyURLResponse
+        }
+        let authLoaderResponse
+        if (needLogin) {
+          authLoaderResponse = await combineCloudAuthLoader(args)
+        }
+        if (authLoaderResponse) {
+          return authLoaderResponse
+        }
       } else {
-        newRouteItem.element = element
+        let authLoaderResponse
+        if (needLogin) {
+          authLoaderResponse = await combineSelfHostAuthLoader(args)
+        }
+        if (authLoaderResponse) {
+          return authLoaderResponse
+        }
       }
+      if (originLoader) {
+        return await originLoader(args)
+      }
+      return null
     }
     if (Array.isArray(children) && children.length) {
       newRouteItem.children = wrappedRouter(children, true)
@@ -58,3 +67,7 @@ const wrappedRouter = (
 }
 
 export const ILLARoute = createBrowserRouter(wrappedRouter(routerConfig))
+
+// https://localhost:3000?inviteToken=MzUxN2IyMzUtMDM2ZS00OWY1LTllNzUtNzkyNGIxNzg5ZDI0&teamIdentifier=0&appID=ILAfx4p1C7dX
+
+// https://localhost:3000?inviteToken=MzUxN2IyMzUtMDM2ZS00OWY1LTllNzUtNzkyNGIxNzg5ZDI0

@@ -2,34 +2,15 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, Select } from "@illa-design/react"
+import { LANG_OPTIONS } from "@/i18n/config"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { fetchChangeLanguage } from "@/services/setting"
 
-const options = [
-  {
-    label: "English",
-    value: "en-US",
-  },
-  {
-    label: "简体中文",
-    value: "zh-CN",
-  },
-  {
-    label: "한국인",
-    value: "ko-KR",
-  },
-  {
-    label: "日本語",
-    value: "ja-JP",
-  },
-]
-
 export const SettingOthers: FC = () => {
   const { t } = useTranslation()
   const userLanguage = useSelector(getCurrentUser).language || "en-US"
-
   const [languageValue, setLanguageValue] = useState(userLanguage)
 
   const [isLoading, setIsLoading] = useState(false)
@@ -63,7 +44,7 @@ export const SettingOthers: FC = () => {
         <Select
           colorScheme="techPurple"
           size="large"
-          options={options}
+          options={LANG_OPTIONS}
           value={languageValue}
           onChange={(value) => {
             handleChangeLanguage(value as string)

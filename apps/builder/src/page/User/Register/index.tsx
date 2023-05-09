@@ -3,11 +3,13 @@ import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
+import { ERROR_FLAG } from "@/api/errorFlag"
 import { formatLanguage } from "@/i18n/config"
 import RegisterPage from "@/illa-public-component/User/register"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignUp } from "@/services/auth"
 import { sendEmail } from "@/services/users"
 import { mobileAdaptationStyle } from "@/style"
@@ -30,8 +32,7 @@ const UserRegister: FC = () => {
   const message = useMessage()
   const [searchParams] = useSearchParams()
   const inviteToken = searchParams.get("inviteToken")
-  const appID = searchParams.get("appID")
-  const teamIdentifier = searchParams.get("teamIdentifier")
+  const location = useLocation()
 
   const onSubmit: SubmitHandler<RegisterFields> = async (data) => {
     const verificationToken =
@@ -59,34 +60,28 @@ const UserRegister: FC = () => {
           email: res.data.email,
         }),
       )
-      if (!isCloudVersion && appID && teamIdentifier) {
-        navigate(`/${teamIdentifier}/deploy/app/${appID}`)
+      if (!isCloudVersion) {
+        const urlSearchParams = new URLSearchParams(location.search)
+        const path = translateSearchParamsToURLPathWithSelfHost(urlSearchParams)
+        navigate(`${path}`)
       } else {
-        navigate("/", {
+        navigate(location.state?.from ?? "/", {
           replace: true,
         })
       }
     } catch (error) {
       if (isILLAAPiError(error)) {
-        message.error({
-          content: t("user.sign_up.tips.fail"),
-        })
-        switch (error.data.errorMessage) {
-          case "duplicate email address":
+        switch (error.data.errorFlag) {
+          case ERROR_FLAG.ERROR_FLAG_EMAIL_HAS_BEEN_TAKEN:
             setErrorMsg({
               ...errorMsg,
               email: t("user.sign_up.error_message.email.registered"),
             })
             break
-          case "invalid verification code":
-            setErrorMsg({
-              ...errorMsg,
-              verificationCode: t(
-                "user.sign_up.error_message.verification_code.invalid",
-              ),
-            })
-            break
           default:
+            message.error({
+              content: t("user.sign_up.tips.fail"),
+            })
         }
       } else {
         message.warning({
