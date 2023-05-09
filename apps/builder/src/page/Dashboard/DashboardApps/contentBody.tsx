@@ -1,12 +1,13 @@
 import { FC, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue, useNavigate, useParams } from "react-router-dom"
 import { Empty, List, ListItem, ListItemMeta } from "@illa-design/react"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fromNow } from "@/utils/dayjs"
@@ -28,6 +29,8 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
   const dispatch = useDispatch()
   const { teamIdentifier } = useParams()
 
+  const appListInRedux: DashboardApp[] = useSelector(getDashboardApps)
+
   useEffect(() => {
     if (Array.isArray(appsList)) {
       dispatch(dashboardAppActions.updateDashboardAppListReducer(appsList))
@@ -35,11 +38,11 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
   }, [appsList, dispatch])
 
   const finalAppsList = useMemo(() => {
-    if (canEditApp) return appsList
-    return appsList.filter((item) => {
+    if (canEditApp) return appListInRedux
+    return appListInRedux.filter((item) => {
       return item.mainlineVersion !== 0
     })
-  }, [canEditApp, appsList])
+  }, [canEditApp, appListInRedux])
 
   return (
     <>
