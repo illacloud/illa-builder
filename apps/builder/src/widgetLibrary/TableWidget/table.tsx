@@ -1,5 +1,5 @@
-import { PaginationState } from "@tanstack/react-table"
-import { Table as ReactTable, RowSelectionState } from "@tanstack/table-core"
+import { PaginationState, Table as ReactTable } from "@tanstack/react-table"
+import { RowSelectionState } from "@tanstack/table-core"
 import { cloneDeep, debounce } from "lodash"
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"

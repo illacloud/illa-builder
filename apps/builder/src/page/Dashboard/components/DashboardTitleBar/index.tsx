@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import {
   Divider,
   DownIcon,
@@ -91,7 +91,6 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const { teamIdentifier } = useParams()
   let navigate = useNavigate()
   let location = useLocation()
   let pathList = location.pathname.split("/")
@@ -135,9 +134,9 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
           <Logo
             onClick={() => {
               if (isCloudVersion) {
-                window.location.href = "https://cloud.illacloud.com"
+                window.location.href = `//${import.meta.env.VITE_CLOUD_URL}`
               } else {
-                navigate(`/${teamIdentifier}/dashboard/apps`)
+                navigate(`./apps`)
               }
             }}
           />

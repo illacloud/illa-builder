@@ -1,6 +1,6 @@
 import { FC, ReactNode, lazy } from "react"
 import { useWindowSize } from "react-use"
-import { layLoad } from "@/router/routerConfig"
+import { lazyLoad } from "@/router/utils/lazyLoad"
 import { isMobileByWindowSize } from "@/utils/screen"
 
 interface LayoutAutoChangeProps {
@@ -14,7 +14,7 @@ export const LayoutAutoChange: FC<LayoutAutoChangeProps> = (props) => {
   return (
     <>
       {isMobile
-        ? layLoad(lazy(() => import("@/page/status/MobileFobidden")))
+        ? lazyLoad(lazy(() => import("@/page/status/MobileFobidden")))
         : desktopPage}
     </>
   )

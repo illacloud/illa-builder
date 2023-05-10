@@ -163,7 +163,7 @@
             "host": "주인",
             "dbid": "데이터베이스 ID",
             "projectid": "프로젝트 ID",
-            "secret": "X-Appwrite-JWT",
+            "secret": "API Key",
             "collectionid": "컬렉션 ID",
             "documentid": "문서 ID",
             "data": "데이터",
@@ -196,7 +196,7 @@
             "update_value": "업데이트할 값",
             "primary_key_column": "기본 키 열 이름",
             "array_of_rows_to_upd": "업데이트할 행의 배열",
-            "filters_to_match_row": "Filters to match row",
+            "filters_to_match_row": "행 인덱스",
             "consider_queries_tha": "행을 삭제하지 않는 쿼리를 성공으로 간주",
             "title_of_spreadsheet": "스프레드시트 제목",
             "sheet_id_to_copy": "복사할 시트 ID",
@@ -210,7 +210,7 @@
         "placeholder": {
           "url": "여기에 요청 URL 입력",
           "appwrite": {
-            "host": "HOSTNAME OR IP",
+            "host": "호스트 이름 또는 IP",
             "dbid": "데이터베이스 ID",
             "projectid": "프로젝트 ID",
             "secret": "••••••••••••••••••••",
@@ -265,7 +265,7 @@
             "leave_blank_to_selec": "첫 번째 시트를 선택하려면 비워두세요.",
             "to_select_the_first_": "To select the first five cells in the first column of a sheet titled sheet1, A1 notation is sheet1!A1:A5. <0>See Google's docs for more information. <0>",
             "values_to_append": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
-            "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요. <0>",
+            "a1_notation": "sheet1이라는 시트의 첫 번째 열에서 처음 5개 셀을 선택하려면 A1 표기법은 sheet1!A1:A5입니다. <0>자세한 내용은 Google 문서를 참조하세요.  </0>",
             "sheet_id_to_copy": "Google 시트의 URL에서 ?gid=123123을 보고 찾으십시오.",
             "copy_to_sheet_name": "필수의. 복사된 시트의 이름을 바꿉니다.",
             "successfully_authent": "성공적으로 인증됨",
@@ -283,11 +283,11 @@
         "option": {
           "appwrite": {
             "method": {
-              "create": "Create a document",
-              "list": "List documents",
-              "get": "Get a document",
-              "update": "Update a document",
-              "delete": "Delete a document"
+              "create": "문서 만들기",
+              "list": "문서 나열",
+              "get": "문서 받기",
+              "update": "문서 업데이트",
+              "delete": "문서 삭제"
             },
             "filter": {
               "and": "AND",
@@ -456,10 +456,10 @@
               "consumer_secret": "••••••••••••••••••••••",
               "realm": "testrealm@example.com",
               "ext": "some-app-extra-data",
-              "app": "Application id",
+              "app": "애플리케이션 ID",
               "dig": "delegated-by",
               "us-east-1": "us-east-1",
-              "authenticate_using_t": "Authenticate using the HTTP Authorization header instead of query parameters",
+              "authenticate_using_t": "쿼리 매개변수 대신 HTTP Authorization 헤더를 사용하여 인증",
               "find_instructions_on": "<0>AWS 문서</0>에서 액세스 키를 찾을 수 있는 위치에 대한 지침을 찾아보세요.",
               "role_to_assume": "Use a <0>different role<0> when accessing the API"
             },
@@ -480,16 +480,16 @@
               },
               "skip": "Skip",
               "limit": "Limit",
-              "include": "Include docs",
+              "include": "문서 포함",
               "des": "Descending order",
               "id": "_id",
               "rev": "_rev",
-              "record": "Record",
+              "record": "기록",
               "mangoquery": "MangoQuery",
-              "ViewURL": "ViewURL",
+              "ViewURL": "보기URL",
               "StartKey": "StartKey",
               "EndKey": "EndKey",
-              "include_doc_option": "Docs included in the returned results",
+              "include_doc_option": "반환된 결과에 포함된 문서",
               "des_option": "Use descending order"
             },
             "restapi": {
@@ -516,7 +516,7 @@
               },
               "add_access_token_to": {
                 "query_parameters": "Query Parameters",
-                "header_authorization": "Header Authorization"
+                "header_authorization": "Header권한 부여"
               }
             },
             "advanced": {
@@ -529,11 +529,11 @@
           },
           "restapi": {
             "signature_method": "서명 방법",
-            "consumer_key": "Consumer key",
-            "consumer_secret": "Consumer secret",
-            "access_token": "Access token",
-            "token_secret": "Token secret",
-            "private_key": "Private key",
+            "consumer_key": "소비자 키",
+            "consumer_secret": "소비자 비밀",
+            "access_token": "토큰 접근하기",
+            "token_secret": "토큰 암호",
+            "private_key": "개인 키",
             "realm": "Realm",
             "hawk_auth_id": "Hawk Auth ID",
             "hawk_auth_key": "Hawk Auth Key",
@@ -688,8 +688,8 @@
             "temperature": "1 means regular sampling, 0 means always taking the highest score, 100.0 is getting closer to uniform probability.",
             "repetition_penalty": "The more a token is used within generation the more it is penalized to not be picked in successive generation passes."
           },
-          "parameter": "Parameter",
-          "use_detail_parameters": "Use detail parameters",
+          "parameter": "매개 변수",
+          "use_detail_parameters": "세부 매개변수 사용",
           "use_cache": "Use cache",
           "wait_for_model": "Wait for model",
           "min_length": "Min length",
@@ -724,9 +724,9 @@
         },
         "dynamo": {
           "label": {
-            "method": "Method",
+            "method": "방법",
             "table": "시트",
-            "json_input": "Use JSON parameter editor",
+            "json_input": "JSON 매개변수 편집기 사용",
             "parameters": "Parameters",
             "index": "Index name",
             "key_condition": "Key condition expression",
@@ -759,9 +759,9 @@
         },
         "result": {
           "restapi": {
-            "status": "Status",
-            "headers": "Headers",
-            "response": "Response"
+            "status": "상태",
+            "headers": "헤더",
+            "response": "응답"
           }
         },
         "placeholder": {
@@ -975,7 +975,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>Hugging Face 프로필 설정</0>에서 Organizations API 토큰을 받으세요.",
-            "hf_endpoint": "learn more about <0>Endpoint</0>"
+            "hf_endpoint": "<0>허깅 페이스 엔드포인트</0>에 대해 자세히 알아보세요."
           },
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -983,7 +983,7 @@
         },
         "tip": {
           "allowlist": {
-            "title": "Allow IP addresses",
+            "title": "IP 주소 허용",
             "message": "리소스에 공개적으로 액세스할 수 없는 경우 ILLA가 리소스에 연결할 수 있도록 네트워크 또는 방화벽 설정을 업데이트하여 ILLA의 IP 주소를 허용 목록에 추가하세요."
           }
         },
@@ -1150,7 +1150,7 @@
           "markerSelected": "마커 선택",
           "markerCreated": "마커 만들기",
           "select": "선택",
-          "DragOrClickNoEventArea": "이벤트가 없는 영역을 드래그 또는 클릭"
+          "DragOrClickNoEventArea": "드래그 없음 이벤트 영역"
         },
         "image_list": {
           "title": "이미지",
@@ -1527,8 +1527,8 @@
           "calendar_text": "텍스트 양",
           "event_background": "배경",
           "event_text": "프레임",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "드래그 가능",
+          "resizable": "크기 조정 가능"
         },
         "table": {
           "page_index": "페이지 색인",
@@ -1553,13 +1553,16 @@
           "refresh": "새로 고치다",
           "download_row_data": "Download Row data",
           "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "cell_overflow": "셀 오버플로",
+          "enable_server_side_p": "서버 측 페이지 매김 활성화",
+          "pagination_type": "페이지 매김 유형",
+          "total_row_count": "총 행 수",
+          "next_cursor": "다음 커서",
+          "has_next_page": "다음 페이지 있음",
+          "currency_code": "통화 코드"
+        },
+        "switch_group": {
+          "option_label_alignment": "옵션 라벨의 위치"
         }
       },
       "setter_tooltip": {
@@ -1701,13 +1704,13 @@
           "event_background": "이벤트 카드 배경 설정",
           "event_text": "이벤트 카드의 텍스트 색상 설정",
           "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "사용자가 드래그하여 이벤트를 이동하여 이벤트 시간 범위를 업데이트하도록 허용할지 여부",
+          "resizable": "사용자가 이벤트 시간 범위를 업데이트하고 이벤트의 테두리를 드래그하여 시간 범위를 늘리거나 줄이는 방식으로 시간 범위를 변경할 수 있도록 허용할지 여부"
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
+          "page_index": "선택하려는 페이지의 인덱스입니다.",
+          "index": "선택하려는 행의 인덱스입니다. 인덱스는 여러 행을 지정하는 데 사용할 수 있는 배열이어야 합니다.",
+          "scroll_to_the_select": "행으로 스크롤할지 여부입니다.",
           "show_thousands_separ": "Whether to show the thousands separator",
           "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
@@ -1722,7 +1725,7 @@
           "disable_user_selecti": "사용자 선택을 비활성화할지 여부입니다. 비활성화하면 이벤트 핸들러로 테이블 구성 요소를 제어하여 행을 선택할 수 있습니다.",
           "default_selected_row": "The row selected by default.  ",
           "refresh": "Whether to show the refresh icon. ",
-          "download_row_data": "Whether to show the download row data icon.",
+          "download_row_data": "Whether to show the download raw data icon.",
           "column_setting": "열 설정을 표시할지 여부입니다. 열 설정을 통해 사용자는 표시할 열과 열 정렬을 설정할 수 있습니다. 이 설정은 테이블 데이터를 변경하지 않습니다.",
           "cell_overflow": "How to display when cell overflow. ",
           "enable_server_side_p": "Whether to enable server pagination",
@@ -1732,7 +1735,19 @@
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "currency_code": "[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)에 정의된 통화 코드"
+        },
+        "switch_group": {
+          "label": "옵션의 레이블",
+          "value": "{{로 묶인 선택된 옵션의 배열입니다. 예: {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "값이 중복됩니다. 오류를 방지하려면 고유한 값을 사용하십시오.",
+          "caption": "레이블 아래에 표시되는 캡션",
+          "disabled": "옵션 비활성화 여부",
+          "datasource": "스위치 그룹의 데이터 소스입니다. {{actionName.data}}를 사용하여 데이터베이스 또는 API의 데이터 사용",
+          "default_value": "{{ }}로 묶인 배열입니다. 예: {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "선택할 수 있는 최소 항목",
+          "choose_up_to": "선택할 수 있는 최대 항목",
+          "option_label_alignment": "라벨의 위치"
         }
       },
       "setter_option": {
@@ -1801,7 +1816,7 @@
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
-          "graphql_relay_cursor": "GraphQL Relay cursor-based"
+          "graphql_relay_cursor": "GraphQL Relay cursor"
         }
       },
       "setter_placeholder": {
@@ -1827,7 +1842,10 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "USD"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         }
       },
       "setter_tootip": {
@@ -1949,8 +1967,8 @@
         }
       },
       "statistics": {
-        "set_primary_value": "setPrimaryValue",
-        "reset_primary_value": "resetPrimaryValue",
+        "set_primary_value": "기본 값 설정",
+        "reset_primary_value": "기본 값 재설정",
         "primary_value": "기본 값"
       },
       "collapse": {
@@ -1980,7 +1998,7 @@
         "markers_changed": "마커가 변경됨"
       },
       "time_range": {
-        "setstarttime": "setStartTime",
+        "setstarttime": "시작 시간 설정",
         "setendtime": "setEndTime"
       },
       "eventCalendar": {
@@ -1994,10 +2012,7 @@
         "select_page": "페이지 선택",
         "select_row": "Select row",
         "clear_selection": "Clear selection",
-        "set_filters": "Set filters",
-        "onFreeTimeDragOrClick": "onFreeTimeDragOrClick",
-        "onEventDrag": "onEventDrag",
-        "onEventResize": "onEventResize"
+        "set_filters": "Set filters"
       }
     },
     "tutorial": {
@@ -2061,7 +2076,7 @@
           "congratulations_title": "축하해요",
           "congratulations_description": "첫 번째 애플리케이션을 구축했습니다. 사용 중 궁금한 점이 있으면 <0>Discord<0>를 통해 문의하실 수 있습니다.",
           "congratulations_button": "마치다",
-          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
+          "event_handler_description_all": "1. 이벤트 핸들러 추가\n2. 이벤트 핸들러 클릭\n3. 액션을 트리거 액션으로 변경\n4. 액션을 postgresql1로 변경"
         }
       }
     },
@@ -2444,7 +2459,10 @@
       "name": {
         "event_calendar": "이벤트 캘린더"
       },
-      "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
+      "name_duplicated": "이 이벤트에서 이 리소스 ID가 충돌합니다. 같은 이름이나 다른 ID를 사용하세요."
+    },
+    "switch_group": {
+      "switch_group": "그룹 전환"
     }
   },
   "page": {
