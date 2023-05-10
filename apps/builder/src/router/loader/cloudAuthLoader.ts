@@ -90,7 +90,7 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
   if (currentTeamInfo) {
     store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
     store.dispatch(teamActions.updateTeamItemsReducer(teamsInfo))
-    ILLAMixpanel.getOriginalMixpanel().set_group("team", teamIdentifier)
+    ILLAMixpanel.setGroup(teamIdentifier)
     return null
   }
   return redirect("", {
