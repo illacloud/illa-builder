@@ -34,3 +34,5 @@ export const Page500: FC = () => {
     </ErrorPage>
   )
 }
+
+export default Page500

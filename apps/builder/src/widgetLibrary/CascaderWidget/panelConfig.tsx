@@ -18,6 +18,7 @@ export const CASCADER_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "dataSource",
         setterType: "DATA_SOURCE_SELECT_SETTER",
+        expectedType: VALIDATION_TYPES.ARRAY,
       },
       {
         id: `${baseWidgetName}-basic-defaultValue`,

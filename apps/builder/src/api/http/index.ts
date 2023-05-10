@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import { getCurrentPageTeamIdentifier, getTeamID } from "@/utils/team"
-import { actionRuntimeAxios, basicAxios } from "./base"
+import { ERROR_FLAG } from "../errorFlag"
+import { actionRuntimeAxios, authAxios, basicAxios } from "./base"
 import {
   ACTION_REQUEST_PREFIX,
   BUILDER_REQUEST_PREFIX,
@@ -9,6 +10,7 @@ import {
 
 export interface ILLAApiError {
   errorCode: string | number
+  errorFlag: ERROR_FLAG
   errorMessage: string
 }
 
@@ -21,6 +23,27 @@ export const basicRequest = async <
   try {
     return await basicAxios.request({
       ...requestConfig,
+    })
+  } catch (e) {
+    if (axios.isAxiosError(e) && e.response) {
+      throw e.response
+    }
+
+    throw e
+  }
+}
+
+export const authRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+): Promise<AxiosResponse<ResponseData, RequestData>> => {
+  const finalURL = getURLWithPrefix(requestConfig.url, CLOUD_REQUEST_PREFIX)
+  try {
+    return await authAxios.request({
+      ...requestConfig,
+      url: finalURL,
     })
   } catch (e) {
     if (axios.isAxiosError(e) && e.response) {

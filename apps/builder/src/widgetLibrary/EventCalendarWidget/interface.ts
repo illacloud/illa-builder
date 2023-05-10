@@ -1,9 +1,11 @@
-import { View, stringOrDate } from "react-big-calendar"
+import { SlotInfo, View, stringOrDate } from "react-big-calendar"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export type Pluralize<T> = {
   [K in keyof T as `${string & K}s`]: T[K][]
 }
+
+export type CssAttribute = string | number | undefined
 export interface Event {
   label?: string
   title?: string
@@ -15,6 +17,8 @@ export interface Event {
   description?: string
   allDay?: boolean
   resourceTitle?: string
+  draggable?: boolean
+  resizable?: boolean
 }
 export interface ResourceMap {
   resourceTitle?: string
@@ -45,6 +49,7 @@ export interface WrappedEventCalendarProps {
   resizeEvent: (args: EventInteractionArgs) => void
   selectEvent: (args: Event) => void
   onDragStart: () => void
+  selectSlot: (e: SlotInfo) => void
 }
 
 export interface EventCalendarWidgetProps
@@ -53,6 +58,8 @@ export interface EventCalendarWidgetProps
   eventConfigureMode?: "dynamic" | "static"
   manualOptions?: Event[]
   mappedOption?: Pluralize<Event>
+  dragMsg?: string
+  resizeMsg?: string
 }
 
 export interface CalendarEventOptionsType extends Event {
