@@ -1169,7 +1169,7 @@
         "eventCalendar": {
           "no_title": "Нет заголовка"
         },
-        "oncellselect": "onCellSelect",
+        "oncellselect": "приВыбореЯчейки",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
         "filterChange": "filterChange",
@@ -1713,7 +1713,7 @@
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
           "variant": "Variant of the button",
           "icon": "The icon displayed in the table",
-          "color": "Set the color.",
+          "color": "Установить цвет.",
           "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
           "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
           "alignment": "Задать выравнивание колонки.",
@@ -1724,10 +1724,10 @@
           "refresh": "Whether to show the refresh icon. ",
           "download_row_data": "Whether to show the download row data icon.",
           "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
+          "cell_overflow": "Как отображать при переполнении ячейки. ",
           "enable_server_side_p": "Whether to enable server pagination",
           "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
+          "total_row_count": "Количество строк, используемых для подсчета номера страницы.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object. Set the original column name as key ",
@@ -2842,5 +2842,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Не удалось выйти из системы. Пожалуйста, повторите попытку позже."
 }
