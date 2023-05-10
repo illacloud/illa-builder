@@ -20,15 +20,19 @@ export const translateSearchParamsToURLPathWithSelfHost = (
   const teamIdentifier = searchParams.get("teamIdentifier")
   const appID = searchParams.get("appID")
   const qs = getQS(searchParams)
+  const authToken = getAuthToken()
   // go to deploy
   if (inviteToken && teamIdentifier && appID) {
-    if (getAuthToken()) {
+    if (authToken) {
       const qs = removeIgnoredQS(searchParams)
       return `/${teamIdentifier}/deploy/app/${appID}${qs}`
     }
     return `/register${qs}`
   }
   // go to workspace,only can use self-host
-
-  return `/0/dashboard/apps${qs}`
+  if (authToken) {
+    return `/0/dashboard/apps${qs}`
+  } else {
+    return `/login${qs}`
+  }
 }

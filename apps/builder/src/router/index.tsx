@@ -67,7 +67,3 @@ const wrappedRouter = (
 }
 
 export const ILLARoute = createBrowserRouter(wrappedRouter(routerConfig))
-
-// https://localhost:3000?inviteToken=MzUxN2IyMzUtMDM2ZS00OWY1LTllNzUtNzkyNGIxNzg5ZDI0&teamIdentifier=0&appID=ILAfx4p1C7dX
-
-// https://localhost:3000?inviteToken=MzUxN2IyMzUtMDM2ZS00OWY1LTllNzUtNzkyNGIxNzg5ZDI0
