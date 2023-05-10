@@ -1725,7 +1725,7 @@
           "disable_user_selecti": "ユーザー選択を無効にするかどうか。 無効にすると、イベント ハンドラでテーブル コンポーネントを制御して行を選択できます。",
           "default_selected_row": "デフォルトで選択されている行。  ",
           "refresh": "更新アイコンを表示します。 ",
-          "download_row_data": "ダウンロード行データアイコンを表示するかどうかを設定します。",
+          "download_row_data": "Whether to show the download row data icon.",
           "column_setting": "列の設定を表示するかどうか。 列の設定により、ユーザーは表示する列と列の並べ替えを設定できます。 この設定は、テーブル データを変更しません。",
           "cell_overflow": "セルオーバーフロー時に表示する方法。 ",
           "enable_server_side_p": "サーバーページネーションを有効にする",
