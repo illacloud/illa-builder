@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Estado",
             "headers": "Encabezados",
-            "response": "Respuesta"
+            "response": "Respuesta",
+            "rawdata": "Datos sin procesar"
           }
         },
         "placeholder": {
