@@ -76,6 +76,7 @@ export const publicDashboardChildrenRouter: RoutesObjectPro[] = [
   {
     index: true,
     element: <Navigate to="apps" replace={true} />,
+    needLogin: true,
   },
   {
     path: "apps",
@@ -92,10 +93,12 @@ export const publicDashboardChildrenRouter: RoutesObjectPro[] = [
       lazy(() => import("@/page/Dashboard/DashboardResources")),
       <FullPageLoading />,
     ),
+    needLogin: true,
     loader: getDashboardResourcesLoader,
   },
   {
     path: "tutorial",
+    needLogin: true,
     element: lazyLoad(
       lazy(() => import("@/page/Dashboard/Tutorial")),
       <FullPageLoading />,
