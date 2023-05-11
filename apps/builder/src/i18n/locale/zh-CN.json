@@ -1151,7 +1151,9 @@
           "markerSelected": "选中点",
           "markerCreated": "创建点",
           "select": "选择",
-          "DragOrClickNoEventArea": "拖拽或点击无事件区域"
+          "DragOrClickNoEventArea": "拖拽或点击无事件区域",
+          "rowClick": "点击行",
+          "refresh": "刷新"
         },
         "image_list": {
           "title": "图片",
@@ -1561,7 +1563,8 @@
           "next_cursor": "下一个光标",
           "has_next_page": "是否有下一页",
           "currency_code": "货币代码"
-        }
+        },
+        "previous_cursor": "上一光标"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1734,7 +1737,8 @@
           "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**columnName**\":\"待过滤的列名\", \"**filterValue**\"：\"待匹配的值\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "过滤器的模式，选择AND 或 OR。",
           "currency_code": "USD"
-        }
+        },
+        "previous_cursor": "使用Action的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} "
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -2781,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "折叠列表"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "行选择变更"
         }
       }
     }
