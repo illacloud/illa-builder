@@ -761,7 +761,8 @@
           "restapi": {
             "status": "status",
             "headers": "Kopteksten",
-            "response": "Antwoord"
+            "response": "Antwoord",
+            "rawdata": "Ruwe gegevens"
           }
         },
         "placeholder": {
