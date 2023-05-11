@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Headers",
-            "response": "Response"
+            "response": "Data",
+            "rawdata": "Raw data"
           }
         },
         "placeholder": {
