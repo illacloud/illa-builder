@@ -504,10 +504,32 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.toolbar"),
     children: [
       {
+        id: `${baseWidgetName}-basic-refresh`,
+        labelName: i18n.t("editor.inspect.setter_content.refresh"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.table.refresh"),
+        attrName: "refresh",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
+      {
         id: `${baseWidgetName}-basic-download`,
         labelName: i18n.t("editor.inspect.setter_label.download"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.download"),
         attrName: "download",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
+      {
+        id: `${baseWidgetName}-basic-downloadRawData`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.table.download_row_data",
+        ),
+        labelDesc: i18n.t("editor.inspect.setter_tips.table.download_row_data"),
+        attrName: "downloadRawData",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         openDynamic: true,

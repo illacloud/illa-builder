@@ -1,5 +1,5 @@
 import { CellContext } from "@tanstack/table-core"
-import { isBoolean } from "lodash"
+import { isBoolean, isDate } from "lodash"
 import {
   dayjsPro,
   isArray,
@@ -130,7 +130,7 @@ export const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
   return value
 }
 
-const getMappedValue = (
+export const getMappedValue = (
   rowIndex: number,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
@@ -149,8 +149,8 @@ const getMappedValue = (
   return defaultValue
 }
 
-const getMappedValueFromCellContext = (
-  props: CellContext<any, any>,
+export const getMappedValueFromCellContext = (
+  props: CellContext<unknown, unknown>,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",
@@ -167,8 +167,8 @@ const getMappedValueFromCellContext = (
   )
 }
 
-const getPropertyValue = (
-  props: CellContext<any, any>,
+export const getPropertyValue = (
+  props: CellContext<unknown, unknown>,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",
@@ -189,8 +189,8 @@ const getPropertyValue = (
   return value ?? "-"
 }
 
-const getStringPropertyValue = (
-  props: CellContext<any, any>,
+export const getStringPropertyValue = (
+  props: CellContext<unknown, unknown>,
   mappedValue?: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",
@@ -229,6 +229,14 @@ const isValidUrl = (str: unknown) => {
     /^(((ht|f)tps?):\/\/)?(([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}|(\d{1,3}\.){3}\d{1,3})\/?/,
   )
   return pattern.test(str)
+}
+
+function isValidDate(val: unknown) {
+  if (isString(val) || isNumber(val) || isDate(val)) {
+    const date = new Date(val)
+    return !isNaN(date.getTime())
+  }
+  return false
 }
 
 export const getCellForType = (
@@ -423,11 +431,6 @@ export const getCellForType = (
             value: Number(value).toFixed(decimalPlaces),
             alignment,
           })
-        } else if (dayjsPro(value).isValid()) {
-          return RenderTableStringCell({
-            value: dayjsPro(value).format(format),
-            alignment,
-          })
         } else if (isImageUrl(value)) {
           return RenderTableImage({
             cell: props,
@@ -438,6 +441,11 @@ export const getCellForType = (
           return RenderTableLink({
             cell: props,
             value: stringValue,
+            alignment,
+          })
+        } else if (isValidDate(value)) {
+          return RenderTableStringCell({
+            value: dayjsPro(value).format(format),
             alignment,
           })
         } else {

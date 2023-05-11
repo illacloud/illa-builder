@@ -56,6 +56,12 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
       break
     }
     default: {
+      if (status >= 500) {
+        ILLARoute.navigate("/500", {
+          replace: true,
+        })
+        break
+      }
       ILLARoute.navigate("/404", {
         replace: true,
       })

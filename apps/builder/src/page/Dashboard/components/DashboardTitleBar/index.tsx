@@ -64,6 +64,10 @@ const SettingTrigger: FC<PageLoadingProps> = (props) => {
     loadingCallBack?.(false)
   }
 
+  const handleClickOnSetting = () => {
+    navigate(`../setting`)
+  }
+
   return (
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
@@ -76,7 +80,9 @@ const SettingTrigger: FC<PageLoadingProps> = (props) => {
       </div>
       <Divider />
       <div css={settingListStyle}>
-        <div css={settingItemStyle}>{t("Setting")}</div>
+        <div css={settingItemStyle} onClick={handleClickOnSetting}>
+          {t("Setting")}
+        </div>
         <div css={settingItemStyle} onClick={handleClickLogout}>
           {t("Logout")}
         </div>

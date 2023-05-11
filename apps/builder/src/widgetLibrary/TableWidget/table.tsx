@@ -1,20 +1,26 @@
 import { PaginationState } from "@tanstack/react-table"
-import { Table as ReactTable, RowSelectionState } from "@tanstack/table-core"
-import { cloneDeep, debounce } from "lodash"
-import { FC, useCallback, useEffect, useMemo } from "react"
+import {
+  CellContext,
+  Table as ReactTable,
+  RowSelectionState,
+} from "@tanstack/table-core"
+import { cloneDeep, debounce, isEqual } from "lodash"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
-import {
-  applyAlignmentStyle,
-  applyTableCellBackgroundStyle,
-} from "@/widgetLibrary/TableWidget/style"
+import { applyAlignmentStyle } from "@/widgetLibrary/TableWidget/style"
 import {
   ColumnItemShape,
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { getCellForType, transTableColumnEvent } from "./utils"
+import {
+  getCellForType,
+  getMappedValueFromCellContext,
+  getStringPropertyValue,
+  transTableColumnEvent,
+} from "./utils"
 
 export const WrappedTable: FC<WrappedTableProps> = (props) => {
   const {
@@ -25,7 +31,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     columns,
     columnSizing,
     filter,
+    refresh,
     download,
+    downloadRawData,
     overFlow,
     pageSize,
     pageIndex = 0,
@@ -40,14 +48,18 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     nextBeforeCursor,
     nextAfterCursor,
     // hasNextPage,
+    handleOnRefresh,
+    handleOnRowClick,
     handleOnSortingChange,
     handleOnPaginationChange,
     handleOnColumnFiltersChange,
+    handleOnRowSelectChange,
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLMultiAttr,
   } = props
 
   const mode = useSelector(getIllaMode)
+  const [cachedData, setCachedData] = useState<any[]>([])
 
   const formatData = useMemo(() => {
     if (Array.isArray(data)) {
@@ -55,6 +67,39 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     }
     return []
   }, [data])
+
+  const isCursorPaginationEnabled = useMemo(() => {
+    return (
+      (paginationType === "cursorBased" ||
+        paginationType === "graphqlRelayCursorBased") &&
+      enableServerSidePagination
+    )
+  }, [paginationType, enableServerSidePagination])
+
+  const cursorBasedData = useMemo(() => {
+    const _pageSize = pageSize ? pageSize : data?.length ?? 10
+    const paginationOffset = pageIndex * _pageSize
+
+    return cachedData.slice(paginationOffset, paginationOffset + _pageSize)
+  }, [cachedData, pageIndex, pageSize, data?.length])
+
+  const updateCachedData = useCallback(
+    (data: Array<unknown>) => {
+      if (paginationType === "cursorBased") {
+        setCachedData((prevData = []) => {
+          if (isEqual(prevData, data)) {
+            return prevData
+          }
+          return [...prevData, ...data]
+        })
+      }
+    },
+    [paginationType],
+  )
+
+  useEffect(() => {
+    updateCachedData(formatData)
+  }, [formatData, updateCachedData])
 
   const handleUpdateMulti = useCallback(
     (value: Record<string, any>) => {
@@ -96,8 +141,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
         rowSelection: value,
       }
       handleUpdateMulti(updateValue)
+      handleOnRowSelectChange?.()
     },
-    [formatData, handleUpdateMulti],
+    [formatData, handleUpdateMulti, handleOnRowSelectChange],
   )
 
   const onPaginationChange = useCallback(
@@ -169,12 +215,14 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       total={totalRowCount}
       colorScheme={"techPurple"}
       rowSelection={rowSelection}
-      data={formatData}
+      data={paginationType === "cursorBased" ? cursorBasedData : formatData}
       columns={columns}
       columnSizing={columnSizing}
       filter={filter}
       loading={loading}
+      refresh={refresh}
       download={download}
+      downloadRawData={downloadRawData}
       overFlow={overFlow}
       pagination={{
         pageSize: enableServerSidePagination
@@ -182,11 +230,14 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
             ? pageSize
             : data?.length
           : pageSize,
+        disableSimplePageJump: isCursorPaginationEnabled,
       }}
       emptyProps={{ description: emptyState }}
       defaultSort={defaultSort}
       columnVisibility={columnVisibility}
       multiRowSelection={multiRowSelection}
+      onRefresh={handleOnRefresh}
+      onRowClick={handleOnRowClick}
       onSortingChange={handleOnSortingChange}
       onPaginationChange={onPaginationChange}
       onColumnFiltersChange={handleOnColumnFiltersChange}
@@ -224,6 +275,18 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     triggerEventHandler,
     ...otherProps
   } = props
+
+  const handleOnRefresh = useCallback(() => {
+    triggerEventHandler("refresh")
+  }, [triggerEventHandler])
+
+  const handleOnRowClick = useCallback(() => {
+    triggerEventHandler("rowClick")
+  }, [triggerEventHandler])
+
+  const handleOnRowSelectChange = useCallback(() => {
+    triggerEventHandler("rowSelectChange")
+  }, [triggerEventHandler])
 
   const handleOnSortingChange = useCallback(() => {
     triggerEventHandler("sortingChange")
@@ -275,11 +338,24 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       const eventPath = `rowEvents.${index}`
       const transItem = cloneDeep(item) as ColumnItemShape
       transItem["meta"] = {
-        // align: transItem.alignment,
-        style: [
-          applyAlignmentStyle(item.alignment),
-          applyTableCellBackgroundStyle(item.backgroundColor),
-        ],
+        getBackgroundColor: (props: CellContext<unknown, unknown>) => {
+          return getMappedValueFromCellContext(
+            props,
+            transItem.backgroundColor,
+            transItem.fromCurrentRow,
+            "backgroundColor",
+            "",
+          )
+        },
+        getRenderedValueAsString: (props: CellContext<unknown, unknown>) => {
+          return getStringPropertyValue(
+            props,
+            transItem.mappedValue,
+            transItem.fromCurrentRow,
+          )
+        },
+        style: [applyAlignmentStyle(item.alignment)],
+        custom: item.custom,
       }
       transItem["cell"] = getCellForType(
         transItem,
@@ -316,6 +392,70 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     })
   }, [handleUpdateOriginalDSLMultiAttr, rowEvents])
 
+  useEffect(() => {
+    // use accessorKey as origin column name
+    const customColumnIndices = columns.reduce<Record<number, string>>(
+      (acc, column, index) => {
+        if (column.custom) {
+          acc[index] = column.header
+        }
+        return acc
+      },
+      {},
+    )
+    const columnNameIndices = columns.reduce<Record<number, string>>(
+      (acc, column, index) => {
+        if (column.custom) {
+          acc[index] = column.header
+        } else {
+          acc[index] = column.accessorKey
+        }
+        return acc
+      },
+      {},
+    )
+    const renamedColumnNames = columns.reduce<Record<string, string>>(
+      (acc, column) => {
+        if (column.header !== column.accessorKey && !column.custom) {
+          acc[column.accessorKey] = column.header
+        }
+        return acc
+      },
+      {},
+    )
+    const columnVisibility = columns.reduce<Record<string, boolean>>(
+      (acc, column) => {
+        if (column.custom) {
+          acc[column.header] = !!column.visible
+        } else {
+          acc[column.accessorKey] = !!column.visible
+        }
+        return acc
+      },
+      {},
+    )
+    const columnMapper = columns.reduce<Record<string, unknown>>(
+      (acc, column) => {
+        if (column.custom) {
+          acc[column.header] = column
+        } else {
+          // use accessorKey as origin column name
+          acc[column.accessorKey] = column
+        }
+        return acc
+      },
+      {},
+    )
+
+    handleUpdateOriginalDSLMultiAttr({
+      customColumnIndices,
+      columnNameIndices,
+      renamedColumnNames,
+      columnVisibility,
+      columnMapper,
+    })
+  }, [handleUpdateOriginalDSLMultiAttr, columns])
+
   return (
     <WrappedTable
       {...otherProps}
@@ -341,6 +481,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       handleOnSortingChange={handleOnSortingChange}
       handleOnPaginationChange={handleOnPaginationChange}
       handleOnColumnFiltersChange={handleOnColumnFiltersChange}
+      handleOnRowSelectChange={handleOnRowSelectChange}
+      handleOnRowClick={handleOnRowClick}
+      handleOnRefresh={handleOnRefresh}
     />
   )
 }

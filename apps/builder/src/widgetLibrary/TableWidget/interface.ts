@@ -117,14 +117,16 @@ export const tagColorSchemeOptions = [
   "techPink",
 ]
 
-export interface WrappedTableProps
+export interface TableCommonProps
   extends HTMLAttributes<HTMLDivElement>,
     Pick<
       TableProps<any, any>,
       | "loading"
       | "columns"
       | "filter"
+      | "refresh"
       | "download"
+      | "downloadRawData"
       | "overFlow"
       | "pagination"
       | "defaultSort"
@@ -133,8 +135,7 @@ export interface WrappedTableProps
       | "multiRowSelection"
       | "columnSizing"
       | "data"
-    >,
-    Omit<BaseWidgetProps, "triggerEventHandler"> {
+    > {
   emptyState?: string
   pageSize?: number
   pageIndex?: number
@@ -150,10 +151,6 @@ export interface WrappedTableProps
   nextBeforeCursor?: number
   nextAfterCursor?: number
   hasNextPage?: boolean
-  handleOnClickMenuItem?: (path: string) => void
-  handleOnSortingChange?: () => void
-  handleOnPaginationChange?: () => void
-  handleOnColumnFiltersChange?: () => void
   handleUpdateMultiExecutionResult: (
     updateSlice: {
       displayName: string
@@ -163,8 +160,21 @@ export interface WrappedTableProps
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
+export interface WrappedTableProps
+  extends TableCommonProps,
+    Omit<BaseWidgetProps, "triggerEventHandler"> {
+  customColumns?: Record<number, string>
+  handleOnClickMenuItem?: (path: string) => void
+  handleOnSortingChange?: () => void
+  handleOnPaginationChange?: () => void
+  handleOnColumnFiltersChange?: () => void
+  handleOnRowSelectChange?: () => void
+  handleOnRowClick?: () => void
+  handleOnRefresh?: () => void
+}
+
 // todo: @echoxyc error extends
-export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
+export interface TableWidgetProps extends TableCommonProps, BaseWidgetProps {
   columns: ColumnItemShape[]
   dataSource: any[]
   dataSourceJS: any[]

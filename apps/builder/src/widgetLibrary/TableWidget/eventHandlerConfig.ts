@@ -21,6 +21,24 @@ export const TABLE_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       ),
       value: "columnFiltersChange",
     },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.rowSelectChange",
+      ),
+      value: "rowSelectChange",
+    },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.rowClick",
+      ),
+      value: "rowClick",
+    },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.refresh",
+      ),
+      value: "refresh",
+    },
   ],
   methods: [],
 }
