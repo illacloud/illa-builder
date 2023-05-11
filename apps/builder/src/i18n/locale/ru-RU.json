@@ -1151,7 +1151,9 @@
           "markerSelected": "маркер выбран",
           "markerCreated": "маркер создан",
           "select": "Выбрать",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Drag or click no event area",
+          "rowClick": "Row click",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "Изображения",
@@ -1552,7 +1554,7 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Обновить",
-          "download_row_data": "Download Raw data",
+          "download_row_data": "Download raw data",
           "column_setting": "Настройка колонки",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
@@ -1561,7 +1563,8 @@
           "next_cursor": "Next cursor",
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
-        }
+        },
+        "previous_cursor": "Previous cursor"
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -1734,7 +1737,8 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
-        }
+        },
+        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "Исправлено",
@@ -2781,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "Свернутый список"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "Row Select Change"
         }
       }
     }
