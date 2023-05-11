@@ -148,7 +148,7 @@
             "google_sheets": "Таблиці Google"
           },
           "neon": {
-            "neon": "Neon"
+            "neon": "Неон"
           }
         },
         "validate": {
@@ -275,9 +275,9 @@
             "ca_certificate": "Ми заповнюємо CA сертифікат, який використовується для TLS з'єднань за замовчуванням на сервер. Якщо вам потрібні TLS підключення до виділеного Tier, <0>Натисніть тут</0> для перегляду методу конфігурації."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Створіть неоновий проект і отримайте рядок у <0>панелі проекту</0>.",
+            "failed": "Не вдалося обробити рядок. Будь ласка, перевірте свій рядок або налаштуйте вручну.",
+            "no_password": "Рядок не має пароля. Будь ласка, вкажіть пароль в Неоновій панелі перед копіюванням."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Рядок підключення"
           }
         },
         "default": {
@@ -1151,9 +1151,9 @@
           "markerSelected": "виділений маркер",
           "markerCreated": "маркер створено",
           "select": "Вибрати",
-          "DragOrClickNoEventArea": "Drag or click no event area",
-          "rowClick": "Row click",
-          "refresh": "Refresh"
+          "DragOrClickNoEventArea": "Перетягніть або натисніть кнопку відсутності ділянки подій",
+          "rowClick": "Натискання ряд",
+          "refresh": "Оновити"
         },
         "image_list": {
           "title": "Малюнки",
@@ -1173,12 +1173,12 @@
           "no_title": "Без назви"
         },
         "oncellselect": "onCellSelect",
-        "onRowSelectChange": "onRowSelectChange",
+        "onRowSelectChange": "Зміна на RowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "зміна фільтру",
+        "sortChange": "сортувальна зміна",
+        "pageChange": "Зміна сторінки",
+        "refresh": "оновити"
       },
       "setter_default_value": {
         "fill": "Заливка рядка",
@@ -1530,7 +1530,7 @@
           "calendar_text": "Текст",
           "event_background": "Фон",
           "event_text": "Текст",
-          "draggable": "Draggable",
+          "draggable": "Перетягуємий",
           "resizable": "Resizable"
         },
         "table": {
@@ -1542,29 +1542,29 @@
           "show_thousands_separ": "Показувати розділювач розрядів",
           "tag_label": "Мітка тегу",
           "tag_color": "Колір мітки",
-          "open_in_new_tab": "Open in new tab",
-          "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "open_in_new_tab": "Відкрити в новій вкладці",
+          "variant": "Варіант",
+          "icon": "Іконка",
+          "color": "Колір",
+          "sort_by_mapped_value": "Сортувати за значенням",
+          "background": "Фон",
+          "alignment": "Вирівнювання",
+          "column_width": "Ширина стовпця",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "disable_user_selecti": "Вимкнути вибір користувача",
+          "default_selected_row": "Обраний рядок за замовчуванням",
+          "refresh": "Оновити",
           "download_row_data": "Завантаження необроблених даних",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "column_setting": "Налаштування стовпця",
+          "cell_overflow": "Переповнення клітинки",
+          "enable_server_side_p": "Увімкнути нумерацію сторінок сервера",
+          "pagination_type": "Тип нумерації сторінок",
+          "total_row_count": "Загальна кількість рядків",
+          "next_cursor": "Наступний курсор",
+          "has_next_page": "Має наступну сторінку",
+          "currency_code": "Код валюти"
         },
-        "previous_cursor": "Previous cursor"
+        "previous_cursor": "Попередній курсор"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -1705,40 +1705,40 @@
           "event_background": "Встановити тло картки подій",
           "event_text": "Встановити колір текстової карти події",
           "couldnot_drag": "Якщо ви хочете перетягнути для зміни діапазону часу, будь ласка, перейдіть на сторінку попереднього перегляду операцій.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Чи дозволяти користувачам оновлювати діапазон часу заходу, перетягуючи, щоб перемістити подію",
+          "resizable": "Якщо користувачі зможуть оновлювати проміжок часу заходу і змінювати тривалість часу, перетягуючи межу події на тривалий, або скорочуючи тривалість часу"
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
+          "page_index": "Індекс сторінки, яку ви хочете вибрати.",
+          "index": "Індекс рядку, який ви хочете вибрати. Індекс повинен бути масивом, який може бути використаний для позначення декількох рядків.",
+          "scroll_to_the_select": "Чи прокрутити до рядка.",
+          "show_thousands_separ": "Показувати в блоці тисячі роздільників",
+          "tag_label": "Встановити мітку тегів. Масив буде розділено на декілька тегів.",
+          "tag_color": "Встановлює колір тегів. Використовуйте {{ напишіть умовний оператор, щоб встановити колір, виведений на різних умовах.",
+          "variant": "Варіант кнопки",
+          "icon": "Значок, що відображається в таблиці",
+          "color": "Задайте колір.",
+          "sort_by_mapped_value": "Чи сортувати за допомогою зіставленого значення. Якщо ні, ми будемо сортувати на основі оригінальних даних.",
+          "background": "Встановлення тла стовпця. Використовуйте {{ напишіть умовний рядок, щоб встановити колір, відображаний кожна клітинка в різних умовах.",
+          "alignment": "Встановити вирівнювання стовпця.",
+          "column_width": "Встановити ширину стовпця за числовим значенням. Ви також можете налаштувати ширину стовпця, перетягуючи в кадр. Після коригування, значення цього елемента конфігурації також буде змінено відповідно",
+          "width": "Встановіть метод адаптації ширини стовпця.",
+          "disable_user_selecti": "Чи відключити вибір користувача. Якщо вимкнено, ви зможете вибирати рядки шляхом керування компонентами таблиці через обробник подій.",
+          "default_selected_row": "Рядку обрано за замовчуванням.  ",
+          "refresh": "Чи показувати іконку оновлення. ",
           "download_row_data": "Чи показувати необроблену піктограму завантаження.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "column_setting": "Чи показувати налаштування стовпця. Налаштування стовпців дозволить користувачам встановити колонки для відображення і сортування стовпців. Цей параметр не змінює даних таблиці.",
+          "cell_overflow": "Як відображати поверхню клітини. ",
+          "enable_server_side_p": "Чи вмикати нумерацію сторінок сервера",
+          "pagination_type": "Тип пагінації. ",
+          "total_row_count": "Кількість рядків, які будуть використовуватися для підрахунку номера сторінки.",
+          "next_cursor": "Ідентифікатор використовується для пошуку наступної відправної точки набору даних, для того, щоб paginate і отримати дані в пакетах",
+          "has_next_page": "Логічний тип, який використовується для позначення чи є ще одна сторінка наявних даних. Це може допомогти нам краще контролювати інформацію отриманих даних у потокових запитах і оптимізувати продуктивність запиту",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "filter_mode": "Режим фільтра. І або АБО.",
+          "currency_code": "Долари США"
         },
-        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Використовуйте дані дій, щоб встановити попередній курсор. Наприклад,  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "Виправлена",
@@ -1801,11 +1801,11 @@
           "button": "Кнопка",
           "icon": "Іконка",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "outline": "Контур",
+          "auto": "Авто",
+          "limited": "Обмежений",
+          "limit_offset_based": "Обмежити відступ на основі",
+          "cursor_based": "На основі курсору",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
         }
       },
@@ -1832,7 +1832,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "Код валюти, визначений в [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2000,7 +2000,7 @@
         "select_row": "Виберіть рядок",
         "clear_selection": "Очистити вибране",
         "set_filters": "Встановити фільтри",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "Клацніть безкоштовно"
       }
     },
     "tutorial": {
@@ -2789,7 +2789,7 @@
       },
       "setter_content": {
         "widget_action_type_name": {
-          "rowSelectChange": "Row Select Change"
+          "rowSelectChange": "Змінити вибір рядка"
         }
       }
     }
@@ -2830,27 +2830,27 @@
   "oauth_redirect_title": "Перенаправлення",
   "oauth_redirect_description": "Перенаправлення на <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Українська",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "Африкаанс",
+    "cs-CZ": "с.Ікра",
+    "de-DE": "Німецька мова",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "франк",
+    "it-IT": "італіано",
+    "nl-NL": "Нідерланди",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "портюж",
+    "ro-RO": "рома",
+    "ru-RU": "докладно скинуто",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Не вдалося вийти. Будь ласка, спробуйте ще раз пізніше."
 }
