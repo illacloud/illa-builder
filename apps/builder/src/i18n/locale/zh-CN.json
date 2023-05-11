@@ -399,7 +399,7 @@
         "firebase": {
           "action_type": "Action Type",
           "collection": "集合",
-          "database_ref": "数据库参考",
+          "database_ref": "Limit offset based",
           "document_id": "文档ID",
           "email": "邮箱",
           "end_at": "End At",
@@ -423,7 +423,7 @@
           "service_type": "Service Type",
           "start_at": "Start At",
           "tips": {
-            "document_id": "空白时将自动生成ID",
+            "document_id": "为空时将自动生成ID",
             "parent_document_id_tips": "为空时选择最外层目录"
           },
           "uid": "UID",
@@ -448,7 +448,7 @@
           "placeholder": {
             "couchdb": {
               "database": "选择数据库",
-              "record": "{* {\"x\":1, \"y\":2, ...} }}",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
               "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             },
             "restapi": {
@@ -1804,7 +1804,7 @@
           "outline": "描边",
           "auto": "自适应",
           "limited": "限制",
-          "limit_offset_based": "基于限制偏移量",
+          "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
           "graphql_relay_cursor": "GraphQL Relay cursor"
         }
@@ -1999,7 +1999,7 @@
         "select_page": "选择页面",
         "select_row": "选择行",
         "clear_selection": "清除选择",
-        "set_filters": "设置筛选器",
+        "set_filters": "设置过滤器",
         "onFreeTimeDragOrClick": "点击空闲时间"
       }
     },
