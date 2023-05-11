@@ -1169,7 +1169,7 @@
         "eventCalendar": {
           "no_title": "Нет заголовка"
         },
-        "oncellselect": "onCellSelect",
+        "oncellselect": "приВыбореЯчейки",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
         "filterChange": "filterChange",
@@ -1551,7 +1551,7 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Обновить",
-          "download_row_data": "Download Row data",
+          "download_row_data": "Скачать сырые данные",
           "column_setting": "Настройка колонки",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
@@ -1725,12 +1725,12 @@
           "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
           "default_selected_row": "The row selected by default.  ",
           "refresh": "Whether to show the refresh icon. ",
-          "download_row_data": "Whether to show the download raw data icon.",
+          "download_row_data": "Показывать ли необработанный значок загрузки.",
           "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
+          "cell_overflow": "Как отображать при переполнении ячейки. ",
           "enable_server_side_p": "Whether to enable server pagination",
           "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
+          "total_row_count": "Количество строк, используемых для подсчета номера страницы.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object. Set the original column name as key ",
@@ -2862,5 +2862,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Не удалось выйти из системы. Пожалуйста, повторите попытку позже."
 }
