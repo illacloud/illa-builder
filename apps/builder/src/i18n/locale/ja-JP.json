@@ -1151,7 +1151,9 @@
           "markerSelected": "マーカーを選択",
           "markerCreated": "マーカーを作成",
           "select": "選択",
-          "DragOrClickNoEventArea": "イベントのないエリアをドラッグ"
+          "DragOrClickNoEventArea": "イベントのないエリアをドラッグ",
+          "rowClick": "行クリック",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "イメージ",
@@ -1552,7 +1554,7 @@
           "disable_user_selecti": "ユーザー選択を無効",
           "default_selected_row": "デフォルトの選択行",
           "refresh": "リフレッシュ",
-          "download_row_data": "Download Raw data",
+          "download_row_data": "生データのダウンロード",
           "column_setting": "Column setting",
           "cell_overflow": "セルオーバーフロー",
           "enable_server_side_p": "サーバー側のページネーションを有効にする",
@@ -1561,7 +1563,8 @@
           "next_cursor": "次のカーソル",
           "has_next_page": "次のページあり",
           "currency_code": "通貨コード"
-        }
+        },
+        "previous_cursor": "前のカーソル"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1723,7 +1726,7 @@
           "disable_user_selecti": "ユーザー選択を無効にするかどうか。 無効にすると、イベント ハンドラでテーブル コンポーネントを制御して行を選択できます。",
           "default_selected_row": "デフォルトで選択されている行。  ",
           "refresh": "更新アイコンを表示します。 ",
-          "download_row_data": "ダウンロード行データアイコンを表示するかどうかを設定します。",
+          "download_row_data": "RAWデータのダウンロードアイコンを表示するかどうか。",
           "column_setting": "列の設定を表示するかどうか。 列の設定により、ユーザーは表示する列と列の並べ替えを設定できます。 この設定は、テーブル データを変更しません。",
           "cell_overflow": "セルオーバーフロー時に表示する方法。 ",
           "enable_server_side_p": "サーバーページネーションを有効にする",
@@ -1734,7 +1737,8 @@
           "filters": "{{ }} で囲まれたオブジェクトの配列。 たとえば、{{ [{\"**columnName**\":\"フィルターする列の名前\", \"**filterValue**\"：\"一致する値\", \"**operator**\":\"contains, 等しい、...\"}] }}",
           "filter_mode": "フィルタモード。ANDまたはOR。",
           "currency_code": "USD"
-        }
+        },
+        "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -2781,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "折りたたみ可能なリスト"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "行の選択変更"
         }
       }
     }
