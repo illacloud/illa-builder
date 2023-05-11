@@ -999,7 +999,7 @@
           "api_request": "API Request",
           "error": "Query ran fail",
           "json": "JSON",
-          "response": "Response",
+          "response": "Data",
           "success": "Success",
           "table": "Table"
         }
