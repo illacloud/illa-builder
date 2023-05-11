@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Overskrifter",
-            "response": "Respons"
+            "response": "Respons",
+            "rawdata": "R\\xe5 data"
           }
         },
         "placeholder": {
