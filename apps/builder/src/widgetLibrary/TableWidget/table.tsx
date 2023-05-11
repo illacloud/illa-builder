@@ -30,7 +30,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     columns,
     columnSizing,
     filter,
+    refresh,
     download,
+    downloadRawData,
     overFlow,
     pageSize,
     pageIndex = 0,
@@ -48,6 +50,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     handleOnSortingChange,
     handleOnPaginationChange,
     handleOnColumnFiltersChange,
+    handleOnRowSelectChange,
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLMultiAttr,
   } = props
@@ -101,8 +104,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
         rowSelection: value,
       }
       handleUpdateMulti(updateValue)
+      handleOnRowSelectChange?.()
     },
-    [formatData, handleUpdateMulti],
+    [formatData, handleUpdateMulti, handleOnRowSelectChange],
   )
 
   const onPaginationChange = useCallback(
@@ -179,7 +183,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       columnSizing={columnSizing}
       filter={filter}
       loading={loading}
+      refresh={refresh}
       download={download}
+      downloadRawData={downloadRawData}
       overFlow={overFlow}
       pagination={{
         pageSize: enableServerSidePagination
@@ -229,6 +235,10 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     triggerEventHandler,
     ...otherProps
   } = props
+
+  const handleOnRowSelectChange = useCallback(() => {
+    triggerEventHandler("rowSelectChange")
+  }, [triggerEventHandler])
 
   const handleOnSortingChange = useCallback(() => {
     triggerEventHandler("sortingChange")
@@ -326,6 +336,70 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     })
   }, [handleUpdateOriginalDSLMultiAttr, rowEvents])
 
+  useEffect(() => {
+    // use accessorKey as origin column name
+    const customColumnIndices = columns.reduce<Record<number, string>>(
+      (acc, column, index) => {
+        if (column.custom) {
+          acc[index] = column.header
+        }
+        return acc
+      },
+      {},
+    )
+    const columnNameIndices = columns.reduce<Record<number, string>>(
+      (acc, column, index) => {
+        if (column.custom) {
+          acc[index] = column.header
+        } else {
+          acc[index] = column.accessorKey
+        }
+        return acc
+      },
+      {},
+    )
+    const renamedColumnNames = columns.reduce<Record<string, string>>(
+      (acc, column) => {
+        if (column.header !== column.accessorKey && !column.custom) {
+          acc[column.accessorKey] = column.header
+        }
+        return acc
+      },
+      {},
+    )
+    const columnVisibility = columns.reduce<Record<string, boolean>>(
+      (acc, column) => {
+        if (column.custom) {
+          acc[column.header] = !!column.visible
+        } else {
+          acc[column.accessorKey] = !!column.visible
+        }
+        return acc
+      },
+      {},
+    )
+    const columnMapper = columns.reduce<Record<string, unknown>>(
+      (acc, column) => {
+        if (column.custom) {
+          acc[column.header] = column
+        } else {
+          // use accessorKey as origin column name
+          acc[column.accessorKey] = column
+        }
+        return acc
+      },
+      {},
+    )
+
+    handleUpdateOriginalDSLMultiAttr({
+      customColumnIndices,
+      columnNameIndices,
+      renamedColumnNames,
+      columnVisibility,
+      columnMapper,
+    })
+  }, [handleUpdateOriginalDSLMultiAttr, columns])
+
   return (
     <WrappedTable
       {...otherProps}
@@ -351,6 +425,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       handleOnSortingChange={handleOnSortingChange}
       handleOnPaginationChange={handleOnPaginationChange}
       handleOnColumnFiltersChange={handleOnColumnFiltersChange}
+      handleOnRowSelectChange={handleOnRowSelectChange}
     />
   )
 }
