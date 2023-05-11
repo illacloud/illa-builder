@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Nagłówki",
-            "response": "Odpowiedź"
+            "response": "Odpowiedź",
+            "rawdata": "Surowe dane"
           }
         },
         "placeholder": {
