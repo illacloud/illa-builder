@@ -759,7 +759,7 @@
         },
         "result": {
           "restapi": {
-            "status": "Status",
+            "status": "Status code",
             "headers": "Headers",
             "response": "Data",
             "rawdata": "Raw data"
