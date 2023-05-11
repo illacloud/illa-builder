@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Статус",
             "headers": "Заголовки",
-            "response": "Замечание"
+            "response": "Замечание",
+            "rawdata": "Сырые данные"
           }
         },
         "placeholder": {
@@ -1150,7 +1151,9 @@
           "markerSelected": "маркер выбран",
           "markerCreated": "маркер создан",
           "select": "Выбрать",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Drag or click no event area",
+          "rowClick": "Row click",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "Изображения",
@@ -1561,9 +1564,7 @@
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
         },
-        "switch_group": {
-          "option_label_alignment": "Position of the option label"
-        }
+        "previous_cursor": "Previous cursor"
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -1716,7 +1717,7 @@
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
           "variant": "Variant of the button",
           "icon": "The icon displayed in the table",
-          "color": "Set the color.",
+          "color": "Установить цвет.",
           "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
           "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
           "alignment": "Задать выравнивание колонки.",
@@ -1737,18 +1738,7 @@
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
-        }
+        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "Исправлено",
@@ -1843,9 +1833,6 @@
         },
         "table": {
           "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
         }
       },
       "setter_tootip": {
@@ -2012,7 +1999,8 @@
         "select_page": "Выберите страницу",
         "select_row": "Выберите строку",
         "clear_selection": "Очистить выделенное",
-        "set_filters": "Установить фильтры"
+        "set_filters": "Установить фильтры",
+        "onFreeTimeDragOrClick": "Click free time"
       }
     },
     "tutorial": {
@@ -2460,9 +2448,6 @@
         "event_calendar": "Календарь событий"
       },
       "name_duplicated": "Этот идентификатор ресурса конфликтует в ходе этих событий, пожалуйста, используйте одно и то же имя или другой идентификатор"
-    },
-    "switch_group": {
-      "switch_group": "Switch group"
     }
   },
   "page": {
@@ -2800,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "Свернутый список"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "Row Select Change"
         }
       }
     }

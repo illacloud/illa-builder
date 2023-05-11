@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Kopfzeilen",
-            "response": "Antwort"
+            "response": "Antwort",
+            "rawdata": "Rohdaten"
           }
         },
         "placeholder": {
@@ -1150,7 +1151,9 @@
           "markerSelected": "markiert ausgewählt",
           "markerCreated": "markerErstellt",
           "select": "Auswählen",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Drag or click no event area",
+          "rowClick": "Row click",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "Bilder",
@@ -1561,9 +1564,7 @@
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
         },
-        "switch_group": {
-          "option_label_alignment": "Position of the option label"
-        }
+        "previous_cursor": "Previous cursor"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1737,18 +1738,7 @@
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
-        }
+        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "Feste",
@@ -1843,9 +1833,6 @@
         },
         "table": {
           "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
         }
       },
       "setter_tootip": {
@@ -2012,7 +1999,8 @@
         "select_page": "Seite auswählen",
         "select_row": "Zeile auswählen",
         "clear_selection": "Auswahl löschen",
-        "set_filters": "Filter setzen"
+        "set_filters": "Filter setzen",
+        "onFreeTimeDragOrClick": "Click free time"
       }
     },
     "tutorial": {
@@ -2460,9 +2448,6 @@
         "event_calendar": "Veranstaltungskalender"
       },
       "name_duplicated": "Diese Ressourcen-ID kollidiert in diesen Ereignissen, bitte verwenden Sie den gleichen Namen oder andere ID"
-    },
-    "switch_group": {
-      "switch_group": "Switch group"
     }
   },
   "page": {
@@ -2800,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "Zusammenklappbare Liste"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "Row Select Change"
         }
       }
     }

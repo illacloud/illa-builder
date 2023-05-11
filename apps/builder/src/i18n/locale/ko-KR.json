@@ -163,7 +163,7 @@
             "host": "주인",
             "dbid": "데이터베이스 ID",
             "projectid": "프로젝트 ID",
-            "secret": "API Key",
+            "secret": "X-Appwrite-JWT",
             "collectionid": "컬렉션 ID",
             "documentid": "문서 ID",
             "data": "데이터",
@@ -761,7 +761,8 @@
           "restapi": {
             "status": "상태",
             "headers": "헤더",
-            "response": "응답"
+            "response": "데이터",
+            "rawdata": "로우 데이터"
           }
         },
         "placeholder": {
@@ -975,7 +976,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>Hugging Face 프로필 설정</0>에서 Organizations API 토큰을 받으세요.",
-            "hf_endpoint": "<0>허깅 페이스 엔드포인트</0>에 대해 자세히 알아보세요."
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
           },
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -999,7 +1000,7 @@
           "api_request": "API 요청 매개변수",
           "error": "쿼리 실패",
           "json": "JSON",
-          "response": "반환 결과",
+          "response": "응답 데이터",
           "success": "검색 성공",
           "table": "시트"
         }
@@ -1150,7 +1151,9 @@
           "markerSelected": "마커 선택",
           "markerCreated": "마커 만들기",
           "select": "선택",
-          "DragOrClickNoEventArea": "드래그 없음 이벤트 영역"
+          "DragOrClickNoEventArea": "이벤트가 없는 영역을 드래그 또는 클릭",
+          "rowClick": "행 클릭",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "이미지",
@@ -1561,9 +1564,7 @@
           "has_next_page": "다음 페이지 있음",
           "currency_code": "통화 코드"
         },
-        "switch_group": {
-          "option_label_alignment": "옵션 라벨의 위치"
-        }
+        "previous_cursor": "이전 커서"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1735,20 +1736,9 @@
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)에 정의된 통화 코드"
+          "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "옵션의 레이블",
-          "value": "{{로 묶인 선택된 옵션의 배열입니다. 예: {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "값이 중복됩니다. 오류를 방지하려면 고유한 값을 사용하십시오.",
-          "caption": "레이블 아래에 표시되는 캡션",
-          "disabled": "옵션 비활성화 여부",
-          "datasource": "스위치 그룹의 데이터 소스입니다. {{actionName.data}}를 사용하여 데이터베이스 또는 API의 데이터 사용",
-          "default_value": "{{ }}로 묶인 배열입니다. 예: {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "선택할 수 있는 최소 항목",
-          "choose_up_to": "선택할 수 있는 최대 항목",
-          "option_label_alignment": "라벨의 위치"
-        }
+        "previous_cursor": "액션 데이터를 사용하여 이전 커서를 설정합니다. 예: {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -1842,10 +1832,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "USD"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2012,7 +1999,8 @@
         "select_page": "페이지 선택",
         "select_row": "Select row",
         "clear_selection": "Clear selection",
-        "set_filters": "Set filters"
+        "set_filters": "Set filters",
+        "onFreeTimeDragOrClick": "Click free time"
       }
     },
     "tutorial": {
@@ -2076,7 +2064,7 @@
           "congratulations_title": "축하해요",
           "congratulations_description": "첫 번째 애플리케이션을 구축했습니다. 사용 중 궁금한 점이 있으면 <0>Discord<0>를 통해 문의하실 수 있습니다.",
           "congratulations_button": "마치다",
-          "event_handler_description_all": "1. 이벤트 핸들러 추가\n2. 이벤트 핸들러 클릭\n3. 액션을 트리거 액션으로 변경\n4. 액션을 postgresql1로 변경"
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     },
@@ -2460,9 +2448,6 @@
         "event_calendar": "이벤트 캘린더"
       },
       "name_duplicated": "이 이벤트에서 이 리소스 ID가 충돌합니다. 같은 이름이나 다른 ID를 사용하세요."
-    },
-    "switch_group": {
-      "switch_group": "그룹 전환"
     }
   },
   "page": {
@@ -2800,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "접을 수 있는 목록"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "행 선택 변경"
         }
       }
     }
