@@ -976,7 +976,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>Hugging Face プロフィール設定</0>で Organizations API トークンを取得してください。",
-            "hf_endpoint": "learn more about <0>Endpoint</0>"
+            "hf_endpoint": "<0>エンドポイント</0>の詳細"
           },
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -1153,7 +1153,7 @@
           "select": "選択",
           "DragOrClickNoEventArea": "イベントのないエリアをドラッグ",
           "rowClick": "行クリック",
-          "refresh": "Refresh"
+          "refresh": "更新"
         },
         "image_list": {
           "title": "イメージ",
@@ -1555,7 +1555,7 @@
           "default_selected_row": "デフォルトの選択行",
           "refresh": "リフレッシュ",
           "download_row_data": "生データのダウンロード",
-          "column_setting": "Column setting",
+          "column_setting": "列の設定",
           "cell_overflow": "セルオーバーフロー",
           "enable_server_side_p": "サーバー側のページネーションを有効にする",
           "pagination_type": "ページネーションタイプ",
@@ -1717,7 +1717,7 @@
           "tag_color": "タグの色を設定します。{{ 異なる条件下で各タグで表示される色を設定するには条件文を記述します。",
           "variant": "ボタンのスタイル",
           "icon": "表に表示されるアイコン",
-          "color": "Set the color.",
+          "color": "色を設定します。",
           "sort_by_mapped_value": "マップされた値でソートするかどうか。そうでない場合は、元のデータに基づいてソートします。",
           "background": "カラムの背景を設定します。{{ 異なる条件下で各セルが表示する色を設定するには条件文を書いてください。",
           "alignment": "列の配置を設定します。",
@@ -1804,7 +1804,7 @@
           "outline": "概要",
           "auto": "自動",
           "limited": "制限",
-          "limit_offset_based": "リミットオフセットベース",
+          "limit_offset_based": "Limit offset based",
           "cursor_based": "カーソルベース",
           "graphql_relay_cursor": "GraphQL Relay cursor"
         }
@@ -2000,7 +2000,7 @@
         "select_row": "行を選択",
         "clear_selection": "選択をクリア",
         "set_filters": "フィルターを設定",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "クリックの空き時間"
       }
     },
     "tutorial": {
