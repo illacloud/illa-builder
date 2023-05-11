@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Kopfzeilen",
-            "response": "Antwort"
+            "response": "Antwort",
+            "rawdata": "Rohdaten"
           }
         },
         "placeholder": {
