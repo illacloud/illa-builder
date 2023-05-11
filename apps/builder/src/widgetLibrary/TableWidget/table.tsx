@@ -4,8 +4,8 @@ import {
   Table as ReactTable,
   RowSelectionState,
 } from "@tanstack/table-core"
-import { cloneDeep, debounce } from "lodash"
-import { FC, useCallback, useEffect, useMemo } from "react"
+import { cloneDeep, debounce, isEqual } from "lodash"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { Table, isObject } from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
@@ -59,6 +59,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
   } = props
 
   const mode = useSelector(getIllaMode)
+  const [cachedData, setCachedData] = useState<any[]>([])
 
   const formatData = useMemo(() => {
     if (Array.isArray(data)) {
@@ -66,6 +67,39 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     }
     return []
   }, [data])
+
+  const isCursorPaginationEnabled = useMemo(() => {
+    return (
+      (paginationType === "cursorBased" ||
+        paginationType === "graphqlRelayCursorBased") &&
+      enableServerSidePagination
+    )
+  }, [paginationType, enableServerSidePagination])
+
+  const cursorBasedData = useMemo(() => {
+    const _pageSize = pageSize ? pageSize : data?.length ?? 10
+    const paginationOffset = pageIndex * _pageSize
+
+    return cachedData.slice(paginationOffset, paginationOffset + _pageSize)
+  }, [cachedData, pageIndex, pageSize, data?.length])
+
+  const updateCachedData = useCallback(
+    (data: Array<unknown>) => {
+      if (paginationType === "cursorBased") {
+        setCachedData((prevData = []) => {
+          if (isEqual(prevData, data)) {
+            return prevData
+          }
+          return [...prevData, ...data]
+        })
+      }
+    },
+    [paginationType],
+  )
+
+  useEffect(() => {
+    updateCachedData(formatData)
+  }, [formatData, updateCachedData])
 
   const handleUpdateMulti = useCallback(
     (value: Record<string, any>) => {
@@ -181,7 +215,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       total={totalRowCount}
       colorScheme={"techPurple"}
       rowSelection={rowSelection}
-      data={formatData}
+      data={paginationType === "cursorBased" ? cursorBasedData : formatData}
       columns={columns}
       columnSizing={columnSizing}
       filter={filter}
@@ -196,6 +230,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
             ? pageSize
             : data?.length
           : pageSize,
+        disableSimplePageJump: isCursorPaginationEnabled,
       }}
       emptyProps={{ description: emptyState }}
       defaultSort={defaultSort}
