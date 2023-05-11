@@ -18,6 +18,7 @@ import {
 import {
   getCellForType,
   getMappedValueFromCellContext,
+  getStringPropertyValue,
   transTableColumnEvent,
 } from "./utils"
 
@@ -309,6 +310,13 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
             transItem.fromCurrentRow,
             "backgroundColor",
             "",
+          )
+        },
+        getRenderedValueAsString: (props: CellContext<unknown, unknown>) => {
+          return getStringPropertyValue(
+            props,
+            transItem.mappedValue,
+            transItem.fromCurrentRow,
           )
         },
         style: [applyAlignmentStyle(item.alignment)],

@@ -130,7 +130,7 @@ export const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
   return value
 }
 
-const getMappedValue = (
+export const getMappedValue = (
   rowIndex: number,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
@@ -167,7 +167,7 @@ export const getMappedValueFromCellContext = (
   )
 }
 
-const getPropertyValue = (
+export const getPropertyValue = (
   props: CellContext<unknown, unknown>,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
@@ -189,7 +189,7 @@ const getPropertyValue = (
   return value ?? "-"
 }
 
-const getStringPropertyValue = (
+export const getStringPropertyValue = (
   props: CellContext<unknown, unknown>,
   mappedValue?: unknown,
   fromCurrentRow?: Record<string, boolean>,
