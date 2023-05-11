@@ -1151,7 +1151,9 @@
           "markerSelected": "marqueur sélectionné",
           "markerCreated": "marqueur créé",
           "select": "Sélectionner",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Drag or click no event area",
+          "rowClick": "Row click",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "Images",
@@ -1552,7 +1554,7 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Refresh",
-          "download_row_data": "Download Raw data",
+          "download_row_data": "Download raw data",
           "column_setting": "Column setting",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
@@ -1561,7 +1563,8 @@
           "next_cursor": "Next cursor",
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
-        }
+        },
+        "previous_cursor": "Previous cursor"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1734,7 +1737,8 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
-        }
+        },
+        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "Fixe",
@@ -2781,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "Liste pliable"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "Row Select Change"
         }
       }
     }
