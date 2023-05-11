@@ -1151,7 +1151,9 @@
           "markerSelected": "마커 선택",
           "markerCreated": "마커 만들기",
           "select": "선택",
-          "DragOrClickNoEventArea": "이벤트가 없는 영역을 드래그 또는 클릭"
+          "DragOrClickNoEventArea": "이벤트가 없는 영역을 드래그 또는 클릭",
+          "rowClick": "행 클릭",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "이미지",
@@ -1552,7 +1554,7 @@
           "disable_user_selecti": "사용자 선택 비활성화",
           "default_selected_row": "기본 선택 행",
           "refresh": "새로 고치다",
-          "download_row_data": "Download Raw data",
+          "download_row_data": "원시 데이터 다운로드",
           "column_setting": "Column setting",
           "cell_overflow": "셀 오버플로",
           "enable_server_side_p": "서버 측 페이지 매김 활성화",
@@ -1561,7 +1563,8 @@
           "next_cursor": "다음 커서",
           "has_next_page": "다음 페이지 있음",
           "currency_code": "통화 코드"
-        }
+        },
+        "previous_cursor": "이전 커서"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1723,7 +1726,7 @@
           "disable_user_selecti": "사용자 선택을 비활성화할지 여부입니다. 비활성화하면 이벤트 핸들러로 테이블 구성 요소를 제어하여 행을 선택할 수 있습니다.",
           "default_selected_row": "The row selected by default.  ",
           "refresh": "Whether to show the refresh icon. ",
-          "download_row_data": "Whether to show the download row data icon.",
+          "download_row_data": "원시 데이터 다운로드 아이콘 표시 여부입니다.",
           "column_setting": "열 설정을 표시할지 여부입니다. 열 설정을 통해 사용자는 표시할 열과 열 정렬을 설정할 수 있습니다. 이 설정은 테이블 데이터를 변경하지 않습니다.",
           "cell_overflow": "How to display when cell overflow. ",
           "enable_server_side_p": "Whether to enable server pagination",
@@ -1734,7 +1737,8 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
-        }
+        },
+        "previous_cursor": "액션 데이터를 사용하여 이전 커서를 설정합니다. 예: {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -2781,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "접을 수 있는 목록"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "행 선택 변경"
         }
       }
     }
