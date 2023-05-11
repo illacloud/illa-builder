@@ -169,6 +169,8 @@ export interface WrappedTableProps
   handleOnPaginationChange?: () => void
   handleOnColumnFiltersChange?: () => void
   handleOnRowSelectChange?: () => void
+  handleOnRowClick?: () => void
+  handleOnRefresh?: () => void
 }
 
 // todo: @echoxyc error extends

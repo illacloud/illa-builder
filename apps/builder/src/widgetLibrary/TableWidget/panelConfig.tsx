@@ -524,7 +524,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
       },
       {
-        id: `${baseWidgetName}-basic-download`,
+        id: `${baseWidgetName}-basic-downloadRawData`,
         labelName: i18n.t(
           "editor.inspect.setter_label.table.download_row_data",
         ),

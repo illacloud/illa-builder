@@ -47,6 +47,8 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     nextBeforeCursor,
     nextAfterCursor,
     // hasNextPage,
+    handleOnRefresh,
+    handleOnRowClick,
     handleOnSortingChange,
     handleOnPaginationChange,
     handleOnColumnFiltersChange,
@@ -198,6 +200,8 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       defaultSort={defaultSort}
       columnVisibility={columnVisibility}
       multiRowSelection={multiRowSelection}
+      onRefresh={handleOnRefresh}
+      onRowClick={handleOnRowClick}
       onSortingChange={handleOnSortingChange}
       onPaginationChange={onPaginationChange}
       onColumnFiltersChange={handleOnColumnFiltersChange}
@@ -235,6 +239,14 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     triggerEventHandler,
     ...otherProps
   } = props
+
+  const handleOnRefresh = useCallback(() => {
+    triggerEventHandler("refresh")
+  }, [triggerEventHandler])
+
+  const handleOnRowClick = useCallback(() => {
+    triggerEventHandler("rowClick")
+  }, [triggerEventHandler])
 
   const handleOnRowSelectChange = useCallback(() => {
     triggerEventHandler("rowSelectChange")
@@ -300,6 +312,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
           )
         },
         style: [applyAlignmentStyle(item.alignment)],
+        custom: item.custom,
       }
       transItem["cell"] = getCellForType(
         transItem,
@@ -426,6 +439,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       handleOnPaginationChange={handleOnPaginationChange}
       handleOnColumnFiltersChange={handleOnColumnFiltersChange}
       handleOnRowSelectChange={handleOnRowSelectChange}
+      handleOnRowClick={handleOnRowClick}
+      handleOnRefresh={handleOnRefresh}
     />
   )
 }
