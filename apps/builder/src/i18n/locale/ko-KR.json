@@ -761,7 +761,8 @@
           "restapi": {
             "status": "상태",
             "headers": "헤더",
-            "response": "응답"
+            "response": "데이터",
+            "rawdata": "로우 데이터"
           }
         },
         "placeholder": {
@@ -999,7 +1000,7 @@
           "api_request": "API 요청 매개변수",
           "error": "쿼리 실패",
           "json": "JSON",
-          "response": "반환 결과",
+          "response": "응답 데이터",
           "success": "검색 성공",
           "table": "시트"
         }
