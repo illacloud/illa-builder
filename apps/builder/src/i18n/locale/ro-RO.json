@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Antete",
-            "response": "Răspuns"
+            "response": "Răspuns",
+            "rawdata": "Datele brute"
           }
         },
         "placeholder": {
