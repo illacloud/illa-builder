@@ -163,7 +163,7 @@
             "host": "主机",
             "dbid": "数据库 ID",
             "projectid": "项目ID",
-            "secret": "API Key",
+            "secret": "X-Appwrite-JWT",
             "collectionid": "集合ID",
             "documentid": "文档ID",
             "data": "数据",
@@ -759,9 +759,10 @@
         },
         "result": {
           "restapi": {
-            "status": "状态",
+            "status": "状态代码",
             "headers": "数据头",
-            "response": "响应"
+            "response": "数据",
+            "rawdata": "原始数据"
           }
         },
         "placeholder": {
@@ -975,7 +976,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>在您的 Hugging Face 配置文件设置</0>中获取 Organizations API 令牌。",
-            "hf_endpoint": "了解更多关于 <0>Hugging Face Endpoint</0>"
+            "hf_endpoint": "了解更多有关 <0>Hugging Face Endpoint</0>的内容"
           },
           "placeholder": {
             "hf_endpoint": "https://u149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -999,7 +1000,7 @@
           "api_request": "API 请求参数",
           "error": "查询失败",
           "json": "JSON",
-          "response": "返回结果",
+          "response": "返回数据",
           "success": "查询成功",
           "table": "表格"
         }
@@ -1150,7 +1151,9 @@
           "markerSelected": "选中点",
           "markerCreated": "创建点",
           "select": "选择",
-          "DragOrClickNoEventArea": "拖拽或点击无事件区域"
+          "DragOrClickNoEventArea": "拖拽或点击无事件区域",
+          "rowClick": "点击行",
+          "refresh": "刷新"
         },
         "image_list": {
           "title": "图片",
@@ -1561,9 +1564,7 @@
           "has_next_page": "是否有下一页",
           "currency_code": "货币代码"
         },
-        "switch_group": {
-          "option_label_alignment": "选项标签的位置"
-        }
+        "previous_cursor": "上一光标"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1735,20 +1736,9 @@
           "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
           "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**columnName**\":\"待过滤的列名\", \"**filterValue**\"：\"待匹配的值\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "过滤器的模式，选择AND 或 OR。",
-          "currency_code": "使用在[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)中定义的货币代码"
+          "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "选项的标签",
-          "value": "一个包含在{{中的数组。例如 {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "值重复。请使用唯一的值来避免错误。",
-          "caption": "标签下显示的标题",
-          "disabled": "是否禁用此选项",
-          "datasource": "切换组的数据源。使用 {{actionName.data}} 来使用您的数据库或 API 的数据",
-          "default_value": "包含 {{ }}的数组。例如， {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "允许选择的最小项目",
-          "choose_up_to": "允许选择的最大项目",
-          "option_label_alignment": "标签位置"
-        }
+        "previous_cursor": "使用Action的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} "
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1842,10 +1832,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "USD"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
+          "currency_code": "货币代码定义[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2012,7 +1999,8 @@
         "select_page": "选择页面",
         "select_row": "选择行",
         "clear_selection": "清除选择",
-        "set_filters": "设置筛选器"
+        "set_filters": "设置筛选器",
+        "onFreeTimeDragOrClick": "点击空闲时间"
       }
     },
     "tutorial": {
@@ -2460,9 +2448,6 @@
         "event_calendar": "事件日历"
       },
       "name_duplicated": "该资源ID在这些事件中冲突，请使用相同的名称或不同的ID"
-    },
-    "switch_group": {
-      "switch_group": "开关组"
     }
   },
   "page": {
@@ -2800,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "折叠列表"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "行选择变更"
         }
       }
     }
