@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Κατάσταση",
             "headers": "Κεφαλίδες",
-            "response": "Απάντηση"
+            "response": "Απάντηση",
+            "rawdata": "Ακατέργαστα δεδομένα"
           }
         },
         "placeholder": {
