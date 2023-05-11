@@ -275,9 +275,9 @@
             "ca_certificate": "We vullen het CA-certificaat dat standaard wordt gebruikt voor TLS-verbindingen naar Serverless Tires. Als je TLS verbindingen nodig hebt naar Dedicated Tier, <0>Klik hier</0> om de configuratiemethode te bekijken."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Maak een Neon project en krijg de tekenreeks op het project dashboard <0></0>.",
+            "failed": "Ontleden van de tekenreeks is mislukt. Controleer uw tekenreeks of configureer deze handmatig",
+            "no_password": "De tekenreeks heeft geen wachtwoord. Geef het wachtwoord in het Neondashboard weer voordat u het kopieert."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Connectie string"
           }
         },
         "default": {
@@ -1151,9 +1151,9 @@
           "markerSelected": "markerSelected",
           "markerCreated": "markerCreated",
           "select": "Selecteren",
-          "DragOrClickNoEventArea": "Drag or click no event area",
-          "rowClick": "Row click",
-          "refresh": "Refresh"
+          "DragOrClickNoEventArea": "Sleep of klik op geen enkel event gebied",
+          "rowClick": "Rij klikken",
+          "refresh": "Vernieuwen"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1173,12 +1173,12 @@
           "no_title": "Geen titel"
         },
         "oncellselect": "onCellSelect",
-        "onRowSelectChange": "onRowSelectChange",
+        "onRowSelectChange": "onRowSelectVeranderen",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "filterwijziging",
+        "sortChange": "sorteerwijziging",
+        "pageChange": "paginawijziging",
+        "refresh": "Vernieuwen"
       },
       "setter_default_value": {
         "fill": "Invullen",
@@ -1530,7 +1530,7 @@
           "calendar_text": "Tekstveld",
           "event_background": "Achtergrond",
           "event_text": "Tekstveld",
-          "draggable": "Draggable",
+          "draggable": "Versleepbaar",
           "resizable": "Resizable"
         },
         "table": {
@@ -1542,29 +1542,29 @@
           "show_thousands_separ": "Toon duizenden scheidingsteken",
           "tag_label": "Label label",
           "tag_color": "Tag kleur",
-          "open_in_new_tab": "Open in new tab",
+          "open_in_new_tab": "Openen in nieuw tabblad",
           "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "icon": "Pictogram",
+          "color": "Kleur",
+          "sort_by_mapped_value": "Sorteren op toegewezen waarde",
+          "background": "Achtergrond",
+          "alignment": "Uitlijning",
+          "column_width": "Kolom breedte",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "disable_user_selecti": "Schakel gebruikersselectie uit",
+          "default_selected_row": "Standaard geselecteerde rij",
+          "refresh": "Vernieuwen",
           "download_row_data": "Download ruwe data",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "column_setting": "Instelling kolommen",
+          "cell_overflow": "Cel overloop",
+          "enable_server_side_p": "Schakel server zij-paginering in",
+          "pagination_type": "Type paginering",
+          "total_row_count": "Totaal aantal rijen",
+          "next_cursor": "Volgende cursor",
+          "has_next_page": "Heeft een volgende pagina",
+          "currency_code": "Valuta code"
         },
-        "previous_cursor": "Previous cursor"
+        "previous_cursor": "Vorige cursor"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1705,40 +1705,40 @@
           "event_background": "Stel de achtergrond van de event kaart in",
           "event_text": "Stel de tekstkleur van de event kaart in",
           "couldnot_drag": "Als u wilt slepen om het tijdsbereik aan te passen, ga dan naar de voorbeeldpagina voor de bewerking.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Of gebruikers nu toestaan om de periode bij te werken door te slepen om de gebeurtenis te verplaatsen",
+          "resizable": "Of gebruikers nu toestaan om het tijdsbereik bij te werken en de tijdsspanne te wijzigen door de grens van een gebeurtenis te slepen om de tijdsspanne te verlengen of te verkorten"
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
+          "page_index": "Index van de pagina die u wilt selecteren.",
+          "index": "Index van rij die je wilt selecteren. De index moet een array zijn die kan worden gebruikt om meerdere rijen te specificeren.",
+          "scroll_to_the_select": "Of naar de rij moeten scrollen.",
+          "show_thousands_separ": "Of het scheidingsteken van duizenden tonen",
+          "tag_label": "Stel het label in van de tags. Een array wordt gescheiden door meerdere tags.",
+          "tag_color": "Stel de kleur van tags in. Gebruik {{ write een voorwaardelijk statement om de kleur in te stellen die wordt weergegeven door elke tag onder verschillende omstandigheden.",
+          "variant": "Variant van de knop",
+          "icon": "Het pictogram weergegeven in de tabel",
+          "color": "Stel de kleur in.",
+          "sort_by_mapped_value": "Of moet worden gesorteerd op mapped waarde. Zo niet, dan zullen we sorteren op basis van de oorspronkelijke gegevens.",
+          "background": "Stel de achtergrond van kolom in. Gebruik {{ write een voorwaardelijke statement om de kleur in te stellen die wordt weergegeven door elke cel onder verschillende omstandigheden.",
+          "alignment": "Stel de uitlijning van de kolom in.",
+          "column_width": "Kolombreedte instellen op numerieke waarde. U kunt ook de kolombreedte aanpassen door te slepen in het kader. Na aanpassing zal de waarde van dit configuratie-item ook dienovereenkomstig veranderen",
+          "width": "Stel de aanpassingsmethode van kolombreedte in.",
+          "disable_user_selecti": "Of u de gebruikersselectie wilt uitschakelen. Indien uitgeschakeld, kunt u rijen selecteren door het tabelcomponent te besturen door event handler.",
+          "default_selected_row": "De rij standaard geselecteerd.  ",
+          "refresh": "Of het vernieuwingspictogram moet worden weergegeven. ",
           "download_row_data": "Toon of het download ruwe data icoon.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "column_setting": "Of de kolominstelling moet worden weergegeven. De kolominstelling stelt gebruikers in staat om de kolommen en de kolomsortering in te stellen. Deze instelling verandert de tabelgegevens niet.",
+          "cell_overflow": "Hoe weer te geven wanneer cel overstroomt. ",
+          "enable_server_side_p": "Schakel server paginering in",
+          "pagination_type": "Het paginatype ",
+          "total_row_count": "Het aantal rijen gebruikt om het paginanummer te tellen.",
+          "next_cursor": "Een id die gebruikt wordt om het volgende startpunt van een reeks gegevens te vinden, om gegevens in batches te versturen en op te halen",
+          "has_next_page": "Een boolean gebruikt om aan te geven of er een andere pagina met gegevens beschikbaar is. Het kan ons helpen om het ophalen van gegevens beter te controleren in gepagineerde query's en het optimaliseren van de queryprestaties",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "De filtermodus. AND of OOR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Gebruik de actie gegevens om de vorige cursor in te stellen. Bijvoorbeeld,  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "Opgelost",
@@ -1801,11 +1801,11 @@
           "button": "Knop",
           "icon": "Pictogram",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "outline": "Omlijning",
+          "auto": "Automatisch",
+          "limited": "Beperkt",
+          "limit_offset_based": "Limiet offset gebaseerd",
+          "cursor_based": "Cursor gebaseerd",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
         }
       },
@@ -1832,7 +1832,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "De valutacode gedefinieerd in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2000,7 +2000,7 @@
         "select_row": "Rij selecteren",
         "clear_selection": "Selectie wissen",
         "set_filters": "Filters instellen",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "Klik vrije tijd"
       }
     },
     "tutorial": {
@@ -2789,7 +2789,7 @@
       },
       "setter_content": {
         "widget_action_type_name": {
-          "rowSelectChange": "Row Select Change"
+          "rowSelectChange": "Rij selectie wijzigen"
         }
       }
     }
@@ -2830,27 +2830,27 @@
   "oauth_redirect_title": "Doorverwijzen",
   "oauth_redirect_description": "Omleiden naar <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Nederlands",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "Afrikaanse",
+    "cs-CZ": "c+unnamed@@0 tina",
+    "de-DE": "Duits",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
+    "fr-FR": "frank ais",
+    "it-IT": "italiaans",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portuguetu",
+    "ro-RO": "romaStrafnaStrafte",
+    "ru-RU": "barometertels ½ ½ at",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Afmelden mislukt. Probeer het later opnieuw."
 }
