@@ -761,7 +761,8 @@
           "restapi": {
             "status": "SItuação",
             "headers": "Cabeçalhos",
-            "response": "Resposta"
+            "response": "Resposta",
+            "rawdata": "Dados brutos"
           }
         },
         "placeholder": {
