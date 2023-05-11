@@ -275,9 +275,9 @@
             "ca_certificate": "Vi fyller i CA-certifikatet som används för TLS Connections till Serverless Tier som standard. Om du behöver TLS Connections to Dedicated Tier, <0>Klicka här</0> för att se konfigurationsmetoden."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Skapa ett Neon-projekt och få strängen i <0>projektinstruktion</0>.",
+            "failed": "Det gick inte att tolka strängen. Kontrollera din sträng eller konfigurera manuellt.",
+            "no_password": "Strängen har inget lösenord. Vänligen visa lösenordet i Neon instrumentpanelen innan du kopierar."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Anslutningssträng"
           }
         },
         "default": {
@@ -1151,9 +1151,9 @@
           "markerSelected": "markerMarkerad",
           "markerCreated": "markerSkapad",
           "select": "Välj",
-          "DragOrClickNoEventArea": "Drag or click no event area",
-          "rowClick": "Row click",
-          "refresh": "Refresh"
+          "DragOrClickNoEventArea": "Dra eller klicka på inget händelseområde",
+          "rowClick": "Klicka på rad",
+          "refresh": "Uppdatera"
         },
         "image_list": {
           "title": "Bilder",
@@ -1175,10 +1175,10 @@
         "oncellselect": "onCellSelect",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "filterÄndra",
+        "sortChange": "sorteraÄndra",
+        "pageChange": "sidaÄndra",
+        "refresh": "Uppdatera"
       },
       "setter_default_value": {
         "fill": "Fyll",
@@ -1530,7 +1530,7 @@
           "calendar_text": "Text",
           "event_background": "Bakgrund",
           "event_text": "Text",
-          "draggable": "Draggable",
+          "draggable": "Flyttbar",
           "resizable": "Resizable"
         },
         "table": {
@@ -1542,29 +1542,29 @@
           "show_thousands_separ": "Visa tusentals avgränsare",
           "tag_label": "Etikett tagg",
           "tag_color": "Etikettens färg",
-          "open_in_new_tab": "Open in new tab",
+          "open_in_new_tab": "Öppna i ny flik",
           "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "icon": "Ikon",
+          "color": "Färg",
+          "sort_by_mapped_value": "Sortera efter mappat värde",
+          "background": "Bakgrund",
+          "alignment": "Justering",
+          "column_width": "Kolumnens bredd",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "disable_user_selecti": "Inaktivera användarval",
+          "default_selected_row": "Standard markerad rad",
+          "refresh": "Uppdatera",
           "download_row_data": "Hämta rådata",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "column_setting": "Kolumn inställning",
+          "cell_overflow": "Överflöd av celler",
+          "enable_server_side_p": "Aktivera sidnumrering på servern",
+          "pagination_type": "Sidnumrering typ",
+          "total_row_count": "Totalt antal rader",
+          "next_cursor": "Nästa markör",
+          "has_next_page": "Har nästa sida",
+          "currency_code": "Valutakod"
         },
-        "previous_cursor": "Previous cursor"
+        "previous_cursor": "Föregående markör"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1705,40 +1705,40 @@
           "event_background": "Ange bakgrunden till händelsekortet",
           "event_text": "Ställ in textfärgen på händelsekortet",
           "couldnot_drag": "Om du vill dra för att justera tidsintervallet, gå vidare till förhandsgranskningssidan för operationen.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Om tillåta användare att uppdatera händelseintervallet genom att dra för att flytta händelsen",
+          "resizable": "Om tillåta användare att uppdatera händelsen tidsintervall och ändra tidsfristen genom att dra gränsen för en händelse att förlänga eller förkorta tidsfristen"
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
+          "page_index": "Index för sidan du vill välja.",
+          "index": "Index för rad du vill välja. Indexet ska vara en array som kan användas för att ange flera rader.",
+          "scroll_to_the_select": "Om du vill rulla till raden.",
+          "show_thousands_separ": "Om du vill visa tusentals separator",
+          "tag_label": "Ange etikett på taggar. En array kommer att separeras till flera taggar.",
+          "tag_color": "Ange färg på taggar. Använd {{ skriv en villkorlig sats för att ställa in färgen som visas av varje tagg under olika förhållanden.",
+          "variant": "Variant på knappen",
+          "icon": "Ikonen som visas i tabellen",
+          "color": "Ange färg.",
+          "sort_by_mapped_value": "Om du vill sortera efter mappat värde. Om inte, kommer vi att sortera baserat på de ursprungliga uppgifterna.",
+          "background": "Ange kolumnens bakgrund. Använd {{ skriv en villkorlig sats för att ställa in färgen som visas av varje cell under olika förhållanden.",
+          "alignment": "Ställ in justering av kolumnen.",
+          "column_width": "Ange kolumnbredd med numeriskt värde. Du kan också justera kolumnbredden genom att dra i ramen. Efter justering kommer värdet på denna konfigurationselement också att ändras i enlighet med",
+          "width": "Ställ in anpassningsmetod för kolumnbredd.",
+          "disable_user_selecti": "Om du vill inaktivera användarval. Om inaktiverat kan du välja rader genom att styra tabellkomponenten genom händelsehanterare.",
+          "default_selected_row": "Raden vald som standard.  ",
+          "refresh": "Om du vill visa uppdateringsikonen. ",
           "download_row_data": "Om du vill visa raw-data-ikonen för nedladdning",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "column_setting": "Om kolumninställningen ska visas. Kolumninställningen tillåter användare att ställa in kolumnerna som ska visas och kolumnsorteringen. Den här inställningen ändrar inte tabelldata.",
+          "cell_overflow": "Hur man visar när cell bräddavlopp. ",
+          "enable_server_side_p": "Om du vill aktivera server-sidnumrering",
+          "pagination_type": "Sidnumrering typ. ",
+          "total_row_count": "Antalet rader som används för att räkna sidnumret.",
+          "next_cursor": "En identifierare som används för att hitta nästa startpunkt för en uppsättning data, för att paginera och hämta data i batcher",
+          "has_next_page": "En boolesk som används för att ange om det finns en annan sida av data tillgänglig. Det kan hjälpa oss att bättre kontrollera datainsamling i sidnumrerade frågor och optimera frågeprestanda",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "Filterläget. OCH eller OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1801,11 +1801,11 @@
           "button": "Knapp",
           "icon": "Ikon",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "outline": "Kontur",
+          "auto": "Automatiskt",
+          "limited": "Begränsad",
+          "limit_offset_based": "Begränsa offset baserat",
+          "cursor_based": "Markör baserad",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
         }
       },
@@ -1832,7 +1832,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "Valutakoden definierad i [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2000,7 +2000,7 @@
         "select_row": "Välj rad",
         "clear_selection": "Rensa markering",
         "set_filters": "Ställ in filter",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "Klicka på fritiden"
       }
     },
     "tutorial": {
@@ -2789,7 +2789,7 @@
       },
       "setter_content": {
         "widget_action_type_name": {
-          "rowSelectChange": "Row Select Change"
+          "rowSelectChange": "Ändra rad"
         }
       }
     }
@@ -2830,27 +2830,27 @@
   "oauth_redirect_title": "Omdirigera",
   "oauth_redirect_description": "Omdirigering till <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Engelska",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "cs-CZ": "c<unk> es<unk> tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "francône ais",
+    "it-IT": "Italiano",
+    "nl-NL": "Nederländerna",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "Portugue<unk> s",
+    "ro-RO": "roma<unk> na<unk>",
+    "ru-RU": "Gäster kan",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Det gick inte att logga ut. Försök igen senare."
 }
