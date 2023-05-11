@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Stato",
             "headers": "Intestazioni",
-            "response": "Risposta"
+            "response": "Risposta",
+            "rawdata": "Dati grezzi"
           }
         },
         "placeholder": {
