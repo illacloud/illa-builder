@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Stav",
             "headers": "Záhlaví",
-            "response": "Odpověď"
+            "response": "Odpověď",
+            "rawdata": "Surová data"
           }
         },
         "placeholder": {
