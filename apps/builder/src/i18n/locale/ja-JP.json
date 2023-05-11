@@ -761,7 +761,8 @@
           "restapi": {
             "status": "ステータス",
             "headers": "ヘッダー",
-            "response": "応答"
+            "response": "データ",
+            "rawdata": "生データ"
           }
         },
         "placeholder": {
@@ -999,7 +1000,7 @@
           "api_request": "API リクエスト パラメータ",
           "error": "クエリに失敗しました",
           "json": "JSON",
-          "response": "結果を返す",
+          "response": "応答データ",
           "success": "検索成功",
           "table": "シート"
         }
