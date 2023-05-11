@@ -1,4 +1,4 @@
-import { authRequest } from "@/api/http"
+import { authRequest, cloudRequest } from "@/api/http"
 import { RegisterResult } from "@/page/User/Register/interface"
 import { ResetPwdFields } from "@/page/User/ResetPassword/interface"
 import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
@@ -16,6 +16,13 @@ export const fetchSignUp = async (data: unknown) => {
     method: "POST",
     url: "/auth/signup",
     data,
+  })
+}
+
+export const fetchLogout = async () => {
+  return cloudRequest<RegisterResult>({
+    method: "POST",
+    url: "/users/logout",
   })
 }
 

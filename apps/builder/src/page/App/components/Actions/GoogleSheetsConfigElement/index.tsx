@@ -145,10 +145,10 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
               label: t("editor.action.form.option.gs.service_account"),
               value: "serviceAccount",
             },
-            {
-              label: t("editor.action.form.option.gs.oauth_2.0"),
-              value: "oauth2",
-            },
+            // {
+            //   label: t("editor.action.form.option.gs.oauth_2.0"),
+            //   value: "oauth2",
+            // },
           ]}
         />
         {isOauthType ? (

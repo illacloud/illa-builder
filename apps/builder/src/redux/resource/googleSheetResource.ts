@@ -26,9 +26,9 @@ export interface GoogleSheetResource {
 }
 
 export const GoogleSheetResourceInitial: GoogleSheetResource = {
-  authentication: "oauth2",
+  authentication: "serviceAccount",
   opts: {
     privateKey: "",
-    accessType: "rw",
+    // accessType: "rw",
   },
 }

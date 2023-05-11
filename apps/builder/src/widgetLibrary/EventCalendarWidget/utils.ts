@@ -45,7 +45,7 @@ export const formatEventOptions = (
       resourceTitle.length,
       allDay.length,
       resizable.length,
-      draggable.length
+      draggable.length,
     )
     const eventList: Event[] = []
     const resourceMap = new Map()
@@ -79,7 +79,7 @@ export const formatEventOptions = (
           description: safeNodeValue(descriptionItem),
           allDay: allDayItem,
           draggable: draggableItem,
-          resizable: resizableItem
+          resizable: resizableItem,
         })
     }
     return [
@@ -125,7 +125,7 @@ export const formatEventOptions = (
           description: safeNodeValue(descriptionItem),
           allDay: allDayItem,
           draggable: draggableItem,
-          resizable: resizableItem
+          resizable: resizableItem,
         })
     })
     return [

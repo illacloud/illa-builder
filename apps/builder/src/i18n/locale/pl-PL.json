@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Nagłówki",
-            "response": "Odpowiedź"
+            "response": "Odpowiedź",
+            "rawdata": "Surowe dane"
           }
         },
         "placeholder": {
@@ -1150,7 +1151,9 @@
           "markerSelected": "znacznik zaznaczony",
           "markerCreated": "markerUtworzono",
           "select": "Wybierz",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Drag or click no event area",
+          "rowClick": "Row click",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "Obrazy",
@@ -1551,7 +1554,7 @@
           "disable_user_selecti": "Disable user selection",
           "default_selected_row": "Default selected row",
           "refresh": "Refresh",
-          "download_row_data": "Download Row data",
+          "download_row_data": "Pobierz nieprzetworzone dane",
           "column_setting": "Column setting",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
@@ -1561,9 +1564,7 @@
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
         },
-        "switch_group": {
-          "option_label_alignment": "Position of the option label"
-        }
+        "previous_cursor": "Previous cursor"
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1725,7 +1726,7 @@
           "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
           "default_selected_row": "The row selected by default.  ",
           "refresh": "Whether to show the refresh icon. ",
-          "download_row_data": "Whether to show the download row data icon.",
+          "download_row_data": "Czy pokazywać ikonę pobierania nieprzetworzonych danych.",
           "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
           "cell_overflow": "How to display when cell overflow. ",
           "enable_server_side_p": "Whether to enable server pagination",
@@ -1737,18 +1738,7 @@
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
-        }
+        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "Naprawione",
@@ -1843,9 +1833,6 @@
         },
         "table": {
           "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
         }
       },
       "setter_tootip": {
@@ -2012,7 +1999,8 @@
         "select_page": "Wybierz stronę",
         "select_row": "Wybierz wiersz",
         "clear_selection": "Wyczyść zaznaczenie",
-        "set_filters": "Ustaw filtry"
+        "set_filters": "Ustaw filtry",
+        "onFreeTimeDragOrClick": "Click free time"
       }
     },
     "tutorial": {
@@ -2460,9 +2448,6 @@
         "event_calendar": "Kalendarz wydarzeń"
       },
       "name_duplicated": "Ten identyfikator zasobu jest sprzeczny z tymi wydarzeniami, proszę użyć tej samej nazwy lub innego identyfikatora"
-    },
-    "switch_group": {
-      "switch_group": "Switch group"
     }
   },
   "page": {
@@ -2800,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "Zwijana lista"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "Row Select Change"
         }
       }
     }

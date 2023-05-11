@@ -1,6 +1,7 @@
 import { CellContext, ColumnDef } from "@tanstack/react-table"
-import { FC, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue } from "react-router-dom"
 import { Empty, Space, Table } from "@illa-design/react"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
@@ -22,6 +23,8 @@ import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
 import { NeonResource } from "@/redux/resource/neonResource"
 import { OracleResource } from "@/redux/resource/oracleResource"
 import { RedisResource } from "@/redux/resource/redisResource"
+import { getAllResources } from "@/redux/resource/resourceSelector"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   Resource,
   ResourceContent,
@@ -38,10 +41,18 @@ export const ResourcesContentBody: FC = () => {
   const { data: resourcesList } = useAsyncValue() as {
     data: ResourceListState
   }
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(resourceActions.updateResourceListReducer(resourcesList))
+  }, [dispatch, resourcesList])
+
+  const resourcesListInRedux: ResourceListState = useSelector(getAllResources)
   const { t } = useTranslation()
 
   const resourceData: ResourceTableData[] = useMemo(() => {
-    return resourcesList.map((resource: Resource<ResourceContent>) => {
+    return resourcesListInRedux.map((resource: Resource<ResourceContent>) => {
       let dbName = "Null"
       switch (resource.resourceType) {
         case "firebase":
@@ -104,7 +115,7 @@ export const ResourcesContentBody: FC = () => {
         created: resource.createdAt,
       } as ResourceTableData
     })
-  }, [resourcesList])
+  }, [resourcesListInRedux])
 
   const columns: ColumnDef<ResourceTableData, string>[] = useMemo(() => {
     return [
@@ -165,7 +176,7 @@ export const ResourcesContentBody: FC = () => {
 
   return (
     <>
-      {resourcesList?.length ? (
+      {resourcesListInRedux?.length ? (
         <Table
           _css={hoverStyle}
           pinedHeader
@@ -178,7 +189,7 @@ export const ResourcesContentBody: FC = () => {
           columns={columns}
         />
       ) : null}
-      {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
+      {!resourcesListInRedux?.length ? <Empty paddingVertical="120px" /> : null}
     </>
   )
 }

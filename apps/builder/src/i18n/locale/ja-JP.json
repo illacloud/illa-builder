@@ -163,7 +163,7 @@
             "host": "ホスト",
             "dbid": "データベースID",
             "projectid": "プロジェクトID",
-            "secret": "API Key",
+            "secret": "X-Appwrite-JWT",
             "collectionid": "コレクション ID",
             "documentid": "ドキュメント ID",
             "data": "データ",
@@ -761,7 +761,8 @@
           "restapi": {
             "status": "ステータス",
             "headers": "ヘッダー",
-            "response": "応答"
+            "response": "データ",
+            "rawdata": "生データ"
           }
         },
         "placeholder": {
@@ -975,7 +976,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>Hugging Face プロフィール設定</0>で Organizations API トークンを取得してください。",
-            "hf_endpoint": "<0>Hugging Face Endpoint</0>の詳細"
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
           },
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -999,7 +1000,7 @@
           "api_request": "API リクエスト パラメータ",
           "error": "クエリに失敗しました",
           "json": "JSON",
-          "response": "結果を返す",
+          "response": "応答データ",
           "success": "検索成功",
           "table": "シート"
         }
@@ -1150,7 +1151,9 @@
           "markerSelected": "マーカーを選択",
           "markerCreated": "マーカーを作成",
           "select": "選択",
-          "DragOrClickNoEventArea": "イベント領域をドラッグしない"
+          "DragOrClickNoEventArea": "イベントのないエリアをドラッグ",
+          "rowClick": "行クリック",
+          "refresh": "Refresh"
         },
         "image_list": {
           "title": "イメージ",
@@ -1551,7 +1554,7 @@
           "disable_user_selecti": "ユーザー選択を無効",
           "default_selected_row": "デフォルトの選択行",
           "refresh": "リフレッシュ",
-          "download_row_data": "Download Row data",
+          "download_row_data": "生データのダウンロード",
           "column_setting": "Column setting",
           "cell_overflow": "セルオーバーフロー",
           "enable_server_side_p": "サーバー側のページネーションを有効にする",
@@ -1561,9 +1564,7 @@
           "has_next_page": "次のページあり",
           "currency_code": "通貨コード"
         },
-        "switch_group": {
-          "option_label_alignment": "オプションラベルの位置"
-        }
+        "previous_cursor": "前のカーソル"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1716,7 +1717,7 @@
           "tag_color": "タグの色を設定します。{{ 異なる条件下で各タグで表示される色を設定するには条件文を記述します。",
           "variant": "ボタンのスタイル",
           "icon": "表に表示されるアイコン",
-          "color": "色を設定します",
+          "color": "Set the color.",
           "sort_by_mapped_value": "マップされた値でソートするかどうか。そうでない場合は、元のデータに基づいてソートします。",
           "background": "カラムの背景を設定します。{{ 異なる条件下で各セルが表示する色を設定するには条件文を書いてください。",
           "alignment": "列の配置を設定します。",
@@ -1725,7 +1726,7 @@
           "disable_user_selecti": "ユーザー選択を無効にするかどうか。 無効にすると、イベント ハンドラでテーブル コンポーネントを制御して行を選択できます。",
           "default_selected_row": "デフォルトで選択されている行。  ",
           "refresh": "更新アイコンを表示します。 ",
-          "download_row_data": "ダウンロード行データアイコンを表示するかどうかを設定します。",
+          "download_row_data": "RAWデータのダウンロードアイコンを表示するかどうか。",
           "column_setting": "列の設定を表示するかどうか。 列の設定により、ユーザーは表示する列と列の並べ替えを設定できます。 この設定は、テーブル データを変更しません。",
           "cell_overflow": "セルオーバーフロー時に表示する方法。 ",
           "enable_server_side_p": "サーバーページネーションを有効にする",
@@ -1735,20 +1736,9 @@
           "has_next_page": "利用可能なデータの別のページがあるかどうかを示すために使用されるブール値。 ペジネーションされたクエリでのデータ検索の制御を改善し、クエリのパフォーマンスを最適化するのに役立ちます",
           "filters": "{{ }} で囲まれたオブジェクトの配列。 たとえば、{{ [{\"**columnName**\":\"フィルターする列の名前\", \"**filterValue**\"：\"一致する値\", \"**operator**\":\"contains, 等しい、...\"}] }}",
           "filter_mode": "フィルタモード。ANDまたはOR。",
-          "currency_code": "[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) で定義されている通貨コード"
+          "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "オプションのラベル",
-          "value": "選択したオプションの配列を{{で囲みます。例えば、 {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "値が重複しています。エラーを避けるために一意の値を使用してください。",
-          "caption": "ラベルの下に表示されるキャプションです。",
-          "disabled": "オプションを無効にする",
-          "datasource": "スイッチグループのデータソース。データベースや API からのデータを使用するには {{actionName.data}} を使用してください。",
-          "default_value": "{{ }}で囲まれた配列。例: {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "選択できる最小アイテム",
-          "choose_up_to": "選択できる最大アイテム",
-          "option_label_alignment": "ラベルの位置"
-        }
+        "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1842,10 +1832,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "USD"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2012,7 +1999,8 @@
         "select_page": "ページを選択",
         "select_row": "行を選択",
         "clear_selection": "選択をクリア",
-        "set_filters": "フィルターを設定"
+        "set_filters": "フィルターを設定",
+        "onFreeTimeDragOrClick": "Click free time"
       }
     },
     "tutorial": {
@@ -2076,7 +2064,7 @@
           "congratulations_title": "おめでとう🎉",
           "congratulations_description": "最初のアプリケーションを作成しました。 使用中に質問がある場合は、<0>Discord<0> からご連絡ください",
           "congratulations_button": "完成済み",
-          "event_handler_description_all": "1. イベント ハンドラーを追加する\n2. イベント ハンドラーをクリックします\n3.アクションをトリガーアクションに変更する\n4. アクションを postgresql1 に変更します"
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     },
@@ -2460,9 +2448,6 @@
         "event_calendar": "イベントカレンダー"
       },
       "name_duplicated": "このリソース ID はこれらのイベントで競合します。同じ名前または別の ID を使用してください"
-    },
-    "switch_group": {
-      "switch_group": "スイッチのグループ"
     }
   },
   "page": {
@@ -2800,6 +2785,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "折りたたみ可能なリスト"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "行の選択変更"
         }
       }
     }
