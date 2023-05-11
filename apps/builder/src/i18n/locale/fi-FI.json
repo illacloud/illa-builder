@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Tila",
             "headers": "Otsikot",
-            "response": "Vastaus"
+            "response": "Vastaus",
+            "rawdata": "Raaka-aineet"
           }
         },
         "placeholder": {
