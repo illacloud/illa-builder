@@ -999,7 +999,7 @@
           "api_request": "API 请求参数",
           "error": "查询失败",
           "json": "JSON",
-          "response": "返回结果",
+          "response": "返回数据",
           "success": "查询成功",
           "table": "表格"
         }
