@@ -25,6 +25,10 @@ export const publicTeamChildrenRouter: RoutesObjectPro[] = [
     accessByMobile: true,
     errorElement: lazyLoad(lazy(() => import("@/page/status/404"))),
     loader: deployLoader,
+    shouldRevalidate: (args) => {
+      const { currentParams, nextParams } = args
+      return currentParams.appId !== nextParams.appId
+    },
   },
   {
     path: "/:teamIdentifier/template/:templateName",
