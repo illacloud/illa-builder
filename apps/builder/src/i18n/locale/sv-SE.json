@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Sidhuvuden",
-            "response": "Svar"
+            "response": "Svar",
+            "rawdata": "Rådata"
           }
         },
         "placeholder": {
