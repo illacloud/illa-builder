@@ -759,7 +759,7 @@
         },
         "result": {
           "restapi": {
-            "status": "状态",
+            "status": "状态代码",
             "headers": "数据头",
             "response": "数据",
             "rawdata": "原始数据"
