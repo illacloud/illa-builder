@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Статус",
             "headers": "Заголовки",
-            "response": "Відповідь"
+            "response": "Відповідь",
+            "rawdata": "Сирі дані"
           }
         },
         "placeholder": {
