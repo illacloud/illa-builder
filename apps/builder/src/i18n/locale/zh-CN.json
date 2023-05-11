@@ -760,8 +760,9 @@
         "result": {
           "restapi": {
             "status": "状态",
-            "headers": "Headers",
-            "response": "响应"
+            "headers": "数据头",
+            "response": "数据",
+            "rawdata": "原始数据"
           }
         },
         "placeholder": {
