@@ -72,6 +72,8 @@ export interface ColumnItemShape
   columnIndex?: number
   alignment?: TableCellAlign
   backgroundColor?: string
+  // button type
+  variant?: ButtonProps["variant"]
   // icon type
   iconName?: string
   iconGroupContent?: TableCellIconGroupItemProps[]

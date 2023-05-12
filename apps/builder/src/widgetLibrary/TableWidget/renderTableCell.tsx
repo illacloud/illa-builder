@@ -145,15 +145,9 @@ export const RenderTableButton: FC<{
   const { value, data, cell, eventPath, handleOnClickMenuItem } = props
   const rowIndex = cell.row.index
   const paths = [eventPath, `${cell.row.index}`]
-  const { fromCurrentRow } = data
+  const { fromCurrentRow, variant, colorScheme } = data
   const disabled = getConfigFromColumnShapeData(
     "disabled",
-    data,
-    rowIndex,
-    fromCurrentRow,
-  )
-  const colorScheme = getConfigFromColumnShapeData(
-    "colorScheme",
     data,
     rowIndex,
     fromCurrentRow,
@@ -167,6 +161,7 @@ export const RenderTableButton: FC<{
     <Button
       css={overFlowStyle}
       fullWidth
+      variant={variant}
       disabled={disabled}
       colorScheme={colorScheme}
       onClick={clickEvent}

@@ -325,6 +325,24 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
           },
           {
+            id: `${baseWidgetName}-column-column-variant`,
+            setterType: "RADIO_GROUP_SETTER",
+            labelName: i18n.t("editor.inspect.setter_label.variant"),
+            attrName: "variant",
+            options: [
+              {
+                label: i18n.t("editor.inspect.setter_default_value.fill"),
+                value: "fill",
+              },
+              {
+                label: i18n.t("editor.inspect.setter_default_value.outline"),
+                value: "outline",
+              },
+            ],
+            bindAttrName: ["type"],
+            shown: (value) => value === Columns.Button,
+          },
+          {
             id: `${baseWidgetName}-column-alignment`,
             setterType: "RADIO_GROUP_SETTER",
             labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
