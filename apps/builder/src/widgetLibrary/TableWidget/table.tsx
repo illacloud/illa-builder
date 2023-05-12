@@ -7,7 +7,12 @@ import {
 import { cloneDeep, debounce, isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
-import { Table, isObject } from "@illa-design/react"
+import {
+  FilterOperator,
+  FilterOptions,
+  Table,
+  isObject,
+} from "@illa-design/react"
 import { getIllaMode } from "@/redux/config/configSelector"
 import { applyAlignmentStyle } from "@/widgetLibrary/TableWidget/style"
 import {
@@ -52,7 +57,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     handleOnRowClick,
     handleOnSortingChange,
     handleOnPaginationChange,
-    handleOnColumnFiltersChange,
+    handleOnFiltersChange,
     handleOnRowSelectChange,
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLMultiAttr,
@@ -202,6 +207,22 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
     ],
   )
 
+  const onFiltersChange = useCallback(
+    (filters: FilterOptions[], operator: FilterOperator) => {
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            filters,
+            filterOperator: operator,
+          },
+        },
+      ])
+      handleOnFiltersChange?.()
+    },
+    [displayName, handleUpdateMultiExecutionResult, handleOnFiltersChange],
+  )
+
   return (
     <Table
       bordered
@@ -240,7 +261,8 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       onRowClick={handleOnRowClick}
       onSortingChange={handleOnSortingChange}
       onPaginationChange={onPaginationChange}
-      onColumnFiltersChange={handleOnColumnFiltersChange}
+      onGlobalFiltersChange={onFiltersChange}
+      onColumnFiltersChange={handleOnFiltersChange}
       onColumnSizingChange={debounce((columnSizing) => {
         handleUpdateMulti({ columnSizing })
       }, 100)}
@@ -296,8 +318,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     triggerEventHandler("paginationChange")
   }, [triggerEventHandler])
 
-  const handleOnColumnFiltersChange = useCallback(() => {
-    triggerEventHandler("columnFiltersChange")
+  const handleOnFiltersChange = useCallback(() => {
+    triggerEventHandler("filtersChange")
   }, [triggerEventHandler])
 
   const handleOnClickMenuItem = useCallback(
@@ -480,7 +502,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       handleUpdateDsl={handleUpdateDsl}
       handleOnSortingChange={handleOnSortingChange}
       handleOnPaginationChange={handleOnPaginationChange}
-      handleOnColumnFiltersChange={handleOnColumnFiltersChange}
+      handleOnFiltersChange={handleOnFiltersChange}
       handleOnRowSelectChange={handleOnRowSelectChange}
       handleOnRowClick={handleOnRowClick}
       handleOnRefresh={handleOnRefresh}

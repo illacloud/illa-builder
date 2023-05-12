@@ -169,7 +169,7 @@ export interface WrappedTableProps
   handleOnClickMenuItem?: (path: string) => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
-  handleOnColumnFiltersChange?: () => void
+  handleOnFiltersChange?: () => void
   handleOnRowSelectChange?: () => void
   handleOnRowClick?: () => void
   handleOnRefresh?: () => void

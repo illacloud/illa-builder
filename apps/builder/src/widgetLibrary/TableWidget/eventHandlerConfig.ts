@@ -17,9 +17,9 @@ export const TABLE_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.columnFiltersChange",
+        "editor.inspect.setter_content.widget_action_type_name.filtersChange",
       ),
-      value: "columnFiltersChange",
+      value: "filtersChange",
     },
     {
       label: i18n.t(
