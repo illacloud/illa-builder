@@ -15,10 +15,6 @@ import {
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
-import {
   ModalSectionNode,
   PageNode,
   SECTION_POSITION,
@@ -27,6 +23,7 @@ import {
 import { getPageLoadingActions } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import {
+  IExecutionActions,
   runActionWithDelay,
   runActionWithExecutionResult,
 } from "@/utils/action/runAction"
@@ -353,17 +350,10 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
       setIsPageLoading(true)
     }
     const requests = currentPageActions.map((action) => {
-      const mergedAction = {
-        ...action,
-        resourceId: action.$resourceId,
-        actionId: action.$actionId,
-      }
       if (action.config.advancedConfig.delayWhenLoaded > 0) {
-        return runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+        return runActionWithDelay(action as IExecutionActions)
       } else {
-        return runActionWithExecutionResult(
-          mergedAction as ActionItem<ActionContent>,
-        )
+        return runActionWithExecutionResult(action as IExecutionActions)
       }
     })
     Promise.all(requests).finally(() => {

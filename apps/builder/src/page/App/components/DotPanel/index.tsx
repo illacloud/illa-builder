@@ -8,10 +8,6 @@ import {
   getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
-import {
   getCanvas,
   getViewportSizeSelector,
 } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -27,6 +23,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import {
+  IExecutionActions,
   registerActionPeriod,
   removeAllActionPeriod,
   runActionWithDelay,
@@ -80,17 +77,10 @@ export const DotPanel: FC = () => {
     const request = appLoadedAction
       .filter((action) => !action.isRunning)
       .map((action) => {
-        const mergedAction = {
-          ...action,
-          resourceId: action.$resourceId,
-          actionId: action.$actionId,
-        }
         if (action.config.advancedConfig.delayWhenLoaded > 0) {
-          return runActionWithDelay(mergedAction as ActionItem<ActionContent>)
+          return runActionWithDelay(action as IExecutionActions)
         } else {
-          return runActionWithExecutionResult(
-            mergedAction as ActionItem<ActionContent>,
-          )
+          return runActionWithExecutionResult(action as IExecutionActions)
         }
       })
     Promise.all(request)
@@ -100,7 +90,7 @@ export const DotPanel: FC = () => {
     const rootState = store.getState()
     const appLoadedAction = getIntervalActions(rootState)
     appLoadedAction.forEach((action) => {
-      registerActionPeriod(action as ActionItem<ActionContent>)
+      registerActionPeriod(action as IExecutionActions)
     })
 
     return () => {

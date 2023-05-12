@@ -40,7 +40,6 @@ export const ActionPanel: FC = () => {
   const cachedAction = useSelector(getCachedAction)
 
   const [resultVisible, setResultVisible] = useState(false)
-  const [shownResult, setShownResult] = useState<unknown>("")
   const [activeKey, setActiveKey] = useState("general")
 
   const handleClickChangeTab = useCallback(
@@ -128,9 +127,6 @@ export const ActionPanel: FC = () => {
   if (cachedAction === null || cachedAction === undefined) {
     return <></>
   }
-  const handleResultValueChange = (value: unknown) => {
-    setShownResult(value)
-  }
 
   return (
     <div css={actionPanelStyle}>
@@ -139,7 +135,6 @@ export const ActionPanel: FC = () => {
           onResultVisibleChange={(visible) => {
             setResultVisible(visible)
           }}
-          onResultValueChange={handleResultValueChange}
           openState={resultVisible}
           activeTab={activeKey}
           handleChangeTab={handleClickChangeTab}
@@ -155,7 +150,6 @@ export const ActionPanel: FC = () => {
         )}
         <ActionResult
           visible={resultVisible}
-          results={shownResult}
           onClose={() => {
             setResultVisible(false)
           }}
