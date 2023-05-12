@@ -1,19 +1,11 @@
 import { FC, useCallback, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  CloseIcon,
-  SuccessCircleIcon,
-  WarningCircleIcon,
-  getColor,
-} from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ActionResultProps } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 import {
   actionResultContainerStyle,
-  alertBarStyle,
-  alertTextStyle,
   applyActionContentContainerStyle,
   customerCodeStyle,
 } from "@/page/App/components/Actions/ActionPanel/ActionResult/style"
@@ -21,7 +13,7 @@ import { DragBar } from "@/page/App/components/Actions/DragBar"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { AdvancedAPIHeader, RESULT_SHOW_TYPE } from "./restApiHeader"
+import { AdvancedResultHeader, RESULT_SHOW_TYPE } from "./restApiHeader"
 import { getDisplayResult } from "./utils"
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
@@ -65,8 +57,6 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
 
   const [codeMirrorHeight, setCodeMirrorHeight] = useState(260)
 
-  const isAdvancedActionTitle = rawResult && responseHeader
-
   const handleResultTabsClick = useCallback((activeKey: RESULT_SHOW_TYPE) => {
     return () => {
       setShowType(activeKey)
@@ -78,6 +68,24 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
     rawResult,
     responseHeader,
   }
+
+  const advancedApiResultTabs = [
+    {
+      title: t("editor.action.panel.result.restapi.response"),
+      name: RESULT_SHOW_TYPE.RESPONSE,
+      shown: !!result,
+    },
+    {
+      title: t("editor.action.panel.result.restapi.rawdata"),
+      name: RESULT_SHOW_TYPE.RAW_DATA,
+      shown: !!rawResult,
+    },
+    {
+      title: t("editor.action.panel.result.restapi.headers"),
+      name: RESULT_SHOW_TYPE.HEADERS,
+      shown: !!responseHeader,
+    },
+  ]
 
   const displayData = getDisplayResult(showType, finalResult)
 
@@ -94,35 +102,17 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           }}
         />
 
-        {isAdvancedActionTitle ? (
-          <AdvancedAPIHeader
-            showType={showType}
-            runningTimes={runningTimes}
-            onClose={onClose}
-            handleResultTabsClick={handleResultTabsClick}
-            ref={alertRef}
-            statusCode={responseHeader?.statusCode}
-            statusText={responseHeader?.statusText}
-          />
-        ) : (
-          <div ref={alertRef} css={alertBarStyle}>
-            {isError ? (
-              <WarningCircleIcon c={getColor("red", "03")} />
-            ) : (
-              <SuccessCircleIcon c={getColor("green", "03")} />
-            )}
-            <span css={alertTextStyle}>
-              {isError
-                ? t("editor.action.panel.status.ran_failed")
-                : t("editor.action.panel.status.ran_successfully")}
-            </span>
-            <CloseIcon
-              cur="pointer"
-              c={getColor("grayBlue", "05")}
-              onClick={onClose}
-            />
-          </div>
-        )}
+        <AdvancedResultHeader
+          showType={showType}
+          runningTimes={runningTimes}
+          onClose={onClose}
+          handleResultTabsClick={handleResultTabsClick}
+          ref={alertRef}
+          statusCode={responseHeader?.statusCode}
+          statusText={responseHeader?.statusText}
+          tabsConfig={advancedApiResultTabs}
+          isError={isError}
+        />
 
         <CodeEditor
           height={codeMirrorHeight + "px"}
