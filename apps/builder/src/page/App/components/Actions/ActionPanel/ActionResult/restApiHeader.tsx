@@ -1,12 +1,17 @@
 import { MouseEventHandler, forwardRef } from "react"
 import { useTranslation } from "react-i18next"
-import { CloseIcon, getColor } from "@illa-design/react"
-import i18n from "@/i18n/config"
+import {
+  CloseIcon,
+  SuccessCircleIcon,
+  WarningCircleIcon,
+  getColor,
+} from "@illa-design/react"
 import {
   alertInfoContainerStyle,
   alertInfoStyle,
   alertTabsContainerStyle,
   alertTabsItemStyle,
+  alertTextStyle,
   applyStatusCodeStyle,
   getActiveStyle,
   restApiAlertBarStyle,
@@ -20,22 +25,13 @@ export enum RESULT_SHOW_TYPE {
   "RAW_DATA" = "rawData",
 }
 
-const RestApiResultTabs = [
-  {
-    title: i18n.t("editor.action.panel.result.restapi.response"),
-    name: RESULT_SHOW_TYPE.RESPONSE,
-  },
-  {
-    title: i18n.t("editor.action.panel.result.restapi.rawdata"),
-    name: RESULT_SHOW_TYPE.RAW_DATA,
-  },
-  {
-    title: i18n.t("editor.action.panel.result.restapi.headers"),
-    name: RESULT_SHOW_TYPE.HEADERS,
-  },
-]
+interface TabsConfig {
+  title: string
+  name: RESULT_SHOW_TYPE
+  shown: boolean
+}
 
-interface AdvancedApiHeaderProps {
+interface AdvancedResultHeaderProps {
   showType: RESULT_SHOW_TYPE
   handleResultTabsClick: (
     activeType: RESULT_SHOW_TYPE,
@@ -44,49 +40,80 @@ interface AdvancedApiHeaderProps {
   statusText?: string
   runningTimes: number
   onClose: MouseEventHandler<SVGElement>
+  tabsConfig: TabsConfig[]
+  isError: boolean
 }
 
-export const AdvancedAPIHeader = forwardRef<
+export const AdvancedResultHeader = forwardRef<
   HTMLDivElement,
-  AdvancedApiHeaderProps
+  AdvancedResultHeaderProps
 >((props, ref) => {
-  const { handleResultTabsClick, showType, statusCode, runningTimes, onClose } =
-    props
+  const {
+    handleResultTabsClick,
+    showType,
+    statusCode,
+    runningTimes,
+    tabsConfig,
+    onClose,
+    isError,
+  } = props
+
+  const canShownTabs = tabsConfig.filter((info) => info.shown)
 
   const { t } = useTranslation()
   return (
     <div ref={ref} css={restApiAlertBarStyle}>
-      <div css={alertTabsContainerStyle}>
-        {RestApiResultTabs.map((info) => (
-          <div
-            key={info.name}
-            css={[alertTabsItemStyle, getActiveStyle(showType === info.name)]}
-            data-key={info.name}
-            onClick={handleResultTabsClick(info.name)}
-          >
-            <div css={tabsContentStyle}>{info.title}</div>
+      {canShownTabs.length > 1 ? (
+        <>
+          <div css={alertTabsContainerStyle}>
+            {canShownTabs.map((info) => (
+              <div
+                key={info.name}
+                css={[
+                  alertTabsItemStyle,
+                  getActiveStyle(showType === info.name),
+                ]}
+                data-key={info.name}
+                onClick={handleResultTabsClick(info.name)}
+              >
+                <div css={tabsContentStyle}>{info.title}</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div css={alertInfoContainerStyle}>
-        {statusCode && (
-          <div css={alertInfoStyle}>
-            {t("editor.action.panel.result.restapi.status")}
-            <span css={applyStatusCodeStyle(statusCode)}>{statusCode}</span>
+          <div css={alertInfoContainerStyle}>
+            {statusCode && (
+              <div css={alertInfoStyle}>
+                {t("editor.action.panel.result.restapi.status")}
+                <span css={applyStatusCodeStyle(statusCode)}>{statusCode}</span>
+              </div>
+            )}
+            <div css={alertInfoStyle}>
+              Times
+              <span css={timestampStyle}>{`${runningTimes}ms`}</span>
+            </div>
           </div>
-        )}
-        <div css={alertInfoStyle}>
-          Times
-          <span css={timestampStyle}>{`${runningTimes}ms`}</span>
-        </div>
-        <CloseIcon
-          cur="pointer"
-          c={getColor("grayBlue", "05")}
-          onClick={onClose}
-        />
-      </div>
+        </>
+      ) : (
+        <>
+          {isError ? (
+            <WarningCircleIcon c={getColor("red", "03")} />
+          ) : (
+            <SuccessCircleIcon c={getColor("green", "03")} />
+          )}
+          <span css={alertTextStyle}>
+            {isError
+              ? t("editor.action.panel.status.ran_failed")
+              : t("editor.action.panel.status.ran_successfully")}
+          </span>
+        </>
+      )}
+      <CloseIcon
+        cur="pointer"
+        c={getColor("grayBlue", "05")}
+        onClick={onClose}
+      />
     </div>
   )
 })
 
-AdvancedAPIHeader.displayName = "RestAPIHeader"
+AdvancedResultHeader.displayName = "RestAPIHeader"

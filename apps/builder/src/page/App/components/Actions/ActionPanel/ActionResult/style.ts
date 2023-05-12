@@ -41,6 +41,7 @@ export const restApiAlertBarStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 `
 
 export const alertTabsContainerStyle = css`
@@ -84,6 +85,8 @@ export const alertInfoContainerStyle = css`
   padding: 0;
   gap: 24px;
   height: 24px;
+  position: absolute;
+  right: 40px;
 `
 
 export const alertInfoStyle = css`

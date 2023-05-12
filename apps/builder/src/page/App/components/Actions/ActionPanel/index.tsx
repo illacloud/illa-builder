@@ -32,12 +32,16 @@ import {
   actionPanelContainerStyle,
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
-import { getCachedAction } from "@/redux/config/configSelector"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { AdvancedPanel } from "../AdvancedPanel"
 
 export const ActionPanel: FC = () => {
   const cachedAction = useSelector(getCachedAction)
+  const selectedAction = useSelector(getSelectedAction)!
 
   const [resultVisible, setResultVisible] = useState(false)
   const [activeKey, setActiveKey] = useState("general")
@@ -149,6 +153,7 @@ export const ActionPanel: FC = () => {
           </MixpanelTrackProvider>
         )}
         <ActionResult
+          key={selectedAction.actionId}
           visible={resultVisible}
           onClose={() => {
             setResultVisible(false)

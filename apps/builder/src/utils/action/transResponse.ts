@@ -22,7 +22,6 @@ const transMaybeFileResponse = (
   ) {
     return {
       responseHeaders: header,
-      rawData: raw,
       data: raw,
       fileData: {
         base64binary: raw,
@@ -41,7 +40,6 @@ const transMaybeFileResponse = (
     realData = new TextDecoder().decode(bytes)
   } catch {
     return {
-      rawData: raw,
       responseHeaders: header,
       data: raw,
     }
