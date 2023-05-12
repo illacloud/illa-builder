@@ -23,12 +23,20 @@ const getCurrentList = (fileList: UploadItem[]) =>
     return others
   }) || []
 
-const getFiles = (fileList: UploadItem[]) =>
-  fileList.map((file) => ({
+const getFiles = (fileList: UploadItem[], raws: string[]) =>
+  fileList.map((file, index) => ({
     lastModified: file.originFile?.lastModified,
     name: file.originFile?.name,
     size: file.originFile?.size,
     type: file.originFile?.type,
+    dataURI: `data:${file.originFile?.type ?? "text/plain"};base64,${
+      raws[index]
+    }`,
+    updateStatus: {
+      status: file.status,
+      percent: file.percent,
+      response: file.response,
+    },
   })) || []
 
 export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
@@ -57,32 +65,36 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
   const isDrag = type === "dropzone"
   const inputAcceptType = fileType.join(",")
   const prevFileList = useRef<UploadItem[]>(fileList ?? [])
+  const prevParseValue = useRef<boolean>(parseValue ?? false)
 
   useEffect(() => {
-    if (!fileList || prevFileList.current === fileList) {
+    if (
+      !fileList ||
+      (prevFileList.current === fileList &&
+        prevParseValue.current === parseValue)
+    ) {
       return
     }
     prevFileList.current = fileList
-    new Promise((resolve) => {
-      ;(async () => {
-        const values = await Promise.allSettled(
-          fileList.map(async (file) => await toBase64(file)),
+    prevParseValue.current = parseValue ?? false
+    new Promise(async (resolve) => {
+      const values = await Promise.allSettled(
+        fileList.map(async (file) => await toBase64(file)),
+      )
+      let parsedValues
+      if (parseValue) {
+        parsedValues = await Promise.allSettled(
+          fileList.map(async (file) => {
+            const res = await getFileString(file)
+            return res
+          }),
         )
-        let parsedValues
-        if (parseValue) {
-          parsedValues = await Promise.allSettled(
-            fileList.map(async (file) => {
-              const res = await getFileString(file)
-              return res
-            }),
-          )
-        }
-        resolve({
-          values,
-          parsedValues,
-          fileList,
-        })
-      })()
+      }
+      resolve({
+        values,
+        parsedValues,
+        fileList,
+      })
     })
       .then((value) => {
         const {
@@ -95,8 +107,9 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
           fileList: UploadItem[]
         }
         const validateMessage = getValidateMessage(fileList)
-        const files = getFiles(fileList)
         const base64value = getFilteredValue(values, "base64")
+        console.log("fileList", fileList)
+        const files = getFiles(fileList, base64value ?? [])
         const parsed = getFilteredValue(parsedValues)
         const currentList = getCurrentList(fileList)
         handleUpdateMultiExecutionResult([
