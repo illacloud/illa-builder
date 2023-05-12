@@ -96,11 +96,11 @@ export const alertInfoStyle = css`
   line-height: 22px;
 `
 
-export const statusStyle = css`
+export const applyStatusCodeStyle = (statusCode: number) => css`
   font-weight: 500;
   font-size: 14px;
 
-  color: ${getColor("green", "03")};
+  color: ${statusCode >= 400 ? getColor("red", "03") : getColor("green", "03")};
 `
 
 export const timestampStyle = css`

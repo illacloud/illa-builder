@@ -17,7 +17,6 @@ import { EditableText } from "@/components/EditableText"
 import { SimpleTabs } from "@/components/Tabs"
 import { ACTION_PANEL_TABS } from "@/components/Tabs/constant"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import {
   onCopyActionItem,
   onDeleteActionItem,
@@ -42,6 +41,7 @@ import { SMPTAction } from "@/redux/currentApp/action/smtpAction"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
+import { runOriginAction } from "@/utils/action/runAction"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ActionTitleBarProps } from "./interface"
 import {
@@ -110,13 +110,7 @@ const getActionFilteredContent = (cachedAction: ActionItem<ActionContent>) => {
 }
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const {
-    onResultVisibleChange,
-    openState,
-    onResultValueChange,
-    activeTab,
-    handleChangeTab,
-  } = props
+  const { onResultVisibleChange, openState, activeTab, handleChangeTab } = props
 
   const message = useMessage()
   const [saveLoading, setSaveLoading] = useState(false)
@@ -206,15 +200,17 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   }, [cachedAction.actionType, runMode])
 
   const runCachedAction = useCallback(
-    (cachedActionValue: ActionItem<ActionContent>) => {
+    async (cachedActionValue: ActionItem<ActionContent>) => {
       if (cachedActionValue) {
-        runAction(cachedActionValue, (data) => {
+        try {
+          await runOriginAction(cachedActionValue)
+        } catch (e) {
+        } finally {
           onResultVisibleChange(true)
-          onResultValueChange(data)
-        })
+        }
       }
     },
-    [onResultVisibleChange, onResultValueChange],
+    [onResultVisibleChange],
   )
 
   const updateAndRunCachedAction = useCallback(

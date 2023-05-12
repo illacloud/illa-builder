@@ -2,7 +2,6 @@ import copy from "copy-to-clipboard"
 import { get } from "lodash"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import {
@@ -22,6 +21,7 @@ import {
   showNotification,
 } from "@/utils/executionTreeHelper/ILLAUtils/"
 import { downloadFileFromEventHandler } from "@/utils/file"
+import { runOriginAction } from "../action/runAction"
 import { LIMIT_MEMORY, estimateMemoryUsage } from "../calculateMemoryUsage"
 
 const message = createMessage()
@@ -398,7 +398,7 @@ export const transformEvents = (
       }
     return {
       script: () => {
-        runAction(actionItem)
+        runOriginAction(actionItem)
       },
       enabled,
     }

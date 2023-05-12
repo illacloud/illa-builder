@@ -49,12 +49,7 @@ async function handleUpdateActionItem(
     currentAction?.config?.advancedConfig.isPeriodically &&
     currentAction?.config?.advancedConfig.periodInterval
   ) {
-    const mergedAction = {
-      ...currentAction,
-      resourceId: currentAction.$resourceId,
-      actionId: currentAction.$actionId,
-    }
-    registerActionPeriod(mergedAction)
+    registerActionPeriod(currentAction)
   }
 }
 

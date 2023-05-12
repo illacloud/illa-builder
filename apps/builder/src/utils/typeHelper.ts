@@ -1,6 +1,8 @@
 import { AxiosResponse } from "axios"
 import { isString } from "@illa-design/react"
 import { ILLAApiError } from "@/api/http"
+import { ActionType } from "../redux/currentApp/action/actionState"
+import { IActionRunResultResponseData } from "../services/action"
 
 const DISPLAY_NAME_REGEX = /^([a-zA-Z_$])([a-zA-Z0-9_$])*$/
 
@@ -69,6 +71,7 @@ export const isValidDisplayName = (displayName: string): boolean =>
   DISPLAY_NAME_REGEX.test(displayName)
 
 export const isCloudVersion = import.meta.env.VITE_INSTANCE_ID === "CLOUD"
+
 export const isILLAAPiError = (
   error: unknown,
 ): error is AxiosResponse<ILLAApiError> => {
@@ -82,4 +85,110 @@ export const isILLAAPiError = (
     "errorMessage" in error.data &&
     typeof error.data.errorMessage === "string"
   )
+}
+
+export const isClientS3ActionResponse = (
+  actionType: ActionType,
+  response: unknown,
+): response is AxiosResponse<BlobPart, unknown> => {
+  if (!Array.isArray(response) && actionType === "s3") {
+    return true
+  }
+  return false
+}
+
+export const isServerS3ActionResponse = (
+  isClientS3: boolean,
+  response: unknown,
+): response is AxiosResponse<
+  IActionRunResultResponseData<Record<string, any>[]>,
+  unknown
+> => {
+  return !isClientS3
+}
+
+export const isS3MultiActionResponse = (
+  actionType: ActionType,
+  response: unknown,
+): response is (
+  | AxiosResponse<BlobPart, unknown>
+  | AxiosResponse<ILLAApiError, any>
+)[] => {
+  if (Array.isArray(response) && actionType === "s3") {
+    return true
+  }
+  return false
+}
+
+export const isRestApiActionResponse = (
+  actionType: ActionType,
+  response: unknown,
+): response is AxiosResponse<
+  IActionRunResultResponseData<Record<string, any>[]>,
+  unknown
+> => {
+  if (actionType === "restapi") {
+    return true
+  }
+  return false
+}
+
+export const isHuggingFaceActionResponse = (
+  actionType: ActionType,
+  response: unknown,
+): response is AxiosResponse<
+  IActionRunResultResponseData<Record<string, any>[]>,
+  unknown
+> => {
+  if (actionType === "huggingface") {
+    return true
+  }
+  return false
+}
+
+export const isHuggingFaceEndPointActionResponse = (
+  actionType: ActionType,
+  response: unknown,
+): response is AxiosResponse<
+  IActionRunResultResponseData<Record<string, any>[]>,
+  unknown
+> => {
+  if (actionType === "hfendpoint") {
+    return true
+  }
+  return false
+}
+
+export const isLikeRestApiActionResponse = (
+  actionType: ActionType,
+  response: unknown,
+): response is AxiosResponse<
+  IActionRunResultResponseData<Record<string, any>[]>,
+  unknown
+> => {
+  if (
+    isRestApiActionResponse(actionType, response) ||
+    isHuggingFaceActionResponse(actionType, response) ||
+    isHuggingFaceEndPointActionResponse(actionType, response)
+  ) {
+    return true
+  }
+  return false
+}
+
+export const isDatabaseActionResponse = (
+  actionType: ActionType,
+  response: unknown,
+): response is AxiosResponse<
+  IActionRunResultResponseData<Record<string, any>[]>,
+  unknown
+> => {
+  if (
+    !isClientS3ActionResponse(actionType, response) &&
+    !isS3MultiActionResponse(actionType, response) &&
+    !isLikeRestApiActionResponse(actionType, response)
+  ) {
+    return true
+  }
+  return false
 }

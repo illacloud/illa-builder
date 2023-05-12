@@ -8,7 +8,6 @@ export const GuideSuccess: FC = () => {
   const [showAnimation, setShowAnimation] = useState(true)
 
   const handleAnimationComplete = () => {
-    console.log("animation complete")
     setShowAnimation(false)
   }
 
