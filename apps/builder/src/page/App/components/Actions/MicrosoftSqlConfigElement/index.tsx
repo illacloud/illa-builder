@@ -145,7 +145,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
           control={control}
           defaultValue={[
             resource?.content.host,
-            String(resource?.content.port || "1433"),
+            String(resource?.content.port || ""),
           ]}
           rules={[
             {
