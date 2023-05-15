@@ -148,7 +148,7 @@
             "google_sheets": "Google List"
           },
           "neon": {
-            "neon": "Neon"
+            "neon": "Neún"
           }
         },
         "validate": {
@@ -275,9 +275,9 @@
             "ca_certificate": "Ve výchozím nastavení vyplňujeme certifikát CA používaný pro TLS připojení k úrovni bez serveru. Pokud potřebujete TLS připojení k Dedicated Tier, <0>Klikněte zde</0> pro zobrazení konfigurační metody."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Vytvořte Neonův projekt a získejte řetězec v řídicím panelu projektu <0></0>.",
+            "failed": "Nepodařilo se analyzovat řetězec. Zkontrolujte řetězec nebo nakonfigurujte ručně.",
+            "no_password": "Řetězec nemá heslo. Před kopírováním zobrazte prosím heslo na Neon dashboardu."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Připojovací řetězec"
           }
         },
         "default": {
@@ -1151,9 +1151,9 @@
           "markerSelected": "markerVybráno",
           "markerCreated": "markerCreated",
           "select": "Vybrat",
-          "DragOrClickNoEventArea": "Drag or click no event area",
-          "rowClick": "Row click",
-          "refresh": "Refresh"
+          "DragOrClickNoEventArea": "Přetáhněte nebo neklepněte na žádnou událost",
+          "rowClick": "Kliknutí na řádek",
+          "refresh": "Aktualizovat"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1172,13 +1172,13 @@
         "eventCalendar": {
           "no_title": "Bez názvu"
         },
-        "oncellselect": "onCellSelect",
+        "oncellselect": "Výběr onCell",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "změna filtru",
+        "sortChange": "sortZměnit",
+        "pageChange": "Změna stránky",
+        "refresh": "obnovit"
       },
       "setter_default_value": {
         "fill": "Vyplnit",
@@ -1530,8 +1530,10 @@
           "calendar_text": "Text",
           "event_background": "Pozadí",
           "event_text": "Text",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "Posunout",
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Index stránky",
@@ -1542,29 +1544,33 @@
           "show_thousands_separ": "Zobrazit tisíce oddělovače",
           "tag_label": "Popisek štítku",
           "tag_color": "Barva štítku",
-          "open_in_new_tab": "Open in new tab",
-          "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "open_in_new_tab": "Otevřít v nové kartě",
+          "variant": "Varianta",
+          "icon": "Ikona",
+          "color": "Barva",
+          "sort_by_mapped_value": "Seřadit podle mapované hodnoty",
+          "background": "Pozadí",
+          "alignment": "Zarovnání",
+          "column_width": "Šířka sloupce",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "disable_user_selecti": "Zakázat výběr uživatele",
+          "default_selected_row": "Výchozí vybraný řádek",
+          "refresh": "Aktualizovat",
           "download_row_data": "Stáhnout surová data",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "column_setting": "Nastavení sloupců",
+          "cell_overflow": "Přechod buněk",
+          "enable_server_side_p": "Povolit stránkování na straně serveru",
+          "pagination_type": "Typ stránkování",
+          "total_row_count": "Celkový počet řádků",
+          "next_cursor": "Další kurzor",
+          "has_next_page": "Má další stránku",
+          "currency_code": "Kód měny"
         },
-        "previous_cursor": "Previous cursor"
+        "previous_cursor": "Předchozí kurzor",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1705,40 +1711,46 @@
           "event_background": "Nastavit pozadí karty události",
           "event_text": "Nastavit barvu textu karty události",
           "couldnot_drag": "Pokud chcete změnit časové rozmezí, přejděte na náhled pro danou operaci.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události přetažením přesuňte událost",
+          "resizable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události a změnit časové rozpětí přetažením hranice události na prodloužení nebo zkrácení časového intervalu",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
+          "page_index": "Index stránky, kterou chcete vybrat.",
+          "index": "Index řádku, který chcete vybrat. Index by měl být pole, které lze použít k určení více řádků.",
+          "scroll_to_the_select": "Zda se posune na řádek.",
+          "show_thousands_separ": "Zda zobrazit oddělovač tisíců",
+          "tag_label": "Nastavte štítek štítků. Pole bude odděleno na více štítků.",
+          "tag_color": "Nastavte barvu štítků. Použijte {{ napište podmíněný příkaz pro nastavení barvy zobrazené každým štítkem za různých podmínek.",
+          "variant": "Varianta tlačítka",
+          "icon": "Ikona zobrazená v tabulce",
+          "color": "Nastavte barvu.",
+          "sort_by_mapped_value": "Zda se řadit podle mapované hodnoty. Pokud ne, seřadíme se na základě původních dat.",
+          "background": "Nastavte pozadí sloupce. Použij příkaz {{ pro nastavení barvy zobrazené jednotlivými buňkami za různých podmínek.",
+          "alignment": "Nastavte zarovnání sloupce.",
+          "column_width": "Nastavte šířku sloupce podle číselné hodnoty. Můžete také upravit šířku sloupce přetažením do rámečku. Po úpravě se také odpovídajícím způsobem změní hodnota této položky konfigurace",
+          "width": "Nastavte způsob úpravy šířky sloupce.",
+          "disable_user_selecti": "Zvolte, zda zakázat výběr uživatele. Pokud je zakázáno, můžete vybrat řádky ovládáním tabulky pomocí ovládače událostí.",
+          "default_selected_row": "Řádek vybraný jako výchozí.  ",
+          "refresh": "Zda zobrazit ikonu obnovení. ",
           "download_row_data": "Zvolte, zda zobrazit ikonu pro stažení nezpracovaná data.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "column_setting": "Zvolte, zda zobrazit nastavení sloupce. Nastavení sloupců umožní uživatelům nastavit sloupce pro zobrazení a řazení sloupců. Toto nastavení nemění data tabulky.",
+          "cell_overflow": "Jak zobrazit při přetečení buňky. ",
+          "enable_server_side_p": "Zda povolit stránkování serveru",
+          "pagination_type": "Typ stránkování. ",
+          "total_row_count": "Počet řádků použitých pro počítání čísla stránky.",
+          "next_cursor": "Identifikátor používaný k nalezení dalšího výchozího bodu souboru dat, aby bylo možné získat údaje o stránce a získat je v dávkách.",
+          "has_next_page": "Boolean používaný k označování, zda existuje jiná dostupná stránka údajů. To nám může pomoci lépe kontrolovat načítání dat v očíslovaných dotazech a optimalizovat výkon dotazu",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "filter_mode": "Režim filtru. A nebo OR.",
+          "currency_code": "V tabulce v příloze I nařízení (EU) č. 36/2012 se v řádku týkajícím se subjektu „Ecocert Erőmű Kft.“ nahrazuje tímto:"
         },
-        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -1801,12 +1813,17 @@
           "button": "Tlačítko",
           "icon": "Ikona",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "outline": "Obrys",
+          "auto": "Automaticky",
+          "limited": "Omezeno",
+          "limit_offset_based": "Limit na základě posunu",
+          "cursor_based": "Na základě kurzoru",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
@@ -1832,7 +1849,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "Kód měny definovaný v [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2000,7 +2017,7 @@
         "select_row": "Vybrat řádek",
         "clear_selection": "Vymazat výběr",
         "set_filters": "Nastavit filtry",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "Klikněte na volný čas"
       }
     },
     "tutorial": {
@@ -2789,7 +2806,7 @@
       },
       "setter_content": {
         "widget_action_type_name": {
-          "rowSelectChange": "Row Select Change"
+          "rowSelectChange": "Změna počtu řádků"
         }
       }
     }
@@ -2830,27 +2847,27 @@
   "oauth_redirect_title": "Přesměrování",
   "oauth_redirect_description": "Přesměrování na <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Anglické",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "Afrikaany",
+    "cs-CZ": "cί tina",
+    "de-DE": "Výkřik",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "franc<unk> ais",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugalský<unk> s",
+    "ro-RO": "roma<unk> na<unk>",
+    "ru-RU": "руски<unk>",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Odhlášení se nezdařilo. Opakujte akci později."
 }

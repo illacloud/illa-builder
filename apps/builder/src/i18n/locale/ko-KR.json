@@ -414,7 +414,7 @@
           "placeholder": {
             "asc": "asc",
             "document_value": "{{ { \"stringField\":\"value\", \"numberField\": 42, \"docRef\": { $ref: \"collection/8FB4EF\" } } }}",
-            "input_collection": "Enter a collection",
+            "input_collection": "컬렉션 입력",
             "key": "key",
             "select_an_action": "Select an action",
             "select_collection": "Select a collection",
@@ -672,7 +672,7 @@
           "placeholder": {
             "mode_id": "bert-base-uncased",
             "text": "The answer to the universe is [MASK].",
-            "json": "{ \r\n\"past_user_inputs\": [\"Which movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Can you explain why ?\" \r\n}",
+            "json": "{ \n\"past_user_inputs\": [\"Which movie is the best ?\"], \n\"generated_responses\": [\"It's Die Hard for sure.\"], \n\"text\": \"Can you explain why ?\" \n}",
             "binary": "'@cats.jpg' \\",
             "use_cache": "Boolean, leave blank for true",
             "min_length": "Integer to define the minimum length in tokens of the output summary",
@@ -1531,7 +1531,9 @@
           "event_background": "배경",
           "event_text": "프레임",
           "draggable": "드래그 가능",
-          "resizable": "크기 조정 가능"
+          "resizable": "크기 조정 가능",
+          "custom_message_draggable": "드래그 비활성화 시 사용자 지정 메시지",
+          "custom_message_resizable": "크기 조정 비활성화 시 사용자 지정 메시지"
         },
         "table": {
           "page_index": "페이지 색인",
@@ -1564,7 +1566,11 @@
           "has_next_page": "다음 페이지 있음",
           "currency_code": "통화 코드"
         },
-        "previous_cursor": "이전 커서"
+        "previous_cursor": "이전 커서",
+        "input": {
+          "type": "유형",
+          "show_visible_button": "보이는 버튼의 표시 여부를 설정하려면"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1706,7 +1712,9 @@
           "event_text": "이벤트 카드의 텍스트 색상 설정",
           "couldnot_drag": "드래그하여 시간 범위를 조정하려면 작업 미리보기 페이지로 이동하십시오.",
           "draggable": "사용자가 드래그하여 이벤트를 이동하여 이벤트 시간 범위를 업데이트하도록 허용할지 여부",
-          "resizable": "사용자가 이벤트 시간 범위를 업데이트하고 이벤트의 테두리를 드래그하여 시간 범위를 늘리거나 줄이는 방식으로 시간 범위를 변경할 수 있도록 허용할지 여부"
+          "resizable": "사용자가 이벤트 시간 범위를 업데이트하고 이벤트의 테두리를 드래그하여 시간 범위를 늘리거나 줄이는 방식으로 시간 범위를 변경할 수 있도록 허용할지 여부",
+          "custom_message_draggable": "끌기가 비활성화된 후 사용자가 이벤트를 끌 때 메시지가 표시됩니다.",
+          "custom_message_resizable": "크기 조정이 비활성화된 후 사용자가 이벤트 크기를 조정하면 메시지가 표시됩니다."
         },
         "table": {
           "page_index": "선택하려는 페이지의 인덱스입니다.",
@@ -1738,7 +1746,11 @@
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "액션 데이터를 사용하여 이전 커서를 설정합니다. 예: {{ pageInfo.startCursor }}"
+        "previous_cursor": "액션 데이터를 사용하여 이전 커서를 설정합니다. 예: {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "입력 유형을 설정하려면",
+          "show_visible_button": "보이는 버튼 표시"
+        }
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -1807,6 +1819,11 @@
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
           "graphql_relay_cursor": "GraphQL Relay cursor"
+        },
+        "input": {
+          "input": "입력",
+          "password": "비밀번호",
+          "search": "찾다"
         }
       },
       "setter_placeholder": {

@@ -148,7 +148,7 @@
             "google_sheets": "Google листы"
           },
           "neon": {
-            "neon": "Neon"
+            "neon": "Неоновый"
           }
         },
         "validate": {
@@ -275,9 +275,9 @@
             "ca_certificate": "Мы заполняем сертификат CA для TLS соединений к серверному уровню по умолчанию. Если вам нужны TLS подключения к выделенному уровню, <0>Нажмите здесь</0> для просмотра метода конфигурации."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
+            "normal": "Создайте проект Neon и получите строку в <0>панели проекта</0>.",
             "failed": "Не удалось разобрать строку. Проверьте строку или настройте вручную.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "no_password": "Строка не имеет пароля. Пожалуйста, отобразите пароль в панели Neon перед копированием."
           }
         },
         "option": {
@@ -1151,9 +1151,9 @@
           "markerSelected": "маркер выбран",
           "markerCreated": "маркер создан",
           "select": "Выбрать",
-          "DragOrClickNoEventArea": "Drag or click no event area",
-          "rowClick": "Row click",
-          "refresh": "Refresh"
+          "DragOrClickNoEventArea": "Перетащите или не кликните по области событий",
+          "rowClick": "Клик строки",
+          "refresh": "Обновить"
         },
         "image_list": {
           "title": "Изображения",
@@ -1175,9 +1175,9 @@
         "oncellselect": "приВыбореЯчейки",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
+        "filterChange": "изменить фильтр",
+        "sortChange": "СортировкаИзменить",
+        "pageChange": "изменение страницы",
         "refresh": "обновить"
       },
       "setter_default_value": {
@@ -1530,8 +1530,10 @@
           "calendar_text": "Текст",
           "event_background": "Справочная информация",
           "event_text": "Текст",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "Перетаскивание",
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Индекс страницы",
@@ -1543,28 +1545,32 @@
           "tag_label": "Метка метки",
           "tag_color": "Цвет тега",
           "open_in_new_tab": "Открыть в новой вкладке",
-          "variant": "Variant",
+          "variant": "Вариант",
           "icon": "Иконка",
           "color": "Цвет",
-          "sort_by_mapped_value": "Sort by mapped value",
+          "sort_by_mapped_value": "Сортировать по сопоставленному значению",
           "background": "Фон",
           "alignment": "Выравнивание",
           "column_width": "Ширина колонки",
           "width": "Ширина",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
+          "disable_user_selecti": "Отключить выбор пользователя",
+          "default_selected_row": "Выбранная строка по умолчанию",
           "refresh": "Обновить",
           "download_row_data": "Скачать сырые данные",
           "column_setting": "Настройка колонки",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
+          "cell_overflow": "Переполнение ячейки",
+          "enable_server_side_p": "Включить нумерацию на стороне сервера",
+          "pagination_type": "Тип нумерации",
           "total_row_count": "Общее количество строк",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "next_cursor": "Следующий курсор",
+          "has_next_page": "Имеет следующую страницу",
+          "currency_code": "Код валюты"
         },
-        "previous_cursor": "Previous cursor"
+        "previous_cursor": "Предыдущий курсор",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -1705,40 +1711,46 @@
           "event_background": "Установить фон карты событий",
           "event_text": "Установить цвет текста карты событий",
           "couldnot_drag": "Если вы хотите перетащить интервал времени, перейдите на страницу предварительного просмотра для этой операции.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Разрешить ли пользователям обновлять интервал событий, перетаскивая для перемещения события",
+          "resizable": "Разрешить ли пользователям обновлять интервал времени события и изменять промежуток времени путем перетаскивания границы события для продления или сокращения периода времени",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
+          "page_index": "Индекс выбранной страницы.",
+          "index": "Индекс строки, которую вы хотите выбрать. Индекс должен быть массивом, который может быть использован для указания нескольких строк.",
+          "scroll_to_the_select": "Является ли прокрутка к строке.",
+          "show_thousands_separ": "Показывать ли разделитель тысяч",
+          "tag_label": "Задайте метку тегов. Массив будет разделен на несколько тегов.",
+          "tag_color": "Установите цвет тегов. Используйте {{ write conditional statement to set the color displayed by each tag in different conditions.",
+          "variant": "Вариант кнопки",
+          "icon": "Значок отображается в таблице",
           "color": "Установить цвет.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
+          "sort_by_mapped_value": "Будет ли сортироваться по отображению. Если нет, мы сортируем по исходным данным.",
+          "background": "Установите фон столбца. Используйте {{ для записи условного выражения, чтобы установить цвет, отображаемый каждой ячейкой в разных условиях.",
           "alignment": "Задать выравнивание колонки.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
+          "column_width": "Установка ширины столбца по числовому значению. Вы также можете регулировать ширину столбца, перетаскивая в кадре. После настройки значение этого элемента конфигурации также изменится соответствующим образом",
+          "width": "Установите метод адаптации ширины столбцов.",
+          "disable_user_selecti": "Выключить выбор пользователя. Если отключено, вы можете выбрать строки управления компонентом таблиц по обработчику событий.",
+          "default_selected_row": "Строка выбрана по умолчанию.  ",
+          "refresh": "Показывать значок обновления. ",
           "download_row_data": "Показывать ли необработанный значок загрузки.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
+          "column_setting": "Показывать настройки столбцов. Столбец позволит пользователям изменять параметры отображения столбцов и сортировку столбцов. Этот параметр не изменяет данные таблицы.",
           "cell_overflow": "Как отображать при переполнении ячейки. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
+          "enable_server_side_p": "Включить ли нумерацию на сервере",
+          "pagination_type": "Тип пагинации. ",
           "total_row_count": "Количество строк, используемых для подсчета номера страницы.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "next_cursor": "Идентификатор, используемый для определения следующей начальной точки набора данных, для того, чтобы разбивать и получать данные в пакетах",
+          "has_next_page": "Логическое значение для указания наличия другой страницы данных. Это поможет нам лучше контролировать поиск данных в страницах запросов и оптимизировать производительность запросов",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "Режим фильтра. AND или OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Используйте данные для установки предыдущего курсора. Например,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Исправлено",
@@ -1803,10 +1815,15 @@
           "solid": "Solid",
           "outline": "Outline",
           "auto": "Авто",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "limited": "Ограниченный",
+          "limit_offset_based": "Ограниченное смещение на основе",
+          "cursor_based": "На основе курсора",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
@@ -1832,7 +1849,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "Код валюты, определенный в [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2000,7 +2017,7 @@
         "select_row": "Выберите строку",
         "clear_selection": "Очистить выделенное",
         "set_filters": "Установить фильтры",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "Нажмите свободное время"
       }
     },
     "tutorial": {
@@ -2789,7 +2806,7 @@
       },
       "setter_content": {
         "widget_action_type_name": {
-          "rowSelectChange": "Row Select Change"
+          "rowSelectChange": "Изменение строки выбора"
         }
       }
     }
