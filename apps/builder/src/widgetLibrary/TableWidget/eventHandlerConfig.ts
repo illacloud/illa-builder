@@ -23,12 +23,6 @@ export const TABLE_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.onCellSelect",
-      ),
-      value: "onCellSelect",
-    },
-    {
-      label: i18n.t(
         "editor.inspect.setter_content.widget_action_type_name.rowSelectChange",
       ),
       value: "rowSelectChange",
@@ -44,6 +38,12 @@ export const TABLE_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
         "editor.inspect.setter_content.widget_action_type_name.refresh",
       ),
       value: "refresh",
+    },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.onCellSelect",
+      ),
+      value: "onCellSelect",
     },
   ],
   methods: [],
