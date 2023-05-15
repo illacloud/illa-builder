@@ -1532,7 +1532,8 @@
           "event_text": "Text",
           "draggable": "Ziehen möglich",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Seitenindex",
@@ -1707,7 +1708,9 @@
           "event_text": "Textfarbe der Event-Karte festlegen",
           "couldnot_drag": "Wenn Sie ziehen möchten, um den Zeitbereich anzupassen, gehen Sie bitte zur Vorschauseite für den Vorgang.",
           "draggable": "Gibt an, ob Benutzer den Zeitbereich des Ereignisses durch Ziehen zum Verschieben des Ereignisses aktualisieren können",
-          "resizable": "Ob es Benutzern erlaubt den Zeitbereich des Ereignisses zu aktualisieren und die Zeitspanne durch Ziehen des Rahmens eines Ereignisses zu verlängern oder zu verkürzen"
+          "resizable": "Ob es Benutzern erlaubt den Zeitbereich des Ereignisses zu aktualisieren und die Zeitspanne durch Ziehen des Rahmens eines Ereignisses zu verlängern oder zu verkürzen",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Index der Seite, die Sie auswählen möchten.",
