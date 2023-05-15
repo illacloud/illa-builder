@@ -1566,7 +1566,11 @@
           "has_next_page": "Har neste side",
           "currency_code": "Valuta kode"
         },
-        "previous_cursor": "Forrige markør"
+        "previous_cursor": "Forrige markør",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "Filtermodus. OG eller eller.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Bruk handlingsdataene til å angi forrige kursor. For eksempel,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Bruk handlingsdataene til å angi forrige kursor. For eksempel,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Grense forskjøvet basert",
           "cursor_based": "Markør basert",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
