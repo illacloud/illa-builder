@@ -1532,7 +1532,8 @@
           "event_text": "Text",
           "draggable": "Draggable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Indexul paginii",
@@ -1707,7 +1708,9 @@
           "event_text": "Setaţi culoarea textului cardului de eveniment",
           "couldnot_drag": "Dacă doriți să glisați pentru a ajusta intervalul de timp, continuați la pagina de previzualizare pentru operațiune.",
           "draggable": "Dacă permiteţi utilizatorilor să actualizeze intervalul de timp al evenimentului prin glisarea pentru a muta evenimentul",
-          "resizable": "Indiferent dacă permiteți utilizatorilor să actualizeze intervalul de timp al evenimentului și schimbați intervalul de timp prin glisarea marginii unui eveniment pentru a prelungi sau scurta intervalul de timp"
+          "resizable": "Indiferent dacă permiteți utilizatorilor să actualizeze intervalul de timp al evenimentului și schimbați intervalul de timp prin glisarea marginii unui eveniment pentru a prelungi sau scurta intervalul de timp",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Index al paginii pe care doriţi să o selectaţi.",
