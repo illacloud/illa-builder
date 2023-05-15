@@ -1532,7 +1532,8 @@
           "event_text": "Text",
           "draggable": "Posunout",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Index stránky",
@@ -1707,7 +1708,9 @@
           "event_text": "Nastavit barvu textu karty události",
           "couldnot_drag": "Pokud chcete změnit časové rozmezí, přejděte na náhled pro danou operaci.",
           "draggable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události přetažením přesuňte událost",
-          "resizable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události a změnit časové rozpětí přetažením hranice události na prodloužení nebo zkrácení časového intervalu"
+          "resizable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události a změnit časové rozpětí přetažením hranice události na prodloužení nebo zkrácení časového intervalu",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Index stránky, kterou chcete vybrat.",
