@@ -1531,7 +1531,8 @@
           "event_background": "Achtergrond",
           "event_text": "Tekstveld",
           "draggable": "Versleepbaar",
-          "resizable": "Resizable"
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging"
         },
         "table": {
           "page_index": "Pagina index",
