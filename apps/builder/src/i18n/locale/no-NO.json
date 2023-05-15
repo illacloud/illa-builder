@@ -1153,7 +1153,9 @@
           "select": "Velg",
           "DragOrClickNoEventArea": "Dra eller klikk ikke på noe hendelsesområde",
           "rowClick": "Klikk rad",
-          "refresh": "Oppdater"
+          "refresh": "Oppdater",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Bilder",
