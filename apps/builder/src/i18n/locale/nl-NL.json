@@ -1153,7 +1153,9 @@
           "select": "Selecteren",
           "DragOrClickNoEventArea": "Sleep of klik op geen enkel event gebied",
           "rowClick": "Rij klikken",
-          "refresh": "Vernieuwen"
+          "refresh": "Vernieuwen",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Afbeeldingen",

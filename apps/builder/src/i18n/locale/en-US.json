@@ -1132,7 +1132,7 @@
           "change": "Change",
           "click": "Click",
           "clickMenuItem": "Click",
-          "columnFiltersChange": "Filter change",
+          "columnFiltersChange": "Filters change",
           "fail": "Fail",
           "focus": "Focus",
           "invalid": "Invalid",
@@ -1153,7 +1153,9 @@
           "select": "Select",
           "DragOrClickNoEventArea": "Drag or click no event area",
           "rowClick": "Row click",
-          "refresh": "Refresh"
+          "refresh": "Refresh",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Images",

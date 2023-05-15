@@ -1153,7 +1153,9 @@
           "select": "Valitse",
           "DragOrClickNoEventArea": "Vedä tai klikkaa ei tapahtuma-aluetta",
           "rowClick": "Rivin napsautus",
-          "refresh": "Päivitä"
+          "refresh": "Päivitä",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Kuvat",

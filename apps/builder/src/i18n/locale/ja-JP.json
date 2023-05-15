@@ -1153,7 +1153,9 @@
           "select": "選択",
           "DragOrClickNoEventArea": "イベントのないエリアをドラッグ",
           "rowClick": "行クリック",
-          "refresh": "更新"
+          "refresh": "更新",
+          "filtersChange": "行フィルターの変更",
+          "rowSelectChange": "行の選択変更"
         },
         "image_list": {
           "title": "イメージ",

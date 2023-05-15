@@ -1153,7 +1153,9 @@
           "select": "Selectare",
           "DragOrClickNoEventArea": "Trage sau fă clic pe zona de eveniment",
           "rowClick": "Clic pe rând",
-          "refresh": "Împrospătează"
+          "refresh": "Împrospătează",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Imagini",

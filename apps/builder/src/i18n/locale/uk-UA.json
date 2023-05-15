@@ -1153,7 +1153,9 @@
           "select": "Вибрати",
           "DragOrClickNoEventArea": "Перетягніть або натисніть кнопку відсутності ділянки подій",
           "rowClick": "Натискання ряд",
-          "refresh": "Оновити"
+          "refresh": "Оновити",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Малюнки",
