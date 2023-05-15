@@ -1531,7 +1531,8 @@
           "event_background": "배경",
           "event_text": "프레임",
           "draggable": "드래그 가능",
-          "resizable": "크기 조정 가능"
+          "resizable": "크기 조정 가능",
+          "custom_message_draggable": "Custom message when disabled dragging"
         },
         "table": {
           "page_index": "페이지 색인",
