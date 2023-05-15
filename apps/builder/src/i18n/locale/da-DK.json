@@ -1532,7 +1532,8 @@
           "event_text": "Tekst",
           "draggable": "Trækbar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Side indeks",
@@ -1707,7 +1708,9 @@
           "event_text": "Angiv tekstfarven på begivenhedskort",
           "couldnot_drag": "Hvis du ønsker at trække for at justere tidsintervallet, så fortsæt venligst til forhåndsvisningssiden for operationen.",
           "draggable": "Om det er muligt for brugere at opdatere begivenhedens tidsinterval ved at trække for at flytte begivenheden",
-          "resizable": "Om det er muligt for brugere at opdatere begivenhedens tidsinterval og ændre tidsrummet ved at trække grænsen til en begivenhed for at forlænge eller forkorte tidsintervallet"
+          "resizable": "Om det er muligt for brugere at opdatere begivenhedens tidsinterval og ændre tidsrummet ved at trække grænsen til en begivenhed for at forlænge eller forkorte tidsintervallet",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Indeks af den side, du ønsker at vælge.",
