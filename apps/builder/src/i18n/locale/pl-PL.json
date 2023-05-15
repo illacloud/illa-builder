@@ -1532,7 +1532,8 @@
           "event_text": "Tekst",
           "draggable": "Przeciągalny",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Indeks strony",
@@ -1707,7 +1708,9 @@
           "event_text": "Ustaw kolor tekstu karty wydarzenia",
           "couldnot_drag": "Jeśli chcesz przeciągnąć w celu dostosowania zakresu czasu, przejdź do strony podglądu dla operacji.",
           "draggable": "Czy zezwolić użytkownikom na aktualizację zakresu czasowego wydarzenia, przeciągając aby przenieść zdarzenie",
-          "resizable": "Czy zezwolić użytkownikom na aktualizację zakresu czasowego wydarzenia i zmianę przedziału czasowego, przesuwając granicę wydarzenia do wydłużenia lub skrócenia czasu"
+          "resizable": "Czy zezwolić użytkownikom na aktualizację zakresu czasowego wydarzenia i zmianę przedziału czasowego, przesuwając granicę wydarzenia do wydłużenia lub skrócenia czasu",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Indeks strony, którą chcesz wybrać.",
