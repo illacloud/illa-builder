@@ -135,7 +135,7 @@ export const getMappedValue = (
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
   mappedValuePrefix: string = "mappedValue",
-  defaultValue: string = "-",
+  defaultValue: unknown = "-",
 ) => {
   if (mappedValue != null && mappedValue !== "") {
     if (

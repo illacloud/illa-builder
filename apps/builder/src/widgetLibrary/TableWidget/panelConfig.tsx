@@ -167,11 +167,9 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
               {
                 id: `${baseWidgetName}-column-buttonGroupContent-disabled`,
                 labelName: i18n.t("editor.inspect.setter_label.disabled"),
+                placeholder: "{{false}}",
                 attrName: "disabled",
-                setterType: "DYNAMIC_SWITCH_SETTER",
-                expectedType: VALIDATION_TYPES.BOOLEAN,
-                openDynamic: true,
-                useCustomLayout: true,
+                setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
               },
               {
                 id: `${baseWidgetName}-column-buttonGroupContent-colorScheme`,
@@ -204,7 +202,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
                 attrName: "colorScheme",
               },
               {
-                ...generatorEventHandlerConfig(
+                ...generatorTableEventHandlerConfig(
                   baseWidgetName,
                   TABLE_BUTTON_EVENT_HANDLER_CONFIG.events,
                 ),
@@ -212,11 +210,9 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
               {
                 id: `${baseWidgetName}-column-buttonGroupContent-disabled`,
                 labelName: i18n.t("editor.inspect.setter_label.disabled"),
+                placeholder: "{{false}}",
                 attrName: "disabled",
-                setterType: "DYNAMIC_SWITCH_SETTER",
-                expectedType: VALIDATION_TYPES.BOOLEAN,
-                openDynamic: true,
-                useCustomLayout: true,
+                setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
               },
             ],
           },

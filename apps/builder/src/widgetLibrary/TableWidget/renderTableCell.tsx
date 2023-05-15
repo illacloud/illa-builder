@@ -27,7 +27,10 @@ import {
   applyTableCellBackgroundStyle,
   overFlowStyle,
 } from "@/widgetLibrary/TableWidget/style"
-import { getConfigFromColumnShapeData } from "@/widgetLibrary/TableWidget/utils"
+import {
+  getConfigFromColumnShapeData,
+  getMappedValue,
+} from "@/widgetLibrary/TableWidget/utils"
 
 export const RenderTableStringCell: FC<{
   value?: string
@@ -179,10 +182,10 @@ export const RenderTableButtonGroup: FC<{
   handleOnClick?: (path: string, index?: number) => void
 }> = (props) => {
   const { cell, value, alignment, eventPath, handleOnClick } = props
+  const rowIndex = cell.row.index
 
   const handleOnClickButtonItem = (e: SyntheticEvent, index: number) => {
     cell.row.getIsSelected() && e.stopPropagation()
-    const rowIndex = cell.row.index
     const paths = [`${eventPath}`, "buttonGroupContent", `${index}`, "events"]
     handleOnClick?.(convertPathToString(paths), rowIndex)
   }
@@ -190,12 +193,21 @@ export const RenderTableButtonGroup: FC<{
   return value ? (
     <ButtonGroup css={applyTableButtonGroupStyle(alignment)} spacing="8px">
       {value.map((item, index) => {
-        const { cellValue, colorScheme, disabled, variant } = item
+        const { cellValue, colorScheme, disabled, variant, fromCurrentRow } =
+          item
+        const _disabled = getMappedValue(
+          rowIndex,
+          disabled,
+          fromCurrentRow,
+          "disabled",
+          false,
+        )
+
         return (
           <Button
             key={index}
             colorScheme={colorScheme}
-            disabled={disabled}
+            disabled={_disabled}
             variant={variant}
             onClick={(e) => handleOnClickButtonItem(e, index)}
           >
@@ -214,28 +226,34 @@ export const RenderTableIconGroup: FC<{
   value?: TableCellIconGroupItemProps[]
   alignment?: TableCellAlign
   eventPath: string
-  handleOnClick?: (path: string) => void
+  handleOnClick?: (path: string, index?: number) => void
 }> = (props) => {
   const { cell, value, alignment, eventPath, handleOnClick } = props
-
+  const rowIndex = cell.row.index
   const handleOnClickIconItem = (e: SyntheticEvent, index: number) => {
     cell.row.getIsSelected() && e.stopPropagation()
     const paths = [`${eventPath}`, "iconGroupContent", `${index}`, "events"]
-    handleOnClick?.(convertPathToString(paths))
+    handleOnClick?.(convertPathToString(paths), rowIndex)
   }
 
   return (
     <div css={applyAlignmentStyle(alignment)}>
       {value ? (
         value.map((item, index) => {
-          const { cellValue, colorScheme, disabled } = item
+          const { cellValue, colorScheme, disabled, fromCurrentRow } = item
           const Icon = getIcon(cellValue)
-
+          const _disabled = getMappedValue(
+            rowIndex,
+            disabled,
+            fromCurrentRow,
+            "disabled",
+            false,
+          )
           return Icon ? (
             <Icon
-              css={applyIconContainerStyle(colorScheme, disabled)}
+              css={applyIconContainerStyle(colorScheme, _disabled)}
               key={index}
-              onClick={(e) => !disabled && handleOnClickIconItem(e, index)}
+              onClick={(e) => !_disabled && handleOnClickIconItem(e, index)}
             />
           ) : (
             <span>{"-"}</span>
