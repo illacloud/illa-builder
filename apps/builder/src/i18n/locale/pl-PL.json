@@ -1566,7 +1566,11 @@
           "has_next_page": "Posiada następną stronę",
           "currency_code": "Kod waluty"
         },
-        "previous_cursor": "Poprzedni kursor"
+        "previous_cursor": "Poprzedni kursor",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "Tryb filtrowania. ORAZ lub OR.",
           "currency_code": "W okresie objętym dochodzeniem przeglądowym przywóz z ChRL wzrósł o 7 %."
         },
-        "previous_cursor": "Użyj danych akcji, aby ustawić poprzedni kursor. Na przykład,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Użyj danych akcji, aby ustawić poprzedni kursor. Na przykład,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Naprawione",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Ogranicz przesunięcie w oparciu o",
           "cursor_based": "Na podstawie kursora",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
