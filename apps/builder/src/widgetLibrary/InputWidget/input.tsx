@@ -1,5 +1,5 @@
 import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
-import { Input } from "@illa-design/react"
+import { Input, Password, Search } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
@@ -14,7 +14,8 @@ import { InputWidgetProps, WrappedInputProps } from "./interface"
 export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
   (props, ref) => {
     const {
-      displayName,
+      type = "input",
+      showVisibleButton = true,
       value,
       placeholder,
       disabled,
@@ -25,57 +26,86 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
       suffixText,
       showCharacterCount,
       colorScheme,
-      handleUpdateDsl,
       handleOnChange,
       handleOnFocus,
       handleOnBlur,
       allowClear,
       maxLength,
       minLength,
-      handleUpdateMultiExecutionResult,
-      getValidateMessage,
+      clearValue,
     } = props
 
     return (
-      <Input
-        w="100%"
-        inputRef={ref}
-        value={value}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        prefix={prefixIcon}
-        addBefore={prefixText}
-        suffix={suffixIcon}
-        addAfter={suffixText}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onChange={(value) => {
-          new Promise((resolve) => {
-            const message = getValidateMessage(value)
-            handleUpdateMultiExecutionResult([
-              {
-                displayName,
-                value: {
-                  value: value || "",
-                  validateMessage: message,
-                },
-              },
-            ])
-            resolve(true)
-          }).then(() => {
-            handleOnChange?.()
-          })
-        }}
-        showWordLimit={showCharacterCount}
-        colorScheme={colorScheme}
-        allowClear={allowClear}
-        onClear={() => {
-          handleUpdateDsl({ value: "" })
-        }}
-        maxLength={maxLength}
-        minLength={minLength}
-      />
+      <>
+        {type === "input" && (
+          <Input
+            w="100%"
+            inputRef={ref}
+            value={value}
+            placeholder={placeholder}
+            disabled={disabled}
+            readOnly={readOnly}
+            prefix={prefixIcon}
+            addBefore={prefixText}
+            suffix={suffixIcon}
+            addAfter={suffixText}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+            onChange={handleOnChange}
+            showWordLimit={showCharacterCount}
+            colorScheme={colorScheme}
+            allowClear={allowClear}
+            onClear={clearValue}
+            maxLength={maxLength}
+            minLength={minLength}
+          />
+        )}
+        {type === "password" && (
+          <Password
+            w="100%"
+            inputRef={ref}
+            value={value}
+            visibilityToggle={showVisibleButton}
+            placeholder={placeholder}
+            disabled={disabled}
+            readOnly={readOnly}
+            prefix={prefixIcon}
+            addBefore={prefixText}
+            addAfter={suffixText}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+            onChange={handleOnChange}
+            showWordLimit={showCharacterCount}
+            colorScheme={colorScheme}
+            allowClear={allowClear}
+            onClear={clearValue}
+            maxLength={maxLength}
+            minLength={minLength}
+          />
+        )}
+        {type === "search" && (
+          <Search
+            w="100%"
+            inputRef={ref}
+            value={value}
+            placeholder={placeholder}
+            disabled={disabled}
+            readOnly={readOnly}
+            prefix={prefixIcon}
+            addBefore={prefixText}
+            addAfter={suffixText}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+            onChange={handleOnChange}
+            showWordLimit={showCharacterCount}
+            colorScheme={colorScheme}
+            allowClear={allowClear}
+            onClear={clearValue}
+            maxLength={maxLength}
+            minLength={minLength}
+          />
+        )}
+      </>
     )
   },
 )
@@ -83,6 +113,7 @@ WrappedInput.displayName = "WrappedInput"
 
 export const InputWidget: FC<InputWidgetProps> = (props) => {
   const {
+    displayName,
     value,
     handleUpdateDsl,
     minLength,
@@ -106,6 +137,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     triggerEventHandler,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
+    handleUpdateMultiExecutionResult,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -180,9 +212,42 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     value,
   ])
 
-  const handleOnChange = useCallback(() => {
-    triggerEventHandler("change")
-  }, [triggerEventHandler])
+  const handleOnChange = useCallback(
+    (value: string) => {
+      new Promise((resolve) => {
+        const message = getValidateMessage(value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              value: value || "",
+              validateMessage: message,
+            },
+          },
+        ])
+        resolve(true)
+      }).then(() => {
+        triggerEventHandler("change")
+      })
+    },
+    [
+      displayName,
+      getValidateMessage,
+      handleUpdateMultiExecutionResult,
+      triggerEventHandler,
+    ],
+  )
+
+  const clearValue = useCallback(() => {
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          value: "",
+        },
+      },
+    ])
+  }, [displayName, handleUpdateMultiExecutionResult])
 
   const handleOnFocus = useCallback(() => {
     triggerEventHandler("focus")
@@ -215,6 +280,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
             handleOnChange={handleOnChange}
             handleOnFocus={handleOnFocus}
             handleOnBlur={handleOnBlur}
+            clearValue={clearValue}
           />
         </div>
       </TooltipWrapper>
