@@ -1531,7 +1531,8 @@
           "event_background": "背景",
           "event_text": "文本",
           "draggable": "是否可拖拽",
-          "resizable": "是否可调整大小"
+          "resizable": "是否可调整大小",
+          "custom_message_draggable": "Custom message when disabled dragging"
         },
         "table": {
           "page_index": "页面索引",
