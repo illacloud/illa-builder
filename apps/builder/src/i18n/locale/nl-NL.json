@@ -1566,7 +1566,11 @@
           "has_next_page": "Heeft een volgende pagina",
           "currency_code": "Valuta code"
         },
-        "previous_cursor": "Vorige cursor"
+        "previous_cursor": "Vorige cursor",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "De filtermodus. AND of OOR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Gebruik de actie gegevens om de vorige cursor in te stellen. Bijvoorbeeld,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Gebruik de actie gegevens om de vorige cursor in te stellen. Bijvoorbeeld,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Opgelost",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Limiet offset gebaseerd",
           "cursor_based": "Cursor gebaseerd",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
