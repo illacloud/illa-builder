@@ -1,5 +1,5 @@
 import copy from "copy-to-clipboard"
-import { get } from "lodash"
+import { get, isNumber } from "lodash"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
@@ -34,7 +34,7 @@ export const transformEvents = (
   const { actionType } = event
   if (actionType === "openUrl") {
     const { newTab, url, enabled } = event
-    const params = { url, newTab }
+    const params = { url: `${url}`, newTab }
     return {
       script: () => {
         goToURL(params)
@@ -46,9 +46,9 @@ export const transformEvents = (
     const { title, description, notificationType, duration, enabled } = event
     const params = {
       type: notificationType,
-      title,
-      description,
-      duration,
+      title: `${title}`,
+      description: `${description}`,
+      duration: isNumber(duration) ? duration : undefined,
     }
     return {
       script: () => {
@@ -240,7 +240,7 @@ export const transformEvents = (
         if ([undefined, null, ""].includes(fileData)) {
           return
         }
-        downloadFileFromEventHandler(fileType, fileName, fileData)
+        downloadFileFromEventHandler(fileType, `${fileName}`, fileData)
       },
     }
   }

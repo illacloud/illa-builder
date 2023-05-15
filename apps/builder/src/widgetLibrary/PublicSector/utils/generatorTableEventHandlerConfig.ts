@@ -559,7 +559,6 @@ export const generatorTableEventHandlerConfig = (
           "editor.inspect.setter_placeholder.file_download.file_data",
         ),
         setterType: "TABLE_MAPPED_VALUE_INPUT_SETTER",
-        // expectedType: VALIDATION_TYPES.STRING,
         attrName: "fileData",
         bindAttrName: ["actionType"],
         shown: (type) => type === "downloadFile",
