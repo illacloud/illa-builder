@@ -1532,7 +1532,8 @@
           "event_text": "Texto",
           "draggable": "Arrastrable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Índice de página",
@@ -1707,7 +1708,9 @@
           "event_text": "Establecer el color del texto de la tarjeta de evento",
           "couldnot_drag": "Si desea arrastrar para ajustar el intervalo de tiempo, por favor proceda a la página de vista previa de la operación.",
           "draggable": "Si permitir a los usuarios actualizar el rango de tiempo del evento arrastrando para mover el evento",
-          "resizable": "Si permite a los usuarios actualizar el intervalo de tiempo del evento y cambiar el intervalo de tiempo arrastrando la frontera de un evento para alargar o acortar el intervalo de tiempo"
+          "resizable": "Si permite a los usuarios actualizar el intervalo de tiempo del evento y cambiar el intervalo de tiempo arrastrando la frontera de un evento para alargar o acortar el intervalo de tiempo",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Índice de la página que desea seleccionar.",
