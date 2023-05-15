@@ -1532,7 +1532,8 @@
           "event_text": "文本",
           "draggable": "是否可拖拽",
           "resizable": "是否可调整大小",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "页面索引",
@@ -1707,7 +1708,9 @@
           "event_text": "设置事件卡片的文字颜色",
           "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。",
           "draggable": "是否允许用户通过拖动移动事件来更新事件时间范围",
-          "resizable": "是否允许用户通过拖动事件的边框来延长或缩短时间跨度来更新事件时间范围和更改时间跨度"
+          "resizable": "是否允许用户通过拖动事件的边框来延长或缩短时间跨度来更新事件时间范围和更改时间跨度",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "您要选择的页面的索引",
