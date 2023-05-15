@@ -1532,7 +1532,8 @@
           "event_text": "Текст",
           "draggable": "Перетаскивание",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Индекс страницы",
@@ -1707,7 +1708,9 @@
           "event_text": "Установить цвет текста карты событий",
           "couldnot_drag": "Если вы хотите перетащить интервал времени, перейдите на страницу предварительного просмотра для этой операции.",
           "draggable": "Разрешить ли пользователям обновлять интервал событий, перетаскивая для перемещения события",
-          "resizable": "Разрешить ли пользователям обновлять интервал времени события и изменять промежуток времени путем перетаскивания границы события для продления или сокращения периода времени"
+          "resizable": "Разрешить ли пользователям обновлять интервал времени события и изменять промежуток времени путем перетаскивания границы события для продления или сокращения периода времени",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Индекс выбранной страницы.",
