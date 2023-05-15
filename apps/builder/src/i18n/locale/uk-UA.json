@@ -1531,7 +1531,8 @@
           "event_background": "Фон",
           "event_text": "Текст",
           "draggable": "Перетягуємий",
-          "resizable": "Resizable"
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging"
         },
         "table": {
           "page_index": "Індекс сторінки",
