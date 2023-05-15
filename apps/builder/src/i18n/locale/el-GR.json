@@ -1153,7 +1153,9 @@
           "select": "Επιλογή",
           "DragOrClickNoEventArea": "Σύρετε ή μην κάνετε κλικ στην περιοχή γεγονότων",
           "rowClick": "Κλικ γραμμής",
-          "refresh": "Ανανέωση"
+          "refresh": "Ανανέωση",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Εικόνες",
