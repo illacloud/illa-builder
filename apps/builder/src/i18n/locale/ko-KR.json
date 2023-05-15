@@ -1153,7 +1153,9 @@
           "select": "선택",
           "DragOrClickNoEventArea": "이벤트가 없는 영역을 드래그 또는 클릭",
           "rowClick": "행 클릭",
-          "refresh": "Refresh"
+          "refresh": "새로 고치다",
+          "filtersChange": "행 필터 변경",
+          "rowSelectChange": "행 선택 변경"
         },
         "image_list": {
           "title": "이미지",
