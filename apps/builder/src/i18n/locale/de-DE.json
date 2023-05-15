@@ -275,9 +275,9 @@
             "ca_certificate": "Wir füllen standardmäßig das CA-Zertifikat aus, das für TLS-Verbindungen zur Serverless-Stufe verwendet wird. Wenn Sie TLS Verbindungen zu dedizierter Stufe benötigen, <0>Klicken Sie hier</0> um die Konfigurationsmethode anzuzeigen."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Erstellen Sie ein Neon-Projekt und holen Sie die Zeichenkette in <0>Projektübersicht</0>.",
+            "failed": "Fehler beim Analysieren des Strings. Bitte überprüfen Sie Ihren String oder konfigurieren Sie ihn manuell.",
+            "no_password": "Die Zeichenkette hat kein Passwort. Bitte zeigen Sie das Passwort im Neon Dashboard vor dem Kopieren."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Verbindungszeichenkette"
           }
         },
         "default": {
@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Status",
             "headers": "Kopfzeilen",
-            "response": "Antwort"
+            "response": "Antwort",
+            "rawdata": "Rohdaten"
           }
         },
         "placeholder": {
@@ -1150,7 +1151,12 @@
           "markerSelected": "markiert ausgewählt",
           "markerCreated": "markerErstellt",
           "select": "Auswählen",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Verschieben oder klicken Sie auf keinen Veranstaltungsbereich",
+          "rowClick": "Zeilenklick",
+          "refresh": "Aktualisieren",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell"
         },
         "image_list": {
           "title": "Bilder",
@@ -1172,10 +1178,10 @@
         "oncellselect": "onCellSelect",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "filteränderung",
+        "sortChange": "sortieränderung",
+        "pageChange": "seitenänderung",
+        "refresh": "aktualisieren"
       },
       "setter_default_value": {
         "fill": "Füllen",
@@ -1527,8 +1533,10 @@
           "calendar_text": "Text",
           "event_background": "Hintergrund",
           "event_text": "Text",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "Ziehen möglich",
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Seitenindex",
@@ -1539,30 +1547,32 @@
           "show_thousands_separ": "Tausende Trennzeichen anzeigen",
           "tag_label": "Tag-Label",
           "tag_color": "Tag-Farbe",
-          "open_in_new_tab": "Open in new tab",
-          "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "open_in_new_tab": "In neuem Tab öffnen",
+          "variant": "Variante",
+          "icon": "Symbol",
+          "color": "Farbe",
+          "sort_by_mapped_value": "Nach zugeordnetem Wert sortieren",
+          "background": "Hintergrund",
+          "alignment": "Ausrichtung",
+          "column_width": "Spaltenbreite",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
-          "download_row_data": "Download Row data",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "disable_user_selecti": "Benutzerauswahl deaktivieren",
+          "default_selected_row": "Standard ausgewählte Zeile",
+          "refresh": "Aktualisieren",
+          "download_row_data": "Rohdaten laden",
+          "column_setting": "Spalteneinstellungen",
+          "cell_overflow": "Zellenüberlauf",
+          "enable_server_side_p": "Serverseitige Seiteneinstellung aktivieren",
+          "pagination_type": "Paginationstyp",
+          "total_row_count": "Zeilenanzahl gesamt",
+          "next_cursor": "Nächster Cursor",
+          "has_next_page": "Hat nächste Seite",
+          "currency_code": "Währungscode"
         },
-        "switch_group": {
-          "option_label_alignment": "Position of the option label"
+        "previous_cursor": "Vorheriger Cursor",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
         }
       },
       "setter_tooltip": {
@@ -1704,50 +1714,45 @@
           "event_background": "Hintergrund der Event-Karte festlegen",
           "event_text": "Textfarbe der Event-Karte festlegen",
           "couldnot_drag": "Wenn Sie ziehen möchten, um den Zeitbereich anzupassen, gehen Sie bitte zur Vorschauseite für den Vorgang.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Gibt an, ob Benutzer den Zeitbereich des Ereignisses durch Ziehen zum Verschieben des Ereignisses aktualisieren können",
+          "resizable": "Ob es Benutzern erlaubt den Zeitbereich des Ereignisses zu aktualisieren und die Zeitspanne durch Ziehen des Rahmens eines Ereignisses zu verlängern oder zu verkürzen",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
-          "download_row_data": "Whether to show the download raw data icon.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "page_index": "Index der Seite, die Sie auswählen möchten.",
+          "index": "Index der Zeile, die Sie auswählen möchten. Der Index sollte ein Array sein, das verwendet werden kann, um mehrere Zeilen anzugeben.",
+          "scroll_to_the_select": "Gibt an, ob in die Zeile scrollen soll.",
+          "show_thousands_separ": "Gibt an, ob das Tausender-Trennzeichen angezeigt werden soll",
+          "tag_label": "Legen Sie das Label der Tags fest. Ein Array wird durch mehrere Tags getrennt.",
+          "tag_color": "Farbe der Tags festlegen. Verwenden Sie {{ Schreiben Sie eine bedingte Anweisung, um die Farbe zu bestimmen, die von jedem Tag unter verschiedenen Bedingungen angezeigt wird.",
+          "variant": "Variante des Buttons",
+          "icon": "Das in der Tabelle angezeigte Symbol",
+          "color": "Farbe festlegen.",
+          "sort_by_mapped_value": "Ob nach dem zugeordneten Wert sortiert werden soll. Andernfalls sortieren wir nach den Originaldaten.",
+          "background": "Legen Sie den Hintergrund der Spalte fest. Verwenden Sie {{ Schreiben Sie eine bedingte Anweisung, um die Farbe zu bestimmen, die von jeder Zelle unter verschiedenen Bedingungen angezeigt wird.",
+          "alignment": "Legen Sie die Ausrichtung der Spalte fest.",
+          "column_width": "Legen Sie die Spaltenbreite nach numerischen Werten fest. Sie können auch die Spaltenbreite anpassen, indem Sie sie in den Rahmen ziehen. Nach der Anpassung ändert sich auch der Wert dieses Konfigurationselements entsprechend",
+          "width": "Legen Sie die Anpassungsmethode der Spaltenbreite fest.",
+          "disable_user_selecti": "Gibt an, ob die Benutzerauswahl deaktiviert werden soll. Wenn deaktiviert, können Sie Datensätze durch die Steuerung der Tabellenkomponente durch Ereignis-Handler auswählen.",
+          "default_selected_row": "Standardmäßig die Zeile ausgewählt.  ",
+          "refresh": "Gibt an, ob das Aktualisierungssymbol angezeigt werden soll. ",
+          "download_row_data": "Gibt an, ob das Herunterladen der Rohdaten Symbol angezeigt werden soll.",
+          "column_setting": "Gibt an, ob die Spalteneinstellung angezeigt werden soll. Spalteneinstellung erlaubt es den Benutzern, die anzuzeigenden Spalten und die Spaltensortierung festzulegen. Diese Einstellung ändert die Tabellendaten nicht.",
+          "cell_overflow": "Wie wird angezeigt, wenn Zellenüberlauf ist. ",
+          "enable_server_side_p": "Gibt an, ob Serverseiteneinstellung aktiviert werden soll",
+          "pagination_type": "Der Paginationstyp. ",
+          "total_row_count": "Die Anzahl der Zeilen, die zur Zählung der Seitenzahl verwendet werden.",
+          "next_cursor": "Ein Bezeichner zum Auffinden des nächsten Startpunkts einer Datenmenge, um Daten in Batches zu paginieren und abzurufen",
+          "has_next_page": "Eine boolesche Angabe, um anzugeben, ob eine andere Datenseite zur Verfügung steht. Es kann uns helfen, das Abrufen von Daten in paginierten Abfragen besser zu steuern und die Abfrageleistung zu optimieren",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "Der Filtermodus. AND oder OR.",
           "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+        "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
         }
       },
       "setter_option": {
@@ -1811,12 +1816,17 @@
           "button": "Button",
           "icon": "Symbol",
           "solid": "Solid",
-          "outline": "Outline",
+          "outline": "Umriss",
           "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "limited": "Begrenzt",
+          "limit_offset_based": "Limit-Offset basierend",
+          "cursor_based": "Cursor-basiert",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
@@ -1842,10 +1852,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
+          "currency_code": "Der Währungscode definiert in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2012,7 +2019,8 @@
         "select_page": "Seite auswählen",
         "select_row": "Zeile auswählen",
         "clear_selection": "Auswahl löschen",
-        "set_filters": "Filter setzen"
+        "set_filters": "Filter setzen",
+        "onFreeTimeDragOrClick": "Klicke auf Freizeit"
       }
     },
     "tutorial": {
@@ -2460,9 +2468,6 @@
         "event_calendar": "Veranstaltungskalender"
       },
       "name_duplicated": "Diese Ressourcen-ID kollidiert in diesen Ereignissen, bitte verwenden Sie den gleichen Namen oder andere ID"
-    },
-    "switch_group": {
-      "switch_group": "Switch group"
     }
   },
   "page": {
@@ -2801,6 +2806,11 @@
         "collapse": {
           "collapsible_list": "Zusammenklappbare Liste"
         }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "Zeilenauswahl Änderung"
+        }
       }
     }
   },
@@ -2862,5 +2872,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut."
 }

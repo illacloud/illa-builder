@@ -148,7 +148,7 @@
             "google_sheets": "Φύλλα Google"
           },
           "neon": {
-            "neon": "Neon"
+            "neon": "Νέον"
           }
         },
         "validate": {
@@ -275,9 +275,9 @@
             "ca_certificate": "Συμπληρώνουμε το Πιστοποιητικό CA που χρησιμοποιείται για συνδέσεις TLS σε Serverless Tier από προεπιλογή. Αν χρειάζεστε TLS Συνδέσεις σε Dedicated Tier, <0>Κάντε κλικ εδώ</0> για να δείτε τη μέθοδο διαμόρφωσης."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Δημιουργήστε ένα έργο Neon και αποκτήστε τη συμβολοσειρά σε <0>ταμπλό έργου</0>.",
+            "failed": "Απέτυχε η ανάλυση της συμβολοσειράς. Παρακαλώ ελέγξτε τη συμβολοσειρά ή ρυθμίστε χειροκίνητα.",
+            "no_password": "Η συμβολοσειρά δεν έχει κωδικό πρόσβασης. Παρακαλώ εμφανίστε τον κωδικό πρόσβασης στον πίνακα ελέγχου Neon πριν την αντιγραφή."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Συμβολοσειρά σύνδεσης"
           }
         },
         "default": {
@@ -761,7 +761,8 @@
           "restapi": {
             "status": "Κατάσταση",
             "headers": "Κεφαλίδες",
-            "response": "Απάντηση"
+            "response": "Απάντηση",
+            "rawdata": "Ακατέργαστα δεδομένα"
           }
         },
         "placeholder": {
@@ -1150,7 +1151,12 @@
           "markerSelected": "markerSelected",
           "markerCreated": "markerΔημιουργήθηκε",
           "select": "Επιλογή",
-          "DragOrClickNoEventArea": "Drag or click no event area"
+          "DragOrClickNoEventArea": "Σύρετε ή μην κάνετε κλικ στην περιοχή γεγονότων",
+          "rowClick": "Κλικ γραμμής",
+          "refresh": "Ανανέωση",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1170,12 +1176,12 @@
           "no_title": "Χωρίς τίτλο"
         },
         "oncellselect": "onCellSelect",
-        "onRowSelectChange": "onRowSelectChange",
+        "onRowSelectChange": "onRowSelectΑλλαγή",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "φίλτροΑλλαγή",
+        "sortChange": "ΤαξινόμησηΑλλαγή",
+        "pageChange": "σελίδαΑλλαγή",
+        "refresh": "ανανέωση"
       },
       "setter_default_value": {
         "fill": "Γέμισμα",
@@ -1527,8 +1533,10 @@
           "calendar_text": "Κείμενο",
           "event_background": "Φόντο",
           "event_text": "Κείμενο",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "Μετακινούμενο",
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Ευρετήριο σελίδας",
@@ -1539,30 +1547,32 @@
           "show_thousands_separ": "Εμφάνιση διαχωριστικού χιλιάδων",
           "tag_label": "Ετικέτα ετικέτας",
           "tag_color": "Χρώμα ετικέτας",
-          "open_in_new_tab": "Open in new tab",
-          "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "open_in_new_tab": "Άνοιγμα σε νέα καρτέλα",
+          "variant": "Παραλλαγή",
+          "icon": "Εικονίδιο",
+          "color": "Χρώμα",
+          "sort_by_mapped_value": "Ταξινόμηση κατά αντιστοιχισμένη τιμή",
+          "background": "Φόντο",
+          "alignment": "Ευθυγράμμιση",
+          "column_width": "Πλάτος στήλης",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
-          "download_row_data": "Download Row data",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "disable_user_selecti": "Απενεργοποίηση επιλογής χρήστη",
+          "default_selected_row": "Προεπιλεγμένη επιλεγμένη γραμμή",
+          "refresh": "Ανανέωση",
+          "download_row_data": "Λήψη ακατέργαστων δεδομένων",
+          "column_setting": "Ρύθμιση στήλης",
+          "cell_overflow": "Υπερχείλιση κυψέλης",
+          "enable_server_side_p": "Ενεργοποίηση σελιδοποίησης διακομιστή",
+          "pagination_type": "Τύπος σελιδοποίησης",
+          "total_row_count": "Συνολικός αριθμός σειρών",
+          "next_cursor": "Επόμενος δρομέας",
+          "has_next_page": "Έχει επόμενη σελίδα",
+          "currency_code": "Κωδικός νομίσματος"
         },
-        "switch_group": {
-          "option_label_alignment": "Position of the option label"
+        "previous_cursor": "Προηγούμενος δρομέας",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
         }
       },
       "setter_tooltip": {
@@ -1704,50 +1714,45 @@
           "event_background": "Ορίστε το φόντο της κάρτας συμβάντων",
           "event_text": "Ορίστε το χρώμα κειμένου της κάρτας συμβάντων",
           "couldnot_drag": "Αν θέλετε να σύρετε για να προσαρμόσετε το χρονικό εύρος, παρακαλούμε προχωρήστε στη σελίδα προεπισκόπησης για τη λειτουργία.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Αν επιτρέπεται στους χρήστες να ενημερώσουν το χρονικό εύρος της εκδήλωσης σύροντας για τη μετακίνηση του συμβάντος",
+          "resizable": "Αν θα επιτρέπεται στους χρήστες η ενημέρωση του χρονικού εύρους συμβάντων και η αλλαγή του χρονικού εύρους σύροντας το όριο ενός γεγονότος για να επιμηκύνει ή να συντομεύσει το χρονικό διάστημα",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
-          "download_row_data": "Whether to show the download raw data icon.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "page_index": "Ευρετήριο της σελίδας που θέλετε να επιλέξετε.",
+          "index": "Ευρετήριο γραμμής που θέλετε να επιλέξετε. Ο δείκτης θα πρέπει να είναι ένας πίνακας που μπορεί να χρησιμοποιηθεί για τον καθορισμό πολλαπλών γραμμών.",
+          "scroll_to_the_select": "Αν θα μετακινηθείτε στη γραμμή.",
+          "show_thousands_separ": "Αν θα εμφανίζεται το διαχωριστικό χιλιάδων",
+          "tag_label": "Ορίστε την ετικέτα των ετικετών. Ένας πίνακας θα διαχωριστεί σε πολλαπλές ετικέτες.",
+          "tag_color": "Ρυθμίστε το χρώμα των ετικετών. Χρησιμοποιήστε {mp a conditional statement για να ορίσετε το χρώμα που εμφανίζεται από κάθε ετικέτα κάτω από διαφορετικές συνθήκες.",
+          "variant": "Παραλλαγή του κουμπιού",
+          "icon": "Το εικονίδιο που εμφανίζεται στον πίνακα",
+          "color": "Ορίστε το χρώμα.",
+          "sort_by_mapped_value": "Αν θέλετε να ταξινομήσετε με χαρτογραφημένη τιμή. Αν όχι, θα ταξινομήσουμε με βάση τα αρχικά δεδομένα.",
+          "background": "Ρυθμίστε το φόντο της στήλης. Χρησιμοποιήστε {mp a conditional statement για να ορίσετε το χρώμα που εμφανίζεται από κάθε κελί κάτω από διαφορετικές συνθήκες.",
+          "alignment": "Ορίστε την ευθυγράμμιση της στήλης.",
+          "column_width": "Ορίστε το πλάτος της στήλης με αριθμητική τιμή. Μπορείτε επίσης να ρυθμίσετε το πλάτος της στήλης σύροντας στο πλαίσιο. Μετά την προσαρμογή, η τιμή αυτού του αντικειμένου διαμόρφωσης θα αλλάξει επίσης αναλόγως",
+          "width": "Ορίστε τη μέθοδο προσαρμογής του πλάτους της στήλης.",
+          "disable_user_selecti": "Αν θα απενεργοποιήσετε την επιλογή χρήστη. Αν είναι απενεργοποιημένη, μπορείτε να επιλέξετε γραμμές με τον έλεγχο του στοιχείου του πίνακα από τον χειριστή γεγονότων.",
+          "default_selected_row": "Η γραμμή που επιλέγεται από προεπιλογή.  ",
+          "refresh": "Αν θα εμφανίζεται το εικονίδιο ανανέωσης. ",
+          "download_row_data": "Αν θα εμφανίζεται το εικονίδιο μεταφόρτωσης ακατέργαστου δεδομένων.",
+          "column_setting": "Αν θα εμφανίζεται η ρύθμιση στήλης. Η ρύθμιση στήλης θα επιτρέπει στους χρήστες να ορίζουν τις στήλες που θα εμφανίζονται και το είδος στήλης. Αυτή η ρύθμιση δεν αλλάζει τα δεδομένα του πίνακα.",
+          "cell_overflow": "Πώς να εμφανίσετε όταν το κελί υπερχείλιση. ",
+          "enable_server_side_p": "Αν θα ενεργοποιηθεί η σελιδοποίηση του διακομιστή",
+          "pagination_type": "Τύπος σελιδοποίησης. ",
+          "total_row_count": "Ο αριθμός των γραμμών που χρησιμοποιούνται για την καταμέτρηση του αριθμού σελίδας.",
+          "next_cursor": "Ένα αναγνωριστικό που χρησιμοποιείται για τον εντοπισμό του επόμενου σημείου εκκίνησης ενός συνόλου δεδομένων, προκειμένου να σελιδοποιηθούν και να ανακτηθούν δεδομένα σε παρτίδες",
+          "has_next_page": "Μια δυαδική που χρησιμοποιείται για να δείξει αν υπάρχει μια άλλη σελίδα των διαθέσιμων δεδομένων. Μπορεί να μας βοηθήσει να ελέγξουμε καλύτερα την ανάκτηση δεδομένων σε σελιδοποιημένα ερωτήματα και να βελτιστοποιήσουμε την απόδοση του ερωτήματος",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "Η λειτουργία φίλτρου. ΚΑΙ ή OR.",
           "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+        "previous_cursor": "Χρησιμοποιήστε τα δεδομένα ενέργειας για να ορίσετε τον προηγούμενο δρομέα. Για παράδειγμα,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
         }
       },
       "setter_option": {
@@ -1811,12 +1816,17 @@
           "button": "Κουμπί",
           "icon": "Εικονίδιο",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "outline": "Περίγραμμα",
+          "auto": "Αυτόματο",
+          "limited": "Περιορισμένη",
+          "limit_offset_based": "Μετατόπιση ορίου",
+          "cursor_based": "Δρομέας με βάση",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
@@ -1842,10 +1852,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
+          "currency_code": "Ο κωδικός νομίσματος ορίζεται στο [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2012,7 +2019,8 @@
         "select_page": "Επιλέξτε σελίδα",
         "select_row": "Επιλογή γραμμής",
         "clear_selection": "Καθαρισμός επιλογής",
-        "set_filters": "Ορισμός φίλτρων"
+        "set_filters": "Ορισμός φίλτρων",
+        "onFreeTimeDragOrClick": "Κάντε κλικ στον ελεύθερο χρόνο"
       }
     },
     "tutorial": {
@@ -2460,9 +2468,6 @@
         "event_calendar": "Ημερολόγιο εκδηλώσεων"
       },
       "name_duplicated": "Αυτό το ID πόρου συγκρούεται σε αυτά τα γεγονότα, παρακαλώ χρησιμοποιήστε το ίδιο όνομα ή διαφορετικό id"
-    },
-    "switch_group": {
-      "switch_group": "Switch group"
     }
   },
   "page": {
@@ -2801,6 +2806,11 @@
         "collapse": {
           "collapsible_list": "Πτυσσόμενη λίστα"
         }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "Αλλαγή Επιλογής Γραμμής"
+        }
       }
     }
   },
@@ -2840,27 +2850,27 @@
   "oauth_redirect_title": "Ανακατεύθυνση",
   "oauth_redirect_description": "Ανακατεύθυνση σε <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Αγγλικά",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "Αφρικάανς",
+    "cs-CZ": "c´estina",
+    "de-DE": "Γερμανικά",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "φράγκο",
+    "it-IT": "ιταλιάνο",
+    "nl-NL": "Ολλανδικά",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugueśs",
+    "ro-RO": "ρομάνα;",
+    "ru-RU": "«Ομμ»",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα."
 }

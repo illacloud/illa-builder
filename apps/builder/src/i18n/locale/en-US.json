@@ -163,7 +163,7 @@
             "host": "Host",
             "dbid": "Database ID",
             "projectid": "Project ID",
-            "secret": "API Key",
+            "secret": "Api key",
             "collectionid": "Collection ID",
             "documentid": "Document ID",
             "data": "Data",
@@ -759,9 +759,10 @@
         },
         "result": {
           "restapi": {
-            "status": "Status",
+            "status": "Status code",
             "headers": "Headers",
-            "response": "Response"
+            "response": "Data",
+            "rawdata": "Raw data"
           }
         },
         "placeholder": {
@@ -975,7 +976,7 @@
           },
           "tips": {
             "hf_endpoint_token": "Get an Organizations API Tokens <0>in your Hugging Face profile settings</0>.",
-            "hf_endpoint": "learn more about <0>Hugging Face Endpoint</0>"
+            "hf_endpoint": "learn more about <0>Endpoint</0>"
           },
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -999,7 +1000,7 @@
           "api_request": "API Request",
           "error": "Query ran fail",
           "json": "JSON",
-          "response": "Response",
+          "response": "Data",
           "success": "Success",
           "table": "Table"
         }
@@ -1131,7 +1132,7 @@
           "change": "Change",
           "click": "Click",
           "clickMenuItem": "Click",
-          "columnFiltersChange": "Filter change",
+          "columnFiltersChange": "Filters change",
           "fail": "Fail",
           "focus": "Focus",
           "invalid": "Invalid",
@@ -1150,7 +1151,12 @@
           "markerSelected": "markerSelected",
           "markerCreated": "markerCreated",
           "select": "Select",
-          "DragOrClickNoEventArea": "Drag no event area"
+          "DragOrClickNoEventArea": "Drag or click no event area",
+          "rowClick": "Row click",
+          "refresh": "Refresh",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell"
         },
         "image_list": {
           "title": "Images",
@@ -1528,7 +1534,9 @@
           "event_background": "Background",
           "event_text": "Text",
           "draggable": "Draggable",
-          "resizable": "Resizable"
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Page index",
@@ -1552,7 +1560,7 @@
           "default_selected_row": "Default selected row",
           "refresh": "Refresh",
           "download_row_data": "Download raw data",
-          "column_setting": "Column settings",
+          "column_setting": "Column setting",
           "cell_overflow": "Cell overflow",
           "enable_server_side_p": "Enable server side pagination",
           "pagination_type": "Pagination type",
@@ -1561,8 +1569,10 @@
           "has_next_page": "Has next page",
           "currency_code": "Currency code"
         },
-        "switch_group": {
-          "option_label_alignment": "Position of the option label"
+        "previous_cursor": "Previous cursor",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
         }
       },
       "setter_tooltip": {
@@ -1705,7 +1715,9 @@
           "event_text": "Set the text color of event card",
           "couldnot_drag": "If you wish to drag to adjust the time range, please proceed to the preview page for the operation.",
           "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Index of the page you wish to select.",
@@ -1716,7 +1728,7 @@
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
           "variant": "Variant of the button",
           "icon": "The icon displayed in the table",
-          "color": "Set the color",
+          "color": "Set the color.",
           "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
           "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
           "alignment": "Set the alignment of the column.",
@@ -1735,19 +1747,12 @@
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "USD"
         },
-        "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
         }
       },
       "setter_option": {
@@ -1817,6 +1822,11 @@
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
           "graphql_relay_cursor": "GraphQL Relay cursor"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
@@ -1842,10 +1852,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "USD"
-        },
-        "switch_group": {
-          "default_value": "{{[\"value1\",\"value2\"]}}"
+          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2012,7 +2019,8 @@
         "select_page": "Select page",
         "select_row": "Select row",
         "clear_selection": "Clear selection",
-        "set_filters": "Set filters"
+        "set_filters": "Set filters",
+        "onFreeTimeDragOrClick": "Click free time"
       }
     },
     "tutorial": {
@@ -2076,7 +2084,7 @@
           "congratulations_title": "Congratulations 🎉",
           "congratulations_description": "You just built your first app. If you have any questions during use, you can contact us via <0>Discord</0>. ",
           "congratulations_button": "Done",
-          "event_handler_description_all": "1. Add an event handler\n2. Click the event handler\n3. Change the action to trigger action\n4. Change the Action to postgresql1"
+          "event_handler_description_all": "1. Add an event handler\r\n2. Click the event handler\r\n3. Change the action to trigger action\r\n4. Change the Query to postgresql1"
         }
       }
     },
@@ -2460,9 +2468,6 @@
         "event_calendar": "Event calendar"
       },
       "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
-    },
-    "switch_group": {
-      "switch_group": "Switch group"
     }
   },
   "page": {
@@ -2800,6 +2805,11 @@
       "setter_option": {
         "collapse": {
           "collapsible_list": "Collapsible list"
+        }
+      },
+      "setter_content": {
+        "widget_action_type_name": {
+          "rowSelectChange": "Row Select Change"
         }
       }
     }

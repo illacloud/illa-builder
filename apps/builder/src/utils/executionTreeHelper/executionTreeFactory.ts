@@ -3,7 +3,6 @@ import { cloneDeep, flatten, get, set, toPath, unset } from "lodash"
 import toposort from "toposort"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DependenciesState,
@@ -29,6 +28,10 @@ import {
 } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { validationFactory } from "@/utils/validationFactory"
+import {
+  IExecutionActions,
+  runActionWithExecutionResult,
+} from "../action/runAction"
 
 const message = createMessage()
 export const IGNORE_ACTION_RUN_ATTR_NAME = [
@@ -662,38 +665,19 @@ export class ExecutionTreeFactory {
               widgetOrAction.triggerMode === "automate" &&
               !reduxActionType?.isUpdateActionReduxAction
             ) {
-              const {
-                $actionId,
-                $resourceId,
-                actionType,
-                content,
-                displayName,
-                transformer,
-                triggerMode,
-                config,
-              } = widgetOrAction
-              const action = {
-                config: config,
-                actionId: $actionId,
-                resourceId: $resourceId,
-                actionType,
-                content,
-                displayName,
-                transformer,
-                triggerMode,
-              }
-              const runningActionID = this.runningActionsMap.get(
-                action.actionId,
-              )
+              const { $actionId } = widgetOrAction
+
+              const runningActionID = this.runningActionsMap.get($actionId)
               if (runningActionID) {
                 window.clearTimeout(runningActionID)
               }
 
               const deleteID = window.setTimeout(() => {
-                runAction(action, () => {}, true)
-                window.clearTimeout(deleteID)
+                runActionWithExecutionResult(
+                  widgetOrAction as IExecutionActions,
+                )
               }, 300)
-              this.runningActionsMap.set(action.actionId, deleteID)
+              this.runningActionsMap.set($actionId, deleteID)
             }
           }
           return current

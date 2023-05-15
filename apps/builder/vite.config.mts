@@ -33,10 +33,12 @@ export default defineConfig(({ command, mode }) => {
 
   const DEVELOPMENT_PLUGIN = [basicSsl()]
   const plugin = BASIC_PLUGIN
+  const version = pkg.version
+
   if (command === "serve") {
     plugin.push(...DEVELOPMENT_PLUGIN)
   } else {
-    if (env.VITE_INSTANCE_ID === "CLOUD") {
+    if (env.VITE_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
       plugin.push(
         sentryVitePlugin({
           org: "sentry",
@@ -46,12 +48,16 @@ export default defineConfig(({ command, mode }) => {
           sourcemaps: {
             assets: "./dist/assets/**",
           },
+          release: `illa-builder@${version}`,
+          urlPrefix: "~/assets",
           ignore: ["vite.config.mts"],
+          deploy: {
+            env: env.ILLA_APP_ENV,
+          },
         }),
       )
     }
   }
-  const version = pkg.version
   writeFileSync("./public/appInfo.json", `{"version":${version}}`)
 
   return {

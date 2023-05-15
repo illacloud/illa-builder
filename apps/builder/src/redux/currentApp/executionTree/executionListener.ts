@@ -1,6 +1,5 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
-import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
@@ -18,6 +17,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import { actionDisplayNameMapFetchResult } from "@/utils/action/runAction"
 import {
   batchMergeLayoutInfoToComponent,
   mergeLayoutInfoToComponent,
