@@ -1153,7 +1153,9 @@
           "select": "Wybierz",
           "DragOrClickNoEventArea": "Przeciągnij lub kliknij na brak obszaru wydarzenia",
           "rowClick": "Kliknięcie wiersza",
-          "refresh": "Odśwież"
+          "refresh": "Odśwież",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Obrazy",
