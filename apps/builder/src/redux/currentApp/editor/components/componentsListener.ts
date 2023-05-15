@@ -247,6 +247,7 @@ function reflowComponentNodesByUpdateColumns(
   rootNode: ComponentNode,
   listenerApi: AppListenerEffectAPI,
 ) {
+  const updateSlice: UpdateComponentNodeLayoutInfoPayload[] = []
   Object.keys(sectionChildrenNodes).forEach((key) => {
     const componentNodes = sectionChildrenNodes[key]
     const modifyXComponentNode: ComponentNode[] = []
@@ -258,18 +259,27 @@ function reflowComponentNodesByUpdateColumns(
     })
     const effectResultMap = modifyComponentNodeY(modifyXComponentNode, rootNode)
     if (effectResultMap) {
-      effectResultMap.forEach((value, key) => {
-        listenerApi.dispatch(
-          componentsActions.updateComponentReflowReducer([
-            {
-              parentDisplayName: key,
-              childNodes: value.childrenNode,
+      effectResultMap.forEach((node) => {
+        node.childrenNode.forEach((childNode) => {
+          updateSlice.push({
+            displayName: childNode.displayName,
+            layoutInfo: {
+              x: childNode.x,
+              y: childNode.y,
+              w: childNode.w,
+              h: childNode.h,
             },
-          ]),
-        )
+          })
+        })
       })
     }
   })
+  if (updateSlice.length === 0) return
+  listenerApi.dispatch(
+    componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer(
+      updateSlice,
+    ),
+  )
 }
 
 function handleUpdateTargetPagePropsEffect(

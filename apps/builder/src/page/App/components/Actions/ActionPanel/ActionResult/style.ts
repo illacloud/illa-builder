@@ -41,6 +41,7 @@ export const restApiAlertBarStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 `
 
 export const alertTabsContainerStyle = css`
@@ -84,6 +85,8 @@ export const alertInfoContainerStyle = css`
   padding: 0;
   gap: 24px;
   height: 24px;
+  position: absolute;
+  right: 40px;
 `
 
 export const alertInfoStyle = css`
@@ -96,11 +99,11 @@ export const alertInfoStyle = css`
   line-height: 22px;
 `
 
-export const statusStyle = css`
+export const applyStatusCodeStyle = (statusCode: number) => css`
   font-weight: 500;
   font-size: 14px;
 
-  color: ${getColor("green", "03")};
+  color: ${statusCode >= 400 ? getColor("red", "03") : getColor("green", "03")};
 `
 
 export const timestampStyle = css`
