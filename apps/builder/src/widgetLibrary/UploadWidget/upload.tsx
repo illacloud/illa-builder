@@ -108,7 +108,6 @@ export const WrappedUpload: FC<WrappedUploadProps> = (props) => {
         }
         const validateMessage = getValidateMessage(fileList)
         const base64value = getFilteredValue(values, "base64")
-        console.log("fileList", fileList)
         const files = getFiles(fileList, base64value ?? [])
         const parsed = getFilteredValue(parsedValues)
         const currentList = getCurrentList(fileList)
