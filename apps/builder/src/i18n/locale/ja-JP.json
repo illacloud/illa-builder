@@ -1155,7 +1155,8 @@
           "rowClick": "行クリック",
           "refresh": "更新",
           "filtersChange": "行フィルターの変更",
-          "rowSelectChange": "行の選択変更"
+          "rowSelectChange": "行の選択変更",
+          "onCellSelect": "セルを選択"
         },
         "image_list": {
           "title": "イメージ",
