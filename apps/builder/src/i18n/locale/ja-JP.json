@@ -1532,7 +1532,8 @@
           "event_text": "テクストヤン",
           "draggable": "ドラッグ可能",
           "resizable": "サイズ変更可能",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "ページの索引",
@@ -1707,7 +1708,9 @@
           "event_text": "イベントカードの文字色を設定",
           "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。",
           "draggable": "ドラッグしてイベントを移動することにより、ユーザーがイベントの時間範囲を更新できるようにするかどうか",
-          "resizable": "ユーザーがイベントの時間範囲を更新し、イベントの境界線をドラッグして期間を延長または短縮して期間を変更できるようにするかどうか"
+          "resizable": "ユーザーがイベントの時間範囲を更新し、イベントの境界線をドラッグして期間を延長または短縮して期間を変更できるようにするかどうか",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "選択するページの索引",
