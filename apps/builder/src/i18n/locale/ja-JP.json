@@ -1531,7 +1531,8 @@
           "event_background": "バックグラウンド",
           "event_text": "テクストヤン",
           "draggable": "ドラッグ可能",
-          "resizable": "サイズ変更可能"
+          "resizable": "サイズ変更可能",
+          "custom_message_draggable": "Custom message when disabled dragging"
         },
         "table": {
           "page_index": "ページの索引",
