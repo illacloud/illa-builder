@@ -1155,7 +1155,8 @@
           "rowClick": "Κλικ γραμμής",
           "refresh": "Ανανέωση",
           "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change"
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell"
         },
         "image_list": {
           "title": "Εικόνες",

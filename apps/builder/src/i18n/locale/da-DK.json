@@ -1155,7 +1155,8 @@
           "rowClick": "Klik på række",
           "refresh": "Opdater",
           "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change"
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell"
         },
         "image_list": {
           "title": "Billeder",
