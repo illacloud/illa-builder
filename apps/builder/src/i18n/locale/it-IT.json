@@ -1531,7 +1531,8 @@
           "event_background": "Sfondo",
           "event_text": "Testo",
           "draggable": "Trascinabile",
-          "resizable": "Resizable"
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging"
         },
         "table": {
           "page_index": "Indice di pagina",
