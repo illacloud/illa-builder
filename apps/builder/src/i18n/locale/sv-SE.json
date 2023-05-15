@@ -1566,7 +1566,11 @@
           "has_next_page": "Har nästa sida",
           "currency_code": "Valutakod"
         },
-        "previous_cursor": "Föregående markör"
+        "previous_cursor": "Föregående markör",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "Filterläget. OCH eller OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Begränsa offset baserat",
           "cursor_based": "Markör baserad",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
