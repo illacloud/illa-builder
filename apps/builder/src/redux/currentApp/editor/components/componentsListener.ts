@@ -275,7 +275,6 @@ function reflowComponentNodesByUpdateColumns(
     }
   })
   if (updateSlice.length === 0) return
-  console.log("updateSlice", updateSlice)
   listenerApi.dispatch(
     componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer(
       updateSlice,

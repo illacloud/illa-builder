@@ -72,6 +72,8 @@ export interface ColumnItemShape
   columnIndex?: number
   alignment?: TableCellAlign
   backgroundColor?: string
+  // button type
+  variant?: ButtonProps["variant"]
   // icon type
   iconName?: string
   iconGroupContent?: TableCellIconGroupItemProps[]
@@ -165,9 +167,10 @@ export interface WrappedTableProps
     Omit<BaseWidgetProps, "triggerEventHandler"> {
   customColumns?: Record<number, string>
   handleOnClickMenuItem?: (path: string) => void
+  handleOnCellSelect?: () => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
-  handleOnColumnFiltersChange?: () => void
+  handleOnFiltersChange?: () => void
   handleOnRowSelectChange?: () => void
   handleOnRowClick?: () => void
   handleOnRefresh?: () => void

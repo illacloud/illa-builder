@@ -399,7 +399,7 @@
         "firebase": {
           "action_type": "Action Type",
           "collection": "集合",
-          "database_ref": "数据库参考",
+          "database_ref": "Limit offset based",
           "document_id": "文档ID",
           "email": "邮箱",
           "end_at": "End At",
@@ -423,7 +423,7 @@
           "service_type": "Service Type",
           "start_at": "Start At",
           "tips": {
-            "document_id": "空白时将自动生成ID",
+            "document_id": "为空时将自动生成ID",
             "parent_document_id_tips": "为空时选择最外层目录"
           },
           "uid": "UID",
@@ -448,7 +448,7 @@
           "placeholder": {
             "couchdb": {
               "database": "选择数据库",
-              "record": "{* {\"x\":1, \"y\":2, ...} }}",
+              "record": "{{ {\"x\":1, \"y\":2, ...} }}",
               "mangoquery": "\"{{ {\r\n  \"\"selector\"\": {},\r\n  \"\"limit\"\": 5\r\n} }}\""
             },
             "restapi": {
@@ -1153,7 +1153,9 @@
           "select": "选择",
           "DragOrClickNoEventArea": "拖拽或点击无事件区域",
           "rowClick": "点击行",
-          "refresh": "刷新"
+          "refresh": "刷新",
+          "filtersChange": "行筛选改变",
+          "rowSelectChange": "行选择变更"
         },
         "image_list": {
           "title": "图片",
@@ -1531,7 +1533,9 @@
           "event_background": "背景",
           "event_text": "文本",
           "draggable": "是否可拖拽",
-          "resizable": "是否可调整大小"
+          "resizable": "是否可调整大小",
+          "custom_message_draggable": "禁用拖动时的自定义消息",
+          "custom_message_resizable": "禁用调整大小时的自定义消息"
         },
         "table": {
           "page_index": "页面索引",
@@ -1564,7 +1568,11 @@
           "has_next_page": "是否有下一页",
           "currency_code": "货币代码"
         },
-        "previous_cursor": "上一光标"
+        "previous_cursor": "上一光标",
+        "input": {
+          "type": "类型",
+          "show_visible_button": "显示可见按钮"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1706,7 +1714,9 @@
           "event_text": "设置事件卡片的文字颜色",
           "couldnot_drag": "如需拖动调整时间范围，请进入预览页面进行操作。",
           "draggable": "是否允许用户通过拖动移动事件来更新事件时间范围",
-          "resizable": "是否允许用户通过拖动事件的边框来延长或缩短时间跨度来更新事件时间范围和更改时间跨度"
+          "resizable": "是否允许用户通过拖动事件的边框来延长或缩短时间跨度来更新事件时间范围和更改时间跨度",
+          "custom_message_draggable": "拖动被禁用后，当用户拖动事件时，消息将会显示。",
+          "custom_message_resizable": "调整大小被禁用后，当用户调整事件大小时，信息将会显示。"
         },
         "table": {
           "page_index": "您要选择的页面的索引",
@@ -1738,7 +1748,11 @@
           "filter_mode": "过滤器的模式，选择AND 或 OR。",
           "currency_code": "USD"
         },
-        "previous_cursor": "使用Action的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} "
+        "previous_cursor": "使用Action的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
+        "input": {
+          "type": "设置输入类型",
+          "show_visible_button": "设置是否显示可见按钮"
+        }
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1804,9 +1818,14 @@
           "outline": "描边",
           "auto": "自适应",
           "limited": "限制",
-          "limit_offset_based": "基于限制偏移量",
+          "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
           "graphql_relay_cursor": "GraphQL Relay cursor"
+        },
+        "input": {
+          "input": "输入",
+          "password": "密码",
+          "search": "搜索"
         }
       },
       "setter_placeholder": {
@@ -1999,7 +2018,7 @@
         "select_page": "选择页面",
         "select_row": "选择行",
         "clear_selection": "清除选择",
-        "set_filters": "设置筛选器",
+        "set_filters": "设置过滤器",
         "onFreeTimeDragOrClick": "点击空闲时间"
       }
     },

@@ -275,9 +275,9 @@
             "ca_certificate": "Completăm Certificatul CA folosit implicit pentru conexiunile TLS la nivelul server-ului. Dacă ai nevoie de conexiuni TLS la nivelul dedicat, <0>Apasă aici</0> pentru a vedea metoda de configurare."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Creează un proiect Neon și obține șirul din <0>tabloul de bord al proiectului</0>.",
+            "failed": "Nu s-a putut analiza șirul. Vă rugăm să verificați șirul sau să configurați manual.",
+            "no_password": "Şirul nu are parolă. Vă rugăm să afişaţi parola în tabloul de bord Neon înainte de a copia."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Șir de conexiune"
           }
         },
         "default": {
@@ -1151,9 +1151,11 @@
           "markerSelected": "markerSelectate",
           "markerCreated": "markerCreat",
           "select": "Selectare",
-          "DragOrClickNoEventArea": "Drag or click no event area",
-          "rowClick": "Row click",
-          "refresh": "Refresh"
+          "DragOrClickNoEventArea": "Trage sau fă clic pe zona de eveniment",
+          "rowClick": "Clic pe rând",
+          "refresh": "Împrospătează",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Imagini",
@@ -1175,10 +1177,10 @@
         "oncellselect": "onCellSelect",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "filtruSchimbați",
+        "sortChange": "sortare",
+        "pageChange": "paginăSchimbați",
+        "refresh": "Reîmprospătare"
       },
       "setter_default_value": {
         "fill": "Completează",
@@ -1531,7 +1533,9 @@
           "event_background": "Context",
           "event_text": "Text",
           "draggable": "Draggable",
-          "resizable": "Resizable"
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Indexul paginii",
@@ -1542,29 +1546,33 @@
           "show_thousands_separ": "Arată separator mii",
           "tag_label": "Etichetă etichetă",
           "tag_color": "Culoare etichetă",
-          "open_in_new_tab": "Open in new tab",
-          "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "open_in_new_tab": "Deschide într-o filă nouă",
+          "variant": "Variantă",
+          "icon": "Iconiță",
+          "color": "Culoare",
+          "sort_by_mapped_value": "Sortează după valoarea cartografiată",
+          "background": "Context",
+          "alignment": "Aliniere",
+          "column_width": "Lățimea coloanei",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "disable_user_selecti": "Dezactivează selecția utilizatorilor",
+          "default_selected_row": "Rândul selectat implicit",
+          "refresh": "Împrospătează",
           "download_row_data": "Descarcă date brute",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "column_setting": "Setare coloană",
+          "cell_overflow": "Suprapunerea celulei",
+          "enable_server_side_p": "Activează paginarea pe server",
+          "pagination_type": "Tip paginare",
+          "total_row_count": "Număr total de rânduri",
+          "next_cursor": "Următorul cursor",
+          "has_next_page": "Are pagina următoare",
+          "currency_code": "Codul valutei"
         },
-        "previous_cursor": "Previous cursor"
+        "previous_cursor": "Cursor anterior",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1705,40 +1713,46 @@
           "event_background": "Setaţi fundalul cardului de eveniment",
           "event_text": "Setaţi culoarea textului cardului de eveniment",
           "couldnot_drag": "Dacă doriți să glisați pentru a ajusta intervalul de timp, continuați la pagina de previzualizare pentru operațiune.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Dacă permiteţi utilizatorilor să actualizeze intervalul de timp al evenimentului prin glisarea pentru a muta evenimentul",
+          "resizable": "Indiferent dacă permiteți utilizatorilor să actualizeze intervalul de timp al evenimentului și schimbați intervalul de timp prin glisarea marginii unui eveniment pentru a prelungi sau scurta intervalul de timp",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
+          "page_index": "Index al paginii pe care doriţi să o selectaţi.",
+          "index": "Indicele rândului pe care doriţi să îl selectaţi. Indicele ar trebui să fie un array care poate fi folosit pentru a specifica mai multe rânduri.",
+          "scroll_to_the_select": "Dacă se derulează la rând.",
+          "show_thousands_separ": "Dacă se afișează separatorul miilor de persoane",
+          "tag_label": "Setați eticheta etichetelor. O matrice va fi separată de tag-uri multiple.",
+          "tag_color": "Setați culoarea etichetelor. Utilizați {{ scrieți o declarație condiționată pentru a seta culoarea afișată de fiecare etichetă în condiții diferite.",
+          "variant": "Varianta butonului",
+          "icon": "Pictograma afişată în tabel",
+          "color": "Setează culoarea.",
+          "sort_by_mapped_value": "Dacă să sortăm după valoarea cartografiată. Dacă nu, vom sorta pe baza datelor originale.",
+          "background": "Setaţi fundalul coloanei. Utilizaţi {{ scrieţi o declaraţie condiţionată pentru a seta culoarea afişată de fiecare celulă în condiţii diferite.",
+          "alignment": "Setaţi alinierea coloanei. (Automatic Translation)",
+          "column_width": "Setaţi lăţimea coloanei după valoarea numerică. De asemenea, puteţi regla lăţimea coloanei prin tragere în cadru. După ajustare, valoarea acestui element de configurare se va schimba și în consecință",
+          "width": "Setaţi metoda de adaptare a lăţimii coloanei.",
+          "disable_user_selecti": "Dacă dezactivați selecția utilizatorului. Dacă este dezactivată, puteți selecta rânduri prin controlul componentei de tabel după gestionarul de evenimente.",
+          "default_selected_row": "Rândul selectat implicit  ",
+          "refresh": "Dacă se afișează iconița de reîmprospătare. ",
           "download_row_data": "Afișarea iconiței datelor brute descărcate.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "column_setting": "Dacă se afișează setarea coloanei. Setarea coloanelor va permite utilizatorilor să seteze coloanele pentru afișare și sortarea coloanelor. Această setare nu modifică datele tabelului.",
+          "cell_overflow": "Cum se afișează când se suprapun celula. ",
+          "enable_server_side_p": "Activarea paginării serverului",
+          "pagination_type": "Tipul paginării. ",
+          "total_row_count": "Numărul de rânduri folosit pentru a număra numărul de pagină.",
+          "next_cursor": "Un identificator folosit pentru a localiza următorul punct de pornire al unui set de date, pentru a pagina și a extrage date în loturi",
+          "has_next_page": "Un boolean folosit pentru a indica dacă există o altă pagină de date disponibile. Ne poate ajuta să controlăm mai bine recuperarea datelor în interogările paginate și să optimizăm performanța interogării",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "Modul filtre. ŞI sau SAU.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -1801,12 +1815,17 @@
           "button": "Buton",
           "icon": "Iconiță",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "outline": "Conturul",
+          "auto": "Automat",
+          "limited": "Limitat",
+          "limit_offset_based": "Limită offset bazat pe",
+          "cursor_based": "Bazat pe cursor",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
@@ -1832,7 +1851,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "Codul monedei definit în [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2000,7 +2019,7 @@
         "select_row": "Selectare rând",
         "clear_selection": "Ștergeți selecția",
         "set_filters": "Setare filtre",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "Click pe timp gratuit"
       }
     },
     "tutorial": {
@@ -2789,7 +2808,7 @@
       },
       "setter_content": {
         "widget_action_type_name": {
-          "rowSelectChange": "Row Select Change"
+          "rowSelectChange": "Rând selectare modificare"
         }
       }
     }
@@ -2830,27 +2849,27 @@
   "oauth_redirect_title": "Redirecționare",
   "oauth_redirect_description": "Redirecționare către <0>Cloud ILLA </0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Română",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "af-ZA": "Afrikaani",
+    "cs-CZ": "cuv. tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "francitais",
+    "it-IT": "italiană",
+    "nl-NL": "Nederlanduri",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugueIe",
+    "ro-RO": "rumegătoare",
+    "ru-RU": "Nord Nord",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Deconectare eșuată. Te rugăm să încerci din nou mai târziu."
 }

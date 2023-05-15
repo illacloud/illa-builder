@@ -5,7 +5,7 @@ export const showNotification = (params: {
   type: NotificationType
   title: string
   description: string
-  duration: number
+  duration?: number
 }) => {
   const { type, title, description, duration = 4500 } = params
   const notification = createNotification()

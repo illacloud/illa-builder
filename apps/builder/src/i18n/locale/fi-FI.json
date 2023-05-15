@@ -275,9 +275,9 @@
             "ca_certificate": "Täytämme oletuksena CA-varmenteen, jota käytetään TLS Connections to Serverless Tier -yhteyksiin. Jos tarvitset TLS Connections to Dedicated Tier, <0>Klikkaa tästä</0> nähdäksesi asetusmenetelmän."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Luo Neon projekti ja hanki merkkijono <0>projektin hallintapaneelissa </0>.",
+            "failed": "Merkkijonon jäsentäminen epäonnistui. Tarkista merkkijono tai määritä manuaalisesti.",
+            "no_password": "Merkkijonossa ei ole salasanaa. Ole hyvä ja näytä salasana Neon dashboardissa ennen kopiointia."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Yhteyden merkkijono"
           }
         },
         "default": {
@@ -1151,9 +1151,11 @@
           "markerSelected": "merkkiValittu",
           "markerCreated": "merkkiLuotu",
           "select": "Valitse",
-          "DragOrClickNoEventArea": "Drag or click no event area",
-          "rowClick": "Row click",
-          "refresh": "Refresh"
+          "DragOrClickNoEventArea": "Vedä tai klikkaa ei tapahtuma-aluetta",
+          "rowClick": "Rivin napsautus",
+          "refresh": "Päivitä",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1175,10 +1177,10 @@
         "oncellselect": "onCellSelect",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
+        "filterChange": "suodatinmuutos",
         "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "pageChange": "Sivumuutos",
+        "refresh": "päivitä"
       },
       "setter_default_value": {
         "fill": "Täytä",
@@ -1530,8 +1532,10 @@
           "calendar_text": "Teksti",
           "event_background": "Tausta",
           "event_text": "Teksti",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "Vedettävä",
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Sivun indeksi",
@@ -1542,29 +1546,33 @@
           "show_thousands_separ": "Näytä tuhansien erotin",
           "tag_label": "Tagin nimi",
           "tag_color": "Tagin väri",
-          "open_in_new_tab": "Open in new tab",
-          "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "open_in_new_tab": "Avaa uudessa välilehdessä",
+          "variant": "Variantti",
+          "icon": "Kuvake",
+          "color": "Väri",
+          "sort_by_mapped_value": "Järjestä kartoitetun arvon mukaan",
+          "background": "Tausta",
+          "alignment": "Tasaus",
+          "column_width": "Sarakkeen leveys",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "disable_user_selecti": "Poista käyttäjän valinta käytöstä",
+          "default_selected_row": "Oletus valittu rivi",
+          "refresh": "Päivitä",
           "download_row_data": "Lataa raakatiedot",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "column_setting": "Sarakkeen asetus",
+          "cell_overflow": "Solun ylivuoto",
+          "enable_server_side_p": "Ota palvelimen sivutus käyttöön",
+          "pagination_type": "Sivutuksen tyyppi",
+          "total_row_count": "Rivien määrä yhteensä",
+          "next_cursor": "Seuraava kohdistin",
+          "has_next_page": "On seuraava sivu",
+          "currency_code": "Valuutan koodi"
         },
-        "previous_cursor": "Previous cursor"
+        "previous_cursor": "Edellinen kohdistin",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1705,40 +1713,46 @@
           "event_background": "Aseta tapahtumakortin taustakuva",
           "event_text": "Aseta tapahtumakortin tekstin väri",
           "couldnot_drag": "Jos haluat muuttaa aikaväliä, ole hyvä ja jatka sen esikatselusivulle toimintoa varten.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Annetaanko käyttäjien päivittää tapahtuman aikaväliä vetämällä ja siirtämällä tapahtuman",
+          "resizable": "Annetaanko käyttäjien päivittää tapahtuman aikaväliä ja muuttaa aikaväliä vetämällä tapahtuman rajaa pitääkseen tai lyhentääkseen sen kestoa",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
+          "page_index": "Hakemisto sivusta, jonka haluat valita.",
+          "index": "Indeksi rivin, jonka haluat valita. Indeksin pitäisi olla taulukko, jota voidaan käyttää määrittämään useita rivejä.",
+          "scroll_to_the_select": "Vieritä riville vai ei.",
+          "show_thousands_separ": "Näytetäänkö tuhannen erotin",
+          "tag_label": "Set the label of tags. An array will be separated to multiple tags. (Automatic Copy)",
           "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
+          "variant": "Painikkeen variantti",
+          "icon": "Taulukossa näkyvä kuvake",
+          "color": "Aseta väri.",
+          "sort_by_mapped_value": "Lajittelemmeko lajitteluun kartan mukaan. Jos ei, lajittelemme alkuperäisten tietojen perusteella.",
+          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell in different conditions. (Automatic Copy)",
+          "alignment": "Aseta sarakkeen tasaus.",
+          "column_width": "Aseta sarakkeen leveys numeerisen arvon mukaan. Voit myös säätää sarakkeen leveyttä vetämällä kehystä. Tämän konfiguraation kohteen arvo muuttuu myös muutoksen jälkeen",
+          "width": "Aseta sarakkeen leveyden mukautusmenetelmä.",
+          "disable_user_selecti": "Poistaa käyttäjän valinnan. Jos poistettu käytöstä, voit valita rivejä ohjaamalla taulukon komponentin tapahtuman käsittelijän mukaan.",
+          "default_selected_row": "Oletuksena valittu rivi.  ",
+          "refresh": "Näytetäänkö virkistävä kuvake vai ei. ",
           "download_row_data": "Näytetäänkö ladattavan raakadatan kuvake.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "column_setting": "Näytetäänkö sarakkeen asetus. Sarakkeen asetus sallii käyttäjien asettaa sarakkeet näytettäväksi ja sarakkeen lajitteluun. Tämä asetus ei muuta taulukon tietoja.",
+          "cell_overflow": "Näyttää, kun solu ylivuotaa. ",
+          "enable_server_side_p": "Otetaanko palvelimen sivutus käyttöön",
+          "pagination_type": "Sivutuksen tyyppi. ",
+          "total_row_count": "Sivujen numeron laskemiseen käytettyjen rivien määrä.",
+          "next_cursor": "Tunniste jota käytetään tietoryhmän seuraavan lähtökohdan löytämiseen, jotta tietoja voidaan hemmottelea ja hakea erissä",
+          "has_next_page": "Totuusarvo, jota käytetään osoittamaan, onko saatavilla toinen sivu tietoja. Se voi auttaa meitä hallitsemaan paremmin tietojen hakua paginated kyselyt ja optimoida kyselyn suorituskykyä",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "Suodatintila. JA tai OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -1801,12 +1815,17 @@
           "button": "Painike",
           "icon": "Kuvake",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "outline": "Ääriviiva",
+          "auto": "Automaattinen",
+          "limited": "Rajoitettu",
+          "limit_offset_based": "Raja poikkeama perustuu",
+          "cursor_based": "Kohdistin pohjautuu",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
@@ -1832,7 +1851,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "Valuuttakoodi on määritelty [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2000,7 +2019,7 @@
         "select_row": "Valitse rivi",
         "clear_selection": "Tyhjennä valinta",
         "set_filters": "Aseta suodattimet",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "Klikkaa vapaa-aikaa"
       }
     },
     "tutorial": {
@@ -2789,7 +2808,7 @@
       },
       "setter_content": {
         "widget_action_type_name": {
-          "rowSelectChange": "Row Select Change"
+          "rowSelectChange": "Rivin Valinnan Muutos"
         }
       }
     }
@@ -2830,27 +2849,27 @@
   "oauth_redirect_title": "Uudelleenohjaus",
   "oauth_redirect_description": "Uudelleenohjataan <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Englanti",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "cs-CZ": "c·espt tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "franc¢ ais",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portuguecomplies s",
+    "ro-RO": "romaE)",
+    "ru-RU": "infrastruktuuri, johon ei sisälly",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Kirjautuminen ulos epäonnistui. Yritä myöhemmin uudelleen."
 }
