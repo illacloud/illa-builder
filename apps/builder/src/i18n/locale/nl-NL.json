@@ -1532,7 +1532,8 @@
           "event_text": "Tekstveld",
           "draggable": "Versleepbaar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Pagina index",
@@ -1707,7 +1708,9 @@
           "event_text": "Stel de tekstkleur van de event kaart in",
           "couldnot_drag": "Als u wilt slepen om het tijdsbereik aan te passen, ga dan naar de voorbeeldpagina voor de bewerking.",
           "draggable": "Of gebruikers nu toestaan om de periode bij te werken door te slepen om de gebeurtenis te verplaatsen",
-          "resizable": "Of gebruikers nu toestaan om het tijdsbereik bij te werken en de tijdsspanne te wijzigen door de grens van een gebeurtenis te slepen om de tijdsspanne te verlengen of te verkorten"
+          "resizable": "Of gebruikers nu toestaan om het tijdsbereik bij te werken en de tijdsspanne te wijzigen door de grens van een gebeurtenis te slepen om de tijdsspanne te verlengen of te verkorten",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Index van de pagina die u wilt selecteren.",
