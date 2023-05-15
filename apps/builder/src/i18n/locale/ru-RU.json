@@ -1156,7 +1156,7 @@
           "refresh": "Обновить",
           "filtersChange": "Filters change",
           "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "onCellSelect": "Выбрать ячейку"
         },
         "image_list": {
           "title": "Изображения",
@@ -1825,8 +1825,8 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Пароль",
+          "search": "Поиск"
         }
       },
       "setter_placeholder": {
