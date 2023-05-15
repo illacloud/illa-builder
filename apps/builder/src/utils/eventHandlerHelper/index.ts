@@ -267,6 +267,7 @@ export const transformEvents = (
         "deleteEvent",
         "setStartTime",
         "setEndTime",
+        "selectRow",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event
@@ -299,6 +300,8 @@ export const transformEvents = (
       widgetMethod === "pause" ||
       widgetMethod === "clearValue" ||
       widgetMethod === "clearValidation" ||
+      widgetMethod === "clearSelection" ||
+      widgetMethod === "clearFilters" ||
       widgetMethod === "toggle" ||
       widgetMethod === "focus" ||
       widgetMethod === "reset" ||
@@ -319,6 +322,21 @@ export const transformEvents = (
       const { key } = event
       return {
         script: `{{${widgetID}.${widgetMethod}("${key}")}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "selectRow") {
+      const { rowSelection } = event
+      console.log(rowSelection, "indexOrIndices rowSelection")
+      return {
+        script: `{{${widgetID}.${widgetMethod}(${rowSelection})}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "selectPage") {
+      const { pageIndex } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}(${pageIndex})}}`,
         enabled,
       }
     }

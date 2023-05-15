@@ -5,12 +5,21 @@ import {
   RowSelectionState,
 } from "@tanstack/table-core"
 import { cloneDeep, debounce, isEqual, toPath } from "lodash"
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import {
+  FC,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { useSelector } from "react-redux"
 import {
   FilterOperator,
   FilterOptions,
   Table,
+  TableHandler,
   isNumber,
   isObject,
 } from "@illa-design/react"
@@ -29,249 +38,252 @@ import {
   transTableColumnEvent,
 } from "./utils"
 
-export const WrappedTable: FC<WrappedTableProps> = (props) => {
-  const {
-    displayName,
-    data,
-    loading,
-    emptyState,
-    columns,
-    columnSizing,
-    filter,
-    refresh,
-    download,
-    downloadRawData,
-    overFlow,
-    pageSize,
-    pageIndex = 0,
-    rowSelection,
-    defaultSort,
-    columnVisibility,
-    multiRowSelection,
-    enableServerSidePagination,
-    totalRowCount,
-    paginationType,
-    // previousCursor,
-    nextBeforeCursor,
-    nextAfterCursor,
-    // hasNextPage,
-    handleOnRefresh,
-    handleOnRowClick,
-    handleOnSortingChange,
-    handleOnPaginationChange,
-    handleOnFiltersChange,
-    handleOnRowSelectChange,
-    handleUpdateMultiExecutionResult,
-    handleUpdateOriginalDSLMultiAttr,
-  } = props
+export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
+  (props, ref) => {
+    const {
+      displayName,
+      data,
+      loading,
+      emptyState,
+      columns,
+      columnSizing,
+      filter,
+      refresh,
+      download,
+      downloadRawData,
+      overFlow,
+      pageSize,
+      pageIndex = 0,
+      rowSelection,
+      defaultSort,
+      columnVisibility,
+      multiRowSelection,
+      enableServerSidePagination,
+      totalRowCount,
+      paginationType,
+      // previousCursor,
+      nextBeforeCursor,
+      nextAfterCursor,
+      // hasNextPage,
+      handleOnRefresh,
+      handleOnRowClick,
+      handleOnSortingChange,
+      handleOnPaginationChange,
+      handleOnFiltersChange,
+      handleOnRowSelectChange,
+      handleUpdateMultiExecutionResult,
+      handleUpdateOriginalDSLMultiAttr,
+    } = props
 
-  const mode = useSelector(getIllaMode)
-  const [cachedData, setCachedData] = useState<any[]>([])
+    const mode = useSelector(getIllaMode)
+    const [cachedData, setCachedData] = useState<any[]>([])
 
-  const formatData = useMemo(() => {
-    if (Array.isArray(data)) {
-      return data
-    }
-    return []
-  }, [data])
-
-  const isCursorPaginationEnabled = useMemo(() => {
-    return (
-      (paginationType === "cursorBased" ||
-        paginationType === "graphqlRelayCursorBased") &&
-      enableServerSidePagination
-    )
-  }, [paginationType, enableServerSidePagination])
-
-  const cursorBasedData = useMemo(() => {
-    const _pageSize = pageSize ? pageSize : data?.length ?? 10
-    const paginationOffset = pageIndex * _pageSize
-
-    return cachedData.slice(paginationOffset, paginationOffset + _pageSize)
-  }, [cachedData, pageIndex, pageSize, data?.length])
-
-  const updateCachedData = useCallback(
-    (data: Array<unknown>) => {
-      if (paginationType === "cursorBased") {
-        setCachedData((prevData = []) => {
-          if (isEqual(prevData, data)) {
-            return prevData
-          }
-          return [...prevData, ...data]
-        })
+    const formatData = useMemo(() => {
+      if (Array.isArray(data)) {
+        return data
       }
-    },
-    [paginationType],
-  )
+      return []
+    }, [data])
 
-  useEffect(() => {
-    updateCachedData(formatData)
-  }, [formatData, updateCachedData])
+    const isCursorPaginationEnabled = useMemo(() => {
+      return (
+        (paginationType === "cursorBased" ||
+          paginationType === "graphqlRelayCursorBased") &&
+        enableServerSidePagination
+      )
+    }, [paginationType, enableServerSidePagination])
 
-  const handleUpdateMulti = useCallback(
-    (value: Record<string, any>) => {
-      if (mode === "edit") {
-        handleUpdateOriginalDSLMultiAttr(value)
-      } else {
+    const cursorBasedData = useMemo(() => {
+      const _pageSize = pageSize ? pageSize : data?.length ?? 10
+      const paginationOffset = pageIndex * _pageSize
+
+      return cachedData.slice(paginationOffset, paginationOffset + _pageSize)
+    }, [cachedData, pageIndex, pageSize, data?.length])
+
+    const updateCachedData = useCallback(
+      (data: Array<unknown>) => {
+        if (paginationType === "cursorBased") {
+          setCachedData((prevData = []) => {
+            if (isEqual(prevData, data)) {
+              return prevData
+            }
+            return [...prevData, ...data]
+          })
+        }
+      },
+      [paginationType],
+    )
+
+    useEffect(() => {
+      updateCachedData(formatData)
+    }, [formatData, updateCachedData])
+
+    const handleUpdateMulti = useCallback(
+      (value: Record<string, any>) => {
+        if (mode === "edit") {
+          handleUpdateOriginalDSLMultiAttr(value)
+        } else {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value,
+            },
+          ])
+        }
+      },
+      [
+        mode,
+        handleUpdateMultiExecutionResult,
+        handleUpdateOriginalDSLMultiAttr,
+        displayName,
+      ],
+    )
+
+    const onRowSelectionChange = useCallback(
+      (value?: RowSelectionState) => {
+        let selectedRow: unknown[] = []
+        let selectedRowIndex: unknown[] = []
+        if (isObject(value)) {
+          Object.keys(value)?.map((key) => {
+            const index = Number(key)
+            if (formatData[index]) {
+              selectedRow.push(formatData[index])
+              selectedRowIndex.push(index)
+            }
+          })
+        }
+        const updateValue = {
+          selectedRowIndex,
+          selectedRow,
+          rowSelection: value,
+        }
+        handleUpdateMulti(updateValue)
+        handleOnRowSelectChange?.()
+      },
+      [formatData, handleUpdateMulti, handleOnRowSelectChange],
+    )
+
+    const onPaginationChange = useCallback(
+      (paginationState: PaginationState, table: ReactTable<any>) => {
+        const data = table.getSortedRowModel().rows
+        const displayedData = data?.map((item) => {
+          const dataRecord: Record<string, unknown> = {}
+          item.getVisibleCells().forEach((cell) => {
+            dataRecord[cell.column.id] = cell.getValue()
+          })
+          return dataRecord
+        })
+        const displayedDataIndices = data?.map((item) => {
+          return item.index
+        })
+        const { pageIndex: _pageIndex, pageSize } = paginationState
+        const paginationOffset = _pageIndex > 0 ? _pageIndex * pageSize : 0
+        const updateValue: Record<string, unknown> = {
+          pageIndex: _pageIndex,
+          paginationOffset,
+          displayedData,
+          displayedDataIndices,
+        }
+        if (paginationType === "cursorBased") {
+          if (pageIndex > _pageIndex) {
+            // updateValue["beforeCursor"] = nextAfterCursor
+          } else {
+            updateValue["afterCursor"] = nextAfterCursor
+          }
+        } else if (paginationType === "graphqlRelayCursorBased") {
+          if (pageIndex > _pageIndex) {
+            updateValue["beforeCursor"] = nextBeforeCursor
+            updateValue["afterCursor"] = null
+          } else {
+            updateValue["beforeCursor"] = null
+            updateValue["afterCursor"] = nextAfterCursor
+          }
+        }
+        // only update execution result
         handleUpdateMultiExecutionResult([
           {
             displayName,
-            value,
+            value: updateValue,
           },
         ])
-      }
-    },
-    [
-      mode,
-      handleUpdateMultiExecutionResult,
-      handleUpdateOriginalDSLMultiAttr,
-      displayName,
-    ],
-  )
+        handleOnPaginationChange?.()
+      },
+      [
+        displayName,
+        handleUpdateMultiExecutionResult,
+        handleOnPaginationChange,
+        nextBeforeCursor,
+        nextAfterCursor,
+        paginationType,
+        pageIndex,
+      ],
+    )
 
-  const onRowSelectionChange = useCallback(
-    (value?: RowSelectionState) => {
-      let selectedRow: unknown[] = []
-      let selectedRowIndex: unknown[] = []
-      if (isObject(value)) {
-        Object.keys(value)?.map((key) => {
-          const index = Number(key)
-          if (formatData[index]) {
-            selectedRow.push(formatData[index])
-            selectedRowIndex.push(index)
-          }
-        })
-      }
-      const updateValue = {
-        selectedRowIndex,
-        selectedRow,
-        rowSelection: value,
-      }
-      handleUpdateMulti(updateValue)
-      handleOnRowSelectChange?.()
-    },
-    [formatData, handleUpdateMulti, handleOnRowSelectChange],
-  )
-
-  const onPaginationChange = useCallback(
-    (paginationState: PaginationState, table: ReactTable<any>) => {
-      const data = table.getSortedRowModel().rows
-      const displayedData = data?.map((item) => {
-        const dataRecord: Record<string, unknown> = {}
-        item.getVisibleCells().forEach((cell) => {
-          dataRecord[cell.column.id] = cell.getValue()
-        })
-        return dataRecord
-      })
-      const displayedDataIndices = data?.map((item) => {
-        return item.index
-      })
-      const { pageIndex: _pageIndex, pageSize } = paginationState
-      const paginationOffset = _pageIndex > 0 ? _pageIndex * pageSize : 0
-      const updateValue: Record<string, unknown> = {
-        pageIndex: _pageIndex,
-        paginationOffset,
-        displayedData,
-        displayedDataIndices,
-      }
-      if (paginationType === "cursorBased") {
-        if (pageIndex > _pageIndex) {
-          // updateValue["beforeCursor"] = nextAfterCursor
-        } else {
-          updateValue["afterCursor"] = nextAfterCursor
-        }
-      } else if (paginationType === "graphqlRelayCursorBased") {
-        if (pageIndex > _pageIndex) {
-          updateValue["beforeCursor"] = nextBeforeCursor
-          updateValue["afterCursor"] = null
-        } else {
-          updateValue["beforeCursor"] = null
-          updateValue["afterCursor"] = nextAfterCursor
-        }
-      }
-      // only update execution result
-      handleUpdateMultiExecutionResult([
-        {
-          displayName,
-          value: updateValue,
-        },
-      ])
-      handleOnPaginationChange?.()
-    },
-    [
-      displayName,
-      handleUpdateMultiExecutionResult,
-      handleOnPaginationChange,
-      nextBeforeCursor,
-      nextAfterCursor,
-      paginationType,
-      pageIndex,
-    ],
-  )
-
-  const onFiltersChange = useCallback(
-    (filters: FilterOptions[], operator: FilterOperator) => {
-      handleUpdateMultiExecutionResult([
-        {
-          displayName,
-          value: {
-            filters,
-            filterOperator: operator,
+    const onFiltersChange = useCallback(
+      (filters: FilterOptions[], operator: FilterOperator) => {
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              filters,
+              filterOperator: operator,
+            },
           },
-        },
-      ])
-      handleOnFiltersChange?.()
-    },
-    [displayName, handleUpdateMultiExecutionResult, handleOnFiltersChange],
-  )
+        ])
+        handleOnFiltersChange?.()
+      },
+      [displayName, handleUpdateMultiExecutionResult, handleOnFiltersChange],
+    )
 
-  return (
-    <Table
-      bordered
-      striped
-      borderedCell
-      pinedHeader
-      w="100%"
-      h="100%"
-      enableColumnResizing={mode === "edit"}
-      serverSidePagination={enableServerSidePagination}
-      total={totalRowCount}
-      colorScheme={"techPurple"}
-      rowSelection={rowSelection}
-      data={paginationType === "cursorBased" ? cursorBasedData : formatData}
-      columns={columns}
-      columnSizing={columnSizing}
-      filter={filter}
-      loading={loading}
-      refresh={refresh}
-      download={download}
-      downloadRawData={downloadRawData}
-      overFlow={overFlow}
-      pagination={{
-        pageSize: enableServerSidePagination
-          ? pageSize
+    return (
+      <Table
+        bordered
+        striped
+        borderedCell
+        pinedHeader
+        w="100%"
+        h="100%"
+        tableRef={ref}
+        enableColumnResizing={mode === "edit"}
+        serverSidePagination={enableServerSidePagination}
+        total={totalRowCount}
+        colorScheme={"techPurple"}
+        rowSelection={rowSelection}
+        data={paginationType === "cursorBased" ? cursorBasedData : formatData}
+        columns={columns}
+        columnSizing={columnSizing}
+        filter={filter}
+        loading={loading}
+        refresh={refresh}
+        download={download}
+        downloadRawData={downloadRawData}
+        overFlow={overFlow}
+        pagination={{
+          pageSize: enableServerSidePagination
             ? pageSize
-            : data?.length
-          : pageSize,
-        disableSimplePageJump: isCursorPaginationEnabled,
-      }}
-      emptyProps={{ description: emptyState }}
-      defaultSort={defaultSort}
-      columnVisibility={columnVisibility}
-      multiRowSelection={multiRowSelection}
-      onRefresh={handleOnRefresh}
-      onRowClick={handleOnRowClick}
-      onSortingChange={handleOnSortingChange}
-      onPaginationChange={onPaginationChange}
-      onGlobalFiltersChange={onFiltersChange}
-      onColumnFiltersChange={handleOnFiltersChange}
-      onColumnSizingChange={debounce((columnSizing) => {
-        handleUpdateMulti({ columnSizing })
-      }, 100)}
-      onRowSelectionChange={onRowSelectionChange}
-    />
-  )
-}
+              ? pageSize
+              : data?.length
+            : pageSize,
+          disableSimplePageJump: isCursorPaginationEnabled,
+        }}
+        emptyProps={{ description: emptyState }}
+        defaultSort={defaultSort}
+        columnVisibility={columnVisibility}
+        multiRowSelection={multiRowSelection}
+        onRefresh={handleOnRefresh}
+        onRowClick={handleOnRowClick}
+        onSortingChange={handleOnSortingChange}
+        onPaginationChange={onPaginationChange}
+        onGlobalFiltersChange={onFiltersChange}
+        onColumnFiltersChange={handleOnFiltersChange}
+        onColumnSizingChange={debounce((columnSizing) => {
+          handleUpdateMulti({ columnSizing })
+        }, 100)}
+        onRowSelectionChange={onRowSelectionChange}
+      />
+    )
+  },
+)
 
 export const TableWidget: FC<TableWidgetProps> = (props) => {
   const {
@@ -300,6 +312,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     triggerMappedEventHandler,
     ...otherProps
   } = props
+
+  const tableRef = useRef<TableHandler<any>>(null)
 
   const handleOnRefresh = useCallback(() => {
     triggerEventHandler("refresh")
@@ -500,9 +514,56 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     })
   }, [handleUpdateOriginalDSLMultiAttr, columns])
 
+  useEffect(() => {
+    updateComponentRuntimeProps({
+      clearSelection: () => {
+        tableRef.current?.table.resetRowSelection()
+      },
+      clearFilters: () => {
+        tableRef.current?.setGlobalFilters([], "and")
+      },
+      selectPage: (pageIndex: number) => {
+        if (!isNumber(pageIndex)) {
+          console.error("TypeError: value is not a number")
+          return
+        }
+        tableRef.current?.selectPage(pageIndex)
+      },
+      selectRow: (indexOrIndices: unknown) => {
+        if (isNumber(indexOrIndices)) {
+          tableRef.current?.selectRow({ [indexOrIndices]: true })
+        } else if (Array.isArray(indexOrIndices)) {
+          const rowSelection = indexOrIndices
+            .slice(0, multiRowSelection ? undefined : 1)
+            .reduce((acc, value) => {
+              if (isNumber(value)) {
+                acc[value] = true
+              }
+              console.error(`TypeError: ${value} is not a number`)
+              return acc
+            }, {})
+          tableRef.current?.selectRow(rowSelection)
+        } else {
+          console.error("TypeError: value is not a number or array")
+        }
+      },
+    })
+    return () => {
+      deleteComponentRuntimeProps()
+    }
+  }, [
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
+    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateMultiExecutionResult,
+    displayName,
+    multiRowSelection,
+  ])
+
   return (
     <WrappedTable
       {...otherProps}
+      ref={tableRef}
       selectedRow={selectedRow}
       displayName={displayName}
       data={realDataSourceArray}

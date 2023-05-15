@@ -46,7 +46,14 @@ export const TABLE_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "onCellSelect",
     },
   ],
-  methods: [],
+  methods: [
+    "selectPage",
+    "selectRow",
+    "clearSelection",
+    "setFilters",
+    "clearFilters",
+    "setSort",
+  ],
 }
 
 export const TABLE_BUTTON_EVENT_HANDLER_CONFIG: EventHandlerConfig = {

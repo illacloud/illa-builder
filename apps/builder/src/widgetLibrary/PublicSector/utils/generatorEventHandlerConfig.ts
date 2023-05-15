@@ -250,6 +250,26 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setImageUrl",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-pageIndex`,
+        labelName: i18n.t("editor.inspect.setter_label.range_slider.end_value"),
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
+        attrName: "pageIndex",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "selectPage",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-rowSelection`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.table.default_selected_row",
+        ),
+        setterType: "INPUT_SETTER",
+        // expectedType: [VALIDATION_TYPES.NUMBER, VALIDATION_TYPES.ARRAY],
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "selectRow",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-copiedValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
