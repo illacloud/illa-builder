@@ -1566,7 +1566,11 @@
           "has_next_page": "Має наступну сторінку",
           "currency_code": "Код валюти"
         },
-        "previous_cursor": "Попередній курсор"
+        "previous_cursor": "Попередній курсор",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "Режим фільтра. І або АБО.",
           "currency_code": "Долари США"
         },
-        "previous_cursor": "Використовуйте дані дій, щоб встановити попередній курсор. Наприклад,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Використовуйте дані дій, щоб встановити попередній курсор. Наприклад,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Виправлена",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Обмежити відступ на основі",
           "cursor_based": "На основі курсору",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
