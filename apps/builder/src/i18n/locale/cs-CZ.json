@@ -1566,7 +1566,11 @@
           "has_next_page": "Má další stránku",
           "currency_code": "Kód měny"
         },
-        "previous_cursor": "Předchozí kurzor"
+        "previous_cursor": "Předchozí kurzor",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "Režim filtru. A nebo OR.",
           "currency_code": "V tabulce v příloze I nařízení (EU) č. 36/2012 se v řádku týkajícím se subjektu „Ecocert Erőmű Kft.“ nahrazuje tímto:"
         },
-        "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Limit na základě posunu",
           "cursor_based": "Na základě kurzoru",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
