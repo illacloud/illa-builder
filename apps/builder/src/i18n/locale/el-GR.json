@@ -1566,7 +1566,11 @@
           "has_next_page": "Έχει επόμενη σελίδα",
           "currency_code": "Κωδικός νομίσματος"
         },
-        "previous_cursor": "Προηγούμενος δρομέας"
+        "previous_cursor": "Προηγούμενος δρομέας",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "Η λειτουργία φίλτρου. ΚΑΙ ή OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Χρησιμοποιήστε τα δεδομένα ενέργειας για να ορίσετε τον προηγούμενο δρομέα. Για παράδειγμα,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Χρησιμοποιήστε τα δεδομένα ενέργειας για να ορίσετε τον προηγούμενο δρομέα. Για παράδειγμα,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Σταθερό",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Μετατόπιση ορίου",
           "cursor_based": "Δρομέας με βάση",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
