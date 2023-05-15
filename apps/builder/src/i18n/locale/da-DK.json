@@ -1531,7 +1531,8 @@
           "event_background": "Baggrund",
           "event_text": "Tekst",
           "draggable": "Trækbar",
-          "resizable": "Resizable"
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging"
         },
         "table": {
           "page_index": "Side indeks",
