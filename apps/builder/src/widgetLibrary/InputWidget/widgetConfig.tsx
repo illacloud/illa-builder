@@ -23,5 +23,7 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
     formDataKey: "input",
     placeholder: "input sth",
     $dynamicAttrPaths: ["labelWidth"],
+    type: "input",
+    showVisibleButton: "{{true}}",
   },
 }

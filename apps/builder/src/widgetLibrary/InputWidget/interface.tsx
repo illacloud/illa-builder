@@ -11,6 +11,8 @@ export interface WrappedInputProps
     >,
     BaseWidgetProps {
   showCharacterCount?: InputProps["showWordLimit"]
+  type?: "input" | "password" | "search"
+  showVisibleButton?: boolean
   value?: string
   prefixIcon?: InputProps["prefix"]
   prefixText?: string
@@ -18,7 +20,7 @@ export interface WrappedInputProps
   suffixText?: string
   colorScheme?: InputProps["colorScheme"]
   allowClear?: InputProps["allowClear"]
-  handleOnChange?: () => void
+  handleOnChange?: (value: string) => void
   handleOnFocus?: () => void
   handleOnBlur?: () => void
   handleUpdateMultiExecutionResult: (
@@ -28,6 +30,7 @@ export interface WrappedInputProps
     }[],
   ) => void
   getValidateMessage: (value: string) => string
+  clearValue: () => void
 }
 
 export interface InputWidgetProps
