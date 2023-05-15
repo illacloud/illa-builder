@@ -1532,7 +1532,8 @@
           "event_text": "Текст",
           "draggable": "Перетягуємий",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Індекс сторінки",
@@ -1707,7 +1708,9 @@
           "event_text": "Встановити колір текстової карти події",
           "couldnot_drag": "Якщо ви хочете перетягнути для зміни діапазону часу, будь ласка, перейдіть на сторінку попереднього перегляду операцій.",
           "draggable": "Чи дозволяти користувачам оновлювати діапазон часу заходу, перетягуючи, щоб перемістити подію",
-          "resizable": "Якщо користувачі зможуть оновлювати проміжок часу заходу і змінювати тривалість часу, перетягуючи межу події на тривалий, або скорочуючи тривалість часу"
+          "resizable": "Якщо користувачі зможуть оновлювати проміжок часу заходу і змінювати тривалість часу, перетягуючи межу події на тривалий, або скорочуючи тривалість часу",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Індекс сторінки, яку ви хочете вибрати.",
