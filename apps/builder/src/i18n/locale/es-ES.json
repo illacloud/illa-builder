@@ -1566,7 +1566,11 @@
           "has_next_page": "Tiene página siguiente",
           "currency_code": "Código de moneda"
         },
-        "previous_cursor": "Curso anterior"
+        "previous_cursor": "Curso anterior",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "Modo de filtro. Y o OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Utilice los datos de acción para establecer el cursor anterior. Por ejemplo,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Utilice los datos de acción para establecer el cursor anterior. Por ejemplo,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Fijado",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Límite de desplazamiento basado",
           "cursor_based": "Basado en cursor",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
