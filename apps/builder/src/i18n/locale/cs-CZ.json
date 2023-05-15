@@ -1531,7 +1531,8 @@
           "event_background": "Pozadí",
           "event_text": "Text",
           "draggable": "Posunout",
-          "resizable": "Resizable"
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging"
         },
         "table": {
           "page_index": "Index stránky",
