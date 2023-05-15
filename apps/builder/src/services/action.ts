@@ -34,9 +34,9 @@ interface IActionRunResultRequestData {
   content: ActionContent
 }
 
-interface IActionRunResultResponseData<R = Record<string, any>[]> {
+export interface IActionRunResultResponseData<R = Record<string, any>[]> {
   Rows: R
-  Extra?: Record<string, any> | null
+  Extra: Record<string, any> | null
   Success: boolean
 }
 

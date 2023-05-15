@@ -32,15 +32,18 @@ import {
   actionPanelContainerStyle,
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
-import { getCachedAction } from "@/redux/config/configSelector"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { AdvancedPanel } from "../AdvancedPanel"
 
 export const ActionPanel: FC = () => {
   const cachedAction = useSelector(getCachedAction)
+  const selectedAction = useSelector(getSelectedAction)!
 
   const [resultVisible, setResultVisible] = useState(false)
-  const [shownResult, setShownResult] = useState<unknown>("")
   const [activeKey, setActiveKey] = useState("general")
 
   const handleClickChangeTab = useCallback(
@@ -128,9 +131,6 @@ export const ActionPanel: FC = () => {
   if (cachedAction === null || cachedAction === undefined) {
     return <></>
   }
-  const handleResultValueChange = (value: unknown) => {
-    setShownResult(value)
-  }
 
   return (
     <div css={actionPanelStyle}>
@@ -139,7 +139,6 @@ export const ActionPanel: FC = () => {
           onResultVisibleChange={(visible) => {
             setResultVisible(visible)
           }}
-          onResultValueChange={handleResultValueChange}
           openState={resultVisible}
           activeTab={activeKey}
           handleChangeTab={handleClickChangeTab}
@@ -154,8 +153,8 @@ export const ActionPanel: FC = () => {
           </MixpanelTrackProvider>
         )}
         <ActionResult
+          key={selectedAction.actionId}
           visible={resultVisible}
-          results={shownResult}
           onClose={() => {
             setResultVisible(false)
           }}
