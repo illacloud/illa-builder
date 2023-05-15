@@ -1532,7 +1532,8 @@
           "event_text": "Texte du texte",
           "draggable": "Déplaçable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Index de la page",
@@ -1707,7 +1708,9 @@
           "event_text": "Définir la couleur du texte de la fiche d'événement",
           "couldnot_drag": "Si vous souhaitez faire glisser pour ajuster la plage de temps, veuillez passer à la page d'aperçu pour l'opération.",
           "draggable": "Permettre aux utilisateurs de mettre à jour la plage de temps de l'événement en faisant glisser pour déplacer l'événement",
-          "resizable": "Permettre aux utilisateurs de mettre à jour la plage de temps de l'événement et de modifier la plage de temps en faisant glisser la bordure d'un événement pour allonger ou raccourcir la durée"
+          "resizable": "Permettre aux utilisateurs de mettre à jour la plage de temps de l'événement et de modifier la plage de temps en faisant glisser la bordure d'un événement pour allonger ou raccourcir la durée",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Index de la page que vous souhaitez sélectionner.",
