@@ -1532,7 +1532,8 @@
           "event_text": "Text",
           "draggable": "Flyttbar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Sidans index",
@@ -1707,7 +1708,9 @@
           "event_text": "Ställ in textfärgen på händelsekortet",
           "couldnot_drag": "Om du vill dra för att justera tidsintervallet, gå vidare till förhandsgranskningssidan för operationen.",
           "draggable": "Om tillåta användare att uppdatera händelseintervallet genom att dra för att flytta händelsen",
-          "resizable": "Om tillåta användare att uppdatera händelsen tidsintervall och ändra tidsfristen genom att dra gränsen för en händelse att förlänga eller förkorta tidsfristen"
+          "resizable": "Om tillåta användare att uppdatera händelsen tidsintervall och ändra tidsfristen genom att dra gränsen för en händelse att förlänga eller förkorta tidsfristen",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Index för sidan du vill välja.",
