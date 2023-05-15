@@ -672,7 +672,7 @@
           "placeholder": {
             "mode_id": "bert-base-uncased",
             "text": "宇宙への答えは [MASK]です。",
-            "json": "{ \r\n\"past_user_inputs\": [\"What movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Why ?を説明できますか? \r\n}",
+            "json": "{ \n\"past_user_inputs\": [\"Which movie is the best ?\"], \n\"generated_responses\": [\"It's Die Hard for sure.\"], \n\"text\": \"Can you explain why ?\" \n}",
             "binary": "'@cats.jpg' \\",
             "use_cache": "ブール値、true の場合は空白のままにします",
             "min_length": "出力要約のトークンの最小長を定義する整数",
@@ -1532,8 +1532,8 @@
           "event_text": "テクストヤン",
           "draggable": "ドラッグ可能",
           "resizable": "サイズ変更可能",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "ドラッグ無効時のカスタムメッセージ",
+          "custom_message_resizable": "サイズ変更を無効にした場合のカスタム メッセージ"
         },
         "table": {
           "page_index": "ページの索引",
@@ -1566,7 +1566,11 @@
           "has_next_page": "次のページあり",
           "currency_code": "通貨コード"
         },
-        "previous_cursor": "前のカーソル"
+        "previous_cursor": "前のカーソル",
+        "input": {
+          "type": "タイプ",
+          "show_visible_button": "表示ボタンを表示"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1709,8 +1713,8 @@
           "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。",
           "draggable": "ドラッグしてイベントを移動することにより、ユーザーがイベントの時間範囲を更新できるようにするかどうか",
           "resizable": "ユーザーがイベントの時間範囲を更新し、イベントの境界線をドラッグして期間を延長または短縮して期間を変更できるようにするかどうか",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "ドラッグが無効になった後は、ユーザーがイベントをドラッグするとメッセージが表示されます。",
+          "custom_message_resizable": "サイズ変更が無効になった後は、ユーザーがイベントのサイズを変更するとメッセージが表示されます。"
         },
         "table": {
           "page_index": "選択するページの索引",
@@ -1742,7 +1746,11 @@
           "filter_mode": "フィルタモード。ANDまたはOR。",
           "currency_code": "USD"
         },
-        "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "入力のタイプを設定する",
+          "show_visible_button": "表示ボタンを表示するかどうかを設定する"
+        }
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Limit offset based",
           "cursor_based": "カーソルベース",
           "graphql_relay_cursor": "GraphQL Relay cursor"
+        },
+        "input": {
+          "input": "入力",
+          "password": "パスワード",
+          "search": "検索"
         }
       },
       "setter_placeholder": {
