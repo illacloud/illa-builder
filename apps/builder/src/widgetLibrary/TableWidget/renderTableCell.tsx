@@ -176,15 +176,17 @@ export const RenderTableButtonGroup: FC<{
   value?: TableCellButtonGroupItemProps[]
   alignment?: TableCellAlign
   eventPath: string
-  handleOnClick?: (path: string) => void
+  handleOnClick?: (path: string, index?: number) => void
 }> = (props) => {
   const { cell, value, alignment, eventPath, handleOnClick } = props
 
   const handleOnClickButtonItem = (e: SyntheticEvent, index: number) => {
     cell.row.getIsSelected() && e.stopPropagation()
+    const rowIndex = cell.row.index
     const paths = [`${eventPath}`, "buttonGroupContent", `${index}`, "events"]
-    handleOnClick?.(convertPathToString(paths))
+    handleOnClick?.(convertPathToString(paths), rowIndex)
   }
+
   return value ? (
     <ButtonGroup css={applyTableButtonGroupStyle(alignment)} spacing="8px">
       {value.map((item, index) => {

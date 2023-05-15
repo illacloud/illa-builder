@@ -167,6 +167,7 @@ export interface WrappedTableProps
     Omit<BaseWidgetProps, "triggerEventHandler"> {
   customColumns?: Record<number, string>
   handleOnClickMenuItem?: (path: string) => void
+  handleOnCellSelect?: () => void
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
   handleOnFiltersChange?: () => void

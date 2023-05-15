@@ -242,7 +242,7 @@ function isValidDate(val: unknown) {
 export const getCellForType = (
   data: ColumnItemShape,
   eventPath: string,
-  handleOnClickMenuItem: (path: string) => void,
+  handleOnClickMenuItem: (path: string, index?: number) => void,
   columnIndex: number,
 ) => {
   const {
