@@ -1532,7 +1532,8 @@
           "event_text": "Tekst",
           "draggable": "Flyttbar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Sideindeks (Automatic Translation)",
@@ -1707,7 +1708,9 @@
           "event_text": "Angi fargen for tekstfargen for hendelseskortet",
           "couldnot_drag": "Hvis du vil dra for å justere tidsintervallet, kan du fortsette til forhåndsvisningssiden for operasjonen.",
           "draggable": "Om brukere kan oppdatere tidsintervallet for hendelse ved å dra for å flytte hendelsen",
-          "resizable": "Hvorvidt brukere kan oppdatere tidsintervallet for arrangementet og endre tidsrommet ved å dra grensen til en hendelse for å forlenge eller forkorte tidsrområdet"
+          "resizable": "Hvorvidt brukere kan oppdatere tidsintervallet for arrangementet og endre tidsrommet ved å dra grensen til en hendelse for å forlenge eller forkorte tidsrområdet",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Indeks på siden du ønsker å velge.",
