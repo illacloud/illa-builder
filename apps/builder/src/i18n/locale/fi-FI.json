@@ -1532,7 +1532,8 @@
           "event_text": "Teksti",
           "draggable": "Vedettävä",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Sivun indeksi",
@@ -1707,7 +1708,9 @@
           "event_text": "Aseta tapahtumakortin tekstin väri",
           "couldnot_drag": "Jos haluat muuttaa aikaväliä, ole hyvä ja jatka sen esikatselusivulle toimintoa varten.",
           "draggable": "Annetaanko käyttäjien päivittää tapahtuman aikaväliä vetämällä ja siirtämällä tapahtuman",
-          "resizable": "Annetaanko käyttäjien päivittää tapahtuman aikaväliä ja muuttaa aikaväliä vetämällä tapahtuman rajaa pitääkseen tai lyhentääkseen sen kestoa"
+          "resizable": "Annetaanko käyttäjien päivittää tapahtuman aikaväliä ja muuttaa aikaväliä vetämällä tapahtuman rajaa pitääkseen tai lyhentääkseen sen kestoa",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Hakemisto sivusta, jonka haluat valita.",
