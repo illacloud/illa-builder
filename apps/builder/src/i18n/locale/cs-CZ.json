@@ -1153,7 +1153,9 @@
           "select": "Vybrat",
           "DragOrClickNoEventArea": "Přetáhněte nebo neklepněte na žádnou událost",
           "rowClick": "Kliknutí na řádek",
-          "refresh": "Aktualizovat"
+          "refresh": "Aktualizovat",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change"
         },
         "image_list": {
           "title": "Obrázky",
