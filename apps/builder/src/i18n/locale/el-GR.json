@@ -1532,7 +1532,8 @@
           "event_text": "Κείμενο",
           "draggable": "Μετακινούμενο",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging"
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Ευρετήριο σελίδας",
@@ -1707,7 +1708,9 @@
           "event_text": "Ορίστε το χρώμα κειμένου της κάρτας συμβάντων",
           "couldnot_drag": "Αν θέλετε να σύρετε για να προσαρμόσετε το χρονικό εύρος, παρακαλούμε προχωρήστε στη σελίδα προεπισκόπησης για τη λειτουργία.",
           "draggable": "Αν επιτρέπεται στους χρήστες να ενημερώσουν το χρονικό εύρος της εκδήλωσης σύροντας για τη μετακίνηση του συμβάντος",
-          "resizable": "Αν θα επιτρέπεται στους χρήστες η ενημέρωση του χρονικού εύρους συμβάντων και η αλλαγή του χρονικού εύρους σύροντας το όριο ενός γεγονότος για να επιμηκύνει ή να συντομεύσει το χρονικό διάστημα"
+          "resizable": "Αν θα επιτρέπεται στους χρήστες η ενημέρωση του χρονικού εύρους συμβάντων και η αλλαγή του χρονικού εύρους σύροντας το όριο ενός γεγονότος για να επιμηκύνει ή να συντομεύσει το χρονικό διάστημα",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
           "page_index": "Ευρετήριο της σελίδας που θέλετε να επιλέξετε.",
