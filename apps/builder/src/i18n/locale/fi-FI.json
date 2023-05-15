@@ -1566,7 +1566,11 @@
           "has_next_page": "On seuraava sivu",
           "currency_code": "Valuutan koodi"
         },
-        "previous_cursor": "Edellinen kohdistin"
+        "previous_cursor": "Edellinen kohdistin",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1742,7 +1746,11 @@
           "filter_mode": "Suodatintila. JA tai OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -1811,6 +1819,11 @@
           "limit_offset_based": "Raja poikkeama perustuu",
           "cursor_based": "Kohdistin pohjautuu",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
