@@ -205,6 +205,9 @@
             "connect_with_oauth": "Připojit se k OAuth a uložit",
             "reconnect_with_oauth": "Znovu připojit s OAuth",
             "access_type": "Typ přístupu"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
