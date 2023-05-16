@@ -1570,7 +1570,8 @@
           "total_row_count": "Общее количество строк",
           "next_cursor": "Следующий курсор",
           "has_next_page": "Имеет следующую страницу",
-          "currency_code": "Код валюты"
+          "currency_code": "Код валюты",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Предыдущий курсор",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Логическое значение для указания наличия другой страницы данных. Это поможет нам лучше контролировать поиск данных в страницах запросов и оптимизировать производительность запросов",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Режим фильтра. AND или OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Используйте данные для установки предыдущего курсора. Например,  {{ pageInfo.startCursor }}",
         "input": {
