@@ -1570,7 +1570,8 @@
           "total_row_count": "Totaal aantal rijen",
           "next_cursor": "Volgende cursor",
           "has_next_page": "Heeft een volgende pagina",
-          "currency_code": "Valuta code"
+          "currency_code": "Valuta code",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Vorige cursor",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Een boolean gebruikt om aan te geven of er een andere pagina met gegevens beschikbaar is. Het kan ons helpen om het ophalen van gegevens beter te controleren in gepagineerde query's en het optimaliseren van de queryprestaties",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "De filtermodus. AND of OOR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Gebruik de actie gegevens om de vorige cursor in te stellen. Bijvoorbeeld,  {{ pageInfo.startCursor }}",
         "input": {
