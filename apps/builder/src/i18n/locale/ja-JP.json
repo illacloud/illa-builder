@@ -205,6 +205,9 @@
             "connect_with_oauth": "OAuth で接続して保存",
             "reconnect_with_oauth": "OAuth で再接続する",
             "access_type": "アクセスの種類"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
