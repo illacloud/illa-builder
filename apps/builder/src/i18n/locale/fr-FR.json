@@ -1570,7 +1570,8 @@
           "total_row_count": "Nombre total de lignes",
           "next_cursor": "Curseur suivant",
           "has_next_page": "A la page suivante",
-          "currency_code": "Code devise"
+          "currency_code": "Code devise",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Curseur précédent",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Un booléen utilisé pour indiquer s'il y a une autre page de données disponible. Cela peut nous aider à mieux contrôler la récupération des données dans les requêtes paginées et à optimiser les performances des requêtes",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Le mode filtre. ET OU OU.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Utilisez les données de l'action pour définir le curseur précédent. Par exemple,  {{ pageInfo.startCursor }}",
         "input": {
