@@ -205,6 +205,9 @@
             "connect_with_oauth": "连接 OAuth 并保存",
             "reconnect_with_oauth": "重新连接 OAuth",
             "access_type": "接入类型"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
