@@ -205,6 +205,9 @@
             "connect_with_oauth": "Forbind med OAuth og gem",
             "reconnect_with_oauth": "Genopret forbindelse med OAuth",
             "access_type": "Adgangs type"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
