@@ -1223,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "开始时间",
           "end_placeholder": "时间结束"
+        },
+        "recording": {
+          "start_button_text": "开始录制",
+          "stop_button_text": "停止",
+          "clear_button_text": "清空"
         }
       },
       "setter_group": {
@@ -1577,6 +1582,12 @@
         "input": {
           "type": "类型",
           "show_visible_button": "显示可见按钮"
+        },
+        "recording": {
+          "start_button_text": "开始录制按钮文本",
+          "clear_button_text": "清除按钮文本",
+          "min_duration": "最小录制时间 (s)",
+          "max_duration": "最大录制时间 (s)"
         }
       },
       "setter_tooltip": {
@@ -1758,6 +1769,13 @@
         "input": {
           "type": "设置输入类型",
           "show_visible_button": "设置是否显示可见按钮"
+        },
+        "recording": {
+          "start_button_text": "录制未开始时按钮上显示的文本",
+          "stop_button_text": "录制中按钮上显示的文本",
+          "clear_button_text": "录制完成后按钮上显示的文本",
+          "min_duration": "录制的最小持续时间",
+          "max_duration": "录制的最大持续时间"
         }
       },
       "setter_option": {
@@ -1874,6 +1892,12 @@
           "single_file": "只允许一个文件。",
           "file": "已移除不支持的文件类型",
           "directory": "只允许目录。"
+        },
+        "recording": {
+          "recording_permission": "需要录音权限",
+          "cannot_set_value_dur": "无法在录制过程中设置值",
+          "min_duration": "请至少录制 {{minimum}}秒",
+          "max_duration": "请最多录制 {{maximum}}秒"
         }
       },
       "setter_description": {
@@ -2473,6 +2497,9 @@
         "event_calendar": "事件日历"
       },
       "name_duplicated": "该资源ID在这些事件中冲突，请使用相同的名称或不同的ID"
+    },
+    "recording": {
+      "name": "录音"
     }
   },
   "page": {
