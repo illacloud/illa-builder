@@ -207,7 +207,7 @@
             "access_type": "액세스 유형"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "명령"
           }
         },
         "placeholder": {
@@ -1236,7 +1236,7 @@
         "menu": "메뉴",
         "options": "옵션",
         "pagination": "페이지를 넘기다",
-        "row_selection": "라인 선택",
+        "row_selection": "사용자 선택",
         "sort": "정렬하다",
         "style": "스타일",
         "tabs": "탭",
@@ -1570,7 +1570,8 @@
           "total_row_count": "총 행 수",
           "next_cursor": "다음 커서",
           "has_next_page": "다음 페이지 있음",
-          "currency_code": "통화 코드"
+          "currency_code": "통화 코드",
+          "cell_selection": "셀 선택"
         },
         "previous_cursor": "이전 커서",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "사용자가 셀을 선택하도록 허용할지 여부"
         },
         "previous_cursor": "액션 데이터를 사용하여 이전 커서를 설정합니다. 예: {{ pageInfo.startCursor }}",
         "input": {
