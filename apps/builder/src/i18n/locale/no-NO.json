@@ -205,6 +205,9 @@
             "connect_with_oauth": "Koble til med OAuth & Lagre",
             "reconnect_with_oauth": "Koble til OAuth på nytt",
             "access_type": "Adgangstype (Automatic Translation)"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
