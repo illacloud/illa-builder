@@ -25,6 +25,10 @@ export const publicTeamChildrenRouter: RoutesObjectPro[] = [
     accessByMobile: true,
     errorElement: lazyLoad(lazy(() => import("@/page/status/404"))),
     loader: deployLoader,
+    shouldRevalidate: (args) => {
+      const { currentParams, nextParams } = args
+      return currentParams.appId !== nextParams.appId
+    },
   },
   {
     path: "/:teamIdentifier/template/:templateName",
@@ -76,6 +80,7 @@ export const publicDashboardChildrenRouter: RoutesObjectPro[] = [
   {
     index: true,
     element: <Navigate to="apps" replace={true} />,
+    needLogin: true,
   },
   {
     path: "apps",
@@ -92,10 +97,12 @@ export const publicDashboardChildrenRouter: RoutesObjectPro[] = [
       lazy(() => import("@/page/Dashboard/DashboardResources")),
       <FullPageLoading />,
     ),
+    needLogin: true,
     loader: getDashboardResourcesLoader,
   },
   {
     path: "tutorial",
+    needLogin: true,
     element: lazyLoad(
       lazy(() => import("@/page/Dashboard/Tutorial")),
       <FullPageLoading />,

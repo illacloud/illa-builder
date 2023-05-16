@@ -275,9 +275,9 @@
             "ca_certificate": "Vi udfylder det CA-certifikat, der bruges til TLS-forbindelser til Serverless Tier som standard. Hvis du har brug for TLS-forbindelser til dedikeret niveau, <0>Klik her</0> for at se konfigurationsmetoden."
           },
           "neon": {
-            "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
-            "failed": "Failed to parse the string. Please check your string or configure manually.",
-            "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+            "normal": "Opret et Neon projekt og få strengen i <0>projekt dashboard</0>.",
+            "failed": "Kunne ikke fortolke strengen. Tjek venligst din streng eller konfigurer manuelt.",
+            "no_password": "Strengen har ingen adgangskode. Vis venligst adgangskoden i Neon kontrolpanelet før kopiering."
           }
         },
         "option": {
@@ -361,7 +361,7 @@
           },
           "neon": {
             "parse": "Parse",
-            "connection_string": "Connection string"
+            "connection_string": "Forbindelses streng"
           }
         },
         "default": {
@@ -1151,9 +1151,12 @@
           "markerSelected": "markerValgt",
           "markerCreated": "markerOprettet",
           "select": "Vælg",
-          "DragOrClickNoEventArea": "Drag or click no event area",
-          "rowClick": "Row click",
-          "refresh": "Refresh"
+          "DragOrClickNoEventArea": "Træk eller klik intet event område",
+          "rowClick": "Klik på række",
+          "refresh": "Opdater",
+          "filtersChange": "Filters change",
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell"
         },
         "image_list": {
           "title": "Billeder",
@@ -1175,10 +1178,10 @@
         "oncellselect": "onCellSelect",
         "onRowSelectChange": "onRowSelectChange",
         "onRowClickChange": "onRowClickChange",
-        "filterChange": "filterChange",
-        "sortChange": "sortChange",
-        "pageChange": "pageChange",
-        "refresh": "refresh"
+        "filterChange": "filterSkift",
+        "sortChange": "sortSkift",
+        "pageChange": "sideSkift",
+        "refresh": "opfrisk"
       },
       "setter_default_value": {
         "fill": "Udfyld",
@@ -1530,8 +1533,10 @@
           "calendar_text": "Tekst",
           "event_background": "Baggrund",
           "event_text": "Tekst",
-          "draggable": "Draggable",
-          "resizable": "Resizable"
+          "draggable": "Trækbar",
+          "resizable": "Resizable",
+          "custom_message_draggable": "Custom message when disabled dragging",
+          "custom_message_resizable": "Custom message when disable resizing"
         },
         "table": {
           "page_index": "Side indeks",
@@ -1542,29 +1547,33 @@
           "show_thousands_separ": "Vis tusindvis separator",
           "tag_label": "Etiket etiket",
           "tag_color": "Tag farve",
-          "open_in_new_tab": "Open in new tab",
+          "open_in_new_tab": "Åbn i nyt faneblad",
           "variant": "Variant",
-          "icon": "Icon",
-          "color": "Color",
-          "sort_by_mapped_value": "Sort by mapped value",
-          "background": "Background",
-          "alignment": "Alignment",
-          "column_width": "Column width",
+          "icon": "Ikon",
+          "color": "Farve",
+          "sort_by_mapped_value": "Sorter efter kortlagt værdi",
+          "background": "Baggrund",
+          "alignment": "Justering",
+          "column_width": "Kolonne bredde",
           "width": "Width",
-          "disable_user_selecti": "Disable user selection",
-          "default_selected_row": "Default selected row",
-          "refresh": "Refresh",
+          "disable_user_selecti": "Deaktivér brugervalg",
+          "default_selected_row": "Standard valgt række",
+          "refresh": "Opdater",
           "download_row_data": "Download rå data",
-          "column_setting": "Column setting",
-          "cell_overflow": "Cell overflow",
-          "enable_server_side_p": "Enable server side pagination",
-          "pagination_type": "Pagination type",
-          "total_row_count": "Total row count",
-          "next_cursor": "Next cursor",
-          "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "column_setting": "Indstilling af kolonne",
+          "cell_overflow": "Overløb af celle",
+          "enable_server_side_p": "Aktiver side side paginering på serveren",
+          "pagination_type": "Sideinddelings type",
+          "total_row_count": "Antal rækker i alt",
+          "next_cursor": "Næste markør",
+          "has_next_page": "Har næste side",
+          "currency_code": "Valuta kode"
         },
-        "previous_cursor": "Previous cursor"
+        "previous_cursor": "Forrige markør",
+        "input": {
+          "type": "Type",
+          "show_visible_button": "Show visible button"
+        }
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1705,40 +1714,46 @@
           "event_background": "Indstil baggrunden for begivenhedskort",
           "event_text": "Angiv tekstfarven på begivenhedskort",
           "couldnot_drag": "Hvis du ønsker at trække for at justere tidsintervallet, så fortsæt venligst til forhåndsvisningssiden for operationen.",
-          "draggable": "Whether allow users to update the event time range by dragging to move the event",
-          "resizable": "Whether allow users to update the event time range and change the time span by dragging the border of an event to lengthen or shorten the time span"
+          "draggable": "Om det er muligt for brugere at opdatere begivenhedens tidsinterval ved at trække for at flytte begivenheden",
+          "resizable": "Om det er muligt for brugere at opdatere begivenhedens tidsinterval og ændre tidsrummet ved at trække grænsen til en begivenhed for at forlænge eller forkorte tidsintervallet",
+          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
+          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
         },
         "table": {
-          "page_index": "Index of the page you wish to select.",
-          "index": "Index of row you wish to select. The index should be an array that can be used to specify multiple rows.",
-          "scroll_to_the_select": "Whether to scroll to the row.",
-          "show_thousands_separ": "Whether to show the thousands separator",
-          "tag_label": "Set the label of tags. An array will be separated to multiple tags.",
-          "tag_color": "Set the color of tags. Use {{ write a conditional statement to set the color displayed by each tag under different conditions.",
-          "variant": "Variant of the button",
-          "icon": "The icon displayed in the table",
-          "color": "Set the color.",
-          "sort_by_mapped_value": "Whether to sort by mapped value. If not, we will sort based on the original data.",
-          "background": "Set the background of column. Use {{ write a conditional statement to set the color displayed by each cell under different conditions.",
-          "alignment": "Set the alignment of the column.",
-          "column_width": "Set column width by numeric value. You can also adjust the column width by dragging in the frame. After adjustment, the value of this configuration item will also change accordingly",
-          "width": "Set the adaptation method of column width.",
-          "disable_user_selecti": "Whether to disable user selection. If disabled, you can select rows by control the table component by event handler.",
-          "default_selected_row": "The row selected by default.  ",
-          "refresh": "Whether to show the refresh icon. ",
+          "page_index": "Indeks af den side, du ønsker at vælge.",
+          "index": "Indeks af række du ønsker at vælge. Indekset skal være et array, der kan bruges til at angive flere rækker.",
+          "scroll_to_the_select": "Om der skal rulles til rækken.",
+          "show_thousands_separ": "Om tusinder - separator skal vises",
+          "tag_label": "Sæt etiketten på tags. Et array vil blive adskilt til flere tags.",
+          "tag_color": "Angiv farven på tags. Brug {{ skriv en betinget erklæring for at indstille farven der vises af hvert mærke under forskellige forhold.",
+          "variant": "Variant af knappen",
+          "icon": "Ikonet der vises i tabellen",
+          "color": "Angiv farven.",
+          "sort_by_mapped_value": "Om der skal sorteres efter angivet værdi. Hvis ikke, vil vi sortere baseret på de oprindelige data.",
+          "background": "Indstil søjlens baggrund. Brug {{ skriv en betinget erklæring for at sætte farven der vises af hver celle under forskellige forhold.",
+          "alignment": "Indstil justeringen af kolonnen.",
+          "column_width": "Sæt søjlebredde efter numerisk værdi. Du kan også justere søjlebredden ved at trække i rammen. Efter justering, vil værdien af dette konfigurationselement også ændre sig i overensstemmelse hermed",
+          "width": "Indstil tilpasningsmetoden for søjlebredde.",
+          "disable_user_selecti": "Om brugervalg skal deaktiveres. Hvis deaktiveret, kan du vælge rækker ved at styre tabelkomponenten ved hændelseshåndtering.",
+          "default_selected_row": "Rækken valgt som standard.  ",
+          "refresh": "Om opdateringsikonet skal vises. ",
           "download_row_data": "Om download skal vises rå data ikonet.",
-          "column_setting": "Whether to show the column setting. Column setting will allow users to set the columns to display and the column sort. This setting does not change the table data.",
-          "cell_overflow": "How to display when cell overflow. ",
-          "enable_server_side_p": "Whether to enable server pagination",
-          "pagination_type": "The pagination type. ",
-          "total_row_count": "The number of rows used to count the page number.",
-          "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
-          "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
+          "column_setting": "Om kolonneindstillingen skal vises. Kolonneindstillingen vil tillade brugere at indstille kolonnerne til at vise og kolonnesorteringen. Denne indstilling ændrer ikke tabeldata.",
+          "cell_overflow": "Sådan vises når cellen overløber. ",
+          "enable_server_side_p": "Om server paginering skal aktiveres",
+          "pagination_type": "Sideinddelingstype. ",
+          "total_row_count": "Antallet af rækker der bruges til at tælle sidenummeret.",
+          "next_cursor": "En identifikator, der bruges til at finde det næste udgangspunkt for et sæt data, for at paginere og hente data i batches",
+          "has_next_page": "En boolsk bruges til at angive, om der er en anden side af data til rådighed. Det kan hjælpe os bedre styre hentning af data i paginerede forespørgsler og optimere forespørgsels ydeevne",
           "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "Filtertilstand. OG eller OR.",
           "currency_code": "USD"
         },
-        "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Brug handlingsdata til at indstille den forrige markør. For eksempel  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "To set the input type",
+          "show_visible_button": "To set whether to show the visible button"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1801,12 +1816,17 @@
           "button": "Knap",
           "icon": "Ikon",
           "solid": "Solid",
-          "outline": "Outline",
-          "auto": "Auto",
-          "limited": "Limited",
-          "limit_offset_based": "Limit offset based",
-          "cursor_based": "Cursor based",
+          "outline": "Kontur",
+          "auto": "Automatisk",
+          "limited": "Begrænset",
+          "limit_offset_based": "Begræns offset baseret",
+          "cursor_based": "Markør baseret",
           "graphql_relay_cursor": "GraphQL Relay cursor-based"
+        },
+        "input": {
+          "input": "Input",
+          "password": "Password",
+          "search": "Search"
         }
       },
       "setter_placeholder": {
@@ -1832,7 +1852,7 @@
           "abc": "{{abc.a}}"
         },
         "table": {
-          "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+          "currency_code": "Valutakoden defineret i [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         }
       },
       "setter_tootip": {
@@ -2000,7 +2020,7 @@
         "select_row": "Vælg række",
         "clear_selection": "Ryd valg",
         "set_filters": "Angiv filtre",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "Klik på fri tid"
       }
     },
     "tutorial": {
@@ -2789,7 +2809,7 @@
       },
       "setter_content": {
         "widget_action_type_name": {
-          "rowSelectChange": "Row Select Change"
+          "rowSelectChange": "Række Vælg Ændring"
         }
       }
     }
@@ -2852,5 +2872,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Mislykkedes at logge ud. Prøv igen senere."
 }

@@ -672,7 +672,7 @@
           "placeholder": {
             "mode_id": "bert-base-uncased",
             "text": "宇宙への答えは [MASK]です。",
-            "json": "{ \r\n\"past_user_inputs\": [\"What movie is the best ?\"], \r\n\"generated_responses\": [\"It's Die Hard for sure.\"], \r\n\"text\": \"Why ?を説明できますか? \r\n}",
+            "json": "{ \n\"past_user_inputs\": [\"Which movie is the best ?\"], \n\"generated_responses\": [\"It's Die Hard for sure.\"], \n\"text\": \"Can you explain why ?\" \n}",
             "binary": "'@cats.jpg' \\",
             "use_cache": "ブール値、true の場合は空白のままにします",
             "min_length": "出力要約のトークンの最小長を定義する整数",
@@ -976,7 +976,7 @@
           },
           "tips": {
             "hf_endpoint_token": "<0>Hugging Face プロフィール設定</0>で Organizations API トークンを取得してください。",
-            "hf_endpoint": "learn more about <0>Endpoint</0>"
+            "hf_endpoint": "<0>エンドポイント</0>の詳細"
           },
           "placeholder": {
             "hf_endpoint": "https://uu149rez6gw9ehej.eu-west-1.aws.endpoints.huggingface.cloud..."
@@ -1153,7 +1153,10 @@
           "select": "選択",
           "DragOrClickNoEventArea": "イベントのないエリアをドラッグ",
           "rowClick": "行クリック",
-          "refresh": "Refresh"
+          "refresh": "更新",
+          "filtersChange": "行フィルターの変更",
+          "rowSelectChange": "行の選択変更",
+          "onCellSelect": "セルを選択"
         },
         "image_list": {
           "title": "イメージ",
@@ -1531,7 +1534,9 @@
           "event_background": "バックグラウンド",
           "event_text": "テクストヤン",
           "draggable": "ドラッグ可能",
-          "resizable": "サイズ変更可能"
+          "resizable": "サイズ変更可能",
+          "custom_message_draggable": "ドラッグ無効時のカスタムメッセージ",
+          "custom_message_resizable": "サイズ変更を無効にした場合のカスタム メッセージ"
         },
         "table": {
           "page_index": "ページの索引",
@@ -1555,7 +1560,7 @@
           "default_selected_row": "デフォルトの選択行",
           "refresh": "リフレッシュ",
           "download_row_data": "生データのダウンロード",
-          "column_setting": "Column setting",
+          "column_setting": "列の設定",
           "cell_overflow": "セルオーバーフロー",
           "enable_server_side_p": "サーバー側のページネーションを有効にする",
           "pagination_type": "ページネーションタイプ",
@@ -1564,7 +1569,11 @@
           "has_next_page": "次のページあり",
           "currency_code": "通貨コード"
         },
-        "previous_cursor": "前のカーソル"
+        "previous_cursor": "前のカーソル",
+        "input": {
+          "type": "タイプ",
+          "show_visible_button": "表示ボタンを表示"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1706,7 +1715,9 @@
           "event_text": "イベントカードの文字色を設定",
           "couldnot_drag": "ドラッグして時間範囲を調整する場合は、操作のプレビュー ページに進んでください。",
           "draggable": "ドラッグしてイベントを移動することにより、ユーザーがイベントの時間範囲を更新できるようにするかどうか",
-          "resizable": "ユーザーがイベントの時間範囲を更新し、イベントの境界線をドラッグして期間を延長または短縮して期間を変更できるようにするかどうか"
+          "resizable": "ユーザーがイベントの時間範囲を更新し、イベントの境界線をドラッグして期間を延長または短縮して期間を変更できるようにするかどうか",
+          "custom_message_draggable": "ドラッグが無効になった後は、ユーザーがイベントをドラッグするとメッセージが表示されます。",
+          "custom_message_resizable": "サイズ変更が無効になった後は、ユーザーがイベントのサイズを変更するとメッセージが表示されます。"
         },
         "table": {
           "page_index": "選択するページの索引",
@@ -1717,7 +1728,7 @@
           "tag_color": "タグの色を設定します。{{ 異なる条件下で各タグで表示される色を設定するには条件文を記述します。",
           "variant": "ボタンのスタイル",
           "icon": "表に表示されるアイコン",
-          "color": "Set the color.",
+          "color": "色を設定します。",
           "sort_by_mapped_value": "マップされた値でソートするかどうか。そうでない場合は、元のデータに基づいてソートします。",
           "background": "カラムの背景を設定します。{{ 異なる条件下で各セルが表示する色を設定するには条件文を書いてください。",
           "alignment": "列の配置を設定します。",
@@ -1738,7 +1749,11 @@
           "filter_mode": "フィルタモード。ANDまたはOR。",
           "currency_code": "USD"
         },
-        "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}"
+        "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}",
+        "input": {
+          "type": "入力のタイプを設定する",
+          "show_visible_button": "表示ボタンを表示するかどうかを設定する"
+        }
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1804,9 +1819,14 @@
           "outline": "概要",
           "auto": "自動",
           "limited": "制限",
-          "limit_offset_based": "リミットオフセットベース",
+          "limit_offset_based": "Limit offset based",
           "cursor_based": "カーソルベース",
           "graphql_relay_cursor": "GraphQL Relay cursor"
+        },
+        "input": {
+          "input": "入力",
+          "password": "パスワード",
+          "search": "検索"
         }
       },
       "setter_placeholder": {
@@ -2000,7 +2020,7 @@
         "select_row": "行を選択",
         "clear_selection": "選択をクリア",
         "set_filters": "フィルターを設定",
-        "onFreeTimeDragOrClick": "Click free time"
+        "onFreeTimeDragOrClick": "クリックの空き時間"
       }
     },
     "tutorial": {

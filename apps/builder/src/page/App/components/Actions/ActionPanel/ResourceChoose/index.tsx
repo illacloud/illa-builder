@@ -161,7 +161,7 @@ export const ResourceChoose: FC = () => {
               }
               if (value === "automate") {
                 updateSlice = {
-                  runtime: ACTION_RUN_TIME.PAGE_LOADING,
+                  runtime: ACTION_RUN_TIME.APP_LOADED,
                   pages: [],
                   delayWhenLoaded: "",
                   displayLoadingPage: false,
