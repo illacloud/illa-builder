@@ -1570,7 +1570,8 @@
           "total_row_count": "Συνολικός αριθμός σειρών",
           "next_cursor": "Επόμενος δρομέας",
           "has_next_page": "Έχει επόμενη σελίδα",
-          "currency_code": "Κωδικός νομίσματος"
+          "currency_code": "Κωδικός νομίσματος",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Προηγούμενος δρομέας",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Μια δυαδική που χρησιμοποιείται για να δείξει αν υπάρχει μια άλλη σελίδα των διαθέσιμων δεδομένων. Μπορεί να μας βοηθήσει να ελέγξουμε καλύτερα την ανάκτηση δεδομένων σε σελιδοποιημένα ερωτήματα και να βελτιστοποιήσουμε την απόδοση του ερωτήματος",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Η λειτουργία φίλτρου. ΚΑΙ ή OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Χρησιμοποιήστε τα δεδομένα ενέργειας για να ορίσετε τον προηγούμενο δρομέα. Για παράδειγμα,  {{ pageInfo.startCursor }}",
         "input": {
