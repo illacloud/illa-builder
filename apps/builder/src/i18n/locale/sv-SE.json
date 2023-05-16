@@ -205,6 +205,9 @@
             "connect_with_oauth": "Anslut med OAuth & Spara",
             "reconnect_with_oauth": "Återanslut med OAuth",
             "access_type": "Åtkomsttyp"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
