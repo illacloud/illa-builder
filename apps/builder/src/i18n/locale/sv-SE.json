@@ -1570,7 +1570,8 @@
           "total_row_count": "Totalt antal rader",
           "next_cursor": "Nästa markör",
           "has_next_page": "Har nästa sida",
-          "currency_code": "Valutakod"
+          "currency_code": "Valutakod",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Föregående markör",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "En boolesk som används för att ange om det finns en annan sida av data tillgänglig. Det kan hjälpa oss att bättre kontrollera datainsamling i sidnumrerade frågor och optimera frågeprestanda",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Filterläget. OCH eller OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
