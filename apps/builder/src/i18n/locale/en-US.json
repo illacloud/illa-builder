@@ -1236,7 +1236,7 @@
         "menu": "MENU",
         "options": "OPTIONS",
         "pagination": "PAGINATION",
-        "row_selection": "ROW SELECTION",
+        "row_selection": "USER SELECTION",
         "sort": "SORT",
         "style": "STYLE",
         "tabs": "TABS",
@@ -1570,7 +1570,8 @@
           "total_row_count": "Total row count",
           "next_cursor": "Next cursor",
           "has_next_page": "Has next page",
-          "currency_code": "Currency code"
+          "currency_code": "Currency code",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Previous cursor",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}",
         "input": {
