@@ -1570,7 +1570,8 @@
           "total_row_count": "Rivien määrä yhteensä",
           "next_cursor": "Seuraava kohdistin",
           "has_next_page": "On seuraava sivu",
-          "currency_code": "Valuutan koodi"
+          "currency_code": "Valuutan koodi",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Edellinen kohdistin",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Totuusarvo, jota käytetään osoittamaan, onko saatavilla toinen sivu tietoja. Se voi auttaa meitä hallitsemaan paremmin tietojen hakua paginated kyselyt ja optimoida kyselyn suorituskykyä",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Suodatintila. JA tai OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
         "input": {
