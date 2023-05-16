@@ -1570,7 +1570,8 @@
           "total_row_count": "Antal rækker i alt",
           "next_cursor": "Næste markør",
           "has_next_page": "Har næste side",
-          "currency_code": "Valuta kode"
+          "currency_code": "Valuta kode",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Forrige markør",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "En boolsk bruges til at angive, om der er en anden side af data til rådighed. Det kan hjælpe os bedre styre hentning af data i paginerede forespørgsler og optimere forespørgsels ydeevne",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Filtertilstand. OG eller OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Brug handlingsdata til at indstille den forrige markør. For eksempel  {{ pageInfo.startCursor }}",
         "input": {
