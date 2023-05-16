@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "version": "2.4.1",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --strictPort --force",
     "build-cloud": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode cloud",
     "build-self": "NODE_OPTIONS=--max-old-space-size=12288  vite build --mode self",
     "preview": "vite preview",
