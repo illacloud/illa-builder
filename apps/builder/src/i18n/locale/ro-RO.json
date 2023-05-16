@@ -1570,7 +1570,8 @@
           "total_row_count": "Număr total de rânduri",
           "next_cursor": "Următorul cursor",
           "has_next_page": "Are pagina următoare",
-          "currency_code": "Codul valutei"
+          "currency_code": "Codul valutei",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Un boolean folosit pentru a indica dacă există o altă pagină de date disponibile. Ne poate ajuta să controlăm mai bine recuperarea datelor în interogările paginate și să optimizăm performanța interogării",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Modul filtre. ŞI sau SAU.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
         "input": {
