@@ -1570,7 +1570,8 @@
           "total_row_count": "Número total de filas",
           "next_cursor": "Siguiente cursor",
           "has_next_page": "Tiene página siguiente",
-          "currency_code": "Código de moneda"
+          "currency_code": "Código de moneda",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Curso anterior",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Un booleano utilizado para indicar si hay otra página de datos disponibles. Puede ayudarnos a controlar mejor la recuperación de datos en consultas paginadas y optimizar el rendimiento de la consulta",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Modo de filtro. Y o OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Utilice los datos de acción para establecer el cursor anterior. Por ejemplo,  {{ pageInfo.startCursor }}",
         "input": {
