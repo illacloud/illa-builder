@@ -1570,7 +1570,8 @@
           "total_row_count": "Загальна кількість рядків",
           "next_cursor": "Наступний курсор",
           "has_next_page": "Має наступну сторінку",
-          "currency_code": "Код валюти"
+          "currency_code": "Код валюти",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Попередній курсор",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Логічний тип, який використовується для позначення чи є ще одна сторінка наявних даних. Це може допомогти нам краще контролювати інформацію отриманих даних у потокових запитах і оптимізувати продуктивність запиту",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Режим фільтра. І або АБО.",
-          "currency_code": "Долари США"
+          "currency_code": "Долари США",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Використовуйте дані дій, щоб встановити попередній курсор. Наприклад,  {{ pageInfo.startCursor }}",
         "input": {
