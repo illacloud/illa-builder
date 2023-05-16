@@ -2904,5 +2904,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Det gick inte att logga ut. Försök igen senare."
+  "logout_failed": "Det gick inte att logga ut. Försök igen senare.",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }
