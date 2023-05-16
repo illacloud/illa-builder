@@ -1570,7 +1570,8 @@
           "total_row_count": "Total de linhas",
           "next_cursor": "Cursor seguinte",
           "has_next_page": "Tem a próxima página",
-          "currency_code": "Código da moeda"
+          "currency_code": "Código da moeda",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Um booleano usado para indicar se há outra página de dados disponíveis. Ele pode nos ajudar a controlar melhor a recuperação de dados em consultas paginadas e otimizar o desempenho das consultas",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "O modo de filtro. E ou OR.",
-          "currency_code": "R$"
+          "currency_code": "R$",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Use os dados de ação para definir o cursor anterior. Por exemplo,  {{ pageInfo.startCursor }}",
         "input": {
