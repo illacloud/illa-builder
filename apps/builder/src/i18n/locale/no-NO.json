@@ -1223,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "Start tidspunkt",
           "end_placeholder": "Slutt tid"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
         }
       },
       "setter_group": {
@@ -1577,6 +1582,12 @@
         "input": {
           "type": "Type",
           "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)"
         }
       },
       "setter_tooltip": {
@@ -1758,6 +1769,13 @@
         "input": {
           "type": "To set the input type",
           "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
         }
       },
       "setter_option": {
@@ -1874,6 +1892,12 @@
           "single_file": "Bare én enkelt fil er tillatt.",
           "file": "Filtyper som ikke støttes fjernes",
           "directory": "Bare mapper er tillatt."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2473,6 +2497,9 @@
         "event_calendar": "Arrangement kalender"
       },
       "name_duplicated": "Denne ressurs-ID-en er i konflikt med disse hendelsene, bruk samme navn eller annen id"
+    },
+    "recording": {
+      "name": "Recording"
     }
   },
   "page": {
