@@ -1570,7 +1570,8 @@
           "total_row_count": "Zeilenanzahl gesamt",
           "next_cursor": "Nächster Cursor",
           "has_next_page": "Hat nächste Seite",
-          "currency_code": "Währungscode"
+          "currency_code": "Währungscode",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Vorheriger Cursor",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Eine boolesche Angabe, um anzugeben, ob eine andere Datenseite zur Verfügung steht. Es kann uns helfen, das Abrufen von Daten in paginierten Abfragen besser zu steuern und die Abfrageleistung zu optimieren",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Der Filtermodus. AND oder OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
         "input": {
