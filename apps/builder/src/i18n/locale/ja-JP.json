@@ -1223,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "始まる時間",
           "end_placeholder": "終了時間"
+        },
+        "recording": {
+          "start_button_text": "録音を開始",
+          "stop_button_text": "中止",
+          "clear_button_text": "クリア"
         }
       },
       "setter_group": {
@@ -1577,6 +1582,12 @@
         "input": {
           "type": "タイプ",
           "show_visible_button": "表示ボタンを表示"
+        },
+        "recording": {
+          "start_button_text": "スタート ボタンのテキスト",
+          "clear_button_text": "クリア ボタンのテキスト",
+          "min_duration": "最小時間(s)",
+          "max_duration": "最大時間(s)"
         }
       },
       "setter_tooltip": {
@@ -1758,6 +1769,13 @@
         "input": {
           "type": "入力のタイプを設定する",
           "show_visible_button": "表示ボタンを表示するかどうかを設定する"
+        },
+        "recording": {
+          "start_button_text": "録音が開始されていないときにボタンに表示されるテキスト",
+          "stop_button_text": "録音時にボタンに表示されるテキスト",
+          "clear_button_text": "録音が完了したときにボタンに表示されるテキスト",
+          "min_duration": "録音の最小期間",
+          "max_duration": "録音の最大期間"
         }
       },
       "setter_option": {
@@ -1874,6 +1892,12 @@
           "single_file": "許可されるファイルは 1 つだけです。",
           "file": "ファイルのみが許可されます。 ディレクトリをアップロードしないでください。",
           "directory": "ディレクトリのみが許可されます。"
+        },
+        "recording": {
+          "recording_permission": "録音権限が必要です",
+          "cannot_set_value_dur": "録音中に値を設定できません",
+          "min_duration": "少なくとも {{minimum}}秒以上記録してください",
+          "max_duration": "最大 {{maximum}}秒で録音してください"
         }
       },
       "setter_description": {
@@ -2473,6 +2497,9 @@
         "event_calendar": "イベントカレンダー"
       },
       "name_duplicated": "このリソース ID はこれらのイベントで競合します。同じ名前または別の ID を使用してください"
+    },
+    "recording": {
+      "name": "録音"
     }
   },
   "page": {
