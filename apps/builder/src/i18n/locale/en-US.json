@@ -205,6 +205,9 @@
             "connect_with_oauth": "Connect with OAuth & Save",
             "reconnect_with_oauth": "Reconnect with OAuth",
             "access_type": "Access type"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
