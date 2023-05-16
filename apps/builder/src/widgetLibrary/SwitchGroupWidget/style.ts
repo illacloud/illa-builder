@@ -5,7 +5,6 @@ const baseLabelCss = css`
   display: block;
   font-size: 14px;
   text-overflow: ellipsis;
-  line-height: 22px;
 `
 
 export const applyLabel = css`

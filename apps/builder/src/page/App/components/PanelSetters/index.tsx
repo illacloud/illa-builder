@@ -17,7 +17,6 @@ import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListS
 import { CalendarEventListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/CalendarEventListSetter"
 import { CarouselListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/CarouselListSetter"
 import { StepsListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/StepsListSetter"
-import { SwitchGroupListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/SwitchGroupListSetter"
 import { BaseRadioGroupSetter } from "@/page/App/components/PanelSetters/RadioGroupSetter/baseRadioGroup"
 import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/DynamicSelectSetter"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
@@ -95,7 +94,6 @@ const SetterTypeMapSetter = {
   EVENT_TARGET_STATE_SELECT_SETTER: EventtargetStateSelect,
   CALENDAR_EVENT_LIST_SETTER: CalendarEventListSetter,
   EVENT_CALENDAR_SELECT: EventCalendarSelect,
-  SWITCH_GROUP_LIST_SETTER: SwitchGroupListSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter
