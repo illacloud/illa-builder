@@ -205,6 +205,9 @@
             "connect_with_oauth": "OAuth 와 연결 및 저장",
             "reconnect_with_oauth": "OAuth로 다시 연결",
             "access_type": "액세스 유형"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
