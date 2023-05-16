@@ -135,6 +135,7 @@ export interface TableCommonProps
       | "rowSelection"
       | "columnVisibility"
       | "multiRowSelection"
+      | "enableSingleCellSelection"
       | "columnSizing"
       | "data"
     > {

@@ -58,6 +58,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
       defaultSort,
       columnVisibility,
       multiRowSelection,
+      enableSingleCellSelection,
       enableServerSidePagination,
       totalRowCount,
       paginationType,
@@ -71,6 +72,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
       handleOnPaginationChange,
       handleOnFiltersChange,
       handleOnRowSelectChange,
+      handleOnCellSelect,
       handleUpdateMultiExecutionResult,
       handleUpdateOriginalDSLMultiAttr,
     } = props
@@ -245,6 +247,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
         h="100%"
         tableRef={ref}
         enableColumnResizing={mode === "edit"}
+        enableSingleCellSelection={enableSingleCellSelection}
         serverSidePagination={enableServerSidePagination}
         total={totalRowCount}
         colorScheme={"techPurple"}
@@ -280,6 +283,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
           handleUpdateMulti({ columnSizing })
         }, 100)}
         onRowSelectionChange={onRowSelectionChange}
+        onCellSelectionChange={handleOnCellSelect}
       />
     )
   },
