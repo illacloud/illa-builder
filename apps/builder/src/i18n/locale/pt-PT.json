@@ -1223,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "Horário de início",
           "end_placeholder": "Hora de término"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
         }
       },
       "setter_group": {
@@ -1577,6 +1582,12 @@
         "input": {
           "type": "Type",
           "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)"
         }
       },
       "setter_tooltip": {
@@ -1758,6 +1769,13 @@
         "input": {
           "type": "To set the input type",
           "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
         }
       },
       "setter_option": {
@@ -1874,6 +1892,12 @@
           "single_file": "Apenas um único arquivo é permitido.",
           "file": "Tipos de arquivo não suportados são removidos",
           "directory": "Apenas diretórios são permitidos."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2473,6 +2497,9 @@
         "event_calendar": "Calendário dos eventos"
       },
       "name_duplicated": "Este ID de recurso conflita nestes eventos, por favor, use o mesmo nome ou ID diferente"
+    },
+    "recording": {
+      "name": "Recording"
     }
   },
   "page": {
