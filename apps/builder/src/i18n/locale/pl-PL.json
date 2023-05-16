@@ -1570,7 +1570,8 @@
           "total_row_count": "Całkowita liczba wierszy",
           "next_cursor": "Następny kursor",
           "has_next_page": "Posiada następną stronę",
-          "currency_code": "Kod waluty"
+          "currency_code": "Kod waluty",
+          "cell_selection": "Cell selection"
         },
         "previous_cursor": "Poprzedni kursor",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "Wartość logiczna wskazująca, czy dostępna jest inna strona danych. Może pomóc nam lepiej kontrolować pobieranie danych w paginated queries i zoptymalizować wydajność zapytania",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Tryb filtrowania. ORAZ lub OR.",
-          "currency_code": "W okresie objętym dochodzeniem przeglądowym przywóz z ChRL wzrósł o 7 %."
+          "currency_code": "W okresie objętym dochodzeniem przeglądowym przywóz z ChRL wzrósł o 7 %.",
+          "whether_allow_users_": "Whether allow users to select a cell"
         },
         "previous_cursor": "Użyj danych akcji, aby ustawić poprzedni kursor. Na przykład,  {{ pageInfo.startCursor }}",
         "input": {
