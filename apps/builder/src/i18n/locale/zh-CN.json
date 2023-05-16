@@ -207,7 +207,7 @@
             "access_type": "接入类型"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "命令"
           }
         },
         "placeholder": {
@@ -1236,7 +1236,7 @@
         "menu": "菜单",
         "options": "选项",
         "pagination": "翻页",
-        "row_selection": "行选择",
+        "row_selection": "用户选择",
         "sort": "排序",
         "style": "风格",
         "tabs": "选项卡",
@@ -1570,7 +1570,8 @@
           "total_row_count": "总行数",
           "next_cursor": "下一个光标",
           "has_next_page": "是否有下一页",
-          "currency_code": "货币代码"
+          "currency_code": "货币代码",
+          "cell_selection": "选中单元格"
         },
         "previous_cursor": "上一光标",
         "input": {
@@ -1750,7 +1751,8 @@
           "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
           "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**columnName**\":\"待过滤的列名\", \"**filterValue**\"：\"待匹配的值\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "过滤器的模式，选择AND 或 OR。",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "是否允许用户选中一个单元格"
         },
         "previous_cursor": "使用Action的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
