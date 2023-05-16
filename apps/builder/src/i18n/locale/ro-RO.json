@@ -205,6 +205,9 @@
             "connect_with_oauth": "Conectează-te cu OAuth & Salvează",
             "reconnect_with_oauth": "Reconectați cu OAuth",
             "access_type": "Tip de acces"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
