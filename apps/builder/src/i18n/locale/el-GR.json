@@ -205,6 +205,9 @@
             "connect_with_oauth": "Σύνδεση με OAuth & αποθήκευση",
             "reconnect_with_oauth": "Επανασύνδεση με OAuth",
             "access_type": "Τύπος πρόσβασης"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
