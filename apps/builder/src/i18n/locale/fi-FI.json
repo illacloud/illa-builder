@@ -205,6 +205,9 @@
             "connect_with_oauth": "Yhdistä OAuthiin ja tallenna",
             "reconnect_with_oauth": "Yhdistä OAuth uudelleen",
             "access_type": "Pääsyn tyyppi"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
