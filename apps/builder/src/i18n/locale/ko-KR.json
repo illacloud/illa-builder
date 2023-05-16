@@ -1155,7 +1155,8 @@
           "rowClick": "행 클릭",
           "refresh": "새로 고치다",
           "filtersChange": "행 필터 변경",
-          "rowSelectChange": "행 선택 변경"
+          "rowSelectChange": "행 선택 변경",
+          "onCellSelect": "셀 선택"
         },
         "image_list": {
           "title": "이미지",
