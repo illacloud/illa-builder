@@ -205,6 +205,9 @@
             "connect_with_oauth": "З'єднатися з OAuth і зберегти",
             "reconnect_with_oauth": "Повторне підключення з OAuth",
             "access_type": "Тип доступу"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
