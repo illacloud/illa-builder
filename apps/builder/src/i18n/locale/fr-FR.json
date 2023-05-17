@@ -1576,7 +1576,8 @@
           "next_cursor": "Curseur suivant",
           "has_next_page": "A la page suivante",
           "currency_code": "Code devise",
-          "cell_selection": "Cell selection"
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Curseur précédent",
         "input": {
@@ -1763,7 +1764,8 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Le mode filtre. ET OU OU.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell"
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Utilisez les données de l'action pour définir le curseur précédent. Par exemple,  {{ pageInfo.startCursor }}",
         "input": {
