@@ -65,6 +65,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
             w="100%"
             inputRef={ref}
             value={value}
+            autoComplete="new-password"
             visibilityToggle={showVisibleButton}
             placeholder={placeholder}
             disabled={disabled}
