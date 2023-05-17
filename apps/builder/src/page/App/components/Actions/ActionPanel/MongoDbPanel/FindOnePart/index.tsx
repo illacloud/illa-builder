@@ -51,6 +51,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.query}
         onChange={handleValueChange("query")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={'{"type":"cheese"}'}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.projection")}
@@ -60,6 +61,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.projection}
         onChange={handleValueChange("projection")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={'{"_id":1}'}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.skip")}
@@ -69,6 +71,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.skip}
         onChange={handleValueChange("skip")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={"10"}
       />
     </>
   )

@@ -205,6 +205,9 @@
             "connect_with_oauth": "Conectează-te cu OAuth & Salvează",
             "reconnect_with_oauth": "Reconectați cu OAuth",
             "access_type": "Tip de acces"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
@@ -1155,7 +1158,8 @@
           "rowClick": "Clic pe rând",
           "refresh": "Împrospătează",
           "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change"
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell"
         },
         "image_list": {
           "title": "Imagini",
@@ -1219,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "Ora de începere",
           "end_placeholder": "Ora de încheiere"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
         }
       },
       "setter_group": {
@@ -1566,12 +1575,20 @@
           "total_row_count": "Număr total de rânduri",
           "next_cursor": "Următorul cursor",
           "has_next_page": "Are pagina următoare",
-          "currency_code": "Codul valutei"
+          "currency_code": "Codul valutei",
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
           "type": "Type",
           "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)"
         }
       },
       "setter_tooltip": {
@@ -1746,12 +1763,21 @@
           "has_next_page": "Un boolean folosit pentru a indica dacă există o altă pagină de date disponibile. Ne poate ajuta să controlăm mai bine recuperarea datelor în interogările paginate și să optimizăm performanța interogării",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Modul filtre. ŞI sau SAU.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
         "input": {
           "type": "To set the input type",
           "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
         }
       },
       "setter_option": {
@@ -1868,6 +1894,12 @@
           "single_file": "Doar un singur fișier este permis.",
           "file": "Tipurile de fișiere neacceptate sunt șterse",
           "directory": "Doar directoarele sunt permise."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2467,6 +2499,9 @@
         "event_calendar": "Calendar eveniment"
       },
       "name_duplicated": "Acest ID de resurse este în conflict în aceste evenimente, vă rugăm să folosiți același nume sau un ID diferit"
+    },
+    "recording": {
+      "name": "Recording"
     }
   },
   "page": {
@@ -2871,5 +2906,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Deconectare eșuată. Te rugăm să încerci din nou mai târziu."
+  "logout_failed": "Deconectare eșuată. Te rugăm să încerci din nou mai târziu.",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }

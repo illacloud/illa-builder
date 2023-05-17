@@ -205,6 +205,9 @@
             "connect_with_oauth": "Yhdistä OAuthiin ja tallenna",
             "reconnect_with_oauth": "Yhdistä OAuth uudelleen",
             "access_type": "Pääsyn tyyppi"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
@@ -1155,7 +1158,8 @@
           "rowClick": "Rivin napsautus",
           "refresh": "Päivitä",
           "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change"
+          "rowSelectChange": "Row select change",
+          "onCellSelect": "Select a cell"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1219,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "Aloitus aika",
           "end_placeholder": "Loppu aika"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
         }
       },
       "setter_group": {
@@ -1566,12 +1575,20 @@
           "total_row_count": "Rivien määrä yhteensä",
           "next_cursor": "Seuraava kohdistin",
           "has_next_page": "On seuraava sivu",
-          "currency_code": "Valuutan koodi"
+          "currency_code": "Valuutan koodi",
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Edellinen kohdistin",
         "input": {
           "type": "Type",
           "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)"
         }
       },
       "setter_tooltip": {
@@ -1746,12 +1763,21 @@
           "has_next_page": "Totuusarvo, jota käytetään osoittamaan, onko saatavilla toinen sivu tietoja. Se voi auttaa meitä hallitsemaan paremmin tietojen hakua paginated kyselyt ja optimoida kyselyn suorituskykyä",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Suodatintila. JA tai OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
         "input": {
           "type": "To set the input type",
           "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
         }
       },
       "setter_option": {
@@ -1868,6 +1894,12 @@
           "single_file": "Vain yksi tiedosto on sallittu.",
           "file": "Tiedostotyyppejä ei tueta",
           "directory": "Vain hakemistot ovat sallittuja."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2467,6 +2499,9 @@
         "event_calendar": "Tapahtuman kalenteri"
       },
       "name_duplicated": "Tämä resurssitunniste ristiriidat näissä tapahtumissa, käytä samaa nimeä tai eri tunnusta"
+    },
+    "recording": {
+      "name": "Recording"
     }
   },
   "page": {
@@ -2871,5 +2906,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Kirjautuminen ulos epäonnistui. Yritä myöhemmin uudelleen."
+  "logout_failed": "Kirjautuminen ulos epäonnistui. Yritä myöhemmin uudelleen.",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }

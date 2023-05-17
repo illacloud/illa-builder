@@ -205,6 +205,9 @@
             "connect_with_oauth": "OAuth 와 연결 및 저장",
             "reconnect_with_oauth": "OAuth로 다시 연결",
             "access_type": "액세스 유형"
+          },
+          "mongodb": {
+            "command": "명령"
           }
         },
         "placeholder": {
@@ -1155,7 +1158,8 @@
           "rowClick": "행 클릭",
           "refresh": "새로 고치다",
           "filtersChange": "행 필터 변경",
-          "rowSelectChange": "행 선택 변경"
+          "rowSelectChange": "행 선택 변경",
+          "onCellSelect": "셀 선택"
         },
         "image_list": {
           "title": "이미지",
@@ -1219,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "시작 시간",
           "end_placeholder": "종료 시간"
+        },
+        "recording": {
+          "start_button_text": "녹음 시작",
+          "stop_button_text": "멈추다",
+          "clear_button_text": "분명한"
         }
       },
       "setter_group": {
@@ -1232,7 +1241,7 @@
         "menu": "메뉴",
         "options": "옵션",
         "pagination": "페이지를 넘기다",
-        "row_selection": "라인 선택",
+        "row_selection": "사용자 선택",
         "sort": "정렬하다",
         "style": "스타일",
         "tabs": "탭",
@@ -1566,12 +1575,20 @@
           "total_row_count": "총 행 수",
           "next_cursor": "다음 커서",
           "has_next_page": "다음 페이지 있음",
-          "currency_code": "통화 코드"
+          "currency_code": "통화 코드",
+          "cell_selection": "셀 선택",
+          "click_outside_to_des": "바깥쪽을 클릭하여 선택 해제"
         },
         "previous_cursor": "이전 커서",
         "input": {
           "type": "유형",
           "show_visible_button": "보이는 버튼의 표시 여부를 설정하려면"
+        },
+        "recording": {
+          "start_button_text": "시작 버튼 텍스트",
+          "clear_button_text": "버튼 텍스트 지우기",
+          "min_duration": "최소 기간(s)",
+          "max_duration": "최대 기간(s)"
         }
       },
       "setter_tooltip": {
@@ -1746,12 +1763,21 @@
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "The filter mode. AND or OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "사용자가 셀을 선택하도록 허용할지 여부",
+          "supported_in_the_row": "행 단일 선택 모드에서 지원됩니다. 활성화 후 표 이외의 영역을 클릭하면 행 선택이 해제됩니다."
         },
         "previous_cursor": "액션 데이터를 사용하여 이전 커서를 설정합니다. 예: {{ pageInfo.startCursor }}",
         "input": {
           "type": "입력 유형을 설정하려면",
           "show_visible_button": "보이는 버튼 표시"
+        },
+        "recording": {
+          "start_button_text": "녹음이 시작되지 않았을 때 버튼에 표시되는 텍스트",
+          "stop_button_text": "녹화 시 버튼에 표시되는 텍스트",
+          "clear_button_text": "녹음이 완료되면 버튼에 표시되는 텍스트",
+          "min_duration": "최소 녹화 시간",
+          "max_duration": "최대 녹화 시간"
         }
       },
       "setter_option": {
@@ -1868,6 +1894,12 @@
           "single_file": "단일 파일만 허용됩니다.",
           "file": "지원되지 않는 파일 형식이 제거됨",
           "directory": "디렉토리만 허용됩니다."
+        },
+        "recording": {
+          "recording_permission": "녹음 권한 필요",
+          "cannot_set_value_dur": "기록 중에는 값을 설정할 수 없습니다.",
+          "min_duration": "최소 {{minimum}}초 이상 녹음하세요.",
+          "max_duration": "{{maximum}}초 이내로 녹화하세요."
         }
       },
       "setter_description": {
@@ -2166,7 +2198,7 @@
   "title": "엘라 클라우드에 오신 것을 환영합니다",
   "unfreeze_tips": "캔버스를 고정한 후 구성 요소를 컨테이너 안팎으로 드래그할 수 있습니다. (디 또는 케이)",
   "user": {
-    "description": "개발자 전용 오픈 소스 로우 코드 플랫폼입니다.",
+    "description": "내부 도구 및 대시보드에서 더 빠른 솔루션",
     "forgot_password": {
       "actions": {
         "reset": "초기화",
@@ -2467,6 +2499,9 @@
         "event_calendar": "이벤트 캘린더"
       },
       "name_duplicated": "이 이벤트에서 이 리소스 ID가 충돌합니다. 같은 이름이나 다른 ID를 사용하세요."
+    },
+    "recording": {
+      "name": "녹음"
     }
   },
   "page": {
@@ -2618,7 +2653,7 @@
           "google": "Google에 가입"
         }
       },
-      "description": "개발자 전용 오픈 소스 로우 코드 플랫폼입니다."
+      "description": "내부 도구 및 대시보드에서 더 빠른 솔루션"
     },
     "left": {
       "menu": {
@@ -2871,5 +2906,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "로그아웃 실패"
+  "logout_failed": "로그아웃 실패",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }
