@@ -1576,7 +1576,8 @@
           "next_cursor": "Cursore successivo",
           "has_next_page": "Ha la pagina successiva",
           "currency_code": "Codice valuta",
-          "cell_selection": "Cell selection"
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Cursore precedente",
         "input": {
@@ -1763,7 +1764,8 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "La modalità filtro. AND o OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell"
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Usa i dati di azione per impostare il cursore precedente. Per esempio,  {{ pageInfo.startCursor }}",
         "input": {
