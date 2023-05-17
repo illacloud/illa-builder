@@ -187,6 +187,7 @@ export const SwitchGroupWidget: FC<SwitchGroupWidgetProps> = (props) => {
       } else {
         handleValue = [...safeValue, val]
       }
+      handleValidate(handleValue)
       new Promise((resolve) => {
         handleUpdateMultiExecutionResult([
           {
@@ -203,6 +204,7 @@ export const SwitchGroupWidget: FC<SwitchGroupWidgetProps> = (props) => {
     },
     [
       finalValue,
+      handleValidate,
       handleUpdateMultiExecutionResult,
       displayName,
       triggerEventHandler,
