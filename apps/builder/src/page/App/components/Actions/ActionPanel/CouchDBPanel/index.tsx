@@ -62,7 +62,7 @@ export const CouchDBPanel: FC = () => {
     fetchResourceMeta(cachedAction.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
         const { schema } = data
-        setSelectOptions(schema.databases as string[])
+        setSelectOptions((schema?.databases ?? []) as string[])
       },
     )
   }, [cachedAction.resourceId])

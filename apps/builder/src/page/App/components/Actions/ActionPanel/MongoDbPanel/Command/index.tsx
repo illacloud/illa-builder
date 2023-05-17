@@ -44,11 +44,17 @@ export const CommandPart: FC<MongoDbActionPartProps> = (props) => {
     <InputEditor
       title={t("editor.action.panel.mongodb.document")}
       lineNumbers
-      style={{ height: "88px" }}
+      style={{ height: "120px" }}
       mode={CODE_LANG.JAVASCRIPT}
       value={typeContent.document}
       onChange={handleValueChange}
       expectedType={VALIDATION_TYPES.STRING}
+      placeholder={
+        "{\n" +
+        '      "find": "fruit",\n' +
+        '      "filter": {"price":10000}\n' +
+        "}"
+      }
     />
   )
 }

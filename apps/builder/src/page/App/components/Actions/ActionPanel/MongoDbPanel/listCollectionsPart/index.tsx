@@ -50,6 +50,7 @@ export const ListCollectionsPart: FC<MongoDbActionPartProps> = (props) => {
       value={typeContent.query}
       onChange={handleValueChange}
       expectedType={VALIDATION_TYPES.STRING}
+      placeholder={'{"name":"fruit"}'}
     />
   )
 }

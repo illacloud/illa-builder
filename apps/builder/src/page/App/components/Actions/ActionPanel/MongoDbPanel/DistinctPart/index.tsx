@@ -45,11 +45,12 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
       <InputEditor
         title={t("editor.action.panel.mongodb.query")}
         lineNumbers
-        style={{ height: "88px" }}
         mode={CODE_LANG.JAVASCRIPT}
         value={typeContent.query}
         onChange={handleValueChange("query")}
+        style={{ height: "188px" }}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={'{"type":"cheese"}'}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.field")}
@@ -58,12 +59,23 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.field}
         onChange={handleValueChange("field")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={"_id"}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.options")}
         lineNumbers
         mode={CODE_LANG.JAVASCRIPT}
         value={typeContent.options}
+        style={{ height: "188px" }}
+        placeholder={
+          "{\n" +
+          '"collation":{\n' +
+          '   "locale": "simple",\n' +
+          '   "caseLevel": true,\n' +
+          '   "caseFirst": "upper",\n' +
+          "...\n" +
+          "}}"
+        }
         onChange={handleValueChange("options")}
         expectedType={VALIDATION_TYPES.STRING}
       />

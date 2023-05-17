@@ -205,6 +205,9 @@
             "connect_with_oauth": "Połącz z OAuth i Zapisz",
             "reconnect_with_oauth": "Połącz ponownie z OAuth",
             "access_type": "Typ dostępu"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
@@ -1220,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "Godzina rozpoczęcia",
           "end_placeholder": "Czas zakończenia"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
         }
       },
       "setter_group": {
@@ -1286,6 +1294,9 @@
           "name": "Nazwa zbioru danych",
           "remove": "Remove dataset",
           "value": "Wartości zbioru danych"
+        },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1567,12 +1578,20 @@
           "total_row_count": "Całkowita liczba wierszy",
           "next_cursor": "Następny kursor",
           "has_next_page": "Posiada następną stronę",
-          "currency_code": "Kod waluty"
+          "currency_code": "Kod waluty",
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Poprzedni kursor",
         "input": {
           "type": "Type",
           "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)"
         }
       },
       "setter_tooltip": {
@@ -1658,6 +1677,18 @@
           "prefix_icon": "Ikona wyświetlana przed komponentem",
           "suffix_icon": "Ikona wyświetlana po komponencie",
           "hide_output": "Ustaw czy chcesz ukryć wartość podczas przesuwania"
+        },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
         },
         "step": {
           "default_step": "Domyślny krok",
@@ -1747,12 +1778,21 @@
           "has_next_page": "Wartość logiczna wskazująca, czy dostępna jest inna strona danych. Może pomóc nam lepiej kontrolować pobieranie danych w paginated queries i zoptymalizować wydajność zapytania",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Tryb filtrowania. ORAZ lub OR.",
-          "currency_code": "W okresie objętym dochodzeniem przeglądowym przywóz z ChRL wzrósł o 7 %."
+          "currency_code": "W okresie objętym dochodzeniem przeglądowym przywóz z ChRL wzrósł o 7 %.",
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Użyj danych akcji, aby ustawić poprzedni kursor. Na przykład,  {{ pageInfo.startCursor }}",
         "input": {
           "type": "To set the input type",
           "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
         }
       },
       "setter_option": {
@@ -1842,6 +1882,9 @@
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
         },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
+        },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
@@ -1869,6 +1912,12 @@
           "single_file": "Dozwolony jest tylko pojedynczy plik.",
           "file": "Nieobsługiwane typy plików zostały usunięte",
           "directory": "Dozwolone są tylko katalogi."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2167,7 +2216,7 @@
   "title": "Witaj w illi",
   "unfreeze_tips": "Zamroź płótno i przeciągnij elementy do lub z kontenerów. (D lub K)",
   "user": {
-    "description": "Otwarta platforma o niskim kodzie dla programistów.",
+    "description": "Szybsze rozwiązania na wewnętrznych narzędziach i pulpitach nawigacyjnych",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2468,6 +2517,12 @@
         "event_calendar": "Kalendarz wydarzeń"
       },
       "name_duplicated": "Ten identyfikator zasobu jest sprzeczny z tymi wydarzeniami, proszę użyć tej samej nazwy lub innego identyfikatora"
+    },
+    "switch_group": {
+      "name": "Switch group"
+    },
+    "recording": {
+      "name": "Recording"
     }
   },
   "page": {
@@ -2619,7 +2674,7 @@
           "google": "Zarejestruj się przez Google"
         }
       },
-      "description": "Otwarta platforma o niskim kodzie dla programistów."
+      "description": "Szybsze rozwiązania na wewnętrznych narzędziach i pulpitach nawigacyjnych"
     },
     "left": {
       "menu": {
@@ -2872,5 +2927,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Wylogowanie nie powiodło się. Spróbuj ponownie później."
+  "logout_failed": "Wylogowanie nie powiodło się. Spróbuj ponownie później.",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }

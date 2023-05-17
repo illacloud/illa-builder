@@ -205,6 +205,9 @@
             "connect_with_oauth": "Mit OAuth & Save verbinden",
             "reconnect_with_oauth": "Mit OAuh erneut verbinden",
             "access_type": "Zugriffstyp"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
@@ -1220,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "Startzeit",
           "end_placeholder": "Endzeit"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
         }
       },
       "setter_group": {
@@ -1286,6 +1294,9 @@
           "name": "Name des Datensatzes",
           "remove": "Remove dataset",
           "value": "Datensatzwerte"
+        },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1567,12 +1578,20 @@
           "total_row_count": "Zeilenanzahl gesamt",
           "next_cursor": "Nächster Cursor",
           "has_next_page": "Hat nächste Seite",
-          "currency_code": "Währungscode"
+          "currency_code": "Währungscode",
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Vorheriger Cursor",
         "input": {
           "type": "Type",
           "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)"
         }
       },
       "setter_tooltip": {
@@ -1658,6 +1677,18 @@
           "prefix_icon": "Das Symbol, das vor der Komponente angezeigt wird",
           "suffix_icon": "Das Symbol, das nach der Komponente angezeigt wird",
           "hide_output": "Legt fest, ob der Wert beim Schieben ausgeblendet werden soll"
+        },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
         },
         "step": {
           "default_step": "Standardschritt",
@@ -1747,12 +1778,21 @@
           "has_next_page": "Eine boolesche Angabe, um anzugeben, ob eine andere Datenseite zur Verfügung steht. Es kann uns helfen, das Abrufen von Daten in paginierten Abfragen besser zu steuern und die Abfrageleistung zu optimieren",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Der Filtermodus. AND oder OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
         "input": {
           "type": "To set the input type",
           "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
         }
       },
       "setter_option": {
@@ -1842,6 +1882,9 @@
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
         },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
+        },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
@@ -1869,6 +1912,12 @@
           "single_file": "Es ist nur eine einzelne Datei erlaubt.",
           "file": "Nicht unterstützte Dateitypen wurden entfernt",
           "directory": "Nur Verzeichnisse sind erlaubt."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2167,7 +2216,7 @@
   "title": "Willkommen bei illa",
   "unfreeze_tips": "Die Leinwand einfrieren und Komponenten in oder aus Containern ziehen. (D oder K)",
   "user": {
-    "description": "Eine Open-Source Low-Code-Plattform für Entwickler.",
+    "description": "Schnellere Lösungen in internen Tools und Dashboards",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2468,6 +2517,12 @@
         "event_calendar": "Veranstaltungskalender"
       },
       "name_duplicated": "Diese Ressourcen-ID kollidiert in diesen Ereignissen, bitte verwenden Sie den gleichen Namen oder andere ID"
+    },
+    "switch_group": {
+      "name": "Switch group"
+    },
+    "recording": {
+      "name": "Recording"
     }
   },
   "page": {
@@ -2619,7 +2674,7 @@
           "google": "Mit Google anmelden"
         }
       },
-      "description": "Eine Open-Source Low-Code-Plattform für Entwickler."
+      "description": "Schnellere Lösungen in internen Tools und Dashboards"
     },
     "left": {
       "menu": {
@@ -2872,5 +2927,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut."
+  "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut.",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }

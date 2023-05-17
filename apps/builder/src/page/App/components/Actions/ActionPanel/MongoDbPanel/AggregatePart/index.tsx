@@ -49,10 +49,20 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
         title={t("editor.action.panel.mongodb.aggregation")}
         value={typeContent.aggregation}
         onChange={handleValueChange("aggregation")}
-        style={{ height: "88px" }}
+        style={{ height: "188px" }}
         expectedType={VALIDATION_TYPES.STRING}
         mode={CODE_LANG.JAVASCRIPT}
         codeType={CODE_TYPE.EXPRESSION}
+        placeholder={
+          "[\n" +
+          "   {\n" +
+          '      "$match": { "size": "medium" }\n' +
+          "   },\n" +
+          "   {\n" +
+          '      "$group": { "_id": "$type", "totalQuantity": { "$sum": "$price" } }\n' +
+          "   }\n" +
+          "] "
+        }
         canShowCompleteInfo
         lineNumbers
       />
@@ -61,8 +71,18 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
         lineNumbers
         mode={CODE_LANG.JAVASCRIPT}
         value={typeContent.options}
+        style={{ height: "188px" }}
         onChange={handleValueChange("options")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={
+          "{\n" +
+          '"collation":{\n' +
+          '    "locale": "simple",\n' +
+          '    "caseLevel": true,\n' +
+          '    "caseFirst": "upper",\n' +
+          "...\n" +
+          "}}"
+        }
       />
     </>
   )

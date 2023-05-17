@@ -206,15 +206,16 @@ export const MongoDbPanel: FC = () => {
           options={MongoDbActionList}
           title={t("editor.action.panel.mongodb.action_type")}
         />
-        {cachedAction.content.actionType !== "command" && (
-          <InputEditor
-            value={content.collection}
-            title={t("editor.action.panel.mongodb.collection")}
-            onChange={handleCollectionChange}
-            mode={CODE_LANG.JAVASCRIPT}
-            expectedType={VALIDATION_TYPES.STRING}
-          />
-        )}
+        {cachedAction.content.actionType !== "command" &&
+          cachedAction.content.actionType !== "listCollections" && (
+            <InputEditor
+              value={content.collection}
+              title={t("editor.action.panel.mongodb.collection")}
+              onChange={handleCollectionChange}
+              mode={CODE_LANG.JAVASCRIPT}
+              expectedType={VALIDATION_TYPES.STRING}
+            />
+          )}
         {renderInputBody}
         <TransformerComponent />
       </div>
