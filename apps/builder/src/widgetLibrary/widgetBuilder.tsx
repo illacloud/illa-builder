@@ -204,6 +204,12 @@ import {
   StepsWidget,
 } from "@/widgetLibrary/StepsWidget"
 import {
+  SWITCH_GROUP_EVENT_HANDLER_CONFIG,
+  SWITCH_GROUP_PANEL_CONFIG,
+  SWITCH_GROUP_WIDGET_CONFIG,
+  SwitchGroupWidget,
+} from "@/widgetLibrary/SwitchGroupWidget"
+import {
   SWITCH_EVENT_HANDLER_CONFIG,
   SWITCH_PANEL_CONFIG,
   SWITCH_WIDGET_CONFIG,
@@ -315,6 +321,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: SWITCH_WIDGET_CONFIG,
     panelConfig: SWITCH_PANEL_CONFIG,
     eventHandlerConfig: SWITCH_EVENT_HANDLER_CONFIG,
+  },
+  SWITCH_GROUP_WIDGET: {
+    widget: SwitchGroupWidget,
+    config: SWITCH_GROUP_WIDGET_CONFIG,
+    panelConfig: SWITCH_GROUP_PANEL_CONFIG,
+    eventHandlerConfig: SWITCH_GROUP_EVENT_HANDLER_CONFIG,
   },
   SELECT_WIDGET: {
     widget: SelectWidget,
