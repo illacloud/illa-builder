@@ -1295,6 +1295,9 @@
           "remove": "Remove dataset",
           "value": "Wartości zbioru danych"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Miejsce dziesiętne",
@@ -1675,6 +1678,18 @@
           "suffix_icon": "Ikona wyświetlana po komponencie",
           "hide_output": "Ustaw czy chcesz ukryć wartość podczas przesuwania"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Domyślny krok",
           "show_step_number": "Pokaż numery kroku",
@@ -1866,6 +1881,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2499,6 +2517,9 @@
         "event_calendar": "Kalendarz wydarzeń"
       },
       "name_duplicated": "Ten identyfikator zasobu jest sprzeczny z tymi wydarzeniami, proszę użyć tej samej nazwy lub innego identyfikatora"
+    },
+    "switch_group": {
+      "name": "Switch group"
     },
     "recording": {
       "name": "Recording"

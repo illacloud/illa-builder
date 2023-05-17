@@ -1295,6 +1295,9 @@
           "remove": "데이터 세트 제거",
           "value": "데이터 열"
         },
+        "switch_group": {
+          "option_label_alignment": "옵션 라벨의 위치"
+        },
         "dataset_config": "데이터 세트 구성",
         "datasets": "데이터 세트",
         "decimal_place": "소수 자릿수",
@@ -1675,6 +1678,18 @@
           "suffix_icon": "구성 요소 뒤에 표시되는 아이콘",
           "hide_output": "슬라이딩 시 값 숨기기 여부 설정"
         },
+        "switch_group": {
+          "label": "옵션의 레이블",
+          "value": "{{로 묶인 선택된 옵션의 배열입니다. 예: {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "값이 중복됩니다. 오류를 방지하려면 고유한 값을 사용하십시오.",
+          "caption": "레이블 아래에 표시되는 캡션",
+          "disabled": "옵션 비활성화 여부",
+          "datasource": "스위치 그룹의 데이터 소스입니다. {{actionName.data}}를 사용하여 데이터베이스 또는 API의 데이터 사용",
+          "default_value": "{{ }}로 묶인 배열입니다. 예: {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "선택할 수 있는 최소 항목",
+          "choose_up_to": "선택할 수 있는 최대 항목",
+          "option_label_alignment": "라벨의 위치"
+        },
         "step": {
           "default_step": "기본 단계",
           "show_step_number": "단계 번호 표시",
@@ -1866,6 +1881,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2499,6 +2517,9 @@
         "event_calendar": "이벤트 캘린더"
       },
       "name_duplicated": "이 이벤트에서 이 리소스 ID가 충돌합니다. 같은 이름이나 다른 ID를 사용하세요."
+    },
+    "switch_group": {
+      "name": "그룹 전환"
     },
     "recording": {
       "name": "녹음"

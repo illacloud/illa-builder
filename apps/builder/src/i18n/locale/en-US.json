@@ -1295,6 +1295,9 @@
           "remove": "Remove dataset",
           "value": "Dataset values"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Decimal place",
@@ -1675,6 +1678,18 @@
           "suffix_icon": "The icon displayed after the component",
           "hide_output": "Set whether to hide the value when sliding"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Default step",
           "show_step_number": "Show step numbers",
@@ -1866,6 +1881,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2499,6 +2517,9 @@
         "event_calendar": "Event calendar"
       },
       "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
+    },
+    "switch_group": {
+      "name": "Switch group"
     },
     "recording": {
       "name": "Recording"
