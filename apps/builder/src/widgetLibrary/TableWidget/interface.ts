@@ -167,14 +167,15 @@ export interface WrappedTableProps
   extends TableCommonProps,
     Omit<BaseWidgetProps, "triggerEventHandler"> {
   customColumns?: Record<number, string>
+  clickOutsideToResetSelection?: boolean
   handleOnClickMenuItem?: (path: string) => void
-  handleOnCellSelect?: () => void
-  handleOnSortingChange?: () => void
-  handleOnPaginationChange?: () => void
-  handleOnFiltersChange?: () => void
-  handleOnRowSelectChange?: () => void
-  handleOnRowClick?: () => void
-  handleOnRefresh?: () => void
+  handleOnCellSelect: () => void
+  handleOnSortingChange: () => void
+  handleOnPaginationChange: () => void
+  handleOnFiltersChange: () => void
+  handleOnRowSelectChange: () => void
+  handleOnRowClick: () => void
+  handleOnRefresh: () => void
 }
 
 // todo: @echoxyc error extends

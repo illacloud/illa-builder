@@ -59,13 +59,12 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
       columnVisibility,
       multiRowSelection,
       enableSingleCellSelection,
+      clickOutsideToResetSelection,
       enableServerSidePagination,
       totalRowCount,
       paginationType,
-      // previousCursor,
       nextBeforeCursor,
       nextAfterCursor,
-      // hasNextPage,
       handleOnRefresh,
       handleOnRowClick,
       handleOnSortingChange,
@@ -273,6 +272,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
         defaultSort={defaultSort}
         columnVisibility={columnVisibility}
         multiRowSelection={multiRowSelection}
+        clickOutsideToResetRowSelect={clickOutsideToResetSelection}
         onRefresh={handleOnRefresh}
         onRowClick={handleOnRowClick}
         onSortingChange={handleOnSortingChange}
@@ -283,7 +283,26 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
           handleUpdateMulti({ columnSizing })
         }, 100)}
         onRowSelectionChange={onRowSelectionChange}
-        onCellSelectionChange={handleOnCellSelect}
+        onCellSelectionChange={(cell) => {
+          const selectedCell: Record<string, unknown> = {
+            index: cell.row.index,
+            columnName: cell.column.id,
+            value: cell.getValue(),
+          }
+          if (cell.column.columnDef.meta?.haveMappedValue) {
+            selectedCell["mappedValue"] =
+              cell.column.columnDef.meta?.getRenderedValueAsString?.(
+                cell.getContext(),
+              )
+          }
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: { selectedCell },
+            },
+          ])
+          handleOnCellSelect()
+        }}
       />
     )
   },
@@ -400,7 +419,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       const eventPath = `rowEvents.${index}`
       const transItem = cloneDeep(item) as ColumnItemShape
       transItem["meta"] = {
-        getBackgroundColor: (props: CellContext<unknown, unknown>) => {
+        haveMappedValue: "mappedValue" in transItem,
+        getBackgroundColor: (props: CellContext<any, unknown>) => {
           return getMappedValueFromCellContext(
             props,
             transItem.backgroundColor,
@@ -409,14 +429,14 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
             "",
           )
         },
-        getRenderedValueAsString: (props: CellContext<unknown, unknown>) => {
+        getRenderedValueAsString: (props: CellContext<any, unknown>) => {
           return getStringPropertyValue(
             props,
             transItem.mappedValue,
             transItem.fromCurrentRow,
           )
         },
-        style: [applyAlignmentStyle(item.alignment)],
+        style: applyAlignmentStyle(item.alignment),
         custom: item.custom,
       }
       transItem["cell"] = getCellForType(
