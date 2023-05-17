@@ -2198,7 +2198,7 @@
   "title": "Velkommen til illa",
   "unfreeze_tips": "Frys lærredet og træk komponenter ind eller ud af beholdere. (D eller K)",
   "user": {
-    "description": "En open source lav-kode platform for udviklere.",
+    "description": "Hurtigere løsninger på interne værktøjer og dashboards",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Tilmeld dig med Google"
         }
       },
-      "description": "En open source lav-kode platform for udviklere."
+      "description": "Hurtigere løsninger på interne værktøjer og dashboards"
     },
     "left": {
       "menu": {
