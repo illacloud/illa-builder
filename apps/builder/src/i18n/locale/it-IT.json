@@ -2198,7 +2198,7 @@
   "title": "Benvenuto a illa",
   "unfreeze_tips": "Congela la tela e trascina i componenti dentro o fuori dai contenitori. (D o K)",
   "user": {
-    "description": "Una piattaforma open source a basso codice per gli sviluppatori.",
+    "description": "Soluzioni più rapide a strumenti interni e cruscotti",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Iscriviti con Google"
         }
       },
-      "description": "Una piattaforma open source a basso codice per gli sviluppatori."
+      "description": "Soluzioni più rapide a strumenti interni e cruscotti"
     },
     "left": {
       "menu": {

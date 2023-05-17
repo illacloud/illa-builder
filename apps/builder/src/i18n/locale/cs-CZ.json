@@ -2198,7 +2198,7 @@
   "title": "Vítejte v illa",
   "unfreeze_tips": "Zmrazte plátno a přetáhněte součásti do kontejnerů nebo z nich (D nebo K)",
   "user": {
-    "description": "Open-source nízkoprogramová platforma pro vývojáře.",
+    "description": "Rychlejší řešení na vnitřních nástrojích a řídicích deskách",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Zaregistrovat se přes Google"
         }
       },
-      "description": "Open-source nízkoprogramová platforma pro vývojáře."
+      "description": "Rychlejší řešení na vnitřních nástrojích a řídicích deskách"
     },
     "left": {
       "menu": {

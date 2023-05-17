@@ -2198,7 +2198,7 @@
   "title": "Bienvenue à la illa",
   "unfreeze_tips": "Geler la toile et faire glisser les composants dans ou hors des conteneurs. (D ou K)",
   "user": {
-    "description": "Une plateforme open-source à code bas pour les développeurs.",
+    "description": "Des solutions plus rapides aux outils internes et aux tableaux de bord",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "S'inscrire avec Google"
         }
       },
-      "description": "Une plateforme open-source à code bas pour les développeurs."
+      "description": "Des solutions plus rapides aux outils internes et aux tableaux de bord"
     },
     "left": {
       "menu": {

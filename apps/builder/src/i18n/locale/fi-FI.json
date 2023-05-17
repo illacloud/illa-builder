@@ -2198,7 +2198,7 @@
   "title": "Tervetuloa iltaan",
   "unfreeze_tips": "Jäädytä kangas ja vedä osat säiliöihin tai ulos niistä. (D tai K)",
   "user": {
-    "description": "Avoimen lähdekoodin matalan koodin alusta kehittäjille.",
+    "description": "Nopeammat ratkaisut sisäisille työkaluille ja kojelaudoille",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Rekisteröidy käyttäen Googlea"
         }
       },
-      "description": "Avoimen lähdekoodin matalan koodin alusta kehittäjille."
+      "description": "Nopeammat ratkaisut sisäisille työkaluille ja kojelaudoille"
     },
     "left": {
       "menu": {
