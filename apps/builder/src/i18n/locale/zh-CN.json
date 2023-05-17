@@ -1576,7 +1576,8 @@
           "next_cursor": "下一个光标",
           "has_next_page": "是否有下一页",
           "currency_code": "货币代码",
-          "cell_selection": "选中单元格"
+          "cell_selection": "选中单元格",
+          "click_outside_to_des": "点击外部取消选择"
         },
         "previous_cursor": "上一光标",
         "input": {
@@ -1763,7 +1764,8 @@
           "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**columnName**\":\"待过滤的列名\", \"**filterValue**\"：\"待匹配的值\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "过滤器的模式，选择AND 或 OR。",
           "currency_code": "USD",
-          "whether_allow_users_": "是否允许用户选中一个单元格"
+          "whether_allow_users_": "是否允许用户选中一个单元格",
+          "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。"
         },
         "previous_cursor": "使用Action的数据来设置上一个光标。例如，  {{ pageInfo.startCursor }} ",
         "input": {
