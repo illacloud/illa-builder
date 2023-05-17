@@ -2198,7 +2198,7 @@
   "title": "欢迎使用ILLA",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
   "user": {
-    "description": "专属于开发者的开源低代码平台。",
+    "description": "按照你的想法搭建内部工具和看板 — 更快，更好，更简单",
     "forgot_password": {
       "actions": {
         "reset": "重置",
@@ -2653,7 +2653,7 @@
           "google": "使用Google账户注册"
         }
       },
-      "description": "专属于开发者的开源低代码平台。"
+      "description": "按照你的想法搭建内部工具和看板 — 更快，更好，更简单"
     },
     "left": {
       "menu": {
