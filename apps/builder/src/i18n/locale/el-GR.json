@@ -205,6 +205,9 @@
             "connect_with_oauth": "Σύνδεση με OAuth & αποθήκευση",
             "reconnect_with_oauth": "Επανασύνδεση με OAuth",
             "access_type": "Τύπος πρόσβασης"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
@@ -1220,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "Ώρα έναρξης",
           "end_placeholder": "Ώρα λήξης"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
         }
       },
       "setter_group": {
@@ -1567,12 +1575,20 @@
           "total_row_count": "Συνολικός αριθμός σειρών",
           "next_cursor": "Επόμενος δρομέας",
           "has_next_page": "Έχει επόμενη σελίδα",
-          "currency_code": "Κωδικός νομίσματος"
+          "currency_code": "Κωδικός νομίσματος",
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Προηγούμενος δρομέας",
         "input": {
           "type": "Type",
           "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)"
         }
       },
       "setter_tooltip": {
@@ -1747,12 +1763,21 @@
           "has_next_page": "Μια δυαδική που χρησιμοποιείται για να δείξει αν υπάρχει μια άλλη σελίδα των διαθέσιμων δεδομένων. Μπορεί να μας βοηθήσει να ελέγξουμε καλύτερα την ανάκτηση δεδομένων σε σελιδοποιημένα ερωτήματα και να βελτιστοποιήσουμε την απόδοση του ερωτήματος",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Η λειτουργία φίλτρου. ΚΑΙ ή OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Χρησιμοποιήστε τα δεδομένα ενέργειας για να ορίσετε τον προηγούμενο δρομέα. Για παράδειγμα,  {{ pageInfo.startCursor }}",
         "input": {
           "type": "To set the input type",
           "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
         }
       },
       "setter_option": {
@@ -1869,6 +1894,12 @@
           "single_file": "Μόνο ένα μόνο αρχείο επιτρέπεται.",
           "file": "Οι μη υποστηριζόμενοι τύποι αρχείων καταργούνται",
           "directory": "Επιτρέπονται μόνο κατάλογοι."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2468,6 +2499,9 @@
         "event_calendar": "Ημερολόγιο εκδηλώσεων"
       },
       "name_duplicated": "Αυτό το ID πόρου συγκρούεται σε αυτά τα γεγονότα, παρακαλώ χρησιμοποιήστε το ίδιο όνομα ή διαφορετικό id"
+    },
+    "recording": {
+      "name": "Recording"
     }
   },
   "page": {
@@ -2872,5 +2906,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα."
+  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα.",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }

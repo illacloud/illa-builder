@@ -402,6 +402,32 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         useCustomLayout: true,
       },
+      {
+        id: `${baseWidgetName}-basic-enableSingleCellSelection`,
+        labelName: i18n.t("editor.inspect.setter_label.table.cell_selection"),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.table.whether_allow_users_",
+        ),
+        attrName: "enableSingleCellSelection",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
+      {
+        id: `${baseWidgetName}-basic-enableSingleCellSelection`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.table.click_outside_to_des",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.table.supported_in_the_row",
+        ),
+        attrName: "clickOutsideToResetSelection",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
     ],
   },
   {

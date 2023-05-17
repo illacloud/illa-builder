@@ -51,7 +51,7 @@ export const AppwritePanel: FC = () => {
     if (cachedAction.resourceId == undefined) return
     fetchResourceMeta(cachedAction.resourceId).then(
       ({ data }: { data: ResourcesData }) => {
-        const ids = ((data.schema.collections as []) ?? []).map(
+        const ids = ((data.schema?.collections as []) ?? []).map(
           (item: { id: string }) => item.id,
         )
         setCollectionIds(ids)

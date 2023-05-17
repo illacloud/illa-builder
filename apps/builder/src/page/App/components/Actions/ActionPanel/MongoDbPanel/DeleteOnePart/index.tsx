@@ -45,6 +45,7 @@ export const DeleteOnePart: FC<MongoDbActionPartProps> = (props) => {
       lineNumbers
       style={{ height: "88px" }}
       mode={CODE_LANG.JAVASCRIPT}
+      placeholder={'{"type":"cheese"}'}
       value={typeContent.filter}
       expectedType={VALIDATION_TYPES.STRING}
       title={t("editor.action.panel.mongodb.filter")}

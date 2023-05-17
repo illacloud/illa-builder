@@ -45,11 +45,21 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
       <InputEditor
         title={t("editor.action.panel.mongodb.operations")}
         lineNumbers
-        style={{ height: "88px" }}
+        style={{ height: "188px" }}
         mode={CODE_LANG.JAVASCRIPT}
         value={typeContent.operations}
         onChange={handleValueChange("operations")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={
+          "[\n" +
+          '      { "insertOne": { "document": { "_id": 3, "type": "beef", "size": "medium", "price": 6 } } },\n' +
+          '      { "insertOne": { "document": { "_id": 4, "type": "sausage", "size": "large", "price": 10 } } },\n' +
+          '      { "updateOne": {\n' +
+          '         "filter": { "type": "cheese" },\n' +
+          '         "update": { "$set": { "price": 8 } }\n' +
+          "      } }\n" +
+          "]"
+        }
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.options")}
