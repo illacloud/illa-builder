@@ -205,6 +205,9 @@
             "connect_with_oauth": "Anslut med OAuth & Spara",
             "reconnect_with_oauth": "Återanslut med OAuth",
             "access_type": "Åtkomsttyp"
+          },
+          "mongodb": {
+            "command": "Command"
           }
         },
         "placeholder": {
@@ -1220,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "Starttid",
           "end_placeholder": "Slut tid"
+        },
+        "recording": {
+          "start_button_text": "Start recording",
+          "stop_button_text": "Stop",
+          "clear_button_text": "Clear"
         }
       },
       "setter_group": {
@@ -1567,12 +1575,20 @@
           "total_row_count": "Totalt antal rader",
           "next_cursor": "Nästa markör",
           "has_next_page": "Har nästa sida",
-          "currency_code": "Valutakod"
+          "currency_code": "Valutakod",
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Föregående markör",
         "input": {
           "type": "Type",
           "show_visible_button": "Show visible button"
+        },
+        "recording": {
+          "start_button_text": "Start button text",
+          "clear_button_text": "Clear button text",
+          "min_duration": "Min duration (s)",
+          "max_duration": "Max duration (s)"
         }
       },
       "setter_tooltip": {
@@ -1747,12 +1763,21 @@
           "has_next_page": "En boolesk som används för att ange om det finns en annan sida av data tillgänglig. Det kan hjälpa oss att bättre kontrollera datainsamling i sidnumrerade frågor och optimera frågeprestanda",
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Filterläget. OCH eller OR.",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
           "type": "To set the input type",
           "show_visible_button": "To set whether to show the visible button"
+        },
+        "recording": {
+          "start_button_text": "The text displayed on the button when the recording is not started",
+          "stop_button_text": "The text displayed on the button when recording",
+          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "min_duration": "Minimum duration for recording",
+          "max_duration": "Maximum duration for recording"
         }
       },
       "setter_option": {
@@ -1869,6 +1894,12 @@
           "single_file": "Endast en enda fil är tillåten.",
           "file": "Filtyper som inte stöds tas bort",
           "directory": "Endast kataloger är tillåtna."
+        },
+        "recording": {
+          "recording_permission": "Recording permission required",
+          "cannot_set_value_dur": "Cannot set value during recording",
+          "min_duration": "Please recording at least {{minimum}}s",
+          "max_duration": "Please recording at most {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2468,6 +2499,9 @@
         "event_calendar": "Händelse kalender"
       },
       "name_duplicated": "Detta resurs-ID konflikter i dessa händelser, använd samma namn eller annat id"
+    },
+    "recording": {
+      "name": "Recording"
     }
   },
   "page": {
@@ -2872,5 +2906,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Det gick inte att logga ut. Försök igen senare."
+  "logout_failed": "Det gick inte att logga ut. Försök igen senare.",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }

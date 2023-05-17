@@ -205,6 +205,9 @@
             "connect_with_oauth": "OAuth で接続して保存",
             "reconnect_with_oauth": "OAuth で再接続する",
             "access_type": "アクセスの種類"
+          },
+          "mongodb": {
+            "command": "コマンド"
           }
         },
         "placeholder": {
@@ -1220,6 +1223,11 @@
         "time_range": {
           "start_placeholder": "始まる時間",
           "end_placeholder": "終了時間"
+        },
+        "recording": {
+          "start_button_text": "録音を開始",
+          "stop_button_text": "中止",
+          "clear_button_text": "クリア"
         }
       },
       "setter_group": {
@@ -1233,7 +1241,7 @@
         "menu": "メニュー",
         "options": "オプション",
         "pagination": "ページをめくる",
-        "row_selection": "回線選択",
+        "row_selection": "ユーザー選択",
         "sort": "分類する",
         "style": "スタイル",
         "tabs": "タブ",
@@ -1567,12 +1575,20 @@
           "total_row_count": "総行数",
           "next_cursor": "次のカーソル",
           "has_next_page": "次のページあり",
-          "currency_code": "通貨コード"
+          "currency_code": "通貨コード",
+          "cell_selection": "セルを選択",
+          "click_outside_to_des": "外をクリックして選択を解除"
         },
         "previous_cursor": "前のカーソル",
         "input": {
           "type": "タイプ",
           "show_visible_button": "表示ボタンを表示"
+        },
+        "recording": {
+          "start_button_text": "スタート ボタンのテキスト",
+          "clear_button_text": "クリア ボタンのテキスト",
+          "min_duration": "最小時間(s)",
+          "max_duration": "最大時間(s)"
         }
       },
       "setter_tooltip": {
@@ -1747,12 +1763,21 @@
           "has_next_page": "利用可能なデータの別のページがあるかどうかを示すために使用されるブール値。 ペジネーションされたクエリでのデータ検索の制御を改善し、クエリのパフォーマンスを最適化するのに役立ちます",
           "filters": "{{ }} で囲まれたオブジェクトの配列。 たとえば、{{ [{\"**columnName**\":\"フィルターする列の名前\", \"**filterValue**\"：\"一致する値\", \"**operator**\":\"contains, 等しい、...\"}] }}",
           "filter_mode": "フィルタモード。ANDまたはOR。",
-          "currency_code": "USD"
+          "currency_code": "USD",
+          "whether_allow_users_": "ユーザーにセルの選択を許可するかどうか",
+          "supported_in_the_row": "行単一選択モードでサポートされています。有効にしたら、テーブル以外の領域をクリックして、行の選択を解除します。"
         },
         "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}",
         "input": {
           "type": "入力のタイプを設定する",
           "show_visible_button": "表示ボタンを表示するかどうかを設定する"
+        },
+        "recording": {
+          "start_button_text": "録音が開始されていないときにボタンに表示されるテキスト",
+          "stop_button_text": "録音時にボタンに表示されるテキスト",
+          "clear_button_text": "録音が完了したときにボタンに表示されるテキスト",
+          "min_duration": "録音の最小期間",
+          "max_duration": "録音の最大期間"
         }
       },
       "setter_option": {
@@ -1869,6 +1894,12 @@
           "single_file": "許可されるファイルは 1 つだけです。",
           "file": "ファイルのみが許可されます。 ディレクトリをアップロードしないでください。",
           "directory": "ディレクトリのみが許可されます。"
+        },
+        "recording": {
+          "recording_permission": "録音権限が必要です",
+          "cannot_set_value_dur": "録音中に値を設定できません",
+          "min_duration": "少なくとも {{minimum}}秒以上記録してください",
+          "max_duration": "最大 {{maximum}}秒で録音してください"
         }
       },
       "setter_description": {
@@ -2167,7 +2198,7 @@
   "title": "エラ クラウドへようこそ",
   "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
   "user": {
-    "description": "開発者専用のオープンソースのローコード プラットフォーム。",
+    "description": "内部ツールとダッシュボードを構築する — より速く、より簡単に、より良い",
     "forgot_password": {
       "actions": {
         "reset": "リセット",
@@ -2468,6 +2499,9 @@
         "event_calendar": "イベントカレンダー"
       },
       "name_duplicated": "このリソース ID はこれらのイベントで競合します。同じ名前または別の ID を使用してください"
+    },
+    "recording": {
+      "name": "録音"
     }
   },
   "page": {
@@ -2619,7 +2653,7 @@
           "google": "Google にサインアップ"
         }
       },
-      "description": "開発者専用のオープンソースのローコード プラットフォーム。"
+      "description": "内部ツールとダッシュボードを構築する — より速く、より簡単に、より良い"
     },
     "left": {
       "menu": {
@@ -2872,5 +2906,30 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "ログアウトできませんでした"
+  "logout_failed": "ログアウトできませんでした",
+  "drive": {
+    "table": {
+      "body": {
+        "open_folder": "Open folder"
+      },
+      "title": {
+        "creator": "Creator"
+      }
+    },
+    "create_modal": {
+      "title": {
+        "create_a_folder": "Create a folder",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "rename_modal": {
+      "validate_failed": "Only letters, numbers and -~_=: are allowed",
+      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+    },
+    "delete_modal": {
+      "title": "Are you sure?",
+      "description_multi": "After deleted, users will be unable to access these files"
+    }
+  }
 }
