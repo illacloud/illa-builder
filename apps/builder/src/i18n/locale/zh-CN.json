@@ -2198,7 +2198,7 @@
   "title": "欢迎使用ILLA",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
   "user": {
-    "description": "搭建内部工具和仪表板中更快的解决方案",
+    "description": "搭建内部工具和仪表板更好的解决方案",
     "forgot_password": {
       "actions": {
         "reset": "重置",
@@ -2653,7 +2653,7 @@
           "google": "使用Google账户注册"
         }
       },
-      "description": "搭建内部工具和仪表板中更快的解决方案"
+      "description": "搭建内部工具和仪表板更好的解决方案"
     },
     "left": {
       "menu": {
