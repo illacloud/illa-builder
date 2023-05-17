@@ -2198,7 +2198,7 @@
   "title": "Witaj w illi",
   "unfreeze_tips": "Zamroź płótno i przeciągnij elementy do lub z kontenerów. (D lub K)",
   "user": {
-    "description": "Otwarta platforma o niskim kodzie dla programistów.",
+    "description": "Szybsze rozwiązania na wewnętrznych narzędziach i pulpitach nawigacyjnych",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Zarejestruj się przez Google"
         }
       },
-      "description": "Otwarta platforma o niskim kodzie dla programistów."
+      "description": "Szybsze rozwiązania na wewnętrznych narzędziach i pulpitach nawigacyjnych"
     },
     "left": {
       "menu": {
