@@ -50,6 +50,7 @@ export const UpdateManyPart: FC<MongoDbActionPartProps> = (props) => {
         onChange={handleValueChange("filter")}
         mode={CODE_LANG.JAVASCRIPT}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={'{"type":"cheese"}'}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.update")}
@@ -59,15 +60,25 @@ export const UpdateManyPart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.update}
         onChange={handleValueChange("update")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={'{"$set":{"type":"chicken", "price":100}}'}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.options")}
         lineNumbers
-        style={{ height: "88px" }}
+        style={{ height: "188px" }}
         mode={CODE_LANG.JAVASCRIPT}
         value={typeContent.options}
         onChange={handleValueChange("options")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={
+          "{\n" +
+          '"collation":{\n' +
+          '   "locale": "simple",\n' +
+          '   "caseLevel": true,\n' +
+          '   "caseFirst": "upper",\n' +
+          "...\n" +
+          "}}"
+        }
       />
     </>
   )

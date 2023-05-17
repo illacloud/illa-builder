@@ -51,6 +51,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.query}
         onChange={handleValueChange("query")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={'{"type":"cheese"}'}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.projection")}
@@ -60,6 +61,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.projection}
         onChange={handleValueChange("projection")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={'{"_id":1} '}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.sort_by")}
@@ -69,6 +71,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.sortBy}
         onChange={handleValueChange("sortBy")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={'{"_id":1} '}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.limit")}
@@ -78,6 +81,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.limit}
         onChange={handleValueChange("limit")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={"100"}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.skip")}
@@ -87,6 +91,7 @@ export const FindPart: FC<MongoDbActionPartProps> = (props) => {
         value={typeContent.skip}
         onChange={handleValueChange("skip")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={"10"}
       />
     </>
   )

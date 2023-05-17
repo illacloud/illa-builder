@@ -50,6 +50,7 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
         style={{ height: "88px" }}
         expectedType={VALIDATION_TYPES.STRING}
         mode={CODE_LANG.JAVASCRIPT}
+        placeholder={'{"type":"cheese"}'}
       />
       <InputEditor
         lineNumbers
@@ -59,15 +60,25 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
         mode={CODE_LANG.JAVASCRIPT}
         expectedType={VALIDATION_TYPES.STRING}
         title={t("editor.action.panel.mongodb.update")}
+        placeholder={'{"$set":{"type":"chicken", "price":100}}'}
       />
       <InputEditor
         title={t("editor.action.panel.mongodb.options")}
         lineNumbers
-        style={{ height: "88px" }}
+        style={{ height: "188px" }}
         mode={CODE_LANG.JAVASCRIPT}
         value={typeContent.options}
         onChange={handleValueChange("options")}
         expectedType={VALIDATION_TYPES.STRING}
+        placeholder={
+          "{\n" +
+          '"collation":{\n' +
+          '   "locale": "simple",\n' +
+          '   "caseLevel": true,\n' +
+          '   "caseFirst": "upper",\n' +
+          "...\n" +
+          "}}"
+        }
       />
     </>
   )

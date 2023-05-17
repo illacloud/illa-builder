@@ -50,6 +50,9 @@ export const InsertManyPart: FC<MongoDbActionPartProps> = (props) => {
       onChange={handleValueChange}
       value={typeContent.document}
       expectedType={VALIDATION_TYPES.STRING}
+      placeholder={
+        '[{"item":"apple", "price":1.49},{"item":"banana", "price":2.50}]'
+      }
     />
   )
 }

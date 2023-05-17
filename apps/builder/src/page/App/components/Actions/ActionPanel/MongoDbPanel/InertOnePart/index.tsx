@@ -49,6 +49,7 @@ export const InsertOnePart: FC<MongoDbActionPartProps> = (props) => {
       value={typeContent.document}
       onChange={handleValueChange}
       expectedType={VALIDATION_TYPES.STRING}
+      placeholder={'{"item":"apple", "price":1.49}'}
     />
   )
 }

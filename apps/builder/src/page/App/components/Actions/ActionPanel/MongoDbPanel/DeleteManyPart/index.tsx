@@ -46,6 +46,7 @@ export const DeleteManyPart: FC<MongoDbActionPartProps> = (props) => {
       lineNumbers
       style={{ height: "88px" }}
       mode={CODE_LANG.JAVASCRIPT}
+      placeholder={'{"type":"cheese"}'}
       value={typeContent.filter}
       onChange={handleValueChange}
       expectedType={VALIDATION_TYPES.STRING}
