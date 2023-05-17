@@ -2198,7 +2198,7 @@
   "title": "Welkom bij de illa",
   "unfreeze_tips": "Bevries het canvas en sleep componenten naar of uit containers. (D of K)",
   "user": {
-    "description": "Een open-source low-code platform voor ontwikkelaars.",
+    "description": "Snellere oplossingen op interne tools en dashboards",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Registreer met Google"
         }
       },
-      "description": "Een open-source low-code platform voor ontwikkelaars."
+      "description": "Snellere oplossingen op interne tools en dashboards"
     },
     "left": {
       "menu": {
