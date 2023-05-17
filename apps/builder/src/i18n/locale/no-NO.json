@@ -2198,7 +2198,7 @@
   "title": "Velkommen til illa",
   "unfreeze_tips": "Frys lerretet og dra komponenter inn i eller ut av beholderne. (D eller K)",
   "user": {
-    "description": "En plattform med lav kildekode for utviklere.",
+    "description": "Raskere løsninger ved interne verktøy og dashbord",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Registrer deg med Google"
         }
       },
-      "description": "En plattform med lav kildekode for utviklere."
+      "description": "Raskere løsninger ved interne verktøy og dashbord"
     },
     "left": {
       "menu": {
