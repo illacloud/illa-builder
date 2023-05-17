@@ -2198,7 +2198,7 @@
   "title": "Bem-vindo à illa",
   "unfreeze_tips": "Congele a tela e arraste os componentes para dentro ou para fora de contêineres. (D ou K)",
   "user": {
-    "description": "Uma plataforma de código aberto para desenvolvedores.",
+    "description": "Soluções mais rápidas em ferramentas e painéis internos",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Cadastre-se com o Google"
         }
       },
-      "description": "Uma plataforma de código aberto para desenvolvedores."
+      "description": "Soluções mais rápidas em ferramentas e painéis internos"
     },
     "left": {
       "menu": {
