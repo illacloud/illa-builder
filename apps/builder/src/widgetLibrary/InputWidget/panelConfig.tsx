@@ -12,6 +12,28 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
+        id: `${baseWidgetName}-basic-type`,
+        labelName: i18n.t("editor.inspect.setter_label.input.type"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.input.type"),
+        attrName: "type",
+        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "BASE_SELECT_SETTER",
+        options: [
+          {
+            label: i18n.t("editor.inspect.setter_option.input.input"),
+            value: "input",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.input.password"),
+            value: "password",
+          },
+          {
+            label: i18n.t("editor.inspect.setter_option.input.search"),
+            value: "search",
+          },
+        ],
+      },
+      {
         id: `${baseWidgetName}-basic-defaultValue`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.input_default_value"),
@@ -130,6 +152,22 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
+        id: `${baseWidgetName}-adornments-visible-button`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.input.show_visible_button",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.input.show_visible_button",
+        ),
+        attrName: "showVisibleButton",
+        useCustomLayout: true,
+        openDynamic: true,
+        bindAttrName: ["type"],
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        shown: (value) => value === "password",
+      },
+      {
         id: `${baseWidgetName}-adornments-showClear`,
         labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
         attrName: "allowClear",
@@ -144,8 +182,10 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "showCharacterCount",
         useCustomLayout: true,
         openDynamic: true,
+        bindAttrName: ["type"],
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
+        shown: (value) => value !== "password",
       },
       {
         id: `${baseWidgetName}-adornments-prefixText`,
