@@ -1576,7 +1576,8 @@
           "next_cursor": "Další kurzor",
           "has_next_page": "Má další stránku",
           "currency_code": "Kód měny",
-          "cell_selection": "Cell selection"
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Předchozí kurzor",
         "input": {
@@ -1763,7 +1764,8 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Režim filtru. A nebo OR.",
           "currency_code": "V tabulce v příloze I nařízení (EU) č. 36/2012 se v řádku týkajícím se subjektu „Ecocert Erőmű Kft.“ nahrazuje tímto:",
-          "whether_allow_users_": "Whether allow users to select a cell"
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
         "input": {
