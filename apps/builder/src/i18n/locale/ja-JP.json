@@ -1295,6 +1295,9 @@
           "remove": "データセットを削除",
           "value": "データ列"
         },
+        "switch_group": {
+          "option_label_alignment": "オプションラベルの位置"
+        },
         "dataset_config": "データセット構成",
         "datasets": "データセット",
         "decimal_place": "小数位",
@@ -1675,6 +1678,18 @@
           "suffix_icon": "コンポーネントの後に表示されるアイコン",
           "hide_output": "スライド時に値を非表示にするかどうかを設定します"
         },
+        "switch_group": {
+          "label": "オプションのラベル",
+          "value": "選択したオプションの配列を{{で囲みます。例えば、 {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "値が重複しています。エラーを避けるために一意の値を使用してください。",
+          "caption": "ラベルの下に表示されるキャプションです。",
+          "disabled": "オプションを無効にする",
+          "datasource": "スイッチグループのデータソース。データベースや API からのデータを使用するには {{actionName.data}} を使用してください。",
+          "default_value": "{{ }}で囲まれた配列。例: {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "選択できる最小アイテム",
+          "choose_up_to": "選択できる最大アイテム",
+          "option_label_alignment": "ラベルの位置"
+        },
         "step": {
           "default_step": "既定のステップ",
           "show_step_number": "ステップ番号を表示",
@@ -1866,6 +1881,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2499,6 +2517,9 @@
         "event_calendar": "イベントカレンダー"
       },
       "name_duplicated": "このリソース ID はこれらのイベントで競合します。同じ名前または別の ID を使用してください"
+    },
+    "switch_group": {
+      "name": "スイッチのグループ"
     },
     "recording": {
       "name": "録音"
