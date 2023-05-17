@@ -1576,7 +1576,8 @@
           "next_cursor": "次のカーソル",
           "has_next_page": "次のページあり",
           "currency_code": "通貨コード",
-          "cell_selection": "セルを選択"
+          "cell_selection": "セルを選択",
+          "click_outside_to_des": "外をクリックして選択を解除"
         },
         "previous_cursor": "前のカーソル",
         "input": {
@@ -1763,7 +1764,8 @@
           "filters": "{{ }} で囲まれたオブジェクトの配列。 たとえば、{{ [{\"**columnName**\":\"フィルターする列の名前\", \"**filterValue**\"：\"一致する値\", \"**operator**\":\"contains, 等しい、...\"}] }}",
           "filter_mode": "フィルタモード。ANDまたはOR。",
           "currency_code": "USD",
-          "whether_allow_users_": "ユーザーにセルの選択を許可するかどうか"
+          "whether_allow_users_": "ユーザーにセルの選択を許可するかどうか",
+          "supported_in_the_row": "行単一選択モードでサポートされています。有効にしたら、テーブル以外の領域をクリックして、行の選択を解除します。"
         },
         "previous_cursor": "Actionデータを使用して、前のカーソルを設定します。例えば、  {{ pageInfo.startCursor }}",
         "input": {
