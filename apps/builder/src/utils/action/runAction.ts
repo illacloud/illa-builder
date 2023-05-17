@@ -155,6 +155,7 @@ export const runActionWithExecutionResult = async (
       value: {
         isRunning: true,
         startTime: new Date().getTime(),
+        endTime: new Date().getTime(),
       },
     }),
   )
