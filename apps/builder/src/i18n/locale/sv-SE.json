@@ -2198,7 +2198,7 @@
   "title": "Välkommen till illa",
   "unfreeze_tips": "Frysa duken och dra komponenter till eller ut ur behållare. (D eller K)",
   "user": {
-    "description": "En öppen källkodsplattform för utvecklare.",
+    "description": "Snabbare lösningar på interna verktyg och instrumentpaneler",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Registrera dig med Google"
         }
       },
-      "description": "En öppen källkodsplattform för utvecklare."
+      "description": "Snabbare lösningar på interna verktyg och instrumentpaneler"
     },
     "left": {
       "menu": {
