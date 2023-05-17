@@ -2198,7 +2198,7 @@
   "title": "Bine ai venit la illa",
   "unfreeze_tips": "Îngheață pânza și trage componentele în sau în afara containerelor. (D sau K)",
   "user": {
-    "description": "O platformă open-source low--code pentru dezvoltatori.",
+    "description": "Soluții mai rapide la nivelul instrumentelor și tablourilor de bord interne",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Înregistrați-vă cu Google"
         }
       },
-      "description": "O platformă open-source low--code pentru dezvoltatori."
+      "description": "Soluții mai rapide la nivelul instrumentelor și tablourilor de bord interne"
     },
     "left": {
       "menu": {
