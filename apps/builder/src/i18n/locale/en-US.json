@@ -1576,7 +1576,8 @@
           "next_cursor": "Next cursor",
           "has_next_page": "Has next page",
           "currency_code": "Currency code",
-          "cell_selection": "Cell selection"
+          "cell_selection": "Cell selection",
+          "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Previous cursor",
         "input": {
@@ -1763,7 +1764,8 @@
           "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell"
+          "whether_allow_users_": "Whether allow users to select a cell",
+          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
         },
         "previous_cursor": "Use the action data to set the previous cursor. For example,  {{ pageInfo.startCursor }}",
         "input": {
