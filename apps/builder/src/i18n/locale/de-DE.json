@@ -2198,7 +2198,7 @@
   "title": "Willkommen bei illa",
   "unfreeze_tips": "Die Leinwand einfrieren und Komponenten in oder aus Containern ziehen. (D oder K)",
   "user": {
-    "description": "Eine Open-Source Low-Code-Plattform für Entwickler.",
+    "description": "Schnellere Lösungen in internen Tools und Dashboards",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2653,7 +2653,7 @@
           "google": "Mit Google anmelden"
         }
       },
-      "description": "Eine Open-Source Low-Code-Plattform für Entwickler."
+      "description": "Schnellere Lösungen in internen Tools und Dashboards"
     },
     "left": {
       "menu": {
