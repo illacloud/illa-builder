@@ -6,7 +6,7 @@ import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 export const SWITCH_GROUP_WIDGET_CONFIG: WidgetConfig = {
   type: "SWITCH_GROUP_WIDGET",
   displayName: "switchGroup",
-  widgetName: i18n.t("widget.switch_group.switch_group"),
+  widgetName: i18n.t("widget.switch_group.name"),
   icon: <SwitchGroupWidgetIcon />,
   keywords: ["switchGroup", "开关组"],
   sessionType: "SELECT",
