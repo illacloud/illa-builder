@@ -20,6 +20,7 @@ import {
   FilterOptions,
   Table,
   TableHandler,
+  isFilterOption,
   isNumber,
   isObject,
 } from "@illa-design/react"
@@ -284,12 +285,14 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
         }, 100)}
         onRowSelectionChange={onRowSelectionChange}
         onCellSelectionChange={(cell) => {
-          const selectedCell: Record<string, unknown> = {
-            index: cell.row.index,
-            columnName: cell.column.id,
-            value: cell.getValue(),
-          }
-          if (cell.column.columnDef.meta?.haveMappedValue) {
+          const selectedCell: Record<string, unknown> = cell
+            ? {
+                index: cell.row.index,
+                columnName: cell.column.id,
+                value: cell.getValue(),
+              }
+            : {}
+          if (cell?.column.columnDef.meta?.haveMappedValue) {
             selectedCell["mappedValue"] =
               cell.column.columnDef.meta?.getRenderedValueAsString?.(
                 cell.getContext(),
@@ -388,19 +391,27 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     [triggerEventHandler, triggerMappedEventHandler],
   )
 
+  const isColumnsKey = useCallback(
+    (key: string) => {
+      const columnsKeys = columns.map((item: ColumnItemShape) => {
+        return item.accessorKey
+      })
+      return columnsKeys.includes(key)
+    },
+    [columns],
+  )
+
   const defaultSort = useMemo(() => {
     if (!defaultSortKey || defaultSortKey === "default") return []
-    const columnsKeys = columns.map((item: ColumnItemShape) => {
-      return item.accessorKey
-    })
-    if (!columnsKeys.includes(defaultSortKey)) return []
+    if (!isColumnsKey(defaultSortKey)) return []
+
     return [
       {
         id: defaultSortKey,
         desc: defaultSortOrder === "descend",
       },
     ]
-  }, [defaultSortOrder, defaultSortKey, columns])
+  }, [defaultSortOrder, defaultSortKey, isColumnsKey])
 
   const columnVisibility = useMemo(() => {
     const res: Record<string, boolean> = {}
@@ -541,10 +552,36 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   useEffect(() => {
     updateComponentRuntimeProps({
       clearSelection: () => {
-        tableRef.current?.table.resetRowSelection()
+        tableRef.current?.clearSelection()
       },
       clearFilters: () => {
         tableRef.current?.setGlobalFilters([], "and")
+      },
+      setFilters: (filters: unknown, operator: string) => {
+        const filterOperator =
+          operator === "and" || operator === "or" ? operator : "and"
+        if (Array.isArray(filters)) {
+          const filterOptions = filters.filter((value) => {
+            return isFilterOption(value)
+          })
+          tableRef.current?.setGlobalFilters(filterOptions, filterOperator)
+        }
+      },
+      setSort: (sortKey: string, order: string) => {
+        const sortOrder =
+          order === "ascend" || order === "descend" ? order : "ascend"
+        const updateSortValue: Record<string, unknown> = {
+          defaultSortOrder: sortOrder,
+        }
+        if (isColumnsKey(sortKey)) {
+          updateSortValue["defaultSortKey"] = sortKey
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: updateSortValue,
+            },
+          ])
+        }
       },
       selectPage: (pageIndex: number) => {
         if (!isNumber(pageIndex)) {
@@ -578,10 +615,10 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
     displayName,
     multiRowSelection,
+    isColumnsKey,
   ])
 
   return (
