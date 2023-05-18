@@ -683,7 +683,8 @@
             "top_p": "浮点数，用于定义在文本生成示例操作中的标记。",
             "temperature": "Float(0.0-100.0)，为空时默认1.0",
             "repetition_penalty": "浮点数(0.0-100.0)",
-            "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）"
+            "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "转到<0>Model Hub</0>并选择您想要使用的模型。",
@@ -1776,8 +1777,8 @@
           "total_row_count": "用于计算页码的行数。",
           "next_cursor": "用于定位一组数据的下一个起点的标识符，以便分页并检索分批数据",
           "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
-          "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**columnName**\":\"待过滤的列名\", \"**filterValue**\"：\"待匹配的值\", \"**operator**\":\"contains, equals, ...\"}] }}",
-          "filter_mode": "过滤器的模式，选择AND 或 OR。",
+          "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**id**\":\"待过滤的列名\", \"**value**\"：\"待匹配的值\", \"**filterFn**\":\"contains, equals, ...\"}] }}. 我们支持这些 filterFn：\"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
+          "filter_mode": "过滤器的模式，and或or。",
           "currency_code": "USD",
           "whether_allow_users_": "是否允许用户选中一个单元格",
           "supported_in_the_row": "在行单选模式下支持。启用后，点击表以外的区域取消选择。"

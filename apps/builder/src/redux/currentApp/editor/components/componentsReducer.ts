@@ -67,7 +67,7 @@ export const addComponentReducer: CaseReducer<
         if (dealNode.props) {
           dealNode.props = getNewWidgetPropsByUpdateSlice(
             dealNode.props ?? {},
-            dealNode.props ?? {},
+            {},
           )
         }
         if (!Array.isArray(parentNode.childrenNode)) {
@@ -128,7 +128,7 @@ export const copyComponentReducer: CaseReducer<
         if (newComponentNode.props) {
           newComponentNode.props = getNewWidgetPropsByUpdateSlice(
             newComponentNode.props ?? {},
-            newComponentNode.props ?? {},
+            {},
           )
         }
         if (parentNode.childrenNode === null) {

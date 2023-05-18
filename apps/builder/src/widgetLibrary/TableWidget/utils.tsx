@@ -1,20 +1,31 @@
 import { CellContext } from "@tanstack/table-core"
-import { isBoolean } from "lodash"
+import { isBoolean, isDate } from "lodash"
 import {
   dayjsPro,
+  isArray,
   isFunction,
   isNumber,
   isObject,
   isString,
 } from "@illa-design/react"
+import { isValidCurrencyCode } from "@/constants/currency"
+import { getLocalLanguage } from "@/page/User/Register"
+import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import {
   ColumnItemShape,
+  Columns,
   defaultColumnItem,
 } from "@/widgetLibrary/TableWidget/interface"
 import {
   RenderTableButton,
+  RenderTableButtonGroup,
+  RenderTableIconGroup,
   RenderTableImage,
   RenderTableLink,
+  RenderTableMarkdown,
+  RenderTableRating,
+  RenderTableStringCell,
+  RenderTableTag,
 } from "@/widgetLibrary/TableWidget/renderTableCell"
 
 const getOldOrder = (cur: number, oldOrders?: Array<number>) => {
@@ -119,34 +130,79 @@ export const getConfigFromColumnShapeData = <K extends keyof ColumnItemShape>(
   return value
 }
 
-const getPropertyValue = (
-  props: CellContext<any, any>,
+export const getMappedValue = (
+  rowIndex: number,
   mappedValue: unknown,
   fromCurrentRow?: Record<string, boolean>,
+  mappedValuePrefix: string = "mappedValue",
+  defaultValue: unknown = "-",
+) => {
+  if (mappedValue != null && mappedValue !== "") {
+    if (
+      fromCurrentRow?.[`${mappedValuePrefix}`] &&
+      Array.isArray(mappedValue)
+    ) {
+      return mappedValue[rowIndex] ?? defaultValue
+    }
+    return mappedValue ?? defaultValue
+  }
+  return defaultValue
+}
+
+export const getMappedValueFromCellContext = (
+  props: CellContext<unknown, unknown>,
+  mappedValue: unknown,
+  fromCurrentRow?: Record<string, boolean>,
+  mappedValuePrefix: string = "mappedValue",
+  defaultValue: string = "-",
+) => {
+  const rowIndex = props.row.index
+
+  return getMappedValue(
+    rowIndex,
+    mappedValue,
+    fromCurrentRow,
+    mappedValuePrefix,
+    defaultValue,
+  )
+}
+
+export const getPropertyValue = (
+  props: CellContext<unknown, unknown>,
+  mappedValue: unknown,
+  fromCurrentRow?: Record<string, boolean>,
+  mappedValuePrefix: string = "mappedValue",
 ) => {
   const value = props.getValue()
   const index = props.row.index
 
-  if (mappedValue !== undefined && mappedValue !== null) {
-    if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
+  if (mappedValue != null && mappedValue !== "") {
+    if (
+      fromCurrentRow?.[`${mappedValuePrefix}`] &&
+      Array.isArray(mappedValue)
+    ) {
       return mappedValue[index] ?? "-"
     }
-    return mappedValue
+    return mappedValue ?? "-"
   }
 
   return value ?? "-"
 }
 
-const getStringPropertyValue = (
-  props: CellContext<any, any>,
+export const getStringPropertyValue = (
+  props: CellContext<unknown, unknown>,
   mappedValue?: unknown,
   fromCurrentRow?: Record<string, boolean>,
+  mappedValuePrefix: string = "mappedValue",
 ) => {
   const value = props.getValue()
   const index = props.row.index
 
   if (mappedValue) {
-    if (fromCurrentRow?.["mappedValue"] && Array.isArray(mappedValue)) {
+    if (
+      fromCurrentRow?.[`${mappedValuePrefix}`] &&
+      Array.isArray(mappedValue)
+    ) {
       return `${mappedValue[index] ?? "-"}`
     }
     return `${mappedValue}`
@@ -175,10 +231,19 @@ const isValidUrl = (str: unknown) => {
   return pattern.test(str)
 }
 
+function isValidDate(val: unknown) {
+  if (isString(val) || isNumber(val) || isDate(val)) {
+    const date = new Date(val)
+    return !isNaN(date.getTime())
+  }
+  return false
+}
+
 export const getCellForType = (
   data: ColumnItemShape,
   eventPath: string,
-  handleOnClickMenuItem?: (path: string) => void,
+  handleOnClickMenuItem: (path: string, index?: number) => void,
+  columnIndex: number,
 ) => {
   const {
     type = "text",
@@ -186,22 +251,102 @@ export const getCellForType = (
     format = "YYYY-MM-DD",
     mappedValue,
     fromCurrentRow,
+    currencyCode = "XXX",
+    showThousandsSeparator,
+    tagLabel,
+    tagColor = "auto",
+    buttonGroupContent,
+    iconGroupContent,
+    alignment,
+    backgroundColor,
   } = data
 
+  const locale = getLocalLanguage()
+  const columnEventPath = convertPathToString(["columns", `${columnIndex}`])
+
   switch (type) {
-    case "text":
+    case Columns.Text:
       return (props: CellContext<any, any>) => {
-        return getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        const bgColor = getMappedValueFromCellContext(
+          props,
+          backgroundColor,
+          fromCurrentRow,
+          "backgroundColor",
+        )
+        return RenderTableStringCell({ value, alignment, bgColor })
       }
-    case "link":
+    case Columns.Boolean:
+      return (props: CellContext<any, any>) => {
+        const value = getPropertyValue(props, mappedValue, fromCurrentRow)
+        const currentVal = isBoolean(value) ? value.toString() : "-"
+        return RenderTableStringCell({ value: currentVal, alignment })
+      }
+    case Columns.Number:
+    case Columns.Percent:
+    case Columns.Currency:
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        const formatVal = Number(value)
+        const style = type === Columns.Number ? "decimal" : type
+        const numberFormatOptions: Intl.NumberFormatOptions = {
+          style,
+          minimumFractionDigits: decimalPlaces,
+          maximumFractionDigits: decimalPlaces,
+          useGrouping: !!showThousandsSeparator,
+        }
+        if (type === Columns.Currency) {
+          numberFormatOptions.currency = isValidCurrencyCode(currencyCode)
+            ? currencyCode
+            : "XXX"
+        }
+
+        const numberFormat = new Intl.NumberFormat(locale, numberFormatOptions)
+        const currentVal = isNumber(formatVal)
+          ? numberFormat.format(formatVal)
+          : "-"
+        return RenderTableStringCell({ value: currentVal, alignment })
+      }
+    case Columns.Date:
+    case Columns.Time:
+    case Columns.DateTime:
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        const currentVal = dayjsPro(value).format(format)
+        return RenderTableStringCell({ value: currentVal, alignment })
+      }
+    case Columns.Link:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         return RenderTableLink({
           cell: props,
           value,
+          alignment,
         })
       }
-    case "image":
+    case Columns.Tag:
+      return (props: CellContext<any, any>) => {
+        const value = getPropertyValue(
+          props,
+          tagLabel,
+          fromCurrentRow,
+          "tagLabel",
+        )
+        const color = getMappedValueFromCellContext(
+          props,
+          tagColor,
+          fromCurrentRow,
+          "tagColor",
+          "auto",
+        )
+        return RenderTableTag({
+          cell: props,
+          value: isArray(value) ? value : [`${value}`],
+          color,
+          alignment,
+        })
+      }
+    case Columns.Image:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
         return RenderTableImage({
@@ -210,32 +355,17 @@ export const getCellForType = (
           data,
         })
       }
-    case "boolean":
+    case Columns.Markdown:
+      return (props: CellContext<any, any>) => {
+        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
+        return RenderTableMarkdown({ value, alignment })
+      }
+    case Columns.Rating:
       return (props: CellContext<any, any>) => {
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
-        return isBoolean(value) ? value.toString() : "-"
+        return RenderTableRating({ value, alignment })
       }
-    case "number":
-      return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        const formatVal = Number(value)
-        return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
-      }
-    case "percent":
-      return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        const formatVal = Number(value)
-        return isNumber(formatVal)
-          ? `${(formatVal * 100).toFixed(decimalPlaces)}%`
-          : "-"
-      }
-    case "date":
-      return (props: CellContext<any, any>) => {
-        const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
-        const formatVal = dayjsPro(value).format(format)
-        return formatVal ? formatVal : "-"
-      }
-    case "button":
+    case Columns.Button:
       return (props: CellContext<any, any>) => {
         const value = getStringPropertyValue(props, mappedValue, fromCurrentRow)
 
@@ -247,40 +377,82 @@ export const getCellForType = (
           handleOnClickMenuItem,
         })
       }
+    case Columns.ButtonGroup:
+      return (props: CellContext<any, any>) => {
+        const rowIndex = props.row.index
+        const value = buttonGroupContent?.map((content) => {
+          const { cellValue, fromCurrentRow } = content
+          return {
+            ...content,
+            cellValue: `${getMappedValue(
+              rowIndex,
+              cellValue,
+              fromCurrentRow,
+              "cellValue",
+            )}`,
+          }
+        })
+
+        return RenderTableButtonGroup({
+          cell: props,
+          value,
+          alignment,
+          eventPath: columnEventPath,
+          handleOnClick: handleOnClickMenuItem,
+        })
+      }
+    case Columns.IconGroup:
+      return (props: CellContext<any, any>) => {
+        return RenderTableIconGroup({
+          cell: props,
+          alignment,
+          value: iconGroupContent,
+          eventPath: columnEventPath,
+          handleOnClick: handleOnClickMenuItem,
+        })
+      }
     default:
       return (props: CellContext<any, any>) => {
         const value = getPropertyValue(props, mappedValue, fromCurrentRow)
+        const stringValue = getStringPropertyValue(
+          props,
+          mappedValue,
+          fromCurrentRow,
+        )
         if (isBoolean(value)) {
-          return value.toString()
+          return RenderTableStringCell({ value: value.toString(), alignment })
         } else if (isNumber(value)) {
-          return value.toFixed(decimalPlaces)
+          return RenderTableStringCell({
+            value: value.toFixed(decimalPlaces),
+            alignment,
+          })
         } else if (!isNaN(Number(value))) {
-          return Number(value).toFixed(decimalPlaces)
-        } else if (dayjsPro(value).isValid()) {
-          return dayjsPro(value).format(format)
+          return RenderTableStringCell({
+            value: Number(value).toFixed(decimalPlaces),
+            alignment,
+          })
         } else if (isImageUrl(value)) {
-          const stringValue = getStringPropertyValue(
-            props,
-            mappedValue,
-            fromCurrentRow,
-          )
           return RenderTableImage({
             cell: props,
             value: stringValue,
             data,
           })
         } else if (isValidUrl(value)) {
-          const value = getStringPropertyValue(
-            props,
-            mappedValue,
-            fromCurrentRow,
-          )
           return RenderTableLink({
             cell: props,
-            value,
+            value: stringValue,
+            alignment,
+          })
+        } else if (isValidDate(value)) {
+          return RenderTableStringCell({
+            value: dayjsPro(value).format(format),
+            alignment,
           })
         } else {
-          return getStringPropertyValue(props, mappedValue, fromCurrentRow)
+          return RenderTableStringCell({
+            value: stringValue,
+            alignment,
+          })
         }
       }
   }

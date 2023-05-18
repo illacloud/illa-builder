@@ -1,5 +1,4 @@
 import { formatDataAsArray, formatDataAsObject } from "@/utils/formatData"
-import { isObject } from "@/utils/typeHelper"
 import { getSnippets } from "./dynamicConverter"
 
 export const QUOTED_DYNAMIC_STRING_REGEX = /["']({{[\s\S]*?}})["']/g
@@ -137,26 +136,6 @@ export function getDisplayNameAndAttrPath(fullPath: string): {
   return { displayName, attrPath }
 }
 
-export const getAllPaths = (
-  widgetsOrActions: Record<string, any> | any[],
-  currentPath: string = "",
-  result: Record<string, any> = {},
-) => {
-  if (currentPath) result[currentPath] = true
-  if (Array.isArray(widgetsOrActions)) {
-    for (let i = 0; i < widgetsOrActions.length; i++) {
-      const tempKey = currentPath ? `${currentPath}[${i}]` : `${i}`
-      getAllPaths(widgetsOrActions[i], tempKey, result)
-    }
-  } else if (isObject(widgetsOrActions)) {
-    for (const key in widgetsOrActions) {
-      const tempKey = currentPath ? `${currentPath}.${key}` : `${key}`
-      getAllPaths(widgetsOrActions[key], tempKey, result)
-    }
-  }
-  return result
-}
-
 export const getWidgetOrActionDynamicAttrPaths = (
   widgetOrAction: Record<string, any>,
 ): string[] => {
@@ -164,18 +143,6 @@ export const getWidgetOrActionDynamicAttrPaths = (
     return [...widgetOrAction.$dynamicAttrPaths]
   }
   return []
-}
-
-export const isPathInDynamicAttrPaths = (
-  widgetOrAction: Record<string, any>,
-  path: string,
-): boolean => {
-  if (Array.isArray(widgetOrAction.$dynamicAttrPaths)) {
-    return widgetOrAction.$dynamicAttrPaths.find((dynamicAttrPath) => {
-      return dynamicAttrPath === path
-    })
-  }
-  return false
 }
 
 export const wrapFunctionCode = (code: string) => {

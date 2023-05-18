@@ -212,27 +212,42 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     )
 
     const triggerMappedEventHandler = useCallback(
-      (eventType: string, path: string = "events", index?: number) => {
+      (
+        eventType: string,
+        path: string = "events",
+        index?: number,
+        formatPath?: (path: string) => string,
+        isMapped?: (dynamicString: string, calcValue: unknown) => boolean,
+      ) => {
         const { dynamicPaths, needRunEvents, finalContext } = getRunEvents(
           eventType,
           path,
         )
         dynamicPaths?.forEach((path: string) => {
-          const realPath = convertPathToString(toPath(path).slice(2))
+          const realPath = isFunction(formatPath)
+            ? formatPath(path)
+            : convertPathToString(toPath(path).slice(2))
 
           try {
             const dynamicString = get(needRunEvents, realPath, "")
+
             if (dynamicString) {
               const calcValue = evaluateDynamicString(
                 "",
                 dynamicString,
                 finalContext,
               )
+
+              let valueToSet = calcValue
               if (Array.isArray(calcValue) && isNumber(index)) {
-                set(needRunEvents, realPath, calcValue[index])
-              } else {
-                set(needRunEvents, realPath, calcValue)
+                if (
+                  !isFunction(isMapped) ||
+                  isMapped(dynamicString, calcValue)
+                ) {
+                  valueToSet = calcValue[index]
+                }
               }
+              set(needRunEvents, realPath, valueToSet)
             }
           } catch (e) {
             console.log(e)

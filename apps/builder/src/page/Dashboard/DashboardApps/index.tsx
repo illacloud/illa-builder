@@ -31,7 +31,7 @@ import {
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { DashboardErrorElement } from "../components/ErrorElemet"
+import { DashboardErrorElement } from "../components/ErrorElement"
 import { DashBoardLoading } from "../components/Loading"
 import { AppsContentBody } from "./contentBody"
 import {

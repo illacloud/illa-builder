@@ -683,7 +683,8 @@
             "top_p": "Float to define the tokens",
             "temperature": "Float(0.0-100.0)，leave blank for 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) to define the amount of time in seconds"
+            "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
@@ -1184,7 +1185,7 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "refresh"
+        "refresh": "Refresh"
       },
       "setter_default_value": {
         "fill": "Fill",
@@ -1776,8 +1777,8 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\"：\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. We support these filterFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
+          "filter_mode": "The filter mode. and / or.",
           "currency_code": "USD",
           "whether_allow_users_": "Whether allow users to select a cell",
           "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."

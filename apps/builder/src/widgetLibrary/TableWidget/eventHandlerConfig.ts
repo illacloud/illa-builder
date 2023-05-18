@@ -17,12 +17,43 @@ export const TABLE_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.columnFiltersChange",
+        "editor.inspect.setter_content.widget_action_type_name.filtersChange",
       ),
-      value: "columnFiltersChange",
+      value: "filtersChange",
+    },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.rowSelectChange",
+      ),
+      value: "rowSelectChange",
+    },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.rowClick",
+      ),
+      value: "rowClick",
+    },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.refresh",
+      ),
+      value: "refresh",
+    },
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.onCellSelect",
+      ),
+      value: "onCellSelect",
     },
   ],
-  methods: [],
+  methods: [
+    "selectPage",
+    "selectRow",
+    "clearSelection",
+    "setFilters",
+    "clearFilters",
+    "setSort",
+  ],
 }
 
 export const TABLE_BUTTON_EVENT_HANDLER_CONFIG: EventHandlerConfig = {

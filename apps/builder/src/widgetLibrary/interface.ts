@@ -88,6 +88,8 @@ export interface BaseWidgetProps {
     eventType: string,
     path: string,
     index?: number,
+    formatPath?: (path: string) => string,
+    isMapped?: (dynamicString: string, calcValue: unknown) => boolean,
   ) => void
   w: number
   h: number

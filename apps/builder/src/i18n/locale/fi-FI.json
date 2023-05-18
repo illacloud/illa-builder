@@ -683,7 +683,8 @@
             "top_p": "Kellu määrittääksesi kuponkia",
             "temperature": "Kelluva (0,0-100,0),jätä tyhjäksi 1,0",
             "repetition_penalty": "Liukuluku (0,0–100,0)",
-            "max_time": "Kelluta (0,0-120.0) määrittääksesi ajan määrän sekunteina"
+            "max_time": "Kelluta (0,0-120.0) määrittääksesi ajan määrän sekunteina",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Mene <0>Malli Hub</0> ja valitse malli, jota haluat käyttää.",

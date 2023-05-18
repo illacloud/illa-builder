@@ -1,5 +1,5 @@
 import copy from "copy-to-clipboard"
-import { get } from "lodash"
+import { get, isNumber } from "lodash"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
@@ -34,7 +34,7 @@ export const transformEvents = (
   const { actionType } = event
   if (actionType === "openUrl") {
     const { newTab, url, enabled } = event
-    const params = { url, newTab }
+    const params = { url: `${url}`, newTab }
     return {
       script: () => {
         goToURL(params)
@@ -46,9 +46,9 @@ export const transformEvents = (
     const { title, description, notificationType, duration, enabled } = event
     const params = {
       type: notificationType,
-      title,
-      description,
-      duration,
+      title: `${title}`,
+      description: `${description}`,
+      duration: isNumber(duration) ? duration : undefined,
     }
     return {
       script: () => {
@@ -240,7 +240,7 @@ export const transformEvents = (
         if ([undefined, null, ""].includes(fileData)) {
           return
         }
-        downloadFileFromEventHandler(fileType, fileName, fileData)
+        downloadFileFromEventHandler(fileType, `${fileName}`, fileData)
       },
     }
   }
@@ -267,6 +267,7 @@ export const transformEvents = (
         "deleteEvent",
         "setStartTime",
         "setEndTime",
+        "selectRow",
         "setValueInArray",
       ].includes(widgetMethod)
     ) {
@@ -300,6 +301,8 @@ export const transformEvents = (
       widgetMethod === "pause" ||
       widgetMethod === "clearValue" ||
       widgetMethod === "clearValidation" ||
+      widgetMethod === "clearSelection" ||
+      widgetMethod === "clearFilters" ||
       widgetMethod === "toggle" ||
       widgetMethod === "focus" ||
       widgetMethod === "reset" ||
@@ -320,6 +323,44 @@ export const transformEvents = (
       const { key } = event
       return {
         script: `{{${widgetID}.${widgetMethod}("${key}")}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "setSort") {
+      const { sortKey, sortOrder } = event
+      return {
+        script: () => {
+          const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
+          if (method) {
+            method(sortKey, sortOrder)
+          }
+        },
+        enabled,
+      }
+    }
+    if (widgetMethod === "setFilters") {
+      const { filters, operator } = event
+      return {
+        script: () => {
+          const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
+          if (method) {
+            method(filters, operator)
+          }
+        },
+        enabled,
+      }
+    }
+    if (widgetMethod === "selectRow") {
+      const { rowSelection } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}(${rowSelection})}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "selectPage") {
+      const { pageIndex } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}(${pageIndex})}}`,
         enabled,
       }
     }

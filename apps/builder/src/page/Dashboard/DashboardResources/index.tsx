@@ -28,7 +28,7 @@ import {
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
-import { DashboardErrorElement } from "../components/ErrorElemet"
+import { DashboardErrorElement } from "../components/ErrorElement"
 import { DashBoardLoading } from "../components/Loading"
 import { ResourcesContentBody } from "./contentBody"
 

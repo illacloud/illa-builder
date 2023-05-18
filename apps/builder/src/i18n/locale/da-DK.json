@@ -683,7 +683,8 @@
             "top_p": "Flydende for at definere tokens",
             "temperature": "Flydende (0,0-100,0),lad feltet stå tomt for 1,0",
             "repetition_penalty": "Float (0,0-100.0)",
-            "max_time": "Float (0,0-120,0) for at definere mængden af tid i sekunder"
+            "max_time": "Float (0,0-120,0) for at definere mængden af tid i sekunder",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Gå til <0>Model Hub</0> og vælg den model, du vil bruge.",

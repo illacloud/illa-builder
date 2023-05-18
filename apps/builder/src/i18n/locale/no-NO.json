@@ -683,7 +683,8 @@
             "top_p": "Flyten for å definere symbolene",
             "temperature": "Float(0.0-100.0),la stå tom for 1.0",
             "repetition_penalty": "Flytende (0,0-100,0)",
-            "max_time": "Gulv (0,0-120.0) for å definere tiden i sekunder"
+            "max_time": "Gulv (0,0-120.0) for å definere tiden i sekunder",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Gå til <0>Model Hub</0> og velg modellen du vil bruke.",

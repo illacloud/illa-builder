@@ -18,6 +18,7 @@ import { CalendarEventListSetter } from "@/page/App/components/PanelSetters/Opti
 import { CarouselListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/CarouselListSetter"
 import { StepsListSetter } from "@/page/App/components/PanelSetters/OptionListSetter/StepsListSetter"
 import { BaseRadioGroupSetter } from "@/page/App/components/PanelSetters/RadioGroupSetter/baseRadioGroup"
+import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/DynamicSelectSetter"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { DataSourceSetter } from "@/page/App/components/PanelSetters/SelectSetter/dataSourceSelectSetter"
@@ -31,7 +32,9 @@ import { SearchSelectSetter } from "@/page/App/components/PanelSetters/SelectSet
 import { ShadowSelect } from "@/page/App/components/PanelSetters/SelectSetter/shadowSelect"
 import { BaseSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/baseSwitch"
 import { DynamicSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/dynamicSwitch"
+import { CellSetter } from "@/page/App/components/PanelSetters/TableSetter/CellSetter"
 import { ColumnSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter"
+import { ColumnTypeSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columnTypeSelectSetter"
 import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
 import { TableDataSourceSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataSourceSelectSetter"
 import { TableMappedValueInputSetter } from "@/page/App/components/PanelSetters/TableSetter/tableMappedValueInputSetter"
@@ -52,12 +55,15 @@ const SetterTypeMapSetter = {
   INPUT_WITH_SELECT_SETTER: InputWithSelectSetter,
   LIST_SETTER: ListSetter,
   DYNAMIC_SWITCH_SETTER: DynamicSwitchSetter,
+  DYNAMIC_SELECT_SETTER: DynamicSelectSetter,
   BASE_SELECT_SETTER: BaseSelectSetter,
   COLOR_PICKER_SETTER: ColorPickerSetter,
   OPTION_LIST_SETTER: OptionListSetter,
   STEPS_LIST_SETTER: StepsListSetter,
   CAROUSEL_LIST_SETTER: CarouselListSetter,
+  CELL_SETTER: CellSetter,
   COLUMN_SETTER: ColumnSetter,
+  COLUMN_TYPE_SELECT_SETTER: ColumnTypeSelectSetter,
   COLUMNS_SELECT_SETTER: ColumnsSelectSetter,
   TABS_LIST_SETTER: TabListSetter,
   TABS_DEFAULT_KEY_SETTER: TabsDefaultKeySetter,

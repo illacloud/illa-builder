@@ -683,7 +683,8 @@
             "top_p": "Fluttuante per definire i token",
             "temperature": "Float(0.0-100.0),lasciare vuoto per 1.0",
             "repetition_penalty": "Fluttuante (0,0-100,0)",
-            "max_time": "Fluttuante (0.0-120.0) per definire la quantità di tempo in secondi"
+            "max_time": "Fluttuante (0.0-120.0) per definire la quantità di tempo in secondi",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Vai al <0>Mozzo Modello</0> e seleziona il modello che vuoi utilizzare.",

@@ -683,7 +683,8 @@
             "top_p": "Float um die Token zu definieren",
             "temperature": "Float(0.0-100.0),leer lassen für 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) um die Zeitspanne in Sekunden zu definieren"
+            "max_time": "Float (0.0-120.0) um die Zeitspanne in Sekunden zu definieren",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Gehen Sie zum <0>Model Hub</0> und wählen Sie das Modell, das Sie verwenden möchten.",

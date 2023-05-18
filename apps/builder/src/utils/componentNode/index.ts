@@ -1,11 +1,11 @@
-import { cloneDeep, get, set } from "lodash"
+import deepDiff, { Diff } from "deep-diff"
+import { cloneDeep, set } from "lodash"
 import {
-  getAllPaths,
   getWidgetOrActionDynamicAttrPaths,
   isDynamicString,
-  isPathInDynamicAttrPaths,
 } from "@/utils/evaluateDynamicString/utils"
 import { isObject } from "@/utils/typeHelper"
+import { convertPathToString } from "../executionTreeHelper/utils"
 
 enum DynamicAttrPathActions {
   ADD = "ADD",
@@ -16,34 +16,6 @@ enum DynamicAttrPathActions {
 interface DynamicAttrPathUpdateShape {
   attrPath: string
   action: DynamicAttrPathActions
-}
-
-const getDynamicAttrPathUpdate = (
-  widgetProps: Record<string, any>,
-  attrPath: string,
-  attrValue: any,
-): DynamicAttrPathUpdateShape => {
-  let stringValue = attrValue
-  if (isObject(attrValue)) {
-    stringValue = JSON.stringify(attrValue)
-  }
-  const isDynamic = isDynamicString(stringValue)
-  const isPathInDynamic = isPathInDynamicAttrPaths(widgetProps, attrPath)
-  if (!isDynamic && isPathInDynamic) {
-    return {
-      attrPath,
-      action: DynamicAttrPathActions.REMOVE,
-    }
-  } else if (isDynamic && !isPathInDynamic) {
-    return {
-      attrPath,
-      action: DynamicAttrPathActions.ADD,
-    }
-  }
-  return {
-    attrPath,
-    action: DynamicAttrPathActions.NONE,
-  }
 }
 
 const generateDynamicAttrPaths = (
@@ -58,53 +30,124 @@ const generateDynamicAttrPaths = (
   return current
 }
 
-const getNewAttrUpdatesAndDynamicAttrPaths = (
-  widgetProps: Record<string, any>,
-  updateSlice: Record<string, any>,
-): {
-  attrUpdates: Record<string, any>
-  dynamicAttrPaths: string[]
-} => {
-  const newWidgetProps = cloneDeep(widgetProps)
-  Object.keys(updateSlice).forEach((attrPath) => {
-    const attrValue = updateSlice[attrPath]
-    set(newWidgetProps, attrPath, attrValue)
-  })
-  const updatePaths = getAllPaths(updateSlice)
-  const attrUpdates: Record<string, unknown> = {
-    ...updateSlice,
+const getNewEffectByUpdateSlice = (
+  path: string,
+  rValue: unknown,
+): DynamicAttrPathUpdateShape | DynamicAttrPathUpdateShape[] => {
+  if (isObject(rValue)) {
+    return Object.keys(rValue as Record<string, unknown>)
+      .map((key: string) => {
+        const subPath = `${path}.${key}`
+        return getNewEffectByUpdateSlice(
+          subPath,
+          (rValue as Record<string, unknown>)[key],
+        )
+      })
+      .flat()
   }
-  const currentDynamicAttrPaths = getWidgetOrActionDynamicAttrPaths(widgetProps)
-  const dynamicAttrPathUpdates: DynamicAttrPathUpdateShape[] = []
-  Object.keys(updatePaths).forEach((attrPath) => {
-    const attrValue = get(updateSlice, attrPath)
-    dynamicAttrPathUpdates.push(
-      getDynamicAttrPathUpdate(widgetProps, attrPath, attrValue),
-    )
-  })
-  const dynamicAttrPaths = dynamicAttrPathUpdates.reduce(
-    generateDynamicAttrPaths,
-    currentDynamicAttrPaths,
-  )
+  if (Array.isArray(rValue)) {
+    return (rValue as unknown[])
+      .map((item: unknown, index: number) => {
+        const subPath = convertPathToString([path, `${index}`])
+        return getNewEffectByUpdateSlice(subPath, item)
+      })
+      .flat()
+  }
+  const isRDynamic = isDynamicString(rValue as string)
   return {
-    attrUpdates,
-    dynamicAttrPaths,
+    attrPath: path,
+    action: isRDynamic
+      ? DynamicAttrPathActions.ADD
+      : DynamicAttrPathActions.NONE,
+  }
+}
+
+const getUpdateSlicePathAndEffect = (
+  diff: Diff<Record<string, unknown>, Record<string, unknown>>,
+): DynamicAttrPathUpdateShape | DynamicAttrPathUpdateShape[] => {
+  const path = convertPathToString((diff?.path ?? []) as string[])
+  switch (diff.kind) {
+    case "N": {
+      const { rhs } = diff
+      if (!isObject(rhs) && !Array.isArray(rhs)) {
+        let stringRValue: any = isObject(rhs) ? JSON.stringify(rhs) : rhs
+        const isRDynamic = isDynamicString(stringRValue)
+
+        return {
+          attrPath: path,
+          action: isRDynamic
+            ? DynamicAttrPathActions.ADD
+            : DynamicAttrPathActions.NONE,
+        }
+      } else {
+        return getNewEffectByUpdateSlice(path, rhs)
+      }
+    }
+    case "D": {
+      const { lhs } = diff
+      let stringLValue: any = isObject(lhs) ? JSON.stringify(lhs) : lhs
+      return {
+        attrPath: path,
+        action: stringLValue
+          ? DynamicAttrPathActions.REMOVE
+          : DynamicAttrPathActions.NONE,
+      }
+    }
+    case "E": {
+      const { lhs, rhs } = diff
+      let stringRValue: any = isObject(rhs) ? JSON.stringify(rhs) : rhs
+      let stringLValue: any = isObject(lhs) ? JSON.stringify(lhs) : lhs
+
+      const isRDynamic = isDynamicString(stringRValue)
+      const isLDynamic = isDynamicString(stringLValue)
+      if (isRDynamic && !isLDynamic) {
+        return {
+          attrPath: path,
+          action: DynamicAttrPathActions.ADD,
+        }
+      }
+      if (!isRDynamic && isLDynamic) {
+        return {
+          attrPath: path,
+          action: DynamicAttrPathActions.REMOVE,
+        }
+      }
+      return {
+        attrPath: path,
+        action: DynamicAttrPathActions.NONE,
+      }
+    }
+    case "A": {
+      return getUpdateSlicePathAndEffect({
+        ...diff.item,
+        path: [...(diff.path as string[]), diff.index],
+      }) as DynamicAttrPathUpdateShape
+    }
   }
 }
 
 export const getNewWidgetPropsByUpdateSlice = (
   updateSlice: Record<string, unknown>,
-  widgetProps: Record<string, any>,
+  oldWidgetProps: Record<string, unknown>,
 ) => {
-  let newWidgetProps = cloneDeep(widgetProps)
-  if (Object.keys(updateSlice).length > 0) {
-    const { attrUpdates, dynamicAttrPaths } =
-      getNewAttrUpdatesAndDynamicAttrPaths(newWidgetProps, updateSlice)
-    Object.keys(attrUpdates).forEach((attrPath) => {
-      const attrValue = attrUpdates[attrPath]
-      newWidgetProps = set(newWidgetProps, attrPath, attrValue)
-    })
-    newWidgetProps.$dynamicAttrPaths = dynamicAttrPaths
-  }
+  let newWidgetProps = cloneDeep(oldWidgetProps)
+  Object.keys(updateSlice).forEach((attrPath) => {
+    set(newWidgetProps, attrPath, updateSlice[attrPath])
+  })
+
+  const diffs = deepDiff(oldWidgetProps, newWidgetProps)
+  if (!Array.isArray(diffs)) return oldWidgetProps
+  const dynamicAttrPathUpdates: DynamicAttrPathUpdateShape[] = diffs
+    .map((diff) => getUpdateSlicePathAndEffect(diff))
+    .flat()
+  const currentDynamicAttrPaths =
+    getWidgetOrActionDynamicAttrPaths(oldWidgetProps)
+
+  const dynamicAttrPaths = dynamicAttrPathUpdates.reduce(
+    generateDynamicAttrPaths,
+    currentDynamicAttrPaths,
+  )
+
+  newWidgetProps.$dynamicAttrPaths = dynamicAttrPaths
   return newWidgetProps
 }

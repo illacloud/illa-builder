@@ -683,7 +683,8 @@
             "top_p": "Float för att definiera tokens",
             "temperature": "Float(0.0-100.0), lämna tomt för 1,0",
             "repetition_penalty": "Flyt (0,0-100,0)",
-            "max_time": "Float (0,0-120,0) för att definiera tiden i sekunder"
+            "max_time": "Float (0,0-120,0) för att definiera tiden i sekunder",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Gå till <0>Modell Hub</0> och välj den modell du vill använda.",

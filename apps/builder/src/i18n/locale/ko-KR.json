@@ -683,7 +683,8 @@
             "top_p": "Float to define the tokens",
             "temperature": "Float(0.0-100.0)，leave blank for 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) to define the amount of time in seconds"
+            "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
@@ -1184,7 +1185,7 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "refresh"
+        "refresh": "Refresh"
       },
       "setter_default_value": {
         "fill": "충전재",
@@ -1776,8 +1777,8 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object. Set the original column name as key ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filters": "{{ }}로 묶인 객체의 배열입니다. 예를 들어 {{ [{\"**id**\":\"필터링할 열의 이름\", \"**value**\"：\"일치할 값\", \"**filterFn**\":\"contains, 같음, ...\"}] }}. 다음과 같은 filterFn을 지원합니다: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
+          "filter_mode": "The filter mode. and / or.",
           "currency_code": "USD",
           "whether_allow_users_": "사용자가 셀을 선택하도록 허용할지 여부",
           "supported_in_the_row": "행 단일 선택 모드에서 지원됩니다. 활성화 후 표 이외의 영역을 클릭하면 행 선택이 해제됩니다."
