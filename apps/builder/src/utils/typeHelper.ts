@@ -176,6 +176,19 @@ export const isLikeRestApiActionResponse = (
   return false
 }
 
+export const isGraphqlActionResponse = (
+  actionType: ActionType,
+  response: unknown,
+): response is AxiosResponse<
+  IActionRunResultResponseData<Record<string, any>[]>,
+  unknown
+> => {
+  if (actionType === "graphql") {
+    return true
+  }
+  return false
+}
+
 export const isDatabaseActionResponse = (
   actionType: ActionType,
   response: unknown,
@@ -186,7 +199,8 @@ export const isDatabaseActionResponse = (
   if (
     !isClientS3ActionResponse(actionType, response) &&
     !isS3MultiActionResponse(actionType, response) &&
-    !isLikeRestApiActionResponse(actionType, response)
+    !isLikeRestApiActionResponse(actionType, response) &&
+    !isGraphqlActionResponse(actionType, response)
   ) {
     return true
   }
