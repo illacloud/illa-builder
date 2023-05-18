@@ -683,7 +683,8 @@
             "top_p": "Plovoucí pro definování tokenů",
             "temperature": "Float(0.0-100.0),nechte prázdné pro 1.0",
             "repetition_penalty": "Plovoucí (0.0–100.0)",
-            "max_time": "Plovte (0.0-120.0) pro definování času v sekundách"
+            "max_time": "Plovte (0.0-120.0) pro definování času v sekundách",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Přejděte na <0>Model Hub</0> a vyberte model, který chcete použít.",

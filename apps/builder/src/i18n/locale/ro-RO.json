@@ -683,7 +683,8 @@
             "top_p": "Float pentru a defini jetoanele",
             "temperature": "Float(0,0-100,0), lăsaţi necompletat pentru 1,0",
             "repetition_penalty": "Float (0,0-100,0)",
-            "max_time": "Float (0,0-120.0) pentru a defini cantitatea de timp în secunde"
+            "max_time": "Float (0,0-120.0) pentru a defini cantitatea de timp în secunde",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Mergeți la <0>Model Hub</0> și selectați modelul pe care doriți să îl folosiți.",

@@ -683,7 +683,8 @@
             "top_p": "Upływ, aby zdefiniować tokeny",
             "temperature": "Float(0.0-100,0),pozostaw puste dla 1,0",
             "repetition_penalty": "Pływający (0,0-100.0)",
-            "max_time": "Pływaj (0.0-120.0) aby określić ilość czasu w sekundach"
+            "max_time": "Pływaj (0.0-120.0) aby określić ilość czasu w sekundach",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Przejdź do <0>Model Hub</0> i wybierz model, którego chcesz użyć.",

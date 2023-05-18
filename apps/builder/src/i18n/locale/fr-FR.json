@@ -683,7 +683,8 @@
             "top_p": "Flotter pour définir les jetons",
             "temperature": "Float(0.0-100.0),laisser vide pour 1.0",
             "repetition_penalty": "Flottant (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) pour définir la durée en secondes"
+            "max_time": "Float (0.0-120.0) pour définir la durée en secondes",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Allez dans le <0>hub de modèles</0> et sélectionnez le modèle que vous souhaitez utiliser.",

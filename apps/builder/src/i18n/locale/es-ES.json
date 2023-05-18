@@ -683,7 +683,8 @@
             "top_p": "Flote para definir las fichas",
             "temperature": "Flota(0.0-100.0),dejar en blanco por 1.0",
             "repetition_penalty": "Flota (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) para definir la cantidad de tiempo en segundos"
+            "max_time": "Float (0.0-120.0) para definir la cantidad de tiempo en segundos",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Ve al <0>Hub</0> Modelo y selecciona el modelo que quieres usar.",
