@@ -427,6 +427,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
         openDynamic: true,
         useCustomLayout: true,
+        bindAttrName: ["multiRowSelection"],
+        shown: (value) => !value,
       },
     ],
   },

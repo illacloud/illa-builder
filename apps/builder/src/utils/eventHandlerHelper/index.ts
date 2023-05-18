@@ -326,6 +326,30 @@ export const transformEvents = (
         enabled,
       }
     }
+    if (widgetMethod === "setSort") {
+      const { sortKey, sortOrder } = event
+      return {
+        script: () => {
+          const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
+          if (method) {
+            method(sortKey, sortOrder)
+          }
+        },
+        enabled,
+      }
+    }
+    if (widgetMethod === "setFilters") {
+      const { filters, operator } = event
+      return {
+        script: () => {
+          const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
+          if (method) {
+            method(filters, operator)
+          }
+        },
+        enabled,
+      }
+    }
     if (widgetMethod === "selectRow") {
       const { rowSelection } = event
       return {
