@@ -267,6 +267,7 @@ export const transformEvents = (
         "deleteEvent",
         "setStartTime",
         "setEndTime",
+        "selectRow",
         "setValueInArray",
         "selectRow",
         "setValueInArray",
@@ -353,6 +354,7 @@ export const transformEvents = (
     }
     if (widgetMethod === "selectRow") {
       const { rowSelection } = event
+      console.log(rowSelection, "indexOrIndices rowSelection")
       return {
         script: `{{${widgetID}.${widgetMethod}(${rowSelection})}}`,
         enabled,

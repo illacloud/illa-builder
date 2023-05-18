@@ -415,7 +415,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
       },
       {
-        id: `${baseWidgetName}-basic-enableSingleCellSelection`,
+        id: `${baseWidgetName}-basic-clickOutsideToResetSelection`,
         labelName: i18n.t(
           "editor.inspect.setter_label.table.click_outside_to_des",
         ),
@@ -498,7 +498,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-previousCursor`,
-        labelName: i18n.t("editor.inspect.setter_label.previousCursor"),
+        labelName: i18n.t("editor.inspect.setter_label.previous_cursor"),
+        labelDesc: i18n.t("editor.inspect.setter_label.previous_cursor"),
         attrName: "nextBeforeCursor",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
