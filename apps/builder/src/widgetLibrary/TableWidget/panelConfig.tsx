@@ -466,6 +466,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tips.table.pagination_type"),
         attrName: "paginationType",
         setterType: "BASE_SELECT_SETTER",
+        isSetterSingleRow: true,
         bindAttrName: ["enableServerSidePagination"],
         shown: (value) => value,
         options: [
@@ -492,6 +493,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.table.total_row_count"),
         attrName: "totalRowCount",
         setterType: "INPUT_SETTER",
+        isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.NUMBER,
         bindAttrName: ["enableServerSidePagination"],
         shown: (value) => value,
