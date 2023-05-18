@@ -1778,7 +1778,7 @@
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
           "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\"：\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. We support these filterFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
-          "filter_mode": "The filter mode. AND or OR.",
+          "filter_mode": "The filter mode. and / or.",
           "currency_code": "USD",
           "whether_allow_users_": "Whether allow users to select a cell",
           "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."

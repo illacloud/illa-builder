@@ -1778,7 +1778,7 @@
           "next_cursor": "バッチ内のデータをページネーションおよび取得するために、一連のデータの次の出発点を特定するために使用される識別子",
           "has_next_page": "利用可能なデータの別のページがあるかどうかを示すために使用されるブール値。 ペジネーションされたクエリでのデータ検索の制御を改善し、クエリのパフォーマンスを最適化するのに役立ちます",
           "filters": "{{ }} で囲まれたオブジェクトの配列。 たとえば、{{ [{\"**id**\":\"フィルターする列の名前\", \"**value**\"：\"一致する値\", \"**filterFn**\":\"contains, 等しい、...\"}] }}. 次の filterFn をサポートしています: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
-          "filter_mode": "フィルタモード。ANDまたはOR。",
+          "filter_mode": "フィルタモード。andまたはor。",
           "currency_code": "USD",
           "whether_allow_users_": "ユーザーにセルの選択を許可するかどうか",
           "supported_in_the_row": "行単一選択モードでサポートされています。有効にしたら、テーブル以外の領域をクリックして、行の選択を解除します。"
