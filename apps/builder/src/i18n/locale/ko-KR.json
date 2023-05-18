@@ -683,7 +683,8 @@
             "top_p": "Float to define the tokens",
             "temperature": "Float(0.0-100.0)，leave blank for 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) to define the amount of time in seconds"
+            "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
@@ -1184,7 +1185,7 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "refresh"
+        "refresh": "Refresh"
       },
       "setter_default_value": {
         "fill": "충전재",
@@ -1294,6 +1295,9 @@
           "name": "데이터 세트 이름",
           "remove": "데이터 세트 제거",
           "value": "데이터 열"
+        },
+        "switch_group": {
+          "option_label_alignment": "옵션 라벨의 위치"
         },
         "dataset_config": "데이터 세트 구성",
         "datasets": "데이터 세트",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "구성 요소 뒤에 표시되는 아이콘",
           "hide_output": "슬라이딩 시 값 숨기기 여부 설정"
         },
+        "switch_group": {
+          "label": "옵션의 레이블",
+          "value": "{{로 묶인 선택된 옵션의 배열입니다. 예: {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "값이 중복됩니다. 오류를 방지하려면 고유한 값을 사용하십시오.",
+          "caption": "레이블 아래에 표시되는 캡션",
+          "disabled": "옵션 비활성화 여부",
+          "datasource": "스위치 그룹의 데이터 소스입니다. {{actionName.data}}를 사용하여 데이터베이스 또는 API의 데이터 사용",
+          "default_value": "{{ }}로 묶인 배열입니다. 예: {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "선택할 수 있는 최소 항목",
+          "choose_up_to": "선택할 수 있는 최대 항목",
+          "option_label_alignment": "라벨의 위치"
+        },
         "step": {
           "default_step": "기본 단계",
           "show_step_number": "단계 번호 표시",
@@ -1761,7 +1777,7 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "{{ }}로 묶인 객체의 배열입니다. 예를 들어 {{ [{\"**id**\":\"필터링할 열의 이름\", \"**value**\"：\"일치할 값\", \"**filterFn**\":\"contains, 같음, ...\"}] }}. 다음과 같은 filterFn을 지원합니다: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD",
           "whether_allow_users_": "사용자가 셀을 선택하도록 허용할지 여부",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2499,6 +2518,9 @@
         "event_calendar": "이벤트 캘린더"
       },
       "name_duplicated": "이 이벤트에서 이 리소스 ID가 충돌합니다. 같은 이름이나 다른 ID를 사용하세요."
+    },
+    "switch_group": {
+      "name": "그룹 전환"
     },
     "recording": {
       "name": "녹음"

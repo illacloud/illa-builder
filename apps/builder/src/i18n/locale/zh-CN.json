@@ -683,7 +683,8 @@
             "top_p": "浮点数，用于定义在文本生成示例操作中的标记。",
             "temperature": "Float(0.0-100.0)，为空时默认1.0",
             "repetition_penalty": "浮点数(0.0-100.0)",
-            "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）"
+            "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "转到<0>Model Hub</0>并选择您想要使用的模型。",
@@ -1295,6 +1296,9 @@
           "remove": "移除数据集",
           "value": "数据列"
         },
+        "switch_group": {
+          "option_label_alignment": "选项标签的位置"
+        },
         "dataset_config": "数据集配置",
         "datasets": "数据集",
         "decimal_place": "小数位",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "组件后显示的图标",
           "hide_output": "设置滑动时是否隐藏值"
         },
+        "switch_group": {
+          "label": "选项的标签",
+          "value": "一个包含在{{中的数组。例如 {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "值重复。请使用唯一的值来避免错误。",
+          "caption": "标签下显示的标题",
+          "disabled": "是否禁用此选项",
+          "datasource": "切换组的数据源。使用 {{actionName.data}} 来使用您的数据库或 API 的数据",
+          "default_value": "包含 {{ }}的数组。例如， {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "允许选择的最小项目",
+          "choose_up_to": "允许选择的最大项目",
+          "option_label_alignment": "标签位置"
+        },
         "step": {
           "default_step": "默认步骤",
           "show_step_number": "显示步骤数值",
@@ -1761,7 +1777,7 @@
           "total_row_count": "用于计算页码的行数。",
           "next_cursor": "用于定位一组数据的下一个起点的标识符，以便分页并检索分批数据",
           "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
-          "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**columnName**\":\"待过滤的列名\", \"**filterValue**\"：\"待匹配的值\", \"**operator**\":\"contains, equals, ...\"}] }}",
+          "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**id**\":\"待过滤的列名\", \"**value**\"：\"待匹配的值\", \"**filterFn**\":\"contains, equals, ...\"}] }}. 我们支持这些 filterFn：\"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "过滤器的模式，选择AND 或 OR。",
           "currency_code": "USD",
           "whether_allow_users_": "是否允许用户选中一个单元格",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2198,7 +2217,7 @@
   "title": "欢迎使用ILLA",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
   "user": {
-    "description": "搭建内部工具和仪表板中更快的解决方案",
+    "description": "搭建内部工具和仪表板更好的解决方案",
     "forgot_password": {
       "actions": {
         "reset": "重置",
@@ -2500,6 +2519,9 @@
       },
       "name_duplicated": "该资源ID在这些事件中冲突，请使用相同的名称或不同的ID"
     },
+    "switch_group": {
+      "name": "开关组"
+    },
     "recording": {
       "name": "录音"
     }
@@ -2653,7 +2675,7 @@
           "google": "使用Google账户注册"
         }
       },
-      "description": "搭建内部工具和仪表板中更快的解决方案"
+      "description": "搭建内部工具和仪表板更好的解决方案"
     },
     "left": {
       "menu": {

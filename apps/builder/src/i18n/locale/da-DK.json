@@ -683,7 +683,8 @@
             "top_p": "Flydende for at definere tokens",
             "temperature": "Flydende (0,0-100,0),lad feltet stå tomt for 1,0",
             "repetition_penalty": "Float (0,0-100.0)",
-            "max_time": "Float (0,0-120,0) for at definere mængden af tid i sekunder"
+            "max_time": "Float (0,0-120,0) for at definere mængden af tid i sekunder",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Gå til <0>Model Hub</0> og vælg den model, du vil bruge.",
@@ -1295,6 +1296,9 @@
           "remove": "Remove dataset",
           "value": "Datasæt værdier"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Decimal sted",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "Ikonet der vises efter komponenten",
           "hide_output": "Angiv, om værdien skal skjules under glidning"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Standard trin",
           "show_step_number": "Vis trinnumre",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2198,7 +2217,7 @@
   "title": "Velkommen til illa",
   "unfreeze_tips": "Frys lærredet og træk komponenter ind eller ud af beholdere. (D eller K)",
   "user": {
-    "description": "En open source lav-kode platform for udviklere.",
+    "description": "Hurtigere løsninger på interne værktøjer og dashboards",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2500,6 +2519,9 @@
       },
       "name_duplicated": "Denne ressource ID konflikter i disse begivenheder, brug venligst det samme navn eller andet id"
     },
+    "switch_group": {
+      "name": "Switch group"
+    },
     "recording": {
       "name": "Recording"
     }
@@ -2653,7 +2675,7 @@
           "google": "Tilmeld dig med Google"
         }
       },
-      "description": "En open source lav-kode platform for udviklere."
+      "description": "Hurtigere løsninger på interne værktøjer og dashboards"
     },
     "left": {
       "menu": {

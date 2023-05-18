@@ -683,7 +683,8 @@
             "top_p": "Float to define the tokens",
             "temperature": "Float(0.0-100.0)，leave blank for 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) to define the amount of time in seconds"
+            "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Go to the <0>Model Hub</0> and select the model you want to use.",
@@ -1184,7 +1185,7 @@
         "filterChange": "filterChange",
         "sortChange": "sortChange",
         "pageChange": "pageChange",
-        "refresh": "refresh"
+        "refresh": "Refresh"
       },
       "setter_default_value": {
         "fill": "Fill",
@@ -1294,6 +1295,9 @@
           "name": "Dataset name",
           "remove": "Remove dataset",
           "value": "Dataset values"
+        },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "The icon displayed after the component",
           "hide_output": "Set whether to hide the value when sliding"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Default step",
           "show_step_number": "Show step numbers",
@@ -1761,7 +1777,7 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**columnName**\":\"name of the column to filter\", \"**filterValue**\"：\"the value to match\", \"**operator**\":\"contains, equals, ...\"}] }}",
+          "filters": "An array of object enclosed in {{ }}. For example, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\"：\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. We support these filterFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Whether allow users to select a cell",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2499,6 +2518,9 @@
         "event_calendar": "Event calendar"
       },
       "name_duplicated": "This resource ID conflicts in these events, please use the same name or different id"
+    },
+    "switch_group": {
+      "name": "Switch group"
     },
     "recording": {
       "name": "Recording"

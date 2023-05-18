@@ -269,6 +269,7 @@ export const transformEvents = (
         "setEndTime",
         "setValueInArray",
         "selectRow",
+        "setValueInArray",
       ].includes(widgetMethod)
     ) {
       const { widgetTargetValue } = event

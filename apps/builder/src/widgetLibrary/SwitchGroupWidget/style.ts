@@ -23,6 +23,7 @@ export const applySwitchContainer = (layoutPosition: "left" | "right") => {
     flex-direction: ${layoutPosition === "left" ? "row" : "row-reverse"};
     gap: 8px;
     cursor: pointer;
+    align-items: center;
   `
 }
 

@@ -683,7 +683,8 @@
             "top_p": "Επιπλέουν για να ορίσουν τα διακριτικά",
             "temperature": "Float(0.0-100.0), αφήστε κενό για 1.0",
             "repetition_penalty": "Επιπλέουν (0.0-100.0)",
-            "max_time": "Επιπλέουν (0.0-120.0) για να ορίσετε το χρονικό διάστημα σε δευτερόλεπτα"
+            "max_time": "Επιπλέουν (0.0-120.0) για να ορίσετε το χρονικό διάστημα σε δευτερόλεπτα",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Πηγαίνετε στο <0>Model Hub</0> και επιλέξτε το μοντέλο που θέλετε να χρησιμοποιήσετε.",
@@ -1295,6 +1296,9 @@
           "remove": "Remove dataset",
           "value": "Τιμές συνόλου δεδομένων"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Δεκαδικό ψηφίο",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "Το εικονίδιο που εμφανίζεται μετά το στοιχείο",
           "hide_output": "Ορίστε αν θα γίνει απόκρυψη της τιμής κατά την ολίσθηση"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Προεπιλεγμένο βήμα",
           "show_step_number": "Εμφάνιση αριθμών βημάτων",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2198,7 +2217,7 @@
   "title": "Καλώς ήρθατε στην illa",
   "unfreeze_tips": "Παγώστε τον καμβά και σύρετε τα συστατικά του μέσα ή έξω από δοχεία. (D ή K)",
   "user": {
-    "description": "Μια πλατφόρμα χαμηλού κώδικα ανοιχτού κώδικα για τους προγραμματιστές.",
+    "description": "Ταχύτερες λύσεις σε εσωτερικά εργαλεία και πίνακες οργάνων",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2500,6 +2519,9 @@
       },
       "name_duplicated": "Αυτό το ID πόρου συγκρούεται σε αυτά τα γεγονότα, παρακαλώ χρησιμοποιήστε το ίδιο όνομα ή διαφορετικό id"
     },
+    "switch_group": {
+      "name": "Switch group"
+    },
     "recording": {
       "name": "Recording"
     }
@@ -2653,7 +2675,7 @@
           "google": "Εγγραφείτε μέσω Google"
         }
       },
-      "description": "Μια πλατφόρμα χαμηλού κώδικα ανοιχτού κώδικα για τους προγραμματιστές."
+      "description": "Ταχύτερες λύσεις σε εσωτερικά εργαλεία και πίνακες οργάνων"
     },
     "left": {
       "menu": {

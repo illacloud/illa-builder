@@ -3,6 +3,7 @@ import { ActionType } from "@/redux/currentApp/action/actionState"
 import {
   isClientS3ActionResponse,
   isDatabaseActionResponse,
+  isGraphqlActionResponse,
   isLikeRestApiActionResponse,
   isS3MultiActionResponse,
   isServerS3ActionResponse,
@@ -136,6 +137,11 @@ export const transResponse = (
   }
   if (isLikeRestApiActionResponse(actionType, response)) {
     return transLikeRestApiResponse(response)
+  }
+  if (isGraphqlActionResponse(actionType, response)) {
+    return {
+      data: response.data.Rows?.[0],
+    }
   }
   if (isDatabaseActionResponse(actionType, response)) {
     return {
