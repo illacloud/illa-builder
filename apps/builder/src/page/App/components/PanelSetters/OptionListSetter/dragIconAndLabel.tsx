@@ -19,13 +19,8 @@ import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Mo
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, label } = props
   const [modalVisible, setModalVisible] = useState(false)
-  const {
-    widgetDisplayName,
-    attrPath,
-    allViewsKeys,
-    childrenSetter,
-    showDuplicationKeyError,
-  } = useContext(OptionListSetterContext)
+  const { widgetDisplayName, attrPath, allViewsKeys, childrenSetter } =
+    useContext(OptionListSetterContext)
 
   const { t } = useTranslation()
 
@@ -74,7 +69,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
             {label ||
               t("editor.inspect.setter_content.option_list.list_no_label")}
           </span>
-          {showDuplicationKeyError && isDuplicationKey && (
+          {isDuplicationKey && (
             <Trigger
               trigger="hover"
               showArrow={false}

@@ -33,7 +33,6 @@ export interface OptionListSetterProps extends BaseSetter {
   headerName?: string
   itemName?: string
   emptyNode?: ReactElement
-  showDuplicationKeyError?: boolean
 }
 
 export interface DragItem {

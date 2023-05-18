@@ -132,6 +132,19 @@ export const generatorEventHandlerConfig = (
         shown: (widgetMethod) => widgetMethod === "setEndOfRange",
       },
       {
+        id: `${baseWidgetName}-interaction-event-handler-valueInArray`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.switch_group.default_value",
+        ),
+        placeholder: '{{["value1", "value2"]}}',
+        isSetterSingleRow: true,
+        setterType: "INPUT_SETTER",
+        attrName: "widgetTargetValue",
+        bindAttrName: ["widgetMethod"],
+        shown: (widgetMethod) => widgetMethod === "setValueInArray",
+      },
+      {
         id: `${baseWidgetName}-interaction-event-handler-selectValue`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         placeholder: i18n.t(

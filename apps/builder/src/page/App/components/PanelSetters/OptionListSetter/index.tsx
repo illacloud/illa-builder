@@ -19,7 +19,6 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
     headerName,
     itemName,
     emptyNode,
-    showDuplicationKeyError,
     handleUpdateDsl,
     value = [],
     childrenSetter,
@@ -59,7 +58,6 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
       allViewsKeys={allViewsKeys}
       handleUpdateDsl={handleUpdateDsl}
       generateItemId={generateOptionItemId}
-      showDuplicationKeyError={showDuplicationKeyError}
     >
       <div css={ListStyle}>
         <OptionListHeader

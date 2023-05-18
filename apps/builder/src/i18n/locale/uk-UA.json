@@ -683,7 +683,8 @@
             "top_p": "Плавати для визначення токенів",
             "temperature": "Плаваюча (0.0-100.0),залиште порожнім для 1.0",
             "repetition_penalty": "Поверх (0.0-100.0)",
-            "max_time": "Поверх (0.0-120.0) для визначення часу в секундах"
+            "max_time": "Поверх (0.0-120.0) для визначення часу в секундах",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Перейдіть до <0>моделі Hub</0> та оберіть модель, яку ви хочете використати.",
@@ -1295,6 +1296,9 @@
           "remove": "Remove dataset",
           "value": "Значення Dataset"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Десяткове місце",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "Значок, що відображається після компонента",
           "hide_output": "Визначає, чи слід приховувати значення при проведенні слайда"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Крок за замовчуванням",
           "show_step_number": "Показати покрокові номери",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2198,7 +2217,7 @@
   "title": "Ласкаво просимо до illa",
   "unfreeze_tips": "Заморозити полотно та перетягнути компоненти у контейнери (D або K)",
   "user": {
-    "description": "Відкрита платформа з низьким кодом для розробників.",
+    "description": "Швидші рішення у внутрішніх інструментах та панелі",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2500,6 +2519,9 @@
       },
       "name_duplicated": "Цей ID ресурсу конфліктує в цих подіях. Будь ласка, використовуйте однакову назву або іншу ідентифікатор"
     },
+    "switch_group": {
+      "name": "Switch group"
+    },
     "recording": {
       "name": "Recording"
     }
@@ -2653,7 +2675,7 @@
           "google": "Увійти через Google"
         }
       },
-      "description": "Відкрита платформа з низьким кодом для розробників."
+      "description": "Швидші рішення у внутрішніх інструментах та панелі"
     },
     "left": {
       "menu": {

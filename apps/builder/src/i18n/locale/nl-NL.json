@@ -683,7 +683,8 @@
             "top_p": "Zweef om de tokens te definiëren",
             "temperature": "Float(0.0-100.0),laat leeg voor 1.0",
             "repetition_penalty": "Zweef (0.0-100.0)",
-            "max_time": "Zweef (0,0-120.0) om de hoeveelheid tijd in seconden te bepalen"
+            "max_time": "Zweef (0,0-120.0) om de hoeveelheid tijd in seconden te bepalen",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Ga naar <0>Model Hub</0> en selecteer het model dat je wilt gebruiken.",
@@ -1295,6 +1296,9 @@
           "remove": "Remove dataset",
           "value": "Dataset waarden"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Decimaal plaats",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "Het pictogram dat wordt weergegeven na het onderdeel",
           "hide_output": "Stel in of de waarde bij het glijden moet worden verborgen"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Standaard stap",
           "show_step_number": "Toon stapnummers",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2198,7 +2217,7 @@
   "title": "Welkom bij de illa",
   "unfreeze_tips": "Bevries het canvas en sleep componenten naar of uit containers. (D of K)",
   "user": {
-    "description": "Een open-source low-code platform voor ontwikkelaars.",
+    "description": "Snellere oplossingen op interne tools en dashboards",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2500,6 +2519,9 @@
       },
       "name_duplicated": "Deze resource ID conflicteert in deze evenementen, gebruik alstublieft dezelfde naam of andere id"
     },
+    "switch_group": {
+      "name": "Switch group"
+    },
     "recording": {
       "name": "Recording"
     }
@@ -2653,7 +2675,7 @@
           "google": "Registreer met Google"
         }
       },
-      "description": "Een open-source low-code platform voor ontwikkelaars."
+      "description": "Snellere oplossingen op interne tools en dashboards"
     },
     "left": {
       "menu": {

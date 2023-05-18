@@ -40,8 +40,7 @@ export const IGNORE_ACTION_RUN_ATTR_NAME = [
   "endTime",
   "data",
   "runResult",
-  "runResult.error",
-  "runResult.message",
+  "responseHeaders",
 ]
 
 export class ExecutionTreeFactory {

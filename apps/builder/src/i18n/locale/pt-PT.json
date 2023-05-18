@@ -683,7 +683,8 @@
             "top_p": "Float para definir os tokens",
             "temperature": "Float(0.0-100.0),deixe em branco para 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) para definir a quantidade de tempo em segundos"
+            "max_time": "Float (0.0-120.0) para definir a quantidade de tempo em segundos",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Vá para o <0>Modelo Hub</0> e selecione o modelo que deseja usar.",
@@ -1295,6 +1296,9 @@
           "remove": "Remove dataset",
           "value": "Valores do dataset"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Casa decimal",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "O ícone exibido após o componente",
           "hide_output": "Definir se deve ocultar o valor ao deslizar"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Etapa padrão",
           "show_step_number": "Mostrar números da etapa",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2198,7 +2217,7 @@
   "title": "Bem-vindo à illa",
   "unfreeze_tips": "Congele a tela e arraste os componentes para dentro ou para fora de contêineres. (D ou K)",
   "user": {
-    "description": "Uma plataforma de código aberto para desenvolvedores.",
+    "description": "Soluções mais rápidas em ferramentas e painéis internos",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2500,6 +2519,9 @@
       },
       "name_duplicated": "Este ID de recurso conflita nestes eventos, por favor, use o mesmo nome ou ID diferente"
     },
+    "switch_group": {
+      "name": "Switch group"
+    },
     "recording": {
       "name": "Recording"
     }
@@ -2653,7 +2675,7 @@
           "google": "Cadastre-se com o Google"
         }
       },
-      "description": "Uma plataforma de código aberto para desenvolvedores."
+      "description": "Soluções mais rápidas em ferramentas e painéis internos"
     },
     "left": {
       "menu": {

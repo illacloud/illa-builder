@@ -683,7 +683,8 @@
             "top_p": "Float för att definiera tokens",
             "temperature": "Float(0.0-100.0), lämna tomt för 1,0",
             "repetition_penalty": "Flyt (0,0-100,0)",
-            "max_time": "Float (0,0-120,0) för att definiera tiden i sekunder"
+            "max_time": "Float (0,0-120,0) för att definiera tiden i sekunder",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Gå till <0>Modell Hub</0> och välj den modell du vill använda.",
@@ -1295,6 +1296,9 @@
           "remove": "Remove dataset",
           "value": "Dataset värden"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Decimal plats",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "Ikonen som visas efter komponenten",
           "hide_output": "Ange om värdet ska döljas när du skjuter"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Förvalt steg",
           "show_step_number": "Visa steg nummer",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2198,7 +2217,7 @@
   "title": "Välkommen till illa",
   "unfreeze_tips": "Frysa duken och dra komponenter till eller ut ur behållare. (D eller K)",
   "user": {
-    "description": "En öppen källkodsplattform för utvecklare.",
+    "description": "Snabbare lösningar på interna verktyg och instrumentpaneler",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2500,6 +2519,9 @@
       },
       "name_duplicated": "Detta resurs-ID konflikter i dessa händelser, använd samma namn eller annat id"
     },
+    "switch_group": {
+      "name": "Switch group"
+    },
     "recording": {
       "name": "Recording"
     }
@@ -2653,7 +2675,7 @@
           "google": "Registrera dig med Google"
         }
       },
-      "description": "En öppen källkodsplattform för utvecklare."
+      "description": "Snabbare lösningar på interna verktyg och instrumentpaneler"
     },
     "left": {
       "menu": {

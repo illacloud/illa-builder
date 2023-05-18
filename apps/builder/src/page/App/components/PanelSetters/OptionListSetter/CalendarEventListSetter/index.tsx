@@ -11,7 +11,6 @@ export const CalendarEventListSetter: FC<CalendarEventsListSetterProps> = (
     <OptionListSetter
       headerName={i18n.t("widget.eventCalendar.name.event_calendar")}
       itemName="Event"
-      showDuplicationKeyError={true}
       emptyNode={<div css={emptyEmptyBodyStyle}>No Events</div>}
       {...props}
     />

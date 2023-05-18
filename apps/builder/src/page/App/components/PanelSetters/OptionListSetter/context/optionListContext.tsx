@@ -10,7 +10,6 @@ interface ProviderProps {
   allViewsKeys: string[]
   generateItemId: () => string
   itemName?: string
-  showDuplicationKeyError?: boolean
   handleUpdateDsl: (attrPath: string, value: any) => void
   children: ReactNode
 }

@@ -683,7 +683,8 @@
             "top_p": "Плавающий для определения токенов",
             "temperature": "Float(0.0-100.0),оставьте пустым для 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) для определения количества времени в секундах"
+            "max_time": "Float (0.0-120.0) для определения количества времени в секундах",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Перейдите на <0>Модель Хаба</0> и выберите модель, которую вы хотите использовать.",
@@ -1225,9 +1226,9 @@
           "end_placeholder": "Время окончания"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Начать запись",
+          "stop_button_text": "Стоп",
+          "clear_button_text": "Очистить"
         }
       },
       "setter_group": {
@@ -1294,6 +1295,9 @@
           "name": "Имя набора данных",
           "remove": "Remove dataset",
           "value": "Значения набора данных"
+        },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1543,8 +1547,8 @@
           "event_text": "Текст",
           "draggable": "Перетаскивание",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Сообщение при выключенном перетаскивании",
+          "custom_message_resizable": "Сообщение при выключенном изменении размеров"
         },
         "table": {
           "page_index": "Индекс страницы",
@@ -1576,7 +1580,7 @@
           "next_cursor": "Следующий курсор",
           "has_next_page": "Имеет следующую страницу",
           "currency_code": "Код валюты",
-          "cell_selection": "Cell selection",
+          "cell_selection": "Выбор ячейки",
           "click_outside_to_des": "Click outside to deselect"
         },
         "previous_cursor": "Предыдущий курсор",
@@ -1585,10 +1589,10 @@
           "show_visible_button": "Show visible button"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)"
+          "start_button_text": "Текст кнопки старта",
+          "clear_button_text": "Очистить текст кнопки",
+          "min_duration": "Мин. длительность (с)",
+          "max_duration": "Макс. длительность (с)"
         }
       },
       "setter_tooltip": {
@@ -1674,6 +1678,18 @@
           "prefix_icon": "Значок, отображаемый перед компонентом",
           "suffix_icon": "Иконка, отображаемая после компонента",
           "hide_output": "Укажите, скрывать ли значение при скольжении"
+        },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Минимальное количество элементов, разрешенное для выбора",
+          "choose_up_to": "Минимальное количество элементов, разрешенное для выбора",
+          "option_label_alignment": "The position of the labels"
         },
         "step": {
           "default_step": "Шаг по умолчанию",
@@ -1773,11 +1789,11 @@
           "show_visible_button": "To set whether to show the visible button"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
+          "start_button_text": "Текст, отображаемый на кнопке, когда запись не запущена",
+          "stop_button_text": "Текст, отображаемый на кнопке при записи",
+          "clear_button_text": "Текст, отображаемый на кнопке, когда запись завершена",
+          "min_duration": "Минимальная продолжительность записи",
+          "max_duration": "Максимальная продолжительность записи"
         }
       },
       "setter_option": {
@@ -1867,6 +1883,9 @@
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
         },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
+        },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
         "file_download": {
@@ -1896,10 +1915,10 @@
           "directory": "Разрешены только каталоги."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Требуется разрешение на запись",
+          "cannot_set_value_dur": "Невозможно установить значение во время записи",
+          "min_duration": "Пожалуйста, записывайте не менее {{minimum}}с",
+          "max_duration": "Пожалуйста, записывайте не более {{maximum}}с"
         }
       },
       "setter_description": {
@@ -2500,8 +2519,11 @@
       },
       "name_duplicated": "Этот идентификатор ресурса конфликтует в ходе этих событий, пожалуйста, используйте одно и то же имя или другой идентификатор"
     },
+    "switch_group": {
+      "name": "Switch group"
+    },
     "recording": {
-      "name": "Recording"
+      "name": "Запись"
     }
   },
   "page": {
@@ -2910,26 +2932,26 @@
   "drive": {
     "table": {
       "body": {
-        "open_folder": "Open folder"
+        "open_folder": "Открыть папку"
       },
       "title": {
-        "creator": "Creator"
+        "creator": "Автор"
       }
     },
     "create_modal": {
       "title": {
-        "create_a_folder": "Create a folder",
-        "cancel": "Cancel",
-        "create": "Create"
+        "create_a_folder": "Создать папку",
+        "cancel": "Отмена",
+        "create": "Создать"
       }
     },
     "rename_modal": {
-      "validate_failed": "Only letters, numbers and -~_=: are allowed",
-      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
+      "validate_failed": "Разрешены только буквы, цифры и -~_=:",
+      "validate": "1. Допускаются только буквы, цифры и -~_=:\n2. Лимит составляет 255 символов или меньше"
     },
     "delete_modal": {
-      "title": "Are you sure?",
-      "description_multi": "After deleted, users will be unable to access these files"
+      "title": "Вы уверены?",
+      "description_multi": "После удаления, пользователи не смогут получить доступ к этим файлам"
     }
   }
 }

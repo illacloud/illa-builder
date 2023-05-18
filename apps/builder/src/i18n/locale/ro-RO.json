@@ -683,7 +683,8 @@
             "top_p": "Float pentru a defini jetoanele",
             "temperature": "Float(0,0-100,0), lăsaţi necompletat pentru 1,0",
             "repetition_penalty": "Float (0,0-100,0)",
-            "max_time": "Float (0,0-120.0) pentru a defini cantitatea de timp în secunde"
+            "max_time": "Float (0,0-120.0) pentru a defini cantitatea de timp în secunde",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Mergeți la <0>Model Hub</0> și selectați modelul pe care doriți să îl folosiți.",
@@ -1295,6 +1296,9 @@
           "remove": "Remove dataset",
           "value": "Valori date"
         },
+        "switch_group": {
+          "option_label_alignment": "Position of the option label"
+        },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
         "decimal_place": "Loc zecimal",
@@ -1675,6 +1679,18 @@
           "suffix_icon": "Pictograma afișată după componentă",
           "hide_output": "Setați dacă să ascundeți valoarea atunci când glisați"
         },
+        "switch_group": {
+          "label": "The label of the option",
+          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
+          "caption": "A caption displayed under the label",
+          "disabled": "Whether to disable the option",
+          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
+          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum items allowed to choose",
+          "choose_up_to": "Maximum items allowed to choose",
+          "option_label_alignment": "The position of the labels"
+        },
         "step": {
           "default_step": "Pasul implicit",
           "show_step_number": "Arată numerele de trepte",
@@ -1866,6 +1882,9 @@
         },
         "multiselect": {
           "value": "{{ [\"x\",\"y\",...] }}"
+        },
+        "switch_group": {
+          "default_value": "{{[\"value1\",\"value2\"]}}"
         },
         "img_url_array": "{{ item.image_url }} ",
         "alt_text_mapped": "{{ item.alt_text }} ",
@@ -2198,7 +2217,7 @@
   "title": "Bine ai venit la illa",
   "unfreeze_tips": "Îngheață pânza și trage componentele în sau în afara containerelor. (D sau K)",
   "user": {
-    "description": "O platformă open-source low--code pentru dezvoltatori.",
+    "description": "Soluții mai rapide la nivelul instrumentelor și tablourilor de bord interne",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2500,6 +2519,9 @@
       },
       "name_duplicated": "Acest ID de resurse este în conflict în aceste evenimente, vă rugăm să folosiți același nume sau un ID diferit"
     },
+    "switch_group": {
+      "name": "Switch group"
+    },
     "recording": {
       "name": "Recording"
     }
@@ -2653,7 +2675,7 @@
           "google": "Înregistrați-vă cu Google"
         }
       },
-      "description": "O platformă open-source low--code pentru dezvoltatori."
+      "description": "Soluții mai rapide la nivelul instrumentelor și tablourilor de bord interne"
     },
     "left": {
       "menu": {
