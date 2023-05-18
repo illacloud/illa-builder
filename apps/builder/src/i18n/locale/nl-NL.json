@@ -683,7 +683,8 @@
             "top_p": "Zweef om de tokens te definiëren",
             "temperature": "Float(0.0-100.0),laat leeg voor 1.0",
             "repetition_penalty": "Zweef (0.0-100.0)",
-            "max_time": "Zweef (0,0-120.0) om de hoeveelheid tijd in seconden te bepalen"
+            "max_time": "Zweef (0,0-120.0) om de hoeveelheid tijd in seconden te bepalen",
+            "selectParameterType": "Select a type"
           },
           "tips": {
             "mode_id": "Ga naar <0>Model Hub</0> en selecteer het model dat je wilt gebruiken.",
