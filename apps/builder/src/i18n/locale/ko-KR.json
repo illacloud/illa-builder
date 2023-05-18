@@ -1777,7 +1777,7 @@
           "total_row_count": "The number of rows used to count the page number.",
           "next_cursor": "An identifier used to locate the next starting point of a set of data, in order to paginate and retrieve data in batches",
           "has_next_page": "A boolean used to indicate whether there is another page of data available. It can help us better control data retrieval in paginated queries and optimize query performance",
-          "filters": "{{ }}로 묶인 객체의 배열입니다. 예를 들어 {{ [{\"**id**\":\"필터링할 열의 이름\", \"**value**\"：\"일치할 값\", \"**filterFn**\":\"contains, 같음, ...\"}] }}",
+          "filters": "{{ }}로 묶인 객체의 배열입니다. 예를 들어 {{ [{\"**id**\":\"필터링할 열의 이름\", \"**value**\"：\"일치할 값\", \"**filterFn**\":\"contains, 같음, ...\"}] }}. 다음과 같은 filterFn을 지원합니다: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "The filter mode. AND or OR.",
           "currency_code": "USD",
           "whether_allow_users_": "사용자가 셀을 선택하도록 허용할지 여부",
