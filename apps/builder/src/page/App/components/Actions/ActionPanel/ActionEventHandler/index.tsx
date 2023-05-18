@@ -30,8 +30,8 @@ export const ActionEventHandler: FC = () => {
 
         const result = getNewWidgetPropsByUpdateSlice(
           updateSlice,
-          newActionContent,
-        ) as ActionContent
+          newActionContent as unknown as Record<string, unknown>,
+        ) as unknown as ActionContent
         dispatch(
           configActions.updateCachedAction({
             ...action,
@@ -49,8 +49,8 @@ export const ActionEventHandler: FC = () => {
       const newActionContent = cloneDeep(action.content || {})
       const result = getNewWidgetPropsByUpdateSlice(
         updateSlice,
-        newActionContent,
-      ) as ActionContent
+        newActionContent as unknown as Record<string, unknown>,
+      ) as unknown as ActionContent
       dispatch(
         configActions.updateCachedAction({
           ...action,

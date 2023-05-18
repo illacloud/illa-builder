@@ -2,7 +2,7 @@ import { FC, useCallback } from "react"
 import { useMeasure } from "react-use"
 import { IconWidgetProps } from "@/widgetLibrary/IconWidget/interface"
 import { getIconContainerStyle } from "@/widgetLibrary/IconWidget/style"
-import { AllData } from "@/widgetLibrary/IconWidget/utils"
+import { getIcon } from "@/widgetLibrary/IconWidget/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const IconWidget: FC<IconWidgetProps> = (props) => {
@@ -10,7 +10,7 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
 
   const [containerRef, containerBounds] = useMeasure<HTMLDivElement>()
 
-  const getIcon = (iconName && AllData[iconName]) || null
+  const Icon = getIcon(iconName)
 
   const handleOnClick = useCallback(() => {
     triggerEventHandler("click")
@@ -25,7 +25,7 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
           colorScheme,
         )}
       >
-        <div onClick={handleOnClick}>{getIcon && getIcon({})}</div>
+        <div onClick={handleOnClick}>{Icon ? <Icon /> : null}</div>
       </div>
     </TooltipWrapper>
   )
