@@ -1547,8 +1547,8 @@
           "event_text": "Текст",
           "draggable": "Перетаскивание",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Сообщение при выключенном перетаскивании",
+          "custom_message_resizable": "Сообщение при выключенном изменении размеров"
         },
         "table": {
           "page_index": "Индекс страницы",
@@ -1589,7 +1589,7 @@
           "show_visible_button": "Show visible button"
         },
         "recording": {
-          "start_button_text": "Start button text",
+          "start_button_text": "Текст кнопки старта",
           "clear_button_text": "Очистить текст кнопки",
           "min_duration": "Мин. длительность (с)",
           "max_duration": "Макс. длительность (с)"
