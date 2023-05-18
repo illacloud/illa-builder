@@ -186,19 +186,21 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
           displayedData,
           displayedDataIndices,
         }
-        if (paginationType === "cursorBased") {
-          if (pageIndex > _pageIndex) {
-            // updateValue["beforeCursor"] = nextAfterCursor
-          } else {
-            updateValue["afterCursor"] = nextAfterCursor
-          }
-        } else if (paginationType === "graphqlRelayCursorBased") {
-          if (pageIndex > _pageIndex) {
-            updateValue["beforeCursor"] = nextBeforeCursor
-            updateValue["afterCursor"] = null
-          } else {
-            updateValue["beforeCursor"] = null
-            updateValue["afterCursor"] = nextAfterCursor
+        if (enableServerSidePagination) {
+          if (paginationType === "cursorBased") {
+            if (pageIndex > _pageIndex) {
+              // updateValue["beforeCursor"] = nextAfterCursor
+            } else {
+              updateValue["afterCursor"] = nextAfterCursor
+            }
+          } else if (paginationType === "graphqlRelayCursorBased") {
+            if (pageIndex > _pageIndex) {
+              updateValue["beforeCursor"] = nextBeforeCursor
+              updateValue["afterCursor"] = null
+            } else {
+              updateValue["beforeCursor"] = null
+              updateValue["afterCursor"] = nextAfterCursor
+            }
           }
         }
         // only update execution result
@@ -214,6 +216,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
         displayName,
         handleUpdateMultiExecutionResult,
         handleOnPaginationChange,
+        enableServerSidePagination,
         nextBeforeCursor,
         nextAfterCursor,
         paginationType,
@@ -276,7 +279,6 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
         clickOutsideToResetRowSelect={clickOutsideToResetSelection}
         onRefresh={handleOnRefresh}
         onRowClick={handleOnRowClick}
-        onSortingChange={handleOnSortingChange}
         onPaginationChange={onPaginationChange}
         onGlobalFiltersChange={onFiltersChange}
         onColumnFiltersChange={handleOnFiltersChange}
@@ -284,6 +286,22 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
           handleUpdateMulti({ columnSizing })
         }, 100)}
         onRowSelectionChange={onRowSelectionChange}
+        onSortingChange={(sortState) => {
+          let sort
+          if (sortState?.length) {
+            sort = {
+              sortKey: sortState[0].id,
+              sortOrder: sortState[0].desc ? "descend" : "ascend",
+            }
+          }
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: { sort },
+            },
+          ])
+          handleOnSortingChange?.()
+        }}
         onCellSelectionChange={(cell) => {
           const selectedCell: Record<string, unknown> = cell
             ? {
@@ -568,17 +586,11 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
         }
       },
       setSort: (sortKey: string, order: string) => {
-        const sortOrder =
-          order === "ascend" || order === "descend" ? order : "ascend"
-        const updateSortValue: Record<string, unknown> = {
-          defaultSortOrder: sortOrder,
-        }
         if (isColumnsKey(sortKey)) {
-          updateSortValue["defaultSortKey"] = sortKey
-          handleUpdateMultiExecutionResult([
+          tableRef.current?.table.setSorting([
             {
-              displayName,
-              value: updateSortValue,
+              id: sortKey,
+              desc: order !== "ascend",
             },
           ])
         }
@@ -615,7 +627,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateMultiExecutionResult,
     displayName,
     multiRowSelection,
     isColumnsKey,
