@@ -2736,9 +2736,9 @@
         "invite": "Convidar",
         "public": "Público"
       },
-      "custom_copy_text_app_invite": "{{userName}} convida você para entrar no {{teamName}}. Clique no link para entrar na equipe: {{inviteLink}}",
-      "custom_copy_text_public": "{{userName}} convida você para entrar no {{teamName}}. Clique no link para entrar na equipe: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} convida você para entrar no {{teamName}}. Clique no link para entrar na equipe: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} convida você para entrar no 「{{teamName}}」. Clique no link para entrar na equipe: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} convida você para entrar no 「{{teamName}}」. Clique no link para entrar na equipe: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} convida você para entrar no 「{{teamName}}」. Clique no link para entrar na equipe: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Convidado com sucesso",
