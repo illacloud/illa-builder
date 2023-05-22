@@ -2736,9 +2736,9 @@
         "invite": "Invitar",
         "public": "Público"
       },
-      "custom_copy_text_app_invite": "{{userName}} te ha compartido una aplicación de {{teamName}}. Haz clic en el enlace para unirte al equipo y revisa la APP: {{inviteLink}}",
-      "custom_copy_text_public": "{{userName}} поделился вам приложением от {{teamName}}. Нажмите на ссылку, чтобы перейти к приложению: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} te invita a unirte a {{teamName}}. Haga clic en el enlace para unirse al equipo: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} te ha compartido una aplicación de 「{{teamName}}」. Haz clic en el enlace para unirte al equipo y revisa la APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} поделился вам приложением от「{{teamName}}」. Нажмите на ссылку, чтобы перейти к приложению: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} te invita a unirte a 「{{teamName}}」. Haga clic en el enlace para unirse al equipo: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invitado con éxito",
