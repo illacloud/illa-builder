@@ -2736,9 +2736,9 @@
         "invite": "Пригласить",
         "public": "Публичный"
       },
-      "custom_copy_text_app_invite": "{{userName}} have shared you an app of {{teamName}}. Click the link to join the team and check the APP: ",
-      "custom_copy_text_public": "{{userName}} have shared you an APP from {{teamName}}. Click the link to check the APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} invites you to join {{teamName}}. Click the link to join the team: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} поделился вам приложением {{teamName}}. Нажмите на ссылку, чтобы присоединиться к команде и проверьте приложение: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} поделился вам приложением от {{teamName}}. Нажмите на ссылку, чтобы перейти к приложению: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} приглашает вас присоединиться к {{teamName}}. Нажмите на ссылку, чтобы присоединиться к команде: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Приглашение успешно отправлено",
