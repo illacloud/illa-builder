@@ -2736,9 +2736,9 @@
         "invite": "Invita",
         "public": "Pubblico"
       },
-      "custom_copy_text_app_invite": "{{userName}} have shared you an app of {{teamName}}. Click the link to join the team and check the APP: ",
-      "custom_copy_text_public": "{{userName}} have shared you an APP from {{teamName}}. Click the link to check the APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} invites you to join {{teamName}}. Click the link to join the team: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} ti ha condiviso un'app di {{teamName}}. Clicca sul link per unirti al team e controlla l'APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} ti ha condiviso una APP da {{teamName}}. Clicca sul link per controllare l'APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} ti invita ad unirti a {{teamName}}. Clicca sul link per unirti alla squadra: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invitato con successo",
