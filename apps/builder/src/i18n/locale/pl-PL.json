@@ -2736,9 +2736,9 @@
         "invite": "Zaproś",
         "public": "Publiczne"
       },
-      "custom_copy_text_app_invite": "{{userName}} have shared you an app of {{teamName}}. Click the link to join the team and check the APP: ",
-      "custom_copy_text_public": "{{userName}} have shared you an APP from {{teamName}}. Click the link to check the APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} invites you to join {{teamName}}. Click the link to join the team: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} udostępnił Ci aplikację {{teamName}}. Kliknij link, aby dołączyć do zespołu i sprawdzić API: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} udostępnił Ci APP od {{teamName}}. Kliknij na link aby sprawdzić API: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} zaprasza Cię do dołączenia do {{teamName}}. Kliknij link, aby dołączyć do drużyny: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Zaproszono pomyślnie",
