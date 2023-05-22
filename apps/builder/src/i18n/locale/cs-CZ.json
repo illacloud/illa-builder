@@ -2736,9 +2736,9 @@
         "invite": "Pozvat",
         "public": "Veřejnost"
       },
-      "custom_copy_text_app_invite": "{{userName}} have shared you an app of {{teamName}}. Click the link to join the team and check the APP: ",
-      "custom_copy_text_public": "{{userName}} have shared you an APP from {{teamName}}. Click the link to check the APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} invites you to join {{teamName}}. Click the link to join the team: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} vás sdílel s aplikací {{teamName}}. Klikněte na odkaz pro připojení se k týmu a zkontrolujte APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} tě sdílel/a APP od {{teamName}}. Klepnutím na odkaz zkontrolujte APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} vás zve k připojení se k {{teamName}}. Klepnutím na odkaz se připojíte k týmu: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Pozvánka úspěšně",
