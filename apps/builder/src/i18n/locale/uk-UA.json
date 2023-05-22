@@ -2735,7 +2735,10 @@
       "tab": {
         "invite": "Запросити",
         "public": "Загальнодоступна"
-      }
+      },
+      "custom_copy_text_app_invite": "{{userName}} have shared you an app of {{teamName}}. Click the link to join the team and check the APP: ",
+      "custom_copy_text_public": "{{userName}} have shared you an APP from {{teamName}}. Click the link to check the APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} invites you to join {{teamName}}. Click the link to join the team: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Успішно запрошений",
