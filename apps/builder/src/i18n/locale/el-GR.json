@@ -2736,9 +2736,9 @@
         "invite": "Πρόσκληση",
         "public": "Δημόσιο"
       },
-      "custom_copy_text_app_invite": "{{userName}} σας κοινοποίησε μια εφαρμογή {{teamName}}. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα και ελέγξτε την APP: {{inviteLink}}",
-      "custom_copy_text_public": "{{userName}} σας έχει μοιραστεί ένα APP από {{teamName}}. Κάντε κλικ στο σύνδεσμο για να ελέγξετε την APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} σας προσκαλεί να συμμετάσχετε στο {{teamName}}. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} σας κοινοποίησε μια εφαρμογή 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα και ελέγξτε την APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} σας έχει μοιραστεί ένα APP από 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να ελέγξετε την APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} σας προσκαλεί να συμμετάσχετε στο 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Επιτυχής πρόσκληση",
