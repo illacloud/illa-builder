@@ -516,13 +516,13 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                     const validationType = validationPaths[finalPath]
                     if (validationType === VALIDATION_TYPES.ARRAY) {
                       const validationFunc = validationFactory[validationType]
-                      const { safeValue } = validationFunc(evalResult, "")
-                      value = safeValue
+                      const res = validationFunc?.(evalResult, "")
+                      value = res?.safeValue ?? evalResult
                     } else {
                       value = evalResult[index]
                       const validationFunc = validationFactory[validationType]
-                      const { safeValue } = validationFunc(value, "")
-                      value = safeValue
+                      const res = validationFunc?.(value, "")
+                      value = res?.safeValue ?? value
                     }
                   }
                 }
