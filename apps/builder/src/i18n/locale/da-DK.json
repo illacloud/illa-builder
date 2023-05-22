@@ -2736,9 +2736,9 @@
         "invite": "Inviter",
         "public": "Offentlig"
       },
-      "custom_copy_text_app_invite": "{{userName}} have shared you an app of {{teamName}}. Click the link to join the team and check the APP: ",
-      "custom_copy_text_public": "{{userName}} have shared you an APP from {{teamName}}. Click the link to check the APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} invites you to join {{teamName}}. Click the link to join the team: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} har delt dig en app på {{teamName}}. Klik på linket for at deltage i teamet og tjek APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} har delt dig en APP fra {{teamName}}. Klik på linket for at tjekke APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} inviterer dig til at deltage i {{teamName}}. Klik på linket for at deltage i teamet: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Inviteret med succes",
