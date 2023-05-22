@@ -2736,9 +2736,9 @@
         "invite": "Uitnodigen",
         "public": "Openbaar"
       },
-      "custom_copy_text_app_invite": "{{userName}} have shared you an app of {{teamName}}. Click the link to join the team and check the APP: ",
-      "custom_copy_text_public": "{{userName}} have shared you an APP from {{teamName}}. Click the link to check the APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} invites you to join {{teamName}}. Click the link to join the team: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} heeft u een app van {{teamName}}gedeeld. Klik op de link om u aan te sluiten bij het team en controleer de APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} heeft u een APP van {{teamName}}gedeeld. Klik op de link om de app te controleren: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} nodigt je uit om lid te worden van {{team Name}}. Klik op de link om lid te worden van het team: {{invite Link}}"
     },
     "mes": {
       "invite_suc": "Succesvol uitgenodigd",
