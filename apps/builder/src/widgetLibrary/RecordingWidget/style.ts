@@ -20,10 +20,16 @@ export const applyContainerStyle = css`
   gap: 15px;
   height: 100%;
   width: 100%;
-  padding: 16px;
   box-sizing: border-box;
 `
 
 export const applyMessageStyle = css`
   padding: 0 16px;
+`
+
+export const applyTextButtonStyle = css`
+  &:hover,
+  &:active {
+    background-color: transparent !important;
+  }
 `

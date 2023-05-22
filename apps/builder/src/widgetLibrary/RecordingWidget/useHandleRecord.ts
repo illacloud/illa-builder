@@ -3,6 +3,7 @@ import { setInternalByTimeout } from "./utils"
 
 export const useHandleRecord = (
   handleUpdateStatus: (value: Record<string, any>) => void,
+  handleOnChange: ((value: string) => void) | undefined,
 ) => {
   const [isRecording, setIsRecording] = useState<boolean>(false)
   const startTime = useRef<number | undefined>()
@@ -48,9 +49,11 @@ export const useHandleRecord = (
           const audioBlob = new Blob(chunks.current, { type: "audio/webm" })
           var reader = new FileReader()
           reader.onload = function (e) {
-            e.target?.result &&
-              typeof e.target?.result === "string" &&
-              setData(e.target?.result as string)
+            const data = e.target?.result
+            if (data && typeof data === "string") {
+              setData(data as string)
+              handleOnChange && handleOnChange(data || "")
+            }
           }
           reader.readAsDataURL(audioBlob)
         })
@@ -62,12 +65,13 @@ export const useHandleRecord = (
         console.log(error)
       }
     }
-  }, [handleUpdateStatus, isRecording, recordingTime])
+  }, [handleOnChange, handleUpdateStatus, isRecording, recordingTime])
 
   const clearData = () => {
     setData("")
     setRecordingTime(0)
     handleUpdateStatus({ recordTime: 0 })
+    handleOnChange && handleOnChange("")
   }
 
   useEffect(() => {
