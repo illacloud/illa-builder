@@ -11,6 +11,7 @@ import { BaseAudioRecorder } from "@/widgetLibrary/RecordingWidget/interface"
 import {
   applyContainerStyle,
   applyPreviewStyle,
+  applyTextButtonStyle,
   audioContainerStyle,
 } from "@/widgetLibrary/RecordingWidget/style"
 import { useHandleRecord } from "@/widgetLibrary/RecordingWidget/useHandleRecord"
@@ -32,7 +33,7 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
   const [permissionDisabled, setPermissionDisabled] = useState<boolean>(true)
 
   const { isRecording, data, recordingTime, handleButtonClick, clearData } =
-    useHandleRecord(handleUpdateStatus)
+    useHandleRecord(handleUpdateStatus, handleOnChange)
 
   const emptyFun = () => undefined
 
@@ -72,10 +73,6 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
   }, [handleUpdateStatus])
 
   useEffect(() => {
-    data !== undefined && handleOnChange && handleOnChange(data ?? "")
-  }, [data, handleOnChange])
-
-  useEffect(() => {
     handleUpdateStatus({ isRecording })
   }, [handleUpdateStatus, isRecording])
 
@@ -102,7 +99,9 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
           <Button
             onClick={clearData}
             loading={loading}
-            colorScheme={colorScheme}
+            colorScheme="grayBlue"
+            variant="text"
+            css={applyTextButtonStyle}
           >
             {getsSafeNodeValue(clearText || DefaultClearText)}
           </Button>
