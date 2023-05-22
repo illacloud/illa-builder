@@ -10,7 +10,6 @@ import {
   AudioRecorderWidgetProps,
   WrappedAudioRecorderProps,
 } from "@/widgetLibrary/RecordingWidget/interface"
-import { applyMessageStyle } from "@/widgetLibrary/RecordingWidget/style"
 import { getDataFromVal } from "@/widgetLibrary/RecordingWidget/utils"
 
 export const WrappedRecording = forwardRef<
@@ -201,7 +200,7 @@ export const RecordingWidget: FC<AudioRecorderWidgetProps> = (props) => {
         />
       </TooltipWrapper>
       {!hideValidationMessage && (
-        <div css={applyMessageStyle}>
+        <div>
           <InvalidMessage validateMessage={validateMessage} />
         </div>
       )}
