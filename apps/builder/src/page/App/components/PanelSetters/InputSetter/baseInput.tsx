@@ -11,6 +11,7 @@ import {
   realInputValueWithList,
 } from "@/page/App/components/PanelSetters/InputSetter/util"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
@@ -48,13 +49,17 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   }, [listWidgets, widgetDisplayName])
 
   const finalWrapperCode = useMemo(() => {
-    if (currentListDisplayName) {
+    if (
+      currentListDisplayName &&
+      isDynamicString(value ?? "") &&
+      value?.includes("currentItem")
+    ) {
       return (value: string) => {
         return getNeedComputedValueWithList(value, currentListDisplayName)
       }
     }
     return wrappedCodeFunc
-  }, [currentListDisplayName, wrappedCodeFunc])
+  }, [currentListDisplayName, value, wrappedCodeFunc])
 
   const finalValue = useMemo(() => {
     if (currentListDisplayName) {
@@ -66,7 +71,11 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const onChange = useCallback(
     (value: string) => {
       let output = value
-      if (currentListDisplayName) {
+      if (
+        currentListDisplayName &&
+        isDynamicString(value ?? "") &&
+        value.includes("currentItem")
+      ) {
         output = getNeedComputedValueWithList(value, currentListDisplayName)
       }
       handleUpdateDsl(attrName, output)
@@ -93,6 +102,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     },
     [attrName, widgetType],
   )
+
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
