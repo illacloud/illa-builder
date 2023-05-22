@@ -1624,7 +1624,7 @@
         "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
         "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
         "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
-        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
+        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized. In Markdown mode, the platform supports both Markdown syntax and HTML syntax. In order to utilize both syntaxes simultaneously, it is necessary to include a blank newline between the two syntaxes.",
         "timeline_direction": "Change the direction of the timeline.",
         "timeline_pending": "Whether to show a node with a pending status.",
         "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
