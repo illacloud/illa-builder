@@ -51,20 +51,10 @@ export const getUserInfoLoader: LoaderFunction = async () => {
       )
       return null
     } catch (e) {
-      return redirect("", {
-        status: 302,
-        headers: {
-          Location: "/403",
-        },
-      })
+      return redirect("/403")
     }
   }
-  return redirect("", {
-    status: 302,
-    headers: {
-      Location: "/403",
-    },
-  })
+  return redirect("/403")
 }
 
 export const getTeamsInfoLoader: LoaderFunction = async (args) => {
@@ -75,12 +65,7 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
     return null
   }
   if (!teamIdentifier) {
-    return redirect("", {
-      status: 302,
-      headers: {
-        Location: "/403",
-      },
-    })
+    return redirect("/403")
   }
   const response = await fetchMyTeamsInfo()
   const teamsInfo = response.data ?? []
@@ -93,10 +78,5 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
     ILLAMixpanel.setGroup(teamIdentifier)
     return null
   }
-  return redirect("", {
-    status: 302,
-    headers: {
-      Location: "/403",
-    },
-  })
+  return redirect("/403")
 }
