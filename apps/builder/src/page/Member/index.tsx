@@ -100,7 +100,7 @@ export const Member: FC<MemberProps> = () => {
       fetchInviteLink={fetchInviteLink}
       renewInviteLink={fetchRenewInviteLink}
       teamName={"ILLA"}
-      userNickName={userInfo.nickname}
+      userNickname={userInfo.nickname}
       configInviteLink={setInviteLinkEnabled}
       allowInviteByLink={inviteLinkEnabled}
       allowEditorManageTeamMember={allowEditorManageTeamMember}
