@@ -2736,9 +2736,9 @@
         "invite": "멤버 초대",
         "public": "공개"
       },
-      "custom_copy_text_app_invite": "{{userName}}님이 「{{teamName}}」 앱을 공유했습니다. 링크를 클릭하여 팀에 합류하고 앱을 확인하세요: {{inviteLink}}",
-      "custom_copy_text_public": "{{userName}}님이 「{{teamName}}」 의 앱을 공유했습니다. 앱을 확인하려면 링크를 클릭하세요: {{inviteLink}}",
-      "custom_copy_text": "{{userName}}님이 귀하를 「{{teamName}}」 에 초대했습니다. 팀에 합류하려면 링크를 클릭하십시오: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}}님이 「{{teamName}}」에 초대합니다. 링크를 클릭하여 팀에 합류하세요: {{invite Link}}",
+      "custom_copy_text_public": "{{userName}}님이 「{{teamName}}」에서 나와 앱을 공유했습니다. 앱을 확인하려면 링크를 클릭하세요: {{inviteLink}}",
+      "custom_copy_text": "{{userName}}님이 당신을 「{{teamName}}」에 초대합니다. 링크를 클릭하여 팀에 합류하세요: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "초대 성공",
