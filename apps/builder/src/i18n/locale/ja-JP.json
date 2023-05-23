@@ -2736,9 +2736,9 @@
         "invite": "招待",
         "public": "公開"
       },
-      "custom_copy_text_app_invite": "{{userName}} があなたを「{{teamName}}」に招待しています。チームに参加するにはリンクをクリックしてください: {{inviteLink}}",
-      "custom_copy_text_public": "{{userName}} があなたを 「{{teamName}}」に招待しています。チームに参加するにはリンクをクリックしてください: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} があなたを 「{{teamName}}」に招待しています。チームに参加するにはリンクをクリックしてください: {{inviteLink}}"
+      "custom_copy_text_app_invite": "{{userName}} が「{{teamName}}」のアプリを共有しました。 リンクをクリックしてチームに参加し、アプリを確認してください: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} が「{{teamName}}」からアプリをあなたと共有しました。 リンクをクリックしてアプリを確認してください: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} が「{{チーム名}}」に参加するよう招待しています。 リンクをクリックしてチームに参加します: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "招待しました",
