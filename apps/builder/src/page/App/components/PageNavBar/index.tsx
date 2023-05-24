@@ -8,9 +8,13 @@ import {
   Button,
   ButtonGroup,
   CaretRightIcon,
+  DropList,
+  DropListItem,
+  Dropdown,
   ExitIcon,
   FullScreenIcon,
   LockIcon,
+  MoreIcon,
   Trigger,
   UnlockIcon,
   getColor,
@@ -18,13 +22,17 @@ import {
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
+import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -37,7 +45,7 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
 import { fromNow } from "@/utils/dayjs"
-import { trackInEditor } from "@/utils/mixpanelHelper"
+import { track, trackInEditor } from "@/utils/mixpanelHelper"
 import {
   descriptionStyle,
   informationStyle,
@@ -56,7 +64,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const message = useMessage()
   const navigate = useNavigate()
 
-  const { teamIdentifier } = useParams()
+  const { teamIdentifier, appId } = useParams()
 
   const appInfo = useSelector(getAppInfo)
   const debuggerVisible = useSelector(isOpenDebugger)
@@ -67,6 +75,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isEditMode = useSelector(getIsILLAEditMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
 
+  const [duplicateVisible, setDuplicateVisible] = useState(false)
   const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
 
@@ -183,6 +192,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     navigate(`/${teamIdentifier}/dashboard/apps`)
   }, [navigate, teamIdentifier])
 
+  useEffect(() => {
+    duplicateVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+        { element: "duplicate_modal", parameter5: appId },
+      )
+  }, [appId, duplicateVisible])
+
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
@@ -209,6 +227,53 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {!isGuideMode && <CollaboratorsList />}
         {isEditMode ? (
           <div>
+            {!isGuideMode && (
+              <Dropdown
+                position="bottom-end"
+                trigger="click"
+                triggerProps={{ closeDelay: 0, openDelay: 0 }}
+                onVisibleChange={(visible) => {
+                  if (visible) {
+                    track(
+                      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+                      { element: "app_duplicate", parameter5: appId },
+                    )
+                  }
+                }}
+                dropList={
+                  <DropList w={"184px"}>
+                    <DropListItem
+                      key="duplicate"
+                      value="duplicate"
+                      title={t("duplicate")}
+                      onClick={() => {
+                        setDuplicateVisible(true)
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+                          { element: "app_duplicate", parameter5: appId },
+                        )
+                      }}
+                    />
+                    <DropListItem
+                      key="configWaterMark"
+                      value="configWaterMark"
+                      title={<span>{t("Remove watermark")}</span>}
+                      onClick={() => {
+                        // set configWaterMark
+                      }}
+                    />
+                  </DropList>
+                }
+              >
+                <Button
+                  mr="8px"
+                  colorScheme="white"
+                  leftIcon={<MoreIcon size="14px" />}
+                />
+              </Dropdown>
+            )}
             <ButtonGroup spacing="8px">
               <Badge count={debuggerData && Object.keys(debuggerData).length}>
                 <Button
@@ -271,6 +336,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         onOk={forkGuideAppAndDeploy}
         onVisibleChange={setForkModalVisible}
       />
+      {appId ? (
+        <DuplicateModal
+          appId={appId}
+          visible={duplicateVisible}
+          onVisibleChange={(visible) => {
+            setDuplicateVisible(visible)
+          }}
+        />
+      ) : null}
     </div>
   )
 }
