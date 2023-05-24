@@ -15,6 +15,8 @@ import {
   FullScreenIcon,
   LockIcon,
   MoreIcon,
+  Switch,
+  Tag,
   Trigger,
   UnlockIcon,
   getColor,
@@ -22,10 +24,8 @@ import {
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
@@ -41,11 +41,14 @@ import {
   isOpenDebugger,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import {
+  getAppInfo,
+  getCurrentAppWaterMarkConfig,
+} from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
 import { fromNow } from "@/utils/dayjs"
-import { track, trackInEditor } from "@/utils/mixpanelHelper"
+import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   descriptionStyle,
   informationStyle,
@@ -54,6 +57,7 @@ import {
   rightContentStyle,
   rowCenter,
   saveFailedTipStyle,
+  upgradeStyle,
   viewControlStyle,
 } from "./style"
 
@@ -66,7 +70,11 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const { teamIdentifier, appId } = useParams()
 
+  // [TODO] billing
+  const paymentStatus = false
+
   const appInfo = useSelector(getAppInfo)
+  const removeWaterMark = useSelector(getCurrentAppWaterMarkConfig)
   const debuggerVisible = useSelector(isOpenDebugger)
   const isFreezeCanvas = useSelector(getFreezeState)
   const isOnline = useSelector(getIsOnline)
@@ -194,11 +202,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   useEffect(() => {
     duplicateVisible &&
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
-        { element: "duplicate_modal", parameter5: appId },
-      )
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+        element: "duplicate_modal",
+        parameter5: appId,
+      })
   }, [appId, duplicateVisible])
 
   return (
@@ -234,32 +241,41 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 triggerProps={{ closeDelay: 0, openDelay: 0 }}
                 onVisibleChange={(visible) => {
                   if (visible) {
-                    track(
-                      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
-                      { element: "app_duplicate", parameter5: appId },
-                    )
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+                      element: "app_duplicate",
+                      parameter5: appId,
+                    })
                   }
                 }}
                 dropList={
-                  <DropList w={"184px"}>
+                  <DropList>
                     <DropListItem
                       key="duplicate"
                       value="duplicate"
                       title={t("duplicate")}
                       onClick={() => {
                         setDuplicateVisible(true)
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
-                          { element: "app_duplicate", parameter5: appId },
-                        )
+                        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                          element: "app_duplicate",
+                          parameter5: appId,
+                        })
                       }}
                     />
                     <DropListItem
                       key="configWaterMark"
                       value="configWaterMark"
-                      title={<span>{t("Remove watermark")}</span>}
+                      title={
+                        <span css={upgradeStyle}>
+                          {t("Remove watermark")}
+                          {paymentStatus ? (
+                            <Switch checked={removeWaterMark} />
+                          ) : (
+                            <Tag colorScheme="techPurple">
+                              <UpgradeIcon /> Upgrade
+                            </Tag>
+                          )}
+                        </span>
+                      }
                       onClick={() => {
                         // set configWaterMark
                       }}

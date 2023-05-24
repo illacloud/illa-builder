@@ -213,6 +213,25 @@ export const updateAppPublicConfig = async (
   return true
 }
 
+export const updateWaterMarkConfig = async (
+  removeWaterMark: boolean,
+  appID: string,
+) => {
+  await builderRequest(
+    {
+      method: "PATCH",
+      url: `/apps/${appID}/config`,
+      data: {
+        removeWaterMark,
+      },
+    },
+    {
+      needTeamID: true,
+    },
+  )
+  return true
+}
+
 export const createApp = async (
   appName: string,
   initScheme: ComponentNode[],
