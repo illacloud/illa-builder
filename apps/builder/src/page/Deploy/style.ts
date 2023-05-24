@@ -55,11 +55,7 @@ export function applyPopupStateStyle(openState?: boolean): SerializedStyles {
 }
 
 export const upgradeBgStyle = css`
-  padding: 13px 16px;
-  margin-bottom: 12px;
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+  padding: 5px 4px;
 `
 
 export const upgradePopContainerStyle = css`

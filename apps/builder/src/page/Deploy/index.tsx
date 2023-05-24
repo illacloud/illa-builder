@@ -69,11 +69,9 @@ export const Deploy: FC = () => {
       <Trigger
         trigger="click"
         colorScheme="white"
-        withoutPadding
-        withoutShadow
         position="top-end"
         mb={"12px"}
-        showArrow={false}
+        // showArrow={false}
         popupVisible={popupVisible}
         onVisibleChange={updateWaterMarkConfigVisible}
         content={
