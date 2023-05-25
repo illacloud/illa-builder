@@ -25,9 +25,7 @@ export const useHandleRecord = (
         stream.current = await navigator.mediaDevices.getUserMedia({
           audio: true,
         })
-        const currentRecorder = new MediaRecorder(stream.current, {
-          mimeType: "audio/webm",
-        })
+        const currentRecorder = new MediaRecorder(stream.current)
 
         currentRecorder.addEventListener("start", () => {
           startTime.current = window.performance.now()
