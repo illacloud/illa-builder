@@ -283,7 +283,7 @@
             "no_password": "Строка не имеет пароля. Пожалуйста, отобразите пароль в панели Neon перед копированием."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "При использовании ClickHouse Cloud Service рекомендуется включить SSL."
           }
         },
         "option": {
