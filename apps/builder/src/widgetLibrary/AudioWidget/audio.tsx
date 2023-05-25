@@ -74,6 +74,7 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
             setLoading(false)
             setError(true)
           }}
+          disabledeferredloading="true"
           onPlaybackRateChange={onPlaybackRateChange}
         />
       </>
