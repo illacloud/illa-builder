@@ -283,7 +283,7 @@
             "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "When using ClickHouse Cloud Service, it is recommended to turn on the SSL."
           }
         },
         "option": {
