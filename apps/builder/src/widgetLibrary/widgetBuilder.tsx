@@ -36,6 +36,12 @@ import {
   ChartWidget,
 } from "@/widgetLibrary/ChartWidget"
 import {
+  CHAT_EVENT_HANDLER_CONFIG,
+  CHAT_PANEL_CONFIG,
+  CHAT_WIDGET_CONFIG,
+  ChatWidget,
+} from "@/widgetLibrary/ChatWidget"
+import {
   CHECKBOX_GROUP_PANEL_CONFIG,
   CHECKBOX_GROUP_WIDGET_CONFIG,
   CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
@@ -468,6 +474,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: BUTTON_WIDGET_CONFIG,
     panelConfig: BUTTON_PANEL_CONFIG,
     eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
+  },
+  CHAT_WIDGET: {
+    widget: ChatWidget,
+    config: CHAT_WIDGET_CONFIG,
+    panelConfig: CHAT_PANEL_CONFIG,
+    eventHandlerConfig: CHAT_EVENT_HANDLER_CONFIG,
   },
   ICON_WIDGET: {
     widget: IconWidget,
