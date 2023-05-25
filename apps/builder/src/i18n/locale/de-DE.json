@@ -281,6 +281,9 @@
             "normal": "Erstellen Sie ein Neon-Projekt und holen Sie die Zeichenkette in <0>Projektübersicht</0>.",
             "failed": "Fehler beim Analysieren des Strings. Bitte überprüfen Sie Ihren String oder konfigurieren Sie ihn manuell.",
             "no_password": "Die Zeichenkette hat kein Passwort. Bitte zeigen Sie das Passwort im Neon Dashboard vor dem Kopieren."
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
           }
         },
         "option": {
