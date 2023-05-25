@@ -283,7 +283,7 @@
             "no_password": "该字符串没有密码。 复制前请在 Neon 仪表板中显示密码。"
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "当使用 ClickHouse 云服务时，建议开启SSL。"
           }
         },
         "option": {
