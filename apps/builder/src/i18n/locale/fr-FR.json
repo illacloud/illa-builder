@@ -1684,7 +1684,7 @@
           "hide_output": "Définir si la valeur doit être masquée lors du glissement"
         },
         "switch_group": {
-          "label": "The label of the option",
+          "label": "L’étiquette de l’option",
           "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
           "value_error": "The value is duplicated. Please use unique values to avoid errors.",
           "caption": "A caption displayed under the label",
@@ -1870,8 +1870,8 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Mot de passe",
+          "search": "Rechercher"
         }
       },
       "setter_placeholder": {
