@@ -25,7 +25,9 @@ export const useHandleRecord = (
         stream.current = await navigator.mediaDevices.getUserMedia({
           audio: true,
         })
-        const currentRecorder = new MediaRecorder(stream.current)
+        const currentRecorder = new MediaRecorder(stream.current, {
+          mimeType: "audio/webm",
+        })
 
         currentRecorder.addEventListener("start", () => {
           startTime.current = window.performance.now()
@@ -44,9 +46,7 @@ export const useHandleRecord = (
           if (stream.current) {
             stream.current.getTracks().forEach((track) => track.stop())
           }
-          const audioBlob = new Blob(chunks.current, {
-            type: currentRecorder.mimeType,
-          })
+          const audioBlob = new Blob(chunks.current, { type: "audio/webm" })
           var reader = new FileReader()
           reader.onload = function (e) {
             const data = e.target?.result
