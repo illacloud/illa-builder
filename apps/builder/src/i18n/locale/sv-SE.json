@@ -283,7 +283,7 @@
             "no_password": "Strängen har inget lösenord. Vänligen visa lösenordet i Neon instrumentpanelen innan du kopierar."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "När du använder ClickHouse Cloud Service rekommenderas att du aktiverar SSL."
           }
         },
         "option": {
