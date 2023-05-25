@@ -283,7 +283,7 @@
             "no_password": "Strengen har ikke passord. Vennligst vis passordet i Neon dashbordet før kopiering."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Når du bruker ClickHouse Cloud Service, anbefales det å slå på SSL."
           }
         },
         "option": {
