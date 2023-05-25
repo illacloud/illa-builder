@@ -281,6 +281,9 @@
             "normal": "Crea un progetto Neon e ottieni la stringa nella dashboard <0>project </0>.",
             "failed": "Analisi della stringa non riuscita. Controllare la stringa o configurare manualmente.",
             "no_password": "La stringa non ha password. Si prega di visualizzare la password nella dashboard Neon prima di copiare."
+          },
+          "clickhouse": {
+            "ssl": "Quando si utilizza ClickHouse Cloud Service, si consiglia di attivare l'SSL."
           }
         },
         "option": {
@@ -1592,7 +1595,8 @@
           "start_button_text": "Start button text",
           "clear_button_text": "Clear button text",
           "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)"
+          "max_duration": "Max duration (s)",
+          "stop_button_text": "Stop button text"
         }
       },
       "setter_tooltip": {
@@ -2734,7 +2738,10 @@
       "tab": {
         "invite": "Invita",
         "public": "Pubblico"
-      }
+      },
+      "custom_copy_text_app_invite": "{{userName}} ti ha condiviso un'app di 「{{teamName}}」. Clicca sul link per unirti al team e controlla l'APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} ti ha condiviso una APP da 「{{teamName}}」. Clicca sul link per controllare l'APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} ti invita ad unirti a 「{{teamName}}」. Clicca sul link per unirti alla squadra: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invitato con successo",
@@ -2928,30 +2935,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Impossibile uscire. Riprova più tardi.",
-  "drive": {
-    "table": {
-      "body": {
-        "open_folder": "Open folder"
-      },
-      "title": {
-        "creator": "Creator"
-      }
-    },
-    "create_modal": {
-      "title": {
-        "create_a_folder": "Create a folder",
-        "cancel": "Cancel",
-        "create": "Create"
-      }
-    },
-    "rename_modal": {
-      "validate_failed": "Only letters, numbers and -~_=: are allowed",
-      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
-    },
-    "delete_modal": {
-      "title": "Are you sure?",
-      "description_multi": "After deleted, users will be unable to access these files"
-    }
-  }
+  "logout_failed": "Impossibile uscire. Riprova più tardi."
 }

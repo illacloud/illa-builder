@@ -281,6 +281,9 @@
             "normal": "Neon 프로젝트를 만들고 <0>프로젝트 대시보드</0>에서 문자열을 가져옵니다.",
             "failed": "문자열을 구문 분석하지 못했습니다. 문자열을 확인하거나 수동으로 구성하십시오.",
             "no_password": "문자열에 암호가 없습니다. 복사하기 전에 Neon 대시보드에 암호를 표시하십시오."
+          },
+          "clickhouse": {
+            "ssl": "ClickHouse Cloud Service를 사용할 때 SSL을 켜는 것이 좋습니다."
           }
         },
         "option": {
@@ -1592,7 +1595,8 @@
           "start_button_text": "시작 버튼 텍스트",
           "clear_button_text": "버튼 텍스트 지우기",
           "min_duration": "최소 기간(s)",
-          "max_duration": "최대 기간(s)"
+          "max_duration": "최대 기간(s)",
+          "stop_button_text": "중지 버튼 텍스트"
         }
       },
       "setter_tooltip": {
@@ -2734,7 +2738,10 @@
       "tab": {
         "invite": "멤버 초대",
         "public": "공개"
-      }
+      },
+      "custom_copy_text_app_invite": "{{userName}}님이 「{{teamName}}」에 초대합니다. 링크를 클릭하여 팀에 합류하세요: {{invite Link}}",
+      "custom_copy_text_public": "{{userName}}님이 「{{teamName}}」에서 나와 앱을 공유했습니다. 앱을 확인하려면 링크를 클릭하세요: {{inviteLink}}",
+      "custom_copy_text": "{{userName}}님이 당신을 「{{teamName}}」에 초대합니다. 링크를 클릭하여 팀에 합류하세요: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "초대 성공",
@@ -2928,30 +2935,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "로그아웃 실패",
-  "drive": {
-    "table": {
-      "body": {
-        "open_folder": "Open folder"
-      },
-      "title": {
-        "creator": "Creator"
-      }
-    },
-    "create_modal": {
-      "title": {
-        "create_a_folder": "Create a folder",
-        "cancel": "Cancel",
-        "create": "Create"
-      }
-    },
-    "rename_modal": {
-      "validate_failed": "Only letters, numbers and -~_=: are allowed",
-      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
-    },
-    "delete_modal": {
-      "title": "Are you sure?",
-      "description_multi": "After deleted, users will be unable to access these files"
-    }
-  }
+  "logout_failed": "로그아웃 실패"
 }
