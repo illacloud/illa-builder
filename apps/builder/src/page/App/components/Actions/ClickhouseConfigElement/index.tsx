@@ -289,6 +289,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           defaultValue={resource?.content.ssl.ssl}
           name="ssl"
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
+          tips={t("editor.action.form.tips.clickhouse.ssl")}
         />
 
         {sslOpen && (
