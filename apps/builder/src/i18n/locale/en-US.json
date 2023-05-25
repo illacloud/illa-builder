@@ -281,6 +281,9 @@
             "normal": "Create a Neon project and get the string in <0>project dashboard</0>.",
             "failed": "Failed to parse the string. Please check your string or configure manually.",
             "no_password": "The string has no password. Please display the password in the Neon dashboard before copying."
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
           }
         },
         "option": {
