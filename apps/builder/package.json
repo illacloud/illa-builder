@@ -19,6 +19,8 @@
     "ts-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^1.10.1",
+    "@chatscope/chat-ui-kit-styles": "^1.4.0",
     "@codemirror/autocomplete": "^6.4.0",
     "@codemirror/commands": "^6.1.3",
     "@codemirror/lang-html": "^6.4.0",
@@ -51,6 +53,7 @@
     "acorn-walk": "^8.2.0",
     "axios": "^0.26.1",
     "chart.js": "^3.9.1",
+    "chat-ui-kit-react": "link:@chatscope/chat-ui-kit-styles,@chatscope/chat-ui-kit-react",
     "chroma-js": "^2.4.2",
     "copy-to-clipboard": "^3.3.2",
     "dayjs": "^1.11.7",
@@ -91,6 +94,7 @@
     "react-slick": "^0.29.0",
     "react-use": "^17.4.0",
     "react-use-measure": "^2.1.1",
+    "react-virtuoso": "^4.3.11",
     "redux-logger": "^3.0.6",
     "rehype-raw": "^6.1.1",
     "rehype-sanitize": "^5.0.1",
