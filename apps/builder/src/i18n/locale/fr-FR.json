@@ -283,7 +283,7 @@
             "no_password": "La chaîne n'a pas de mot de passe. Veuillez afficher le mot de passe dans le tableau de bord de Neon avant de le copier."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Lorsque vous utilisez ClickHouse Cloud Service, il est recommandé d'activer le SSL."
           }
         },
         "option": {
