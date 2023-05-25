@@ -23,10 +23,6 @@ export const applyContainerStyle = css`
   box-sizing: border-box;
 `
 
-export const applyMessageStyle = css`
-  padding: 0 16px;
-`
-
 export const applyTextButtonStyle = css`
   &:hover,
   &:active {
