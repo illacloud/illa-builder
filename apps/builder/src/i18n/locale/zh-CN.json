@@ -281,6 +281,9 @@
             "normal": "创建一个 Neon 项目并在 <0>project dashboard</0> 中获取字符串。",
             "failed": "无法解析字符串。 请检查您的字符串或手动配置。",
             "no_password": "该字符串没有密码。 复制前请在 Neon 仪表板中显示密码。"
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
           }
         },
         "option": {
