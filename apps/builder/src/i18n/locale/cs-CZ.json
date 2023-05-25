@@ -281,6 +281,9 @@
             "normal": "Vytvořte Neonův projekt a získejte řetězec v řídicím panelu projektu <0></0>.",
             "failed": "Nepodařilo se analyzovat řetězec. Zkontrolujte řetězec nebo nakonfigurujte ručně.",
             "no_password": "Řetězec nemá heslo. Před kopírováním zobrazte prosím heslo na Neon dashboardu."
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
           }
         },
         "option": {
