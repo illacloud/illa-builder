@@ -283,7 +283,7 @@
             "no_password": "A sequência de caracteres não tem senha. Por favor, exiba a senha no Painel Néon antes de copiar."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Ao usar ClickHouse Cloud Service, recomenda-se ativar o SSL."
           }
         },
         "option": {
