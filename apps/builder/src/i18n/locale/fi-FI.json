@@ -281,6 +281,9 @@
             "normal": "Luo Neon projekti ja hanki merkkijono <0>projektin hallintapaneelissa </0>.",
             "failed": "Merkkijonon jäsentäminen epäonnistui. Tarkista merkkijono tai määritä manuaalisesti.",
             "no_password": "Merkkijonossa ei ole salasanaa. Ole hyvä ja näytä salasana Neon dashboardissa ennen kopiointia."
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
           }
         },
         "option": {
