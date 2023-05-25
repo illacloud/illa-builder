@@ -281,6 +281,9 @@
             "normal": "Créez un projet Neon et obtenez la chaîne dans <0>tableau de bord du projet</0>.",
             "failed": "Impossible d'analyser la chaîne. Veuillez vérifier votre chaîne ou la configurer manuellement.",
             "no_password": "La chaîne n'a pas de mot de passe. Veuillez afficher le mot de passe dans le tableau de bord de Neon avant de le copier."
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
           }
         },
         "option": {
