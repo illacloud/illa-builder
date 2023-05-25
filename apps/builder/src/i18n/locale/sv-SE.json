@@ -281,6 +281,9 @@
             "normal": "Skapa ett Neon-projekt och få strängen i <0>projektinstruktion</0>.",
             "failed": "Det gick inte att tolka strängen. Kontrollera din sträng eller konfigurera manuellt.",
             "no_password": "Strängen har inget lösenord. Vänligen visa lösenordet i Neon instrumentpanelen innan du kopierar."
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
           }
         },
         "option": {
