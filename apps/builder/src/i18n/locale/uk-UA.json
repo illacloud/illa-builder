@@ -283,7 +283,7 @@
             "no_password": "Рядок не має пароля. Будь ласка, вкажіть пароль в Неоновій панелі перед копіюванням."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "При використанні служби ClickHouse Cloud рекомендується ввімкнути SSL."
           }
         },
         "option": {
