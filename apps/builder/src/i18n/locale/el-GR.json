@@ -283,7 +283,7 @@
             "no_password": "Η συμβολοσειρά δεν έχει κωδικό πρόσβασης. Παρακαλώ εμφανίστε τον κωδικό πρόσβασης στον πίνακα ελέγχου Neon πριν την αντιγραφή."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Όταν χρησιμοποιείτε την υπηρεσία ClickHouse Cloud, συνιστάται να ενεργοποιήσετε την SSL."
           }
         },
         "option": {
