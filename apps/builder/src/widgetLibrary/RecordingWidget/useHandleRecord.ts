@@ -44,7 +44,9 @@ export const useHandleRecord = (
           if (stream.current) {
             stream.current.getTracks().forEach((track) => track.stop())
           }
-          const audioBlob = new Blob(chunks.current, { type: "audio/webm" })
+          const audioBlob = new Blob(chunks.current, {
+            type: currentRecorder.mimeType,
+          })
           var reader = new FileReader()
           reader.onload = function (e) {
             const data = e.target?.result
