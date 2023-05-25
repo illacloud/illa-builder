@@ -283,7 +283,7 @@
             "no_password": "Die Zeichenkette hat kein Passwort. Bitte zeigen Sie das Passwort im Neon Dashboard vor dem Kopieren."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Wenn Sie ClickHouse Cloud Service verwenden, wird empfohlen, die SSL einzuschalten."
           }
         },
         "option": {
