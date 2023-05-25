@@ -281,6 +281,9 @@
             "normal": "Crea un proyecto de Neon y consigue la cadena en <0>panel de control del proyecto</0>.",
             "failed": "Error al analizar la cadena. Por favor, compruebe su cadena o configure manualmente.",
             "no_password": "La cadena no tiene contraseña. Por favor, muestre la contraseña en el panel de control de Neon antes de copiar."
+          },
+          "clickhouse": {
+            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
           }
         },
         "option": {
