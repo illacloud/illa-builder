@@ -283,7 +283,7 @@
             "no_password": "文字列にはパスワードがありません。 コピーする前に Neon ダッシュボードにパスワードを表示してください。"
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "ClickHouse Cloud Service をご利用の場合は、SSL を有効にすることをお勧めします。"
           }
         },
         "option": {
