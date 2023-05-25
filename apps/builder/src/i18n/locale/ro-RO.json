@@ -283,7 +283,7 @@
             "no_password": "Şirul nu are parolă. Vă rugăm să afişaţi parola în tabloul de bord Neon înainte de a copia."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Când se utilizează serviciul ClickHouse Cloud, se recomandă activarea SSL."
           }
         },
         "option": {
