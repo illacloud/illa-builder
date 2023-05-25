@@ -1226,9 +1226,9 @@
           "end_placeholder": "Heure de fin"
         },
         "recording": {
-          "start_button_text": "Start recording",
+          "start_button_text": "Démarrer l'enregistrement",
           "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "clear_button_text": "Réinitialiser"
         }
       },
       "setter_group": {
