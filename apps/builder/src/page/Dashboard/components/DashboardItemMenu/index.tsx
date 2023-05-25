@@ -24,6 +24,7 @@ import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardIte
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
 import {
@@ -58,6 +59,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     )!!
   })
   const teamInfo = useSelector(getCurrentTeamInfo)
+  const currentUserInfo = useSelector(getCurrentUser)
 
   const [shareVisible, setShareVisible] = useState(false)
   const [renameVisible, setRenameVisible] = useState(false)
@@ -431,6 +433,8 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
       >
         <InviteModal
           hasApp
+          teamName={isCloudVersion ? teamInfo?.name : "ILLA"}
+          userNickname={currentUserInfo.nickname}
           isCloudVersion={isCloudVersion}
           appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
           isAppPublic={app?.config?.public}

@@ -1592,7 +1592,8 @@
           "start_button_text": "Start button text",
           "clear_button_text": "Clear button text",
           "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)"
+          "max_duration": "Max duration (s)",
+          "stop_button_text": "Stop button text"
         }
       },
       "setter_tooltip": {
@@ -2734,7 +2735,10 @@
       "tab": {
         "invite": "Πρόσκληση",
         "public": "Δημόσιο"
-      }
+      },
+      "custom_copy_text_app_invite": "{{userName}} σας κοινοποίησε μια εφαρμογή 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα και ελέγξτε την APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} σας έχει μοιραστεί ένα APP από 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να ελέγξετε την APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} σας προσκαλεί να συμμετάσχετε στο 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Επιτυχής πρόσκληση",
@@ -2928,30 +2932,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα.",
-  "drive": {
-    "table": {
-      "body": {
-        "open_folder": "Open folder"
-      },
-      "title": {
-        "creator": "Creator"
-      }
-    },
-    "create_modal": {
-      "title": {
-        "create_a_folder": "Create a folder",
-        "cancel": "Cancel",
-        "create": "Create"
-      }
-    },
-    "rename_modal": {
-      "validate_failed": "Only letters, numbers and -~_=: are allowed",
-      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
-    },
-    "delete_modal": {
-      "title": "Are you sure?",
-      "description_multi": "After deleted, users will be unable to access these files"
-    }
-  }
+  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα."
 }

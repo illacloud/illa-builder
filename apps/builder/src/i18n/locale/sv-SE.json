@@ -1592,7 +1592,8 @@
           "start_button_text": "Start button text",
           "clear_button_text": "Clear button text",
           "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)"
+          "max_duration": "Max duration (s)",
+          "stop_button_text": "Stop button text"
         }
       },
       "setter_tooltip": {
@@ -2734,7 +2735,10 @@
       "tab": {
         "invite": "Bjud in",
         "public": "Publik"
-      }
+      },
+      "custom_copy_text_app_invite": "{{userName}} har delat dig med en app på 「{{teamName}}」. Klicka på länken för att gå med i teamet och kontrollera APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} har delat dig en APP från 「{{teamName}}」. Klicka på länken för att kontrollera APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} bjuder in dig att gå med i 「{{teamName}}」. Klicka på länken för att gå med i teamet: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Inbjuden lyckades",
@@ -2928,30 +2932,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Det gick inte att logga ut. Försök igen senare.",
-  "drive": {
-    "table": {
-      "body": {
-        "open_folder": "Open folder"
-      },
-      "title": {
-        "creator": "Creator"
-      }
-    },
-    "create_modal": {
-      "title": {
-        "create_a_folder": "Create a folder",
-        "cancel": "Cancel",
-        "create": "Create"
-      }
-    },
-    "rename_modal": {
-      "validate_failed": "Only letters, numbers and -~_=: are allowed",
-      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
-    },
-    "delete_modal": {
-      "title": "Are you sure?",
-      "description_multi": "After deleted, users will be unable to access these files"
-    }
-  }
+  "logout_failed": "Det gick inte att logga ut. Försök igen senare."
 }

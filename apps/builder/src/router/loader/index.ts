@@ -15,12 +15,7 @@ export const combineCloudAuthLoader: LoaderFunction = async (args) => {
     }
     return await beautifyURLLoader(args)
   } catch (e) {
-    return redirect("", {
-      status: 302,
-      headers: {
-        Location: "/403",
-      },
-    })
+    return redirect("/403")
   }
 }
 

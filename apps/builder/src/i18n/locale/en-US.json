@@ -1592,7 +1592,8 @@
           "start_button_text": "Start button text",
           "clear_button_text": "Clear button text",
           "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)"
+          "max_duration": "Max duration (s)",
+          "stop_button_text": "Stop button text"
         }
       },
       "setter_tooltip": {
@@ -1623,7 +1624,7 @@
         "table_only_run_when": "Conditions that must be met before the event executes. Use {{ currentRow }} to access the data of current row. For example, only run when \"imgSize\" less than 5120: {{ currentRow.imgSize <= 5120 }}.",
         "table_set_value": "Use currentRow to access the data of current row. For example, to set value of editableText component based on \"email\":  {{ currentRow.email }}.\n  And also, you can set value in INSPECT of the component by using {{ table. selectedRow[n] }}: {{ table1.selectedRow[n].email }}.",
         "table_url": "Use {{ currentRow }} to access the data of current row. For example, to go to url with parameter \"appid\": {{ \"www.example.com/#\" + currentRow.appid }}.",
-        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized.",
+        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized. In Markdown mode, the platform supports both Markdown syntax and HTML syntax. In order to utilize both syntaxes simultaneously, it is necessary to include a blank newline between the two syntaxes.",
         "timeline_direction": "Change the direction of the timeline.",
         "timeline_pending": "Whether to show a node with a pending status.",
         "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
@@ -2734,7 +2735,10 @@
       "tab": {
         "invite": "Invite",
         "public": "Public"
-      }
+      },
+      "custom_copy_text_app_invite": "{{userName}} have shared you an app of 「{{teamName}}」. Click the link to join the team and check the APP: {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} shared an app with you from 「{{teamName}}」 . Click the link to check the APP: {{inviteLink}}",
+      "custom_copy_text": "{{userName}} invites you to join 「{{teamName}}」 . Click the link to join the team: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invited successfully",
@@ -2928,30 +2932,5 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later.",
-  "drive": {
-    "table": {
-      "body": {
-        "open_folder": "Open folder"
-      },
-      "title": {
-        "creator": "Creator"
-      }
-    },
-    "create_modal": {
-      "title": {
-        "create_a_folder": "Create a folder",
-        "cancel": "Cancel",
-        "create": "Create"
-      }
-    },
-    "rename_modal": {
-      "validate_failed": "Only letters, numbers and -~_=: are allowed",
-      "validate": "1. Only letters, numbers and -~_=: are allowed\r\n2. The limit is 255 characters or less"
-    },
-    "delete_modal": {
-      "title": "Are you sure?",
-      "description_multi": "After deleted, users will be unable to access these files"
-    }
-  }
+  "logout_failed": "Failed to log out. Please try again later."
 }
