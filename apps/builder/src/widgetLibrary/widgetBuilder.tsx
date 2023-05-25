@@ -31,6 +31,11 @@ import {
   CHART_WIDGET_V2_CONFIG,
 } from "@/widgetLibrary/ChartWidget"
 import {
+  CHAT_EVENT_HANDLER_CONFIG,
+  CHAT_PANEL_CONFIG,
+  CHAT_WIDGET_CONFIG,
+} from "@/widgetLibrary/ChatWidget"
+import {
   CHECKBOX_GROUP_PANEL_CONFIG,
   CHECKBOX_GROUP_WIDGET_CONFIG,
   CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
@@ -459,6 +464,12 @@ export const WidgetConfigMap: Record<
     panelConfig: BUTTON_PANEL_CONFIG,
     eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/ButtonWidget/button")),
+  },
+  CHAT_WIDGET: {
+    widget: lazy(() => import("@/widgetLibrary/ChatWidget/chat")),
+    config: CHAT_WIDGET_CONFIG,
+    panelConfig: CHAT_PANEL_CONFIG,
+    eventHandlerConfig: CHAT_EVENT_HANDLER_CONFIG,
   },
   ICON_WIDGET: {
     config: ICON_WIDGET_CONFIG,
