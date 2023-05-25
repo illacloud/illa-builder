@@ -283,7 +283,7 @@
             "no_password": "Merkkijonossa ei ole salasanaa. Ole hyvä ja näytä salasana Neon dashboardissa ennen kopiointia."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Kun käytät ClickHouse Cloud Serviceä, on suositeltavaa ottaa SSL käyttöön."
           }
         },
         "option": {
