@@ -283,7 +283,7 @@
             "no_password": "Řetězec nemá heslo. Před kopírováním zobrazte prosím heslo na Neon dashboardu."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Při používání služby ClickHouse Cloud je doporučeno zapnout SSL."
           }
         },
         "option": {
