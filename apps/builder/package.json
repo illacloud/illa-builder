@@ -98,6 +98,8 @@
     "react-use-measure": "^2.1.1",
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
+    "rehype-raw": "^6.1.1",
+    "rehype-sanitize": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "slick-carousel": "^1.8.1",
     "stylis": "^4.1.3",
