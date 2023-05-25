@@ -1159,7 +1159,7 @@
           "rowClick": "Clic ligne",
           "refresh": "Rafraîchir",
           "filtersChange": "Changement des filtres",
-          "rowSelectChange": "Row select change",
+          "rowSelectChange": "Changement de la sélection de ligne",
           "onCellSelect": "Sélectionnez une cellule"
         },
         "image_list": {
@@ -1297,7 +1297,7 @@
           "value": "Valeurs du jeu de données"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Position de l'étiquette de l'option"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1547,8 +1547,8 @@
           "event_text": "Texte du texte",
           "draggable": "Déplaçable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Message personnalisé lors de la désactivation du glissement",
+          "custom_message_resizable": "Message personnalisé lors de la désactivation du redimensionnement"
         },
         "table": {
           "page_index": "Index de la page",
@@ -1580,20 +1580,20 @@
           "next_cursor": "Curseur suivant",
           "has_next_page": "A la page suivante",
           "currency_code": "Code devise",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Sélection de cellule",
+          "click_outside_to_des": "Cliquez à l'extérieur pour désélectionner"
         },
         "previous_cursor": "Curseur précédent",
         "input": {
           "type": "Type",
-          "show_visible_button": "Show visible button"
+          "show_visible_button": "Afficher le bouton visible"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Texte du bouton de démarrage",
+          "clear_button_text": "Texte du bouton de réinitialisation",
+          "min_duration": "Durée min (s)",
+          "max_duration": "Durée max (s)",
+          "stop_button_text": "Texte du bouton d'arrêt"
         }
       },
       "setter_tooltip": {
