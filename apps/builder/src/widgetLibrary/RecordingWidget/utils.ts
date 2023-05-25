@@ -28,7 +28,7 @@ export const getsSafeNodeValue = (val: unknown) => {
 }
 
 export const getDataFromVal = (val: unknown) => {
-  const rep = /^data:audio\/[^;]+;base64,/
+  const rep = /^data:audio[^,]+base64,/
   if (typeof val !== "string" || !val || !rep.test(val)) {
     return ""
   } else {
