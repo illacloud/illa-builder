@@ -281,6 +281,9 @@
             "normal": "Utwórz projekt Neon i uzyskaj ciąg w <0>panelu projektu</0>.",
             "failed": "Nie udało się przetworzyć ciągu znaków. Proszę sprawdzić ciąg znaków lub skonfigurować go ręcznie.",
             "no_password": "Ciąg znaków nie ma hasła. Proszę wyświetlić hasło w panelu Neon przed skopiowaniem."
+          },
+          "clickhouse": {
+            "ssl": "Podczas korzystania z usługi ClickHouse w chmurze zaleca się włączenie protokołu SSL."
           }
         },
         "option": {

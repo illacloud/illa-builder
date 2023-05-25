@@ -281,6 +281,9 @@
             "normal": "Opret et Neon projekt og få strengen i <0>projekt dashboard</0>.",
             "failed": "Kunne ikke fortolke strengen. Tjek venligst din streng eller konfigurer manuelt.",
             "no_password": "Strengen har ingen adgangskode. Vis venligst adgangskoden i Neon kontrolpanelet før kopiering."
+          },
+          "clickhouse": {
+            "ssl": "Når du bruger ClickHouse Cloud Service, anbefales det at aktivere SSL."
           }
         },
         "option": {

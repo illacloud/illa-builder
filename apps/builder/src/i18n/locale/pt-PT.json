@@ -281,6 +281,9 @@
             "normal": "Crie um projeto Néon e obtenha o texto no painel de controle do projeto</0>.",
             "failed": "Falha ao analisar a string. Por favor, verifique sua string ou configure manualmente.",
             "no_password": "A sequência de caracteres não tem senha. Por favor, exiba a senha no Painel Néon antes de copiar."
+          },
+          "clickhouse": {
+            "ssl": "Ao usar ClickHouse Cloud Service, recomenda-se ativar o SSL."
           }
         },
         "option": {

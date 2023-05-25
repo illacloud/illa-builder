@@ -281,6 +281,9 @@
             "normal": "创建一个 Neon 项目并在 <0>project dashboard</0> 中获取字符串。",
             "failed": "无法解析字符串。 请检查您的字符串或手动配置。",
             "no_password": "该字符串没有密码。 复制前请在 Neon 仪表板中显示密码。"
+          },
+          "clickhouse": {
+            "ssl": "当使用 ClickHouse 云服务时，建议开启SSL。"
           }
         },
         "option": {
@@ -2737,7 +2740,7 @@
         "public": "公开"
       },
       "custom_copy_text_app_invite": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
-      "custom_copy_text_public": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接查看APP： {{inviteLink}}",
       "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}"
     },
     "mes": {

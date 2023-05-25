@@ -281,6 +281,9 @@
             "normal": "Creează un proiect Neon și obține șirul din <0>tabloul de bord al proiectului</0>.",
             "failed": "Nu s-a putut analiza șirul. Vă rugăm să verificați șirul sau să configurați manual.",
             "no_password": "Şirul nu are parolă. Vă rugăm să afişaţi parola în tabloul de bord Neon înainte de a copia."
+          },
+          "clickhouse": {
+            "ssl": "Când se utilizează serviciul ClickHouse Cloud, se recomandă activarea SSL."
           }
         },
         "option": {

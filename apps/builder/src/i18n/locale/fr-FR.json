@@ -207,7 +207,7 @@
             "access_type": "Type d'accès"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Commande"
           }
         },
         "placeholder": {
@@ -281,6 +281,9 @@
             "normal": "Créez un projet Neon et obtenez la chaîne dans <0>tableau de bord du projet</0>.",
             "failed": "Impossible d'analyser la chaîne. Veuillez vérifier votre chaîne ou la configurer manuellement.",
             "no_password": "La chaîne n'a pas de mot de passe. Veuillez afficher le mot de passe dans le tableau de bord de Neon avant de le copier."
+          },
+          "clickhouse": {
+            "ssl": "Lorsque vous utilisez ClickHouse Cloud Service, il est recommandé d'activer le SSL."
           }
         },
         "option": {
@@ -684,7 +687,7 @@
             "temperature": "Float(0.0-100.0),laisser vide pour 1.0",
             "repetition_penalty": "Flottant (0.0-100.0)",
             "max_time": "Float (0.0-120.0) pour définir la durée en secondes",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Choisir un type"
           },
           "tips": {
             "mode_id": "Allez dans le <0>hub de modèles</0> et sélectionnez le modèle que vous souhaitez utiliser.",
@@ -1158,9 +1161,9 @@
           "DragOrClickNoEventArea": "Glisser ou cliquer sur aucune zone d'événement",
           "rowClick": "Clic ligne",
           "refresh": "Rafraîchir",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Changement des filtres",
+          "rowSelectChange": "Changement de la sélection de ligne",
+          "onCellSelect": "Sélectionnez une cellule"
         },
         "image_list": {
           "title": "Images",
@@ -1226,9 +1229,9 @@
           "end_placeholder": "Heure de fin"
         },
         "recording": {
-          "start_button_text": "Start recording",
+          "start_button_text": "Démarrer l'enregistrement",
           "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "clear_button_text": "Réinitialiser"
         }
       },
       "setter_group": {
@@ -1297,7 +1300,7 @@
           "value": "Valeurs du jeu de données"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Position de l'étiquette de l'option"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1547,8 +1550,8 @@
           "event_text": "Texte du texte",
           "draggable": "Déplaçable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Message personnalisé lors de la désactivation du glissement",
+          "custom_message_resizable": "Message personnalisé lors de la désactivation du redimensionnement"
         },
         "table": {
           "page_index": "Index de la page",
@@ -1580,20 +1583,20 @@
           "next_cursor": "Curseur suivant",
           "has_next_page": "A la page suivante",
           "currency_code": "Code devise",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Sélection de cellule",
+          "click_outside_to_des": "Cliquez à l'extérieur pour désélectionner"
         },
         "previous_cursor": "Curseur précédent",
         "input": {
           "type": "Type",
-          "show_visible_button": "Show visible button"
+          "show_visible_button": "Afficher le bouton visible"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Texte du bouton de démarrage",
+          "clear_button_text": "Texte du bouton de réinitialisation",
+          "min_duration": "Durée min (s)",
+          "max_duration": "Durée max (s)",
+          "stop_button_text": "Texte du bouton d'arrêt"
         }
       },
       "setter_tooltip": {
@@ -1793,7 +1796,7 @@
           "start_button_text": "The text displayed on the button when the recording is not started",
           "stop_button_text": "The text displayed on the button when recording",
           "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
+          "min_duration": "Durée minimale pour l'enregistrement",
           "max_duration": "Maximum duration for recording"
         }
       },
