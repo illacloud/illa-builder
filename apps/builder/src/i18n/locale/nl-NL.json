@@ -283,7 +283,7 @@
             "no_password": "De tekenreeks heeft geen wachtwoord. Geef het wachtwoord in het Neondashboard weer voordat u het kopieert."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "Bij het gebruik van ClickHouse Cloud Service wordt aanbevolen om de SSL in te schakelen."
           }
         },
         "option": {
