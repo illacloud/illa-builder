@@ -180,12 +180,6 @@ import {
   RateWidget,
 } from "@/widgetLibrary/RateWidget"
 import {
-  RECORDING_HANDLER_CONFIG,
-  RECORDING_PANEL_CONFIG,
-  RECORDING_WIDGET_CONFIG,
-  RecordingWidget,
-} from "@/widgetLibrary/RecordingWidget"
-import {
   SELECT_EVENT_HANDLER_CONFIG,
   SELECT_PANEL_CONFIG,
   SELECT_WIDGET_CONFIG,
@@ -320,12 +314,6 @@ export const WidgetConfig: WidgetConfigs = {
     config: RANGE_SLIDER_WIDGET_CONFIG,
     panelConfig: RANGE_SLIDER_PANEL_CONFIG,
     eventHandlerConfig: RANGE_SLIDER_EVENT_HANDLER_CONFIG,
-  },
-  RECORDING_WIDGET: {
-    widget: RecordingWidget,
-    config: RECORDING_WIDGET_CONFIG,
-    panelConfig: RECORDING_PANEL_CONFIG,
-    eventHandlerConfig: RECORDING_HANDLER_CONFIG,
   },
   // select inputs
   SWITCH_WIDGET: {

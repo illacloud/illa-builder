@@ -27,6 +27,4 @@ export interface ValidateCheckProps {
   sizeType?: string
   atLeastNumber?: number
   upToNumber?: number
-  minDuration?: number
-  maxDuration?: number
 }
