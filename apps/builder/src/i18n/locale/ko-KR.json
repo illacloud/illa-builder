@@ -283,7 +283,7 @@
             "no_password": "문자열에 암호가 없습니다. 복사하기 전에 Neon 대시보드에 암호를 표시하십시오."
           },
           "clickhouse": {
-            "ssl": "When using ClickHouse cloud service, it is recommended to turn on the SSL. "
+            "ssl": "ClickHouse Cloud Service를 사용할 때 SSL을 켜는 것이 좋습니다."
           }
         },
         "option": {
