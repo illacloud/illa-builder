@@ -207,7 +207,7 @@
             "access_type": "Type d'accès"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Commande"
           }
         },
         "placeholder": {
@@ -684,7 +684,7 @@
             "temperature": "Float(0.0-100.0),laisser vide pour 1.0",
             "repetition_penalty": "Flottant (0.0-100.0)",
             "max_time": "Float (0.0-120.0) pour définir la durée en secondes",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Choisir un type"
           },
           "tips": {
             "mode_id": "Allez dans le <0>hub de modèles</0> et sélectionnez le modèle que vous souhaitez utiliser.",
@@ -1158,9 +1158,9 @@
           "DragOrClickNoEventArea": "Glisser ou cliquer sur aucune zone d'événement",
           "rowClick": "Clic ligne",
           "refresh": "Rafraîchir",
-          "filtersChange": "Filters change",
+          "filtersChange": "Changement des filtres",
           "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "onCellSelect": "Sélectionnez une cellule"
         },
         "image_list": {
           "title": "Images",
@@ -1793,7 +1793,7 @@
           "start_button_text": "The text displayed on the button when the recording is not started",
           "stop_button_text": "The text displayed on the button when recording",
           "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
+          "min_duration": "Durée minimale pour l'enregistrement",
           "max_duration": "Maximum duration for recording"
         }
       },
