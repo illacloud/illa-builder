@@ -2144,6 +2144,9 @@
     },
     "global": {
       "size_exceed": "Розмір даних перевищує ліміт (поточний розмір: {{current_size}} байт, ліміт: {{limit_size}} байт)"
+    },
+    "general": {
+      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
     }
   },
   "exit_preview": "Вийти з режиму перегляду",
