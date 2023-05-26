@@ -47,7 +47,7 @@ export const BasicSheetConfig: FC<BasicSheetConfigProps> = (props) => {
         )}
         <FxIcon
           onClick={handleOnClick}
-          css={getFxIconStyle(isHiddenSheetName)}
+          css={getFxIconStyle(isHiddenSheetName, fx)}
         />
       </div>
       {!isHiddenSheetName && (
