@@ -2144,6 +2144,9 @@
     },
     "global": {
       "size_exceed": "Tamanho dos dados excede o limite (tamanho atual: {{current_size}} bytes, limite: {{limit_size}} bytes)"
+    },
+    "general": {
+      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
     }
   },
   "exit_preview": "Sair da Pré-visualização",
