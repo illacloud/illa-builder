@@ -32,7 +32,7 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
   const permissionStatus = useRef<PermissionStatus | null>()
   const [permissionDisabled, setPermissionDisabled] = useState<boolean>(true)
 
-  const { isRecording, data, recordingTime, handleButtonClick, clearData } =
+  const { isRecording, url, recordingTime, handleButtonClick, clearData } =
     useHandleRecord(handleUpdateStatus, handleOnChange)
 
   const emptyFun = () => undefined
@@ -78,7 +78,7 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
 
   return (
     <div css={applyContainerStyle}>
-      {!data && !value && (
+      {!url && !value && (
         <Button
           onClick={handleButtonClick}
           disabled={permissionDisabled || disabled}
@@ -94,7 +94,7 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
               )} ${recordingTime.toFixed(1)}s`}
         </Button>
       )}
-      {(data || value) && !isRecording && (
+      {(url || value) && !isRecording && (
         <div css={applyPreviewStyle}>
           <Button
             onClick={clearData}
@@ -108,7 +108,7 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
           <div css={audioContainerStyle}>
             <WrappedAudio
               {...props}
-              url={data || value}
+              url={url || value}
               controls={true}
               onPlay={emptyFun}
               onPause={emptyFun}

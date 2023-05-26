@@ -12,7 +12,7 @@ export const useHandleRecord = (
   const chunks = useRef<Blob[]>([])
   const recorder = useRef<MediaRecorder | null>(null)
   const stream = useRef<MediaStream | null>(null)
-  const [data, setData] = useState<string>()
+  const [url, setUrl] = useState<string>()
 
   const handleButtonClick = useCallback(async () => {
     cancelTimer.current && cancelTimer.current()
@@ -26,7 +26,6 @@ export const useHandleRecord = (
           audio: true,
         })
         const currentRecorder = new MediaRecorder(stream.current)
-
         currentRecorder.addEventListener("start", () => {
           startTime.current = window.performance.now()
           cancelTimer.current = setInternalByTimeout(() => {
@@ -47,11 +46,12 @@ export const useHandleRecord = (
           const audioBlob = new Blob(chunks.current, {
             type: currentRecorder.mimeType,
           })
+          const url = URL.createObjectURL(audioBlob)
+          setUrl(url)
           var reader = new FileReader()
           reader.onload = function (e) {
             const data = e.target?.result
             if (data && typeof data === "string") {
-              setData(data as string)
               handleOnChange && handleOnChange(data || "")
             }
           }
@@ -68,7 +68,9 @@ export const useHandleRecord = (
   }, [handleOnChange, handleUpdateStatus, isRecording, recordingTime])
 
   const clearData = () => {
-    setData("")
+    chunks.current = []
+    url && URL.revokeObjectURL(url)
+    setUrl("")
     setRecordingTime(0)
     handleUpdateStatus({ recordTime: 0 })
     handleOnChange && handleOnChange("")
@@ -88,7 +90,7 @@ export const useHandleRecord = (
 
   return {
     isRecording,
-    data,
+    url,
     recordingTime,
     handleButtonClick,
     clearData,
