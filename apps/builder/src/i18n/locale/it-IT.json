@@ -281,6 +281,9 @@
             "normal": "Crea un progetto Neon e ottieni la stringa nella dashboard <0>project </0>.",
             "failed": "Analisi della stringa non riuscita. Controllare la stringa o configurare manualmente.",
             "no_password": "La stringa non ha password. Si prega di visualizzare la password nella dashboard Neon prima di copiare."
+          },
+          "clickhouse": {
+            "ssl": "Quando si utilizza ClickHouse Cloud Service, si consiglia di attivare l'SSL."
           }
         },
         "option": {
