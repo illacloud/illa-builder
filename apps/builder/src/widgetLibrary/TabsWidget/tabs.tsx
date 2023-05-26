@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { TabPane, Tabs } from "@illa-design/react"
+import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TabsWidgetProps, WrappedTabsProps } from "./interface"
 import { fullWidthAndFullHeightStyle } from "./style"
@@ -68,6 +69,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     colorScheme,
     tabPosition,
     triggerEventHandler,
+    updateComponentHeight,
   } = props
 
   useEffect(() => {
@@ -125,22 +127,24 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   }, [triggerEventHandler])
 
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={fullWidthAndFullHeightStyle}>
-        <WrappedTabs
-          {...props}
-          tabList={list}
-          value={value}
-          align={align}
-          activeKey={currentKey}
-          colorScheme={colorScheme}
-          tabPosition={tabPosition}
-          disabled={disabled}
-          handleUpdateOriginalDSLMultiAttr={handleUpdateMultiAttrDSL}
-          handleOnChange={handleOnChange}
-        />
-      </div>
-    </TooltipWrapper>
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={fullWidthAndFullHeightStyle}>
+          <WrappedTabs
+            {...props}
+            tabList={list}
+            value={value}
+            align={align}
+            activeKey={currentKey}
+            colorScheme={colorScheme}
+            tabPosition={tabPosition}
+            disabled={disabled}
+            handleUpdateOriginalDSLMultiAttr={handleUpdateMultiAttrDSL}
+            handleOnChange={handleOnChange}
+          />
+        </div>
+      </TooltipWrapper>
+    </AutoHeightContainer>
   )
 }
 
