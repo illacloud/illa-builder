@@ -2144,6 +2144,9 @@
     },
     "global": {
       "size_exceed": "La taille des données dépasse la limite (taille actuelle: {{current_size}} octets, limite: {{limit_size}} octets)"
+    },
+    "general": {
+      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
     }
   },
   "exit_preview": "Quitter l'aperçu",
