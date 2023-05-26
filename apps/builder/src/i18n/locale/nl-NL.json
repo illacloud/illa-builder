@@ -2144,6 +2144,9 @@
     },
     "global": {
       "size_exceed": "Data grootte overschrijdt de limiet (huidige grootte: {{current_size}} bytes, limiet: {{limit_size}} bytes)"
+    },
+    "general": {
+      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
     }
   },
   "exit_preview": "Voorvertoning afsluiten",
