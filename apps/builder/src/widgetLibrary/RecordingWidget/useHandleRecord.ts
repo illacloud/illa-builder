@@ -13,6 +13,9 @@ export const useHandleRecord = (
   const recorder = useRef<MediaRecorder | null>(null)
   const stream = useRef<MediaStream | null>(null)
   const [url, setUrl] = useState<string>()
+  const startRecordFnRef = useRef<() => void>()
+  const dataRecordFnRef = useRef<(e: BlobEvent) => void>()
+  const stopRecordFnRef = useRef<() => void>()
 
   const handleButtonClick = useCallback(async () => {
     cancelTimer.current && cancelTimer.current()
@@ -22,26 +25,25 @@ export const useHandleRecord = (
       setIsRecording(false)
     } else {
       try {
+        recorder.current = null
         stream.current = await navigator.mediaDevices.getUserMedia({
           audio: true,
         })
         const currentRecorder = new MediaRecorder(stream.current)
-        currentRecorder.addEventListener("start", () => {
+        startRecordFnRef.current = () => {
           startTime.current = window.performance.now()
           cancelTimer.current = setInternalByTimeout(() => {
             const now = window.performance.now()
             const value = (now - (startTime.current as number)) / 1000
             setRecordingTime(value)
           }, 100)
-        })
-
-        currentRecorder.addEventListener("dataavailable", (e) => {
+        }
+        dataRecordFnRef.current = (e) => {
           chunks.current.push(e.data)
-        })
-
-        currentRecorder.addEventListener("stop", () => {
+        }
+        stopRecordFnRef.current = async () => {
           if (stream.current) {
-            stream.current.getTracks().forEach((track) => track.stop())
+            await stream.current.getTracks().forEach((track) => track.stop())
           }
           const audioBlob = new Blob(chunks.current, {
             type: currentRecorder.mimeType,
@@ -56,7 +58,34 @@ export const useHandleRecord = (
             }
           }
           reader.readAsDataURL(audioBlob)
-        })
+          if (recorder.current) {
+            startRecordFnRef.current &&
+              recorder.current.removeEventListener(
+                "start",
+                startRecordFnRef.current,
+              )
+            dataRecordFnRef.current &&
+              recorder.current.removeEventListener(
+                "dataavailable",
+                dataRecordFnRef.current,
+              )
+            stopRecordFnRef.current &&
+              recorder.current.removeEventListener(
+                "stop",
+                stopRecordFnRef.current,
+              )
+          }
+          stream.current = null
+          recorder.current = null
+        }
+        currentRecorder.addEventListener("start", startRecordFnRef.current)
+
+        currentRecorder.addEventListener(
+          "dataavailable",
+          dataRecordFnRef.current,
+        )
+
+        currentRecorder.addEventListener("stop", stopRecordFnRef.current)
 
         currentRecorder.start()
         recorder.current = currentRecorder
@@ -83,7 +112,7 @@ export const useHandleRecord = (
         recorder.current.stop()
       }
       if (stream.current) {
-        stream.current.getTracks().forEach((track) => track.stop())
+        stream.current.getTracks()?.forEach((track) => track.stop())
       }
     }
   }, [stream, recorder])
