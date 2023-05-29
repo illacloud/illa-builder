@@ -2938,5 +2938,11 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut."
+  "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut.",
+  "drive": {
+    "message": {
+      "start_upload": "Start upload",
+      "start_download": "Start download"
+    }
+  }
 }
