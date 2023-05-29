@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { forwardRef } from "react"
 import { MessageSpecProps, MessageType } from "../interface"
 import { messageItemContainerStyle } from "../style"
 import { AudioMessage } from "./audioMessage"
@@ -6,18 +6,19 @@ import { ImageMessage } from "./imageMessage"
 import { TextMessage } from "./textMessage"
 import { VideoMessage } from "./videoMessage"
 
-export const SendMessage: FC<
+export const SendMessage = forwardRef<
+  HTMLDivElement,
   MessageSpecProps & { messageType: MessageType }
-> = ({
-  messageType,
-  content,
-  isOwnMessage,
-  leftMessageColor,
-  rightMessageColor,
-}) => {
-  console.log("messageType", messageType)
+>((props, ref) => {
+  const {
+    messageType,
+    content,
+    isOwnMessage,
+    leftMessageColor,
+    rightMessageColor,
+  } = props
   return (
-    <div css={messageItemContainerStyle}>
+    <div css={messageItemContainerStyle} ref={ref}>
       {messageType === "text" && (
         <TextMessage
           content={content}
@@ -31,4 +32,5 @@ export const SendMessage: FC<
       {messageType === "video" && <VideoMessage content={content} />}
     </div>
   )
-}
+})
+SendMessage.displayName = "SendMessage"

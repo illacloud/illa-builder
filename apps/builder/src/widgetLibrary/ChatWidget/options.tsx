@@ -11,6 +11,7 @@ export const Options: FC<IMessageItem> = ({
   toolbarReplay,
   handleOnDelete,
 }) => {
+  console.log("123454")
   return (
     <div css={optionsStyle(Boolean(toolbarReplay && toolbarDelete))}>
       {toolbarReplay && (

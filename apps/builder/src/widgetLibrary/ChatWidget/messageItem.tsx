@@ -1,7 +1,7 @@
 import { Avatar, Message } from "@chatscope/chat-ui-kit-react"
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css"
 import dayjs from "dayjs"
-import { FC } from "react"
+import { FC, useRef } from "react"
 import { Trigger } from "@illa-design/react"
 import { IMessageItem } from "@/widgetLibrary/ChatWidget/interface"
 import { Options } from "@/widgetLibrary/ChatWidget/options"
@@ -40,6 +40,7 @@ export const MessageItem: FC<IMessageItem> = (props) => {
   } = message
 
   const isOwnMessage = !!currentSenderId && senderId === currentSenderId
+  const messageItemRef = useRef<HTMLDivElement>(null)
 
   return (
     <>
@@ -50,7 +51,7 @@ export const MessageItem: FC<IMessageItem> = (props) => {
           position: "single",
         }}
         avatarPosition={isOwnMessage ? "tr" : "tl"}
-        css={messageContentStyle}
+        css={messageContentStyle(isOwnMessage)}
       >
         {showAvatar && <Avatar src={senderAvatar} />}
         <Message.Header>
@@ -78,6 +79,7 @@ export const MessageItem: FC<IMessageItem> = (props) => {
             withoutShadow
           >
             <SendMessage
+              ref={messageItemRef}
               messageType={messageType}
               isOwnMessage={isOwnMessage}
               leftMessageColor={leftMessageColor}
