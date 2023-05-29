@@ -166,6 +166,11 @@ import {
   RECORDING_WIDGET_CONFIG,
 } from "@/widgetLibrary/RecordingWidget"
 import {
+  RICH_TEXT_EVENT_HANDLER_CONFIG,
+  RICH_TEXT_PANEL_CONFIG,
+  RICH_TEXT_WIDGET_CONFIG,
+} from "@/widgetLibrary/RichTextWidget"
+import {
   SELECT_EVENT_HANDLER_CONFIG,
   SELECT_PANEL_CONFIG,
   SELECT_WIDGET_CONFIG,
@@ -306,6 +311,12 @@ export const WidgetConfigMap: Record<
     panelConfig: JSON_EDITOR_PANEL_CONFIG,
     eventHandlerConfig: JSON_EDITOR_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/JsonEditorWidget/jsonEditor")),
+  },
+  RICH_TEXT_WIDGET: {
+    widget: lazy(() => import("@/widgetLibrary/RichTextWidget/richText")),
+    config: RICH_TEXT_WIDGET_CONFIG,
+    panelConfig: RICH_TEXT_PANEL_CONFIG,
+    eventHandlerConfig: RICH_TEXT_EVENT_HANDLER_CONFIG,
   },
   // select inputs
   SWITCH_WIDGET: {
