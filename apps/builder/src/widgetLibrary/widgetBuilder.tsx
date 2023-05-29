@@ -186,6 +186,12 @@ import {
   RecordingWidget,
 } from "@/widgetLibrary/RecordingWidget"
 import {
+  RICH_TEXT_EVENT_HANDLER_CONFIG,
+  RICH_TEXT_PANEL_CONFIG,
+  RICH_TEXT_WIDGET_CONFIG,
+  RichTextWidget,
+} from "@/widgetLibrary/RichTextWidget"
+import {
   SELECT_EVENT_HANDLER_CONFIG,
   SELECT_PANEL_CONFIG,
   SELECT_WIDGET_CONFIG,
@@ -326,6 +332,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: RECORDING_WIDGET_CONFIG,
     panelConfig: RECORDING_PANEL_CONFIG,
     eventHandlerConfig: RECORDING_HANDLER_CONFIG,
+  },
+  RICH_TEXT_WIDGET: {
+    widget: RichTextWidget,
+    config: RICH_TEXT_WIDGET_CONFIG,
+    panelConfig: RICH_TEXT_PANEL_CONFIG,
+    eventHandlerConfig: RICH_TEXT_EVENT_HANDLER_CONFIG,
   },
   // select inputs
   SWITCH_WIDGET: {

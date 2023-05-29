@@ -81,6 +81,7 @@ export default defineConfig(({ command, mode }) => {
       "import.meta.env.ILLA_MIXPANEL_API_KEY": JSON.stringify(
         env.ILLA_MIXPANEL_API_KEY,
       ),
+      global: "window"
     },
     build: {
       sourcemap: true,
