@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0)，为空时默认1.0",
             "repetition_penalty": "浮点数(0.0-100.0)",
             "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "选择类型"
           },
           "tips": {
             "mode_id": "转到<0>Model Hub</0>并选择您想要使用的模型。",
@@ -2146,7 +2146,7 @@
       "size_exceed": "数据大小超出限制（当前大小：{{current_size}} 字节，限制： {{limit_size}} 字节）"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "当前输入内容太长，我们已经停止自动计算数据，您仍然可以继续输入，这不会影响您的使用。"
     }
   },
   "exit_preview": "退出预览",
