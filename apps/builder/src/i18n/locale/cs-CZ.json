@@ -207,7 +207,7 @@
             "access_type": "Typ přístupu"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Příkaz"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0),nechte prázdné pro 1.0",
             "repetition_penalty": "Plovoucí (0.0–100.0)",
             "max_time": "Plovte (0.0-120.0) pro definování času v sekundách",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Vyberte typ"
           },
           "tips": {
             "mode_id": "Přejděte na <0>Model Hub</0> a vyberte model, který chcete použít.",
@@ -1161,9 +1161,9 @@
           "DragOrClickNoEventArea": "Přetáhněte nebo neklepněte na žádnou událost",
           "rowClick": "Kliknutí na řádek",
           "refresh": "Aktualizovat",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Změna filtrů",
+          "rowSelectChange": "Změna řádku",
+          "onCellSelect": "Vybrat buňku"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1229,9 +1229,9 @@
           "end_placeholder": "Čas ukončení"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Začít nahrávat",
+          "stop_button_text": "Zastavit",
+          "clear_button_text": "Vyčistit"
         }
       },
       "setter_group": {
@@ -1300,7 +1300,7 @@
           "value": "Hodnoty datového souboru"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Umístění opčního štítku"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1550,8 @@
           "event_text": "Text",
           "draggable": "Posunout",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Vlastní zpráva při zakázaném přetažení",
+          "custom_message_resizable": "Vlastní zpráva při zakázání změny velikosti"
         },
         "table": {
           "page_index": "Index stránky",
@@ -1583,20 +1583,20 @@
           "next_cursor": "Další kurzor",
           "has_next_page": "Má další stránku",
           "currency_code": "Kód měny",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Výběr buňky",
+          "click_outside_to_des": "Klikněte vně pro zrušení výběru"
         },
         "previous_cursor": "Předchozí kurzor",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Typ",
+          "show_visible_button": "Zobrazit viditelné tlačítko"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Text tlačítka Start",
+          "clear_button_text": "Text tlačítka \"Vyčistit\"",
+          "min_duration": "Minimální doba trvání (s)",
+          "max_duration": "Maximální doba trvání (s)",
+          "stop_button_text": "Text tlačítka Zastavit"
         }
       },
       "setter_tooltip": {
@@ -1684,16 +1684,16 @@
           "hide_output": "Nastavte, zda skrýt hodnotu při posunutí"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Popisek možnosti",
+          "value": "Pole vybraných možností obsažené v {{. Například {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Hodnota je duplicitní. Použijte prosím unikátní hodnoty, abyste se vyhnuli chybám.",
+          "caption": "Titulek zobrazený pod popiskem",
+          "disabled": "Určuje, zda zakázat možnost",
+          "datasource": "Zdroj dat ve skupině přepínačů. Použijte {{actionName.data}} pro použití dat z vašich databází nebo API",
+          "default_value": "Pole je zahrnuto v {{ }}. Například {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimální počet položek povolených k výběru",
+          "choose_up_to": "Maximální povolený počet položek",
+          "option_label_alignment": "Umístění štítků"
         },
         "step": {
           "default_step": "Výchozí krok",
@@ -1752,8 +1752,8 @@
           "couldnot_drag": "Pokud chcete změnit časové rozmezí, přejděte na náhled pro danou operaci.",
           "draggable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události přetažením přesuňte událost",
           "resizable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události a změnit časové rozpětí přetažením hranice události na prodloužení nebo zkrácení časového intervalu",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Po vypnutí přetažení se zobrazí zpráva, když uživatel přetáhne událost.",
+          "custom_message_resizable": "Po vypnutí změny velikosti se zobrazí zpráva, když uživatel změní velikost události."
         },
         "table": {
           "page_index": "Index stránky, kterou chcete vybrat.",
@@ -1784,20 +1784,20 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Režim filtru. A nebo OR.",
           "currency_code": "V tabulce v příloze I nařízení (EU) č. 36/2012 se v řádku týkajícím se subjektu „Ecocert Erőmű Kft.“ nahrazuje tímto:",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Určuje, zda povolit uživatelům vybrat buňku",
+          "supported_in_the_row": "Podporováno v režimu jediného výběru. Po jeho povolení klikněte na jinou oblast než tabulku pro zrušení výběru řádku."
         },
         "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Pro nastavení typu vstupu",
+          "show_visible_button": "Nastavení zobrazení viditelného tlačítka"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
+          "start_button_text": "Text zobrazený na tlačítku, když není nahrávání spuštěno",
+          "stop_button_text": "Text zobrazený na tlačítku při nahrávání",
+          "clear_button_text": "Text zobrazený na tlačítku po dokončení záznamu",
+          "min_duration": "Minimální délka záznamu",
+          "max_duration": "Maximální doba trvání záznamu"
         }
       },
       "setter_option": {
@@ -1870,8 +1870,8 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Heslo",
+          "search": "Hledat"
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1919,10 @@
           "directory": "Jsou povoleny pouze adresáře."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Vyžaduje se oprávnění k nahrávání",
+          "cannot_set_value_dur": "Nelze nastavit hodnotu během nahrávání",
+          "min_duration": "Nahrajte prosím alespoň {{minimum}}s",
+          "max_duration": "Prosím nahrávejte maximálně {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2146,7 +2146,7 @@
       "size_exceed": "Velikost dat překračuje limit (současná velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "Aktuální vstupní obsah je příliš dlouhý, přestali jsme automaticky počítat data, stále můžete vkládat, to neovlivní vaše použití."
     }
   },
   "exit_preview": "Ukončit náhled",
@@ -2527,10 +2527,10 @@
       "name_duplicated": "Tento zdroj ID konfliktů v těchto událostech, použijte prosím stejné jméno nebo jiné ID"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Přepnout skupinu"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Nahrávání"
     }
   },
   "page": {
