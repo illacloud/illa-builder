@@ -2938,5 +2938,11 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα."
+  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα.",
+  "drive": {
+    "message": {
+      "start_upload": "Start upload",
+      "start_download": "Start download"
+    }
+  }
 }
