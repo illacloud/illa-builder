@@ -207,7 +207,7 @@
             "access_type": "Adgangs type"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Kommando"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Flydende (0,0-100,0),lad feltet stå tomt for 1,0",
             "repetition_penalty": "Float (0,0-100.0)",
             "max_time": "Float (0,0-120,0) for at definere mængden af tid i sekunder",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Vælg en type"
           },
           "tips": {
             "mode_id": "Gå til <0>Model Hub</0> og vælg den model, du vil bruge.",
@@ -1161,9 +1161,9 @@
           "DragOrClickNoEventArea": "Træk eller klik intet event område",
           "rowClick": "Klik på række",
           "refresh": "Opdater",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Filtre ændres",
+          "rowSelectChange": "Ændring af række",
+          "onCellSelect": "Vælg en celle"
         },
         "image_list": {
           "title": "Billeder",
@@ -1229,9 +1229,9 @@
           "end_placeholder": "Slut tid"
         },
         "recording": {
-          "start_button_text": "Start recording",
+          "start_button_text": "Start optagelse",
           "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "clear_button_text": "Ryd"
         }
       },
       "setter_group": {
@@ -1300,7 +1300,7 @@
           "value": "Datasæt værdier"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Placering af optionsetiketten"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1550,8 @@
           "event_text": "Tekst",
           "draggable": "Trækbar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Brugerdefineret besked ved deaktivering af træk",
+          "custom_message_resizable": "Tilpasset besked ved deaktivering af størrelsesændring"
         },
         "table": {
           "page_index": "Side indeks",
@@ -1583,20 +1583,20 @@
           "next_cursor": "Næste markør",
           "has_next_page": "Har næste side",
           "currency_code": "Valuta kode",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Valg af celler",
+          "click_outside_to_des": "Klik udenfor for at fravælge"
         },
         "previous_cursor": "Forrige markør",
         "input": {
           "type": "Type",
-          "show_visible_button": "Show visible button"
+          "show_visible_button": "Vis synlig knap"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Tekst på startknap",
+          "clear_button_text": "Ryd knaptekst",
+          "min_duration": "Min. varighed (s)",
+          "max_duration": "Maks. varighed (r)",
+          "stop_button_text": "Stop knap tekst"
         }
       },
       "setter_tooltip": {
@@ -1684,16 +1684,16 @@
           "hide_output": "Angiv, om værdien skal skjules under glidning"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Etiketten på indstillingen",
+          "value": "Et array af de valgte valgmuligheder omgivet af {{. For eksempel, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Værdien er duplikeret. Brug venligst unikke værdier for at undgå fejl.",
+          "caption": "En billedtekst vises under etiketten",
+          "disabled": "Om indstillingen skal deaktiveres",
+          "datasource": "Datakilden for kontaktgruppen. Brug {{actionName.data}} til at bruge data fra dine databaser eller API'er",
+          "default_value": "Et array omgivet af {{ }}. For eksempel, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum varer tilladt at vælge",
+          "choose_up_to": "Maksimum elementer tilladt at vælge",
+          "option_label_alignment": "Placeringen af etiketterne"
         },
         "step": {
           "default_step": "Standard trin",
@@ -1752,8 +1752,8 @@
           "couldnot_drag": "Hvis du ønsker at trække for at justere tidsintervallet, så fortsæt venligst til forhåndsvisningssiden for operationen.",
           "draggable": "Om det er muligt for brugere at opdatere begivenhedens tidsinterval ved at trække for at flytte begivenheden",
           "resizable": "Om det er muligt for brugere at opdatere begivenhedens tidsinterval og ændre tidsrummet ved at trække grænsen til en begivenhed for at forlænge eller forkorte tidsintervallet",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Efter trækning er deaktiveret, vil beskeden vises, når en bruger trækker begivenheden.",
+          "custom_message_resizable": "Efter ændring af størrelse er deaktiveret, vil meddelelsen vises, når en bruger ændrer størrelsen på begivenheden."
         },
         "table": {
           "page_index": "Indeks af den side, du ønsker at vælge.",
@@ -1784,20 +1784,20 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Filtertilstand. OG eller OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Om det er tilladt for brugere at vælge en celle",
+          "supported_in_the_row": "Understøttet i rækken enkelt markeringstilstand. Når du har aktiveret det, skal du klikke på et andet område end tabellen for at fravælge rækken."
         },
         "previous_cursor": "Brug handlingsdata til at indstille den forrige markør. For eksempel  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "For at indstille inputtypen",
+          "show_visible_button": "For at angive, om den synlige knap skal vises"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
+          "start_button_text": "Teksten der vises på knappen, når optagelsen ikke startes",
+          "stop_button_text": "Teksten som vises på knappen under optagelse",
+          "clear_button_text": "Teksten, der vises på knappen, når optagelsen er afsluttet",
+          "min_duration": "Minimumsvarighed for registrering",
+          "max_duration": "Maksimal varighed for registrering"
         }
       },
       "setter_option": {
@@ -1870,8 +1870,8 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Adgangskode",
+          "search": "Søg"
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1919,10 @@
           "directory": "Kun mapper er tilladt."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Optagelse tilladelse kræves",
+          "cannot_set_value_dur": "Kan ikke indstille værdi under optagelse",
+          "min_duration": "Optager mindst {{minimum}}s",
+          "max_duration": "Optager højst {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2146,7 +2146,7 @@
       "size_exceed": "Datastørrelse overskrider grænsen (nuværende størrelse: {{current_size}} bytes, grænse: {{limit_size}} bytes)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "Det aktuelle inputindhold er for langt, vi er stoppet automatisk beregning af data, du kan stadig fortsætte med at input, dette vil ikke påvirke din brug."
     }
   },
   "exit_preview": "Afslut Forhåndsvisning",
@@ -2527,10 +2527,10 @@
       "name_duplicated": "Denne ressource ID konflikter i disse begivenheder, brug venligst det samme navn eller andet id"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Skift gruppe"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Optager"
     }
   },
   "page": {
