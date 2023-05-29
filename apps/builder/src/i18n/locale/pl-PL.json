@@ -2938,5 +2938,11 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Wylogowanie nie powiodło się. Spróbuj ponownie później."
+  "logout_failed": "Wylogowanie nie powiodło się. Spróbuj ponownie później.",
+  "drive": {
+    "message": {
+      "start_upload": "Start upload",
+      "start_download": "Start download"
+    }
+  }
 }
