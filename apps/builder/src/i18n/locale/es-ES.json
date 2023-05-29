@@ -2938,5 +2938,11 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Error al cerrar sesión. Inténtalo de nuevo más tarde."
+  "logout_failed": "Error al cerrar sesión. Inténtalo de nuevo más tarde.",
+  "drive": {
+    "message": {
+      "start_upload": "Start upload",
+      "start_download": "Start download"
+    }
+  }
 }
