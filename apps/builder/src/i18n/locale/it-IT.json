@@ -207,7 +207,7 @@
             "access_type": "Tipo di accesso"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Comando"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0),lasciare vuoto per 1.0",
             "repetition_penalty": "Fluttuante (0,0-100,0)",
             "max_time": "Fluttuante (0.0-120.0) per definire la quantità di tempo in secondi",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Seleziona un tipo"
           },
           "tips": {
             "mode_id": "Vai al <0>Mozzo Modello</0> e seleziona il modello che vuoi utilizzare.",
@@ -1161,9 +1161,9 @@
           "DragOrClickNoEventArea": "Trascina o clicca su nessuna area evento",
           "rowClick": "Clic riga",
           "refresh": "Aggiorna",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Cambiamento filtri",
+          "rowSelectChange": "Modifica selezione riga",
+          "onCellSelect": "Seleziona una cella"
         },
         "image_list": {
           "title": "Immagini",
@@ -1229,9 +1229,9 @@
           "end_placeholder": "Ora di fine"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Inizia la registrazione",
+          "stop_button_text": "Ferma",
+          "clear_button_text": "Pulisci"
         }
       },
       "setter_group": {
@@ -1300,7 +1300,7 @@
           "value": "Valori del dataset"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Posizione dell'etichetta dell'opzione"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1550,8 @@
           "event_text": "Testo",
           "draggable": "Trascinabile",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Messaggio personalizzato quando disabilitato il trascinamento",
+          "custom_message_resizable": "Messaggio personalizzato quando disabilita il ridimensionamento"
         },
         "table": {
           "page_index": "Indice di pagina",
@@ -1583,20 +1583,20 @@
           "next_cursor": "Cursore successivo",
           "has_next_page": "Ha la pagina successiva",
           "currency_code": "Codice valuta",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Selezione celle",
+          "click_outside_to_des": "Clicca fuori per deselezionare"
         },
         "previous_cursor": "Cursore precedente",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Tipo",
+          "show_visible_button": "Mostra pulsante visibile"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Testo pulsante di avvio",
+          "clear_button_text": "Testo pulsante cancella",
+          "min_duration": "Durata minima (s)",
+          "max_duration": "Durata massima (s)",
+          "stop_button_text": "Testo pulsante di interruzione"
         }
       },
       "setter_tooltip": {
@@ -1684,16 +1684,16 @@
           "hide_output": "Imposta se nascondere il valore durante lo scorrimento"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "L'etichetta dell'opzione",
+          "value": "Un array delle opzioni selezionate racchiuse in {{. Per esempio, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Il valore è duplicato. Si prega di utilizzare valori univoci per evitare errori.",
+          "caption": "Una didascalia visualizzata sotto l'etichetta",
+          "disabled": "Indica se disabilitare l'opzione",
+          "datasource": "La sorgente dati del gruppo switch. Usa {{actionName.data}} per utilizzare i dati dai tuoi database o dalle API",
+          "default_value": "Un array racchiuso in {{ }}. Per esempio, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Elementi minimi consentiti per la scelta",
+          "choose_up_to": "Numero massimo di oggetti da scegliere",
+          "option_label_alignment": "La posizione delle etichette"
         },
         "step": {
           "default_step": "Passo predefinito",
@@ -1752,8 +1752,8 @@
           "couldnot_drag": "Se si desidera trascinare per regolare l'intervallo di tempo, si prega di procedere alla pagina di anteprima per l'operazione.",
           "draggable": "Indica se consentire agli utenti di aggiornare l'intervallo di tempo degli eventi trascinando per spostare l'evento",
           "resizable": "Indica se consentire agli utenti di aggiornare l'intervallo di tempo degli eventi e modificare l'intervallo di tempo trascinando il bordo di un evento per allungare o ridurre l'intervallo di tempo",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Dopo il trascinamento è disabilitato, il messaggio verrà visualizzato quando un utente trascina l'evento.",
+          "custom_message_resizable": "Dopo il ridimensionamento è disabilitato, il messaggio verrà visualizzato quando un utente ridimensiona l'evento."
         },
         "table": {
           "page_index": "Indice della pagina che si desidera selezionare.",
@@ -1784,20 +1784,20 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "La modalità filtro. AND o OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Indica se consentire agli utenti di selezionare una cella",
+          "supported_in_the_row": "Supportato nella modalità di selezione singola riga. Dopo averlo abilitato, fare clic su un'area diversa dalla tabella per deselezionare la riga."
         },
         "previous_cursor": "Usa i dati di azione per impostare il cursore precedente. Per esempio,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Per impostare il tipo di input",
+          "show_visible_button": "Per impostare se mostrare il pulsante visibile"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
+          "start_button_text": "Il testo visualizzato sul pulsante quando la registrazione non viene avviata",
+          "stop_button_text": "Il testo visualizzato sul pulsante durante la registrazione",
+          "clear_button_text": "Il testo visualizzato sul pulsante quando la registrazione è completata",
+          "min_duration": "Durata minima della registrazione",
+          "max_duration": "Durata massima della registrazione"
         }
       },
       "setter_option": {
@@ -1871,7 +1871,7 @@
         "input": {
           "input": "Input",
           "password": "Password",
-          "search": "Search"
+          "search": "Cerca"
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1919,10 @@
           "directory": "Sono consentite solo le directory."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Richiesta autorizzazione di registrazione",
+          "cannot_set_value_dur": "Impossibile impostare il valore durante la registrazione",
+          "min_duration": "Per favore registra almeno {{minimum}}s",
+          "max_duration": "Per favore registra al massimo {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2146,7 +2146,7 @@
       "size_exceed": "La dimensione dei dati supera il limite (dimensione corrente: {{current_size}} byte, limite: {{limit_size}} byte)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "Il contenuto di input corrente è troppo lungo, abbiamo smesso di calcolare automaticamente i dati, puoi ancora continuare a inserire, questo non influenzerà il tuo utilizzo."
     }
   },
   "exit_preview": "Esci Dall'Anteprima",
@@ -2527,10 +2527,10 @@
       "name_duplicated": "Questo ID risorsa è in conflitto in questi eventi, si prega di utilizzare lo stesso nome o id diverso"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Cambia gruppo"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Registrazione"
     }
   },
   "page": {
