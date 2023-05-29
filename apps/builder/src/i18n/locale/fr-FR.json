@@ -1685,15 +1685,15 @@
         },
         "switch_group": {
           "label": "L’étiquette de l’option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "value": "Un tableau des options sélectionnées incluses dans {{. Par exemple, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "La valeur est dupliquée. Veuillez utiliser des valeurs uniques pour éviter les erreurs.",
+          "caption": "Une légende affichée sous l'étiquette",
+          "disabled": "Désactivation ou non de l'option",
+          "datasource": "La source de données du groupe de commutateurs. Utilisez {{actionName.data}} pour utiliser les données de vos bases de données ou APIs",
+          "default_value": "Un tableau arboré dans {{ }}. Par exemple, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Éléments minimum autorisés à choisir",
+          "choose_up_to": "Nombre maximum d'éléments autorisés à choisir",
+          "option_label_alignment": "La position des étiquettes"
         },
         "step": {
           "default_step": "Étape par défaut",
@@ -1752,8 +1752,8 @@
           "couldnot_drag": "Si vous souhaitez faire glisser pour ajuster la plage de temps, veuillez passer à la page d'aperçu pour l'opération.",
           "draggable": "Permettre aux utilisateurs de mettre à jour la plage de temps de l'événement en faisant glisser pour déplacer l'événement",
           "resizable": "Permettre aux utilisateurs de mettre à jour la plage de temps de l'événement et de modifier la plage de temps en faisant glisser la bordure d'un événement pour allonger ou raccourcir la durée",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Une fois que le glissement est désactivé, le message s'affichera lorsqu'un utilisateur fait glisser l'événement.",
+          "custom_message_resizable": "Une fois le redimensionnement désactivé, le message s'affichera lorsqu'un utilisateur redimensionne l'événement."
         },
         "table": {
           "page_index": "Index de la page que vous souhaitez sélectionner.",
@@ -1784,20 +1784,20 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Le mode filtre. ET OU OU.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Permettre aux utilisateurs de sélectionner une cellule",
+          "supported_in_the_row": "Pris en charge dans le mode de sélection simple ligne. Après l'avoir activé, cliquez sur une zone autre que la table pour désélectionner la ligne."
         },
         "previous_cursor": "Utilisez les données de l'action pour définir le curseur précédent. Par exemple,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Pour définir le type d'entrée",
+          "show_visible_button": "Pour définir s'il faut afficher le bouton visible"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
+          "start_button_text": "Le texte affiché sur le bouton lorsque l'enregistrement n'est pas démarré",
+          "stop_button_text": "Le texte affiché sur le bouton lors de l'enregistrement",
+          "clear_button_text": "Le texte affiché sur le bouton lorsque l'enregistrement est terminé",
           "min_duration": "Durée minimale pour l'enregistrement",
-          "max_duration": "Maximum duration for recording"
+          "max_duration": "Durée maximale pour l'enregistrement"
         }
       },
       "setter_option": {
@@ -1919,10 +1919,10 @@
           "directory": "Seuls les répertoires sont autorisés."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Autorisation d'enregistrement requise",
+          "cannot_set_value_dur": "Impossible de définir la valeur pendant l'enregistrement",
+          "min_duration": "Veuillez enregistrer au moins {{minimum}}s",
+          "max_duration": "Veuillez enregistrer au plus {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2146,7 +2146,7 @@
       "size_exceed": "La taille des données dépasse la limite (taille actuelle: {{current_size}} octets, limite: {{limit_size}} octets)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "Le contenu d'entrée actuel est trop long, nous avons arrêté de calculer automatiquement les données, vous pouvez continuer à entrer, cela n'affectera pas votre utilisation."
     }
   },
   "exit_preview": "Quitter l'aperçu",
@@ -2527,10 +2527,10 @@
       "name_duplicated": "Cet ID de ressource entre en conflit dans ces événements, veuillez utiliser le même nom ou l'identifiant différent"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Changer de groupe"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Enregistrement en cours"
     }
   },
   "page": {
