@@ -49,7 +49,7 @@ export const messageHeaderTimeStyle = css`
   line-height: 20px;
   color: ${getColor("grayBlue", "03")};
 `
-export const messageContentStyle = css`
+export const messageContentStyle = (isOwn: boolean) => css`
   .cs-message__content-wrapper {
     margin-top: 12px;
   }
@@ -64,9 +64,8 @@ export const messageContentStyle = css`
     background-color: transparent !important;
   }
   .cs-message__avatar {
-    margin-top: 12px;
+    margin: ${isOwn ? "12px 40px 0 16px" : "12px 16px 0 40px"} !important;
     width: 32px;
-    margin-right: 16px;
     .cs-avatar {
       height: 32px;
       width: 32px;

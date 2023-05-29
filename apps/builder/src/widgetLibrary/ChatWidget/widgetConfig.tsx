@@ -13,7 +13,7 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["chat", "聊天"],
   sessionType: "PRESENTATION",
   resizeDirection: RESIZE_DIRECTION.ALL,
-  w: 20,
+  w: 18,
   h: 50,
   childrenNode: [
     {
@@ -93,5 +93,8 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
       senderAvatar: "",
       messageType: "",
     },
+    radius: "4px",
+    borderWidth: "1px",
+    shadow: "small",
   },
 }
