@@ -180,6 +180,12 @@ import {
   RateWidget,
 } from "@/widgetLibrary/RateWidget"
 import {
+  RICH_TEXT_EVENT_HANDLER_CONFIG,
+  RICH_TEXT_PANEL_CONFIG,
+  RICH_TEXT_WIDGET_CONFIG,
+  RichTextWidget,
+} from "@/widgetLibrary/RichTextWidget"
+import {
   SELECT_EVENT_HANDLER_CONFIG,
   SELECT_PANEL_CONFIG,
   SELECT_WIDGET_CONFIG,
@@ -314,6 +320,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: RANGE_SLIDER_WIDGET_CONFIG,
     panelConfig: RANGE_SLIDER_PANEL_CONFIG,
     eventHandlerConfig: RANGE_SLIDER_EVENT_HANDLER_CONFIG,
+  },
+  RICH_TEXT_WIDGET: {
+    widget: RichTextWidget,
+    config: RICH_TEXT_WIDGET_CONFIG,
+    panelConfig: RICH_TEXT_PANEL_CONFIG,
+    eventHandlerConfig: RICH_TEXT_EVENT_HANDLER_CONFIG,
   },
   // select inputs
   SWITCH_WIDGET: {
