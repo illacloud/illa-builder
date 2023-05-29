@@ -207,7 +207,7 @@
             "access_type": "Type toegang"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Opdracht"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0),laat leeg voor 1.0",
             "repetition_penalty": "Zweef (0.0-100.0)",
             "max_time": "Zweef (0,0-120.0) om de hoeveelheid tijd in seconden te bepalen",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Selecteer een type"
           },
           "tips": {
             "mode_id": "Ga naar <0>Model Hub</0> en selecteer het model dat je wilt gebruiken.",
@@ -1161,9 +1161,9 @@
           "DragOrClickNoEventArea": "Sleep of klik op geen enkel event gebied",
           "rowClick": "Rij klikken",
           "refresh": "Vernieuwen",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Wijziging filters",
+          "rowSelectChange": "Rij selecteer verandering",
+          "onCellSelect": "Selecteer een cel"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1229,9 +1229,9 @@
           "end_placeholder": "Einde tijd"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Start de opname",
+          "stop_button_text": "Stoppen",
+          "clear_button_text": "Verwijderen"
         }
       },
       "setter_group": {
@@ -1300,7 +1300,7 @@
           "value": "Dataset waarden"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Positie van het optielabel"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1550,8 @@
           "event_text": "Tekstveld",
           "draggable": "Versleepbaar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Aangepast bericht wanneer slepen uitgeschakeld",
+          "custom_message_resizable": "Aangepast bericht uitschakelen grootte wijzigen"
         },
         "table": {
           "page_index": "Pagina index",
@@ -1583,20 +1583,20 @@
           "next_cursor": "Volgende cursor",
           "has_next_page": "Heeft een volgende pagina",
           "currency_code": "Valuta code",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Cel selectie",
+          "click_outside_to_des": "Klik buiten om te deselecteren"
         },
         "previous_cursor": "Vorige cursor",
         "input": {
           "type": "Type",
-          "show_visible_button": "Show visible button"
+          "show_visible_button": "Toon zichtbare knop"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Tekst van de startknop",
+          "clear_button_text": "Tekst leegmaken knop",
+          "min_duration": "Min duur (s)",
+          "max_duration": "Max duur (s)",
+          "stop_button_text": "Tekst van de knop stoppen"
         }
       },
       "setter_tooltip": {
@@ -1684,16 +1684,16 @@
           "hide_output": "Stel in of de waarde bij het glijden moet worden verborgen"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Het label van de optie",
+          "value": "Een array van de geselecteerde opties ingesloten in {{. Bijvoorbeeld, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Deze waarde wordt gedupliceerd. Gebruik unieke waarden om fouten te voorkomen.",
+          "caption": "Een onderschrift weergegeven onder het label",
+          "disabled": "Schakel de optie uit",
+          "datasource": "De gegevensbron van de schakelgroep. Gebruik {{actionName.data}} om de gegevens uit uw databases of API's te gebruiken",
+          "default_value": "Een array omhelsde in {{ }}. Bijvoorbeeld, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum aantal items toegestaan om te kiezen",
+          "choose_up_to": "Maximaal aantal items toegestaan om te kiezen",
+          "option_label_alignment": "De positie van de labels"
         },
         "step": {
           "default_step": "Standaard stap",
@@ -1752,8 +1752,8 @@
           "couldnot_drag": "Als u wilt slepen om het tijdsbereik aan te passen, ga dan naar de voorbeeldpagina voor de bewerking.",
           "draggable": "Of gebruikers nu toestaan om de periode bij te werken door te slepen om de gebeurtenis te verplaatsen",
           "resizable": "Of gebruikers nu toestaan om het tijdsbereik bij te werken en de tijdsspanne te wijzigen door de grens van een gebeurtenis te slepen om de tijdsspanne te verlengen of te verkorten",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Na slepen is uitgeschakeld, wordt het bericht weergegeven wanneer een gebruiker het event slept.",
+          "custom_message_resizable": "Nadat het formaat is uitgeschakeld, wordt het bericht weergegeven wanneer een gebruiker de afspraak aanpast."
         },
         "table": {
           "page_index": "Index van de pagina die u wilt selecteren.",
@@ -1784,20 +1784,20 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "De filtermodus. AND of OOR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Of gebruikers een cel mogen selecteren",
+          "supported_in_the_row": "Ondersteund in rij enkele selectie modus. Na het inschakelen klik op een ander gebied dan de tabel om de rij uit te schakelen."
         },
         "previous_cursor": "Gebruik de actie gegevens om de vorige cursor in te stellen. Bijvoorbeeld,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Om het invoertype in te stellen",
+          "show_visible_button": "Om te bepalen of de zichtbare knop moet worden weergegeven"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
+          "start_button_text": "De tekst die wordt weergegeven op de knop wanneer de opname niet wordt gestart",
+          "stop_button_text": "De tekst die wordt weergegeven op de knop bij het opnemen",
+          "clear_button_text": "De tekst die wordt weergegeven op de knop wanneer de opname is voltooid",
+          "min_duration": "Minimale duur voor opname",
+          "max_duration": "Maximale duur voor opname"
         }
       },
       "setter_option": {
@@ -1870,8 +1870,8 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Wachtwoord",
+          "search": "Zoeken"
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1919,10 @@
           "directory": "Alleen mappen zijn toegestaan."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Opnamemachtiging vereist",
+          "cannot_set_value_dur": "Kan waarde niet instellen tijdens opname",
+          "min_duration": "Neem ten minste {{minimum}}s op",
+          "max_duration": "Opname mag maximaal {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2146,7 +2146,7 @@
       "size_exceed": "Data grootte overschrijdt de limiet (huidige grootte: {{current_size}} bytes, limiet: {{limit_size}} bytes)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "De huidige invoerinhoud is te lang, we hebben gestopt met het automatisch berekenen van gegevens, u kunt nog steeds invoer invoeren, dit heeft geen invloed op uw gebruik."
     }
   },
   "exit_preview": "Voorvertoning afsluiten",
@@ -2527,10 +2527,10 @@
       "name_duplicated": "Deze resource ID conflicteert in deze evenementen, gebruik alstublieft dezelfde naam of andere id"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Verander van groep"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Opnemenchar@@0"
     }
   },
   "page": {
