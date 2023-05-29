@@ -207,7 +207,7 @@
             "access_type": "Τύπος πρόσβασης"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Εντολή"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0), αφήστε κενό για 1.0",
             "repetition_penalty": "Επιπλέουν (0.0-100.0)",
             "max_time": "Επιπλέουν (0.0-120.0) για να ορίσετε το χρονικό διάστημα σε δευτερόλεπτα",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Επιλέξτε έναν τύπο"
           },
           "tips": {
             "mode_id": "Πηγαίνετε στο <0>Model Hub</0> και επιλέξτε το μοντέλο που θέλετε να χρησιμοποιήσετε.",
@@ -1161,9 +1161,9 @@
           "DragOrClickNoEventArea": "Σύρετε ή μην κάνετε κλικ στην περιοχή γεγονότων",
           "rowClick": "Κλικ γραμμής",
           "refresh": "Ανανέωση",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Αλλαγή φίλτρων",
+          "rowSelectChange": "Αλλαγή επιλογής γραμμής",
+          "onCellSelect": "Επιλέξτε ένα κελί"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1229,9 +1229,9 @@
           "end_placeholder": "Ώρα λήξης"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Έναρξη εγγραφής",
+          "stop_button_text": "Διακοπή",
+          "clear_button_text": "Εκκαθάριση"
         }
       },
       "setter_group": {
@@ -1300,7 +1300,7 @@
           "value": "Τιμές συνόλου δεδομένων"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Θέση της ετικέτας επιλογής"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1550,8 @@
           "event_text": "Κείμενο",
           "draggable": "Μετακινούμενο",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Προσαρμοσμένο μήνυμα όταν είναι απενεργοποιημένο το σύρσιμο",
+          "custom_message_resizable": "Προσαρμοσμένο μήνυμα κατά την απενεργοποίηση αλλαγής μεγέθους"
         },
         "table": {
           "page_index": "Ευρετήριο σελίδας",
@@ -1583,20 +1583,20 @@
           "next_cursor": "Επόμενος δρομέας",
           "has_next_page": "Έχει επόμενη σελίδα",
           "currency_code": "Κωδικός νομίσματος",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Επιλογή κελιού",
+          "click_outside_to_des": "Κάντε κλικ έξω για να αποεπιλέξετε"
         },
         "previous_cursor": "Προηγούμενος δρομέας",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Τύπος",
+          "show_visible_button": "Εμφάνιση ορατού κουμπιού"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Κείμενο κουμπιού εκκίνησης",
+          "clear_button_text": "Καθαρισμός κειμένου κουμπιού",
+          "min_duration": "Ελάχιστη διάρκεια (ες)",
+          "max_duration": "Μέγιστη διάρκεια (ες)",
+          "stop_button_text": "Σταμάτημα κειμένου κουμπιού"
         }
       },
       "setter_tooltip": {
@@ -1684,16 +1684,16 @@
           "hide_output": "Ορίστε αν θα γίνει απόκρυψη της τιμής κατά την ολίσθηση"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Η ετικέτα της επιλογής",
+          "value": "Ένας πίνακας από τις επιλεγμένες επιλογές που εσώκλεισαν στο {. Για παράδειγμα, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Η τιμή είναι διπλότυπη. Παρακαλούμε χρησιμοποιήστε μοναδικές τιμές για να αποφύγετε σφάλματα.",
+          "caption": "Ένας τίτλος που εμφανίζεται κάτω από την ετικέτα",
+          "disabled": "Αν θα απενεργοποιηθεί η επιλογή",
+          "datasource": "Η πηγή δεδομένων της ομάδας αλλαγών. Χρησιμοποιήστε {{actionName.data}} για να χρησιμοποιήσετε τα δεδομένα από τις βάσεις δεδομένων ή τα APIs σας",
+          "default_value": "Ένας πίνακας εσωκλείστηκε στο {{ }}. Για παράδειγμα, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Ελάχιστα στοιχεία που επιτρέπεται να επιλέξετε",
+          "choose_up_to": "Μέγιστος αριθμός αντικειμένων που επιτρέπεται να επιλέξετε",
+          "option_label_alignment": "Η θέση των ετικετών"
         },
         "step": {
           "default_step": "Προεπιλεγμένο βήμα",
@@ -1752,8 +1752,8 @@
           "couldnot_drag": "Αν θέλετε να σύρετε για να προσαρμόσετε το χρονικό εύρος, παρακαλούμε προχωρήστε στη σελίδα προεπισκόπησης για τη λειτουργία.",
           "draggable": "Αν επιτρέπεται στους χρήστες να ενημερώσουν το χρονικό εύρος της εκδήλωσης σύροντας για τη μετακίνηση του συμβάντος",
           "resizable": "Αν θα επιτρέπεται στους χρήστες η ενημέρωση του χρονικού εύρους συμβάντων και η αλλαγή του χρονικού εύρους σύροντας το όριο ενός γεγονότος για να επιμηκύνει ή να συντομεύσει το χρονικό διάστημα",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Αφού το σύρσιμο είναι απενεργοποιημένο, το μήνυμα θα εμφανίζεται όταν ένας χρήστης σύρει το γεγονός.",
+          "custom_message_resizable": "Αφού απενεργοποιηθεί η αλλαγή μεγέθους, το μήνυμα θα εμφανίζεται όταν ένας χρήστης αλλάξει το μέγεθός του."
         },
         "table": {
           "page_index": "Ευρετήριο της σελίδας που θέλετε να επιλέξετε.",
@@ -1784,20 +1784,20 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Η λειτουργία φίλτρου. ΚΑΙ ή OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Αν θα επιτρέπεται στους χρήστες να επιλέγουν ένα κελί",
+          "supported_in_the_row": "Υποστηρίζεται στη γραμμή μονής επιλογής. Μετά την ενεργοποίησή της, κάντε κλικ σε μια περιοχή διαφορετική από τον πίνακα για να αποεπιλέξετε τη γραμμή."
         },
         "previous_cursor": "Χρησιμοποιήστε τα δεδομένα ενέργειας για να ορίσετε τον προηγούμενο δρομέα. Για παράδειγμα,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Για να ορίσετε τον τύπο εισόδου",
+          "show_visible_button": "Για να ορίσετε αν θα εμφανίζεται το ορατό κουμπί"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
+          "start_button_text": "Το κείμενο που εμφανίζεται στο κουμπί όταν δεν ξεκινά η εγγραφή",
+          "stop_button_text": "Το κείμενο που εμφανίζεται στο κουμπί κατά την εγγραφή",
+          "clear_button_text": "Το κείμενο που εμφανίζεται στο κουμπί όταν ολοκληρωθεί η εγγραφή",
+          "min_duration": "Ελάχιστη διάρκεια καταγραφής",
+          "max_duration": "Μέγιστη διάρκεια καταγραφής"
         }
       },
       "setter_option": {
@@ -1870,8 +1870,8 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Κωδικός",
+          "search": "Αναζήτηση"
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1919,10 @@
           "directory": "Επιτρέπονται μόνο κατάλογοι."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Απαιτείται άδεια εγγραφής",
+          "cannot_set_value_dur": "Αδυναμία ορισμού τιμής κατά την εγγραφή",
+          "min_duration": "Καταγράψτε τουλάχιστον {{minimum}}s",
+          "max_duration": "Παρακαλούμε εγγραφείτε το πολύ {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2146,7 +2146,7 @@
       "size_exceed": "Το μέγεθος των δεδομένων υπερβαίνει το όριο (τρέχον μέγεθος: {{current_size}} bytes, όριο: {{limit_size}} bytes)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "Το τρέχον περιεχόμενο εισόδου είναι πολύ μεγάλο, έχουμε σταματήσει αυτόματα τον υπολογισμό των δεδομένων, μπορείτε να συνεχίσετε να εισάγετε, αυτό δεν θα επηρεάσει τη χρήση σας."
     }
   },
   "exit_preview": "Έξοδος Προεπισκόπησης",
@@ -2527,10 +2527,10 @@
       "name_duplicated": "Αυτό το ID πόρου συγκρούεται σε αυτά τα γεγονότα, παρακαλώ χρησιμοποιήστε το ίδιο όνομα ή διαφορετικό id"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Εναλλαγή ομάδας"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Εγγραφή"
     }
   },
   "page": {
