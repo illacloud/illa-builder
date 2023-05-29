@@ -207,7 +207,7 @@
             "access_type": "Tip de acces"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Comanda"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0,0-100,0), lăsaţi necompletat pentru 1,0",
             "repetition_penalty": "Float (0,0-100,0)",
             "max_time": "Float (0,0-120.0) pentru a defini cantitatea de timp în secunde",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Selectați un tip"
           },
           "tips": {
             "mode_id": "Mergeți la <0>Model Hub</0> și selectați modelul pe care doriți să îl folosiți.",
@@ -1161,9 +1161,9 @@
           "DragOrClickNoEventArea": "Trage sau fă clic pe zona de eveniment",
           "rowClick": "Clic pe rând",
           "refresh": "Împrospătează",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Filtre schimbate",
+          "rowSelectChange": "Rând selectare modificare",
+          "onCellSelect": "Selectați o celulă"
         },
         "image_list": {
           "title": "Imagini",
@@ -1229,9 +1229,9 @@
           "end_placeholder": "Ora de încheiere"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Începe înregistrarea",
+          "stop_button_text": "Oprește",
+          "clear_button_text": "Curăță"
         }
       },
       "setter_group": {
@@ -1300,7 +1300,7 @@
           "value": "Valori date"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Poziția etichetei opțiunii"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1550,8 @@
           "event_text": "Text",
           "draggable": "Draggable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Mesaj personalizat atunci când este dezactivat",
+          "custom_message_resizable": "Mesaj personalizat la dezactivarea redimensionării"
         },
         "table": {
           "page_index": "Indexul paginii",
@@ -1583,20 +1583,20 @@
           "next_cursor": "Următorul cursor",
           "has_next_page": "Are pagina următoare",
           "currency_code": "Codul valutei",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Selecție celulă",
+          "click_outside_to_des": "Click afară pentru a deselecta"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Tip",
+          "show_visible_button": "Arată butonul vizibil"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Text buton de pornire",
+          "clear_button_text": "Ștergeți textul butonului",
+          "min_duration": "Durata minimă(e)",
+          "max_duration": "Durată maximă (durate)",
+          "stop_button_text": "Opriți textul butonului"
         }
       },
       "setter_tooltip": {
@@ -1684,16 +1684,16 @@
           "hide_output": "Setați dacă să ascundeți valoarea atunci când glisați"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Eticheta opțiunii",
+          "value": "O serie de opțiuni selectate închise în {{. De exemplu, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Valoarea este duplicată. Vă rugăm să folosiţi valori unice pentru a evita erorile.",
+          "caption": "O legenda afisata sub eticheta",
+          "disabled": "Dezactivarea opțiunii",
+          "datasource": "Sursa de date a grupului comutator. Utilizați {{actionName.data}} pentru a utiliza datele din bazele de date sau din API-uri",
+          "default_value": "Un array închis în {{ }}. De exemplu, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Elemente minime care pot fi alese",
+          "choose_up_to": "Numărul maxim de elemente care pot fi alese",
+          "option_label_alignment": "Poziția etichetelor"
         },
         "step": {
           "default_step": "Pasul implicit",
@@ -1752,8 +1752,8 @@
           "couldnot_drag": "Dacă doriți să glisați pentru a ajusta intervalul de timp, continuați la pagina de previzualizare pentru operațiune.",
           "draggable": "Dacă permiteţi utilizatorilor să actualizeze intervalul de timp al evenimentului prin glisarea pentru a muta evenimentul",
           "resizable": "Indiferent dacă permiteți utilizatorilor să actualizeze intervalul de timp al evenimentului și schimbați intervalul de timp prin glisarea marginii unui eveniment pentru a prelungi sau scurta intervalul de timp",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "După ce tragerea este dezactivată, mesajul va fi afișat atunci când un utilizator trage evenimentul.",
+          "custom_message_resizable": "După ce redimensionarea este dezactivată, mesajul se va afișa când un utilizator redimensionează evenimentul."
         },
         "table": {
           "page_index": "Index al paginii pe care doriţi să o selectaţi.",
@@ -1784,20 +1784,20 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Modul filtre. ŞI sau SAU.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Dacă permiteți utilizatorilor să selecteze o celulă",
+          "supported_in_the_row": "Acceptat în modul de selecţie simplă a rândului. După activare, faceţi clic pe o altă zonă decât tabelul pentru a dezselecta rândul."
         },
         "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Pentru a seta tipul de intrare",
+          "show_visible_button": "Pentru a seta dacă se afișează butonul vizibil"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
+          "start_button_text": "Textul afişat pe buton atunci când înregistrarea nu este pornită",
+          "stop_button_text": "Textul afişat pe buton în timpul înregistrării",
+          "clear_button_text": "Textul afişat pe buton atunci când înregistrarea este finalizată",
+          "min_duration": "Durata minimă pentru înregistrare",
+          "max_duration": "Durata maximă pentru înregistrare"
         }
       },
       "setter_option": {
@@ -1870,8 +1870,8 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Parolă",
+          "search": "Caută"
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1919,10 @@
           "directory": "Doar directoarele sunt permise."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Permisiunea de înregistrare necesară",
+          "cannot_set_value_dur": "Nu se poate seta valoarea în timpul înregistrării",
+          "min_duration": "Vă rugăm să înregistrați cel puțin {{minimum}}s",
+          "max_duration": "Vă rugăm să înregistrați cel mult {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2146,7 +2146,7 @@
       "size_exceed": "Dimensiunea datelor depășește limita (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "Conținutul curent de intrare este prea lung, am oprit calcularea automată a datelor, puteți continua să intrați, acest lucru nu va afecta utilizarea."
     }
   },
   "exit_preview": "Ieșiți din previzualizare",
@@ -2527,10 +2527,10 @@
       "name_duplicated": "Acest ID de resurse este în conflict în aceste evenimente, vă rugăm să folosiți același nume sau un ID diferit"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Schimbă grupul"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Înregistrare"
     }
   },
   "page": {
