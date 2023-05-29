@@ -2938,5 +2938,11 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "로그아웃 실패"
+  "logout_failed": "로그아웃 실패",
+  "drive": {
+    "message": {
+      "start_upload": "Start upload",
+      "start_download": "Start download"
+    }
+  }
 }
