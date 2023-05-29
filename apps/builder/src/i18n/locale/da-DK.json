@@ -2938,5 +2938,11 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Mislykkedes at logge ud. Prøv igen senere."
+  "logout_failed": "Mislykkedes at logge ud. Prøv igen senere.",
+  "drive": {
+    "message": {
+      "start_upload": "Start upload",
+      "start_download": "Start download"
+    }
+  }
 }
