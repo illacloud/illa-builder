@@ -2938,5 +2938,11 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Не удалось выйти из системы. Пожалуйста, повторите попытку позже."
+  "logout_failed": "Не удалось выйти из системы. Пожалуйста, повторите попытку позже.",
+  "drive": {
+    "message": {
+      "start_upload": "Start upload",
+      "start_download": "Start download"
+    }
+  }
 }
