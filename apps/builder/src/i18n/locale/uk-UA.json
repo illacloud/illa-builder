@@ -207,7 +207,7 @@
             "access_type": "Тип доступу"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Команда"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Плаваюча (0.0-100.0),залиште порожнім для 1.0",
             "repetition_penalty": "Поверх (0.0-100.0)",
             "max_time": "Поверх (0.0-120.0) для визначення часу в секундах",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Виберіть тип"
           },
           "tips": {
             "mode_id": "Перейдіть до <0>моделі Hub</0> та оберіть модель, яку ви хочете використати.",
@@ -1161,9 +1161,9 @@
           "DragOrClickNoEventArea": "Перетягніть або натисніть кнопку відсутності ділянки подій",
           "rowClick": "Натискання ряд",
           "refresh": "Оновити",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Зміна фільтрів",
+          "rowSelectChange": "Змінити вибір рядка",
+          "onCellSelect": "Обрати клітинку"
         },
         "image_list": {
           "title": "Малюнки",
@@ -1229,9 +1229,9 @@
           "end_placeholder": "Час завершення"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Розпочати запис",
+          "stop_button_text": "Зупинити",
+          "clear_button_text": "Очистити"
         }
       },
       "setter_group": {
@@ -1300,7 +1300,7 @@
           "value": "Значення Dataset"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Положення мітки параметрів"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1550,8 @@
           "event_text": "Текст",
           "draggable": "Перетягуємий",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Довільне повідомлення якщо вимкнути перетягування",
+          "custom_message_resizable": "Спеціальне повідомлення при забороні зміни розміру"
         },
         "table": {
           "page_index": "Індекс сторінки",
@@ -1583,20 +1583,20 @@
           "next_cursor": "Наступний курсор",
           "has_next_page": "Має наступну сторінку",
           "currency_code": "Код валюти",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Вибір клітинки",
+          "click_outside_to_des": "Натисніть на вулицю, щоб зняти виділення"
         },
         "previous_cursor": "Попередній курсор",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Тип",
+          "show_visible_button": "Показати кнопку видимої"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
+          "start_button_text": "Текст кнопки Пуск",
+          "clear_button_text": "Текст кнопки Очистити",
+          "min_duration": "Мін. тривалість (с)",
+          "max_duration": "Макс. тривалість (с)",
+          "stop_button_text": "Текст кнопки зупинити"
         }
       },
       "setter_tooltip": {
@@ -1684,16 +1684,16 @@
           "hide_output": "Визначає, чи слід приховувати значення при проведенні слайда"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Етикетка опції",
+          "value": "Масив вибраних опцій включений у {{. Наприклад, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Значення дублюється. Будь ласка, використовуйте унікальні значення, щоб уникнути помилок.",
+          "caption": "Заголовок, що відображається під міткою",
+          "disabled": "Чи відключити опцію",
+          "datasource": "Джерело передачі даних для групи перемикачів. Використовуйте {{actionName.data}} для використання даних з ваших баз даних або API",
+          "default_value": "Масив включено в {{ }}. Наприклад, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Мінімальні дозволені для вибору елементів",
+          "choose_up_to": "Максимально допустимий вибір елементів",
+          "option_label_alignment": "Позиція ярликів"
         },
         "step": {
           "default_step": "Крок за замовчуванням",
@@ -1752,8 +1752,8 @@
           "couldnot_drag": "Якщо ви хочете перетягнути для зміни діапазону часу, будь ласка, перейдіть на сторінку попереднього перегляду операцій.",
           "draggable": "Чи дозволяти користувачам оновлювати діапазон часу заходу, перетягуючи, щоб перемістити подію",
           "resizable": "Якщо користувачі зможуть оновлювати проміжок часу заходу і змінювати тривалість часу, перетягуючи межу події на тривалий, або скорочуючи тривалість часу",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Після перетягування вимкнено, повідомлення буде відображатися, коли користувач перетягне подію.",
+          "custom_message_resizable": "Після зміни розміру повідомлення буде вимкнуто, при зміні розміру події."
         },
         "table": {
           "page_index": "Індекс сторінки, яку ви хочете вибрати.",
@@ -1784,20 +1784,20 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Режим фільтра. І або АБО.",
           "currency_code": "Долари США",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Дозволити користувачам вибирати клітинку",
+          "supported_in_the_row": "Підтримується в режимі одного вибору рядка. Після увімкнення натисніть область поза таблицею, щоб зняти виділення з рядка."
         },
         "previous_cursor": "Використовуйте дані дій, щоб встановити попередній курсор. Наприклад,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Щоб встановити тип вводу",
+          "show_visible_button": "Вибір видимої кнопки"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
+          "start_button_text": "Текст, що відображається на кнопці, коли запис не запущено",
+          "stop_button_text": "Текст, що відображається на кнопці під час запису",
+          "clear_button_text": "Текст, що відображається на кнопці, коли запис завершено",
+          "min_duration": "Мінімальна тривалість для запису",
+          "max_duration": "Максимальна тривалість запису"
         }
       },
       "setter_option": {
@@ -1870,8 +1870,8 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Пароль",
+          "search": "Пошук"
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1919,10 @@
           "directory": "Дозволено лише каталоги."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Потрібен дозвіл на запис",
+          "cannot_set_value_dur": "Неможливо встановити значення під час запису",
+          "min_duration": "Будь ласка, записуйте принаймні {{minimum}}сек",
+          "max_duration": "Будь ласка, записуйте максимум {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2146,7 +2146,7 @@
       "size_exceed": "Розмір даних перевищує ліміт (поточний розмір: {{current_size}} байт, ліміт: {{limit_size}} байт)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "Поточний вхідний вміст задовгий, ми припинили обчислювати дані, ви все ще можете продовжувати введення, це не вплине на ваше використання."
     }
   },
   "exit_preview": "Вийти з режиму перегляду",
@@ -2527,10 +2527,10 @@
       "name_duplicated": "Цей ID ресурсу конфліктує в цих подіях. Будь ласка, використовуйте однакову назву або іншу ідентифікатор"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Змінити групу"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Запис"
     }
   },
   "page": {
