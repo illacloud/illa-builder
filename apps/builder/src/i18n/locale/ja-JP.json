@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0),1.0 の場合は空白のままにする",
             "repetition_penalty": "Float (0.0-100.0)",
             "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "タイプを選択"
           },
           "tips": {
             "mode_id": "<0>モデルハブ</0>に移動し、使用するモデルを選択します。",
@@ -2146,7 +2146,7 @@
       "size_exceed": "データサイズが制限を超えています (現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)"
     },
     "general": {
-      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+      "length_limit": "現在の入力内容が長すぎます。自動的にデータを計算するのを停止しました。引き続き入力することができます。これはあなたの使用に影響しません。"
     }
   },
   "exit_preview": "プレビューを終了",
