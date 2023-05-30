@@ -49,8 +49,8 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
       }
     }
 
-    navigator.permissions
-      .query({ name: "microphone" as PermissionName })
+    navigator?.permissions
+      ?.query({ name: "microphone" as PermissionName })
       .then((status) => {
         permissionStatus.current = status
         if (status.state === "granted" || status.state === "prompt") {
@@ -108,6 +108,7 @@ export const BaseRecorder: FC<BaseAudioRecorder> = (props) => {
           <div css={audioContainerStyle}>
             <WrappedAudio
               {...props}
+              key={url}
               url={url || value}
               controls={true}
               onPlay={emptyFun}
