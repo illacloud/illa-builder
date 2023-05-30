@@ -242,6 +242,9 @@ importers:
       hotkeys-js:
         specifier: ^3.10.1
         version: 3.10.1
+      html-to-draftjs:
+        specifier: ^1.5.0
+        version: 1.5.0(draft-js@0.11.7)(immutable@4.3.0)
       i18next:
         specifier: ^22.4.9
         version: 22.4.9
@@ -414,6 +417,9 @@ importers:
       '@types/fnv-plus':
         specifier: ^1.3.0
         version: 1.3.0
+      '@types/html-to-draftjs':
+        specifier: ^1.4.0
+        version: 1.4.0
       '@types/jshint':
         specifier: ^2.12.1
         version: 2.12.1
@@ -5717,7 +5723,6 @@ packages:
     dependencies:
       '@types/react': 18.0.27
       immutable: 3.7.6
-    dev: false
 
   /@types/draftjs-to-html@0.8.1:
     resolution: {integrity: sha512-NBkphQs+qZ/sAz/j1pCUaxkPAOx00LTsE88aMSSfcvK+UfCpjHJDqIMCkm6wKotuJvY5w0BtdRazQ0sAaXzPdg==}
@@ -5772,6 +5777,12 @@ packages:
       '@types/react': 18.0.27
       hoist-non-react-statics: 3.3.2
     dev: false
+
+  /@types/html-to-draftjs@1.4.0:
+    resolution: {integrity: sha512-w7Te62TAk2xkl+f/PRepVfaVbsArRYRACqH7Rv9H97gKqglQye3Cf8EArsKuSsN7vW6/zf1kTCsm/jnSR0gDQA==}
+    dependencies:
+      '@types/draft-js': 0.11.11
+    dev: true
 
   /@types/is-ci@3.0.0:
     resolution: {integrity: sha512-Q0Op0hdWbYd1iahB+IFNQcWXFq4O0Q5MwQP7uN0souuQ4rPg1vEYcnIOfr1gY+M+6rc8FGoRaBO1mOOvL29sEQ==}
@@ -9456,7 +9467,6 @@ packages:
   /immutable@3.7.6:
     resolution: {integrity: sha512-AizQPcaofEtO11RZhPPHBOJRdo/20MKQF9mBLnVkBoyHi1/zXK8fzVdnEpSV9gxqtnh6Qomfp3F0xT5qP/vThw==}
     engines: {node: '>=0.8.0'}
-    dev: false
 
   /immutable@4.3.0:
     resolution: {integrity: sha512-0AOCmOip+xgJwEVTQj1EfiDDOkPmuyllDuTuEX+DDXUgapLAsBIfkg3sxCYyCEA8mQqZrrxPUGjcOQ2JS3WLkg==}
