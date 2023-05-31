@@ -59,7 +59,7 @@ export const CHAT_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-message-replayMessageId`,
             labelName: i18n.t("editor.inspect.setter_label.replayMessageId"),
             labelDesc: i18n.t("editor.inspect.setter_tooltip.replayMessageId"),
-            attrName: "replayMessageIds",
+            attrName: "replyMessageIds",
             placeholder: "{{item.replayMessageIds}}",
             isSetterSingleRow: true,
             setterType: "OPTION_MAPPED_INPUT_SETTER",
