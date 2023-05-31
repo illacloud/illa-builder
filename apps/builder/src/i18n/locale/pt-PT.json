@@ -1163,7 +1163,9 @@
           "refresh": "atualizar",
           "filtersChange": "Alteração de filtros",
           "rowSelectChange": "Mudança de linha selecionada",
-          "onCellSelect": "Selecione uma célula"
+          "onCellSelect": "Selecione uma célula",
+          "Delete": "Delete",
+          "Reply": "Reply"
         },
         "image_list": {
           "title": "Imagens",
@@ -1236,6 +1238,7 @@
       },
       "setter_group": {
         "adornments": "AVORNOS",
+        "message": "MESSAGE",
         "basic": "BÁSICO",
         "column": "COLUNAS",
         "data": "DADOS",
@@ -1266,6 +1269,30 @@
         "event": "Evento"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Data source",
+          "message_id": "Message ID",
+          "message": "Message",
+          "message_type": "Message type",
+          "reply_message_id": "Reply message ID",
+          "send_time": "Send time",
+          "time_format": "Time format",
+          "sender_name": "Sender name",
+          "sender_id": "Sender ID",
+          "current_sender_id": "Current sender ID",
+          "sender_avatar": "Sender avatar",
+          "enable_message_selec": "Enable message selection",
+          "selection_type": "Selection type",
+          "loading_when_receivi": "Loading when receiving",
+          "loading_when_sending": "Loading when sending",
+          "show_avatar": "Show avatar",
+          "show_name": "Show name",
+          "show_send_time": "Show send time",
+          "show_footer": "Show footer",
+          "message_on_left": "Message on left",
+          "message_on_right": "Message on right",
+          "image_background": "Image background"
+        },
         "action": "Acão",
         "align": "Align",
         "allow_clear": "Permitir limpeza",
@@ -1654,6 +1681,30 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
+          "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
+          "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
+          "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
+          "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
+          "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
+          "time_format": "Set the format of sending time. For example, hh:MM:ss.",
+          "sender_name": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
+          "sender_id": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
+          "current_sender_id": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
+          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
+          "enable_message_selec": "Set whether to allow a message to be selected",
+          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
+          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
+          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
+          "show_avatar": "Set whether to show the avatar",
+          "show_name": "Set whether to show the name",
+          "show_send_time": "Set whether to show the send time",
+          "show_footer": "Set whether to show the footer",
+          "message_on_left": "Set the color of the messages on the left",
+          "message_on_right": "Set the color of the messages on the right",
+          "image_background": "Set a image background. Base64 and image URL are supported"
+        },
         "carousel_tips": "Use {{ item }} para obter valor da fonte de dados. Por exemplo, existem dois atributos na fonte de dados. Eles são imageUrl e url. Se você deseja ir para uma URL diferente quando clicar na imagem, use {{ item.url }} para definir o url.",
         "data_source": "Uma fonte de dados para definir itens de imagem usando avaliação mapeada. Use uma matriz de valores ou um objeto de chaves mapeadas para arrays. Por exemplo: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Você também pode usar os dados em ações. Por exemplo: {{ mysql1.data }} ",
         "img_url_array": "Use {{ item.attributeName }} para obter URL da imagem da fonte de dados. ",
@@ -1872,6 +1923,12 @@
           "input": "Input",
           "password": "Palavra-passe",
           "search": "Pesquisa"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Left-click",
+            "right-click": "Right-click"
+          }
         }
       },
       "setter_placeholder": {
@@ -2416,6 +2473,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Rich text editor"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON viewer"
+    },
+    "chat": {
+      "name": "Chat"
+    },
     "public": {
       "left": "Esquerda",
       "right": "Direita",
@@ -2531,9 +2600,6 @@
     },
     "recording": {
       "name": "Gravação"
-    },
-    "rich_text_editor": {
-      "name": "Rich text editor"
     }
   },
   "page": {
