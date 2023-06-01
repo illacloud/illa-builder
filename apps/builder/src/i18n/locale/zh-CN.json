@@ -1238,7 +1238,6 @@
       },
       "setter_group": {
         "adornments": "额外修饰属性",
-        "message": "MESSAGE",
         "basic": "基础",
         "column": "列",
         "data": "数据",
@@ -1266,7 +1265,8 @@
         "eventCalendar": {
           "calendar": "日历"
         },
-        "event": "事件"
+        "event": "事件",
+        "MESSAGE": "MESSAGE"
       },
       "setter_label": {
         "chat": {
@@ -1274,12 +1274,7 @@
           "enable_message_selec": "Enable message selection",
           "selection_type": "Selection type",
           "loading_when_sending": "Loading when sending",
-          "show_avatar": "Show avatar",
           "show_name": "Show name",
-          "show_send_time": "Show send time",
-          "show_footer": "Show footer",
-          "message_on_left": "Message on left",
-          "message_on_right": "Message on right",
           "image_background": "Image background",
           "senderId": "Sender ID",
           "senderAvatar": "Sender avatar",
@@ -1624,7 +1619,14 @@
         "replayMessage": "Reply message ID",
         "timeFormat": "Time format",
         "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving"
+        "receiving": "Loading when receiving",
+        "toolbar-replay": "Show reply button",
+        "toolbar-delete": "Show delete button",
+        "showAvatar": "Show avatar",
+        "showSendTime": "Show send time",
+        "showFooter": "Show footer",
+        "leftMessageColor": "Message on left",
+        "rightMessageColor": "Message on right"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1669,7 +1671,10 @@
           "type": "折叠面板列表：列表模式，每项的组件样式一致，可通过{{ currentItem.columnName }}指定每个项中组件的数据；折叠面板：各个面板独立，可分别指定每项的组件样式和数据。",
           "items": "项目数量",
           "accordin_mode": "在手风琴模式下，当一个项目展开时，其他项目将折叠。"
-        }
+        },
+        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
+        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
+        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. "
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -1683,9 +1688,6 @@
       "setter_tips": {
         "chat": {
           "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-          "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-          "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
           "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
           "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
           "time_format": "Set the format of sending time. For example, hh:MM:ss.",
@@ -1699,10 +1701,6 @@
           "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "show_avatar": "Set whether to show the avatar",
           "show_name": "Set whether to show the name",
-          "show_send_time": "Set whether to show the send time",
-          "show_footer": "Set whether to show the footer",
-          "message_on_left": "Set the color of the messages on the left",
-          "message_on_right": "Set the color of the messages on the right",
           "image_background": "Set a image background. Base64 and image URL are supported"
         },
         "carousel_tips": "使用 {{ item }} 从数据源中获取值。 例如，数据源中有两个属性。 它们是 imageUrl 和 url。 如果您想在点击图片时转到不同的 url，请使用 {{ item.url }} 设置 url。",
@@ -1849,7 +1847,13 @@
           "clear_button_text": "录制完成后按钮上显示的文本",
           "min_duration": "录制的最小持续时间",
           "max_duration": "录制的最大持续时间"
-        }
+        },
+        "showSendTime": "Set whether to show the send time",
+        "showFooter": "Set whether to show the footer",
+        "leftMessageColor": "Set the color of the messages on the left",
+        "rightMessageColor": "Set the color of the messages on the right",
+        "toolbar-replay": "Set whether to show a reply button when select a message.",
+        "toolbar-delete": "Set whether to show a delete button when select a message."
       },
       "setter_option": {
         "fixed": "固定高度",
