@@ -1238,7 +1238,6 @@
       },
       "setter_group": {
         "adornments": "ADORNMENTS",
-        "message": "MESSAGE",
         "basic": "BASIC",
         "column": "COLUMNS",
         "data": "DATEN",
@@ -1266,7 +1265,8 @@
         "eventCalendar": {
           "calendar": "Kalender"
         },
-        "event": "Ereignis"
+        "event": "Ereignis",
+        "MESSAGE": "MESSAGE"
       },
       "setter_label": {
         "chat": {
@@ -1274,12 +1274,7 @@
           "enable_message_selec": "Enable message selection",
           "selection_type": "Selection type",
           "loading_when_sending": "Loading when sending",
-          "show_avatar": "Show avatar",
           "show_name": "Show name",
-          "show_send_time": "Show send time",
-          "show_footer": "Show footer",
-          "message_on_left": "Message on left",
-          "message_on_right": "Message on right",
           "image_background": "Image background",
           "senderId": "Sender ID",
           "senderAvatar": "Sender avatar",
@@ -1624,7 +1619,14 @@
         "replayMessage": "Reply message ID",
         "timeFormat": "Time format",
         "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving"
+        "receiving": "Loading when receiving",
+        "toolbar-replay": "Show reply button",
+        "toolbar-delete": "Show delete button",
+        "showAvatar": "Show avatar",
+        "showSendTime": "Show send time",
+        "showFooter": "Show footer",
+        "leftMessageColor": "Message on left",
+        "rightMessageColor": "Message on right"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1669,7 +1671,10 @@
           "type": "Zusammenklappbare Liste: Liste, alle Elemente werden automatisch den Stil des ersten Elements kopieren. Sie können die Komponentendaten in jedem Element über {{ currentItem.columnName }}angeben. Einklappbares Panel: Jedes Panel ist unabhängig, Sie können den Komponentenstil und die Daten jedes Elements einzeln angeben.",
           "items": "Anzahl der Elemente",
           "accordin_mode": "Im Akkordeon-Modus, wenn ein Element erweitert wird, werden andere Elemente zusammengebrochen."
-        }
+        },
+        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
+        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
+        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. "
       },
       "tab_title": "Prüfen",
       "unselected_tip1": "Keine Komponenten ausgewählt.",
@@ -1683,9 +1688,6 @@
       "setter_tips": {
         "chat": {
           "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-          "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-          "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
           "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
           "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
           "time_format": "Set the format of sending time. For example, hh:MM:ss.",
@@ -1699,10 +1701,6 @@
           "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "show_avatar": "Set whether to show the avatar",
           "show_name": "Set whether to show the name",
-          "show_send_time": "Set whether to show the send time",
-          "show_footer": "Set whether to show the footer",
-          "message_on_left": "Set the color of the messages on the left",
-          "message_on_right": "Set the color of the messages on the right",
           "image_background": "Set a image background. Base64 and image URL are supported"
         },
         "carousel_tips": "Verwenden Sie {{ item }} , um Wert von der Datenquelle zu erhalten. Zum Beispiel gibt es zwei Attribute in der Datenquelle. Sie sind imageUrl und Url. Wenn Sie zu einer anderen URL gehen möchten, wenn Sie auf Bild klicken, verwenden Sie {{ item.url }} , um die URL zu setzen.",
@@ -1849,7 +1847,13 @@
           "clear_button_text": "Der Text, der auf der Schaltfläche angezeigt wird, wenn die Aufnahme abgeschlossen ist",
           "min_duration": "Mindestdauer für die Aufnahme",
           "max_duration": "Maximale Aufnahmedauer"
-        }
+        },
+        "showSendTime": "Set whether to show the send time",
+        "showFooter": "Set whether to show the footer",
+        "leftMessageColor": "Set the color of the messages on the left",
+        "rightMessageColor": "Set the color of the messages on the right",
+        "toolbar-replay": "Set whether to show a reply button when select a message.",
+        "toolbar-delete": "Set whether to show a delete button when select a message."
       },
       "setter_option": {
         "fixed": "Feste",
