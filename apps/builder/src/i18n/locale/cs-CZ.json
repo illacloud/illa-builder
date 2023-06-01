@@ -2604,6 +2604,9 @@
     },
     "recording": {
       "name": "Nahrávání"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
