@@ -2604,6 +2604,9 @@
     },
     "recording": {
       "name": "녹음"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
