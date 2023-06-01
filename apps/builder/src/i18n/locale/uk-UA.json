@@ -1271,19 +1271,8 @@
       "setter_label": {
         "chat": {
           "data_source": "Data source",
-          "message_id": "Message ID",
-          "message": "Message",
-          "message_type": "Message type",
-          "reply_message_id": "Reply message ID",
-          "send_time": "Send time",
-          "time_format": "Time format",
-          "sender_name": "Sender name",
-          "sender_id": "Sender ID",
-          "current_sender_id": "Current sender ID",
-          "sender_avatar": "Sender avatar",
           "enable_message_selec": "Enable message selection",
           "selection_type": "Selection type",
-          "loading_when_receivi": "Loading when receiving",
           "loading_when_sending": "Loading when sending",
           "show_avatar": "Show avatar",
           "show_name": "Show name",
@@ -1291,7 +1280,10 @@
           "show_footer": "Show footer",
           "message_on_left": "Message on left",
           "message_on_right": "Message on right",
-          "image_background": "Image background"
+          "image_background": "Image background",
+          "senderId": "Sender ID",
+          "senderAvatar": "Sender avatar",
+          "senderName": "Sender name"
         },
         "action": "Дія",
         "align": "Align",
@@ -1624,7 +1616,15 @@
           "min_duration": "Мін. тривалість (с)",
           "max_duration": "Макс. тривалість (с)",
           "stop_button_text": "Текст кнопки зупинити"
-        }
+        },
+        "message_id": "Message ID",
+        "message": "Message",
+        "message_type": "Message type",
+        "sendTime": "Send time",
+        "replayMessage": "Reply message ID",
+        "timeFormat": "Time format",
+        "currentSenderId": "Current sender ID",
+        "receiving": "Loading when receiving"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
