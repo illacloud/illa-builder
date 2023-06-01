@@ -1,9 +1,7 @@
+import { ReactCodeMirrorRef } from "@uiw/react-codemirror"
 import { FC, useCallback, useEffect, useRef } from "react"
 import { BaseJsonEditor } from "@/widgetLibrary/JsonEditorWidget/baseJsonEditor"
-import {
-  ICustomRef,
-  JsonEditorWidgetProps,
-} from "@/widgetLibrary/JsonEditorWidget/interface"
+import { JsonEditorWidgetProps } from "@/widgetLibrary/JsonEditorWidget/interface"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
@@ -17,7 +15,8 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
     deleteComponentRuntimeProps,
   } = props
 
-  const editorRef = useRef<ICustomRef>(null)
+  const editorRef = useRef<ReactCodeMirrorRef>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const cacheValue = useRef(value)
 
   const updateOnChange = useCallback(
@@ -79,7 +78,7 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
         ])
       },
       focus: () => {
-        editorRef.current?.focus()
+        editorRef.current?.view?.focus()
       },
     })
     return () => {
@@ -94,14 +93,16 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <BaseJsonEditor
-        {...props}
-        ref={editorRef}
-        value={value}
-        handleOnChange={updateOnChange}
-        handleOnBlur={handleOnBlur}
-        handleOnFocus={handleOnFocus}
-      />
+      <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+        <BaseJsonEditor
+          {...props}
+          ref={editorRef}
+          value={value}
+          handleOnChange={updateOnChange}
+          handleOnBlur={handleOnBlur}
+          handleOnFocus={handleOnFocus}
+        />
+      </div>
     </TooltipWrapper>
   )
 }
