@@ -2604,6 +2604,9 @@
     },
     "recording": {
       "name": "Nagrywanie"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
