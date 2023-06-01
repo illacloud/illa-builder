@@ -14,7 +14,7 @@ export const spreadsheetContainerStyle = css`
   flex: 1;
 `
 
-export const getFxIconStyle = (fullwidth: boolean) => {
+export const getFxIconStyle = (fullwidth: boolean, selected?: boolean) => {
   const hasRightMargin = fullwidth
     ? css`
         margin-right: 16px;
@@ -23,7 +23,9 @@ export const getFxIconStyle = (fullwidth: boolean) => {
   return css`
     width: 16px;
     height: 16px;
-    color: ${getColor("grayBlue", "04")};
+    color: ${selected
+      ? getColor("techPurple", "01")
+      : getColor("grayBlue", "04")};
     cursor: pointer;
     z-index: 1;
     ${hasRightMargin};

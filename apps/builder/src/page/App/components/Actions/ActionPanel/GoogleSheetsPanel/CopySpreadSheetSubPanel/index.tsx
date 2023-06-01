@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { FxIcon } from "@illa-design/react"
 import { BasicSheetConfig } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/BasicSheetConfig"
 import {
-  fxIconStyle,
+  applyFxIconStyle,
   sheetConfigContainerStyle,
   spreadsheetContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/CopySpreadSheetSubPanel/style"
@@ -19,7 +19,14 @@ export const CopySpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
   const { t } = useTranslation()
   const { onChange, spreadsheetsOption } = props
   const opts = props.opts as GoogleSheetsActionCopyOpts
-  const { toSpreadsheet, toSheet, sheetName, spreadsheet, fx, toFx } = opts
+  const {
+    toSpreadsheet,
+    toSheet,
+    sheetName,
+    spreadsheet,
+    fx,
+    toFx = false,
+  } = opts
 
   const handleOnClick = () => {
     onChange("toFx")(!toFx)
@@ -52,7 +59,7 @@ export const CopySpreadsheetSubPanel: FC<GoogleSheetsActionSubPanelProps> = (
               options={spreadsheetsOption}
             />
           )}
-          <FxIcon onClick={handleOnClick} css={fxIconStyle} />
+          <FxIcon onClick={handleOnClick} css={applyFxIconStyle(toFx)} />
         </div>
         <div css={spreadsheetContainerStyle}>
           <InputEditor

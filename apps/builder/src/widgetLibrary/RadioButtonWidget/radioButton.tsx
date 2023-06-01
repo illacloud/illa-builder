@@ -48,6 +48,7 @@ export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
       w="100%"
       minW="0"
       type="button"
+      forceEqualWidth
       value={value}
       disabled={disabled}
       options={options}

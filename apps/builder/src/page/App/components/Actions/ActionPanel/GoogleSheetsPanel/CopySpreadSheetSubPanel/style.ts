@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const sheetConfigContainerStyle = css`
@@ -14,14 +14,18 @@ export const spreadsheetContainerStyle = css`
   flex: 1;
 `
 
-export const fxIconStyle = css`
-  width: 16px;
-  height: 16px;
-  color: ${getColor("grayBlue", "04")};
-  cursor: pointer;
-  z-index: 1;
-  :hover {
+export function applyFxIconStyle(selected?: boolean): SerializedStyles {
+  return css`
+    width: 16px;
+    height: 16px;
+    color: ${selected
+      ? getColor("techPurple", "01")
+      : getColor("grayBlue", "04")};
     cursor: pointer;
-    color: ${getColor("techPurple", "01")};
-  }
-`
+    z-index: 1;
+    :hover {
+      cursor: pointer;
+      color: ${getColor("techPurple", "01")};
+    }
+  `
+}
