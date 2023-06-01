@@ -27,6 +27,8 @@ import { containerStyle } from "@/widgetLibrary/RichTextWidget/style"
 const WrappedRichText = forwardRef<Editor, BaseRichTextProps>((props, ref) => {
   const { value, handleOnBlur, handleOnChange, handleOnFocus } = props
   const [currentState, setCurrentState] = useState(EditorState.createEmpty())
+  const cacheValue = useRef<string>("")
+
   const locale = useMemo(() => {
     const lan = localStorage.getItem("i18nextLng")
     if (lan) {
@@ -84,6 +86,7 @@ const WrappedRichText = forwardRef<Editor, BaseRichTextProps>((props, ref) => {
     setCurrentState(state)
     if (currentValue.trim() !== value?.trim()) {
       handleOnChange(currentValue.trim())
+      cacheValue.current = currentValue.trim()
     }
   }
 
@@ -96,7 +99,7 @@ const WrappedRichText = forwardRef<Editor, BaseRichTextProps>((props, ref) => {
           contentState.entityMap,
         ),
       )
-      if (currentContent.trim() !== value.trim()) {
+      if (value.trim() !== cacheValue.current.trim()) {
         const current = EditorState.moveSelectionToEnd(editorState)
         setCurrentState(current)
         currentContent.trim() !== EMPTY_LABEL && handleOnChange(value.trim())

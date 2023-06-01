@@ -96,7 +96,13 @@ const modelButtonStyle = css`
   gap: 8px;
   ${buttonGroupStyle};
 `
-
+const listIItemStyle = css`
+  .public-DraftStyleDefault-block {
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+  }
+`
 export const containerStyle = css`
   height: 100%;
   cursor: auto;
@@ -105,6 +111,16 @@ export const containerStyle = css`
     margin: 8px;
   }
   & {
+    .public-DraftStyleDefault-unorderedListItem {
+      padding: 1em 0;
+      ${listIItemStyle};
+    }
+    .public-DraftStyleDefault-orderedListItem {
+      display: flex;
+      align-items: flex-start;
+      padding: 1em 0;
+      ${listIItemStyle};
+    }
     .rdw-image-mandatory-sign {
       display: none;
     }
