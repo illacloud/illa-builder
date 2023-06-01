@@ -1238,7 +1238,6 @@
       },
       "setter_group": {
         "adornments": "ADORNMENTEN",
-        "message": "MESSAGE",
         "basic": "BASIC",
         "column": "COLUMNS",
         "data": "GATA",
@@ -1266,7 +1265,8 @@
         "eventCalendar": {
           "calendar": "Kalender"
         },
-        "event": "Gebeurtenis"
+        "event": "Gebeurtenis",
+        "MESSAGE": "MESSAGE"
       },
       "setter_label": {
         "chat": {
@@ -1274,12 +1274,7 @@
           "enable_message_selec": "Enable message selection",
           "selection_type": "Selection type",
           "loading_when_sending": "Loading when sending",
-          "show_avatar": "Show avatar",
           "show_name": "Show name",
-          "show_send_time": "Show send time",
-          "show_footer": "Show footer",
-          "message_on_left": "Message on left",
-          "message_on_right": "Message on right",
           "image_background": "Image background",
           "senderId": "Sender ID",
           "senderAvatar": "Sender avatar",
@@ -1624,7 +1619,14 @@
         "replayMessage": "Reply message ID",
         "timeFormat": "Time format",
         "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving"
+        "receiving": "Loading when receiving",
+        "toolbar-replay": "Show reply button",
+        "toolbar-delete": "Show delete button",
+        "showAvatar": "Show avatar",
+        "showSendTime": "Show send time",
+        "showFooter": "Show footer",
+        "leftMessageColor": "Message on left",
+        "rightMessageColor": "Message on right"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1669,7 +1671,10 @@
           "type": "Inklapbare lijst: lijst, alle artikelen zullen automatisch de stijl van het eerste item kopiëren. U kunt de componentgegevens in elk item opgeven via {{ currentItem.columnName }}. Inklapbaar paneel: elk paneel is onafhankelijk, u kunt de componentstijl en -gegevens van elk item afzonderlijk specificeren.",
           "items": "Aantal items",
           "accordin_mode": "In accordion modus, wanneer een item is uitgevouwen zullen andere items instorten."
-        }
+        },
+        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
+        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
+        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. "
       },
       "tab_title": "Inspecteren",
       "unselected_tip1": "Geen componenten geselecteerd.",
@@ -1683,9 +1688,6 @@
       "setter_tips": {
         "chat": {
           "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-          "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-          "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
           "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
           "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
           "time_format": "Set the format of sending time. For example, hh:MM:ss.",
@@ -1699,10 +1701,6 @@
           "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "show_avatar": "Set whether to show the avatar",
           "show_name": "Set whether to show the name",
-          "show_send_time": "Set whether to show the send time",
-          "show_footer": "Set whether to show the footer",
-          "message_on_left": "Set the color of the messages on the left",
-          "message_on_right": "Set the color of the messages on the right",
           "image_background": "Set a image background. Base64 and image URL are supported"
         },
         "carousel_tips": "Gebruik {{ item }} om waarde uit de gegevensbron te krijgen. Er zijn bijvoorbeeld twee attributen in de gegevensbron. Ze zijn imageUrl en url. Als je naar de verschillende url wilt gaan wanneer je op de afbeelding klikt, gebruik dan {{ item.url }} om de url in te stellen.",
@@ -1849,7 +1847,13 @@
           "clear_button_text": "De tekst die wordt weergegeven op de knop wanneer de opname is voltooid",
           "min_duration": "Minimale duur voor opname",
           "max_duration": "Maximale duur voor opname"
-        }
+        },
+        "showSendTime": "Set whether to show the send time",
+        "showFooter": "Set whether to show the footer",
+        "leftMessageColor": "Set the color of the messages on the left",
+        "rightMessageColor": "Set the color of the messages on the right",
+        "toolbar-replay": "Set whether to show a reply button when select a message.",
+        "toolbar-delete": "Set whether to show a delete button when select a message."
       },
       "setter_option": {
         "fixed": "Opgelost",
