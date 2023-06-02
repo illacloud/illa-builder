@@ -12,7 +12,7 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
   icon: <IconsWidgetIcon />,
   keywords: ["chat", "聊天"],
   sessionType: "PRESENTATION",
-  resizeDirection: RESIZE_DIRECTION.VERTICAL,
+  resizeDirection: RESIZE_DIRECTION.ALL,
   w: 20,
   h: 50,
   childrenNode: [
