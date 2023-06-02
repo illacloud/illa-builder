@@ -126,6 +126,12 @@ import {
   JsonEditorWidget,
 } from "@/widgetLibrary/JsonEditorWidget"
 import {
+  JSON_VIEWER_EVENT_HANDLER_CONFIG,
+  JSON_VIEWER_PANEL_CONFIG,
+  JSON_VIEWER_WIDGET_CONFIG,
+  JsonViewerWidget,
+} from "@/widgetLibrary/JsonViewerWidget"
+import {
   LIST_EVENT_HANDLER_CONFIG,
   LIST_PANEL_CONFIG,
   LIST_WIDGET_CONFIG,
@@ -582,6 +588,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: CAROUSEL_WIDGET_CONFIG,
     panelConfig: CAROUSEL_PANEL_CONFIG,
     eventHandlerConfig: CAROUSEL_EVENT_HANDLER_CONFIG,
+  },
+  JSON_VIEWER_WIDGET: {
+    widget: JsonViewerWidget,
+    config: JSON_VIEWER_WIDGET_CONFIG,
+    panelConfig: JSON_VIEWER_PANEL_CONFIG,
+    eventHandlerConfig: JSON_VIEWER_EVENT_HANDLER_CONFIG,
   },
 }
 
