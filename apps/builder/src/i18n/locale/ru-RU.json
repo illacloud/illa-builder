@@ -1164,8 +1164,8 @@
           "filtersChange": "Изменение фильтров",
           "rowSelectChange": "Изменение строки",
           "onCellSelect": "Выбрать ячейку",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "delete": "Удалить",
+          "replay": "Ответ"
         },
         "image_list": {
           "title": "Изображения",
@@ -1266,16 +1266,16 @@
           "calendar": "Календарь"
         },
         "event": "Событие",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "СООБЩЕНИЕ"
       },
       "setter_label": {
         "chat": {
-          "data_source": "Data source",
-          "enable_message_selec": "Enable message selection",
-          "selection_type": "Selection type",
-          "loading_when_sending": "Loading when sending",
-          "image_background": "Image background",
-          "senderAvatar": "Sender avatar"
+          "data_source": "Источник данных",
+          "enable_message_selec": "Включить выбор сообщений",
+          "selection_type": "Тип выбора",
+          "loading_when_sending": "Загрузка при отправке",
+          "image_background": "Фон изображения",
+          "senderAvatar": "Аватар отправителя"
         },
         "action": "Действие",
         "align": "Align",
@@ -1609,25 +1609,25 @@
           "max_duration": "Макс. длительность (с)",
           "stop_button_text": "Текст стоп-кнопки"
         },
-        "message_id": "Message ID",
-        "message": "Message",
-        "message_type": "Message type",
-        "sendTime": "Send time",
-        "timeFormat": "Time format",
-        "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving",
-        "toolbar-replay": "Show reply button",
-        "toolbar-delete": "Show delete button",
-        "showAvatar": "Show avatar",
-        "showSendTime": "Show send time",
-        "showFooter": "Show footer",
-        "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right",
-        "expandAll": "Expand all",
-        "replayMessageId": "Reply message ID",
-        "senderName": "Sender name",
-        "senderId": "Sender ID",
-        "showName": "Show name"
+        "message_id": "ID сообщения",
+        "message": "Сообщение",
+        "message_type": "Тип сообщения",
+        "sendTime": "Время отправки",
+        "timeFormat": "Формат времени",
+        "currentSenderId": "Текущий ID отправителя",
+        "receiving": "Загрузка при получении",
+        "toolbar-replay": "Показать кнопку ответа",
+        "toolbar-delete": "Показать кнопку удаления",
+        "showAvatar": "Показать аватар",
+        "showSendTime": "Показать время отправки",
+        "showFooter": "Показать нижний колонтитул",
+        "leftMessageColor": "Сообщение слева",
+        "rightMessageColor": "Сообщение справа",
+        "expandAll": "Развернуть все",
+        "replayMessageId": "ID сообщения ответа",
+        "senderName": "Имя отправителя",
+        "senderId": "ID отправителя",
+        "showName": "Показать имя"
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -1673,20 +1673,20 @@
           "items": "Количество элементов",
           "accordin_mode": "В аккордеонном режиме, когда элемент разворачивается, другие элементы свернуты."
         },
-        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-        "replayMessageId": "If it is replying to a specified message, use this field to set which message to reply to.",
-        "expandAll": "Whether or not to expand all the nodes",
-        "sendTime": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-        "senderName": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-        "currentSenderId": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
-        "senderId": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-        "sendTimeFormat": "Set the format of sending time. For example, hh:MM:ss.",
-        "showAvatar": "Set whether to show the avatar",
-        "showName": "Set whether to show the name",
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer"
+        "message": "Чтобы получить содержимое сообщения из определенного поля в источнике данных, например, поле содержимого, вы можете установить его как {{item.content}}.",
+        "message_type": "Установить тип сообщения на основе конкретного поля в источнике данных, например поле типа, вы можете установить его как {{item.type}}. Мы поддерживаем эти типы: текст, изображение, видео и аудио. ",
+        "message_id": "Чтобы задать уникальный идентификатор для каждого сообщения, вы можете получить его из определенного поля в источнике данных. Если вы хотите получить его из поля Id, вы можете установить его как {{item.id}}. ",
+        "replayMessageId": "Если ответ на указанное сообщение, используйте это поле, чтобы задать сообщение, на которое можно ответить.",
+        "expandAll": "Развернуть все узлы",
+        "sendTime": "Установить время отправки. Например, в вашем источнике данных время отправки - это поле sendat, и вы можете установить поле на {{item.sendAt}}.",
+        "senderName": "Задайте имя отправителя. Например, в вашем источнике данных имя отправителя - это поле sendName и вы можете задать поле {{item.sendName}}.",
+        "currentSenderId": "Установите текущий идентификатор отправителя. Мы используем это поле для определения того, какой пользователь отправляет информацию справа.",
+        "senderId": "Установите идентификатор отправителя. Например, в источнике данных отправитель - это поле sendID и вы можете задать поле {{item.sendID}}.",
+        "sendTimeFormat": "Устанавливает формат времени отправки. Например, чч:MM:ss.",
+        "showAvatar": "Выберите, показывать ли аватар",
+        "showName": "Выберите, показывать ли имя",
+        "showSendTime": "Укажите, показывать ли время отправки",
+        "showFooter": "Показывать ли нижний колонтитул"
       },
       "tab_title": "Инспекция",
       "unselected_tip1": "Компоненты не выбраны.",
@@ -1699,13 +1699,13 @@
       },
       "setter_tips": {
         "chat": {
-          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
-          "enable_message_selec": "Set whether to allow a message to be selected",
-          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "image_background": "Set a image background. Base64 and image URL are supported"
+          "data_source": "Источник данных компонента чата. Используйте {{actionName.data}} , чтобы использовать данные из ваших баз данных или API",
+          "sender_avatar": "Установить аватар отправителя. Например, в источнике данных отправителем является поле sendAvatar и вы можете задать поле {{item.sendAvatar}}.",
+          "enable_message_selec": "Укажите, разрешить выбранное сообщение",
+          "selection_type": "Задайте, как выбрать сообщение, щелкните левой кнопкой мыши или правой кнопкой мыши. При использовании на мобильном устройстве щелкните по кнопке, чтобы запустить выделение. ",
+          "loading_when_receivi": "Показывать ли загрузку при получении сообщений. Если ваше сообщение получено от действия1, вы можете установить его в {{action1.isRunning}}, и статус загрузки будет отображаться при запуске действия.",
+          "loading_when_sending": "Показывать ли загрузку при отправке сообщений. Если ваше сообщение отправлено на действие1, вы можете установить его на {{action1.isRunning}}, и статус загрузки будет отображаться при запуске действия.",
+          "image_background": "Установите фон изображения. Base64 и URL изображения поддерживаются"
         },
         "carousel_tips": "Используйте {{ item }} , чтобы получить значение из источника данных. Например, в источнике данных есть два атрибута. Они являются imageUrl и url. Если вы хотите перейти к другому url при клике на изображение, используйте {{ item.url }} , чтобы установить url.",
         "data_source": "Источник данных для определения элементов изображения, используя вычисление. Используйте либо массив значений или объект ключей, сопоставленный с массивами. Например: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Вы также можете использовать данные в действиях. Например: {{ mysql1.data }} ",
@@ -1852,10 +1852,10 @@
           "min_duration": "Минимальная продолжительность записи",
           "max_duration": "Максимальная продолжительность записи"
         },
-        "leftMessageColor": "Set the color of the messages on the left",
-        "rightMessageColor": "Set the color of the messages on the right",
-        "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "leftMessageColor": "Установить цвет сообщений слева",
+        "rightMessageColor": "Установить цвет сообщений справа",
+        "toolbar-replay": "Показывать ли кнопку ответа при выборе сообщения.",
+        "toolbar-delete": "Показывать ли кнопку \"Удалить\" при выборе сообщения."
       },
       "setter_option": {
         "fixed": "Исправлено",
@@ -1932,8 +1932,8 @@
         },
         "chat": {
           "selection_type": {
-            "left-click": "Left-click",
-            "right-click": "Right-click"
+            "left-click": "Левый клик",
+            "right-click": "Щелчок правой кнопкой мыши"
           }
         }
       },
@@ -2480,16 +2480,16 @@
       "name": "Number Input"
     },
     "rich_text_editor": {
-      "name": "Rich text editor"
+      "name": "Богатый текстовый редактор"
     },
     "json_editor": {
       "name": "JSON editor"
     },
     "json_viewer": {
-      "name": "JSON viewer"
+      "name": "Просмотр JSON"
     },
     "chat": {
-      "name": "Chat"
+      "name": "Чат"
     },
     "public": {
       "left": "Слева",
@@ -3019,8 +3019,8 @@
   "logout_failed": "Не удалось выйти из системы. Пожалуйста, повторите попытку позже.",
   "drive": {
     "message": {
-      "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_upload": "Начать загрузку",
+      "start_download": "Начать загрузку"
     }
   }
 }
