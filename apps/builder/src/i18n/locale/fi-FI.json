@@ -1164,8 +1164,8 @@
           "filtersChange": "Suodattimien muutos",
           "rowSelectChange": "Rivin valinta",
           "onCellSelect": "Valitse solu",
-          "Delete": "Poista",
-          "Reply": "Vastaa"
+          "delete": "Poista",
+          "replay": "Vastaa"
         },
         "image_list": {
           "title": "Kuvat",
