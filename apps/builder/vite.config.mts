@@ -47,12 +47,17 @@ export default defineConfig(({ command, mode }) => {
           authToken: env.ILLA_SENTRY_AUTH_TOKEN,
           sourcemaps: {
             assets: "./dist/assets/**",
+            ignore: ["node_modules"],
           },
-          release: `illa-builder@${version}`,
-          urlPrefix: "~/assets",
-          ignore: ["vite.config.mts"],
-          deploy: {
-            env: env.ILLA_APP_ENV,
+          release: {
+            name: `illa-builder@${version}`,
+            uploadLegacySourcemaps: {
+              urlPrefix: "~/assets",
+              paths: ["./dist/assets"],
+            },
+            deploy: {
+              env: env.ILLA_APP_ENV,
+            },
           },
         }),
       )

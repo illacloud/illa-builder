@@ -1,5 +1,4 @@
 import * as Sentry from "@sentry/react"
-import { BrowserTracing } from "@sentry/tracing"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
@@ -15,7 +14,7 @@ if (
 ) {
   Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_SERVER_API,
-    integrations: [new BrowserTracing()],
+    integrations: [new Sentry.BrowserTracing()],
     environment: import.meta.env.ILLA_APP_ENV,
     tracesSampleRate: 1.0,
     release: `illa-builder@${import.meta.env.ILLA_APP_VERSION}`,
