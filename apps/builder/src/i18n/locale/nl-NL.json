@@ -1164,8 +1164,8 @@
           "filtersChange": "Wijziging filters",
           "rowSelectChange": "Rij selecteer verandering",
           "onCellSelect": "Selecteer een cel",
-          "Delete": "Verwijderen",
-          "Reply": "Beantwoorden"
+          "delete": "Verwijderen",
+          "replay": "Beantwoorden"
         },
         "image_list": {
           "title": "Afbeeldingen",
