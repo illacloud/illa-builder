@@ -23,6 +23,7 @@ import {
   RichTextWidgetProps,
 } from "@/widgetLibrary/RichTextWidget/interface"
 import { containerStyle } from "@/widgetLibrary/RichTextWidget/style"
+import { resolveBlur } from "@/widgetLibrary/RichTextWidget/utils"
 
 const WrappedRichText = forwardRef<Editor, BaseRichTextProps>((props, ref) => {
   const { value, handleOnBlur, handleOnChange, handleOnFocus } = props
@@ -91,6 +92,21 @@ const WrappedRichText = forwardRef<Editor, BaseRichTextProps>((props, ref) => {
   }
 
   useEffect(() => {
+    let editorInput = document.querySelector(
+      ".editorClassName",
+    ) as HTMLDivElement | null
+    if (editorInput) {
+      editorInput.addEventListener("click", resolveBlur)
+    }
+    return () => {
+      if (resolveBlur && editorInput) {
+        editorInput.removeEventListener("click", resolveBlur)
+        editorInput = null
+      }
+    }
+  }, [])
+
+  useEffect(() => {
     if (value) {
       const contentState = htmlToDraft(value)
       const editorState = EditorState.createWithContent(
@@ -151,6 +167,7 @@ export const RichTextWidget: FC<RichTextWidgetProps> = (props) => {
   } = props
 
   const editorRef = useRef<Editor>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const dynamicOptions = {
     dynamicMinHeight,
@@ -233,13 +250,15 @@ export const RichTextWidget: FC<RichTextWidgetProps> = (props) => {
       dynamicOptions={dynamicOptions}
     >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-        <WrappedRichText
-          {...props}
-          ref={editorRef}
-          handleOnChange={handleOnChange}
-          handleOnFocus={handleOnFocus}
-          handleOnBlur={handleOnBlur}
-        />
+        <div ref={containerRef} style={{ height: "100%", width: "100%" }}>
+          <WrappedRichText
+            {...props}
+            ref={editorRef}
+            handleOnChange={handleOnChange}
+            handleOnFocus={handleOnFocus}
+            handleOnBlur={handleOnBlur}
+          />
+        </div>
       </TooltipWrapper>
     </AutoHeightContainer>
   )
