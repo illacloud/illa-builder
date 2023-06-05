@@ -1626,7 +1626,8 @@
         "showSendTime": "Show send time",
         "showFooter": "Show footer",
         "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right"
+        "rightMessageColor": "Message on right",
+        "expandAll": "Expand all"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1990,6 +1991,9 @@
         "code": {
           "write_code": "Scrivi qui il tuo codice. Usa JavaScript all'interno di {{ }}"
         }
+      },
+      "setter_tooltips": {
+        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
