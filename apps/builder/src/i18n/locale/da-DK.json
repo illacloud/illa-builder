@@ -1626,7 +1626,8 @@
         "showSendTime": "Show send time",
         "showFooter": "Show footer",
         "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right"
+        "rightMessageColor": "Message on right",
+        "expandAll": "Expand all"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1990,6 +1991,9 @@
         "code": {
           "write_code": "Skriv din kode her. Brug JavaScript inde i {{ }}"
         }
+      },
+      "setter_tooltips": {
+        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
