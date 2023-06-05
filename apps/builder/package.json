@@ -137,8 +137,6 @@
     "@vitejs/plugin-react-swc": "^3.3.0",
     "cross-env": "^7.0.3",
     "e2e": "workspace:*",
-    "install": "^0.13.0",
-    "pnpm": "^8.6.0",
     "rollup-plugin-visualizer": "^5.9.0",
     "vite-plugin-checker": "^0.5.3",
     "vite-plugin-svgr": "^2.1.0"
