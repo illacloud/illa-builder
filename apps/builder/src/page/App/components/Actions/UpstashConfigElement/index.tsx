@@ -52,7 +52,7 @@ export const UpstashConfigElement: FC<ConfigElementProps> = (props) => {
 
   let content: RedisResource
   if (findResource === undefined) {
-    content = RedisResourceInitial
+    content = { ...RedisResourceInitial, ssl: true }
   } else {
     content = (findResource as Resource<RedisResource>).content
   }
