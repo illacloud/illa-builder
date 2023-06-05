@@ -2478,7 +2478,7 @@
       "name": "数字入力ボックス"
     },
     "rich_text_editor": {
-      "name": "Rich text editor"
+      "name": "リッチテキストエディタ"
     },
     "json_editor": {
       "name": "JSON editor"
