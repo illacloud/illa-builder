@@ -1164,8 +1164,8 @@
           "filtersChange": "行筛选改变",
           "rowSelectChange": "行选择变更",
           "onCellSelect": "选中单元格",
-          "Delete": "删除",
-          "Reply": "答复"
+          "delete": "删除",
+          "replay": "答复"
         },
         "image_list": {
           "title": "图片",
