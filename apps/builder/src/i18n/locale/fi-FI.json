@@ -1626,7 +1626,8 @@
         "showSendTime": "Show send time",
         "showFooter": "Show footer",
         "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right"
+        "rightMessageColor": "Message on right",
+        "expandAll": "Expand all"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1990,6 +1991,9 @@
         "code": {
           "write_code": "Kirjoita koodisi tähän. Käytä JavaScriptiä {{ }} sisällä"
         }
+      },
+      "setter_tooltips": {
+        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
