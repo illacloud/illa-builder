@@ -2478,7 +2478,7 @@
       "name": "숫자 입력 상자"
     },
     "rich_text_editor": {
-      "name": "Rich text editor"
+      "name": "서식 있는 텍스트 편집기"
     },
     "json_editor": {
       "name": "JSON editor"
