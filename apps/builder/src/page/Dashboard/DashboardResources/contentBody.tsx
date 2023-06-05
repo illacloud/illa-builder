@@ -55,6 +55,7 @@ export const ResourcesContentBody: FC = () => {
     return resourcesListInRedux.map((resource: Resource<ResourceContent>) => {
       let dbName = "Null"
       switch (resource.resourceType) {
+        // default Null
         case "firebase":
         case "smtp":
         case "restapi":
@@ -66,6 +67,7 @@ export const ResourcesContentBody: FC = () => {
         case "couchdb":
         case "googlesheets":
           break
+        // mysql like
         case "clickhouse":
         case "supabasedb":
         case "postgresql":
