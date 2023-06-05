@@ -1626,7 +1626,8 @@
         "showSendTime": "Show send time",
         "showFooter": "Show footer",
         "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right"
+        "rightMessageColor": "Message on right",
+        "expandAll": "Expand all"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1990,6 +1991,9 @@
         "code": {
           "write_code": "Écrivez votre code ici. Utilisez JavaScript à l'intérieur de {{ }}"
         }
+      },
+      "setter_tooltips": {
+        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
