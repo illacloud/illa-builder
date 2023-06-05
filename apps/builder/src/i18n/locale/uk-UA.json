@@ -1274,11 +1274,8 @@
           "enable_message_selec": "Enable message selection",
           "selection_type": "Selection type",
           "loading_when_sending": "Loading when sending",
-          "show_name": "Show name",
           "image_background": "Image background",
-          "senderId": "Sender ID",
-          "senderAvatar": "Sender avatar",
-          "senderName": "Sender name"
+          "senderAvatar": "Sender avatar"
         },
         "action": "Дія",
         "align": "Align",
@@ -1616,7 +1613,6 @@
         "message": "Message",
         "message_type": "Message type",
         "sendTime": "Send time",
-        "replayMessage": "Reply message ID",
         "timeFormat": "Time format",
         "currentSenderId": "Current sender ID",
         "receiving": "Loading when receiving",
@@ -1627,7 +1623,11 @@
         "showFooter": "Show footer",
         "leftMessageColor": "Message on left",
         "rightMessageColor": "Message on right",
-        "expandAll": "Expand all"
+        "expandAll": "Expand all",
+        "replayMessageId": "Reply message ID",
+        "senderName": "Sender name",
+        "senderId": "Sender ID",
+        "showName": "Show name"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -1673,9 +1673,20 @@
           "items": "Кількість товарів",
           "accordin_mode": "У режимі акордіону, коли предмет збільшується, інші предмети згортаються."
         },
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
         "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. "
+        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
+        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
+        "replayMessageId": "If it is replying to a specified message, use this field to set which message to reply to.",
+        "expandAll": "Whether or not to expand all the nodes",
+        "sendTime": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
+        "senderName": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
+        "currentSenderId": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
+        "senderId": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
+        "sendTimeFormat": "Set the format of sending time. For example, hh:MM:ss.",
+        "showAvatar": "Set whether to show the avatar",
+        "showName": "Set whether to show the name",
+        "showSendTime": "Set whether to show the send time",
+        "showFooter": "Set whether to show the footer"
       },
       "tab_title": "Оглянути",
       "unselected_tip1": "Немає вибраних компонентів.",
@@ -1689,19 +1700,11 @@
       "setter_tips": {
         "chat": {
           "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
-          "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-          "time_format": "Set the format of sending time. For example, hh:MM:ss.",
-          "sender_name": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-          "sender_id": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-          "current_sender_id": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
           "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
           "enable_message_selec": "Set whether to allow a message to be selected",
           "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
           "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "show_avatar": "Set whether to show the avatar",
-          "show_name": "Set whether to show the name",
           "image_background": "Set a image background. Base64 and image URL are supported"
         },
         "carousel_tips": "Використовуйте {{ item }} , щоб отримати значення з джерела даних. Наприклад, є два атрибути з джерела даних. Вони є imageUrl і url. Якщо ви хочете перейти до іншої адреси при натисканні на зображення, використовуйте {{ item.url }} для встановлення URL-адреси.",
@@ -1849,8 +1852,6 @@
           "min_duration": "Мінімальна тривалість для запису",
           "max_duration": "Максимальна тривалість запису"
         },
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer",
         "leftMessageColor": "Set the color of the messages on the left",
         "rightMessageColor": "Set the color of the messages on the right",
         "toolbar-replay": "Set whether to show a reply button when select a message.",
@@ -1991,9 +1992,6 @@
         "code": {
           "write_code": "Запишіть свій код тут. Використовуйте JavaScript всередині {{ }}"
         }
-      },
-      "setter_tooltips": {
-        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
