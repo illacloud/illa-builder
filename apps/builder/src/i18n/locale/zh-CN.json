@@ -1626,7 +1626,8 @@
         "showSendTime": "Show send time",
         "showFooter": "Show footer",
         "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right"
+        "rightMessageColor": "Message on right",
+        "expandAll": "Expand all"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1990,6 +1991,9 @@
         "code": {
           "write_code": "在这里写下你的代码。 在 {{ }} 中使用 JavaScript"
         }
+      },
+      "setter_tooltips": {
+        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
@@ -2484,7 +2488,7 @@
       "name": "JSON editor"
     },
     "json_viewer": {
-      "name": "JSON viewer"
+      "name": "JSON浏览器"
     },
     "chat": {
       "name": "Chat"
