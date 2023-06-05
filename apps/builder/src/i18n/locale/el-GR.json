@@ -1164,8 +1164,8 @@
           "filtersChange": "Αλλαγή φίλτρων",
           "rowSelectChange": "Αλλαγή επιλογής γραμμής",
           "onCellSelect": "Επιλέξτε ένα κελί",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "delete": "Διαγραφή",
+          "replay": "Απάντηση"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1266,16 +1266,16 @@
           "calendar": "Ημερολόγιο"
         },
         "event": "Γεγονός",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "ΜΗΝΥΜΑΤΑ"
       },
       "setter_label": {
         "chat": {
-          "data_source": "Data source",
-          "enable_message_selec": "Enable message selection",
-          "selection_type": "Selection type",
-          "loading_when_sending": "Loading when sending",
-          "image_background": "Image background",
-          "senderAvatar": "Sender avatar"
+          "data_source": "Πηγή δεδομένων",
+          "enable_message_selec": "Ενεργοποίηση επιλογής μηνυμάτων",
+          "selection_type": "Τύπος επιλογής",
+          "loading_when_sending": "Φόρτωση κατά την αποστολή",
+          "image_background": "Εικόνα φόντου",
+          "senderAvatar": "avatar αποστολέα"
         },
         "action": "Ενέργεια",
         "align": "Align",
@@ -1609,25 +1609,25 @@
           "max_duration": "Μέγιστη διάρκεια (ες)",
           "stop_button_text": "Σταμάτημα κειμένου κουμπιού"
         },
-        "message_id": "Message ID",
-        "message": "Message",
-        "message_type": "Message type",
-        "sendTime": "Send time",
-        "timeFormat": "Time format",
-        "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving",
-        "toolbar-replay": "Show reply button",
-        "toolbar-delete": "Show delete button",
-        "showAvatar": "Show avatar",
-        "showSendTime": "Show send time",
-        "showFooter": "Show footer",
-        "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right",
-        "expandAll": "Expand all",
-        "replayMessageId": "Reply message ID",
-        "senderName": "Sender name",
-        "senderId": "Sender ID",
-        "showName": "Show name"
+        "message_id": "Id Μηνύματος",
+        "message": "Μήνυμα",
+        "message_type": "Τύπος μηνύματος",
+        "sendTime": "Χρόνος αποστολής",
+        "timeFormat": "Μορφή ώρας",
+        "currentSenderId": "Id τρέχοντα αποστολέα",
+        "receiving": "Φόρτωση κατά την παραλαβή",
+        "toolbar-replay": "Εμφάνιση κουμπιού απάντησης",
+        "toolbar-delete": "Εμφάνιση κουμπιού διαγραφής",
+        "showAvatar": "Εμφάνιση avatar",
+        "showSendTime": "Εμφάνιση χρόνου αποστολής",
+        "showFooter": "Εμφάνιση υποσέλιδου",
+        "leftMessageColor": "Μήνυμα στα αριστερά",
+        "rightMessageColor": "Μήνυμα στα δεξιά",
+        "expandAll": "Ανάπτυξη όλων",
+        "replayMessageId": "Id μηνύματος απάντησης",
+        "senderName": "Όνομα αποστολέα",
+        "senderId": "Id Αποστολέα",
+        "showName": "Εμφάνιση ονόματος"
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
@@ -1673,20 +1673,20 @@
           "items": "Αριθμός ειδών",
           "accordin_mode": "Στη λειτουργία ακορντεόν, όταν επεκταθεί ένα στοιχείο, θα καταρρεύσουν άλλα αντικείμενα."
         },
-        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-        "replayMessageId": "If it is replying to a specified message, use this field to set which message to reply to.",
-        "expandAll": "Whether or not to expand all the nodes",
-        "sendTime": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-        "senderName": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-        "currentSenderId": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
-        "senderId": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-        "sendTimeFormat": "Set the format of sending time. For example, hh:MM:ss.",
-        "showAvatar": "Set whether to show the avatar",
-        "showName": "Set whether to show the name",
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer"
+        "message": "Για να ανακτήσετε το περιεχόμενο του μηνύματος από ένα συγκεκριμένο πεδίο στην πηγή δεδομένων, όπως το πεδίο περιεχομένου, μπορείτε να το ορίσετε ως {{item.content}}.",
+        "message_type": "Για να ορίσετε τον τύπο του μηνύματος με βάση ένα συγκεκριμένο πεδίο στην πηγή δεδομένων, όπως το πεδίο τύπου, μπορείτε να το ορίσετε ως {{item.type}}. Υποστηρίζουμε αυτούς τους τύπους: κείμενο, εικόνα, βίντεο και ήχο. ",
+        "message_id": "Για να ορίσετε ένα μοναδικό αναγνωριστικό για κάθε μήνυμα, μπορείτε να το ανακτήσετε από ένα συγκεκριμένο πεδίο στην πηγή δεδομένων. Αν θέλετε να το ανακτήσετε από το πεδίο id μπορείτε να το ορίσετε ως {{item.id}}. ",
+        "replayMessageId": "Εάν απαντά σε συγκεκριμένο μήνυμα, χρησιμοποιήστε αυτό το πεδίο για να ορίσετε σε ποιο μήνυμα θα απαντηθεί.",
+        "expandAll": "Αν θα επεκταθούν ή όχι όλοι οι κόμβοι",
+        "sendTime": "Ορίστε το χρόνο αποστολής. Για παράδειγμα, στην πηγή δεδομένων σας, ο χρόνος αποστολής είναι το πεδίο sendAt και μπορείτε να ορίσετε το πεδίο σε {{item.sendAt}}.",
+        "senderName": "Ορίστε το όνομα αποστολέα. Για παράδειγμα, στην πηγή δεδομένων σας, το όνομα αποστολέα είναι το πεδίο sendName και μπορείτε να ορίσετε το πεδίο σε {{item.sendName}}.",
+        "currentSenderId": "Ορίστε το τρέχον id αποστολέα. Χρησιμοποιούμε αυτό το πεδίο για να προσδιορίσουμε ποιος χρήστης στέλνει πληροφορίες που θα εμφανίζονται στα δεξιά.",
+        "senderId": "Ορισμός του αναγνωριστικού αποστολέα. Για παράδειγμα, στην πηγή δεδομένων σας, το id αποστολέα είναι το πεδίο sendID και μπορείτε να ορίσετε το πεδίο σε {{item.sendID}}.",
+        "sendTimeFormat": "Ορίστε τη μορφή του χρόνου αποστολής. Για παράδειγμα, ω:MM:ss.",
+        "showAvatar": "Ορίστε αν θα εμφανίζεται το avatar",
+        "showName": "Ορίστε αν θα εμφανίζεται το όνομα",
+        "showSendTime": "Ορίστε αν θα εμφανίζεται ο χρόνος αποστολής",
+        "showFooter": "Ορίστε αν θα εμφανίζεται το υποσέλιδο"
       },
       "tab_title": "Επιθεώρηση",
       "unselected_tip1": "Δεν επιλέχθηκαν εξαρτήματα.",
@@ -1699,13 +1699,13 @@
       },
       "setter_tips": {
         "chat": {
-          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
-          "enable_message_selec": "Set whether to allow a message to be selected",
-          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "image_background": "Set a image background. Base64 and image URL are supported"
+          "data_source": "Η πηγή δεδομένων του στοιχείου συνομιλίας. Χρησιμοποιήστε {{actionName.data}} για να χρησιμοποιήσετε τα δεδομένα από τις βάσεις δεδομένων ή τα APIs σας",
+          "sender_avatar": "Ορίστε το avatar του αποστολέα. Για παράδειγμα, στην πηγή δεδομένων σας, το avatar του αποστολέα είναι το πεδίο sendAvatar και μπορείτε να ορίσετε το πεδίο σε {{item.sendAvatar}}.",
+          "enable_message_selec": "Ορίστε αν θα επιτρέπεται η επιλογή ενός μηνύματος",
+          "selection_type": "Ορίστε πώς να επιλέξετε ένα μήνυμα, αριστερό κλικ ή δεξί κλικ. Όταν χρησιμοποιείται σε μια κινητή συσκευή, κάντε κλικ για να ενεργοποιήσετε την επιλογή. ",
+          "loading_when_receivi": "Ορίστε αν θα εμφανίζεται η φόρτωση κατά τη λήψη μηνυμάτων. Εάν το μήνυμά σας λαμβάνεται από την ενέργεια1, μπορείτε να το ορίσετε σε {{action1.isRunning}}, και η κατάσταση φόρτωσης θα εμφανιστεί όταν εκτελείται η ενέργεια1.",
+          "loading_when_sending": "Ορίστε αν θα εμφανίζεται η φόρτωση κατά την αποστολή μηνυμάτων. Εάν το μήνυμά σας αποσταλεί στην ενέργεια 1, μπορείτε να το ορίσετε σε {{action1.isRunning}}, και η κατάσταση φόρτωσης θα εμφανιστεί όταν εκτελείται η ενέργεια1.",
+          "image_background": "Ορισμός φόντου εικόνας. Υποστηρίζεται το Base64 και το URL εικόνας"
         },
         "carousel_tips": "Χρησιμοποιήστε {{ item }} για να πάρετε την τιμή από την πηγή δεδομένων. Για παράδειγμα, υπάρχουν δύο χαρακτηριστικά στην πηγή δεδομένων. Είναι imageUrl και url. Αν θέλετε να πάτε σε διαφορετική διεύθυνση url όταν κάνετε κλικ στην εικόνα, χρησιμοποιήστε {{ item.url }} για να ορίσετε το url.",
         "data_source": "Μια πηγή δεδομένων για να ορίσετε στοιχεία εικόνας χρησιμοποιώντας αντιστοιχισμένη αξιολόγηση. Χρησιμοποιήστε είτε έναν πίνακα τιμών είτε ένα αντικείμενο πλήκτρων που αντιστοιχίζονται σε πίνακες. Για παράδειγμα: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Μπορείτε επίσης να χρησιμοποιήσετε τα δεδομένα σε πράξεις. Για παράδειγμα: {{ mysql1.data }} ",
@@ -1852,10 +1852,10 @@
           "min_duration": "Ελάχιστη διάρκεια καταγραφής",
           "max_duration": "Μέγιστη διάρκεια καταγραφής"
         },
-        "leftMessageColor": "Set the color of the messages on the left",
-        "rightMessageColor": "Set the color of the messages on the right",
-        "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "leftMessageColor": "Ορίστε το χρώμα των μηνυμάτων στα αριστερά",
+        "rightMessageColor": "Ορίστε το χρώμα των μηνυμάτων στα δεξιά",
+        "toolbar-replay": "Ορίστε αν θα εμφανίζεται το κουμπί απάντησης κατά την επιλογή μηνύματος.",
+        "toolbar-delete": "Ορίστε αν θα εμφανίζεται το κουμπί διαγραφής όταν επιλέγεται ένα μήνυμα."
       },
       "setter_option": {
         "fixed": "Σταθερό",
@@ -1932,8 +1932,8 @@
         },
         "chat": {
           "selection_type": {
-            "left-click": "Left-click",
-            "right-click": "Right-click"
+            "left-click": "Αριστερό κλικ",
+            "right-click": "Δεξί κλικ"
           }
         }
       },
@@ -2480,16 +2480,16 @@
       "name": "Number Input"
     },
     "rich_text_editor": {
-      "name": "Rich text editor"
+      "name": "Εμπλουτισμένο πρόγραμμα επεξεργασίας κειμένου"
     },
     "json_editor": {
       "name": "JSON editor"
     },
     "json_viewer": {
-      "name": "JSON viewer"
+      "name": "JSON προβολέας"
     },
     "chat": {
-      "name": "Chat"
+      "name": "Συνομιλία"
     },
     "public": {
       "left": "Αριστερά",
@@ -3019,8 +3019,8 @@
   "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα.",
   "drive": {
     "message": {
-      "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_upload": "Έναρξη μεταφόρτωσης",
+      "start_download": "Έναρξη λήψης"
     }
   }
 }
