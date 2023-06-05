@@ -1266,7 +1266,7 @@
           "calendar": "달력"
         },
         "event": "이벤트",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "메시지"
       },
       "setter_label": {
         "chat": {
@@ -1274,11 +1274,8 @@
           "enable_message_selec": "Enable message selection",
           "selection_type": "Selection type",
           "loading_when_sending": "Loading when sending",
-          "show_name": "Show name",
           "image_background": "Image background",
-          "senderId": "Sender ID",
-          "senderAvatar": "Sender avatar",
-          "senderName": "Sender name"
+          "senderAvatar": "Sender avatar"
         },
         "action": "동작",
         "align": "맞추다",
@@ -1612,12 +1609,11 @@
           "max_duration": "최대 기간(s)",
           "stop_button_text": "중지 버튼 텍스트"
         },
-        "message_id": "Message ID",
+        "message_id": "메시지 ID",
         "message": "Message",
         "message_type": "Message type",
         "sendTime": "Send time",
-        "replayMessage": "Reply message ID",
-        "timeFormat": "Time format",
+        "timeFormat": "시간 형식",
         "currentSenderId": "Current sender ID",
         "receiving": "Loading when receiving",
         "toolbar-replay": "Show reply button",
@@ -1625,9 +1621,13 @@
         "showAvatar": "Show avatar",
         "showSendTime": "Show send time",
         "showFooter": "Show footer",
-        "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right",
-        "expandAll": "Expand all"
+        "leftMessageColor": "왼쪽 메시지",
+        "rightMessageColor": "오른쪽 메시지",
+        "expandAll": "Expand all",
+        "replayMessageId": "답장 메시지 ID",
+        "senderName": "Sender name",
+        "senderId": "Sender ID",
+        "showName": "Show name"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1673,9 +1673,20 @@
           "items": "아이템 갯수",
           "accordin_mode": "아코디언 모드에서 항목이 확장되면 다른 항목이 축소됩니다."
         },
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
         "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. "
+        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
+        "message_id": "각 메시지에 대한 고유 ID를 설정하려면 데이터 소스의 특정 필드에서 검색할 수 있습니다. id 필드에서 가져오려면 {{item.id}}로 설정할 수 있습니다.",
+        "replayMessageId": "지정된 메시지에 회신하는 경우 이 필드를 사용하여 회신할 메시지를 설정합니다.",
+        "expandAll": "모든 노드 확장 여부",
+        "sendTime": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
+        "senderName": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
+        "currentSenderId": "현재 발신자 ID를 설정합니다. 이 필드를 사용하여 오른쪽에 표시할 정보를 보내는 사용자를 결정합니다.",
+        "senderId": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
+        "sendTimeFormat": "보내는 시간의 형식을 설정합니다. 예: hh:MM:ss.",
+        "showAvatar": "Set whether to show the avatar",
+        "showName": "Set whether to show the name",
+        "showSendTime": "Set whether to show the send time",
+        "showFooter": "Set whether to show the footer"
       },
       "tab_title": "속성",
       "unselected_tip1": "구성 요소가 선택되지 않았습니다.",
@@ -1689,19 +1700,11 @@
       "setter_tips": {
         "chat": {
           "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
-          "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-          "time_format": "Set the format of sending time. For example, hh:MM:ss.",
-          "sender_name": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-          "sender_id": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-          "current_sender_id": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
           "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
           "enable_message_selec": "Set whether to allow a message to be selected",
           "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
           "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "show_avatar": "Set whether to show the avatar",
-          "show_name": "Set whether to show the name",
           "image_background": "Set a image background. Base64 and image URL are supported"
         },
         "carousel_tips": "{{ item }}을 사용하여 데이터 소스에서 값을 가져옵니다. 예를 들어, 데이터 소스에 두 개의 속성이 있습니다. 그들은 imageUrl과 url입니다. 이미지 클릭 시 다른 url로 이동하고 싶다면 {{ item.url }}을 이용하여 url을 설정하세요.",
@@ -1849,8 +1852,6 @@
           "min_duration": "최소 녹화 시간",
           "max_duration": "최대 녹화 시간"
         },
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer",
         "leftMessageColor": "Set the color of the messages on the left",
         "rightMessageColor": "Set the color of the messages on the right",
         "toolbar-replay": "Set whether to show a reply button when select a message.",
@@ -1991,9 +1992,6 @@
         "code": {
           "write_code": "여기에 코드를 작성하십시오. {{ }} 내부에서 JavaScript 사용"
         }
-      },
-      "setter_tooltips": {
-        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
