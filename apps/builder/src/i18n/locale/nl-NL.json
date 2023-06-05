@@ -1164,8 +1164,8 @@
           "filtersChange": "Wijziging filters",
           "rowSelectChange": "Rij selecteer verandering",
           "onCellSelect": "Selecteer een cel",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "Delete": "Verwijderen",
+          "Reply": "Beantwoorden"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1266,19 +1266,16 @@
           "calendar": "Kalender"
         },
         "event": "Gebeurtenis",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "BERICHT"
       },
       "setter_label": {
         "chat": {
-          "data_source": "Data source",
-          "enable_message_selec": "Enable message selection",
-          "selection_type": "Selection type",
-          "loading_when_sending": "Loading when sending",
-          "show_name": "Show name",
-          "image_background": "Image background",
-          "senderId": "Sender ID",
-          "senderAvatar": "Sender avatar",
-          "senderName": "Sender name"
+          "data_source": "Data bron",
+          "enable_message_selec": "Berichtselectie inschakelen",
+          "selection_type": "Type selectie",
+          "loading_when_sending": "Laden tijdens verzenden",
+          "image_background": "Afbeelding achtergrond",
+          "senderAvatar": "Afzender avatar"
         },
         "action": "actie",
         "align": "Align",
@@ -1612,22 +1609,25 @@
           "max_duration": "Max duur (s)",
           "stop_button_text": "Tekst van de knop stoppen"
         },
-        "message_id": "Message ID",
-        "message": "Message",
-        "message_type": "Message type",
-        "sendTime": "Send time",
-        "replayMessage": "Reply message ID",
-        "timeFormat": "Time format",
-        "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving",
-        "toolbar-replay": "Show reply button",
-        "toolbar-delete": "Show delete button",
-        "showAvatar": "Show avatar",
-        "showSendTime": "Show send time",
-        "showFooter": "Show footer",
-        "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right",
-        "expandAll": "Expand all"
+        "message_id": "Bericht ID",
+        "message": "bericht",
+        "message_type": "Bericht type",
+        "sendTime": "Tijd verzenden",
+        "timeFormat": "Tijd formaat",
+        "currentSenderId": "Huidige afzender-ID",
+        "receiving": "Laden tijdens ontvangen",
+        "toolbar-replay": "Toon antwoordknop",
+        "toolbar-delete": "Toon verwijder knop",
+        "showAvatar": "Avatar weergeven",
+        "showSendTime": "Verzendtijd weergeven",
+        "showFooter": "Toon voettekst",
+        "leftMessageColor": "Bericht aan links",
+        "rightMessageColor": "Bericht aan rechts",
+        "expandAll": "Alles uitklappen",
+        "replayMessageId": "Antwoord bericht ID",
+        "senderName": "Naam afzender",
+        "senderId": "Afzender ID",
+        "showName": "Toon naam"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1673,9 +1673,20 @@
           "items": "Aantal items",
           "accordin_mode": "In accordion modus, wanneer een item is uitgevouwen zullen andere items instorten."
         },
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. "
+        "message": "Om de inhoud van het bericht van een specifiek veld in de gegevensbron op te halen, zoals het inhoudveld, kunt u het instellen als {{item.content}}.",
+        "message_type": "Om het type bericht op basis van een specifiek veld in de gegevensbron in te stellen, zoals het type veld, kunt u het instellen als {{item.type}}. Wij ondersteunen deze types: tekst, afbeelding, video en audio. ",
+        "message_id": "Om een uniek ID in te stellen voor elk bericht, kunt u het ophalen van een specifiek veld in de gegevensbron. Als je het wilt ophalen uit het id veld, kun je het instellen als {{item.id}}. ",
+        "replayMessageId": "Als het antwoord op een bepaald bericht is, gebruik dit veld om aan te geven op welk bericht moet worden geantwoord.",
+        "expandAll": "Of alle nodes moeten worden uitgevouwen",
+        "sendTime": "Stel de verzendtijd in. Bijvoorbeeld, in uw gegevensbron is de verzendtijd het sendAt veld en u kunt het veld instellen op {{item.sendAt}}.",
+        "senderName": "Stel de afzender naam in. Bijvoorbeeld, in de gegevensbron is de naam van de afzender het sendName veld en u kunt het veld instellen op {{item.sendName}}.",
+        "currentSenderId": "Stel de huidige afzender id in. Wij gebruiken dit veld om te bepalen welke gebruiker informatie verzendt aan de rechterkant.",
+        "senderId": "Stel de afzender id in. Bijvoorbeeld, in de gegevensbron is het afzender-ID veld en u kunt het veld instellen op {{item.sendID}}.",
+        "sendTimeFormat": "Stel het formaat in van de verzendtijd. Bijvoorbeeld, hhh:MM:s.",
+        "showAvatar": "Stel in of de avatar moet worden weergegeven",
+        "showName": "Stel in of de naam moet worden weergegeven",
+        "showSendTime": "Stel in of de verzendtijd moet worden weergegeven",
+        "showFooter": "Stel in of de voettekst moet worden weergegeven"
       },
       "tab_title": "Inspecteren",
       "unselected_tip1": "Geen componenten geselecteerd.",
@@ -1688,21 +1699,13 @@
       },
       "setter_tips": {
         "chat": {
-          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
-          "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-          "time_format": "Set the format of sending time. For example, hh:MM:ss.",
-          "sender_name": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-          "sender_id": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-          "current_sender_id": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
-          "enable_message_selec": "Set whether to allow a message to be selected",
-          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "show_avatar": "Set whether to show the avatar",
-          "show_name": "Set whether to show the name",
-          "image_background": "Set a image background. Base64 and image URL are supported"
+          "data_source": "De gegevensbron van het chatcomponent. Gebruik {{actionName.data}} om de gegevens uit uw databases of API's te gebruiken",
+          "sender_avatar": "Stel de afzender avatar in. Bijvoorbeeld, in je gegevensbron is de avatar van de afzender het sendAvatar veld en je kunt het veld instellen op {{item.sendAvatar}}.",
+          "enable_message_selec": "Instellen of een bericht moet worden geselecteerd",
+          "selection_type": "Stel in hoe een bericht moet worden geselecteerd, met de rechtermuisknop of met de rechtermuisknop. Wanneer deze wordt gebruikt op een mobiel apparaat, wordt er op geklikt om de selectie te activeren. ",
+          "loading_when_receivi": "Instellen of laden moet worden weergegeven tijdens het ontvangen van berichten. Als uw bericht van actie 1 wordt ontvangen, kunt u het instellen op {{action1.isRunning}}, en de laadstatus wordt weergegeven wanneer actie 1 wordt uitgevoerd.",
+          "loading_when_sending": "Instellen of laden moet worden weergegeven bij het verzenden van berichten. Als uw bericht naar actie 1 wordt verzonden, kunt u het instellen op {{action1.isRunning}}, en de laadstatus wordt weergegeven wanneer actie 1 wordt uitgevoerd.",
+          "image_background": "Stel een achtergrond in. Base64 en afbeelding URL worden ondersteund"
         },
         "carousel_tips": "Gebruik {{ item }} om waarde uit de gegevensbron te krijgen. Er zijn bijvoorbeeld twee attributen in de gegevensbron. Ze zijn imageUrl en url. Als je naar de verschillende url wilt gaan wanneer je op de afbeelding klikt, gebruik dan {{ item.url }} om de url in te stellen.",
         "data_source": "Een gegevensbron om afbeeldingsitems te definiëren met behulp van toegewezen evaluatie. Gebruik een reeks van waarden of een object van sleutels toegewezen aan arrays. Bijvoorbeeld: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . U kunt de gegevens ook gebruiken in acties. Bijvoorbeeld: {{ mysql1.data }} ",
@@ -1849,12 +1852,10 @@
           "min_duration": "Minimale duur voor opname",
           "max_duration": "Maximale duur voor opname"
         },
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer",
-        "leftMessageColor": "Set the color of the messages on the left",
-        "rightMessageColor": "Set the color of the messages on the right",
-        "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "leftMessageColor": "Stel de kleur van de berichten aan de linkerkant in",
+        "rightMessageColor": "Stel de kleur van de berichten aan de rechterkant in",
+        "toolbar-replay": "Stel in of een antwoordknop moet worden weergegeven wanneer een bericht wordt geselecteerd.",
+        "toolbar-delete": "Stel in of een knop 'verwijderen' moet worden weergegeven wanneer een bericht wordt geselecteerd."
       },
       "setter_option": {
         "fixed": "Opgelost",
@@ -1931,8 +1932,8 @@
         },
         "chat": {
           "selection_type": {
-            "left-click": "Left-click",
-            "right-click": "Right-click"
+            "left-click": "Linksklik",
+            "right-click": "Rechtsklik"
           }
         }
       },
@@ -1991,9 +1992,6 @@
         "code": {
           "write_code": "Schrijf hier uw code. Gebruik JavaScript in {{ }}"
         }
-      },
-      "setter_tooltips": {
-        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
@@ -2491,7 +2489,7 @@
       "name": "JSON viewer"
     },
     "chat": {
-      "name": "Chat"
+      "name": "Chatten"
     },
     "public": {
       "left": "Linkerkant",
@@ -3021,8 +3019,8 @@
   "logout_failed": "Afmelden mislukt. Probeer het later opnieuw.",
   "drive": {
     "message": {
-      "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_upload": "Beginnen met uploaden",
+      "start_download": "Download starten"
     }
   }
 }
