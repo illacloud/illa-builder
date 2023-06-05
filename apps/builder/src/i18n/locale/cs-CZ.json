@@ -1626,7 +1626,8 @@
         "showSendTime": "Show send time",
         "showFooter": "Show footer",
         "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right"
+        "rightMessageColor": "Message on right",
+        "expandAll": "Expand all"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1990,6 +1991,9 @@
         "code": {
           "write_code": "Napište svůj kód zde. Použijte JavaScript uvnitř {{ }}"
         }
+      },
+      "setter_tooltips": {
+        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
