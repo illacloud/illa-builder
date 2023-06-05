@@ -1164,8 +1164,8 @@
           "filtersChange": "Filter ändras",
           "rowSelectChange": "Ändra rad",
           "onCellSelect": "Välj en cell",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "delete": "Radera",
+          "replay": "Svara"
         },
         "image_list": {
           "title": "Bilder",
@@ -1266,16 +1266,16 @@
           "calendar": "Kalender"
         },
         "event": "Händelse",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "MEDDELANDE"
       },
       "setter_label": {
         "chat": {
-          "data_source": "Data source",
-          "enable_message_selec": "Enable message selection",
-          "selection_type": "Selection type",
-          "loading_when_sending": "Loading when sending",
-          "image_background": "Image background",
-          "senderAvatar": "Sender avatar"
+          "data_source": "Datakälla",
+          "enable_message_selec": "Aktivera meddelandeval",
+          "selection_type": "Typ av val",
+          "loading_when_sending": "Laddar när du skickar",
+          "image_background": "Bild bakgrund",
+          "senderAvatar": "Avsändarens avatar"
         },
         "action": "Åtgärd",
         "align": "Align",
@@ -1609,25 +1609,25 @@
           "max_duration": "Max varaktighet (er)",
           "stop_button_text": "Stoppa knapptext"
         },
-        "message_id": "Message ID",
-        "message": "Message",
-        "message_type": "Message type",
-        "sendTime": "Send time",
-        "timeFormat": "Time format",
-        "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving",
-        "toolbar-replay": "Show reply button",
-        "toolbar-delete": "Show delete button",
-        "showAvatar": "Show avatar",
-        "showSendTime": "Show send time",
-        "showFooter": "Show footer",
-        "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right",
-        "expandAll": "Expand all",
-        "replayMessageId": "Reply message ID",
-        "senderName": "Sender name",
-        "senderId": "Sender ID",
-        "showName": "Show name"
+        "message_id": "Meddelande ID",
+        "message": "Meddelande",
+        "message_type": "Typ av meddelande",
+        "sendTime": "Skicka tid",
+        "timeFormat": "Tidsformat",
+        "currentSenderId": "Nuvarande avsändar-ID",
+        "receiving": "Laddar vid mottagning",
+        "toolbar-replay": "Visa svarsknapp",
+        "toolbar-delete": "Visa ta bort knappen",
+        "showAvatar": "Visa avatar",
+        "showSendTime": "Visa sändningstid",
+        "showFooter": "Visa sidfot",
+        "leftMessageColor": "Meddelande till vänster",
+        "rightMessageColor": "Meddelande till höger",
+        "expandAll": "Expandera alla",
+        "replayMessageId": "Svara meddelande-ID",
+        "senderName": "Avsändarens namn",
+        "senderId": "Avsändarens ID",
+        "showName": "Visa namn"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1673,20 +1673,20 @@
           "items": "Antal artiklar",
           "accordin_mode": "I dragspelsläge, när ett föremål expanderas, kommer andra objekt att kollapsa."
         },
-        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-        "replayMessageId": "If it is replying to a specified message, use this field to set which message to reply to.",
-        "expandAll": "Whether or not to expand all the nodes",
-        "sendTime": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-        "senderName": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-        "currentSenderId": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
-        "senderId": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-        "sendTimeFormat": "Set the format of sending time. For example, hh:MM:ss.",
-        "showAvatar": "Set whether to show the avatar",
-        "showName": "Set whether to show the name",
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer"
+        "message": "För att hämta innehållet i meddelandet från ett specifikt fält i datakällan, till exempel innehållsfältet, kan du ställa in det som {{item.content}}.",
+        "message_type": "För att ställa in typen av meddelande baserat på ett specifikt fält i datakällan, till exempel typfältet, kan du ställa in det som {{item.type}}. Vi stöder dessa typer: text, bild, video och ljud. ",
+        "message_id": "För att ställa in ett unikt ID för varje meddelande kan du hämta det från ett specifikt fält i datakällan. Om du vill hämta det från ID-fältet, kan du ställa in det som {{item.id}}. ",
+        "replayMessageId": "Om det svarar på ett angivet meddelande, använd det här fältet för att ange vilket meddelande som ska besvaras.",
+        "expandAll": "Huruvida alla noder ska expanderas eller inte",
+        "sendTime": "Ange sändningstid. Till exempel, i din datakälla, är sändningstiden sendAt fältet och du kan ställa in fältet till {{item.sendAt}}.",
+        "senderName": "Ange avsändarens namn. Till exempel i din datakälla är avsändarens namn sendName-fältet och du kan ställa in fältet till {{item.sendName}}.",
+        "currentSenderId": "Ange nuvarande avsändar-id. Vi använder detta fält för att avgöra vilken användare som skickar information som ska visas till höger.",
+        "senderId": "Ange avsändarens id. Till exempel, i din datakälla, avsändar-id är sendID-fältet och du kan ställa in fältet till {{item.sendID}}.",
+        "sendTimeFormat": "Ställ in formatet för sändningstid. T.ex. hh:MM:ss.",
+        "showAvatar": "Ange om avatar ska visas",
+        "showName": "Ange om namnet ska visas",
+        "showSendTime": "Ange om sändningstiden ska visas",
+        "showFooter": "Ange om sidfoten ska visas"
       },
       "tab_title": "Inspektera",
       "unselected_tip1": "Inga komponenter valda.",
@@ -1699,13 +1699,13 @@
       },
       "setter_tips": {
         "chat": {
-          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
-          "enable_message_selec": "Set whether to allow a message to be selected",
-          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "image_background": "Set a image background. Base64 and image URL are supported"
+          "data_source": "Datakällan för chattkomponenten. Använd {{actionName.data}} för att använda data från dina databaser eller API:er",
+          "sender_avatar": "Ange avsändaravataren. Till exempel, i din datakälla, avatar är sendAvatar fältet och du kan ställa in fältet till {{item.sendAvatar}}.",
+          "enable_message_selec": "Ange om ett meddelande ska väljas",
+          "selection_type": "Ställ in hur du väljer ett meddelande, vänster-klicka eller högerklick. När det används på en mobil enhet klickas det för att utlösa valet. ",
+          "loading_when_receivi": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
+          "loading_when_sending": "Ange om du vill visa inläsning när du skickar meddelanden. Om ditt meddelande skickas till åtgärden 1 kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
+          "image_background": "Ange en bildbakgrund. Base64 och bild-URL stöds"
         },
         "carousel_tips": "Använd {{ item }} för att hämta värde från datakällan. Till exempel finns det två attribut i datakällan. De är imageUrl och webbadress. Om du vill gå till en annan webbadress när du klickar på bilden, använd {{ item.url }} för att ställa in webbadressen.",
         "data_source": "En datakälla för att definiera bildobjekt med hjälp av mappad utvärdering. Använd antingen en array av värden eller ett objekt med tangenter mappade till arrayer. Till exempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan också använda data i handlingar. Till exempel: {{ mysql1.data }} ",
@@ -1852,10 +1852,10 @@
           "min_duration": "Minsta varaktighet för inspelning",
           "max_duration": "Maximal varaktighet för inspelning"
         },
-        "leftMessageColor": "Set the color of the messages on the left",
-        "rightMessageColor": "Set the color of the messages on the right",
-        "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "leftMessageColor": "Ställ in färgen på meddelandena till vänster",
+        "rightMessageColor": "Ställ in färgen på meddelandena till höger",
+        "toolbar-replay": "Ange om du vill visa en svarsknapp när du väljer ett meddelande.",
+        "toolbar-delete": "Ange om du vill visa en raderingsknapp när du väljer ett meddelande."
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1932,8 +1932,8 @@
         },
         "chat": {
           "selection_type": {
-            "left-click": "Left-click",
-            "right-click": "Right-click"
+            "left-click": "Vänsterklicka",
+            "right-click": "Högerklicka"
           }
         }
       },
@@ -2480,16 +2480,16 @@
       "name": "Number Input"
     },
     "rich_text_editor": {
-      "name": "Rich text editor"
+      "name": "Rich textredigerare"
     },
     "json_editor": {
       "name": "JSON editor"
     },
     "json_viewer": {
-      "name": "JSON viewer"
+      "name": "JSON tittare"
     },
     "chat": {
-      "name": "Chat"
+      "name": "Chatt"
     },
     "public": {
       "left": "Vänster",
@@ -3019,8 +3019,8 @@
   "logout_failed": "Det gick inte att logga ut. Försök igen senare.",
   "drive": {
     "message": {
-      "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_upload": "Starta uppladdning",
+      "start_download": "Starta nedladdning"
     }
   }
 }
