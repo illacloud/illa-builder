@@ -6,7 +6,7 @@ import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 const originData = [
   { id: `Steps-${v4()}`, value: "Step 1", label: "Step 1", hidden: false },
   { id: `Steps-${v4()}`, value: "Step 2", label: "Step 2", hidden: false },
-  { id: `Steps-${v4()}`, value: "Step 3", label: "Step 3", hidden: true },
+  { id: `Steps-${v4()}`, value: "Step 3", label: "Step 3", hidden: false },
   { id: `Steps-${v4()}`, value: "Step 4", label: "Step 4", hidden: false },
 ]
 
@@ -17,7 +17,7 @@ export const STEPS_WIDGET_CONFIG: WidgetConfig = {
   icon: <StepsWidgetIcon />,
   keywords: ["Steps", "步骤"],
   sessionType: "NAVIGATION",
-  w: 30,
+  w: 35,
   h: 7,
   defaults: {
     direction: "horizontal",
