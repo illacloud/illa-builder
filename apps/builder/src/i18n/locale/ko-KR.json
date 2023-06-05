@@ -1164,8 +1164,8 @@
           "filtersChange": "행 필터 변경",
           "rowSelectChange": "행 선택 변경",
           "onCellSelect": "셀 선택",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "delete": "Delete",
+          "replay": "Reply"
         },
         "image_list": {
           "title": "이미지",
