@@ -1164,8 +1164,8 @@
           "filtersChange": "Filter ändern",
           "rowSelectChange": "Zeilenauswahl ändern",
           "onCellSelect": "Zelle auswählen",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "Delete": "Löschen",
+          "Reply": "Antwort"
         },
         "image_list": {
           "title": "Bilder",
@@ -1266,19 +1266,16 @@
           "calendar": "Kalender"
         },
         "event": "Ereignis",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "NACHRICHT"
       },
       "setter_label": {
         "chat": {
-          "data_source": "Data source",
-          "enable_message_selec": "Enable message selection",
-          "selection_type": "Selection type",
-          "loading_when_sending": "Loading when sending",
-          "show_name": "Show name",
-          "image_background": "Image background",
-          "senderId": "Sender ID",
-          "senderAvatar": "Sender avatar",
-          "senderName": "Sender name"
+          "data_source": "Datenquelle",
+          "enable_message_selec": "Nachrichtenauswahl aktivieren",
+          "selection_type": "Auswahltyp",
+          "loading_when_sending": "Wird beim Senden geladen",
+          "image_background": "Hintergrund des Bildes",
+          "senderAvatar": "Absender-Avatar"
         },
         "action": "Aktion",
         "align": "Align",
@@ -1612,22 +1609,25 @@
           "max_duration": "Maximale Dauer (n)",
           "stop_button_text": "Stopp-Button-Text"
         },
-        "message_id": "Message ID",
-        "message": "Message",
-        "message_type": "Message type",
-        "sendTime": "Send time",
-        "replayMessage": "Reply message ID",
-        "timeFormat": "Time format",
-        "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving",
-        "toolbar-replay": "Show reply button",
-        "toolbar-delete": "Show delete button",
-        "showAvatar": "Show avatar",
-        "showSendTime": "Show send time",
-        "showFooter": "Show footer",
-        "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right",
-        "expandAll": "Expand all"
+        "message_id": "Nachrichten-ID",
+        "message": "Nachricht",
+        "message_type": "Nachrichtentyp",
+        "sendTime": "Sendezeit",
+        "timeFormat": "Zeitformat",
+        "currentSenderId": "Aktuelle Absender-ID",
+        "receiving": "Wird beim Empfang geladen",
+        "toolbar-replay": "Antwort-Schaltfläche anzeigen",
+        "toolbar-delete": "Löschen-Schaltfläche anzeigen",
+        "showAvatar": "Avatar anzeigen",
+        "showSendTime": "Sendezeit anzeigen",
+        "showFooter": "Footer anzeigen",
+        "leftMessageColor": "Nachricht links",
+        "rightMessageColor": "Nachricht rechts",
+        "expandAll": "Alle ausklappen",
+        "replayMessageId": "Antwort-ID",
+        "senderName": "Absendername",
+        "senderId": "Absender-ID",
+        "showName": "Name anzeigen"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1673,9 +1673,20 @@
           "items": "Anzahl der Elemente",
           "accordin_mode": "Im Akkordeon-Modus, wenn ein Element erweitert wird, werden andere Elemente zusammengebrochen."
         },
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. "
+        "message": "Um den Inhalt der Nachricht von einem bestimmten Feld in der Datenquelle zu erhalten, wie das Inhaltsfeld, können Sie es als {{item.content}} festlegen.",
+        "message_type": "Um den Typ der Nachricht basierend auf einem bestimmten Feld in der Datenquelle festzulegen, wie das Feld Typ können Sie es als {{item.type}}festlegen. Wir unterstützen diese Typen: Text, Bild, Video und Audio. ",
+        "message_id": "Um eine eindeutige ID für jede Nachricht festzulegen, können Sie sie aus einem bestimmten Feld in der Datenquelle abrufen. Wenn Sie es aus dem Feld Id abrufen möchten, können Sie es als {{item.id}}festlegen. ",
+        "replayMessageId": "Wenn es auf eine bestimmte Nachricht antwortet, setzen Sie in diesem Feld die Nachricht auf die sie antworten soll.",
+        "expandAll": "Ob alle Knoten erweitert werden sollen oder nicht",
+        "sendTime": "Sendezeit festlegen. Zum Beispiel ist die Sendezeit in Ihrer Datenquelle das sendAt Feld und Sie können das Feld auf {{item.sendAt}} setzen.",
+        "senderName": "Setze den Absendernamen. Zum Beispiel ist der Absendername in Ihrer Datenquelle das Feld sendName und Sie können das Feld auf {{item.sendName}} setzen.",
+        "currentSenderId": "Legen Sie die aktuelle Absender-ID fest. Wir verwenden dieses Feld, um festzustellen, welcher Benutzer Informationen sendet, die auf der rechten Seite angezeigt werden sollen.",
+        "senderId": "Setze die Absender-Id. Zum Beispiel ist die Absender-ID in Ihrer Datenquelle das Feld sendID und Sie können das Feld auf {{item.sendID}} setzen.",
+        "sendTimeFormat": "Legen Sie das Format der Sendezeit fest. Zum Beispiel hh:MM:ss.",
+        "showAvatar": "Legen Sie fest, ob Avatar angezeigt werden soll",
+        "showName": "Legt fest, ob der Name angezeigt werden soll",
+        "showSendTime": "Legt fest, ob die Sendezeit angezeigt werden soll",
+        "showFooter": "Legen Sie fest, ob die Fußzeile angezeigt werden soll"
       },
       "tab_title": "Prüfen",
       "unselected_tip1": "Keine Komponenten ausgewählt.",
@@ -1688,21 +1699,13 @@
       },
       "setter_tips": {
         "chat": {
-          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
-          "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-          "time_format": "Set the format of sending time. For example, hh:MM:ss.",
-          "sender_name": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-          "sender_id": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-          "current_sender_id": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
-          "enable_message_selec": "Set whether to allow a message to be selected",
-          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "show_avatar": "Set whether to show the avatar",
-          "show_name": "Set whether to show the name",
-          "image_background": "Set a image background. Base64 and image URL are supported"
+          "data_source": "Die Datenquelle der Chat-Komponente. Verwenden Sie {{actionName.data}} , um die Daten aus Ihren Datenbanken oder APIs zu nutzen",
+          "sender_avatar": "Setze den Avatar des Absenders. Zum Beispiel ist in Ihrer Datenquelle der Avatar des Absenders das sendAvatar-Feld und Sie können das Feld auf {{item.sendAvatar}} setzen.",
+          "enable_message_selec": "Legen Sie fest, ob eine Nachricht ausgewählt werden soll",
+          "selection_type": "Legen Sie fest, wie eine Nachricht ausgewählt werden soll, Linksklick oder Rechtsklick. Wenn sie auf einem mobilen Gerät verwendet wird, wird sie angeklickt, um die Auswahl zu starten. ",
+          "loading_when_receivi": "Legen Sie fest, ob beim Empfang von Nachrichten das Laden angezeigt werden soll. Wenn Ihre Nachricht von action1 empfangen wird, können Sie sie auf {{action1.isRunning}}setzen , und der Ladestatus wird angezeigt, wenn action1 ausgeführt wird.",
+          "loading_when_sending": "Legen Sie fest, ob beim Senden von Nachrichten das Laden angezeigt werden soll. Wenn Ihre Nachricht an action1 gesendet wird, können Sie sie auf {{action1.isRunning}}setzen , und der Ladestatus wird angezeigt, wenn action1 ausgeführt wird.",
+          "image_background": "Bildhintergrund. Base64 und Bild-URL werden unterstützt"
         },
         "carousel_tips": "Verwenden Sie {{ item }} , um Wert von der Datenquelle zu erhalten. Zum Beispiel gibt es zwei Attribute in der Datenquelle. Sie sind imageUrl und Url. Wenn Sie zu einer anderen URL gehen möchten, wenn Sie auf Bild klicken, verwenden Sie {{ item.url }} , um die URL zu setzen.",
         "data_source": "Eine Datenquelle, um Bildelemente mit zugeordneter Auswertung zu definieren. Verwenden Sie entweder ein Array von Werten oder ein Objekt von Schlüsseln, die Arrays zugeordnet sind. Zum Beispiel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Sie können die Daten auch in Aktionen verwenden. Zum Beispiel: {{ mysql1.data }} ",
@@ -1849,12 +1852,10 @@
           "min_duration": "Mindestdauer für die Aufnahme",
           "max_duration": "Maximale Aufnahmedauer"
         },
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer",
-        "leftMessageColor": "Set the color of the messages on the left",
-        "rightMessageColor": "Set the color of the messages on the right",
-        "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "leftMessageColor": "Setze die Farbe der Nachrichten auf der linken Seite",
+        "rightMessageColor": "Farbe der Nachrichten auf der rechten Seite festlegen",
+        "toolbar-replay": "Legen Sie fest, ob eine Antwort angezeigt werden soll, wenn Sie eine Nachricht auswählen.",
+        "toolbar-delete": "Legen Sie fest, ob eine Löschtaste angezeigt werden soll, wenn Sie eine Nachricht auswählen."
       },
       "setter_option": {
         "fixed": "Feste",
@@ -1931,8 +1932,8 @@
         },
         "chat": {
           "selection_type": {
-            "left-click": "Left-click",
-            "right-click": "Right-click"
+            "left-click": "Linksklick",
+            "right-click": "Rechtsklick"
           }
         }
       },
@@ -1991,9 +1992,6 @@
         "code": {
           "write_code": "Schreibe hier deinen Code. Verwende JavaScript innerhalb von {{ }}"
         }
-      },
-      "setter_tooltips": {
-        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
@@ -2482,13 +2480,13 @@
       "name": "Number Input"
     },
     "rich_text_editor": {
-      "name": "Rich text editor"
+      "name": "Rich-Text-Editor"
     },
     "json_editor": {
       "name": "JSON editor"
     },
     "json_viewer": {
-      "name": "JSON viewer"
+      "name": "JSON-Betrachter"
     },
     "chat": {
       "name": "Chat"
@@ -3021,8 +3019,8 @@
   "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut.",
   "drive": {
     "message": {
-      "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_upload": "Upload starten",
+      "start_download": "Download starten"
     }
   }
 }
