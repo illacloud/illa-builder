@@ -1164,8 +1164,8 @@
           "filtersChange": "Filters change",
           "rowSelectChange": "Row select change",
           "onCellSelect": "Select a cell",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "delete": "Delete",
+          "replay": "Reply"
         },
         "image_list": {
           "title": "Images",
