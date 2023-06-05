@@ -1164,8 +1164,8 @@
           "filtersChange": "Filtre schimbate",
           "rowSelectChange": "Rând selectare modificare",
           "onCellSelect": "Selectați o celulă",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "delete": "Ștergere",
+          "replay": "Răspuns"
         },
         "image_list": {
           "title": "Imagini",
@@ -1266,16 +1266,16 @@
           "calendar": "Calendar"
         },
         "event": "Eveniment",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "MESAJ"
       },
       "setter_label": {
         "chat": {
-          "data_source": "Data source",
-          "enable_message_selec": "Enable message selection",
-          "selection_type": "Selection type",
-          "loading_when_sending": "Loading when sending",
-          "image_background": "Image background",
-          "senderAvatar": "Sender avatar"
+          "data_source": "Sursă de date",
+          "enable_message_selec": "Activează selecția mesajelor",
+          "selection_type": "Tipul de selecţie",
+          "loading_when_sending": "Se încarcă la trimitere",
+          "image_background": "Imagine fundal",
+          "senderAvatar": "Avatarul expeditorului"
         },
         "action": "Acțiune",
         "align": "Align",
@@ -1609,25 +1609,25 @@
           "max_duration": "Durată maximă (durate)",
           "stop_button_text": "Opriți textul butonului"
         },
-        "message_id": "Message ID",
-        "message": "Message",
-        "message_type": "Message type",
-        "sendTime": "Send time",
-        "timeFormat": "Time format",
-        "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving",
-        "toolbar-replay": "Show reply button",
-        "toolbar-delete": "Show delete button",
-        "showAvatar": "Show avatar",
-        "showSendTime": "Show send time",
-        "showFooter": "Show footer",
-        "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right",
-        "expandAll": "Expand all",
-        "replayMessageId": "Reply message ID",
-        "senderName": "Sender name",
-        "senderId": "Sender ID",
-        "showName": "Show name"
+        "message_id": "ID Mesaj",
+        "message": "Mesaj",
+        "message_type": "Tipul mesajului",
+        "sendTime": "Timpul trimiterii",
+        "timeFormat": "Format oră",
+        "currentSenderId": "ID expeditor curent",
+        "receiving": "Se încarcă la primire",
+        "toolbar-replay": "Arată butonul de răspuns",
+        "toolbar-delete": "Arată butonul de ștergere",
+        "showAvatar": "Arată avatarul",
+        "showSendTime": "Arată ora trimiterii",
+        "showFooter": "Arată subsol",
+        "leftMessageColor": "Mesaj din stânga",
+        "rightMessageColor": "Mesaj la dreapta",
+        "expandAll": "Extinde tot",
+        "replayMessageId": "ID mesaj răspuns",
+        "senderName": "Nume expeditor",
+        "senderId": "ID expeditor",
+        "showName": "Arată numele"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1673,20 +1673,20 @@
           "items": "Numărul de articole",
           "accordin_mode": "În modul accordion, atunci când un obiect este extins, alte elemente se vor restrânge."
         },
-        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-        "replayMessageId": "If it is replying to a specified message, use this field to set which message to reply to.",
-        "expandAll": "Whether or not to expand all the nodes",
-        "sendTime": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-        "senderName": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-        "currentSenderId": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
-        "senderId": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-        "sendTimeFormat": "Set the format of sending time. For example, hh:MM:ss.",
-        "showAvatar": "Set whether to show the avatar",
-        "showName": "Set whether to show the name",
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer"
+        "message": "Pentru a prelua conținutul mesajului dintr-un anumit câmp din sursa de date, cum ar fi câmpul de conținut, îl puteți seta ca {{item.content}}.",
+        "message_type": "Pentru a seta tipul mesajului bazat pe un câmp specific în sursa de date, cum ar fi câmpul de tip, îl puteți seta ca {{item.type}}. Susținem aceste tipuri: text, imagine, video și audio. ",
+        "message_id": "Pentru a seta un ID unic pentru fiecare mesaj, îl puteți extrage dintr-un câmp specific din sursa datelor. Dacă doriți să îl recuperați din câmpul de identificare, îl puteți seta ca {{item.id}}. ",
+        "replayMessageId": "În cazul în care răspunde la un mesaj specificat, utilizaţi acest câmp pentru a seta la care mesaj să răspundă.",
+        "expandAll": "Extinderea sau nu a tuturor nodurilor",
+        "sendTime": "Setați ora de trimitere. De exemplu, în sursa de date, timpul de trimitere este câmpul de trimitere și puteți seta câmpul la {{item.sendAt}}.",
+        "senderName": "Setaţi numele expeditorului. (Automatic Translation) De exemplu, în sursa de date, numele expeditorului este câmpul SendName și puteți seta câmpul la {{item.sendName}}.",
+        "currentSenderId": "Setați id-ul curent expeditor. Folosim acest câmp pentru a determina care utilizator trimite informații pentru a fi afișate în dreapta. (Automatic Translation)",
+        "senderId": "Setează id-ul expeditorului. De exemplu, în sursa de date, id-ul expeditorului este câmpul sendID și puteți seta câmpul la {{item.sendID}}.",
+        "sendTimeFormat": "Setați formatul timpului de trimitere. De exemplu, hhh:MM:ss.",
+        "showAvatar": "Setează dacă se afișează avatarul",
+        "showName": "Setează dacă se afișează numele",
+        "showSendTime": "Setează dacă se afișează ora trimiterii",
+        "showFooter": "Setează dacă să afișeze subsolul"
       },
       "tab_title": "Inspectează",
       "unselected_tip1": "Nicio componentă selectată.",
@@ -1699,13 +1699,13 @@
       },
       "setter_tips": {
         "chat": {
-          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
-          "enable_message_selec": "Set whether to allow a message to be selected",
-          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "image_background": "Set a image background. Base64 and image URL are supported"
+          "data_source": "Sursa de date a componentei de chat. Folosește {{actionName.data}} pentru a utiliza datele din bazele de date sau API-urile tale",
+          "sender_avatar": "Setează avatarul expeditorului. De exemplu, în sursa de date, avatarul expeditorului este câmpul sendAvatar și puteți seta câmpul {{item.sendAvatar}}.",
+          "enable_message_selec": "Setează dacă se permite sau nu selectarea mesajului",
+          "selection_type": "Setați cum să selectați un mesaj, click stânga sau click-dreapta. Când este folosit pe un dispozitiv mobil, este apăsat pentru a declanșa selecția. ",
+          "loading_when_receivi": "Setați dacă se afișează încărcarea la primirea mesajelor. Dacă mesajul tău este primit de la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
+          "loading_when_sending": "Setați dacă se afișează încărcarea la trimiterea mesajelor. Dacă mesajul tău este trimis la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
+          "image_background": "Setați un fundal pentru imagine. Base64 și URL-ul imaginii sunt suportate"
         },
         "carousel_tips": "Folosește {{ item }} pentru a obține valoare de la sursa datelor. De exemplu, există două atribute în sursa datelor. Sunt imageUrl și url. Dacă vrei să mergi la url diferit când faci clic pe imagine, folosește {{ item.url }} pentru a seta urlul.",
         "data_source": "O sursă de date pentru a defini elementele imaginii folosind evaluarea cartografiată. Utilizați fie o serie de valori, fie un obiect de chei mapate pe arrays. De exemplu: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . De asemenea, puteți utiliza datele în acțiuni. De exemplu: {{ mysql1.data }} ",
@@ -1852,10 +1852,10 @@
           "min_duration": "Durata minimă pentru înregistrare",
           "max_duration": "Durata maximă pentru înregistrare"
         },
-        "leftMessageColor": "Set the color of the messages on the left",
-        "rightMessageColor": "Set the color of the messages on the right",
-        "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "leftMessageColor": "Setează culoarea mesajelor din stânga",
+        "rightMessageColor": "Setează culoarea mesajelor din dreapta",
+        "toolbar-replay": "Setează dacă se afișează un buton de răspuns când se selectează un mesaj.",
+        "toolbar-delete": "Setează dacă se afișează un buton de ștergere când se selectează un mesaj."
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -1932,8 +1932,8 @@
         },
         "chat": {
           "selection_type": {
-            "left-click": "Left-click",
-            "right-click": "Right-click"
+            "left-click": "Click stanga",
+            "right-click": "Clic-dreapta"
           }
         }
       },
@@ -2480,13 +2480,13 @@
       "name": "Number Input"
     },
     "rich_text_editor": {
-      "name": "Rich text editor"
+      "name": "Editor de text îmbogățit"
     },
     "json_editor": {
       "name": "JSON editor"
     },
     "json_viewer": {
-      "name": "JSON viewer"
+      "name": "Vizualizator JSON"
     },
     "chat": {
       "name": "Chat"
@@ -3019,8 +3019,8 @@
   "logout_failed": "Deconectare eșuată. Te rugăm să încerci din nou mai târziu.",
   "drive": {
     "message": {
-      "start_upload": "Start upload",
-      "start_download": "Start download"
+      "start_upload": "Începe încărcarea",
+      "start_download": "Începe descărcarea"
     }
   }
 }
