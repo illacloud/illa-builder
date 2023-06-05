@@ -81,6 +81,7 @@ export const ResourcesContentBody: FC = () => {
           dbName = (resource as Resource<NeonResource>).content.databaseName
           break
         case "redis":
+        case "upstash":
           dbName = (
             resource as Resource<RedisResource>
           ).content.databaseIndex.toString()
