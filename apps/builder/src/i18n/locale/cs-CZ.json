@@ -1164,8 +1164,8 @@
           "filtersChange": "Změna filtrů",
           "rowSelectChange": "Změna řádku",
           "onCellSelect": "Vybrat buňku",
-          "Delete": "Vymazat",
-          "Reply": "Odpověď"
+          "delete": "Vymazat",
+          "replay": "Odpověď"
         },
         "image_list": {
           "title": "Obrázky",
