@@ -1164,8 +1164,8 @@
           "filtersChange": "Filtre ændres",
           "rowSelectChange": "Ændring af række",
           "onCellSelect": "Vælg en celle",
-          "Delete": "Slet",
-          "Reply": "Svar"
+          "delete": "Slet",
+          "replay": "Svar"
         },
         "image_list": {
           "title": "Billeder",
