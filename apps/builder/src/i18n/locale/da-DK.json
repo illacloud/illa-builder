@@ -1164,8 +1164,8 @@
           "filtersChange": "Filtre ændres",
           "rowSelectChange": "Ændring af række",
           "onCellSelect": "Vælg en celle",
-          "Delete": "Delete",
-          "Reply": "Reply"
+          "Delete": "Slet",
+          "Reply": "Svar"
         },
         "image_list": {
           "title": "Billeder",
@@ -1266,19 +1266,16 @@
           "calendar": "Kalender"
         },
         "event": "Begivenhed",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "BESKYTTELSE"
       },
       "setter_label": {
         "chat": {
-          "data_source": "Data source",
-          "enable_message_selec": "Enable message selection",
-          "selection_type": "Selection type",
-          "loading_when_sending": "Loading when sending",
-          "show_name": "Show name",
-          "image_background": "Image background",
-          "senderId": "Sender ID",
-          "senderAvatar": "Sender avatar",
-          "senderName": "Sender name"
+          "data_source": "Datakilde",
+          "enable_message_selec": "Aktiver valg af besked",
+          "selection_type": "Markering type",
+          "loading_when_sending": "Indlæser ved afsendelse",
+          "image_background": "Billede baggrund",
+          "senderAvatar": "Afsenders avatar"
         },
         "action": "Handling",
         "align": "Align",
@@ -1612,22 +1609,25 @@
           "max_duration": "Maks. varighed (r)",
           "stop_button_text": "Stop knap tekst"
         },
-        "message_id": "Message ID",
-        "message": "Message",
-        "message_type": "Message type",
-        "sendTime": "Send time",
-        "replayMessage": "Reply message ID",
-        "timeFormat": "Time format",
-        "currentSenderId": "Current sender ID",
-        "receiving": "Loading when receiving",
-        "toolbar-replay": "Show reply button",
-        "toolbar-delete": "Show delete button",
-        "showAvatar": "Show avatar",
-        "showSendTime": "Show send time",
-        "showFooter": "Show footer",
-        "leftMessageColor": "Message on left",
-        "rightMessageColor": "Message on right",
-        "expandAll": "Expand all"
+        "message_id": "Besked ID",
+        "message": "Besked",
+        "message_type": "Besked type",
+        "sendTime": "Send tid",
+        "timeFormat": "Tid format",
+        "currentSenderId": "Nuværende afsender ID",
+        "receiving": "Indlæser ved modtagelse",
+        "toolbar-replay": "Vis svar-knap",
+        "toolbar-delete": "Vis sletningsknap",
+        "showAvatar": "Vis avatar",
+        "showSendTime": "Vis sendetid",
+        "showFooter": "Vis sidefod",
+        "leftMessageColor": "Besked til venstre",
+        "rightMessageColor": "Besked til højre",
+        "expandAll": "Udvid alle",
+        "replayMessageId": "Svar besked ID",
+        "senderName": "Afsenders navn",
+        "senderId": "Afsender ID",
+        "showName": "Vis navn"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1673,9 +1673,20 @@
           "items": "Antal varer",
           "accordin_mode": "I accordeon tilstand, når en genstand er udvidet, vil andre elementer kollapse."
         },
-        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
-        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
-        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. "
+        "message": "For at hente indholdet af meddelelsen fra et bestemt felt i datakilden såsom indholdsfeltet, kan du angive det som {{item.content}}.",
+        "message_type": "For at indstille typen af meddelelsen baseret på et bestemt felt i datakilden såsom typefeltet, kan du indstille det som {{item.type}}. Vi støtter disse typer: tekst, billede, video og lyd. ",
+        "message_id": "For at angive et unikt id for hver besked, kan du hente det fra et bestemt felt i datakilden. Hvis du ønsker at hente det fra id feltet, kan du indstille det som {{item.id}}. ",
+        "replayMessageId": "Hvis det svarer på en angivet besked, så brug dette felt til at angive hvilket brev der skal besvares til.",
+        "expandAll": "Hvorvidt alle indholdselementer skal udvides eller ej",
+        "sendTime": "Indstil afsendelsestidspunktet. For eksempel, i din datakilde, er sendetiden sendAt feltet, og du kan indstille feltet til {{item.sendAt}}.",
+        "senderName": "Angiv afsenderens navn. For eksempel, i din datakilde, er afsendernavnet sendName feltet og du kan indstille feltet til {{item.sendName}}.",
+        "currentSenderId": "Angiv det aktuelle afsender-id. Vi bruger dette felt til at afgøre hvilken bruger der sender information til højre.",
+        "senderId": "Angiv afsenderens ID. For eksempel, i din datakilde, afsender id er sendID feltet og du kan indstille feltet til {{item.sendID}}.",
+        "sendTimeFormat": "Angiv formatet for afsendelsestid. For eksempel, hh:MM:ss.",
+        "showAvatar": "Angiv, om avataren skal vises",
+        "showName": "Angiv, om navnet skal vises",
+        "showSendTime": "Angiv, om sendetiden skal vises",
+        "showFooter": "Angiv, om footeren skal vises"
       },
       "tab_title": "Inspicer",
       "unselected_tip1": "Ingen komponenter valgt.",
@@ -1688,21 +1699,13 @@
       },
       "setter_tips": {
         "chat": {
-          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "reply_message_id": "If it is replying to a specified message, use this field to set which message to reply to.",
-          "send_time": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
-          "time_format": "Set the format of sending time. For example, hh:MM:ss.",
-          "sender_name": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
-          "sender_id": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
-          "current_sender_id": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
-          "enable_message_selec": "Set whether to allow a message to be selected",
-          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
-          "show_avatar": "Set whether to show the avatar",
-          "show_name": "Set whether to show the name",
-          "image_background": "Set a image background. Base64 and image URL are supported"
+          "data_source": "Datakilden for chatkomponenten. Brug {{actionName.data}} til at bruge data fra dine databaser eller API'er",
+          "sender_avatar": "Indstil afsenderens avatar. For eksempel, i din datakilde, afsenderen avatar er sendAvatar feltet og du kan indstille feltet til {{item.sendAvatar}}.",
+          "enable_message_selec": "Angiv, om en besked skal vælges",
+          "selection_type": "Indstil hvordan du vælger en besked, venstreklik eller højreklik. Når det bruges på en mobil enhed, klikkes det for at udløse valget. ",
+          "loading_when_receivi": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
+          "loading_when_sending": "Angiv, om indlæsning skal vises, når der sendes beskeder. Hvis din besked bliver sendt til handling1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
+          "image_background": "Angiv en billedbaggrund. Base64 og billed-URL understøttes"
         },
         "carousel_tips": "Brug {{ item }} til at hente værdi fra datakilden. For eksempel er der to attributter i datakilden. De er imageUrl og url. Hvis du ønsker at gå til en anden url, når du klikker på billedet, skal du bruge {{ item.url }} til at indstille webadressen.",
         "data_source": "En datakilde til at definere billedelementer ved brug af kortlagt evaluering. Brug enten en række værdier eller et objekt af nøgler knyttet til arrays. For eksempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan også bruge data i handlinger. For eksempel: {{ mysql1.data }} ",
@@ -1849,12 +1852,10 @@
           "min_duration": "Minimumsvarighed for registrering",
           "max_duration": "Maksimal varighed for registrering"
         },
-        "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer",
-        "leftMessageColor": "Set the color of the messages on the left",
-        "rightMessageColor": "Set the color of the messages on the right",
-        "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "leftMessageColor": "Sæt farven på brevene til venstre",
+        "rightMessageColor": "Sæt farven på brevene til højre",
+        "toolbar-replay": "Angiv, om en svar-knap skal vises når du vælger en besked.",
+        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked."
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1931,8 +1932,8 @@
         },
         "chat": {
           "selection_type": {
-            "left-click": "Left-click",
-            "right-click": "Right-click"
+            "left-click": "Venstreklik",
+            "right-click": "Højreklik"
           }
         }
       },
@@ -1991,9 +1992,6 @@
         "code": {
           "write_code": "Skriv din kode her. Brug JavaScript inde i {{ }}"
         }
-      },
-      "setter_tooltips": {
-        "expandAll": "Whether or not to expand all the nodes"
       }
     },
     "page": {
@@ -2482,13 +2480,13 @@
       "name": "Number Input"
     },
     "rich_text_editor": {
-      "name": "Rich text editor"
+      "name": "Rig teksteditor"
     },
     "json_editor": {
       "name": "JSON editor"
     },
     "json_viewer": {
-      "name": "JSON viewer"
+      "name": "JSON fremviser"
     },
     "chat": {
       "name": "Chat"
