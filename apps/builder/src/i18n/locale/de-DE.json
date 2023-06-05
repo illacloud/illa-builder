@@ -1164,8 +1164,8 @@
           "filtersChange": "Filter ändern",
           "rowSelectChange": "Zeilenauswahl ändern",
           "onCellSelect": "Zelle auswählen",
-          "Delete": "Löschen",
-          "Reply": "Antwort"
+          "delete": "Löschen",
+          "replay": "Antwort"
         },
         "image_list": {
           "title": "Bilder",
