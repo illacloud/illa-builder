@@ -32,7 +32,7 @@ export const generateComponentNode = (
     defaults,
     w,
     h,
-    minW = 2,
+    minW = 4,
     minH = 3,
     type,
     displayName = "",

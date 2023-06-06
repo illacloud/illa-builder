@@ -177,8 +177,8 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
         break
       }
     }
-    if (finalColumns < 2) {
-      finalColumns = 2
+    if (finalColumns < 4) {
+      finalColumns = 4
     }
     if (finalColumns === columns) {
       hideColumns()
@@ -214,6 +214,7 @@ export const ColumnsControl: FC<ColumnsControlProps> = (props) => {
       <SetterPadding>
         <InputNumber
           w="96px"
+          min={4}
           value={inputValue}
           colorScheme="techPurple"
           onChange={setInputValue}
