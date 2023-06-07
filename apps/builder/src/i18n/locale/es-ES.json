@@ -3022,5 +3022,8 @@
       "start_upload": "Iniciar subida",
       "start_download": "Iniciar descarga"
     }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
   }
 }
