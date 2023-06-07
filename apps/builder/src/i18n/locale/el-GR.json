@@ -3022,5 +3022,8 @@
       "start_upload": "Έναρξη μεταφόρτωσης",
       "start_download": "Έναρξη λήψης"
     }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
   }
 }
