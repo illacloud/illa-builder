@@ -3022,5 +3022,8 @@
       "start_upload": "Începe încărcarea",
       "start_download": "Începe descărcarea"
     }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
   }
 }
