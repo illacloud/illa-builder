@@ -3022,5 +3022,8 @@
       "start_upload": "开始上传",
       "start_download": "开始下载"
     }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
   }
 }
