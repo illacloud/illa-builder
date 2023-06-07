@@ -3022,5 +3022,8 @@
       "start_upload": "Spustit nahrávání",
       "start_download": "Zahájit stahování"
     }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
   }
 }
