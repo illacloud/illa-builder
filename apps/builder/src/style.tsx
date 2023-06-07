@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { SerializedStyles, css } from "@emotion/react"
 
 const FONT_SIZE = (100 / 780) * 100
 export const MOBILE_MIN_WIDTH = 320
@@ -66,5 +66,11 @@ export const pxToRem = (px: number) => {
 export const messageStyle = css`
   @media screen and (max-width: ${MOBILE_MAX_WIDTH}px) {
     border-radius: 16rem;
+  }
+`
+
+export const applyMobileStyle = (style: SerializedStyles) => css`
+  @media screen and (max-width: ${MOBILE_MAX_WIDTH}px) {
+    ${style};
   }
 `
