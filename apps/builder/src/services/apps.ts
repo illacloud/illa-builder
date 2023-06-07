@@ -214,7 +214,7 @@ export const updateAppPublicConfig = async (
 }
 
 export const updateWaterMarkConfig = async (
-  removeWaterMark: boolean,
+  waterMark: boolean,
   appID: string,
 ) => {
   await builderRequest(
@@ -222,7 +222,7 @@ export const updateWaterMarkConfig = async (
       method: "PATCH",
       url: `/apps/${appID}/config`,
       data: {
-        removeWaterMark,
+        waterMark,
       },
     },
     {

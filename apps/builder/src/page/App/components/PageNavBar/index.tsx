@@ -74,7 +74,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const paymentStatus = false
 
   const appInfo = useSelector(getAppInfo)
-  const removeWaterMark = useSelector(getCurrentAppWaterMarkConfig)
+  const waterMark = useSelector(getCurrentAppWaterMarkConfig)
   const debuggerVisible = useSelector(isOpenDebugger)
   const isFreezeCanvas = useSelector(getFreezeState)
   const isOnline = useSelector(getIsOnline)
@@ -268,7 +268,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                         <span css={upgradeStyle}>
                           {t("Remove watermark")}
                           {paymentStatus ? (
-                            <Switch checked={removeWaterMark} />
+                            <Switch checked={waterMark} />
                           ) : (
                             <Tag colorScheme="techPurple">
                               <UpgradeIcon /> Upgrade

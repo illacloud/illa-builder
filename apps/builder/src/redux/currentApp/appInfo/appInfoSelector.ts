@@ -6,7 +6,7 @@ export const getAppInfo = (state: RootState) => {
 }
 
 export const getCurrentAppWaterMarkConfig = (state: RootState) => {
-  return state.currentApp.appInfo?.config?.removeWaterMark
+  return state.currentApp.appInfo?.config?.waterMark
 }
 
 export const getAppId = createSelector([getAppInfo], (appInfo) => {

@@ -30,7 +30,7 @@ import { DeployContent } from "./content"
 
 export const Deploy: FC = () => {
   const currentApp = useSelector(getAppInfo)
-  const removeWaterMark = useSelector(getCurrentAppWaterMarkConfig)
+  const waterMark = useSelector(getCurrentAppWaterMarkConfig)
   const teamInfo = useSelector(getCurrentTeamInfo)
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
 
@@ -79,7 +79,7 @@ export const Deploy: FC = () => {
             <div css={upgradeConfigStyle}>
               Remove watermark
               <Switch
-                checked={removeWaterMark}
+                checked={waterMark}
                 onChange={() => {
                   // change config
                 }}
