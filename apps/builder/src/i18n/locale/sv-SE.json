@@ -3022,5 +3022,8 @@
       "start_upload": "Starta uppladdning",
       "start_download": "Starta nedladdning"
     }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
   }
 }
