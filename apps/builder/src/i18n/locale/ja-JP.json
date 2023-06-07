@@ -3022,5 +3022,8 @@
       "start_upload": "アップロードを開始",
       "start_download": "ダウンロードを開始"
     }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
   }
 }
