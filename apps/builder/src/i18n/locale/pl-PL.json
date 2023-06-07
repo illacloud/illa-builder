@@ -3022,5 +3022,8 @@
       "start_upload": "Rozpocznij wysyłanie",
       "start_download": "Rozpocznij pobieranie"
     }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
   }
 }
