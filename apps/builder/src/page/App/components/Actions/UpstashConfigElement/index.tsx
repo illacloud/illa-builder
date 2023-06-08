@@ -1,13 +1,13 @@
-import { FC, useContext, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
+  Alert,
   Button,
   ButtonGroup,
   Divider,
   PreviousIcon,
-  WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
@@ -24,76 +24,86 @@ import {
   connectTypeStyle,
   container,
   divider,
-  errorIconStyle,
-  errorMsgStyle,
   footerStyle,
   labelContainer,
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
-import { Resource } from "@/redux/resource/resourceState"
 import {
-  S3Resource,
-  S3ResourceInitial,
-  SelectOptions,
-} from "@/redux/resource/s3Resource"
+  RedisResource,
+  RedisResourceInitial,
+} from "@/redux/resource/redisResource"
+import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
-import { urlValidate, validate } from "@/utils/form"
+import { isContainLocalPath, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
-export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
+export const UpstashConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
   const { t } = useTranslation()
-  const { control, handleSubmit, getValues, formState, watch } = useForm({
+  const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
-  const { track } = useContext(MixpanelTrackContext)
-
   const findResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
   })
 
-  let content: S3Resource
+  let content: RedisResource
   if (findResource === undefined) {
-    content = S3ResourceInitial
+    content = { ...RedisResourceInitial, ssl: true }
   } else {
-    content = (findResource as Resource<S3Resource>).content
+    content = (findResource as Resource<RedisResource>).content
   }
 
+  const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const baseURLOpen = watch("endpoint", content.endpoint)
-  const aclDefaultValue = content.acl || t("editor.action.acl.option.blank")
+  const { track } = useContext(MixpanelTrackContext)
 
-  const handleConnectionTest = () => {
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
+      }
+      return true
+    },
+    [showAlert],
+  )
+
+  const handleDocLinkClick = () => {
+    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
+  }
+
+  const handleConnectionTest = useCallback(() => {
     track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
       element: "resource_configure_test",
-      parameter5: "s3",
+      parameter5: "upstash",
     })
     const data = getValues()
-    const content = {
-      bucketName: data.bucketName,
-      region: data.region,
-      endpoint: data.endpoint,
-      baseURL: data.baseURL && data.baseURL.trim(),
-      accessKeyID: data.accessKeyID,
-      secretAccessKey: data.secretAccessKey,
-      acl:
-        !data.acl || data.acl === t("editor.action.acl.option.blank")
-          ? ""
-          : data.acl,
-    }
-    onActionConfigElementTest(data, content, "s3", setTestLoading)
-  }
+    onActionConfigElementTest(
+      data,
+      {
+        host: data.host.trim(),
+        port: data.port.toString(),
+        databaseIndex: data.databaseIndex ?? 0,
+        databaseUsername: data.databaseUsername,
+        databasePassword: data.databasePassword,
+        ssl: true,
+      },
+      "upstash",
+      setTestLoading,
+    )
+  }, [getValues, track])
 
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
-        "s3",
+        "upstash",
         onFinished,
         setSaving,
       )}
@@ -126,116 +136,87 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.general_option")}
         </div>
+
         <ControlledElement
-          title={t("editor.action.resource.s3.label.bucket_name")}
-          defaultValue={content.bucketName}
-          control={control}
-          name="bucketName"
-          controlledType="input"
-        />
-        <ControlledElement
-          title={t("editor.action.form.label.acl")}
-          defaultValue={aclDefaultValue}
-          name="acl"
-          controlledType="select"
-          control={control}
-          options={SelectOptions}
-          tips={
-            <Trans
-              i18nKey="editor.action.form.tips.acl"
-              t={t}
-              components={[
-                <TextLink
-                  key="editor.action.form.tips.acl"
-                  onClick={() => {
-                    window.open(
-                      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html",
-                      "_blank",
-                    )
-                  }}
-                />,
-              ]}
-            />
-          }
-        />
-        <ControlledElement
-          title={t("editor.action.resource.s3.label.region")}
-          defaultValue={content.region}
-          rules={[
-            {
-              validate,
-            },
-          ]}
-          controlledType="input"
-          control={control}
-          isRequired
-          name="region"
-          placeholders={[t("editor.action.resource.s3.placeholder.region")]}
-        />
-        <ControlledElement
-          title={t("editor.action.resource.s3.label.custome_s3_endpoint")}
-          control={control}
-          defaultValue={content.endpoint}
-          name="endpoint"
-          controlledType="switch"
-          contentLabel={t(
-            "editor.action.resource.s3.label.use_custome_s3_endpoint",
-          )}
-          tips={t("editor.action.resource.s3.tip.custome_s3_endpoint_tip")}
-        />
-        {baseURLOpen && (
-          <ControlledElement
-            title={t("editor.action.resource.s3.label.base_url")}
-            defaultValue={content.baseURL}
-            control={control}
-            rules={[
-              {
-                required: t("editor.action.resource.error.invalid_url"),
-                validate: urlValidate,
-              },
-            ]}
-            controlledType="input"
-            placeholders={[t("editor.action.resource.s3.placeholder.base_url")]}
-            name="baseURL"
-            tips={
-              formState.errors.baseURL && (
-                <div css={errorMsgStyle}>
-                  <WarningCircleIcon css={errorIconStyle} />
-                  <>{formState.errors.baseURL.message}</>
-                </div>
-              )
-            }
-          />
-        )}
-        <ControlledElement
-          title={t("editor.action.resource.s3.label.access_key")}
-          isRequired
-          defaultValue={content.accessKeyID}
-          control={control}
-          rules={[
-            {
-              validate,
-            },
-          ]}
-          name="accessKeyID"
-          controlledType="input"
-          tips={
-            isCloudVersion &&
-            t("editor.action.resource.db.tip.username_password")
-          }
-        />
-        <ControlledElement
-          title={t("editor.action.resource.s3.label.secret_access_key")}
-          isRequired
-          defaultValue={content.secretAccessKey}
+          defaultValue={[content.host, content.port]}
+          title={t("editor.action.resource.db.label.hostname_port")}
           control={control}
           rules={[
             {
               required: true,
+              validate: handleHostValidate,
+            },
+            {
+              required: true,
             },
           ]}
-          name="secretAccessKey"
-          controlledType="password"
+          isRequired
+          controlledType={["input", "number"]}
+          name={["host", "port"]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.hostname"),
+            "6379",
+          ]}
+          styles={[
+            {
+              flex: 4,
+            },
+            {
+              flex: 1,
+            },
+          ]}
+        />
+        {showAlert && (
+          <ControlledElement
+            defaultValue=""
+            name=""
+            title=""
+            controlledType="none"
+            control={control}
+            tips={
+              <Alert
+                title={t("editor.action.form.tips.connect_to_local.title.tips")}
+                closable={false}
+                content={
+                  isCloudVersion ? (
+                    <Trans
+                      i18nKey="editor.action.form.tips.connect_to_local.cloud"
+                      t={t}
+                      components={[
+                        <TextLink
+                          key="editor.action.form.tips.connect_to_local.cloud"
+                          onClick={handleDocLinkClick}
+                        />,
+                      ]}
+                    />
+                  ) : (
+                    t("editor.action.form.tips.connect_to_local.selfhost")
+                  )
+                }
+              />
+            }
+          />
+        )}
+        <ControlledElement
+          title={t("editor.action.resource.db.label.database_index")}
+          defaultValue={content.databaseIndex}
+          name="databaseIndex"
+          placeholders={[
+            t("editor.action.resource.db.placeholder.database_index"),
+          ]}
+          controlledType="number"
+          control={control}
+        />
+        <ControlledElement
+          title={t("editor.action.resource.db.label.username_password")}
+          controlledType={["input", "password"]}
+          control={control}
+          defaultValue={[content.databaseUsername, content.databasePassword]}
+          name={["databaseUsername", "databasePassword"]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.username"),
+            t("editor.action.resource.db.placeholder.password"),
+          ]}
         />
         {isCloudVersion && (
           <>
@@ -291,4 +272,4 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
   )
 }
 
-S3ConfigElement.displayName = "S3ConfigElement"
+UpstashConfigElement.displayName = "UpstashConfigElement"

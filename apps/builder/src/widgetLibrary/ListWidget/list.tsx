@@ -487,7 +487,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
       return childrenNodes.map((itemContainer, index) => {
         const currentItems = itemContainer.childrenNode
         if (Array.isArray(currentItems) && currentItems.length > 0) {
-          const newCurrentItems = currentItems.map((currentItem) => {
+          let newCurrentItems = currentItems.map((currentItem) => {
             if (
               currentItem.props &&
               Array.isArray(currentItem.props.$dynamicAttrPaths)
@@ -538,6 +538,23 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
               set(currentItem, "props.disabled", disabled || false)
             }
             return currentItem
+          })
+          newCurrentItems = newCurrentItems.map((item) => {
+            const displayName = item.displayName
+            const displayNameArray = displayName.split("-")
+            const realDisplayName = displayNameArray.at(-1)
+            const rawWidget = rawTree[realDisplayName as string]
+            const validationPaths = rawWidget.$validationPaths
+            if (isObject(validationPaths)) {
+              Object.keys(validationPaths).forEach((path) => {
+                const validationType = validationPaths[path]
+                const validationFunc = validationFactory[validationType]
+                const currentValue = get(item, `props.${path}`, "")
+                const res = validationFunc?.(currentValue, "")
+                set(item, `props.${path}`, res?.safeValue)
+              })
+            }
+            return item
           })
           set(itemContainer, "childrenNode", newCurrentItems)
         }

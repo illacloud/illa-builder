@@ -20,6 +20,7 @@ import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfi
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
 import { SnowflakeConfigElement } from "@/page/App/components/Actions/SnowflakeConfigElement"
+import { UpstashConfigElement } from "@/page/App/components/Actions/UpstashConfigElement"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { RootState } from "@/store"
 
@@ -77,6 +78,14 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "redis":
         return (
           <RedisConfigElement
+            resourceId={resourceId}
+            onBack={handleBack}
+            onFinished={onFinished}
+          />
+        )
+      case "upstash":
+        return (
+          <UpstashConfigElement
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}

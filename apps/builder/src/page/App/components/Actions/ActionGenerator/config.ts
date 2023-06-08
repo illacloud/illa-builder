@@ -40,6 +40,10 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
+    actionType: "upstash",
+    isDraft: false,
+  },
+  {
     actionType: "mongodb",
     isDraft: false,
   },
