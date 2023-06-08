@@ -137,7 +137,6 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
           title={t("editor.action.form.label.acl")}
           defaultValue={aclDefaultValue}
           name="acl"
-          allowClear={true}
           controlledType="select"
           control={control}
           options={SelectOptions}

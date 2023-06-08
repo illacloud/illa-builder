@@ -100,6 +100,7 @@ export const ActionPanel: FC = () => {
       case "hfendpoint":
         return <HuggingFaceEndpointPanel />
       case "redis":
+      case "upstash":
         return <RedisPanel />
       case "mongodb":
         return <MongoDbPanel />

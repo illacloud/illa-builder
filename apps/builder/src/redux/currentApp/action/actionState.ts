@@ -95,6 +95,7 @@ export type ActionType =
   | "s3"
   | "transformer"
   | "appwrite"
+  | "upstash"
 
 export type ActionTriggerMode = "manually" | "automate"
 

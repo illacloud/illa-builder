@@ -539,7 +539,7 @@ export const maskStyle = css`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${getColor("blackAlpha", "02")};
+  background-color: ${getColor("blackAlpha", "04")};
   z-index: -1;
 `
 

@@ -40,6 +40,10 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
+    resourceType: "upstash",
+    isDraft: false,
+  },
+  {
     resourceType: "mongodb",
     isDraft: false,
   },

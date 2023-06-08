@@ -47,6 +47,7 @@ export type ResourceType =
   | "s3"
   | "clickhouse"
   | "couchdb"
+  | "upstash"
 
 export type ResourceContent =
   | HuggingFaceResource

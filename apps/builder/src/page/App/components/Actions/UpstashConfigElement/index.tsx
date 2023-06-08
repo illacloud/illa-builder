@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useMemo, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -16,6 +16,7 @@ import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
+import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
   applyConfigItemLabelText,
   configItemTip,
@@ -30,92 +31,56 @@ import {
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
-  MysqlLikeResource,
-  tiDBServertCertDefaultValue,
-} from "@/redux/resource/mysqlLikeResource"
-import {
-  DbSSL,
-  Resource,
-  generateSSLConfig,
-} from "@/redux/resource/resourceState"
+  RedisResource,
+  RedisResourceInitial,
+} from "@/redux/resource/redisResource"
+import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
-import { handleLinkOpen } from "@/utils/navigate"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { MysqlLikeConfigElementProps } from "./interface"
 
-const getResourceDefaultPort = (resourceType: string) => {
-  switch (resourceType) {
-    case "postgresql":
-    case "supabasedb":
-      return "5432"
-    case "mysql":
-    case "mariadb":
-      return "3306"
-    case "tidb":
-      return "4000"
-    default:
-      return "3306"
-  }
-}
-
-export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
-  props,
-) => {
-  const { onBack, resourceType, resourceId, onFinished } = props
-
+export const UpstashConfigElement: FC<ConfigElementProps> = (props) => {
+  const { onBack, resourceId, onFinished } = props
   const { t } = useTranslation()
-  const { control, handleSubmit, getValues, formState, watch } = useForm({
+  const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
-  const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<MysqlLikeResource>
+  const findResource = useSelector((state: RootState) => {
+    return state.resource.find((r) => r.resourceId === resourceId)
   })
 
+  let content: RedisResource
+  if (findResource === undefined) {
+    content = { ...RedisResourceInitial, ssl: true }
+  } else {
+    content = (findResource as Resource<RedisResource>).content
+  }
+
+  const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const { track } = useContext(MixpanelTrackContext)
 
-  const sslDefaultValue = resource?.content.ssl.ssl ?? resourceType === "tidb"
-  const serverCertDefaultValue =
-    resource?.content.ssl.serverCert ??
-    (resourceType === "tidb" ? tiDBServertCertDefaultValue : "")
+  const handleHostValidate = useCallback(
+    (value: string) => {
+      const isShowAlert = isContainLocalPath(value ?? "")
+      if (isShowAlert !== showAlert) {
+        setShowAlert(isShowAlert)
+      }
+      return true
+    },
+    [showAlert],
+  )
 
-  const serverCertTip = useMemo(() => {
-    return resourceType === "tidb" ? (
-      <Trans
-        i18nKey="editor.action.form.tips.tidb.ca_certificate"
-        t={t}
-        components={[
-          <TextLink
-            key="ca-link"
-            onClick={() =>
-              handleLinkOpen(
-                "https://docs.pingcap.com/tidbcloud/tidb-cloud-tls-connect-to-dedicated-tier",
-              )
-            }
-          />,
-        ]}
-      />
-    ) : (
-      ""
-    )
-  }, [resourceType, t])
-
-  const hostValue = watch("host")
-  const showAlert = isContainLocalPath(hostValue ?? "")
-  const sslOpenWatch = watch("ssl", sslDefaultValue)
-
-  const handleDocLinkClick = () =>
-    handleLinkOpen("https://www.illacloud.com/docs/illa-cli")
+  const handleDocLinkClick = () => {
+    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
+  }
 
   const handleConnectionTest = useCallback(() => {
     track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
       element: "resource_configure_test",
-      parameter5: resourceType,
+      parameter5: "upstash",
     })
     const data = getValues()
     onActionConfigElementTest(
@@ -123,22 +88,22 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
       {
         host: data.host.trim(),
         port: data.port.toString(),
-        databaseName: data.databaseName,
+        databaseIndex: data.databaseIndex ?? 0,
         databaseUsername: data.databaseUsername,
         databasePassword: data.databasePassword,
-        ssl: generateSSLConfig(sslOpenWatch, data) as DbSSL,
+        ssl: true,
       },
-      resourceType,
+      "upstash",
       setTestLoading,
     )
-  }, [getValues, resourceType, sslOpenWatch, track])
+  }, [getValues, track])
 
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
-        resourceType,
+        "upstash",
         onFinished,
         setSaving,
       )}
@@ -150,7 +115,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           isRequired
           title={t("editor.action.resource.db.label.name")}
           control={control}
-          defaultValue={resource?.resourceName ?? ""}
+          defaultValue={findResource?.resourceName ?? ""}
           rules={[
             {
               validate,
@@ -171,20 +136,26 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.general_option")}
         </div>
+
         <ControlledElement
+          defaultValue={[content.host, content.port]}
           title={t("editor.action.resource.db.label.hostname_port")}
-          defaultValue={[resource?.content.host, resource?.content.port]}
-          name={["host", "port"]}
-          controlledType={["input", "number"]}
           control={control}
-          isRequired
           rules={[
             {
-              validate,
+              required: true,
+              validate: handleHostValidate,
             },
             {
               required: true,
             },
+          ]}
+          isRequired
+          controlledType={["input", "number"]}
+          name={["host", "port"]}
+          placeholders={[
+            t("editor.action.resource.db.placeholder.hostname"),
+            "6379",
           ]}
           styles={[
             {
@@ -193,10 +164,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             {
               flex: 1,
             },
-          ]}
-          placeholders={[
-            t("editor.action.resource.db.placeholder.hostname"),
-            getResourceDefaultPort(resourceType),
           ]}
         />
         {showAlert && (
@@ -231,37 +198,21 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
           />
         )}
         <ControlledElement
-          title={t("editor.action.resource.db.label.database")}
-          defaultValue={resource?.content.databaseName}
-          name="databaseName"
-          controlledType="input"
-          control={control}
-          isRequired
-          rules={[
-            {
-              validate,
-            },
+          title={t("editor.action.resource.db.label.database_index")}
+          defaultValue={content.databaseIndex}
+          name="databaseIndex"
+          placeholders={[
+            t("editor.action.resource.db.placeholder.database_index"),
           ]}
-          placeholders={[t("editor.action.resource.db.placeholder.database")]}
+          controlledType="number"
+          control={control}
         />
         <ControlledElement
           title={t("editor.action.resource.db.label.username_password")}
-          defaultValue={[
-            resource?.content.databaseUsername,
-            resource?.content.databasePassword,
-          ]}
-          name={["databaseUsername", "databasePassword"]}
           controlledType={["input", "password"]}
           control={control}
-          isRequired
-          rules={[
-            {
-              validate,
-            },
-            {
-              required: true,
-            },
-          ]}
+          defaultValue={[content.databaseUsername, content.databasePassword]}
+          name={["databaseUsername", "databasePassword"]}
           placeholders={[
             t("editor.action.resource.db.placeholder.username"),
             t("editor.action.resource.db.placeholder.password"),
@@ -284,66 +235,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                 {t("editor.action.resource.db.tip.connect_type")}
               </span>
             </div>
-          </>
-        )}
-        <Divider
-          direction="horizontal"
-          ml="24px"
-          mr="24px"
-          mt="8px"
-          mb="8px"
-          w="unset"
-        />
-        <div css={optionLabelStyle}>
-          {t("editor.action.resource.db.title.advanced_option")}
-        </div>
-        <ControlledElement
-          controlledType={["switch"]}
-          title={t("editor.action.resource.db.label.ssl_options")}
-          control={control}
-          defaultValue={sslDefaultValue}
-          name="ssl"
-          contentLabel={t("editor.action.resource.db.tip.ssl_options")}
-        />
-        {sslOpenWatch && (
-          <>
-            <ControlledElement
-              controlledType={["textarea"]}
-              title={t("editor.action.resource.db.label.ca_certificate")}
-              isRequired
-              rules={[
-                {
-                  validate,
-                },
-              ]}
-              control={control}
-              defaultValue={serverCertDefaultValue}
-              name="serverCert"
-              placeholders={[
-                t("editor.action.resource.db.placeholder.certificate"),
-              ]}
-              tips={serverCertTip}
-            />
-            <ControlledElement
-              controlledType={["textarea"]}
-              title={t("editor.action.resource.db.label.client_key")}
-              control={control}
-              defaultValue={resource?.content.ssl.clientKey}
-              name="clientKey"
-              placeholders={[
-                t("editor.action.resource.db.placeholder.certificate"),
-              ]}
-            />
-            <ControlledElement
-              controlledType={["textarea"]}
-              title={t("editor.action.resource.db.label.client_certificate")}
-              control={control}
-              defaultValue={resource?.content.ssl.clientCert}
-              name="clientCert"
-              placeholders={[
-                t("editor.action.resource.db.placeholder.certificate"),
-              ]}
-            />
           </>
         )}
       </div>
@@ -381,4 +272,4 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   )
 }
 
-MysqlLikeConfigElement.displayName = "MysqlConfigElement"
+UpstashConfigElement.displayName = "UpstashConfigElement"

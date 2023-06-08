@@ -207,7 +207,7 @@
             "access_type": "Adgangstype (Automatic Translation)"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Kommando"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0),la stå tom for 1.0",
             "repetition_penalty": "Flytende (0,0-100,0)",
             "max_time": "Gulv (0,0-120.0) for å definere tiden i sekunder",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Velg en type"
           },
           "tips": {
             "mode_id": "Gå til <0>Model Hub</0> og velg modellen du vil bruke.",
@@ -1161,9 +1161,11 @@
           "DragOrClickNoEventArea": "Dra eller klikk ikke på noe hendelsesområde",
           "rowClick": "Klikk rad",
           "refresh": "Oppdater",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Endre filter",
+          "rowSelectChange": "Velg endring av rad",
+          "onCellSelect": "Velg en celle",
+          "delete": "Slett",
+          "replay": "Svar"
         },
         "image_list": {
           "title": "Bilder",
@@ -1229,9 +1231,9 @@
           "end_placeholder": "Slutt tid"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Start opptak",
+          "stop_button_text": "Stopp",
+          "clear_button_text": "Tøm"
         }
       },
       "setter_group": {
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Kalender"
         },
-        "event": "Hendelse"
+        "event": "Hendelse",
+        "MESSAGE": "MELDING"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Data kilde",
+          "enable_message_selec": "Aktiver meldingsvalg",
+          "selection_type": "Type utvalg",
+          "loading_when_sending": "Laster når du sender",
+          "image_background": "Bilde bakgrunn",
+          "senderAvatar": "Avsenders profilbilde"
+        },
         "action": "Handling",
         "align": "Align",
         "allow_clear": "Tillat tømming",
@@ -1300,7 +1311,7 @@
           "value": "Datasett verdier"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Plassering av merkelappen for alternativet"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1561,8 @@
           "event_text": "Tekst",
           "draggable": "Flyttbar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Egendefinert melding når denne er deaktivert",
+          "custom_message_resizable": "Egendefinert melding når skalering deaktiverer endring"
         },
         "table": {
           "page_index": "Sideindeks (Automatic Translation)",
@@ -1583,21 +1594,40 @@
           "next_cursor": "Neste markør",
           "has_next_page": "Har neste side",
           "currency_code": "Valuta kode",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Valg av celle",
+          "click_outside_to_des": "Klikk utenfor for å fjerne"
         },
         "previous_cursor": "Forrige markør",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Type:",
+          "show_visible_button": "Vis synlig knapp"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Tekst til \"Start\" knapp",
+          "clear_button_text": "Tekst for \"Tøm knapp\"",
+          "min_duration": "Min. varighet",
+          "max_duration": "Maks varighet (er)",
+          "stop_button_text": "Stopp knappetekst"
+        },
+        "message_id": "Melding ID",
+        "message": "Melding",
+        "message_type": "Type melding",
+        "sendTime": "Sende tid",
+        "timeFormat": "Format for tid",
+        "currentSenderId": "Nåværende avsender-ID",
+        "receiving": "Laster inn ved mottak",
+        "toolbar-replay": "Vis svar-knappen",
+        "toolbar-delete": "Vis sletteknappen",
+        "showAvatar": "Vis avatar",
+        "showSendTime": "Vis sendingstid",
+        "showFooter": "Vis bunntekst",
+        "leftMessageColor": "Melding til venstre",
+        "rightMessageColor": "Melding til høyre",
+        "expandAll": "Utvid alle",
+        "replayMessageId": "Svar på melding-ID",
+        "senderName": "Avsenders navn",
+        "senderId": "Avsenderen ID",
+        "showName": "Vis navn"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1642,7 +1672,21 @@
           "type": "Sammenleggbar liste: liste, alle elementer vil automatisk kopiere stilen til det første elementet. Du kan spesifisere komponentdata i hvert element via {{ currentItem.columnName }}. Sammenhengende panel: Hvert panel er uavhengig, du kan angi komponentstil og data for hvert element separat.",
           "items": "Antall elementer",
           "accordin_mode": "I aksordionmodus vil andre gjenstander kollapse når en vare er utvidet."
-        }
+        },
+        "message": "Å hente innholdet i meldingen fra et spesifikt felt i datakilden, f.eks innholdet feltet, du kan sette det som {{item.content}}.",
+        "message_type": "Angi typen melding basert på et spesifikt felt i datakilden, f.eks som typefeltet, kan du sette det som {{item.type}}. Vi støtter disse typene: tekst, bilde, video og lyd. ",
+        "message_id": "For å sette en unik ID for hver melding, kan du hente det fra et spesifikt felt i datakilden. Hvis du vil hente det fra id feltet, kan du angi det som {{item.id}}. ",
+        "replayMessageId": "Hvis det svarer på en angitt melding, bruk dette feltet til å sette hvilken melding du skal svare på.",
+        "expandAll": "Om alle EK-grupper skal utvides eller ikke",
+        "sendTime": "Angi sendertid. For eksempel, i datakilden, er sentiden til sendPå feltet og du kan sette feltet til {{item.sendAt}}.",
+        "senderName": "Angi avsenders navn. (Automatic Translation) For eksempel, i din datakilde, er avsenderen navnet sendName og du kan sette feltet til {{item.sendName}}.",
+        "currentSenderId": "Velg gjeldende avsender-id. Vi bruker dette feltet for å bestemme hvilken bruker som sender informasjon som skal vises til høyre.",
+        "senderId": "Angi avsenderens ID. (Automatic Translation) For eksempel, i datakilden, er avsender-IDen feltet sendID-er, og du kan angi feltet til {{item.sendID}}.",
+        "sendTimeFormat": "Angi formatet for å sende tid. For eksempel, tt:MM:ss.",
+        "showAvatar": "Velg om du vil vise avataren",
+        "showName": "Angi om du skal vise navnet",
+        "showSendTime": "Angi om du vil vise sendertiden",
+        "showFooter": "Angi om du vil vise bunnteksten"
       },
       "tab_title": "Undersøk",
       "unselected_tip1": "Ingen komponenter er valgt.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Datakilden til chatte komponenten. Bruk {{actionName.data}} for å bruke dataene fra dine databaser eller APIer",
+          "sender_avatar": "Angi avsenderens profilbilde. For eksempel, i datakilden, er avsender avataren et sendAvatar felt, og du kan sette feltet til {{item.sendAvatar}}.",
+          "enable_message_selec": "Angi om å tillate en melding skal velges",
+          "selection_type": "Angi hvordan du velger en melding, venstreklikk eller høyreklikk. Når det brukes på en mobilenhet, blir det klikket til å vise valget. ",
+          "loading_when_receivi": "Angi om du vil vise lasting når du mottar meldinger. (Automatic Translation) Hvis meldingen mottas fra handling, kan du sette den til {{action1.isRunning}}, og lastestatusen vil vises når action1 kjører.",
+          "loading_when_sending": "Angi om lasting skal vises når meldinger sendes. (Automatic Translation) Hvis meldingen din sendes til handling1, kan du sette den til {{action1.isRunning}}, og lastestatusen vil vises når action1 kjører.",
+          "image_background": "Angi en bildebakgrunn. Base64 og bildets URL støttes"
+        },
         "carousel_tips": "Bruk {{ item }} for å få verdien fra datakilden. For eksempel er det to attributter i datakilden. De er bilde-Url og nettadresse. Hvis du vil gå til en annen URL når du klikker bilde, bruk {{ item.url }} for å angi URL-en.",
         "data_source": "En datakilde til å definere bildeelementer ved hjelp av en kartlagt evaluering. Bruk enten en liste med verdier eller et objekt med nøkler tilordnet til listen. For eksempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan også bruke dataene i handlinger. For eksempel: {{ mysql1.data }} ",
         "img_url_array": "Bruk {{ item.attributeName }} for å få bildet URL fra datakilden. ",
@@ -1684,16 +1737,16 @@
           "hide_output": "Angi om du vil skjule verdien når du glir"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Etiketten til alternativet",
+          "value": "En liste med de valgte alternativene vedlagt i {{. For eksempel, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Verdien er duplisert. Vennligst bruk unike verdier for å unngå feil.",
+          "caption": "En bildetekst vises under etiketten",
+          "disabled": "Om du vil deaktivere alternativet",
+          "datasource": "Datakilden for brytergruppen. Bruk {{actionName.data}} for å bruke dataene fra dine databaser eller APIer",
+          "default_value": "En liste vedlagt i {{ }}. For eksempel, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum antall elementer kan velge",
+          "choose_up_to": "Maksimalt antall varer du kan velge",
+          "option_label_alignment": "Plassering av etikettene"
         },
         "step": {
           "default_step": "Standard trinn",
@@ -1752,8 +1805,8 @@
           "couldnot_drag": "Hvis du vil dra for å justere tidsintervallet, kan du fortsette til forhåndsvisningssiden for operasjonen.",
           "draggable": "Om brukere kan oppdatere tidsintervallet for hendelse ved å dra for å flytte hendelsen",
           "resizable": "Hvorvidt brukere kan oppdatere tidsintervallet for arrangementet og endre tidsrommet ved å dra grensen til en hendelse for å forlenge eller forkorte tidsrområdet",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Etter at draget er deaktivert, vil meldingen vises når en bruker drager hendelsen.",
+          "custom_message_resizable": "Etter forandring er deaktivert, meldingen vises når en bruker endrer størrelse på hendelsen."
         },
         "table": {
           "page_index": "Indeks på siden du ønsker å velge.",
@@ -1784,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Filtermodus. OG eller eller.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Om brukere kan velge en celle",
+          "supported_in_the_row": "Støttet kun i radens valgmodus. Etter aktivering kan du klikke på et annet område enn tabellen for å fjerne raden."
         },
         "previous_cursor": "Bruk handlingsdataene til å angi forrige kursor. For eksempel,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "For å angi inndatatypen",
+          "show_visible_button": "Angi om den synlige knappen skal vises"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Teksten som vises på knappen da innspillingen ikke ble startet",
+          "stop_button_text": "Teksten som vises på knappen ved opptak",
+          "clear_button_text": "Teksten som vises på knappen når innspillingen er fullført",
+          "min_duration": "Minimum varighet for opptak",
+          "max_duration": "Maksimal varighet for opptak"
+        },
+        "leftMessageColor": "Angi fargen på meldingene til venstre",
+        "rightMessageColor": "Angi fargen for meldingene til høyre",
+        "toolbar-replay": "Angi om du skal vise en svar-knappen når du velger en melding.",
+        "toolbar-delete": "Angi om du skal vise en slette-knapp når du velger en melding. (Automatic Translation)"
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1870,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Passord",
+          "search": "Søk"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Venstreklikk",
+            "right-click": "Høyreklikk"
+          }
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1982,10 @@
           "directory": "Bare mapper er tillatt."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Opptak tillatelse kreves",
+          "cannot_set_value_dur": "Kan ikke angi verdi under opptak",
+          "min_duration": "Vennligst ta opp minst {{minimum}}s",
+          "max_duration": "Vennligst ta opp maksimalt {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Størrelsen på dataene overskrider grensen (nåværende størrelse: {{current_size}} byte, grense: {{limit_size}} byte)"
+    },
+    "general": {
+      "length_limit": "Nåværende inndata-innhold er for langt, vi har stoppet å beregne data automatisk, du kan fortsette å input, dette påvirker ikke din bruk."
     }
   },
   "exit_preview": "Avslutt forhåndsvisning",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Rik tekstredigering"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON-visning"
+    },
+    "chat": {
+      "name": "Samtale"
+    },
     "public": {
       "left": "Venstre",
       "right": "Høyre",
@@ -2524,10 +2602,13 @@
       "name_duplicated": "Denne ressurs-ID-en er i konflikt med disse hendelsene, bruk samme navn eller annen id"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Bytt gruppe"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Opptak"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2913,27 +2994,36 @@
   "oauth_redirect_title": "Omdiriger",
   "oauth_redirect_description": "Omdirigerer til <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Engelsk",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikansk",
-    "cs-CZ": "faresa tina",
-    "de-DE": "Tysk",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "francεais",
+    "fr-FR": "français",
     "it-IT": "italiano",
-    "nl-NL": "Nederland",
+    "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portugisisk",
-    "ro-RO": "romaεnaânia",
-    "ru-RU": "∙∙odarodarodarodarodarodarodarodarde",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Kunne ikke logge ut. Prøv igjen senere."
+  "logout_failed": "Kunne ikke logge ut. Prøv igjen senere.",
+  "drive": {
+    "message": {
+      "start_upload": "Start opplasting",
+      "start_download": "Start nedlasting"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }
