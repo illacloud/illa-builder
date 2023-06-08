@@ -1163,7 +1163,9 @@
           "refresh": "Refresh",
           "filtersChange": "Filters change",
           "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "onCellSelect": "Select a cell",
+          "delete": "Delete",
+          "replay": "Reply"
         },
         "image_list": {
           "title": "Images",
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Calendar"
         },
-        "event": "Event"
+        "event": "Event",
+        "MESSAGE": "MESSAGE"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Data source",
+          "enable_message_selec": "Enable message selection",
+          "selection_type": "Selection type",
+          "loading_when_sending": "Loading when sending",
+          "image_background": "Image background",
+          "senderAvatar": "Sender avatar"
+        },
         "action": "Action",
         "align": "Align",
         "allow_clear": "Allow clear",
@@ -1597,7 +1608,26 @@
           "min_duration": "Min duration (s)",
           "max_duration": "Max duration (s)",
           "stop_button_text": "Stop button text"
-        }
+        },
+        "message_id": "Message ID",
+        "message": "Message",
+        "message_type": "Message type",
+        "sendTime": "Send time",
+        "timeFormat": "Time format",
+        "currentSenderId": "Current sender ID",
+        "receiving": "Loading when receiving",
+        "toolbar-replay": "Show reply button",
+        "toolbar-delete": "Show delete button",
+        "showAvatar": "Show avatar",
+        "showSendTime": "Show send time",
+        "showFooter": "Show footer",
+        "leftMessageColor": "Message on left",
+        "rightMessageColor": "Message on right",
+        "expandAll": "Expand all",
+        "replayMessageId": "Reply message ID",
+        "senderName": "Sender name",
+        "senderId": "Sender ID",
+        "showName": "Show name"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1642,7 +1672,21 @@
           "type": "Collapsible list: list, all items will automatically copy the style of the first item. You can specify the component data in each item via {{ currentItem.columnName }}. Collapsible panel: each panel is independent, you can specify the component style and data of each item separately.",
           "items": "Number of items",
           "accordin_mode": "In accordion mode, when an item is expanded, other items will collapse."
-        }
+        },
+        "message": "To retrieve the content of the message from a specific field in the data source, such as the content field, you can set it as {{item.content}}.",
+        "message_type": "To set the type of the message based on a specific field in the data source, such as the type field, you can set it as {{item.type}}. We support these types: text, image, video, and audio. ",
+        "message_id": "To set a unique ID for each message, you can retrieve it from a specific field in the data source. If you want to retrieve it from the id field, you can set it as {{item.id}}. ",
+        "replayMessageId": "If it is replying to a specified message, use this field to set which message to reply to.",
+        "expandAll": "Whether or not to expand all the nodes",
+        "sendTime": "Set the sending time. For example, in your data source, the sending time is the sendAt field and you can set the field to {{item.sendAt}}.",
+        "senderName": "Set the sender name. For example, in your data source, the sender name is the sendName field and you can set the field to {{item.sendName}}.",
+        "currentSenderId": "Set the current sender id. We use this field to determine which user sends information to be displayed on the right.",
+        "senderId": "Set the sender id. For example, in your data source, the sender id is the sendID field and you can set the field to {{item.sendID}}.",
+        "sendTimeFormat": "Set the format of sending time. For example, hh:MM:ss.",
+        "showAvatar": "Set whether to show the avatar",
+        "showName": "Set whether to show the name",
+        "showSendTime": "Set whether to show the send time",
+        "showFooter": "Set whether to show the footer"
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
+          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
+          "enable_message_selec": "Set whether to allow a message to be selected",
+          "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
+          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
+          "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
+          "image_background": "Set a image background. Base64 and image URL are supported"
+        },
         "carousel_tips": "Use {{ item }} to get value from the data source. For example, there are two attributes in the data source. They are imageUrl and url. If you want to go to different url when click image, use {{ item.url }} to set the url.",
         "data_source": "A data source to define image items using mapped evaluation. Use either an array of values or an object of keys mapped to arrays. For example: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . You can also use the data in actions. For example: {{ mysql1.data }} ",
         "img_url_array": "Use {{ item.attributeName }} to get image URL from the data source. ",
@@ -1798,7 +1851,11 @@
           "clear_button_text": "The text displayed on the button when the recording is completed",
           "min_duration": "Minimum duration for recording",
           "max_duration": "Maximum duration for recording"
-        }
+        },
+        "leftMessageColor": "Set the color of the messages on the left",
+        "rightMessageColor": "Set the color of the messages on the right",
+        "toolbar-replay": "Set whether to show a reply button when select a message.",
+        "toolbar-delete": "Set whether to show a delete button when select a message."
       },
       "setter_option": {
         "fixed": "Fixed",
@@ -1872,6 +1929,12 @@
           "input": "Input",
           "password": "Password",
           "search": "Search"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Left-click",
+            "right-click": "Right-click"
+          }
         }
       },
       "setter_placeholder": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Data size exceeds limit (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)"
+    },
+    "general": {
+      "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
     }
   },
   "exit_preview": "Exit Preview",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Rich text editor"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON viewer"
+    },
+    "chat": {
+      "name": "Chat"
+    },
     "public": {
       "left": "Left",
       "right": "Right",
@@ -2528,6 +2606,9 @@
     },
     "recording": {
       "name": "Recording"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2739,7 +2820,7 @@
         "invite": "Invite",
         "public": "Public"
       },
-      "custom_copy_text_app_invite": "{{userName}} have shared you an app of 「{{teamName}}」. Click the link to join the team and check the APP: {{inviteLink}}",
+      "custom_copy_text_app_invite": "{{userName}} shared you an app of 「{{teamName}}」. Click the link to join the team and check the APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} shared an app with you from 「{{teamName}}」 . Click the link to check the APP: {{inviteLink}}",
       "custom_copy_text": "{{userName}} invites you to join 「{{teamName}}」 . Click the link to join the team: {{inviteLink}}"
     },
@@ -2935,5 +3016,14 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Failed to log out. Please try again later."
+  "logout_failed": "Failed to log out. Please try again later.",
+  "drive": {
+    "message": {
+      "start_upload": "Start upload",
+      "start_download": "Start download"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

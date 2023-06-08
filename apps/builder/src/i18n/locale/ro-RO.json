@@ -207,7 +207,7 @@
             "access_type": "Tip de acces"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Comanda"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0,0-100,0), lăsaţi necompletat pentru 1,0",
             "repetition_penalty": "Float (0,0-100,0)",
             "max_time": "Float (0,0-120.0) pentru a defini cantitatea de timp în secunde",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Selectați un tip"
           },
           "tips": {
             "mode_id": "Mergeți la <0>Model Hub</0> și selectați modelul pe care doriți să îl folosiți.",
@@ -1161,9 +1161,11 @@
           "DragOrClickNoEventArea": "Trage sau fă clic pe zona de eveniment",
           "rowClick": "Clic pe rând",
           "refresh": "Împrospătează",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Filtre schimbate",
+          "rowSelectChange": "Rând selectare modificare",
+          "onCellSelect": "Selectați o celulă",
+          "delete": "Ștergere",
+          "replay": "Răspuns"
         },
         "image_list": {
           "title": "Imagini",
@@ -1229,9 +1231,9 @@
           "end_placeholder": "Ora de încheiere"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Începe înregistrarea",
+          "stop_button_text": "Oprește",
+          "clear_button_text": "Curăță"
         }
       },
       "setter_group": {
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Calendar"
         },
-        "event": "Eveniment"
+        "event": "Eveniment",
+        "MESSAGE": "MESAJ"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Sursă de date",
+          "enable_message_selec": "Activează selecția mesajelor",
+          "selection_type": "Tipul de selecţie",
+          "loading_when_sending": "Se încarcă la trimitere",
+          "image_background": "Imagine fundal",
+          "senderAvatar": "Avatarul expeditorului"
+        },
         "action": "Acțiune",
         "align": "Align",
         "allow_clear": "Permite curățarea",
@@ -1300,7 +1311,7 @@
           "value": "Valori date"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Poziția etichetei opțiunii"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1561,8 @@
           "event_text": "Text",
           "draggable": "Draggable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Mesaj personalizat atunci când este dezactivat",
+          "custom_message_resizable": "Mesaj personalizat la dezactivarea redimensionării"
         },
         "table": {
           "page_index": "Indexul paginii",
@@ -1583,21 +1594,40 @@
           "next_cursor": "Următorul cursor",
           "has_next_page": "Are pagina următoare",
           "currency_code": "Codul valutei",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Selecție celulă",
+          "click_outside_to_des": "Click afară pentru a deselecta"
         },
         "previous_cursor": "Cursor anterior",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Tip",
+          "show_visible_button": "Arată butonul vizibil"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Text buton de pornire",
+          "clear_button_text": "Ștergeți textul butonului",
+          "min_duration": "Durata minimă(e)",
+          "max_duration": "Durată maximă (durate)",
+          "stop_button_text": "Opriți textul butonului"
+        },
+        "message_id": "ID Mesaj",
+        "message": "Mesaj",
+        "message_type": "Tipul mesajului",
+        "sendTime": "Timpul trimiterii",
+        "timeFormat": "Format oră",
+        "currentSenderId": "ID expeditor curent",
+        "receiving": "Se încarcă la primire",
+        "toolbar-replay": "Arată butonul de răspuns",
+        "toolbar-delete": "Arată butonul de ștergere",
+        "showAvatar": "Arată avatarul",
+        "showSendTime": "Arată ora trimiterii",
+        "showFooter": "Arată subsol",
+        "leftMessageColor": "Mesaj din stânga",
+        "rightMessageColor": "Mesaj la dreapta",
+        "expandAll": "Extinde tot",
+        "replayMessageId": "ID mesaj răspuns",
+        "senderName": "Nume expeditor",
+        "senderId": "ID expeditor",
+        "showName": "Arată numele"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1642,7 +1672,21 @@
           "type": "Listă colorată: lista, toate elementele vor copia automat stilul primului element. Puteți specifica datele componentei pentru fiecare element prin intermediul {{ currentItem.columnName }}. Panou colorat: fiecare panou este independent, puteți specifica stilul componentei și datele fiecărui element separat.",
           "items": "Numărul de articole",
           "accordin_mode": "În modul accordion, atunci când un obiect este extins, alte elemente se vor restrânge."
-        }
+        },
+        "message": "Pentru a prelua conținutul mesajului dintr-un anumit câmp din sursa de date, cum ar fi câmpul de conținut, îl puteți seta ca {{item.content}}.",
+        "message_type": "Pentru a seta tipul mesajului bazat pe un câmp specific în sursa de date, cum ar fi câmpul de tip, îl puteți seta ca {{item.type}}. Susținem aceste tipuri: text, imagine, video și audio. ",
+        "message_id": "Pentru a seta un ID unic pentru fiecare mesaj, îl puteți extrage dintr-un câmp specific din sursa datelor. Dacă doriți să îl recuperați din câmpul de identificare, îl puteți seta ca {{item.id}}. ",
+        "replayMessageId": "În cazul în care răspunde la un mesaj specificat, utilizaţi acest câmp pentru a seta la care mesaj să răspundă.",
+        "expandAll": "Extinderea sau nu a tuturor nodurilor",
+        "sendTime": "Setați ora de trimitere. De exemplu, în sursa de date, timpul de trimitere este câmpul de trimitere și puteți seta câmpul la {{item.sendAt}}.",
+        "senderName": "Setaţi numele expeditorului. (Automatic Translation) De exemplu, în sursa de date, numele expeditorului este câmpul SendName și puteți seta câmpul la {{item.sendName}}.",
+        "currentSenderId": "Setați id-ul curent expeditor. Folosim acest câmp pentru a determina care utilizator trimite informații pentru a fi afișate în dreapta. (Automatic Translation)",
+        "senderId": "Setează id-ul expeditorului. De exemplu, în sursa de date, id-ul expeditorului este câmpul sendID și puteți seta câmpul la {{item.sendID}}.",
+        "sendTimeFormat": "Setați formatul timpului de trimitere. De exemplu, hhh:MM:ss.",
+        "showAvatar": "Setează dacă se afișează avatarul",
+        "showName": "Setează dacă se afișează numele",
+        "showSendTime": "Setează dacă se afișează ora trimiterii",
+        "showFooter": "Setează dacă să afișeze subsolul"
       },
       "tab_title": "Inspectează",
       "unselected_tip1": "Nicio componentă selectată.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Sursa de date a componentei de chat. Folosește {{actionName.data}} pentru a utiliza datele din bazele de date sau API-urile tale",
+          "sender_avatar": "Setează avatarul expeditorului. De exemplu, în sursa de date, avatarul expeditorului este câmpul sendAvatar și puteți seta câmpul {{item.sendAvatar}}.",
+          "enable_message_selec": "Setează dacă se permite sau nu selectarea mesajului",
+          "selection_type": "Setați cum să selectați un mesaj, click stânga sau click-dreapta. Când este folosit pe un dispozitiv mobil, este apăsat pentru a declanșa selecția. ",
+          "loading_when_receivi": "Setați dacă se afișează încărcarea la primirea mesajelor. Dacă mesajul tău este primit de la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
+          "loading_when_sending": "Setați dacă se afișează încărcarea la trimiterea mesajelor. Dacă mesajul tău este trimis la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
+          "image_background": "Setați un fundal pentru imagine. Base64 și URL-ul imaginii sunt suportate"
+        },
         "carousel_tips": "Folosește {{ item }} pentru a obține valoare de la sursa datelor. De exemplu, există două atribute în sursa datelor. Sunt imageUrl și url. Dacă vrei să mergi la url diferit când faci clic pe imagine, folosește {{ item.url }} pentru a seta urlul.",
         "data_source": "O sursă de date pentru a defini elementele imaginii folosind evaluarea cartografiată. Utilizați fie o serie de valori, fie un obiect de chei mapate pe arrays. De exemplu: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . De asemenea, puteți utiliza datele în acțiuni. De exemplu: {{ mysql1.data }} ",
         "img_url_array": "Folosește {{ item.attributeName }} pentru a obține URL-ul imaginii din sursa datelor. ",
@@ -1684,16 +1737,16 @@
           "hide_output": "Setați dacă să ascundeți valoarea atunci când glisați"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Eticheta opțiunii",
+          "value": "O serie de opțiuni selectate închise în {{. De exemplu, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Valoarea este duplicată. Vă rugăm să folosiţi valori unice pentru a evita erorile.",
+          "caption": "O legenda afisata sub eticheta",
+          "disabled": "Dezactivarea opțiunii",
+          "datasource": "Sursa de date a grupului comutator. Utilizați {{actionName.data}} pentru a utiliza datele din bazele de date sau din API-uri",
+          "default_value": "Un array închis în {{ }}. De exemplu, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Elemente minime care pot fi alese",
+          "choose_up_to": "Numărul maxim de elemente care pot fi alese",
+          "option_label_alignment": "Poziția etichetelor"
         },
         "step": {
           "default_step": "Pasul implicit",
@@ -1752,8 +1805,8 @@
           "couldnot_drag": "Dacă doriți să glisați pentru a ajusta intervalul de timp, continuați la pagina de previzualizare pentru operațiune.",
           "draggable": "Dacă permiteţi utilizatorilor să actualizeze intervalul de timp al evenimentului prin glisarea pentru a muta evenimentul",
           "resizable": "Indiferent dacă permiteți utilizatorilor să actualizeze intervalul de timp al evenimentului și schimbați intervalul de timp prin glisarea marginii unui eveniment pentru a prelungi sau scurta intervalul de timp",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "După ce tragerea este dezactivată, mesajul va fi afișat atunci când un utilizator trage evenimentul.",
+          "custom_message_resizable": "După ce redimensionarea este dezactivată, mesajul se va afișa când un utilizator redimensionează evenimentul."
         },
         "table": {
           "page_index": "Index al paginii pe care doriţi să o selectaţi.",
@@ -1784,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Modul filtre. ŞI sau SAU.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Dacă permiteți utilizatorilor să selecteze o celulă",
+          "supported_in_the_row": "Acceptat în modul de selecţie simplă a rândului. După activare, faceţi clic pe o altă zonă decât tabelul pentru a dezselecta rândul."
         },
         "previous_cursor": "Folosește datele acțiunii pentru a seta cursorul anterior. De exemplu,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Pentru a seta tipul de intrare",
+          "show_visible_button": "Pentru a seta dacă se afișează butonul vizibil"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Textul afişat pe buton atunci când înregistrarea nu este pornită",
+          "stop_button_text": "Textul afişat pe buton în timpul înregistrării",
+          "clear_button_text": "Textul afişat pe buton atunci când înregistrarea este finalizată",
+          "min_duration": "Durata minimă pentru înregistrare",
+          "max_duration": "Durata maximă pentru înregistrare"
+        },
+        "leftMessageColor": "Setează culoarea mesajelor din stânga",
+        "rightMessageColor": "Setează culoarea mesajelor din dreapta",
+        "toolbar-replay": "Setează dacă se afișează un buton de răspuns când se selectează un mesaj.",
+        "toolbar-delete": "Setează dacă se afișează un buton de ștergere când se selectează un mesaj."
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -1870,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Parolă",
+          "search": "Caută"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Click stanga",
+            "right-click": "Clic-dreapta"
+          }
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1982,10 @@
           "directory": "Doar directoarele sunt permise."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Permisiunea de înregistrare necesară",
+          "cannot_set_value_dur": "Nu se poate seta valoarea în timpul înregistrării",
+          "min_duration": "Vă rugăm să înregistrați cel puțin {{minimum}}s",
+          "max_duration": "Vă rugăm să înregistrați cel mult {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Dimensiunea datelor depășește limita (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)"
+    },
+    "general": {
+      "length_limit": "Conținutul curent de intrare este prea lung, am oprit calcularea automată a datelor, puteți continua să intrați, acest lucru nu va afecta utilizarea."
     }
   },
   "exit_preview": "Ieșiți din previzualizare",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Editor de text îmbogățit"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "Vizualizator JSON"
+    },
+    "chat": {
+      "name": "Chat"
+    },
     "public": {
       "left": "Stânga",
       "right": "Dreapta",
@@ -2524,10 +2602,13 @@
       "name_duplicated": "Acest ID de resurse este în conflict în aceste evenimente, vă rugăm să folosiți același nume sau un ID diferit"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Schimbă grupul"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Înregistrare"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2913,27 +2994,36 @@
   "oauth_redirect_title": "Redirecționare",
   "oauth_redirect_description": "Redirecționare către <0>Cloud ILLA </0>",
   "language": {
-    "en-US": "Română",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaani",
-    "cs-CZ": "cuv. tina",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "francitais",
-    "it-IT": "italiană",
-    "nl-NL": "Nederlanduri",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portugueIe",
-    "ro-RO": "rumegătoare",
-    "ru-RU": "Nord Nord",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Deconectare eșuată. Te rugăm să încerci din nou mai târziu."
+  "logout_failed": "Deconectare eșuată. Te rugăm să încerci din nou mai târziu.",
+  "drive": {
+    "message": {
+      "start_upload": "Începe încărcarea",
+      "start_download": "Începe descărcarea"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

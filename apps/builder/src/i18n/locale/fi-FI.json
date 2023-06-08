@@ -207,7 +207,7 @@
             "access_type": "Pääsyn tyyppi"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Komento"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Kelluva (0,0-100,0),jätä tyhjäksi 1,0",
             "repetition_penalty": "Liukuluku (0,0–100,0)",
             "max_time": "Kelluta (0,0-120.0) määrittääksesi ajan määrän sekunteina",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Valitse tyyppi"
           },
           "tips": {
             "mode_id": "Mene <0>Malli Hub</0> ja valitse malli, jota haluat käyttää.",
@@ -1161,9 +1161,11 @@
           "DragOrClickNoEventArea": "Vedä tai klikkaa ei tapahtuma-aluetta",
           "rowClick": "Rivin napsautus",
           "refresh": "Päivitä",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Suodattimien muutos",
+          "rowSelectChange": "Rivin valinta",
+          "onCellSelect": "Valitse solu",
+          "delete": "Poista",
+          "replay": "Vastaa"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1229,9 +1231,9 @@
           "end_placeholder": "Loppu aika"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Aloita tallennus",
+          "stop_button_text": "Pysäytä",
+          "clear_button_text": "Tyhjennä"
         }
       },
       "setter_group": {
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Kalenteri"
         },
-        "event": "Tapahtuma"
+        "event": "Tapahtuma",
+        "MESSAGE": "VIESTI"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Tietolähde",
+          "enable_message_selec": "Ota viestivalinnat käyttöön",
+          "selection_type": "Valinnan tyyppi",
+          "loading_when_sending": "Ladataan lähetettäessä",
+          "image_background": "Kuvan tausta",
+          "senderAvatar": "Lähettäjän avatar"
+        },
         "action": "Toiminto",
         "align": "Align",
         "allow_clear": "Salli tyhjennys",
@@ -1300,7 +1311,7 @@
           "value": "Datasetin arvot"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Vaihtoehdon nimen sijainti"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1561,8 @@
           "event_text": "Teksti",
           "draggable": "Vedettävä",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Mukautettu viesti pois päältä vetämällä",
+          "custom_message_resizable": "Mukautettu viesti kun pois käytöstä koon muuttaminen"
         },
         "table": {
           "page_index": "Sivun indeksi",
@@ -1583,21 +1594,40 @@
           "next_cursor": "Seuraava kohdistin",
           "has_next_page": "On seuraava sivu",
           "currency_code": "Valuutan koodi",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Solun valinta",
+          "click_outside_to_des": "Klikkaa ulkopuolelta poistaaksesi valinnan"
         },
         "previous_cursor": "Edellinen kohdistin",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Tyyppi",
+          "show_visible_button": "Näytä näkyvä painike"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Aloita painikkeen teksti",
+          "clear_button_text": "Tyhjennä painikkeen teksti",
+          "min_duration": "Minimi kesto (s)",
+          "max_duration": "Maksimi kesto (s)",
+          "stop_button_text": "Lopeta painikkeen teksti"
+        },
+        "message_id": "Viestin Tunnus",
+        "message": "Viesti",
+        "message_type": "Viestin tyyppi",
+        "sendTime": "Lähetä aika",
+        "timeFormat": "Ajan muoto",
+        "currentSenderId": "Nykyinen lähettäjän tunnus",
+        "receiving": "Ladataan vastaanotettaessa",
+        "toolbar-replay": "Näytä vastauspainike",
+        "toolbar-delete": "Näytä poistamispainike",
+        "showAvatar": "Näytä profiilikuva",
+        "showSendTime": "Näytä lähetysaika",
+        "showFooter": "Näytä alatunniste",
+        "leftMessageColor": "Viesti vasemmalla",
+        "rightMessageColor": "Viesti oikealla",
+        "expandAll": "Laajenna kaikki",
+        "replayMessageId": "Vastauksen tunnus",
+        "senderName": "Lähettäjän nimi",
+        "senderId": "Lähettäjän Tunnus",
+        "showName": "Näytä nimi"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1642,7 +1672,21 @@
           "type": "Tiivistettävät listat: luettelo, kaikki kohteet kopioivat automaattisesti ensimmäisen kohteen tyylin. Voit määrittää komponentin tiedot kunkin kohteen kautta {{ currentItem.columnName }}. Tiivistetty paneeli: jokainen paneeli on riippumaton, voit määrittää komponentin tyyli ja tiedot kunkin kohteen erikseen.",
           "items": "Kohteiden lukumäärä",
           "accordin_mode": "Vuonna accordion tilassa, kun tuotetta laajennetaan, muut kohteet romahtavat."
-        }
+        },
+        "message": "Voit hakea viestin sisällön tietystä tietystä tietolähteen kentästä, joka on kuten sisältökenttä, voit asettaa sen käyttäjäksi {{item.content}}.",
+        "message_type": "Jos vastaus on myönteinen, se on annettava tiedoksi Euroopan parlamentille ja neuvostolle. kuten tyyppi kenttä, voit asettaa sen {{item.type}}. Tuemme näitä tyyppejä: tekstiä, kuvaa, videota ja ääntä. ",
+        "message_id": "Määrittääksesi jokaiselle viestille yksilöllisen tunnuksen, voit hakea sen tietystä tietolähteen kentästä. Jos haluat noutaa sen identtisestä, voit asettaa sen käyttäjäksi {{item.id}}. ",
+        "replayMessageId": "Jos se vastaa määriteltyyn viestiin, käytä tätä kenttää sen määrittämiseksi, mihin viestiin vastataan.",
+        "expandAll": "Onko laajentaa kaikki solmut tai ei laajentaa niitä",
+        "sendTime": "Aseta lähetysaika. Esimerkiksi tietolähteessäsi lähetysaika on lähetettyAt -kenttä ja voit asettaa kentän arvoon {{item.sendAt}}.",
+        "senderName": "Aseta lähettäjän nimi. Esimerkiksi tietolähteessäsi lähettäjän nimi on sendName -kenttä ja voit asettaa kentän arvoon {{item.sendName}}.",
+        "currentSenderId": "Set the current sender id. We use this field to determine which user send information to be displayed on the right. (Automatic Copy)",
+        "senderId": "Aseta lähettäjän tunnus. Esimerkiksi tietolähteessäsi lähettäjän tunnus on sendID-kenttä ja voit asettaa kentän arvoon {{item.sendID}}.",
+        "sendTimeFormat": "Aseta lähetysajan muoto. Esimerkiksi, hh:MM:ss.",
+        "showAvatar": "Aseta näytetäänkö hahmo",
+        "showName": "Aseta näytetäänkö nimi",
+        "showSendTime": "Aseta näytetäänkö lähetysaika @ info: whatsthis",
+        "showFooter": "Määritä näytetäänkö alatunniste"
       },
       "tab_title": "Tutki",
       "unselected_tip1": "Komponentteja ei ole valittu.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Chat-komponentin tietolähde. Käytä {{actionName.data}} käyttääksesi tietokantojesi tai rajapintojen tietoja",
+          "sender_avatar": "Aseta lähettäjän avatari. Esimerkiksi tietolähteessäsi lähettäjän avatar on sendAvatar kenttä ja voit asettaa kentän arvoon {{item.sendAvatar}}.",
+          "enable_message_selec": "Määritä sallitaanko viestin valinta vai ei.",
+          "selection_type": "Määritä kuinka voit valita viestin, hiiren vasenpainikkeella tai hiiren oikealla painikkeella. Kun käytetään mobiililaitteessa, sitä napsautetaan käynnistääksesi valinnan. ",
+          "loading_when_receivi": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä.",
+          "loading_when_sending": "Määritä näytetäänkö lataus viestien lähettämisen yhteydessä. Jos viestisi lähetetään toiminto1, voit asettaa sen osoitteeseen {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä.",
+          "image_background": "Aseta kuvatausta. Base64 ja kuvan URL ovat tuettuja"
+        },
         "carousel_tips": "Käytä {{ item }} saadaksesi arvoa tietolähteestä. Esimerkiksi tietolähteessä on kaksi attribuuttia. Ne ovat kuvaURL-osoite ja URL-osoite. Jos haluat mennä toiseen osoitteeseen kun napsautat kuvaa, käytä {{ item.url }} asettaaksesi URL-osoitteen.",
         "data_source": "Tietolähde kuvan kohteiden määrittämiseksi käyttäen kartoitettua arviointia. Käytä joko array arvoja tai määritystä avaimista, jotka on kartoitettu. Esimerkiksi: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Voit myös käyttää tietoja toiminnoissa. Esimerkiksi: {{ mysql1.data }} ",
         "img_url_array": "Käytä {{ item.attributeName }} saadaksesi kuvan URL-osoitteen tietolähteestä. ",
@@ -1684,16 +1737,16 @@
           "hide_output": "Määritä piilottaako arvo kun liu'utat"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Vaihtoehdon nimi ja osoite",
+          "value": "Valikoima valituista valinnoista on suljettu {{. Esimerkiksi, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Arvo on kopioitu. Käytä yksilöllisiä arvoja välttääksesi virheitä.",
+          "caption": "Otsikon alla näytettävä kuvateksti",
+          "disabled": "Poistetaanko valinta käytöstä",
+          "datasource": "Kytkimen tietolähde. Käytä {{actionName.data}} käyttääksesi tietokantojen tai rajapintojen tietoja",
+          "default_value": "Valikoima on suljettu {{ }}. Esimerkiksi, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Vähimmäismäärä esineitä saa valita",
+          "choose_up_to": "Enimmäismäärä kohteita sallittu valita",
+          "option_label_alignment": "Tavaramerkkien sijainti ja sijainti"
         },
         "step": {
           "default_step": "Oletus vaihe",
@@ -1752,8 +1805,8 @@
           "couldnot_drag": "Jos haluat muuttaa aikaväliä, ole hyvä ja jatka sen esikatselusivulle toimintoa varten.",
           "draggable": "Annetaanko käyttäjien päivittää tapahtuman aikaväliä vetämällä ja siirtämällä tapahtuman",
           "resizable": "Annetaanko käyttäjien päivittää tapahtuman aikaväliä ja muuttaa aikaväliä vetämällä tapahtuman rajaa pitääkseen tai lyhentääkseen sen kestoa",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Kun vetämällä on poistettu käytöstä, viesti näyttää, kun käyttäjä raahaa tapahtuman.",
+          "custom_message_resizable": "Kun koon muuttaminen on poistettu käytöstä, viesti näytetään, kun käyttäjä muuttaa tapahtumaa."
         },
         "table": {
           "page_index": "Hakemisto sivusta, jonka haluat valita.",
@@ -1784,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Suodatintila. JA tai OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Salli käyttäjien valita solu",
+          "supported_in_the_row": "Tuettu rivin yhden valintatilassa. Kun olet ottanut sen käyttöön, napsauta muuta aluetta kuin taulukkoa poistaaksesi rivin valinnan."
         },
         "previous_cursor": "Käytä toimintotietoja edellisen kursorin asettamiseen. Esimerkiksi,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Syötteen tyypin määrittäminen",
+          "show_visible_button": "Määritä näytetäänkö näkyvä painike vai ei."
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Painikkeessa näytettävä teksti, kun tallennusta ei ole käynnistetty",
+          "stop_button_text": "Painikkeessa näytettävä teksti kun nauhoitetaan",
+          "clear_button_text": "Painikkeessa näytettävä teksti, kun tallennus on valmis",
+          "min_duration": "Tallennuksen vähimmäiskesto",
+          "max_duration": "Tallennuksen enimmäiskesto"
+        },
+        "leftMessageColor": "Aseta vasemmalla olevien viestien väri",
+        "rightMessageColor": "Aseta oikealla olevien viestien väri",
+        "toolbar-replay": "Määritä näytetäänkö vastauspainike, kun valitse viesti.",
+        "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti."
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -1870,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Salasana",
+          "search": "Etsi"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Vasenpainike",
+            "right-click": "Oikea-klikkaus"
+          }
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1982,10 @@
           "directory": "Vain hakemistot ovat sallittuja."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Tallennus vaaditaan",
+          "cannot_set_value_dur": "Arvoa ei voi asettaa nauhoituksen aikana",
+          "min_duration": "Nauhoita vähintään {{minimum}}s",
+          "max_duration": "Nauhoita enintään {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Datan koko ylittää rajan (nykyinen koko: {{current_size}} tavua, raja: {{limit_size}} tavua)"
+    },
+    "general": {
+      "length_limit": "Nykyinen syötteen sisältö on liian pitkä, emme ole automaattisesti laskeneet tietoja, voit silti jatkaa syötteitä, tämä ei vaikuta käyttöösi."
     }
   },
   "exit_preview": "Poistu Esikatselusta",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Rich text editor"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON-katselin"
+    },
+    "chat": {
+      "name": "Keskustelu"
+    },
     "public": {
       "left": "Vasen",
       "right": "Oikea",
@@ -2524,10 +2602,13 @@
       "name_duplicated": "Tämä resurssitunniste ristiriidat näissä tapahtumissa, käytä samaa nimeä tai eri tunnusta"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Vaihda ryhmää"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Nauhoitetaan"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2913,27 +2994,36 @@
   "oauth_redirect_title": "Uudelleenohjaus",
   "oauth_redirect_description": "Uudelleenohjataan <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Englanti",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "c·espt tina",
+    "cs-CZ": "čeština",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "franc¢ ais",
+    "fr-FR": "français",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portuguecomplies s",
-    "ro-RO": "romaE)",
-    "ru-RU": "infrastruktuuri, johon ei sisälly",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Kirjautuminen ulos epäonnistui. Yritä myöhemmin uudelleen."
+  "logout_failed": "Kirjautuminen ulos epäonnistui. Yritä myöhemmin uudelleen.",
+  "drive": {
+    "message": {
+      "start_upload": "Aloita lähetys",
+      "start_download": "Aloita lataus"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }
