@@ -206,6 +206,15 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         databasePassword: data.databasePassword,
         ssl: data.ssl,
       }
+    case "upstash":
+      return {
+        host: data.host.trim(),
+        port: data.port.toString(),
+        databaseIndex: data.databaseIndex ?? 0,
+        databaseUsername: data.databaseUsername,
+        databasePassword: data.databasePassword,
+        ssl: true,
+      }
     case "firebase":
       return {
         databaseUrl: data.databaseUrl.trim(),
