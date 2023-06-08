@@ -14,10 +14,17 @@ export const BaseJsonEditor = forwardRef<
   const formatValue = useMemo(() => {
     if (value) {
       try {
-        const currentVal = JSON.stringify(JSON.parse(value), null, 2)
-        cacheValue.current = currentVal
-        return currentVal
+        if (value !== cacheValue.current) {
+          const currentVal = JSON.stringify(JSON.parse(value), null, 2)
+          cacheValue.current = currentVal
+          return currentVal
+        }
+        return cacheValue.current
       } catch (e) {
+        console.warn(e)
+        if (value !== cacheValue.current) {
+          return value
+        }
         return cacheValue.current
       }
     } else {

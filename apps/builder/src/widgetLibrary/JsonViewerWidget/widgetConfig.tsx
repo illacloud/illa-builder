@@ -10,7 +10,7 @@ export const JSON_VIEWER_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["JSON Viewer", "JSON预览器"],
   sessionType: "PRESENTATION",
   w: 20,
-  h: 60,
+  h: 55,
   defaults: {
     value: `[{
       "language": "en-US",
@@ -28,5 +28,9 @@ export const JSON_VIEWER_WIDGET_CONFIG: WidgetConfig = {
       }]`,
     expandAll: "{{true}}",
     hidden: false,
+    borderColor: "#ffffffff",
+    radius: "4px",
+    borderWidth: "1px",
+    shadow: "small",
   },
 }
