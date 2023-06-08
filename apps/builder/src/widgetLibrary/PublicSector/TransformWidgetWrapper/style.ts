@@ -1,4 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 
 export const applyValidateMessageWrapperStyle = (
   labelWidth: number,
@@ -86,7 +87,7 @@ export const applyWrapperStylesStyle = (
 ) => {
   let borderStyle = "unset"
   if (borderColor && borderWidth) {
-    borderStyle = `${borderWidth} solid ${borderColor}`
+    borderStyle = `${borderWidth} solid ${getColor(borderColor, "01")}`
   }
   const shadowStyle = getShadowStyle(shadow)
   return css`
