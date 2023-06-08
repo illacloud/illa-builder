@@ -207,7 +207,7 @@
             "access_type": "Τύπος πρόσβασης"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Εντολή"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0), αφήστε κενό για 1.0",
             "repetition_penalty": "Επιπλέουν (0.0-100.0)",
             "max_time": "Επιπλέουν (0.0-120.0) για να ορίσετε το χρονικό διάστημα σε δευτερόλεπτα",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Επιλέξτε έναν τύπο"
           },
           "tips": {
             "mode_id": "Πηγαίνετε στο <0>Model Hub</0> και επιλέξτε το μοντέλο που θέλετε να χρησιμοποιήσετε.",
@@ -1161,9 +1161,11 @@
           "DragOrClickNoEventArea": "Σύρετε ή μην κάνετε κλικ στην περιοχή γεγονότων",
           "rowClick": "Κλικ γραμμής",
           "refresh": "Ανανέωση",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Αλλαγή φίλτρων",
+          "rowSelectChange": "Αλλαγή επιλογής γραμμής",
+          "onCellSelect": "Επιλέξτε ένα κελί",
+          "delete": "Διαγραφή",
+          "replay": "Απάντηση"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1229,9 +1231,9 @@
           "end_placeholder": "Ώρα λήξης"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Έναρξη εγγραφής",
+          "stop_button_text": "Διακοπή",
+          "clear_button_text": "Εκκαθάριση"
         }
       },
       "setter_group": {
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Ημερολόγιο"
         },
-        "event": "Γεγονός"
+        "event": "Γεγονός",
+        "MESSAGE": "ΜΗΝΥΜΑΤΑ"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Πηγή δεδομένων",
+          "enable_message_selec": "Ενεργοποίηση επιλογής μηνυμάτων",
+          "selection_type": "Τύπος επιλογής",
+          "loading_when_sending": "Φόρτωση κατά την αποστολή",
+          "image_background": "Εικόνα φόντου",
+          "senderAvatar": "avatar αποστολέα"
+        },
         "action": "Ενέργεια",
         "align": "Align",
         "allow_clear": "Επιτρέπεται η εκκαθάριση",
@@ -1300,7 +1311,7 @@
           "value": "Τιμές συνόλου δεδομένων"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Θέση της ετικέτας επιλογής"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1561,8 @@
           "event_text": "Κείμενο",
           "draggable": "Μετακινούμενο",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Προσαρμοσμένο μήνυμα όταν είναι απενεργοποιημένο το σύρσιμο",
+          "custom_message_resizable": "Προσαρμοσμένο μήνυμα κατά την απενεργοποίηση αλλαγής μεγέθους"
         },
         "table": {
           "page_index": "Ευρετήριο σελίδας",
@@ -1583,21 +1594,40 @@
           "next_cursor": "Επόμενος δρομέας",
           "has_next_page": "Έχει επόμενη σελίδα",
           "currency_code": "Κωδικός νομίσματος",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Επιλογή κελιού",
+          "click_outside_to_des": "Κάντε κλικ έξω για να αποεπιλέξετε"
         },
         "previous_cursor": "Προηγούμενος δρομέας",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Τύπος",
+          "show_visible_button": "Εμφάνιση ορατού κουμπιού"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Κείμενο κουμπιού εκκίνησης",
+          "clear_button_text": "Καθαρισμός κειμένου κουμπιού",
+          "min_duration": "Ελάχιστη διάρκεια (ες)",
+          "max_duration": "Μέγιστη διάρκεια (ες)",
+          "stop_button_text": "Σταμάτημα κειμένου κουμπιού"
+        },
+        "message_id": "Id Μηνύματος",
+        "message": "Μήνυμα",
+        "message_type": "Τύπος μηνύματος",
+        "sendTime": "Χρόνος αποστολής",
+        "timeFormat": "Μορφή ώρας",
+        "currentSenderId": "Id τρέχοντα αποστολέα",
+        "receiving": "Φόρτωση κατά την παραλαβή",
+        "toolbar-replay": "Εμφάνιση κουμπιού απάντησης",
+        "toolbar-delete": "Εμφάνιση κουμπιού διαγραφής",
+        "showAvatar": "Εμφάνιση avatar",
+        "showSendTime": "Εμφάνιση χρόνου αποστολής",
+        "showFooter": "Εμφάνιση υποσέλιδου",
+        "leftMessageColor": "Μήνυμα στα αριστερά",
+        "rightMessageColor": "Μήνυμα στα δεξιά",
+        "expandAll": "Ανάπτυξη όλων",
+        "replayMessageId": "Id μηνύματος απάντησης",
+        "senderName": "Όνομα αποστολέα",
+        "senderId": "Id Αποστολέα",
+        "showName": "Εμφάνιση ονόματος"
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
@@ -1642,7 +1672,21 @@
           "type": "Πτυσσόμενη λίστα: λίστα, όλα τα αντικείμενα θα αντιγράψουν αυτόματα το στυλ του πρώτου στοιχείου. Μπορείτε να καθορίσετε τα δεδομένα εφαρμογής σε κάθε στοιχείο μέσω του {{ currentItem.columnName }}. Πτυσσόμενος πίνακας: κάθε πίνακας είναι ανεξάρτητος, μπορείτε να καθορίσετε το στυλ και τα δεδομένα του κάθε στοιχείου ξεχωριστά.",
           "items": "Αριθμός ειδών",
           "accordin_mode": "Στη λειτουργία ακορντεόν, όταν επεκταθεί ένα στοιχείο, θα καταρρεύσουν άλλα αντικείμενα."
-        }
+        },
+        "message": "Για να ανακτήσετε το περιεχόμενο του μηνύματος από ένα συγκεκριμένο πεδίο στην πηγή δεδομένων, όπως το πεδίο περιεχομένου, μπορείτε να το ορίσετε ως {{item.content}}.",
+        "message_type": "Για να ορίσετε τον τύπο του μηνύματος με βάση ένα συγκεκριμένο πεδίο στην πηγή δεδομένων, όπως το πεδίο τύπου, μπορείτε να το ορίσετε ως {{item.type}}. Υποστηρίζουμε αυτούς τους τύπους: κείμενο, εικόνα, βίντεο και ήχο. ",
+        "message_id": "Για να ορίσετε ένα μοναδικό αναγνωριστικό για κάθε μήνυμα, μπορείτε να το ανακτήσετε από ένα συγκεκριμένο πεδίο στην πηγή δεδομένων. Αν θέλετε να το ανακτήσετε από το πεδίο id μπορείτε να το ορίσετε ως {{item.id}}. ",
+        "replayMessageId": "Εάν απαντά σε συγκεκριμένο μήνυμα, χρησιμοποιήστε αυτό το πεδίο για να ορίσετε σε ποιο μήνυμα θα απαντηθεί.",
+        "expandAll": "Αν θα επεκταθούν ή όχι όλοι οι κόμβοι",
+        "sendTime": "Ορίστε το χρόνο αποστολής. Για παράδειγμα, στην πηγή δεδομένων σας, ο χρόνος αποστολής είναι το πεδίο sendAt και μπορείτε να ορίσετε το πεδίο σε {{item.sendAt}}.",
+        "senderName": "Ορίστε το όνομα αποστολέα. Για παράδειγμα, στην πηγή δεδομένων σας, το όνομα αποστολέα είναι το πεδίο sendName και μπορείτε να ορίσετε το πεδίο σε {{item.sendName}}.",
+        "currentSenderId": "Ορίστε το τρέχον id αποστολέα. Χρησιμοποιούμε αυτό το πεδίο για να προσδιορίσουμε ποιος χρήστης στέλνει πληροφορίες που θα εμφανίζονται στα δεξιά.",
+        "senderId": "Ορισμός του αναγνωριστικού αποστολέα. Για παράδειγμα, στην πηγή δεδομένων σας, το id αποστολέα είναι το πεδίο sendID και μπορείτε να ορίσετε το πεδίο σε {{item.sendID}}.",
+        "sendTimeFormat": "Ορίστε τη μορφή του χρόνου αποστολής. Για παράδειγμα, ω:MM:ss.",
+        "showAvatar": "Ορίστε αν θα εμφανίζεται το avatar",
+        "showName": "Ορίστε αν θα εμφανίζεται το όνομα",
+        "showSendTime": "Ορίστε αν θα εμφανίζεται ο χρόνος αποστολής",
+        "showFooter": "Ορίστε αν θα εμφανίζεται το υποσέλιδο"
       },
       "tab_title": "Επιθεώρηση",
       "unselected_tip1": "Δεν επιλέχθηκαν εξαρτήματα.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Η πηγή δεδομένων του στοιχείου συνομιλίας. Χρησιμοποιήστε {{actionName.data}} για να χρησιμοποιήσετε τα δεδομένα από τις βάσεις δεδομένων ή τα APIs σας",
+          "sender_avatar": "Ορίστε το avatar του αποστολέα. Για παράδειγμα, στην πηγή δεδομένων σας, το avatar του αποστολέα είναι το πεδίο sendAvatar και μπορείτε να ορίσετε το πεδίο σε {{item.sendAvatar}}.",
+          "enable_message_selec": "Ορίστε αν θα επιτρέπεται η επιλογή ενός μηνύματος",
+          "selection_type": "Ορίστε πώς να επιλέξετε ένα μήνυμα, αριστερό κλικ ή δεξί κλικ. Όταν χρησιμοποιείται σε μια κινητή συσκευή, κάντε κλικ για να ενεργοποιήσετε την επιλογή. ",
+          "loading_when_receivi": "Ορίστε αν θα εμφανίζεται η φόρτωση κατά τη λήψη μηνυμάτων. Εάν το μήνυμά σας λαμβάνεται από την ενέργεια1, μπορείτε να το ορίσετε σε {{action1.isRunning}}, και η κατάσταση φόρτωσης θα εμφανιστεί όταν εκτελείται η ενέργεια1.",
+          "loading_when_sending": "Ορίστε αν θα εμφανίζεται η φόρτωση κατά την αποστολή μηνυμάτων. Εάν το μήνυμά σας αποσταλεί στην ενέργεια 1, μπορείτε να το ορίσετε σε {{action1.isRunning}}, και η κατάσταση φόρτωσης θα εμφανιστεί όταν εκτελείται η ενέργεια1.",
+          "image_background": "Ορισμός φόντου εικόνας. Υποστηρίζεται το Base64 και το URL εικόνας"
+        },
         "carousel_tips": "Χρησιμοποιήστε {{ item }} για να πάρετε την τιμή από την πηγή δεδομένων. Για παράδειγμα, υπάρχουν δύο χαρακτηριστικά στην πηγή δεδομένων. Είναι imageUrl και url. Αν θέλετε να πάτε σε διαφορετική διεύθυνση url όταν κάνετε κλικ στην εικόνα, χρησιμοποιήστε {{ item.url }} για να ορίσετε το url.",
         "data_source": "Μια πηγή δεδομένων για να ορίσετε στοιχεία εικόνας χρησιμοποιώντας αντιστοιχισμένη αξιολόγηση. Χρησιμοποιήστε είτε έναν πίνακα τιμών είτε ένα αντικείμενο πλήκτρων που αντιστοιχίζονται σε πίνακες. Για παράδειγμα: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Μπορείτε επίσης να χρησιμοποιήσετε τα δεδομένα σε πράξεις. Για παράδειγμα: {{ mysql1.data }} ",
         "img_url_array": "Χρησιμοποίησε το {{ item.attributeName }} για να πάρεις το URL εικόνας από την πηγή δεδομένων. ",
@@ -1684,16 +1737,16 @@
           "hide_output": "Ορίστε αν θα γίνει απόκρυψη της τιμής κατά την ολίσθηση"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Η ετικέτα της επιλογής",
+          "value": "Ένας πίνακας από τις επιλεγμένες επιλογές που εσώκλεισαν στο {. Για παράδειγμα, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Η τιμή είναι διπλότυπη. Παρακαλούμε χρησιμοποιήστε μοναδικές τιμές για να αποφύγετε σφάλματα.",
+          "caption": "Ένας τίτλος που εμφανίζεται κάτω από την ετικέτα",
+          "disabled": "Αν θα απενεργοποιηθεί η επιλογή",
+          "datasource": "Η πηγή δεδομένων της ομάδας αλλαγών. Χρησιμοποιήστε {{actionName.data}} για να χρησιμοποιήσετε τα δεδομένα από τις βάσεις δεδομένων ή τα APIs σας",
+          "default_value": "Ένας πίνακας εσωκλείστηκε στο {{ }}. Για παράδειγμα, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Ελάχιστα στοιχεία που επιτρέπεται να επιλέξετε",
+          "choose_up_to": "Μέγιστος αριθμός αντικειμένων που επιτρέπεται να επιλέξετε",
+          "option_label_alignment": "Η θέση των ετικετών"
         },
         "step": {
           "default_step": "Προεπιλεγμένο βήμα",
@@ -1752,8 +1805,8 @@
           "couldnot_drag": "Αν θέλετε να σύρετε για να προσαρμόσετε το χρονικό εύρος, παρακαλούμε προχωρήστε στη σελίδα προεπισκόπησης για τη λειτουργία.",
           "draggable": "Αν επιτρέπεται στους χρήστες να ενημερώσουν το χρονικό εύρος της εκδήλωσης σύροντας για τη μετακίνηση του συμβάντος",
           "resizable": "Αν θα επιτρέπεται στους χρήστες η ενημέρωση του χρονικού εύρους συμβάντων και η αλλαγή του χρονικού εύρους σύροντας το όριο ενός γεγονότος για να επιμηκύνει ή να συντομεύσει το χρονικό διάστημα",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Αφού το σύρσιμο είναι απενεργοποιημένο, το μήνυμα θα εμφανίζεται όταν ένας χρήστης σύρει το γεγονός.",
+          "custom_message_resizable": "Αφού απενεργοποιηθεί η αλλαγή μεγέθους, το μήνυμα θα εμφανίζεται όταν ένας χρήστης αλλάξει το μέγεθός του."
         },
         "table": {
           "page_index": "Ευρετήριο της σελίδας που θέλετε να επιλέξετε.",
@@ -1784,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Η λειτουργία φίλτρου. ΚΑΙ ή OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Αν θα επιτρέπεται στους χρήστες να επιλέγουν ένα κελί",
+          "supported_in_the_row": "Υποστηρίζεται στη γραμμή μονής επιλογής. Μετά την ενεργοποίησή της, κάντε κλικ σε μια περιοχή διαφορετική από τον πίνακα για να αποεπιλέξετε τη γραμμή."
         },
         "previous_cursor": "Χρησιμοποιήστε τα δεδομένα ενέργειας για να ορίσετε τον προηγούμενο δρομέα. Για παράδειγμα,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Για να ορίσετε τον τύπο εισόδου",
+          "show_visible_button": "Για να ορίσετε αν θα εμφανίζεται το ορατό κουμπί"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Το κείμενο που εμφανίζεται στο κουμπί όταν δεν ξεκινά η εγγραφή",
+          "stop_button_text": "Το κείμενο που εμφανίζεται στο κουμπί κατά την εγγραφή",
+          "clear_button_text": "Το κείμενο που εμφανίζεται στο κουμπί όταν ολοκληρωθεί η εγγραφή",
+          "min_duration": "Ελάχιστη διάρκεια καταγραφής",
+          "max_duration": "Μέγιστη διάρκεια καταγραφής"
+        },
+        "leftMessageColor": "Ορίστε το χρώμα των μηνυμάτων στα αριστερά",
+        "rightMessageColor": "Ορίστε το χρώμα των μηνυμάτων στα δεξιά",
+        "toolbar-replay": "Ορίστε αν θα εμφανίζεται το κουμπί απάντησης κατά την επιλογή μηνύματος.",
+        "toolbar-delete": "Ορίστε αν θα εμφανίζεται το κουμπί διαγραφής όταν επιλέγεται ένα μήνυμα."
       },
       "setter_option": {
         "fixed": "Σταθερό",
@@ -1870,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Κωδικός",
+          "search": "Αναζήτηση"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Αριστερό κλικ",
+            "right-click": "Δεξί κλικ"
+          }
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1982,10 @@
           "directory": "Επιτρέπονται μόνο κατάλογοι."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Απαιτείται άδεια εγγραφής",
+          "cannot_set_value_dur": "Αδυναμία ορισμού τιμής κατά την εγγραφή",
+          "min_duration": "Καταγράψτε τουλάχιστον {{minimum}}s",
+          "max_duration": "Παρακαλούμε εγγραφείτε το πολύ {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Το μέγεθος των δεδομένων υπερβαίνει το όριο (τρέχον μέγεθος: {{current_size}} bytes, όριο: {{limit_size}} bytes)"
+    },
+    "general": {
+      "length_limit": "Το τρέχον περιεχόμενο εισόδου είναι πολύ μεγάλο, έχουμε σταματήσει αυτόματα τον υπολογισμό των δεδομένων, μπορείτε να συνεχίσετε να εισάγετε, αυτό δεν θα επηρεάσει τη χρήση σας."
     }
   },
   "exit_preview": "Έξοδος Προεπισκόπησης",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Εμπλουτισμένο πρόγραμμα επεξεργασίας κειμένου"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON προβολέας"
+    },
+    "chat": {
+      "name": "Συνομιλία"
+    },
     "public": {
       "left": "Αριστερά",
       "right": "Δεξιά",
@@ -2524,10 +2602,13 @@
       "name_duplicated": "Αυτό το ID πόρου συγκρούεται σε αυτά τα γεγονότα, παρακαλώ χρησιμοποιήστε το ίδιο όνομα ή διαφορετικό id"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Εναλλαγή ομάδας"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Εγγραφή"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2913,27 +2994,36 @@
   "oauth_redirect_title": "Ανακατεύθυνση",
   "oauth_redirect_description": "Ανακατεύθυνση σε <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Αγγλικά",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Αφρικάανς",
-    "cs-CZ": "c´estina",
-    "de-DE": "Γερμανικά",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "φράγκο",
-    "it-IT": "ιταλιάνο",
-    "nl-NL": "Ολλανδικά",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portugueśs",
-    "ro-RO": "ρομάνα;",
-    "ru-RU": "«Ομμ»",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα."
+  "logout_failed": "Αποτυχία αποσύνδεσης. Παρακαλώ προσπαθήστε ξανά αργότερα.",
+  "drive": {
+    "message": {
+      "start_upload": "Έναρξη μεταφόρτωσης",
+      "start_download": "Έναρξη λήψης"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

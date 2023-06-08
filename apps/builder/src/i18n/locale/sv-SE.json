@@ -207,7 +207,7 @@
             "access_type": "Åtkomsttyp"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Kommando"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0), lämna tomt för 1,0",
             "repetition_penalty": "Flyt (0,0-100,0)",
             "max_time": "Float (0,0-120,0) för att definiera tiden i sekunder",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Välj en typ"
           },
           "tips": {
             "mode_id": "Gå till <0>Modell Hub</0> och välj den modell du vill använda.",
@@ -1161,9 +1161,11 @@
           "DragOrClickNoEventArea": "Dra eller klicka på inget händelseområde",
           "rowClick": "Klicka på rad",
           "refresh": "Uppdatera",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Filter ändras",
+          "rowSelectChange": "Ändra rad",
+          "onCellSelect": "Välj en cell",
+          "delete": "Radera",
+          "replay": "Svara"
         },
         "image_list": {
           "title": "Bilder",
@@ -1229,9 +1231,9 @@
           "end_placeholder": "Slut tid"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Starta inspelning",
+          "stop_button_text": "Stoppa",
+          "clear_button_text": "Rensa"
         }
       },
       "setter_group": {
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Kalender"
         },
-        "event": "Händelse"
+        "event": "Händelse",
+        "MESSAGE": "MEDDELANDE"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Datakälla",
+          "enable_message_selec": "Aktivera meddelandeval",
+          "selection_type": "Typ av val",
+          "loading_when_sending": "Laddar när du skickar",
+          "image_background": "Bild bakgrund",
+          "senderAvatar": "Avsändarens avatar"
+        },
         "action": "Åtgärd",
         "align": "Align",
         "allow_clear": "Tillåt rensning",
@@ -1300,7 +1311,7 @@
           "value": "Dataset värden"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Placering av alternativ etikett"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1561,8 @@
           "event_text": "Text",
           "draggable": "Flyttbar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Anpassat meddelande när inaktiverat dra",
+          "custom_message_resizable": "Anpassat meddelande när du inaktiverar storleksändring"
         },
         "table": {
           "page_index": "Sidans index",
@@ -1583,21 +1594,40 @@
           "next_cursor": "Nästa markör",
           "has_next_page": "Har nästa sida",
           "currency_code": "Valutakod",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Val av cell",
+          "click_outside_to_des": "Klicka utanför för att avmarkera"
         },
         "previous_cursor": "Föregående markör",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Typ",
+          "show_visible_button": "Visa synlig knapp"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Starta knapptext",
+          "clear_button_text": "Rensa knapptext",
+          "min_duration": "Min varaktighet (er)",
+          "max_duration": "Max varaktighet (er)",
+          "stop_button_text": "Stoppa knapptext"
+        },
+        "message_id": "Meddelande ID",
+        "message": "Meddelande",
+        "message_type": "Typ av meddelande",
+        "sendTime": "Skicka tid",
+        "timeFormat": "Tidsformat",
+        "currentSenderId": "Nuvarande avsändar-ID",
+        "receiving": "Laddar vid mottagning",
+        "toolbar-replay": "Visa svarsknapp",
+        "toolbar-delete": "Visa ta bort knappen",
+        "showAvatar": "Visa avatar",
+        "showSendTime": "Visa sändningstid",
+        "showFooter": "Visa sidfot",
+        "leftMessageColor": "Meddelande till vänster",
+        "rightMessageColor": "Meddelande till höger",
+        "expandAll": "Expandera alla",
+        "replayMessageId": "Svara meddelande-ID",
+        "senderName": "Avsändarens namn",
+        "senderId": "Avsändarens ID",
+        "showName": "Visa namn"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1642,7 +1672,21 @@
           "type": "Kollapsbar lista: lista, alla objekt kopierar automatiskt stilen på det första objektet. Du kan ange komponentdata i varje objekt via {{ currentItem.columnName }}. Kollapsbar panel: varje panel är oberoende, du kan ange komponentens stil och data för varje objekt separat.",
           "items": "Antal artiklar",
           "accordin_mode": "I dragspelsläge, när ett föremål expanderas, kommer andra objekt att kollapsa."
-        }
+        },
+        "message": "För att hämta innehållet i meddelandet från ett specifikt fält i datakällan, till exempel innehållsfältet, kan du ställa in det som {{item.content}}.",
+        "message_type": "För att ställa in typen av meddelande baserat på ett specifikt fält i datakällan, till exempel typfältet, kan du ställa in det som {{item.type}}. Vi stöder dessa typer: text, bild, video och ljud. ",
+        "message_id": "För att ställa in ett unikt ID för varje meddelande kan du hämta det från ett specifikt fält i datakällan. Om du vill hämta det från ID-fältet, kan du ställa in det som {{item.id}}. ",
+        "replayMessageId": "Om det svarar på ett angivet meddelande, använd det här fältet för att ange vilket meddelande som ska besvaras.",
+        "expandAll": "Huruvida alla noder ska expanderas eller inte",
+        "sendTime": "Ange sändningstid. Till exempel, i din datakälla, är sändningstiden sendAt fältet och du kan ställa in fältet till {{item.sendAt}}.",
+        "senderName": "Ange avsändarens namn. Till exempel i din datakälla är avsändarens namn sendName-fältet och du kan ställa in fältet till {{item.sendName}}.",
+        "currentSenderId": "Ange nuvarande avsändar-id. Vi använder detta fält för att avgöra vilken användare som skickar information som ska visas till höger.",
+        "senderId": "Ange avsändarens id. Till exempel, i din datakälla, avsändar-id är sendID-fältet och du kan ställa in fältet till {{item.sendID}}.",
+        "sendTimeFormat": "Ställ in formatet för sändningstid. T.ex. hh:MM:ss.",
+        "showAvatar": "Ange om avatar ska visas",
+        "showName": "Ange om namnet ska visas",
+        "showSendTime": "Ange om sändningstiden ska visas",
+        "showFooter": "Ange om sidfoten ska visas"
       },
       "tab_title": "Inspektera",
       "unselected_tip1": "Inga komponenter valda.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Datakällan för chattkomponenten. Använd {{actionName.data}} för att använda data från dina databaser eller API:er",
+          "sender_avatar": "Ange avsändaravataren. Till exempel, i din datakälla, avatar är sendAvatar fältet och du kan ställa in fältet till {{item.sendAvatar}}.",
+          "enable_message_selec": "Ange om ett meddelande ska väljas",
+          "selection_type": "Ställ in hur du väljer ett meddelande, vänster-klicka eller högerklick. När det används på en mobil enhet klickas det för att utlösa valet. ",
+          "loading_when_receivi": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
+          "loading_when_sending": "Ange om du vill visa inläsning när du skickar meddelanden. Om ditt meddelande skickas till åtgärden 1 kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
+          "image_background": "Ange en bildbakgrund. Base64 och bild-URL stöds"
+        },
         "carousel_tips": "Använd {{ item }} för att hämta värde från datakällan. Till exempel finns det två attribut i datakällan. De är imageUrl och webbadress. Om du vill gå till en annan webbadress när du klickar på bilden, använd {{ item.url }} för att ställa in webbadressen.",
         "data_source": "En datakälla för att definiera bildobjekt med hjälp av mappad utvärdering. Använd antingen en array av värden eller ett objekt med tangenter mappade till arrayer. Till exempel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Du kan också använda data i handlingar. Till exempel: {{ mysql1.data }} ",
         "img_url_array": "Använd {{ item.attributeName }} för att hämta bild-URL från datakällan. ",
@@ -1684,16 +1737,16 @@
           "hide_output": "Ange om värdet ska döljas när du skjuter"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Etiketten för alternativet",
+          "value": "En matris av de valda alternativen bifogade i {{. Till exempel, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Värdet dupliceras. Använd unika värden för att undvika fel.",
+          "caption": "En bildtext som visas under etiketten",
+          "disabled": "Om du vill inaktivera alternativet",
+          "datasource": "Växla gruppens datakälla. Använd {{actionName.data}} för att använda data från dina databaser eller API:er",
+          "default_value": "En array innesluten i {{ }}. Till exempel {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minsta tillåtna objekt att välja",
+          "choose_up_to": "Maximalt antal objekt tillåts att välja",
+          "option_label_alignment": "Positionen för etiketterna"
         },
         "step": {
           "default_step": "Förvalt steg",
@@ -1752,8 +1805,8 @@
           "couldnot_drag": "Om du vill dra för att justera tidsintervallet, gå vidare till förhandsgranskningssidan för operationen.",
           "draggable": "Om tillåta användare att uppdatera händelseintervallet genom att dra för att flytta händelsen",
           "resizable": "Om tillåta användare att uppdatera händelsen tidsintervall och ändra tidsfristen genom att dra gränsen för en händelse att förlänga eller förkorta tidsfristen",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "När dragning är inaktiverad, kommer meddelandet att visas när en användare drar händelsen.",
+          "custom_message_resizable": "Efter att skalning är inaktiverad, kommer meddelandet att visas när en användare ändrar storlek på händelsen."
         },
         "table": {
           "page_index": "Index för sidan du vill välja.",
@@ -1784,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Filterläget. OCH eller OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Om tillåta användare att välja en cell",
+          "supported_in_the_row": "Stöds i raden enda markeringsläge. Efter aktivering, klicka på ett annat område än tabellen för att avmarkera raden."
         },
         "previous_cursor": "Använd åtgärdsdata för att ställa in föregående markör. Till exempel  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "För att ställa in indatatyp",
+          "show_visible_button": "Ange om du vill visa den synliga knappen"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Texten som visas på knappen när inspelningen inte startas",
+          "stop_button_text": "Texten som visas på knappen vid inspelning",
+          "clear_button_text": "Texten som visas på knappen när inspelningen är klar",
+          "min_duration": "Minsta varaktighet för inspelning",
+          "max_duration": "Maximal varaktighet för inspelning"
+        },
+        "leftMessageColor": "Ställ in färgen på meddelandena till vänster",
+        "rightMessageColor": "Ställ in färgen på meddelandena till höger",
+        "toolbar-replay": "Ange om du vill visa en svarsknapp när du väljer ett meddelande.",
+        "toolbar-delete": "Ange om du vill visa en raderingsknapp när du väljer ett meddelande."
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1870,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Lösenord",
+          "search": "Sök"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Vänsterklicka",
+            "right-click": "Högerklicka"
+          }
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1982,10 @@
           "directory": "Endast kataloger är tillåtna."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Behörighet för inspelning krävs",
+          "cannot_set_value_dur": "Kan inte ställa in värde under inspelning",
+          "min_duration": "Vänligen spela in minst {{minimum}}s",
+          "max_duration": "Vänligen spela in som mest {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Datastorleken överskrider gränsen (nuvarande storlek: {{current_size}} bytes, gräns: {{limit_size}} bytes)"
+    },
+    "general": {
+      "length_limit": "Det aktuella indatainnehållet är för långt, vi har slutat automatiskt beräkna data, du kan fortfarande mata in, detta kommer inte att påverka din användning."
     }
   },
   "exit_preview": "Avsluta förhandsgranskning",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Rich textredigerare"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON tittare"
+    },
+    "chat": {
+      "name": "Chatt"
+    },
     "public": {
       "left": "Vänster",
       "right": "Höger",
@@ -2524,10 +2602,13 @@
       "name_duplicated": "Detta resurs-ID konflikter i dessa händelser, använd samma namn eller annat id"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Byt grupp"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Inspelning"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2913,27 +2994,36 @@
   "oauth_redirect_title": "Omdirigera",
   "oauth_redirect_description": "Omdirigering till <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Engelska",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "c<unk> es<unk> tina",
+    "cs-CZ": "čeština",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "francône ais",
-    "it-IT": "Italiano",
-    "nl-NL": "Nederländerna",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "Portugue<unk> s",
-    "ro-RO": "roma<unk> na<unk>",
-    "ru-RU": "Gäster kan",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Det gick inte att logga ut. Försök igen senare."
+  "logout_failed": "Det gick inte att logga ut. Försök igen senare.",
+  "drive": {
+    "message": {
+      "start_upload": "Starta uppladdning",
+      "start_download": "Starta nedladdning"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

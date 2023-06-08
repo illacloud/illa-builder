@@ -207,7 +207,7 @@
             "access_type": "Zugriffstyp"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Befehl"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0),leer lassen für 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
             "max_time": "Float (0.0-120.0) um die Zeitspanne in Sekunden zu definieren",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Wählen Sie einen Typ"
           },
           "tips": {
             "mode_id": "Gehen Sie zum <0>Model Hub</0> und wählen Sie das Modell, das Sie verwenden möchten.",
@@ -1161,9 +1161,11 @@
           "DragOrClickNoEventArea": "Verschieben oder klicken Sie auf keinen Veranstaltungsbereich",
           "rowClick": "Zeilenklick",
           "refresh": "Aktualisieren",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Filter ändern",
+          "rowSelectChange": "Zeilenauswahl ändern",
+          "onCellSelect": "Zelle auswählen",
+          "delete": "Löschen",
+          "replay": "Antwort"
         },
         "image_list": {
           "title": "Bilder",
@@ -1229,9 +1231,9 @@
           "end_placeholder": "Endzeit"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Aufnahme starten",
+          "stop_button_text": "Stoppen",
+          "clear_button_text": "Leeren"
         }
       },
       "setter_group": {
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Kalender"
         },
-        "event": "Ereignis"
+        "event": "Ereignis",
+        "MESSAGE": "NACHRICHT"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Datenquelle",
+          "enable_message_selec": "Nachrichtenauswahl aktivieren",
+          "selection_type": "Auswahltyp",
+          "loading_when_sending": "Wird beim Senden geladen",
+          "image_background": "Hintergrund des Bildes",
+          "senderAvatar": "Absender-Avatar"
+        },
         "action": "Aktion",
         "align": "Align",
         "allow_clear": "Löschen erlauben",
@@ -1300,7 +1311,7 @@
           "value": "Datensatzwerte"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Position der Optionsbezeichnung"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1561,8 @@
           "event_text": "Text",
           "draggable": "Ziehen möglich",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Benutzerdefinierte Nachricht, wenn das Ziehen deaktiviert wird",
+          "custom_message_resizable": "Benutzerdefinierte Nachricht beim Deaktivieren der Größe"
         },
         "table": {
           "page_index": "Seitenindex",
@@ -1583,21 +1594,40 @@
           "next_cursor": "Nächster Cursor",
           "has_next_page": "Hat nächste Seite",
           "currency_code": "Währungscode",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Zellenauswahl",
+          "click_outside_to_des": "Zum Abwählen ausserhalb klicken"
         },
         "previous_cursor": "Vorheriger Cursor",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Typ",
+          "show_visible_button": "Zeige sichtbare Taste"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Start Button Text",
+          "clear_button_text": "Button-Text löschen",
+          "min_duration": "Min. Dauer (s)",
+          "max_duration": "Maximale Dauer (n)",
+          "stop_button_text": "Stopp-Button-Text"
+        },
+        "message_id": "Nachrichten-ID",
+        "message": "Nachricht",
+        "message_type": "Nachrichtentyp",
+        "sendTime": "Sendezeit",
+        "timeFormat": "Zeitformat",
+        "currentSenderId": "Aktuelle Absender-ID",
+        "receiving": "Wird beim Empfang geladen",
+        "toolbar-replay": "Antwort-Schaltfläche anzeigen",
+        "toolbar-delete": "Löschen-Schaltfläche anzeigen",
+        "showAvatar": "Avatar anzeigen",
+        "showSendTime": "Sendezeit anzeigen",
+        "showFooter": "Footer anzeigen",
+        "leftMessageColor": "Nachricht links",
+        "rightMessageColor": "Nachricht rechts",
+        "expandAll": "Alle ausklappen",
+        "replayMessageId": "Antwort-ID",
+        "senderName": "Absendername",
+        "senderId": "Absender-ID",
+        "showName": "Name anzeigen"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1642,7 +1672,21 @@
           "type": "Zusammenklappbare Liste: Liste, alle Elemente werden automatisch den Stil des ersten Elements kopieren. Sie können die Komponentendaten in jedem Element über {{ currentItem.columnName }}angeben. Einklappbares Panel: Jedes Panel ist unabhängig, Sie können den Komponentenstil und die Daten jedes Elements einzeln angeben.",
           "items": "Anzahl der Elemente",
           "accordin_mode": "Im Akkordeon-Modus, wenn ein Element erweitert wird, werden andere Elemente zusammengebrochen."
-        }
+        },
+        "message": "Um den Inhalt der Nachricht von einem bestimmten Feld in der Datenquelle zu erhalten, wie das Inhaltsfeld, können Sie es als {{item.content}} festlegen.",
+        "message_type": "Um den Typ der Nachricht basierend auf einem bestimmten Feld in der Datenquelle festzulegen, wie das Feld Typ können Sie es als {{item.type}}festlegen. Wir unterstützen diese Typen: Text, Bild, Video und Audio. ",
+        "message_id": "Um eine eindeutige ID für jede Nachricht festzulegen, können Sie sie aus einem bestimmten Feld in der Datenquelle abrufen. Wenn Sie es aus dem Feld Id abrufen möchten, können Sie es als {{item.id}}festlegen. ",
+        "replayMessageId": "Wenn es auf eine bestimmte Nachricht antwortet, setzen Sie in diesem Feld die Nachricht auf die sie antworten soll.",
+        "expandAll": "Ob alle Knoten erweitert werden sollen oder nicht",
+        "sendTime": "Sendezeit festlegen. Zum Beispiel ist die Sendezeit in Ihrer Datenquelle das sendAt Feld und Sie können das Feld auf {{item.sendAt}} setzen.",
+        "senderName": "Setze den Absendernamen. Zum Beispiel ist der Absendername in Ihrer Datenquelle das Feld sendName und Sie können das Feld auf {{item.sendName}} setzen.",
+        "currentSenderId": "Legen Sie die aktuelle Absender-ID fest. Wir verwenden dieses Feld, um festzustellen, welcher Benutzer Informationen sendet, die auf der rechten Seite angezeigt werden sollen.",
+        "senderId": "Setze die Absender-Id. Zum Beispiel ist die Absender-ID in Ihrer Datenquelle das Feld sendID und Sie können das Feld auf {{item.sendID}} setzen.",
+        "sendTimeFormat": "Legen Sie das Format der Sendezeit fest. Zum Beispiel hh:MM:ss.",
+        "showAvatar": "Legen Sie fest, ob Avatar angezeigt werden soll",
+        "showName": "Legt fest, ob der Name angezeigt werden soll",
+        "showSendTime": "Legt fest, ob die Sendezeit angezeigt werden soll",
+        "showFooter": "Legen Sie fest, ob die Fußzeile angezeigt werden soll"
       },
       "tab_title": "Prüfen",
       "unselected_tip1": "Keine Komponenten ausgewählt.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Die Datenquelle der Chat-Komponente. Verwenden Sie {{actionName.data}} , um die Daten aus Ihren Datenbanken oder APIs zu nutzen",
+          "sender_avatar": "Setze den Avatar des Absenders. Zum Beispiel ist in Ihrer Datenquelle der Avatar des Absenders das sendAvatar-Feld und Sie können das Feld auf {{item.sendAvatar}} setzen.",
+          "enable_message_selec": "Legen Sie fest, ob eine Nachricht ausgewählt werden soll",
+          "selection_type": "Legen Sie fest, wie eine Nachricht ausgewählt werden soll, Linksklick oder Rechtsklick. Wenn sie auf einem mobilen Gerät verwendet wird, wird sie angeklickt, um die Auswahl zu starten. ",
+          "loading_when_receivi": "Legen Sie fest, ob beim Empfang von Nachrichten das Laden angezeigt werden soll. Wenn Ihre Nachricht von action1 empfangen wird, können Sie sie auf {{action1.isRunning}}setzen , und der Ladestatus wird angezeigt, wenn action1 ausgeführt wird.",
+          "loading_when_sending": "Legen Sie fest, ob beim Senden von Nachrichten das Laden angezeigt werden soll. Wenn Ihre Nachricht an action1 gesendet wird, können Sie sie auf {{action1.isRunning}}setzen , und der Ladestatus wird angezeigt, wenn action1 ausgeführt wird.",
+          "image_background": "Bildhintergrund. Base64 und Bild-URL werden unterstützt"
+        },
         "carousel_tips": "Verwenden Sie {{ item }} , um Wert von der Datenquelle zu erhalten. Zum Beispiel gibt es zwei Attribute in der Datenquelle. Sie sind imageUrl und Url. Wenn Sie zu einer anderen URL gehen möchten, wenn Sie auf Bild klicken, verwenden Sie {{ item.url }} , um die URL zu setzen.",
         "data_source": "Eine Datenquelle, um Bildelemente mit zugeordneter Auswertung zu definieren. Verwenden Sie entweder ein Array von Werten oder ein Objekt von Schlüsseln, die Arrays zugeordnet sind. Zum Beispiel: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Sie können die Daten auch in Aktionen verwenden. Zum Beispiel: {{ mysql1.data }} ",
         "img_url_array": "Verwenden Sie {{ item.attributeName }} , um die URL des Bildes von der Datenquelle zu erhalten. ",
@@ -1684,16 +1737,16 @@
           "hide_output": "Legt fest, ob der Wert beim Schieben ausgeblendet werden soll"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Die Bezeichnung der Option",
+          "value": "Ein Array der ausgewählten Optionen, die in {{. Zum Beispiel {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Der Wert wurde dupliziert. Bitte verwenden Sie eindeutige Werte, um Fehler zu vermeiden.",
+          "caption": "Eine Beschriftung unter der Beschriftung",
+          "disabled": "Ob die Option deaktiviert wird",
+          "datasource": "Die Datenquelle der Schaltergruppe. Verwenden Sie {{actionName.data}} , um die Daten aus Ihren Datenbanken oder APIs zu nutzen",
+          "default_value": "Ein Array umschlossen in {{ }}. Zum Beispiel {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimal erlaubte Elemente zum Auswählen",
+          "choose_up_to": "Maximal erlaubte Elemente auszuwählen",
+          "option_label_alignment": "Die Position der Labels"
         },
         "step": {
           "default_step": "Standardschritt",
@@ -1752,8 +1805,8 @@
           "couldnot_drag": "Wenn Sie ziehen möchten, um den Zeitbereich anzupassen, gehen Sie bitte zur Vorschauseite für den Vorgang.",
           "draggable": "Gibt an, ob Benutzer den Zeitbereich des Ereignisses durch Ziehen zum Verschieben des Ereignisses aktualisieren können",
           "resizable": "Ob es Benutzern erlaubt den Zeitbereich des Ereignisses zu aktualisieren und die Zeitspanne durch Ziehen des Rahmens eines Ereignisses zu verlängern oder zu verkürzen",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Nachdem das Ziehen deaktiviert ist, wird die Nachricht angezeigt, wenn ein Benutzer das Ereignis zieht.",
+          "custom_message_resizable": "Nachdem die Größenänderung deaktiviert ist, wird die Nachricht angezeigt, wenn ein Benutzer die Größe des Ereignisses verändert."
         },
         "table": {
           "page_index": "Index der Seite, die Sie auswählen möchten.",
@@ -1784,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Der Filtermodus. AND oder OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Ob es Benutzern erlaubt eine Zelle auszuwählen",
+          "supported_in_the_row": "Wird im Zeilen-Einzelauswahlmodus unterstützt. Nach dem Aktivieren klicken Sie auf einen anderen Bereich als die Tabelle, um die Zeilenauswahl zu deaktivieren."
         },
         "previous_cursor": "Verwenden Sie die Aktionsdaten, um den vorherigen Cursor zu setzen. Zum Beispiel  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Um den Eingabetyp zu setzen",
+          "show_visible_button": "Um festzulegen, ob der sichtbare Button angezeigt werden soll"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Der Text, der auf der Schaltfläche angezeigt wird, wenn die Aufnahme nicht gestartet wird",
+          "stop_button_text": "Der Text, der beim Aufnehmen auf der Schaltfläche angezeigt wird",
+          "clear_button_text": "Der Text, der auf der Schaltfläche angezeigt wird, wenn die Aufnahme abgeschlossen ist",
+          "min_duration": "Mindestdauer für die Aufnahme",
+          "max_duration": "Maximale Aufnahmedauer"
+        },
+        "leftMessageColor": "Setze die Farbe der Nachrichten auf der linken Seite",
+        "rightMessageColor": "Farbe der Nachrichten auf der rechten Seite festlegen",
+        "toolbar-replay": "Legen Sie fest, ob eine Antwort angezeigt werden soll, wenn Sie eine Nachricht auswählen.",
+        "toolbar-delete": "Legen Sie fest, ob eine Löschtaste angezeigt werden soll, wenn Sie eine Nachricht auswählen."
       },
       "setter_option": {
         "fixed": "Feste",
@@ -1870,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Passwort",
+          "search": "Suchen"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Linksklick",
+            "right-click": "Rechtsklick"
+          }
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1982,10 @@
           "directory": "Nur Verzeichnisse sind erlaubt."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Aufnahmeberechtigung erforderlich",
+          "cannot_set_value_dur": "Wert kann während der Aufnahme nicht gesetzt werden",
+          "min_duration": "Bitte mindestens {{minimum}}s aufnehmen",
+          "max_duration": "Bitte höchstens {{maximum}}s aufnehmen"
         }
       },
       "setter_description": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Datengröße überschreitet Limit (aktuelle Größe: {{current_size}} Bytes, Limit: {{limit_size}} Bytes)"
+    },
+    "general": {
+      "length_limit": "Der aktuelle Input Inhalt ist zu lang, wir haben die automatische Berechnung der Daten gestoppt. Sie können weiterhin eingeben, dies wird Ihre Verwendung nicht beeinflussen."
     }
   },
   "exit_preview": "Vorschau beenden",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Rich-Text-Editor"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON-Betrachter"
+    },
+    "chat": {
+      "name": "Chat"
+    },
     "public": {
       "left": "Links",
       "right": "Rechts",
@@ -2524,10 +2602,13 @@
       "name_duplicated": "Diese Ressourcen-ID kollidiert in diesen Ereignissen, bitte verwenden Sie den gleichen Namen oder andere ID"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Gruppe wechseln"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Aufnahme"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2935,5 +3016,14 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut."
+  "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut.",
+  "drive": {
+    "message": {
+      "start_upload": "Upload starten",
+      "start_download": "Download starten"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

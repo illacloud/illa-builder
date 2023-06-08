@@ -207,7 +207,7 @@
             "access_type": "Тип доступа"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Команда"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Float(0.0-100.0),оставьте пустым для 1.0",
             "repetition_penalty": "Float (0.0-100.0)",
             "max_time": "Float (0.0-120.0) для определения количества времени в секундах",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Выберите тип"
           },
           "tips": {
             "mode_id": "Перейдите на <0>Модель Хаба</0> и выберите модель, которую вы хотите использовать.",
@@ -1161,9 +1161,11 @@
           "DragOrClickNoEventArea": "Перетащите или не кликните по области событий",
           "rowClick": "Клик строки",
           "refresh": "Обновить",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Выбрать ячейку"
+          "filtersChange": "Изменение фильтров",
+          "rowSelectChange": "Изменение строки",
+          "onCellSelect": "Выбрать ячейку",
+          "delete": "Удалить",
+          "replay": "Ответ"
         },
         "image_list": {
           "title": "Изображения",
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Календарь"
         },
-        "event": "Событие"
+        "event": "Событие",
+        "MESSAGE": "СООБЩЕНИЕ"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Источник данных",
+          "enable_message_selec": "Включить выбор сообщений",
+          "selection_type": "Тип выбора",
+          "loading_when_sending": "Загрузка при отправке",
+          "image_background": "Фон изображения",
+          "senderAvatar": "Аватар отправителя"
+        },
         "action": "Действие",
         "align": "Align",
         "allow_clear": "Разрешить очистку",
@@ -1300,7 +1311,7 @@
           "value": "Значения набора данных"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Позиция ярлыка опции"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1584,20 +1595,39 @@
           "has_next_page": "Имеет следующую страницу",
           "currency_code": "Код валюты",
           "cell_selection": "Выбор ячейки",
-          "click_outside_to_des": "Click outside to deselect"
+          "click_outside_to_des": "Нажмите вне экрана, чтобы отменить выбор"
         },
         "previous_cursor": "Предыдущий курсор",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Тип",
+          "show_visible_button": "Показать видимую кнопку"
         },
         "recording": {
           "start_button_text": "Текст кнопки старта",
           "clear_button_text": "Очистить текст кнопки",
           "min_duration": "Мин. длительность (с)",
           "max_duration": "Макс. длительность (с)",
-          "stop_button_text": "Stop button text"
-        }
+          "stop_button_text": "Текст стоп-кнопки"
+        },
+        "message_id": "ID сообщения",
+        "message": "Сообщение",
+        "message_type": "Тип сообщения",
+        "sendTime": "Время отправки",
+        "timeFormat": "Формат времени",
+        "currentSenderId": "Текущий ID отправителя",
+        "receiving": "Загрузка при получении",
+        "toolbar-replay": "Показать кнопку ответа",
+        "toolbar-delete": "Показать кнопку удаления",
+        "showAvatar": "Показать аватар",
+        "showSendTime": "Показать время отправки",
+        "showFooter": "Показать нижний колонтитул",
+        "leftMessageColor": "Сообщение слева",
+        "rightMessageColor": "Сообщение справа",
+        "expandAll": "Развернуть все",
+        "replayMessageId": "ID сообщения ответа",
+        "senderName": "Имя отправителя",
+        "senderId": "ID отправителя",
+        "showName": "Показать имя"
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -1642,7 +1672,21 @@
           "type": "Свернутый список: список, все элементы будут автоматически копировать стиль первого элемента. Вы можете указать данные компонента в каждом элементе через {{ currentItem.columnName }}. Сворачиваемая панель: каждая панель независима, вы можете указать стиль компонента и данные каждого элемента отдельно.",
           "items": "Количество элементов",
           "accordin_mode": "В аккордеонном режиме, когда элемент разворачивается, другие элементы свернуты."
-        }
+        },
+        "message": "Чтобы получить содержимое сообщения из определенного поля в источнике данных, например, поле содержимого, вы можете установить его как {{item.content}}.",
+        "message_type": "Установить тип сообщения на основе конкретного поля в источнике данных, например поле типа, вы можете установить его как {{item.type}}. Мы поддерживаем эти типы: текст, изображение, видео и аудио. ",
+        "message_id": "Чтобы задать уникальный идентификатор для каждого сообщения, вы можете получить его из определенного поля в источнике данных. Если вы хотите получить его из поля Id, вы можете установить его как {{item.id}}. ",
+        "replayMessageId": "Если ответ на указанное сообщение, используйте это поле, чтобы задать сообщение, на которое можно ответить.",
+        "expandAll": "Развернуть все узлы",
+        "sendTime": "Установить время отправки. Например, в вашем источнике данных время отправки - это поле sendat, и вы можете установить поле на {{item.sendAt}}.",
+        "senderName": "Задайте имя отправителя. Например, в вашем источнике данных имя отправителя - это поле sendName и вы можете задать поле {{item.sendName}}.",
+        "currentSenderId": "Установите текущий идентификатор отправителя. Мы используем это поле для определения того, какой пользователь отправляет информацию справа.",
+        "senderId": "Установите идентификатор отправителя. Например, в источнике данных отправитель - это поле sendID и вы можете задать поле {{item.sendID}}.",
+        "sendTimeFormat": "Устанавливает формат времени отправки. Например, чч:MM:ss.",
+        "showAvatar": "Выберите, показывать ли аватар",
+        "showName": "Выберите, показывать ли имя",
+        "showSendTime": "Укажите, показывать ли время отправки",
+        "showFooter": "Показывать ли нижний колонтитул"
       },
       "tab_title": "Инспекция",
       "unselected_tip1": "Компоненты не выбраны.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Источник данных компонента чата. Используйте {{actionName.data}} , чтобы использовать данные из ваших баз данных или API",
+          "sender_avatar": "Установить аватар отправителя. Например, в источнике данных отправителем является поле sendAvatar и вы можете задать поле {{item.sendAvatar}}.",
+          "enable_message_selec": "Укажите, разрешить выбранное сообщение",
+          "selection_type": "Задайте, как выбрать сообщение, щелкните левой кнопкой мыши или правой кнопкой мыши. При использовании на мобильном устройстве щелкните по кнопке, чтобы запустить выделение. ",
+          "loading_when_receivi": "Показывать ли загрузку при получении сообщений. Если ваше сообщение получено от действия1, вы можете установить его в {{action1.isRunning}}, и статус загрузки будет отображаться при запуске действия.",
+          "loading_when_sending": "Показывать ли загрузку при отправке сообщений. Если ваше сообщение отправлено на действие1, вы можете установить его на {{action1.isRunning}}, и статус загрузки будет отображаться при запуске действия.",
+          "image_background": "Установите фон изображения. Base64 и URL изображения поддерживаются"
+        },
         "carousel_tips": "Используйте {{ item }} , чтобы получить значение из источника данных. Например, в источнике данных есть два атрибута. Они являются imageUrl и url. Если вы хотите перейти к другому url при клике на изображение, используйте {{ item.url }} , чтобы установить url.",
         "data_source": "Источник данных для определения элементов изображения, используя вычисление. Используйте либо массив значений или объект ключей, сопоставленный с массивами. Например: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Вы также можете использовать данные в действиях. Например: {{ mysql1.data }} ",
         "img_url_array": "Используйте {{ item.attributeName }} , чтобы получить URL изображения из источника данных. ",
@@ -1684,16 +1737,16 @@
           "hide_output": "Укажите, скрывать ли значение при скольжении"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "label": "Метка опции",
+          "value": "Массив выбранных опций заключен в {{. Например, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Значение дублируется. Пожалуйста, используйте уникальные значения, чтобы избежать ошибок.",
+          "caption": "Заголовок, отображаемый под меткой",
+          "disabled": "Выключить опцию",
+          "datasource": "Источник данных группы переключателей. Используйте {{actionName.data}} , чтобы использовать данные из баз данных или API",
+          "default_value": "Массив в {{ }}. Например, {{ [\"value1\", \"value2\", \"value3\"] }}",
           "choose_at_least": "Минимальное количество элементов, разрешенное для выбора",
           "choose_up_to": "Минимальное количество элементов, разрешенное для выбора",
-          "option_label_alignment": "The position of the labels"
+          "option_label_alignment": "Положение этикеток"
         },
         "step": {
           "default_step": "Шаг по умолчанию",
@@ -1752,8 +1805,8 @@
           "couldnot_drag": "Если вы хотите перетащить интервал времени, перейдите на страницу предварительного просмотра для этой операции.",
           "draggable": "Разрешить ли пользователям обновлять интервал событий, перетаскивая для перемещения события",
           "resizable": "Разрешить ли пользователям обновлять интервал времени события и изменять промежуток времени путем перетаскивания границы события для продления или сокращения периода времени",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "После перетаскивания сообщение будет отображаться при перетаскивании события.",
+          "custom_message_resizable": "После изменения размера будет показано сообщение, когда пользователь изменит размер события."
         },
         "table": {
           "page_index": "Индекс выбранной страницы.",
@@ -1784,13 +1837,13 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Режим фильтра. AND или OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Разрешать ли пользователям выбирать ячейку",
+          "supported_in_the_row": "Поддерживается в режиме одиночного выделения строки. После включения, нажмите на другую область, чем таблица."
         },
         "previous_cursor": "Используйте данные для установки предыдущего курсора. Например,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Установить тип ввода",
+          "show_visible_button": "Установить, показывать ли видимую кнопку"
         },
         "recording": {
           "start_button_text": "Текст, отображаемый на кнопке, когда запись не запущена",
@@ -1798,7 +1851,11 @@
           "clear_button_text": "Текст, отображаемый на кнопке, когда запись завершена",
           "min_duration": "Минимальная продолжительность записи",
           "max_duration": "Максимальная продолжительность записи"
-        }
+        },
+        "leftMessageColor": "Установить цвет сообщений слева",
+        "rightMessageColor": "Установить цвет сообщений справа",
+        "toolbar-replay": "Показывать ли кнопку ответа при выборе сообщения.",
+        "toolbar-delete": "Показывать ли кнопку \"Удалить\" при выборе сообщения."
       },
       "setter_option": {
         "fixed": "Исправлено",
@@ -1872,6 +1929,12 @@
           "input": "Input",
           "password": "Пароль",
           "search": "Поиск"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Левый клик",
+            "right-click": "Щелчок правой кнопкой мыши"
+          }
         }
       },
       "setter_placeholder": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Размер данных превышает лимит (текущий размер: {{current_size}} байт, лимит: {{limit_size}} байт)"
+    },
+    "general": {
+      "length_limit": "Текущий входной контент слишком длинный, мы остановили автоматическое вычисление данных, вы все еще можете продолжить ввод данных, это не повлияет на ваше использование."
     }
   },
   "exit_preview": "Выйти из предпросмотра",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Богатый текстовый редактор"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "Просмотр JSON"
+    },
+    "chat": {
+      "name": "Чат"
+    },
     "public": {
       "left": "Слева",
       "right": "Справа",
@@ -2524,10 +2602,13 @@
       "name_duplicated": "Этот идентификатор ресурса конфликтует в ходе этих событий, пожалуйста, используйте одно и то же имя или другой идентификатор"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Переключить группу"
     },
     "recording": {
       "name": "Запись"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2935,5 +3016,14 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Не удалось выйти из системы. Пожалуйста, повторите попытку позже."
+  "logout_failed": "Не удалось выйти из системы. Пожалуйста, повторите попытку позже.",
+  "drive": {
+    "message": {
+      "start_upload": "Начать загрузку",
+      "start_download": "Начать загрузку"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }
