@@ -40,7 +40,6 @@ const wrappedRouter = (
         let authLoaderResponse
         if (needLogin) {
           authLoaderResponse = await combineCloudAuthLoader(args)
-          console.log("authLoaderResponse", authLoaderResponse)
         }
         if (authLoaderResponse) {
           return authLoaderResponse
