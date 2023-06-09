@@ -39,6 +39,7 @@ export interface MoveBarProps {
   containerPadding: number
   widgetType: string
   userList: CollaboratorsInfo[]
+  onClick: () => void
 }
 
 export interface MoveBarPositionShape {

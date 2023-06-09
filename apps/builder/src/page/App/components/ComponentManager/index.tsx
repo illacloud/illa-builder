@@ -40,6 +40,17 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   }, [activeKey, currentPageDisplayName, selectedDisplayNames])
 
   const handleClickChangeTab = (activeKey: string) => {
+    switch (activeKey) {
+      case "Page":
+        FocusManager.switchFocus("page_config")
+        break
+      case "Inspect":
+        FocusManager.switchFocus("components_config")
+        break
+      case "Insert":
+        FocusManager.switchFocus("widget_picker")
+        break
+    }
     setActiveKey(activeKey)
     isClickChange.current = true
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -53,7 +64,6 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
       className={className}
       {...rest}
       onClick={(e) => {
-        FocusManager.switchFocus("components")
         onClick?.(e)
       }}
     >

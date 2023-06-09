@@ -56,37 +56,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const showShadows = useSelector(isShowDot)
 
-  useHotkeys(
-    `${Key.Meta}+s`,
-    () => {
-      message.success({
-        content: t("dont_need_save"),
-      })
-    },
-    {
-      enableOnFormTags: true,
-      enableOnContentEditable: true,
-      preventDefault: true,
-      enabled: isEditMode && isMAC(),
-    },
-    [],
-  )
-
-  useHotkeys(
-    `${Key.Control}+s`,
-    () => {
-      message.success({
-        content: t("dont_need_save"),
-      })
-    },
-    {
-      enableOnFormTags: true,
-      enableOnContentEditable: true,
-      preventDefault: true,
-      enabled: isEditMode && !isMAC(),
-    },
-  )
-
   // shortcut
   const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
     useState<boolean>(false)
@@ -162,6 +131,191 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }
 
+  const selectAllBodyComponentsHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "none":
+        break
+      case "data_component":
+        break
+      case "data_action":
+        break
+      case "data_page":
+        break
+      case "data_global_state":
+        break
+      case "action":
+        break
+      case "widget_picker":
+        break
+      case "components_config":
+        break
+      case "page_config":
+        break
+      case "canvas": {
+        if (canvasRootNode) {
+          const rootNode = executionResult.root
+          if (!rootNode) return
+          const currentPageDisplayName =
+            rootNode.pageSortedKey[rootNode.currentPageIndex]
+          const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
+          if (!pageNode) return
+          let bodySectionDisplayName: string = ""
+          pageNode.childrenNode.find((sectionNode) => {
+            const displayName = sectionNode.displayName
+            const currentSectionProps = executionResult[displayName]
+            if (
+              currentSectionProps &&
+              currentSectionProps.viewSortedKey &&
+              currentSectionProps.currentViewIndex >= 0 &&
+              sectionNode.showName === "bodySection"
+            ) {
+              const { currentViewIndex, viewSortedKey } = currentSectionProps
+              bodySectionDisplayName = viewSortedKey[currentViewIndex]
+            }
+          })
+          if (!bodySectionDisplayName) return
+          const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
+          const allChildrenNodes = Array.isArray(
+            componentNodesMap[bodySectionDisplayName].childrenNode,
+          )
+            ? componentNodesMap[bodySectionDisplayName].childrenNode
+            : []
+
+          const childNodeDisplayNames = allChildrenNodes.map(
+            (node) => node.displayName,
+          )
+
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
+            element: "component",
+            parameter1: "keyboard",
+          })
+          dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
+        }
+      }
+    }
+  }, [canvasRootNode, dispatch, executionResult])
+
+  const copySomethingHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "data_page":
+        break
+      case "data_global_state":
+        break
+      case "none":
+        break
+      case "canvas":
+      case "data_component":
+        if (
+          currentSelectedComponent != null &&
+          currentSelectedComponentNode.length > 0
+        ) {
+          CopyManager.copyComponentNode(currentSelectedComponentNode)
+        }
+        break
+      case "data_action":
+      case "action":
+        if (currentSelectedAction != null) {
+          CopyManager.copyAction(currentSelectedAction)
+        }
+        break
+      case "widget_picker":
+        break
+      case "components_config":
+        break
+      case "page_config":
+        break
+    }
+  }, [
+    currentSelectedAction,
+    currentSelectedComponent,
+    currentSelectedComponentNode,
+  ])
+
+  const copyAndPasteHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "data_page":
+        break
+      case "data_global_state":
+        break
+      case "none":
+        break
+      case "canvas":
+      case "data_component":
+        if (
+          currentSelectedComponent != null &&
+          currentSelectedComponentNode.length > 0
+        ) {
+          CopyManager.copyComponentNode(currentSelectedComponentNode)
+        }
+        break
+      case "data_action":
+      case "action":
+        if (currentSelectedAction != null) {
+          CopyManager.copyAction(currentSelectedAction)
+        }
+        break
+      case "widget_picker":
+        break
+      case "components_config":
+        break
+      case "page_config":
+        break
+    }
+    CopyManager.paste("keyboard")
+  }, [
+    currentSelectedAction,
+    currentSelectedComponent,
+    currentSelectedComponentNode,
+  ])
+
+  const showDotHandler = useCallback(
+    (keyboardEventType: string) => {
+      if (keyboardEventType === "keydown") {
+        dispatch(configActions.updateShowDot(true))
+      } else if (keyboardEventType === "keyup") {
+        dispatch(configActions.updateShowDot(false))
+      }
+    },
+    [dispatch],
+  )
+
+  const changeShadowHidden = useCallback(() => {
+    if (showShadows) {
+      dispatch(configActions.updateShowDot(false))
+    }
+  }, [dispatch, showShadows])
+
+  useHotkeys(
+    `${Key.Meta}+s`,
+    () => {
+      message.success({
+        content: t("dont_need_save"),
+      })
+    },
+    {
+      enableOnFormTags: true,
+      enableOnContentEditable: true,
+      preventDefault: true,
+      enabled: isEditMode && isMAC(),
+    },
+    [],
+  )
+
+  useHotkeys(
+    `${Key.Control}+s`,
+    () => {
+      message.success({
+        content: t("dont_need_save"),
+      })
+    },
+    {
+      enableOnFormTags: true,
+      enableOnContentEditable: true,
+      preventDefault: true,
+      enabled: isEditMode && !isMAC(),
+    },
+  )
+
   useHotkeys(
     Key.Backspace,
     () => {
@@ -200,55 +354,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     [dispatch, freezeState],
   )
 
-  const selectAllBodyComponentsHandler = useCallback(() => {
-    switch (FocusManager.getFocus()) {
-      case "none":
-        break
-      case "canvas": {
-        if (canvasRootNode) {
-          const rootNode = executionResult.root
-          if (!rootNode) return
-          const currentPageDisplayName =
-            rootNode.pageSortedKey[rootNode.currentPageIndex]
-          const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
-          if (!pageNode) return
-          let bodySectionDisplayName: string = ""
-          pageNode.childrenNode.find((sectionNode) => {
-            const displayName = sectionNode.displayName
-            const currentSectionProps = executionResult[displayName]
-            if (
-              currentSectionProps &&
-              currentSectionProps.viewSortedKey &&
-              currentSectionProps.currentViewIndex >= 0 &&
-              sectionNode.showName === "bodySection"
-            ) {
-              const { currentViewIndex, viewSortedKey } = currentSectionProps
-              const currentDisplayName = viewSortedKey[currentViewIndex]
-              bodySectionDisplayName = currentDisplayName
-            }
-          })
-          if (!bodySectionDisplayName) return
-          const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
-          const allChildrenNodes = Array.isArray(
-            componentNodesMap[bodySectionDisplayName].childrenNode,
-          )
-            ? componentNodesMap[bodySectionDisplayName].childrenNode
-            : []
-
-          const childNodeDisplayNames = allChildrenNodes.map(
-            (node) => node.displayName,
-          )
-
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
-            element: "component",
-            parameter1: "keyboard",
-          })
-          dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
-        }
-      }
-    }
-  }, [canvasRootNode, dispatch, executionResult])
-
   useHotkeys(
     `${Key.Control}+a`,
     (e) => {
@@ -274,36 +379,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
     [selectAllBodyComponentsHandler],
   )
-
-  const copySomethingHandler = useCallback(() => {
-    switch (FocusManager.getFocus()) {
-      case "none":
-        break
-      case "canvas":
-      case "dataWorkspace_component":
-        if (
-          currentSelectedComponent != null &&
-          currentSelectedComponentNode.length > 0
-        ) {
-          CopyManager.copyComponentNode(currentSelectedComponentNode)
-        }
-        break
-      case "dataWorkspace_action":
-      case "action":
-        if (currentSelectedAction != null) {
-          CopyManager.copyAction(currentSelectedAction)
-        }
-        break
-      case "widget_picker":
-        break
-      case "components":
-        break
-    }
-  }, [
-    currentSelectedAction,
-    currentSelectedComponent,
-    currentSelectedComponentNode,
-  ])
 
   useHotkeys(
     `${Key.Meta}+c`,
@@ -347,37 +422,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     [copySomethingHandler],
   )
 
-  const copyAndPasteHandler = useCallback(() => {
-    switch (FocusManager.getFocus()) {
-      case "none":
-        break
-      case "canvas":
-      case "dataWorkspace_component":
-        if (
-          currentSelectedComponent != null &&
-          currentSelectedComponentNode.length > 0
-        ) {
-          CopyManager.copyComponentNode(currentSelectedComponentNode)
-        }
-        break
-      case "dataWorkspace_action":
-      case "action":
-        if (currentSelectedAction != null) {
-          CopyManager.copyAction(currentSelectedAction)
-        }
-        break
-      case "widget_picker":
-        break
-      case "components":
-        break
-    }
-    CopyManager.paste("keyboard")
-  }, [
-    currentSelectedAction,
-    currentSelectedComponent,
-    currentSelectedComponentNode,
-  ])
-
   useHotkeys(
     `${Key.Meta}+d`,
     () => {
@@ -397,17 +441,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
     { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copyAndPasteHandler],
-  )
-
-  const showDotHandler = useCallback(
-    (keyboardEventType: string) => {
-      if (keyboardEventType === "keydown") {
-        dispatch(configActions.updateShowDot(true))
-      } else if (keyboardEventType === "keyup") {
-        dispatch(configActions.updateShowDot(false))
-      }
-    },
-    [dispatch],
   )
 
   useHotkeys(
@@ -437,12 +470,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
     [showDotHandler],
   )
-
-  const changeShadowHidden = useCallback(() => {
-    if (showShadows) {
-      dispatch(configActions.updateShowDot(false))
-    }
-  }, [dispatch, showShadows])
 
   // cancel show dot
   useEffect(() => {

@@ -23,6 +23,7 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { isContainerType } from "@/utils/componentChecker"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
@@ -103,7 +104,13 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      FocusManager.switchFocus("canvas")
+      if (!isContainerType(componentNode.type)) {
+        FocusManager.switchFocus("canvas", {
+          displayName: componentNode.displayName,
+          type: "component",
+          clickPosition: [],
+        })
+      }
       if (!isEditMode) return
       e.stopPropagation()
       if ((isMAC() && e.metaKey) || e.shiftKey || (!isMAC() && e.ctrlKey)) {
@@ -138,6 +145,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
     },
     [
       componentNode.displayName,
+      componentNode.type,
       dispatch,
       displayNameMapDepth,
       isEditMode,
@@ -217,6 +225,11 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
 
   const handleContextMenu = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
+      FocusManager.switchFocus("canvas", {
+        displayName: componentNode.displayName,
+        type: "component",
+        clickPosition: [],
+      })
       e.stopPropagation()
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
@@ -304,6 +317,15 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
             containerPadding={containerPadding || 0}
             containerHeight={containerHeight}
             widgetType={componentNode.type}
+            onClick={() => {
+              if (isContainerType(componentNode.type)) {
+                FocusManager.switchFocus("canvas", {
+                  displayName: componentNode.displayName,
+                  type: "component",
+                  clickPosition: [],
+                })
+              }
+            }}
             userList={filteredComponentAttachedUserList}
           />
 
