@@ -18,7 +18,10 @@ import { getFirstDragShadowInfo } from "@/redux/currentApp/dragShadow/dragShadow
 import { UpdateComponentNodeLayoutInfoPayload } from "@/redux/currentApp/editor/components/componentsPayload"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getDraggingComponentIDs,
+  getExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
@@ -35,8 +38,7 @@ import { applyRNDWrapperStyle } from "./style"
 import { getEnableResizing, getResizeHandler } from "./utils"
 
 export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
-  const { unitW, unitH, componentNode, children, childrenNode, isDragging } =
-    props
+  const { unitW, unitH, componentNode, children, childrenNode } = props
 
   const { minW, minH } = componentNode
   const dispatch = useDispatch()
@@ -64,6 +66,9 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
     )
   })
 
+  const draggingComponentNodes = useSelector(getDraggingComponentIDs)
+  const isDragging = draggingComponentNodes.includes(componentNode.displayName)
+
   const { x, y, w, h } = getRealShapeAndPosition(componentNode, unitH, unitW)
 
   const resizeDirection = useMemo(() => {
@@ -89,22 +94,8 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
     (e) => {
       e.preventDefault()
       e.stopPropagation()
-      dispatch(configActions.updateResizingStateReducer(true))
       dispatch(
-        componentsActions.updateComponentLayoutInfoReducer({
-          displayName: componentNode.displayName,
-          layoutInfo: {},
-        }),
-      )
-      dispatch(
-        componentsActions.batchUpdateComponentStatusInfoReducer([
-          {
-            displayName: componentNode.displayName,
-            statusInfo: {
-              isResizing: true,
-            },
-          },
-        ]),
+        executionActions.setResizingNodeIDsReducer([componentNode.displayName]),
       )
       let mergedChildrenNode: ComponentNode[] = []
       if (Array.isArray(childrenNode)) {
@@ -181,8 +172,6 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
 
   const handleOnResizeStop: RndResizeCallback = useCallback(
     (e, dir, ref, delta, position) => {
-      dispatch(configActions.updateResizingStateReducer(false))
-
       const { width, height } = delta
       let finalWidth = Math.round((w + width) / unitW)
       let finalHeight = Math.round((h + height) / unitH)
@@ -209,14 +198,8 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
           },
         }),
       )
-      dispatch(
-        componentsActions.updateComponentStatusInfoReducer({
-          displayName: componentNode.displayName,
-          statusInfo: {
-            isResizing: false,
-          },
-        }),
-      )
+      dispatch(executionActions.setResizingNodeIDsReducer([]))
+
       dispatch(configActions.updateShowDot(false))
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DRAG, {
         element: "component",

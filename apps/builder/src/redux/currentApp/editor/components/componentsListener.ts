@@ -9,7 +9,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import {
-  getAllComponentDisplayNameMapProps,
+  // getAllComponentDisplayNameMapProps,
   getCanvas,
   getCurrentPageBodySectionComponentsSelector,
   getCurrentPageFooterSectionComponentsSelector,
@@ -596,50 +596,50 @@ const handlerUpdateViewportSizeEffect = (
   listenApi.dispatch(cursorActions.resetCursorReducer())
 }
 
-const getAllChildrenDisplayName = (
-  nodeDisplayName: string,
-  displayNameMapProps: Record<string, any>,
-): string[] => {
-  let result = [nodeDisplayName]
-  const node = displayNameMapProps[nodeDisplayName]
-  const children: string[] = node?.$childrenNode || []
-  if (children.length > 0) {
-    children.forEach((child) => {
-      result = [
-        ...result,
-        ...getAllChildrenDisplayName(child, displayNameMapProps),
-      ]
-    })
-  }
-  return result
-}
+// const getAllChildrenDisplayName = (
+//   nodeDisplayName: string,
+//   displayNameMapProps: Record<string, any>,
+// ): string[] => {
+//   let result = [nodeDisplayName]
+//   const node = displayNameMapProps[nodeDisplayName]
+//   const children: string[] = node?.$childrenNode || []
+//   if (children.length > 0) {
+//     children.forEach((child) => {
+//       result = [
+//         ...result,
+//         ...getAllChildrenDisplayName(child, displayNameMapProps),
+//       ]
+//     })
+//   }
+//   return result
+// }
 
-const batchUpdateComponentStatusInfoEffect = (
-  action: ReturnType<
-    typeof componentsActions.batchUpdateComponentStatusInfoReducer
-  >,
-  listenApi: AppListenerEffectAPI,
-) => {
-  const { payload } = action
-  let allChildrenDisplayName: string[] = []
-  const displayNameMapProps =
-    getAllComponentDisplayNameMapProps(listenApi.getState()) ?? {}
-  payload.forEach((updateSlice) => {
-    if (
-      updateSlice.statusInfo.isDragging ||
-      updateSlice.statusInfo.isResizing
-    ) {
-      allChildrenDisplayName = [
-        ...allChildrenDisplayName,
-        ...getAllChildrenDisplayName(
-          updateSlice.displayName,
-          displayNameMapProps,
-        ),
-      ]
-    }
-  })
-  listenApi.dispatch(cursorActions.filterCursorReducer(allChildrenDisplayName))
-}
+// const batchUpdateComponentStatusInfoEffect = (
+//   action: ReturnType<
+//     typeof componentsActions.batchUpdateComponentStatusInfoReducer
+//   >,
+//   listenApi: AppListenerEffectAPI,
+// ) => {
+//   const { payload } = action
+//   let allChildrenDisplayName: string[] = []
+//   const displayNameMapProps =
+//     getAllComponentDisplayNameMapProps(listenApi.getState()) ?? {}
+//   payload.forEach((updateSlice) => {
+//     if (
+//       updateSlice.statusInfo.isDragging ||
+//       updateSlice.statusInfo.isResizing
+//     ) {
+//       allChildrenDisplayName = [
+//         ...allChildrenDisplayName,
+//         ...getAllChildrenDisplayName(
+//           updateSlice.displayName,
+//           displayNameMapProps,
+//         ),
+//       ]
+//     }
+//   })
+//   listenApi.dispatch(cursorActions.filterCursorReducer(allChildrenDisplayName))
+// }
 
 export function setupComponentsListeners(
   startListening: AppStartListening,
@@ -691,10 +691,10 @@ export function setupComponentsListeners(
       actionCreator: componentsActions.updateViewportSizeReducer,
       effect: handlerUpdateViewportSizeEffect,
     }),
-    startListening({
-      actionCreator: componentsActions.batchUpdateComponentStatusInfoReducer,
-      effect: batchUpdateComponentStatusInfoEffect,
-    }),
+    // startListening({
+    //   actionCreator: componentsActions.batchUpdateComponentStatusInfoReducer,
+    //   effect: batchUpdateComponentStatusInfoEffect,
+    // }),
   ]
 
   return () => {
