@@ -8,19 +8,16 @@ import {
 } from "@/widgetLibrary/TimelineWidget/interface"
 
 export const WrappedTimeline: FC<WrappedTimelineProps> = (props) => {
-  const {
-    items = [
-      "The first milestone",
-      "The second milestone",
-      "The third milestone",
-    ],
-    direction,
-    pending,
-  } = props
+  const { items, direction, pending } = props
 
   const timelineItems = useMemo(() => {
     if (Array.isArray(items)) {
-      return items.map((item) => <TimelineItem key={item}>{item}</TimelineItem>)
+      return items.map(
+        (item) =>
+          typeof item === "string" && (
+            <TimelineItem key={item}>{item}</TimelineItem>
+          ),
+      )
     }
     return null
   }, [items])
