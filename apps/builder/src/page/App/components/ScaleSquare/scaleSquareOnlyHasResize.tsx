@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
 import { getResizeHandler } from "@/page/App/components/ScaleSquare/ResizingContainer/utils"
-import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import {
   getHoveredComponents,
   getIsILLAEditMode,
@@ -16,10 +15,7 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { getComponentAttachUsers } from "@/redux/currentApp/collaborators/collaboratorsSelector"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import {
-  getComponentDisplayNameMapDepth,
-  getShowWidgetNameParentMap,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+import { getComponentDisplayNameMapDepth } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -73,7 +69,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
   const selectedComponents = useSelector(getSelectedComponents)
   const hoveredComponents = useSelector(getHoveredComponents)
   const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
-  const widgetDisplayNameRelationMap = useSelector(getShowWidgetNameParentMap)
 
   const isMouseOver =
     hoveredComponents[hoveredComponents.length - 1] ===
@@ -125,12 +120,13 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
         } else {
           currentSelectedDisplayName.push(componentNode.displayName)
         }
-        changeSelectedDisplayName(
-          currentSelectedDisplayName,
-          widgetDisplayNameRelationMap,
-          componentNode.displayName,
-          displayNameMapDepth,
-        )
+        const depths = currentSelectedDisplayName.map((displayName) => {
+          return displayNameMapDepth[displayName]
+        })
+        let isEqual = depths.every((depth) => depth === depths[0])
+        if (!isEqual) {
+          return
+        }
 
         currentSelectedDisplayName = Array.from(
           new Set(currentSelectedDisplayName),
@@ -151,7 +147,6 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       displayNameMapDepth,
       isEditMode,
       selectedComponents,
-      widgetDisplayNameRelationMap,
     ],
   )
 

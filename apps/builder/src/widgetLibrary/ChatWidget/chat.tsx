@@ -2,7 +2,7 @@ import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { useDispatch } from "react-redux"
 import useMeasure from "react-use-measure"
-import { configActions } from "@/redux/config/configSlice"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { BaseChat } from "@/widgetLibrary/ChatWidget/baseChat"
 import {
@@ -66,7 +66,7 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(configActions.updateResizingStateReducer(true))
+    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(
@@ -75,7 +75,7 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: footerHeight + height,
       })
-      dispatch(configActions.updateResizingStateReducer(false))
+      dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
     [dispatch, footerHeight, handleUpdateOriginalDSLMultiAttr],
   )

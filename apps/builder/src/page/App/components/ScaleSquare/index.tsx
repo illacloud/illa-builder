@@ -18,7 +18,6 @@ import {
   applyWrapperPendingStyle,
   hoverHotspotStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import {
   getHoveredComponents,
   getIsILLAEditMode,
@@ -189,12 +188,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           currentSelectedDisplayName.push(componentNode.displayName)
         }
 
-        changeSelectedDisplayName(
-          currentSelectedDisplayName,
-          widgetDisplayNameRelationMap,
-          componentNode.displayName,
-          displayNameMapDepth,
-        )
+        const depths = currentSelectedDisplayName.map((displayName) => {
+          return displayNameMapDepth[displayName]
+        })
+        let isEqual = depths.every((depth) => depth === depths[0])
+        if (!isEqual) {
+          return
+        }
         if (currentSelectedDisplayName.length > 1) {
           const firstParentNode =
             widgetExecutionLayoutInfo[currentSelectedDisplayName[0]].parentNode
@@ -244,7 +244,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       isEditMode,
       dispatch,
       selectedComponents,
-      widgetDisplayNameRelationMap,
       displayNameMapDepth,
       widgetExecutionLayoutInfo,
     ],
