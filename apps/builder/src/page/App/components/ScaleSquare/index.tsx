@@ -21,10 +21,8 @@ import {
 import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import {
   getHoveredComponents,
-  getIsDragging,
   getIsILLAEditMode,
   getIsLikeProductMode,
-  getIsResizing,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -46,6 +44,8 @@ import {
   getExecutionError,
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
+  getIsDragging,
+  getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import store, { RootState } from "@/store"
@@ -108,8 +108,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const executionResult = useSelector(getExecutionResult)
   const widgetExecutionLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
-  const isDraggingStateInGlobal = useSelector(getIsDragging)
   const isResizingStateInGlobal = useSelector(getIsResizing)
+  const isDraggingStateInGlobal = useSelector(getIsDragging)
   const isShowCanvasDot = useSelector(isShowDot)
   const hoveredComponents = useSelector(getHoveredComponents)
   const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
@@ -353,7 +353,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       unitH={unitH}
       componentNode={componentNode}
       childrenNode={childrenNode}
-      isDragging={componentNode.isDragging}
     >
       <div
         css={hoverHotspotStyle}

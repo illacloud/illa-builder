@@ -641,14 +641,7 @@ export const RenderComponentCanvas: FC<{
               ]),
             )
 
-            dispatch(
-              componentsActions.updateComponentStatusInfoReducer({
-                displayName: newItem.displayName,
-                statusInfo: {
-                  isDragging: false,
-                },
-              }),
-            )
+            dispatch(executionActions.setDraggingNodeIDsReducer([]))
           }
           const mousePosition = cursorPositionRef.current
           sendMousePositionHandler(

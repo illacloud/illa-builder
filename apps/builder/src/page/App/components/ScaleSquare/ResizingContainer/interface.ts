@@ -7,5 +7,4 @@ export interface ResizingContainerProps {
   componentNode: ComponentNode
   childrenNode: ComponentNode[]
   children: ReactNode
-  isDragging: boolean
 }

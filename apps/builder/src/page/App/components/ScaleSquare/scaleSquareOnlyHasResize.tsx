@@ -22,6 +22,7 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
@@ -167,14 +168,8 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
           },
         }),
       )
-      dispatch(
-        componentsActions.updateComponentStatusInfoReducer({
-          displayName: componentNode.displayName,
-          statusInfo: {
-            isResizing: false,
-          },
-        }),
-      )
+      dispatch(executionActions.setDraggingNodeIDsReducer([]))
+
       dispatch(configActions.updateShowDot(false))
     },
     [
@@ -196,18 +191,7 @@ export const ScaleSquareOnlyHasResize = (props: ScaleSquareProps) => {
       e.preventDefault()
       e.stopPropagation()
       dispatch(
-        componentsActions.updateComponentLayoutInfoReducer({
-          displayName: componentNode.displayName,
-          layoutInfo: {},
-        }),
-      )
-      dispatch(
-        componentsActions.updateComponentStatusInfoReducer({
-          displayName: componentNode.displayName,
-          statusInfo: {
-            isResizing: true,
-          },
-        }),
+        executionActions.setDraggingNodeIDsReducer([componentNode.displayName]),
       )
 
       dispatch(configActions.updateShowDot(true))
