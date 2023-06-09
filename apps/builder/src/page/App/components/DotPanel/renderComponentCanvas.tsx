@@ -17,6 +17,7 @@ import useMeasure from "react-use-measure"
 import {
   MoveDragResult,
   getDragResult,
+  getMousePointerPosition,
   isAddAction,
 } from "@/page/App/components/DotPanel/calc"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
@@ -47,6 +48,7 @@ import {
   getFreezeState,
   getIsILLAEditMode,
   getIsLikeProductMode,
+  getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -55,6 +57,7 @@ import {
   modifyComponentNodeY,
 } from "@/redux/currentApp/editor/components/componentsListener"
 import { UpdateComponentNodeLayoutInfoPayload } from "@/redux/currentApp/editor/components/componentsPayload"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
@@ -65,6 +68,7 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { ILLAEventBus, PAGE_EDITOR_EVENT_PREFIX } from "@/utils/eventBus"
+import { FocusManager } from "@/utils/focusManager"
 import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
@@ -208,6 +212,7 @@ export const RenderComponentCanvas: FC<{
   const isEditMode = useSelector(getIsILLAEditMode)
   const isLikeProductMode = useSelector(getIsLikeProductMode)
   const isFreezeCanvas = useSelector(getFreezeState)
+  const selectedComponentNode = useSelector(getSelectedComponents)
   const dispatch = useDispatch()
 
   const rootNodeProps = useSelector(getRootNodeExecutionResult)
@@ -925,6 +930,49 @@ export const RenderComponentCanvas: FC<{
         ),
         selectoSelectionStyle,
       ]}
+      onClick={(event) => {
+        if (selectedComponentNode.length > 1) {
+          // calc group position
+          let leftTopX = Number.MAX_SAFE_INTEGER
+          let leftTopY = Number.MAX_SAFE_INTEGER
+          let maxRightBottomX = Number.MIN_SAFE_INTEGER
+          let maxRightBottomY = Number.MIN_SAFE_INTEGER
+
+          selectedComponentNode.forEach((nodeName) => {
+            const node = searchDSLByDisplayName(nodeName)
+            if (node) {
+              leftTopX = Math.min(leftTopX, node.x)
+              leftTopY = Math.min(leftTopY, node.y)
+              maxRightBottomX = Math.max(maxRightBottomX, node.x + node.w)
+              maxRightBottomY = Math.max(maxRightBottomY, node.y + node.h)
+            }
+          })
+
+          FocusManager.switchFocus("canvas", {
+            displayName: componentNode.displayName,
+            type: "group",
+            // x, y, w, h
+            clickPosition: [
+              leftTopX,
+              leftTopY,
+              maxRightBottomX - leftTopX,
+              maxRightBottomY - leftTopY,
+            ],
+          })
+        } else {
+          FocusManager.switchFocus("canvas", {
+            displayName: componentNode.displayName,
+            type: "inner_container",
+            clickPosition: getMousePointerPosition(
+              event.clientX - event.currentTarget.getBoundingClientRect().x,
+              event.clientY - event.currentTarget.getBoundingClientRect().y,
+              unitWidth,
+              UNIT_HEIGHT,
+              blockColumns,
+            ),
+          })
+        }
+      }}
     >
       <DragShadowPreview
         unitW={unitWidth}

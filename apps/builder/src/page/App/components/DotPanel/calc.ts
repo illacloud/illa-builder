@@ -604,3 +604,16 @@ export const isAddAction = (
     (x === -1 && y === -1) || oldParentDisplayName !== currentParentDisplayName
   )
 }
+
+export function getMousePointerPosition(
+  mouseOffsetX: number,
+  mouseOffsetY: number,
+  unitWidth: number,
+  unitHeight: number,
+  containerMaxWidthDotNumber: number,
+): number[] {
+  let preX = Math.floor(mouseOffsetX / unitWidth)
+  preX = Math.min(preX, containerMaxWidthDotNumber)
+  let preY = Math.floor(mouseOffsetY / unitHeight)
+  return [preX, preY]
+}

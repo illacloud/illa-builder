@@ -84,6 +84,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     widgetType,
     userList,
     isMouseOver,
+    onClick,
   } = props
 
   const { t } = useTranslation()
@@ -137,6 +138,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     (userList.length >= 2 ? MIN_MOVE_BAR_WIDTH : MIN_DISABLE_MARGIN_WIDTH)
   return (
     <div
+      onClick={onClick}
       css={applyMoveBarWrapperStyle(
         maxWidth,
         minWidth,
