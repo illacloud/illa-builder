@@ -126,12 +126,6 @@ import {
   JsonEditorWidget,
 } from "@/widgetLibrary/JsonEditorWidget"
 import {
-  JSON_VIEWER_EVENT_HANDLER_CONFIG,
-  JSON_VIEWER_PANEL_CONFIG,
-  JSON_VIEWER_WIDGET_CONFIG,
-  JsonViewerWidget,
-} from "@/widgetLibrary/JsonViewerWidget"
-import {
   LIST_EVENT_HANDLER_CONFIG,
   LIST_PANEL_CONFIG,
   LIST_WIDGET_CONFIG,
@@ -203,12 +197,6 @@ import {
   RECORDING_WIDGET_CONFIG,
   RecordingWidget,
 } from "@/widgetLibrary/RecordingWidget"
-import {
-  RICH_TEXT_EVENT_HANDLER_CONFIG,
-  RICH_TEXT_PANEL_CONFIG,
-  RICH_TEXT_WIDGET_CONFIG,
-  RichTextWidget,
-} from "@/widgetLibrary/RichTextWidget"
 import {
   SELECT_EVENT_HANDLER_CONFIG,
   SELECT_PANEL_CONFIG,
@@ -350,12 +338,6 @@ export const WidgetConfig: WidgetConfigs = {
     config: RECORDING_WIDGET_CONFIG,
     panelConfig: RECORDING_PANEL_CONFIG,
     eventHandlerConfig: RECORDING_HANDLER_CONFIG,
-  },
-  RICH_TEXT_WIDGET: {
-    widget: RichTextWidget,
-    config: RICH_TEXT_WIDGET_CONFIG,
-    panelConfig: RICH_TEXT_PANEL_CONFIG,
-    eventHandlerConfig: RICH_TEXT_EVENT_HANDLER_CONFIG,
   },
   JSON_EDITOR_WIDGET: {
     widget: JsonEditorWidget,
@@ -600,12 +582,6 @@ export const WidgetConfig: WidgetConfigs = {
     config: CAROUSEL_WIDGET_CONFIG,
     panelConfig: CAROUSEL_PANEL_CONFIG,
     eventHandlerConfig: CAROUSEL_EVENT_HANDLER_CONFIG,
-  },
-  JSON_VIEWER_WIDGET: {
-    widget: JsonViewerWidget,
-    config: JSON_VIEWER_WIDGET_CONFIG,
-    panelConfig: JSON_VIEWER_PANEL_CONFIG,
-    eventHandlerConfig: JSON_VIEWER_EVENT_HANDLER_CONFIG,
   },
 }
 

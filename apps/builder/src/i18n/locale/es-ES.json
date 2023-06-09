@@ -207,7 +207,7 @@
             "access_type": "Tipo de acceso"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Comando"
           }
         },
         "placeholder": {
@@ -687,7 +687,7 @@
             "temperature": "Flota(0.0-100.0),dejar en blanco por 1.0",
             "repetition_penalty": "Flota (0.0-100.0)",
             "max_time": "Float (0.0-120.0) para definir la cantidad de tiempo en segundos",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Seleccione un tipo"
           },
           "tips": {
             "mode_id": "Ve al <0>Hub</0> Modelo y selecciona el modelo que quieres usar.",
@@ -1161,9 +1161,11 @@
           "DragOrClickNoEventArea": "Arrastre o haga clic en ninguna zona de evento",
           "rowClick": "Clic de fila",
           "refresh": "Refrescar",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Cambio de filtros",
+          "rowSelectChange": "Cambiar selección de fila",
+          "onCellSelect": "Seleccione una celda",
+          "delete": "Eliminar",
+          "replay": "Responder"
         },
         "image_list": {
           "title": "Imágenes",
@@ -1229,9 +1231,9 @@
           "end_placeholder": "Hora de fin"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Iniciar grabación",
+          "stop_button_text": "Parar",
+          "clear_button_text": "Claro"
         }
       },
       "setter_group": {
@@ -1263,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Calendario"
         },
-        "event": "Evento"
+        "event": "Evento",
+        "MESSAGE": "MENSAJE"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Fuente de datos",
+          "enable_message_selec": "Activar selección de mensajes",
+          "selection_type": "Tipo de selección",
+          "loading_when_sending": "Cargando al enviar",
+          "image_background": "Fondo de imagen",
+          "senderAvatar": "Avatar del remitente"
+        },
         "action": "Accin",
         "align": "Align",
         "allow_clear": "Permitir limpiar",
@@ -1300,7 +1311,7 @@
           "value": "Valores del conjunto de datos"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Posición de la etiqueta de opción"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1550,8 +1561,8 @@
           "event_text": "Texto",
           "draggable": "Arrastrable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Mensaje personalizado al desactivar el arrastre",
+          "custom_message_resizable": "Mensaje personalizado cuando se deshabilita el cambio de tamaño"
         },
         "table": {
           "page_index": "Índice de página",
@@ -1583,21 +1594,40 @@
           "next_cursor": "Siguiente cursor",
           "has_next_page": "Tiene página siguiente",
           "currency_code": "Código de moneda",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Selección de celda",
+          "click_outside_to_des": "Haga clic fuera para anular la selección"
         },
         "previous_cursor": "Curso anterior",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Tipo",
+          "show_visible_button": "Mostrar botón visible"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Texto del botón de inicio",
+          "clear_button_text": "Limpiar texto del botón",
+          "min_duration": "Duración mínima (s)",
+          "max_duration": "Duración máxima (s)",
+          "stop_button_text": "Texto del botón de parada"
+        },
+        "message_id": "ID del mensaje",
+        "message": "Mensaje",
+        "message_type": "Tipo de mensaje",
+        "sendTime": "Hora de envío",
+        "timeFormat": "Formato de hora",
+        "currentSenderId": "ID del remitente actual",
+        "receiving": "Cargando al recibir",
+        "toolbar-replay": "Mostrar botón de respuesta",
+        "toolbar-delete": "Mostrar botón de borrar",
+        "showAvatar": "Mostrar avatar",
+        "showSendTime": "Mostrar hora de envío",
+        "showFooter": "Mostrar pie de página",
+        "leftMessageColor": "Mensaje a la izquierda",
+        "rightMessageColor": "Mensaje a la derecha",
+        "expandAll": "Expandir todo",
+        "replayMessageId": "ID del mensaje de respuesta",
+        "senderName": "Nombre del remitente",
+        "senderId": "ID del remitente",
+        "showName": "Mostrar nombre"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -1642,7 +1672,21 @@
           "type": "Lista colapsable: lista, todos los elementos copiarán automáticamente el estilo del primer elemento. Puede especificar los datos del componente en cada elemento a través de {{ currentItem.columnName }}. Panel colapsable: cada panel es independiente, puede especificar el estilo de componente y los datos de cada elemento por separado.",
           "items": "Número de elementos",
           "accordin_mode": "En el modo de accordión, cuando un objeto se expande, otros objetos se colapsarán."
-        }
+        },
+        "message": "Recuperar el contenido del mensaje de un campo específico en la fuente de datos, como el campo de contenido, puede establecerlo como {{item.content}}.",
+        "message_type": "Para establecer el tipo del mensaje basado en un campo específico en la fuente de datos, como el campo de tipos, puede establecerlo como {{item.type}}. Admitimos estos tipos: texto, imagen, vídeo y audio. ",
+        "message_id": "Para establecer un ID único para cada mensaje, puede recuperarlo de un campo específico en la fuente de datos. Si quieres recuperarlo desde el campo ID, puedes establecerlo como {{item.id}}. ",
+        "replayMessageId": "Si está respondiendo a un mensaje especificado, utilice este campo para establecer el mensaje al que responder.",
+        "expandAll": "Expandir o no todos los nodos",
+        "sendTime": "Establecer la hora de envío. Por ejemplo, en su origen de datos, la hora de envío es el campo sendAt y puede establecer el campo a {{item.sendAt}}.",
+        "senderName": "Establecer el nombre del remitente. Por ejemplo, en la fuente de datos, el nombre del remitente es el campo sendName y puede establecer el campo a {{item.sendName}}.",
+        "currentSenderId": "Establezca el id del remitente actual. Utilizamos este campo para determinar qué usuario envía información a mostrar a la derecha.",
+        "senderId": "Establecer el id del remitente. Por ejemplo, en su fuente de datos, el id del remitente es el campo sendID y puede establecer el campo a {{item.sendID}}.",
+        "sendTimeFormat": "Establece el formato de la hora de envío. Por ejemplo, hh:MM:ss.",
+        "showAvatar": "Establecer si mostrar el avatar",
+        "showName": "Establecer si mostrar o no el nombre",
+        "showSendTime": "Establecer si mostrar la hora de envío",
+        "showFooter": "Establecer si mostrar o no el pie de página"
       },
       "tab_title": "Inspeccionar",
       "unselected_tip1": "No hay componentes seleccionados.",
@@ -1654,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "La fuente de datos del componente de chat. Utilice {{actionName.data}} para utilizar los datos de sus bases de datos o APIs",
+          "sender_avatar": "Establecer el avatar del remitente. Por ejemplo, en su fuente de datos, el avatar del remitente es el campo sendAvatar y puede establecer el campo a {{item.sendAvatar}}.",
+          "enable_message_selec": "Establecer si permitir que un mensaje sea seleccionado",
+          "selection_type": "Establecer cómo seleccionar un mensaje, clic izquierdo o clic derecho. Cuando se utiliza en un dispositivo móvil, se hace clic para activar la selección. ",
+          "loading_when_receivi": "Establecer si mostrar la carga al recibir mensajes. Si tu mensaje es recibido desde la acción1, puedes establecerlo a {{action1.isRunning}}, y el estado de carga se mostrará cuando se ejecute la acción1.",
+          "loading_when_sending": "Establecer si mostrar la carga al enviar mensajes. Si tu mensaje es enviado a la acción1, puedes establecerlo a {{action1.isRunning}}, y el estado de carga se mostrará cuando se ejecute la acción1.",
+          "image_background": "Establecer un fondo de imagen. Se admiten URL Base64 e imagen"
+        },
         "carousel_tips": "Utilice {{ item }} para obtener el valor de la fuente de datos. Por ejemplo, hay dos atributos en la fuente de datos. Son Url de imagen y url. Si desea ir a otra url cuando haga clic en la imagen, utilice {{ item.url }} para establecer la url.",
         "data_source": "Una fuente de datos para definir elementos de imagen usando evaluación mapeada. Utilice un array de valores o un objeto de claves mapeadas a arrays. Por ejemplo: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . También puede utilizar los datos en acciones. Por ejemplo: {{ mysql1.data }} ",
         "img_url_array": "Usa {{ item.attributeName }} para obtener la URL de la imagen desde la fuente de datos. ",
@@ -1684,16 +1737,16 @@
           "hide_output": "Establecer si ocultar el valor al deslizar"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "La etiqueta de la opción",
+          "value": "Un array de las opciones seleccionadas adjuntas en {{. Por ejemplo, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "El valor está duplicado. Por favor, utilice valores únicos para evitar errores.",
+          "caption": "Un título mostrado bajo la etiqueta",
+          "disabled": "Si desactivar la opción",
+          "datasource": "La fuente de datos del grupo de cambios. Utilice {{actionName.data}} para utilizar los datos de sus bases de datos o APIs",
+          "default_value": "Un arreglo adjunto en {{ }}. Por ejemplo, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Elementos mínimos permitidos para elegir",
+          "choose_up_to": "Máximo de elementos permitidos para elegir",
+          "option_label_alignment": "La posición de las etiquetas"
         },
         "step": {
           "default_step": "Paso por defecto",
@@ -1752,8 +1805,8 @@
           "couldnot_drag": "Si desea arrastrar para ajustar el intervalo de tiempo, por favor proceda a la página de vista previa de la operación.",
           "draggable": "Si permitir a los usuarios actualizar el rango de tiempo del evento arrastrando para mover el evento",
           "resizable": "Si permite a los usuarios actualizar el intervalo de tiempo del evento y cambiar el intervalo de tiempo arrastrando la frontera de un evento para alargar o acortar el intervalo de tiempo",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Después de que el arrastre esté deshabilitado, el mensaje se mostrará cuando un usuario arrastre el evento.",
+          "custom_message_resizable": "Después de cambiar el tamaño está desactivado, el mensaje se mostrará cuando un usuario redimensione el evento."
         },
         "table": {
           "page_index": "Índice de la página que desea seleccionar.",
@@ -1784,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Modo de filtro. Y o OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Permitir a los usuarios seleccionar una celda",
+          "supported_in_the_row": "Soportado en el modo de selección única de filas. Después de activarlo, haga clic en un área distinta de la tabla para deseleccionar la fila."
         },
         "previous_cursor": "Utilice los datos de acción para establecer el cursor anterior. Por ejemplo,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Para establecer el tipo de entrada",
+          "show_visible_button": "Para establecer si mostrar o no el botón visible"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "El texto mostrado en el botón cuando la grabación no se inicia",
+          "stop_button_text": "El texto mostrado en el botón al grabar",
+          "clear_button_text": "El texto mostrado en el botón cuando se complete la grabación",
+          "min_duration": "Duración mínima de la grabación",
+          "max_duration": "Duración máxima de la grabación"
+        },
+        "leftMessageColor": "Establecer el color de los mensajes a la izquierda",
+        "rightMessageColor": "Establecer el color de los mensajes a la derecha",
+        "toolbar-replay": "Establecer si mostrar un botón de respuesta cuando seleccione un mensaje.",
+        "toolbar-delete": "Establecer si mostrar un botón de borrar cuando seleccione un mensaje."
       },
       "setter_option": {
         "fixed": "Fijado",
@@ -1870,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Contraseña",
+          "search": "Buscar"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Clic izquierdo",
+            "right-click": "Clic derecho"
+          }
         }
       },
       "setter_placeholder": {
@@ -1919,10 +1982,10 @@
           "directory": "Sólo se permiten directorios."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Permiso de grabación requerido",
+          "cannot_set_value_dur": "No se puede establecer el valor durante la grabación",
+          "min_duration": "Por favor, grabando al menos {{minimum}}s",
+          "max_duration": "Por favor, grabe como máximo {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2144,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "El tamaño de los datos supera el límite (tamaño actual: {{current_size}} bytes, límite: {{limit_size}} bytes)"
+    },
+    "general": {
+      "length_limit": "El contenido de entrada actual es demasiado largo, hemos dejado de calcular automáticamente los datos, puede seguir entrando, esto no afectará su uso."
     }
   },
   "exit_preview": "Salir de vista previa",
@@ -2413,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Editor de texto enriquecido"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "Visor JSON"
+    },
+    "chat": {
+      "name": "Chatear"
+    },
     "public": {
       "left": "Queda",
       "right": "Derecha",
@@ -2524,10 +2602,13 @@
       "name_duplicated": "Este ID de recurso entra en conflicto en estos eventos, por favor usa el mismo nombre o diferente id"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Cambiar grupo"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Grabando"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2913,27 +2994,36 @@
   "oauth_redirect_title": "Redirigir",
   "oauth_redirect_description": "Redirigiendo a <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Inglés",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "tina de cl",
+    "cs-CZ": "čeština",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "Francoais",
-    "it-IT": "Italiano",
+    "fr-FR": "français",
+    "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portugueм s",
-    "ro-RO": "roma na\"",
+    "pt-PT": "português",
+    "ro-RO": "română",
     "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Error al cerrar sesión. Inténtalo de nuevo más tarde."
+  "logout_failed": "Error al cerrar sesión. Inténtalo de nuevo más tarde.",
+  "drive": {
+    "message": {
+      "start_upload": "Iniciar subida",
+      "start_download": "Iniciar descarga"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

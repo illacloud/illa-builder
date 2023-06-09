@@ -40,6 +40,7 @@ export function getInitialContent(actionType: ActionType): ActionContent {
     case "transformer":
       return TransformerActionInitial
     case "redis":
+    case "upstash":
       return RedisActionInitial
     case "mongodb":
       return MongoDbActionInitial
