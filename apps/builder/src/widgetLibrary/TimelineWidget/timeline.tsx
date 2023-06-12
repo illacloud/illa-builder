@@ -14,7 +14,7 @@ export const WrappedTimeline: FC<WrappedTimelineProps> = (props) => {
     if (Array.isArray(items)) {
       return items.map(
         (item) =>
-          typeof item === "string" && (
+          (typeof item === "string" || typeof item === "number") && (
             <TimelineItem key={item}>{item}</TimelineItem>
           ),
       )
