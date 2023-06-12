@@ -14,6 +14,7 @@ import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
   getRawTree,
+  getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
@@ -24,6 +25,7 @@ import {
 } from "@/utils/drag/drag"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
+import { cursorActions } from "../cursor/cursorSlice"
 
 export let executionTree: ExecutionTreeFactory | undefined
 
@@ -279,6 +281,43 @@ function handleUpdateWidgetPositionInExecutionLayoutInfo(
   )
 }
 
+const getAllChildrenDisplayName = (
+  nodeDisplayName: string,
+  displayNameMapProps: Record<string, any>,
+): string[] => {
+  let result = [nodeDisplayName]
+  const node = displayNameMapProps[nodeDisplayName]
+  const children: string[] = node?.$childrenNode || []
+  if (children.length > 0) {
+    children.forEach((child) => {
+      result = [
+        ...result,
+        ...getAllChildrenDisplayName(child, displayNameMapProps),
+      ]
+    })
+  }
+  return result
+}
+
+const batchUpdateComponentStatusInfoEffect = (
+  action: AnyAction,
+  listenApi: AppListenerEffectAPI,
+) => {
+  const { payload } = action as ReturnType<
+    | typeof executionActions.setDraggingNodeIDsReducer
+    | typeof executionActions.setResizingNodeIDsReducer
+  >
+  let allChildrenDisplayName: string[] = []
+  const displayNameMapProps = getWidgetExecutionResult(listenApi.getState())
+  payload.forEach((displayName) => {
+    allChildrenDisplayName = [
+      ...allChildrenDisplayName,
+      ...getAllChildrenDisplayName(displayName, displayNameMapProps),
+    ]
+  })
+  listenApi.dispatch(cursorActions.filterCursorReducer(allChildrenDisplayName))
+}
+
 export function setupExecutionListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -351,6 +390,13 @@ export function setupExecutionListeners(
         executionActions.startExecutionReducer,
       ),
       effect: handleUpdateWidgetPositionInExecutionLayoutInfo,
+    }),
+    startListening({
+      matcher: isAnyOf(
+        executionActions.setDraggingNodeIDsReducer,
+        executionActions.setResizingNodeIDsReducer,
+      ),
+      effect: batchUpdateComponentStatusInfoEffect,
     }),
   ]
 
