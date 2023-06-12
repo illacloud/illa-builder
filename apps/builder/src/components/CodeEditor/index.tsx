@@ -135,10 +135,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const calcResultArray: unknown[] = []
     const calcResultMap: Map<string, number[]> = new Map()
     dynamicStrings.forEach((dynamicString, index) => {
-      if (
-        dynamicString.length <= MAX_LEN_WITH_SNIPPETS &&
-        isDynamicString(dynamicString)
-      ) {
+      if (isDynamicString(dynamicString)) {
         try {
           const calcRes = evaluateDynamicString("", dynamicString, calcContext)
           calcResultArray.push(calcRes)
