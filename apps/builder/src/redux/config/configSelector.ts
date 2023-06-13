@@ -78,14 +78,6 @@ export const getIsOnline = (state: RootState) => {
   return state.config.isOnline
 }
 
-export const getIsDragging = (state: RootState) => {
-  return state.config.isDragging
-}
-
-export const getIsResizing = (state: RootState) => {
-  return state.config.isResizing
-}
-
 export const getIsILLAEditMode = (state: RootState) => {
   return state.config.mode === "edit" || state.config.mode === "template-edit"
 }

@@ -31,6 +31,8 @@ export interface ExecutionState {
   debuggerData: Record<string, ErrorShape[]>
   independencies: DependenciesState
   widgetsLayoutInfo: Record<string, widgetLayoutInfo>
+  draggingComponentIDs: string[]
+  resizingComponentIDs: string[]
 }
 
 export const executionInitialState: ExecutionState = {
@@ -40,6 +42,8 @@ export const executionInitialState: ExecutionState = {
   debuggerData: {},
   independencies: {},
   widgetsLayoutInfo: {},
+  draggingComponentIDs: [],
+  resizingComponentIDs: [],
 }
 
 export interface setExecutionResultPayload {

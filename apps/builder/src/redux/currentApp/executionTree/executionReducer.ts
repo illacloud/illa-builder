@@ -255,3 +255,17 @@ export const setLocalStorageInExecutionReducer: CaseReducer<
     JSON.stringify(newLocalStorage),
   )
 }
+
+export const setDraggingNodeIDsReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  state.draggingComponentIDs = action.payload
+}
+
+export const setResizingNodeIDsReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  state.resizingComponentIDs = action.payload
+}

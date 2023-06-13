@@ -35,24 +35,19 @@ export const AutoHeightWithLimitedContainer: FC<
   const [resizeMaxHeight, setResizeMaxHeight] = useState(false)
   const [resizeMinHeight, setResizeMinHeight] = useState(false)
 
-  // const isOverlapWithMaxHeight = dynamicMaxHeight === containerHeight * UNIT_HEIGHT
-
   const resizeStartCallback: ResizeStartCallback = useCallback(() => {
     setResizeMinHeight(true)
-    dispatch(configActions.updateResizingStateReducer(true))
     dispatch(configActions.updateShowDot(true))
   }, [dispatch])
 
   const resizeMaxHeightStartCallback: ResizeStartCallback = useCallback(() => {
     setResizeMaxHeight(true)
-    dispatch(configActions.updateResizingStateReducer(true))
     dispatch(configActions.updateShowDot(true))
   }, [dispatch])
 
   const resizeMaxHeightCallback: ResizeCallback = useCallback(
     (event, direction, elementRef, delta) => {
       setResizeMaxHeight(false)
-      dispatch(configActions.updateResizingStateReducer(false))
       const deltaHeight = delta.height
       const finalDynamicMaxHeight =
         Math.round(
@@ -75,7 +70,6 @@ export const AutoHeightWithLimitedContainer: FC<
 
   const resizeMinHeightCallback: ResizeCallback = useCallback(
     (event, direction, elementRef, delta) => {
-      dispatch(configActions.updateResizingStateReducer(false))
       setResizeMinHeight(false)
       const deltaHeight = delta.height
       const finalDynamicMinHeight =

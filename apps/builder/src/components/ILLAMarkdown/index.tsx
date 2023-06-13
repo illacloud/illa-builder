@@ -1,8 +1,9 @@
 import { FC } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import { Link, Text } from "@illa-design/react"
+import { Link } from "@illa-design/react"
 import { ILLAMarkdownProps } from "@/components/ILLAMarkdown/interface"
+import { applyMarkdownPStyle } from "./style"
 
 export const ILLAMarkdown: FC<ILLAMarkdownProps> = (props) => {
   const { textString, textColor = "white", urlColor = "white" } = props
@@ -16,9 +17,7 @@ export const ILLAMarkdown: FC<ILLAMarkdownProps> = (props) => {
           </Link>
         ),
         p: ({ children }) => (
-          <Text colorScheme={textColor} fs="14px">
-            {children}
-          </Text>
+          <span css={applyMarkdownPStyle(textColor)}>{children}</span>
         ),
       }}
     >

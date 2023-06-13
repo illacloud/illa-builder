@@ -4,6 +4,7 @@ import {
   clearLocalStorageInExecutionReducer,
   resetExecutionResultReducer,
   setDependenciesReducer,
+  setDraggingNodeIDsReducer,
   setExecutionDebuggerDataReducer,
   setExecutionErrorReducer,
   setExecutionResultReducer,
@@ -11,6 +12,7 @@ import {
   setInGlobalStateInExecutionReducer,
   setIndependenciesReducer,
   setLocalStorageInExecutionReducer,
+  setResizingNodeIDsReducer,
   setWidgetLayoutInfoReducer,
   startExecutionReducer,
   updateExecutionByDisplayNameReducer,
@@ -43,6 +45,8 @@ const executionSlice = createSlice({
     clearLocalStorageInExecutionReducer,
     setLocalStorageInExecutionReducer,
     updateWidgetLayoutInfoWhenChangeDisplayNameReducer,
+    setDraggingNodeIDsReducer,
+    setResizingNodeIDsReducer,
   },
 })
 
