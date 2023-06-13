@@ -18,13 +18,10 @@ import {
   applyWrapperPendingStyle,
   hoverHotspotStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { changeSelectedDisplayName } from "@/page/App/components/ScaleSquare/utils/changeSelectedDisplayName"
 import {
   getHoveredComponents,
-  getIsDragging,
   getIsILLAEditMode,
   getIsLikeProductMode,
-  getIsResizing,
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -46,6 +43,8 @@ import {
   getExecutionError,
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
+  getIsDragging,
+  getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import store, { RootState } from "@/store"
@@ -108,8 +107,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const executionResult = useSelector(getExecutionResult)
   const widgetExecutionLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
-  const isDraggingStateInGlobal = useSelector(getIsDragging)
   const isResizingStateInGlobal = useSelector(getIsResizing)
+  const isDraggingStateInGlobal = useSelector(getIsDragging)
   const isShowCanvasDot = useSelector(isShowDot)
   const hoveredComponents = useSelector(getHoveredComponents)
   const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
@@ -182,12 +181,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           currentSelectedDisplayName.push(componentNode.displayName)
         }
 
-        changeSelectedDisplayName(
-          currentSelectedDisplayName,
-          widgetDisplayNameRelationMap,
-          componentNode.displayName,
-          displayNameMapDepth,
-        )
+        const depths = currentSelectedDisplayName.map((displayName) => {
+          return displayNameMapDepth[displayName]
+        })
+        let isEqual = depths.every((depth) => depth === depths[0])
+        if (!isEqual) {
+          return
+        }
         if (currentSelectedDisplayName.length > 1) {
           const firstParentNode =
             widgetExecutionLayoutInfo[currentSelectedDisplayName[0]].parentNode
@@ -237,7 +237,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       displayNameMapDepth,
       isEditMode,
       selectedComponents,
-      widgetDisplayNameRelationMap,
       widgetExecutionLayoutInfo,
     ],
   )
@@ -353,7 +352,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       unitH={unitH}
       componentNode={componentNode}
       childrenNode={childrenNode}
-      isDragging={componentNode.isDragging}
     >
       <div
         css={hoverHotspotStyle}

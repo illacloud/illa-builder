@@ -281,6 +281,9 @@
             "normal": "创建一个 Neon 项目并在 <0>project dashboard</0> 中获取字符串。",
             "failed": "无法解析字符串。 请检查您的字符串或手动配置。",
             "no_password": "该字符串没有密码。 复制前请在 Neon 仪表板中显示密码。"
+          },
+          "clickhouse": {
+            "ssl": "当使用 ClickHouse 云服务时，建议开启SSL。"
           }
         },
         "option": {
@@ -684,7 +687,7 @@
             "temperature": "Float(0.0-100.0)，为空时默认1.0",
             "repetition_penalty": "浮点数(0.0-100.0)",
             "max_time": "Float (0.0-120.0) ，定义查询应该花费的最大时间量（以秒为单位）",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "选择类型"
           },
           "tips": {
             "mode_id": "转到<0>Model Hub</0>并选择您想要使用的模型。",
@@ -1160,7 +1163,9 @@
           "refresh": "刷新",
           "filtersChange": "行筛选改变",
           "rowSelectChange": "行选择变更",
-          "onCellSelect": "选中单元格"
+          "onCellSelect": "选中单元格",
+          "delete": "删除",
+          "replay": "答复"
         },
         "image_list": {
           "title": "图片",
@@ -1260,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "日历"
         },
-        "event": "事件"
+        "event": "事件",
+        "MESSAGE": "消息"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "数据源",
+          "enable_message_selec": "启用消息选择",
+          "selection_type": "选择类型",
+          "loading_when_sending": "发送时加载",
+          "image_background": "图像背景",
+          "senderAvatar": "发送方头像"
+        },
         "action": "动作",
         "align": "对齐",
         "allow_clear": "允许清除",
@@ -1594,7 +1608,26 @@
           "min_duration": "最小录制时间 (s)",
           "max_duration": "最大录制时间 (s)",
           "stop_button_text": "停止按钮文本"
-        }
+        },
+        "message_id": "消息ID",
+        "message": "消息",
+        "message_type": "消息类型",
+        "sendTime": "发送时间",
+        "timeFormat": "时间格式",
+        "currentSenderId": "当前发送方ID",
+        "receiving": "接收时加载",
+        "toolbar-replay": "显示回复按钮",
+        "toolbar-delete": "显示删除按钮",
+        "showAvatar": "显示头像",
+        "showSendTime": "显示发送时间",
+        "showFooter": "显示页脚",
+        "leftMessageColor": "左侧消息",
+        "rightMessageColor": "右侧消息",
+        "expandAll": "展开所有",
+        "replayMessageId": "回复消息ID",
+        "senderName": "发送方名称",
+        "senderId": "发送方ID",
+        "showName": "显示名称"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1639,7 +1672,21 @@
           "type": "折叠面板列表：列表模式，每项的组件样式一致，可通过{{ currentItem.columnName }}指定每个项中组件的数据；折叠面板：各个面板独立，可分别指定每项的组件样式和数据。",
           "items": "项目数量",
           "accordin_mode": "在手风琴模式下，当一个项目展开时，其他项目将折叠。"
-        }
+        },
+        "message": "从数据源中的某一特定字段检索消息内容， 比如content字段，您可以设置为 {{item.content}}。",
+        "message_type": "根据数据源中的特定字段设置内容类型， 例如type字段，你可以设置为 {{item.type}}。 我们支持这些类型：文本、图像、视频和音频。 ",
+        "message_id": "为每条消息设置的唯一ID，您可以从数据源中的一个特定字段获取它。 如果您想从 id 字段检索它，您可以将它设置为 {{item.id}}。",
+        "replayMessageId": "如果它正在回复指定的消息，请使用此字段设置要回复的消息。",
+        "expandAll": "是否展开所有节点",
+        "sendTime": "设置发送时间。 例如，在您的数据源中，发送时间是sendAt字段，您可以将字段设置为 {{item.sendAt}}。",
+        "senderName": "设置发送方名称。 例如，在您的数据源中，发送方名称是sendName字段，您可以将字段设置为 {{item.sendName}}。",
+        "currentSenderId": "设置当前发件人ID。我们使用此字段来确定哪个用户发送信息显示在右侧。",
+        "senderId": "设置发送方ID。 例如，在您的数据源中，发送方ID是sendID字段，您可以将字段设置为 {{item.sendID}}。",
+        "sendTimeFormat": "设置发送时间的格式。例如，hh:MM:ss.",
+        "showAvatar": "设置是否显示头像",
+        "showName": "设置是否显示名称",
+        "showSendTime": "设置是否显示发送时间",
+        "showFooter": "设置是否显示页脚"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -1651,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "聊天组件的数据源。使用 {{actionName.data}} 来使用您的数据库或 API 的数据",
+          "sender_avatar": "设置发送方头像。 例如，在您的数据源中，发送者头像是 sendAvatar 字段，您可以将字段设置为 {{item.sendAvatar}}。",
+          "enable_message_selec": "设置是否允许选择一条消息",
+          "selection_type": "设定如何选择消息，左键点击或右键点击。当在移动设备上使用时，会点击它来触发选择。 ",
+          "loading_when_receivi": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。",
+          "loading_when_sending": "设置是否在发送或接收消息时显示加载状态。 如果您的消息被发送到Action1，您可以将其设置为 {{action1.isRunning}}， Action1运行时将显示加载状态。",
+          "image_background": "设置图像背景。支持Base64和图像 URL"
+        },
         "carousel_tips": "使用 {{ item }} 从数据源中获取值。 例如，数据源中有两个属性。 它们是 imageUrl 和 url。 如果您想在点击图片时转到不同的 url，请使用 {{ item.url }} 设置 url。",
         "data_source": "使用映射值定义图片的数据源。 可以使用数组，或把对象应设为数组。 例如：{{[{ x:1, y:1 },{ x:2, y:2 },...]}} 。 您还可以在操作中使用数据。 例如：{{ mysql1.data }}",
         "img_url_array": "使用 {{ item.attributeName }} 从数据源获取图像 URL",
@@ -1795,7 +1851,11 @@
           "clear_button_text": "录制完成后按钮上显示的文本",
           "min_duration": "录制的最小持续时间",
           "max_duration": "录制的最大持续时间"
-        }
+        },
+        "leftMessageColor": "设置左侧消息的颜色",
+        "rightMessageColor": "设置右侧消息的颜色",
+        "toolbar-replay": "设置选择消息时是否显示回复按钮。",
+        "toolbar-delete": "设置选择消息时是否显示删除按钮。"
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1869,6 +1929,12 @@
           "input": "输入",
           "password": "密码",
           "search": "搜索"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "左键点击",
+            "right-click": "右键点击"
+          }
         }
       },
       "setter_placeholder": {
@@ -2141,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "数据大小超出限制（当前大小：{{current_size}} 字节，限制： {{limit_size}} 字节）"
+    },
+    "general": {
+      "length_limit": "当前输入内容太长，我们已经停止自动计算数据，您仍然可以继续输入，这不会影响您的使用。"
     }
   },
   "exit_preview": "退出预览",
@@ -2410,6 +2479,18 @@
     "number_input": {
       "name": "数字输入框"
     },
+    "rich_text_editor": {
+      "name": "富文本编辑器"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON浏览器"
+    },
+    "chat": {
+      "name": "聊天"
+    },
     "public": {
       "left": "左",
       "right": "右",
@@ -2525,6 +2606,9 @@
     },
     "recording": {
       "name": "录音"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2737,7 +2821,7 @@
         "public": "公开"
       },
       "custom_copy_text_app_invite": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
-      "custom_copy_text_public": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
+      "custom_copy_text_public": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接查看APP： {{inviteLink}}",
       "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}"
     },
     "mes": {
@@ -2932,5 +3016,14 @@
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "退出失败，请稍后重试"
+  "logout_failed": "退出失败，请稍后重试",
+  "drive": {
+    "message": {
+      "start_upload": "开始上传",
+      "start_download": "开始下载"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

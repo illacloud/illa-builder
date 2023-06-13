@@ -207,7 +207,7 @@
             "access_type": "Type d'accès"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Commande"
           }
         },
         "placeholder": {
@@ -281,6 +281,9 @@
             "normal": "Créez un projet Neon et obtenez la chaîne dans <0>tableau de bord du projet</0>.",
             "failed": "Impossible d'analyser la chaîne. Veuillez vérifier votre chaîne ou la configurer manuellement.",
             "no_password": "La chaîne n'a pas de mot de passe. Veuillez afficher le mot de passe dans le tableau de bord de Neon avant de le copier."
+          },
+          "clickhouse": {
+            "ssl": "Lorsque vous utilisez ClickHouse Cloud Service, il est recommandé d'activer le SSL."
           }
         },
         "option": {
@@ -684,7 +687,7 @@
             "temperature": "Float(0.0-100.0),laisser vide pour 1.0",
             "repetition_penalty": "Flottant (0.0-100.0)",
             "max_time": "Float (0.0-120.0) pour définir la durée en secondes",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Choisir un type"
           },
           "tips": {
             "mode_id": "Allez dans le <0>hub de modèles</0> et sélectionnez le modèle que vous souhaitez utiliser.",
@@ -1158,9 +1161,11 @@
           "DragOrClickNoEventArea": "Glisser ou cliquer sur aucune zone d'événement",
           "rowClick": "Clic ligne",
           "refresh": "Rafraîchir",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Changement des filtres",
+          "rowSelectChange": "Changement de la sélection de ligne",
+          "onCellSelect": "Sélectionnez une cellule",
+          "delete": "Supprimez",
+          "replay": "Répondre"
         },
         "image_list": {
           "title": "Images",
@@ -1226,9 +1231,9 @@
           "end_placeholder": "Heure de fin"
         },
         "recording": {
-          "start_button_text": "Start recording",
+          "start_button_text": "Démarrer l'enregistrement",
           "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "clear_button_text": "Réinitialiser"
         }
       },
       "setter_group": {
@@ -1260,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Calendrier"
         },
-        "event": "Evénement"
+        "event": "Evénement",
+        "MESSAGE": "MESSAGE"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Source de données",
+          "enable_message_selec": "Activer la sélection des messages",
+          "selection_type": "Type de sélection",
+          "loading_when_sending": "Chargement lors de l'envoi",
+          "image_background": "Arrière-plan de l'image",
+          "senderAvatar": "Avatar de l'expéditeur"
+        },
         "action": "Action",
         "align": "Align",
         "allow_clear": "Autoriser la suppression",
@@ -1297,7 +1311,7 @@
           "value": "Valeurs du jeu de données"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Position de l'étiquette de l'option"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1547,8 +1561,8 @@
           "event_text": "Texte du texte",
           "draggable": "Déplaçable",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Message personnalisé lors de la désactivation du glissement",
+          "custom_message_resizable": "Message personnalisé lors de la désactivation du redimensionnement"
         },
         "table": {
           "page_index": "Index de la page",
@@ -1580,21 +1594,40 @@
           "next_cursor": "Curseur suivant",
           "has_next_page": "A la page suivante",
           "currency_code": "Code devise",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Sélection de cellule",
+          "click_outside_to_des": "Cliquez à l'extérieur pour désélectionner"
         },
         "previous_cursor": "Curseur précédent",
         "input": {
           "type": "Type",
-          "show_visible_button": "Show visible button"
+          "show_visible_button": "Afficher le bouton visible"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Texte du bouton de démarrage",
+          "clear_button_text": "Texte du bouton de réinitialisation",
+          "min_duration": "Durée min (s)",
+          "max_duration": "Durée max (s)",
+          "stop_button_text": "Texte du bouton d'arrêt"
+        },
+        "message_id": "ID du message",
+        "message": "Message",
+        "message_type": "Type de message",
+        "sendTime": "Date d'envoi",
+        "timeFormat": "Format de l'heure",
+        "currentSenderId": "ID de l'expéditeur actuel",
+        "receiving": "Chargement lors de la réception",
+        "toolbar-replay": "Afficher le bouton de réponse",
+        "toolbar-delete": "Afficher le bouton de suppression",
+        "showAvatar": "Afficher l'avatar",
+        "showSendTime": "Afficher l'heure d'envoi",
+        "showFooter": "Afficher le pied de page",
+        "leftMessageColor": "Message à gauche",
+        "rightMessageColor": "Message à droite",
+        "expandAll": "Développer tout",
+        "replayMessageId": "ID du message de réponse",
+        "senderName": "Nom de l'expéditeur",
+        "senderId": "ID de l'expéditeur",
+        "showName": "Afficher le nom"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1639,7 +1672,21 @@
           "type": "Liste repliable : liste, tous les éléments copieront automatiquement le style du premier élément. Vous pouvez spécifier les données des composants dans chaque élément via {{ currentItem.columnName }}. Panneau pliable : chaque panneau est indépendant, vous pouvez spécifier le style de composant et les données de chaque élément séparément.",
           "items": "Nombre d'éléments",
           "accordin_mode": "En mode accordéon, quand un élément est étendu, les autres éléments se réduisent."
-        }
+        },
+        "message": "Récupérer le contenu du message à partir d'un champ spécifique dans la source de données comme le champ de contenu, vous pouvez le définir comme {{item.content}}.",
+        "message_type": "Pour définir le type de message basé sur un champ spécifique dans la source de données, comme le champ type, vous pouvez le définir en tant que {{item.type}}. Nous supportons ces types : texte, image, vidéo et audio. ",
+        "message_id": "Pour définir un ID unique pour chaque message, vous pouvez le récupérer à partir d'un champ spécifique dans la source de données. Si vous voulez le récupérer depuis le champ ID, vous pouvez le définir en tant que {{item.id}}. ",
+        "replayMessageId": "Si elle répond à un message spécifié, utilisez ce champ pour définir à quel message répondre.",
+        "expandAll": "Élargir ou non tous les nœuds",
+        "sendTime": "Définissez l'heure d'envoi. Par exemple, dans votre source de données, l'heure d'envoi est le champ sendAt et vous pouvez définir le champ à {{item.sendAt}}.",
+        "senderName": "Définit le nom de l'expéditeur. Par exemple, dans votre source de données, le nom de l'expéditeur est le champ sendName et vous pouvez définir le champ à {{item.sendName}}.",
+        "currentSenderId": "Définit l'identifiant de l'expéditeur actuel. Nous utilisons ce champ pour déterminer quel utilisateur envoie des informations à afficher sur la droite.",
+        "senderId": "Définit l'identifiant de l'expéditeur. Par exemple, dans votre source de données, l'identifiant de l'expéditeur est le champ sendID et vous pouvez définir le champ à {{item.sendID}}.",
+        "sendTimeFormat": "Définit le format de l'heure d'envoi. Par exemple, hhh:MM:ss.",
+        "showAvatar": "Définir si vous voulez afficher l'avatar",
+        "showName": "Définir si le nom doit être affiché",
+        "showSendTime": "Définir s'il faut afficher l'heure d'envoi",
+        "showFooter": "Définir s'il faut afficher le pied de page"
       },
       "tab_title": "Inspecter",
       "unselected_tip1": "Aucun composant sélectionné.",
@@ -1651,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "La source de données du composant de chat. Utilisez {{actionName.data}} pour utiliser les données de vos bases de données ou APIs",
+          "sender_avatar": "Définir l'avatar de l'expéditeur. Par exemple, dans votre source de données, l'avatar de l'expéditeur est le champ sendAvatar et vous pouvez définir le champ à {{item.sendAvatar}}.",
+          "enable_message_selec": "Définir s'il faut autoriser la sélection d'un message",
+          "selection_type": "Définissez comment sélectionner un message, clic gauche ou clic droit. Lorsqu'il est utilisé sur un appareil mobile, il est cliqué pour déclencher la sélection. ",
+          "loading_when_receivi": "Définit s'il faut afficher le chargement lors de la réception de messages. Si votre message est reçu de l'action 1, vous pouvez le définir à {{action1.isRunning}}, et le statut de chargement sera affiché lorsque l'action 1 est en cours d'exécution.",
+          "loading_when_sending": "Définit s'il faut afficher le chargement lors de l'envoi de messages. Si votre message est envoyé à l'action1, vous pouvez le définir à {{action1.isRunning}}, et le statut de chargement sera affiché lorsque l'action 1 est en cours d'exécution.",
+          "image_background": "Définir un fond d'image. Base64 et l'URL de l'image sont pris en charge"
+        },
         "carousel_tips": "Utilisez {{ item }} pour obtenir la valeur de la source de données. Par exemple, il y a deux attributs dans la source de données. Ce sont des URLs et des URL. Si vous voulez aller à une URL différente lorsque vous cliquez sur l'image, utilisez {{ item.url }} pour définir l'URL.",
         "data_source": "Une source de données pour définir des éléments d'image en utilisant une évaluation mappée. Utilisez soit un tableau de valeurs, soit un objet de clés mappé à des tableaux. Par exemple: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Vous pouvez également utiliser les données dans des actions. Par exemple: {{ mysql1.data }} ",
         "img_url_array": "Utilisez {{ item.attributeName }} pour obtenir l'URL de l'image à partir de la source de données. ",
@@ -1681,16 +1737,16 @@
           "hide_output": "Définir si la valeur doit être masquée lors du glissement"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "L’étiquette de l’option",
+          "value": "Un tableau des options sélectionnées incluses dans {{. Par exemple, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "La valeur est dupliquée. Veuillez utiliser des valeurs uniques pour éviter les erreurs.",
+          "caption": "Une légende affichée sous l'étiquette",
+          "disabled": "Désactivation ou non de l'option",
+          "datasource": "La source de données du groupe de commutateurs. Utilisez {{actionName.data}} pour utiliser les données de vos bases de données ou APIs",
+          "default_value": "Un tableau arboré dans {{ }}. Par exemple, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Éléments minimum autorisés à choisir",
+          "choose_up_to": "Nombre maximum d'éléments autorisés à choisir",
+          "option_label_alignment": "La position des étiquettes"
         },
         "step": {
           "default_step": "Étape par défaut",
@@ -1749,8 +1805,8 @@
           "couldnot_drag": "Si vous souhaitez faire glisser pour ajuster la plage de temps, veuillez passer à la page d'aperçu pour l'opération.",
           "draggable": "Permettre aux utilisateurs de mettre à jour la plage de temps de l'événement en faisant glisser pour déplacer l'événement",
           "resizable": "Permettre aux utilisateurs de mettre à jour la plage de temps de l'événement et de modifier la plage de temps en faisant glisser la bordure d'un événement pour allonger ou raccourcir la durée",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Une fois que le glissement est désactivé, le message s'affichera lorsqu'un utilisateur fait glisser l'événement.",
+          "custom_message_resizable": "Une fois le redimensionnement désactivé, le message s'affichera lorsqu'un utilisateur redimensionne l'événement."
         },
         "table": {
           "page_index": "Index de la page que vous souhaitez sélectionner.",
@@ -1781,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Le mode filtre. ET OU OU.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Permettre aux utilisateurs de sélectionner une cellule",
+          "supported_in_the_row": "Pris en charge dans le mode de sélection simple ligne. Après l'avoir activé, cliquez sur une zone autre que la table pour désélectionner la ligne."
         },
         "previous_cursor": "Utilisez les données de l'action pour définir le curseur précédent. Par exemple,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Pour définir le type d'entrée",
+          "show_visible_button": "Pour définir s'il faut afficher le bouton visible"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Le texte affiché sur le bouton lorsque l'enregistrement n'est pas démarré",
+          "stop_button_text": "Le texte affiché sur le bouton lors de l'enregistrement",
+          "clear_button_text": "Le texte affiché sur le bouton lorsque l'enregistrement est terminé",
+          "min_duration": "Durée minimale pour l'enregistrement",
+          "max_duration": "Durée maximale pour l'enregistrement"
+        },
+        "leftMessageColor": "Définir la couleur des messages sur la gauche",
+        "rightMessageColor": "Définir la couleur des messages à droite",
+        "toolbar-replay": "Définit si le bouton de réponse doit être affiché lors de la sélection d'un message.",
+        "toolbar-delete": "Définit si un bouton de suppression doit être affiché lors de la sélection d'un message."
       },
       "setter_option": {
         "fixed": "Fixe",
@@ -1867,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Mot de passe",
+          "search": "Rechercher"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Clic gauche",
+            "right-click": "Clic droit"
+          }
         }
       },
       "setter_placeholder": {
@@ -1916,10 +1982,10 @@
           "directory": "Seuls les répertoires sont autorisés."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Autorisation d'enregistrement requise",
+          "cannot_set_value_dur": "Impossible de définir la valeur pendant l'enregistrement",
+          "min_duration": "Veuillez enregistrer au moins {{minimum}}s",
+          "max_duration": "Veuillez enregistrer au plus {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2141,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "La taille des données dépasse la limite (taille actuelle: {{current_size}} octets, limite: {{limit_size}} octets)"
+    },
+    "general": {
+      "length_limit": "Le contenu d'entrée actuel est trop long, nous avons arrêté de calculer automatiquement les données, vous pouvez continuer à entrer, cela n'affectera pas votre utilisation."
     }
   },
   "exit_preview": "Quitter l'aperçu",
@@ -2410,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Éditeur de texte riche"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "Visionneuse JSON"
+    },
+    "chat": {
+      "name": "Discuter"
+    },
     "public": {
       "left": "Gauche",
       "right": "Droite",
@@ -2521,10 +2602,13 @@
       "name_duplicated": "Cet ID de ressource entre en conflit dans ces événements, veuillez utiliser le même nom ou l'identifiant différent"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Changer de groupe"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Enregistrement en cours"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2910,27 +2994,36 @@
   "oauth_redirect_title": "Rediriger",
   "oauth_redirect_description": "Redirection vers <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Anglais",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "afrikaans",
-    "cs-CZ": "c<unk> es<unk> tina",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
     "fr-FR": "francais",
-    "it-IT": "Italien",
+    "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "Portugais",
-    "ro-RO": "roumaine",
-    "ru-RU": "русски<unk>",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Échec de la déconnexion. Veuillez réessayer plus tard."
+  "logout_failed": "Échec de la déconnexion. Veuillez réessayer plus tard.",
+  "drive": {
+    "message": {
+      "start_upload": "Lancer le téléchargement",
+      "start_download": "Démarrer le téléchargement"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

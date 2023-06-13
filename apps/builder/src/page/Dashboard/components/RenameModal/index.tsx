@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, Modal, useMessage } from "@illa-design/react"
@@ -7,7 +7,6 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
 import { RenameModalProps } from "@/page/Dashboard/components/RenameModal/interface"
-import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchChangeAppName } from "@/services/apps"
 import { RootState } from "@/store"
@@ -22,13 +21,11 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
     )
   })!!
 
-  const appList = useSelector(getDashboardApps)
-
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
   const [loading, setLoading] = useState(false)
-  const [name, setName] = useState(app?.appName)
+  const nameRef = useRef(app?.appName ?? "")
   const message = useMessage()
 
   return (
@@ -49,7 +46,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           {
             element: "rename_modal_close",
-            parameter3: name?.length ?? 0,
+            parameter3: nameRef.current?.length ?? 0,
             parameter5: appId,
           },
         )
@@ -62,7 +59,11 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           { element: "rename_modal_save", parameter5: appId },
         )
-        if (name === "" || name.trim() === "") {
+        if (
+          nameRef.current == undefined ||
+          nameRef.current === "" ||
+          nameRef.current.trim() === ""
+        ) {
           message.error({
             content: t("dashboard.app.name_empty"),
           })
@@ -78,22 +79,6 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
           )
           return
         }
-        if (appList.some((item) => item.appName === name)) {
-          message.error({
-            content: t("dashboard.app.name_existed"),
-          })
-          track(
-            ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
-            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-            {
-              element: "rename_modal_save",
-              parameter2: "failed",
-              parameter3: t("dashboard.app.name_existed"),
-              parameter5: appId,
-            },
-          )
-          return
-        }
         track(
           ILLA_MIXPANEL_EVENT_TYPE.VALIDATE,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
@@ -104,13 +89,13 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
           },
         )
         setLoading(true)
-        fetchChangeAppName(app.appId, name)
+        fetchChangeAppName(app.appId, nameRef.current)
           .then(
             () => {
               dispatch(
                 dashboardAppActions.renameDashboardAppReducer({
                   appId: app.appId,
-                  newName: name,
+                  newName: nameRef.current,
                 }),
               )
               message.success({
@@ -135,7 +120,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
         autoFocus
         defaultValue={app?.appName}
         onChange={(name) => {
-          setName(name)
+          nameRef.current = name
         }}
       />
     </Modal>

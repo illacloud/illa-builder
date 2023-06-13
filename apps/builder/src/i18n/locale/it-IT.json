@@ -207,7 +207,7 @@
             "access_type": "Tipo di accesso"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Comando"
           }
         },
         "placeholder": {
@@ -281,6 +281,9 @@
             "normal": "Crea un progetto Neon e ottieni la stringa nella dashboard <0>project </0>.",
             "failed": "Analisi della stringa non riuscita. Controllare la stringa o configurare manualmente.",
             "no_password": "La stringa non ha password. Si prega di visualizzare la password nella dashboard Neon prima di copiare."
+          },
+          "clickhouse": {
+            "ssl": "Quando si utilizza ClickHouse Cloud Service, si consiglia di attivare l'SSL."
           }
         },
         "option": {
@@ -684,7 +687,7 @@
             "temperature": "Float(0.0-100.0),lasciare vuoto per 1.0",
             "repetition_penalty": "Fluttuante (0,0-100,0)",
             "max_time": "Fluttuante (0.0-120.0) per definire la quantità di tempo in secondi",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Seleziona un tipo"
           },
           "tips": {
             "mode_id": "Vai al <0>Mozzo Modello</0> e seleziona il modello che vuoi utilizzare.",
@@ -1158,9 +1161,11 @@
           "DragOrClickNoEventArea": "Trascina o clicca su nessuna area evento",
           "rowClick": "Clic riga",
           "refresh": "Aggiorna",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Cambiamento filtri",
+          "rowSelectChange": "Modifica selezione riga",
+          "onCellSelect": "Seleziona una cella",
+          "delete": "Elimina",
+          "replay": "Rispondi"
         },
         "image_list": {
           "title": "Immagini",
@@ -1226,9 +1231,9 @@
           "end_placeholder": "Ora di fine"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Inizia la registrazione",
+          "stop_button_text": "Ferma",
+          "clear_button_text": "Pulisci"
         }
       },
       "setter_group": {
@@ -1260,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Calendario"
         },
-        "event": "Evento"
+        "event": "Evento",
+        "MESSAGE": "MESSAGGIO"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Fonte dei dati",
+          "enable_message_selec": "Abilita selezione messaggi",
+          "selection_type": "Tipo di selezione",
+          "loading_when_sending": "Caricamento durante l'invio",
+          "image_background": "Sfondo immagine",
+          "senderAvatar": "Avatar mittente"
+        },
         "action": "Azione",
         "align": "Align",
         "allow_clear": "Consenti di pulire",
@@ -1297,7 +1311,7 @@
           "value": "Valori del dataset"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Posizione dell'etichetta dell'opzione"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1547,8 +1561,8 @@
           "event_text": "Testo",
           "draggable": "Trascinabile",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Messaggio personalizzato quando disabilitato il trascinamento",
+          "custom_message_resizable": "Messaggio personalizzato quando disabilita il ridimensionamento"
         },
         "table": {
           "page_index": "Indice di pagina",
@@ -1580,21 +1594,40 @@
           "next_cursor": "Cursore successivo",
           "has_next_page": "Ha la pagina successiva",
           "currency_code": "Codice valuta",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Selezione celle",
+          "click_outside_to_des": "Clicca fuori per deselezionare"
         },
         "previous_cursor": "Cursore precedente",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Tipo",
+          "show_visible_button": "Mostra pulsante visibile"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Testo pulsante di avvio",
+          "clear_button_text": "Testo pulsante cancella",
+          "min_duration": "Durata minima (s)",
+          "max_duration": "Durata massima (s)",
+          "stop_button_text": "Testo pulsante di interruzione"
+        },
+        "message_id": "Id Messaggio",
+        "message": "Messaggio",
+        "message_type": "Tipo di messaggio",
+        "sendTime": "Tempo di invio",
+        "timeFormat": "Formato orario",
+        "currentSenderId": "ID mittente corrente",
+        "receiving": "Caricamento durante la ricezione",
+        "toolbar-replay": "Mostra pulsante risposta",
+        "toolbar-delete": "Mostra pulsante elimina",
+        "showAvatar": "Mostra avatar",
+        "showSendTime": "Mostra ora di invio",
+        "showFooter": "Mostra piè di pagina",
+        "leftMessageColor": "Messaggio a sinistra",
+        "rightMessageColor": "Messaggio a destra",
+        "expandAll": "Espandi tutto",
+        "replayMessageId": "ID messaggio di risposta",
+        "senderName": "Nome mittente",
+        "senderId": "Id Mittente",
+        "showName": "Mostra nome"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1639,7 +1672,21 @@
           "type": "Elenco pieghevole: elenco, tutti gli elementi copieranno automaticamente lo stile del primo elemento. È possibile specificare i dati del componente in ogni elemento tramite {{ currentItem.columnName }}. Pannello pieghevole: ogni pannello è indipendente, è possibile specificare lo stile dei componenti e i dati di ogni elemento separatamente.",
           "items": "Numero di articoli",
           "accordin_mode": "In modalità fisarmonica, quando un elemento viene espanso, altri elementi crolleranno."
-        }
+        },
+        "message": "Per recuperare il contenuto del messaggio da un campo specifico nella sorgente dati, come il campo contenuti, puoi impostarlo come {{item.content}}.",
+        "message_type": "Per impostare il tipo di messaggio basato su un campo specifico nella sorgente dati, come il campo tipo, puoi impostarlo come {{item.type}}. Sosteniamo questi tipi: testo, immagine, video e audio. ",
+        "message_id": "Per impostare un ID univoco per ogni messaggio, è possibile recuperarlo da un campo specifico nella sorgente dati. Se vuoi recuperarlo dal campo id puoi impostarlo come {{item.id}}. ",
+        "replayMessageId": "Se risponde a un messaggio specificato, usare questo campo per impostare il messaggio a cui rispondere.",
+        "expandAll": "Indica se espandere o meno tutti i nodi",
+        "sendTime": "Imposta il tempo di invio. Ad esempio, nella fonte dei dati, il tempo di invio è il campo invio e puoi impostare il campo su {{item.sendAt}}.",
+        "senderName": "Imposta il nome del mittente. Ad esempio, nella sorgente dei dati, il nome del mittente è il campo sendName e puoi impostare il campo su {{item.sendName}}.",
+        "currentSenderId": "Imposta l' id mittente attuale. Usiamo questo campo per determinare quale utente invia le informazioni da visualizzare a destra.",
+        "senderId": "Imposta l'id del mittente. Ad esempio, nella sorgente dei dati, l'id mittente è il campo sendID e puoi impostare il campo su {{item.sendID}}.",
+        "sendTimeFormat": "Imposta il formato del tempo di spedizione. Per esempio, hh:MM:ss.",
+        "showAvatar": "Imposta se mostrare l'avatar",
+        "showName": "Imposta se mostrare il nome",
+        "showSendTime": "Imposta se mostrare il tempo di invio",
+        "showFooter": "Imposta se mostrare il piè di pagina"
       },
       "tab_title": "Esamina",
       "unselected_tip1": "Nessun componente selezionato.",
@@ -1651,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "La sorgente dati del componente della chat. Usa {{actionName.data}} per utilizzare i dati dai tuoi database o dalle API",
+          "sender_avatar": "Imposta l'avatar del mittente. Ad esempio, nella sorgente dei dati, l'avatar del mittente è il campo sendAvatar e puoi impostare il campo su {{item.sendAvatar}}.",
+          "enable_message_selec": "Imposta se consentire la selezione di un messaggio",
+          "selection_type": "Imposta come selezionare un messaggio, fare clic con il tasto sinistro o fare clic con il tasto destro. Quando utilizzato su un dispositivo mobile, viene fatto clic per attivare la selezione. ",
+          "loading_when_receivi": "Imposta se visualizzare il caricamento durante la ricezione dei messaggi. Se il tuo messaggio viene ricevuto dall'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione.",
+          "loading_when_sending": "Imposta se visualizzare il caricamento durante l'invio dei messaggi. Se il tuo messaggio viene inviato all'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione.",
+          "image_background": "Impostare uno sfondo immagine. Base64 e l'URL dell'immagine sono supportati"
+        },
         "carousel_tips": "Usa {{ item }} per ottenere il valore dalla sorgente dati. Ad esempio, ci sono due attributi nella sorgente dati. Sono imageUrl e url. Se vuoi andare a un URL diverso quando fai clic sull'immagine, usa {{ item.url }} per impostare l'url.",
         "data_source": "Una sorgente dati per definire gli elementi dell'immagine usando la valutazione mappata. Usa un insieme di valori o un oggetto di chiavi mappate agli array. Per esempio: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Puoi anche usare i dati nelle azioni. Per esempio: {{ mysql1.data }} ",
         "img_url_array": "Usa {{ item.attributeName }} per ottenere l'URL dell'immagine dalla sorgente dati. ",
@@ -1681,16 +1737,16 @@
           "hide_output": "Imposta se nascondere il valore durante lo scorrimento"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "L'etichetta dell'opzione",
+          "value": "Un array delle opzioni selezionate racchiuse in {{. Per esempio, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Il valore è duplicato. Si prega di utilizzare valori univoci per evitare errori.",
+          "caption": "Una didascalia visualizzata sotto l'etichetta",
+          "disabled": "Indica se disabilitare l'opzione",
+          "datasource": "La sorgente dati del gruppo switch. Usa {{actionName.data}} per utilizzare i dati dai tuoi database o dalle API",
+          "default_value": "Un array racchiuso in {{ }}. Per esempio, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Elementi minimi consentiti per la scelta",
+          "choose_up_to": "Numero massimo di oggetti da scegliere",
+          "option_label_alignment": "La posizione delle etichette"
         },
         "step": {
           "default_step": "Passo predefinito",
@@ -1749,8 +1805,8 @@
           "couldnot_drag": "Se si desidera trascinare per regolare l'intervallo di tempo, si prega di procedere alla pagina di anteprima per l'operazione.",
           "draggable": "Indica se consentire agli utenti di aggiornare l'intervallo di tempo degli eventi trascinando per spostare l'evento",
           "resizable": "Indica se consentire agli utenti di aggiornare l'intervallo di tempo degli eventi e modificare l'intervallo di tempo trascinando il bordo di un evento per allungare o ridurre l'intervallo di tempo",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Dopo il trascinamento è disabilitato, il messaggio verrà visualizzato quando un utente trascina l'evento.",
+          "custom_message_resizable": "Dopo il ridimensionamento è disabilitato, il messaggio verrà visualizzato quando un utente ridimensiona l'evento."
         },
         "table": {
           "page_index": "Indice della pagina che si desidera selezionare.",
@@ -1781,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "La modalità filtro. AND o OR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Indica se consentire agli utenti di selezionare una cella",
+          "supported_in_the_row": "Supportato nella modalità di selezione singola riga. Dopo averlo abilitato, fare clic su un'area diversa dalla tabella per deselezionare la riga."
         },
         "previous_cursor": "Usa i dati di azione per impostare il cursore precedente. Per esempio,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Per impostare il tipo di input",
+          "show_visible_button": "Per impostare se mostrare il pulsante visibile"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Il testo visualizzato sul pulsante quando la registrazione non viene avviata",
+          "stop_button_text": "Il testo visualizzato sul pulsante durante la registrazione",
+          "clear_button_text": "Il testo visualizzato sul pulsante quando la registrazione è completata",
+          "min_duration": "Durata minima della registrazione",
+          "max_duration": "Durata massima della registrazione"
+        },
+        "leftMessageColor": "Imposta il colore dei messaggi a sinistra",
+        "rightMessageColor": "Imposta il colore dei messaggi a destra",
+        "toolbar-replay": "Imposta se mostrare un pulsante di risposta quando si seleziona un messaggio.",
+        "toolbar-delete": "Imposta se mostrare un pulsante elimina quando si seleziona un messaggio."
       },
       "setter_option": {
         "fixed": "Fisso",
@@ -1868,7 +1928,13 @@
         "input": {
           "input": "Input",
           "password": "Password",
-          "search": "Search"
+          "search": "Cerca"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Click Sinistro",
+            "right-click": "Click Destro"
+          }
         }
       },
       "setter_placeholder": {
@@ -1916,10 +1982,10 @@
           "directory": "Sono consentite solo le directory."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Richiesta autorizzazione di registrazione",
+          "cannot_set_value_dur": "Impossibile impostare il valore durante la registrazione",
+          "min_duration": "Per favore registra almeno {{minimum}}s",
+          "max_duration": "Per favore registra al massimo {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2141,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "La dimensione dei dati supera il limite (dimensione corrente: {{current_size}} byte, limite: {{limit_size}} byte)"
+    },
+    "general": {
+      "length_limit": "Il contenuto di input corrente è troppo lungo, abbiamo smesso di calcolare automaticamente i dati, puoi ancora continuare a inserire, questo non influenzerà il tuo utilizzo."
     }
   },
   "exit_preview": "Esci Dall'Anteprima",
@@ -2410,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Editor di testo ricco"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "Visualizzatore JSON"
+    },
+    "chat": {
+      "name": "Chat"
+    },
     "public": {
       "left": "Sinistra",
       "right": "Destra",
@@ -2521,10 +2602,13 @@
       "name_duplicated": "Questo ID risorsa è in conflitto in questi eventi, si prega di utilizzare lo stesso nome o id diverso"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Cambia gruppo"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Registrazione"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2910,27 +2994,36 @@
   "oauth_redirect_title": "Reindirizzamento",
   "oauth_redirect_description": "Reindirizzamento a <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Inglese",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Africani",
-    "cs-CZ": "c<unk> es<unk> tina",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "franc<unk> ais",
+    "fr-FR": "français",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portugue<unk> s",
-    "ro-RO": "roma<unk> na<unk>",
-    "ru-RU": "<unk> <unk> <unk> <unk> <unk> ии<unk>",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Impossibile uscire. Riprova più tardi."
+  "logout_failed": "Impossibile uscire. Riprova più tardi.",
+  "drive": {
+    "message": {
+      "start_upload": "Inizia il caricamento",
+      "start_download": "Avvia il download"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

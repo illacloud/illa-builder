@@ -73,10 +73,34 @@ export const handleCheckMinLength = (value: unknown, minLength?: number) => {
     return true
 }
 
+export const handleCheckMinDuration = (
+  value: unknown,
+  minDuration?: number,
+) => {
+  if (
+    typeof minDuration === "number" &&
+    ((typeof value === "number" && value < minDuration) ||
+      typeof value === "undefined")
+  )
+    return true
+}
+
+export const handleCheckMaxDuration = (
+  value: unknown,
+  maxDuration?: number,
+) => {
+  if (
+    typeof maxDuration === "number" &&
+    ((typeof value === "number" && value > maxDuration) ||
+      typeof value === "undefined")
+  )
+    return true
+}
+
 export const handleCheckPattern = (
   value: unknown,
   pattern: ValidateCheckProps["pattern"],
-  reg?: string | RegExp,
+  reg?: string,
 ) => {
   switch (pattern) {
     case "Email": {
@@ -100,9 +124,12 @@ export const handleCheckPattern = (
     case "Regex":
       if (!reg || typeof value === undefined) return
       try {
-        const stringValue = JSON.stringify(value)
-        const matchPattern = new RegExp(reg)
-        if (!matchPattern.test(stringValue)) {
+        let finalReg = reg
+        if (reg.startsWith("/") && reg.endsWith("/")) {
+          finalReg = reg.slice(1, reg.length - 1)
+        }
+        const matchPattern = new RegExp(finalReg)
+        if (typeof value !== "string" || !matchPattern.test(value)) {
           return i18n.t("editor.validate_message.regex")
         }
       } catch (e) {
@@ -250,6 +277,18 @@ export const handleValidateCheck = (
   if (handleCheckMinLength(options.value, options.minLength)) {
     return i18n.t("editor.validate_message.min_value", {
       number: options.minLength,
+    })
+  }
+
+  if (handleCheckMaxDuration(options.value, options.maxDuration)) {
+    return i18n.t("editor.inspect.setter_message.recording.max_duration", {
+      maximum: options.maxDuration,
+    })
+  }
+
+  if (handleCheckMinDuration(options.value, options.minDuration)) {
+    return i18n.t("editor.inspect.setter_message.recording.min_duration", {
+      minimum: options.minDuration,
     })
   }
 

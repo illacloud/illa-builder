@@ -207,7 +207,7 @@
             "access_type": "Type toegang"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Opdracht"
           }
         },
         "placeholder": {
@@ -281,6 +281,9 @@
             "normal": "Maak een Neon project en krijg de tekenreeks op het project dashboard <0></0>.",
             "failed": "Ontleden van de tekenreeks is mislukt. Controleer uw tekenreeks of configureer deze handmatig",
             "no_password": "De tekenreeks heeft geen wachtwoord. Geef het wachtwoord in het Neondashboard weer voordat u het kopieert."
+          },
+          "clickhouse": {
+            "ssl": "Bij het gebruik van ClickHouse Cloud Service wordt aanbevolen om de SSL in te schakelen."
           }
         },
         "option": {
@@ -684,7 +687,7 @@
             "temperature": "Float(0.0-100.0),laat leeg voor 1.0",
             "repetition_penalty": "Zweef (0.0-100.0)",
             "max_time": "Zweef (0,0-120.0) om de hoeveelheid tijd in seconden te bepalen",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Selecteer een type"
           },
           "tips": {
             "mode_id": "Ga naar <0>Model Hub</0> en selecteer het model dat je wilt gebruiken.",
@@ -1158,9 +1161,11 @@
           "DragOrClickNoEventArea": "Sleep of klik op geen enkel event gebied",
           "rowClick": "Rij klikken",
           "refresh": "Vernieuwen",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Wijziging filters",
+          "rowSelectChange": "Rij selecteer verandering",
+          "onCellSelect": "Selecteer een cel",
+          "delete": "Verwijderen",
+          "replay": "Beantwoorden"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1226,9 +1231,9 @@
           "end_placeholder": "Einde tijd"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Start de opname",
+          "stop_button_text": "Stoppen",
+          "clear_button_text": "Verwijderen"
         }
       },
       "setter_group": {
@@ -1260,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Kalender"
         },
-        "event": "Gebeurtenis"
+        "event": "Gebeurtenis",
+        "MESSAGE": "BERICHT"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Data bron",
+          "enable_message_selec": "Berichtselectie inschakelen",
+          "selection_type": "Type selectie",
+          "loading_when_sending": "Laden tijdens verzenden",
+          "image_background": "Afbeelding achtergrond",
+          "senderAvatar": "Afzender avatar"
+        },
         "action": "actie",
         "align": "Align",
         "allow_clear": "Wissen toestaan",
@@ -1297,7 +1311,7 @@
           "value": "Dataset waarden"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Positie van het optielabel"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1547,8 +1561,8 @@
           "event_text": "Tekstveld",
           "draggable": "Versleepbaar",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Aangepast bericht wanneer slepen uitgeschakeld",
+          "custom_message_resizable": "Aangepast bericht uitschakelen grootte wijzigen"
         },
         "table": {
           "page_index": "Pagina index",
@@ -1580,21 +1594,40 @@
           "next_cursor": "Volgende cursor",
           "has_next_page": "Heeft een volgende pagina",
           "currency_code": "Valuta code",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Cel selectie",
+          "click_outside_to_des": "Klik buiten om te deselecteren"
         },
         "previous_cursor": "Vorige cursor",
         "input": {
           "type": "Type",
-          "show_visible_button": "Show visible button"
+          "show_visible_button": "Toon zichtbare knop"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Tekst van de startknop",
+          "clear_button_text": "Tekst leegmaken knop",
+          "min_duration": "Min duur (s)",
+          "max_duration": "Max duur (s)",
+          "stop_button_text": "Tekst van de knop stoppen"
+        },
+        "message_id": "Bericht ID",
+        "message": "bericht",
+        "message_type": "Bericht type",
+        "sendTime": "Tijd verzenden",
+        "timeFormat": "Tijd formaat",
+        "currentSenderId": "Huidige afzender-ID",
+        "receiving": "Laden tijdens ontvangen",
+        "toolbar-replay": "Toon antwoordknop",
+        "toolbar-delete": "Toon verwijder knop",
+        "showAvatar": "Avatar weergeven",
+        "showSendTime": "Verzendtijd weergeven",
+        "showFooter": "Toon voettekst",
+        "leftMessageColor": "Bericht aan links",
+        "rightMessageColor": "Bericht aan rechts",
+        "expandAll": "Alles uitklappen",
+        "replayMessageId": "Antwoord bericht ID",
+        "senderName": "Naam afzender",
+        "senderId": "Afzender ID",
+        "showName": "Toon naam"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1639,7 +1672,21 @@
           "type": "Inklapbare lijst: lijst, alle artikelen zullen automatisch de stijl van het eerste item kopiëren. U kunt de componentgegevens in elk item opgeven via {{ currentItem.columnName }}. Inklapbaar paneel: elk paneel is onafhankelijk, u kunt de componentstijl en -gegevens van elk item afzonderlijk specificeren.",
           "items": "Aantal items",
           "accordin_mode": "In accordion modus, wanneer een item is uitgevouwen zullen andere items instorten."
-        }
+        },
+        "message": "Om de inhoud van het bericht van een specifiek veld in de gegevensbron op te halen, zoals het inhoudveld, kunt u het instellen als {{item.content}}.",
+        "message_type": "Om het type bericht op basis van een specifiek veld in de gegevensbron in te stellen, zoals het type veld, kunt u het instellen als {{item.type}}. Wij ondersteunen deze types: tekst, afbeelding, video en audio. ",
+        "message_id": "Om een uniek ID in te stellen voor elk bericht, kunt u het ophalen van een specifiek veld in de gegevensbron. Als je het wilt ophalen uit het id veld, kun je het instellen als {{item.id}}. ",
+        "replayMessageId": "Als het antwoord op een bepaald bericht is, gebruik dit veld om aan te geven op welk bericht moet worden geantwoord.",
+        "expandAll": "Of alle nodes moeten worden uitgevouwen",
+        "sendTime": "Stel de verzendtijd in. Bijvoorbeeld, in uw gegevensbron is de verzendtijd het sendAt veld en u kunt het veld instellen op {{item.sendAt}}.",
+        "senderName": "Stel de afzender naam in. Bijvoorbeeld, in de gegevensbron is de naam van de afzender het sendName veld en u kunt het veld instellen op {{item.sendName}}.",
+        "currentSenderId": "Stel de huidige afzender id in. Wij gebruiken dit veld om te bepalen welke gebruiker informatie verzendt aan de rechterkant.",
+        "senderId": "Stel de afzender id in. Bijvoorbeeld, in de gegevensbron is het afzender-ID veld en u kunt het veld instellen op {{item.sendID}}.",
+        "sendTimeFormat": "Stel het formaat in van de verzendtijd. Bijvoorbeeld, hhh:MM:s.",
+        "showAvatar": "Stel in of de avatar moet worden weergegeven",
+        "showName": "Stel in of de naam moet worden weergegeven",
+        "showSendTime": "Stel in of de verzendtijd moet worden weergegeven",
+        "showFooter": "Stel in of de voettekst moet worden weergegeven"
       },
       "tab_title": "Inspecteren",
       "unselected_tip1": "Geen componenten geselecteerd.",
@@ -1651,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "De gegevensbron van het chatcomponent. Gebruik {{actionName.data}} om de gegevens uit uw databases of API's te gebruiken",
+          "sender_avatar": "Stel de afzender avatar in. Bijvoorbeeld, in je gegevensbron is de avatar van de afzender het sendAvatar veld en je kunt het veld instellen op {{item.sendAvatar}}.",
+          "enable_message_selec": "Instellen of een bericht moet worden geselecteerd",
+          "selection_type": "Stel in hoe een bericht moet worden geselecteerd, met de rechtermuisknop of met de rechtermuisknop. Wanneer deze wordt gebruikt op een mobiel apparaat, wordt er op geklikt om de selectie te activeren. ",
+          "loading_when_receivi": "Instellen of laden moet worden weergegeven tijdens het ontvangen van berichten. Als uw bericht van actie 1 wordt ontvangen, kunt u het instellen op {{action1.isRunning}}, en de laadstatus wordt weergegeven wanneer actie 1 wordt uitgevoerd.",
+          "loading_when_sending": "Instellen of laden moet worden weergegeven bij het verzenden van berichten. Als uw bericht naar actie 1 wordt verzonden, kunt u het instellen op {{action1.isRunning}}, en de laadstatus wordt weergegeven wanneer actie 1 wordt uitgevoerd.",
+          "image_background": "Stel een achtergrond in. Base64 en afbeelding URL worden ondersteund"
+        },
         "carousel_tips": "Gebruik {{ item }} om waarde uit de gegevensbron te krijgen. Er zijn bijvoorbeeld twee attributen in de gegevensbron. Ze zijn imageUrl en url. Als je naar de verschillende url wilt gaan wanneer je op de afbeelding klikt, gebruik dan {{ item.url }} om de url in te stellen.",
         "data_source": "Een gegevensbron om afbeeldingsitems te definiëren met behulp van toegewezen evaluatie. Gebruik een reeks van waarden of een object van sleutels toegewezen aan arrays. Bijvoorbeeld: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . U kunt de gegevens ook gebruiken in acties. Bijvoorbeeld: {{ mysql1.data }} ",
         "img_url_array": "Gebruik {{ item.attributeName }} om een afbeeldings-URL van de gegevensbron te verkrijgen. ",
@@ -1681,16 +1737,16 @@
           "hide_output": "Stel in of de waarde bij het glijden moet worden verborgen"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Het label van de optie",
+          "value": "Een array van de geselecteerde opties ingesloten in {{. Bijvoorbeeld, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Deze waarde wordt gedupliceerd. Gebruik unieke waarden om fouten te voorkomen.",
+          "caption": "Een onderschrift weergegeven onder het label",
+          "disabled": "Schakel de optie uit",
+          "datasource": "De gegevensbron van de schakelgroep. Gebruik {{actionName.data}} om de gegevens uit uw databases of API's te gebruiken",
+          "default_value": "Een array omhelsde in {{ }}. Bijvoorbeeld, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimum aantal items toegestaan om te kiezen",
+          "choose_up_to": "Maximaal aantal items toegestaan om te kiezen",
+          "option_label_alignment": "De positie van de labels"
         },
         "step": {
           "default_step": "Standaard stap",
@@ -1749,8 +1805,8 @@
           "couldnot_drag": "Als u wilt slepen om het tijdsbereik aan te passen, ga dan naar de voorbeeldpagina voor de bewerking.",
           "draggable": "Of gebruikers nu toestaan om de periode bij te werken door te slepen om de gebeurtenis te verplaatsen",
           "resizable": "Of gebruikers nu toestaan om het tijdsbereik bij te werken en de tijdsspanne te wijzigen door de grens van een gebeurtenis te slepen om de tijdsspanne te verlengen of te verkorten",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Na slepen is uitgeschakeld, wordt het bericht weergegeven wanneer een gebruiker het event slept.",
+          "custom_message_resizable": "Nadat het formaat is uitgeschakeld, wordt het bericht weergegeven wanneer een gebruiker de afspraak aanpast."
         },
         "table": {
           "page_index": "Index van de pagina die u wilt selecteren.",
@@ -1781,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "De filtermodus. AND of OOR.",
           "currency_code": "USD",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Of gebruikers een cel mogen selecteren",
+          "supported_in_the_row": "Ondersteund in rij enkele selectie modus. Na het inschakelen klik op een ander gebied dan de tabel om de rij uit te schakelen."
         },
         "previous_cursor": "Gebruik de actie gegevens om de vorige cursor in te stellen. Bijvoorbeeld,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Om het invoertype in te stellen",
+          "show_visible_button": "Om te bepalen of de zichtbare knop moet worden weergegeven"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "De tekst die wordt weergegeven op de knop wanneer de opname niet wordt gestart",
+          "stop_button_text": "De tekst die wordt weergegeven op de knop bij het opnemen",
+          "clear_button_text": "De tekst die wordt weergegeven op de knop wanneer de opname is voltooid",
+          "min_duration": "Minimale duur voor opname",
+          "max_duration": "Maximale duur voor opname"
+        },
+        "leftMessageColor": "Stel de kleur van de berichten aan de linkerkant in",
+        "rightMessageColor": "Stel de kleur van de berichten aan de rechterkant in",
+        "toolbar-replay": "Stel in of een antwoordknop moet worden weergegeven wanneer een bericht wordt geselecteerd.",
+        "toolbar-delete": "Stel in of een knop 'verwijderen' moet worden weergegeven wanneer een bericht wordt geselecteerd."
       },
       "setter_option": {
         "fixed": "Opgelost",
@@ -1867,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Wachtwoord",
+          "search": "Zoeken"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Linksklik",
+            "right-click": "Rechtsklik"
+          }
         }
       },
       "setter_placeholder": {
@@ -1916,10 +1982,10 @@
           "directory": "Alleen mappen zijn toegestaan."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Opnamemachtiging vereist",
+          "cannot_set_value_dur": "Kan waarde niet instellen tijdens opname",
+          "min_duration": "Neem ten minste {{minimum}}s op",
+          "max_duration": "Opname mag maximaal {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2141,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Data grootte overschrijdt de limiet (huidige grootte: {{current_size}} bytes, limiet: {{limit_size}} bytes)"
+    },
+    "general": {
+      "length_limit": "De huidige invoerinhoud is te lang, we hebben gestopt met het automatisch berekenen van gegevens, u kunt nog steeds invoer invoeren, dit heeft geen invloed op uw gebruik."
     }
   },
   "exit_preview": "Voorvertoning afsluiten",
@@ -2410,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Rich text editor"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON viewer"
+    },
+    "chat": {
+      "name": "Chatten"
+    },
     "public": {
       "left": "Linkerkant",
       "right": "Rechterkant",
@@ -2521,10 +2602,13 @@
       "name_duplicated": "Deze resource ID conflicteert in deze evenementen, gebruik alstublieft dezelfde naam of andere id"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Verander van groep"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Opnemenchar@@0"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2910,27 +2994,36 @@
   "oauth_redirect_title": "Doorverwijzen",
   "oauth_redirect_description": "Omleiden naar <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Nederlands",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaanse",
-    "cs-CZ": "c+unnamed@@0 tina",
-    "de-DE": "Duits",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "frank ais",
-    "it-IT": "italiaans",
+    "fr-FR": "français",
+    "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portuguetu",
-    "ro-RO": "romaStrafnaStrafte",
-    "ru-RU": "barometertels ½ ½ at",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Afmelden mislukt. Probeer het later opnieuw."
+  "logout_failed": "Afmelden mislukt. Probeer het later opnieuw.",
+  "drive": {
+    "message": {
+      "start_upload": "Beginnen met uploaden",
+      "start_download": "Download starten"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

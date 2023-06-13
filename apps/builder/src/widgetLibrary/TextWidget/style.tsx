@@ -1,4 +1,5 @@
 import { SerializedStyles, css } from "@emotion/react"
+import { getColor } from "@illa-design/react"
 import { VerticalAlign } from "@/widgetLibrary/TextWidget/interface"
 
 export function applyAlignStyle(
@@ -54,5 +55,24 @@ export function applyMarkdownStyle(horizontalAlign?: string): SerializedStyles {
     width: 100%;
     text-align: ${horizontalAlign};
     overflow-wrap: break-word;
+  `
+}
+
+export const applyTextStyle = (horizontalAlign?: string) => {
+  return css`
+    width: 100%;
+    text-align: ${horizontalAlign};
+    overflow-wrap: break-word;
+  `
+}
+
+export const applyContainerStyle = (colorScheme: string) => {
+  return css`
+    width: 100%;
+    color: ${getColor(colorScheme, "02")};
+    a,
+    span {
+      color: ${getColor(colorScheme, "02")};
+    }
   `
 }

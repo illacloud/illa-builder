@@ -23,6 +23,7 @@ import { SnowflakeIcon } from "@/page/App/components/Icons/snowflake"
 import { SupabaseIcon } from "@/page/App/components/Icons/supabase"
 import { TidbIcon } from "@/page/App/components/Icons/tidb"
 import { TransformerIcon } from "@/page/App/components/Icons/transformer"
+import { UpstashIcon } from "@/page/App/components/Icons/upstash"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
 
@@ -66,6 +67,8 @@ export function getIconFromResourceType(
       return <MongoDbIcon size={size} />
     case "redis":
       return <RedisIcon size={size} />
+    case "upstash":
+      return <UpstashIcon size={size} />
     case "postgresql":
       return <PostgreSqlIcon size={size} />
     case "firebase":
@@ -124,6 +127,8 @@ export function getIconFromActionType(
       return <MongoDbIcon size={size} />
     case "redis":
       return <RedisIcon size={size} />
+    case "upstash":
+      return <UpstashIcon size={size} />
     case "postgresql":
       return <PostgreSqlIcon size={size} />
     case "firebase":

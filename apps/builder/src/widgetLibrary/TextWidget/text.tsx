@@ -1,16 +1,25 @@
 import { FC, useEffect, useMemo } from "react"
 import ReactMarkdown from "react-markdown"
+import rehypeRaw from "rehype-raw"
+import rehypeSanitize from "rehype-sanitize"
 import remarkGfm from "remark-gfm"
 import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
+import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
 import { TextProps, TextWidgetProps } from "./interface"
 import {
   applyAlignStyle,
   applyAutoHeightContainerStyle,
+  applyContainerStyle,
   applyMarkdownStyle,
+  applyTextStyle,
 } from "./style"
+
+const MarkdownContainer: FC<any> = ({ children, colorScheme }) => {
+  return <div css={applyContainerStyle(colorScheme)}>{children}</div>
+}
 
 export const Text: FC<TextProps> = (props) => {
   const {
@@ -22,35 +31,42 @@ export const Text: FC<TextProps> = (props) => {
     disableMarkdown,
   } = props
 
+  const sanitizeOptions = {
+    allowedTags: HTMLTags,
+  }
+
   return (
     <div css={applyAlignStyle(verticalAlign)}>
       {disableMarkdown ? (
         <ILLAText
-          css={applyMarkdownStyle(horizontalAlign)}
+          css={applyTextStyle(horizontalAlign)}
           colorScheme={colorScheme}
           fs={fs}
         >
           {value}
         </ILLAText>
       ) : (
-        <ReactMarkdown
-          css={applyMarkdownStyle(horizontalAlign)}
-          remarkPlugins={[remarkGfm]}
-          components={{
-            a: ({ href, children }) => (
-              <Link href={href} colorScheme={colorScheme} target="_blank">
-                {children}
-              </Link>
-            ),
-            p: ({ children }) => (
-              <Paragraph colorScheme={colorScheme} fs={fs}>
-                {children}
-              </Paragraph>
-            ),
-          }}
-        >
-          {value ?? ""}
-        </ReactMarkdown>
+        <MarkdownContainer colorScheme={colorScheme}>
+          <ReactMarkdown
+            css={applyMarkdownStyle(horizontalAlign)}
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeOptions]]}
+            components={{
+              a: ({ href, children }) => (
+                <Link href={href} target="_blank" colorScheme={colorScheme}>
+                  {children}
+                </Link>
+              ),
+              p: ({ children }) => (
+                <Paragraph fs={fs} colorScheme={colorScheme}>
+                  {children}
+                </Paragraph>
+              ),
+            }}
+          >
+            {value ?? ""}
+          </ReactMarkdown>
+        </MarkdownContainer>
       )}
     </div>
   )
@@ -74,6 +90,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     dynamicMaxHeight,
     colorScheme,
     fs,
+    fw,
     h = 0,
   } = props
 
@@ -139,6 +156,7 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
           verticalAlign={verticalAlign}
           colorScheme={colorScheme}
           fs={fs}
+          fw={fw}
           disableMarkdown={disableMarkdown}
         />
       </div>

@@ -40,6 +40,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "MongoDB"
       case "redis":
         return "Redis"
+      case "upstash":
+        return "Upstash"
       case "elasticsearch":
         return "Elastic Search"
       case "dynamodb":
@@ -117,6 +119,8 @@ export function getResourceNameFromResourceType(
         return "MongoDB"
       case "redis":
         return "Redis"
+      case "upstash":
+        return "Upstash"
       case "elasticsearch":
         return "Elastic Search"
       case "dynamodb":

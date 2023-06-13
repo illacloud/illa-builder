@@ -207,7 +207,7 @@
             "access_type": "Тип доступу"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Команда"
           }
         },
         "placeholder": {
@@ -281,6 +281,9 @@
             "normal": "Створіть неоновий проект і отримайте рядок у <0>панелі проекту</0>.",
             "failed": "Не вдалося обробити рядок. Будь ласка, перевірте свій рядок або налаштуйте вручну.",
             "no_password": "Рядок не має пароля. Будь ласка, вкажіть пароль в Неоновій панелі перед копіюванням."
+          },
+          "clickhouse": {
+            "ssl": "При використанні служби ClickHouse Cloud рекомендується ввімкнути SSL."
           }
         },
         "option": {
@@ -684,7 +687,7 @@
             "temperature": "Плаваюча (0.0-100.0),залиште порожнім для 1.0",
             "repetition_penalty": "Поверх (0.0-100.0)",
             "max_time": "Поверх (0.0-120.0) для визначення часу в секундах",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Виберіть тип"
           },
           "tips": {
             "mode_id": "Перейдіть до <0>моделі Hub</0> та оберіть модель, яку ви хочете використати.",
@@ -1158,9 +1161,11 @@
           "DragOrClickNoEventArea": "Перетягніть або натисніть кнопку відсутності ділянки подій",
           "rowClick": "Натискання ряд",
           "refresh": "Оновити",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Зміна фільтрів",
+          "rowSelectChange": "Змінити вибір рядка",
+          "onCellSelect": "Обрати клітинку",
+          "delete": "Видалити",
+          "replay": "Відповідь"
         },
         "image_list": {
           "title": "Малюнки",
@@ -1226,9 +1231,9 @@
           "end_placeholder": "Час завершення"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Розпочати запис",
+          "stop_button_text": "Зупинити",
+          "clear_button_text": "Очистити"
         }
       },
       "setter_group": {
@@ -1260,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Календар"
         },
-        "event": "Подія"
+        "event": "Подія",
+        "MESSAGE": "ПОВІДОМЛЕННЯ"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Джерело даних",
+          "enable_message_selec": "Дозволити вибір повідомлення",
+          "selection_type": "Тип виділення",
+          "loading_when_sending": "Завантаження під час відправки",
+          "image_background": "Тло зображення",
+          "senderAvatar": "Аватар відправника"
+        },
         "action": "Дія",
         "align": "Align",
         "allow_clear": "Дозволити очищення",
@@ -1297,7 +1311,7 @@
           "value": "Значення Dataset"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Положення мітки параметрів"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1547,8 +1561,8 @@
           "event_text": "Текст",
           "draggable": "Перетягуємий",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Довільне повідомлення якщо вимкнути перетягування",
+          "custom_message_resizable": "Спеціальне повідомлення при забороні зміни розміру"
         },
         "table": {
           "page_index": "Індекс сторінки",
@@ -1580,21 +1594,40 @@
           "next_cursor": "Наступний курсор",
           "has_next_page": "Має наступну сторінку",
           "currency_code": "Код валюти",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Вибір клітинки",
+          "click_outside_to_des": "Натисніть на вулицю, щоб зняти виділення"
         },
         "previous_cursor": "Попередній курсор",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Тип",
+          "show_visible_button": "Показати кнопку видимої"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Текст кнопки Пуск",
+          "clear_button_text": "Текст кнопки Очистити",
+          "min_duration": "Мін. тривалість (с)",
+          "max_duration": "Макс. тривалість (с)",
+          "stop_button_text": "Текст кнопки зупинити"
+        },
+        "message_id": "ID повідомлення",
+        "message": "Повідомлення",
+        "message_type": "Тип повідомлення",
+        "sendTime": "Час надсилання",
+        "timeFormat": "Формат часу",
+        "currentSenderId": "ID поточного відправника",
+        "receiving": "Завантаження при отриманні",
+        "toolbar-replay": "Показати кнопку відповіді",
+        "toolbar-delete": "Показувати кнопку видалення",
+        "showAvatar": "Показати аватар",
+        "showSendTime": "Показувати час відправлення",
+        "showFooter": "Показати футер",
+        "leftMessageColor": "Повідомлення ліворуч",
+        "rightMessageColor": "Повідомлення справа",
+        "expandAll": "Розгорнути все",
+        "replayMessageId": "ID повідомлення для відповіді",
+        "senderName": "Ім'я відправника",
+        "senderId": "ID відправника",
+        "showName": "Показати ім'я"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -1639,7 +1672,21 @@
           "type": "Закритий список: список всіх елементів автоматично скопіює стиль першого елементу. Ви можете вказати дані компонента в кожному елементі через {{ currentItem.columnName }}. Закрита панель: кожна панель є незалежною, ви можете вказати стиль компонента та дані кожного елемента окремо.",
           "items": "Кількість товарів",
           "accordin_mode": "У режимі акордіону, коли предмет збільшується, інші предмети згортаються."
-        }
+        },
+        "message": "Щоб отримати зміст повідомлення з певного поля в джерелі даних, наприклад поле вмісту, ви можете встановити його як {{item.content}}.",
+        "message_type": "Щоб встановити тип повідомлення на основі конкретного поля джерела даних, наприклад поле типу, ви можете встановити його як {{item.type}}. Ми підтримуємо такі типи: текст, зображення, відео та звук. ",
+        "message_id": "Щоб встановити унікальний ідентифікатор для кожного повідомлення, ви можете отримати його з певного поля з джерела даних. Якщо ви хочете отримати його з поля ID, то можете встановити його як {{item.id}}. ",
+        "replayMessageId": "Якщо це відповідь на зазначене повідомлення, використовуйте це поле, щоб визначити, на яке повідомлення відповісти.",
+        "expandAll": "Розгорнути чи не всі вузли",
+        "sendTime": "Встановити час надсилання. Наприклад, у джерелі даних, час відправлення означає поле відправника і ви можете встановити поле {{item.sendAt}}.",
+        "senderName": "Задайте ім'я відправника. Наприклад, у джерелі ваших даних ім'я відправника є полем відправника і ви можете встановити поле {{item.sendName}}.",
+        "currentSenderId": "Встановити поточний ідентифікатор відправника. Ми використовуємо це поле, щоб визначити, який користувач надсилає дані для відображення праворуч.",
+        "senderId": "Встановити ідентифікатор відправника. Наприклад, у вашому джерелі даних, ID відправника є полем відправника і ви можете встановити поле {{item.sendID}}.",
+        "sendTimeFormat": "Встановіть формат часу відправки. Наприклад, hh:MM:ss.",
+        "showAvatar": "Вкажіть, чи показувати аватар",
+        "showName": "Вкажіть, показувати ім'я",
+        "showSendTime": "Вкажіть, чи показувати час відправлення",
+        "showFooter": "Виберіть, чи показувати в футері"
       },
       "tab_title": "Оглянути",
       "unselected_tip1": "Немає вибраних компонентів.",
@@ -1651,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Джерело даних компонента чату. Використовуйте {{actionName.data}} для використання даних з ваших баз даних або API",
+          "sender_avatar": "Встановіть аватар. Наприклад, у вашому джерелі даних аватар відправник - це поле відправника \"Аватар\", і ви можете встановити поле {{item.sendAvatar}}.",
+          "enable_message_selec": "Вкажіть, чи дозволено вибирати повідомлення",
+          "selection_type": "Встановіть як обрати повідомлення, клацання лівою або правою кнопкою миші. При використанні на мобільному пристрої буде натиснуто на кнопку виклик. ",
+          "loading_when_receivi": "Виберіть, чи показувати завантаження при отриманні повідомлень. Якщо ваше повідомлення отримано від дії 1, ви можете встановити його в {{action1.isRunning}}, і статус завантаження буде відображений при запуску action1.",
+          "loading_when_sending": "Вкажіть, чи показувати завантаження під час надсилання повідомлень. Якщо ваше повідомлення буде відправлено дія1, ви можете встановити його на {{action1.isRunning}}, і статус завантаження буде відображений при запуску action1.",
+          "image_background": "Встановити фон зображення. Base64 та URL-адреса зображення підтримуються"
+        },
         "carousel_tips": "Використовуйте {{ item }} , щоб отримати значення з джерела даних. Наприклад, є два атрибути з джерела даних. Вони є imageUrl і url. Якщо ви хочете перейти до іншої адреси при натисканні на зображення, використовуйте {{ item.url }} для встановлення URL-адреси.",
         "data_source": "Джерело даних для визначення елементів зображення за допомогою зіставленої оцінки. Використовуйте масив значень або об’єкта клавіш, які відображені в масивах. Наприклад: {{[{ x:1, y:1 },{ x:2, y:2 },...]}. Також ви можете використовувати дані в дії. Наприклад: {{ mysql1.data }} ",
         "img_url_array": "Використовуйте {{ item.attributeName }} , щоб отримати URL зображення з джерела даних. ",
@@ -1681,16 +1737,16 @@
           "hide_output": "Визначає, чи слід приховувати значення при проведенні слайда"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Етикетка опції",
+          "value": "Масив вибраних опцій включений у {{. Наприклад, {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Значення дублюється. Будь ласка, використовуйте унікальні значення, щоб уникнути помилок.",
+          "caption": "Заголовок, що відображається під міткою",
+          "disabled": "Чи відключити опцію",
+          "datasource": "Джерело передачі даних для групи перемикачів. Використовуйте {{actionName.data}} для використання даних з ваших баз даних або API",
+          "default_value": "Масив включено в {{ }}. Наприклад, {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Мінімальні дозволені для вибору елементів",
+          "choose_up_to": "Максимально допустимий вибір елементів",
+          "option_label_alignment": "Позиція ярликів"
         },
         "step": {
           "default_step": "Крок за замовчуванням",
@@ -1749,8 +1805,8 @@
           "couldnot_drag": "Якщо ви хочете перетягнути для зміни діапазону часу, будь ласка, перейдіть на сторінку попереднього перегляду операцій.",
           "draggable": "Чи дозволяти користувачам оновлювати діапазон часу заходу, перетягуючи, щоб перемістити подію",
           "resizable": "Якщо користувачі зможуть оновлювати проміжок часу заходу і змінювати тривалість часу, перетягуючи межу події на тривалий, або скорочуючи тривалість часу",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Після перетягування вимкнено, повідомлення буде відображатися, коли користувач перетягне подію.",
+          "custom_message_resizable": "Після зміни розміру повідомлення буде вимкнуто, при зміні розміру події."
         },
         "table": {
           "page_index": "Індекс сторінки, яку ви хочете вибрати.",
@@ -1781,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Режим фільтра. І або АБО.",
           "currency_code": "Долари США",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Дозволити користувачам вибирати клітинку",
+          "supported_in_the_row": "Підтримується в режимі одного вибору рядка. Після увімкнення натисніть область поза таблицею, щоб зняти виділення з рядка."
         },
         "previous_cursor": "Використовуйте дані дій, щоб встановити попередній курсор. Наприклад,  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Щоб встановити тип вводу",
+          "show_visible_button": "Вибір видимої кнопки"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Текст, що відображається на кнопці, коли запис не запущено",
+          "stop_button_text": "Текст, що відображається на кнопці під час запису",
+          "clear_button_text": "Текст, що відображається на кнопці, коли запис завершено",
+          "min_duration": "Мінімальна тривалість для запису",
+          "max_duration": "Максимальна тривалість запису"
+        },
+        "leftMessageColor": "Встановити колір повідомлень ліворуч",
+        "rightMessageColor": "Встановити колір повідомлень праворуч",
+        "toolbar-replay": "Вкажіть, чи показувати кнопку відповіді при виборі повідомлення.",
+        "toolbar-delete": "Вкажіть, чи показувати кнопку видалення при виборі повідомлення."
       },
       "setter_option": {
         "fixed": "Виправлена",
@@ -1867,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Пароль",
+          "search": "Пошук"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Лівий притиск",
+            "right-click": "Правий притиск"
+          }
         }
       },
       "setter_placeholder": {
@@ -1916,10 +1982,10 @@
           "directory": "Дозволено лише каталоги."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Потрібен дозвіл на запис",
+          "cannot_set_value_dur": "Неможливо встановити значення під час запису",
+          "min_duration": "Будь ласка, записуйте принаймні {{minimum}}сек",
+          "max_duration": "Будь ласка, записуйте максимум {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2141,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Розмір даних перевищує ліміт (поточний розмір: {{current_size}} байт, ліміт: {{limit_size}} байт)"
+    },
+    "general": {
+      "length_limit": "Поточний вхідний вміст задовгий, ми припинили обчислювати дані, ви все ще можете продовжувати введення, це не вплине на ваше використання."
     }
   },
   "exit_preview": "Вийти з режиму перегляду",
@@ -2410,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Розширений текстовий редактор"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "Переглядач JSON"
+    },
+    "chat": {
+      "name": "Чат"
+    },
     "public": {
       "left": "Ліворуч",
       "right": "Праворуч",
@@ -2521,10 +2602,13 @@
       "name_duplicated": "Цей ID ресурсу конфліктує в цих подіях. Будь ласка, використовуйте однакову назву або іншу ідентифікатор"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Змінити групу"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Запис"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2910,27 +2994,36 @@
   "oauth_redirect_title": "Перенаправлення",
   "oauth_redirect_description": "Перенаправлення на <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Українська",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Африкаанс",
-    "cs-CZ": "с.Ікра",
-    "de-DE": "Німецька мова",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "франк",
-    "it-IT": "італіано",
-    "nl-NL": "Нідерланди",
+    "fr-FR": "français",
+    "it-IT": "italiano",
+    "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "портюж",
-    "ro-RO": "рома",
-    "ru-RU": "докладно скинуто",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Не вдалося вийти. Будь ласка, спробуйте ще раз пізніше."
+  "logout_failed": "Не вдалося вийти. Будь ласка, спробуйте ще раз пізніше.",
+  "drive": {
+    "message": {
+      "start_upload": "Почати вивантаження",
+      "start_download": "Почати завантаження"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

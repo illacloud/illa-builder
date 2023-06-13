@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import { useParams } from "react-router-dom"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
@@ -11,6 +12,9 @@ import { removeAllActionPeriod } from "@/utils/action/runAction"
 
 export const useDestroyApp = () => {
   const dispatch = useDispatch()
+
+  const { appId } = useParams()
+
   useEffect(() => {
     return () => {
       dispatch(executionActions.resetExecutionResultReducer())
@@ -22,5 +26,5 @@ export const useDestroyApp = () => {
       destroyExecutionTree()
       removeAllActionPeriod()
     }
-  }, [dispatch])
+  }, [dispatch, appId])
 }

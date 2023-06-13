@@ -114,6 +114,12 @@ import {
   InputWidget,
 } from "@/widgetLibrary/InputWidget"
 import {
+  JSON_EDITOR_EVENT_HANDLER_CONFIG,
+  JSON_EDITOR_PANEL_CONFIG,
+  JSON_EDITOR_WIDGET_CONFIG,
+  JsonEditorWidget,
+} from "@/widgetLibrary/JsonEditorWidget"
+import {
   LIST_EVENT_HANDLER_CONFIG,
   LIST_PANEL_CONFIG,
   LIST_WIDGET_CONFIG,
@@ -179,6 +185,12 @@ import {
   RATE_WIDGET_CONFIG,
   RateWidget,
 } from "@/widgetLibrary/RateWidget"
+import {
+  RECORDING_HANDLER_CONFIG,
+  RECORDING_PANEL_CONFIG,
+  RECORDING_WIDGET_CONFIG,
+  RecordingWidget,
+} from "@/widgetLibrary/RecordingWidget"
 import {
   SELECT_EVENT_HANDLER_CONFIG,
   SELECT_PANEL_CONFIG,
@@ -314,6 +326,18 @@ export const WidgetConfig: WidgetConfigs = {
     config: RANGE_SLIDER_WIDGET_CONFIG,
     panelConfig: RANGE_SLIDER_PANEL_CONFIG,
     eventHandlerConfig: RANGE_SLIDER_EVENT_HANDLER_CONFIG,
+  },
+  RECORDING_WIDGET: {
+    widget: RecordingWidget,
+    config: RECORDING_WIDGET_CONFIG,
+    panelConfig: RECORDING_PANEL_CONFIG,
+    eventHandlerConfig: RECORDING_HANDLER_CONFIG,
+  },
+  JSON_EDITOR_WIDGET: {
+    widget: JsonEditorWidget,
+    config: JSON_EDITOR_WIDGET_CONFIG,
+    panelConfig: JSON_EDITOR_PANEL_CONFIG,
+    eventHandlerConfig: JSON_EDITOR_EVENT_HANDLER_CONFIG,
   },
   // select inputs
   SWITCH_WIDGET: {

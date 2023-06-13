@@ -44,12 +44,6 @@ import { handleLinkOpen } from "@/utils/navigate"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
 
-/**
- * include mariadb or tidb
- * @param props
- * @constructor
- */
-
 const getResourceDefaultPort = (resourceType: string) => {
   switch (resourceType) {
     case "postgresql":

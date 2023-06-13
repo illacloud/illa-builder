@@ -207,7 +207,7 @@
             "access_type": "Typ přístupu"
           },
           "mongodb": {
-            "command": "Command"
+            "command": "Příkaz"
           }
         },
         "placeholder": {
@@ -281,6 +281,9 @@
             "normal": "Vytvořte Neonův projekt a získejte řetězec v řídicím panelu projektu <0></0>.",
             "failed": "Nepodařilo se analyzovat řetězec. Zkontrolujte řetězec nebo nakonfigurujte ručně.",
             "no_password": "Řetězec nemá heslo. Před kopírováním zobrazte prosím heslo na Neon dashboardu."
+          },
+          "clickhouse": {
+            "ssl": "Při používání služby ClickHouse Cloud je doporučeno zapnout SSL."
           }
         },
         "option": {
@@ -684,7 +687,7 @@
             "temperature": "Float(0.0-100.0),nechte prázdné pro 1.0",
             "repetition_penalty": "Plovoucí (0.0–100.0)",
             "max_time": "Plovte (0.0-120.0) pro definování času v sekundách",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "Vyberte typ"
           },
           "tips": {
             "mode_id": "Přejděte na <0>Model Hub</0> a vyberte model, který chcete použít.",
@@ -1158,9 +1161,11 @@
           "DragOrClickNoEventArea": "Přetáhněte nebo neklepněte na žádnou událost",
           "rowClick": "Kliknutí na řádek",
           "refresh": "Aktualizovat",
-          "filtersChange": "Filters change",
-          "rowSelectChange": "Row select change",
-          "onCellSelect": "Select a cell"
+          "filtersChange": "Změna filtrů",
+          "rowSelectChange": "Změna řádku",
+          "onCellSelect": "Vybrat buňku",
+          "delete": "Vymazat",
+          "replay": "Odpověď"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1226,9 +1231,9 @@
           "end_placeholder": "Čas ukončení"
         },
         "recording": {
-          "start_button_text": "Start recording",
-          "stop_button_text": "Stop",
-          "clear_button_text": "Clear"
+          "start_button_text": "Začít nahrávat",
+          "stop_button_text": "Zastavit",
+          "clear_button_text": "Vyčistit"
         }
       },
       "setter_group": {
@@ -1260,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "Kalendář"
         },
-        "event": "Událost"
+        "event": "Událost",
+        "MESSAGE": "ZPRÁVA"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "Zdroj údajů",
+          "enable_message_selec": "Povolit výběr zprávy",
+          "selection_type": "Typ výběru",
+          "loading_when_sending": "Načítání při odesílání",
+          "image_background": "Pozadí obrázku",
+          "senderAvatar": "Avatar odesílatele"
+        },
         "action": "Akce",
         "align": "Align",
         "allow_clear": "Povolit vymazání",
@@ -1297,7 +1311,7 @@
           "value": "Hodnoty datového souboru"
         },
         "switch_group": {
-          "option_label_alignment": "Position of the option label"
+          "option_label_alignment": "Umístění opčního štítku"
         },
         "dataset_config": "Dataset config",
         "datasets": "Datasets",
@@ -1547,8 +1561,8 @@
           "event_text": "Text",
           "draggable": "Posunout",
           "resizable": "Resizable",
-          "custom_message_draggable": "Custom message when disabled dragging",
-          "custom_message_resizable": "Custom message when disable resizing"
+          "custom_message_draggable": "Vlastní zpráva při zakázaném přetažení",
+          "custom_message_resizable": "Vlastní zpráva při zakázání změny velikosti"
         },
         "table": {
           "page_index": "Index stránky",
@@ -1580,21 +1594,40 @@
           "next_cursor": "Další kurzor",
           "has_next_page": "Má další stránku",
           "currency_code": "Kód měny",
-          "cell_selection": "Cell selection",
-          "click_outside_to_des": "Click outside to deselect"
+          "cell_selection": "Výběr buňky",
+          "click_outside_to_des": "Klikněte vně pro zrušení výběru"
         },
         "previous_cursor": "Předchozí kurzor",
         "input": {
-          "type": "Type",
-          "show_visible_button": "Show visible button"
+          "type": "Typ",
+          "show_visible_button": "Zobrazit viditelné tlačítko"
         },
         "recording": {
-          "start_button_text": "Start button text",
-          "clear_button_text": "Clear button text",
-          "min_duration": "Min duration (s)",
-          "max_duration": "Max duration (s)",
-          "stop_button_text": "Stop button text"
-        }
+          "start_button_text": "Text tlačítka Start",
+          "clear_button_text": "Text tlačítka \"Vyčistit\"",
+          "min_duration": "Minimální doba trvání (s)",
+          "max_duration": "Maximální doba trvání (s)",
+          "stop_button_text": "Text tlačítka Zastavit"
+        },
+        "message_id": "ID zprávy",
+        "message": "Zpráva",
+        "message_type": "Typ zprávy",
+        "sendTime": "Čas odeslání",
+        "timeFormat": "Formát času",
+        "currentSenderId": "Aktuální ID odesílatele",
+        "receiving": "Načítání při příjmu",
+        "toolbar-replay": "Zobrazit tlačítko odpovědi",
+        "toolbar-delete": "Zobrazit tlačítko mazání",
+        "showAvatar": "Zobrazit avatar",
+        "showSendTime": "Zobrazit čas odeslání",
+        "showFooter": "Zobrazit zápatí",
+        "leftMessageColor": "Zpráva vlevo",
+        "rightMessageColor": "Zpráva vpravo",
+        "expandAll": "Rozbalit vše",
+        "replayMessageId": "ID odpovědi",
+        "senderName": "Jméno odesílatele",
+        "senderId": "ID odesílatele",
+        "showName": "Zobrazit název"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1639,7 +1672,21 @@
           "type": "Sbalitelný seznam: seznam, všechny položky automaticky zkopírují styl první položky. Data komponenty můžete zadat v každé položce prostřednictvím {{ currentItem.columnName }}. Sbalitelný panel: každý panel je nezávislý, můžete zadat dílčí styl a data každé položky zvlášť.",
           "items": "Počet položek",
           "accordin_mode": "V režimu accordion, když je položka rozšířena, ostatní položky se zhroutí."
-        }
+        },
+        "message": "Pro získání obsahu zprávy z konkrétního pole ve zdroji údajů, jako je pole obsahu, můžete jej nastavit jako {{item.content}}.",
+        "message_type": "Pro nastavení typu zprávy na základě specifického pole ve zdroji údajů, například pole typu můžete nastavit jako {{item.type}}. Podporujeme tyto typy: text, obrázek, videa a zvuk. ",
+        "message_id": "Chcete-li nastavit jedinečné ID pro každou zprávu, můžete jej načíst z konkrétního pole ve zdroji dat. Pokud ji chcete načíst z pole ID, můžete ji nastavit jako {{item.id}}. ",
+        "replayMessageId": "Pokud odpovídá na zadanou zprávu, použijte toto pole pro nastavení zprávy, na kterou chcete odpovědět.",
+        "expandAll": "Zda chcete rozbalit všechny uzly",
+        "sendTime": "Nastavte čas odesílání. Například ve vašem datovém zdroji je čas odeslání pole Odesílání a toto pole můžete nastavit na {{item.sendAt}}.",
+        "senderName": "Nastavte jméno odesílatele. Například ve vašem zdroji dat je jméno odesílatele pole 'sendName a pole můžete nastavit na ' {{item.sendName}}'.",
+        "currentSenderId": "Nastavte aktuální ID odesílatele. Používáme toto pole k určení, který uživatel odesílá informace zobrazené na pravé straně. (Automatic Translation)",
+        "senderId": "Nastavte ID odesílatele. Například ve vašem zdroji dat je ID odesílatele pole sendID a toto pole můžete nastavit na {{item.sendID}}.",
+        "sendTimeFormat": "Nastavte formát času odesílání. Například hh:MM:ss.",
+        "showAvatar": "Nastavte, zda zobrazit avatar",
+        "showName": "Nastavte, zda zobrazit název",
+        "showSendTime": "Nastavte, zda zobrazit čas odeslání",
+        "showFooter": "Nastavte, zda zobrazit zápatí"
       },
       "tab_title": "Kontrolovat",
       "unselected_tip1": "Nebyly vybrány žádné komponenty.",
@@ -1651,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "Zdroj dat komponenty chatu. Použijte {{actionName.data}} pro použití dat z vašich databází nebo API",
+          "sender_avatar": "Nastavte avatar odesílatele. Například ve vašem zdroji dat je avatar odesílatele pole sendAvatar a toto pole můžete nastavit na {{item.sendAvatar}}.",
+          "enable_message_selec": "Nastavte, zda povolit výběr zprávy",
+          "selection_type": "Nastavte, jak vybrat zprávu, kliknutím levým tlačítkem myši nebo kliknutím pravým myši na mobilní zařízení se spustí výběr. ",
+          "loading_when_receivi": "Nastavte, zda se zobrazí načítání při přijímání zpráv. Pokud je vaše zpráva přijata z akce 1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1.",
+          "loading_when_sending": "Nastavte, zda se zobrazí načítání při odesílání zpráv. Pokud je vaše zpráva odeslána na akci1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1.",
+          "image_background": "Nastavte pozadí obrázku. Základní hodnota 64 a URL obrázku jsou podporovány"
+        },
         "carousel_tips": "Pomocí {{ item }} získáte hodnotu ze zdroje dat. Například ve zdroji dat jsou dva atributy. Jsou to imageUrl a url. Pokud chcete přejít na jinou url po kliknutí na obrázek, použijte {{ item.url }} pro nastavení url.",
         "data_source": "Zdroj dat pro definování položek obrázku pomocí mapovaného vyhodnocení. Použijte buď pole hodnot nebo objekt klíčů mapovaných pro pole. Například: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . Můžete také použít data při akcích. Například: {{ mysql1.data }} ",
         "img_url_array": "Pomocí {{ item.attributeName }} získáte URL obrázku ze zdroje dat. ",
@@ -1681,16 +1737,16 @@
           "hide_output": "Nastavte, zda skrýt hodnotu při posunutí"
         },
         "switch_group": {
-          "label": "The label of the option",
-          "value": "An array of the selected options enclosed in {{. For example, {{ [\"Option 1\", \"Option 2\"] }}",
-          "value_error": "The value is duplicated. Please use unique values to avoid errors.",
-          "caption": "A caption displayed under the label",
-          "disabled": "Whether to disable the option",
-          "datasource": "The data source of the switch group. Use {{actionName.data}} to use the data from your databases or APIs",
-          "default_value": "An array enclosed in {{ }}. For example, {{ [\"value1\", \"value2\", \"value3\"] }}",
-          "choose_at_least": "Minimum items allowed to choose",
-          "choose_up_to": "Maximum items allowed to choose",
-          "option_label_alignment": "The position of the labels"
+          "label": "Popisek možnosti",
+          "value": "Pole vybraných možností obsažené v {{. Například {{ [\"Option 1\", \"Option 2\"] }}",
+          "value_error": "Hodnota je duplicitní. Použijte prosím unikátní hodnoty, abyste se vyhnuli chybám.",
+          "caption": "Titulek zobrazený pod popiskem",
+          "disabled": "Určuje, zda zakázat možnost",
+          "datasource": "Zdroj dat ve skupině přepínačů. Použijte {{actionName.data}} pro použití dat z vašich databází nebo API",
+          "default_value": "Pole je zahrnuto v {{ }}. Například {{ [\"value1\", \"value2\", \"value3\"] }}",
+          "choose_at_least": "Minimální počet položek povolených k výběru",
+          "choose_up_to": "Maximální povolený počet položek",
+          "option_label_alignment": "Umístění štítků"
         },
         "step": {
           "default_step": "Výchozí krok",
@@ -1749,8 +1805,8 @@
           "couldnot_drag": "Pokud chcete změnit časové rozmezí, přejděte na náhled pro danou operaci.",
           "draggable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události přetažením přesuňte událost",
           "resizable": "Určuje, zda povolit uživatelům aktualizovat časový rozsah události a změnit časové rozpětí přetažením hranice události na prodloužení nebo zkrácení časového intervalu",
-          "custom_message_draggable": "After dragging is disabled, the message will display when a user drags the event.",
-          "custom_message_resizable": "After resizing is disabled, the message will display when a user resizes the event."
+          "custom_message_draggable": "Po vypnutí přetažení se zobrazí zpráva, když uživatel přetáhne událost.",
+          "custom_message_resizable": "Po vypnutí změny velikosti se zobrazí zpráva, když uživatel změní velikost události."
         },
         "table": {
           "page_index": "Index stránky, kterou chcete vybrat.",
@@ -1781,21 +1837,25 @@
           "filters": "An array of object. Set the original column name as key ",
           "filter_mode": "Režim filtru. A nebo OR.",
           "currency_code": "V tabulce v příloze I nařízení (EU) č. 36/2012 se v řádku týkajícím se subjektu „Ecocert Erőmű Kft.“ nahrazuje tímto:",
-          "whether_allow_users_": "Whether allow users to select a cell",
-          "supported_in_the_row": "Supported in the row single selection mode. After enabling it, click an area other than the table to unselect the row."
+          "whether_allow_users_": "Určuje, zda povolit uživatelům vybrat buňku",
+          "supported_in_the_row": "Podporováno v režimu jediného výběru. Po jeho povolení klikněte na jinou oblast než tabulku pro zrušení výběru řádku."
         },
         "previous_cursor": "Použijte akční data k nastavení předchozího kurzoru. Například  {{ pageInfo.startCursor }}",
         "input": {
-          "type": "To set the input type",
-          "show_visible_button": "To set whether to show the visible button"
+          "type": "Pro nastavení typu vstupu",
+          "show_visible_button": "Nastavení zobrazení viditelného tlačítka"
         },
         "recording": {
-          "start_button_text": "The text displayed on the button when the recording is not started",
-          "stop_button_text": "The text displayed on the button when recording",
-          "clear_button_text": "The text displayed on the button when the recording is completed",
-          "min_duration": "Minimum duration for recording",
-          "max_duration": "Maximum duration for recording"
-        }
+          "start_button_text": "Text zobrazený na tlačítku, když není nahrávání spuštěno",
+          "stop_button_text": "Text zobrazený na tlačítku při nahrávání",
+          "clear_button_text": "Text zobrazený na tlačítku po dokončení záznamu",
+          "min_duration": "Minimální délka záznamu",
+          "max_duration": "Maximální doba trvání záznamu"
+        },
+        "leftMessageColor": "Nastavit barvu zpráv vlevo",
+        "rightMessageColor": "Nastavte barvu zpráv vpravo",
+        "toolbar-replay": "Nastavte, zda se zobrazí tlačítko odpovědi při výběru zprávy.",
+        "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy."
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -1867,8 +1927,14 @@
         },
         "input": {
           "input": "Input",
-          "password": "Password",
-          "search": "Search"
+          "password": "Heslo",
+          "search": "Hledat"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "Kliknutí levým tlačítkem",
+            "right-click": "Kliknutí pravým tlačítkem"
+          }
         }
       },
       "setter_placeholder": {
@@ -1916,10 +1982,10 @@
           "directory": "Jsou povoleny pouze adresáře."
         },
         "recording": {
-          "recording_permission": "Recording permission required",
-          "cannot_set_value_dur": "Cannot set value during recording",
-          "min_duration": "Please recording at least {{minimum}}s",
-          "max_duration": "Please recording at most {{maximum}}s"
+          "recording_permission": "Vyžaduje se oprávnění k nahrávání",
+          "cannot_set_value_dur": "Nelze nastavit hodnotu během nahrávání",
+          "min_duration": "Nahrajte prosím alespoň {{minimum}}s",
+          "max_duration": "Prosím nahrávejte maximálně {{maximum}}s"
         }
       },
       "setter_description": {
@@ -2141,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "Velikost dat překračuje limit (současná velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)"
+    },
+    "general": {
+      "length_limit": "Aktuální vstupní obsah je příliš dlouhý, přestali jsme automaticky počítat data, stále můžete vkládat, to neovlivní vaše použití."
     }
   },
   "exit_preview": "Ukončit náhled",
@@ -2410,6 +2479,18 @@
     "number_input": {
       "name": "Number Input"
     },
+    "rich_text_editor": {
+      "name": "Bohatý textový editor"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON prohlížeč"
+    },
+    "chat": {
+      "name": "Chat"
+    },
     "public": {
       "left": "Vlevo",
       "right": "Vpravo",
@@ -2521,10 +2602,13 @@
       "name_duplicated": "Tento zdroj ID konfliktů v těchto událostech, použijte prosím stejné jméno nebo jiné ID"
     },
     "switch_group": {
-      "name": "Switch group"
+      "name": "Přepnout skupinu"
     },
     "recording": {
-      "name": "Recording"
+      "name": "Nahrávání"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2910,27 +2994,36 @@
   "oauth_redirect_title": "Přesměrování",
   "oauth_redirect_description": "Přesměrování na <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "Anglické",
+    "en-US": "English",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaany",
-    "cs-CZ": "cί tina",
-    "de-DE": "Výkřik",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "franc<unk> ais",
+    "fr-FR": "français",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portugalský<unk> s",
-    "ro-RO": "roma<unk> na<unk>",
-    "ru-RU": "руски<unk>",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "Odhlášení se nezdařilo. Opakujte akci později."
+  "logout_failed": "Odhlášení se nezdařilo. Opakujte akci později.",
+  "drive": {
+    "message": {
+      "start_upload": "Spustit nahrávání",
+      "start_download": "Zahájit stahování"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

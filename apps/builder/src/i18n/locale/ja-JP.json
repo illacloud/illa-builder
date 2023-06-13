@@ -281,6 +281,9 @@
             "normal": "Neon プロジェクトを作成し、<0>プロジェクト ダッシュボード</0>で文字列を取得します。",
             "failed": "文字列の解析に失敗しました。 文字列を確認するか、手動で構成してください。",
             "no_password": "文字列にはパスワードがありません。 コピーする前に Neon ダッシュボードにパスワードを表示してください。"
+          },
+          "clickhouse": {
+            "ssl": "ClickHouse Cloud Service をご利用の場合は、SSL を有効にすることをお勧めします。"
           }
         },
         "option": {
@@ -684,7 +687,7 @@
             "temperature": "Float(0.0-100.0),1.0 の場合は空白のままにする",
             "repetition_penalty": "Float (0.0-100.0)",
             "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
-            "selectParameterType": "Select a type"
+            "selectParameterType": "タイプを選択"
           },
           "tips": {
             "mode_id": "<0>モデルハブ</0>に移動し、使用するモデルを選択します。",
@@ -1160,7 +1163,9 @@
           "refresh": "更新",
           "filtersChange": "行フィルターの変更",
           "rowSelectChange": "行の選択変更",
-          "onCellSelect": "セルを選択"
+          "onCellSelect": "セルを選択",
+          "delete": "削除",
+          "replay": "返信"
         },
         "image_list": {
           "title": "イメージ",
@@ -1260,9 +1265,18 @@
         "eventCalendar": {
           "calendar": "カレンダー"
         },
-        "event": "イベント"
+        "event": "イベント",
+        "MESSAGE": "メッセージ"
       },
       "setter_label": {
+        "chat": {
+          "data_source": "データソース",
+          "enable_message_selec": "メッセージの選択を有効にする",
+          "selection_type": "選択タイプ",
+          "loading_when_sending": "送信時に読み込み中",
+          "image_background": "画像の背景",
+          "senderAvatar": "送信者のアバター"
+        },
         "action": "アクション",
         "align": "整列する",
         "allow_clear": "クリアを許可",
@@ -1594,7 +1608,26 @@
           "min_duration": "最小時間(s)",
           "max_duration": "最大時間(s)",
           "stop_button_text": "停止ボタンのテキスト"
-        }
+        },
+        "message_id": "メッセージ ID",
+        "message": "メッセージ",
+        "message_type": "メッセージの種類",
+        "sendTime": "時間を送信",
+        "timeFormat": "時間のフォーマット",
+        "currentSenderId": "現在の送信者ID",
+        "receiving": "受信時に読み込み中",
+        "toolbar-replay": "返信ボタンを表示",
+        "toolbar-delete": "削除ボタンを表示",
+        "showAvatar": "アバターを表示",
+        "showSendTime": "送信時刻を表示",
+        "showFooter": "フッターを表示",
+        "leftMessageColor": "左側のメッセージ",
+        "rightMessageColor": "右側のメッセージ",
+        "expandAll": "すべて展開",
+        "replayMessageId": "返信メッセージID",
+        "senderName": "送信者名",
+        "senderId": "送信者ID",
+        "showName": "名前を表示"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1639,7 +1672,21 @@
           "type": "折りたたみ可能なリスト: リスト、すべてのアイテムは最初のアイテムのスタイルを自動的にコピーします。 {{ currentItem.columnName }} を使用して、各アイテムのコンポーネント データを指定できます。 折りたたみ可能なパネル: 各パネルは独立しており、各アイテムのコンポーネント スタイルとデータを個別に指定できます。",
           "items": "アイテムの数",
           "accordin_mode": "アコーディオン モードでは、アイテムが展開されると、他のアイテムが折りたたまれます。"
-        }
+        },
+        "message": "データソース内の特定のフィールドからメッセージの内容を取得する。 などのコンテンツフィールドでは、 {{item.content}} として設定することができます。",
+        "message_type": "データソース内の特定のフィールドに基づいてメッセージのタイプを設定します。 例えば、type フィールドなどで、 {{item.type}}として設定できます。 私たちは、テキスト、画像、ビデオ、およびオーディオというこれらのタイプをサポートしています。 ",
+        "message_id": "各メッセージに一意の ID を設定するには、データソース内の特定のフィールドから取得します。 idフィールドから取得したい場合は、 {{item.id}}として設定できます。 ",
+        "replayMessageId": "指定したメッセージに返信する場合は、このフィールドを使用してどのメッセージに返信するかを設定します。",
+        "expandAll": "すべてのノードを展開するかどうか",
+        "sendTime": "送信時間を設定 たとえば、データソースでは、送信時間は sendAt フィールドで、フィールドを {{item.sendAt}} に設定できます。",
+        "senderName": "送信者名を設定します。 たとえば、データソース内では、送信者名は sendName フィールドであり、フィールドを {{item.sendName}} に設定できます。",
+        "currentSenderId": "現在の送信者IDを設定します。このフィールドを使用して、どのユーザーが右側に表示される情報を送信するかを決定します。",
+        "senderId": "送信者IDを設定します。 たとえば、データソース内では、sendID は sendID フィールドであり、フィールドを {{item.sendID}} に設定することができます。",
+        "sendTimeFormat": "送信時間の形式を設定します。たとえば、hh:MM:ss。",
+        "showAvatar": "アバターを表示するかどうかを設定します",
+        "showName": "名前を表示するか否かの設定",
+        "showSendTime": "送信時刻を表示するかどうかを設定します",
+        "showFooter": "フッターを表示するかどうかを設定します"
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -1651,6 +1698,15 @@
         }
       },
       "setter_tips": {
+        "chat": {
+          "data_source": "チャットコンポーネントのデータソース。データベースや API からのデータを使用するには {{actionName.data}} を使用します。",
+          "sender_avatar": "送信者アバターを設定します。 たとえば、データソースでは、送信者のアバターはsendAvatarフィールドで、 {{item.sendAvatar}}に設定できます。",
+          "enable_message_selec": "メッセージを選択するかどうかを設定します",
+          "selection_type": "メッセージの選択方法を設定し、左クリックまたは右クリックします。モバイルデバイスで使用する場合は、クリックして選択をトリガーします。 ",
+          "loading_when_receivi": "メッセージの受信時に読み込みを表示するかどうかを設定します。 アクション1からメッセージを受信した場合は、 {{action1.isRunning}}に設定できます。 そしてロード状態は action1 が実行されているときに表示されます。",
+          "loading_when_sending": "メッセージ送信時に読み込みを表示するかどうかを設定します。 あなたのメッセージが action1 に送信された場合、 {{action1.isRunning}}に設定することができます。 そしてロード状態は action1 が実行されているときに表示されます。",
+          "image_background": "画像の背景を設定します。Base64と画像のURLはサポートされています"
+        },
         "carousel_tips": "{{ item }} を使用して、データ ソースから値を取得します。 たとえば、データ ソースには 2 つの属性があります。 imageUrl と url です。 画像をクリックしたときに別の URL に移動する場合は、{{ item.url }} を使用して URL を設定します。",
         "data_source": "マップされた評価を使用してイメージ アイテムを定義するためのデータ ソース。 値の配列または配列にマップされたキーのオブジェクトのいずれかを使用します。 例: {{[{ x:1, y:1 },{ x:2, y:2 },...]}} . アクションでデータを使用することもできます。 例: {{ mysql1.data }}",
         "img_url_array": "Use {{ currentItem }} to get image URL from the data source. ",
@@ -1795,7 +1851,11 @@
           "clear_button_text": "録音が完了したときにボタンに表示されるテキスト",
           "min_duration": "録音の最小期間",
           "max_duration": "録音の最大期間"
-        }
+        },
+        "leftMessageColor": "左側のメッセージの色を設定します",
+        "rightMessageColor": "右側のメッセージの色を設定します",
+        "toolbar-replay": "メッセージを選択したときに返信ボタンを表示するかどうかを設定します。",
+        "toolbar-delete": "メッセージを選択したときに削除ボタンを表示するかどうかを設定します。"
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1869,6 +1929,12 @@
           "input": "入力",
           "password": "パスワード",
           "search": "検索"
+        },
+        "chat": {
+          "selection_type": {
+            "left-click": "左クリック",
+            "right-click": "右クリック(&R)"
+          }
         }
       },
       "setter_placeholder": {
@@ -2141,6 +2207,9 @@
     },
     "global": {
       "size_exceed": "データサイズが制限を超えています (現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)"
+    },
+    "general": {
+      "length_limit": "現在の入力内容が長すぎます。自動的にデータを計算するのを停止しました。引き続き入力することができます。これはあなたの使用に影響しません。"
     }
   },
   "exit_preview": "プレビューを終了",
@@ -2410,6 +2479,18 @@
     "number_input": {
       "name": "数字入力ボックス"
     },
+    "rich_text_editor": {
+      "name": "リッチテキストエディタ"
+    },
+    "json_editor": {
+      "name": "JSON editor"
+    },
+    "json_viewer": {
+      "name": "JSON ビューアー"
+    },
+    "chat": {
+      "name": "チャット"
+    },
     "public": {
       "left": "左",
       "right": "右",
@@ -2525,6 +2606,9 @@
     },
     "recording": {
       "name": "録音"
+    },
+    "jsonEditor": {
+      "name": "JSON Editor"
     }
   },
   "page": {
@@ -2914,23 +2998,32 @@
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "アフリカーンス語",
-    "cs-CZ": "c<unk> es<unk> tina",
-    "de-DE": "ドイツ",
+    "af-ZA": "Afrikaans",
+    "cs-CZ": "čeština",
+    "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "francブドウ栽培format@@0",
+    "fr-FR": "français",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "portugue<unk> s",
-    "ro-RO": "roma<unk> na<unk>",
-    "ru-RU": "<unk> <unk> <unk> <unk> <unk> <unk>",
+    "pt-PT": "português",
+    "ro-RO": "română",
+    "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
-  "logout_failed": "ログアウトできませんでした"
+  "logout_failed": "ログアウトできませんでした",
+  "drive": {
+    "message": {
+      "start_upload": "アップロードを開始",
+      "start_download": "ダウンロードを開始"
+    }
+  },
+  "frame": {
+    "paste_no_aimed": "Please click on the frame to specify the paste location."
+  }
 }

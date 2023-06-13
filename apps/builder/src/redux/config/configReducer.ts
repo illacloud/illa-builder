@@ -161,20 +161,6 @@ export const updateDevicesOnlineStatusReducer: CaseReducer<
   state.isOnline = action.payload
 }
 
-export const updateDraggingStateReducer: CaseReducer<
-  ConfigState,
-  PayloadAction<boolean>
-> = (state, action) => {
-  state.isDragging = action.payload
-}
-
-export const updateResizingStateReducer: CaseReducer<
-  ConfigState,
-  PayloadAction<boolean>
-> = (state, action) => {
-  state.isResizing = action.payload
-}
-
 export const updateWSStatusReducer: CaseReducer<
   ConfigState,
   PayloadAction<UpdateWSStatusPayload>
