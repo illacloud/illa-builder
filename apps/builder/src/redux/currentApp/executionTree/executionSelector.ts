@@ -399,3 +399,29 @@ export const getCurrentPageModalWidgetExecutionResultArray = createSelector(
     return widgetExecutionResultArray
   },
 )
+
+export const getDraggingComponentIDs = createSelector(
+  [getExecution],
+  (execution) => execution.draggingComponentIDs,
+)
+
+export const getResizingComponentIDs = createSelector(
+  [getExecution],
+  (execution) => {
+    return execution.resizingComponentIDs
+  },
+)
+
+export const getIsDragging = createSelector(
+  [getDraggingComponentIDs],
+  (ids) => {
+    return ids.length > 0
+  },
+)
+
+export const getIsResizing = createSelector(
+  [getResizingComponentIDs],
+  (ids) => {
+    return ids.length > 0
+  },
+)

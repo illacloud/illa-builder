@@ -21,7 +21,7 @@ import {
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { BasicContainer } from "../BasicContainer/BasicContainer"
 import { ModalWidgetProps } from "./interface"
 import {
@@ -52,6 +52,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
     unitH,
     isVisible,
     blockColumns,
+    displayName,
     handleUpdateOriginalDSLMultiAttr,
     triggerEventHandler,
   } = props
@@ -188,7 +189,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(configActions.updateResizingStateReducer(true))
+    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(
@@ -201,7 +202,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         headerHeight: finalHeight,
       })
-      dispatch(configActions.updateResizingStateReducer(false))
+      dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
     [
       dispatch,
@@ -222,7 +223,7 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: finalHeight,
       })
-      dispatch(configActions.updateResizingStateReducer(false))
+      dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
     [
       dispatch,

@@ -4,8 +4,8 @@ import { getSnippets } from "./dynamicConverter"
 export const QUOTED_DYNAMIC_STRING_REGEX = /["']({{[\s\S]*?}})["']/g
 export const DYNAMIC_STRING_REG = /{{([\s\S]*?)}}/
 
-export const isDynamicString = (value: string): boolean =>
-  DYNAMIC_STRING_REG.test(value)
+export const isDynamicString = (value: unknown): boolean =>
+  typeof value === "string" && value.endsWith("}}") && value.startsWith("{{")
 
 export const filterBindingSegmentsAndRemoveQuotes = (
   originDynamicString: string,
