@@ -41,7 +41,7 @@ export interface TeamInfo {
   icon: string
   identifier: string
   teamMemberID: string
-  teamCurrentLicense: SubscribeInfo
+  currentTeamLicense: SubscribeInfo
   personalConfig: TeamPersonalConfig
   myRole: USER_ROLE
   permission: TeamMemberPermission

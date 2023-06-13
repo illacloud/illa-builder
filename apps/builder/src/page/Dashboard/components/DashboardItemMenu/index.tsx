@@ -13,6 +13,8 @@ import {
   useModal,
 } from "@illa-design/react"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
+import { MemberListContext } from "@/illa-public-component/MemberList/context/MemberListContext"
+import { SubscribeInfo } from "@/illa-public-component/MemberList/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -431,28 +433,35 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
       >
-        <InviteModal
-          hasApp
-          teamName={isCloudVersion ? teamInfo?.name : "ILLA"}
-          userNickname={currentUserInfo.nickname}
-          isCloudVersion={isCloudVersion}
-          appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
-          isAppPublic={app?.config?.public}
-          fetchInviteLink={fetchShareLink}
-          renewInviteLink={renewShareLink}
-          configInviteLink={setInviteLinkEnabled}
-          allowInviteByLink={inviteLinkEnabled}
-          allowEditorManageTeamMember={allowEditorManageTeamMember}
-          allowViewerManageTeamMember={allowViewerManageTeamMember}
-          userListData={members}
-          currentUserRole={currentUserRole}
-          inviteByEmail={handleInviteByEmail}
-          changeTeamMembersRole={handleChangeTeamMembersRole}
-          updateAppPublicConfig={updateAppConfig}
-          visible={shareVisible}
-          handleCloseModal={closeInviteModal}
-          appID={app.appId}
-        />
+        <MemberListContext.Provider
+          value={{
+            currentTeamLicense:
+              teamInfo?.currentTeamLicense ?? ({} as SubscribeInfo),
+          }}
+        >
+          <InviteModal
+            hasApp
+            teamName={isCloudVersion ? teamInfo?.name : "ILLA"}
+            userNickname={currentUserInfo.nickname}
+            isCloudVersion={isCloudVersion}
+            appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
+            isAppPublic={app?.config?.public}
+            fetchInviteLink={fetchShareLink}
+            renewInviteLink={renewShareLink}
+            configInviteLink={setInviteLinkEnabled}
+            allowInviteByLink={inviteLinkEnabled}
+            allowEditorManageTeamMember={allowEditorManageTeamMember}
+            allowViewerManageTeamMember={allowViewerManageTeamMember}
+            userListData={members}
+            currentUserRole={currentUserRole}
+            inviteByEmail={handleInviteByEmail}
+            changeTeamMembersRole={handleChangeTeamMembersRole}
+            updateAppPublicConfig={updateAppConfig}
+            visible={shareVisible}
+            handleCloseModal={closeInviteModal}
+            appID={app.appId}
+          />
+        </MemberListContext.Provider>
       </MixpanelTrackProvider>
       <RenameModal
         appId={app.appId}

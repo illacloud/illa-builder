@@ -1,4 +1,12 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import {
+  FC,
+  MouseEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -26,6 +34,8 @@ import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import { isSubscribeLicense } from "@/illa-public-component/UserRoleUtils"
 import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
@@ -46,9 +56,16 @@ import {
   getCurrentAppWaterMarkConfig,
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import {
+  fetchDeployApp,
+  forkCurrentApp,
+  updateWaterMarkConfig,
+} from "@/services/apps"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
   descriptionStyle,
   informationStyle,
@@ -70,9 +87,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const { teamIdentifier, appId } = useParams()
 
-  // [TODO] billing
-  const paymentStatus = false
-
   const appInfo = useSelector(getAppInfo)
   const waterMark = useSelector(getCurrentAppWaterMarkConfig)
   const debuggerVisible = useSelector(isOpenDebugger)
@@ -82,6 +96,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const debugMessageNumber = debuggerData ? Object.keys(debuggerData).length : 0
   const isEditMode = useSelector(getIsILLAEditMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
+  const teamInfo = useSelector(getCurrentTeamInfo)
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+
+  const paymentStatus = isSubscribeLicense(teamInfo?.currentTeamLicense?.plan)
 
   const [duplicateVisible, setDuplicateVisible] = useState(false)
   const [forkModalVisible, setForkModalVisible] = useState(false)
@@ -181,6 +199,28 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }, [dispatch, isEditMode])
 
+  const handleWaterMarkChange = useCallback(
+    async (value: boolean, event: MouseEvent) => {
+      if (appId) {
+        event.stopPropagation()
+        await updateWaterMarkConfig(value, appId)
+        dispatch(
+          dashboardAppActions.modifyConfigDashboardAppReducer({
+            appId,
+            config: { waterMark: value },
+          }),
+        )
+      }
+    },
+    [appId, dispatch],
+  )
+
+  const handleUpgradeModal = useCallback(() => {
+    if (!paymentStatus) {
+      handleUpgradeModalVisible(true, "upgrade")
+    }
+  }, [paymentStatus, handleUpgradeModalVisible])
+
   const PreviewButton = useMemo(
     () => (
       <Button
@@ -261,25 +301,28 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                         })
                       }}
                     />
-                    <DropListItem
-                      key="configWaterMark"
-                      value="configWaterMark"
-                      title={
-                        <span css={upgradeStyle}>
-                          {t("Remove watermark")}
-                          {paymentStatus ? (
-                            <Switch checked={waterMark} />
-                          ) : (
-                            <Tag colorScheme="techPurple">
-                              <UpgradeIcon /> Upgrade
-                            </Tag>
-                          )}
-                        </span>
-                      }
-                      onClick={() => {
-                        // set configWaterMark
-                      }}
-                    />
+                    {isCloudVersion && (
+                      <DropListItem
+                        key="configWaterMark"
+                        value="configWaterMark"
+                        title={
+                          <span css={upgradeStyle}>
+                            {t("Remove watermark")}
+                            {paymentStatus ? (
+                              <Switch
+                                checked={waterMark}
+                                onChange={handleWaterMarkChange}
+                              />
+                            ) : (
+                              <Tag colorScheme="techPurple">
+                                <UpgradeIcon /> Upgrade
+                              </Tag>
+                            )}
+                          </span>
+                        }
+                        onClick={handleUpgradeModal}
+                      />
+                    )}
                   </DropList>
                 }
               >

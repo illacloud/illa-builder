@@ -1,4 +1,4 @@
-import { DashboardApp } from "./dashboardAppState"
+import { DashboardApp, DashboardAppConfig } from "./dashboardAppState"
 
 export interface AddDashboardAppPayload {
   app: DashboardApp
@@ -12,7 +12,5 @@ export interface RenameDashboardAppPayload {
 
 export interface ModifyConfigDashboardAppPayload {
   appId: string
-  config: {
-    public: boolean
-  }
+  config: Partial<DashboardAppConfig>
 }
