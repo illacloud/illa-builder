@@ -23,10 +23,10 @@ import {
   applyXDirectionDashedLineStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
@@ -452,7 +452,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   const handleResizeStart: ResizeStartCallback = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    dispatch(configActions.updateResizingStateReducer(true))
+    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
   }
 
   const handleOnResizeTopStop: ResizeCallback = useCallback(
@@ -465,7 +465,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         headerHeight: finalHeight,
       })
-      dispatch(configActions.updateResizingStateReducer(false))
+      dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
     [
       dispatch,
@@ -486,7 +486,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: finalHeight,
       })
-      dispatch(configActions.updateResizingStateReducer(false))
+      dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
     [
       dispatch,

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -23,7 +23,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
 
   const [loading, setLoading] = useState(false)
   const message = useMessage()
-  const [name, setName] = useState<string>()
+  const newAppNameRef = useRef<string>()
 
   useEffect(() => {
     visible &&
@@ -52,7 +52,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           {
             element: "create_new_app_modal_close",
-            parameter3: name?.length ?? 0,
+            parameter3: newAppNameRef.current?.length ?? 0,
           },
         )
       }}
@@ -63,7 +63,11 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           { element: "create_new_app_modal_save" },
         )
-        if (name === undefined || name === "" || name.trim() === "") {
+        if (
+          newAppNameRef.current === undefined ||
+          newAppNameRef.current === "" ||
+          newAppNameRef.current.trim() === ""
+        ) {
           message.error({
             content: t("dashboard.app.name_empty"),
           })
@@ -84,12 +88,12 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
           {
             element: "create_new_app_modal_save",
             parameter2: "suc",
-            parameter3: name.length,
+            parameter3: newAppNameRef.current?.length,
           },
         )
         setLoading(true)
         const requestData = {
-          appName: name,
+          appName: newAppNameRef.current,
           initScheme: BASIC_APP_CONFIG,
         }
         fetchCreateApp(requestData)
@@ -117,7 +121,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
       <Input
         colorScheme="techPurple"
         onChange={(res) => {
-          setName(res)
+          newAppNameRef.current = res
         }}
       />
     </Modal>

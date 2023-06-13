@@ -5,7 +5,7 @@ import { Rnd } from "react-rnd"
 import { useWindowSize } from "react-use"
 import { BuilderModal } from "@/components/Modal"
 import { MovableModalProps } from "@/components/Modal/interface"
-import { getIsDragging } from "@/redux/config/configSelector"
+import { getIsDragging } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const MovableModal: FC<MovableModalProps> = (props) => {
   const { bodyContent, title, footerContent, onClose } = props

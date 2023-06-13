@@ -2,7 +2,7 @@ import { RefObject, useCallback, useContext, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useWindowSize } from "react-use"
-import { getIsDragging } from "@/redux/config/configSelector"
+import { getIsDragging } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getMousePositionWithIllaUnit } from "../calcMouse"
 import { MouseMoveContext } from "../context/mouseMoveContext"
@@ -23,6 +23,7 @@ export const useMousePositionAsync = (
 ) => {
   const params = useParams()
   const userInfo = useSelector(getCurrentUser)
+  const isDragging = useSelector(getIsDragging)
   const { width, height } = useWindowSize()
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const cursorPositionRef = useRef<CursorPosition>({
@@ -31,7 +32,6 @@ export const useMousePositionAsync = (
     xMod: 0,
     yMod: 0,
   })
-  const isDragging = useSelector(getIsDragging)
 
   const mouseMoveContext = useContext(MouseMoveContext)
   const mouseEnterHandler = useCallback(() => {

@@ -8,8 +8,8 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import {
-  getAllComponentDisplayNameMapProps,
   getCanvas,
   getCurrentPageBodySectionComponentsSelector,
   getCurrentPageFooterSectionComponentsSelector,
@@ -31,7 +31,6 @@ import {
   BASIC_BLOCK_COLUMNS,
   LEFT_OR_RIGHT_DEFAULT_COLUMNS,
 } from "@/utils/generators/generatePageOrSectionConfig"
-import { cursorActions } from "../../cursor/cursorSlice"
 import { UpdateComponentNodeLayoutInfoPayload } from "./componentsPayload"
 import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
 
@@ -596,51 +595,6 @@ const handlerUpdateViewportSizeEffect = (
   listenApi.dispatch(cursorActions.resetCursorReducer())
 }
 
-const getAllChildrenDisplayName = (
-  nodeDisplayName: string,
-  displayNameMapProps: Record<string, any>,
-): string[] => {
-  let result = [nodeDisplayName]
-  const node = displayNameMapProps[nodeDisplayName]
-  const children: string[] = node?.$childrenNode || []
-  if (children.length > 0) {
-    children.forEach((child) => {
-      result = [
-        ...result,
-        ...getAllChildrenDisplayName(child, displayNameMapProps),
-      ]
-    })
-  }
-  return result
-}
-
-const batchUpdateComponentStatusInfoEffect = (
-  action: ReturnType<
-    typeof componentsActions.batchUpdateComponentStatusInfoReducer
-  >,
-  listenApi: AppListenerEffectAPI,
-) => {
-  const { payload } = action
-  let allChildrenDisplayName: string[] = []
-  const displayNameMapProps =
-    getAllComponentDisplayNameMapProps(listenApi.getState()) ?? {}
-  payload.forEach((updateSlice) => {
-    if (
-      updateSlice.statusInfo.isDragging ||
-      updateSlice.statusInfo.isResizing
-    ) {
-      allChildrenDisplayName = [
-        ...allChildrenDisplayName,
-        ...getAllChildrenDisplayName(
-          updateSlice.displayName,
-          displayNameMapProps,
-        ),
-      ]
-    }
-  })
-  listenApi.dispatch(cursorActions.filterCursorReducer(allChildrenDisplayName))
-}
-
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -690,10 +644,6 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateViewportSizeReducer,
       effect: handlerUpdateViewportSizeEffect,
-    }),
-    startListening({
-      actionCreator: componentsActions.batchUpdateComponentStatusInfoReducer,
-      effect: batchUpdateComponentStatusInfoEffect,
     }),
   ]
 

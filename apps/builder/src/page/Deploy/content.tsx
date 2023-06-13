@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { useAsyncValue, useBeforeUnload } from "react-router-dom"
 import { Unsubscribe } from "redux"
 import { TriggerProvider } from "@illa-design/react"
+import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { fixedActionToNewAction } from "@/hooks/utils/fixedAction"
 import { fixedComponentsToNewComponents } from "@/hooks/utils/fixedComponents"
 import {
@@ -77,6 +78,8 @@ export const DeployContent: FC = () => {
     }
     initApp()
   }, [asyncValue, dispatch])
+
+  useDestroyApp()
 
   useEffect(() => {
     track(
