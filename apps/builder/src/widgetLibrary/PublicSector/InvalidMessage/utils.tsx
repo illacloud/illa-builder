@@ -100,7 +100,7 @@ export const handleCheckMaxDuration = (
 export const handleCheckPattern = (
   value: unknown,
   pattern: ValidateCheckProps["pattern"],
-  reg?: string | RegExp,
+  reg?: string,
 ) => {
   switch (pattern) {
     case "Email": {
@@ -124,9 +124,12 @@ export const handleCheckPattern = (
     case "Regex":
       if (!reg || typeof value === undefined) return
       try {
-        const stringValue = JSON.stringify(value)
-        const matchPattern = new RegExp(reg)
-        if (!matchPattern.test(stringValue)) {
+        let finalReg = reg
+        if (reg.startsWith("/") && reg.endsWith("/")) {
+          finalReg = reg.slice(1, reg.length - 1)
+        }
+        const matchPattern = new RegExp(finalReg)
+        if (typeof value !== "string" || !matchPattern.test(value)) {
           return i18n.t("editor.validate_message.regex")
         }
       } catch (e) {
