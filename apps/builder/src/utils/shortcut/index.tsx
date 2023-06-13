@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Key } from "ts-key-enum"
 import { createModal, useMessage } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -13,6 +14,7 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
@@ -22,7 +24,7 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -37,6 +39,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const message = useMessage()
 
   const currentSelectedComponent = useSelector(getSelectedComponents)
+
   const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
     (rootState) => {
       const currentSelectedComponentDisplayName =
@@ -93,7 +96,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const showDeleteDialog = (
     displayName: string[],
-    type?: "widget" | "page",
+    type?: "widget" | "page" | "action",
     options?: Record<string, any>,
   ) => {
     const modal = createModal()
@@ -101,6 +104,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       const textList = displayName.join(", ").toString()
       setAlreadyShowDeleteDialog(true)
       const id = modal.show({
+        blockOkHide: true,
+        blockCancelHide: true,
         title: t("editor.component.delete_title", {
           displayName: textList,
         }),
@@ -112,16 +117,15 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
         okButtonProps: {
           colorScheme: "red",
         },
-
         closable: false,
         onCancel: () => {
           setAlreadyShowDeleteDialog(false)
           modal.update(id, { visible: false })
         },
         onOk: () => {
-          setAlreadyShowDeleteDialog(false)
-          modal.update(id, { visible: false })
           if (type === "page") {
+            setAlreadyShowDeleteDialog(false)
+            modal.update(id, { visible: false })
             trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
               element: "delete_page_modal_delete",
             })
@@ -132,18 +136,39 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
               }),
             )
             return
+          } else if (type === "widget") {
+            setAlreadyShowDeleteDialog(false)
+            modal.update(id, { visible: false })
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "component_delete_modal_delete",
+              parameter3: options?.source || "left_delete",
+            })
+            dispatch(
+              componentsActions.deleteComponentNodeReducer({
+                displayNames: displayName,
+                source: options?.source || "left_delete",
+              }),
+            )
+            dispatch(configActions.clearSelectedComponent())
+          } else if (type === "action") {
+            modal.update(id, { okLoading: true })
+            for (let i = 0; i < displayName.length; i++) {
+              const action = getActionItemByDisplayName(
+                store.getState(),
+                displayName[i],
+              )
+              if (action) {
+                // fail to await @chenlongbo
+                onDeleteActionItem(action)
+              }
+            }
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "action_delete_modal_delete",
+            })
+            modal.update(id, { okLoading: false })
+            setAlreadyShowDeleteDialog(false)
+            modal.update(id, { visible: false })
           }
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-            element: "component_delete_modal_delete",
-            parameter3: options?.source || "left_delete",
-          })
-          dispatch(
-            componentsActions.deleteComponentNodeReducer({
-              displayNames: displayName,
-              source: options?.source || "left_delete",
-            }),
-          )
-          dispatch(configActions.clearSelectedComponent())
         },
         afterOpen: () => {
           if (type === "page") {
@@ -157,6 +182,11 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
               parameter3: options?.source || "",
             })
           }
+          if (type === "action") {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+              element: "action_delete_modal",
+            })
+          }
         },
       })
     }
@@ -165,18 +195,37 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   useHotkeys(
     Key.Backspace,
     () => {
-      showDeleteDialog(
-        currentSelectedComponent.map((displayName) => {
-          return displayName
-        }),
-        "widget",
-        { source: "keyboard" },
-      )
+      switch (FocusManager.getFocus()) {
+        case "none":
+          break
+        case "canvas":
+        case "dataWorkspace_component":
+          showDeleteDialog(
+            currentSelectedComponent.map((displayName) => {
+              return displayName
+            }),
+            "widget",
+            { source: "keyboard" },
+          )
+          break
+        case "dataWorkspace_action":
+        case "action":
+          if (currentSelectedAction?.displayName) {
+            showDeleteDialog([currentSelectedAction.displayName], "action", {
+              source: "keyboard",
+            })
+          }
+          break
+        case "widget_picker":
+          break
+        case "components":
+          break
+      }
     },
     {
       enabled: isEditMode,
     },
-    [showDeleteDialog, currentSelectedComponent],
+    [showDeleteDialog, currentSelectedComponent, currentSelectedAction],
   )
 
   useHotkeys(

@@ -29,6 +29,5 @@ export const GoogleSheetResourceInitial: GoogleSheetResource = {
   authentication: "serviceAccount",
   opts: {
     privateKey: "",
-    // accessType: "rw",
   },
 }

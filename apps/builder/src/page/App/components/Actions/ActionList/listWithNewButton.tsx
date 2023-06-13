@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -18,9 +18,10 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { ActionGenerator } from "../ActionGenerator"
 import { ActionListItem } from "../ActionListItem"
-import { onCopyActionItem, onDeleteActionItem } from "../api"
+import { onCopyActionItem } from "../api"
 import { ListWithNewButtonProps } from "./interface"
 import {
   actionListEmptyStyle,
@@ -33,7 +34,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
   const { searchActionValue } = props
   const selectedAction = useSelector(getSelectedAction)
   const cachedAction = useSelector(getCachedAction)
-
+  const shortcut = useContext(ShortCutContext)
   const [generatorVisible, setGeneratorVisible] = useState<boolean>()
   const actionList = useSelector(getActionList)
 
@@ -78,7 +79,9 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
                 <ActionListItem
                   action={data}
                   onCopyItem={onCopyActionItem}
-                  onDeleteItem={onDeleteActionItem}
+                  onDeleteItem={(action) => {
+                    shortcut.showDeleteDialog([action.displayName], "action")
+                  }}
                   onItemClick={(action) => {
                     if (selectedAction === null) {
                       dispatch(configActions.changeSelectedAction(action))

@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { useLocation } from "react-router-dom"
 import {
   AddIcon,
   Modal,
@@ -13,7 +14,11 @@ import {
   illaPrefix,
 } from "@illa-design/react"
 import { GoogleOAuthContext } from "@/context/GoogleOAuthContext"
-import { useDetectGoogleOAuthStatus } from "@/hooks/useDetectGoogleOAuthStatus"
+import {
+  checkGoogleOAuthStatusParams,
+  removeStatusAndResourceId,
+  useDetectGoogleOAuthStatus,
+} from "@/hooks/useDetectGoogleOAuthStatus"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
@@ -49,6 +54,7 @@ import {
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const location = useLocation()
 
   const { oAuthStatus, setOAuthStatus } = useDetectGoogleOAuthStatus()
   const [editorVisible, setEditorVisible] = useState(false)
@@ -204,15 +210,27 @@ export const ResourceChoose: FC = () => {
           })}
           onCancel={() => {
             setEditorVisible(false)
+            // remove google auth query
+            if (checkGoogleOAuthStatusParams(location)) {
+              window.location.href = removeStatusAndResourceId(location)
+            }
           }}
         >
           <ResourceCreator
             resourceId={selectedAction.resourceId}
             onBack={() => {
               setEditorVisible(false)
+              // remove google auth query
+              if (checkGoogleOAuthStatusParams(location)) {
+                window.location.href = removeStatusAndResourceId(location)
+              }
             }}
             onFinished={() => {
               setEditorVisible(false)
+              // remove google auth query
+              if (checkGoogleOAuthStatusParams(location)) {
+                window.location.href = removeStatusAndResourceId(location)
+              }
             }}
           />
         </Modal>
@@ -221,6 +239,10 @@ export const ResourceChoose: FC = () => {
         visible={generatorVisible}
         onClose={() => {
           setGeneratorVisible(false)
+          // remove google auth query
+          if (checkGoogleOAuthStatusParams(location)) {
+            window.location.href = removeStatusAndResourceId(location)
+          }
         }}
       />
     </TriggerProvider>

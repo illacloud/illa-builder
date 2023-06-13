@@ -1,4 +1,11 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -19,10 +26,7 @@ import { ACTION_PANEL_TABS } from "@/components/Tabs/constant"
 import i18n from "@/i18n/config"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
-import {
-  onCopyActionItem,
-  onDeleteActionItem,
-} from "@/page/App/components/Actions/api"
+import { onCopyActionItem } from "@/page/App/components/Actions/api"
 import {
   getCachedAction,
   getIsILLAGuideMode,
@@ -45,6 +49,7 @@ import { fetchUpdateAction } from "@/services/action"
 import { RootState } from "@/store"
 import { runOriginAction } from "@/utils/action/runAction"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { ActionTitleBarProps } from "./interface"
 import {
   actionFailBlockStyle,
@@ -135,6 +140,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   const message = useMessage()
   const [saveLoading, setSaveLoading] = useState(false)
+  const shortcut = useContext(ShortCutContext)
 
   const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)!
@@ -376,104 +382,112 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   )
 
   return (
-    <div css={actionTitleBarStyle}>
-      <SimpleTabs
-        items={innerTabItems}
-        activeKey={activeTab}
-        handleClickChangeTab={handleChangeTab}
-        containerStyle={tabsContainerStyle}
-      />
-      <div css={editableTitleBarWrapperStyle}>
-        <EditableText
-          key={selectedAction.displayName}
-          displayName={selectedAction.displayName}
-          updateDisplayNameByBlur={async (value) => {
-            const newAction = {
-              ...selectedAction,
-              displayName: value,
-            }
-            if (isGuideOpen) {
-              dispatch(
-                actionActions.updateActionDisplayNameReducer({
-                  newDisplayName: value,
-                  oldDisplayName: selectedAction.displayName,
-                  actionID: newAction.actionId,
-                }),
-              )
-              return
-            }
-            setSaveLoading(true)
-            try {
-              await fetchUpdateAction(newAction)
-              dispatch(
-                actionActions.updateActionDisplayNameReducer({
-                  newDisplayName: value,
-                  oldDisplayName: selectedAction.displayName,
-                  actionID: newAction.actionId,
-                }),
-              )
-            } catch (e) {
-              message.error({
-                content: t("change_fail"),
-              })
-            }
-            setSaveLoading(false)
-          }}
-          onClick={() => {
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.RENAME, {
-              element: "action_rename",
-              parameter1: selectedAction.actionType,
-              parameter2: "hover",
-            })
-          }}
+    <>
+      <div css={actionTitleBarStyle}>
+        <SimpleTabs
+          items={innerTabItems}
+          activeKey={activeTab}
+          handleClickChangeTab={handleChangeTab}
+          containerStyle={tabsContainerStyle}
         />
-      </div>
-      <div css={runResultAndRunContainerStyle}>
-        {renderResult && (runError ? failBlock : successBlock)}
-        <Dropdown
-          position="bottom-end"
-          trigger="click"
-          dropList={
-            <DropList w="184px">
-              <Item
-                value="duplicate"
-                key="duplicate"
-                title={t("editor.action.action_list.contextMenu.duplicate")}
-                onClick={() => {
-                  onCopyActionItem(selectedAction)
-                }}
-              />
-              <Item
-                key="delete"
-                value="delete"
-                title={t("editor.action.action_list.contextMenu.delete")}
-                deleted
-                onClick={() => {
-                  onDeleteActionItem(selectedAction)
-                }}
-              />
-            </DropList>
-          }
-        >
-          <Button colorScheme="grayBlue" leftIcon={<MoreIcon size="14px" />} />
-        </Dropdown>
-        {renderButton && (
-          <Button
-            pos="relative"
-            className={`${cachedAction.displayName}-run`}
-            ml="8px"
-            colorScheme="techPurple"
-            variant={isChanged ? "fill" : "light"}
-            size="medium"
-            loading={isRunning || saveLoading}
-            leftIcon={<CaretRightIcon />}
-            onClick={handleActionOperation}
+        <div css={editableTitleBarWrapperStyle}>
+          <EditableText
+            key={selectedAction.displayName}
+            displayName={selectedAction.displayName}
+            updateDisplayNameByBlur={async (value) => {
+              const newAction = {
+                ...selectedAction,
+                displayName: value,
+              }
+              if (isGuideOpen) {
+                dispatch(
+                  actionActions.updateActionDisplayNameReducer({
+                    newDisplayName: value,
+                    oldDisplayName: selectedAction.displayName,
+                    actionID: newAction.actionId,
+                  }),
+                )
+                return
+              }
+              setSaveLoading(true)
+              try {
+                await fetchUpdateAction(newAction)
+                dispatch(
+                  actionActions.updateActionDisplayNameReducer({
+                    newDisplayName: value,
+                    oldDisplayName: selectedAction.displayName,
+                    actionID: newAction.actionId,
+                  }),
+                )
+              } catch (e) {
+                message.error({
+                  content: t("change_fail"),
+                })
+              }
+              setSaveLoading(false)
+            }}
+            onClick={() => {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.RENAME, {
+                element: "action_rename",
+                parameter1: selectedAction.actionType,
+                parameter2: "hover",
+              })
+            }}
+          />
+        </div>
+        <div css={runResultAndRunContainerStyle}>
+          {renderResult && (runError ? failBlock : successBlock)}
+          <Dropdown
+            position="bottom-end"
+            trigger="click"
+            dropList={
+              <DropList w="184px">
+                <Item
+                  value="duplicate"
+                  key="duplicate"
+                  title={t("editor.action.action_list.contextMenu.duplicate")}
+                  onClick={() => {
+                    onCopyActionItem(selectedAction)
+                  }}
+                />
+                <Item
+                  key="delete"
+                  value="delete"
+                  title={t("editor.action.action_list.contextMenu.delete")}
+                  deleted
+                  onClick={() => {
+                    shortcut.showDeleteDialog(
+                      [selectedAction.displayName],
+                      "action",
+                    )
+                  }}
+                />
+              </DropList>
+            }
           >
-            {t(`editor.action.panel.btn.${runMode}`)}
-          </Button>
-        )}
+            <Button
+              colorScheme="grayBlue"
+              leftIcon={<MoreIcon size="14px" />}
+            />
+          </Dropdown>
+          {renderButton && (
+            <Button
+              pos="relative"
+              className={`${cachedAction.displayName}-run`}
+              ml="8px"
+              colorScheme="techPurple"
+              variant={isChanged ? "fill" : "light"}
+              size="medium"
+              loading={isRunning || saveLoading}
+              leftIcon={<CaretRightIcon />}
+              onClick={handleActionOperation}
+            >
+              {t(`editor.action.panel.btn.${runMode}`)}
+            </Button>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
