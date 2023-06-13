@@ -3,12 +3,20 @@ import { useSelector } from "react-redux"
 import { Location, useLocation } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
+import { getSelectedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 import {
   GoogleSheetAuthStatus,
   GoogleSheetResource,
 } from "@/redux/resource/googleSheetResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import store from "@/store"
 import { ILLABuilderStorage } from "@/utils/storage"
 
 const getAccessTokenFromLocalStorage = () =>
@@ -25,6 +33,16 @@ const getCurrentResource = (
     return null
   }
   return resources.find((r) => r.resourceId === resourceID)
+}
+
+const getResourceAction = (
+  actions: ActionItem<ActionContent>[],
+  resourceID: string | null,
+) => {
+  if (!resourceID || !actions || actions.length === 0) {
+    return null
+  }
+  return actions.find((a) => a.resourceId === resourceID)
 }
 
 export function checkGoogleOAuthStatusParams(location: Location): boolean {
@@ -54,6 +72,8 @@ export const useDetectGoogleOAuthStatus = () => {
   const location = useLocation()
   const message = useMessage()
   const resources = useSelector(getAllResources)
+  const actions = useSelector(getActionList)
+  const selectedAction = useSelector(getSelectedAction)
 
   const urlParams = new URLSearchParams(location.search)
   const status = urlParams.get("status")
@@ -84,6 +104,10 @@ export const useDetectGoogleOAuthStatus = () => {
     if (!canOperationRef.current) {
       return
     }
+    const resourceAction = getResourceAction(actions, resourceID)
+    if (selectedAction?.actionId === resourceAction?.actionId) {
+      return
+    }
     // redirect url: 1 success, 2 failed, reverse with resource
     if (status === String(GoogleSheetAuthStatus.NotAuthenticated)) {
       message.success({
@@ -96,8 +120,9 @@ export const useDetectGoogleOAuthStatus = () => {
       })
       setOAuthStatus(GoogleSheetAuthStatus.Authenticated)
     }
+    store.dispatch(configActions.changeSelectedAction(selectedAction))
     removeAccessTokenFromLocalStorage()
-  }, [message, resourceID, status])
+  }, [actions, message, resourceID, status, selectedAction])
 
   return {
     oAuthStatus,
