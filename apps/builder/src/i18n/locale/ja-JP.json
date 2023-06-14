@@ -213,7 +213,7 @@
             "command": "コマンド"
           },
           "airtable": {
-            "authentication": "Authentication"
+            "authentication": "認証"
           }
         },
         "placeholder": {
@@ -292,8 +292,8 @@
             "ssl": "ClickHouse Cloud Service をご利用の場合は、SSL を有効にすることをお勧めします。"
           },
           "airtable": {
-            "access_token": "<0>Click here</0> to learn how to get the access token.",
-            "api_key": "API key will be deprecated on February 1, 2024. Please pay attention to the <0>official documentation of Airtable</0> to avoid resource access errors."
+            "access_token": "アクセス トークンを取得する方法については、<0>ここをクリック</0>してください。",
+            "api_key": "API キーは 2024 年 2 月 1 日に非推奨になります。リソース アクセス エラーを避けるために、<0>Airtable の公式ドキュメント</0>に注意してください。"
           }
         },
         "option": {
@@ -548,13 +548,13 @@
             },
             "airtable": {
               "method": {
-                "list_records": "List records",
-                "get_record": "Get record",
-                "create_record": "Create record",
-                "update_multiple_reco": "Update multiple records",
-                "update_record": "Update record",
-                "delete_multiple_reco": "Delete multiple records",
-                "delete_record": "Delete record"
+                "list_records": "レコードをリストする",
+                "get_record": "レコードを取得する",
+                "create_record": "レコードを作成する",
+                "update_multiple_reco": "複数のレコードを更新する",
+                "update_record": "レコードを更新する",
+                "delete_multiple_reco": "複数のレコードを削除する",
+                "delete_record": "レコードを削除する"
               },
               "sort": {
                 "asc": "ASC",
@@ -597,10 +597,10 @@
               "no_actions_will_be_t": "このページの読み込み時には何のアクションも実行されません。アクションを手動でトリガーに設定し、「ページの読み込み時に実行する」を高度な設定で有効にしてください。"
             },
             "airtable": {
-              "base_id": "Get the base ID from your base URL. It is usually a string starting with \"app\". ",
-              "filter_by_formula": "<0>Click here</0> to learn how to use formula.",
-              "time_zone": "<0>Click here</0> to check all supported timezones.",
-              "user_locales": "<0>Click here</0> to check all supported locales. "
+              "base_id": "ベース URL からベース ID を取得します。通常は \"app\" で始まる文字列です。 ",
+              "filter_by_formula": "数式の使い方は<0>こちら</0>をクリックしてください。",
+              "time_zone": "<0>ここをクリック</0>サポートされているすべてのタイムゾーンを確認します。",
+              "user_locales": "<0>ここをクリック</0>サポートされているすべてのロケールを確認します。 "
             }
           },
           "advanced": {
@@ -616,21 +616,22 @@
           },
           "airtable": {
             "base_id": "Base ID",
-            "table_name": "Table name",
-            "method": "Method",
-            "view": "View",
+            "table_name": "テーブル名",
+            "method": "方法",
+            "view": "ビュー",
             "fields": "Fields",
-            "filter_by_formula": "Filter by formula",
-            "sort": "Sort",
-            "max_records": "Max records",
-            "page_size": "Page size",
-            "offset": "Offset",
-            "cell_format": "Cell format",
-            "time_zone": "Time zone",
-            "user_locales": "User locales",
-            "record_id": "Record id",
+            "filter_by_formula": "数式でフィルター",
+            "sort": "ソート",
+            "max_records": "最大レコード数",
+            "page_size": "ページサイズ",
+            "offset": "オフセット",
+            "cell_format": "セルのフォーマット",
+            "time_zone": "タイムゾーン",
+            "user_locales": "ユーザーのロケール",
+            "record_id": "Record ID",
             "records": "Records",
-            "record": "Record"
+            "record": "Record",
+            "record_ids": "Record IDs"
           }
         },
         "menu": {
@@ -3080,373 +3081,373 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "フレームをクリックして貼り付け場所を指定してください。"
   },
   "bookFrom": {
-    "title": "Book a demo",
+    "title": "デモを予約する",
     "form": {
       "about": {
-        "label": "Tell us a little bit about your project",
+        "label": "あなたのプロジェクトについて少し教えてください",
         "required": ".",
         "pattern": ""
       },
       "wantTo": {
-        "label": "What do you want to do with ILLA?",
+        "label": "ILLAで何をしたいですか?",
         "required": ".",
         "pattern": ""
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "送信"
   },
   "partnerFrom": {
-    "title": "Become a partner",
+    "title": "パートナーになる",
     "form": {
       "name": {
-        "label": "Name",
-        "placeholder-1": "First name",
-        "placeholder-2": "Last name"
+        "label": "名前",
+        "placeholder-1": "名",
+        "placeholder-2": "姓"
       },
       "title": {
-        "label": "Your title"
+        "label": "あなたのタイトル"
       },
       "companyName": {
-        "label": "Company name"
+        "label": "会社名"
       },
       "companyWebsite": {
-        "label": "Company website",
-        "pattern": "Please enter a valid URL"
+        "label": "会社ウェブサイト",
+        "pattern": "有効な URL を入力してください"
       },
       "email": {
-        "label": "Email",
-        "pattern": "Please enter the correct email."
+        "label": "Eメールアドレス",
+        "pattern": "正しいメールアドレスを入力してください。"
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "送信"
   },
   "billing": {
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "members": "Team",
-    "app": "apps",
-    "security-support": "Security & support",
+    "monthly": "月ごと",
+    "yearly": "年ごと",
+    "members": "チーム",
+    "app": "アプリ",
+    "security-support": "セキュリティとサポート",
     "apps": {
-      "components": "All components",
-      "resources": "All resources",
-      "plugins": "Unlimited plugins",
-      "sql": "AI SQL Generation",
-      "watermark": "Remove watermark"
+      "components": "すべてのコンポーネント",
+      "resources": "すべてのリソース",
+      "plugins": "無制限のプラグイン",
+      "sql": "AI SQLの生成",
+      "watermark": "透かしを削除"
     },
     "security": {
-      "historic-7": "Historic version keep & recovery for 7 days",
-      "historic-30": "Historic version keep & recovery for 30 days",
-      "develop-environment": "Develop environment",
-      "app-public": "App public",
-      "restore-data": "Backup and restore",
-      "deployed": "Access to ILLA Support",
-      "dedicated": "Dedicated Solutions engineer"
+      "historic-7": "7日間の歴史的なバージョンの保持と回復",
+      "historic-30": "30日間の歴史的なバージョンの保持と回復",
+      "develop-environment": "環境を開発",
+      "app-public": "アプリを公開",
+      "restore-data": "バックアップと復元",
+      "deployed": "ILLAサポートへのアクセス",
+      "dedicated": "専任ソリューションエンジニア"
     },
     "tips": {
-      "plugins": "Import plugins and make use of it within all the apps in your teams",
-      "sql": "Input natural language and generate SQL statement",
-      "staging": "Test your app against a staging environment",
-      "app-public": "Make the app public and anyone with the link can access it",
-      "restore-data": "Backup or restore data at any time you want",
-      "deployed": "Deployed engineers can help you onboard faster",
-      "dedicated": "Dedicated customer solutions engineer via Slack/email/phone",
-      "preview_insufficient": "The file cannot preview due to insufficient capacity, please expand the capacity first."
+      "plugins": "プラグインをインポートし、チーム内のすべてのアプリ内で使用する",
+      "sql": "自然言語を入力し、SQL文を生成します",
+      "staging": "ステージング環境に対してアプリをテストする",
+      "app-public": "アプリを公開し、リンクを持つ誰でもアクセスできます",
+      "restore-data": "いつでもデータをバックアップまたは復元します",
+      "deployed": "導入されたエンジニアはより速く搭載するのを助けます",
+      "dedicated": "Slack/email/phoneを介した専用の顧客ソリューションエンジニア",
+      "preview_insufficient": "容量不足のためファイルをプレビューできません。容量を拡大してください。"
     },
     "deployment": {
-      "title": "Flexible deployment",
-      "title-1": "Flexible",
-      "title-2": "deployment",
-      "introduction": "ILLA provides two ways to deploy. Developers can use the ILLA Cloud to quickly start building their apps on any device. We also provide ILLA CLI for free with better security to ensure data safety.",
+      "title": "柔軟な展開",
+      "title-1": "柔軟な",
+      "title-2": "デプロイメント",
+      "introduction": "ILLAでは、2つの方法で展開することができます。開発者は、ILLA Cloudを使用して、どのデバイスでもアプリの構築を迅速に開始できます。 また、データの安全性を確保するため、より優れたセキュリティ機能を備えたILLA CLIを無料で提供しています。",
       "illa-cloud": {
         "title": "ILLA Cloud",
-        "des": "Try one-click deployment and enjoy the easiest deployment experience"
+        "des": "ワンクリックでデプロイを試して、最も簡単なデプロイ体験をお楽しみください"
       },
       "illa-CLI": {
         "title": "ILLA CLI",
-        "des": "The fastest and easiest way to self-host ILLA"
+        "des": "ILLAを自己ホストするための最速かつ最も簡単な方法"
       },
       "kubernetes": {
         "title": "Kubernetes",
-        "des": "Deploy ILLA into Kubernetes by using ILLA Helm chart"
+        "des": "ILLA Helm チャートを使用して ILLA をKubernetesにデプロイする"
       },
       "docker": {
         "title": "Docker",
-        "des": "Deploy ILLA locally in 30s"
+        "des": "ILLAを30秒後にローカルにデプロイする"
       }
     },
-    "user-month": "per user/month",
-    "editor-month": "per editor/month",
-    "start-at": "start at 100 users",
-    "free-members": "Only 1 member for personal use",
-    "unlimited-viewer": "FREE for unlimited viewers",
-    "unlimited-members": "Unlimited members",
-    "free-btn": "Build apps for free",
-    "plus-btn": "Try the free version",
-    "enterprise-btn": "Contact us",
+    "user-month": "ユーザー毎/月",
+    "editor-month": "毎月エディタ/月",
+    "start-at": "100ユーザーから開始",
+    "free-members": "個人利用のメンバーは1名です",
+    "unlimited-viewer": "無制限の視聴者のために無料",
+    "unlimited-members": "無制限のメンバー",
+    "free-btn": "無料でアプリをビルド",
+    "plus-btn": "無料版をお試しください",
+    "enterprise-btn": "お問い合わせ",
     "menu": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive",
+      "billing": "請求",
+      "license": "ライセンス",
+      "drive": "ドライブ",
       "billing_portal": "Billing portal"
     },
     "title": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive"
+      "billing": "請求",
+      "license": "ライセンス",
+      "drive": "ドライブ"
     },
     "subscription_general": {
       "plan": {
-        "free": "Free",
-        "plus": "Plus"
+        "free": "無料",
+        "plus": "プラス"
       },
       "sub_cycle": {
-        "yearly": "Yearly",
-        "monthly": "Monthly"
+        "yearly": "年ごと",
+        "monthly": "月ごと"
       },
       "billing_cyle": {
-        "year": "/ Year",
-        "month": "/ Month"
+        "year": "/年",
+        "month": "/ 月"
       },
       "table_title": {
-        "next_payment_date": "Next payment date",
-        "expiration_date": "Expiration date",
-        "licenses": "Licenses",
-        "storage": "Storage",
-        "traffic": "Traffic"
+        "next_payment_date": "次回の支払日",
+        "expiration_date": "有効期限",
+        "licenses": "ライセンス",
+        "storage": "ストレージ",
+        "traffic": "トラフィック"
       },
       "period": {
-        "current": "Current",
-        "next": "Next"
+        "current": "現在",
+        "next": "次へ"
       }
     },
     "subscription_card": {
       "title": {
-        "License": "License",
-        "Storage": "Storage",
-        "Traffic": "Traffic",
-        "balance": "Balance"
+        "License": "ライセンス",
+        "Storage": "ストレージ",
+        "Traffic": "トラフィック",
+        "balance": "残高"
       },
       "button": {
-        "License": "Manage licenses",
-        "Storage": "Manage storage",
-        "Traffic": "Expand traffic"
+        "License": "ライセンスの管理",
+        "Storage": "ストレージの管理",
+        "Traffic": "トラフィックを拡大"
       },
       "capacity": {
-        "License": "{{used}} (total of {{total}} licenses) have been used.",
-        "Storage": "{{used}} (total of {{total}} GB) have been used.",
-        "Traffic": "{{used}} (total of {{total}} GB) have been used."
+        "License": "{{used}} (合計 {{total}} ライセンス) が使用されています。",
+        "Storage": "{{used}} (合計 {{total}} GB) が使用されています。",
+        "Traffic": "{{used}} (合計 {{total}} GB) が使用されています。"
       }
     },
     "payment_sidebar": {
       "title": {
-        "manage_storage": "Manage storage",
-        "manage_licenses": "Manage licenses",
-        "expand_traffic_capac": "Expand traffic capacity"
+        "manage_storage": "ストレージの管理",
+        "manage_licenses": "ライセンスの管理",
+        "expand_traffic_capac": "トラフィック容量を拡大"
       },
       "plan_label": {
-        "License": "Licenses",
-        "Storage": "Storage",
-        "Traffic": "Traffic"
+        "License": "ライセンス",
+        "Storage": "ストレージ",
+        "Traffic": "トラフィック"
       },
       "plan_number_input_label": {
-        "License": "Licenses",
+        "License": "ライセンス",
         "Storage_traffic": "GB"
       },
       "select_option": {
-        "Yearly": "Yearly",
-        "Monthly": "Monthly"
+        "Yearly": "年ごと",
+        "Monthly": "月ごと"
       },
       "price_label": {
-        "total": "Total"
+        "total": "合計"
       },
       "price_type": {
-        "this_period_remove": "This period",
-        "this_period": "This period",
-        "next_period": "Next period",
-        "next_period_remove": "Next period",
-        "payment": "Cost",
-        "this_period_storage": "This period",
-        "next_period_storage": "Next period",
-        "this_period_remove_storage": "This period",
-        "next_period_remove_storage": "Next period",
-        "payment_storage": "Cost",
-        "payment_traffic": "Cost",
+        "this_period_remove": "この期間",
+        "this_period": "この期間",
+        "next_period": "次の期間",
+        "next_period_remove": "次の期間",
+        "payment": "コスト",
+        "this_period_storage": "この期間",
+        "next_period_storage": "次の期間",
+        "this_period_remove_storage": "この期間",
+        "next_period_remove_storage": "次の期間",
+        "payment_storage": "コスト",
+        "payment_traffic": "コスト",
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month"
+        "this_period": "{{unitPrice}} × {{licenseNum}} ライセンス× {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} ライセンス× 1 年",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} ライセンス × 1 ヶ月",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} ライセンス× {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス× 1 年",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス × 1 ヶ月",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} ライセンス× 1 年",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} ライセンス × 1 ヶ月",
+        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 年",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 ヶ月",
+        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 年",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 ヶ月",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 年",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 ヶ月"
       },
       "button": {
-        "unsubscribe": "Unsubscribe",
-        "subscribe": "Subscribe",
-        "change_plan": "Change plan",
-        "storage_traffic_increase": "Increase {{changeNum}} GB",
-        "storage_traffic_remove": "Remove {{changeNum}} GB",
-        "license_increase": "Increase {{changeNum}} licenses",
-        "license_remove": "Remove {{changeNum}} licenses"
+        "unsubscribe": "購読解除",
+        "subscribe": "購読する",
+        "change_plan": "プランの変更",
+        "storage_traffic_increase": "{{changeNum}} GB を上げる",
+        "storage_traffic_remove": "{{changeNum}} GB を削除",
+        "license_increase": "{{changeNum}} ライセンスを増加",
+        "license_remove": "{{changeNum}} ライセンスを削除"
       },
       "description_title": {
-        "add_storage": "You are going to add {{changeNum}} GB storage. Once confirmed, we will immediately deduct the payment for the new storage for this billing cycle. <0>Learn more</0>",
-        "remove_storage": "You are going to remove {{changeNum}} GB storage. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "update_plan_year": "You are going to update to a yearly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "update_plan_monthly": "You are going to update to a monthly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "add_license": "You are going to add {{changeNum}} licenses. Once confirmed, we will immediately deduct the payment for the new licenses for this billing cycle. <0>Learn more</0>",
-        "remove_license": "You are going to remove {{changeNum}} licenses. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "add_traffic": "You are going to add {{changeNum}}GB traffic. Once confirmed, we will deduct the cost of the additional traffic immediately. <0>Learn more</0>",
-        "subscribe_storage": "You are going to subscribe to ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "subscribe_license": "You are going to subscribe to ILLA Drive. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "update_plan_increase_license": "You are going to add {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_license": "You are going to remove {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_increase_storage": "You are going to add {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_storage": "You are going to remove {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "unsubscribe_license": "You are going to unsubscribe ILLA Cloud Plus. After cancellation, starting from the next billing cycle, the Plus features will no longer be accessible. <0>Learn more</0>",
-        "unsubscribe_storage": "You are going to unsubscribe ILLA Drive storage. After cancellation, starting from the next billing cycle, the storage capacity will be restored to 100MB. <0>Learn more</0>"
+        "add_storage": "{{changeNum}} GB のストレージを追加します。 確認が完了すると、この請求サイクルの新しいストレージの支払いがすぐに差し引かれます。<0>詳細はこちら</0>",
+        "remove_storage": "{{changeNum}} GB のストレージを削除します。確認後、次の課金サイクルで変更が有効になります。<0>詳細はこちら</0>",
+        "update_plan_year": "年間支払いプランに更新します。 確認後、次の請求サイクルの開始から変更が有効になります。<0>詳細はこちら</0>",
+        "update_plan_monthly": "毎月の支払いプランに更新します。 確認後、次の請求サイクルの開始から変更が有効になります。<0>詳細はこちら</0>",
+        "add_license": "{{changeNum}} ライセンスを追加します。確認が完了すると、この請求サイクルの新しいライセンスの支払いがすぐに差し引かれます。<0>詳細</0>",
+        "remove_license": "{{changeNum}} ライセンスを削除します。確認後、次の請求サイクルで変更が有効になります。<0>詳細はこちら</0>",
+        "add_traffic": "{{changeNum}}GB のトラフィックを追加します。確認後、追加トラフィックのコストがすぐに差し引かれます。<0>詳細はこちら</0>",
+        "subscribe_storage": "あなたはILLA Cloud Plusに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。<0>詳細はこちら</0>。",
+        "subscribe_license": "あなたはILLAドライブに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。<0>詳細はこちら</0>。",
+        "update_plan_increase_license": "{{changeNum}} ライセンスを追加し、サブスクリプション期間を更新します。 <0>詳細</0>",
+        "update_plan_remove_license": "{{changeNum}} ライセンスを削除し、サブスクリプション期間を更新します。<0>詳細</0>",
+        "update_plan_increase_storage": "{{changeNum}} GBのストレージを追加し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
+        "update_plan_remove_storage": "{{changeNum}} GBのストレージを削除し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
+        "unsubscribe_license": "ILLA Cloud Plusの登録を解除します。 キャンセル後、次の請求サイクルから始めて、Plus機能にアクセスできなくなります。<0>詳細</0>",
+        "unsubscribe_storage": "ILLAドライブのストレージの登録を解除します。 キャンセル後、次の請求サイクルから開始すると、ストレージ容量は100MBに復元されます。 <0>詳細</0>"
       },
       "description": {
-        "add_storage": "Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our user <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_storage": "If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our  <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_year": "Starting from the next period, the subscription will be changed to an annual subscription, and the fees will be automatically deducted based on the annual subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_monthly": "Starting from the next period, the subscription will be changed to a monthly subscription, and the fees will be automatically deducted based on the monthly subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_license": "Calculation rules using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_license": "If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_traffic": "After successful deduction, your traffic will increase in real-time. Once the traffic is used, the fees cannot be refunded. Unused traffic can be refunded in units of GB. For example, if you purchase 10GB of traffic and use 4.5GB, you can apply for a refund of 5GB. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_yearly": "You are going to subscribe to the annual subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $9.9 per GB, and you have a total of 3 GB, we will deduct $29.7 on February 25, 2023. If you add 2 GB on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 GB, which is (2+3)*$9.9=$49.5. If you wish to reduce storage or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_monthly": "You are going to subscribe to the monthly subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $0.99 per GB, and you have a total of 3 GB, we will deduct $2.97 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$0.99=$4.95. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_yearly": "You are going to subscribe to the annual subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $100 per license, and you have a total of 3 licenses, we will deduct $300 on February 25, 2023. If you add 2 more licenses on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 licenses, which is (2+3)*$100=$500. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_monthly": "You are going to subscribe to the monthly subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $12 per license, and you have a total of 3 licenses, we will deduct $36 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$12=$60. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased licenses according to the current billing cycle. Calculation rules of increasing licenses using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased storage according to the current billing cycle. Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>"
+        "add_storage": "毎月のストレージサブスクリプションを使用した計算ルールを例として挙げてみましょう。3月14日から最初に5GBまで登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日、あなたは1GBを追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1 GBのコストを差し引くことになります。 9、30日間の周期内の4日の期間に比例しますので、控除は1ライセンス*0と推定されます。 9 / 30 日 * 4日間、およそ$ 0.132になります。 次の請求サイクルから、すべての保管料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、ユーザー<0>プライバシーポリシー</0>および<1>サービス規約</1>をご覧ください。",
+        "remove_storage": "あなたのファイルによって占有されたストレージ容量が次の課金サイクルの開始時に登録されたストレージ容量を超えた場合 ファイルを削除するか、利用可能な範囲内でストレージ容量を増やすまで、すべてのファイルは無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_year": "次の期間から、サブスクリプションは年間サブスクリプションに変更されます。 年間購読料に基づいて自動的に手数料が差し引かれます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_monthly": "次の期間から、サブスクリプションは月額プランに変更されます 月額料金に基づいて自動的に手数料が差し引かれます ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "add_license": "月間ライセンス契約を使用した計算ルールを例として挙げてみましょう。3月14日から最初にライセンスを5つに登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日に、追加ライセンスを1つ追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1ライセンスのコストを差し引いていきます。 約10ドルで、30日間の期間内に4日間の期間に比例します。 したがって、控除は約$ 1.33の結果、1ライセンス*$ 10 / 30日*4日と推定されています。 次の請求サイクルから、すべてのライセンス料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "remove_license": "編集権限を持つユーザーの数が次の課金サイクルの開始時にライセンスの数を超えた場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内でライセンス数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "add_traffic": "正常に控除された後、トラフィックはリアルタイムで増加します。 トラフィックを使用すると、手数料は返金できません。未使用のトラフィックは単位GBで返金できます。 例えば、10GBのトラフィックを購入して4.5GBを使用している場合、5GBの払い戻しを申請することができます。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "subscribe_storage_yearly": "あなたはILLAドライブストレージの年間サブスクリプションに登録することになります。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 差し引かれた実際の量は、GBで購読しているストレージ容量によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始した場合、年間サブスクリプション料金は$ 9です。 GBごとに、合計3GBを持っていると、$ 29が差し引かれます。 2023年2月25日。 2023年3月25日に2GBを追加された場合、2023年3月25日に残りの11ヶ月分の支払いが差し引かれます。 その後、2024年2月25日までに、5 GBの支払いが差し引かれます。これは(2+3)*$9.9=$49です。 をクリックします。 ストレージを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "subscribe_storage_monthly": "あなたはILLAドライブストレージの毎月のサブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 差し引かれた実際の量は、GBで購読しているストレージ容量によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始した場合、月額料金は$ 0です。 1 GBにつき9 GBの合計を持っている、私たちは$ 2を差し引く。 2023年2月25日7。 2023年3月21日にライセンスを2つ追加すると、2023年3月21日に残り5日間の支払いが差し引かれます。 その後、2023年3月25日までに、5ライセンス(2+3*0)の支払いが差し引かれます。 9=$4.95. ライセンスを減らしたり、サブスクリプションにその他の変更を加えたい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "subscribe_license_yearly": "あなたはILLA Cloud Plusの年間サブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 実際に差し引かれる金額は、ライセンスの数によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始し、年間サブスクリプション料金は1ライセンスにつき100ドルです。 合計3つのライセンスを持っている2023年2月25日に300ドルを差し引く。 2023年3月25日にさらに2件のライセンスを追加された場合、2023年3月25日に残り11ヶ月分の支払いが差し引かれます。 その後、2024年2月25日までに、5ライセンス(2+3)*$100=$500)の支払いが差し引かれます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "subscribe_license_monthly": "あなたはILLA Cloud Plusの月額サブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 実際に差し引かれる金額は、ライセンスの数によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始し、月額プラン料金は1ライセンスあたり$ 12です。 合計3つのライセンスを持っていますが、2023年2月25日に36ドルを差し引く予定です。 2023年3月21日にライセンスを2つ追加すると、2023年3月21日に残り5日間の支払いが差し引かれます。 その後、2023年3月25日までに、5ライセンス(2+3)*12=60ドル)の支払いが差し引かれます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_increase_license": "更新されたライセンス数と次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 今回は、現在の請求サイクルに応じて、ライセンス増額の支払いが差し引かれます。 毎月のライセンスサブスクリプションを使用してライセンスを増やす計算ルールを例として挙げましょう。3月14日から始めて5つのライセンスを最初にサブスクリプションした場合のシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日に、追加ライセンスを1つ追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1ライセンスのコストを差し引いていきます。 約10ドルで、30日間の期間内に4日間の期間に比例します。 したがって、控除は約$ 1.33の結果、1ライセンス*$ 10 / 30日*4日と推定されています。 次の請求サイクルから、すべてのライセンス料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_remove_license": "更新されたライセンス数と次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 編集権限を持つユーザーの数が次の課金サイクルの開始時にライセンスの数を超えた場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内でライセンス数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_increase_storage": "更新されたストレージと次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 今回は、現在の請求サイクルに応じて、ストレージの増加分の支払いが差し引かれます。 毎月のストレージサブスクリプションを使用した計算ルールを例として挙げてみましょう。3月14日から最初に5GBまで登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日、あなたは1GBを追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1 GBのコストを差し引くことになります。 9、30日間のサイクル内の4日の期間に比例。 したがって、控除は約$ 0.132の結果、1ライセンス* $ 0.99/30日*4日と推定されます。 次の請求サイクルから、すべての保管料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_remove_storage": "更新されたストレージと次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 あなたのファイルによって占有されたストレージ容量が次の課金サイクルの開始時に登録されたストレージ容量を超えた場合 ファイルを削除するか、利用可能な範囲内でストレージ容量を増やすまで、すべてのファイルは無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。"
       }
     },
     "message": {
-      "failed_to_subscribe": "Failed to subscribe. Please try again.",
-      "failed_to_add_traffic": "Failed to add traffic. Please try again. ",
-      "failed_to_add_storage": "Failed to add storage. Please try again. ",
-      "failed_to_remove_storage": "Failed to remove storage. Please try again. ",
-      "failed_to_add_licens": "Failed to add licenses. Please try again. ",
-      "failed_to_remove_lic": "Failed to remove licenses. Please try again. ",
-      "failed_to_change_pla": "Failed to change plan. Please try again. ",
-      "failed_to_unsubscrib": "Failed to unsubscribe. Please try again. ",
-      "successfully_removed": "Successfully removed.  The change will take effect from {{nextPaymentDate}}.",
-      "unsubscription_succe": "Unsubscription successful.  The change will take effect from {{nextPaymentDate}}",
-      "cancel_subscribe": "Subscription not completed, please try again or contact billing@illasoft.com",
-      "cancel_purchase": "Purchase not completed, please try again or contact billing@illasoft.com",
-      "successfully_changed": "Subscription changed successfully. It will take effect in a few minutes",
-      "failed_to_change": "Subscription change failed",
-      "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
-      "failed_to_join_no_license": "Unable to join because team licenses are insufficient, please contact the admin.",
-      "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin."
+      "failed_to_subscribe": "購読に失敗しました。もう一度お試しください。",
+      "failed_to_add_traffic": "トラフィックの追加に失敗しました。もう一度やり直してください。 ",
+      "failed_to_add_storage": "ストレージの追加に失敗しました。もう一度やり直してください。 ",
+      "failed_to_remove_storage": "ストレージの削除に失敗しました。もう一度やり直してください。 ",
+      "failed_to_add_licens": "ライセンスの追加に失敗しました。もう一度やり直してください。 ",
+      "failed_to_remove_lic": "ライセンスの削除に失敗しました。もう一度やり直してください。 ",
+      "failed_to_change_pla": "プランの変更に失敗しました。もう一度やり直してください。 ",
+      "failed_to_unsubscrib": "購読解除に失敗しました。もう一度やり直してください。 ",
+      "successfully_removed": "正常に削除されました。変更は {{nextPaymentDate}} から適用されます。",
+      "unsubscription_succe": "サブスクリプションを解除しました。変更は {{nextPaymentDate}} から有効になります",
+      "cancel_subscribe": "サブスクリプションが完了できませんでした。もう一度お試しいただくか、billing@illasoft.com までご連絡ください。",
+      "cancel_purchase": "購入が完了できませんでした。もう一度お試しいただくか、billing@illasoft.com までご連絡ください。",
+      "successfully_changed": "サブスクリプションが正常に変更されました。数分後に有効になります",
+      "failed_to_change": "サブスクリプションの変更に失敗しました",
+      "unsubscription_suc": "サブスクリプションは正常にキャンセルされ、次の期間から有効になります",
+      "failed_to_join_no_license": "チームライセンスが不足しているため参加できません。管理者に連絡してください。",
+      "storage_insufficient_modal": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。"
     },
     "modal": {
       "storage_insufficient_modal": {
-        "owner_title_drive": "Insufficient capacity",
-        "owner_description_drive": "The storage or traffic is not enough. Please upgrade and try again.",
-        "owner_button_drive": "Upgrade",
-        "not_owner_title_drive": "Failed to operate",
-        "not_owner_description_drive": "The storage or traffic of this team is not enough. Please contact your admin.",
-        "not_owner_button_drive": "Got it",
-        "out_title_drive": "Failed to download",
-        "out_description_drive": "Failed to download, please contact the file owner",
-        "out_button_drive": "Got it"
+        "owner_title_drive": "容量不足",
+        "owner_description_drive": "ストレージまたはトラフィックが不十分です。アップグレードしてもう一度お試しください。",
+        "owner_button_drive": "アップグレードする",
+        "not_owner_title_drive": "操作に失敗しました",
+        "not_owner_description_drive": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
+        "not_owner_button_drive": "了解",
+        "out_title_drive": "ダウンロードに失敗しました",
+        "out_description_drive": "ダウンロードに失敗しました。ファイルの所有者に連絡してください",
+        "out_button_drive": "了解"
       },
       "sub_suc": {
-        "subscription_success": "Subscription successful",
-        "you_can_now_invite_m": "It will take effect in a few minutes. You can invite members and start using the advanced features later. Go ahead and give it a try!",
-        "you_can_now_upload_m": "It will take effect in a few minutes.  You can now upload more files.",
-        "payment_successful": "Payment successful",
-        "we_have_added_the_li": "It will take effect in a few minutes. We have added the licenses for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_st": "It will take effect in a few minutes. We have added the storage for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_tr": "It will take effect in a few minutes. We will add the traffic for you later. You can now download more files.",
-        "successfully_updated": "Successfully updated",
-        "the_change_to_the_su": "The change to the subscription period will take effect from the next billing cycle.",
-        "got_it": "Got it"
+        "subscription_success": "サブスクリプションに成功しました",
+        "you_can_now_invite_m": "数分で有効になります。 メンバーを招待して、後で高度な機能を使い始めることができます。試してみてください！",
+        "you_can_now_upload_m": "数分後に有効になります。さらにファイルをアップロードできるようになりました。",
+        "payment_successful": "支払いが完了しました",
+        "we_have_added_the_li": "数分後に有効になります。ライセンスを追加しました。 サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
+        "we_have_added_the_st": "数分後に有効になります。ストレージを追加しました。 サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
+        "we_have_added_the_tr": "数分で有効になります。後でトラフィックを追加します。より多くのファイルをダウンロードできます。",
+        "successfully_updated": "正常に更新されました",
+        "the_change_to_the_su": "サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
+        "got_it": "了解"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgrade to Plus",
-        "this_feature_is_avai": "This feature is available for Plus users only. To use it, please upgrade to Plus. By upgrading to Plus, you will also have access to the following features. ",
-        "add_unlimited_viewer": "Add unlimited viewer members for FREE",
-        "publish_public_appli": "Publish public applications",
-        "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs",
-        "learn_more": "Learn more",
-        "upgrade": "Upgrade",
-        "pricing": "/editor/month, yearly",
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
-        "insufficient_license_button": "Add licenses"
+        "upgrade_to_plus": "Plus にアップグレードする",
+        "this_feature_is_avai": "この機能はPlusユーザーのみ利用できます。利用するには、Plusにアップグレードしてください。 Plusにアップグレードすると、次の機能にもアクセスできます。 ",
+        "add_unlimited_viewer": "無制限の視聴者メンバーを無料で追加",
+        "publish_public_appli": "公開アプリケーションを公開",
+        "ai_sql_generation": "AI SQLの生成",
+        "audit_logs": "監査ログ",
+        "learn_more": "もっと詳しく",
+        "upgrade": "アップグレードする",
+        "pricing": "/editor/month, year",
+        "insufficient_license_title": "ライセンスが足りません",
+        "insufficient_license_description": "より多くのエディタを招待するには、まずライセンスを増やしてください。チームのすべてのメンバーは、ILLA Cloud Plusの機能を使用できます。 各機能への特定のアクセスは、各メンバーの役割によって異なります。 ",
+        "insufficient_license_button": "ライセンスを追加"
       },
       "expired": {
-        "owner": "Your subscription has expired. To continue using, please renew it.",
-        "others": "Your account has been disabled because the team's subscription has expired.",
-        "your_subscription_ha_not_owner": "Not enough licenses",
-        "all_members_except_f_not_owner": "Your team doesn't have enough licenses. Please contact your team owner.",
-        "upgrade_not_owner": "Got it"
+        "owner": "サブスクリプションの有効期限が切れています。引き続き使用するには、サブスクリプションを更新してください。",
+        "others": "チームのサブスクリプションの有効期限が切れているため、あなたのアカウントは無効になっています。",
+        "your_subscription_ha_not_owner": "ライセンスが足りません",
+        "all_members_except_f_not_owner": "あなたのチームには十分なライセンスがありません。チームのオーナーにお問い合わせください。",
+        "upgrade_not_owner": "了解"
       },
       "blank_page": {
-        "insufficient_license_disable": "Your account has been disabled due to insufficient team licenses. Please contact the team Owner for assistance."
+        "insufficient_license_disable": "チームライセンスが不足しているため、あなたのアカウントは無効になっています。チームオーナーにお問い合わせください。"
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please connect your admin to increase licenses first.",
+        "insufficient_license_title": "ライセンスが足りません",
+        "insufficient_license_description": "より多くのエディタを招待するには、まず管理者にライセンスを増やすように接続してください。",
         "insufficient_license_button": "OK"
       },
       "storage_insufficient": {
-        "owner_title": "Insufficient storage capacity",
-        "owner_description": "In order to store files normally, please increase the storage  in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to store files normally, please contact your administrator to increase storage capacity in time.",
+        "owner_title": "ストレージ容量が足りません",
+        "owner_description": "ファイルを正常に保存するには、時間内にストレージを増やしてください。 ",
+        "owner_button": "容量アップ",
+        "not_owner_title": "ストレージ容量が足りません",
+        "not_owner_description": "ファイルを正常に保存するには、管理者に問い合わせて時間内にストレージ容量を増やしてください。",
         "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_pricing": "GB/月"
       },
       "traffic_insufficient": {
-        "owner_title": "Insufficient traffic capacity",
-        "owner_description": "In order to access files normally, please increase the traffic capacity in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to access files normally, please contact your administrator to increase traffic capacity in time.",
+        "owner_title": "トラフィック容量不足",
+        "owner_description": "ファイルに正常にアクセスするには、時間内にトラフィック容量を増やしてください。 ",
+        "owner_button": "容量アップ",
+        "not_owner_title": "ストレージ容量が足りません",
+        "not_owner_description": "ファイルに正常にアクセスするには、管理者に連絡して時間内にトラフィック容量を増やしてください。",
         "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_pricing": "GB/月"
       },
       "cancel_confirm": {
-        "description": "After cancellation, your team will revert to the free plan starting from the next billing cycle. The features included in the subscription plans will no longer be accessible.",
-        "title": "Cancel the subscription?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "キャンセル後、次の課金サイクルから無料プランに戻ります。 サブスクリプションプランに含まれる機能にはアクセスできなくなります。",
+        "title": "サブスクリプションをキャンセルしますか？",
+        "button_cancel": "キャンセル",
+        "button_confirm": "確認する"
       },
       "change_confirm": {
-        "description": "Once reduced, the changes will take effect in the next billing cycle. If there are resources that exceed the newly allocated capacity, all resources may become inaccessible.",
-        "title": "Change plan?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "一度削減されると、次の請求サイクルで変更が有効になります。 新たに割り当てられた容量を超えるリソースがある場合、すべてのリソースにアクセスできなくなる可能性があります。",
+        "title": "プランを変更しますか?",
+        "button_cancel": "キャンセル",
+        "button_confirm": "確認する"
       }
     },
     "homepage": {
-      "get_access_to_advanc": "Get access to advanced features",
-      "upgrade": "Upgrade",
-      "cancel": "Cancel"
+      "get_access_to_advanc": "高度な機能にアクセスする",
+      "upgrade": "アップグレードする",
+      "cancel": "キャンセル"
     }
   }
 }
