@@ -11,7 +11,7 @@ import {
   realInputValueWithList,
 } from "@/page/App/components/PanelSetters/InputSetter/util"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
@@ -51,7 +51,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const finalWrapperCode = useMemo(() => {
     if (
       currentListDisplayName &&
-      isDynamicString(value ?? "") &&
+      hasDynamicStringSnippet(value ?? "") &&
       value?.includes("currentItem")
     ) {
       return (value: string) => {
@@ -73,7 +73,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
       let output = value
       if (
         currentListDisplayName &&
-        isDynamicString(value ?? "") &&
+        hasDynamicStringSnippet(value ?? "") &&
         value.includes("currentItem")
       ) {
         output = getNeedComputedValueWithList(value, currentListDisplayName)

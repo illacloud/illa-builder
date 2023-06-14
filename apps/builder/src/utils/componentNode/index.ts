@@ -2,7 +2,7 @@ import deepDiff, { Diff } from "deep-diff"
 import { cloneDeep, set } from "lodash"
 import {
   getWidgetOrActionDynamicAttrPaths,
-  isDynamicString,
+  hasDynamicStringSnippet,
 } from "@/utils/evaluateDynamicString/utils"
 import { isObject } from "@/utils/typeHelper"
 import { convertPathToString } from "../executionTreeHelper/utils"
@@ -53,7 +53,7 @@ const getNewEffectByUpdateSlice = (
       })
       .flat()
   }
-  const isRDynamic = isDynamicString(rValue as string)
+  const isRDynamic = hasDynamicStringSnippet(rValue as string)
   return {
     attrPath: path,
     action: isRDynamic
@@ -71,7 +71,7 @@ const getUpdateSlicePathAndEffect = (
       const { rhs } = diff
       if (!isObject(rhs) && !Array.isArray(rhs)) {
         let stringRValue: any = isObject(rhs) ? JSON.stringify(rhs) : rhs
-        const isRDynamic = isDynamicString(stringRValue)
+        const isRDynamic = hasDynamicStringSnippet(stringRValue)
 
         return {
           attrPath: path,
@@ -98,8 +98,8 @@ const getUpdateSlicePathAndEffect = (
       let stringRValue: any = isObject(rhs) ? JSON.stringify(rhs) : rhs
       let stringLValue: any = isObject(lhs) ? JSON.stringify(lhs) : lhs
 
-      const isRDynamic = isDynamicString(stringRValue)
-      const isLDynamic = isDynamicString(stringLValue)
+      const isRDynamic = hasDynamicStringSnippet(stringRValue)
+      const isLDynamic = hasDynamicStringSnippet(stringLValue)
       if (isRDynamic && !isLDynamic) {
         return {
           attrPath: path,
