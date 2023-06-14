@@ -110,3 +110,7 @@ export const floatingMessageModalStyle = css`
   position: fixed;
   top: 100px;
 `
+export const upgradeStyle = css`
+  ${rowCenter};
+  gap: 8px;
+`
