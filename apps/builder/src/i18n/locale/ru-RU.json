@@ -149,6 +149,9 @@
           },
           "neon": {
             "neon": "Неоновый"
+          },
+          "airtable": {
+            "airtable": "Airtable"
           }
         },
         "validate": {
@@ -208,6 +211,9 @@
           },
           "mongodb": {
             "command": "Команда"
+          },
+          "airtable": {
+            "authentication": "Authentication"
           }
         },
         "placeholder": {
@@ -284,6 +290,10 @@
           },
           "clickhouse": {
             "ssl": "При использовании ClickHouse Cloud Service рекомендуется включить SSL."
+          },
+          "airtable": {
+            "access_token": "<0>Click here</0> to learn how to get the access token.",
+            "api_key": "API key will be deprecated on February 1, 2024. Please pay attention to the <0>official documentation of Airtable</0> to avoid resource access errors."
           }
         },
         "option": {
@@ -368,6 +378,10 @@
           "neon": {
             "parse": "Parse",
             "connection_string": "Строка подключения"
+          },
+          "airtable": {
+            "access_token": "Access token",
+            "api_key": "API key"
           }
         },
         "default": {
@@ -531,6 +545,21 @@
               "on_page_loading": "При загрузке страницы",
               "on_app_loading": "При загрузке приложения",
               "none": "Нет"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "List records",
+                "get_record": "Get record",
+                "create_record": "Create record",
+                "update_multiple_reco": "Update multiple records",
+                "update_record": "Update record",
+                "delete_multiple_reco": "Delete multiple records",
+                "delete_record": "Delete record"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
             }
           },
           "restapi": {
@@ -566,6 +595,12 @@
             },
             "advanced": {
               "no_actions_will_be_t": "Никакие действия не будут срабатывать при загрузке страницы. Вы можете вручную запустить действие и включить «Запустить это действие при загрузке страницы» в расширенных настройках."
+            },
+            "airtable": {
+              "base_id": "Get the base ID from your base URL. It is usually a string starting with \"app\". ",
+              "filter_by_formula": "<0>Click here</0> to learn how to use formula.",
+              "time_zone": "<0>Click here</0> to check all supported timezones.",
+              "user_locales": "<0>Click here</0> to check all supported locales. "
             }
           },
           "advanced": {
@@ -578,6 +613,24 @@
             "actions_running_when": "Действия при загрузке страницы",
             "pages": "Страницы",
             "periodically_run": "Периодически запускать"
+          },
+          "airtable": {
+            "base_id": "Base ID",
+            "table_name": "Table name",
+            "method": "Method",
+            "view": "View",
+            "fields": "Fields",
+            "filter_by_formula": "Filter by formula",
+            "sort": "Sort",
+            "max_records": "Max records",
+            "page_size": "Page size",
+            "offset": "Offset",
+            "cell_format": "Cell format",
+            "time_zone": "Time zone",
+            "user_locales": "User locales",
+            "record_id": "Record id",
+            "records": "Records",
+            "record": "Record"
           }
         },
         "menu": {
