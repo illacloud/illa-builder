@@ -2822,7 +2822,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} поділився вашою програмою з 「{{teamName}}」. Натисніть на посилання, щоб приєднатися до команди і перевірити APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} поділилися вами APP з 「{{teamName}}」. Натисніть на посилання, щоб перевірити APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} запрошує вас приєднатися до 「{{teamName}}」. Натисніть посилання для команди: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} запрошує вас приєднатися до 「{{teamName}}」. Натисніть посилання для команди: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Remaining licenses"
+      }
     },
     "mes": {
       "invite_suc": "Успішно запрошений",
