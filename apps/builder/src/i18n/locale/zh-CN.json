@@ -213,7 +213,7 @@
             "command": "命令"
           },
           "airtable": {
-            "authentication": "Authentication"
+            "authentication": "认证"
           }
         },
         "placeholder": {
@@ -292,8 +292,8 @@
             "ssl": "当使用 ClickHouse 云服务时，建议开启SSL。"
           },
           "airtable": {
-            "access_token": "<0>Click here</0> to learn how to get the access token.",
-            "api_key": "API key will be deprecated on February 1, 2024. Please pay attention to the <0>official documentation of Airtable</0> to avoid resource access errors."
+            "access_token": "<0>点此</0>了解如何获取Access token",
+            "api_key": "API key将于2024年2月1日弃用。请注意<0>Airtable官方文档</0>，避免资源访问错误。"
           }
         },
         "option": {
@@ -548,13 +548,13 @@
             },
             "airtable": {
               "method": {
-                "list_records": "List records",
-                "get_record": "Get record",
-                "create_record": "Create record",
-                "update_multiple_reco": "Update multiple records",
-                "update_record": "Update record",
-                "delete_multiple_reco": "Delete multiple records",
-                "delete_record": "Delete record"
+                "list_records": "列出记录",
+                "get_record": "获取一条记录",
+                "create_record": "创建记录",
+                "update_multiple_reco": "更新多条记录",
+                "update_record": "更新记录",
+                "delete_multiple_reco": "删除多条记录",
+                "delete_record": "删除一条记录"
               },
               "sort": {
                 "asc": "ASC",
@@ -597,10 +597,10 @@
               "no_actions_will_be_t": "这个页面加载时不会触发任何操作。 您可以将Action设置为手动触发，并在高级设置中启用“页面加载时触发此操作”。"
             },
             "airtable": {
-              "base_id": "Get the base ID from your base URL. It is usually a string starting with \"app\". ",
-              "filter_by_formula": "<0>Click here</0> to learn how to use formula.",
-              "time_zone": "<0>Click here</0> to check all supported timezones.",
-              "user_locales": "<0>Click here</0> to check all supported locales. "
+              "base_id": "从您的base URL中获取base ID。通常是一个以“app”开头的字符串。 ",
+              "filter_by_formula": "<0>点击这里</0>了解如何使用公式。",
+              "time_zone": "<0>点击这里</0>来检查所有支持的时区。",
+              "user_locales": "<0>点击这里</0>来检查所有支持的语言。"
             }
           },
           "advanced": {
@@ -616,22 +616,22 @@
           },
           "airtable": {
             "base_id": "Base ID",
-            "table_name": "Table name",
-            "method": "Method",
-            "view": "View",
+            "table_name": "表名",
+            "method": "方法",
+            "view": "视图",
             "fields": "Fields",
-            "filter_by_formula": "Filter by formula",
-            "sort": "Sort",
-            "max_records": "Max records",
-            "page_size": "Page size",
-            "offset": "Offset",
-            "cell_format": "Cell format",
-            "time_zone": "Time zone",
-            "user_locales": "User locales",
-            "record_id": "Record id",
+            "filter_by_formula": "按公式筛选",
+            "sort": "排序",
+            "max_records": "最大记录数",
+            "page_size": "分页大小",
+            "offset": "偏移量",
+            "cell_format": "单元格格式",
+            "time_zone": "时区",
+            "user_locales": "用户语言",
+            "record_id": "Record ID",
             "records": "Records",
             "record": "Record",
-            "record_ids": "Record ids"
+            "record_ids": "Record IDs"
           }
         },
         "menu": {
