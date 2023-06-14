@@ -20,7 +20,7 @@ import { RootState } from "@/store"
 import { LIMIT_MEMORY, estimateMemoryUsage } from "@/utils/calculateMemoryUsage"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { isDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const getResultType = (result: unknown) => {
@@ -135,7 +135,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const calcResultArray: unknown[] = []
     const calcResultMap: Map<string, number[]> = new Map()
     dynamicStrings.forEach((dynamicString, index) => {
-      if (isDynamicString(dynamicString)) {
+      if (isDynamicStringSnippet(dynamicString)) {
         try {
           const calcRes = evaluateDynamicString("", dynamicString, calcContext)
           calcResultArray.push(calcRes)
@@ -174,7 +174,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         dynamicStrings.forEach((dynamicString) => {
           if (
             dynamicString.length <= MAX_LEN_WITH_SNIPPETS &&
-            isDynamicString(dynamicString) &&
+            isDynamicStringSnippet(dynamicString) &&
             calcResultMap.has(dynamicString)
           ) {
             const indexs = calcResultMap.get(dynamicString)
