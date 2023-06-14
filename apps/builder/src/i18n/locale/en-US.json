@@ -628,7 +628,10 @@
             "cell_format": "Cell format",
             "time_zone": "Time zone",
             "user_locales": "User locales",
-            "record_id": "Record id"
+            "record_id": "Record ID",
+            "records": "Records",
+            "record": "Record",
+            "record_ids": "Record IDs"
           }
         },
         "menu": {
