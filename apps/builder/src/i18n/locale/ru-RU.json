@@ -2822,7 +2822,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} поделился вам приложением「{{teamName}}」. Нажмите на ссылку, чтобы присоединиться к команде и проверьте приложение: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} поделился вам приложением от 「{{teamName}}」. Нажмите на ссылку, чтобы перейти к приложению: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} приглашает вас присоединиться к 「{{teamName}}」. Нажмите на ссылку, чтобы присоединиться к команде: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} приглашает вас присоединиться к 「{{teamName}}」. Нажмите на ссылку, чтобы присоединиться к команде: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Remaining licenses"
+      }
     },
     "mes": {
       "invite_suc": "Приглашение успешно отправлено",
