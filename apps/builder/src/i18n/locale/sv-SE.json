@@ -2822,7 +2822,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} har delat dig med en app på 「{{teamName}}」. Klicka på länken för att gå med i teamet och kontrollera APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} har delat dig en APP från 「{{teamName}}」. Klicka på länken för att kontrollera APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} bjuder in dig att gå med i 「{{teamName}}」. Klicka på länken för att gå med i teamet: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} bjuder in dig att gå med i 「{{teamName}}」. Klicka på länken för att gå med i teamet: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Remaining licenses"
+      }
     },
     "mes": {
       "invite_suc": "Inbjuden lyckades",
