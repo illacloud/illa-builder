@@ -2822,7 +2822,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} on jakanut sinulle sovelluksen 「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin ja tarkista APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} on jakanut sinulle APP lähteestä 「{{teamName}}」. Klikkaa linkkiä tarkistaaksesi APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} kutsuu sinut liittymään「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} kutsuu sinut liittymään「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Remaining licenses"
+      }
     },
     "mes": {
       "invite_suc": "Kutsuttu onnistuneesti",
