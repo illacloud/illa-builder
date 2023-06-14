@@ -2822,7 +2822,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} v-a distribuit o aplicație de 「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei și verificați APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} ți-a distribuit o APP de la 「{{teamName}}」. Faceți clic pe link pentru a verifica APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} vă invită să vă alăturați「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} vă invită să vă alăturați「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Remaining licenses"
+      }
     },
     "mes": {
       "invite_suc": "Invitat cu succes",
