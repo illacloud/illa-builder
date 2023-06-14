@@ -149,6 +149,9 @@
           },
           "neon": {
             "neon": "Neon"
+          },
+          "airtable": {
+            "airtable": "Airtable"
           }
         },
         "validate": {
@@ -208,6 +211,9 @@
           },
           "mongodb": {
             "command": "명령"
+          },
+          "airtable": {
+            "authentication": "Authentication"
           }
         },
         "placeholder": {
@@ -284,6 +290,10 @@
           },
           "clickhouse": {
             "ssl": "ClickHouse Cloud Service를 사용할 때 SSL을 켜는 것이 좋습니다."
+          },
+          "airtable": {
+            "access_token": "<0>Click here</0> to learn how to get the access token.",
+            "api_key": "API key will be deprecated on February 1, 2024. Please pay attention to the <0>official documentation of Airtable</0> to avoid resource access errors."
           }
         },
         "option": {
@@ -368,6 +378,10 @@
           "neon": {
             "parse": "구문 분석",
             "connection_string": "연결 문자열"
+          },
+          "airtable": {
+            "access_token": "Access token",
+            "api_key": "API key"
           }
         },
         "default": {
@@ -531,6 +545,21 @@
               "on_page_loading": "페이지 로딩 중",
               "on_app_loading": "앱에 로드됨",
               "none": "없음"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "List records",
+                "get_record": "Get record",
+                "create_record": "Create record",
+                "update_multiple_reco": "Update multiple records",
+                "update_record": "Update record",
+                "delete_multiple_reco": "Delete multiple records",
+                "delete_record": "Delete record"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
             }
           },
           "restapi": {
@@ -566,6 +595,12 @@
             },
             "advanced": {
               "no_actions_will_be_t": "이 페이지 로딩시에는 작업이 실행되지 않습니다. 이 작업을 수동으로 실행하고 고급 설정에서 '페이지 로딩시 이 작업을 트리거합니다'를 활성화할 수 있습니다."
+            },
+            "airtable": {
+              "base_id": "Get the base ID from your base URL. It is usually a string starting with \"app\". ",
+              "filter_by_formula": "<0>Click here</0> to learn how to use formula.",
+              "time_zone": "<0>Click here</0> to check all supported timezones.",
+              "user_locales": "<0>Click here</0> to check all supported locales. "
             }
           },
           "advanced": {
@@ -578,6 +613,24 @@
             "actions_running_when": "페이지가 로드될 때 실행되는 작업",
             "pages": "페이지",
             "periodically_run": "주기적으로 실행"
+          },
+          "airtable": {
+            "base_id": "Base ID",
+            "table_name": "Table name",
+            "method": "Method",
+            "view": "View",
+            "fields": "Fields",
+            "filter_by_formula": "Filter by formula",
+            "sort": "Sort",
+            "max_records": "Max records",
+            "page_size": "Page size",
+            "offset": "Offset",
+            "cell_format": "Cell format",
+            "time_zone": "Time zone",
+            "user_locales": "User locales",
+            "record_id": "Record id",
+            "records": "Records",
+            "record": "Record"
           }
         },
         "menu": {
