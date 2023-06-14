@@ -2822,7 +2822,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} heeft u een app van 「{{teamName}}」gedeeld. Klik op de link om u aan te sluiten bij het team en controleer de APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} heeft u een APP van 「{{teamName}}」gedeeld. Klik op de link om de app te controleren: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} nodigt je uit om lid te worden van 「{{teamName}}」. Klik op de link om lid te worden van het team: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} nodigt je uit om lid te worden van 「{{teamName}}」. Klik op de link om lid te worden van het team: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Remaining licenses"
+      }
     },
     "mes": {
       "invite_suc": "Succesvol uitgenodigd",
