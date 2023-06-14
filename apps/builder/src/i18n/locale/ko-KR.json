@@ -213,7 +213,7 @@
             "command": "명령"
           },
           "airtable": {
-            "authentication": "Authentication"
+            "authentication": "입증"
           }
         },
         "placeholder": {
@@ -292,8 +292,8 @@
             "ssl": "ClickHouse Cloud Service를 사용할 때 SSL을 켜는 것이 좋습니다."
           },
           "airtable": {
-            "access_token": "<0>Click here</0> to learn how to get the access token.",
-            "api_key": "API key will be deprecated on February 1, 2024. Please pay attention to the <0>official documentation of Airtable</0> to avoid resource access errors."
+            "access_token": "액세스 토큰을 받는 방법을 알아보려면 <0>여기를 클릭</0>하세요.",
+            "api_key": "API 키는 2024년 2월 1일부터 지원이 중단됩니다. 리소스 액세스 오류를 방지하려면 <0>Airtable의 공식 문서</0>를 주의 깊게 살펴보세요."
           }
         },
         "option": {
@@ -380,7 +380,7 @@
             "connection_string": "연결 문자열"
           },
           "airtable": {
-            "access_token": "Access token",
+            "access_token": "토큰 접근하기",
             "api_key": "API key"
           }
         },
@@ -548,13 +548,13 @@
             },
             "airtable": {
               "method": {
-                "list_records": "List records",
-                "get_record": "Get record",
-                "create_record": "Create record",
-                "update_multiple_reco": "Update multiple records",
-                "update_record": "Update record",
-                "delete_multiple_reco": "Delete multiple records",
-                "delete_record": "Delete record"
+                "list_records": "레코드 나열",
+                "get_record": "수령 기록",
+                "create_record": "레코드 만들기",
+                "update_multiple_reco": "여러 레코드 업데이트",
+                "update_record": "레코드 업데이트",
+                "delete_multiple_reco": "여러 레코드 삭제",
+                "delete_record": "레코드 삭제"
               },
               "sort": {
                 "asc": "ASC",
@@ -597,10 +597,10 @@
               "no_actions_will_be_t": "이 페이지 로딩시에는 작업이 실행되지 않습니다. 이 작업을 수동으로 실행하고 고급 설정에서 '페이지 로딩시 이 작업을 트리거합니다'를 활성화할 수 있습니다."
             },
             "airtable": {
-              "base_id": "Get the base ID from your base URL. It is usually a string starting with \"app\". ",
-              "filter_by_formula": "<0>Click here</0> to learn how to use formula.",
-              "time_zone": "<0>Click here</0> to check all supported timezones.",
-              "user_locales": "<0>Click here</0> to check all supported locales. "
+              "base_id": "기본 URL에서 기본 ID를 가져옵니다. 일반적으로 \"app\"으로 시작하는 문자열입니다.",
+              "filter_by_formula": "수식 사용 방법을 알아보려면 <0>여기를 클릭</0>하세요.",
+              "time_zone": "지원되는 모든 시간대를 확인하려면 <0>여기를 클릭</0>하세요.",
+              "user_locales": "지원되는 모든 언어를 확인하려면 <0>여기를 클릭</0>하세요."
             }
           },
           "advanced": {
@@ -615,22 +615,23 @@
             "periodically_run": "주기적으로 실행"
           },
           "airtable": {
-            "base_id": "Base ID",
-            "table_name": "Table name",
-            "method": "Method",
-            "view": "View",
+            "base_id": "기지국 ID",
+            "table_name": "테이블 이름",
+            "method": "방법",
+            "view": "보기",
             "fields": "Fields",
-            "filter_by_formula": "Filter by formula",
-            "sort": "Sort",
-            "max_records": "Max records",
-            "page_size": "Page size",
-            "offset": "Offset",
-            "cell_format": "Cell format",
-            "time_zone": "Time zone",
-            "user_locales": "User locales",
-            "record_id": "Record id",
+            "filter_by_formula": "수식으로 필터링",
+            "sort": "정렬하다",
+            "max_records": "최대 기록",
+            "page_size": "페이지 크기",
+            "offset": "오프셋",
+            "cell_format": "셀 형식",
+            "time_zone": "시간대",
+            "user_locales": "사용자 로케일",
+            "record_id": "Record ID",
             "records": "Records",
-            "record": "Record"
+            "record": "Record",
+            "record_ids": "Record IDs"
           }
         },
         "menu": {
