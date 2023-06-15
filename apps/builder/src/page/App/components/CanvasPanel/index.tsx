@@ -8,7 +8,6 @@ import {
   getIsILLAEditMode,
 } from "@/redux/config/configSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { FocusManager } from "@/utils/focusManager"
 import { CanvasPanelProps } from "./interface"
 import {
   applyScaleContainerStyle,
@@ -30,14 +29,7 @@ export const CanvasPanel = forwardRef<HTMLDivElement, CanvasPanelProps>(
     }
 
     return (
-      <div
-        {...otherProps}
-        ref={ref}
-        css={applyScaleContainerStyle(isEditMode)}
-        onClick={() => {
-          FocusManager.switchFocus("canvas")
-        }}
-      >
+      <div {...otherProps} ref={ref} css={applyScaleContainerStyle(isEditMode)}>
         <DotPanel />
         {isEditMode && (
           <>
