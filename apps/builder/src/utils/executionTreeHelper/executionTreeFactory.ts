@@ -16,7 +16,7 @@ import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import {
   getDisplayNameAndAttrPath,
   getWidgetOrActionDynamicAttrPaths,
-  isDynamicString,
+  hasDynamicStringSnippet,
 } from "@/utils/evaluateDynamicString/utils"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import {
@@ -448,7 +448,7 @@ export class ExecutionTreeFactory {
       if (!walkedPath.has(path)) {
         walkedPath.add(path)
         const fullPathValue = get(this.oldRawTree, path)
-        if (isDynamicString(fullPathValue)) {
+        if (hasDynamicStringSnippet(fullPathValue)) {
           const value = get(this.oldRawTree, path, undefined)
           set(currentExecutionTree, path, value)
         }
@@ -626,7 +626,7 @@ export class ExecutionTreeFactory {
           if (point === currentIndex) {
             widgetOrActionAttribute = "defaultValue"
           }
-          const requiredEval = isDynamicString(widgetOrActionAttribute)
+          const requiredEval = hasDynamicStringSnippet(widgetOrActionAttribute)
           if (requiredEval) {
             try {
               evaluateValue = evaluateDynamicString(
