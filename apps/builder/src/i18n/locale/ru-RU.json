@@ -149,6 +149,9 @@
           },
           "neon": {
             "neon": "Неоновый"
+          },
+          "airtable": {
+            "airtable": "Airtable"
           }
         },
         "validate": {
@@ -208,6 +211,9 @@
           },
           "mongodb": {
             "command": "Команда"
+          },
+          "airtable": {
+            "authentication": "Проверка подлинности"
           }
         },
         "placeholder": {
@@ -284,6 +290,10 @@
           },
           "clickhouse": {
             "ssl": "При использовании ClickHouse Cloud Service рекомендуется включить SSL."
+          },
+          "airtable": {
+            "access_token": "<0>Нажмите здесь</0>, чтобы узнать, как получить маркер доступа.",
+            "api_key": "API ключ будет устаревать 1 февраля 2024 года. Обратите внимание на <0>официальную документацию Airtable</0>, чтобы избежать ошибок доступа к ресурсам."
           }
         },
         "option": {
@@ -368,6 +378,10 @@
           "neon": {
             "parse": "Parse",
             "connection_string": "Строка подключения"
+          },
+          "airtable": {
+            "access_token": "Маркер доступа",
+            "api_key": "API ключ"
           }
         },
         "default": {
@@ -531,6 +545,21 @@
               "on_page_loading": "При загрузке страницы",
               "on_app_loading": "При загрузке приложения",
               "none": "Нет"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "Список записей",
+                "get_record": "Получить запись",
+                "create_record": "Создать запись",
+                "update_multiple_reco": "Обновить несколько записей",
+                "update_record": "Обновить запись",
+                "delete_multiple_reco": "Удалить несколько записей",
+                "delete_record": "Удалить запись"
+              },
+              "sort": {
+                "asc": "ОК",
+                "desc": "DESC"
+              }
             }
           },
           "restapi": {
@@ -566,6 +595,12 @@
             },
             "advanced": {
               "no_actions_will_be_t": "Никакие действия не будут срабатывать при загрузке страницы. Вы можете вручную запустить действие и включить «Запустить это действие при загрузке страницы» в расширенных настройках."
+            },
+            "airtable": {
+              "base_id": "Получить базовый ID с вашего базового URL-адреса. Обычно это строка, начинающаяся с \"app\". ",
+              "filter_by_formula": "<0>Нажмите здесь</0>, чтобы узнать, как использовать формулу.",
+              "time_zone": "<0>Нажмите здесь</0> для проверки всех поддерживаемых часовых поясов.",
+              "user_locales": "<0>Нажмите здесь</0>, чтобы проверить все поддерживаемые локали. "
             }
           },
           "advanced": {
@@ -578,6 +613,25 @@
             "actions_running_when": "Действия при загрузке страницы",
             "pages": "Страницы",
             "periodically_run": "Периодически запускать"
+          },
+          "airtable": {
+            "base_id": "Базовый ID",
+            "table_name": "Название таблицы",
+            "method": "Метод",
+            "view": "Вид",
+            "fields": "Поля",
+            "filter_by_formula": "Фильтр по формуле",
+            "sort": "Сортировка",
+            "max_records": "Макс. записей",
+            "page_size": "Размер страницы",
+            "offset": "Смещение",
+            "cell_format": "Формат ячейки",
+            "time_zone": "Часовой пояс",
+            "user_locales": "Локали пользователя",
+            "record_id": "ID записи",
+            "records": "Отчеты",
+            "record": "Запись",
+            "record_ids": "ID записи"
           }
         },
         "menu": {
@@ -2822,7 +2876,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} поделился вам приложением「{{teamName}}」. Нажмите на ссылку, чтобы присоединиться к команде и проверьте приложение: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} поделился вам приложением от 「{{teamName}}」. Нажмите на ссылку, чтобы перейти к приложению: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} приглашает вас присоединиться к 「{{teamName}}」. Нажмите на ссылку, чтобы присоединиться к команде: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} приглашает вас присоединиться к 「{{teamName}}」. Нажмите на ссылку, чтобы присоединиться к команде: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Оставшиеся лицензии"
+      }
     },
     "mes": {
       "invite_suc": "Приглашение успешно отправлено",
@@ -3024,373 +3081,379 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Пожалуйста, нажмите на рамку, чтобы указать расположение вставки."
   },
   "bookFrom": {
-    "title": "Book a demo",
+    "title": "Забронировать демо",
     "form": {
       "about": {
-        "label": "Tell us a little bit about your project",
+        "label": "Расскажите немного о вашем проекте",
         "required": ".",
         "pattern": ""
       },
       "wantTo": {
-        "label": "What do you want to do with ILLA?",
+        "label": "Что вы хотите сделать с ILLA?",
         "required": ".",
         "pattern": ""
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "Отправить"
   },
   "partnerFrom": {
-    "title": "Become a partner",
+    "title": "Стать партнером",
     "form": {
       "name": {
-        "label": "Name",
-        "placeholder-1": "First name",
-        "placeholder-2": "Last name"
+        "label": "Наименование",
+        "placeholder-1": "Имя",
+        "placeholder-2": "Фамилия"
       },
       "title": {
-        "label": "Your title"
+        "label": "Ваше название"
       },
       "companyName": {
-        "label": "Company name"
+        "label": "Название компании"
       },
       "companyWebsite": {
-        "label": "Company website",
-        "pattern": "Please enter a valid URL"
+        "label": "Веб-сайт компании",
+        "pattern": "Пожалуйста, введите правильный URL"
       },
       "email": {
-        "label": "Email",
-        "pattern": "Please enter the correct email."
+        "label": "Почта",
+        "pattern": "Пожалуйста, введите правильный адрес электронной почты."
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "Отправить"
   },
   "billing": {
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "members": "Team",
-    "app": "apps",
-    "security-support": "Security & support",
+    "monthly": "Ежемесячно",
+    "yearly": "Ежегодно",
+    "members": "Команда",
+    "app": "приложения",
+    "security-support": "Безопасность и поддержка",
     "apps": {
-      "components": "All components",
-      "resources": "All resources",
-      "plugins": "Unlimited plugins",
-      "sql": "AI SQL Generation",
-      "watermark": "Remove watermark"
+      "components": "Все компоненты",
+      "resources": "Все ресурсы",
+      "plugins": "Неограниченные плагины",
+      "sql": "ИИ SQL Generation",
+      "watermark": "Удалить водяной знак"
     },
     "security": {
-      "historic-7": "Historic version keep & recovery for 7 days",
-      "historic-30": "Historic version keep & recovery for 30 days",
-      "develop-environment": "Develop environment",
-      "app-public": "App public",
-      "restore-data": "Backup and restore",
-      "deployed": "Access to ILLA Support",
-      "dedicated": "Dedicated Solutions engineer"
+      "historic-7": "Историческая версия сохраняет и восстанавливает на 7 дней",
+      "historic-30": "Историческая версия сохраняет и восстанавливает на 30 дней",
+      "develop-environment": "Окружение развития",
+      "app-public": "Публичное приложение",
+      "restore-data": "Резервное копирование и восстановление",
+      "deployed": "Доступ к службе поддержки ILLA",
+      "dedicated": "Специализированный инженер по решениям"
     },
     "tips": {
-      "plugins": "Import plugins and make use of it within all the apps in your teams",
-      "sql": "Input natural language and generate SQL statement",
-      "staging": "Test your app against a staging environment",
-      "app-public": "Make the app public and anyone with the link can access it",
-      "restore-data": "Backup or restore data at any time you want",
-      "deployed": "Deployed engineers can help you onboard faster",
-      "dedicated": "Dedicated customer solutions engineer via Slack/email/phone",
-      "preview_insufficient": "The file cannot preview due to insufficient capacity, please expand the capacity first."
+      "plugins": "Импортируйте плагины и пользуйтесь ими во всех приложениях ваших команд",
+      "sql": "Введите естественный язык и сгенерируйте оператор SQL",
+      "staging": "Протестируйте приложение на уровне постановки",
+      "app-public": "Сделать приложение общедоступным и любому, кто имеет ссылку, имеет доступ к нему",
+      "restore-data": "Резервное копирование или восстановление данных в любое время",
+      "deployed": "Инженеры могут помочь вам на борту быстрее",
+      "dedicated": "Специализированный инженер решений для клиентов по Slack/электронной почте/телефону",
+      "preview_insufficient": "Предварительный просмотр невозможен из-за недостаточного количества файлов, пожалуйста, сначала увеличите его вместимость."
     },
     "deployment": {
-      "title": "Flexible deployment",
-      "title-1": "Flexible",
-      "title-2": "deployment",
-      "introduction": "ILLA provides two ways to deploy. Developers can use the ILLA Cloud to quickly start building their apps on any device. We also provide ILLA CLI for free with better security to ensure data safety.",
+      "title": "Гибкое развертывание",
+      "title-1": "Гибкий",
+      "title-2": "развертывание",
+      "introduction": "ILLA предоставляет два способа развертывания. Разработчики могут использовать облако ILLA для быстрого начала создания своих приложений на любом устройстве. Мы также бесплатно предоставляем ILLA CLI в целях обеспечения безопасности данных.",
       "illa-cloud": {
-        "title": "ILLA Cloud",
-        "des": "Try one-click deployment and enjoy the easiest deployment experience"
+        "title": "Облако ILLA",
+        "des": "Попробуйте установить один клик и наслаждайтесь самым простым опытом установки"
       },
       "illa-CLI": {
         "title": "ILLA CLI",
-        "des": "The fastest and easiest way to self-host ILLA"
+        "des": "Самый быстрый и простой путь к самому хосту ILLA"
       },
       "kubernetes": {
         "title": "Kubernetes",
-        "des": "Deploy ILLA into Kubernetes by using ILLA Helm chart"
+        "des": "Разверните ILLA в Kubernetes используя график ILLA Helm"
       },
       "docker": {
-        "title": "Docker",
-        "des": "Deploy ILLA locally in 30s"
+        "title": "Докер",
+        "des": "Развертывание ILLA локально через 30 с"
       }
     },
-    "user-month": "per user/month",
-    "editor-month": "per editor/month",
-    "start-at": "start at 100 users",
-    "free-members": "Only 1 member for personal use",
-    "unlimited-viewer": "FREE for unlimited viewers",
-    "unlimited-members": "Unlimited members",
-    "free-btn": "Build apps for free",
-    "plus-btn": "Try the free version",
-    "enterprise-btn": "Contact us",
+    "user-month": "за пользователя в месяц",
+    "editor-month": "за редактор/месяц",
+    "start-at": "старт 100 пользователей",
+    "free-members": "Только 1 участник для личного использования",
+    "unlimited-viewer": "Бесплатно для неограниченного зрителя",
+    "unlimited-members": "Неограниченное число участников",
+    "free-btn": "Бесплатно создавать приложения",
+    "plus-btn": "Попробуйте бесплатную версию",
+    "enterprise-btn": "Свяжитесь с нами",
     "menu": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive",
-      "billing_portal": "Billing portal"
+      "billing": "Биллинг",
+      "license": "Лицензия",
+      "drive": "Диск",
+      "billing_portal": "Платежный портал"
     },
     "title": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive"
+      "billing": "Биллинг",
+      "license": "Лицензия",
+      "drive": "Диск"
     },
     "subscription_general": {
       "plan": {
-        "free": "Free",
-        "plus": "Plus"
+        "free": "Бесплатно",
+        "plus": "Плюс"
       },
       "sub_cycle": {
-        "yearly": "Yearly",
-        "monthly": "Monthly"
+        "yearly": "Ежегодно",
+        "monthly": "Ежемесячно"
       },
       "billing_cyle": {
-        "year": "/ Year",
-        "month": "/ Month"
+        "year": "/ Год",
+        "month": "/ Месяц"
       },
       "table_title": {
-        "next_payment_date": "Next payment date",
-        "expiration_date": "Expiration date",
-        "licenses": "Licenses",
-        "storage": "Storage",
-        "traffic": "Traffic"
+        "next_payment_date": "Дата следующего платежа",
+        "expiration_date": "Срок действия",
+        "licenses": "Лицензии",
+        "storage": "Хранилище",
+        "traffic": "Трафик"
       },
       "period": {
-        "current": "Current",
-        "next": "Next"
+        "current": "Текущее",
+        "next": "Следующий"
       }
     },
     "subscription_card": {
       "title": {
-        "License": "License",
-        "Storage": "Storage",
-        "Traffic": "Traffic",
-        "balance": "Balance"
+        "License": "Лицензия",
+        "Storage": "Хранилище",
+        "Traffic": "Трафик",
+        "balance": "Баланс"
       },
       "button": {
-        "License": "Manage licenses",
-        "Storage": "Manage storage",
-        "Traffic": "Expand traffic"
+        "License": "Управление лицензиями",
+        "Storage": "Управление хранилищем",
+        "Traffic": "Развернуть трафик"
       },
       "capacity": {
-        "License": "{{used}} (total of {{total}} licenses) have been used.",
-        "Storage": "{{used}} (total of {{total}} GB) have been used.",
-        "Traffic": "{{used}} (total of {{total}} GB) have been used."
+        "License": "{{used}} (всего {{total}} лицензий) были использованы.",
+        "Storage": "{{used}} (всего {{total}} ГБ) были использованы.",
+        "Traffic": "{{used}} (всего {{total}} ГБ) были использованы."
       }
     },
     "payment_sidebar": {
       "title": {
-        "manage_storage": "Manage storage",
-        "manage_licenses": "Manage licenses",
-        "expand_traffic_capac": "Expand traffic capacity"
+        "manage_storage": "Управление хранилищем",
+        "manage_licenses": "Управление лицензиями",
+        "expand_traffic_capac": "Увеличение пропускной способности"
       },
       "plan_label": {
-        "License": "Licenses",
-        "Storage": "Storage",
-        "Traffic": "Traffic"
+        "License": "Лицензии",
+        "Storage": "Хранилище",
+        "Traffic": "Трафик"
       },
       "plan_number_input_label": {
-        "License": "Licenses",
-        "Storage_traffic": "GB"
+        "License": "Лицензии",
+        "Storage_traffic": "Гб"
       },
       "select_option": {
-        "Yearly": "Yearly",
-        "Monthly": "Monthly"
+        "Yearly": "Ежегодно",
+        "Monthly": "Ежемесячно"
       },
       "price_label": {
-        "total": "Total"
+        "total": "Итого"
       },
       "price_type": {
-        "this_period_remove": "This period",
-        "this_period": "This period",
-        "next_period": "Next period",
-        "next_period_remove": "Next period",
-        "payment": "Cost",
-        "this_period_storage": "This period",
-        "next_period_storage": "Next period",
-        "this_period_remove_storage": "This period",
-        "next_period_remove_storage": "Next period",
-        "payment_storage": "Cost",
-        "payment_traffic": "Cost",
-        "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
+        "this_period_remove": "Этот период",
+        "this_period": "Этот период",
+        "next_period": "Следующий период",
+        "next_period_remove": "Следующий период",
+        "payment": "Затраты",
+        "this_period_storage": "Этот период",
+        "next_period_storage": "Следующий период",
+        "this_period_remove_storage": "Этот период",
+        "next_period_remove_storage": "Следующий период",
+        "payment_storage": "Затраты",
+        "payment_traffic": "Затраты",
+        "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} ГБ"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month"
+        "this_period": "{{unitPrice}} × {{licenseNum}} лицензии × {{remainDays}} дней / {{totalDays}} дней",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} лицензии × 1 год",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} лицензии × 1 месяц",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} лицензии × {{remainDays}} дней / {{totalDays}} дней",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} лицензии × 1 год",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} лицензии × 1 месяц",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} лицензии × 1 год",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} лицензии × 1 месяц",
+        "this_period_storage": "{{unitPrice}} × {{storageNum}} ГБ × {{remainDays}} дней / {{totalDays}} дней",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} ГБ × 1 год",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} ГБ × 1 месяц",
+        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ × {{remainDays}} дней / {{totalDays}} дней",
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ × 1 год",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ × 1 месяц",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ × 1 год",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ × 1 месяц"
       },
       "button": {
-        "unsubscribe": "Unsubscribe",
-        "subscribe": "Subscribe",
-        "change_plan": "Change plan",
-        "storage_traffic_increase": "Increase {{changeNum}} GB",
-        "storage_traffic_remove": "Remove {{changeNum}} GB",
-        "license_increase": "Increase {{changeNum}} licenses",
-        "license_remove": "Remove {{changeNum}} licenses"
+        "unsubscribe": "Отписаться",
+        "subscribe": "Подписаться",
+        "change_plan": "Изменить план",
+        "storage_traffic_increase": "Увеличить {{changeNum}} ГБ",
+        "storage_traffic_remove": "Удалить {{changeNum}} ГБ",
+        "license_increase": "Увеличить {{changeNum}} лицензий",
+        "license_remove": "Удалить лицензии {{changeNum}}"
       },
       "description_title": {
-        "add_storage": "You are going to add {{changeNum}} GB storage. Once confirmed, we will immediately deduct the payment for the new storage for this billing cycle. <0>Learn more</0>",
-        "remove_storage": "You are going to remove {{changeNum}} GB storage. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "update_plan_year": "You are going to update to a yearly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "update_plan_monthly": "You are going to update to a monthly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "add_license": "You are going to add {{changeNum}} licenses. Once confirmed, we will immediately deduct the payment for the new licenses for this billing cycle. <0>Learn more</0>",
-        "remove_license": "You are going to remove {{changeNum}} licenses. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "add_traffic": "You are going to add {{changeNum}}GB traffic. Once confirmed, we will deduct the cost of the additional traffic immediately. <0>Learn more</0>",
-        "subscribe_storage": "You are going to subscribe to ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "subscribe_license": "You are going to subscribe to ILLA Drive. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "update_plan_increase_license": "You are going to add {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_license": "You are going to remove {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_increase_storage": "You are going to add {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_storage": "You are going to remove {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "unsubscribe_license": "You are going to unsubscribe ILLA Cloud Plus. After cancellation, starting from the next billing cycle, the Plus features will no longer be accessible. <0>Learn more</0>",
-        "unsubscribe_storage": "You are going to unsubscribe ILLA Drive storage. After cancellation, starting from the next billing cycle, the storage capacity will be restored to 100MB. <0>Learn more</0>"
+        "add_storage": "Вы собираетесь добавить {{changeNum}} ГБ хранения. После подтверждения мы немедленно вычтим оплату за новое хранилище для этого платежного цикла. <0>Подробнее</0>",
+        "remove_storage": "Вы собираетесь удалить {{changeNum}} ГБ хранилища. После подтверждения изменения вступят в силу в следующем платежном периоде. <0>Подробнее</0>",
+        "update_plan_year": "Вы собираетесь обновиться до годового плана платежей. После подтверждения изменение вступит в силу с начала следующего расчетного цикла. <0>Подробнее</0>",
+        "update_plan_monthly": "Вы собираетесь обновиться до месячного плана оплаты. После подтверждения изменение вступит в силу с начала следующего расчетного цикла. <0>Подробнее</0>",
+        "add_license": "Вы собираетесь добавить {{changeNum}} лицензий. После подтверждения мы немедленно вычитаем оплату за новые лицензии для этого платежного цикла. <0>Подробнее</0>",
+        "remove_license": "Вы собираетесь удалить лицензии {{changeNum}} . После подтверждения изменения вступят в силу в следующем платежном периоде. <0>Подробнее</0>",
+        "add_traffic": "Вы собираетесь добавить {{changeNum}}ГБ трафика. После подтверждения мы немедленно снимем стоимость дополнительного трафика. <0>Подробнее</0>",
+        "subscribe_storage": "Вы собираетесь подписаться на ILLA Cloud Plus. Мы автоматически вычитаем комиссию с вашего счета в начале каждого платежного цикла. <0>Подробнее</0>",
+        "subscribe_license": "Вы собираетесь подписаться на ILLA Drive. Мы автоматически вычитаем комиссию с вашего счета в начале каждого платежного цикла. <0>Подробнее</0>",
+        "update_plan_increase_license": "Вы собираетесь добавить {{changeNum}} лицензий и обновить период подписки. <0>Подробнее</0>",
+        "update_plan_remove_license": "Вы собираетесь удалить {{changeNum}} лицензий и обновить период подписки. <0>Подробнее</0>",
+        "update_plan_increase_storage": "Вы собираетесь добавить {{changeNum}} ГБ хранилища и обновить период подписки. <0>Подробнее</0>",
+        "update_plan_remove_storage": "Вы собираетесь удалить {{changeNum}} ГБ хранилища и обновить период подписки. <0>Подробнее</0>",
+        "unsubscribe_license": "Вы собираетесь отписаться от ILLA Cloud Plus. После отмены, начиная с следующего платежного цикла, плюс функции больше не будут доступны. <0>Подробнее</0>",
+        "unsubscribe_storage": "Вы собираетесь отписаться от ILLA Drive хранения. После отмены, начиная со следующего расчетного цикла, вместимость склада будет восстановлена до 100МБ. <0>Подробнее</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
-        "add_storage": "Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our user <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_storage": "If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our  <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_year": "Starting from the next period, the subscription will be changed to an annual subscription, and the fees will be automatically deducted based on the annual subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_monthly": "Starting from the next period, the subscription will be changed to a monthly subscription, and the fees will be automatically deducted based on the monthly subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_license": "Calculation rules using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_license": "If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_traffic": "After successful deduction, your traffic will increase in real-time. Once the traffic is used, the fees cannot be refunded. Unused traffic can be refunded in units of GB. For example, if you purchase 10GB of traffic and use 4.5GB, you can apply for a refund of 5GB. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_yearly": "You are going to subscribe to the annual subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $9.9 per GB, and you have a total of 3 GB, we will deduct $29.7 on February 25, 2023. If you add 2 GB on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 GB, which is (2+3)*$9.9=$49.5. If you wish to reduce storage or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_monthly": "You are going to subscribe to the monthly subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $0.99 per GB, and you have a total of 3 GB, we will deduct $2.97 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$0.99=$4.95. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_yearly": "You are going to subscribe to the annual subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $100 per license, and you have a total of 3 licenses, we will deduct $300 on February 25, 2023. If you add 2 more licenses on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 licenses, which is (2+3)*$100=$500. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_monthly": "You are going to subscribe to the monthly subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $12 per license, and you have a total of 3 licenses, we will deduct $36 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$12=$60. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased licenses according to the current billing cycle. Calculation rules of increasing licenses using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased storage according to the current billing cycle. Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>"
+        "add_storage": "Правила расчета с использованием ежемесячной подписки на хранилище в качестве примера: Давайте рассмотрим сценарий, в котором изначально вы подписчились на 5 ГБ начиная с 14 марта, и биллинговый цикл распространяется от 14 месяца до 13 следующего месяца. 10 мая вы решили добавить 1 Гб. На тот момент осталось 4 дня до конца текущего цикла 13 мая (всего 30 дней с 14 по 13 мая). Для расчета скорректированного платежа мы вычитаем сумму в размере 1 ГБ, которая составляет примерно $0. Таким образом, вычеты оцениваются как 1 лицензия * $0. 9 / 30 дней * 4 дня, что составляет приблизительно 0,132 долл. США. Начиная со следующего платежного цикла все сборы за хранение будут объединены и оплачены вместе. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Дополнительную информацию можно получить в разделе <0>Политика конфиденциальности</0> и <1>Условия обслуживания</1>",
+        "remove_storage": "Если вместимость хранилища превышает вместимость подписанного хранилища при запуске следующего платежного цикла, все файлы будут отключены до тех пор, пока вы не удалите файлы или не увеличите их вместимость. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "update_plan_year": "Начиная со следующего периода, подписка будет изменена на годовую подписку, и сборы будут автоматически вычтены в зависимости от годового тарифа подписки. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "update_plan_monthly": "Начиная со следующего периода, подписка будет изменена на месячную подписку, и сборы будут автоматически вычтены в зависимости от ежемесячной стоимости подписки. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "add_license": "Правила расчета с использованием ежемесячной подписки на лицензию в качестве примера: Давайте рассмотрим сценарий, в котором изначально вы подписывались на 5 лицензий, начиная с 14 марта, и биллинговый цикл распространяется от 14 месяца до 13 следующего месяца. 10 мая вы решили добавить еще 1 лицензию. На тот момент осталось 4 дня до конца текущего цикла 13 мая (всего 30 дней с 14 по 13 мая). Для расчета скорректированного платежа мы вычитаем стоимость 1 лицензии, США, пропорционально продолжительности 4 дня в течение 30-дневного цикла. Таким образом, вычеты оцениваются как 1 лицензия * 10 / 30 дней * 4 дня, что составляет приблизительно $1,33. Начиная со следующего платежного цикла, все лицензионные сборы будут консолидированы и оплачены вместе. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "remove_license": "Если количество пользователей с правами на редактирование превышает количество лицензий в начале следующего платежного цикла, все пользователи, кроме владельца, будут отключены до тех пор, пока вы не удалите участников или не увеличите количество лицензий в пределах доступного диапазона. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "add_traffic": "После успешного вычета, ваш трафик увеличится в реальном времени. После использования трафика комиссия не может быть возвращена. Неиспользованный трафик может быть возвращен в единицах GB. Например, если вы покупаете 10ГБ трафика и используете 4.5ГБ, вы можете подать заявку на возмещение 5 ГБ. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "subscribe_storage_yearly": "Вы собираетесь подписаться на годовую подписку на хранилище ILLA Drive. Мы автоматически вычитаем комиссию с Вашего счета в начале каждого платежного цикла. Фактическая сумма вычтена зависит от того, сколько хранилища вы подписались на GB. Например, если вы начинаете свою первую подписку 25 февраля 2023 года, годовая абонентская плата составляет $9. в общей сложности 3 ГБ, мы вычтим $29. 25 февраля 2023 года. Если вы добавите 2 ГБ 25 марта 2023 года, мы сначала вычитаем оставшиеся 11 месяцев оплаты 25 марта 2023 года. Затем, к 25 февраля 2024 года, мы вычитаем оплату за 5 ГБ, что составляет (2+3)*$9.9=$49. . Если вы хотите уменьшить хранилище или внести другие изменения в подписку, пожалуйста, обновите его до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "subscribe_storage_monthly": "Вы собираетесь подписаться на ежемесячную подписку на хранение хранилища ILLA Drive. Мы автоматически вычитаем комиссию с Вашего счета в начале каждого платежного цикла. Фактическая сумма вычтена зависит от того, сколько хранилища вы подписались на GB. Например, если вы начинаете первую подписку 25 февраля 2023 года, ежемесячная абонентская плата составляет $0. 9 за ГБ, а у вас 3 ГБ, мы вычтим 2 доллара. 7 25 февраля 2023года. Если вы добавите еще 2 лицензии 21 марта 2023 года, мы сначала вычтим оставшиеся 5 дней выплаты 21 марта 2023 года. Затем, к 25 марта 2023 года, мы вычтим оплату за 5 лицензий, что составляет (2+3)*$0. 9=$4.95. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "subscribe_license_yearly": "Вы собираетесь подписаться на годовую подписку ILLA Cloud Plus. Мы автоматически вычитаем комиссию с Вашего счета в начале каждого платежного цикла. Фактическая сумма вычета зависит от количества лицензий. Например, если вы начинаете свою первую подписку 25 февраля 2023 года, годовая абонентская плата составляет $100 за лицензию, и вы имеете в общей сложности 3 лицензии, мы будем удерживать $300 25 февраля 2023 года. Если вы добавите еще 2 лицензии 25 марта 2023 года, мы сначала вычтим оставшиеся 11 месяцев оплаты 25 марта 2023 года. Затем, к 25 февраля 2024 года, мы вычтим оплату за 5 лицензий, что составляет (2+3)*$100=$500. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "subscribe_license_monthly": "Вы собираетесь подписаться на ежемесячную подписку ILLA Cloud Plus. Мы автоматически вычитаем комиссию с Вашего счета в начале каждого платежного цикла. Фактическая сумма вычета зависит от количества лицензий. Например, если вы начинаете свою первую подписку 25 февраля 2023 года, ежемесячная абонентская плата составляет $12 за лицензию, и у вас есть в общей сложности 3 лицензии, мы будем удерживать $36 25 февраля 2023 года. Если вы добавите еще 2 лицензии 21 марта 2023 года, мы сначала вычтим оставшиеся 5 дней выплаты 21 марта 2023 года. Затем, к 25 марта 2023 года, мы вычтим оплату за 5 лицензий, что составляет (2+3)*$12=$60. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "update_plan_increase_license": "Плата будет автоматически вычтена на основе обновленного количества лицензий и стоимости нового расчетного цикла со следующего периода. На этот раз мы вычитаем оплату за увеличенные лицензии в соответствии с текущим биллинговым циклом. Правила расчета увеличения лицензий с использованием ежемесячной подписки на лицензию в качестве примера: Давайте рассмотрим сценарий, в котором изначально вы подписывались на 5 лицензий, начиная с 14 марта, и биллинговый цикл распространяется от 14 месяца до 13 следующего месяца. 10 мая вы решили добавить еще 1 лицензию. На тот момент осталось 4 дня до конца текущего цикла 13 мая (всего 30 дней с 14 по 13 мая). Для расчета скорректированного платежа мы вычитаем стоимость 1 лицензии, США, пропорционально продолжительности 4 дня в течение 30-дневного цикла. Таким образом, вычеты оцениваются как 1 лицензия * 10 / 30 дней * 4 дня, что составляет приблизительно $1,33. Начиная со следующего платежного цикла, все лицензионные сборы будут консолидированы и оплачены вместе. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "update_plan_remove_license": "Плата будет автоматически вычтена на основе обновленного количества лицензий и стоимости нового расчетного цикла со следующего периода. Если количество пользователей с правами на редактирование превышает количество лицензий в начале следующего платежного цикла, все пользователи, кроме владельца, будут отключены до тех пор, пока вы не удалите участников или не увеличите количество лицензий в пределах доступного диапазона. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "update_plan_increase_storage": "Плата будет автоматически вычтена на основе обновленного хранилища и цены нового платежного цикла со следующего периода. На этот раз мы вычитаем оплату за увеличенное хранение в соответствии с текущим платежным периодом. Правила расчета с использованием ежемесячной подписки на хранилище в качестве примера: Давайте рассмотрим сценарий, в котором изначально вы подписчились на 5 ГБ начиная с 14 марта, и биллинговый цикл распространяется от 14 месяца до 13 следующего месяца. 10 мая вы решили добавить 1 Гб. На тот момент осталось 4 дня до конца текущего цикла 13 мая (всего 30 дней с 14 по 13 мая). Для расчета скорректированного платежа мы вычитаем сумму в размере 1 ГБ, которая составляет примерно $0. 9, пропорционально продолжительности 4 дня в течение 30-дневного цикла. Таким образом, вычет оценивается как 1 лицензия * $0,99 / 30 дней * 4 дня, в результате чего начисляется $0,132. Начиная со следующего платежного цикла все сборы за хранение будут объединены и оплачены вместе. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>",
+        "update_plan_remove_storage": "Плата будет автоматически вычтена на основе обновленного хранилища и цены нового платежного цикла со следующего периода. Если вместимость хранилища превышает вместимость подписанного хранилища при запуске следующего платежного цикла, все файлы будут отключены до тех пор, пока вы не удалите файлы или не увеличите их вместимость. Для получения дополнительной информации обратитесь к нашим <0>Политике конфиденциальности</0> и <1>Условиям обслуживания</1>"
       }
     },
     "message": {
-      "failed_to_subscribe": "Failed to subscribe. Please try again.",
-      "failed_to_add_traffic": "Failed to add traffic. Please try again. ",
-      "failed_to_add_storage": "Failed to add storage. Please try again. ",
-      "failed_to_remove_storage": "Failed to remove storage. Please try again. ",
-      "failed_to_add_licens": "Failed to add licenses. Please try again. ",
-      "failed_to_remove_lic": "Failed to remove licenses. Please try again. ",
-      "failed_to_change_pla": "Failed to change plan. Please try again. ",
-      "failed_to_unsubscrib": "Failed to unsubscribe. Please try again. ",
-      "successfully_removed": "Successfully removed.  The change will take effect from {{nextPaymentDate}}.",
-      "unsubscription_succe": "Unsubscription successful.  The change will take effect from {{nextPaymentDate}}",
-      "cancel_subscribe": "Subscription not completed, please try again or contact billing@illasoft.com",
-      "cancel_purchase": "Purchase not completed, please try again or contact billing@illasoft.com",
-      "successfully_changed": "Subscription changed successfully. It will take effect in a few minutes",
-      "failed_to_change": "Subscription change failed",
-      "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
-      "failed_to_join_no_license": "Unable to join because team licenses are insufficient, please contact the admin.",
-      "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin."
+      "failed_to_subscribe": "Не удалось подписаться. Пожалуйста, попробуйте еще раз.",
+      "failed_to_add_traffic": "Не удалось добавить трафика. Пожалуйста, попробуйте еще раз. ",
+      "failed_to_add_storage": "Не удалось добавить хранилище. Пожалуйста, попробуйте еще раз. ",
+      "failed_to_remove_storage": "Не удалось удалить хранилище. Пожалуйста, попробуйте еще раз. ",
+      "failed_to_add_licens": "Не удалось добавить лицензии. Пожалуйста, попробуйте еще раз. ",
+      "failed_to_remove_lic": "Не удалось удалить лицензии. Пожалуйста, попробуйте еще раз. ",
+      "failed_to_change_pla": "Не удалось изменить план. Пожалуйста, попробуйте еще раз. ",
+      "failed_to_unsubscrib": "Не удалось отписаться. Пожалуйста, попробуйте еще раз. ",
+      "successfully_removed": "Успешно удалено. Изменения вступят в силу с {{nextPaymentDate}}.",
+      "unsubscription_succe": "Успешная отмена подписки. Изменения вступят в силу с {{nextPaymentDate}}",
+      "cancel_subscribe": "Подписка не завершена, попробуйте еще раз или напишите на billing@illasoft.com",
+      "cancel_purchase": "Покупка не завершена, попробуйте еще раз или напишите на billing@illasoft.com",
+      "successfully_changed": "Подписка успешно изменена. Она вступит в силу через несколько минут",
+      "failed_to_change": "Не удалось изменить подписку",
+      "unsubscription_suc": "Подписка была успешно отменена и вступит в силу со следующего периода",
+      "failed_to_join_no_license": "Невозможно присоединиться, так как групповые лицензии недостаточны, пожалуйста, свяжитесь с администратором.",
+      "storage_insufficient_modal": "Хранилище или трафик этой команды недостаточно. Обратитесь к администратору.",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
-        "owner_title_drive": "Insufficient capacity",
-        "owner_description_drive": "The storage or traffic is not enough. Please upgrade and try again.",
-        "owner_button_drive": "Upgrade",
-        "not_owner_title_drive": "Failed to operate",
-        "not_owner_description_drive": "The storage or traffic of this team is not enough. Please contact your admin.",
-        "not_owner_button_drive": "Got it",
-        "out_title_drive": "Failed to download",
-        "out_description_drive": "Failed to download, please contact the file owner",
-        "out_button_drive": "Got it"
+        "owner_title_drive": "Недостаточная вместимость",
+        "owner_description_drive": "Хранилище или трафик недостаточно. Пожалуйста, обновите и повторите попытку.",
+        "owner_button_drive": "Улучшить",
+        "not_owner_title_drive": "Не удалось работать",
+        "not_owner_description_drive": "Хранилище или трафик этой команды недостаточно. Обратитесь к администратору.",
+        "not_owner_button_drive": "Понятно",
+        "out_title_drive": "Не удалось загрузить",
+        "out_description_drive": "Не удалось загрузить, пожалуйста, свяжитесь с владельцем файла",
+        "out_button_drive": "Понятно"
       },
       "sub_suc": {
-        "subscription_success": "Subscription successful",
-        "you_can_now_invite_m": "It will take effect in a few minutes. You can invite members and start using the advanced features later. Go ahead and give it a try!",
-        "you_can_now_upload_m": "It will take effect in a few minutes.  You can now upload more files.",
-        "payment_successful": "Payment successful",
-        "we_have_added_the_li": "It will take effect in a few minutes. We have added the licenses for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_st": "It will take effect in a few minutes. We have added the storage for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_tr": "It will take effect in a few minutes. We will add the traffic for you later. You can now download more files.",
-        "successfully_updated": "Successfully updated",
-        "the_change_to_the_su": "The change to the subscription period will take effect from the next billing cycle.",
-        "got_it": "Got it"
+        "subscription_success": "Подписка прошла успешно",
+        "you_can_now_invite_m": "Он вступит в силу через несколько минут. Вы можете пригласить участников и начать пользоваться расширенными функциями позже. Переходите вперед и попробуйте!",
+        "you_can_now_upload_m": "Он вступит в силу через несколько минут. Теперь вы можете загрузить больше файлов.",
+        "payment_successful": "Платеж выполнен",
+        "we_have_added_the_li": "Это вступит в силу через несколько минут. Мы добавили для вас лицензии. Любые изменения в период подписки вступят в силу со следующего платежного цикла.",
+        "we_have_added_the_st": "Это вступит в силу через несколько минут. Мы добавили хранилище для вас. Любые изменения в период подписки вступят в силу со следующего платежного цикла.",
+        "we_have_added_the_tr": "Это вступит в силу через несколько минут. Мы добавим трафик для вас позже. Теперь вы можете скачать больше файлов.",
+        "successfully_updated": "Успешно обновлено",
+        "the_change_to_the_su": "Изменение периода подписки вступит в силу в следующем платежном периоде.",
+        "got_it": "Понятно"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgrade to Plus",
-        "this_feature_is_avai": "This feature is available for Plus users only. To use it, please upgrade to Plus. By upgrading to Plus, you will also have access to the following features. ",
-        "add_unlimited_viewer": "Add unlimited viewer members for FREE",
-        "publish_public_appli": "Publish public applications",
-        "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs",
-        "learn_more": "Learn more",
-        "upgrade": "Upgrade",
-        "pricing": "/editor/month, yearly",
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
-        "insufficient_license_button": "Add licenses"
+        "upgrade_to_plus": "Улучшить до Plus",
+        "this_feature_is_avai": "Эта функция доступна только для пользователей Plus. Чтобы ее использовать, пожалуйста, обновитесь до Plus. При обновлении до Plus, вы также получите доступ к следующим функциям. ",
+        "add_unlimited_viewer": "Добавить неограниченное количество пользователей бесплатно",
+        "publish_public_appli": "Публикация публичных приложений",
+        "ai_sql_generation": "ИИ SQL Generation",
+        "audit_logs": "Журналы аудита",
+        "learn_more": "Узнать больше",
+        "upgrade": "Улучшить",
+        "pricing": "/editor/месяц, год",
+        "insufficient_license_title": "Недостаточно лицензий",
+        "insufficient_license_description": "Чтобы пригласить редакторов, сначала увеличите лицензии. Все члены вашей команды могут использовать функции ILLA Cloud Plus. Конкретный доступ к каждой функции зависит от роли каждого участника. ",
+        "insufficient_license_button": "Добавить лицензии"
       },
       "expired": {
-        "owner": "Your subscription has expired. To continue using, please renew it.",
-        "others": "Your account has been disabled because the team's subscription has expired.",
-        "your_subscription_ha_not_owner": "Not enough licenses",
-        "all_members_except_f_not_owner": "Your team doesn't have enough licenses. Please contact your team owner.",
-        "upgrade_not_owner": "Got it"
+        "owner": "Ваша подписка истекла. Чтобы продолжить использование, пожалуйста, обновите ее.",
+        "others": "Ваша учетная запись была отключена, так как срок действия подписки истек.",
+        "your_subscription_ha_not_owner": "Недостаточно лицензий",
+        "all_members_except_f_not_owner": "У вашей команды недостаточно лицензий. Пожалуйста, свяжитесь с владельцем вашей команды.",
+        "upgrade_not_owner": "Понятно"
       },
       "blank_page": {
-        "insufficient_license_disable": "Your account has been disabled due to insufficient team licenses. Please contact the team Owner for assistance."
+        "insufficient_license_disable": "Ваша учетная запись была отключена из-за недостаточных лицензий команды. Пожалуйста, свяжитесь с владельцем команды для получения помощи."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please connect your admin to increase licenses first.",
-        "insufficient_license_button": "OK"
+        "insufficient_license_title": "Недостаточно лицензий",
+        "insufficient_license_description": "Чтобы пригласить редакторов, подключите вашего администратора для увеличения лицензий.",
+        "insufficient_license_button": "ОК"
       },
       "storage_insufficient": {
-        "owner_title": "Insufficient storage capacity",
-        "owner_description": "In order to store files normally, please increase the storage  in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to store files normally, please contact your administrator to increase storage capacity in time.",
-        "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_title": "Недостаточно места для хранения",
+        "owner_description": "Для нормального хранения файлов, пожалуйста, увеличьте их вовремя. ",
+        "owner_button": "Увеличить вместимость",
+        "not_owner_title": "Недостаточно места для хранения",
+        "not_owner_description": "Чтобы сохранить файлы в обычном режиме, обратитесь к администратору, чтобы увеличить их вместимость.",
+        "not_owner_button": "ОК",
+        "owner_pricing": "ГБ/Ежемесячно"
       },
       "traffic_insufficient": {
-        "owner_title": "Insufficient traffic capacity",
-        "owner_description": "In order to access files normally, please increase the traffic capacity in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to access files normally, please contact your administrator to increase traffic capacity in time.",
-        "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_title": "Недостаточная пропускная способность",
+        "owner_description": "Для нормального доступа к файлам, пожалуйста, увеличьте пропускную способность трафика. ",
+        "owner_button": "Увеличить вместимость",
+        "not_owner_title": "Недостаточно места для хранения",
+        "not_owner_description": "Для нормального доступа к файлам, пожалуйста, свяжитесь с администратором для увеличения пропускной способности трафика.",
+        "not_owner_button": "ОК",
+        "owner_pricing": "ГБ/Ежемесячно"
       },
       "cancel_confirm": {
-        "description": "After cancellation, your team will revert to the free plan starting from the next billing cycle. The features included in the subscription plans will no longer be accessible.",
-        "title": "Cancel the subscription?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "После отмены ваша команда вернется к бесплатному плану, начиная с следующего расчетного цикла. Функции, включенные в тарифный план, больше не будут доступны.",
+        "title": "Отменить подписку?",
+        "button_cancel": "Отмена",
+        "button_confirm": "Подтвердить"
       },
       "change_confirm": {
-        "description": "Once reduced, the changes will take effect in the next billing cycle. If there are resources that exceed the newly allocated capacity, all resources may become inaccessible.",
-        "title": "Change plan?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "После уменьшения изменения вступят в силу в следующем платежном цикле. При наличии ресурсов, превышающих вновь выделенный потенциал, все ресурсы могут стать недоступными.",
+        "title": "Изменить план?",
+        "button_cancel": "Отмена",
+        "button_confirm": "Подтвердить"
       }
     },
     "homepage": {
-      "get_access_to_advanc": "Get access to advanced features",
-      "upgrade": "Upgrade",
-      "cancel": "Cancel"
+      "get_access_to_advanc": "Получить доступ к расширенным функциям",
+      "upgrade": "Улучшить",
+      "cancel": "Отмена"
     }
   }
 }

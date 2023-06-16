@@ -149,6 +149,9 @@
           },
           "neon": {
             "neon": "Neon"
+          },
+          "airtable": {
+            "airtable": "Airtable"
           }
         },
         "validate": {
@@ -208,6 +211,9 @@
           },
           "mongodb": {
             "command": "命令"
+          },
+          "airtable": {
+            "authentication": "认证"
           }
         },
         "placeholder": {
@@ -284,6 +290,10 @@
           },
           "clickhouse": {
             "ssl": "当使用 ClickHouse 云服务时，建议开启SSL。"
+          },
+          "airtable": {
+            "access_token": "<0>点此</0>了解如何获取Access token",
+            "api_key": "API key将于2024年2月1日弃用。请注意<0>Airtable官方文档</0>，避免资源访问错误。"
           }
         },
         "option": {
@@ -368,6 +378,10 @@
           "neon": {
             "parse": "解析",
             "connection_string": "连接字符串"
+          },
+          "airtable": {
+            "access_token": "Access token",
+            "api_key": "API key"
           }
         },
         "default": {
@@ -531,6 +545,21 @@
               "on_page_loading": "页面加载时",
               "on_app_loading": "APP加载后",
               "none": "无"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "列出记录",
+                "get_record": "获取一条记录",
+                "create_record": "创建记录",
+                "update_multiple_reco": "更新多条记录",
+                "update_record": "更新记录",
+                "delete_multiple_reco": "删除多条记录",
+                "delete_record": "删除一条记录"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
             }
           },
           "restapi": {
@@ -566,6 +595,12 @@
             },
             "advanced": {
               "no_actions_will_be_t": "这个页面加载时不会触发任何操作。 您可以将Action设置为手动触发，并在高级设置中启用“页面加载时触发此操作”。"
+            },
+            "airtable": {
+              "base_id": "从您的base URL中获取base ID。通常是一个以“app”开头的字符串。 ",
+              "filter_by_formula": "<0>点击这里</0>了解如何使用公式。",
+              "time_zone": "<0>点击这里</0>来检查所有支持的时区。",
+              "user_locales": "<0>点击这里</0>来检查所有支持的语言。"
             }
           },
           "advanced": {
@@ -578,6 +613,25 @@
             "actions_running_when": "页面加载时运行的操作",
             "pages": "页面",
             "periodically_run": "定期运行"
+          },
+          "airtable": {
+            "base_id": "Base ID",
+            "table_name": "表名",
+            "method": "方法",
+            "view": "视图",
+            "fields": "Fields",
+            "filter_by_formula": "按公式筛选",
+            "sort": "排序",
+            "max_records": "最大记录数",
+            "page_size": "分页大小",
+            "offset": "偏移量",
+            "cell_format": "单元格格式",
+            "time_zone": "时区",
+            "user_locales": "用户语言",
+            "record_id": "Record ID",
+            "records": "Records",
+            "record": "Record",
+            "record_ids": "Record IDs"
           }
         },
         "menu": {
@@ -2822,7 +2876,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接查看APP： {{inviteLink}}",
-      "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}"
+      "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}",
+      "tips": {
+        "license_insufficient": "剩余许可证"
+      }
     },
     "mes": {
       "invite_suc": "邀请成功",
@@ -3264,7 +3321,9 @@
         "update_plan_increase_storage": "您将添加{{changeNum}}GB存储并更新您的订阅期。<0>了解更多</0>",
         "update_plan_remove_storage": "您将要移除{{changeNum}}GB存储并更新您的订阅期。<0>了解更多</0>",
         "unsubscribe_license": "您将要取消订阅 ILLA Cloud Plus。 取消后，从下一个计费周期开始，Plus功能将无法访问。<0>了解更多</0>",
-        "unsubscribe_storage": "您将取消订阅 ILLA Drive 存储。取消后，从下一个计费周期开始，存储容量将恢复为100MB。 <0>了解更多</0>"
+        "unsubscribe_storage": "您将取消订阅 ILLA Drive 存储。取消后，从下一个计费周期开始，存储容量将恢复为100MB。 <0>了解更多</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
         "add_storage": "使用每月存储订阅作为示例的计算规则。让我们考虑一个情景，您最初订阅了5GB，从3月14日开始， 而且账单周期从本月第14个月到下个月第13个月。 5月10日，你决定添加 1 GB。 当时， 到5月13日本周期结束时还剩下4天（从4月14日至5月13日总共30天）。 为了计算调整后的付款，我们将扣除相当于大约0美元的1GB的费用。 9 与30天周期内4天的持续时间相称。因此，扣除额估计为1份许可证* $0。 9 天30天* 4天，约占0.132美元。 从下一个计费周期开始，所有储存费都将合并并一起支付。 如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的用户 <0>隐私政策</0> 和 <1>服务条款</1>",
@@ -3301,7 +3360,11 @@
       "failed_to_change": "订阅更改失败",
       "unsubscription_suc": "订阅已成功取消，并将在下一阶段生效",
       "failed_to_join_no_license": "无法加入，因为团队许可证不足，请联系管理员。",
-      "storage_insufficient_modal": "存储空间或流量余额不足，请联系管理员。"
+      "storage_insufficient_modal": "存储空间或流量余额不足，请联系管理员。",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
