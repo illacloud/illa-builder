@@ -39,35 +39,34 @@ export const tansDataFromOld = (
 ): ColumnItemShape[] => {
   const reOrderColumns: ColumnItemShape[] = []
   if (data?.length) {
-    if (!isObject(data[0])) {
-      return []
+    if (isObject(data[0])) {
+      const newKeys = Object.keys(data[0])
+      const filteredOldKeys = oldKeyOrder.filter((key) => {
+        return newKeys.includes(key) || oldKeyMap[key].custom
+      })
+      const finalKeys = filteredOldKeys.concat(
+        newKeys.filter((key) => {
+          return !filteredOldKeys.includes(key)
+        }),
+      )
+      finalKeys.forEach((key, index) => {
+        const oldItem = oldKeyMap[key]
+        if (oldItem) {
+          reOrderColumns.push({
+            ...oldItem,
+            columnIndex: index,
+          })
+        } else {
+          reOrderColumns.push({
+            ...defaultColumnItem,
+            id: key,
+            header: key,
+            accessorKey: key,
+            columnIndex: index,
+          })
+        }
+      })
     }
-    const newKeys = Object.keys(data[0])
-    const filteredOldKeys = oldKeyOrder.filter((key) => {
-      return newKeys.includes(key) || oldKeyMap[key].custom
-    })
-    const finalKeys = filteredOldKeys.concat(
-      newKeys.filter((key) => {
-        return !filteredOldKeys.includes(key)
-      }),
-    )
-    finalKeys.forEach((key, index) => {
-      const oldItem = oldKeyMap[key]
-      if (oldItem) {
-        reOrderColumns.push({
-          ...oldItem,
-          columnIndex: index,
-        })
-      } else {
-        reOrderColumns.push({
-          ...defaultColumnItem,
-          id: key,
-          header: key,
-          accessorKey: key,
-          columnIndex: index,
-        })
-      }
-    })
   }
   return reOrderColumns
 }
@@ -79,20 +78,22 @@ export const tansTableDataToColumns = (
   const columns: ColumnItemShape[] = []
   let cur = 0
   if (data && data.length > 0) {
-    Object.keys(data[0]).forEach((key, index) => {
-      let columnIndex = index
-      if (index === getOldOrder(cur, oldOrders)) {
-        columnIndex += 1
-        cur += 1
-      }
-      columns.push({
-        ...defaultColumnItem,
-        id: key,
-        header: key,
-        accessorKey: key,
-        columnIndex,
-      } as ColumnItemShape)
-    })
+    if (isObject(data[0])) {
+      Object.keys(data[0]).forEach((key, index) => {
+        let columnIndex = index
+        if (index === getOldOrder(cur, oldOrders)) {
+          columnIndex += 1
+          cur += 1
+        }
+        columns.push({
+          ...defaultColumnItem,
+          id: key,
+          header: key,
+          accessorKey: key,
+          columnIndex,
+        } as ColumnItemShape)
+      })
+    }
   }
   return columns
 }
@@ -103,7 +104,7 @@ export const transTableColumnEvent = (events: any[], columnLength: number) => {
     res[i] = []
     events.forEach((event) => {
       const rowEvent: Record<string, any> = { ...event }
-      if (event?.fromCurrentRow) {
+      if (event?.fromCurrentRow && isObject(event?.fromCurrentRow)) {
         const keys = Object.keys(event?.fromCurrentRow)
         keys.forEach((key) => {
           // Determine whether the current key is taken from currentRow, if so, treat it as an array.
