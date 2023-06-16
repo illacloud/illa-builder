@@ -12,7 +12,6 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { useDetectGoogleOAuthStatus } from "@/hooks/useDetectGoogleOAuthStatus"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
@@ -47,7 +46,6 @@ import {
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  useDetectGoogleOAuthStatus()
   const [editorVisible, setEditorVisible] = useState(false)
   const [generatorVisible, setGeneratorVisible] = useState(false)
 
