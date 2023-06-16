@@ -47,7 +47,6 @@ import {
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-
   useDetectGoogleOAuthStatus()
   const [editorVisible, setEditorVisible] = useState(false)
   const [generatorVisible, setGeneratorVisible] = useState(false)
@@ -93,10 +92,17 @@ export const ResourceChoose: FC = () => {
             }}
             addAfter={
               <PenIcon
+                style={
+                  currentSelectResource
+                    ? { cursor: "pointer" }
+                    : { cursor: "not-allowed" }
+                }
                 color={globalColor(`--${illaPrefix}-grayBlue-04`)}
                 onClick={(e) => {
                   e.stopPropagation()
-                  setEditorVisible(true)
+                  if (currentSelectResource) {
+                    setEditorVisible(true)
+                  }
                 }}
               />
             }
@@ -200,7 +206,7 @@ export const ResourceChoose: FC = () => {
         }}
       >
         <ResourceCreator
-          resourceId={selectedAction.resourceId}
+          resourceId={action.resourceId}
           onBack={() => {
             setEditorVisible(false)
           }}
