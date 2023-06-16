@@ -3321,7 +3321,9 @@
         "update_plan_increase_storage": "Aiot lisätä {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
         "update_plan_remove_storage": "Aiot poistaa {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
         "unsubscribe_license": "Lopetat ILLA Cloud Plus -palvelun tilauksen. Peruutuksen jälkeen seuraavasta laskutusjaksosta alkaen Plus-ominaisuudet eivät ole enää käytettävissä. <0>Lue lisää</0>",
-        "unsubscribe_storage": "Olet menossa lopettamaan ILLA Drive -tallennustilan tilauksen. Peruutuksen jälkeen seuraavan laskutussyklin jälkeen tallennuskapasiteetti palautetaan 100MB. <0>Lue lisää</0>"
+        "unsubscribe_storage": "Olet menossa lopettamaan ILLA Drive -tallennustilan tilauksen. Peruutuksen jälkeen seuraavan laskutussyklin jälkeen tallennuskapasiteetti palautetaan 100MB. <0>Lue lisää</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
         "add_storage": "Laskentasäännöt käyttäen kuukausittaista tallennustilausta esimerkkinä: Katsotaanpa skenaario, jossa tilaat aluksi 5 GB alkaen maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 GB. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 GB, joka on noin $ 0. 9, suhteessa kestoon 4 päivää 30 päivän aikana. Siksi vähennys on arvioitu 1 lisenssi * $ 0. 9 / 30 päivää * 4 päivää, jolloin noin 0,132 dollaria. Seuraavasta laskutusjaksosta alkaen kaikki tallennusmaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso käyttäjämme <0>Tietosuojakäytäntö</0> ja <1>Käyttöehdot</1>",
@@ -3358,7 +3360,11 @@
       "failed_to_change": "Tilauksen muutos epäonnistui",
       "unsubscription_suc": "Tilaus on peruutettu onnistuneesti ja tulee voimaan seuraavalta kaudelta",
       "failed_to_join_no_license": "Liittyminen ei onnistunut, koska tiimin lisenssit eivät riitä, ota yhteyttä ylläpitäjään.",
-      "storage_insufficient_modal": "Tämän tiimin tallennustila tai liikenne ei riitä. Ota yhteyttä ylläpitäjään."
+      "storage_insufficient_modal": "Tämän tiimin tallennustila tai liikenne ei riitä. Ota yhteyttä ylläpitäjään.",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
