@@ -1,4 +1,7 @@
-import { SubscribeInfo } from "@/illa-public-component/MemberList/interface"
+import {
+  SubscribeInfo,
+  TotalTeamLicense,
+} from "@/illa-public-component/MemberList/interface"
 import {
   USER_ROLE,
   USER_STATUS,
@@ -42,6 +45,7 @@ export interface TeamInfo {
   identifier: string
   teamMemberID: string
   currentTeamLicense: SubscribeInfo
+  totalTeamLicense: TotalTeamLicense
   personalConfig: TeamPersonalConfig
   myRole: USER_ROLE
   permission: TeamMemberPermission
