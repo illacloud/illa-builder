@@ -3321,7 +3321,9 @@
         "update_plan_increase_storage": "Urmează să adaugi spațiul de stocare {{changeNum}} GB și să-ți actualizezi perioada de abonament. <0>Află mai multe</0>",
         "update_plan_remove_storage": "Veți elimina spațiul de stocare {{changeNum}} GB și vă veți actualiza perioada de abonament. <0>Aflați mai multe</0>",
         "unsubscribe_license": "Te vei dezabona de la ILLA Cloud Plus. După anulare, începând de la următorul ciclu de facturare, funcțiile Plus nu vor mai fi accesibile. <0>Află mai multe</0>",
-        "unsubscribe_storage": "Veți dezabona stocarea ILLA Drive. După anulare, începând de la următorul ciclu de facturare, capacitatea de stocare va fi restabilită la 100MB. <0>Află mai multe</0>"
+        "unsubscribe_storage": "Veți dezabona stocarea ILLA Drive. După anulare, începând de la următorul ciclu de facturare, capacitatea de stocare va fi restabilită la 100MB. <0>Află mai multe</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
         "add_storage": "Calcularea regulilor folosind un abonament lunar de stocare ca exemplu: Să luăm în considerare un scenariu în care v-ați abonat inițial la 5 GB începând cu 14 martie, şi ciclul de facturare se întinde de la data de 14 a acestei luni la data de 13 a lunii următoare. Pe 10 mai decizi să adaugi 1 GB. În acel moment, au rămas 4 zile până la sfârşitul ciclului actual în 13 mai (care totalizează 30 de zile din 14 aprilie până în 13 mai). Pentru a calcula plata ajustată, vom deduce costul de 1 GB, care se ridică la aproximativ $0. 9, proporțional cu durata de 4 zile din ciclul de 30 de zile. Prin urmare, deducerea este estimată la 1 licență* $0. 9 / 30 zile * 4 zile, rezultând în aproximativ $0,132. Începând cu următorul ciclu de facturare, toate taxele de stocare vor fi consolidate și achitate împreună. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați utilizatorul nostru <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
@@ -3358,7 +3360,11 @@
       "failed_to_change": "Schimbarea abonamentului a eșuat",
       "unsubscription_suc": "Abonamentul a fost anulat cu succes și va intra în vigoare în următoarea perioadă",
       "failed_to_join_no_license": "Nu se poate alătura deoarece licențele pentru echipă sunt insuficiente, vă rugăm să contactați administratorul.",
-      "storage_insufficient_modal": "Spațiul de stocare sau traficul acestei echipe nu este suficient. Vă rugăm să contactați administratorul."
+      "storage_insufficient_modal": "Spațiul de stocare sau traficul acestei echipe nu este suficient. Vă rugăm să contactați administratorul.",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
