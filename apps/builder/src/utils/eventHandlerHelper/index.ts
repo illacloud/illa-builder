@@ -15,7 +15,7 @@ import { UpdateExecutionByDisplayNamePayload } from "@/redux/currentApp/executio
 import { ILLARoute } from "@/router"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import {
   goToURL,
   showNotification,
@@ -460,7 +460,7 @@ export const runEventHandler = (
   if (!eventObj) return
   const { script, enabled } = eventObj
   if (enabled || enabled == undefined) {
-    if (typeof script === "string" && isDynamicString(script)) {
+    if (typeof script === "string" && hasDynamicStringSnippet(script)) {
       try {
         evaluateDynamicString("events", script, globalData)
       } catch (e) {

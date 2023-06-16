@@ -1,6 +1,6 @@
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { calculateFileSize } from "@/utils/file"
 
@@ -8,7 +8,7 @@ const MAX_SIZE = 5 * 1024 * 1024
 
 export const getFileValue = (data: string) => {
   let value = data
-  if (isDynamicString(data)) {
+  if (hasDynamicStringSnippet(data)) {
     const finalContext =
       ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContext()
     try {

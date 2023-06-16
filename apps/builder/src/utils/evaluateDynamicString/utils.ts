@@ -1,11 +1,19 @@
 import { formatDataAsArray, formatDataAsObject } from "@/utils/formatData"
-import { getSnippets } from "./dynamicConverter"
+import { getSnippets, getStringSnippets } from "./dynamicConverter"
 
 export const QUOTED_DYNAMIC_STRING_REGEX = /["']({{[\s\S]*?}})["']/g
 export const DYNAMIC_STRING_REG = /{{([\s\S]*?)}}/
 
-export const isDynamicString = (value: unknown): boolean =>
+export const isDynamicStringSnippet = (value: unknown): boolean =>
   typeof value === "string" && value.endsWith("}}") && value.startsWith("{{")
+
+export const hasDynamicStringSnippet = (value: unknown): boolean => {
+  if (typeof value !== "string") {
+    return false
+  }
+  const dynamicStrings = getStringSnippets(value)
+  return dynamicStrings.some((value) => isDynamicStringSnippet(value))
+}
 
 export const filterBindingSegmentsAndRemoveQuotes = (
   originDynamicString: string,
@@ -21,7 +29,7 @@ export const filterBindingSegmentsAndRemoveQuotes = (
   const stringSnippets: string[] = []
   const values: unknown[] = []
   originStringSnippets.forEach((segment, i) => {
-    if (isDynamicString(segment)) {
+    if (isDynamicStringSnippet(segment)) {
       stringSnippets.push(segment)
       values.push(originValues[i])
     }

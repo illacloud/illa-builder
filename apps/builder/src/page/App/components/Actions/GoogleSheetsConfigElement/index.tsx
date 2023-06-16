@@ -96,9 +96,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
 
   const handleOauthInitialConnect = (resourceId: string) => {
     if (showInitialConnectButton && !isAuthenticated) {
-      setTimeout(() => {
-        handleOAuthConnect(resourceId, accessType)
-      }, 100)
+      handleOAuthConnect(resourceId, accessType)
     }
     if (isAuthenticated) {
       setOAuthStatus(GoogleSheetAuthStatus.Initial)
