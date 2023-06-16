@@ -149,6 +149,9 @@
           },
           "neon": {
             "neon": "Νέον"
+          },
+          "airtable": {
+            "airtable": "Airtable"
           }
         },
         "validate": {
@@ -208,6 +211,9 @@
           },
           "mongodb": {
             "command": "Εντολή"
+          },
+          "airtable": {
+            "authentication": "Ταυτοποίηση"
           }
         },
         "placeholder": {
@@ -284,6 +290,10 @@
           },
           "clickhouse": {
             "ssl": "Όταν χρησιμοποιείτε την υπηρεσία ClickHouse Cloud, συνιστάται να ενεργοποιήσετε την SSL."
+          },
+          "airtable": {
+            "access_token": "<0>Κάντε κλικ εδώ</0> για να μάθετε πώς να αποκτήσετε το διακριτικό πρόσβασης.",
+            "api_key": "Το κλειδί API θα καταργηθεί την 1η Φεβρουαρίου 2024. Παρακαλώ δώστε προσοχή στο <0>επίσημη τεκμηρίωση του Airtable</0> για να αποφύγετε σφάλματα πρόσβασης σε πόρους."
           }
         },
         "option": {
@@ -368,6 +378,10 @@
           "neon": {
             "parse": "Parse",
             "connection_string": "Συμβολοσειρά σύνδεσης"
+          },
+          "airtable": {
+            "access_token": "Διακριτικό πρόσβασης",
+            "api_key": "API κλειδί"
           }
         },
         "default": {
@@ -531,6 +545,21 @@
               "on_page_loading": "Κατά τη φόρτωση σελίδας",
               "on_app_loading": "Το APP φορτώθηκε",
               "none": "Κανένα"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "Λίστα εγγραφών",
+                "get_record": "Λήψη εγγραφής",
+                "create_record": "Δημιουργία εγγραφής",
+                "update_multiple_reco": "Ενημέρωση πολλαπλών εγγραφών",
+                "update_record": "Ενημέρωση εγγραφής",
+                "delete_multiple_reco": "Διαγραφή πολλαπλών εγγραφών",
+                "delete_record": "Διαγραφή εγγραφής"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
             }
           },
           "restapi": {
@@ -566,6 +595,12 @@
             },
             "advanced": {
               "no_actions_will_be_t": "Καμία ενέργεια δεν θα ενεργοποιηθεί όταν φορτώσει η σελίδα. Μπορείτε να ενεργοποιήσετε χειροκίνητα την ενέργεια και να ενεργοποιήσετε την \"Ενεργοποίηση αυτής της ενέργειας όταν φορτώνει η σελίδα\" στις ρυθμίσεις για προχωρημένους."
+            },
+            "airtable": {
+              "base_id": "Αποκτήστε το ID βάσης από το βασικό URL σας. Συνήθως είναι μια συμβολοσειρά που ξεκινά με \"app\". ",
+              "filter_by_formula": "<0>Κάντε κλικ εδώ</0> για να μάθετε πώς να χρησιμοποιείτε τον τύπο.",
+              "time_zone": "<0>Κάντε κλικ εδώ</0> για να ελέγξετε όλες τις υποστηριζόμενες ζώνες ώρας.",
+              "user_locales": "<0>Κάντε κλικ εδώ</0> για να ελέγξετε όλες τις υποστηριζόμενες γλώσσες. "
             }
           },
           "advanced": {
@@ -578,6 +613,25 @@
             "actions_running_when": "Ενέργειες όταν φορτώνει η σελίδα",
             "pages": "Σελίδες",
             "periodically_run": "Περιοδικά εκτέλεση"
+          },
+          "airtable": {
+            "base_id": "ID Βάσης",
+            "table_name": "Όνομα πίνακα",
+            "method": "Μέθοδος",
+            "view": "Προβολή",
+            "fields": "Πεδία",
+            "filter_by_formula": "Φιλτράρισμα ανά τύπο",
+            "sort": "Ταξινόμηση",
+            "max_records": "Μέγιστες εγγραφές",
+            "page_size": "Μέγεθος σελίδας",
+            "offset": "Μετατόπιση",
+            "cell_format": "Μορφή κυψέλης",
+            "time_zone": "Ζώνη ώρας",
+            "user_locales": "Τοπικές ρυθμίσεις χρήστη",
+            "record_id": "Ταυτότητα Εγγραφής",
+            "records": "Εγγραφές",
+            "record": "Εγγραφή",
+            "record_ids": "Αναγνωριστικά Εγγραφής"
           }
         },
         "menu": {
@@ -2822,7 +2876,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} σας κοινοποίησε μια εφαρμογή 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα και ελέγξτε την APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} σας έχει μοιραστεί ένα APP από 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να ελέγξετε την APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} σας προσκαλεί να συμμετάσχετε στο 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} σας προσκαλεί να συμμετάσχετε στο 「{{teamName}}」. Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Υπόλοιπες άδειες"
+      }
     },
     "mes": {
       "invite_suc": "Επιτυχής πρόσκληση",
@@ -3024,373 +3081,379 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Παρακαλώ κάντε κλικ στο πλαίσιο για να καθορίσετε τη θέση επικόλλησης."
   },
   "bookFrom": {
-    "title": "Book a demo",
+    "title": "Κλείστε μια επίδειξη",
     "form": {
       "about": {
-        "label": "Tell us a little bit about your project",
+        "label": "Πείτε μας λίγο για το έργο σας",
         "required": ".",
         "pattern": ""
       },
       "wantTo": {
-        "label": "What do you want to do with ILLA?",
+        "label": "Τι θέλετε να κάνετε με την ILLA?",
         "required": ".",
         "pattern": ""
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "Υποβολή"
   },
   "partnerFrom": {
-    "title": "Become a partner",
+    "title": "Γίνετε σύντροφος",
     "form": {
       "name": {
-        "label": "Name",
-        "placeholder-1": "First name",
-        "placeholder-2": "Last name"
+        "label": "Όνομα",
+        "placeholder-1": "Όνομα",
+        "placeholder-2": "Επώνυμο"
       },
       "title": {
-        "label": "Your title"
+        "label": "Ο τίτλος σας"
       },
       "companyName": {
-        "label": "Company name"
+        "label": "Επωνυμία εταιρείας"
       },
       "companyWebsite": {
-        "label": "Company website",
-        "pattern": "Please enter a valid URL"
+        "label": "Ιστοσελίδα της εταιρείας",
+        "pattern": "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση URL"
       },
       "email": {
-        "label": "Email",
-        "pattern": "Please enter the correct email."
+        "label": "E-mail",
+        "pattern": "Παρακαλώ εισάγετε το σωστό email."
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "Υποβολή"
   },
   "billing": {
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "members": "Team",
-    "app": "apps",
-    "security-support": "Security & support",
+    "monthly": "Μηνιαία",
+    "yearly": "Ετήσια",
+    "members": "Ομάδα",
+    "app": "εφαρμογές",
+    "security-support": "& Υποστήριξη ασφαλείας",
     "apps": {
-      "components": "All components",
-      "resources": "All resources",
-      "plugins": "Unlimited plugins",
-      "sql": "AI SQL Generation",
-      "watermark": "Remove watermark"
+      "components": "Όλα τα συστατικά",
+      "resources": "Όλοι οι πόροι",
+      "plugins": "Απεριόριστα πρόσθετα",
+      "sql": "Δημιουργία AI Sql",
+      "watermark": "Αφαίρεση υδατογραφήματος"
     },
     "security": {
-      "historic-7": "Historic version keep & recovery for 7 days",
-      "historic-30": "Historic version keep & recovery for 30 days",
-      "develop-environment": "Develop environment",
-      "app-public": "App public",
-      "restore-data": "Backup and restore",
-      "deployed": "Access to ILLA Support",
-      "dedicated": "Dedicated Solutions engineer"
+      "historic-7": "Η Ιστορική έκδοση διατηρεί την & ανάκτηση για 7 ημέρες",
+      "historic-30": "Η ιστορική έκδοση διατηρεί την & ανάκτηση για 30 ημέρες",
+      "develop-environment": "Ανάπτυξη περιβάλλοντος",
+      "app-public": "Δημόσια εφαρμογή",
+      "restore-data": "Αντίγραφα ασφαλείας και επαναφορά",
+      "deployed": "Πρόσβαση στην υποστήριξη ILLA",
+      "dedicated": "Μηχανικός Dedicated Solutions"
     },
     "tips": {
-      "plugins": "Import plugins and make use of it within all the apps in your teams",
-      "sql": "Input natural language and generate SQL statement",
-      "staging": "Test your app against a staging environment",
-      "app-public": "Make the app public and anyone with the link can access it",
-      "restore-data": "Backup or restore data at any time you want",
-      "deployed": "Deployed engineers can help you onboard faster",
-      "dedicated": "Dedicated customer solutions engineer via Slack/email/phone",
-      "preview_insufficient": "The file cannot preview due to insufficient capacity, please expand the capacity first."
+      "plugins": "Εισαγωγή plugins και χρήση του μέσα σε όλες τις εφαρμογές στις ομάδες σας",
+      "sql": "Εισαγωγή φυσικής γλώσσας και δημιουργία δήλωσης SQL",
+      "staging": "Δοκίμασε την εφαρμογή σου ενάντια σε ένα περιβάλλον δημιουργίας σταδίων",
+      "app-public": "Κάντε την εφαρμογή δημόσια και οποιοσδήποτε με το σύνδεσμο μπορεί να έχει πρόσβαση σε αυτή",
+      "restore-data": "Αντίγραφο ασφαλείας ή επαναφορά δεδομένων οποιαδήποτε στιγμή θέλετε",
+      "deployed": "Οι αναπτυγμένοι μηχανικοί μπορούν να σας βοηθήσουν πιο γρήγορα",
+      "dedicated": "Αφιερωμένο μηχανικό λύσεων πελατών μέσω Slack/email/phone",
+      "preview_insufficient": "Το αρχείο δεν μπορεί να προεπισκόπηση λόγω ανεπαρκούς χωρητικότητας, παρακαλούμε να επεκτείνετε πρώτα την χωρητικότητα."
     },
     "deployment": {
-      "title": "Flexible deployment",
-      "title-1": "Flexible",
-      "title-2": "deployment",
-      "introduction": "ILLA provides two ways to deploy. Developers can use the ILLA Cloud to quickly start building their apps on any device. We also provide ILLA CLI for free with better security to ensure data safety.",
+      "title": "Ευέλικτη ανάπτυξη",
+      "title-1": "Ευέλικτο",
+      "title-2": "εγκατάσταση",
+      "introduction": "Το ILLA παρέχει δύο τρόπους για να αναπτυχθούν. Οι προγραμματιστές μπορούν να χρησιμοποιήσουν το ILLA Cloud για να αρχίσουν γρήγορα να χτίζουν τις εφαρμογές τους σε οποιαδήποτε συσκευή. Παρέχουμε επίσης στην ILLA CLI δωρεάν καλύτερη ασφάλεια για την ασφάλεια των δεδομένων.",
       "illa-cloud": {
-        "title": "ILLA Cloud",
-        "des": "Try one-click deployment and enjoy the easiest deployment experience"
+        "title": "Σύννεφο ILLA",
+        "des": "Δοκιμάστε ανάπτυξη με ένα κλικ και απολαύστε την ευκολότερη εμπειρία ανάπτυξης"
       },
       "illa-CLI": {
         "title": "ILLA CLI",
-        "des": "The fastest and easiest way to self-host ILLA"
+        "des": "Ο γρηγορότερος και ευκολότερος τρόπος για να αυτο-φιλοξενήσει ILLA"
       },
       "kubernetes": {
         "title": "Kubernetes",
-        "des": "Deploy ILLA into Kubernetes by using ILLA Helm chart"
+        "des": "Ανάπτυξη ILLA σε Kubernetes χρησιμοποιώντας το διάγραμμα ILLA Helm"
       },
       "docker": {
-        "title": "Docker",
-        "des": "Deploy ILLA locally in 30s"
+        "title": "Προσάρτηση",
+        "des": "Ανάπτυξη ILLA τοπικά στη δεκαετία του 30"
       }
     },
-    "user-month": "per user/month",
-    "editor-month": "per editor/month",
-    "start-at": "start at 100 users",
-    "free-members": "Only 1 member for personal use",
-    "unlimited-viewer": "FREE for unlimited viewers",
-    "unlimited-members": "Unlimited members",
-    "free-btn": "Build apps for free",
-    "plus-btn": "Try the free version",
-    "enterprise-btn": "Contact us",
+    "user-month": "ανά χρήστη/μήνα",
+    "editor-month": "ανά επεξεργαστή/μήνα",
+    "start-at": "ξεκινήστε από 100 χρήστες",
+    "free-members": "Μόνο 1 μέλος για προσωπική χρήση",
+    "unlimited-viewer": "ΔΩΡΕΑΝ για απεριόριστους θεατές",
+    "unlimited-members": "Απεριόριστα μέλη",
+    "free-btn": "Κατασκευή εφαρμογών δωρεάν",
+    "plus-btn": "Δοκιμάστε τη δωρεάν έκδοση",
+    "enterprise-btn": "Επικοινωνήστε μαζί μας",
     "menu": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive",
-      "billing_portal": "Billing portal"
+      "billing": "Χρέωση",
+      "license": "Άδεια",
+      "drive": "Οδηγός",
+      "billing_portal": "Πύλη χρέωσης"
     },
     "title": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive"
+      "billing": "Χρέωση",
+      "license": "Άδεια",
+      "drive": "Οδηγός"
     },
     "subscription_general": {
       "plan": {
-        "free": "Free",
-        "plus": "Plus"
+        "free": "Δωρεάν",
+        "plus": "Συν"
       },
       "sub_cycle": {
-        "yearly": "Yearly",
-        "monthly": "Monthly"
+        "yearly": "Ετήσια",
+        "monthly": "Μηνιαία"
       },
       "billing_cyle": {
-        "year": "/ Year",
-        "month": "/ Month"
+        "year": "/ Έτος",
+        "month": "/ Μήνας"
       },
       "table_title": {
-        "next_payment_date": "Next payment date",
-        "expiration_date": "Expiration date",
-        "licenses": "Licenses",
-        "storage": "Storage",
-        "traffic": "Traffic"
+        "next_payment_date": "Επόμενη ημερομηνία πληρωμής",
+        "expiration_date": "Ημερομηνία λήξης",
+        "licenses": "Άδειες",
+        "storage": "Αποθήκευση",
+        "traffic": "Κίνηση"
       },
       "period": {
-        "current": "Current",
-        "next": "Next"
+        "current": "Τρέχων",
+        "next": "Επόμενο"
       }
     },
     "subscription_card": {
       "title": {
-        "License": "License",
-        "Storage": "Storage",
-        "Traffic": "Traffic",
-        "balance": "Balance"
+        "License": "Άδεια",
+        "Storage": "Αποθήκευση",
+        "Traffic": "Κίνηση",
+        "balance": "Υπόλοιπο"
       },
       "button": {
-        "License": "Manage licenses",
-        "Storage": "Manage storage",
-        "Traffic": "Expand traffic"
+        "License": "Διαχείριση αδειών",
+        "Storage": "Διαχείριση χώρου αποθήκευσης",
+        "Traffic": "Επέκταση κίνησης"
       },
       "capacity": {
-        "License": "{{used}} (total of {{total}} licenses) have been used.",
-        "Storage": "{{used}} (total of {{total}} GB) have been used.",
-        "Traffic": "{{used}} (total of {{total}} GB) have been used."
+        "License": "{{used}} (συνολικά {{total}} άδειες) έχουν χρησιμοποιηθεί.",
+        "Storage": "{{used}} (σύνολο {{total}} GB) έχουν χρησιμοποιηθεί.",
+        "Traffic": "{{used}} (σύνολο {{total}} GB) έχουν χρησιμοποιηθεί."
       }
     },
     "payment_sidebar": {
       "title": {
-        "manage_storage": "Manage storage",
-        "manage_licenses": "Manage licenses",
-        "expand_traffic_capac": "Expand traffic capacity"
+        "manage_storage": "Διαχείριση χώρου αποθήκευσης",
+        "manage_licenses": "Διαχείριση αδειών",
+        "expand_traffic_capac": "Επέκταση της κυκλοφοριακής ικανότητας"
       },
       "plan_label": {
-        "License": "Licenses",
-        "Storage": "Storage",
-        "Traffic": "Traffic"
+        "License": "Άδειες",
+        "Storage": "Αποθήκευση",
+        "Traffic": "Κίνηση"
       },
       "plan_number_input_label": {
-        "License": "Licenses",
+        "License": "Άδειες",
         "Storage_traffic": "GB"
       },
       "select_option": {
-        "Yearly": "Yearly",
-        "Monthly": "Monthly"
+        "Yearly": "Ετήσια",
+        "Monthly": "Μηνιαία"
       },
       "price_label": {
-        "total": "Total"
+        "total": "Σύνολο"
       },
       "price_type": {
-        "this_period_remove": "This period",
-        "this_period": "This period",
-        "next_period": "Next period",
-        "next_period_remove": "Next period",
-        "payment": "Cost",
-        "this_period_storage": "This period",
-        "next_period_storage": "Next period",
-        "this_period_remove_storage": "This period",
-        "next_period_remove_storage": "Next period",
-        "payment_storage": "Cost",
-        "payment_traffic": "Cost",
+        "this_period_remove": "Αυτή η περίοδος",
+        "this_period": "Αυτή η περίοδος",
+        "next_period": "Επόμενη περίοδος",
+        "next_period_remove": "Επόμενη περίοδος",
+        "payment": "Κόστος",
+        "this_period_storage": "Αυτή η περίοδος",
+        "next_period_storage": "Επόμενη περίοδος",
+        "this_period_remove_storage": "Αυτή η περίοδος",
+        "next_period_remove_storage": "Επόμενη περίοδος",
+        "payment_storage": "Κόστος",
+        "payment_traffic": "Κόστος",
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month"
+        "this_period": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης × {{remainDays}} ημέρες / {{totalDays}} ημέρες",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} άδειες × 1 χρόνο",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} άδειες × 1 μήνα",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης × {{remainDays}} ημέρες / {{totalDays}} ημέρες",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} άδειες × 1 χρόνο",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} άδειες × 1 μήνα",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} άδειες × 1 χρόνο",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} άδειες × 1 μήνα",
+        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} ημέρες / {{totalDays}} ημέρες",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 έτος",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 μήνα",
+        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} ημέρες / {{totalDays}} ημέρες",
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 έτος",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 μήνα",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 έτος",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 μήνα"
       },
       "button": {
-        "unsubscribe": "Unsubscribe",
-        "subscribe": "Subscribe",
-        "change_plan": "Change plan",
-        "storage_traffic_increase": "Increase {{changeNum}} GB",
-        "storage_traffic_remove": "Remove {{changeNum}} GB",
-        "license_increase": "Increase {{changeNum}} licenses",
-        "license_remove": "Remove {{changeNum}} licenses"
+        "unsubscribe": "Διαγραφή",
+        "subscribe": "Εγγραφή",
+        "change_plan": "Αλλαγή σχεδίου",
+        "storage_traffic_increase": "Αύξηση {{changeNum}} GB",
+        "storage_traffic_remove": "Αφαίρεση {{changeNum}} GB",
+        "license_increase": "Αύξηση {{changeNum}} αδειών",
+        "license_remove": "Αφαίρεση {{changeNum}} αδειών"
       },
       "description_title": {
-        "add_storage": "You are going to add {{changeNum}} GB storage. Once confirmed, we will immediately deduct the payment for the new storage for this billing cycle. <0>Learn more</0>",
-        "remove_storage": "You are going to remove {{changeNum}} GB storage. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "update_plan_year": "You are going to update to a yearly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "update_plan_monthly": "You are going to update to a monthly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "add_license": "You are going to add {{changeNum}} licenses. Once confirmed, we will immediately deduct the payment for the new licenses for this billing cycle. <0>Learn more</0>",
-        "remove_license": "You are going to remove {{changeNum}} licenses. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "add_traffic": "You are going to add {{changeNum}}GB traffic. Once confirmed, we will deduct the cost of the additional traffic immediately. <0>Learn more</0>",
-        "subscribe_storage": "You are going to subscribe to ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "subscribe_license": "You are going to subscribe to ILLA Drive. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "update_plan_increase_license": "You are going to add {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_license": "You are going to remove {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_increase_storage": "You are going to add {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_storage": "You are going to remove {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "unsubscribe_license": "You are going to unsubscribe ILLA Cloud Plus. After cancellation, starting from the next billing cycle, the Plus features will no longer be accessible. <0>Learn more</0>",
-        "unsubscribe_storage": "You are going to unsubscribe ILLA Drive storage. After cancellation, starting from the next billing cycle, the storage capacity will be restored to 100MB. <0>Learn more</0>"
+        "add_storage": "Θα προσθέσετε {{changeNum}} GB χώρο αποθήκευσης. Μόλις επιβεβαιωθεί, θα αφαιρέσουμε αμέσως την πληρωμή για τον νέο αποθηκευτικό χώρο για αυτόν τον κύκλο χρέωσης. <0>Μάθετε περισσότερα</0>",
+        "remove_storage": "Θα καταργήσετε τον αποθηκευτικό χώρο {{changeNum}} GB. Μόλις επιβεβαιωθεί, οι αλλαγές θα τεθούν σε ισχύ στον επόμενο κύκλο χρέωσης. <0>Μάθετε περισσότερα</0>",
+        "update_plan_year": "Πρόκειται να ενημερώσετε σε ένα ετήσιο σχέδιο πληρωμής. Μόλις επιβεβαιωθεί, η αλλαγή θα τεθεί σε ισχύ από την έναρξη του επόμενου κύκλου χρέωσης. <0>Μάθετε περισσότερα</0>",
+        "update_plan_monthly": "Πρόκειται να ενημερώσετε ένα μηνιαίο σχέδιο πληρωμής. Μόλις επιβεβαιωθεί, η αλλαγή θα τεθεί σε ισχύ από την έναρξη του επόμενου κύκλου χρέωσης. <0>Μάθετε περισσότερα</0>",
+        "add_license": "Θα προσθέσετε {{changeNum}} άδειες. Μόλις επιβεβαιωθεί, θα αφαιρέσουμε αμέσως την πληρωμή για τις νέες άδειες χρήσης για αυτόν τον κύκλο χρέωσης. <0>Μάθετε περισσότερα</0>",
+        "remove_license": "Θα καταργήσετε {{changeNum}} άδειες. Μόλις επιβεβαιωθούν, οι αλλαγές θα τεθούν σε ισχύ στον επόμενο κύκλο χρέωσης. <0>Μάθετε περισσότερα</0>",
+        "add_traffic": "Θα προσθέσετε κίνηση {{changeNum}}GB. Μόλις επιβεβαιωθεί, θα αφαιρέσουμε το κόστος της επιπλέον κίνησης αμέσως. <0>Μάθετε περισσότερα</0>",
+        "subscribe_storage": "Θα εγγραφείτε στο ILLA Cloud Plus. Θα αφαιρούμε αυτόματα τα τέλη από το λογαριασμό σας στην αρχή κάθε κύκλου πληρωμής. <0>Μάθετε περισσότερα</0>",
+        "subscribe_license": "Θα εγγραφείτε στο δίσκο ILLA. Θα αφαιρούμε αυτόματα τα τέλη από το λογαριασμό σας στην αρχή κάθε κύκλου πληρωμής. <0>Μάθετε περισσότερα</0>",
+        "update_plan_increase_license": "Θα προσθέσεις {{changeNum}} άδειες χρήσης και θα ενημερώσεις την περίοδο της συνδρομής σου. <0>Μάθετε περισσότερα</0>",
+        "update_plan_remove_license": "Θα αφαιρέσετε {{changeNum}} άδειες χρήσης και θα ενημερώσετε την περίοδο της συνδρομής σας. <0>Μάθετε περισσότερα</0>",
+        "update_plan_increase_storage": "Θα προσθέσετε {{changeNum}} GB χώρο αποθήκευσης και θα ενημερώσετε την περίοδο συνδρομής σας. <0>Μάθετε περισσότερα</0>",
+        "update_plan_remove_storage": "Θα αφαιρέσετε το χώρο αποθήκευσης {{changeNum}} GB και θα ενημερώσετε την περίοδο της συνδρομής σας. <0>Μάθετε περισσότερα</0>",
+        "unsubscribe_license": "Θα διαγραφείτε από το ILLA Cloud Plus. Μετά την ακύρωση, ξεκινώντας από τον επόμενο κύκλο χρέωσης, τα χαρακτηριστικά Plus δεν θα είναι πλέον προσβάσιμα. <0>Μάθετε περισσότερα</0>",
+        "unsubscribe_storage": "Θα καταργήσετε την εγγραφή σας στο χώρο αποθήκευσης μονάδας δίσκου ILLA. Μετά την ακύρωση, ξεκινώντας από τον επόμενο κύκλο χρέωσης, η χωρητικότητα αποθήκευσης θα αποκατασταθεί στα 100MB. <0>Μάθετε περισσότερα</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
-        "add_storage": "Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our user <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_storage": "If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our  <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_year": "Starting from the next period, the subscription will be changed to an annual subscription, and the fees will be automatically deducted based on the annual subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_monthly": "Starting from the next period, the subscription will be changed to a monthly subscription, and the fees will be automatically deducted based on the monthly subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_license": "Calculation rules using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_license": "If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_traffic": "After successful deduction, your traffic will increase in real-time. Once the traffic is used, the fees cannot be refunded. Unused traffic can be refunded in units of GB. For example, if you purchase 10GB of traffic and use 4.5GB, you can apply for a refund of 5GB. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_yearly": "You are going to subscribe to the annual subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $9.9 per GB, and you have a total of 3 GB, we will deduct $29.7 on February 25, 2023. If you add 2 GB on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 GB, which is (2+3)*$9.9=$49.5. If you wish to reduce storage or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_monthly": "You are going to subscribe to the monthly subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $0.99 per GB, and you have a total of 3 GB, we will deduct $2.97 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$0.99=$4.95. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_yearly": "You are going to subscribe to the annual subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $100 per license, and you have a total of 3 licenses, we will deduct $300 on February 25, 2023. If you add 2 more licenses on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 licenses, which is (2+3)*$100=$500. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_monthly": "You are going to subscribe to the monthly subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $12 per license, and you have a total of 3 licenses, we will deduct $36 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$12=$60. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased licenses according to the current billing cycle. Calculation rules of increasing licenses using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased storage according to the current billing cycle. Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>"
+        "add_storage": "Κανόνες υπολογισμού χρησιμοποιώντας μια μηνιαία συνδρομή αποθήκευσης ως παράδειγμα: Ας εξετάσουμε ένα σενάριο όπου αρχικά εγγραφήκατε σε 5 GB ξεκινώντας από τις 14 Μαρτίου, και ο κύκλος χρέωσης εκτείνεται από τις 14 μέχρι τις 13 του επόμενου μήνα. Στις 10 Μαΐου, αποφασίζετε να προσθέσετε 1 GB. Σε εκείνο το σημείο, απομένουν 4 ημέρες μέχρι το τέλος του τρέχοντος κύκλου στις 13 Μαΐου (η οποία ανέρχεται συνολικά σε 30 ημέρες από τις 14 Απριλίου έως τις 13 Μαΐου). Για να υπολογίσουμε την προσαρμοσμένη πληρωμή, θα αφαιρέσουμε το κόστος της 1 GB, η οποία ανέρχεται σε περίπου $ 0. 9, ανάλογα με τη διάρκεια των 4 ημερών εντός του κύκλου 30 ημερών. Ως εκ τούτου, η μείωση εκτιμάται ως 1 άδεια * $0. 9 / 30 ημέρες * 4 ημέρες, με αποτέλεσμα περίπου 0,132 δολάρια. Ξεκινώντας από τον επόμενο κύκλο χρέωσης, όλα τα τέλη αποθήκευσης θα ενοποιηθούν και θα πληρωθούν μαζί. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στον χρήστη μας <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "remove_storage": "Εάν η χωρητικότητα αποθήκευσης που καταλαμβάνεται από τα αρχεία σας υπερβαίνει την χωρητικότητα αποθήκευσης στο συνδρομητή κατά την έναρξη του επόμενου κύκλου χρέωσης, όλα τα αρχεία θα απενεργοποιηθούν μέχρι να διαγράψετε τα αρχεία ή να αυξήσετε τη χωρητικότητα αποθήκευσης εντός του διαθέσιμου εύρους. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "update_plan_year": "Ξεκινώντας από την επόμενη περίοδο, η συνδρομή θα αλλάξει σε ετήσια συνδρομή, και τα τέλη θα αφαιρούνται αυτόματα με βάση την ετήσια τιμή συνδρομής. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "update_plan_monthly": "Ξεκινώντας από την επόμενη περίοδο, η συνδρομή θα αλλάξει σε μηνιαία συνδρομή, και τα τέλη θα αφαιρούνται αυτόματα βάσει της μηνιαίας χρέωσης συνδρομής. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "add_license": "Κανόνες υπολογισμού χρησιμοποιώντας μια μηνιαία συνδρομή άδειας χρήσης ως παράδειγμα: Ας εξετάσουμε ένα σενάριο όπου αρχικά εγγραφήκατε σε 5 άδειες από τις 14 Μαρτίου, και ο κύκλος χρέωσης εκτείνεται από τις 14 μέχρι τις 13 του επόμενου μήνα. Στις 10 Μαΐου, αποφασίζετε να προσθέσετε 1 επιπλέον άδεια. Σε εκείνο το σημείο, απομένουν 4 ημέρες μέχρι το τέλος του τρέχοντος κύκλου στις 13 Μαΐου (η οποία ανέρχεται συνολικά σε 30 ημέρες από τις 14 Απριλίου έως τις 13 Μαΐου). Για να υπολογίσουμε την προσαρμοσμένη πληρωμή, θα αφαιρέσουμε το κόστος της άδειας 1 που ανέρχεται σε περίπου $ 10, ανάλογα με τη διάρκεια των 4 ημερών εντός του κύκλου 30 ημερών. Ως εκ τούτου, η αφαίρεση εκτιμάται ως 1 άδεια * $10 / 30 ημέρες * 4 ημέρες, με αποτέλεσμα περίπου $1.33. Ξεκινώντας από τον επόμενο κύκλο χρέωσης, όλα τα τέλη άδειας χρήσης θα ενοποιηθούν και θα πληρωθούν μαζί. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "remove_license": "Εάν ο αριθμός των χρηστών με δικαιώματα επεξεργασίας υπερβαίνει τον αριθμό των αδειών κατά την έναρξη του επόμενου κύκλου χρέωσης, όλοι οι χρήστες εκτός από τον ιδιοκτήτη θα απενεργοποιηθούν μέχρι να καταργήσετε τα μέλη ή να αυξήσετε τον αριθμό των αδειών εντός του διαθέσιμου εύρους. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "add_traffic": "Μετά την επιτυχή μείωση, η επισκεψιμότητα σας θα αυξηθεί σε πραγματικό χρόνο. Μόλις χρησιμοποιηθεί η κίνηση, τα τέλη δεν μπορούν να επιστραφούν. Αχρησιμοποίητη κίνηση μπορεί να επιστραφεί σε μονάδες της GB. Για παράδειγμα, εάν αγοράσετε 10GB κίνησης και χρησιμοποιήσετε 4.5GB, μπορείτε να κάνετε αίτηση για επιστροφή 5GB. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "subscribe_storage_yearly": "Θα εγγραφείτε στην ετήσια συνδρομή της ILLA Drive αποθήκευσης. Θα αφαιρούμε αυτόματα τα τέλη από το λογαριασμό σας στην αρχή κάθε κύκλου πληρωμής. Το πραγματικό ποσό που αφαιρείται εξαρτάται από το πόσο χωρητικότητα αποθήκευσης που έχετε εγγραφεί στο GB. Για παράδειγμα, αν ξεκινήσετε την πρώτη σας συνδρομή στις 25 Φεβρουαρίου 2023, με ετήσια συνδρομή των $ 9. ανά GB, και έχετε συνολικά 3 GB, θα αφαιρέσουμε $29. στις 25 Φεβρουαρίου 2023. Εάν προσθέσετε 2 GB στις 25 Μαρτίου 2023, θα αφαιρέσουμε πρώτα την πληρωμή των υπόλοιπων 11 μηνών στις 25 Μαρτίου 2023. Στη συνέχεια, μέχρι τις 25 Φεβρουαρίου 2024, θα αφαιρέσουμε την πληρωμή για 5 GB, η οποία είναι (2+3)*$9.9=$49. . Εάν επιθυμείτε να μειώσετε την αποθήκευση ή να κάνετε άλλες αλλαγές στη συνδρομή, παρακαλούμε ενημερώστε την πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "subscribe_storage_monthly": "Θα εγγραφείτε στη μηνιαία συνδρομή αποθήκευσης μονάδας δίσκου ILLA. Θα αφαιρούμε αυτόματα τα τέλη από το λογαριασμό σας στην αρχή κάθε κύκλου πληρωμής. Το πραγματικό ποσό που αφαιρείται εξαρτάται από το πόσο χωρητικότητα αποθήκευσης που έχετε εγγραφεί στο GB. Για παράδειγμα, αν ξεκινήσετε την πρώτη σας συνδρομή στις 25 Φεβρουαρίου 2023, με μια μηνιαία συνδρομή $ 0. 9 ανά GB, και έχετε συνολικά 3 GB, θα αφαιρέσουμε $2. 7 στις 25 Φεβρουαρίου 2023. Εάν προσθέσετε 2 επιπλέον άδειες στις 21 Μαρτίου 2023, θα αφαιρέσουμε πρώτα τις υπόλοιπες 5 ημέρες πληρωμής στις 21 Μαρτίου 2023. Στη συνέχεια, μέχρι τον Μάρτιο 25, 2023, θα αφαιρέσουμε την πληρωμή για 5 άδειες, η οποία είναι (2+3)*$0. 9=$4.95. Εάν επιθυμείτε να μειώσετε τις άδειες χρήσης ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "subscribe_license_yearly": "Θα εγγραφείτε στην ετήσια συνδρομή του ILLA Cloud Plus. Θα αφαιρούμε αυτόματα τα τέλη από το λογαριασμό σας στην αρχή κάθε κύκλου πληρωμής. Το ποσό που αφαιρείται εξαρτάται από τον αριθμό των αδειών που έχετε. Για παράδειγμα, αν ξεκινήσετε την πρώτη σας συνδρομή στις 25 Φεβρουαρίου 2023, με ετήσια συνδρομή 100 δολάρια ανά άδεια, and you have a total of 3 licenses, we will deduct $300 on February 25, 2023. Εάν προσθέσετε 2 επιπλέον άδειες στις 25 Μαρτίου 2023, θα αφαιρέσουμε πρώτα τις υπόλοιπες 11 μήνες πληρωμής στις 25 Μαρτίου 2023. Στη συνέχεια, μέχρι τις 25 Φεβρουαρίου 2024, θα αφαιρέσουμε την πληρωμή για 5 άδειες, η οποία είναι (2+3)*$100=$500. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "subscribe_license_monthly": "Θα εγγραφείτε στη μηνιαία συνδρομή του ILLA Cloud Plus. Θα αφαιρούμε αυτόματα τα τέλη από το λογαριασμό σας στην αρχή κάθε κύκλου πληρωμής. Το ποσό που αφαιρείται εξαρτάται από τον αριθμό των αδειών που έχετε. Για παράδειγμα, αν ξεκινήσετε την πρώτη σας συνδρομή στις 25 Φεβρουαρίου 2023, με ένα μηνιαίο τέλος συνδρομής $12 ανά άδεια, and you have a total of 3 licenses, we will deduct $36 on February 25, 2023. Εάν προσθέσετε 2 επιπλέον άδειες στις 21 Μαρτίου 2023, θα αφαιρέσουμε πρώτα τις υπόλοιπες 5 ημέρες πληρωμής στις 21 Μαρτίου 2023. Στη συνέχεια, μέχρι τις 25 Μαρτίου 2023, θα αφαιρέσουμε την πληρωμή για 5 άδειες, η οποία είναι (2+3)*$12=$60. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "update_plan_increase_license": "Τα τέλη θα αφαιρούνται αυτόματα με βάση τον ενημερωμένο αριθμό αδειών και την τιμολόγηση του νέου κύκλου χρέωσης από την επόμενη περίοδο. Αυτή τη φορά, θα αφαιρέσουμε την πληρωμή για την αύξηση των αδειών σύμφωνα με τον τρέχοντα κύκλο χρέωσης. Κανόνες υπολογισμού της αύξησης των αδειών χρήσης μηνιαίας συνδρομής ως παράδειγμα: Ας εξετάσουμε ένα σενάριο όπου αρχικά εγγραφήκατε σε 5 άδειες από τις 14 Μαρτίου, και ο κύκλος χρέωσης εκτείνεται από τις 14 μέχρι τις 13 του επόμενου μήνα. Στις 10 Μαΐου, αποφασίζετε να προσθέσετε 1 επιπλέον άδεια. Σε εκείνο το σημείο, απομένουν 4 ημέρες μέχρι το τέλος του τρέχοντος κύκλου στις 13 Μαΐου (η οποία ανέρχεται συνολικά σε 30 ημέρες από τις 14 Απριλίου έως τις 13 Μαΐου). Για να υπολογίσουμε την προσαρμοσμένη πληρωμή, θα αφαιρέσουμε το κόστος της άδειας 1 που ανέρχεται σε περίπου $ 10, ανάλογα με τη διάρκεια των 4 ημερών εντός του κύκλου 30 ημερών. Ως εκ τούτου, η αφαίρεση εκτιμάται ως 1 άδεια * $10 / 30 ημέρες * 4 ημέρες, με αποτέλεσμα περίπου $1.33. Ξεκινώντας από τον επόμενο κύκλο χρέωσης, όλα τα τέλη άδειας χρήσης θα ενοποιηθούν και θα πληρωθούν μαζί. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "update_plan_remove_license": "Τα τέλη θα αφαιρούνται αυτόματα με βάση τον ενημερωμένο αριθμό αδειών και την τιμολόγηση του νέου κύκλου χρέωσης από την επόμενη περίοδο. Εάν ο αριθμός των χρηστών με δικαιώματα επεξεργασίας υπερβαίνει τον αριθμό των αδειών κατά την έναρξη του επόμενου κύκλου χρέωσης, όλοι οι χρήστες εκτός από τον ιδιοκτήτη θα απενεργοποιηθούν μέχρι να καταργήσετε τα μέλη ή να αυξήσετε τον αριθμό των αδειών εντός του διαθέσιμου εύρους. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "update_plan_increase_storage": "Τα τέλη θα αφαιρούνται αυτόματα με βάση την ενημερωμένη αποθήκευση και την τιμολόγηση του νέου κύκλου χρέωσης από την επόμενη περίοδο. Αυτή τη φορά, θα αφαιρέσουμε την πληρωμή για την αυξημένη αποθήκευση σύμφωνα με τον τρέχοντα κύκλο χρέωσης. Κανόνες υπολογισμού χρησιμοποιώντας μια μηνιαία συνδρομή αποθήκευσης ως παράδειγμα: Ας εξετάσουμε ένα σενάριο όπου αρχικά εγγραφήκατε σε 5 GB ξεκινώντας από τις 14 Μαρτίου, και ο κύκλος χρέωσης εκτείνεται από τις 14 μέχρι τις 13 του επόμενου μήνα. Στις 10 Μαΐου, αποφασίζετε να προσθέσετε 1 GB. Σε εκείνο το σημείο, απομένουν 4 ημέρες μέχρι το τέλος του τρέχοντος κύκλου στις 13 Μαΐου (η οποία ανέρχεται συνολικά σε 30 ημέρες από τις 14 Απριλίου έως τις 13 Μαΐου). Για να υπολογίσουμε την προσαρμοσμένη πληρωμή, θα αφαιρέσουμε το κόστος της 1 GB, η οποία ανέρχεται σε περίπου $ 0. 9, ανάλογα με τη διάρκεια των 4 ημερών εντός του κύκλου 30 ημερών. Ως εκ τούτου, η αφαίρεση εκτιμάται ως 1 άδεια * $0.99 / 30 ημέρες * 4 ημέρες, με αποτέλεσμα περίπου $0.132. Ξεκινώντας από τον επόμενο κύκλο χρέωσης, όλα τα τέλη αποθήκευσης θα ενοποιηθούν και θα πληρωθούν μαζί. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
+        "update_plan_remove_storage": "Τα τέλη θα αφαιρούνται αυτόματα με βάση την ενημερωμένη αποθήκευση και την τιμολόγηση του νέου κύκλου χρέωσης από την επόμενη περίοδο. Εάν η χωρητικότητα αποθήκευσης που καταλαμβάνεται από τα αρχεία σας υπερβαίνει την χωρητικότητα αποθήκευσης στο συνδρομητή κατά την έναρξη του επόμενου κύκλου χρέωσης, όλα τα αρχεία θα απενεργοποιηθούν μέχρι να διαγράψετε τα αρχεία ή να αυξήσετε τη χωρητικότητα αποθήκευσης εντός του διαθέσιμου εύρους. Για περισσότερες πληροφορίες, ανατρέξτε στην <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>"
       }
     },
     "message": {
-      "failed_to_subscribe": "Failed to subscribe. Please try again.",
-      "failed_to_add_traffic": "Failed to add traffic. Please try again. ",
-      "failed_to_add_storage": "Failed to add storage. Please try again. ",
-      "failed_to_remove_storage": "Failed to remove storage. Please try again. ",
-      "failed_to_add_licens": "Failed to add licenses. Please try again. ",
-      "failed_to_remove_lic": "Failed to remove licenses. Please try again. ",
-      "failed_to_change_pla": "Failed to change plan. Please try again. ",
-      "failed_to_unsubscrib": "Failed to unsubscribe. Please try again. ",
-      "successfully_removed": "Successfully removed.  The change will take effect from {{nextPaymentDate}}.",
-      "unsubscription_succe": "Unsubscription successful.  The change will take effect from {{nextPaymentDate}}",
-      "cancel_subscribe": "Subscription not completed, please try again or contact billing@illasoft.com",
-      "cancel_purchase": "Purchase not completed, please try again or contact billing@illasoft.com",
-      "successfully_changed": "Subscription changed successfully. It will take effect in a few minutes",
-      "failed_to_change": "Subscription change failed",
-      "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
-      "failed_to_join_no_license": "Unable to join because team licenses are insufficient, please contact the admin.",
-      "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin."
+      "failed_to_subscribe": "Αποτυχία εγγραφής. Παρακαλώ προσπαθήστε ξανά.",
+      "failed_to_add_traffic": "Απέτυχε η προσθήκη κυκλοφορίας. Παρακαλώ προσπαθήστε ξανά. ",
+      "failed_to_add_storage": "Αποτυχία προσθήκης αποθηκευτικού χώρου. Παρακαλώ προσπαθήστε ξανά. ",
+      "failed_to_remove_storage": "Απέτυχε η κατάργηση του αποθηκευτικού χώρου. Παρακαλώ προσπαθήστε ξανά. ",
+      "failed_to_add_licens": "Απέτυχε η προσθήκη αδειών. Παρακαλώ προσπαθήστε ξανά. ",
+      "failed_to_remove_lic": "Αποτυχία κατάργησης αδειών. Παρακαλώ προσπαθήστε ξανά. ",
+      "failed_to_change_pla": "Αποτυχία αλλαγής σχεδίου. Παρακαλώ προσπαθήστε ξανά. ",
+      "failed_to_unsubscrib": "Αποτυχία διαγραφής. Παρακαλώ προσπαθήστε ξανά. ",
+      "successfully_removed": "Αφαιρέθηκε με επιτυχία. Η αλλαγή θα τεθεί σε ισχύ από το {{nextPaymentDate}}.",
+      "unsubscription_succe": "Επιτυχής διαγραφή. Η αλλαγή θα τεθεί σε ισχύ από {{nextPaymentDate}}",
+      "cancel_subscribe": "Η συνδρομή δεν ολοκληρώθηκε, δοκιμάστε ξανά ή επικοινωνήστε με το billing@illasoft.com",
+      "cancel_purchase": "Η αγορά δεν ολοκληρώθηκε, δοκιμάστε ξανά ή επικοινωνήστε με το billing@illasoft.com",
+      "successfully_changed": "Η συνδρομή άλλαξε με επιτυχία. Θα τεθεί σε ισχύ σε λίγα λεπτά",
+      "failed_to_change": "Η αλλαγή συνδρομής απέτυχε",
+      "unsubscription_suc": "Η συνδρομή ακυρώθηκε με επιτυχία και θα τεθεί σε ισχύ από την επόμενη περίοδο",
+      "failed_to_join_no_license": "Δεν είναι δυνατή η συμμετοχή επειδή οι άδειες της ομάδας είναι ανεπαρκείς, παρακαλούμε επικοινωνήστε με τον διαχειριστή.",
+      "storage_insufficient_modal": "Η αποθήκευση ή η κίνηση αυτής της ομάδας δεν είναι αρκετή. Παρακαλούμε επικοινωνήστε με τον διαχειριστή σας.",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
-        "owner_title_drive": "Insufficient capacity",
-        "owner_description_drive": "The storage or traffic is not enough. Please upgrade and try again.",
-        "owner_button_drive": "Upgrade",
-        "not_owner_title_drive": "Failed to operate",
-        "not_owner_description_drive": "The storage or traffic of this team is not enough. Please contact your admin.",
-        "not_owner_button_drive": "Got it",
-        "out_title_drive": "Failed to download",
-        "out_description_drive": "Failed to download, please contact the file owner",
-        "out_button_drive": "Got it"
+        "owner_title_drive": "Ανεπαρκής χωρητικότητα",
+        "owner_description_drive": "Ο αποθηκευτικός χώρος ή η κίνηση δεν είναι αρκετά. Παρακαλώ αναβαθμίστε και προσπαθήστε ξανά.",
+        "owner_button_drive": "Αναβάθμιση",
+        "not_owner_title_drive": "Αποτυχία λειτουργίας",
+        "not_owner_description_drive": "Η αποθήκευση ή η κίνηση αυτής της ομάδας δεν είναι αρκετή. Παρακαλούμε επικοινωνήστε με τον διαχειριστή σας.",
+        "not_owner_button_drive": "Το κατάλαβα",
+        "out_title_drive": "Αποτυχία λήψης",
+        "out_description_drive": "Αποτυχία λήψης, παρακαλώ επικοινωνήστε με τον ιδιοκτήτη του αρχείου",
+        "out_button_drive": "Το κατάλαβα"
       },
       "sub_suc": {
-        "subscription_success": "Subscription successful",
-        "you_can_now_invite_m": "It will take effect in a few minutes. You can invite members and start using the advanced features later. Go ahead and give it a try!",
-        "you_can_now_upload_m": "It will take effect in a few minutes.  You can now upload more files.",
-        "payment_successful": "Payment successful",
-        "we_have_added_the_li": "It will take effect in a few minutes. We have added the licenses for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_st": "It will take effect in a few minutes. We have added the storage for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_tr": "It will take effect in a few minutes. We will add the traffic for you later. You can now download more files.",
-        "successfully_updated": "Successfully updated",
-        "the_change_to_the_su": "The change to the subscription period will take effect from the next billing cycle.",
-        "got_it": "Got it"
+        "subscription_success": "Επιτυχής συνδρομή",
+        "you_can_now_invite_m": "Θα τεθεί σε ισχύ σε λίγα λεπτά. Μπορείτε να προσκαλέσετε μέλη και να αρχίσετε να χρησιμοποιείτε τις προηγμένες λειτουργίες αργότερα. Προχωρήστε και δοκιμάστε το!",
+        "you_can_now_upload_m": "Θα τεθεί σε ισχύ σε λίγα λεπτά. Μπορείτε τώρα να ανεβάσετε περισσότερα αρχεία.",
+        "payment_successful": "Επιτυχής πληρωμή",
+        "we_have_added_the_li": "Θα τεθεί σε ισχύ σε λίγα λεπτά. Έχουμε προσθέσει τις άδειες χρήσης για εσάς. Τυχόν αλλαγές στην περίοδο συνδρομής θα τεθούν σε ισχύ από τον επόμενο κύκλο χρέωσης.",
+        "we_have_added_the_st": "Θα τεθεί σε ισχύ σε λίγα λεπτά. Έχουμε προσθέσει την αποθήκευση για εσάς. Τυχόν αλλαγές στην περίοδο συνδρομής θα τεθούν σε ισχύ από τον επόμενο κύκλο χρέωσης.",
+        "we_have_added_the_tr": "Θα τεθεί σε ισχύ σε λίγα λεπτά. Θα προσθέσουμε την κίνηση για σας αργότερα. Μπορείτε τώρα να κατεβάσετε περισσότερα αρχεία.",
+        "successfully_updated": "Επιτυχής ενημέρωση",
+        "the_change_to_the_su": "Η αλλαγή στην περίοδο συνδρομής θα ισχύσει από τον επόμενο κύκλο χρέωσης.",
+        "got_it": "Το κατάλαβα"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgrade to Plus",
-        "this_feature_is_avai": "This feature is available for Plus users only. To use it, please upgrade to Plus. By upgrading to Plus, you will also have access to the following features. ",
-        "add_unlimited_viewer": "Add unlimited viewer members for FREE",
-        "publish_public_appli": "Publish public applications",
-        "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs",
-        "learn_more": "Learn more",
-        "upgrade": "Upgrade",
-        "pricing": "/editor/month, yearly",
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
-        "insufficient_license_button": "Add licenses"
+        "upgrade_to_plus": "Αναβάθμιση σε Plus",
+        "this_feature_is_avai": "Αυτή η λειτουργία είναι διαθέσιμη μόνο για χρήστες Plus. Για να τη χρησιμοποιήσετε, παρακαλώ αναβαθμίστε σε Plus. Με την αναβάθμιση στο Plus, θα έχετε επίσης πρόσβαση στις ακόλουθες λειτουργίες. ",
+        "add_unlimited_viewer": "Προσθέστε απεριόριστα μέλη θεατή για ΔΩΡΕΑΝ",
+        "publish_public_appli": "Δημοσίευση δημόσιων εφαρμογών",
+        "ai_sql_generation": "Δημιουργία AI Sql",
+        "audit_logs": "Αρχεία καταγραφής ελέγχου",
+        "learn_more": "Μάθετε περισσότερα",
+        "upgrade": "Αναβάθμιση",
+        "pricing": "/editor/month ετησίως",
+        "insufficient_license_title": "Ανεπαρκείς άδειες",
+        "insufficient_license_description": "Για να προσκαλέσετε περισσότερους συντάκτες, αυξήστε πρώτα τις άδειες χρήσης. Όλα τα μέλη της ομάδας σας θα μπορούσαν να χρησιμοποιήσουν τις δυνατότητες για το ILLA Cloud Plus. Η συγκεκριμένη πρόσβαση σε κάθε χαρακτηριστικό εξαρτάται από το ρόλο κάθε μέλους. ",
+        "insufficient_license_button": "Προσθήκη αδειών"
       },
       "expired": {
-        "owner": "Your subscription has expired. To continue using, please renew it.",
-        "others": "Your account has been disabled because the team's subscription has expired.",
-        "your_subscription_ha_not_owner": "Not enough licenses",
-        "all_members_except_f_not_owner": "Your team doesn't have enough licenses. Please contact your team owner.",
-        "upgrade_not_owner": "Got it"
+        "owner": "Η συνδρομή σας έχει λήξει. Για να συνεχίσετε να χρησιμοποιείτε, παρακαλώ ανανεώστε την.",
+        "others": "Ο λογαριασμός σας έχει απενεργοποιηθεί επειδή η συνδρομή της ομάδας έχει λήξει.",
+        "your_subscription_ha_not_owner": "Δεν υπάρχουν αρκετές άδειες",
+        "all_members_except_f_not_owner": "Η ομάδα σας δεν έχει αρκετές άδειες. Επικοινωνήστε με τον ιδιοκτήτη της ομάδας σας.",
+        "upgrade_not_owner": "Το κατάλαβα"
       },
       "blank_page": {
-        "insufficient_license_disable": "Your account has been disabled due to insufficient team licenses. Please contact the team Owner for assistance."
+        "insufficient_license_disable": "Ο λογαριασμός σας έχει απενεργοποιηθεί λόγω ανεπαρκών αδειών ομάδας. Επικοινωνήστε με τον ιδιοκτήτη της ομάδας για βοήθεια."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please connect your admin to increase licenses first.",
-        "insufficient_license_button": "OK"
+        "insufficient_license_title": "Ανεπαρκείς άδειες",
+        "insufficient_license_description": "Για να προσκαλέσετε περισσότερους συντάκτες, παρακαλώ συνδέστε τον διαχειριστή σας για να αυξήσετε πρώτα τις άδειες χρήσης.",
+        "insufficient_license_button": "Εντάξει"
       },
       "storage_insufficient": {
-        "owner_title": "Insufficient storage capacity",
-        "owner_description": "In order to store files normally, please increase the storage  in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to store files normally, please contact your administrator to increase storage capacity in time.",
-        "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_title": "Ανεπαρκής χωρητικότητα αποθήκευσης",
+        "owner_description": "Για να αποθηκεύσετε τα αρχεία κανονικά, παρακαλώ αυξήστε τον αποθηκευτικό χώρο εγκαίρως. ",
+        "owner_button": "Αύξηση της ικανότητας",
+        "not_owner_title": "Ανεπαρκής χωρητικότητα αποθήκευσης",
+        "not_owner_description": "Για να αποθηκεύσετε αρχεία κανονικά, παρακαλώ επικοινωνήστε με το διαχειριστή σας για να αυξήσετε την χωρητικότητα αποθήκευσης εγκαίρως.",
+        "not_owner_button": "Εντάξει",
+        "owner_pricing": "GB/Μηνιαία"
       },
       "traffic_insufficient": {
-        "owner_title": "Insufficient traffic capacity",
-        "owner_description": "In order to access files normally, please increase the traffic capacity in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to access files normally, please contact your administrator to increase traffic capacity in time.",
-        "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_title": "Ανεπαρκής κυκλοφοριακή ικανότητα",
+        "owner_description": "Για να αποκτήσετε πρόσβαση στα αρχεία κανονικά, παρακαλώ αυξήστε την χωρητικότητα της κυκλοφορίας εγκαίρως. ",
+        "owner_button": "Αύξηση της ικανότητας",
+        "not_owner_title": "Ανεπαρκής χωρητικότητα αποθήκευσης",
+        "not_owner_description": "Για να αποκτήσετε πρόσβαση στα αρχεία κανονικά, παρακαλώ επικοινωνήστε με το διαχειριστή σας για να αυξήσετε την χωρητικότητα της κυκλοφορίας εγκαίρως.",
+        "not_owner_button": "Εντάξει",
+        "owner_pricing": "GB/Μηνιαία"
       },
       "cancel_confirm": {
-        "description": "After cancellation, your team will revert to the free plan starting from the next billing cycle. The features included in the subscription plans will no longer be accessible.",
-        "title": "Cancel the subscription?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "Μετά την ακύρωση, η ομάδα σας θα επανέλθει στο δωρεάν πρόγραμμα ξεκινώντας από τον επόμενο κύκλο χρέωσης. Τα χαρακτηριστικά που περιλαμβάνονται στα συνδρομητικά πακέτα δεν θα είναι πλέον προσβάσιμα.",
+        "title": "Ακύρωση της συνδρομής?",
+        "button_cancel": "Ακύρωση",
+        "button_confirm": "Επιβεβαίωση"
       },
       "change_confirm": {
-        "description": "Once reduced, the changes will take effect in the next billing cycle. If there are resources that exceed the newly allocated capacity, all resources may become inaccessible.",
-        "title": "Change plan?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "Μόλις μειωθεί, οι αλλαγές θα τεθούν σε ισχύ στον επόμενο κύκλο χρέωσης. Εάν υπάρχουν πόροι που υπερβαίνουν τη νέα κατανεμημένη ικανότητα, όλοι οι πόροι ενδέχεται να καταστούν απρόσιτοι.",
+        "title": "Αλλαγή σχεδίου?",
+        "button_cancel": "Ακύρωση",
+        "button_confirm": "Επιβεβαίωση"
       }
     },
     "homepage": {
-      "get_access_to_advanc": "Get access to advanced features",
-      "upgrade": "Upgrade",
-      "cancel": "Cancel"
+      "get_access_to_advanc": "Αποκτήστε πρόσβαση σε προηγμένες λειτουργίες",
+      "upgrade": "Αναβάθμιση",
+      "cancel": "Ακύρωση"
     }
   }
 }

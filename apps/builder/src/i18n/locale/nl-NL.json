@@ -149,6 +149,9 @@
           },
           "neon": {
             "neon": "Neon"
+          },
+          "airtable": {
+            "airtable": "Airtable"
           }
         },
         "validate": {
@@ -208,6 +211,9 @@
           },
           "mongodb": {
             "command": "Opdracht"
+          },
+          "airtable": {
+            "authentication": "Authenticatie"
           }
         },
         "placeholder": {
@@ -284,6 +290,10 @@
           },
           "clickhouse": {
             "ssl": "Bij het gebruik van ClickHouse Cloud Service wordt aanbevolen om de SSL in te schakelen."
+          },
+          "airtable": {
+            "access_token": "<0>Klik hier</0> om te leren hoe je de toegangstoken krijgt.",
+            "api_key": "API-sleutel wordt op 1 februari 2024 niet meer ondersteund. Let op de <0>officiële documentatie van Airtable</0> om fouten in de toegang tot bronnen te voorkomen."
           }
         },
         "option": {
@@ -368,6 +378,10 @@
           "neon": {
             "parse": "Parse",
             "connection_string": "Connectie string"
+          },
+          "airtable": {
+            "access_token": "Toegangstoken token",
+            "api_key": "API sleutel"
           }
         },
         "default": {
@@ -531,6 +545,21 @@
               "on_page_loading": "Bij het laden van pagina's",
               "on_app_loading": "Bij APP geladen",
               "none": "geen"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "Lijst records",
+                "get_record": "Opname ophalen",
+                "create_record": "Record aanmaken",
+                "update_multiple_reco": "Meerdere records bijwerken",
+                "update_record": "Update Record",
+                "delete_multiple_reco": "Meerdere records verwijderen",
+                "delete_record": "Verwijder record"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
             }
           },
           "restapi": {
@@ -566,6 +595,12 @@
             },
             "advanced": {
               "no_actions_will_be_t": "Geen acties worden geactiveerd wanneer de pagina wordt geladen. U kunt handmatig de actie activeren en \"Activeer deze actie wanneer pagina wordt geladen\" inschakelen in de geavanceerde instellingen."
+            },
+            "airtable": {
+              "base_id": "Verkrijg de basis ID van je basis URL. Het is meestal een string die begint met \"app\". ",
+              "filter_by_formula": "<0>Klik hier</0> om te leren hoe je een formule moet gebruiken.",
+              "time_zone": "<0>Klik hier</0> om alle ondersteunde tijdzones te bekijken.",
+              "user_locales": "<0>Klik hier</0> om alle ondersteunde talen te controleren. "
             }
           },
           "advanced": {
@@ -578,6 +613,25 @@
             "actions_running_when": "Acties die worden uitgevoerd wanneer de pagina wordt geladen",
             "pages": "Pagina's",
             "periodically_run": "Periodiek uitvoeren"
+          },
+          "airtable": {
+            "base_id": "Basis ID",
+            "table_name": "Tabel naam",
+            "method": "Methode",
+            "view": "Bekijken",
+            "fields": "Velden",
+            "filter_by_formula": "Filter op formule",
+            "sort": "Sorteren",
+            "max_records": "Max records",
+            "page_size": "Pagina grootte",
+            "offset": "Verschuiving",
+            "cell_format": "Cel formaat",
+            "time_zone": "Zone tijd",
+            "user_locales": "Gebruikers lokalisaties",
+            "record_id": "Record ID",
+            "records": "Records",
+            "record": "Opnemen",
+            "record_ids": "ID's opnemen"
           }
         },
         "menu": {
@@ -2822,7 +2876,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} heeft u een app van 「{{teamName}}」gedeeld. Klik op de link om u aan te sluiten bij het team en controleer de APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} heeft u een APP van 「{{teamName}}」gedeeld. Klik op de link om de app te controleren: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} nodigt je uit om lid te worden van 「{{teamName}}」. Klik op de link om lid te worden van het team: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} nodigt je uit om lid te worden van 「{{teamName}}」. Klik op de link om lid te worden van het team: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Resterende licenties"
+      }
     },
     "mes": {
       "invite_suc": "Succesvol uitgenodigd",
@@ -3024,373 +3081,379 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Klik op het frame om de locatie te plakken."
   },
   "bookFrom": {
-    "title": "Book a demo",
+    "title": "Boek een demo",
     "form": {
       "about": {
-        "label": "Tell us a little bit about your project",
+        "label": "Vertel ons iets over je project",
         "required": ".",
         "pattern": ""
       },
       "wantTo": {
-        "label": "What do you want to do with ILLA?",
+        "label": "Wat wil je doen met ILLA?",
         "required": ".",
         "pattern": ""
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "Bevestigen"
   },
   "partnerFrom": {
-    "title": "Become a partner",
+    "title": "Word partner",
     "form": {
       "name": {
-        "label": "Name",
-        "placeholder-1": "First name",
-        "placeholder-2": "Last name"
+        "label": "naam",
+        "placeholder-1": "Voornaam is vereist.",
+        "placeholder-2": "Achternaam is vereist."
       },
       "title": {
-        "label": "Your title"
+        "label": "Jouw titel"
       },
       "companyName": {
-        "label": "Company name"
+        "label": "Naam bedrijf"
       },
       "companyWebsite": {
-        "label": "Company website",
-        "pattern": "Please enter a valid URL"
+        "label": "Bedrijfs website",
+        "pattern": "Voer een geldige URL in"
       },
       "email": {
-        "label": "Email",
-        "pattern": "Please enter the correct email."
+        "label": "E-mailadres",
+        "pattern": "Voer het juiste e-mailadres in."
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "Bevestigen"
   },
   "billing": {
-    "monthly": "Monthly",
-    "yearly": "Yearly",
+    "monthly": "maandelijks",
+    "yearly": "Jaarlijks",
     "members": "Team",
     "app": "apps",
-    "security-support": "Security & support",
+    "security-support": "Beveiliging & ondersteuning",
     "apps": {
-      "components": "All components",
-      "resources": "All resources",
-      "plugins": "Unlimited plugins",
-      "sql": "AI SQL Generation",
-      "watermark": "Remove watermark"
+      "components": "Alle onderdelen",
+      "resources": "Alle bronnen",
+      "plugins": "Onbeperkte plug-ins",
+      "sql": "AI SQL Generatie",
+      "watermark": "Watermerk verwijderen"
     },
     "security": {
-      "historic-7": "Historic version keep & recovery for 7 days",
-      "historic-30": "Historic version keep & recovery for 30 days",
-      "develop-environment": "Develop environment",
-      "app-public": "App public",
-      "restore-data": "Backup and restore",
-      "deployed": "Access to ILLA Support",
-      "dedicated": "Dedicated Solutions engineer"
+      "historic-7": "Historische versie bewaren en herstellen gedurende 7 dagen",
+      "historic-30": "30 dagen oude versie bewaren en herstellen",
+      "develop-environment": "Ontwikkel omgeving",
+      "app-public": "App publiek",
+      "restore-data": "Back-up maken en herstellen",
+      "deployed": "Toegang tot ILLA ondersteuning",
+      "dedicated": "Eigen oplossingen ingenieur"
     },
     "tips": {
-      "plugins": "Import plugins and make use of it within all the apps in your teams",
-      "sql": "Input natural language and generate SQL statement",
-      "staging": "Test your app against a staging environment",
-      "app-public": "Make the app public and anyone with the link can access it",
-      "restore-data": "Backup or restore data at any time you want",
-      "deployed": "Deployed engineers can help you onboard faster",
-      "dedicated": "Dedicated customer solutions engineer via Slack/email/phone",
-      "preview_insufficient": "The file cannot preview due to insufficient capacity, please expand the capacity first."
+      "plugins": "Importeer plugins en maak er gebruik van binnen alle apps in uw teams",
+      "sql": "Voer natuurlijke taal in en genereer SQL statement",
+      "staging": "Test je app tegen een stagingomgeving",
+      "app-public": "Maak de app openbaar en iedereen met de link heeft toegang",
+      "restore-data": "Back-up of herstel data op elk gewenst moment",
+      "deployed": "Deployed ingenieurs kunnen je sneller aan boord helpen",
+      "dedicated": "Speciale klant oplossingen ingenieur via Slack/email/phone",
+      "preview_insufficient": "Het bestand kan geen voorvertoning maken vanwege een ontoereikende capaciteit. Gelieve eerst de capaciteit uit te breiden."
     },
     "deployment": {
-      "title": "Flexible deployment",
-      "title-1": "Flexible",
-      "title-2": "deployment",
-      "introduction": "ILLA provides two ways to deploy. Developers can use the ILLA Cloud to quickly start building their apps on any device. We also provide ILLA CLI for free with better security to ensure data safety.",
+      "title": "Flexibele implementatie",
+      "title-1": "Flexibel",
+      "title-2": "implementatie",
+      "introduction": "ILLA biedt twee manieren om te implementeren. Ontwikkelaars kunnen de ILLA Cloud gebruiken om snel te beginnen met het bouwen van hun apps op elk apparaat. We bieden ook de ILLA CLI gratis aan om de veiligheid van gegevens te waarborgen.",
       "illa-cloud": {
         "title": "ILLA Cloud",
-        "des": "Try one-click deployment and enjoy the easiest deployment experience"
+        "des": "Probeer één-klik implementatie uit te voeren en geniet van de eenvoudigste implementatieervaring"
       },
       "illa-CLI": {
         "title": "ILLA CLI",
-        "des": "The fastest and easiest way to self-host ILLA"
+        "des": "De snelste en makkelijkste manier om zelf een ILLA te organiseren"
       },
       "kubernetes": {
         "title": "Kubernetes",
-        "des": "Deploy ILLA into Kubernetes by using ILLA Helm chart"
+        "des": "ILLA implementeren in Kubernetes door gebruik te maken van ILLA Helm"
       },
       "docker": {
         "title": "Docker",
-        "des": "Deploy ILLA locally in 30s"
+        "des": "ILLA lokaal implementeren in 30 's"
       }
     },
-    "user-month": "per user/month",
-    "editor-month": "per editor/month",
-    "start-at": "start at 100 users",
-    "free-members": "Only 1 member for personal use",
-    "unlimited-viewer": "FREE for unlimited viewers",
-    "unlimited-members": "Unlimited members",
-    "free-btn": "Build apps for free",
-    "plus-btn": "Try the free version",
-    "enterprise-btn": "Contact us",
+    "user-month": "per gebruiker/maand",
+    "editor-month": "per editor/maand",
+    "start-at": "start bij 100 gebruikers",
+    "free-members": "Slechts 1 lid voor persoonlijk gebruik",
+    "unlimited-viewer": "GRATIS voor onbeperkte kijkers",
+    "unlimited-members": "Onbeperkt aantal leden",
+    "free-btn": "Bouw gratis apps",
+    "plus-btn": "Probeer de gratis versie",
+    "enterprise-btn": "Contacteer ons",
     "menu": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive",
-      "billing_portal": "Billing portal"
+      "billing": "Facturering",
+      "license": "Licentie",
+      "drive": "schijf",
+      "billing_portal": "Facturering portaal"
     },
     "title": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive"
+      "billing": "Facturering",
+      "license": "Licentie",
+      "drive": "schijf"
     },
     "subscription_general": {
       "plan": {
-        "free": "Free",
+        "free": "Vrij",
         "plus": "Plus"
       },
       "sub_cycle": {
-        "yearly": "Yearly",
-        "monthly": "Monthly"
+        "yearly": "Jaarlijks",
+        "monthly": "maandelijks"
       },
       "billing_cyle": {
-        "year": "/ Year",
-        "month": "/ Month"
+        "year": "/ Jaar",
+        "month": "/ Maand"
       },
       "table_title": {
-        "next_payment_date": "Next payment date",
-        "expiration_date": "Expiration date",
-        "licenses": "Licenses",
-        "storage": "Storage",
-        "traffic": "Traffic"
+        "next_payment_date": "Volgende betalingsdatum",
+        "expiration_date": "Vervaldatum",
+        "licenses": "Licenties",
+        "storage": "Opslagruimte",
+        "traffic": "Verkeer"
       },
       "period": {
-        "current": "Current",
-        "next": "Next"
+        "current": "Stroom",
+        "next": "Volgende"
       }
     },
     "subscription_card": {
       "title": {
-        "License": "License",
-        "Storage": "Storage",
-        "Traffic": "Traffic",
-        "balance": "Balance"
+        "License": "Licentie",
+        "Storage": "Opslagruimte",
+        "Traffic": "Verkeer",
+        "balance": "Saldo"
       },
       "button": {
-        "License": "Manage licenses",
-        "Storage": "Manage storage",
-        "Traffic": "Expand traffic"
+        "License": "Licenties beheren",
+        "Storage": "Opslagruimte beheren",
+        "Traffic": "Verkeer uitbreiden"
       },
       "capacity": {
-        "License": "{{used}} (total of {{total}} licenses) have been used.",
-        "Storage": "{{used}} (total of {{total}} GB) have been used.",
-        "Traffic": "{{used}} (total of {{total}} GB) have been used."
+        "License": "{{used}} (totaal van {{total}} licenties) zijn gebruikt.",
+        "Storage": "{{used}} (totaal van {{total}} GB) zijn gebruikt.",
+        "Traffic": "{{used}} (totaal van {{total}} GB) zijn gebruikt."
       }
     },
     "payment_sidebar": {
       "title": {
-        "manage_storage": "Manage storage",
-        "manage_licenses": "Manage licenses",
-        "expand_traffic_capac": "Expand traffic capacity"
+        "manage_storage": "Opslagruimte beheren",
+        "manage_licenses": "Licenties beheren",
+        "expand_traffic_capac": "Data capaciteit uitvouwen"
       },
       "plan_label": {
-        "License": "Licenses",
-        "Storage": "Storage",
-        "Traffic": "Traffic"
+        "License": "Licenties",
+        "Storage": "Opslagruimte",
+        "Traffic": "Verkeer"
       },
       "plan_number_input_label": {
-        "License": "Licenses",
+        "License": "Licenties",
         "Storage_traffic": "GB"
       },
       "select_option": {
-        "Yearly": "Yearly",
-        "Monthly": "Monthly"
+        "Yearly": "Jaarlijks",
+        "Monthly": "maandelijks"
       },
       "price_label": {
-        "total": "Total"
+        "total": "Totaal"
       },
       "price_type": {
-        "this_period_remove": "This period",
-        "this_period": "This period",
-        "next_period": "Next period",
-        "next_period_remove": "Next period",
-        "payment": "Cost",
-        "this_period_storage": "This period",
-        "next_period_storage": "Next period",
-        "this_period_remove_storage": "This period",
-        "next_period_remove_storage": "Next period",
-        "payment_storage": "Cost",
-        "payment_traffic": "Cost",
+        "this_period_remove": "Deze periode",
+        "this_period": "Deze periode",
+        "next_period": "Volgende periode",
+        "next_period_remove": "Volgende periode",
+        "payment": "Kosten",
+        "this_period_storage": "Deze periode",
+        "next_period_storage": "Volgende periode",
+        "this_period_remove_storage": "Deze periode",
+        "next_period_remove_storage": "Volgende periode",
+        "payment_storage": "Kosten",
+        "payment_traffic": "Kosten",
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month"
+        "this_period": "{{unitPrice}} × {{licenseNum}} licenties × {{remainDays}} dagen / {{totalDays}} dagen",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenties × 1 jaar",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenties × 1 maand",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenties × {{remainDays}} dagen / {{totalDays}} dagen",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenties × 1 jaar",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenties × 1 maand",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licenties × 1 jaar",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licenties × 1 maand",
+        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dagen / {{totalDays}} dagen",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 jaar",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 maand",
+        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dagen / {{totalDays}} dagen",
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 jaar",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 maand",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 jaar",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 maand"
       },
       "button": {
-        "unsubscribe": "Unsubscribe",
-        "subscribe": "Subscribe",
-        "change_plan": "Change plan",
-        "storage_traffic_increase": "Increase {{changeNum}} GB",
-        "storage_traffic_remove": "Remove {{changeNum}} GB",
-        "license_increase": "Increase {{changeNum}} licenses",
-        "license_remove": "Remove {{changeNum}} licenses"
+        "unsubscribe": "Afmelden",
+        "subscribe": "Abonneren",
+        "change_plan": "Verander uw abonnement",
+        "storage_traffic_increase": "Verhoog {{changeNum}} GB",
+        "storage_traffic_remove": "{{changeNum}} GB verwijderen",
+        "license_increase": "Verhoog {{changeNum}} licenties",
+        "license_remove": "Verwijder {{changeNum}} licenties"
       },
       "description_title": {
-        "add_storage": "You are going to add {{changeNum}} GB storage. Once confirmed, we will immediately deduct the payment for the new storage for this billing cycle. <0>Learn more</0>",
-        "remove_storage": "You are going to remove {{changeNum}} GB storage. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "update_plan_year": "You are going to update to a yearly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "update_plan_monthly": "You are going to update to a monthly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "add_license": "You are going to add {{changeNum}} licenses. Once confirmed, we will immediately deduct the payment for the new licenses for this billing cycle. <0>Learn more</0>",
-        "remove_license": "You are going to remove {{changeNum}} licenses. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "add_traffic": "You are going to add {{changeNum}}GB traffic. Once confirmed, we will deduct the cost of the additional traffic immediately. <0>Learn more</0>",
-        "subscribe_storage": "You are going to subscribe to ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "subscribe_license": "You are going to subscribe to ILLA Drive. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "update_plan_increase_license": "You are going to add {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_license": "You are going to remove {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_increase_storage": "You are going to add {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_storage": "You are going to remove {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "unsubscribe_license": "You are going to unsubscribe ILLA Cloud Plus. After cancellation, starting from the next billing cycle, the Plus features will no longer be accessible. <0>Learn more</0>",
-        "unsubscribe_storage": "You are going to unsubscribe ILLA Drive storage. After cancellation, starting from the next billing cycle, the storage capacity will be restored to 100MB. <0>Learn more</0>"
+        "add_storage": "U gaat {{changeNum}} GB opslagruimte toevoegen. Eenmaal bevestigd, trekken we onmiddellijk de betaling voor de nieuwe opslag voor deze factureringscyclus af. <0>Meer informatie</0>",
+        "remove_storage": "U gaat {{changeNum}} GB opslag verwijderen. Eenmaal bevestigd, zullen de wijzigingen in de volgende factureringscyclus van kracht worden. <0>Meer informatie</0>",
+        "update_plan_year": "U gaat bijwerken naar een jaarlijks betalingsplan. Eenmaal bevestigd, zal de wijziging van kracht worden vanaf het begin van de volgende factureringscyclus. <0>Meer informatie</0>",
+        "update_plan_monthly": "U gaat bijwerken naar een maandelijks betalingsplan. Eenmaal bevestigd, zal de wijziging van kracht worden vanaf het begin van de volgende factureringscyclus. <0>Meer informatie</0>",
+        "add_license": "Je gaat {{changeNum}} licenties toevoegen. Eenmaal bevestigd, trekken we de betaling voor de nieuwe licenties onmiddellijk af voor deze factureringscyclus. <0>Meer informatie</0>",
+        "remove_license": "U gaat {{changeNum}} licenties verwijderen. Eenmaal bevestigd, zullen de wijzigingen van kracht worden in de volgende factuurcyclus. <0>Meer informatie</0>",
+        "add_traffic": "U gaat {{changeNum}}GB verkeer toevoegen. Eenmaal bevestigd, trekken we de kosten van het extra verkeer onmiddellijk af. <0>Meer informatie</0>",
+        "subscribe_storage": "Je gaat je abonneren op ILLA Cloud Plus. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. <0>Meer informatie</0>",
+        "subscribe_license": "Je gaat je abonneren op ILLA Drive. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. <0>Meer informatie</0>",
+        "update_plan_increase_license": "U gaat {{changeNum}} licenties toevoegen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
+        "update_plan_remove_license": "U gaat {{changeNum}} licenties verwijderen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
+        "update_plan_increase_storage": "U gaat {{changeNum}} GB opslagruimte toevoegen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
+        "update_plan_remove_storage": "U gaat {{changeNum}} GB opslag verwijderen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
+        "unsubscribe_license": "Je gaat je afmelden voor ILLA Cloud Plus. Na annulering, vanaf de volgende factureringscyclus, zullen de Plus functies niet meer toegankelijk zijn. <0>Meer informatie</0>",
+        "unsubscribe_storage": "Je gaat je afmelden voor de ILLA Drive-opslag. Na annulering, vanaf de volgende factureringscyclus, zal de opslagcapaciteit worden hersteld naar 100 MB. <0>Meer informatie</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
-        "add_storage": "Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our user <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_storage": "If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our  <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_year": "Starting from the next period, the subscription will be changed to an annual subscription, and the fees will be automatically deducted based on the annual subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_monthly": "Starting from the next period, the subscription will be changed to a monthly subscription, and the fees will be automatically deducted based on the monthly subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_license": "Calculation rules using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_license": "If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_traffic": "After successful deduction, your traffic will increase in real-time. Once the traffic is used, the fees cannot be refunded. Unused traffic can be refunded in units of GB. For example, if you purchase 10GB of traffic and use 4.5GB, you can apply for a refund of 5GB. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_yearly": "You are going to subscribe to the annual subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $9.9 per GB, and you have a total of 3 GB, we will deduct $29.7 on February 25, 2023. If you add 2 GB on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 GB, which is (2+3)*$9.9=$49.5. If you wish to reduce storage or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_monthly": "You are going to subscribe to the monthly subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $0.99 per GB, and you have a total of 3 GB, we will deduct $2.97 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$0.99=$4.95. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_yearly": "You are going to subscribe to the annual subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $100 per license, and you have a total of 3 licenses, we will deduct $300 on February 25, 2023. If you add 2 more licenses on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 licenses, which is (2+3)*$100=$500. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_monthly": "You are going to subscribe to the monthly subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $12 per license, and you have a total of 3 licenses, we will deduct $36 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$12=$60. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased licenses according to the current billing cycle. Calculation rules of increasing licenses using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased storage according to the current billing cycle. Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>"
+        "add_storage": "Berekeningsregels met behulp van een maandelijks opslagabonnement als voorbeeld: Laten we een scenario overwegen waarbij u aanvankelijk geabonneerd bent op 5 GB vanaf 14 maart, vanaf 14 maart. en de factureringscyclus loopt van de 14e van deze maand naar de dertiende van de volgende maand. Op 10 mei besluit je 1 GB toe te voegen. Op dat punt er waren vier dagen over tot het einde van de huidige cyclus op 13 mei (30 dagen in totaal van 14 april tot 13 mei). Om de aangepaste betaling te berekenen, trekken we de kosten van 1 GB af, die ongeveer $0 bedragen. 9, in verhouding tot de duur van 4 dagen binnen de cyclus van 30 dagen. De aftrek wordt daarom geschat als 1 licentie * $0. 9 / 30 dagen * 4 dagen, wat resulteert in ongeveer $ 0,132. Vanaf de volgende factureringscyclus worden alle opslagkosten gezamenlijk geconsolideerd en betaald. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie onze gebruiker <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "remove_storage": "Als de door uw bestanden bezette opslagcapaciteit de geabonneerde opslagcapaciteit overschrijdt aan het begin van de volgende factureringscyclus, alle bestanden zullen worden uitgeschakeld totdat u bestanden verwijdert of de opslagcapaciteit binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_year": "Vanaf de volgende periode zal het abonnement worden gewijzigd in een jaarabonnement, en de vergoedingen zullen automatisch worden afgetrokken op basis van de jaarlijkse abonnementsprijs. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_monthly": "Vanaf de volgende periode zal het abonnement worden gewijzigd in een maandabonnement, en de vergoedingen zullen automatisch worden afgetrokken op basis van de maandelijkse abonnementsprijs. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "add_license": "Berekeningsregels door middel van een maandelijks licentieabonnement als voorbeeld: Laten we een scenario overwegen waarin u aanvankelijk geabonneerd bent op 5 licenties vanaf 14 maart, vanaf 14 maart. en de factureringscyclus loopt van de 14e van deze maand naar de dertiende van de volgende maand. Op 10 mei besluit je 1 extra licentie toe te voegen. Op dat punt er waren vier dagen over tot het einde van de huidige cyclus op 13 mei (30 dagen in totaal van 14 april tot 13 mei). Om de aangepaste betaling te berekenen, zullen we de kosten van 1 licentie aftrekken, dit komt overeen met ongeveer $10 in verhouding tot de duur van vier dagen binnen de dertig dagen. Daarom wordt de aftrek geschat als 1 licentie * $10 / 30 dagen * 4 dagen, wat resulteert in ongeveer $1,33. Vanaf de volgende factureringscyclus worden alle licentiekosten gezamenlijk geconsolideerd en betaald. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "remove_license": "Als het aantal gebruikers met bewerkingsrechten het aantal licenties aan het begin van de volgende factureringscyclus overschrijdt, alle gebruikers behalve de eigenaar zullen worden uitgeschakeld totdat u de leden verwijdert of het aantal licenties binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "add_traffic": "Na succesvolle aftrek, zal uw verkeer in real-time toenemen. Zodra het verkeer is gebruikt, kunnen de kosten niet meer worden terugbetaald, ongebruikt verkeer kan worden terugbetaald in eenheden van GB. Als je bijvoorbeeld 10GB aan verkeer aanschaft en 4.5GB gebruikt, kun je een restitutie van 5GB aanvragen. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "subscribe_storage_yearly": "U zult zich abonneren op het jaarlijkse abonnement van de opslag in ILLA Drive. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag hangt af van hoeveel opslagcapaciteit je hebt ingeschreven in GB. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een jaarlijkse abonnementskosten van $9. per GB, en u heeft een totaal van 3 GB, zullen we $29 aftrekken. op 25 februari 2023. Als je 2 GB toevoegt op 25 maart 2023, gaan we eerst de resterende 11 maanden betaling aftrekken op 25 maart 2023. Vervolgens zullen we op 25 februari 2024 de betaling voor 5 GB aftrekken, dat wil zeggen (2+3)*$9.9=$49. . Als u de opslag wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, moet u deze vóór het begin van de volgende periode bijwerken. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "subscribe_storage_monthly": "U zult zich abonneren op het maandelijkse abonnement van de opslag in ILLA Drive. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag hangt af van hoeveel opslagcapaciteit je hebt ingeschreven in GB. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een maandelijkse abonnementskosten van $0. 9 per GB, en u hebt een totaal van 3 GB, zullen we $ 2 aftrekken. 7 op 25 februari, 2023. Als je nog 2 licenties toevoegt op 21 maart 2023, gaan we eerst de resterende 5 dagen betaling in mindering op 21 maart 2023. Vervolgens zullen we, op 25 maart 2023, de betaling voor 5 licenties aftrekken, dat wil zeggen (2+3)*$0. 9=$4{,}95. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "subscribe_license_yearly": "U zult zich abonneren op het jaarlijkse abonnement van ILLA Cloud Plus. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag is afhankelijk van het aantal licenties dat je hebt. Als u bijvoorbeeld uw eerste abonnement op 25 februari 2023 start, met een jaarlijkse abonnementskosten van $100 per licentie, en u heeft een totaal van 3 licenties, we zullen $300 aftrekken op 25 februari 2023. Als je nog 2 licenties toevoegt op 25 maart 2023, gaan we eerst de resterende 11 maanden betaling aftrekken op 25 maart 2023. Dan, op 25 februari 2024, zullen we de betaling voor 5 licenties, dat wil zeggen (2+3)*$100=$500, aftrekken. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "subscribe_license_monthly": "U abonneert zich op het maandelijkse abonnement van ILLA Cloud Plus. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag is afhankelijk van het aantal licenties dat je hebt. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een maandelijkse abonnementskosten van $12 per licentie, en u heeft een totaal van 3 licenties, we zullen $36 aftrekken op 25 februari 2023. Als je nog 2 licenties toevoegt op 21 maart 2023, gaan we eerst de resterende 5 dagen betaling in mindering op 21 maart 2023. Vervolgens zullen we, op 25 maart 2023, de betaling voor 5 licenties aftrekken, dat wil zeggen (2+3)*$12=$60. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_increase_license": "De vergoedingen worden automatisch afgetrokken op basis van het bijgewerkte aantal licenties en de prijzen van de nieuwe factureringscyclus vanaf de volgende periode. Deze keer zullen we de betaling voor de verhoogde licenties aftrekken volgens de huidige factureringscyclus. Berekeningsregels voor het verhogen van licenties met een maandelijks licentieabonnement als voorbeeld: Laten we een scenario overwegen waarin u in eerste instantie hebt geabonneerd op 5 licenties vanaf 14 maart en de factureringscyclus loopt van de 14e van deze maand naar de dertiende van de volgende maand. Op 10 mei besluit je 1 extra licentie toe te voegen. Op dat punt er waren vier dagen over tot het einde van de huidige cyclus op 13 mei (30 dagen in totaal van 14 april tot 13 mei). Om de aangepaste betaling te berekenen, zullen we de kosten van 1 licentie aftrekken, dit komt overeen met ongeveer $10 in verhouding tot de duur van vier dagen binnen de dertig dagen. Daarom wordt de aftrek geschat als 1 licentie * $10 / 30 dagen * 4 dagen, wat resulteert in ongeveer $1,33. Vanaf de volgende factureringscyclus worden alle licentiekosten gezamenlijk geconsolideerd en betaald. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_remove_license": "De vergoedingen worden automatisch afgetrokken op basis van het bijgewerkte aantal licenties en de prijzen van de nieuwe factureringscyclus vanaf de volgende periode. Als het aantal gebruikers met bewerkingsrechten het aantal licenties aan het begin van de volgende factureringscyclus overschrijdt, alle gebruikers behalve de eigenaar zullen worden uitgeschakeld totdat u de leden verwijdert of het aantal licenties binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_increase_storage": "De vergoedingen worden automatisch afgetrokken op basis van de bijgewerkte opslag en de prijzen van nieuwe factureringscyclus vanaf de volgende periode. Deze keer brengen we de betaling voor de verhoogde opslag in mindering op basis van de huidige factureringscyclus. Berekeningsregels met behulp van een maandelijks opslagabonnement als voorbeeld: Laten we een scenario overwegen waarbij u aanvankelijk geabonneerd bent op 5 GB vanaf 14 maart, vanaf 14 maart. en de factureringscyclus loopt van de 14e van deze maand naar de dertiende van de volgende maand. Op 10 mei besluit je 1 GB toe te voegen. Op dat punt er waren vier dagen over tot het einde van de huidige cyclus op 13 mei (30 dagen in totaal van 14 april tot 13 mei). Om de aangepaste betaling te berekenen, trekken we de kosten van 1 GB af, die ongeveer $0 bedragen. 9, in verhouding tot de duur van 4 dagen binnen de 30 dagen cyclus. De aftrek wordt daarom geschat als 1 licentie * $0,99 / 30 dagen * 4 dagen, wat resulteert in ongeveer $0,132. Vanaf de volgende factureringscyclus worden alle opslagkosten gezamenlijk geconsolideerd en betaald. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_remove_storage": "De vergoedingen worden automatisch afgetrokken op basis van de bijgewerkte opslag en de prijzen van nieuwe factureringscyclus vanaf de volgende periode. Als de door uw bestanden bezette opslagcapaciteit de geabonneerde opslagcapaciteit overschrijdt aan het begin van de volgende factureringscyclus, alle bestanden zullen worden uitgeschakeld totdat u bestanden verwijdert of de opslagcapaciteit binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>"
       }
     },
     "message": {
-      "failed_to_subscribe": "Failed to subscribe. Please try again.",
-      "failed_to_add_traffic": "Failed to add traffic. Please try again. ",
-      "failed_to_add_storage": "Failed to add storage. Please try again. ",
-      "failed_to_remove_storage": "Failed to remove storage. Please try again. ",
-      "failed_to_add_licens": "Failed to add licenses. Please try again. ",
-      "failed_to_remove_lic": "Failed to remove licenses. Please try again. ",
-      "failed_to_change_pla": "Failed to change plan. Please try again. ",
-      "failed_to_unsubscrib": "Failed to unsubscribe. Please try again. ",
-      "successfully_removed": "Successfully removed.  The change will take effect from {{nextPaymentDate}}.",
-      "unsubscription_succe": "Unsubscription successful.  The change will take effect from {{nextPaymentDate}}",
-      "cancel_subscribe": "Subscription not completed, please try again or contact billing@illasoft.com",
-      "cancel_purchase": "Purchase not completed, please try again or contact billing@illasoft.com",
-      "successfully_changed": "Subscription changed successfully. It will take effect in a few minutes",
-      "failed_to_change": "Subscription change failed",
-      "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
-      "failed_to_join_no_license": "Unable to join because team licenses are insufficient, please contact the admin.",
-      "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin."
+      "failed_to_subscribe": "Abonneren mislukt. Probeer het opnieuw.",
+      "failed_to_add_traffic": "Mislukt om verkeer toe te voegen. Probeer opnieuw. ",
+      "failed_to_add_storage": "Opslag toevoegen mislukt. Probeer het opnieuw. ",
+      "failed_to_remove_storage": "Opslag verwijderen mislukt. Probeer het opnieuw. ",
+      "failed_to_add_licens": "Toevoegen van licenties mislukt. Probeer het opnieuw. ",
+      "failed_to_remove_lic": "Verwijderen van de licenties is mislukt. Probeer het opnieuw. ",
+      "failed_to_change_pla": "Abonnement wijzigen mislukt. Probeer het opnieuw. ",
+      "failed_to_unsubscrib": "Afmelden mislukt. Probeer het opnieuw. ",
+      "successfully_removed": "Succesvol verwijderd. De wijziging zal van kracht worden van {{nextPaymentDate}}.",
+      "unsubscription_succe": "Uitschrijven geslaagd. De wijziging zal van kracht worden van {{nextPaymentDate}}",
+      "cancel_subscribe": "Abonnement niet voltooid, probeer het opnieuw of neem contact op met billing@illasoft.com",
+      "cancel_purchase": "Aankoop niet voltooid, probeer het opnieuw of neem contact op met billing@illasoft.com",
+      "successfully_changed": "Abonnement succesvol gewijzigd. Het zal over enkele minuten van kracht worden",
+      "failed_to_change": "Inschrijving wijzigen mislukt",
+      "unsubscription_suc": "Het abonnement is met succes geannuleerd en zal vanaf de volgende periode van kracht worden",
+      "failed_to_join_no_license": "Kan niet toetreden omdat teamlicenties niet toereikend zijn, neem contact op met de beheerder.",
+      "storage_insufficient_modal": "De opslag of het verkeer van dit team is niet genoeg. Neem contact op met uw beheerder.",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
-        "owner_title_drive": "Insufficient capacity",
-        "owner_description_drive": "The storage or traffic is not enough. Please upgrade and try again.",
-        "owner_button_drive": "Upgrade",
-        "not_owner_title_drive": "Failed to operate",
-        "not_owner_description_drive": "The storage or traffic of this team is not enough. Please contact your admin.",
-        "not_owner_button_drive": "Got it",
-        "out_title_drive": "Failed to download",
-        "out_description_drive": "Failed to download, please contact the file owner",
-        "out_button_drive": "Got it"
+        "owner_title_drive": "Onvoldoende capaciteit",
+        "owner_description_drive": "Opslag of verkeer is niet genoeg. Upgrade en probeer het opnieuw.",
+        "owner_button_drive": "Upgraden",
+        "not_owner_title_drive": "Functie mislukt",
+        "not_owner_description_drive": "De opslag of het verkeer van dit team is niet genoeg. Neem contact op met uw beheerder.",
+        "not_owner_button_drive": "Ik snap het",
+        "out_title_drive": "Downloaden mislukt",
+        "out_description_drive": "Downloaden mislukt, neem contact op met de eigenaar van het bestand",
+        "out_button_drive": "Ik snap het"
       },
       "sub_suc": {
-        "subscription_success": "Subscription successful",
-        "you_can_now_invite_m": "It will take effect in a few minutes. You can invite members and start using the advanced features later. Go ahead and give it a try!",
-        "you_can_now_upload_m": "It will take effect in a few minutes.  You can now upload more files.",
-        "payment_successful": "Payment successful",
-        "we_have_added_the_li": "It will take effect in a few minutes. We have added the licenses for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_st": "It will take effect in a few minutes. We have added the storage for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_tr": "It will take effect in a few minutes. We will add the traffic for you later. You can now download more files.",
-        "successfully_updated": "Successfully updated",
-        "the_change_to_the_su": "The change to the subscription period will take effect from the next billing cycle.",
-        "got_it": "Got it"
+        "subscription_success": "Abonnement succesvol",
+        "you_can_now_invite_m": "Het zal binnen enkele minuten van kracht worden. Je kunt later leden uitnodigen en gebruik maken van de geavanceerde functies. Probeer het eens uit!",
+        "you_can_now_upload_m": "Het zal binnen enkele minuten van kracht worden. U kunt nu meer bestanden uploaden.",
+        "payment_successful": "Betaling succesvol",
+        "we_have_added_the_li": "Het zal binnen enkele minuten van kracht worden. We hebben de licenties voor je toegevoegd. Alle wijzigingen in de abonnementsperiode zullen van kracht zijn vanaf de volgende factureringscyclus.",
+        "we_have_added_the_st": "Het zal binnen enkele minuten van kracht worden. We hebben de opslag voor je toegevoegd. Alle wijzigingen in de abonnementsperiode zullen van kracht zijn vanaf de volgende factureringscyclus.",
+        "we_have_added_the_tr": "Over een paar minuten gaat het van kracht. We voegen het verkeer voor u toe. U kunt nu meer bestanden downloaden.",
+        "successfully_updated": "Succesvol geüpdatet",
+        "the_change_to_the_su": "De wijziging in de abonnementsperiode zal van kracht zijn vanaf de volgende factureringscyclus.",
+        "got_it": "Ik snap het"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgrade to Plus",
-        "this_feature_is_avai": "This feature is available for Plus users only. To use it, please upgrade to Plus. By upgrading to Plus, you will also have access to the following features. ",
-        "add_unlimited_viewer": "Add unlimited viewer members for FREE",
-        "publish_public_appli": "Publish public applications",
-        "ai_sql_generation": "AI SQL Generation",
+        "upgrade_to_plus": "Upgrade naar Plus",
+        "this_feature_is_avai": "Deze functie is alleen beschikbaar voor Plus gebruikers. Upgrade naar Plus om deze te gebruiken. Door een upgrade naar Plus heeft u ook toegang tot de volgende functies. ",
+        "add_unlimited_viewer": "Onbeperkte kijkleden GRATIS toevoegen",
+        "publish_public_appli": "Publieke toepassingen publiceren",
+        "ai_sql_generation": "AI SQL Generatie",
         "audit_logs": "Audit logs",
-        "learn_more": "Learn more",
-        "upgrade": "Upgrade",
-        "pricing": "/editor/month, yearly",
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
-        "insufficient_license_button": "Add licenses"
+        "learn_more": "Meer informatie",
+        "upgrade": "Upgraden",
+        "pricing": "/editor/maand, jaarlijks",
+        "insufficient_license_title": "Onvoldoende licenties",
+        "insufficient_license_description": "Om meer tekstverwerkers uit te nodigen, moet je eerst de licenties verhogen. Alle leden van je team kunnen de functies voor ILLA Cloud Plus gebruiken. De specifieke toegang tot elke functie is afhankelijk van de rol van elk lid. ",
+        "insufficient_license_button": "Licenties toevoegen"
       },
       "expired": {
-        "owner": "Your subscription has expired. To continue using, please renew it.",
-        "others": "Your account has been disabled because the team's subscription has expired.",
-        "your_subscription_ha_not_owner": "Not enough licenses",
-        "all_members_except_f_not_owner": "Your team doesn't have enough licenses. Please contact your team owner.",
-        "upgrade_not_owner": "Got it"
+        "owner": "Uw abonnement is verlopen. Vernieuw uw abonnement om door te gaan met gebruiken.",
+        "others": "Je account is uitgeschakeld omdat het abonnement van het team is verlopen.",
+        "your_subscription_ha_not_owner": "Niet genoeg licenties",
+        "all_members_except_f_not_owner": "Je team heeft niet genoeg licenties. Neem contact op met je teameigenaar.",
+        "upgrade_not_owner": "Ik snap het"
       },
       "blank_page": {
-        "insufficient_license_disable": "Your account has been disabled due to insufficient team licenses. Please contact the team Owner for assistance."
+        "insufficient_license_disable": "Uw account is uitgeschakeld vanwege onvoldoende teamlicenties. Neem voor hulp contact op met de eigenaar van het team."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please connect your admin to increase licenses first.",
-        "insufficient_license_button": "OK"
+        "insufficient_license_title": "Onvoldoende licenties",
+        "insufficient_license_description": "Om meer tekstverwerkers uit te nodigen, sluit u aan bij uw beheerder om eerst de licenties te verhogen.",
+        "insufficient_license_button": "Ok"
       },
       "storage_insufficient": {
-        "owner_title": "Insufficient storage capacity",
-        "owner_description": "In order to store files normally, please increase the storage  in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to store files normally, please contact your administrator to increase storage capacity in time.",
-        "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_title": "Onvoldoende opslagcapaciteit",
+        "owner_description": "Opslagruimte op tijd verhogen om bestanden normaal op te slaan. ",
+        "owner_button": "Verhoog capaciteit",
+        "not_owner_title": "Onvoldoende opslagcapaciteit",
+        "not_owner_description": "Om bestanden normaal op te slaan, neem alstublieft contact op met uw beheerder om de opslagcapaciteit op tijd te verhogen.",
+        "not_owner_button": "Ok",
+        "owner_pricing": "GB/maandelijks"
       },
       "traffic_insufficient": {
-        "owner_title": "Insufficient traffic capacity",
-        "owner_description": "In order to access files normally, please increase the traffic capacity in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to access files normally, please contact your administrator to increase traffic capacity in time.",
-        "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_title": "Onvoldoende verkeerscapaciteit",
+        "owner_description": "Om bestanden normaal te kunnen benaderen, verhoog alstublieft de verkeerscapaciteit op tijd. ",
+        "owner_button": "Verhoog capaciteit",
+        "not_owner_title": "Onvoldoende opslagcapaciteit",
+        "not_owner_description": "Om bestanden normaal te kunnen benaderen, neem alstublieft contact op met uw beheerder om de netwerkcapaciteit op tijd te verhogen.",
+        "not_owner_button": "Ok",
+        "owner_pricing": "GB/maandelijks"
       },
       "cancel_confirm": {
-        "description": "After cancellation, your team will revert to the free plan starting from the next billing cycle. The features included in the subscription plans will no longer be accessible.",
-        "title": "Cancel the subscription?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "Na annulering keert je team terug naar het gratis abonnement vanaf de volgende factureringscyclus. De in de abonnementsplannen opgenomen functies zullen niet langer toegankelijk zijn.",
+        "title": "Abonnement annuleren?",
+        "button_cancel": "annuleren",
+        "button_confirm": "Bevestigen"
       },
       "change_confirm": {
-        "description": "Once reduced, the changes will take effect in the next billing cycle. If there are resources that exceed the newly allocated capacity, all resources may become inaccessible.",
-        "title": "Change plan?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "Eenmaal verminderd, zullen de wijzigingen van kracht worden in de volgende factureringscyclus. Als er middelen zijn die de nieuw toegewezen capaciteit overschrijden, kunnen alle middelen ontoegankelijk worden.",
+        "title": "Abonnement wijzigen?",
+        "button_cancel": "annuleren",
+        "button_confirm": "Bevestigen"
       }
     },
     "homepage": {
-      "get_access_to_advanc": "Get access to advanced features",
-      "upgrade": "Upgrade",
-      "cancel": "Cancel"
+      "get_access_to_advanc": "Krijg toegang tot geavanceerde functies",
+      "upgrade": "Upgraden",
+      "cancel": "annuleren"
     }
   }
 }

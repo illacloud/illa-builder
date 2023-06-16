@@ -1,8 +1,12 @@
+import { isObject } from "./typeHelper"
+
 export const formatDataAsObject = (data: Record<string, any>[]) => {
   if (!Array.isArray(data) || !data.length) return {}
   const result: Record<string, unknown[]> = {}
   data.forEach((d) => {
-    Object.keys(d).map((key) => {
+    if (!isObject(d)) return
+    if (!Array.isArray(Object.keys(d))) return
+    Object.keys(d).forEach((key) => {
       const value = d[key]
       if (!Object.hasOwn(result, key)) {
         result[key] = []
