@@ -91,7 +91,6 @@ export const Editor: FC = () => {
       throw new Error("You don't have permission to edit this app")
     }
   }
-
   useEffect(() => {
     if (currentUser != null && currentUser.userId != "") {
       Connection.enterRoom("app", appId ?? "")

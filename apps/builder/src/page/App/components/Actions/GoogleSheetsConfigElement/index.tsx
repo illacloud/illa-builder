@@ -2,7 +2,6 @@ import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useLocation } from "react-router-dom"
 import {
   Button,
   ButtonGroup,
@@ -31,11 +30,9 @@ import {
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { getOAuthAccessToken, redirectToGoogleOAuth } from "@/services/resource"
 import { validate } from "@/utils/form"
-import { ILLABuilderStorage } from "@/utils/storage"
 
 export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   const { resourceId, onBack, onFinished } = props
-  const location = useLocation()
 
   const { handleSubmit, control, watch, formState } = useForm({
     shouldUnregister: true,
@@ -43,10 +40,10 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   })
 
   const { t } = useTranslation()
-  const { oAuthRefreshStatus } = useOAuthRefresh(resourceId)
   const resource = useSelector(getAllResources).find(
     (r) => r.resourceId === resourceId,
   )
+
   const content = (resource?.content ??
     GoogleSheetResourceInitial) as GoogleSheetResource
 
@@ -61,7 +58,8 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   const showAuthStatus = content.opts?.status !== GoogleSheetAuthStatus.Initial
 
   const showInitialConnectButton = resourceId
-    ? isOauthType && oAuthRefreshStatus !== GoogleSheetAuthStatus.Authenticated
+    ? isOauthType &&
+      content.opts?.status !== GoogleSheetAuthStatus.Authenticated
     : isOauthType
 
   const [saving, setSaving] = useState<boolean>(false)
@@ -73,31 +71,25 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
     [],
   )
 
-  const handleOAuthConnect = async (id: string, accessType: AccessType) => {
-    try {
-      const response = await getOAuthAccessToken(
-        id,
-        `${window.location.origin}${location.pathname}`,
-        accessType,
-      )
-      const { accessToken } = response.data
-      if (accessToken) {
-        ILLABuilderStorage.setLocalStorage("accessToken", accessToken)
-        const res = await redirectToGoogleOAuth(id, accessToken)
-        if (res.data.url) {
-          window.location.assign(res.data.url)
-        }
-      }
-    } catch (e) {
-      ILLABuilderStorage.removeLocalStorage("accessToken")
-    }
-  }
+  // refresh Google OAuth Status
+  useOAuthRefresh(resourceId)
 
-  const handleOauthInitialConnect = (resourceId: string) => {
-    if (showInitialConnectButton && !isAuthenticated) {
-      handleOAuthConnect(resourceId, accessType)
+  const handleOAuthConnect = async (
+    resourceId: string,
+    accessType: AccessType,
+  ) => {
+    const response = await getOAuthAccessToken(
+      resourceId,
+      `${window.location.origin}${location.pathname}`,
+      accessType,
+    )
+    const { accessToken } = response.data
+    if (accessToken) {
+      const res = await redirectToGoogleOAuth(resourceId, accessToken)
+      if (res.data.url) {
+        window.location.assign(res.data.url)
+      }
     }
-    onFinished(resourceId)
   }
 
   return (
@@ -106,7 +98,10 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
         handleSubmit,
         resourceId,
         "googlesheets",
-        handleOauthInitialConnect,
+        (resourceId) => {
+          handleOAuthConnect(resourceId, accessType)
+          onFinished(resourceId)
+        },
         setSaving,
       )}
     >
@@ -239,7 +234,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
               colorScheme="gray"
               disabled={!formState.isValid}
               type="button"
-              onClick={() => handleOAuthConnect(resourceId!, accessType)}
+              onClick={() => handleOAuthConnect(resourceId!!, accessType)}
             >
               {t("editor.action.form.label.gs.reconnect_with_oauth")}
             </Button>
