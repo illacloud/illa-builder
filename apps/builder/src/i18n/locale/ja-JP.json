@@ -3321,7 +3321,9 @@
         "update_plan_increase_storage": "{{changeNum}} GBのストレージを追加し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
         "update_plan_remove_storage": "{{changeNum}} GBのストレージを削除し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
         "unsubscribe_license": "ILLA Cloud Plusの登録を解除します。 キャンセル後、次の請求サイクルから始めて、Plus機能にアクセスできなくなります。<0>詳細</0>",
-        "unsubscribe_storage": "ILLAドライブのストレージの登録を解除します。 キャンセル後、次の請求サイクルから開始すると、ストレージ容量は100MBに復元されます。 <0>詳細</0>"
+        "unsubscribe_storage": "ILLAドライブのストレージの登録を解除します。 キャンセル後、次の請求サイクルから開始すると、ストレージ容量は100MBに復元されます。 <0>詳細</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
         "add_storage": "毎月のストレージサブスクリプションを使用した計算ルールを例として挙げてみましょう。3月14日から最初に5GBまで登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日、あなたは1GBを追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1 GBのコストを差し引くことになります。 9、30日間の周期内の4日の期間に比例しますので、控除は1ライセンス*0と推定されます。 9 / 30 日 * 4日間、およそ$ 0.132になります。 次の請求サイクルから、すべての保管料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、ユーザー<0>プライバシーポリシー</0>および<1>サービス規約</1>をご覧ください。",
@@ -3358,7 +3360,11 @@
       "failed_to_change": "サブスクリプションの変更に失敗しました",
       "unsubscription_suc": "サブスクリプションは正常にキャンセルされ、次の期間から有効になります",
       "failed_to_join_no_license": "チームライセンスが不足しているため参加できません。管理者に連絡してください。",
-      "storage_insufficient_modal": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。"
+      "storage_insufficient_modal": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
