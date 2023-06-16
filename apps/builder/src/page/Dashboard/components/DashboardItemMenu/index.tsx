@@ -14,7 +14,10 @@ import {
 } from "@illa-design/react"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
 import { MemberListContext } from "@/illa-public-component/MemberList/context/MemberListContext"
-import { SubscribeInfo } from "@/illa-public-component/MemberList/interface"
+import {
+  SubscribeInfo,
+  TotalTeamLicense,
+} from "@/illa-public-component/MemberList/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -437,6 +440,8 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           value={{
             currentTeamLicense:
               teamInfo?.currentTeamLicense ?? ({} as SubscribeInfo),
+            totalTeamLicense:
+              teamInfo?.totalTeamLicense ?? ({} as TotalTeamLicense),
           }}
         >
           <InviteModal
