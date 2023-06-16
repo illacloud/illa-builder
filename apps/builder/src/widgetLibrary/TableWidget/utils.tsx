@@ -39,6 +39,9 @@ export const tansDataFromOld = (
 ): ColumnItemShape[] => {
   const reOrderColumns: ColumnItemShape[] = []
   if (data?.length) {
+    if (!isObject(data[0])) {
+      return []
+    }
     const newKeys = Object.keys(data[0])
     const filteredOldKeys = oldKeyOrder.filter((key) => {
       return newKeys.includes(key) || oldKeyMap[key].custom
