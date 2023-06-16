@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { Location, useLocation } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
@@ -39,9 +39,6 @@ const getResourceAction = (
   actions: ActionItem<ActionContent>[],
   resourceID: string | null,
 ) => {
-  if (!resourceID || !actions || actions.length === 0) {
-    return null
-  }
   return actions.find((a) => a.resourceId === resourceID)
 }
 
@@ -64,9 +61,6 @@ export function removeStatusAndResourceId(location: Location): string {
 }
 
 export const useDetectGoogleOAuthStatus = () => {
-  const [oAuthStatus, setOAuthStatus] = useState<GoogleSheetAuthStatus>(
-    GoogleSheetAuthStatus.Initial,
-  )
   const canOperationRef = useRef<boolean>(true)
 
   const location = useLocation()
@@ -105,7 +99,10 @@ export const useDetectGoogleOAuthStatus = () => {
       return
     }
     const resourceAction = getResourceAction(actions, resourceID)
-    if (selectedAction?.actionId === resourceAction?.actionId) {
+    if (
+      selectedAction?.actionId === resourceAction?.actionId ||
+      resourceAction === undefined
+    ) {
       return
     }
     // redirect url: 1 success, 2 failed, reverse with resource
@@ -113,19 +110,12 @@ export const useDetectGoogleOAuthStatus = () => {
       message.success({
         content: i18n.t("editor.action.form.tips.gs.successfully_authent"),
       })
-      setOAuthStatus(GoogleSheetAuthStatus.NotAuthenticated)
     } else {
       message.error({
         content: i18n.t("editor.action.form.tips.gs.failed_to_authentica"),
       })
-      setOAuthStatus(GoogleSheetAuthStatus.Authenticated)
     }
-    store.dispatch(configActions.changeSelectedAction(selectedAction))
+    store.dispatch(configActions.changeSelectedAction(resourceAction))
     removeAccessTokenFromLocalStorage()
   }, [actions, message, resourceID, status, selectedAction])
-
-  return {
-    oAuthStatus,
-    setOAuthStatus,
-  }
 }

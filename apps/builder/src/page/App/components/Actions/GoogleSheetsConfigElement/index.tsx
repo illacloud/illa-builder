@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -9,7 +9,6 @@ import {
   PreviousIcon,
   WarningCircleIcon,
 } from "@illa-design/react"
-import { GoogleOAuthContext } from "@/context/GoogleOAuthContext"
 import { useOAuthRefresh } from "@/hooks/useOAuthRefresh"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
@@ -36,8 +35,6 @@ import { ILLABuilderStorage } from "@/utils/storage"
 
 export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   const { resourceId, onBack, onFinished } = props
-  const { oAuthStatus = GoogleSheetAuthStatus.Initial, setOAuthStatus } =
-    useContext(GoogleOAuthContext)
   const location = useLocation()
 
   const { handleSubmit, control, watch, formState } = useForm({
@@ -59,7 +56,9 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   const isOauthType = authenticationWatch === "oauth2"
   // redirect authentication status
   const isAuthenticated =
-    resourceId && isOauthType && oAuthStatus !== GoogleSheetAuthStatus.Initial
+    content.opts?.status === GoogleSheetAuthStatus.Authenticated
+
+  const showAuthStatus = content.opts?.status !== GoogleSheetAuthStatus.Initial
 
   const showInitialConnectButton = resourceId
     ? isOauthType && oAuthRefreshStatus !== GoogleSheetAuthStatus.Authenticated
@@ -97,9 +96,6 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   const handleOauthInitialConnect = (resourceId: string) => {
     if (showInitialConnectButton && !isAuthenticated) {
       handleOAuthConnect(resourceId, accessType)
-    }
-    if (isAuthenticated) {
-      setOAuthStatus(GoogleSheetAuthStatus.Initial)
     }
     onFinished(resourceId)
   }
@@ -212,14 +208,10 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
             }
           />
         )}
-        {isAuthenticated && (
+        {showAuthStatus && (
           <div css={oAuthStatusContainerStyle}>
-            <div
-              css={getOAuthStatusContentStyle(
-                oAuthStatus === GoogleSheetAuthStatus.NotAuthenticated,
-              )}
-            >
-              {oAuthStatus === GoogleSheetAuthStatus.Authenticated ? (
+            <div css={getOAuthStatusContentStyle(isAuthenticated)}>
+              {!isAuthenticated ? (
                 <>
                   <WarningCircleIcon css={oAuthErrorIconStyle} />
                   <>{t("editor.action.form.tips.gs.failed_to_authentica")}</>
