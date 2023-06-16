@@ -46,7 +46,6 @@ const applyEventCardStyle = (
     }
   `
 }
-
 const applyMonthView = (titleColor: string, eventTextColor: string) => {
   return css`
     .rbc-month-view {

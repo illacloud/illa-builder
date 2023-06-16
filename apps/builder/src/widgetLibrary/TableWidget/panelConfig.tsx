@@ -539,6 +539,8 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "pageSize",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
+        // bindAttrName: ["enableServerSidePagination"],
+        // shown: (value) => !value,
       },
     ],
   },

@@ -1,4 +1,12 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import {
+  FC,
+  MouseEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -8,23 +16,39 @@ import {
   Button,
   ButtonGroup,
   CaretRightIcon,
+  DropList,
+  DropListItem,
+  Dropdown,
   ExitIcon,
   FullScreenIcon,
+  List,
+  ListItem,
+  ListItemMeta,
   LockIcon,
+  MoreIcon,
+  Switch,
+  Tag,
+  TextArea,
   Trigger,
   UnlockIcon,
   getColor,
   useMessage,
 } from "@illa-design/react"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/ILLA_PROTO"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
+import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import { isSubscribeLicense } from "@/illa-public-component/UserRoleUtils"
 import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
+import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -33,19 +57,31 @@ import {
   isOpenDebugger,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import {
+  getAppInfo,
+  getCurrentAppWaterMarkConfig,
+} from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import {
+  fetchDeployApp,
+  forkCurrentApp,
+  updateWaterMarkConfig,
+} from "@/services/apps"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
   descriptionStyle,
+  floatingMessageModalStyle,
   informationStyle,
   logoCursorStyle,
   navBarStyle,
   rightContentStyle,
   rowCenter,
   saveFailedTipStyle,
+  upgradeStyle,
   viewControlStyle,
 } from "./style"
 
@@ -56,9 +92,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const message = useMessage()
   const navigate = useNavigate()
 
-  const { teamIdentifier } = useParams()
+  const { teamIdentifier, appId } = useParams()
+
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
 
   const appInfo = useSelector(getAppInfo)
+  const waterMark = useSelector(getCurrentAppWaterMarkConfig)
   const debuggerVisible = useSelector(isOpenDebugger)
   const isFreezeCanvas = useSelector(getFreezeState)
   const isOnline = useSelector(getIsOnline)
@@ -67,8 +106,17 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isEditMode = useSelector(getIsILLAEditMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
 
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+
+  const paymentStatus = isSubscribeLicense(teamInfo?.currentTeamLicense?.plan)
+
+  const [duplicateVisible, setDuplicateVisible] = useState(false)
   const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
+
+  const [messageList, setMessageList] = useState<string[]>([])
+  const [showMessage, setShowMessage] = useState(false)
+  const [textAreaValue, setTextAreaValue] = useState("")
 
   const previewButtonText = isEditMode
     ? t("preview.button_text")
@@ -164,6 +212,28 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }, [dispatch, isEditMode])
 
+  const handleWaterMarkChange = useCallback(
+    async (value: boolean, event: MouseEvent) => {
+      if (appId) {
+        event.stopPropagation()
+        await updateWaterMarkConfig(value, appId)
+        dispatch(
+          dashboardAppActions.modifyConfigDashboardAppReducer({
+            appId,
+            config: { waterMark: value },
+          }),
+        )
+      }
+    },
+    [appId, dispatch],
+  )
+
+  const handleUpgradeModal = useCallback(() => {
+    if (!paymentStatus) {
+      handleUpgradeModalVisible(true, "upgrade")
+    }
+  }, [paymentStatus, handleUpgradeModalVisible])
+
   const PreviewButton = useMemo(
     () => (
       <Button
@@ -183,95 +253,238 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     navigate(`/${teamIdentifier}/dashboard/apps`)
   }, [navigate, teamIdentifier])
 
+  const sendMessage = useCallback(() => {
+    setMessageList([textAreaValue, ...messageList])
+    setTextAreaValue("")
+    Connection.getTextRoom("app", appInfo.appId)?.send(
+      getTextMessagePayload(
+        Signal.SUPER_POWER,
+        Target.NOTHING,
+        false,
+        null,
+        teamInfo.id,
+        teamInfo.uid,
+        [textAreaValue],
+      ),
+    )
+  }, [messageList, textAreaValue, teamInfo.id, teamInfo.uid, appInfo.appId])
+
+  useEffect(() => {
+    duplicateVisible &&
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+        element: "duplicate_modal",
+        parameter5: appId,
+      })
+  }, [appId, duplicateVisible])
+
   return (
-    <div className={className} css={navBarStyle}>
-      <div css={rowCenter}>
-        <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
-        <div css={informationStyle}>
-          <AppName appName={appInfo.appName} />
-          {isOnline ? (
-            <div css={descriptionStyle}>
-              {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
+    <>
+      <div className={className} css={navBarStyle}>
+        <div css={rowCenter}>
+          <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
+          <div css={informationStyle}>
+            <AppName appName={appInfo.appName} />
+            {isOnline ? (
+              <div css={descriptionStyle}>
+                {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
+              </div>
+            ) : (
+              <div css={saveFailedTipStyle}>
+                <SnowIcon />
+                <span> {t("edit_failed")}</span>
+              </div>
+            )}
+          </div>
+          <Button
+            ml="16px"
+            onClick={() => {
+              setShowMessage(!showMessage)
+            }}
+          >
+            chat generate( Demo )
+          </Button>
+        </div>
+        <div css={viewControlStyle}>
+          {isEditMode && <WindowIcons />}
+          <AppSizeButtonGroup />
+        </div>
+        <div css={rightContentStyle}>
+          {!isGuideMode && <CollaboratorsList />}
+          {isEditMode ? (
+            <div>
+              {!isGuideMode && (
+                <Dropdown
+                  position="bottom-end"
+                  trigger="click"
+                  triggerProps={{ closeDelay: 0, openDelay: 0 }}
+                  onVisibleChange={(visible) => {
+                    if (visible) {
+                      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+                        element: "app_duplicate",
+                        parameter5: appId,
+                      })
+                    }
+                  }}
+                  dropList={
+                    <DropList>
+                      <DropListItem
+                        key="duplicate"
+                        value="duplicate"
+                        title={t("duplicate")}
+                        onClick={() => {
+                          setDuplicateVisible(true)
+                          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                            element: "app_duplicate",
+                            parameter5: appId,
+                          })
+                        }}
+                      />
+                      {isCloudVersion && (
+                        <DropListItem
+                          key="configWaterMark"
+                          value="configWaterMark"
+                          title={
+                            <span css={upgradeStyle}>
+                              {t("Remove watermark")}
+                              {paymentStatus ? (
+                                <Switch
+                                  checked={waterMark}
+                                  onChange={handleWaterMarkChange}
+                                />
+                              ) : (
+                                <Tag colorScheme="techPurple">
+                                  <UpgradeIcon /> Upgrade
+                                </Tag>
+                              )}
+                            </span>
+                          }
+                          onClick={handleUpgradeModal}
+                        />
+                      )}
+                    </DropList>
+                  }
+                >
+                  <Button
+                    mr="8px"
+                    colorScheme="white"
+                    leftIcon={<MoreIcon size="14px" />}
+                  />
+                </Dropdown>
+              )}
+              <ButtonGroup spacing="8px">
+                <Badge count={debuggerData && Object.keys(debuggerData).length}>
+                  <Button
+                    colorScheme="white"
+                    size="medium"
+                    leftIcon={
+                      <BugIcon color={getColor("grayBlue", "02")} size="14px" />
+                    }
+                    onClick={handleClickDebuggerIcon}
+                  />
+                </Badge>
+                <Trigger
+                  content={
+                    isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")
+                  }
+                  colorScheme="grayBlue"
+                  position="bottom"
+                  showArrow={false}
+                  autoFitPosition={false}
+                  trigger="hover"
+                >
+                  <Button
+                    colorScheme="white"
+                    size="medium"
+                    leftIcon={
+                      isFreezeCanvas ? (
+                        <LockIcon
+                          size="14px"
+                          color={getColor("grayBlue", "02")}
+                        />
+                      ) : (
+                        <UnlockIcon
+                          size="14px"
+                          color={getColor("grayBlue", "02")}
+                        />
+                      )
+                    }
+                    onClick={handleClickFreezeIcon}
+                  />
+                </Trigger>
+                {PreviewButton}
+                <Button
+                  loading={deployLoading}
+                  colorScheme="techPurple"
+                  size="medium"
+                  leftIcon={<CaretRightIcon />}
+                  onClick={handleClickDeploy}
+                >
+                  {isGuideMode
+                    ? t("editor.tutorial.panel.tutorial.modal.fork")
+                    : t("deploy")}
+                </Button>
+              </ButtonGroup>
             </div>
           ) : (
-            <div css={saveFailedTipStyle}>
-              <SnowIcon />
-              <span> {t("edit_failed")}</span>
-            </div>
+            <>{PreviewButton}</>
           )}
         </div>
+        <ForkAndDeployModal
+          visible={forkModalVisible}
+          okLoading={deployLoading}
+          onOk={forkGuideAppAndDeploy}
+          onVisibleChange={setForkModalVisible}
+        />
+        {appId ? (
+          <DuplicateModal
+            appId={appId}
+            visible={duplicateVisible}
+            onVisibleChange={(visible) => {
+              setDuplicateVisible(visible)
+            }}
+          />
+        ) : null}
       </div>
-      <div css={viewControlStyle}>
-        {isEditMode && <WindowIcons />}
-        <AppSizeButtonGroup />
-      </div>
-      <div css={rightContentStyle}>
-        {!isGuideMode && <CollaboratorsList />}
-        {isEditMode ? (
-          <div>
-            <ButtonGroup spacing="8px">
-              <Badge count={debuggerData && Object.keys(debuggerData).length}>
-                <Button
-                  colorScheme="white"
-                  size="medium"
-                  leftIcon={
-                    <BugIcon color={getColor("grayBlue", "02")} size="14px" />
-                  }
-                  onClick={handleClickDebuggerIcon}
-                />
-              </Badge>
-              <Trigger
-                content={isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")}
-                colorScheme="grayBlue"
-                position="bottom"
-                showArrow={false}
-                autoFitPosition={false}
-                trigger="hover"
-              >
-                <Button
-                  colorScheme="white"
-                  size="medium"
-                  leftIcon={
-                    isFreezeCanvas ? (
-                      <LockIcon
-                        size="14px"
-                        color={getColor("grayBlue", "02")}
-                      />
-                    ) : (
-                      <UnlockIcon
-                        size="14px"
-                        color={getColor("grayBlue", "02")}
-                      />
-                    )
-                  }
-                  onClick={handleClickFreezeIcon}
-                />
-              </Trigger>
-              {PreviewButton}
-              <Button
-                loading={deployLoading}
-                colorScheme="techPurple"
-                size="medium"
-                leftIcon={<CaretRightIcon />}
-                onClick={handleClickDeploy}
-              >
-                {isGuideMode
-                  ? t("editor.tutorial.panel.tutorial.modal.fork")
-                  : t("deploy")}
-              </Button>
-            </ButtonGroup>
-          </div>
-        ) : (
-          <>{PreviewButton}</>
-        )}
-      </div>
-      <ForkAndDeployModal
-        visible={forkModalVisible}
-        okLoading={deployLoading}
-        onOk={forkGuideAppAndDeploy}
-        onVisibleChange={setForkModalVisible}
-      />
-    </div>
+      {showMessage && (
+        <div css={floatingMessageModalStyle}>
+          <TextArea
+            onPressEnter={() => {
+              sendMessage()
+            }}
+            h="100px"
+            autoSize={false}
+            bdRadius="8px 8px"
+            value={textAreaValue}
+            onChange={(v) => {
+              setTextAreaValue(v)
+            }}
+          />
+          <Button
+            bdRadius="0"
+            onClick={() => {
+              sendMessage()
+            }}
+          >
+            Send
+          </Button>
+          {messageList && messageList.length > 0 && (
+            <List
+              data={messageList}
+              render={(data) => {
+                return (
+                  <ListItem>
+                    <ListItemMeta title={data} />
+                  </ListItem>
+                )
+              }}
+              renderKey={(data, index) => {
+                return index.toString()
+              }}
+            />
+          )}
+        </div>
+      )}
+    </>
   )
 }
 

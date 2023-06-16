@@ -1,4 +1,8 @@
 import {
+  SubscribeInfo,
+  TotalTeamLicense,
+} from "@/illa-public-component/MemberList/interface"
+import {
   USER_ROLE,
   USER_STATUS,
 } from "@/illa-public-component/UserRoleUtils/interface"
@@ -28,6 +32,11 @@ export interface TeamMemberPermissionConfig {
   config: number
 }
 
+export interface TeamPersonalConfig {
+  teamLicenseSubscribeExpiredPopupShowed: boolean
+  teamLicenseSubscribeExpiredBannerShowed: boolean
+}
+
 export interface TeamInfo {
   id: string
   uid: string
@@ -35,6 +44,9 @@ export interface TeamInfo {
   icon: string
   identifier: string
   teamMemberID: string
+  currentTeamLicense: SubscribeInfo
+  totalTeamLicense: TotalTeamLicense
+  personalConfig: TeamPersonalConfig
   myRole: USER_ROLE
   permission: TeamMemberPermission
   teamMemberPermission: TeamMemberPermissionConfig
@@ -43,7 +55,7 @@ export interface TeamInfo {
 export interface Team {
   items?: TeamInfo[]
   currentId?: string
-  memberList?: MemberInfo[]
+  currentMemberList?: MemberInfo[]
 }
 
 export const teamInitialState: Team = {}

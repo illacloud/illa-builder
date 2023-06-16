@@ -30,9 +30,9 @@ export const isFileOversize = (data: string, type?: ActionType) => {
     }
     return content.every((value) => {
       const calculateValue = isSMTP ? value.data || "" : value
-      return !!(calculateFileSize(calculateValue) > MAX_SIZE)
+      return calculateFileSize(calculateValue) > MAX_SIZE
     })
   } else {
-    return !!(calculateFileSize(content) > MAX_SIZE)
+    return calculateFileSize(content) > MAX_SIZE
   }
 }

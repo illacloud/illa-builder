@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const navBarStyle = css`
   display: flex;
@@ -96,4 +96,21 @@ export const nameStyle = css`
   font-weight: 500;
   cursor: pointer;
   color: ${getColor("grayBlue", "02")};
+`
+
+export const floatingMessageModalStyle = css`
+  display: flex;
+  background: white;
+  box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  flex-direction: column;
+  width: 400px;
+  position: fixed;
+  top: 100px;
+`
+export const upgradeStyle = css`
+  ${rowCenter};
+  gap: 8px;
 `

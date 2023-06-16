@@ -1,10 +1,12 @@
 import { LoaderFunction, redirect } from "react-router-dom"
 import i18n from "@/i18n/config"
 import { ILLAMixpanel } from "@/illa-public-component/MixpanelUtils"
+import { canAccessManage } from "@/illa-public-component/UserRoleUtils"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { teamActions } from "@/redux/team/teamSlice"
+import { cloudUrl } from "@/router/constant"
 import { fetchMyTeamsInfo } from "@/services/team"
 import { fetchUserInfo } from "@/services/users"
 import store from "@/store"
@@ -76,6 +78,14 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
     store.dispatch(teamActions.updateCurrentIdReducer(currentTeamInfo.id))
     store.dispatch(teamActions.updateTeamItemsReducer(teamsInfo))
     ILLAMixpanel.setGroup(teamIdentifier)
+    if (
+      !canAccessManage(
+        currentTeamInfo.myRole,
+        currentTeamInfo.currentTeamLicense.plan,
+      )
+    ) {
+      return redirect(`${cloudUrl}/workspace/${currentTeamInfo.identifier}`)
+    }
     return null
   }
   return redirect("/403")

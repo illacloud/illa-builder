@@ -96,6 +96,8 @@ export const Member: FC<MemberProps> = () => {
       currentUserID={userInfo?.userId}
       currentUserRole={teamInfo?.myRole}
       currentTeamMemberID={teamInfo?.teamMemberID}
+      currentTeamLicense={teamInfo?.currentTeamLicense}
+      totalTeamLicense={teamInfo?.totalTeamLicense}
       removeTeam={removeTeam}
       fetchInviteLink={fetchInviteLink}
       renewInviteLink={fetchRenewInviteLink}
