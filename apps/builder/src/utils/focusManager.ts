@@ -23,7 +23,6 @@ export class FocusManager {
     illaPanelType: ILLAPanelType,
     clickPosition?: ClickPosition,
   ) {
-    console.log("longbo", illaPanelType, clickPosition)
     this.currentFocus = illaPanelType
     this.currentClickPosition = clickPosition
   }

@@ -1,3 +1,4 @@
+import { isEqual } from "lodash"
 import {
   FC,
   useCallback,
@@ -153,8 +154,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   })
   const isRunning = !!selectedActionExecutionResult.isRunning
 
-  const isChanged =
-    JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
+  const isChanged = !isEqual(selectedAction, cachedAction)
+
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [canRunAction, canNotRunMessage] = getCanRunAction(cachedAction)

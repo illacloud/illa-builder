@@ -1,3 +1,4 @@
+import { isEqual } from "lodash"
 import { FC, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -89,10 +90,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
                     }
                     // is a change action
                     if (selectedAction?.displayName !== action.displayName) {
-                      if (
-                        JSON.stringify(cachedAction) ===
-                        JSON.stringify(selectedAction)
-                      ) {
+                      if (isEqual(cachedAction, selectedAction)) {
                         dispatch(configActions.changeSelectedAction(action))
                       } else {
                         // show dialog
