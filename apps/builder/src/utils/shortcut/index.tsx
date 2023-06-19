@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Key } from "ts-key-enum"
 import { createModal, useMessage } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -13,6 +14,7 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
@@ -22,7 +24,7 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -37,6 +39,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const message = useMessage()
 
   const currentSelectedComponent = useSelector(getSelectedComponents)
+
   const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
     (rootState) => {
       const currentSelectedComponentDisplayName =
@@ -55,6 +58,262 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const freezeState = useSelector(getFreezeState)
 
   const showShadows = useSelector(isShowDot)
+
+  // shortcut
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
+    useState<boolean>(false)
+
+  const showDeleteDialog = (
+    displayName: string[],
+    type?: "widget" | "page" | "action",
+    options?: Record<string, any>,
+  ) => {
+    const modal = createModal()
+    if (!alreadyShowDeleteDialog && displayName.length > 0) {
+      const textList = displayName.join(", ").toString()
+      setAlreadyShowDeleteDialog(true)
+      const id = modal.show({
+        blockOkHide: true,
+        blockCancelHide: true,
+        title: t("editor.component.delete_title", {
+          displayName: textList,
+        }),
+        children: t("editor.component.delete_content", {
+          displayName: textList,
+        }),
+        cancelText: t("editor.component.cancel"),
+        okText: t("editor.component.delete"),
+        okButtonProps: {
+          colorScheme: "red",
+        },
+        closable: false,
+        onCancel: () => {
+          setAlreadyShowDeleteDialog(false)
+          modal.update(id, { visible: false })
+        },
+        onOk: () => {
+          if (type === "page") {
+            setAlreadyShowDeleteDialog(false)
+            modal.update(id, { visible: false })
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "delete_page_modal_delete",
+            })
+            dispatch(
+              componentsActions.deletePageNodeReducer({
+                displayName: displayName[0],
+                originPageSortedKey: options?.originPageSortedKey || [],
+              }),
+            )
+            return
+          } else if (type === "widget") {
+            setAlreadyShowDeleteDialog(false)
+            modal.update(id, { visible: false })
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "component_delete_modal_delete",
+              parameter3: options?.source || "left_delete",
+            })
+            dispatch(
+              componentsActions.deleteComponentNodeReducer({
+                displayNames: displayName,
+                source: options?.source || "left_delete",
+              }),
+            )
+            dispatch(configActions.clearSelectedComponent())
+          } else if (type === "action") {
+            modal.update(id, { okLoading: true })
+            for (let i = 0; i < displayName.length; i++) {
+              const action = getActionItemByDisplayName(
+                store.getState(),
+                displayName[i],
+              )
+              if (action) {
+                // fail to await @chenlongbo
+                onDeleteActionItem(action)
+              }
+            }
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+              element: "action_delete_modal_delete",
+            })
+            modal.update(id, { okLoading: false })
+            setAlreadyShowDeleteDialog(false)
+            modal.update(id, { visible: false })
+          }
+        },
+        afterOpen: () => {
+          if (type === "page") {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+              element: "delete_page_modal",
+            })
+          }
+          if (type === "widget") {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+              element: "component_delete_modal",
+              parameter3: options?.source || "",
+            })
+          }
+          if (type === "action") {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+              element: "action_delete_modal",
+            })
+          }
+        },
+      })
+    }
+  }
+
+  const selectAllBodyComponentsHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "none":
+        break
+      case "data_component":
+        break
+      case "data_action":
+        break
+      case "data_page":
+        break
+      case "data_global_state":
+        break
+      case "action":
+        break
+      case "widget_picker":
+        break
+      case "components_config":
+        break
+      case "page_config":
+        break
+      case "canvas": {
+        if (canvasRootNode) {
+          const rootNode = executionResult.root
+          if (!rootNode) return
+          const currentPageDisplayName =
+            rootNode.pageSortedKey[rootNode.currentPageIndex]
+          const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
+          if (!pageNode) return
+          let bodySectionDisplayName: string = ""
+          pageNode.childrenNode.find((sectionNode) => {
+            const displayName = sectionNode.displayName
+            const currentSectionProps = executionResult[displayName]
+            if (
+              currentSectionProps &&
+              currentSectionProps.viewSortedKey &&
+              currentSectionProps.currentViewIndex >= 0 &&
+              sectionNode.showName === "bodySection"
+            ) {
+              const { currentViewIndex, viewSortedKey } = currentSectionProps
+              bodySectionDisplayName = viewSortedKey[currentViewIndex]
+            }
+          })
+          if (!bodySectionDisplayName) return
+          const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
+          const allChildrenNodes = Array.isArray(
+            componentNodesMap[bodySectionDisplayName].childrenNode,
+          )
+            ? componentNodesMap[bodySectionDisplayName].childrenNode
+            : []
+
+          const childNodeDisplayNames = allChildrenNodes.map(
+            (node) => node.displayName,
+          )
+
+          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
+            element: "component",
+            parameter1: "keyboard",
+          })
+          dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
+        }
+      }
+    }
+  }, [canvasRootNode, dispatch, executionResult])
+
+  const copySomethingHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "data_page":
+        break
+      case "data_global_state":
+        break
+      case "none":
+        break
+      case "canvas":
+      case "data_component":
+        if (
+          currentSelectedComponent != null &&
+          currentSelectedComponentNode.length > 0
+        ) {
+          CopyManager.copyComponentNode(currentSelectedComponentNode)
+        }
+        break
+      case "data_action":
+      case "action":
+        if (currentSelectedAction != null) {
+          CopyManager.copyAction(currentSelectedAction)
+        }
+        break
+      case "widget_picker":
+        break
+      case "components_config":
+        break
+      case "page_config":
+        break
+    }
+  }, [
+    currentSelectedAction,
+    currentSelectedComponent,
+    currentSelectedComponentNode,
+  ])
+
+  const copyAndPasteHandler = useCallback(() => {
+    switch (FocusManager.getFocus()) {
+      case "data_page":
+        break
+      case "data_global_state":
+        break
+      case "none":
+        break
+      case "canvas":
+      case "data_component":
+        if (
+          currentSelectedComponent != null &&
+          currentSelectedComponentNode.length > 0
+        ) {
+          CopyManager.copyComponentNode(currentSelectedComponentNode)
+        }
+        break
+      case "data_action":
+      case "action":
+        if (currentSelectedAction != null) {
+          CopyManager.copyAction(currentSelectedAction)
+        }
+        break
+      case "widget_picker":
+        break
+      case "components_config":
+        break
+      case "page_config":
+        break
+    }
+    CopyManager.paste("keyboard")
+  }, [
+    currentSelectedAction,
+    currentSelectedComponent,
+    currentSelectedComponentNode,
+  ])
+
+  const showDotHandler = useCallback(
+    (keyboardEventType: string) => {
+      if (keyboardEventType === "keydown") {
+        dispatch(configActions.updateShowDot(true))
+      } else if (keyboardEventType === "keyup") {
+        dispatch(configActions.updateShowDot(false))
+      }
+    },
+    [dispatch],
+  )
+
+  const changeShadowHidden = useCallback(() => {
+    if (showShadows) {
+      dispatch(configActions.updateShowDot(false))
+    }
+  }, [dispatch, showShadows])
 
   useHotkeys(
     `${Key.Meta}+s`,
@@ -87,96 +346,46 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
   )
 
-  // shortcut
-  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
-    useState<boolean>(false)
-
-  const showDeleteDialog = (
-    displayName: string[],
-    type?: "widget" | "page",
-    options?: Record<string, any>,
-  ) => {
-    const modal = createModal()
-    if (!alreadyShowDeleteDialog && displayName.length > 0) {
-      const textList = displayName.join(", ").toString()
-      setAlreadyShowDeleteDialog(true)
-      const id = modal.show({
-        title: t("editor.component.delete_title", {
-          displayName: textList,
-        }),
-        children: t("editor.component.delete_content", {
-          displayName: textList,
-        }),
-        cancelText: t("editor.component.cancel"),
-        okText: t("editor.component.delete"),
-        okButtonProps: {
-          colorScheme: "red",
-        },
-
-        closable: false,
-        onCancel: () => {
-          setAlreadyShowDeleteDialog(false)
-          modal.update(id, { visible: false })
-        },
-        onOk: () => {
-          setAlreadyShowDeleteDialog(false)
-          modal.update(id, { visible: false })
-          if (type === "page") {
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-              element: "delete_page_modal_delete",
-            })
-            dispatch(
-              componentsActions.deletePageNodeReducer({
-                displayName: displayName[0],
-                originPageSortedKey: options?.originPageSortedKey || [],
-              }),
-            )
-            return
-          }
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-            element: "component_delete_modal_delete",
-            parameter3: options?.source || "left_delete",
-          })
-          dispatch(
-            componentsActions.deleteComponentNodeReducer({
-              displayNames: displayName,
-              source: options?.source || "left_delete",
-            }),
-          )
-          dispatch(configActions.clearSelectedComponent())
-        },
-        afterOpen: () => {
-          if (type === "page") {
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-              element: "delete_page_modal",
-            })
-          }
-          if (type === "widget") {
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-              element: "component_delete_modal",
-              parameter3: options?.source || "",
-            })
-          }
-        },
-      })
-    }
-  }
-
   useHotkeys(
     Key.Backspace,
     () => {
-      showDeleteDialog(
-        currentSelectedComponent.map((displayName) => {
-          return displayName
-        }),
-        "widget",
-        { source: "keyboard" },
-      )
+      switch (FocusManager.getFocus()) {
+        case "data_page":
+          break
+        case "data_global_state":
+          break
+        case "none":
+          break
+        case "canvas":
+        case "data_component":
+          showDeleteDialog(
+            currentSelectedComponent.map((displayName) => {
+              return displayName
+            }),
+            "widget",
+            { source: "keyboard" },
+          )
+          break
+        case "data_action":
+        case "action":
+          if (currentSelectedAction?.displayName) {
+            showDeleteDialog([currentSelectedAction.displayName], "action", {
+              source: "keyboard",
+            })
+          }
+          break
+        case "widget_picker":
+          break
+        case "components_config":
+          break
+        case "page_config":
+          break
+      }
     },
     {
       enabled: isEditMode,
     },
-    [showDeleteDialog, currentSelectedComponent],
+    [showDeleteDialog, currentSelectedComponent, currentSelectedAction],
   )
 
   useHotkeys(
@@ -199,55 +408,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     { keydown: true, keyup: true, enabled: isEditMode },
     [dispatch, freezeState],
   )
-
-  const selectAllBodyComponentsHandler = useCallback(() => {
-    switch (FocusManager.getFocus()) {
-      case "none":
-        break
-      case "canvas": {
-        if (canvasRootNode) {
-          const rootNode = executionResult.root
-          if (!rootNode) return
-          const currentPageDisplayName =
-            rootNode.pageSortedKey[rootNode.currentPageIndex]
-          const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
-          if (!pageNode) return
-          let bodySectionDisplayName: string = ""
-          pageNode.childrenNode.find((sectionNode) => {
-            const displayName = sectionNode.displayName
-            const currentSectionProps = executionResult[displayName]
-            if (
-              currentSectionProps &&
-              currentSectionProps.viewSortedKey &&
-              currentSectionProps.currentViewIndex >= 0 &&
-              sectionNode.showName === "bodySection"
-            ) {
-              const { currentViewIndex, viewSortedKey } = currentSectionProps
-              const currentDisplayName = viewSortedKey[currentViewIndex]
-              bodySectionDisplayName = currentDisplayName
-            }
-          })
-          if (!bodySectionDisplayName) return
-          const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
-          const allChildrenNodes = Array.isArray(
-            componentNodesMap[bodySectionDisplayName].childrenNode,
-          )
-            ? componentNodesMap[bodySectionDisplayName].childrenNode
-            : []
-
-          const childNodeDisplayNames = allChildrenNodes.map(
-            (node) => node.displayName,
-          )
-
-          trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
-            element: "component",
-            parameter1: "keyboard",
-          })
-          dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
-        }
-      }
-    }
-  }, [canvasRootNode, dispatch, executionResult])
 
   useHotkeys(
     `${Key.Control}+a`,
@@ -274,36 +434,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
     [selectAllBodyComponentsHandler],
   )
-
-  const copySomethingHandler = useCallback(() => {
-    switch (FocusManager.getFocus()) {
-      case "none":
-        break
-      case "canvas":
-      case "dataWorkspace_component":
-        if (
-          currentSelectedComponent != null &&
-          currentSelectedComponentNode.length > 0
-        ) {
-          CopyManager.copyComponentNode(currentSelectedComponentNode)
-        }
-        break
-      case "dataWorkspace_action":
-      case "action":
-        if (currentSelectedAction != null) {
-          CopyManager.copyAction(currentSelectedAction)
-        }
-        break
-      case "widget_picker":
-        break
-      case "components":
-        break
-    }
-  }, [
-    currentSelectedAction,
-    currentSelectedComponent,
-    currentSelectedComponentNode,
-  ])
 
   useHotkeys(
     `${Key.Meta}+c`,
@@ -347,37 +477,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     [copySomethingHandler],
   )
 
-  const copyAndPasteHandler = useCallback(() => {
-    switch (FocusManager.getFocus()) {
-      case "none":
-        break
-      case "canvas":
-      case "dataWorkspace_component":
-        if (
-          currentSelectedComponent != null &&
-          currentSelectedComponentNode.length > 0
-        ) {
-          CopyManager.copyComponentNode(currentSelectedComponentNode)
-        }
-        break
-      case "dataWorkspace_action":
-      case "action":
-        if (currentSelectedAction != null) {
-          CopyManager.copyAction(currentSelectedAction)
-        }
-        break
-      case "widget_picker":
-        break
-      case "components":
-        break
-    }
-    CopyManager.paste("keyboard")
-  }, [
-    currentSelectedAction,
-    currentSelectedComponent,
-    currentSelectedComponentNode,
-  ])
-
   useHotkeys(
     `${Key.Meta}+d`,
     () => {
@@ -397,17 +496,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
     { preventDefault: true, enabled: isEditMode && !isMAC() },
     [copyAndPasteHandler],
-  )
-
-  const showDotHandler = useCallback(
-    (keyboardEventType: string) => {
-      if (keyboardEventType === "keydown") {
-        dispatch(configActions.updateShowDot(true))
-      } else if (keyboardEventType === "keyup") {
-        dispatch(configActions.updateShowDot(false))
-      }
-    },
-    [dispatch],
   )
 
   useHotkeys(
@@ -437,12 +525,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     },
     [showDotHandler],
   )
-
-  const changeShadowHidden = useCallback(() => {
-    if (showShadows) {
-      dispatch(configActions.updateShowDot(false))
-    }
-  }, [dispatch, showShadows])
 
   // cancel show dot
   useEffect(() => {

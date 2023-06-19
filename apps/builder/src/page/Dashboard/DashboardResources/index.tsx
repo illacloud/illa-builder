@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Await, useBeforeUnload, useLoaderData } from "react-router-dom"
 import { Button } from "@illa-design/react"
+import { useGoogleAuthStatus } from "@/hooks/useGoogleAuthStatus"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -47,6 +48,8 @@ export const DashboardResources: FC = () => {
     ATTRIBUTE_GROUP.RESOURCE,
     ACTION_ACCESS.VIEW,
   )
+
+  useGoogleAuthStatus()
 
   useEffect(() => {
     track(

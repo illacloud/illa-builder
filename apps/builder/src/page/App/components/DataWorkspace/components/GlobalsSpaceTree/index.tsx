@@ -29,7 +29,7 @@ export const GlobalsSpaceTree: FC = () => {
         globalInfoList.length
       })`}
       onIllaFocus={() => {
-        FocusManager.switchFocus("dataWorkspace_action")
+        FocusManager.switchFocus("data_global_state")
       }}
       customIcon={
         <Trigger

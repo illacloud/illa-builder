@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const ipListContainerStyle = css`
-  padding: 8px 0px;
+  padding: 8px 0;
 `
 
 export const ipListStyle = css`
@@ -24,6 +24,7 @@ export const whiteListContentStyle = css`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex-grow: 1;
   gap: 4px;
 `
 

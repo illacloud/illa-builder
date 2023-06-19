@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -12,8 +12,6 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { GoogleOAuthContext } from "@/context/GoogleOAuthContext"
-import { useDetectGoogleOAuthStatus } from "@/hooks/useDetectGoogleOAuthStatus"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
@@ -29,7 +27,6 @@ import {
   IAdvancedConfig,
 } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { GoogleSheetAuthStatus } from "@/redux/resource/googleSheetResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
   getResourceNameFromResourceType,
@@ -49,18 +46,12 @@ import {
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-
-  const { oAuthStatus, setOAuthStatus } = useDetectGoogleOAuthStatus()
   const [editorVisible, setEditorVisible] = useState(false)
   const [generatorVisible, setGeneratorVisible] = useState(false)
 
   const resourceList = useSelector(getAllResources)
   const action = useSelector(getCachedAction)!!
   const selectedAction = useSelector(getSelectedAction)!!
-
-  useEffect(() => {
-    setEditorVisible(oAuthStatus !== GoogleSheetAuthStatus.Initial)
-  }, [oAuthStatus])
 
   //maybe empty
   const currentSelectResource = resourceList.find(
@@ -99,10 +90,17 @@ export const ResourceChoose: FC = () => {
             }}
             addAfter={
               <PenIcon
+                style={
+                  currentSelectResource
+                    ? { cursor: "pointer" }
+                    : { cursor: "not-allowed" }
+                }
                 color={globalColor(`--${illaPrefix}-grayBlue-04`)}
                 onClick={(e) => {
                   e.stopPropagation()
-                  setEditorVisible(true)
+                  if (currentSelectResource) {
+                    setEditorVisible(true)
+                  }
                 }}
               />
             }
@@ -188,35 +186,33 @@ export const ResourceChoose: FC = () => {
           </Select>
         </div>
       </div>
-      <GoogleOAuthContext.Provider value={{ oAuthStatus, setOAuthStatus }}>
-        <Modal
-          w="696px"
-          visible={editorVisible}
-          footer={false}
-          closable
-          withoutLine
-          withoutPadding
-          maskClosable={false}
-          title={t("editor.action.form.title.configure", {
-            name: getResourceNameFromResourceType(
-              getResourceTypeFromActionType(action.actionType),
-            ),
-          })}
-          onCancel={() => {
+      <Modal
+        w="696px"
+        visible={editorVisible}
+        footer={false}
+        closable
+        withoutLine
+        withoutPadding
+        maskClosable={false}
+        title={t("editor.action.form.title.configure", {
+          name: getResourceNameFromResourceType(
+            getResourceTypeFromActionType(action.actionType),
+          ),
+        })}
+        onCancel={() => {
+          setEditorVisible(false)
+        }}
+      >
+        <ResourceCreator
+          resourceId={action.resourceId}
+          onBack={() => {
             setEditorVisible(false)
           }}
-        >
-          <ResourceCreator
-            resourceId={selectedAction.resourceId}
-            onBack={() => {
-              setEditorVisible(false)
-            }}
-            onFinished={() => {
-              setEditorVisible(false)
-            }}
-          />
-        </Modal>
-      </GoogleOAuthContext.Provider>
+          onFinished={() => {
+            setEditorVisible(false)
+          }}
+        />
+      </Modal>
       <ResourceGenerator
         visible={generatorVisible}
         onClose={() => {

@@ -1,6 +1,7 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Search } from "@illa-design/react"
+import { FocusManager } from "@/utils/focusManager"
 import { buildComponentList } from "@/widgetLibrary/componentListBuilder"
 import { ComponentSession } from "./ComponentSession"
 import { EmptySearchResult } from "./Empty"
@@ -33,7 +34,13 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
   )
 
   return (
-    <div className={className} css={componentContainerStyle}>
+    <div
+      className={className}
+      css={componentContainerStyle}
+      onClick={() => {
+        FocusManager.switchFocus("widget_picker")
+      }}
+    >
       <div css={searchWrapperStyle}>
         <Search
           value={searchInput}

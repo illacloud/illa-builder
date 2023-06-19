@@ -48,6 +48,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import store, { RootState } from "@/store"
+import { isContainerType } from "@/utils/componentChecker"
 import { CopyManager } from "@/utils/copyManager"
 import { endDragMultiNodes, startDragMultiNodes } from "@/utils/drag/drag"
 import { FocusManager } from "@/utils/focusManager"
@@ -166,7 +167,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      FocusManager.switchFocus("canvas")
+      if (!isContainerType(componentNode.type)) {
+        FocusManager.switchFocus("canvas", {
+          displayName: componentNode.displayName,
+          type: "component",
+          clickPosition: [],
+        })
+      }
       if (!isEditMode) return
       e.stopPropagation()
 
@@ -232,11 +239,12 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       )
     },
     [
+      componentNode.type,
       componentNode.displayName,
-      dispatch,
-      displayNameMapDepth,
       isEditMode,
+      dispatch,
       selectedComponents,
+      displayNameMapDepth,
       widgetExecutionLayoutInfo,
     ],
   )
@@ -335,7 +343,11 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const handleContextMenu = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      FocusManager.switchFocus("canvas")
+      FocusManager.switchFocus("canvas", {
+        displayName: componentNode.displayName,
+        type: "component",
+        clickPosition: [],
+      })
       e.stopPropagation()
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
@@ -416,6 +428,15 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             ref={isEditMode ? dragRef : undefined}
           >
             <MoveBar
+              onClick={() => {
+                if (isContainerType(componentNode.type)) {
+                  FocusManager.switchFocus("canvas", {
+                    displayName: componentNode.displayName,
+                    type: "component",
+                    clickPosition: [],
+                  })
+                }
+              }}
               isError={hasError}
               isMouseOver={isMouseOver}
               displayName={displayNameInMoveBar}
