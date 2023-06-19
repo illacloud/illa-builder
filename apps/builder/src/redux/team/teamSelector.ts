@@ -3,7 +3,8 @@ import { RootState } from "@/store"
 
 export const getCurrentId = (state: RootState) => state.team.currentId
 export const getTeamItems = (state: RootState) => state.team.items
-export const getMemberList = (state: RootState) => state.team.currentMemberList
+export const getCurrentMemberList = (state: RootState) =>
+  state.team.currentMemberList
 
 export const getCurrentTeamInfo = createSelector(
   [getCurrentId, getTeamItems],

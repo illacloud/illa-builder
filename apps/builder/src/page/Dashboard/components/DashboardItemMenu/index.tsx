@@ -31,7 +31,10 @@ import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
+import {
+  getCurrentMemberList,
+  getCurrentTeamInfo,
+} from "@/redux/team/teamSelector"
 import {
   fetchDeleteApp,
   fetchShareAppLink,
@@ -70,7 +73,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const [renameVisible, setRenameVisible] = useState(false)
   const [duplicateVisible, setDuplicateVisible] = useState(false)
 
-  const members = useSelector(getMemberList) ?? []
+  const members = useSelector(getCurrentMemberList) ?? []
   const {
     inviteLinkEnabled,
     currentUserRole,
