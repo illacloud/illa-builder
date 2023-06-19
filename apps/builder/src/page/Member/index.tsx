@@ -5,7 +5,10 @@ import { MemberList } from "@/illa-public-component/MemberList"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { MemberProps } from "@/page/Member/interface"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
+import {
+  getCurrentMemberList,
+  getCurrentTeamInfo,
+} from "@/redux/team/teamSelector"
 import { getBuilderDesc } from "@/services/public"
 import {
   changeTeamMembersRole,
@@ -25,7 +28,7 @@ export const Member: FC<MemberProps> = () => {
   const { teamIdentifier } = useParams()
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const members = useSelector(getMemberList) ?? []
+  const members = useSelector(getCurrentMemberList) ?? []
   const [_hasAppOrResource, setHasAppOrResource] = useState(false)
   const [loading, setLoading] = useState<boolean>(false)
   const teamId = teamInfo?.id
