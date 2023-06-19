@@ -439,6 +439,14 @@ export const RenderComponentCanvas: FC<{
           }
         }
 
+        if (draggedSelectedComponents.length <= 1) {
+          FocusManager.switchFocus("canvas", {
+            displayName: item.displayName,
+            type: "component",
+            clickPosition: [],
+          })
+        }
+
         if (monitor.getClientOffset()) {
           let scaleItem: ComponentNode = getScaleItem(
             blockColumns,
@@ -960,7 +968,7 @@ export const RenderComponentCanvas: FC<{
           })
         } else if (selectedComponentNode.length === 1) {
           FocusManager.switchFocus("canvas", {
-            displayName: componentNode.displayName,
+            displayName: selectedComponentNode[0],
             type: "component",
             clickPosition: [],
           })
