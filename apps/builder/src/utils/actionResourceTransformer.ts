@@ -76,6 +76,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "Amazon S3"
       case "transformer":
         return "Transformer"
+      case "airtable":
+        return "Airtable"
       default:
         return ""
     }
@@ -153,6 +155,8 @@ export function getResourceNameFromResourceType(
         return "Appwrite"
       case "couchdb":
         return "CouchDB"
+      case "airtable":
+        return "Airtable"
       default:
         return ""
     }
