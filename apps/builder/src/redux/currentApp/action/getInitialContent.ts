@@ -2,6 +2,7 @@ import {
   ActionContent,
   ActionType,
 } from "@/redux/currentApp/action/actionState"
+import { AirtableActionConfigInitial } from "@/redux/currentApp/action/airtableAction"
 import { AppwriteActionInitial } from "@/redux/currentApp/action/appwriteAction"
 import { CouchDBActionInitial } from "@/redux/currentApp/action/couchDBAction"
 import { DynamoDBActionInitial } from "@/redux/currentApp/action/dynamoDBAction"
@@ -65,6 +66,8 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return AppwriteActionInitial
     case "couchdb":
       return CouchDBActionInitial
+    case "airtable":
+      return AirtableActionConfigInitial
     default:
       return {} as ActionContent
   }

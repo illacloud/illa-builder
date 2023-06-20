@@ -1,4 +1,8 @@
 import {
+  AirtableAction,
+  AirtableActionConfigType,
+} from "@/redux/currentApp/action/airtableAction"
+import {
   AppwriteAction,
   AppwriteActionTypes,
 } from "@/redux/currentApp/action/appwriteAction"
@@ -171,5 +175,6 @@ export type ActionContent =
   | MongoDbAction<MongoDbActionTypeContent>
   | CouchDBAction<CouchDBOptionsType>
   | GoogleSheetsAction<GoogleSheetsActionOpts>
+  | AirtableAction<AirtableActionConfigType>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

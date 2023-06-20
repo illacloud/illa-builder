@@ -8,7 +8,10 @@ import { ConfigElementProps } from "@/page/App/components/Actions/interface"
 import { container, footerStyle } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
-import { AirtableResource } from "@/redux/resource/airtableResource"
+import {
+  AirtableResource,
+  AirtableResourceInitial,
+} from "@/redux/resource/airtableResource"
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
@@ -26,6 +29,9 @@ export const AirtableConfigElement: FC<ConfigElementProps> = (props) => {
       (r) => r.resourceId === resourceId,
     ) as Resource<AirtableResource>
   })
+
+  const content = resource?.content ?? AirtableResourceInitial
+
   const [saving, setSaving] = useState(false)
 
   const handleURLClick = (link: string) => window.open(link, "_blank")
@@ -58,19 +64,19 @@ export const AirtableConfigElement: FC<ConfigElementProps> = (props) => {
         />
 
         <ControlledElement
-          title={t("editor.action.resource.db.label.bear_token")}
-          defaultValue={resource?.content.authenticationConfig.token ?? ""}
+          title={t("editor.action.form.option.airtable.access_token")}
+          defaultValue={content.authenticationConfig.token}
           name="token"
           controlledType="password"
           control={control}
           isRequired
           tips={
             <Trans
-              i18nKey="editor.action.form.option.airtable.access_token"
+              i18nKey="editor.action.form.tips.airtable.access_token"
               t={t}
               components={[
                 <TextLink
-                  key={"editor.action.form.tips.airtable.access_token"}
+                  key={"text-link"}
                   onClick={() => {
                     handleURLClick(
                       "https://support.airtable.com/docs/creating-and-using-api-keys-and-access-tokens",
