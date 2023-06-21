@@ -72,7 +72,7 @@ export const ListRecordsPart: FC = () => {
             }),
           )
         }}
-        expectedType={VALIDATION_TYPES.STRING}
+        expectedType={VALIDATION_TYPES.ARRAY}
         mode={CODE_LANG.JAVASCRIPT}
         codeType={CODE_TYPE.EXPRESSION}
         canShowCompleteInfo
