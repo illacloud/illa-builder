@@ -120,7 +120,7 @@ export const ListRecordsPart: FC = () => {
         title={t("editor.action.panel.label.airtable.sort")}
         value={config.sort}
         placeholder={
-          '{{\n[\n   {\n      "field":"column1",\n      "direction":"asc"\n   },\n   {\n      "field":"column2",\n      "direction":"desc"\n   }\n]\n}}'
+          '{{\n  [\n    {"field":"column1","direction":"asc"},\n    {"field":"column2","direction":"desc"}\n  ]\n}}'
         }
         onChange={(value) => {
           dispatch(

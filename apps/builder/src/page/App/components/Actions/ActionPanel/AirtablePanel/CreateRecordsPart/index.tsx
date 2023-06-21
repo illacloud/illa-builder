@@ -50,7 +50,7 @@ export const CreateRecordsPart: FC = () => {
       expectedType={VALIDATION_TYPES.ARRAY}
       mode={CODE_LANG.JAVASCRIPT}
       placeholder={
-        '{{[{"fields": {"name":"mongo", "price":"$3.5"}},{"fields":  {"name":"apple", "price":"$2.7"}}]}}'
+        '{{\n  [\n    {"fields": {"name":"mongo", "price":"$3.5"}},\n    {"fields":  {"name":"apple", "price":"$2.7"}}\n  ]\n}}'
       }
       codeType={CODE_TYPE.EXPRESSION}
       canShowCompleteInfo
