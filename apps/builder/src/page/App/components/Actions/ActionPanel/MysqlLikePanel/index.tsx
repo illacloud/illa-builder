@@ -15,7 +15,7 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { isSubscribeLicense } from "@/illa-public-component/UserRoleUtils"
+import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
   actionItemContainer,
@@ -43,8 +43,12 @@ export const MysqlLikePanel: FC = () => {
   const dispatch = useDispatch()
   const appInfo = useSelector(getAppInfo)
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const paymentStatus =
-    isCloudVersion && isSubscribeLicense(teamInfo?.currentTeamLicense?.plan)
+
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
 
   const { t } = useTranslation()
   const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
@@ -108,7 +112,7 @@ export const MysqlLikePanel: FC = () => {
     })
   }, [])
   const handleClickGenerate = useCallback(async () => {
-    if (!paymentStatus) {
+    if (!canUseBillingFeature) {
       handleUpgradeModalVisible(true, "upgrade")
       return
     }
@@ -152,7 +156,7 @@ export const MysqlLikePanel: FC = () => {
     dispatch,
     message,
     mysqlContent,
-    paymentStatus,
+    canUseBillingFeature,
     handleUpgradeModalVisible,
   ])
 

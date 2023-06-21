@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Await, useLoaderData, useParams } from "react-router-dom"
 import { Button, DownIcon, Switch, Trigger } from "@illa-design/react"
@@ -16,7 +17,7 @@ import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import {
   canManage,
-  isSubscribeLicense,
+  canUseUpgradeFeature,
 } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
@@ -43,7 +44,22 @@ import { isCloudVersion } from "@/utils/typeHelper"
 import Page404 from "../status/404"
 import { DeployContent } from "./content"
 
+const WaterMark: FC = () => {
+  return (
+    <div
+      css={deployLogoStyle}
+      onClick={() => {
+        window.open("https://illacloud.com", "_blank")
+      }}
+    >
+      <span>Powered by</span>
+      <Logo css={logoStyle} />
+    </div>
+  )
+}
+
 export const Deploy: FC = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const currentApp = useSelector(getAppInfo)
   const waterMark = useSelector(getCurrentAppWaterMarkConfig)
@@ -54,9 +70,13 @@ export const Deploy: FC = () => {
   const { appId } = useParams()
   const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
-  const paymentStatus =
-    isCloudVersion && isSubscribeLicense(teamInfo?.currentTeamLicense?.plan)
   const [popupVisible, setPopupVisible] = useState<boolean>()
+
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
 
   const canUpdateAppWaterMark = canManage(
     currentUserRole,
@@ -90,10 +110,10 @@ export const Deploy: FC = () => {
   )
 
   const handleUpgradeModal = useCallback(() => {
-    if (!paymentStatus) {
+    if (!canUseBillingFeature) {
       handleUpgradeModalVisible(true, "upgrade")
     }
-  }, [paymentStatus, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, handleUpgradeModalVisible])
 
   useEffect(() => {
     document.title = currentApp.appName
@@ -106,49 +126,53 @@ export const Deploy: FC = () => {
           <DeployContent />
         </Await>
       </Suspense>
-      {isCloudVersion && !waterMark ? null : (
-        <Trigger
-          trigger="click"
-          colorScheme="white"
-          position="top-end"
-          mb={"12px"}
-          popupVisible={popupVisible}
-          onVisibleChange={updateWaterMarkConfigVisible}
-          content={
-            paymentStatus ? (
-              <div css={upgradeConfigStyle}>
-                Remove watermark
-                <Switch checked={waterMark} onChange={handleWaterMarkChange} />
-              </div>
-            ) : (
-              <div css={upgradePopContainerStyle}>
-                <div css={upgradeTitleStyle}>Upgrade to Plus</div>
-                <div>Remove watermark</div>
-                <Button
-                  mt="8px"
-                  colorScheme="techPurple"
-                  onClick={handleUpgradeModal}
-                >
-                  <UpgradeIcon /> Upgrade
-                </Button>
-              </div>
-            )
-          }
-        >
-          <div
-            css={deployLogoStyle}
-            onClick={() => {
-              !canUpdateAppWaterMark &&
-                window.open("https://illacloud.com", "_blank")
-            }}
+      {isCloudVersion ? (
+        canUpdateAppWaterMark && !waterMark ? (
+          <Trigger
+            trigger="click"
+            colorScheme="white"
+            position="top-end"
+            mb={"12px"}
+            popupVisible={popupVisible}
+            onVisibleChange={updateWaterMarkConfigVisible}
+            content={
+              canUseBillingFeature ? (
+                <div css={upgradeConfigStyle}>
+                  Remove watermark
+                  <Switch
+                    checked={waterMark}
+                    onChange={handleWaterMarkChange}
+                  />
+                </div>
+              ) : (
+                <div css={upgradePopContainerStyle}>
+                  <div css={upgradeTitleStyle}>
+                    {t("billing.modal.upgrade_now_admin.upgrade_to_plus")}
+                  </div>
+                  <div>{t("billing.advanced.feature")}</div>
+                  <Button
+                    mt="8px"
+                    colorScheme="techPurple"
+                    leftIcon={<UpgradeIcon />}
+                    onClick={handleUpgradeModal}
+                  >
+                    {t("billing.homepage.upgrade")}
+                  </Button>
+                </div>
+              )
+            }
           >
-            <span>Powered by</span>
-            <Logo css={logoStyle} />
-            {canUpdateAppWaterMark ? (
+            <div css={deployLogoStyle}>
+              <span>Powered by</span>
+              <Logo css={logoStyle} />
               <DownIcon ml="8px" css={applyPopupStateStyle(popupVisible)} />
-            ) : null}
-          </div>
-        </Trigger>
+            </div>
+          </Trigger>
+        ) : (
+          <WaterMark />
+        )
+      ) : (
+        <WaterMark />
       )}
     </div>
   )

@@ -126,9 +126,7 @@ export const SWITCH_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-basic-defaultValue`,
-        labelName: i18n.t(
-          "editor.inspect.setter_label.default_value",
-        ),
+        labelName: i18n.t("editor.inspect.setter_label.default_value"),
         labelDesc: i18n.t(
           "editor.inspect.setter_tips.switch_group.default_value",
         ),
