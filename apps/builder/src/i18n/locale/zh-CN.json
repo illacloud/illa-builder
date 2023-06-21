@@ -3259,8 +3259,8 @@
         "Storage_traffic": "GB"
       },
       "select_option": {
-        "Yearly": "每年一次",
-        "Monthly": "每月的"
+        "Yearly": "年付",
+        "Monthly": "月付"
       },
       "price_label": {
         "total": "总计"
