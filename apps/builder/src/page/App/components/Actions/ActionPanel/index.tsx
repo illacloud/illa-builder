@@ -9,6 +9,7 @@ import {
 import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
+import { AirtablePanel } from "@/page/App/components/Actions/ActionPanel/AirtablePanel"
 import { AppwritePanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel"
 import { CouchDBPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel"
 import { DynamoDBPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel"
@@ -124,6 +125,8 @@ export const ActionPanel: FC = () => {
         return <AppwritePanel />
       case "couchdb":
         return <CouchDBPanel />
+      case "airtable":
+        return <AirtablePanel />
       default:
         return <></>
     }

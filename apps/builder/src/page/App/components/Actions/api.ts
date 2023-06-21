@@ -389,6 +389,14 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         ssl: neonSSLInitialValue,
       }
     }
+    case "airtable": {
+      return {
+        authenticationType: "personalToken",
+        authenticationConfig: {
+          token: data.token,
+        },
+      }
+    }
   }
 }
 
