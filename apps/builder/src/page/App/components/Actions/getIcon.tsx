@@ -1,4 +1,5 @@
 import { ReactElement } from "react"
+import { AirtableIcon } from "@/page/App/components/Icons/airtable"
 import { AppwriteIcon } from "@/page/App/components/Icons/appwrite"
 import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
 import { CouchDBIcon } from "@/page/App/components/Icons/couchdb"
@@ -81,6 +82,8 @@ export function getIconFromResourceType(
       return <OracleDBIcon size={size} />
     case "appwrite":
       return <AppwriteIcon size={size} />
+    case "airtable":
+      return <AirtableIcon size={size} />
   }
   return null
 }
@@ -141,6 +144,8 @@ export function getIconFromActionType(
       return <CouchDBIcon size={size} />
     case "appwrite":
       return <AppwriteIcon size={size} />
+    case "airtable":
+      return <AirtableIcon size={size} />
   }
   return null
 }

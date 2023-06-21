@@ -34,12 +34,12 @@ import {
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { TextLink } from "@/page/User/components/TextLink"
-import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
 import {
+  ClickhouseResource,
+  ClickhouseResourceInitial,
   ClickhouseSSL,
-  Resource,
-  generateSSLConfig,
-} from "@/redux/resource/resourceState"
+} from "@/redux/resource/clickhouseResource"
+import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
@@ -62,14 +62,15 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     ) as Resource<ClickhouseResource>
   })
 
+  const content = resource?.content ?? ClickhouseResourceInitial
+
   const [showAlert, setShowAlert] = useState<boolean>(false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const { track } = useContext(MixpanelTrackContext)
 
-  const sslOpen = watch("ssl", resource?.content.ssl.ssl ?? false)
-  const selfSigned =
-    sslOpen && watch("selfSigned", resource?.content.ssl.selfSigned ?? false)
+  const sslOpen = watch("ssl", content.ssl.ssl)
+  const selfSigned = sslOpen && watch("selfSigned", content.ssl.selfSigned)
 
   const handleConnectionTest = useCallback(() => {
     track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -150,10 +151,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           isRequired
           title={t("editor.action.resource.db.label.hostname_port")}
           control={control}
-          defaultValue={[
-            resource?.content.host,
-            String(resource?.content.port || ""),
-          ]}
+          defaultValue={[content.host, content.port]}
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
@@ -220,7 +218,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           isRequired
           title={t("editor.action.resource.db.label.database")}
           control={control}
-          defaultValue={resource?.content.databaseName}
+          defaultValue={content.databaseName}
           rules={[
             {
               validate,
@@ -234,10 +232,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           controlledType={["input", "password"]}
           title={t("editor.action.resource.db.label.username_password")}
           control={control}
-          defaultValue={[
-            resource?.content.username,
-            resource?.content.password,
-          ]}
+          defaultValue={[content.username, content.password]}
           placeholders={[
             t("editor.action.resource.db.placeholder.username"),
             t("editor.action.resource.db.placeholder.password"),
@@ -286,7 +281,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
           controlledType={["switch"]}
           title={t("editor.action.resource.db.label.ssl_options")}
           control={control}
-          defaultValue={resource?.content.ssl.ssl}
+          defaultValue={content.ssl.ssl}
           name="ssl"
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
           tips={t("editor.action.form.tips.clickhouse.ssl")}
@@ -297,7 +292,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
             controlledType={["switch"]}
             title={""}
             control={control}
-            defaultValue={resource?.content.ssl.selfSigned}
+            defaultValue={content.ssl.selfSigned}
             name="selfSigned"
             contentLabel={t(
               "editor.action.resource.db.label.self_signed_certificate",
@@ -316,7 +311,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
                 },
               ]}
               control={control}
-              defaultValue={resource?.content.ssl.caCert}
+              defaultValue={content.ssl.caCert}
               name="caCert"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),
@@ -326,7 +321,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.client_key")}
               control={control}
-              defaultValue={resource?.content.ssl.privateKey}
+              defaultValue={content.ssl.privateKey}
               name="privateKey"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),
@@ -336,7 +331,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.client_certificate")}
               control={control}
-              defaultValue={resource?.content.ssl.clientCert}
+              defaultValue={content.ssl.clientCert}
               name="clientCert"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),

@@ -1,5 +1,3 @@
-import { MicrosoftSqlSSL } from "./resourceState"
-
 export interface MicrosoftSqlResource {
   host: string
   port: string
@@ -11,4 +9,35 @@ export interface MicrosoftSqlResource {
     key: string
     value: string
   }[]
+}
+
+export interface MicrosoftSqlSSL {
+  ssl: boolean
+  privateKey: string
+  clientCert: string
+  caCert: string
+  verificationMode: "full" | "skip"
+}
+
+export const MicrosoftSqlSSLInitial: MicrosoftSqlSSL = {
+  ssl: false,
+  privateKey: "",
+  clientCert: "",
+  caCert: "",
+  verificationMode: "full",
+}
+
+export const MicrosoftSqlResourceInitial: MicrosoftSqlResource = {
+  connectionOpts: [
+    {
+      key: "",
+      value: "",
+    },
+  ],
+  databaseName: "",
+  host: "",
+  password: "",
+  port: "",
+  ssl: MicrosoftSqlSSLInitial,
+  username: "",
 }
