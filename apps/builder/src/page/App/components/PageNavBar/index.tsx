@@ -41,7 +41,7 @@ import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { isSubscribeLicense } from "@/illa-public-component/UserRoleUtils"
+import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
@@ -108,8 +108,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
-  const paymentStatus = isSubscribeLicense(teamInfo?.currentTeamLicense?.plan)
-
   const [duplicateVisible, setDuplicateVisible] = useState(false)
   const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
@@ -121,6 +119,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const previewButtonText = isEditMode
     ? t("preview.button_text")
     : t("exit_preview")
+
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
 
   const handleClickDebuggerIcon = useCallback(() => {
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -229,10 +233,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   )
 
   const handleUpgradeModal = useCallback(() => {
-    if (!paymentStatus) {
+    if (!canUseBillingFeature) {
       handleUpgradeModalVisible(true, "upgrade")
     }
-  }, [paymentStatus, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, handleUpgradeModalVisible])
 
   const PreviewButton = useMemo(
     () => (
@@ -345,15 +349,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                           value="configWaterMark"
                           title={
                             <span css={upgradeStyle}>
-                              {t("Remove watermark")}
-                              {paymentStatus ? (
+                              {t("billing.advanced.feature")}
+                              {canUseBillingFeature ? (
                                 <Switch
                                   checked={waterMark}
                                   onChange={handleWaterMarkChange}
                                 />
                               ) : (
                                 <Tag colorScheme="techPurple">
-                                  <UpgradeIcon /> Upgrade
+                                  <UpgradeIcon />{" "}
+                                  {t("billing.homepage.upgrade")}
                                 </Tag>
                               )}
                             </span>
