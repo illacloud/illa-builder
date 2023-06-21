@@ -62,9 +62,6 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
         })
         break
       }
-      ILLARoute.navigate("/404", {
-        replace: true,
-      })
       break
     }
   }
