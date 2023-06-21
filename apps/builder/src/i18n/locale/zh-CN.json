@@ -3454,6 +3454,9 @@
       "get_access_to_advanc": "获取高级功能访问权限",
       "upgrade": "升级",
       "cancel": "取消"
+    },
+    "advanced": {
+      "feature": "Remove watermark"
     }
   }
 }
