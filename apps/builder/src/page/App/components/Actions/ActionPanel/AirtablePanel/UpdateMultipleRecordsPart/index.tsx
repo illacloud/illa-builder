@@ -48,6 +48,7 @@ export const UpdateMultipleRecordsPart: FC = () => {
           }),
         )
       }}
+      lineNumbers={true}
       expectedType={VALIDATION_TYPES.ARRAY}
       placeholder={
         '{{[{"id":"abc","fields":{"name":"mongo", "price":"$3.5"}},{"id":"def","fields":{"name":"apple", "price":"$2.7"}}]}}'

@@ -55,6 +55,8 @@ export const UpdateRecordPart: FC = () => {
       <InputEditor
         title={t("editor.action.panel.label.airtable.record")}
         value={config.record}
+        lineNumbers={true}
+        style={{ height: "188px" }}
         onChange={(value) => {
           dispatch(
             configActions.updateCachedAction({

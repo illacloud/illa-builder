@@ -138,6 +138,7 @@ export const ListRecordsPart: FC = () => {
         }}
         expectedType={VALIDATION_TYPES.ARRAY}
         style={{ height: "188px" }}
+        lineNumbers={true}
         mode={CODE_LANG.JAVASCRIPT}
         codeType={CODE_TYPE.EXPRESSION}
         canShowCompleteInfo

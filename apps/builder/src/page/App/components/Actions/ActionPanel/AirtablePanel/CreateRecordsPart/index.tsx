@@ -31,6 +31,7 @@ export const CreateRecordsPart: FC = () => {
     <InputEditor
       title={t("editor.action.panel.label.airtable.records")}
       value={config.records}
+      lineNumbers={true}
       onChange={(value) => {
         dispatch(
           configActions.updateCachedAction({

@@ -8,13 +8,34 @@ export type AirtableActionMethodsType =
   | "delete"
 
 export const AirtableMethodList = [
-  "list",
-  "get",
-  "create",
-  "update",
-  "bulkUpdate",
-  "bulkDelete",
-  "delete",
+  {
+    label: "List Records",
+    value: "list",
+  },
+  {
+    label: "Get Record",
+    value: "get",
+  },
+  {
+    label: "Create Records",
+    value: "create",
+  },
+  {
+    label: "Update Record",
+    value: "update",
+  },
+  {
+    label: "Update Multiple Records",
+    value: "bulkUpdate",
+  },
+  {
+    label: "Delete Record",
+    value: "delete",
+  },
+  {
+    label: "Delete Multiple Records",
+    value: "bulkDelete",
+  },
 ]
 
 export type AirtableActionConfigType =
@@ -42,11 +63,11 @@ export interface AirtableListSort {
 }
 
 export interface AirtableListRecord {
-  fields: string
+  fields: string //string[]
   filterByFormula: string
-  maxRecords: string
-  pageSize: string
-  sort: string
+  maxRecords: string // number
+  pageSize: string // number
+  sort: string // object[]
   view: string
   cellFormat: string
   timeZone: string
@@ -80,7 +101,7 @@ export interface AirtableCreateRecord {
 }
 
 export const AirtableCreateRecordInitial: AirtableCreateRecord = {
-  records: "",
+  records: "", //object[],
 }
 
 export interface AirtableUpdateMultipleRecords {
