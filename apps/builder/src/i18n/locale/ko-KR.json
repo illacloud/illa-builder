@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "Unsubscribe",
@@ -3364,7 +3364,9 @@
       "appsumo": {
         "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
         "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+      },
+      "no_license_operate_failed": "Due to insufficient licenses, the operation failed.",
+      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3399,7 +3401,7 @@
         "audit_logs": "Audit logs",
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
-        "pricing": "/editor/month, yearly",
+        "pricing": "editor/month, yearly (monthly $10/editor)",
         "insufficient_license_title": "Insufficient licenses",
         "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
         "insufficient_license_button": "Add licenses"
