@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} x {{licenseNum}} 许可证 × {{remainDays}} 天 / {{totalDays}} 天",
-        "next_period_yearly": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 年",
-        "next_period_monthly": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 个月",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} 个许可证",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} 个许可证",
         "this_period_remove": "{{unitPrice}} x {{licenseNum}} 许可证 × {{remainDays}} 天 / {{totalDays}} 天",
-        "next_period_yearly_remove": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 年",
-        "next_period_monthly_remove": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 个月",
-        "payment_year": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 年",
-        "payment_month": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 个月",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} 个许可证",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} 个许可证",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} 个许可证",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} 个许可证",
         "this_period_storage": "{{unitPrice}} x {{storageNum}} GB × {{remainDays}} 天 / {{totalDays}} 天",
-        "next_period_storage": "{{unitPrice}} x {{storageNum}} GB × 1 年",
-        "next_period_monthly_storage": "{{unitPrice}} x {{storageNum}} GB × 1 个月",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} x {{storageNum}} GB × {{remainDays}} 天 / {{totalDays}} 天",
-        "next_period_yearly_remove_storage": "{{unitPrice}} x {{storageNum}} GB × 1 年",
-        "next_period_monthly_remove_storage": "{{unitPrice}} x {{storageNum}} GB × 1 个月",
-        "payment_year_storage": "{{unitPrice}} x {{storageNum}} GB × 1 年",
-        "payment_month_storage": "{{unitPrice}} x {{storageNum}} GB × 1 个月"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{licenseNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "取消订阅",
@@ -3364,7 +3364,9 @@
       "appsumo": {
         "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
         "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+      },
+      "no_license_operate_failed": "Due to insufficient licenses, the operation failed.",
+      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3393,13 +3395,13 @@
       "upgrade_now_admin": {
         "upgrade_to_plus": "升级到 Plus",
         "this_feature_is_avai": "此功能仅供Plus用户使用。若要使用它，请升级至Plus。 通过升级到 Plus，您也可以访问以下功能。 ",
-        "add_unlimited_viewer": "为免费添加无限查看成员",
-        "publish_public_appli": "发布公共应用程序",
+        "add_unlimited_viewer": "免费添加无限个浏览者",
+        "publish_public_appli": "发布公开应用",
         "ai_sql_generation": "AI SQL 生成",
-        "audit_logs": "审核日志",
+        "audit_logs": "审计日志",
         "learn_more": "了解更多",
         "upgrade": "升级",
-        "pricing": "/ 编辑器/月份，每年",
+        "pricing": "编辑者/月，年付(月付$10/编辑者)",
         "insufficient_license_title": "许可证不足",
         "insufficient_license_description": "若要邀请更多编辑用户，请先增加许可证。您团队的所有成员都可以使用ILLA Cloud的功能。 每个功能是否可访问，取决于每个成员的角色设置。",
         "insufficient_license_button": "添加许可证"
@@ -3422,7 +3424,7 @@
       "storage_insufficient": {
         "owner_title": "存储容量不足",
         "owner_description": "为了正常存储文件，请及时增加存储。 ",
-        "owner_button": "增加能力",
+        "owner_button": "增加容量",
         "not_owner_title": "存储容量不足",
         "not_owner_description": "为了正常存储文件，请联系您的管理员及时增加存储容量。",
         "not_owner_button": "好的",
@@ -3431,7 +3433,7 @@
       "traffic_insufficient": {
         "owner_title": "交通容量不足",
         "owner_description": "为了正常访问文件，请及时增加流量容量。 ",
-        "owner_button": "增加能力",
+        "owner_button": "增加流量",
         "not_owner_title": "存储容量不足",
         "not_owner_description": "要正常访问文件，请联系您的管理员以增加流量流量。",
         "not_owner_button": "好的",
