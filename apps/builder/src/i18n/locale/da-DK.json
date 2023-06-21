@@ -3454,6 +3454,9 @@
       "get_access_to_advanc": "Få adgang til avancerede funktioner",
       "upgrade": "Opgradér",
       "cancel": "Annuller"
+    },
+    "advanced": {
+      "feature": "Remove watermark"
     }
   }
 }
