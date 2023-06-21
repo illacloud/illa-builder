@@ -3454,6 +3454,9 @@
       "get_access_to_advanc": "Získat přístup k pokročilým funkcím",
       "upgrade": "Vylepšit",
       "cancel": "Zrušit"
+    },
+    "advanced": {
+      "feature": "Remove watermark"
     }
   }
 }
