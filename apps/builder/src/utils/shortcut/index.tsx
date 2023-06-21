@@ -441,7 +441,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       copySomethingHandler()
     },
     {
-      preventDefault: true,
+      preventDefault: false,
       enabled: isEditMode && isMAC(),
     },
     [copySomethingHandler],
@@ -452,7 +452,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     () => {
       copySomethingHandler()
     },
-    { preventDefault: true, enabled: isEditMode && !isMAC() },
+    { preventDefault: false, enabled: isEditMode && !isMAC() },
     [copySomethingHandler],
   )
 
@@ -462,7 +462,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       CopyManager.paste("keyboard")
     },
     {
-      preventDefault: true,
+      preventDefault: false,
       enabled: isEditMode && isMAC(),
     },
     [copySomethingHandler],
@@ -473,7 +473,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     () => {
       CopyManager.paste("keyboard")
     },
-    { preventDefault: true, enabled: isEditMode && !isMAC() },
+    { preventDefault: false, enabled: isEditMode && !isMAC() },
     [copySomethingHandler],
   )
 
@@ -506,7 +506,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     {
       keydown: true,
       keyup: true,
-      preventDefault: true,
+      preventDefault: false,
       enabled: isEditMode && isMAC(),
     },
     [showDotHandler],
@@ -520,7 +520,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     {
       keydown: true,
       keyup: true,
-      preventDefault: true,
+      preventDefault: false,
       enabled: isEditMode && !isMAC(),
     },
     [showDotHandler],

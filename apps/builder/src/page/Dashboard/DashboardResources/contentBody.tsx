@@ -66,6 +66,7 @@ export const ResourcesContentBody: FC = () => {
         case "hfendpoint":
         case "couchdb":
         case "googlesheets":
+        case "airtable":
           break
         // mysql like
         case "clickhouse":

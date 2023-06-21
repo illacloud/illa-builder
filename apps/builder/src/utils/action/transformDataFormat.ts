@@ -1,5 +1,14 @@
 import { isNumber, isString } from "@illa-design/react"
 import { ActionType } from "@/redux/currentApp/action/actionState"
+import {
+  AirtableAction,
+  AirtableActionConfigType,
+  AirtableCreateRecord,
+  AirtableDeleteMultipleRecords,
+  AirtableListRecord,
+  AirtableUpdateMultipleRecords,
+  AirtableUpdateRecord,
+} from "@/redux/currentApp/action/airtableAction"
 import { CouchDBActionStructParamsDataTransferType } from "@/redux/currentApp/action/couchDBAction"
 import { DynamoActionStructParamsDataTransferType } from "@/redux/currentApp/action/dynamoDBAction"
 import {
@@ -204,6 +213,66 @@ export const transformDataFormat = (
       return {
         ...contents,
         opts: newGoogleSheetOpts,
+      }
+    }
+    case "airtable": {
+      const { method } = contents as AirtableAction<AirtableActionConfigType>
+      switch (method) {
+        case "list":
+          const listConfig = contents.config as AirtableListRecord
+          return {
+            ...contents,
+            config: {
+              ...listConfig,
+              fields: listConfig.fields === "" ? [] : listConfig.fields,
+              maxRecords:
+                listConfig.maxRecords === "" ? -1 : listConfig.maxRecords,
+              pageSize: listConfig.pageSize === "" ? -1 : listConfig.pageSize,
+              sort: listConfig.sort === "" ? [] : listConfig.sort,
+            },
+          }
+        case "create":
+          const createConfig = contents.config as AirtableCreateRecord
+          return {
+            ...contents,
+            config: {
+              ...createConfig,
+              records: createConfig.records === "" ? [] : createConfig.records,
+            },
+          }
+        case "update":
+          const updateConfig = contents.config as AirtableUpdateRecord
+          return {
+            ...contents,
+            config: {
+              ...updateConfig,
+              record: updateConfig.record === "" ? {} : updateConfig.record,
+            },
+          }
+        case "bulkUpdate":
+          const bulkUpdateConfig =
+            contents.config as AirtableUpdateMultipleRecords
+          return {
+            ...contents,
+            config: {
+              ...bulkUpdateConfig,
+              records:
+                bulkUpdateConfig.records === "" ? [] : bulkUpdateConfig.records,
+            },
+          }
+        case "bulkDelete":
+          const bulkDeleteConfig =
+            contents.config as AirtableDeleteMultipleRecords
+          return {
+            ...contents,
+            config: {
+              ...bulkDeleteConfig,
+              recordIds:
+                bulkDeleteConfig.recordIds === ""
+                  ? []
+                  : bulkDeleteConfig.recordIds,
+            },
+          }
       }
     }
     default:

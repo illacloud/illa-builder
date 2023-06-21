@@ -1,5 +1,6 @@
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { AirtableConfigElement } from "@/page/App/components/Actions/AirtableConfigElement"
 import { AppWriteConfigElement } from "@/page/App/components/Actions/AppwriteConfigElement"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 import { CouchDBConfigElement } from "@/page/App/components/Actions/CouchDBConfigElement"
@@ -136,6 +137,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return <AppWriteConfigElement {...configElementProps} />
       case "couchdb":
         return <CouchDBConfigElement {...configElementProps} />
+      case "airtable":
+        return <AirtableConfigElement {...configElementProps} />
       default:
         return null
     }
