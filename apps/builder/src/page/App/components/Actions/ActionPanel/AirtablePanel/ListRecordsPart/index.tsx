@@ -192,7 +192,7 @@ export const ListRecordsPart: FC = () => {
       <InputEditor
         title={t("editor.action.panel.label.airtable.offset")}
         value={config.offset}
-        placeholder={"{{10}}"}
+        placeholder={"recxxxxxxxx"}
         onChange={(value) => {
           dispatch(
             configActions.updateCachedAction({
@@ -207,7 +207,7 @@ export const ListRecordsPart: FC = () => {
             }),
           )
         }}
-        expectedType={VALIDATION_TYPES.NUMBER}
+        expectedType={VALIDATION_TYPES.STRING}
         mode={CODE_LANG.JAVASCRIPT}
         codeType={CODE_TYPE.EXPRESSION}
         canShowCompleteInfo

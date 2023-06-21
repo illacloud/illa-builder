@@ -81,100 +81,100 @@ export const AirtablePanel: FC = () => {
   return (
     <div css={panelContainerStyle}>
       <ResourceChoose />
-      <InputEditor
-        title={t("editor.action.panel.label.airtable.base_id")}
-        value={content.baseConfig.baseId}
-        onChange={(value) => {
-          dispatch(
-            configActions.updateCachedAction({
-              ...cachedAction,
-              content: {
-                ...cachedAction.content,
-                baseConfig: {
-                  ...cachedAction.content.baseConfig,
-                  baseId: value,
-                },
-              },
-            }),
-          )
-        }}
-        expectedType={VALIDATION_TYPES.STRING}
-        mode={CODE_LANG.JAVASCRIPT}
-        codeType={CODE_TYPE.EXPRESSION}
-        tips={t("editor.action.panel.label.tips.airtable.base_id")}
-        canShowCompleteInfo
-      />
-      <InputEditor
-        title={t("editor.action.panel.label.airtable.table_name")}
-        value={content.baseConfig.tableName}
-        onChange={(value) => {
-          dispatch(
-            configActions.updateCachedAction({
-              ...cachedAction,
-              content: {
-                ...cachedAction.content,
-                baseConfig: {
-                  ...cachedAction.content.baseConfig,
-                  tableName: value,
-                },
-              },
-            }),
-          )
-        }}
-        expectedType={VALIDATION_TYPES.STRING}
-        mode={CODE_LANG.JAVASCRIPT}
-        codeType={CODE_TYPE.EXPRESSION}
-        canShowCompleteInfo
-      />
-      <SingleTypeComponent
-        componentType="select"
-        showSearch={true}
-        value={content.method}
-        onSelectedValueChange={(value) => {
-          let config = selectedAction.content.config
-          if (selectedAction.content.method !== value) {
-            switch (value) {
-              case "list":
-                config = AirtableListRecordInitial
-                break
-              case "get":
-                config = AirtableGetRecordInitial
-                break
-              case "create":
-                config = AirtableCreateRecordInitial
-                break
-              case "update":
-                config = AirtableUpdateRecordInitial
-                break
-              case "bulkUpdate":
-                config = AirtableUpdateMultipleRecordInitial
-                break
-              case "bulkDelete":
-                config = AirtableDeleteMultipleRecordInitial
-                break
-              case "delete":
-                config = AirtableDeleteRecordInitial
-                break
-              default:
-                break
-            }
-          }
-          dispatch(
-            configActions.updateCachedAction({
-              ...cachedAction,
-              content: {
-                ...cachedAction.content,
-                method: value as AirtableActionMethodsType,
-                config: config,
-              },
-            }),
-          )
-        }}
-        options={AirtableMethodList}
-        title={t("editor.action.panel.mongodb.action_type")}
-      />
-      {part}
       <div css={actionItemContainer}>
+        <InputEditor
+          title={t("editor.action.panel.label.airtable.base_id")}
+          value={content.baseConfig.baseId}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  baseConfig: {
+                    ...cachedAction.content.baseConfig,
+                    baseId: value,
+                  },
+                },
+              }),
+            )
+          }}
+          expectedType={VALIDATION_TYPES.STRING}
+          mode={CODE_LANG.JAVASCRIPT}
+          codeType={CODE_TYPE.EXPRESSION}
+          tips={t("editor.action.panel.label.tips.airtable.base_id")}
+          canShowCompleteInfo
+        />
+        <InputEditor
+          title={t("editor.action.panel.label.airtable.table_name")}
+          value={content.baseConfig.tableName}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  baseConfig: {
+                    ...cachedAction.content.baseConfig,
+                    tableName: value,
+                  },
+                },
+              }),
+            )
+          }}
+          expectedType={VALIDATION_TYPES.STRING}
+          mode={CODE_LANG.JAVASCRIPT}
+          codeType={CODE_TYPE.EXPRESSION}
+          canShowCompleteInfo
+        />
+        <SingleTypeComponent
+          componentType="select"
+          showSearch={true}
+          value={content.method}
+          onSelectedValueChange={(value) => {
+            let config = selectedAction.content.config
+            if (selectedAction.content.method !== value) {
+              switch (value) {
+                case "list":
+                  config = AirtableListRecordInitial
+                  break
+                case "get":
+                  config = AirtableGetRecordInitial
+                  break
+                case "create":
+                  config = AirtableCreateRecordInitial
+                  break
+                case "update":
+                  config = AirtableUpdateRecordInitial
+                  break
+                case "bulkUpdate":
+                  config = AirtableUpdateMultipleRecordInitial
+                  break
+                case "bulkDelete":
+                  config = AirtableDeleteMultipleRecordInitial
+                  break
+                case "delete":
+                  config = AirtableDeleteRecordInitial
+                  break
+                default:
+                  break
+              }
+            }
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  method: value as AirtableActionMethodsType,
+                  config: config,
+                },
+              }),
+            )
+          }}
+          options={AirtableMethodList}
+          title={t("editor.action.panel.mongodb.action_type")}
+        />
+        {part}
         <TransformerComponent />
       </div>
       <ActionEventHandler />
