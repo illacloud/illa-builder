@@ -81,7 +81,7 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
     if (
       !canAccessManage(
         currentTeamInfo.myRole,
-        currentTeamInfo.totalTeamLicense.teamLicensePurchased,
+        currentTeamInfo.totalTeamLicense.teamLicenseAllPaid,
       )
     ) {
       return redirect(`${cloudUrl}/workspace/${currentTeamInfo.identifier}`)
