@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} lisenssiä × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "Peruuta Tilaus",
@@ -3364,7 +3364,9 @@
       "appsumo": {
         "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
         "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+      },
+      "no_license_operate_failed": "Due to insufficient licenses, the operation failed.",
+      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
     },
     "modal": {
       "storage_insufficient_modal": {
