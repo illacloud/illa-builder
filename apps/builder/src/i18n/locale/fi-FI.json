@@ -149,6 +149,9 @@
           },
           "neon": {
             "neon": "Neon"
+          },
+          "airtable": {
+            "airtable": "Airtable"
           }
         },
         "validate": {
@@ -208,6 +211,9 @@
           },
           "mongodb": {
             "command": "Komento"
+          },
+          "airtable": {
+            "authentication": "Todennus"
           }
         },
         "placeholder": {
@@ -284,6 +290,10 @@
           },
           "clickhouse": {
             "ssl": "Kun käytät ClickHouse Cloud Serviceä, on suositeltavaa ottaa SSL käyttöön."
+          },
+          "airtable": {
+            "access_token": "<0>Klikkaa tästä</0> oppiaksesi kuinka saada käyttöoikeudet käyttöön.",
+            "api_key": "API-avain vanhentuu 1. helmikuuta 2024. Ole hyvä ja tarkista <0>viralliset asiakirjat Airtable</0> välttääksesi resurssien käyttövirheitä."
           }
         },
         "option": {
@@ -368,6 +378,10 @@
           "neon": {
             "parse": "Parse",
             "connection_string": "Yhteyden merkkijono"
+          },
+          "airtable": {
+            "access_token": "Käyttöoikeus tunnus",
+            "api_key": "API avain"
           }
         },
         "default": {
@@ -531,6 +545,21 @@
               "on_page_loading": "Sivujen latauksessa",
               "on_app_loading": "APP ladattu",
               "none": "Ei Mitään"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "Listaa tietueet",
+                "get_record": "Hae nauhoitus",
+                "create_record": "Luo tapahtuma",
+                "update_multiple_reco": "Päivitä useita tietueita",
+                "update_record": "Päivitä tietue",
+                "delete_multiple_reco": "Poista useita tietueita",
+                "delete_record": "Poista tietue"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
             }
           },
           "restapi": {
@@ -566,6 +595,12 @@
             },
             "advanced": {
               "no_actions_will_be_t": "Mitään toimintoja ei käynnistetä, kun sivu latautuu. Voit manuaalisesti käynnistää toiminnon ja ottaa käyttöön \"Käynnistä tämä toiminto, kun sivu latautuu\" lisäasetuksissa."
+            },
+            "airtable": {
+              "base_id": "Hanki perustunniste perusosoitteestasi. Se on yleensä merkkijono, joka alkaa \"sovelluksella\". ",
+              "filter_by_formula": "<0>Klikkaa tästä</0> oppiaksesi käyttämään kaavaa.",
+              "time_zone": "<0>Klikkaa tästä</0> tarkistaaksesi kaikki tuetut aikavyöhykkeet.",
+              "user_locales": "<0>Klikkaa tästä</0> tarkistaaksesi kaikki tuetut lokaatiot. "
             }
           },
           "advanced": {
@@ -578,6 +613,25 @@
             "actions_running_when": "Toiminnot käynnissä, kun sivu latautuu",
             "pages": "Sivut",
             "periodically_run": "Ajoittain ajettava"
+          },
+          "airtable": {
+            "base_id": "Perus ID",
+            "table_name": "Taulun nimi",
+            "method": "Menetelmä",
+            "view": "Näytä",
+            "fields": "Kentät",
+            "filter_by_formula": "Suodata kaavan mukaan",
+            "sort": "Järjestä",
+            "max_records": "Tietueiden enimmäismäärä",
+            "page_size": "Sivun koko",
+            "offset": "Siirtymä",
+            "cell_format": "Solun muoto",
+            "time_zone": "Aikavyöhyke",
+            "user_locales": "Käyttäjän lokaatiot",
+            "record_id": "Nauhoita ID",
+            "records": "Tietueet",
+            "record": "Nauhoita",
+            "record_ids": "Tallenna Tunnukset"
           }
         },
         "menu": {
@@ -2822,7 +2876,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} on jakanut sinulle sovelluksen 「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin ja tarkista APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} on jakanut sinulle APP lähteestä 「{{teamName}}」. Klikkaa linkkiä tarkistaaksesi APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} kutsuu sinut liittymään「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} kutsuu sinut liittymään「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Jäljellä olevat lisenssit"
+      }
     },
     "mes": {
       "invite_suc": "Kutsuttu onnistuneesti",
@@ -3024,373 +3081,379 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Ole hyvä ja klikkaa kehystä määrittääksesi liittämisen sijainnin."
   },
   "bookFrom": {
-    "title": "Book a demo",
+    "title": "Varaa demo",
     "form": {
       "about": {
-        "label": "Tell us a little bit about your project",
+        "label": "Kerro meille hieman projektistasi",
         "required": ".",
         "pattern": ""
       },
       "wantTo": {
-        "label": "What do you want to do with ILLA?",
+        "label": "Mitä haluat tehdä ILLAn kanssa?",
         "required": ".",
         "pattern": ""
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "Lähetä"
   },
   "partnerFrom": {
-    "title": "Become a partner",
+    "title": "Tule kumppaniksi",
     "form": {
       "name": {
-        "label": "Name",
-        "placeholder-1": "First name",
-        "placeholder-2": "Last name"
+        "label": "Nimi",
+        "placeholder-1": "Etunimi",
+        "placeholder-2": "Sukunimi"
       },
       "title": {
-        "label": "Your title"
+        "label": "Oma otsikko"
       },
       "companyName": {
-        "label": "Company name"
+        "label": "Yrityksen nimi"
       },
       "companyWebsite": {
-        "label": "Company website",
-        "pattern": "Please enter a valid URL"
+        "label": "Yrityksen verkkosivut",
+        "pattern": "Anna kelvollinen URL-osoite"
       },
       "email": {
-        "label": "Email",
-        "pattern": "Please enter the correct email."
+        "label": "Sähköposti",
+        "pattern": "Syötä oikea sähköpostiosoite."
       }
     },
     "message": {},
-    "submit": "Submit"
+    "submit": "Lähetä"
   },
   "billing": {
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "members": "Team",
-    "app": "apps",
-    "security-support": "Security & support",
+    "monthly": "Kuukausittain",
+    "yearly": "Vuosittain",
+    "members": "Tiimi",
+    "app": "sovellukset",
+    "security-support": "Turvallisuus ja tuki",
     "apps": {
-      "components": "All components",
-      "resources": "All resources",
-      "plugins": "Unlimited plugins",
+      "components": "Kaikki komponentit",
+      "resources": "Kaikki resurssit",
+      "plugins": "Rajoittamattomat liitännäiset",
       "sql": "AI SQL Generation",
-      "watermark": "Remove watermark"
+      "watermark": "Poista vesileima"
     },
     "security": {
-      "historic-7": "Historic version keep & recovery for 7 days",
-      "historic-30": "Historic version keep & recovery for 30 days",
-      "develop-environment": "Develop environment",
-      "app-public": "App public",
-      "restore-data": "Backup and restore",
-      "deployed": "Access to ILLA Support",
-      "dedicated": "Dedicated Solutions engineer"
+      "historic-7": "Historiallinen versio pitää palautuksen 7 päivää",
+      "historic-30": "Historiallinen versio pitää palautuksen 30 päivää",
+      "develop-environment": "Ympäristön kehittäminen",
+      "app-public": "Sovellus julkinen",
+      "restore-data": "Varmuuskopioi ja palauta",
+      "deployed": "Pääsy ILLA-tukeen",
+      "dedicated": "Omistetut ratkaisut insinööri"
     },
     "tips": {
-      "plugins": "Import plugins and make use of it within all the apps in your teams",
-      "sql": "Input natural language and generate SQL statement",
-      "staging": "Test your app against a staging environment",
-      "app-public": "Make the app public and anyone with the link can access it",
-      "restore-data": "Backup or restore data at any time you want",
-      "deployed": "Deployed engineers can help you onboard faster",
-      "dedicated": "Dedicated customer solutions engineer via Slack/email/phone",
-      "preview_insufficient": "The file cannot preview due to insufficient capacity, please expand the capacity first."
+      "plugins": "Tuo liitännäiset ja käytä niitä kaikissa tiimiesi sovelluksissa",
+      "sql": "Syötä luontainen kieli ja luo SQL-lausunto",
+      "staging": "Testaa sovelluksesi vaiheistetun julkaisun ympäristössä",
+      "app-public": "Tee sovellus julkiseksi ja kuka tahansa, jolla on linkki, voi käyttää sitä",
+      "restore-data": "Varmuuskopioi tai palauta tiedot milloin tahansa haluat.",
+      "deployed": "Käyttöönotetut insinöörit voivat auttaa aluksella nopeampaa",
+      "dedicated": "Asiakasratkaisujen insinööri Slack/email/phone kautta",
+      "preview_insufficient": "Tiedosto ei voi esikatsella riittämättömän kapasiteetin vuoksi, laajenna kapasiteettia ensin."
     },
     "deployment": {
-      "title": "Flexible deployment",
-      "title-1": "Flexible",
-      "title-2": "deployment",
-      "introduction": "ILLA provides two ways to deploy. Developers can use the ILLA Cloud to quickly start building their apps on any device. We also provide ILLA CLI for free with better security to ensure data safety.",
+      "title": "Joustava käyttöönotto",
+      "title-1": "Joustava",
+      "title-2": "käyttöönotto",
+      "introduction": "ILLA tarjoaa kaksi tapaa ottaa käyttöön. Kehittäjät voivat käyttää ILLA-pilveä aloittaakseen sovellusten rakentamisen millä tahansa laitteella. Tarjoamme ILLA CLI:lle myös ilmaisen paremman turvan tietoturvallisuuden takaamiseksi.",
       "illa-cloud": {
-        "title": "ILLA Cloud",
-        "des": "Try one-click deployment and enjoy the easiest deployment experience"
+        "title": "ILLA Pilvi",
+        "des": "Kokeile yhden klikkauksen käyttöönottoa ja nauti helpoimmasta käyttöönottokokemuksesta"
       },
       "illa-CLI": {
         "title": "ILLA CLI",
-        "des": "The fastest and easiest way to self-host ILLA"
+        "des": "Nopein ja helpoin tapa isännöidä ILLA"
       },
       "kubernetes": {
         "title": "Kubernetes",
-        "des": "Deploy ILLA into Kubernetes by using ILLA Helm chart"
+        "des": "Julkaise ILLA Kubernetesiin käyttämällä ILLA Helm -kaaviota"
       },
       "docker": {
-        "title": "Docker",
-        "des": "Deploy ILLA locally in 30s"
+        "title": "Telakoitsija",
+        "des": "Julkaise ILLA paikallisesti 30s"
       }
     },
-    "user-month": "per user/month",
-    "editor-month": "per editor/month",
-    "start-at": "start at 100 users",
-    "free-members": "Only 1 member for personal use",
-    "unlimited-viewer": "FREE for unlimited viewers",
-    "unlimited-members": "Unlimited members",
-    "free-btn": "Build apps for free",
-    "plus-btn": "Try the free version",
-    "enterprise-btn": "Contact us",
+    "user-month": "per käyttäjä/kuukausi",
+    "editor-month": "per editor/kuukausi",
+    "start-at": "aloita 100 käyttäjää",
+    "free-members": "Vain 1 jäsen henkilökohtaiseen käyttöön",
+    "unlimited-viewer": "ILMAINEN rajoittamattomille katsojille",
+    "unlimited-members": "Rajoittamattomat jäsenet",
+    "free-btn": "Koosta sovelluksia ilmaiseksi",
+    "plus-btn": "Kokeile ilmaista versiota",
+    "enterprise-btn": "Ota yhteyttä",
     "menu": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive",
-      "billing_portal": "Billing portal"
+      "billing": "Laskutus",
+      "license": "Lisenssi",
+      "drive": "Asema",
+      "billing_portal": "Laskutusportaali"
     },
     "title": {
-      "billing": "Billing",
-      "license": "License",
-      "drive": "Drive"
+      "billing": "Laskutus",
+      "license": "Lisenssi",
+      "drive": "Asema"
     },
     "subscription_general": {
       "plan": {
-        "free": "Free",
+        "free": "Ilmainen",
         "plus": "Plus"
       },
       "sub_cycle": {
-        "yearly": "Yearly",
-        "monthly": "Monthly"
+        "yearly": "Vuosittain",
+        "monthly": "Kuukausittain"
       },
       "billing_cyle": {
-        "year": "/ Year",
-        "month": "/ Month"
+        "year": "/ Vuosi",
+        "month": "/ Kuukausi"
       },
       "table_title": {
-        "next_payment_date": "Next payment date",
-        "expiration_date": "Expiration date",
-        "licenses": "Licenses",
-        "storage": "Storage",
-        "traffic": "Traffic"
+        "next_payment_date": "Seuraava maksupäivä",
+        "expiration_date": "Viimeinen käyttöpäivä",
+        "licenses": "Lisenssit",
+        "storage": "Tallennustila",
+        "traffic": "Liikenne"
       },
       "period": {
-        "current": "Current",
-        "next": "Next"
+        "current": "Nykyinen",
+        "next": "Seuraava"
       }
     },
     "subscription_card": {
       "title": {
-        "License": "License",
-        "Storage": "Storage",
-        "Traffic": "Traffic",
-        "balance": "Balance"
+        "License": "Lisenssi",
+        "Storage": "Tallennustila",
+        "Traffic": "Liikenne",
+        "balance": "Saldo"
       },
       "button": {
-        "License": "Manage licenses",
-        "Storage": "Manage storage",
-        "Traffic": "Expand traffic"
+        "License": "Hallinnoi lisenssejä",
+        "Storage": "Hallinnoi tallennustilaa",
+        "Traffic": "Laajenna liikennettä"
       },
       "capacity": {
-        "License": "{{used}} (total of {{total}} licenses) have been used.",
-        "Storage": "{{used}} (total of {{total}} GB) have been used.",
-        "Traffic": "{{used}} (total of {{total}} GB) have been used."
+        "License": "{{used}} (yhteensä {{total}} lisenssiä) on käytetty.",
+        "Storage": "{{used}} (yhteensä {{total}} GB) on käytetty.",
+        "Traffic": "{{used}} (yhteensä {{total}} GB) on käytetty."
       }
     },
     "payment_sidebar": {
       "title": {
-        "manage_storage": "Manage storage",
-        "manage_licenses": "Manage licenses",
-        "expand_traffic_capac": "Expand traffic capacity"
+        "manage_storage": "Hallinnoi tallennustilaa",
+        "manage_licenses": "Hallinnoi lisenssejä",
+        "expand_traffic_capac": "Laajenna liikennekapasiteettia"
       },
       "plan_label": {
-        "License": "Licenses",
-        "Storage": "Storage",
-        "Traffic": "Traffic"
+        "License": "Lisenssit",
+        "Storage": "Tallennustila",
+        "Traffic": "Liikenne"
       },
       "plan_number_input_label": {
-        "License": "Licenses",
-        "Storage_traffic": "GB"
+        "License": "Lisenssit",
+        "Storage_traffic": "Gt"
       },
       "select_option": {
-        "Yearly": "Yearly",
-        "Monthly": "Monthly"
+        "Yearly": "Vuosittain",
+        "Monthly": "Kuukausittain"
       },
       "price_label": {
-        "total": "Total"
+        "total": "Yhteensä"
       },
       "price_type": {
-        "this_period_remove": "This period",
-        "this_period": "This period",
-        "next_period": "Next period",
-        "next_period_remove": "Next period",
-        "payment": "Cost",
-        "this_period_storage": "This period",
-        "next_period_storage": "Next period",
-        "this_period_remove_storage": "This period",
-        "next_period_remove_storage": "Next period",
-        "payment_storage": "Cost",
-        "payment_traffic": "Cost",
+        "this_period_remove": "Tämä jakso",
+        "this_period": "Tämä jakso",
+        "next_period": "Seuraava kausi",
+        "next_period_remove": "Seuraava kausi",
+        "payment": "Kustannukset",
+        "this_period_storage": "Tämä jakso",
+        "next_period_storage": "Seuraava kausi",
+        "this_period_remove_storage": "Tämä jakso",
+        "next_period_remove_storage": "Seuraava kausi",
+        "payment_storage": "Kustannukset",
+        "payment_traffic": "Kustannukset",
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month"
+        "this_period": "{{unitPrice}} × {{licenseNum}} lisenssiä × {{remainDays}} päivää / {{totalDays}} päivää",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × {{remainDays}} päivää / {{totalDays}} päivää",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
+        "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} päivää / {{totalDays}} päivää",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi",
+        "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} päivää / {{totalDays}} päivää",
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi"
       },
       "button": {
-        "unsubscribe": "Unsubscribe",
-        "subscribe": "Subscribe",
-        "change_plan": "Change plan",
-        "storage_traffic_increase": "Increase {{changeNum}} GB",
-        "storage_traffic_remove": "Remove {{changeNum}} GB",
-        "license_increase": "Increase {{changeNum}} licenses",
-        "license_remove": "Remove {{changeNum}} licenses"
+        "unsubscribe": "Peruuta Tilaus",
+        "subscribe": "Tilaa",
+        "change_plan": "Muuta tilausta",
+        "storage_traffic_increase": "Kasvata {{changeNum}} Gt",
+        "storage_traffic_remove": "Poista {{changeNum}} GB",
+        "license_increase": "Kasvata {{changeNum}} lisenssiä",
+        "license_remove": "Poista {{changeNum}} lisenssiä"
       },
       "description_title": {
-        "add_storage": "You are going to add {{changeNum}} GB storage. Once confirmed, we will immediately deduct the payment for the new storage for this billing cycle. <0>Learn more</0>",
-        "remove_storage": "You are going to remove {{changeNum}} GB storage. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "update_plan_year": "You are going to update to a yearly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "update_plan_monthly": "You are going to update to a monthly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "add_license": "You are going to add {{changeNum}} licenses. Once confirmed, we will immediately deduct the payment for the new licenses for this billing cycle. <0>Learn more</0>",
-        "remove_license": "You are going to remove {{changeNum}} licenses. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
-        "add_traffic": "You are going to add {{changeNum}}GB traffic. Once confirmed, we will deduct the cost of the additional traffic immediately. <0>Learn more</0>",
-        "subscribe_storage": "You are going to subscribe to ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "subscribe_license": "You are going to subscribe to ILLA Drive. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "update_plan_increase_license": "You are going to add {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_license": "You are going to remove {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_increase_storage": "You are going to add {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_storage": "You are going to remove {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
-        "unsubscribe_license": "You are going to unsubscribe ILLA Cloud Plus. After cancellation, starting from the next billing cycle, the Plus features will no longer be accessible. <0>Learn more</0>",
-        "unsubscribe_storage": "You are going to unsubscribe ILLA Drive storage. After cancellation, starting from the next billing cycle, the storage capacity will be restored to 100MB. <0>Learn more</0>"
+        "add_storage": "Olet menossa lisäämään {{changeNum}} Gt tallennustilaa. Kun se on vahvistettu, vähennämme välittömästi tämän laskutusjakson uuden tallennustilan maksun. <0>Lue lisää</0>",
+        "remove_storage": "Olet poistamassa {{changeNum}} Gt tallennustilaa. Kun muutokset on vahvistettu, ne tulevat voimaan seuraavan laskutusjakson aikana. <0>Lue lisää</0>",
+        "update_plan_year": "Olet menossa päivittämään se vuosittainen maksusuunnitelma. Kun muutos on vahvistettu, se tulee voimaan seuraavan laskutusjakson alusta. <0>Lue lisää</0>",
+        "update_plan_monthly": "Olet menossa päivittää kuukausittain maksusuunnitelma. Kun muutos on vahvistettu, se tulee voimaan seuraavan laskutusjakson alusta. <0>Lue lisää</0>",
+        "add_license": "Sinä aiot lisätä {{changeNum}} lisenssiä. Kun se on vahvistettu, me välittömästi vähennämme tämän laskutusjakson uusien lisenssien maksun. <0>Lue lisää</0>",
+        "remove_license": "Olet poistamassa {{changeNum}} lisenssiä. Kun muutokset on vahvistettu, ne tulevat voimaan seuraavan laskutusjakson aikana. <0>Lue lisää</0>",
+        "add_traffic": "Olet menossa lisäämään {{changeNum}}Gt:n liikennettä. Kun se on vahvistettu, vähennämme lisäliikenteen kustannukset välittömästi. <0>Lue lisää</0>",
+        "subscribe_storage": "Olet menossa liittymään ILLA Cloud Plus -palveluun. Vähennämme automaattisesti maksut tililtäsi jokaisen maksujakson alussa. <0>Lue lisää</0>",
+        "subscribe_license": "Olet menossa tilaamaan ILLA Drive. Vähennämme automaattisesti maksut tililtäsi jokaisen maksujakson alussa. <0>Lue lisää</0>",
+        "update_plan_increase_license": "Aiot lisätä {{changeNum}} lisenssiä ja päivittää tilauskautesi. <0>Lue lisää</0>",
+        "update_plan_remove_license": "Olet poistamassa {{changeNum}} lisenssiä ja päivittämässä tilausaikaasi. <0>Lue lisää</0>",
+        "update_plan_increase_storage": "Aiot lisätä {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
+        "update_plan_remove_storage": "Aiot poistaa {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
+        "unsubscribe_license": "Lopetat ILLA Cloud Plus -palvelun tilauksen. Peruutuksen jälkeen seuraavasta laskutusjaksosta alkaen Plus-ominaisuudet eivät ole enää käytettävissä. <0>Lue lisää</0>",
+        "unsubscribe_storage": "Olet menossa lopettamaan ILLA Drive -tallennustilan tilauksen. Peruutuksen jälkeen seuraavan laskutussyklin jälkeen tallennuskapasiteetti palautetaan 100MB. <0>Lue lisää</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
-        "add_storage": "Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our user <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_storage": "If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our  <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_year": "Starting from the next period, the subscription will be changed to an annual subscription, and the fees will be automatically deducted based on the annual subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_monthly": "Starting from the next period, the subscription will be changed to a monthly subscription, and the fees will be automatically deducted based on the monthly subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_license": "Calculation rules using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_license": "If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "add_traffic": "After successful deduction, your traffic will increase in real-time. Once the traffic is used, the fees cannot be refunded. Unused traffic can be refunded in units of GB. For example, if you purchase 10GB of traffic and use 4.5GB, you can apply for a refund of 5GB. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_yearly": "You are going to subscribe to the annual subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $9.9 per GB, and you have a total of 3 GB, we will deduct $29.7 on February 25, 2023. If you add 2 GB on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 GB, which is (2+3)*$9.9=$49.5. If you wish to reduce storage or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_monthly": "You are going to subscribe to the monthly subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $0.99 per GB, and you have a total of 3 GB, we will deduct $2.97 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$0.99=$4.95. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_yearly": "You are going to subscribe to the annual subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $100 per license, and you have a total of 3 licenses, we will deduct $300 on February 25, 2023. If you add 2 more licenses on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 licenses, which is (2+3)*$100=$500. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_monthly": "You are going to subscribe to the monthly subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $12 per license, and you have a total of 3 licenses, we will deduct $36 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$12=$60. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased licenses according to the current billing cycle. Calculation rules of increasing licenses using a monthly license subscription as an example: Let's consider a scenario where you initially subscribed to 5 licenses starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional license. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 license, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all license fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased storage according to the current billing cycle. Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>"
+        "add_storage": "Laskentasäännöt käyttäen kuukausittaista tallennustilausta esimerkkinä: Katsotaanpa skenaario, jossa tilaat aluksi 5 GB alkaen maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 GB. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 GB, joka on noin $ 0. 9, suhteessa kestoon 4 päivää 30 päivän aikana. Siksi vähennys on arvioitu 1 lisenssi * $ 0. 9 / 30 päivää * 4 päivää, jolloin noin 0,132 dollaria. Seuraavasta laskutusjaksosta alkaen kaikki tallennusmaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso käyttäjämme <0>Tietosuojakäytäntö</0> ja <1>Käyttöehdot</1>",
+        "remove_storage": "Jos tiedostojen varaama tallennuskapasiteetti ylittää tilatun tallennuskapasiteetin seuraavan laskutusjakson alkaessa, se on suurempi kuin tilattu tallennuskapasiteetti, kaikki tiedostot poistetaan käytöstä, kunnes poistat tiedostoja tai lisäät tallennustilaa käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_year": "Alkaen seuraavasta kaudesta, tilaus muutetaan vuosittaiseksi tilaukseksi, joka on ja maksut vähennetään automaattisesti vuotuisen merkintähinnan perusteella. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_monthly": "Alkaen seuraavasta kaudesta, tilaus muutetaan kuukausittaiseksi tilaukseksi, ja maksut vähennetään automaattisesti kuukausittaisen merkintähinnan perusteella. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "add_license": "Laskentasäännöt käyttäen kuukausittaista lisenssitilausta esimerkkinä: Katsotaan skenaario, jossa olet alun perin tilannut viisi lisenssiä maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 lisenssin. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 lisenssi, joka on noin $ 10, suhteessa kestoon 4 päivää 30 päivän ajan. Siksi vähennys on arvioitu 1 lisenssi * $ 10 / 30 päivää * 4 päivää, jolloin noin $ 1,33. Seuraavasta laskutusjaksosta alkaen kaikki lisenssimaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "remove_license": "Jos niiden käyttäjien määrä, joilla on muokkausoikeuksia, ylittää lisenssien määrän seuraavan laskutusjakson alussa, kaikki käyttäjät paitsi omistaja poistetaan käytöstä, kunnes poistat jäseniä tai lisäät lisenssien määrää käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "add_traffic": "Onnistuneen vähennyksen jälkeen liikennemäärä kasvaa reaaliajassa. Kun liikenne on käytetty, maksuja ei voi palauttaa. Käyttämätön liikenne voidaan palauttaa BB:n yksiköissä. Jos esimerkiksi ostat 10 Gt liikennettä ja käytät 4,5 Gt, voit hakea palautusta 5GB. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "subscribe_storage_yearly": "Olet menossa tilaamaan ILLA Drive -tallennustilan vuosittaisen tilauksen. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka paljon tallennuskapasiteettia olet tilannut GB. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, jonka vuotuinen tilausmaksu on $ 9. per GB, ja sinulla on yhteensä 3 Gt, me vähentää $ 29. helmikuuta 25, 2023. Jos lisäät 2 gigatavua 25. maaliskuuta 2023, vähennämme ensin jäljellä olevat 11 kuukauden maksut 25. maaliskuuta 2023. Sitten viimeistään 25 helmikuu 2024 vähennetään maksu 5 Gt, joka on (2+3)*$9.9 = $49. . Jos haluat vähentää tallennustilaa tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "subscribe_storage_monthly": "Olet menossa tilaamaan kuukausittain tilauksen ILLA Drive -tallennustilan. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka paljon tallennuskapasiteettia olet tilannut GB. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, kuukausimaksu on $ 0. 9 Gt per Gt, ja sinulla on yhteensä 3 Gt, me vähentää $ 2. 7 päivänä helmikuuta 25, 2023. Jos lisäät vielä 2 lisenssiä 21. maaliskuuta 2023, vähennämme ensin jäljellä olevan 5 päivän maksun 21. maaliskuuta 2023. Sitten, 25. maaliskuuta 2023, me vähentää maksun 5 lisenssit, joka on (2+3)*$ 0. 9 = 4,95 dollaria. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "subscribe_license_yearly": "Olet menossa liittymään ILLA Cloud Plus -ohjelmaan vuosittain. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka monta lisenssiä sinulla on. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, vuosittainen tilausmaksu $100 per lisenssi, ja sinulla on yhteensä 3 lisenssejä, me vähentää $ 300 helmikuuta 25, 2023. Jos lisäät vielä 2 lisenssiä 25. maaliskuuta 2023, vähennämme ensin jäljellä olevien 11 kuukauden maksun 25. maaliskuuta 2023. Sitten 25. helmikuuta mennessä 2024 vähennetään maksu 5 lisenssit, joka on (2+3)*$100=$500. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "subscribe_license_monthly": "Olet menossa tilaamaan kuukausittaisen ILLA Cloud Plus -jäsenyyden. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka monta lisenssiä sinulla on. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, kuukausittainen tilausmaksu on $ 12 per lisenssi, ja sinulla on yhteensä 3 lisenssejä, me vähentää 36 dollaria helmikuun 25, 2023. Jos lisäät vielä 2 lisenssiä 21. maaliskuuta 2023, vähennämme ensin jäljellä olevan 5 päivän maksun 21. maaliskuuta 2023. Sitten 25. maaliskuuta 2023 mennessä me vähentää maksun 5 lisenssit, joka on (2+3)*$ 12 = $ 60. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_increase_license": "Maksut vähennetään automaattisesti seuraavan kauden voimassa olevan lisenssien määrän ja uuden laskutussyklin hinnoittelun perusteella. Tällä kertaa me vähennämme korotetun lisenssin maksun nykyisen laskutussyklin mukaisesti. Laskentasäännöt lisenssien lisäämisestä käyttäen kuukausittaista lisenssitilausta esimerkkinä: Katsotaanpa skenaario, jossa olet alun perin tilannut 5 lisenssiä alkaen maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 lisenssin. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 lisenssi, joka on noin $ 10, suhteessa kestoon 4 päivää 30 päivän ajan. Siksi vähennys on arvioitu 1 lisenssi * $ 10 / 30 päivää * 4 päivää, jolloin noin $ 1,33. Seuraavasta laskutusjaksosta alkaen kaikki lisenssimaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_remove_license": "Maksut vähennetään automaattisesti seuraavan kauden voimassa olevan lisenssien määrän ja uuden laskutussyklin hinnoittelun perusteella. Jos niiden käyttäjien määrä, joilla on muokkausoikeuksia, ylittää lisenssien määrän seuraavan laskutusjakson alussa, kaikki käyttäjät paitsi omistaja poistetaan käytöstä, kunnes poistat jäseniä tai lisäät lisenssien määrää käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_increase_storage": "Maksut vähennetään automaattisesti seuraavan kauden ajan tasalle saatetun varastoinnin ja uuden laskutusjakson hinnoittelun perusteella. Tällä kertaa me vähennämme korotetun varastoinnin maksun nykyisen laskutussyklin mukaisesti. Laskentasäännöt käyttäen kuukausittaista tallennustilausta esimerkkinä: Katsotaanpa skenaario, jossa tilaat aluksi 5 GB alkaen maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 GB. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 GB, joka on noin $ 0. 9, suhteutettuna 4 päivän kestoon 30 päivän syklin aikana. Siksi vähennys on arvioitu 1 lisenssi * 0,99 dollaria / 30 päivää * 4 päivää, jolloin noin 0,132 dollaria. Seuraavasta laskutusjaksosta alkaen kaikki tallennusmaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_remove_storage": "Maksut vähennetään automaattisesti seuraavan kauden ajan tasalle saatetun varastoinnin ja uuden laskutusjakson hinnoittelun perusteella. Jos tiedostojen varaama tallennuskapasiteetti ylittää tilatun tallennuskapasiteetin seuraavan laskutusjakson alkaessa, se on suurempi kuin tilattu tallennuskapasiteetti, kaikki tiedostot poistetaan käytöstä, kunnes poistat tiedostoja tai lisäät tallennustilaa käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>"
       }
     },
     "message": {
-      "failed_to_subscribe": "Failed to subscribe. Please try again.",
-      "failed_to_add_traffic": "Failed to add traffic. Please try again. ",
-      "failed_to_add_storage": "Failed to add storage. Please try again. ",
-      "failed_to_remove_storage": "Failed to remove storage. Please try again. ",
-      "failed_to_add_licens": "Failed to add licenses. Please try again. ",
-      "failed_to_remove_lic": "Failed to remove licenses. Please try again. ",
-      "failed_to_change_pla": "Failed to change plan. Please try again. ",
-      "failed_to_unsubscrib": "Failed to unsubscribe. Please try again. ",
-      "successfully_removed": "Successfully removed.  The change will take effect from {{nextPaymentDate}}.",
-      "unsubscription_succe": "Unsubscription successful.  The change will take effect from {{nextPaymentDate}}",
-      "cancel_subscribe": "Subscription not completed, please try again or contact billing@illasoft.com",
-      "cancel_purchase": "Purchase not completed, please try again or contact billing@illasoft.com",
-      "successfully_changed": "Subscription changed successfully. It will take effect in a few minutes",
-      "failed_to_change": "Subscription change failed",
-      "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
-      "failed_to_join_no_license": "Unable to join because team licenses are insufficient, please contact the admin.",
-      "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin."
+      "failed_to_subscribe": "Tilaus epäonnistui. Yritä uudelleen.",
+      "failed_to_add_traffic": "Liikenteen lisääminen epäonnistui. Yritä uudelleen. ",
+      "failed_to_add_storage": "Tallennustilan lisääminen epäonnistui. Yritä uudelleen. ",
+      "failed_to_remove_storage": "Tallennustilan poisto epäonnistui. Yritä uudelleen. ",
+      "failed_to_add_licens": "Lisenssien lisääminen epäonnistui. Yritä uudelleen. ",
+      "failed_to_remove_lic": "Lisenssien poistaminen epäonnistui. Yritä uudelleen. ",
+      "failed_to_change_pla": "Suunnitelman muuttaminen epäonnistui. Yritä uudelleen. ",
+      "failed_to_unsubscrib": "Tilauksen peruuttaminen epäonnistui. Yritä uudelleen. ",
+      "successfully_removed": "Onnistuneesti poistettu. Muutos tulee voimaan kohteesta {{nextPaymentDate}}.",
+      "unsubscription_succe": "Tilauksen poisto onnistui. Muutos tulee voimaan {{nextPaymentDate}}",
+      "cancel_subscribe": "Tilausta ei ole valmis, yritä uudelleen tai ota yhteyttä billing@illasoft.com",
+      "cancel_purchase": "Osto ei valmis, yritä uudelleen tai ota yhteyttä billing@illasoft.com",
+      "successfully_changed": "Tilauksen muutos onnistui. Se tulee voimaan muutamassa minuutissa",
+      "failed_to_change": "Tilauksen muutos epäonnistui",
+      "unsubscription_suc": "Tilaus on peruutettu onnistuneesti ja tulee voimaan seuraavalta kaudelta",
+      "failed_to_join_no_license": "Liittyminen ei onnistunut, koska tiimin lisenssit eivät riitä, ota yhteyttä ylläpitäjään.",
+      "storage_insufficient_modal": "Tämän tiimin tallennustila tai liikenne ei riitä. Ota yhteyttä ylläpitäjään.",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
-        "owner_title_drive": "Insufficient capacity",
-        "owner_description_drive": "The storage or traffic is not enough. Please upgrade and try again.",
-        "owner_button_drive": "Upgrade",
-        "not_owner_title_drive": "Failed to operate",
-        "not_owner_description_drive": "The storage or traffic of this team is not enough. Please contact your admin.",
-        "not_owner_button_drive": "Got it",
-        "out_title_drive": "Failed to download",
-        "out_description_drive": "Failed to download, please contact the file owner",
-        "out_button_drive": "Got it"
+        "owner_title_drive": "Riittämätön kapasiteetti",
+        "owner_description_drive": "Tallennustila tai liikenne ei riitä. Päivitä ja yritä uudelleen.",
+        "owner_button_drive": "Päivitä",
+        "not_owner_title_drive": "Toiminto epäonnistui",
+        "not_owner_description_drive": "Tämän tiimin tallennustila tai liikenne ei riitä. Ota yhteyttä ylläpitäjään.",
+        "not_owner_button_drive": "Asia ymmärretty",
+        "out_title_drive": "Lataaminen epäonnistui",
+        "out_description_drive": "Lataaminen epäonnistui, ole hyvä ja ota yhteyttä tiedoston omistajaan",
+        "out_button_drive": "Asia ymmärretty"
       },
       "sub_suc": {
-        "subscription_success": "Subscription successful",
-        "you_can_now_invite_m": "It will take effect in a few minutes. You can invite members and start using the advanced features later. Go ahead and give it a try!",
-        "you_can_now_upload_m": "It will take effect in a few minutes.  You can now upload more files.",
-        "payment_successful": "Payment successful",
-        "we_have_added_the_li": "It will take effect in a few minutes. We have added the licenses for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_st": "It will take effect in a few minutes. We have added the storage for you. Any changes to the subscription period will take effect from the next billing cycle.",
-        "we_have_added_the_tr": "It will take effect in a few minutes. We will add the traffic for you later. You can now download more files.",
-        "successfully_updated": "Successfully updated",
-        "the_change_to_the_su": "The change to the subscription period will take effect from the next billing cycle.",
-        "got_it": "Got it"
+        "subscription_success": "Tilaus onnistui",
+        "you_can_now_invite_m": "Se tulee voimaan muutamassa minuutissa. Voit kutsua jäseniä ja alkaa käyttää kehittyneitä ominaisuuksia myöhemmin. Mene eteenpäin ja kokeile sitä!",
+        "you_can_now_upload_m": "Se tulee voimaan muutamassa minuutissa. Voit nyt ladata lisää tiedostoja.",
+        "payment_successful": "Maksu onnistui",
+        "we_have_added_the_li": "Se tulee voimaan muutamassa minuutissa. Olemme lisänneet lisenssit sinulle. Kaikki tilauskauteen tehtävät muutokset tulevat voimaan seuraavan laskutusjakson jälkeen.",
+        "we_have_added_the_st": "Se tulee voimaan muutamassa minuutissa. Olemme lisänneet tallennustilan sinulle. Kaikki tilauskauteen tehtävät muutokset tulevat voimaan seuraavan laskutusjakson jälkeen.",
+        "we_have_added_the_tr": "Se tulee voimaan muutaman minuutin kuluttua. Lisäämme liikenteen sinulle myöhemmin. Voit nyt ladata lisää tiedostoja.",
+        "successfully_updated": "Päivitys onnistui",
+        "the_change_to_the_su": "Tilauksen muutos tulee voimaan seuraavasta laskutusjaksosta alkaen. Tilauksen muutos tulee voimaan seuraavasta laskutusjaksosta.",
+        "got_it": "Asia ymmärretty"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgrade to Plus",
-        "this_feature_is_avai": "This feature is available for Plus users only. To use it, please upgrade to Plus. By upgrading to Plus, you will also have access to the following features. ",
-        "add_unlimited_viewer": "Add unlimited viewer members for FREE",
-        "publish_public_appli": "Publish public applications",
+        "upgrade_to_plus": "Päivitä Plus -versioon",
+        "this_feature_is_avai": "Tämä ominaisuus on käytettävissä vain Plus-käyttäjille. Käyttääksesi sitä, päivitä versioon Plus. Päivittämällä Plukseen sinulla on myös pääsy seuraaviin ominaisuuksiin. ",
+        "add_unlimited_viewer": "Lisää rajoittamaton katsojan jäseniä ILMAISEKSI",
+        "publish_public_appli": "Julkaise julkiset sovellukset",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs",
-        "learn_more": "Learn more",
-        "upgrade": "Upgrade",
-        "pricing": "/editor/month, yearly",
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
-        "insufficient_license_button": "Add licenses"
+        "audit_logs": "Tarkastuslokit",
+        "learn_more": "Lue lisää",
+        "upgrade": "Päivitä",
+        "pricing": "/editor/kuukausi, vuosittain",
+        "insufficient_license_title": "Riittämättömät lisenssit",
+        "insufficient_license_description": "Kutsuaksesi lisää editoreita, lisää lisenssejä ensin. Kaikki tiimisi jäsenet voivat käyttää ILLA Cloud Plus -ominaisuuksia. Kunkin jäsenen asema riippuu kunkin ominaisuuden erityisestä saatavuudesta. ",
+        "insufficient_license_button": "Lisää lisenssejä"
       },
       "expired": {
-        "owner": "Your subscription has expired. To continue using, please renew it.",
-        "others": "Your account has been disabled because the team's subscription has expired.",
-        "your_subscription_ha_not_owner": "Not enough licenses",
-        "all_members_except_f_not_owner": "Your team doesn't have enough licenses. Please contact your team owner.",
-        "upgrade_not_owner": "Got it"
+        "owner": "Tilauksesi on vanhentunut. Jatkaaksesi käyttämistä, uusiudu se.",
+        "others": "Tilisi on poistettu käytöstä, koska tiimin tilaus on vanhentunut.",
+        "your_subscription_ha_not_owner": "Ei tarpeeksi lisenssejä",
+        "all_members_except_f_not_owner": "Tiimilläsi ei ole riittävästi lisenssejä. Ota yhteyttä tiimin omistajaan.",
+        "upgrade_not_owner": "Asia ymmärretty"
       },
       "blank_page": {
-        "insufficient_license_disable": "Your account has been disabled due to insufficient team licenses. Please contact the team Owner for assistance."
+        "insufficient_license_disable": "Tilisi on poistettu käytöstä riittämättömien tiimilisenssien vuoksi. Ota yhteyttä tiimin omistajaan saadaksesi apua."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please connect your admin to increase licenses first.",
-        "insufficient_license_button": "OK"
+        "insufficient_license_title": "Riittämättömät lisenssit",
+        "insufficient_license_description": "Kutsuaksesi lisää editoreita, ole hyvä ja yhdistä ylläpitäjäsi kasvattaaksesi lisenssejä ensin.",
+        "insufficient_license_button": "Ok"
       },
       "storage_insufficient": {
-        "owner_title": "Insufficient storage capacity",
-        "owner_description": "In order to store files normally, please increase the storage  in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to store files normally, please contact your administrator to increase storage capacity in time.",
-        "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_title": "Riittämätön varastointikapasiteetti",
+        "owner_description": "Jotta tiedostot voidaan tallentaa normaalisti, ole hyvä ja lisää tallennustilaa ajoissa. ",
+        "owner_button": "Lisää kapasiteettia",
+        "not_owner_title": "Riittämätön varastointikapasiteetti",
+        "not_owner_description": "Jotta tiedostot voidaan tallentaa normaalisti, ota yhteyttä järjestelmänvalvojaan lisätäksesi tallennuskapasiteettia ajoissa.",
+        "not_owner_button": "Ok",
+        "owner_pricing": "Gt/Kuukausittain"
       },
       "traffic_insufficient": {
-        "owner_title": "Insufficient traffic capacity",
-        "owner_description": "In order to access files normally, please increase the traffic capacity in time. ",
-        "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
-        "not_owner_description": "In order to access files normally, please contact your administrator to increase traffic capacity in time.",
-        "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_title": "Riittämätön liikennekapasiteetti",
+        "owner_description": "Jotta pääset käsiksi tiedostoihin normaalisti, lisää liikenteen kapasiteettia ajoissa. ",
+        "owner_button": "Lisää kapasiteettia",
+        "not_owner_title": "Riittämätön varastointikapasiteetti",
+        "not_owner_description": "Jotta pääset käsiksi tiedostoihin normaalisti, ota yhteyttä järjestelmänvalvojaan lisätäksesi liikenteen kapasiteettia.",
+        "not_owner_button": "Ok",
+        "owner_pricing": "Gt/Kuukausittain"
       },
       "cancel_confirm": {
-        "description": "After cancellation, your team will revert to the free plan starting from the next billing cycle. The features included in the subscription plans will no longer be accessible.",
-        "title": "Cancel the subscription?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "Peruutuksen jälkeen tiimisi palaa maksuttomaan tilaukseen seuraavan laskutusjakson jälkeen. Tilaussuunnitelmiin sisältyvät ominaisuudet eivät ole enää käytettävissä.",
+        "title": "Peruuta tilaus?",
+        "button_cancel": "Peruuta",
+        "button_confirm": "Vahvista"
       },
       "change_confirm": {
-        "description": "Once reduced, the changes will take effect in the next billing cycle. If there are resources that exceed the newly allocated capacity, all resources may become inaccessible.",
-        "title": "Change plan?",
-        "button_cancel": "Cancel",
-        "button_confirm": "Confirm"
+        "description": "Kun muutokset on pienennetty, ne tulevat voimaan seuraavan laskutusjakson aikana. Jos resursseja on enemmän kuin uutta kapasiteettia, kaikki resurssit voivat jäädä käyttämättä.",
+        "title": "Vaihda suunnitelma?",
+        "button_cancel": "Peruuta",
+        "button_confirm": "Vahvista"
       }
     },
     "homepage": {
-      "get_access_to_advanc": "Get access to advanced features",
-      "upgrade": "Upgrade",
-      "cancel": "Cancel"
+      "get_access_to_advanc": "Hanki pääsy kehittyneisiin ominaisuuksiin",
+      "upgrade": "Päivitä",
+      "cancel": "Peruuta"
     }
   }
 }

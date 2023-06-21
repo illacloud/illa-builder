@@ -439,6 +439,14 @@ export const RenderComponentCanvas: FC<{
           }
         }
 
+        if (draggedSelectedComponents.length <= 1) {
+          FocusManager.switchFocus("canvas", {
+            displayName: item.displayName,
+            type: "component",
+            clickPosition: [],
+          })
+        }
+
         if (monitor.getClientOffset()) {
           let scaleItem: ComponentNode = getScaleItem(
             blockColumns,
@@ -947,7 +955,6 @@ export const RenderComponentCanvas: FC<{
               maxRightBottomY = Math.max(maxRightBottomY, node.y + node.h)
             }
           })
-
           FocusManager.switchFocus("canvas", {
             displayName: componentNode.displayName,
             type: "group",
@@ -958,6 +965,12 @@ export const RenderComponentCanvas: FC<{
               maxRightBottomX - leftTopX,
               maxRightBottomY - leftTopY,
             ],
+          })
+        } else if (selectedComponentNode.length === 1) {
+          FocusManager.switchFocus("canvas", {
+            displayName: selectedComponentNode[0],
+            type: "component",
+            clickPosition: [],
           })
         } else {
           FocusManager.switchFocus("canvas", {

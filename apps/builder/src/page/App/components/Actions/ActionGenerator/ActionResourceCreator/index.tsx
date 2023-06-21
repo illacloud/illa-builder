@@ -20,7 +20,6 @@ import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfi
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
 import { SnowflakeConfigElement } from "@/page/App/components/Actions/SnowflakeConfigElement"
-import { UpstashConfigElement } from "@/page/App/components/Actions/UpstashConfigElement"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { ResourceEditorProps } from "./interface"
 
@@ -93,13 +92,21 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         return <SnowflakeConfigElement {...generalProps} />
       case "s3":
         return <S3ConfigElement onBack={handleBack} onFinished={onFinished} />
-      case "redis":
-        return (
-          <RedisConfigElement onBack={handleBack} onFinished={onFinished} />
-        )
       case "upstash":
         return (
-          <UpstashConfigElement onBack={handleBack} onFinished={onFinished} />
+          <RedisConfigElement
+            onBack={handleBack}
+            onFinished={onFinished}
+            type="upstash"
+          />
+        )
+      case "redis":
+        return (
+          <RedisConfigElement
+            onBack={handleBack}
+            onFinished={onFinished}
+            type="redis"
+          />
         )
       case "smtp":
         return <SMTPConfigElement onBack={handleBack} onFinished={onFinished} />

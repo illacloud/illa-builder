@@ -149,6 +149,9 @@
           },
           "neon": {
             "neon": "Neon"
+          },
+          "airtable": {
+            "airtable": "Airtable"
           }
         },
         "validate": {
@@ -208,6 +211,9 @@
           },
           "mongodb": {
             "command": "Command"
+          },
+          "airtable": {
+            "authentication": "Authentication"
           }
         },
         "placeholder": {
@@ -284,6 +290,10 @@
           },
           "clickhouse": {
             "ssl": "When using ClickHouse Cloud Service, it is recommended to turn on the SSL."
+          },
+          "airtable": {
+            "access_token": "<0>Click here</0> to learn how to get the access token.",
+            "api_key": "API key will be deprecated on February 1, 2024. Please pay attention to the <0>official documentation of Airtable</0> to avoid resource access errors."
           }
         },
         "option": {
@@ -368,6 +378,10 @@
           "neon": {
             "parse": "Parse",
             "connection_string": "Connection string"
+          },
+          "airtable": {
+            "access_token": "Access token",
+            "api_key": "API key"
           }
         },
         "default": {
@@ -531,6 +545,21 @@
               "on_page_loading": "On page loading",
               "on_app_loading": "On APP loaded",
               "none": "None"
+            },
+            "airtable": {
+              "method": {
+                "list_records": "List records",
+                "get_record": "Get record",
+                "create_record": "Create record",
+                "update_multiple_reco": "Update multiple records",
+                "update_record": "Update record",
+                "delete_multiple_reco": "Delete multiple records",
+                "delete_record": "Delete record"
+              },
+              "sort": {
+                "asc": "ASC",
+                "desc": "DESC"
+              }
             }
           },
           "restapi": {
@@ -566,6 +595,12 @@
             },
             "advanced": {
               "no_actions_will_be_t": "No actions will be triggered when the page loads. You can manually trigger the action and enable \"Trigger this action when page loads\" in the advanced settings."
+            },
+            "airtable": {
+              "base_id": "Get the base ID from your base URL. It is usually a string starting with \"app\". ",
+              "filter_by_formula": "<0>Click here</0> to learn how to use formula.",
+              "time_zone": "<0>Click here</0> to check all supported timezones.",
+              "user_locales": "<0>Click here</0> to check all supported locales. "
             }
           },
           "advanced": {
@@ -578,6 +613,25 @@
             "actions_running_when": "Actions running when the page loads",
             "pages": "Pages",
             "periodically_run": "Periodically run"
+          },
+          "airtable": {
+            "base_id": "Base ID",
+            "table_name": "Table name",
+            "method": "Method",
+            "view": "View",
+            "fields": "Fields",
+            "filter_by_formula": "Filter by formula",
+            "sort": "Sort",
+            "max_records": "Max records",
+            "page_size": "Page size",
+            "offset": "Offset",
+            "cell_format": "Cell format",
+            "time_zone": "Time zone",
+            "user_locales": "User locales",
+            "record_id": "Record ID",
+            "records": "Records",
+            "record": "Record",
+            "record_ids": "Record IDs"
           }
         },
         "menu": {
@@ -2822,7 +2876,10 @@
       },
       "custom_copy_text_app_invite": "{{userName}} shared you an app of 「{{teamName}}」. Click the link to join the team and check the APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} shared an app with you from 「{{teamName}}」 . Click the link to check the APP: {{inviteLink}}",
-      "custom_copy_text": "{{userName}} invites you to join 「{{teamName}}」 . Click the link to join the team: {{inviteLink}}"
+      "custom_copy_text": "{{userName}} invites you to join 「{{teamName}}」 . Click the link to join the team: {{inviteLink}}",
+      "tips": {
+        "license_insufficient": "Remaining licenses"
+      }
     },
     "mes": {
       "invite_suc": "Invited successfully",
@@ -3264,7 +3321,9 @@
         "update_plan_increase_storage": "You are going to add {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
         "update_plan_remove_storage": "You are going to remove {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
         "unsubscribe_license": "You are going to unsubscribe ILLA Cloud Plus. After cancellation, starting from the next billing cycle, the Plus features will no longer be accessible. <0>Learn more</0>",
-        "unsubscribe_storage": "You are going to unsubscribe ILLA Drive storage. After cancellation, starting from the next billing cycle, the storage capacity will be restored to 100MB. <0>Learn more</0>"
+        "unsubscribe_storage": "You are going to unsubscribe ILLA Drive storage. After cancellation, starting from the next billing cycle, the storage capacity will be restored to 100MB. <0>Learn more</0>",
+        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
       },
       "description": {
         "add_storage": "Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our user <0>Privacy Policy</0> and <1>Terms of Service</1>",
@@ -3301,7 +3360,11 @@
       "failed_to_change": "Subscription change failed",
       "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
       "failed_to_join_no_license": "Unable to join because team licenses are insufficient, please contact the admin.",
-      "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin."
+      "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin.",
+      "appsumo": {
+        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
+        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+      }
     },
     "modal": {
       "storage_insufficient_modal": {
