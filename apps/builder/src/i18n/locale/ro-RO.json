@@ -3281,13 +3281,13 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} licențe × {{remainDays}} zile / {{totalDays}} zile",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licențe",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licențe",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} licențe × {{remainDays}} zile / {{totalDays}} zile",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licențe",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licențe",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licențe",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licențe",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} zile / {{totalDays}} zile",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3322,8 +3322,8 @@
         "update_plan_remove_storage": "Veți elimina spațiul de stocare {{changeNum}} GB și vă veți actualiza perioada de abonament. <0>Aflați mai multe</0>",
         "unsubscribe_license": "Te vei dezabona de la ILLA Cloud Plus. După anulare, începând de la următorul ciclu de facturare, funcțiile Plus nu vor mai fi accesibile. <0>Află mai multe</0>",
         "unsubscribe_storage": "Veți dezabona stocarea ILLA Drive. După anulare, începând de la următorul ciclu de facturare, capacitatea de stocare va fi restabilită la 100MB. <0>Află mai multe</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Vă veți abona la un abonament lunar ILLA Cloud Plus. <0>Aflați mai multe</0>",
+        "subscribe_license_yearly": "Vă veți abona la un abonament anual ILLA Cloud Plus. <0>Aflați mai multe</0>"
       },
       "description": {
         "add_storage": "Calcularea regulilor folosind un abonament lunar de stocare ca exemplu: Să luăm în considerare un scenariu în care v-ați abonat inițial la 5 GB începând cu 14 martie, şi ciclul de facturare se întinde de la data de 14 a acestei luni la data de 13 a lunii următoare. Pe 10 mai decizi să adaugi 1 GB. În acel moment, au rămas 4 zile până la sfârşitul ciclului actual în 13 mai (care totalizează 30 de zile din 14 aprilie până în 13 mai). Pentru a calcula plata ajustată, vom deduce costul de 1 GB, care se ridică la aproximativ $0. 9, proporțional cu durata de 4 zile din ciclul de 30 de zile. Prin urmare, deducerea este estimată la 1 licență* $0. 9 / 30 zile * 4 zile, rezultând în aproximativ $0,132. Începând cu următorul ciclu de facturare, toate taxele de stocare vor fi consolidate și achitate împreună. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați utilizatorul nostru <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
@@ -3362,11 +3362,11 @@
       "failed_to_join_no_license": "Nu se poate alătura deoarece licențele pentru echipă sunt insuficiente, vă rugăm să contactați administratorul.",
       "storage_insufficient_modal": "Spațiul de stocare sau traficul acestei echipe nu este suficient. Vă rugăm să contactați administratorul.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+        "transfer": "Operația a eșuat. Acest utilizator este legat de abonamentul pe toată durata de viață. ",
+        "leave": "Operația a eșuat. Acest utilizator este legat de abonamentul pe toată durata de viață. "
       },
-      "no_license_operate_failed": "Due to insufficient licenses, the operation failed.",
-      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
+      "no_license_operate_failed": "Din cauza licenţelor insuficiente, operaţiunea a eşuat.",
+      "failed_to_invite_no_license": "Din cauza licenţelor insuficiente, unele invitaţii ale membrilor au eşuat."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3458,11 +3458,13 @@
       "cancel": "Anulează"
     },
     "advanced": {
-      "feature": "Remove watermark"
+      "feature": "Elimină filigran"
     },
     "redirect_page": {
-      "desc1": "You can invite members and enjoy the features for Plus users now. ",
-      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds..."
+      "desc1": "Vă mulțumim pentru achiziție. ILLA Cloud va continua să vă ofere mai multe caracteristici.",
+      "desc2": "Redirecționare către ILLA Cloud în {{time}} secunde...",
+      "title": "Plată reușită",
+      "button": "Înapoi la ILLA Cloud"
     }
   }
 }
