@@ -3281,13 +3281,13 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} licenser × {{remainDays}} dagar / {{totalDays}} dagar",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenser",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenser",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenser × {{remainDays}} dagar / {{totalDays}} dagar",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenser",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenser",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licenser",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licenser",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dagar / {{totalDays}} dagar",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3322,8 +3322,8 @@
         "update_plan_remove_storage": "Du kommer att ta bort {{changeNum}} GB lagring och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
         "unsubscribe_license": "Du kommer att avregistrera dig från ILLA Cloud Plus. Efter avbokning, från och med nästa faktureringscykel, kommer Plus-funktionerna inte längre vara tillgängliga. <0>Läs mer</0>",
         "unsubscribe_storage": "Du kommer att avsluta prenumerationen på ILLA Drive lagring. Efter avbokning, med början från nästa faktureringscykel, kommer lagringskapaciteten att återställas till 100MB. <0>Läs mer</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Du kommer att prenumerera på månadsabonnemanget ILLA Cloud Plus. <0>Läs mer</0>",
+        "subscribe_license_yearly": "Du kommer att prenumerera på ILLA Cloud Plus årsavgift. <0>Läs mer</0>"
       },
       "description": {
         "add_storage": "Beräkningsregler med hjälp av en månatlig lagringsprenumeration som exempel: Låt oss överväga ett scenario där du ursprungligen prenumererade på 5 GB från och med den 14 mars, och faktureringscykeln spänner från den 14 i denna månad till den 13 i nästa månad. Den 10 maj bestämmer du dig för att lägga till 1 GB. Vid det tillfället, det fanns 4 dagar kvar till slutet av den nuvarande cykeln den 13 maj (totalt 30 dagar från 14 april till 13 maj). För att beräkna den justerade betalningen, kommer vi att dra av kostnaden för 1 GB, vilket uppgår till cirka $ 0. 9, proportionellt till varaktigheten av 4 dagar inom 30-dagars cykel. Därför beräknas avdraget som 1 licens * $0. 9 / 30 dagar * 4 dagar, vilket resulterar i cirka 0,132 dollar. Från och med nästa faktureringscykel kommer alla lagringsavgifter att konsolideras och betalas tillsammans. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår användare <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
@@ -3362,11 +3362,11 @@
       "failed_to_join_no_license": "Det gick inte att gå med eftersom teamlicenser är otillräckliga, kontakta administratören.",
       "storage_insufficient_modal": "Lagring eller trafik i detta team är inte tillräckligt. Kontakta administratören.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+        "transfer": "Drift misslyckades. Denna användare är bunden till livstids prenumeration. ",
+        "leave": "Drift misslyckades. Denna användare är bunden till livstids prenumeration. "
       },
-      "no_license_operate_failed": "Due to insufficient licenses, the operation failed.",
-      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
+      "no_license_operate_failed": "På grund av otillräckliga licenser misslyckades åtgärden.",
+      "failed_to_invite_no_license": "På grund av otillräcklig licensiering har vissa medlemsinbjudningar misslyckats."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3458,11 +3458,13 @@
       "cancel": "Avbryt"
     },
     "advanced": {
-      "feature": "Remove watermark"
+      "feature": "Ta bort vattenstämpel"
     },
     "redirect_page": {
-      "desc1": "You can invite members and enjoy the features for Plus users now. ",
-      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds..."
+      "desc1": "Tack för ditt köp. ILLA Cloud kommer att fortsätta att förse dig med fler funktioner.",
+      "desc2": "Omdirigerar till ILLA Cloud om {{time}} sekunder...",
+      "title": "Betalning slutförd",
+      "button": "Tillbaka till ILLA Cloud"
     }
   }
 }
