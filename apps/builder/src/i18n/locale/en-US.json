@@ -3459,6 +3459,10 @@
     },
     "advanced": {
       "feature": "Remove watermark"
+    },
+    "redirect_page": {
+      "desc1": "You can invite members and enjoy the features for Plus users now. ",
+      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds..."
     }
   }
 }
