@@ -55,8 +55,8 @@ import {
   getAppInfo,
   getCurrentAppWaterMarkConfig,
 } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   fetchDeployApp,
@@ -207,13 +207,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     async (value: boolean, event: MouseEvent) => {
       if (appId) {
         event.stopPropagation()
-        await updateWaterMarkConfig(value, appId)
-        dispatch(
-          dashboardAppActions.modifyConfigDashboardAppReducer({
-            appId,
-            config: { waterMark: value },
-          }),
-        )
+        const res = await updateWaterMarkConfig(value, appId)
+        dispatch(appInfoActions.updateAppInfoReducer(res))
       }
     },
     [appId, dispatch],

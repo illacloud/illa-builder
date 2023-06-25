@@ -37,7 +37,7 @@ import {
   getAppInfo,
   getCurrentAppWaterMarkConfig,
 } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { updateWaterMarkConfig } from "@/services/apps"
 import { isCloudVersion } from "@/utils/typeHelper"
@@ -97,13 +97,8 @@ export const Deploy: FC = () => {
     async (value: boolean, event: MouseEvent) => {
       if (appId) {
         event.stopPropagation()
-        await updateWaterMarkConfig(value, appId)
-        dispatch(
-          dashboardAppActions.modifyConfigDashboardAppReducer({
-            appId,
-            config: { waterMark: value },
-          }),
-        )
+        const res = await updateWaterMarkConfig(value, appId)
+        dispatch(appInfoActions.updateAppInfoReducer(res))
       }
     },
     [appId, dispatch],

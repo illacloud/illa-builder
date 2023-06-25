@@ -217,7 +217,7 @@ export const updateWaterMarkConfig = async (
   waterMark: boolean,
   appID: string,
 ) => {
-  await builderRequest(
+  return builderRequest<DashboardApp>(
     {
       method: "PATCH",
       url: `/apps/${appID}/config`,
@@ -229,7 +229,6 @@ export const updateWaterMarkConfig = async (
       needTeamID: true,
     },
   )
-  return true
 }
 
 export const createApp = async (
