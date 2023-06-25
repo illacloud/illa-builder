@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} лицензии × {{remainDays}} дней / {{totalDays}} дней",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} лицензии",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} лицензии",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} лицензии × {{remainDays}} дней / {{totalDays}} дней",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} лицензии",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} лицензии",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} лицензии",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} лицензии",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} ГБ × {{remainDays}} дней / {{totalDays}} дней",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ × {{remainDays}} дней / {{totalDays}} дней",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ"
       },
       "button": {
         "unsubscribe": "Отписаться",
@@ -3322,8 +3322,8 @@
         "update_plan_remove_storage": "Вы собираетесь удалить {{changeNum}} ГБ хранилища и обновить период подписки. <0>Подробнее</0>",
         "unsubscribe_license": "Вы собираетесь отписаться от ILLA Cloud Plus. После отмены, начиная с следующего платежного цикла, плюс функции больше не будут доступны. <0>Подробнее</0>",
         "unsubscribe_storage": "Вы собираетесь отписаться от ILLA Drive хранения. После отмены, начиная со следующего расчетного цикла, вместимость склада будет восстановлена до 100МБ. <0>Подробнее</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Вы собираетесь подписаться на месячную подписку ILLA Cloud Plus. <0>Подробнее</0>",
+        "subscribe_license_yearly": "Вы собираетесь подписаться на ILLA Cloud Plus ежегодно. <0>Подробнее</0>"
       },
       "description": {
         "add_storage": "Правила расчета с использованием ежемесячной подписки на хранилище в качестве примера: Давайте рассмотрим сценарий, в котором изначально вы подписчились на 5 ГБ начиная с 14 марта, и биллинговый цикл распространяется от 14 месяца до 13 следующего месяца. 10 мая вы решили добавить 1 Гб. На тот момент осталось 4 дня до конца текущего цикла 13 мая (всего 30 дней с 14 по 13 мая). Для расчета скорректированного платежа мы вычитаем сумму в размере 1 ГБ, которая составляет примерно $0. Таким образом, вычеты оцениваются как 1 лицензия * $0. 9 / 30 дней * 4 дня, что составляет приблизительно 0,132 долл. США. Начиная со следующего платежного цикла все сборы за хранение будут объединены и оплачены вместе. Если вы хотите уменьшить лицензии или внести другие изменения в подписку, пожалуйста, обновите ее до начала следующего периода. Дополнительную информацию можно получить в разделе <0>Политика конфиденциальности</0> и <1>Условия обслуживания</1>",
@@ -3362,11 +3362,11 @@
       "failed_to_join_no_license": "Невозможно присоединиться, так как групповые лицензии недостаточны, пожалуйста, свяжитесь с администратором.",
       "storage_insufficient_modal": "Хранилище или трафик этой команды недостаточно. Обратитесь к администратору.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+        "transfer": "Операция не удалась. Этот пользователь связан с пожизненной подпиской. ",
+        "leave": "Операция не удалась. Этот пользователь связан с пожизненной подпиской. "
       },
-      "no_license_operate_failed": "Due to insufficient licenses, the operation failed.",
-      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
+      "no_license_operate_failed": "Из-за нехватки лицензий операция не удалась.",
+      "failed_to_invite_no_license": "Из-за недостаточной лицензии, некоторые приглашения членов не удались."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3458,11 +3458,13 @@
       "cancel": "Отмена"
     },
     "advanced": {
-      "feature": "Remove watermark"
+      "feature": "Удалить водяной знак"
     },
     "redirect_page": {
-      "desc1": "You can invite members and enjoy the features for Plus users now. ",
-      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds..."
+      "desc1": "Спасибо за покупку. ILLA Cloud продолжит предоставлять вам больше функций.",
+      "desc2": "Перенаправление в облако ILLA через {{time}} секунд...",
+      "title": "Платеж выполнен",
+      "button": "Вернуться в облако ILLA"
     }
   }
 }
