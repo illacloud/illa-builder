@@ -3281,13 +3281,13 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} ライセンス× {{remainDays}} 日 / {{totalDays}} 日",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} ライセンス",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} ライセンス× {{remainDays}} 日 / {{totalDays}} 日",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} ライセンス",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} 日 / {{totalDays}} 日",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3362,11 +3362,11 @@
       "failed_to_join_no_license": "チームライセンスが不足しているため参加できません。管理者に連絡してください。",
       "storage_insufficient_modal": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+        "transfer": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 ",
+        "leave": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 "
       },
-      "no_license_operate_failed": "Due to insufficient licenses, the operation failed.",
-      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
+      "no_license_operate_failed": "ライセンス不足のため操作に失敗しました。",
+      "failed_to_invite_no_license": "ライセンス不足のため、一部のメンバー招待に失敗しました。"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3458,11 +3458,13 @@
       "cancel": "キャンセル"
     },
     "advanced": {
-      "feature": "Remove watermark"
+      "feature": "透かしを削除"
     },
     "redirect_page": {
-      "desc1": "You can invite members and enjoy the features for Plus users now. ",
-      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds..."
+      "desc1": "ご購入ありがとうございます。ILLA Cloudは引き続き多くの機能を提供します。",
+      "desc2": "{{time}} 秒後に ILLA Cloud にリダイレクトしています...",
+      "title": "支払いが完了しました",
+      "button": "ILLAクラウドに戻る"
     }
   }
 }
