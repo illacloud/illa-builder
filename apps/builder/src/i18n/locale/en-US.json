@@ -3461,8 +3461,10 @@
       "feature": "Remove watermark"
     },
     "redirect_page": {
-      "desc1": "You can invite members and enjoy the features for Plus users now. ",
-      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds..."
+      "desc1": "Thank you for your purchase. ILLA Cloud will continue to provide you with more features.",
+      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds...",
+      "title": "Payment successful",
+      "button": "Back to ILLA Cloud"
     }
   }
 }
