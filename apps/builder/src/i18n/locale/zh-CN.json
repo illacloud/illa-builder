@@ -3362,11 +3362,11 @@
       "failed_to_join_no_license": "无法加入，因为团队许可证不足，请联系管理员。",
       "storage_insufficient_modal": "存储空间或流量余额不足，请联系管理员。",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
+        "transfer": "操作失败。此用户已绑定到终身订阅。 ",
+        "leave": "操作失败。此用户已绑定到终身订阅。 "
       },
-      "no_license_operate_failed": "Due to insufficient licenses, the operation failed.",
-      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
+      "no_license_operate_failed": "由于许可证不足，操作失败。",
+      "failed_to_invite_no_license": "由于许可证不足，一些成员邀请失败。"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3458,11 +3458,13 @@
       "cancel": "取消"
     },
     "advanced": {
-      "feature": "Remove watermark"
+      "feature": "移除水标"
     },
     "redirect_page": {
-      "desc1": "You can invite members and enjoy the features for Plus users now. ",
-      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds..."
+      "desc1": "感谢您的购买。ILLA Cloud将持续为您提供更多功能",
+      "desc2": "在 {{time}} 秒后重定向到 ILLA Cloud...",
+      "title": "支付成功",
+      "button": "返回ILLA Cloud"
     }
   }
 }
