@@ -3367,7 +3367,8 @@
       },
       "no_license_operate_failed": "Door onvoldoende licenties is de bewerking mislukt.",
       "failed_to_invite_no_license": "Vanwege onvoldoende licentie, zijn sommige uitnodigingen voor leden mislukt.",
-      "error_subscribe": "Failed to subscribe. Please try again later."
+      "error_subscribe": "Failed to change plan. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
