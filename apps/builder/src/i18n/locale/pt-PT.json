@@ -3366,7 +3366,8 @@
         "leave": "Falha ao operar. Este usuário está ligado à assinatura vitalícia. "
       },
       "no_license_operate_failed": "Devido a licenças insuficientes, a operação falhou.",
-      "failed_to_invite_no_license": "Devido ao licenciamento insuficiente, alguns convites de membros falharam."
+      "failed_to_invite_no_license": "Devido ao licenciamento insuficiente, alguns convites de membros falharam.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
