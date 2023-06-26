@@ -12,6 +12,7 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
+import { ERROR_FLAG } from "@/api/errorFlag"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
 import { MemberListContext } from "@/illa-public-component/MemberList/context/MemberListContext"
 import {
@@ -46,6 +47,7 @@ import {
   changeTeamMembersRole,
   setInviteLinkEnabled,
   updateMembers,
+  updateTeamsInfo,
 } from "@/services/team"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
@@ -105,10 +107,50 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     teamMemberID: string,
     userRole: USER_ROLE,
   ) => {
-    return changeTeamMembersRole(teamMemberID, userRole).then((res) => {
-      updateMembers()
-      return res
-    })
+    return changeTeamMembersRole(teamMemberID, userRole)
+      .then((res) => {
+        if (userRole === USER_ROLE.OWNER) {
+          message.success({
+            content: t("user_management.mes.transfer_suc"),
+          })
+          updateTeamsInfo(teamIdentifier)
+        } else {
+          message.success({
+            content: t("user_management.mes.change_role_suc"),
+          })
+        }
+        updateMembers()
+        return res
+      })
+      .catch((error) => {
+        if (isILLAAPiError(error)) {
+          switch (error.data.errorFlag) {
+            case ERROR_FLAG.ERROR_FLAG_ACCESS_DENIED:
+            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_INCREASE_TEAM_MEMBER_DUE_TO_NO_BALANCE:
+              message.error({
+                content: t("user_management.mes.change_role_fail"),
+              })
+              break
+            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_UPDATE_TEAM_MEMBER_ROLE_BECAUSE_APPSUMO_BUYER:
+              message.error({
+                content: t("billing.message.appsumo.transfer"),
+              })
+              break
+            default:
+              if (userRole === USER_ROLE.OWNER) {
+                message.error({
+                  content: t("user_management.mes.transfer_fail"),
+                })
+              } else {
+                message.error({
+                  content: t("user_management.mes.change_role_fail"),
+                })
+              }
+              break
+          }
+        }
+        return false
+      })
   }
 
   const closeInviteModal = () => {
@@ -441,6 +483,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
       >
         <MemberListContext.Provider
           value={{
+            isCloudVersion,
             currentTeamLicense:
               teamInfo?.currentTeamLicense ?? ({} as SubscribeInfo),
             totalTeamLicense:
