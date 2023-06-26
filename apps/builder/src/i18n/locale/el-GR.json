@@ -3366,7 +3366,8 @@
         "leave": "Η λειτουργία απέτυχε. Αυτός ο χρήστης είναι δεσμευμένος στη συνδρομή για όλη τη διάρκεια της ζωής. "
       },
       "no_license_operate_failed": "Λόγω ανεπαρκούς άδειας, η λειτουργία απέτυχε.",
-      "failed_to_invite_no_license": "Λόγω ανεπαρκούς αδειοδότησης, κάποιες προσκλήσεις μέλη έχουν αποτύχει."
+      "failed_to_invite_no_license": "Λόγω ανεπαρκούς αδειοδότησης, κάποιες προσκλήσεις μέλη έχουν αποτύχει.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
