@@ -6,10 +6,10 @@ import {
 } from "@/illa-public-component/MemberList/interface"
 
 export enum CAPACITY_TYPE {
-  LICENSE = 1, // 团队坐席
-  DRIVE_VOLUME, // drive 容量
-  DRIVE_TRAFFIC, // drive 流量
-  POSTGRES_DATABASE_RECORD_VOLUME, // 数据库条目总数
+  LICENSE = 1,
+  DRIVE_VOLUME,
+  DRIVE_TRAFFIC,
+  POSTGRES_DATABASE_RECORD_VOLUME,
 }
 
 export enum PurchaseItem {
@@ -19,12 +19,12 @@ export enum PurchaseItem {
 export interface LicenseSubscribeInfo extends SubscribeInfo {}
 
 export interface DriveSubscribeInfo extends SubscribeInfo {
-  volume: number // 存储容量, 单位为字节,
-  balance: number // 存储容量剩余, 单位为字节
+  volume: number // Storage capacity, in bytes
+  balance: number // Remaining storage capacity, in bytes
 }
 
 export interface TrafficSubscribeInfo {
-  balance: number // 存储流量剩余, 单位为字节
+  balance: number // Remaining storage traffic, in bytes
 }
 
 export interface TeamSubscription {
