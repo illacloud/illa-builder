@@ -3366,7 +3366,8 @@
         "leave": "Operazione non riuscita. Questo utente è associato alla sottoscrizione a vita. "
       },
       "no_license_operate_failed": "A causa di licenze insufficienti, l'operazione non è riuscita.",
-      "failed_to_invite_no_license": "A causa di una licenza insufficiente, alcuni inviti dei membri non sono riusciti."
+      "failed_to_invite_no_license": "A causa di una licenza insufficiente, alcuni inviti dei membri non sono riusciti.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
