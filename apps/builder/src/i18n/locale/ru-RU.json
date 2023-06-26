@@ -3367,7 +3367,8 @@
       },
       "no_license_operate_failed": "Из-за нехватки лицензий операция не удалась.",
       "failed_to_invite_no_license": "Из-за недостаточной лицензии, некоторые приглашения членов не удались.",
-      "error_subscribe": "Failed to subscribe. Please try again later."
+      "error_subscribe": "Failed to change plan. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
