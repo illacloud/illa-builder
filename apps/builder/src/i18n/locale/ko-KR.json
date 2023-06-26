@@ -3359,14 +3359,15 @@
       "successfully_changed": "Subscription changed successfully. It will take effect in a few minutes",
       "failed_to_change": "Subscription change failed",
       "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
-      "failed_to_join_no_license": "Unable to join because team licenses are insufficient, please contact the admin.",
+      "failed_to_join_no_license": "Unable to join due to insufficient licenses ",
       "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin.",
       "appsumo": {
         "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
         "leave": "Operate failed. This user is bound to the lifetime subscription. "
       },
       "no_license_operate_failed": "Due to subscription exception, operation failed.",
-      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed."
+      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
