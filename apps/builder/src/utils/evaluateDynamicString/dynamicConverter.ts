@@ -2,7 +2,7 @@ import { merge } from "lodash"
 import { ILLAEditorRuntimePropsCollectorInstance } from "../executionTreeHelper/runtimePropsCollector"
 import { evalScript } from "./codeSandbox"
 import { EVALUATION_TYPE } from "./interface"
-import { isDynamicString } from "./utils"
+import { isDynamicStringSnippet } from "./utils"
 import { substituteDynamicBindingWithValues } from "./valueConverter"
 
 export const getStringSnippets = (dynamicString: string): string[] => {
@@ -49,11 +49,11 @@ export const getSnippets = (
     return { stringSnippets: [], jsSnippets: [] }
   }
   const sanitisedString = dynamicString.trim()
-  let stringSnippets, jsSnippets: any
+  let stringSnippets: string[], jsSnippets: string[]
   stringSnippets = getStringSnippets(sanitisedString)
   jsSnippets = stringSnippets.map((segment) => {
     const length = segment.length
-    const matches = isDynamicString(segment)
+    const matches = isDynamicStringSnippet(segment)
     if (matches) {
       return segment.substring(2, length - 2)
     }

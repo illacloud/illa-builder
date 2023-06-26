@@ -1,6 +1,6 @@
 import { getDynamicValue } from "./dynamicConverter"
 import { EVALUATION_TYPE } from "./interface"
-import { isDynamicString } from "./utils"
+import { hasDynamicStringSnippet } from "./utils"
 
 export const evaluateDynamicString = (
   keyInDataTree: string,
@@ -8,7 +8,7 @@ export const evaluateDynamicString = (
   dataTree: Record<string, any>,
   evaluationType: EVALUATION_TYPE = EVALUATION_TYPE.TEMPLATE,
 ) => {
-  const requiresEval = isDynamicString(dynamicString)
+  const requiresEval = hasDynamicStringSnippet(dynamicString)
   let evalResult
   if (requiresEval) {
     try {

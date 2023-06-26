@@ -1,5 +1,6 @@
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
+import { AirtableConfigElement } from "@/page/App/components/Actions/AirtableConfigElement"
 import { AppWriteConfigElement } from "@/page/App/components/Actions/AppwriteConfigElement"
 import { ClickhouseConfigElement } from "@/page/App/components/Actions/ClickhouseConfigElement"
 import { CouchDBConfigElement } from "@/page/App/components/Actions/CouchDBConfigElement"
@@ -20,7 +21,6 @@ import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfi
 import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 import { SMTPConfigElement } from "@/page/App/components/Actions/SMTPConfigElement"
 import { SnowflakeConfigElement } from "@/page/App/components/Actions/SnowflakeConfigElement"
-import { UpstashConfigElement } from "@/page/App/components/Actions/UpstashConfigElement"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { RootState } from "@/store"
 
@@ -78,6 +78,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "redis":
         return (
           <RedisConfigElement
+            type="redis"
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}
@@ -85,7 +86,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         )
       case "upstash":
         return (
-          <UpstashConfigElement
+          <RedisConfigElement
+            type="upstash"
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}
@@ -135,6 +137,8 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return <AppWriteConfigElement {...configElementProps} />
       case "couchdb":
         return <CouchDBConfigElement {...configElementProps} />
+      case "airtable":
+        return <AirtableConfigElement {...configElementProps} />
       default:
         return null
     }

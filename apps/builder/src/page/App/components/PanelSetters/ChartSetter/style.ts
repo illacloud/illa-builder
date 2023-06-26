@@ -14,3 +14,8 @@ export const chartColorLabelStyle = css`
   align-items: center;
   gap: 8px;
 `
+
+export const chatOptionContainerStyle = css`
+  display: flex;
+  align-items: center;
+`

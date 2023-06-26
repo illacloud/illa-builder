@@ -1,5 +1,10 @@
+import { AirtableResource } from "@/redux/resource/airtableResource"
 import { AppWriteResource } from "@/redux/resource/appWriteResource"
-import { ClickhouseResource } from "@/redux/resource/clickhouseResource"
+import {
+  ClickhouseResource,
+  ClickhouseSSL,
+  ClickhouseSSLInitial,
+} from "@/redux/resource/clickhouseResource"
 import { CouchdbResource } from "@/redux/resource/couchdbResource"
 import { DynamoDBResource } from "@/redux/resource/dynamoResource"
 import { FirebaseResource } from "@/redux/resource/firebaseResource"
@@ -7,7 +12,11 @@ import { GoogleSheetResource } from "@/redux/resource/googleSheetResource"
 import { GraphQLAuth, GraphQLResource } from "@/redux/resource/graphqlResource"
 import { HuggingFaceEndpointResource } from "@/redux/resource/huggingFaceEndpoint"
 import { HuggingFaceResource } from "@/redux/resource/huggingFaceResource"
-import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
+import {
+  MicrosoftSqlResource,
+  MicrosoftSqlSSL,
+  MicrosoftSqlSSLInitial,
+} from "@/redux/resource/microsoftSqlResource"
 import { NeonResource } from "@/redux/resource/neonResource"
 import { OracleResource } from "@/redux/resource/oracleResource"
 import { SMTPResource } from "@/redux/resource/smtpResource"
@@ -48,6 +57,7 @@ export type ResourceType =
   | "clickhouse"
   | "couchdb"
   | "upstash"
+  | "airtable"
 
 export type ResourceContent =
   | HuggingFaceResource
@@ -70,6 +80,7 @@ export type ResourceContent =
   | RedisResource
   | MongoDbResource<MongoDbConfig>
   | SnowflakeResource<SnowflakeAuthenticationType>
+  | AirtableResource
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string
@@ -98,34 +109,6 @@ export interface DbSSL {
   serverCert: string
   clientKey: string
   clientCert: string
-}
-
-export interface ClickhouseSSL {
-  ssl: boolean
-  selfSigned: boolean
-  privateKey: string
-  clientCert: string
-  caCert: string
-}
-
-export interface MicrosoftSqlSSL extends Omit<ClickhouseSSL, "selfSigned"> {
-  verificationMode: "full" | "skip"
-}
-
-const MicrosoftSqlSSLInitial: MicrosoftSqlSSL = {
-  ssl: false,
-  privateKey: "",
-  clientCert: "",
-  caCert: "",
-  verificationMode: "full",
-}
-
-const ClickhouseSSLInitial: ClickhouseSSL = {
-  ssl: false,
-  selfSigned: false,
-  privateKey: "",
-  clientCert: "",
-  caCert: "",
 }
 
 const DbSSLInitial: DbSSL = {

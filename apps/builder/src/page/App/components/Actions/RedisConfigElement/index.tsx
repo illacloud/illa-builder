@@ -16,7 +16,7 @@ import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
 } from "@/page/App/components/Actions/api"
-import { ConfigElementProps } from "@/page/App/components/Actions/interface"
+import { RedisLikeConfigElementProps } from "@/page/App/components/Actions/interface"
 import {
   applyConfigItemLabelText,
   configItemTip,
@@ -39,8 +39,8 @@ import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
 
-export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
+  const { onBack, resourceId, onFinished, type } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
@@ -75,14 +75,10 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
     [showAlert],
   )
 
-  const handleDocLinkClick = () => {
-    window.open("https://www.illacloud.com/docs/illa-cli", "_blank")
-  }
-
   const handleConnectionTest = useCallback(() => {
     track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
       element: "resource_configure_test",
-      parameter5: "redis",
+      parameter5: type,
     })
     const data = getValues()
     onActionConfigElementTest(
@@ -95,17 +91,17 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
         databasePassword: data.databasePassword,
         ssl: sslOpenWatch,
       },
-      "redis",
+      type,
       setTestLoading,
     )
-  }, [getValues, sslOpenWatch, track])
+  }, [getValues, sslOpenWatch, track, type])
 
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
         resourceId,
-        "redis",
+        type,
         onFinished,
         setSaving,
       )}
@@ -187,7 +183,12 @@ export const RedisConfigElement: FC<ConfigElementProps> = (props) => {
                       components={[
                         <TextLink
                           key="editor.action.form.tips.connect_to_local.cloud"
-                          onClick={handleDocLinkClick}
+                          onClick={() => {
+                            window.open(
+                              "https://www.illacloud.com/docs/illa-cli",
+                              "_blank",
+                            )
+                          }}
                         />,
                       ]}
                     />

@@ -27,10 +27,7 @@ import {
   ChartWidgetProps,
   WrappedChartProps,
 } from "@/widgetLibrary/ChartWidget/interface"
-import {
-  formatData,
-  rotateGroupByData,
-} from "@/widgetLibrary/ChartWidget/utils"
+import { formatData } from "@/widgetLibrary/ChartWidget/utils"
 
 ChartJS.register(
   /** Bar chart**/
@@ -204,10 +201,6 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
     return []
   }, [realDataSourceObject, xAxis])
 
-  const formatDataSources = useMemo(() => {
-    return groupByFunc(realDataSourceArray, xAxis)
-  }, [realDataSourceArray, xAxis])
-
   const realDatasets: ChartDataset[] = useMemo(() => {
     if (!Array.isArray(datasets)) return []
     const result = datasets
@@ -228,35 +221,39 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
         }
         let data: number[] = []
         if (!groupBy || chartType === "pie") {
+          const formatDataSources = groupByFunc(realDataSourceArray, xAxis)
           data = formatData(formatDataSources, datasetValues, aggregationMethod)
         } else {
-          let keys: string[] = []
-          const r1 = Object.keys(formatDataSources).map((key) => {
-            const value = formatDataSources[key]
-            const groupData = groupByFunc(value, groupBy)
-            keys.push(...Object.keys(groupData))
-            return formatData(groupData, datasetValues, aggregationMethod)
+          const groupedData = groupByFunc(realDataSourceArray, groupBy)
+          const relationData: Record<string, any> = {}
+          Object.keys(groupedData).forEach((key) => {
+            const value = groupedData[key]
+            const groupData = groupByFunc(value, xAxis)
+            const formatDataArray = formatData(
+              groupData,
+              datasetValues,
+              aggregationMethod,
+            )
+            realXAxis.forEach((x) => {
+              if (relationData[key] == undefined) relationData[key] = {}
+              if (groupData[x] == undefined) relationData[key][x] = 0
+              else relationData[key][x] = formatDataArray.shift()
+            })
           })
-          const rotate = rotateGroupByData(r1)
-          let point = 0
+
           const groupByColor = get(
             CHART_COLOR_TYPE_CONFIG,
             color,
             CHART_COLOR_TYPE_CONFIG["illa-preset"],
           ) as string[]
-          if (rotate.length === 1) {
+          return Object.keys(relationData).map((k, i) => {
+            const value = relationData[k]
             return {
-              label: `${datasetName}`,
-              data: rotate[0],
-              type,
-              borderColor: groupByColor[0],
-              backgroundColor: groupByColor[0],
-            }
-          }
-          return rotate.map((d, i) => {
-            return {
-              label: `${datasetName}(${keys[point++]})`,
-              data: d,
+              label:
+                Object.keys(groupedData).length > 1
+                  ? `${datasetName}(${k})`
+                  : datasetName,
+              data: Object.values(value) as number[],
               type,
               borderColor: groupByColor[i % groupByColor.length],
               backgroundColor: groupByColor[i % groupByColor.length],
@@ -264,7 +261,6 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
           })
         }
 
-        data = formatData(formatDataSources, datasetValues, aggregationMethod)
         return {
           label: datasetName,
           data: data,
@@ -279,7 +275,7 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
     } else {
       return result
     }
-  }, [chartType, datasets, formatDataSources, groupBy])
+  }, [chartType, datasets, groupBy, realDataSourceArray, realXAxis, xAxis])
 
   return (
     <Chart

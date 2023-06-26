@@ -3,7 +3,7 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "../validationFactory"
 
@@ -37,7 +37,7 @@ export const generateDynamicAttrPaths = (
         parentAttr ? `${parentAttr}.${key}` : `${key}`,
       )
     }
-    if (isDynamicString(value)) {
+    if (hasDynamicStringSnippet(value)) {
       const attrPath = parentAttr ? parentAttr + "." + key : key
       dynamicAttrPaths.push(attrPath)
     }

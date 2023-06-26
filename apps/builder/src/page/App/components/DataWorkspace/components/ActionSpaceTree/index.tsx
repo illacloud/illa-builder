@@ -35,7 +35,7 @@ export const ActionSpaceTree: FC = () => {
         actionExecutionArray.length
       })`}
       onIllaFocus={() => {
-        FocusManager.switchFocus("dataWorkspace_action")
+        FocusManager.switchFocus("data_action")
       }}
       destroyChildrenWhenClose
     >

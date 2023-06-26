@@ -78,7 +78,6 @@ export async function onCopyActionItem(action: ActionItem<ActionContent>) {
 export async function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const isGuideMode = getIsILLAGuideMode(store.getState())
   const { actionId, displayName } = action
-
   if (isGuideMode) {
     DisplayNameGenerator.removeDisplayName(displayName)
     store.dispatch(actionActions.removeActionItemReducer(displayName))
@@ -388,6 +387,14 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
         host: host.trim(),
         port: port.toString(),
         ssl: neonSSLInitialValue,
+      }
+    }
+    case "airtable": {
+      return {
+        authenticationType: "personalToken",
+        authenticationConfig: {
+          token: data.token,
+        },
       }
     }
   }

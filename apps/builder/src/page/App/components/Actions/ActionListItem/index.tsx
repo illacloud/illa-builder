@@ -1,4 +1,5 @@
-import { forwardRef, useCallback, useEffect, useState } from "react"
+import { isEqual } from "lodash"
+import { forwardRef, useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -87,9 +88,12 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
       }
     }, [isRunning, dealData])
 
-    const isChanged =
-      selectedAction?.actionId === action.actionId &&
-      JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
+    const isChanged = useMemo(() => {
+      return (
+        selectedAction?.actionId === action.actionId &&
+        !isEqual(selectedAction, cachedAction)
+      )
+    }, [action.actionId, cachedAction, selectedAction])
 
     const [editName, setEditName] = useState(false)
     const [changing, setChanging] = useState(false)

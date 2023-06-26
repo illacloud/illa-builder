@@ -97,7 +97,7 @@ export const ComponentSpaceTree: FC = () => {
         `(${componentTotalNumber})`
       }
       onIllaFocus={() => {
-        FocusManager.switchFocus("dataWorkspace_component")
+        FocusManager.switchFocus("data_component")
       }}
       destroyChildrenWhenClose
     >

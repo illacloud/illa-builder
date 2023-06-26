@@ -12,6 +12,7 @@ import { CHART_PRESET_COLOR } from "@/page/App/components/PanelSetters/ChartSett
 import {
   chartTypeIconCss,
   chartTypeStringCss,
+  chatOptionContainerStyle,
 } from "@/page/App/components/PanelSetters/ChartSetter/style"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import {
@@ -24,18 +25,18 @@ import { ChartTypeSelectSetterProps } from "./interface"
 const typeOptions = [
   {
     label: (
-      <span>
+      <div css={chatOptionContainerStyle}>
         <BarChartIcon css={chartTypeIconCss} />
         <span css={chartTypeStringCss}>
           {i18n.t("editor.inspect.setter_content.chart_type.bar")}
         </span>
-      </span>
+      </div>
     ),
     value: "bar",
   },
   {
     label: (
-      <div>
+      <div css={chatOptionContainerStyle}>
         <LineChartIcon css={chartTypeIconCss} />
         <span css={chartTypeStringCss}>
           {i18n.t("editor.inspect.setter_content.chart_type.line")}
@@ -46,7 +47,7 @@ const typeOptions = [
   },
   {
     label: (
-      <div>
+      <div css={chatOptionContainerStyle}>
         <ScatterPlotIcon css={chartTypeIconCss} />
         <span css={chartTypeStringCss}>
           {i18n.t("editor.inspect.setter_content.chart_type.scatterplot")}
@@ -57,7 +58,7 @@ const typeOptions = [
   },
   {
     label: (
-      <div>
+      <div css={chatOptionContainerStyle}>
         <PieChartIcon css={chartTypeIconCss} />
         <span css={chartTypeStringCss}>
           {i18n.t("editor.inspect.setter_content.chart_type.pie")}
