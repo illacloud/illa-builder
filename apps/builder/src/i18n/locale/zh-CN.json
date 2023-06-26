@@ -2977,7 +2977,7 @@
   "launch": "运行",
   "homepage": {
     "message": {
-      "join_failed": "未成功加入团队：您登录的邮箱不是被邀请的邮箱"
+      "join_failed": "您登录的邮箱不是被邀请的邮箱"
     }
   },
   "image_exceed": "图片大小不能超过500KB",
@@ -3359,14 +3359,15 @@
       "successfully_changed": "订阅更改成功，几分钟后将会生效",
       "failed_to_change": "订阅更改失败",
       "unsubscription_suc": "订阅已成功取消，并将在下一阶段生效",
-      "failed_to_join_no_license": "无法加入，因为团队许可证不足，请联系管理员。",
+      "failed_to_join_no_license": "由于团队许可证不足无法加入",
       "storage_insufficient_modal": "存储空间或流量余额不足，请联系管理员。",
       "appsumo": {
         "transfer": "操作失败。此用户已绑定到终身订阅。 ",
         "leave": "操作失败。此用户已绑定到终身订阅。 "
       },
       "no_license_operate_failed": "由于订阅异常，操作失败。",
-      "failed_to_invite_no_license": "由于许可证不足，一些成员邀请失败。"
+      "failed_to_invite_no_license": "由于许可证不足，一些成员邀请失败。",
+      "error_subscribe": "订阅成功，请稍后重试"
     },
     "modal": {
       "storage_insufficient_modal": {
