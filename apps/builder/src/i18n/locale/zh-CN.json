@@ -3365,7 +3365,7 @@
         "transfer": "操作失败。此用户已绑定到终身订阅。 ",
         "leave": "操作失败。此用户已绑定到终身订阅。 "
       },
-      "no_license_operate_failed": "由于许可证不足，操作失败。",
+      "no_license_operate_failed": "由于订阅异常，操作失败。",
       "failed_to_invite_no_license": "由于许可证不足，一些成员邀请失败。"
     },
     "modal": {
@@ -3410,7 +3410,7 @@
         "owner": "您的订阅已过期。要继续使用，请更新它。",
         "others": "您的帐户已被禁用，因为团队的订阅已经过期。",
         "your_subscription_ha_not_owner": "许可证不足",
-        "all_members_except_f_not_owner": "您团队的许可证不足。请与您的团队所有者联系",
+        "all_members_except_f_not_owner": "您团队的订阅异常。请与您的团队所有者联系",
         "upgrade_not_owner": "知道了"
       },
       "blank_page": {
