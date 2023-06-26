@@ -3366,7 +3366,8 @@
         "leave": "L'opération a échoué. Cet utilisateur est lié à l'abonnement à vie. "
       },
       "no_license_operate_failed": "En raison de licences insuffisantes, l'opération a échoué.",
-      "failed_to_invite_no_license": "En raison de licences insuffisantes, certaines invitations de membres ont échoué."
+      "failed_to_invite_no_license": "En raison de licences insuffisantes, certaines invitations de membres ont échoué.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
