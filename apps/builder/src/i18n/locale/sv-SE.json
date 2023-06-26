@@ -3366,7 +3366,8 @@
         "leave": "Drift misslyckades. Denna användare är bunden till livstids prenumeration. "
       },
       "no_license_operate_failed": "På grund av otillräckliga licenser misslyckades åtgärden.",
-      "failed_to_invite_no_license": "På grund av otillräcklig licensiering har vissa medlemsinbjudningar misslyckats."
+      "failed_to_invite_no_license": "På grund av otillräcklig licensiering har vissa medlemsinbjudningar misslyckats.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
