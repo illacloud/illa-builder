@@ -19,8 +19,14 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const shortcut = useContext(ShortCutContext)
 
   const handleClickDropListItem = useCallback(() => {
-    const defaultProps = widgetBuilder(componentType).config.defaults
+    const defaults = widgetBuilder(componentType)?.config?.defaults
     if (!widgetDisplayName) return
+    let defaultProps: unknown = defaults
+    if (typeof defaults === "function") {
+      defaultProps = defaults()
+    }
+    if (typeof defaultProps !== "object") return
+
     const targetNode = searchDSLByDisplayName(
       widgetDisplayName,
     ) as ComponentNode

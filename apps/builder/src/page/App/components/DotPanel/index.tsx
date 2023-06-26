@@ -30,9 +30,9 @@ import {
   runActionWithExecutionResult,
 } from "@/utils/action/runAction"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { RenderPage } from "./components/Page/renderPage"
 import { MouseHoverProvider } from "./context/mouseHoverContext"
 import { MouseMoveProvider } from "./context/mouseMoveContext"
-import { RenderPage } from "./renderPage"
 
 export const DotPanel: FC = () => {
   const canvasTree = useSelector(getCanvas) as RootComponentNode

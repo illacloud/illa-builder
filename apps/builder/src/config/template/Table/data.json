@@ -293,9 +293,7 @@
                                     "y": 1,
                                     "z": 0,
                                     "props": {
-                                      "$dynamicAttrPaths": [
-                                        "dataSourceJS"
-                                      ],
+                                      "$dynamicAttrPaths": ["dataSourceJS"],
                                       "chartTitle": "How much would you expect to pay for the product",
                                       "chartType": "bar",
                                       "dataSourceJS": "{{list_all.data}}",
@@ -335,9 +333,7 @@
                                     "y": 1,
                                     "z": 0,
                                     "props": {
-                                      "$dynamicAttrPaths": [
-                                        "dataSourceJS"
-                                      ],
+                                      "$dynamicAttrPaths": ["dataSourceJS"],
                                       "chartTitle": "Are you familiar with the product?",
                                       "chartType": "pie",
                                       "dataSourceJS": "{{list_all.data}}",
@@ -842,11 +838,7 @@
                                 {
                                   "available": "1",
                                   "familiar": "Yes, I have seen it.",
-                                  "feature": [
-                                    "Feature 1",
-                                    "Feature3",
-                                    "Other"
-                                  ],
+                                  "feature": ["Feature 1", "Feature3", "Other"],
                                   "how_much_pay": "5000",
                                   "how_often": "Option 2",
                                   "id": "2",
@@ -1453,9 +1445,7 @@
                                 {
                                   "available": "0",
                                   "familiar": "Maybe, Im not sure.",
-                                  "feature": [
-                                    "Feature 1"
-                                  ],
+                                  "feature": ["Feature 1"],
                                   "how_much_pay": "7000",
                                   "how_often": "Option 1",
                                   "id": "4",
@@ -1892,9 +1882,7 @@
                                 }
                               ],
                               "mode": "vertical",
-                              "selectedValues": [
-                                "subMenu1"
-                              ]
+                              "selectedValues": ["subMenu1"]
                             },
                             "panelConfig": null
                           }
@@ -2044,9 +2032,7 @@
                   "viewDisplayName": "leftSection1-leftSectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "leftSection1-leftSectionContainer1"
-              ]
+              "viewSortedKey": ["leftSection1-leftSectionContainer1"]
             },
             "panelConfig": null
           }
@@ -2064,25 +2050,25 @@
         "y": -1,
         "z": 0,
         "props": {
-          "bodyColumns": 64,
+          "bodyColumns": 32,
           "bottomHeight": 0,
           "canvasSize": "fixed",
           "canvasWidth": 1440,
-          "footerColumns": 64,
+          "footerColumns": 32,
           "hasFooter": false,
           "hasHeader": false,
           "hasLeft": true,
           "hasRight": false,
-          "headerColumns": 64,
+          "headerColumns": 32,
           "isFooterFixed": true,
           "isHeaderFixed": true,
           "isLeftFixed": true,
           "isRightFixed": true,
           "layout": "Custom",
-          "leftColumns": 16,
+          "leftColumns": 32,
           "leftPosition": "BOTTOM",
           "leftWidth": 263,
-          "rightColumns": 16,
+          "rightColumns": 32,
           "rightPosition": "NONE",
           "rightWidth": 0,
           "showLeftFoldIcon": false,
@@ -2106,9 +2092,7 @@
     "z": 0,
     "props": {
       "currentPageIndex": 0,
-      "pageSortedKey": [
-        "page1"
-      ]
+      "pageSortedKey": ["page1"]
     },
     "panelConfig": null
   },

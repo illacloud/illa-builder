@@ -222,3 +222,4 @@ export const TimePickerWidget: FC<TimePickerWidgetProps> = (props) => {
 }
 
 TimePickerWidget.displayName = "TimePickerWidget"
+export default TimePickerWidget

@@ -380,3 +380,4 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
   )
 }
 UploadWidget.displayName = "UploadWidget"
+export default UploadWidget

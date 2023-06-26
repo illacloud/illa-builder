@@ -216,3 +216,4 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   )
 }
 DateRangeWidget.displayName = "DateRangeWidget"
+export default DateRangeWidget

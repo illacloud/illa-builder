@@ -1,31 +1,50 @@
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
-import { FC, memo, useCallback, useMemo } from "react"
+import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
-import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
+import {
+  getCanvas,
+  getContainerListDisplayNameMappedChildrenNodeDisplayName,
+  searchDsl,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
+  getIsDragging,
+  getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import store, { RootState } from "@/store"
+import { RootState } from "@/store"
+import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
-import { MIN_HEIGHT } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/config"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { MIN_HEIGHT } from "./config"
 
 export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
-    const { componentNode, blockColumns } = props
+    const { columnNumber, displayName, widgetType, parentNodeDisplayName } =
+      props
+
     const displayNameMapProps = useSelector(getExecutionResult)
-    const { displayName, type, w, h, unitW, unitH, childrenNode, parentNode } =
-      componentNode
+    const layoutInfo = useSelector<RootState, LayoutInfo>((rootState) => {
+      const layoutInfos = getExecutionWidgetLayoutInfo(rootState)
+      return layoutInfos[displayName].layoutInfo
+    })
+    const originComponentNode = useSelector<RootState, ComponentNode>(
+      (rootState) => {
+        const rootNode = getCanvas(rootState)
+        return searchDsl(rootNode, displayName) as ComponentNode
+      },
+    )
 
     const realProps = useMemo(
       () => displayNameMapProps[displayName] ?? {},
@@ -36,6 +55,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     const containerListMapChildName = useSelector(
       getContainerListDisplayNameMappedChildrenNodeDisplayName,
     )
+
+    const isDraggingInGlobal = useSelector(getIsDragging)
+    const isResizingInGlobal = useSelector(getIsResizing)
 
     const listContainerDisabled = useMemo(() => {
       const listWidgetDisplayNames = Object.keys(containerListMapChildName)
@@ -78,29 +100,36 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
 
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
-        const rootState = store.getState() as RootState
-        const executionResult = getExecutionWidgetLayoutInfo(rootState)
-        const oldH = executionResult[displayName]?.layoutInfo.h ?? 0
+        if (isDraggingInGlobal || isResizingInGlobal) return
+        const rootState = store.getState()
+        const widgetLayoutInfos = getExecutionWidgetLayoutInfo(rootState)
+        const oldH = widgetLayoutInfos[displayName]?.layoutInfo.h ?? 0
         // padding 2px so this is +4
         const newH = Math.max(
           Math.ceil((newHeight + 6) / UNIT_HEIGHT),
           MIN_HEIGHT,
         )
+
         if (newH === oldH) return
+
         dispatch(
           executionActions.updateWidgetLayoutInfoReducer({
             displayName,
             layoutInfo: {
               h: newH,
             },
-            options: {
-              parentNode: parentNode as string,
-              effectRows: newH - oldH,
-            },
+            parentNode: parentNodeDisplayName,
+            effectRows: newH - oldH,
           }),
         )
       },
-      [dispatch, displayName, parentNode],
+      [
+        dispatch,
+        displayName,
+        isDraggingInGlobal,
+        isResizingInGlobal,
+        parentNodeDisplayName,
+      ],
     )
 
     const handleUpdateDsl = useCallback(
@@ -156,8 +185,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         path: string,
         otherCalcContext?: Record<string, any>,
       ) => {
-        const originEvents = get(componentNode.props, path, []) as any[]
-        const dynamicPaths = get(componentNode.props, "$dynamicAttrPaths", [])
+        const originEvents = get(originComponentNode.props, path, []) as any[]
+        const dynamicPaths = get(
+          originComponentNode.props,
+          "$dynamicAttrPaths",
+          [],
+        )
         const needRunEvents = cloneDeep(originEvents).filter((originEvent) => {
           return originEvent.eventType === eventType
         })
@@ -171,7 +204,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           finalContext,
         }
       },
-      [componentNode.props],
+      [originComponentNode.props],
     )
 
     const triggerEventHandler = useCallback(
@@ -260,10 +293,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [getRunEvents],
     )
 
-    const widget = widgetBuilder(type)
-    if (!widget) return null
-
-    const Component = widget.widget
+    const widgetConfig = widgetBuilder(widgetType)
+    if (!widgetConfig) return null
+    const Component = widgetConfig.widget
     const {
       hidden,
       borderColor,
@@ -286,32 +318,31 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           _radius,
           backgroundColor,
           shadow,
-          type,
+          widgetType,
         )}
       >
-        <Component
-          {...realProps}
-          w={w}
-          h={h}
-          unitW={unitW}
-          unitH={unitH}
-          blockColumns={blockColumns}
-          handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
-          handleUpdateOriginalDSLOtherMultiAttr={
-            handleUpdateOriginalDSLOtherMultiAttr
-          }
-          handleUpdateDsl={handleUpdateDsl}
-          updateComponentHeight={updateComponentHeight}
-          handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
-          displayName={displayName}
-          childrenNode={childrenNode}
-          componentNode={componentNode}
-          disabled={listContainerDisabled}
-          triggerEventHandler={triggerEventHandler}
-          triggerMappedEventHandler={triggerMappedEventHandler}
-          updateComponentRuntimeProps={updateComponentRuntimeProps}
-          deleteComponentRuntimeProps={deleteComponentRuntimeProps}
-        />
+        <Suspense>
+          <Component
+            {...realProps}
+            h={layoutInfo.h}
+            columnNumber={columnNumber}
+            handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+            handleUpdateOriginalDSLOtherMultiAttr={
+              handleUpdateOriginalDSLOtherMultiAttr
+            }
+            handleUpdateDsl={handleUpdateDsl}
+            updateComponentHeight={updateComponentHeight}
+            handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
+            displayName={displayName}
+            childrenNode={originComponentNode.childrenNode}
+            componentNode={originComponentNode}
+            disabled={listContainerDisabled}
+            triggerEventHandler={triggerEventHandler}
+            triggerMappedEventHandler={triggerMappedEventHandler}
+            updateComponentRuntimeProps={updateComponentRuntimeProps}
+            deleteComponentRuntimeProps={deleteComponentRuntimeProps}
+          />
+        </Suspense>
       </div>
     )
   },

@@ -38,6 +38,7 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     pending,
     displayName,
     dynamicHeight = "fixed",
+    // TODO: wei
     h,
     dynamicMinHeight,
     dynamicMaxHeight,
@@ -99,3 +100,4 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
 }
 
 TimelineWidget.displayName = "TimelineWidget"
+export default TimelineWidget

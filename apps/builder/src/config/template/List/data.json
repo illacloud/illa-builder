@@ -371,9 +371,7 @@
                                             "y": 1,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "value"
-                                              ],
+                                              "$dynamicAttrPaths": ["value"],
                                               "colorScheme": "grayBlue",
                                               "disableMarkdown": false,
                                               "dynamicHeight": "fixed",
@@ -407,9 +405,7 @@
                                             "y": 12,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "value"
-                                              ],
+                                              "$dynamicAttrPaths": ["value"],
                                               "colorScheme": "grayBlue",
                                               "disableMarkdown": false,
                                               "dynamicHeight": "fixed",
@@ -443,9 +439,7 @@
                                             "y": 24,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "value"
-                                              ],
+                                              "$dynamicAttrPaths": ["value"],
                                               "colorScheme": "grayBlue",
                                               "disableMarkdown": false,
                                               "dynamicHeight": "fixed",
@@ -479,9 +473,7 @@
                                             "y": 18,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "value"
-                                              ],
+                                              "$dynamicAttrPaths": ["value"],
                                               "colorScheme": "grayBlue",
                                               "disableMarkdown": false,
                                               "dynamicHeight": "fixed",
@@ -515,9 +507,7 @@
                                             "y": 1,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "imageSrc"
-                                              ],
+                                              "$dynamicAttrPaths": ["imageSrc"],
                                               "hidden": false,
                                               "imageSrc": "{{list1.dataSources.map((currentItem) => (currentItem.img))}}",
                                               "objectFit": "cover",
@@ -1691,9 +1681,7 @@
                                         {
                                           "charge": "40000",
                                           "expired_time": "2024-1-2",
-                                          "feature_flag": [
-                                            "Feature3"
-                                          ],
+                                          "feature_flag": ["Feature3"],
                                           "id": "3",
                                           "start_time": "2023-1-3"
                                         }
@@ -1908,9 +1896,7 @@
                   "viewDisplayName": "bodySection1-bodySectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "bodySection1-bodySectionContainer1"
-              ]
+              "viewSortedKey": ["bodySection1-bodySectionContainer1"]
             },
             "panelConfig": null
           },
@@ -1951,25 +1937,25 @@
         "y": -1,
         "z": 0,
         "props": {
-          "bodyColumns": 64,
+          "bodyColumns": 32,
           "bottomHeight": 0,
           "canvasSize": "fixed",
           "canvasWidth": 1440,
-          "footerColumns": 64,
+          "footerColumns": 32,
           "hasFooter": false,
           "hasHeader": false,
           "hasLeft": false,
           "hasRight": false,
-          "headerColumns": 64,
+          "headerColumns": 32,
           "isFooterFixed": true,
           "isHeaderFixed": true,
           "isLeftFixed": true,
           "isRightFixed": true,
           "layout": "default",
-          "leftColumns": 16,
+          "leftColumns": 32,
           "leftPosition": "NONE",
           "leftWidth": 0,
-          "rightColumns": 16,
+          "rightColumns": 32,
           "rightPosition": "NONE",
           "rightWidth": 0,
           "showLeftFoldIcon": false,
@@ -1993,9 +1979,7 @@
     "z": 0,
     "props": {
       "currentPageIndex": 0,
-      "pageSortedKey": [
-        "page1"
-      ]
+      "pageSortedKey": ["page1"]
     },
     "panelConfig": null
   },

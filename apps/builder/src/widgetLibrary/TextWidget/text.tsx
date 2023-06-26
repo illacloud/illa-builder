@@ -4,7 +4,6 @@ import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
 import remarkGfm from "remark-gfm"
 import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
@@ -91,7 +90,6 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     colorScheme,
     fs,
     fw,
-    h = 0,
   } = props
 
   useEffect(() => {
@@ -118,12 +116,12 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
       case "auto":
         return true
       case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+        return true
       case "fixed":
       default:
         return false
     }
-  }, [dynamicHeight, dynamicMinHeight, h])
+  }, [dynamicHeight])
 
   const dynamicOptions = useMemo(() => {
     return dynamicHeight === "fixed"
@@ -165,3 +163,4 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
 }
 
 TextWidget.displayName = "TextWidget"
+export default TextWidget

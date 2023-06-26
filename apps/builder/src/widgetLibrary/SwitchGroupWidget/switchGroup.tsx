@@ -250,3 +250,4 @@ export const SwitchGroupWidget: FC<SwitchGroupWidgetProps> = (props) => {
   )
 }
 SwitchGroupWidget.displayName = "SwitchGroupWidget"
+export default SwitchGroupWidget

@@ -9,7 +9,7 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Button", "按钮"],
   icon: <ButtonWidgetIcon />,
   sessionType: "PRESENTATION",
-  w: 12,
+  w: 6,
   h: 5,
   defaults: {
     text: i18n.t("widget.button.default_text"),

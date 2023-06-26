@@ -17,7 +17,7 @@ export const STEPS_WIDGET_CONFIG: WidgetConfig = {
   icon: <StepsWidgetIcon />,
   keywords: ["Steps", "步骤"],
   sessionType: "NAVIGATION",
-  w: 35,
+  w: 18,
   h: 7,
   defaults: {
     direction: "horizontal",
