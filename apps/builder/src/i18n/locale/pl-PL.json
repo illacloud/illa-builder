@@ -3366,7 +3366,8 @@
         "leave": "Operacja nie powiodła się. Ten użytkownik jest związany z dożywotnią subskrypcją. "
       },
       "no_license_operate_failed": "Z powodu niewystarczających licencji, operacja nie powiodła się.",
-      "failed_to_invite_no_license": "Z powodu niewystarczającej licencji, niektóre zaproszenia użytkowników nie powiodły się."
+      "failed_to_invite_no_license": "Z powodu niewystarczającej licencji, niektóre zaproszenia użytkowników nie powiodły się.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
