@@ -3366,7 +3366,8 @@
         "leave": "Операция не удалась. Этот пользователь связан с пожизненной подпиской. "
       },
       "no_license_operate_failed": "Из-за нехватки лицензий операция не удалась.",
-      "failed_to_invite_no_license": "Из-за недостаточной лицензии, некоторые приглашения членов не удались."
+      "failed_to_invite_no_license": "Из-за недостаточной лицензии, некоторые приглашения членов не удались.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
