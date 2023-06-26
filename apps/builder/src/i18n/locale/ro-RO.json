@@ -3366,7 +3366,8 @@
         "leave": "Operația a eșuat. Acest utilizator este legat de abonamentul pe toată durata de viață. "
       },
       "no_license_operate_failed": "Din cauza licenţelor insuficiente, operaţiunea a eşuat.",
-      "failed_to_invite_no_license": "Din cauza licenţelor insuficiente, unele invitaţii ale membrilor au eşuat."
+      "failed_to_invite_no_license": "Din cauza licenţelor insuficiente, unele invitaţii ale membrilor au eşuat.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
