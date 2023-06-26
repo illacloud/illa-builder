@@ -3367,7 +3367,8 @@
       },
       "no_license_operate_failed": "På grund af utilstrækkelige licenser mislykkedes.",
       "failed_to_invite_no_license": "På grund af utilstrækkelig licens er nogle medlemsinvitationer mislykkedes.",
-      "error_subscribe": "Failed to subscribe. Please try again later."
+      "error_subscribe": "Failed to change plan. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
