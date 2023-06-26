@@ -3367,7 +3367,8 @@
       },
       "no_license_operate_failed": "ライセンス不足のため操作に失敗しました。",
       "failed_to_invite_no_license": "ライセンス不足のため、一部のメンバー招待に失敗しました。",
-      "error_subscribe": "Failed to subscribe. Please try again later."
+      "error_subscribe": "Failed to change plan. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
