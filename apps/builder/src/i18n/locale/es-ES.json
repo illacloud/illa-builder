@@ -3366,7 +3366,8 @@
         "leave": "Operate falló. Este usuario está vinculado a la suscripción de por vida. "
       },
       "no_license_operate_failed": "Debido a la falta de licencias, la operación falló.",
-      "failed_to_invite_no_license": "Debido a la falta de licencias, algunas invitaciones de miembros han fallado."
+      "failed_to_invite_no_license": "Debido a la falta de licencias, algunas invitaciones de miembros han fallado.",
+      "error_subscribe": "Failed to subscribe. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
