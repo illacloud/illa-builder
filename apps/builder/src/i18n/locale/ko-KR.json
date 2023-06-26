@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses × 1 year",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses × 1 month",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 year",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 month"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "Unsubscribe",
@@ -3359,12 +3359,16 @@
       "successfully_changed": "Subscription changed successfully. It will take effect in a few minutes",
       "failed_to_change": "Subscription change failed",
       "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
-      "failed_to_join_no_license": "Unable to join because team licenses are insufficient, please contact the admin.",
+      "failed_to_join_no_license": "Unable to join due to insufficient licenses ",
       "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin.",
       "appsumo": {
         "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
         "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+      },
+      "no_license_operate_failed": "Due to subscription exception, operation failed.",
+      "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed.",
+      "error_subscribe": "Failed to change plan. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3399,7 +3403,7 @@
         "audit_logs": "Audit logs",
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
-        "pricing": "/editor/month, yearly",
+        "pricing": "editor/month, yearly (monthly $10/editor)",
         "insufficient_license_title": "Insufficient licenses",
         "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
         "insufficient_license_button": "Add licenses"
@@ -3408,7 +3412,7 @@
         "owner": "Your subscription has expired. To continue using, please renew it.",
         "others": "Your account has been disabled because the team's subscription has expired.",
         "your_subscription_ha_not_owner": "Not enough licenses",
-        "all_members_except_f_not_owner": "Your team doesn't have enough licenses. Please contact your team owner.",
+        "all_members_except_f_not_owner": "Your team's subscription has an exception, please contact the team owner.",
         "upgrade_not_owner": "Got it"
       },
       "blank_page": {
@@ -3454,6 +3458,15 @@
       "get_access_to_advanc": "Get access to advanced features",
       "upgrade": "Upgrade",
       "cancel": "Cancel"
+    },
+    "advanced": {
+      "feature": "Remove watermark"
+    },
+    "redirect_page": {
+      "desc1": "Thank you for your purchase. ILLA Cloud will continue to provide you with more features.",
+      "desc2": "Redirecting to ILLA Cloud in {{time}} seconds...",
+      "title": "Payment successful",
+      "button": "Back to ILLA Cloud"
     }
   }
 }

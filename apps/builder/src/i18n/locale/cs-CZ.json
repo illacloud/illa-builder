@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} licencí × {{remainDays}} dnů / {{totalDays}} dnů",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licencí × 1 rok",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licencí × 1 měsíc",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licence",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licence",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} licencí × {{remainDays}} dnů / {{totalDays}} dnů",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licencí × 1 rok",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licencí × 1 měsíc",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licencí × 1 rok",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licencí × 1 měsíc",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licence",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licence",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licence",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licence",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dnů / {{totalDays}} dnů",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 rok",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 měsíc",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dnů / {{totalDays}} dnů",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 rok",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 měsíc",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 rok",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 měsíc"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "Odhlásit odběr",
@@ -3322,8 +3322,8 @@
         "update_plan_remove_storage": "Chystáte se odstranit úložiště {{changeNum}} GB a aktualizovat období předplatného. <0>Více informací</0>",
         "unsubscribe_license": "Chystáte se odhlásit ILLA Cloud Plus. Po zrušení, počínaje dalším fakturačním cyklem, funkce Plus již nebudou dostupné. <0>Další informace</0>",
         "unsubscribe_storage": "Chystáte se odhlásit úložiště ILLA Drive. Po zrušení, počínaje dalším fakturačním cyklem, bude kapacita úložiště obnovena na 100MB. <0>Další informace</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Přihlásíte se k odběru měsíčního předplatného ILLA Cloud Plus. <0>Více informací</0>",
+        "subscribe_license_yearly": "Přihlásíte se k ročnímu předplatnému ILLA Cloud Plus. <0>Více informací</0>"
       },
       "description": {
         "add_storage": "Pravidla výpočtu s použitím měsíčního předplatného úložiště jako příkladu: zvažme scénář, kdy jste od 14. března původně upsali 5 GB, a zúčtovací cyklus sahá od 14. dne tohoto měsíce do 13. dne příštího měsíce. 10. května se rozhodnete přidat 1 GB. V tomto okamžiku ke třináctému květnu zbývaly čtyři dny do konce aktuálního cyklu (což je celkem 30 dnů od 14. dubna do 13. května). Pro výpočet upravené platby odečteme náklady ve výši 1 GB, která činí přibližně 0 dolarů. 9, úměrně délce 4 dnů během 30denního cyklu. Odpočet se proto odhaduje na 1 licenci * $0. 9 / 30 dní * 4 dny, což vede k přibližně 0,132 USD. Od příštího fakturačního cyklu budou všechny poplatky za skladování konsolidovány a zaplaceny společně. Pokud chcete snížit licence nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v našem uživateli <0>Zásady ochrany osobních údajů</0> a <1>Podmínky služby</1>",
@@ -3362,9 +3362,13 @@
       "failed_to_join_no_license": "Nelze se připojit, protože licence týmu nejsou dostačující, kontaktujte prosím správce.",
       "storage_insufficient_modal": "Úložiště nebo provoz tohoto týmu nestačí. Kontaktujte svého správce.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+        "transfer": "Operace se nezdařila. Tento uživatel je vázán na celoživotní předplatné. ",
+        "leave": "Operace se nezdařila. Tento uživatel je vázán na celoživotní předplatné. "
+      },
+      "no_license_operate_failed": "Z důvodu nedostatku licencí se operace nezdařila.",
+      "failed_to_invite_no_license": "Z důvodu nedostatečné licence se některé pozvánky členů nezdařily.",
+      "error_subscribe": "Failed to change plan. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3454,6 +3458,15 @@
       "get_access_to_advanc": "Získat přístup k pokročilým funkcím",
       "upgrade": "Vylepšit",
       "cancel": "Zrušit"
+    },
+    "advanced": {
+      "feature": "Odstranit vodoznak"
+    },
+    "redirect_page": {
+      "desc1": "Děkujeme za váš nákup. ILLA Cloud vám bude i nadále poskytovat více funkcí.",
+      "desc2": "Přesměrování do ILLA Cloudu za {{time}} sekund...",
+      "title": "Platba úspěšná",
+      "button": "Zpět na ILLA Cloud"
     }
   }
 }

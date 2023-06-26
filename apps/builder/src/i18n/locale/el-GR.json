@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης × {{remainDays}} ημέρες / {{totalDays}} ημέρες",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} άδειες × 1 χρόνο",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} άδειες × 1 μήνα",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης × {{remainDays}} ημέρες / {{totalDays}} ημέρες",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} άδειες × 1 χρόνο",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} άδειες × 1 μήνα",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} άδειες × 1 χρόνο",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} άδειες × 1 μήνα",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} άδειες χρήσης",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} ημέρες / {{totalDays}} ημέρες",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 έτος",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 μήνα",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} ημέρες / {{totalDays}} ημέρες",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 έτος",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 μήνα",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 έτος",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 μήνα"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "Διαγραφή",
@@ -3322,8 +3322,8 @@
         "update_plan_remove_storage": "Θα αφαιρέσετε το χώρο αποθήκευσης {{changeNum}} GB και θα ενημερώσετε την περίοδο της συνδρομής σας. <0>Μάθετε περισσότερα</0>",
         "unsubscribe_license": "Θα διαγραφείτε από το ILLA Cloud Plus. Μετά την ακύρωση, ξεκινώντας από τον επόμενο κύκλο χρέωσης, τα χαρακτηριστικά Plus δεν θα είναι πλέον προσβάσιμα. <0>Μάθετε περισσότερα</0>",
         "unsubscribe_storage": "Θα καταργήσετε την εγγραφή σας στο χώρο αποθήκευσης μονάδας δίσκου ILLA. Μετά την ακύρωση, ξεκινώντας από τον επόμενο κύκλο χρέωσης, η χωρητικότητα αποθήκευσης θα αποκατασταθεί στα 100MB. <0>Μάθετε περισσότερα</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Θα εγγραφείτε στη μηνιαία συνδρομή ILLA Cloud Plus. <0>Μάθετε περισσότερα</0>",
+        "subscribe_license_yearly": "Θα εγγραφείτε στην ετήσια συνδρομή ILLA Cloud Plus. <0>Μάθετε περισσότερα</0>"
       },
       "description": {
         "add_storage": "Κανόνες υπολογισμού χρησιμοποιώντας μια μηνιαία συνδρομή αποθήκευσης ως παράδειγμα: Ας εξετάσουμε ένα σενάριο όπου αρχικά εγγραφήκατε σε 5 GB ξεκινώντας από τις 14 Μαρτίου, και ο κύκλος χρέωσης εκτείνεται από τις 14 μέχρι τις 13 του επόμενου μήνα. Στις 10 Μαΐου, αποφασίζετε να προσθέσετε 1 GB. Σε εκείνο το σημείο, απομένουν 4 ημέρες μέχρι το τέλος του τρέχοντος κύκλου στις 13 Μαΐου (η οποία ανέρχεται συνολικά σε 30 ημέρες από τις 14 Απριλίου έως τις 13 Μαΐου). Για να υπολογίσουμε την προσαρμοσμένη πληρωμή, θα αφαιρέσουμε το κόστος της 1 GB, η οποία ανέρχεται σε περίπου $ 0. 9, ανάλογα με τη διάρκεια των 4 ημερών εντός του κύκλου 30 ημερών. Ως εκ τούτου, η μείωση εκτιμάται ως 1 άδεια * $0. 9 / 30 ημέρες * 4 ημέρες, με αποτέλεσμα περίπου 0,132 δολάρια. Ξεκινώντας από τον επόμενο κύκλο χρέωσης, όλα τα τέλη αποθήκευσης θα ενοποιηθούν και θα πληρωθούν μαζί. Εάν επιθυμείτε να μειώσετε τις άδειες ή να κάνετε άλλες αλλαγές στη συνδρομή, ενημερώστε τις πριν από την έναρξη της επόμενης περιόδου. Για περισσότερες πληροφορίες, ανατρέξτε στον χρήστη μας <0>Πολιτική Απορρήτου</0> και <1>Όροι Υπηρεσίας</1>",
@@ -3362,9 +3362,13 @@
       "failed_to_join_no_license": "Δεν είναι δυνατή η συμμετοχή επειδή οι άδειες της ομάδας είναι ανεπαρκείς, παρακαλούμε επικοινωνήστε με τον διαχειριστή.",
       "storage_insufficient_modal": "Η αποθήκευση ή η κίνηση αυτής της ομάδας δεν είναι αρκετή. Παρακαλούμε επικοινωνήστε με τον διαχειριστή σας.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+        "transfer": "Η λειτουργία απέτυχε. Αυτός ο χρήστης είναι δεσμευμένος στη συνδρομή για όλη τη διάρκεια της ζωής. ",
+        "leave": "Η λειτουργία απέτυχε. Αυτός ο χρήστης είναι δεσμευμένος στη συνδρομή για όλη τη διάρκεια της ζωής. "
+      },
+      "no_license_operate_failed": "Λόγω ανεπαρκούς άδειας, η λειτουργία απέτυχε.",
+      "failed_to_invite_no_license": "Λόγω ανεπαρκούς αδειοδότησης, κάποιες προσκλήσεις μέλη έχουν αποτύχει.",
+      "error_subscribe": "Failed to change plan. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3454,6 +3458,15 @@
       "get_access_to_advanc": "Αποκτήστε πρόσβαση σε προηγμένες λειτουργίες",
       "upgrade": "Αναβάθμιση",
       "cancel": "Ακύρωση"
+    },
+    "advanced": {
+      "feature": "Αφαίρεση υδατογραφήματος"
+    },
+    "redirect_page": {
+      "desc1": "Σας ευχαριστούμε για την αγορά σας. Το ILLA Cloud θα συνεχίσει να σας παρέχει περισσότερες δυνατότητες.",
+      "desc2": "Ανακατεύθυνση στο σύννεφο ILLA σε {{time}} δευτερόλεπτα...",
+      "title": "Επιτυχής πληρωμή",
+      "button": "Πίσω στο Cloud ILLA"
     }
   }
 }

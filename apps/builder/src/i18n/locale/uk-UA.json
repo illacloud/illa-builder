@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} ліцензії × {{remainDays}} днів / {{totalDays}} днів",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} ліцензії × 1 рік",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} ліцензії × 1 місяць",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} ліцензій",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} ліцензій",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} ліцензії × {{remainDays}} днів / {{totalDays}} днів",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} ліцензії × 1 рік",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} ліцензії × 1 місяць",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} ліцензії × 1 рік",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} ліцензії × 1 місяць",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} ліцензій",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} ліцензій",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} ліцензій",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} ліцензій",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} Гб × {{remainDays}} днів / {{totalDays}} днів",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} Гб × 1 рік",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} Гб × 1 місяць",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} Гб × {{remainDays}} днів / {{totalDays}} днів",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} Гб × 1 рік",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} Гб × 1 місяць",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} Гб × 1 рік",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} Гб × 1 місяць"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ"
       },
       "button": {
         "unsubscribe": "Відмовитися від підписки",
@@ -3322,8 +3322,8 @@
         "update_plan_remove_storage": "Ви збираєтеся видалити {{changeNum}} ГБ сховища та оновити період підписки. <0>Дізнатися більше</0>",
         "unsubscribe_license": "Ви відпишете ILLA Cloud Plus. Після скасування починаючи з наступного платіжного циклу, функції плюс більше не будуть доступними. <0>Дізнатися більше</0>",
         "unsubscribe_storage": "Ви збираєтеся відписатися від ILLA Drive пам’яті. Після скасування, починаючи з наступного платіжного циклу, місткість для зберігання буде відновлена до 100 Мб. <0>Докладніше</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Ви збираєтеся підписатись на підписку ILLA Cloud Plus. <0>Дізнатися більше</0>",
+        "subscribe_license_yearly": "Ви збираєтеся підписатися на підписку ILLA Plus щорічно. <0>Дізнатися більше</0>"
       },
       "description": {
         "add_storage": "Правила розрахунків, використовуючи щомісячну підписку на зберігання як приклад: Розглянемо сценарій, де ви спочатку підписалися на 5 ГБ, починаючи з 14 березня, і цикл оплати розгортається з 14-го числа цього місяця до 13-го наступного місяця. 10 травня ви вирішили додати 1 ГБ. В цій точці, було ще 4 дні до кінця поточного циклу 13 травня (що складає 30 днів з 14 квітня до 13 травня). Щоб розрахувати регульований платіж, ми відраховуємо вартість 1 ГБ, що становить приблизно $ 0. 9, пропорційна до тривалості 4 днів протягом 30-денного циклу. Тому, відрахування оцінюється як 1 ліцензія * $0. 9 / 30 днів * 4 дні, що в результаті вийшло приблизно 0,132. Починаючи з наступного платіжного циклу, всі збір за зберігання буде консолідуватися і сплачуватися разом. Якщо ви хочете зменшити ліцензії або внести інші зміни до підписки, будь ласка, поновіть їх до початку наступного періоду. Для отримання додаткової інформації, будь ласка, зверніться до нашого користувача <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
@@ -3362,9 +3362,13 @@
       "failed_to_join_no_license": "Не вдається приєднатися, оскільки ліцензії команди недостатні, будь ласка, зв'яжіться з адміністратором.",
       "storage_insufficient_modal": "Сховище або трафік цієї команди недостатньо. Будь ласка, зверніться до адміністратора.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+        "transfer": "Операція не вдалася. Цей користувач прив'язаний до постійної підписки. ",
+        "leave": "Операція не вдалася. Цей користувач прив'язаний до постійної підписки. "
+      },
+      "no_license_operate_failed": "Через недостатню ліцензію операція не вдалася.",
+      "failed_to_invite_no_license": "Через недостатню ліцензію, деякі запрошення учасників не вдалося.",
+      "error_subscribe": "Failed to change plan. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3454,6 +3458,15 @@
       "get_access_to_advanc": "Отримати доступ до додаткових функцій",
       "upgrade": "Апґрейд",
       "cancel": "Скасувати"
+    },
+    "advanced": {
+      "feature": "Видалити водяний знак"
+    },
+    "redirect_page": {
+      "desc1": "Дякуємо за покупку. ILLA Cloud продовжить надавати вам більше можливостей.",
+      "desc2": "Перенаправлення на Хмару ILLA через {{time}} секунд...",
+      "title": "Оплата пройшла успішно",
+      "button": "Повернутися до хмарки ILLA"
     }
   }
 }

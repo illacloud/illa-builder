@@ -2977,7 +2977,7 @@
   "launch": "运行",
   "homepage": {
     "message": {
-      "join_failed": "未成功加入团队：您登录的邮箱不是被邀请的邮箱"
+      "join_failed": "您登录的邮箱不是被邀请的邮箱"
     }
   },
   "image_exceed": "图片大小不能超过500KB",
@@ -3259,8 +3259,8 @@
         "Storage_traffic": "GB"
       },
       "select_option": {
-        "Yearly": "每年一次",
-        "Monthly": "每月的"
+        "Yearly": "年付",
+        "Monthly": "月付"
       },
       "price_label": {
         "total": "总计"
@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} x {{licenseNum}} 许可证 × {{remainDays}} 天 / {{totalDays}} 天",
-        "next_period_yearly": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 年",
-        "next_period_monthly": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 个月",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} 个许可证",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} 个许可证",
         "this_period_remove": "{{unitPrice}} x {{licenseNum}} 许可证 × {{remainDays}} 天 / {{totalDays}} 天",
-        "next_period_yearly_remove": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 年",
-        "next_period_monthly_remove": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 个月",
-        "payment_year": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 年",
-        "payment_month": "{{unitPrice}} x {{licenseNum}} 许可证 × 1 个月",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} 个许可证",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} 个许可证",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} 个许可证",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} 个许可证",
         "this_period_storage": "{{unitPrice}} x {{storageNum}} GB × {{remainDays}} 天 / {{totalDays}} 天",
-        "next_period_storage": "{{unitPrice}} x {{storageNum}} GB × 1 年",
-        "next_period_monthly_storage": "{{unitPrice}} x {{storageNum}} GB × 1 个月",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} x {{storageNum}} GB × {{remainDays}} 天 / {{totalDays}} 天",
-        "next_period_yearly_remove_storage": "{{unitPrice}} x {{storageNum}} GB × 1 年",
-        "next_period_monthly_remove_storage": "{{unitPrice}} x {{storageNum}} GB × 1 个月",
-        "payment_year_storage": "{{unitPrice}} x {{storageNum}} GB × 1 年",
-        "payment_month_storage": "{{unitPrice}} x {{storageNum}} GB × 1 个月"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{licenseNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "取消订阅",
@@ -3322,8 +3322,8 @@
         "update_plan_remove_storage": "您将要移除{{changeNum}}GB存储并更新您的订阅期。<0>了解更多</0>",
         "unsubscribe_license": "您将要取消订阅 ILLA Cloud Plus。 取消后，从下一个计费周期开始，Plus功能将无法访问。<0>了解更多</0>",
         "unsubscribe_storage": "您将取消订阅 ILLA Drive 存储。取消后，从下一个计费周期开始，存储容量将恢复为100MB。 <0>了解更多</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "您即将订阅ILLA Cloud Plus月订阅。<0>了解更多</0>",
+        "subscribe_license_yearly": "您即将订阅ILLA Cloud Plus年订阅。<0>了解更多</0>"
       },
       "description": {
         "add_storage": "使用每月存储订阅作为示例的计算规则。让我们考虑一个情景，您最初订阅了5GB，从3月14日开始， 而且账单周期从本月第14个月到下个月第13个月。 5月10日，你决定添加 1 GB。 当时， 到5月13日本周期结束时还剩下4天（从4月14日至5月13日总共30天）。 为了计算调整后的付款，我们将扣除相当于大约0美元的1GB的费用。 9 与30天周期内4天的持续时间相称。因此，扣除额估计为1份许可证* $0。 9 天30天* 4天，约占0.132美元。 从下一个计费周期开始，所有储存费都将合并并一起支付。 如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的用户 <0>隐私政策</0> 和 <1>服务条款</1>",
@@ -3359,12 +3359,16 @@
       "successfully_changed": "订阅更改成功，几分钟后将会生效",
       "failed_to_change": "订阅更改失败",
       "unsubscription_suc": "订阅已成功取消，并将在下一阶段生效",
-      "failed_to_join_no_license": "无法加入，因为团队许可证不足，请联系管理员。",
+      "failed_to_join_no_license": "由于团队许可证不足无法加入",
       "storage_insufficient_modal": "存储空间或流量余额不足，请联系管理员。",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+        "transfer": "操作失败。此用户已绑定到终身订阅。 ",
+        "leave": "操作失败。此用户已绑定到终身订阅。 "
+      },
+      "no_license_operate_failed": "由于订阅异常，操作失败。",
+      "failed_to_invite_no_license": "由于许可证不足，一些成员邀请失败。",
+      "error_subscribe": "付费变更失败，请稍后重试",
+      "unsubscription_fail": "取消订阅失败，请稍后重试。"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3393,13 +3397,13 @@
       "upgrade_now_admin": {
         "upgrade_to_plus": "升级到 Plus",
         "this_feature_is_avai": "此功能仅供Plus用户使用。若要使用它，请升级至Plus。 通过升级到 Plus，您也可以访问以下功能。 ",
-        "add_unlimited_viewer": "为免费添加无限查看成员",
-        "publish_public_appli": "发布公共应用程序",
+        "add_unlimited_viewer": "免费添加无限个浏览者",
+        "publish_public_appli": "发布公开应用",
         "ai_sql_generation": "AI SQL 生成",
-        "audit_logs": "审核日志",
+        "audit_logs": "审计日志",
         "learn_more": "了解更多",
         "upgrade": "升级",
-        "pricing": "/ 编辑器/月份，每年",
+        "pricing": "编辑者/月，年付(月付$10/编辑者)",
         "insufficient_license_title": "许可证不足",
         "insufficient_license_description": "若要邀请更多编辑用户，请先增加许可证。您团队的所有成员都可以使用ILLA Cloud的功能。 每个功能是否可访问，取决于每个成员的角色设置。",
         "insufficient_license_button": "添加许可证"
@@ -3408,7 +3412,7 @@
         "owner": "您的订阅已过期。要继续使用，请更新它。",
         "others": "您的帐户已被禁用，因为团队的订阅已经过期。",
         "your_subscription_ha_not_owner": "许可证不足",
-        "all_members_except_f_not_owner": "您团队的许可证不足。请与您的团队所有者联系",
+        "all_members_except_f_not_owner": "您团队的订阅异常。请与您的团队所有者联系",
         "upgrade_not_owner": "知道了"
       },
       "blank_page": {
@@ -3422,7 +3426,7 @@
       "storage_insufficient": {
         "owner_title": "存储容量不足",
         "owner_description": "为了正常存储文件，请及时增加存储。 ",
-        "owner_button": "增加能力",
+        "owner_button": "增加容量",
         "not_owner_title": "存储容量不足",
         "not_owner_description": "为了正常存储文件，请联系您的管理员及时增加存储容量。",
         "not_owner_button": "好的",
@@ -3431,7 +3435,7 @@
       "traffic_insufficient": {
         "owner_title": "交通容量不足",
         "owner_description": "为了正常访问文件，请及时增加流量容量。 ",
-        "owner_button": "增加能力",
+        "owner_button": "增加流量",
         "not_owner_title": "存储容量不足",
         "not_owner_description": "要正常访问文件，请联系您的管理员以增加流量流量。",
         "not_owner_button": "好的",
@@ -3454,6 +3458,15 @@
       "get_access_to_advanc": "获取高级功能访问权限",
       "upgrade": "升级",
       "cancel": "取消"
+    },
+    "advanced": {
+      "feature": "移除水标"
+    },
+    "redirect_page": {
+      "desc1": "感谢您的购买。ILLA Cloud将持续为您提供更多功能",
+      "desc2": "在 {{time}} 秒后重定向到 ILLA Cloud...",
+      "title": "支付成功",
+      "button": "返回ILLA Cloud"
     }
   }
 }
