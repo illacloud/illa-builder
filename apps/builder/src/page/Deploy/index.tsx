@@ -1,5 +1,6 @@
 import {
   FC,
+  HTMLAttributes,
   MouseEvent,
   Suspense,
   useCallback,
@@ -44,13 +45,16 @@ import { isCloudVersion } from "@/utils/typeHelper"
 import Page404 from "../status/404"
 import { DeployContent } from "./content"
 
-const WaterMark: FC = () => {
+const WaterMark: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
+  const { onClick, ...rest } = props
   return (
     <div
       css={deployLogoStyle}
-      onClick={() => {
+      onClick={(e) => {
+        onClick && onClick(e)
         window.open("https://illacloud.com", "_blank")
       }}
+      {...rest}
     >
       <span>Powered by</span>
       <Logo css={logoStyle} />
@@ -97,8 +101,8 @@ export const Deploy: FC = () => {
     async (value: boolean, event: MouseEvent) => {
       if (appId) {
         event.stopPropagation()
-        const res = await updateWaterMarkConfig(value, appId)
-        dispatch(appInfoActions.updateAppInfoReducer(res))
+        const res = await updateWaterMarkConfig(!value, appId)
+        dispatch(appInfoActions.updateAppInfoReducer(res.data))
       }
     },
     [appId, dispatch],
@@ -122,50 +126,52 @@ export const Deploy: FC = () => {
         </Await>
       </Suspense>
       {isCloudVersion ? (
-        canUpdateAppWaterMark && !waterMark ? (
-          <Trigger
-            trigger="click"
-            colorScheme="white"
-            position="top-end"
-            mb={"12px"}
-            popupVisible={popupVisible}
-            onVisibleChange={updateWaterMarkConfigVisible}
-            content={
-              canUseBillingFeature ? (
-                <div css={upgradeConfigStyle}>
-                  Remove watermark
-                  <Switch
-                    checked={waterMark}
-                    onChange={handleWaterMarkChange}
-                  />
-                </div>
-              ) : (
-                <div css={upgradePopContainerStyle}>
-                  <div css={upgradeTitleStyle}>
-                    {t("billing.modal.upgrade_now_admin.upgrade_to_plus")}
+        waterMark ? (
+          canUpdateAppWaterMark ? (
+            <Trigger
+              trigger="click"
+              colorScheme="white"
+              position="top-end"
+              mb={"12px"}
+              popupVisible={popupVisible}
+              onVisibleChange={updateWaterMarkConfigVisible}
+              content={
+                canUseBillingFeature ? (
+                  <div css={upgradeConfigStyle}>
+                    {t("billing.advanced.feature")}
+                    <Switch
+                      checked={!waterMark}
+                      onChange={handleWaterMarkChange}
+                    />
                   </div>
-                  <div>{t("billing.advanced.feature")}</div>
-                  <Button
-                    mt="8px"
-                    colorScheme="techPurple"
-                    leftIcon={<UpgradeIcon />}
-                    onClick={handleUpgradeModal}
-                  >
-                    {t("billing.homepage.upgrade")}
-                  </Button>
-                </div>
-              )
-            }
-          >
-            <div css={deployLogoStyle}>
-              <span>Powered by</span>
-              <Logo css={logoStyle} />
-              <DownIcon ml="8px" css={applyPopupStateStyle(popupVisible)} />
-            </div>
-          </Trigger>
-        ) : (
-          <WaterMark />
-        )
+                ) : (
+                  <div css={upgradePopContainerStyle}>
+                    <div css={upgradeTitleStyle}>
+                      {t("billing.modal.upgrade_now_admin.upgrade_to_plus")}
+                    </div>
+                    <div>{t("billing.advanced.feature")}</div>
+                    <Button
+                      mt="8px"
+                      colorScheme="techPurple"
+                      leftIcon={<UpgradeIcon />}
+                      onClick={handleUpgradeModal}
+                    >
+                      {t("billing.homepage.upgrade")}
+                    </Button>
+                  </div>
+                )
+              }
+            >
+              <div css={deployLogoStyle}>
+                <span>Powered by</span>
+                <Logo css={logoStyle} />
+                <DownIcon ml="8px" css={applyPopupStateStyle(popupVisible)} />
+              </div>
+            </Trigger>
+          ) : (
+            <WaterMark />
+          )
+        ) : null
       ) : (
         <WaterMark />
       )}

@@ -207,8 +207,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     async (value: boolean, event: MouseEvent) => {
       if (appId) {
         event.stopPropagation()
-        const res = await updateWaterMarkConfig(value, appId)
-        dispatch(appInfoActions.updateAppInfoReducer(res))
+        const res = await updateWaterMarkConfig(!value, appId)
+        dispatch(appInfoActions.updateAppInfoReducer(res.data))
       }
     },
     [appId, dispatch],
@@ -309,7 +309,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                             {t("billing.advanced.feature")}
                             {canUseBillingFeature ? (
                               <Switch
-                                checked={waterMark}
+                                checked={!waterMark}
                                 onChange={handleWaterMarkChange}
                               />
                             ) : (
