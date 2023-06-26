@@ -12,7 +12,13 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
+import { ERROR_FLAG } from "@/api/errorFlag"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
+import { MemberListContext } from "@/illa-public-component/MemberList/context/MemberListContext"
+import {
+  SubscribeInfo,
+  TotalTeamLicense,
+} from "@/illa-public-component/MemberList/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -26,7 +32,10 @@ import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { getCurrentTeamInfo, getMemberList } from "@/redux/team/teamSelector"
+import {
+  getCurrentMemberList,
+  getCurrentTeamInfo,
+} from "@/redux/team/teamSelector"
 import {
   fetchDeleteApp,
   fetchShareAppLink,
@@ -38,6 +47,7 @@ import {
   changeTeamMembersRole,
   setInviteLinkEnabled,
   updateMembers,
+  updateTeamsInfo,
 } from "@/services/team"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
@@ -65,7 +75,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const [renameVisible, setRenameVisible] = useState(false)
   const [duplicateVisible, setDuplicateVisible] = useState(false)
 
-  const members = useSelector(getMemberList) ?? []
+  const members = useSelector(getCurrentMemberList) ?? []
   const {
     inviteLinkEnabled,
     currentUserRole,
@@ -97,10 +107,50 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     teamMemberID: string,
     userRole: USER_ROLE,
   ) => {
-    return changeTeamMembersRole(teamMemberID, userRole).then((res) => {
-      updateMembers()
-      return res
-    })
+    return changeTeamMembersRole(teamMemberID, userRole)
+      .then((res) => {
+        if (userRole === USER_ROLE.OWNER) {
+          message.success({
+            content: t("user_management.mes.transfer_suc"),
+          })
+          updateTeamsInfo(teamIdentifier)
+        } else {
+          message.success({
+            content: t("user_management.mes.change_role_suc"),
+          })
+        }
+        updateMembers()
+        return res
+      })
+      .catch((error) => {
+        if (isILLAAPiError(error)) {
+          switch (error.data.errorFlag) {
+            case ERROR_FLAG.ERROR_FLAG_ACCESS_DENIED:
+            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_INCREASE_TEAM_MEMBER_DUE_TO_NO_BALANCE:
+              message.error({
+                content: t("user_management.mes.change_role_fail"),
+              })
+              break
+            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_UPDATE_TEAM_MEMBER_ROLE_BECAUSE_APPSUMO_BUYER:
+              message.error({
+                content: t("billing.message.appsumo.transfer"),
+              })
+              break
+            default:
+              if (userRole === USER_ROLE.OWNER) {
+                message.error({
+                  content: t("user_management.mes.transfer_fail"),
+                })
+              } else {
+                message.error({
+                  content: t("user_management.mes.change_role_fail"),
+                })
+              }
+              break
+          }
+        }
+        return false
+      })
   }
 
   const closeInviteModal = () => {
@@ -431,28 +481,38 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
       >
-        <InviteModal
-          hasApp
-          teamName={isCloudVersion ? teamInfo?.name : "ILLA"}
-          userNickname={currentUserInfo.nickname}
-          isCloudVersion={isCloudVersion}
-          appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
-          isAppPublic={app?.config?.public}
-          fetchInviteLink={fetchShareLink}
-          renewInviteLink={renewShareLink}
-          configInviteLink={setInviteLinkEnabled}
-          allowInviteByLink={inviteLinkEnabled}
-          allowEditorManageTeamMember={allowEditorManageTeamMember}
-          allowViewerManageTeamMember={allowViewerManageTeamMember}
-          userListData={members}
-          currentUserRole={currentUserRole}
-          inviteByEmail={handleInviteByEmail}
-          changeTeamMembersRole={handleChangeTeamMembersRole}
-          updateAppPublicConfig={updateAppConfig}
-          visible={shareVisible}
-          handleCloseModal={closeInviteModal}
-          appID={app.appId}
-        />
+        <MemberListContext.Provider
+          value={{
+            isCloudVersion,
+            currentTeamLicense:
+              teamInfo?.currentTeamLicense ?? ({} as SubscribeInfo),
+            totalTeamLicense:
+              teamInfo?.totalTeamLicense ?? ({} as TotalTeamLicense),
+          }}
+        >
+          <InviteModal
+            hasApp
+            teamName={isCloudVersion ? teamInfo?.name : "ILLA"}
+            userNickname={currentUserInfo.nickname}
+            isCloudVersion={isCloudVersion}
+            appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
+            isAppPublic={app?.config?.public}
+            fetchInviteLink={fetchShareLink}
+            renewInviteLink={renewShareLink}
+            configInviteLink={setInviteLinkEnabled}
+            allowInviteByLink={inviteLinkEnabled}
+            allowEditorManageTeamMember={allowEditorManageTeamMember}
+            allowViewerManageTeamMember={allowViewerManageTeamMember}
+            userListData={members}
+            currentUserRole={currentUserRole}
+            inviteByEmail={handleInviteByEmail}
+            changeTeamMembersRole={handleChangeTeamMembersRole}
+            updateAppPublicConfig={updateAppConfig}
+            visible={shareVisible}
+            handleCloseModal={closeInviteModal}
+            appID={app.appId}
+          />
+        </MemberListContext.Provider>
       </MixpanelTrackProvider>
       <RenameModal
         appId={app.appId}

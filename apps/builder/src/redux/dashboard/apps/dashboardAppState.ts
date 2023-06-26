@@ -10,6 +10,7 @@ export interface DashboardAppActivity {
 
 export interface DashboardAppConfig {
   public: boolean
+  waterMark: boolean
 }
 
 export interface DashboardApp {
@@ -34,6 +35,7 @@ export const DashboardAppInitialState: DashboardApp = {
   releaseVersion: 0,
   config: {
     public: false,
+    waterMark: false,
   },
   appActivity: {
     modifier: "",

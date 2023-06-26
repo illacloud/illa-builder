@@ -97,3 +97,8 @@ export const nameStyle = css`
   cursor: pointer;
   color: ${getColor("grayBlue", "02")};
 `
+
+export const upgradeStyle = css`
+  ${rowCenter};
+  gap: 8px;
+`
