@@ -3467,6 +3467,10 @@
       "desc2": "Перенаправлення на Хмару ILLA через {{time}} секунд...",
       "title": "Оплата пройшла успішно",
       "button": "Повернутися до хмарки ILLA"
-    }
+    },
+    "redirect_to_stripe": "Redirecting to Stripe"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
