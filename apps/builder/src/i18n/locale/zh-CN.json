@@ -3467,6 +3467,10 @@
       "desc2": "在 {{time}} 秒后重定向到 ILLA Cloud...",
       "title": "支付成功",
       "button": "返回ILLA Cloud"
-    }
+    },
+    "redirect_to_stripe": "转跳至Stripe支付界面"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
