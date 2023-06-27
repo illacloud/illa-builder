@@ -3467,6 +3467,10 @@
       "desc2": "Перенаправление в облако ILLA через {{time}} секунд...",
       "title": "Платеж выполнен",
       "button": "Вернуться в облако ILLA"
-    }
+    },
+    "redirect_to_stripe": "Redirecting to Stripe"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
