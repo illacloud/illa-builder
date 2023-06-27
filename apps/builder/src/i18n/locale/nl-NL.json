@@ -3467,6 +3467,10 @@
       "desc2": "Omleiden naar ILLA Cloud in {{time}} seconden...",
       "title": "Betaling succesvol",
       "button": "Terug naar ILLA Cloud"
-    }
+    },
+    "redirect_to_stripe": "Redirecting to Stripe"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
