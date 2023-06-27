@@ -3467,6 +3467,10 @@
       "desc2": "Uudelleenohjataan ILLA Cloudiin {{time}} sekunnissa...",
       "title": "Maksu onnistui",
       "button": "Takaisin ILLA-pilveen"
-    }
+    },
+    "redirect_to_stripe": "Redirecting to Stripe"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
