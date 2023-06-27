@@ -3467,6 +3467,10 @@
       "desc2": "Redirigiendo a la nube ILLA en {{time}} segundos...",
       "title": "Pago exitoso",
       "button": "Volver a ILLA Cloud"
-    }
+    },
+    "redirect_to_stripe": "Redirecting to Stripe"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
