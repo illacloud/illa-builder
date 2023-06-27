@@ -3467,6 +3467,10 @@
       "desc2": "{{time}} 秒後に ILLA Cloud にリダイレクトしています...",
       "title": "支払いが完了しました",
       "button": "ILLAクラウドに戻る"
-    }
+    },
+    "redirect_to_stripe": "Redirecting to Stripe"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
