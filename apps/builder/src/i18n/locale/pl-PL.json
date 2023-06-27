@@ -3467,6 +3467,10 @@
       "desc2": "Przekierowanie do chmury ILLA za {{time}} sekund...",
       "title": "Płatność zakończona powodzeniem",
       "button": "Wróć do chmury ILLA"
-    }
+    },
+    "redirect_to_stripe": "Redirecting to Stripe"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
