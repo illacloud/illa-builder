@@ -3467,6 +3467,10 @@
       "desc2": "Přesměrování do ILLA Cloudu za {{time}} sekund...",
       "title": "Platba úspěšná",
       "button": "Zpět na ILLA Cloud"
-    }
+    },
+    "redirect_to_stripe": "Redirecting to Stripe"
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
