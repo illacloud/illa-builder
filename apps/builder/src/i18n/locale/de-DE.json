@@ -3324,8 +3324,8 @@
         "unsubscribe_storage": "Sie werden den ILLA Drive Speicher abbestellen. Nach dem Abbrechen wird die Speicherkapazität ab dem nächsten Abrechnungszyklus auf 100 MB wiederhergestellt. <0>Mehr erfahren</0>",
         "subscribe_license_monthly": "Sie abonnieren das ILLA Cloud Plus Monatsabonnement. <0>Mehr erfahren</0>",
         "subscribe_license_yearly": "Sie abonnieren das ILLA Cloud Plus Jahresabonnement. <0>Mehr erfahren</0>",
-        "subscribe_storage_monthly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>",
-        "subscribe_storage_yearly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>"
+        "subscribe_storage_monthly": "Sie werden {{changeNum}}GB Speicher hinzufügen. Sobald dies bestätigt ist, werden wir die Kosten für den Speicher sofort abziehen. <0>Mehr erfahren</0>",
+        "subscribe_storage_yearly": "Sie werden {{changeNum}}GB Speicher hinzufügen. Sobald dies bestätigt ist, werden wir die Kosten für den Speicher sofort abziehen. <0>Mehr erfahren</0>"
       },
       "description": {
         "add_storage": "Berechnungsregeln verwenden zum Beispiel ein monatliches Speicherabonnement: Lass uns ein Szenario in Betracht ziehen, bei dem du ab dem 14. März zunächst 5 GB abonniert hast und der Abrechnungszyklus erstreckt sich vom 14. dieses Monats bis zum 13. des nächsten Monats. Am 10. Mai beschließt man, 1 GB hinzuzufügen. An diesem Punkt bis zum Ende des aktuellen Zyklus am 13. Mai verblieben (insgesamt 30 Tage vom 14. April bis 13. Mai). Um die bereinigte Zahlung zu berechnen, werden die Kosten von 1 GB abgezogen, die ungefähr $0 beträgt. 9 im Verhältnis zur Dauer von 4 Tagen innerhalb des 30-tägigen Zyklus wird daher als 1 Lizenz geschätzt * $0. 9 / 30 Tage * 4 Tage, was in etwa $0,132. Ab dem nächsten Abrechnungszyklus werden alle Lagergebühren konsolidiert und gemeinsam gezahlt. Wenn Sie Lizenzen reduzieren oder andere Änderungen am Abonnement vornehmen möchten, aktualisieren Sie diese bitte vor Beginn des nächsten Zeitraums. Weitere Informationen finden Sie in unserem Benutzer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
@@ -3369,8 +3369,8 @@
       },
       "no_license_operate_failed": "Aufgrund unzureichender Lizenzen ist der Vorgang fehlgeschlagen.",
       "failed_to_invite_no_license": "Aufgrund unzureichender Lizenzen sind einige Mitgliedereinladungen fehlgeschlagen.",
-      "error_subscribe": "Failed to change plan. Please try again later.",
-      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
+      "error_subscribe": "Fehler beim Ändern des Plans. Bitte versuchen Sie es später erneut.",
+      "unsubscription_fail": "Abo konnte nicht storniert werden. Bitte versuchen Sie es später erneut."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3402,7 +3402,7 @@
         "add_unlimited_viewer": "Fügen Sie unbegrenzte Zuschauer Mitglieder kostenlos hinzu",
         "publish_public_appli": "Öffentliche Anwendungen veröffentlichen",
         "ai_sql_generation": "AI SQL Generierung",
-        "audit_logs": "Audit-Logs",
+        "audit_logs": "Audit-Protokolle (demnächst verfügbar)",
         "learn_more": "Mehr erfahren",
         "upgrade": "Upgrade",
         "pricing": "/Editor/Monat, jährlich",
@@ -3470,9 +3470,9 @@
       "title": "Zahlung erfolgreich",
       "button": "Zurück zur ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirecting to Stripe"
+    "redirect_to_stripe": "Umleitung zu Streifen"
   },
   "network": {
-    "error": "Network error, please try again later"
+    "error": "Netzwerkfehler, bitte versuchen Sie es später erneut"
   }
 }
