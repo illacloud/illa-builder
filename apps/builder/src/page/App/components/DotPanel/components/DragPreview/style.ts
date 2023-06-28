@@ -13,7 +13,6 @@ export const dragPreviewStyle = (
   height: ${height}px;
   transform: translate(${left}px, ${top - 1}px);
   background-color: rgba(101, 74, 236, 0.1);
-  border-radius: 2px;
   border-top: 3px solid #654aec;
   z-index: 10;
 `

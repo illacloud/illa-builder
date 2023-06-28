@@ -36,15 +36,15 @@ import {
   getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getCurrentPageDisplayName,
   getExecutionWidgetLayoutInfo,
   getIsDragging,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { FocusManager } from "@/utils/focusManager"
 import { newGenerateComponentNode } from "@/utils/generators/generateComponentNode"
-import { searchDSLByDisplayName } from "../../../../../../redux/currentApp/editor/components/componentsSelector"
-import { FocusManager } from "../../../../../../utils/focusManager"
 import { getMousePointerPosition } from "../../calc"
 import {
   removeScrollBarContainerControllerByDisplayName,

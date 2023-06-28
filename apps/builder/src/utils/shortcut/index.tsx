@@ -7,7 +7,6 @@ import { createModal, useMessage } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
-  getFreezeState,
   getIsILLAEditMode,
   getSelectedAction,
   getSelectedComponents,
@@ -55,7 +54,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const canvasRootNode = useSelector(getCanvas)
   const executionResult = useSelector(getExecutionResult)
-  const freezeState = useSelector(getFreezeState)
 
   const showShadows = useSelector(isShowDot)
 
@@ -386,27 +384,6 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       enabled: isEditMode,
     },
     [showDeleteDialog, currentSelectedComponent, currentSelectedAction],
-  )
-
-  useHotkeys(
-    "d,k",
-    (keyboardEvent) => {
-      if (keyboardEvent.type === "keydown" && freezeState === false) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.KEYDOWN, {
-          element: "lock_icon",
-          parameter2: "lock",
-        })
-        dispatch(configActions.updateFreezeStateReducer(true))
-      } else if (keyboardEvent.type === "keyup" && freezeState === true) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.KEYUP, {
-          element: "lock_icon",
-          parameter2: "unlock",
-        })
-        dispatch(configActions.updateFreezeStateReducer(false))
-      }
-    },
-    { keydown: true, keyup: true, enabled: isEditMode },
-    [dispatch, freezeState],
   )
 
   useHotkeys(
