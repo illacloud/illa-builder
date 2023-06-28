@@ -12,6 +12,7 @@ import { fetchUserInfo } from "@/services/users"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const setTokenToLocalStorageLoader: LoaderFunction = async (args) => {
   const url = new URL(args.request.url)
@@ -79,6 +80,7 @@ export const getTeamsInfoLoader: LoaderFunction = async (args) => {
     store.dispatch(teamActions.updateTeamItemsReducer(teamsInfo))
     ILLAMixpanel.setGroup(teamIdentifier)
     if (
+      isCloudVersion &&
       !canAccessManage(
         currentTeamInfo.myRole,
         currentTeamInfo.totalTeamLicense.teamLicenseAllPaid,
