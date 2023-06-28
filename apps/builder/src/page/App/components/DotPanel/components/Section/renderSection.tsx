@@ -8,8 +8,6 @@ import { RenderComponentCanvasContainer } from "@/page/App/components/DotPanel/c
 import { RenderModalCanvasContainer } from "@/page/App/components/DotPanel/components/Canvas/renderModalCanvasContainer"
 import {
   BASIC_CANVAS_PADDING,
-  DEFAULT_ASIDE_COLUMNS_NUMBER,
-  DEFAULT_BODY_COLUMNS_NUMBER,
   UNIT_HEIGHT,
 } from "@/page/App/components/DotPanel/constant/canvas"
 import {
@@ -68,7 +66,7 @@ import {
 } from "./style"
 
 export const RenderSection: FC<RenderSectionProps> = (props) => {
-  const { sectionNode, mode } = props
+  const { sectionNode, mode, columnNumber } = props
   const executionResult = useSelector(getExecutionResult)
   const sectionNodeProps = executionResult[sectionNode.displayName] || {}
 
@@ -100,7 +98,7 @@ export const RenderSection: FC<RenderSectionProps> = (props) => {
           <RenderComponentCanvasContainer
             displayName={componentNode.displayName}
             containerPadding={BASIC_CANVAS_PADDING}
-            columnNumber={DEFAULT_BODY_COLUMNS_NUMBER}
+            columnNumber={columnNumber}
             isRootCanvas
           />
         )}
@@ -122,6 +120,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
     currentPageDisplayName,
     leftPosition,
     rightPosition,
+    columnNumber,
   } = props
   const [isResizeActive, setIsResizeActive] = useState(false)
   const [heightPX, setHeightPX] = useState(topHeight)
@@ -277,7 +276,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
           <RenderComponentCanvasContainer
             displayName={componentNode.displayName}
             containerPadding={BASIC_CANVAS_PADDING}
-            columnNumber={DEFAULT_BODY_COLUMNS_NUMBER}
+            columnNumber={columnNumber}
             isRootCanvas
           />
         )}
@@ -310,6 +309,7 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
     currentPageDisplayName,
     leftPosition,
     rightPosition,
+    columnNumber,
   } = props
   const executionResult = useSelector(getExecutionResult)
   const [isResizeActive, setIsResizeActive] = useState(false)
@@ -470,7 +470,7 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
           <RenderComponentCanvasContainer
             displayName={componentNode.displayName}
             containerPadding={BASIC_CANVAS_PADDING}
-            columnNumber={DEFAULT_BODY_COLUMNS_NUMBER}
+            columnNumber={columnNumber}
             isRootCanvas
           />
         )}
@@ -506,6 +506,7 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
     leftWidth,
     setIsLeftFold,
     canvasSize,
+    columnNumber,
   } = props
 
   const executionResult = useSelector(getExecutionResult)
@@ -690,7 +691,7 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
             <RenderComponentCanvasContainer
               displayName={componentNode.displayName}
               containerPadding={BASIC_CANVAS_PADDING}
-              columnNumber={DEFAULT_ASIDE_COLUMNS_NUMBER}
+              columnNumber={columnNumber}
               isRootCanvas
             />
           )}
@@ -772,6 +773,7 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
     rightWidth,
     setIsRightFold,
     canvasSize,
+    columnNumber,
   } = props
 
   const executionResult = useSelector(getExecutionResult)
@@ -957,7 +959,7 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
             <RenderComponentCanvasContainer
               displayName={componentNode.displayName}
               containerPadding={BASIC_CANVAS_PADDING}
-              columnNumber={DEFAULT_ASIDE_COLUMNS_NUMBER}
+              columnNumber={columnNumber}
               isRootCanvas
             />
           )}
@@ -1025,7 +1027,7 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
 RenderRightSection.displayName = "RenderRightSection"
 
 export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
-  const { sectionNode } = props
+  const { sectionNode, columnNumber } = props
   const layoutInfos = useSelector(getExecutionWidgetLayoutInfo)
   const executionResult = useSelector(getExecutionResult)
 
@@ -1051,7 +1053,7 @@ export const RenderModalSection: FC<RenderModalSectionProps> = (props) => {
       <RenderModalCanvasContainer
         displayName={sectionNode.displayName}
         containerPadding={BASIC_CANVAS_PADDING}
-        columnNumber={DEFAULT_BODY_COLUMNS_NUMBER}
+        columnNumber={columnNumber}
       />
     </div>
   )

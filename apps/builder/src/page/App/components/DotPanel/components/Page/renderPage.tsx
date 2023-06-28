@@ -9,6 +9,8 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import {
+  DEFAULT_ASIDE_COLUMNS_NUMBER,
+  DEFAULT_BODY_COLUMNS_NUMBER,
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
 } from "@/page/App/components/DotPanel/constant/canvas"
@@ -94,6 +96,11 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     bottomHeight,
     showLeftFoldIcon,
     showRightFoldIcon,
+    leftColumns,
+    rightColumns,
+    headerColumns,
+    footerColumns,
+    bodyColumns,
   } = pageProps
 
   const [isLeftFold, setIsLeftFold] = useState(false)
@@ -409,6 +416,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             currentPageDisplayName={currentPageDisplayName}
             leftPosition={leftPosition}
             rightPosition={rightPosition}
+            columnNumber={headerColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
           />
         )}
         {hasLeft && leftSection && currentPageDisplayName && (
@@ -425,10 +433,15 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             isFold={isLeftFold}
             setIsLeftFold={setIsLeftFold}
             canvasSize={canvasSize}
+            columnNumber={leftColumns ?? DEFAULT_ASIDE_COLUMNS_NUMBER}
           />
         )}
         {bodySection && currentPageDisplayName && (
-          <RenderSection sectionNode={bodySection} mode={mode} />
+          <RenderSection
+            sectionNode={bodySection}
+            mode={mode}
+            columnNumber={bodyColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
+          />
         )}
         {hasRight && rightSection && currentPageDisplayName && (
           <RenderRightSection
@@ -444,6 +457,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             rightWidth={realRightWidth}
             setIsRightFold={setIsRightFold}
             canvasSize={canvasSize}
+            columnNumber={rightColumns ?? DEFAULT_ASIDE_COLUMNS_NUMBER}
           />
         )}
         {hasFooter && footerSection && currentPageDisplayName && (
@@ -457,10 +471,16 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             currentPageDisplayName={currentPageDisplayName}
             leftPosition={leftPosition}
             rightPosition={rightPosition}
+            columnNumber={footerColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
           />
         )}
       </div>
-      {modalSection && <RenderModalSection sectionNode={modalSection} />}
+      {modalSection && (
+        <RenderModalSection
+          sectionNode={modalSection}
+          columnNumber={bodyColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
+        />
+      )}
     </div>
   )
 }

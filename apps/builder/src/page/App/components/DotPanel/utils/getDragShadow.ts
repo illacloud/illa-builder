@@ -88,6 +88,7 @@ export const getMousePositionInfo = (
   yOffset: number = 0,
   xOffset: number = 0,
   wRatio: number = 1,
+  columnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER,
 ) => {
   const { xRatio, yRatio } = getRatio(
     initialClientOffSet,
@@ -111,16 +112,11 @@ export const getMousePositionInfo = (
   const ratioRelativeMouseY = ratioRelativeMouseTop / UNIT_HEIGHT
   const ratioRelativeMouseX = ratioRelativeMouseLeft / unitWidth
   const widgetX =
-    Math.min(Math.round(ratioRelativeMouseX), DEFAULT_BODY_COLUMNS_NUMBER - 1) -
-    xOffset
+    Math.min(Math.round(ratioRelativeMouseX), columnNumber - 1) - xOffset
   const widgetY = Math.round(ratioRelativeMouseY) - yOffset
   const mouseHoveredTopHalf = ratioRelativeMouseY % 1 >= 0.5
 
-  const mouseRealX = clamp(
-    Math.floor(realRelativeMouseX),
-    0,
-    DEFAULT_BODY_COLUMNS_NUMBER - 1,
-  )
+  const mouseRealX = clamp(Math.floor(realRelativeMouseX), 0, columnNumber - 1)
   const mouseRealY = Math.round(realRelativeMouseY)
   const mouseRealTopHalf = realRelativeMouseY % 1 >= 0.5
   return {
@@ -435,6 +431,8 @@ export const getDragPreview = (
     totalScrollTop,
     yOffset,
     xOffset,
+    1,
+    columnNumber,
   )
 
   const moveEffect = {
