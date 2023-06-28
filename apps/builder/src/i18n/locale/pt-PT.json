@@ -3324,8 +3324,8 @@
         "unsubscribe_storage": "Você cancelará a assinatura do armazenamento ILLA Drive. Após o cancelamento, a partir do próximo ciclo de faturamento, a capacidade de armazenamento será restaurada para 100MB. <0>Saiba mais</0>",
         "subscribe_license_monthly": "Você vai assinar a assinatura mensal ILLA Cloud Plus. <0>Saiba mais</0>",
         "subscribe_license_yearly": "Você vai assinar a assinatura anual ILLA Cloud Plus. <0>Saiba mais</0>",
-        "subscribe_storage_monthly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>",
-        "subscribe_storage_yearly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>"
+        "subscribe_storage_monthly": "Você vai adicionar {{changeNum}}GB de armazenamento. Uma vez confirmado, nós deduziremos o custo do armazenamento imediatamente. <0>Saiba mais</0>",
+        "subscribe_storage_yearly": "Você vai adicionar {{changeNum}}GB de armazenamento. Uma vez confirmado, nós deduziremos o custo do armazenamento imediatamente. <0>Saiba mais</0>"
       },
       "description": {
         "add_storage": "Regras de cálculo usando uma assinatura mensal como exemplo: Vamos considerar um cenário em que você inicialmente se inscreveu a 5 GB a partir de 14 de março e o ciclo de faturamento abrange o dia 14 deste mês até o dia 13 do próximo mês. No dia 10 de maio, você decide adicionar 1 GB. Nesse ponto, havia 4 dias restantes até o final do ciclo atual no dia 13 de maio (que totaliza 30 dias entre 14 de abril e 13 de maio). Para calcular o pagamento ajustado, vamos deduzir o custo de 1 GB, o que equivale a aproximadamente $0. 9, proporcional à duração de 4 dias dentro do ciclo de 30 dias. Portanto, a dedução é estimada como uma licença de 1 * $0. 9 / 30 dias * 4 dias, resultando em aproximadamente $0,132. A partir do próximo ciclo de faturamento, todas as taxas de armazenamento serão consolidadas e pagas. Se você deseja reduzir licenças ou fazer outras alterações na assinatura, por favor atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
@@ -3369,8 +3369,8 @@
       },
       "no_license_operate_failed": "Devido a licenças insuficientes, a operação falhou.",
       "failed_to_invite_no_license": "Devido ao licenciamento insuficiente, alguns convites de membros falharam.",
-      "error_subscribe": "Failed to change plan. Please try again later.",
-      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
+      "error_subscribe": "Falha ao alterar o plano. Tente novamente mais tarde.",
+      "unsubscription_fail": "Falha ao cancelar a assinatura. Tente novamente mais tarde."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3402,7 +3402,7 @@
         "add_unlimited_viewer": "Adicione membros de espectadores ilimitados GRÁTIS",
         "publish_public_appli": "Publicar aplicações públicas",
         "ai_sql_generation": "Geração de SQL AI",
-        "audit_logs": "Logs de auditoria",
+        "audit_logs": "Logs de auditoria (Em breve)",
         "learn_more": "Mais informações",
         "upgrade": "PRO",
         "pricing": "/editor/mês, anual",
@@ -3470,9 +3470,9 @@
       "title": "Pagamento bem-sucedido",
       "button": "Voltar para ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirecting to Stripe"
+    "redirect_to_stripe": "Redirecionando para Listra"
   },
   "network": {
-    "error": "Network error, please try again later"
+    "error": "Erro de rede, por favor, tente novamente mais tarde"
   }
 }
