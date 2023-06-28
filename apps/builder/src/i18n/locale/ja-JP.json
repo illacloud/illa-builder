@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} ライセンス× {{remainDays}} 日 / {{totalDays}} 日",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} ライセンス× 1 年",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} ライセンス × 1 ヶ月",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} ライセンス",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} ライセンス× {{remainDays}} 日 / {{totalDays}} 日",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス× 1 年",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス × 1 ヶ月",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} ライセンス× 1 年",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} ライセンス × 1 ヶ月",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} ライセンス",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} 日 / {{totalDays}} 日",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 年",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 ヶ月",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} 日 / {{totalDays}} 日",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 年",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 ヶ月",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 年",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 ヶ月"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "購読解除",
@@ -3322,8 +3322,10 @@
         "update_plan_remove_storage": "{{changeNum}} GBのストレージを削除し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
         "unsubscribe_license": "ILLA Cloud Plusの登録を解除します。 キャンセル後、次の請求サイクルから始めて、Plus機能にアクセスできなくなります。<0>詳細</0>",
         "unsubscribe_storage": "ILLAドライブのストレージの登録を解除します。 キャンセル後、次の請求サイクルから開始すると、ストレージ容量は100MBに復元されます。 <0>詳細</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "あなたはILLA Cloud Plusの月額サブスクリプションを購読します。<0>詳細はこちら</0>",
+        "subscribe_license_yearly": "あなたはILLA Cloud Plusの年額サブスクリプションを購読します。<0>詳細はこちら</0>",
+        "subscribe_storage_monthly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>",
+        "subscribe_storage_yearly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>"
       },
       "description": {
         "add_storage": "毎月のストレージサブスクリプションを使用した計算ルールを例として挙げてみましょう。3月14日から最初に5GBまで登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日、あなたは1GBを追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1 GBのコストを差し引くことになります。 9、30日間の周期内の4日の期間に比例しますので、控除は1ライセンス*0と推定されます。 9 / 30 日 * 4日間、およそ$ 0.132になります。 次の請求サイクルから、すべての保管料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、ユーザー<0>プライバシーポリシー</0>および<1>サービス規約</1>をご覧ください。",
@@ -3362,9 +3364,13 @@
       "failed_to_join_no_license": "チームライセンスが不足しているため参加できません。管理者に連絡してください。",
       "storage_insufficient_modal": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+        "transfer": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 ",
+        "leave": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 "
+      },
+      "no_license_operate_failed": "ライセンス不足のため操作に失敗しました。",
+      "failed_to_invite_no_license": "ライセンス不足のため、一部のメンバー招待に失敗しました。",
+      "error_subscribe": "プランの変更に失敗しました。後でもう一度お試しください。",
+      "unsubscription_fail": "サブスクリプションをキャンセルできませんでした。後でもう一度お試しください。"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3396,7 +3402,7 @@
         "add_unlimited_viewer": "無制限の視聴者メンバーを無料で追加",
         "publish_public_appli": "公開アプリケーションを公開",
         "ai_sql_generation": "AI SQLの生成",
-        "audit_logs": "監査ログ",
+        "audit_logs": "監査ログ（近日公開予定）",
         "learn_more": "もっと詳しく",
         "upgrade": "アップグレードする",
         "pricing": "/editor/month, year",
@@ -3454,6 +3460,19 @@
       "get_access_to_advanc": "高度な機能にアクセスする",
       "upgrade": "アップグレードする",
       "cancel": "キャンセル"
-    }
+    },
+    "advanced": {
+      "feature": "透かしを削除"
+    },
+    "redirect_page": {
+      "desc1": "ご購入ありがとうございます。ILLA Cloudは引き続き多くの機能を提供します。",
+      "desc2": "{{time}} 秒後に ILLA Cloud にリダイレクトしています...",
+      "title": "支払いが完了しました",
+      "button": "ILLAクラウドに戻る"
+    },
+    "redirect_to_stripe": "Stripeにリダイレクト中"
+  },
+  "network": {
+    "error": "ネットワークエラーが発生しました。後でもう一度お試しください。"
   }
 }

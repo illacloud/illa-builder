@@ -1,4 +1,12 @@
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Input, Select, useMessage } from "@illa-design/react"
@@ -6,6 +14,8 @@ import { ReactComponent as OpenAIIcon } from "@/assets/openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
   actionItemContainer,
@@ -20,10 +30,11 @@ import { configActions } from "@/redux/config/configSlice"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchGenerateSQL } from "@/services/action"
 import { fetchResourceMeta } from "@/services/resource"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { isILLAAPiError } from "@/utils/typeHelper"
+import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const MysqlLikePanel: FC = () => {
@@ -31,8 +42,16 @@ export const MysqlLikePanel: FC = () => {
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
   const dispatch = useDispatch()
   const appInfo = useSelector(getAppInfo)
+  const teamInfo = useSelector(getCurrentTeamInfo)
+
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
 
   const { t } = useTranslation()
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
   useEffect(() => {
     if (currentAction.resourceId == undefined) return
@@ -93,6 +112,10 @@ export const MysqlLikePanel: FC = () => {
     })
   }, [])
   const handleClickGenerate = useCallback(async () => {
+    if (!canUseBillingFeature) {
+      handleUpgradeModalVisible(true, "upgrade")
+      return
+    }
     setGenerateLoading(true)
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
       element: "sql_generation",
@@ -133,69 +156,73 @@ export const MysqlLikePanel: FC = () => {
     dispatch,
     message,
     mysqlContent,
+    canUseBillingFeature,
+    handleUpgradeModalVisible,
   ])
 
   return (
     <div css={mysqlContainerStyle}>
       <ResourceChoose />
       <div css={actionItemContainer}>
-        <div css={sqlTransStyle}>
-          <Select
-            mr="-1px"
-            autoAlignPopupWidth={true}
-            w="120px"
-            flexGrow="0"
-            flexShrink="0"
-            bdRadius="8px 0 0 8px"
-            value={currentSqlAction}
-            options={[
-              {
-                label: "SELECT",
-                value: 1,
-              },
-              {
-                label: "INSERT",
-                value: 2,
-              },
-              {
-                label: "UPDATE",
-                value: 3,
-              },
-              {
-                label: "DELETE",
-                value: 4,
-              },
-            ]}
-            onChange={(v) => {
-              setCurrentSqlAction(v as number)
-            }}
-            size="large"
-            colorScheme="techPurple"
-          />
-          <Input
-            size="large"
-            colorScheme="techPurple"
-            bdRadius="0"
-            flexGrow="1"
-            flexShrink="1"
-            placeholder={t("editor.action.panel.sqlgc.placeholder.text")}
-            inputRef={inputRef}
-          />
-          <Button
-            minW="168px"
-            loading={generateLoading}
-            size="large"
-            flexGrow="0"
-            flexShrink="0"
-            bdRadius="0 8px 8px 0"
-            pd="9px 24px"
-            bg="linear-gradient(90deg, #FF53D9 0%, #AE47FF 100%);"
-            leftIcon={<OpenAIIcon />}
-            onClick={handleClickGenerate}
-          >
-            {t("editor.action.panel.sqlgc.button.text")}
-          </Button>
-        </div>
+        {isCloudVersion ? (
+          <div css={sqlTransStyle}>
+            <Select
+              mr="-1px"
+              autoAlignPopupWidth={true}
+              w="120px"
+              flexGrow="0"
+              flexShrink="0"
+              bdRadius="8px 0 0 8px"
+              value={currentSqlAction}
+              options={[
+                {
+                  label: "SELECT",
+                  value: 1,
+                },
+                {
+                  label: "INSERT",
+                  value: 2,
+                },
+                {
+                  label: "UPDATE",
+                  value: 3,
+                },
+                {
+                  label: "DELETE",
+                  value: 4,
+                },
+              ]}
+              onChange={(v) => {
+                setCurrentSqlAction(v as number)
+              }}
+              size="large"
+              colorScheme="techPurple"
+            />
+            <Input
+              size="large"
+              colorScheme="techPurple"
+              bdRadius="0"
+              flexGrow="1"
+              flexShrink="1"
+              placeholder={t("editor.action.panel.sqlgc.placeholder.text")}
+              inputRef={inputRef}
+            />
+            <Button
+              minW="168px"
+              loading={generateLoading}
+              size="large"
+              flexGrow="0"
+              flexShrink="0"
+              bdRadius="0 8px 8px 0"
+              pd="9px 24px"
+              bg="linear-gradient(90deg, #FF53D9 0%, #AE47FF 100%);"
+              leftIcon={<OpenAIIcon />}
+              onClick={handleClickGenerate}
+            >
+              {t("editor.action.panel.sqlgc.button.text")}
+            </Button>
+          </div>
+        ) : null}
         <div css={sqlInputStyle}>
           <CodeEditor
             className={`${displayName}-query`}

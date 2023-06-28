@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} licencias × {{remainDays}} días / {{totalDays}} días",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licencias × 1 año",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licencias × 1 mes",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licencias",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licencias",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} licencias × {{remainDays}} días / {{totalDays}} días",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licencias × 1 año",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licencias × 1 mes",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licencias × 1 año",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licencias × 1 mes",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licencias",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licencias",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licencias",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licencias",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} días / {{totalDays}} días",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 año",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 mes",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} días / {{totalDays}} días",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 año",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 mes",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 año",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 mes"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "Darse de baja",
@@ -3322,8 +3322,10 @@
         "update_plan_remove_storage": "Vas a eliminar {{changeNum}} GB de almacenamiento y actualizar tu periodo de suscripción. <0>Más información</0>",
         "unsubscribe_license": "Va a cancelar la suscripción a ILLA Cloud Plus. Después de la cancelación, a partir del próximo ciclo de facturación, las características Plus ya no serán accesibles. <0>Más información</0>",
         "unsubscribe_storage": "Va a cancelar la suscripción al almacenamiento de ILLA Drive. Después de la cancelación, a partir del próximo ciclo de facturación, la capacidad de almacenamiento se restaurará a 100MB. <0>Más información</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Vas a suscribirte a la suscripción mensual de ILLA Cloud Plus. <0>Más información</0>",
+        "subscribe_license_yearly": "Va a suscribirse a la suscripción anual de ILLA Cloud Plus. <0>Más información</0>",
+        "subscribe_storage_monthly": "Vas a añadir {{changeNum}}GB de almacenamiento. Una vez confirmado, deduciremos el coste del almacenamiento inmediatamente. <0>Más información</0>",
+        "subscribe_storage_yearly": "Vas a añadir {{changeNum}}GB de almacenamiento. Una vez confirmado, deduciremos el coste del almacenamiento inmediatamente. <0>Más información</0>"
       },
       "description": {
         "add_storage": "Reglas de cálculo usando una suscripción mensual de almacenamiento como ejemplo: consideremos un escenario donde inicialmente se suscribió a 5 GB a partir del 14 de marzo, y el ciclo de facturación abarca desde el 14 de este mes hasta el 13 del mes próximo. El 10 de mayo, decide añadir 1 GB. En ese momento, quedaron 4 días hasta el final del ciclo actual el 13 de mayo (que totaliza 30 días del 14 de abril al 13 de mayo). Para calcular el pago ajustado, reduciremos el costo de 1 GB, que asciende a aproximadamente $0. 9, proporcionada a la duración de 4 días en el ciclo de 30 días, por lo que la deducción se estima como 1 licencia * $0. 9 / 30 días * 4 días, resultando en aproximadamente $0.132. A partir del próximo ciclo de facturación, todos los gastos de almacenamiento se consolidarán y pagarán juntos. Si desea reducir las licencias o realizar otros cambios en la suscripción, por favor actualícelo antes del comienzo del próximo período. Para obtener más información, consulte nuestra <0>Política de privacidad</0> y <1>Condiciones de servicio</1>",
@@ -3362,9 +3364,13 @@
       "failed_to_join_no_license": "No se puede unirse porque las licencias de equipo son insuficientes, por favor contacte al administrador.",
       "storage_insufficient_modal": "El almacenamiento o tráfico de este equipo no es suficiente. Por favor, póngase en contacto con su administrador.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+        "transfer": "Operate falló. Este usuario está vinculado a la suscripción de por vida. ",
+        "leave": "Operate falló. Este usuario está vinculado a la suscripción de por vida. "
+      },
+      "no_license_operate_failed": "Debido a la falta de licencias, la operación falló.",
+      "failed_to_invite_no_license": "Debido a la falta de licencias, algunas invitaciones de miembros han fallado.",
+      "error_subscribe": "Error al cambiar el plan. Inténtalo de nuevo más tarde.",
+      "unsubscription_fail": "Error al cancelar la suscripción. Inténtalo de nuevo más tarde."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3396,7 +3402,7 @@
         "add_unlimited_viewer": "Añadir usuarios ilimitados GRATIS",
         "publish_public_appli": "Publicar aplicaciones públicas",
         "ai_sql_generation": "Generación de SQL IA",
-        "audit_logs": "Auditoría de registros",
+        "audit_logs": "Registros de auditoría (Próximamente)",
         "learn_more": "Aprende más",
         "upgrade": "Mejorar",
         "pricing": "/editor/mes, anual",
@@ -3454,6 +3460,19 @@
       "get_access_to_advanc": "Obtén acceso a características avanzadas",
       "upgrade": "Mejorar",
       "cancel": "Cancelar"
-    }
+    },
+    "advanced": {
+      "feature": "Quitar marca de agua"
+    },
+    "redirect_page": {
+      "desc1": "Gracias por su compra. ILLA Cloud continuará proporcionándole más características.",
+      "desc2": "Redirigiendo a la nube ILLA en {{time}} segundos...",
+      "title": "Pago exitoso",
+      "button": "Volver a ILLA Cloud"
+    },
+    "redirect_to_stripe": "Redirigiendo a Stripe"
+  },
+  "network": {
+    "error": "Error de red, inténtalo de nuevo más tarde"
   }
 }

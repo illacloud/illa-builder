@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} lisenssiä × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} lisenssiä",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} lisenssiä",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 vuosi",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} lisenssiä × 1 kuukausi",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} lisenssiä",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} lisenssiä",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 vuosi",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 kuukausi"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "Peruuta Tilaus",
@@ -3322,8 +3322,10 @@
         "update_plan_remove_storage": "Aiot poistaa {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
         "unsubscribe_license": "Lopetat ILLA Cloud Plus -palvelun tilauksen. Peruutuksen jälkeen seuraavasta laskutusjaksosta alkaen Plus-ominaisuudet eivät ole enää käytettävissä. <0>Lue lisää</0>",
         "unsubscribe_storage": "Olet menossa lopettamaan ILLA Drive -tallennustilan tilauksen. Peruutuksen jälkeen seuraavan laskutussyklin jälkeen tallennuskapasiteetti palautetaan 100MB. <0>Lue lisää</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Olet menossa tilaamaan ILLA Cloud Plus kuukausittaisen tilauksen. <0>Lue lisää</0>",
+        "subscribe_license_yearly": "Olet menossa tilaamaan ILLA Cloud Plus vuosittaisen tilauksen. <0>Lue lisää</0>",
+        "subscribe_storage_monthly": "Olet menossa lisäämään {{changeNum}}Gt tallennustilaa. Kun se on vahvistettu, vähennämme tallennustilan kustannukset välittömästi. <0>Lue lisää</0>",
+        "subscribe_storage_yearly": "Olet menossa lisäämään {{changeNum}}Gt tallennustilaa. Kun se on vahvistettu, vähennämme tallennustilan kustannukset välittömästi. <0>Lue lisää</0>"
       },
       "description": {
         "add_storage": "Laskentasäännöt käyttäen kuukausittaista tallennustilausta esimerkkinä: Katsotaanpa skenaario, jossa tilaat aluksi 5 GB alkaen maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 GB. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 GB, joka on noin $ 0. 9, suhteessa kestoon 4 päivää 30 päivän aikana. Siksi vähennys on arvioitu 1 lisenssi * $ 0. 9 / 30 päivää * 4 päivää, jolloin noin 0,132 dollaria. Seuraavasta laskutusjaksosta alkaen kaikki tallennusmaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso käyttäjämme <0>Tietosuojakäytäntö</0> ja <1>Käyttöehdot</1>",
@@ -3362,9 +3364,13 @@
       "failed_to_join_no_license": "Liittyminen ei onnistunut, koska tiimin lisenssit eivät riitä, ota yhteyttä ylläpitäjään.",
       "storage_insufficient_modal": "Tämän tiimin tallennustila tai liikenne ei riitä. Ota yhteyttä ylläpitäjään.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+        "transfer": "Toiminto epäonnistui. Tämä käyttäjä on sidottu elinikäiseen tilaukseen. ",
+        "leave": "Toiminto epäonnistui. Tämä käyttäjä on sidottu elinikäiseen tilaukseen. "
+      },
+      "no_license_operate_failed": "Riittämättömien lisenssien vuoksi operaatio epäonnistui.",
+      "failed_to_invite_no_license": "Riittämättömän lisensoinnin vuoksi jotkin jäsenkutsut ovat epäonnistuneet.",
+      "error_subscribe": "Suunnitelman muuttaminen epäonnistui. Yritä myöhemmin uudelleen.",
+      "unsubscription_fail": "Tilauksen peruuttaminen epäonnistui. Yritä myöhemmin uudelleen."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3396,7 +3402,7 @@
         "add_unlimited_viewer": "Lisää rajoittamaton katsojan jäseniä ILMAISEKSI",
         "publish_public_appli": "Julkaise julkiset sovellukset",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Tarkastuslokit",
+        "audit_logs": "Tarkastusloki(Tulossa pian)",
         "learn_more": "Lue lisää",
         "upgrade": "Päivitä",
         "pricing": "/editor/kuukausi, vuosittain",
@@ -3454,6 +3460,19 @@
       "get_access_to_advanc": "Hanki pääsy kehittyneisiin ominaisuuksiin",
       "upgrade": "Päivitä",
       "cancel": "Peruuta"
-    }
+    },
+    "advanced": {
+      "feature": "Poista vesileima"
+    },
+    "redirect_page": {
+      "desc1": "Kiitos ostoksestasi. ILLA Cloud tarjoaa sinulle edelleen enemmän ominaisuuksia.",
+      "desc2": "Uudelleenohjataan ILLA Cloudiin {{time}} sekunnissa...",
+      "title": "Maksu onnistui",
+      "button": "Takaisin ILLA-pilveen"
+    },
+    "redirect_to_stripe": "Uudelleenohjaus raidalle"
+  },
+  "network": {
+    "error": "Verkkovirhe, yritä myöhemmin uudelleen"
   }
 }

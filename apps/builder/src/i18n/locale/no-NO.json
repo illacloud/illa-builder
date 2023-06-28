@@ -3281,21 +3281,21 @@
       },
       "price_cal": {
         "this_period": "{{unitPrice}} × {{licenseNum}} lisenser × {{remainDays}} dager / {{totalDays}} dager",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} lisenser × 1 år",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} lisenser × 1 måned",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} lisenser",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} lisenser",
         "this_period_remove": "{{unitPrice}} × {{licenseNum}} lisenser × {{remainDays}} dager / {{totalDays}} dager",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} lisenser × 1 år",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} lisenser × 1 måned",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} lisenser × 1 år",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} lisenser × 1 måned",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} lisenser",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} lisenser",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} lisenser",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} lisenser",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dager / {{totalDays}} dager",
-        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB × 1 år",
-        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB × 1 måned",
+        "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
         "this_period_remove_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dager / {{totalDays}} dager",
-        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 år",
-        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB × 1 måned",
-        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB × 1 år",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB × 1 måned"
+        "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
       },
       "button": {
         "unsubscribe": "Avmeld",
@@ -3322,8 +3322,10 @@
         "update_plan_remove_storage": "Du kommer til å fjerne lagring på {{changeNum}} GB og oppdatere abonnementsperioden. <0>Lær mer</0>",
         "unsubscribe_license": "Du kommer til å stoppe abonnementet med ILLA Cloud Plus. Etter kansellering, som starter fra neste faktureringssyklus, vil Plus-funksjonene ikke lenger være tilgjengelige. <0>Lær mer</0>",
         "unsubscribe_storage": "Du kommer til å stoppe abonnementet på ILLA-stasjonen. Etter kansellering, fra neste faktureringssyklus, vil lagringskapasiteten bli gjenopprettet til 100MB. <0>Lær mer</0>",
-        "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_monthly": "Du kommer til å abonnere på ILLA Cloud Plus månedlig abonnement. <0>Lær mer</0>",
+        "subscribe_license_yearly": "Du kommer til å abonnere på ILLA Cloud Plus årlig abonnement. <0>Lær mer</0>",
+        "subscribe_storage_monthly": "Du kommer til å legge til {{changeNum}}GB lagringsplass. Når det er bekreftet vil vi trekke fra kostnaden på lageret umiddelbart. <0>Lær mer</0>",
+        "subscribe_storage_yearly": "Du kommer til å legge til {{changeNum}}GB lagringsplass. Når det er bekreftet vil vi trekke fra kostnaden på lageret umiddelbart. <0>Lær mer</0>"
       },
       "description": {
         "add_storage": "Beregningsregler ved hjelp av et månedlig lagringsabonnement som et eksempel: La oss vurdere et scenario der du først abonnerer på 5 GB fra og med 14. mars og faktureringssyklusen strekker seg fra 14. i denne måneden til 13. i neste måned. Den 10. mai velger du å legge til 1 GB. På det punktet Det var 4 dager igjen til slutten av denne syklusen den 13. mai (som utgjør 30 dager fra 14. april og 13. mai). For å beregne justert betaling vil vi trekke ut kostnaden på 1 GB, som utgjør ca USD 0,-. 9, proporsjonalt med varigheten på 4 dager i løpet av 30-dagers syklusen. Derfor beregnes fradraget som 1 lisens * $0. 9 / 30 dager * 4 dager, hvilket resulterer i omtrent $0,132. Fra og med neste faktureringssyklus vil alle lagringskostnader konsolideres og betales sammen. Dersom du ønsker å redusere lisensene eller gjøre andre endringer i abonnementet, vennligst oppdater det før starten i neste periode. For mer informasjon, se vår bruker <0>Personvernerklæring</0> og <1>Tjenestevilkår</1>",
@@ -3362,9 +3364,13 @@
       "failed_to_join_no_license": "Kan ikke bli med fordi lag-lisenser er utilstrekkelige, vennligst kontakt administrator.",
       "storage_insufficient_modal": "Lagringsområdet eller trafikken til dette teamet er ikke nok. Kontakt din administrator.",
       "appsumo": {
-        "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
-        "leave": "Operate failed. This user is bound to the lifetime subscription. "
-      }
+        "transfer": "Operatet mislyktes. Denne brukeren er bundet til livstidsabonnementet. ",
+        "leave": "Operatet mislyktes. Denne brukeren er bundet til livstidsabonnementet. "
+      },
+      "no_license_operate_failed": "På grunn av utilstrekkelige lisenser kunne operasjonen mislykkes.",
+      "failed_to_invite_no_license": "På grunn av utilstrekkelig lisensiering, har noen medlemsinvitasjoner mislyktes.",
+      "error_subscribe": "Mislyktes med å endre planen. Prøv igjen senere.",
+      "unsubscription_fail": "Kan ikke avslutte abonnementet. Vennligst prøv igjen senere."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3396,7 +3402,7 @@
         "add_unlimited_viewer": "Legg til ubegrenset antall seere GRATIS",
         "publish_public_appli": "Publiser offentlige søknader",
         "ai_sql_generation": "AI SQL Generering",
-        "audit_logs": "Revisjon logger",
+        "audit_logs": "Revisjonslogg (Kommer snart)",
         "learn_more": "Lær mer",
         "upgrade": "Oppgrader",
         "pricing": "/rediger/måned, årlig",
@@ -3454,6 +3460,19 @@
       "get_access_to_advanc": "Få tilgang til avanserte funksjoner",
       "upgrade": "Oppgrader",
       "cancel": "Avbryt"
-    }
+    },
+    "advanced": {
+      "feature": "Fjern vannmerke"
+    },
+    "redirect_page": {
+      "desc1": "Takk for kjøpet. ILLA Cloud vil fortsette å gi deg flere funksjoner.",
+      "desc2": "Omdirigerer til ILLA Cloud om {{time}} sekunder...",
+      "title": "Vellykket betaling",
+      "button": "Tilbake til ILLA Sky"
+    },
+    "redirect_to_stripe": "Omdirigerer til Stripe"
+  },
+  "network": {
+    "error": "Nettverksfeil, vennligst prøv på nytt senere"
   }
 }

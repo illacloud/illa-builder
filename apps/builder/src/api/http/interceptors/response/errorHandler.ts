@@ -3,6 +3,7 @@ import { ILLARoute } from "@/router"
 import { cloudRedirect } from "@/router/constant"
 import { getQS } from "@/router/utils/translateQS"
 import { removeAuthToken } from "@/utils/auth"
+import { commonBillingErrorHandler } from "@/utils/billing/errorHandler"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 const getRedirectPathWhen401 = (searchParams: URLSearchParams) => {
@@ -62,6 +63,7 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
         })
         break
       }
+      commonBillingErrorHandler(response)
       break
     }
   }
