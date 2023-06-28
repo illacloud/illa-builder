@@ -30,10 +30,12 @@ export interface changeHorizontalLayoutBarProps extends ChangeLayoutBarProps {
 export interface RenderBasicSectionProps {
   sectionNode: SectionNode
   mode: IllaMode
+  columnNumber: number
 }
 
 export interface RenderModalSectionProps {
   sectionNode: ModalSectionNode
+  columnNumber: number
 }
 
 export interface RenderSectionProps extends RenderBasicSectionProps {}
