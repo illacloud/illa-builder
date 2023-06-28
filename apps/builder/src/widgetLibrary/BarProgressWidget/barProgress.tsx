@@ -91,3 +91,5 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
 }
 
 BarProgressWidget.displayName = "BarProgressWidget"
+
+export default BarProgressWidget

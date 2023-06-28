@@ -9,7 +9,7 @@ export const ICON_WIDGET_CONFIG: WidgetConfig = {
   icon: <IconsWidgetIcon />,
   keywords: ["Icon", "图标"],
   sessionType: "PRESENTATION",
-  w: 2,
+  w: 1,
   h: 4,
   defaults: {
     iconName: "BsHandThumbsUp",

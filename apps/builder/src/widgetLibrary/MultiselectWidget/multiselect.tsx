@@ -104,6 +104,7 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     optionConfigureMode,
     mappedOption,
     manualOptions,
+    //TODO: wei
     h,
     updateComponentHeight,
     triggerEventHandler,
@@ -243,3 +244,4 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
 }
 
 MultiselectWidget.displayName = "MultiselectWidget"
+export default MultiselectWidget

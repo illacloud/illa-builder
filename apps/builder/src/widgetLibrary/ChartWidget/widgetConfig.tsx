@@ -10,7 +10,7 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Chart", "图表"],
   icon: <ChartWidgetIcon />,
   sessionType: "DATA",
-  w: 20,
+  w: 10,
   h: 40,
   defaults: initChartWidgetDefaultProps,
 }
@@ -22,7 +22,7 @@ export const CHART_WIDGET_V2_CONFIG: WidgetConfig = {
   keywords: ["Chart", "图表"],
   icon: <ChartWidgetIcon />,
   sessionType: "DATA",
-  w: 20,
+  w: 10,
   h: 40,
   defaults: initChartWidgetDefaultProps,
 }

@@ -9,7 +9,7 @@ export const TIME_RANGE_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Range Time", "时间范围选择器"],
   icon: <RangeTimePickerWidgetIcon />,
   sessionType: "CALENDAR",
-  w: 20,
+  w: 10,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

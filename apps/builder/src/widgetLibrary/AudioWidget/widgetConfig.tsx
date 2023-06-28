@@ -9,7 +9,7 @@ export const AUDIO_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Audio", "音频"],
   icon: <AudioWidgetIcon />,
   sessionType: "PRESENTATION",
-  w: 32,
+  w: 16,
   h: 7,
   defaults: {
     url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",

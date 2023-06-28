@@ -87,3 +87,4 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
 }
 
 CircleProgressWidget.displayName = "CircleProgressWidget"
+export default CircleProgressWidget

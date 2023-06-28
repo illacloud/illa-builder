@@ -10,7 +10,7 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   icon: <RadioGroupWidgetIcon />,
   keywords: ["Radio Group", "单选框组"],
   sessionType: "SELECT",
-  w: 25,
+  w: 13,
   h: 3,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

@@ -668,3 +668,4 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 }
 
 WrappedTable.displayName = "WrappedTable"
+export default TableWidget

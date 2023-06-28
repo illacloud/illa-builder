@@ -3,13 +3,13 @@ import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { HeightModeSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
+import { DEFAULT_MAX_HEIGHT } from "@/page/App/components/ScaleSquare/components/AutoHeightWithLimitedContainer"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { RootState } from "@/store"
-import { DEFAULT_MAX_HEIGHT } from "@/widgetLibrary/PublicSector/AutoHeightWithLimitedContainer"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 
 export const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {

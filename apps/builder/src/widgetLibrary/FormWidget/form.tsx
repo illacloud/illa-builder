@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { useMessage } from "@illa-design/react"
 import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   DragInfo,
   DropResultInfo,
@@ -30,7 +31,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
-import { BasicContainer } from "../BasicContainer/BasicContainer"
+import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 import { FormWidgetProps } from "./interface"
 import {
   formBodyStyle,
@@ -102,13 +103,12 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     showHeader,
     headerHeight,
     footerHeight,
-    unitH,
     disabled,
     displayName,
     disabledSubmit,
     resetAfterSuccessful,
     validateInputsOnSubmit,
-    blockColumns,
+    columnNumber,
     formData: propsFormData,
     handleUpdateOriginalDSLMultiAttr,
     updateComponentRuntimeProps,
@@ -118,9 +118,6 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   } = props
 
   const message = useMessage()
-  const [bodyRef, bodyBounds] = useMeasure()
-  const [headerRef, headerBounds] = useMeasure()
-  const [footerRef, footerBounds] = useMeasure()
   const [containerRef, containerBounds] = useMeasure()
   const prevDisabled = useRef<boolean>(disabled)
   const containerNodeRef = useRef<HTMLDivElement>(
@@ -357,12 +354,12 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   ])
 
   const headerMinHeight = useMemo(
-    () => FORM_MIN_HEADER_HEIGHT_ROW_NUMBER * unitH,
-    [unitH],
+    () => FORM_MIN_HEADER_HEIGHT_ROW_NUMBER * UNIT_HEIGHT,
+    [],
   )
   const footerMinHeight = useMemo(
-    () => FORM_MIN_FOOTER_HEIGHT_ROW_NUMBER * unitH,
-    [unitH],
+    () => FORM_MIN_FOOTER_HEIGHT_ROW_NUMBER * UNIT_HEIGHT,
+    [],
   )
 
   const headerMaxHeight = useMemo(() => {
@@ -370,64 +367,52 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       Math.floor(
         (containerBounds.height -
           (FORM_BODY_MIN_HEIGHT + 2 * FORM_BODY_MARGIN) -
-          footerHeight * unitH) /
-          unitH,
-      ) * unitH
+          footerHeight * UNIT_HEIGHT) /
+          UNIT_HEIGHT,
+      ) * UNIT_HEIGHT
     )
-  }, [containerBounds.height, footerHeight, unitH])
+  }, [containerBounds.height, footerHeight])
 
   const footerMaxHeight = useMemo(() => {
     return (
       Math.floor(
         (containerBounds.height -
           (FORM_BODY_MIN_HEIGHT + 2 * FORM_BODY_MARGIN) -
-          headerHeight * unitH) /
-          unitH,
-      ) * unitH
+          headerHeight * UNIT_HEIGHT) /
+          UNIT_HEIGHT,
+      ) * UNIT_HEIGHT
     )
-  }, [containerBounds.height, headerHeight, unitH])
+  }, [containerBounds.height, headerHeight])
 
   const renderHeader = useMemo(() => {
     const headerComponentNode = childrenNode[0]
     return (
-      <BasicContainer
-        componentNode={headerComponentNode}
-        canResizeY={false}
-        minHeight={headerBounds.height - 16}
-        padding={8}
-        addedRowNumber={0}
-        blockColumns={blockColumns}
+      <RenderChildrenCanvas
+        currentComponentNode={headerComponentNode}
+        columnNumber={columnNumber}
       />
     )
-  }, [blockColumns, childrenNode, headerBounds.height])
+  }, [columnNumber, childrenNode])
 
   const renderBody = useMemo(() => {
     const bodyComponentNode = childrenNode[1]
     return (
-      <BasicContainer
-        componentNode={bodyComponentNode}
-        minHeight={bodyBounds.height - 2 * 8}
-        padding={8}
-        safeRowNumber={1}
-        addedRowNumber={20}
-        blockColumns={blockColumns}
+      <RenderChildrenCanvas
+        currentComponentNode={bodyComponentNode}
+        columnNumber={columnNumber}
       />
     )
-  }, [blockColumns, bodyBounds.height, childrenNode])
+  }, [columnNumber, childrenNode])
 
   const renderFooter = useMemo(() => {
     const footerComponentNode = childrenNode[2]
     return (
-      <BasicContainer
-        componentNode={footerComponentNode}
-        canResizeY={false}
-        minHeight={footerBounds.height - 2 * 8}
-        padding={8}
-        addedRowNumber={0}
-        blockColumns={blockColumns}
+      <RenderChildrenCanvas
+        currentComponentNode={footerComponentNode}
+        columnNumber={columnNumber}
       />
     )
-  }, [blockColumns, childrenNode, footerBounds.height])
+  }, [columnNumber, childrenNode])
 
   const resizeTopHandler = useMemo(() => {
     return {
@@ -458,43 +443,35 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
   const handleOnResizeTopStop: ResizeCallback = useCallback(
     (e, dir, elementRef, delta) => {
       const { height } = delta
-      let finalHeight = Math.floor((headerHeight * unitH + height) / unitH)
-      if (finalHeight * unitH >= headerMaxHeight) {
-        finalHeight = Math.floor(headerMaxHeight / unitH)
+      let finalHeight = Math.floor(
+        (headerHeight * UNIT_HEIGHT + height) / UNIT_HEIGHT,
+      )
+      if (finalHeight * UNIT_HEIGHT >= headerMaxHeight) {
+        finalHeight = Math.floor(headerMaxHeight / UNIT_HEIGHT)
       }
       handleUpdateOriginalDSLMultiAttr({
         headerHeight: finalHeight,
       })
       dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
-    [
-      dispatch,
-      handleUpdateOriginalDSLMultiAttr,
-      headerHeight,
-      headerMaxHeight,
-      unitH,
-    ],
+    [dispatch, handleUpdateOriginalDSLMultiAttr, headerHeight, headerMaxHeight],
   )
 
   const handleOnResizeBottomStop: ResizeCallback = useCallback(
     (e, dir, elementRef, delta) => {
       const { height } = delta
-      let finalHeight = Math.floor((footerHeight * unitH + height) / unitH)
-      if (finalHeight * unitH > footerMaxHeight) {
-        finalHeight = Math.floor(footerMaxHeight / unitH)
+      let finalHeight = Math.floor(
+        (footerHeight * UNIT_HEIGHT + height) / UNIT_HEIGHT,
+      )
+      if (finalHeight * UNIT_HEIGHT > footerMaxHeight) {
+        finalHeight = Math.floor(footerMaxHeight / UNIT_HEIGHT)
       }
       handleUpdateOriginalDSLMultiAttr({
         footerHeight: finalHeight,
       })
       dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
-    [
-      dispatch,
-      footerHeight,
-      footerMaxHeight,
-      handleUpdateOriginalDSLMultiAttr,
-      unitH,
-    ],
+    [dispatch, footerHeight, footerMaxHeight, handleUpdateOriginalDSLMultiAttr],
   )
 
   const [{ isDraggingActive }, dropRef] = useDrop<
@@ -553,7 +530,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
         <Resizable
           size={{
             width: "100%",
-            height: headerHeight * unitH,
+            height: headerHeight * UNIT_HEIGHT,
           }}
           minHeight={headerMinHeight}
           maxHeight={headerMaxHeight}
@@ -568,15 +545,13 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           onResizeStart={handleResizeStart}
           onResizeStop={handleOnResizeTopStop}
         >
-          <div css={formHeaderStyle} ref={headerRef}>
-            {renderHeader}
-          </div>
+          <div css={formHeaderStyle}>{renderHeader}</div>
           {isMouseHover && !isDraggingActive && isEditMode && (
             <div css={applyDashedLineStyle(false, true, false)} />
           )}
         </Resizable>
       )}
-      <div css={formBodyStyle} ref={bodyRef}>
+      <div css={formBodyStyle}>
         {renderBody}
         {isMouseHover && !isDraggingActive && isEditMode && (
           <div css={applyXDirectionDashedLineStyle(false, true, false)} />
@@ -586,7 +561,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
         <Resizable
           size={{
             width: "100%",
-            height: footerHeight * unitH,
+            height: footerHeight * UNIT_HEIGHT,
           }}
           minHeight={footerMinHeight}
           maxHeight={footerMaxHeight}
@@ -601,9 +576,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
           onResizeStart={handleResizeStart}
           onResizeStop={handleOnResizeBottomStop}
         >
-          <div css={formHeaderStyle} ref={footerRef}>
-            {renderFooter}
-          </div>
+          <div css={formHeaderStyle}>{renderFooter}</div>
           {isMouseHover && !isDraggingActive && isEditMode && (
             <div
               css={applyDashedLineStyle(false, true, false, footerMaxHeight)}
@@ -616,3 +589,4 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
 }
 
 FormWidget.displayName = "FormWidget"
+export default FormWidget

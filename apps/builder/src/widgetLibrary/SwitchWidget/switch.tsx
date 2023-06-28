@@ -95,3 +95,4 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   )
 }
 SwitchWidget.displayName = "SwitchWidget"
+export default SwitchWidget

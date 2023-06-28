@@ -1,6 +1,7 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { cloneDeep, set } from "lodash"
 import {
+  BatchUpdateComponentNodeLayoutInfoPayload,
   LayoutInfo,
   StatusInfo,
   UpdateComponentContainerPayload,
@@ -339,31 +340,48 @@ export const updateComponentContainerReducer: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateComponentContainerPayload>
 > = (state, action) => {
-  action.payload.updateSlice.forEach((slice) => {
-    const currentNode = slice.component
-    const oldParentDisplayName = slice.oldParentDisplayName
-    const oldParentNode = searchDsl(state, oldParentDisplayName)
-    let currentParentNode = searchDsl(state, currentNode.parentNode)
-    if (oldParentNode == null || currentParentNode == null) return
-    const oldChildrenNode = cloneDeep(oldParentNode.childrenNode)
-    const oldIndex = oldChildrenNode.findIndex((node) => {
-      return node.displayName === currentNode.displayName
-    })
-    if (oldIndex !== -1) {
-      oldChildrenNode.splice(oldIndex, 1)
-      oldParentNode.childrenNode = oldChildrenNode
-    }
+  const { oldParentNodeDisplayName, newParentNodeDisplayName, updateSlices } =
+    action.payload
 
-    currentParentNode = searchDsl(state, currentNode.parentNode)
-    if (currentParentNode) {
-      if (!Array.isArray(currentParentNode.childrenNode)) {
-        currentParentNode.childrenNode = [currentNode]
-      } else {
-        currentParentNode.childrenNode.push(currentNode)
-      }
+  if (oldParentNodeDisplayName === newParentNodeDisplayName) {
+    updateSlices.forEach((slice) => {
+      const currentNode = searchDsl(state, slice.displayName)
+      if (!currentNode) return
+      currentNode.x = slice.x
+      currentNode.y = slice.y
+      currentNode.w = slice.w
+      currentNode.h = slice.h
+    })
+    return
+  }
+
+  updateSlices.forEach((slice) => {
+    // delete Old
+    const currentNode = searchDsl(state, slice.displayName)
+    if (!currentNode) return
+    const olaParentNode = searchDsl(state, oldParentNodeDisplayName)
+    if (!olaParentNode) return
+    const currentIndex = olaParentNode.childrenNode.findIndex(
+      (node) => node.displayName === currentNode.displayName,
+    )
+    if (currentIndex === -1) return
+    olaParentNode.childrenNode.splice(currentIndex, 1)
+    // add New
+    const newParentNode = searchDsl(state, newParentNodeDisplayName)
+    if (!newParentNode) return
+    currentNode.parentNode = newParentNodeDisplayName
+    currentNode.x = slice.x
+    currentNode.y = slice.y
+    currentNode.w = slice.w
+    currentNode.h = slice.h
+    if (!Array.isArray(newParentNode.childrenNode)) {
+      newParentNode.childrenNode = [currentNode]
+    } else {
+      newParentNode.childrenNode.push(currentNode)
     }
   })
 }
+
 export const updateComponentReflowReducer: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateComponentReflowPayload[]>
@@ -648,7 +666,7 @@ export const updateComponentLayoutInfoReducer: CaseReducer<
 
 export const batchUpdateComponentLayoutInfoWhenReflowReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<UpdateComponentNodeLayoutInfoPayload[]>
+  PayloadAction<BatchUpdateComponentNodeLayoutInfoPayload[]>
 > = (state, action) => {
   if (!state) return
   action.payload.forEach((updateSlice) => {

@@ -23,6 +23,12 @@ export class CopyManager {
     this.currentCopyAction = action
   }
 
+  static copyComponentNodeByDisplayName(displayNames: string[]) {
+    this.currentCopyComponentNodes = displayNames.map((displayName) => {
+      return searchDSLByDisplayName(displayName) as ComponentNode
+    })
+  }
+
   static copyComponentNode(node: ComponentNode[]) {
     this.currentCopyComponentNodes = node
   }
@@ -54,6 +60,7 @@ export class CopyManager {
                       node.x,
                       node.y + node.h,
                     ),
+                    originComponentNode: node,
                   }
                 }),
               sources: sources,
@@ -101,6 +108,7 @@ export class CopyManager {
                                 targetNode.x + node.x - leftTopX,
                                 targetNode.y + targetNode.h + node.y - leftTopY,
                               ),
+                              originComponentNode: node,
                             }
                           },
                         ),
@@ -148,6 +156,7 @@ export class CopyManager {
                                 node.y -
                                 leftTopY,
                             ),
+                            originComponentNode: node,
                           }
                         },
                       ),
@@ -188,6 +197,7 @@ export class CopyManager {
                                 node.y -
                                 leftTopY,
                             ),
+                            originComponentNode: node,
                           }
                         },
                       ),

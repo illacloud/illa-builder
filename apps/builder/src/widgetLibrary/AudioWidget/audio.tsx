@@ -267,3 +267,5 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
 }
 
 AudioWidget.displayName = "AudioWidget"
+
+export default AudioWidget

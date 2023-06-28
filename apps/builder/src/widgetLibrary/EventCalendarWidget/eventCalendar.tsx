@@ -485,3 +485,4 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
   )
 }
 EventCalendarWidget.displayName = "EventCalendarWidget"
+export default EventCalendarWidget

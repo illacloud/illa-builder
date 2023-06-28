@@ -108,3 +108,4 @@ export const JsonEditorWidget: FC<JsonEditorWidgetProps> = (props) => {
 }
 
 JsonEditorWidget.displayName = "JsonEditorWidget"
+export default JsonEditorWidget

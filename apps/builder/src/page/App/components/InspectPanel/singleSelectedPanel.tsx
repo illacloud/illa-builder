@@ -11,8 +11,8 @@ import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/comp
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getGuideInfo } from "@/redux/guide/guideSelector"
 import { isObject } from "@/utils/typeHelper"
-import { panelBuilder } from "@/widgetLibrary/panelBuilder"
 import { fieldFactory } from "./utils/fieldFactory"
+import { panelBuilder } from "./utils/panelBuilder"
 
 export const SingleSelectedPanel: FC = () => {
   const dispatch = useDispatch()

@@ -154,17 +154,13 @@ export const componentsAsync = (
     case "updateComponentContainerReducer": {
       const updateComponentContainerPayload: UpdateComponentContainerPayload =
         payload
-
-      const allDisplayNames = updateComponentContainerPayload.updateSlice.map(
-        (slice) => slice.component.displayName,
-      )
+      const { updateSlices } = updateComponentContainerPayload
+      const allDisplayNames = updateSlices.map((slice) => slice.displayName)
       const allNodes = allDisplayNames
-        .map((displayName) => {
-          return searchDsl(
-            getCanvas(nextRootState),
-            displayName,
-          ) as ComponentNode
-        })
+        .map(
+          (displayName) =>
+            searchDsl(getCanvas(nextRootState), displayName) as ComponentNode,
+        )
         .filter((node) => node !== null) as ComponentNode[]
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
@@ -174,7 +170,7 @@ export const componentsAsync = (
           action,
           teamID,
           uid,
-          allNodes,
+          transformComponentReduxPayloadToWsPayload(allNodes),
         ),
       )
       break

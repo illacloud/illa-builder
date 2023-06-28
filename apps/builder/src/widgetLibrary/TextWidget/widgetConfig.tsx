@@ -6,7 +6,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "text",
   widgetName: i18n.t("widget.text.name"),
   h: 5,
-  w: 12,
+  w: 6,
   type: "TEXT_WIDGET",
   icon: <TextWidgetIcon />,
   keywords: ["Text", "文本"],

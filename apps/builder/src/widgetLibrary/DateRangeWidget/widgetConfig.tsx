@@ -9,7 +9,7 @@ export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
   icon: <DateRangeWidgetIcon />,
   keywords: ["Date Range", "日期范围选择器"],
   sessionType: "CALENDAR",
-  w: 16,
+  w: 8,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

@@ -161,6 +161,7 @@ export interface UpdateComponentReflowPayload {
 
 export interface CopyComponentPayload {
   newComponentNode: ComponentNode
+  originComponentNode: ComponentNode
 }
 
 export interface UpdateTargetPageLayoutPayload {
