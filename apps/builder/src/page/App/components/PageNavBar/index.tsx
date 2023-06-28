@@ -21,12 +21,9 @@ import {
   Dropdown,
   ExitIcon,
   FullScreenIcon,
-  LockIcon,
   MoreIcon,
   Switch,
   Tag,
-  Trigger,
-  UnlockIcon,
   getColor,
   useMessage,
 } from "@illa-design/react"
@@ -44,7 +41,6 @@ import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import {
-  getFreezeState,
   getIsILLAEditMode,
   getIsILLAGuideMode,
   getIsOnline,
@@ -90,7 +86,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const appInfo = useSelector(getAppInfo)
   const waterMark = useSelector(getCurrentAppWaterMarkConfig)
   const debuggerVisible = useSelector(isOpenDebugger)
-  const isFreezeCanvas = useSelector(getFreezeState)
   const isOnline = useSelector(getIsOnline)
   const debuggerData = useSelector(getExecutionDebuggerData)
   const debugMessageNumber = debuggerData ? Object.keys(debuggerData).length : 0
@@ -120,13 +115,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     })
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
   }, [debugMessageNumber, debuggerVisible, dispatch])
-  const handleClickFreezeIcon = useCallback(() => {
-    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-      element: "lock_icon",
-      parameter2: !isFreezeCanvas ? "lock" : "unlock",
-    })
-    dispatch(configActions.updateFreezeStateReducer(!isFreezeCanvas))
-  }, [dispatch, isFreezeCanvas])
 
   useEffect(() => {
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
@@ -343,33 +331,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                   onClick={handleClickDebuggerIcon}
                 />
               </Badge>
-              <Trigger
-                content={isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")}
-                colorScheme="grayBlue"
-                position="bottom"
-                showArrow={false}
-                autoFitPosition={false}
-                trigger="hover"
-              >
-                <Button
-                  colorScheme="white"
-                  size="medium"
-                  leftIcon={
-                    isFreezeCanvas ? (
-                      <LockIcon
-                        size="14px"
-                        color={getColor("grayBlue", "02")}
-                      />
-                    ) : (
-                      <UnlockIcon
-                        size="14px"
-                        color={getColor("grayBlue", "02")}
-                      />
-                    )
-                  }
-                  onClick={handleClickFreezeIcon}
-                />
-              </Trigger>
               {PreviewButton}
               <Button
                 loading={deployLoading}

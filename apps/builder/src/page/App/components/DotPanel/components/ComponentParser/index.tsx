@@ -20,7 +20,7 @@ export const ComponentParser: FC<ComponentParserProps> = (props) => {
         <BasicContainer
           displayName={displayName}
           minHeight={600}
-          columnNumber={64}
+          columnNumber={columnNumber}
         />
       )
     case "EDITOR_SCALE_SQUARE":
