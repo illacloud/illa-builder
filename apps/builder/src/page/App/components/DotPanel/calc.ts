@@ -334,3 +334,27 @@ export const getNearComponentNodes = (
   const sortedComponentNodes = sortComponentNodesOnlyY(allComponentNodes)
   return getNearingNodes(currentNode, sortedComponentNodes)
 }
+
+export const isAddAction = (
+  x: number,
+  y: number,
+  oldParentDisplayName: string | null,
+  currentParentDisplayName: string,
+) => {
+  return (
+    (x === -1 && y === -1) || oldParentDisplayName !== currentParentDisplayName
+  )
+}
+
+export function getMousePointerPosition(
+  mouseOffsetX: number,
+  mouseOffsetY: number,
+  unitWidth: number,
+  unitHeight: number,
+  containerMaxWidthDotNumber: number,
+): number[] {
+  let preX = Math.floor(mouseOffsetX / unitWidth)
+  preX = Math.min(preX, containerMaxWidthDotNumber)
+  let preY = Math.floor(mouseOffsetY / unitHeight)
+  return [preX, preY]
+}

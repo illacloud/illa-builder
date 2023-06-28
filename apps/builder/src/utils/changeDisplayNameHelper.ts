@@ -1,7 +1,7 @@
 import { get, toPath } from "lodash"
 import { UpdateActionSlicePropsPayload } from "@/redux/currentApp/action/actionState"
 import { UpdateComponentSlicePropsPayload } from "@/redux/currentApp/editor/components/componentsPayload"
-import { isDynamicString } from "./evaluateDynamicString/utils"
+import { hasDynamicStringSnippet } from "./evaluateDynamicString/utils"
 import {
   convertPathToString,
   isAction,
@@ -35,7 +35,7 @@ export const changeDisplayNameHelper = (
         const finalUsedPath = convertPathToString(finalUsedPathArray)
         const maybeDynamicStringValue = get(seeds, finalUsedPath)
 
-        if (isDynamicString(maybeDynamicStringValue)) {
+        if (hasDynamicStringSnippet(maybeDynamicStringValue)) {
           const newDynamicStringValue = maybeDynamicStringValue.replace(
             oldDisplayName,
             newDisplayName,

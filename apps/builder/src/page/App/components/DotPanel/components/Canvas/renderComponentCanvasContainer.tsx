@@ -1,4 +1,11 @@
-import { FC, useEffect, useRef, useState } from "react"
+import {
+  FC,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import { useScroll } from "react-use"
@@ -26,6 +33,7 @@ import {
 import {
   getIsILLAEditMode,
   getIsLikeProductMode,
+  getSelectedComponents,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -35,6 +43,9 @@ import {
   getIsDragging,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { newGenerateComponentNode } from "@/utils/generators/generateComponentNode"
+import { searchDSLByDisplayName } from "../../../../../../redux/currentApp/editor/components/componentsSelector"
+import { FocusManager } from "../../../../../../utils/focusManager"
+import { getMousePointerPosition } from "../../calc"
 import {
   removeScrollBarContainerControllerByDisplayName,
   setScrollBarContainerController,
@@ -83,6 +94,7 @@ export const RenderComponentCanvasContainer: FC<
   const childWidgetLayoutInfo = Object.values(widgetLayoutInfo).filter(
     (item) => item.parentNode === displayName,
   )
+  const selectedComponents = useSelector(getSelectedComponents)
 
   const dispatch = useDispatch()
   const isDraggingGlobal = useSelector(getIsDragging)
@@ -322,6 +334,58 @@ export const RenderComponentCanvasContainer: FC<
     scrollContainerRef,
   )
 
+  const handleClickOnCanvas: MouseEventHandler<HTMLDivElement> = useCallback(
+    (event) => {
+      if (selectedComponents.length > 1) {
+        // calc group position
+        let leftTopX = Number.MAX_SAFE_INTEGER
+        let leftTopY = Number.MAX_SAFE_INTEGER
+        let maxRightBottomX = Number.MIN_SAFE_INTEGER
+        let maxRightBottomY = Number.MIN_SAFE_INTEGER
+
+        selectedComponents.forEach((nodeName) => {
+          const node = searchDSLByDisplayName(nodeName)
+          if (node) {
+            leftTopX = Math.min(leftTopX, node.x)
+            leftTopY = Math.min(leftTopY, node.y)
+            maxRightBottomX = Math.max(maxRightBottomX, node.x + node.w)
+            maxRightBottomY = Math.max(maxRightBottomY, node.y + node.h)
+          }
+        })
+        FocusManager.switchFocus("canvas", {
+          displayName: displayName,
+          type: "group",
+          // x, y, w, h
+          clickPosition: [
+            leftTopX,
+            leftTopY,
+            maxRightBottomX - leftTopX,
+            maxRightBottomY - leftTopY,
+          ],
+        })
+      } else if (selectedComponents.length === 1) {
+        FocusManager.switchFocus("canvas", {
+          displayName: selectedComponents[0],
+          type: "component",
+          clickPosition: [],
+        })
+      } else {
+        FocusManager.switchFocus("canvas", {
+          displayName: displayName,
+          type: "inner_container",
+          clickPosition: getMousePointerPosition(
+            event.clientX - event.currentTarget.getBoundingClientRect().x,
+            event.clientY - event.currentTarget.getBoundingClientRect().y,
+            unitWidth,
+            UNIT_HEIGHT,
+            columnNumber,
+          ),
+        })
+      }
+    },
+    [columnNumber, displayName, selectedComponents, unitWidth],
+  )
+
   return (
     <div
       css={outerComponentCanvasContainerStyle(containerPadding)}
@@ -335,6 +399,7 @@ export const RenderComponentCanvasContainer: FC<
               selectoSelectionStyle,
             ]}
             data-isroot={isRootCanvas}
+            onClick={handleClickOnCanvas}
           >
             <DragShadowPreview
               unitW={unitWidth}

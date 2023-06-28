@@ -125,7 +125,6 @@ export interface IExecutionActions extends ActionItem<ActionContent> {
   $resourceId: string
 }
 
-// need refactor & apps/builder/src/page/App/components/Actions/ActionPanel/utils/runAction.ts also need refactor
 export const runActionWithExecutionResult = async (
   action: IExecutionActions,
 ) => {

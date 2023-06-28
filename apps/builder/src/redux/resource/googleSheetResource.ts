@@ -18,6 +18,7 @@ export interface OAuthOpts {
   status?:
     | GoogleSheetAuthStatus.NotAuthenticated
     | GoogleSheetAuthStatus.Authenticated
+    | GoogleSheetAuthStatus.Initial
 }
 
 export interface GoogleSheetResource {
@@ -29,6 +30,6 @@ export const GoogleSheetResourceInitial: GoogleSheetResource = {
   authentication: "serviceAccount",
   opts: {
     privateKey: "",
-    // accessType: "rw",
+    status: GoogleSheetAuthStatus.Initial,
   },
 }

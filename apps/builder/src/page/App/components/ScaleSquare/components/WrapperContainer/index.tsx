@@ -25,10 +25,12 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
+import { isContainerType } from "@/utils/componentChecker"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { isMAC } from "@/utils/userAgent"
+import { CopyManager } from "../../../../../../utils/copyManager"
 import { MoveBar } from "../MoveBar/moveBar"
 import { WrapperContainerProps } from "./interface"
 import { applyWrapperPendingStyle, hoverHotSpotStyle } from "./style"
@@ -95,7 +97,13 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      FocusManager.switchFocus("canvas")
+      if (!isContainerType(widgetType)) {
+        FocusManager.switchFocus("canvas", {
+          displayName: displayName,
+          type: "component",
+          clickPosition: [],
+        })
+      }
       if (!isEditMode) return
       e.stopPropagation()
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SELECT, {
@@ -136,12 +144,17 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
       displayNameMapDepth,
       isEditMode,
       selectedComponents,
+      widgetType,
     ],
   )
 
   const handleContextMenu = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      FocusManager.switchFocus("canvas")
+      FocusManager.switchFocus("canvas", {
+        displayName: displayName,
+        type: "component",
+        clickPosition: [],
+      })
       e.stopPropagation()
       dispatch(configActions.updateSelectedComponent([displayName]))
     },
@@ -159,9 +172,8 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
             value="duplicate"
             title={t("editor.context_menu.duplicate")}
             onClick={() => {
-              //  TODO: duplication
-              // CopyManager.copyComponentNode([componentNode])
-              // CopyManager.paste("duplicate")
+              CopyManager.copyComponentNodeByDisplayName([displayName])
+              CopyManager.paste("duplicate")
             }}
           />
           <DropListItem

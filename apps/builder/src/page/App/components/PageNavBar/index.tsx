@@ -1,4 +1,12 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import {
+  FC,
+  MouseEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -8,9 +16,15 @@ import {
   Button,
   ButtonGroup,
   CaretRightIcon,
+  DropList,
+  DropListItem,
+  Dropdown,
   ExitIcon,
   FullScreenIcon,
   LockIcon,
+  MoreIcon,
+  Switch,
+  Tag,
   Trigger,
   UnlockIcon,
   getColor,
@@ -18,13 +32,17 @@ import {
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
+import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
+import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
 import {
   getFreezeState,
   getIsILLAEditMode,
@@ -33,11 +51,21 @@ import {
   isOpenDebugger,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import {
+  getAppInfo,
+  getCurrentAppWaterMarkConfig,
+} from "@/redux/currentApp/appInfo/appInfoSelector"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { fetchDeployApp, forkCurrentApp } from "@/services/apps"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import {
+  fetchDeployApp,
+  forkCurrentApp,
+  updateWaterMarkConfig,
+} from "@/services/apps"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
   descriptionStyle,
   informationStyle,
@@ -46,6 +74,7 @@ import {
   rightContentStyle,
   rowCenter,
   saveFailedTipStyle,
+  upgradeStyle,
   viewControlStyle,
 } from "./style"
 
@@ -56,9 +85,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const message = useMessage()
   const navigate = useNavigate()
 
-  const { teamIdentifier } = useParams()
+  const { teamIdentifier, appId } = useParams()
 
   const appInfo = useSelector(getAppInfo)
+  const waterMark = useSelector(getCurrentAppWaterMarkConfig)
   const debuggerVisible = useSelector(isOpenDebugger)
   const isFreezeCanvas = useSelector(getFreezeState)
   const isOnline = useSelector(getIsOnline)
@@ -66,13 +96,22 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const debugMessageNumber = debuggerData ? Object.keys(debuggerData).length : 0
   const isEditMode = useSelector(getIsILLAEditMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
+  const teamInfo = useSelector(getCurrentTeamInfo)
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
+  const [duplicateVisible, setDuplicateVisible] = useState(false)
   const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
 
   const previewButtonText = isEditMode
     ? t("preview.button_text")
     : t("exit_preview")
+
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
 
   const handleClickDebuggerIcon = useCallback(() => {
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -164,6 +203,23 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }, [dispatch, isEditMode])
 
+  const handleWaterMarkChange = useCallback(
+    async (value: boolean, event: MouseEvent) => {
+      if (appId) {
+        event.stopPropagation()
+        const res = await updateWaterMarkConfig(!value, appId)
+        dispatch(appInfoActions.updateAppInfoReducer(res.data))
+      }
+    },
+    [appId, dispatch],
+  )
+
+  const handleUpgradeModal = useCallback(() => {
+    if (!canUseBillingFeature) {
+      handleUpgradeModalVisible(true, "upgrade")
+    }
+  }, [canUseBillingFeature, handleUpgradeModalVisible])
+
   const PreviewButton = useMemo(
     () => (
       <Button
@@ -182,6 +238,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const handleLogoClick = useCallback(() => {
     navigate(`/${teamIdentifier}/dashboard/apps`)
   }, [navigate, teamIdentifier])
+
+  useEffect(() => {
+    duplicateVisible &&
+      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+        element: "duplicate_modal",
+        parameter5: appId,
+      })
+  }, [appId, duplicateVisible])
 
   return (
     <div className={className} css={navBarStyle}>
@@ -209,6 +273,65 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {!isGuideMode && <CollaboratorsList />}
         {isEditMode ? (
           <div>
+            {!isGuideMode && (
+              <Dropdown
+                position="bottom-end"
+                trigger="click"
+                triggerProps={{ closeDelay: 0, openDelay: 0 }}
+                onVisibleChange={(visible) => {
+                  if (visible) {
+                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
+                      element: "app_duplicate",
+                      parameter5: appId,
+                    })
+                  }
+                }}
+                dropList={
+                  <DropList>
+                    <DropListItem
+                      key="duplicate"
+                      value="duplicate"
+                      title={t("duplicate")}
+                      onClick={() => {
+                        setDuplicateVisible(true)
+                        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                          element: "app_duplicate",
+                          parameter5: appId,
+                        })
+                      }}
+                    />
+                    {isCloudVersion && (
+                      <DropListItem
+                        key="configWaterMark"
+                        value="configWaterMark"
+                        title={
+                          <span css={upgradeStyle}>
+                            {t("billing.advanced.feature")}
+                            {canUseBillingFeature ? (
+                              <Switch
+                                checked={!waterMark}
+                                onChange={handleWaterMarkChange}
+                              />
+                            ) : (
+                              <Tag colorScheme="techPurple">
+                                <UpgradeIcon /> {t("billing.homepage.upgrade")}
+                              </Tag>
+                            )}
+                          </span>
+                        }
+                        onClick={handleUpgradeModal}
+                      />
+                    )}
+                  </DropList>
+                }
+              >
+                <Button
+                  mr="8px"
+                  colorScheme="white"
+                  leftIcon={<MoreIcon size="14px" />}
+                />
+              </Dropdown>
+            )}
             <ButtonGroup spacing="8px">
               <Badge count={debuggerData && Object.keys(debuggerData).length}>
                 <Button
@@ -271,6 +394,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         onOk={forkGuideAppAndDeploy}
         onVisibleChange={setForkModalVisible}
       />
+      {appId ? (
+        <DuplicateModal
+          appId={appId}
+          visible={duplicateVisible}
+          onVisibleChange={(visible) => {
+            setDuplicateVisible(visible)
+          }}
+        />
+      ) : null}
     </div>
   )
 }

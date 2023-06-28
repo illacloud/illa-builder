@@ -34,7 +34,10 @@ import {
 import { ControlledElement } from "@/page/App/components/ControlledElement"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { TextLink } from "@/page/User/components/TextLink"
-import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
+import {
+  MicrosoftSqlResource,
+  MicrosoftSqlResourceInitial,
+} from "@/redux/resource/microsoftSqlResource"
 import { Resource, generateSSLConfig } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
@@ -60,7 +63,9 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
-  const sslOpen = watch("ssl", resource?.content.ssl.ssl ?? false)
+  const content = resource?.content ?? MicrosoftSqlResourceInitial
+
+  const sslOpen = watch("ssl", content.ssl.ssl)
 
   const handleConnectionTest = useCallback(() => {
     track?.(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -143,10 +148,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
           isRequired
           title={t("editor.action.resource.db.label.hostname_port")}
           control={control}
-          defaultValue={[
-            resource?.content.host,
-            String(resource?.content.port || ""),
-          ]}
+          defaultValue={[content.host, content.port]}
           rules={[
             {
               required: t("editor.action.resource.error.invalid_url"),
@@ -214,7 +216,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
           isRequired
           title={t("editor.action.resource.db.label.database")}
           control={control}
-          defaultValue={resource?.content.databaseName}
+          defaultValue={content.databaseName}
           rules={[
             {
               validate,
@@ -230,10 +232,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
           controlledType={["input", "password"]}
           title={t("editor.action.resource.db.label.username_password")}
           control={control}
-          defaultValue={[
-            resource?.content.username,
-            resource?.content.password,
-          ]}
+          defaultValue={[content.username, content.password]}
           placeholders={[
             t("editor.action.resource.db.placeholder.username"),
             t("editor.action.resource.db.placeholder.password"),
@@ -281,14 +280,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
         <Controller
           key="connectionOpts"
           control={control}
-          defaultValue={
-            resource?.content.connectionOpts ?? [
-              {
-                key: "",
-                value: "",
-              },
-            ]
-          }
+          defaultValue={content.connectionOpts}
           render={({ field: { value, onChange } }) => (
             <InputRecordEditor
               label={t("editor.action.resource.db.label.connection_options")}
@@ -326,7 +318,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
           controlledType={["switch"]}
           title={t("editor.action.resource.db.label.ssl_options")}
           control={control}
-          defaultValue={resource?.content.ssl.ssl}
+          defaultValue={content.ssl.ssl}
           name="ssl"
           contentLabel={t("editor.action.resource.db.tip.ssl_options")}
         />
@@ -337,7 +329,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.ca_certificate")}
               control={control}
-              defaultValue={resource?.content.ssl.caCert}
+              defaultValue={content.ssl.caCert}
               name="caCert"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),
@@ -347,7 +339,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.client_key")}
               control={control}
-              defaultValue={resource?.content.ssl.privateKey}
+              defaultValue={content.ssl.privateKey}
               name="privateKey"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),
@@ -357,7 +349,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
               controlledType={["textarea"]}
               title={t("editor.action.resource.db.label.client_certificate")}
               control={control}
-              defaultValue={resource?.content.ssl.clientCert}
+              defaultValue={content.ssl.clientCert}
               name="clientCert"
               placeholders={[
                 t("editor.action.resource.db.placeholder.certificate"),

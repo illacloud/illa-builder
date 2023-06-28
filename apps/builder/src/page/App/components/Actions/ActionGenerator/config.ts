@@ -103,6 +103,10 @@ export const Apis: ActionDataItem[] = [
     isDraft: false,
   },
   {
+    actionType: "airtable",
+    isDraft: false,
+  },
+  {
     actionType: "huggingface",
     isDraft: false,
   },

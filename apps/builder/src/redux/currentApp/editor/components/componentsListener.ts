@@ -17,6 +17,7 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getExecutionResult,
+  getExecutionWidgetLayoutInfo,
   getInDependenciesMap,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
@@ -249,7 +250,7 @@ const updateComponentReflowComponentsAdapter = (
       const { copyComponents } = action.payload
       const parentDisplayName = copyComponents[0].newComponentNode.parentNode
       const effectedDisplayNames = copyComponents.map((item) => {
-        return item.newComponentNode.displayName
+        return item.originComponentNode.displayName
       })
       const widgetXs = copyComponents.map((info) => info.newComponentNode.x)
       const widgetYs = copyComponents.map((info) => info.newComponentNode.y)
@@ -328,6 +329,9 @@ function handleUpdateComponentReflowEffect(
     updateComponents.square,
     updateComponents.parentDisplayName,
     updateComponents.effectedDisplayNames,
+    action.type === "components/copyComponentReducer"
+      ? Object.values(getExecutionWidgetLayoutInfo(listenApi.getState()))
+      : undefined,
   )
 
   if (effectMap && effectMap.size > 0) {

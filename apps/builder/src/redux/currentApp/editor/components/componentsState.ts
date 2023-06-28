@@ -84,6 +84,7 @@ export interface PageNodeProps {
   headerColumns?: number
   footerColumns?: number
 }
+
 export interface PageNode extends ComponentNode {
   type: "PAGE_NODE"
   props: PageNodeProps
@@ -160,6 +161,7 @@ export interface UpdateComponentReflowPayload {
 
 export interface CopyComponentPayload {
   newComponentNode: ComponentNode
+  originComponentNode: ComponentNode
 }
 
 export interface UpdateTargetPageLayoutPayload {

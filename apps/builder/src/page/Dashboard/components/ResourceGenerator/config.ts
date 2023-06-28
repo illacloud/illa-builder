@@ -103,6 +103,10 @@ export const Apis: ResourceDataItem[] = [
     isDraft: false,
   },
   {
+    resourceType: "airtable",
+    isDraft: false,
+  },
+  {
     resourceType: "huggingface",
     isDraft: false,
   },

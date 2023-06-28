@@ -14,6 +14,7 @@ import {
   NotificationGroup,
 } from "@illa-design/react"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
+import { UpgradeCloudProvider } from "@/illa-public-component/UpgradeCloudProvider"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
 import {
   getCurrentConfigLanguage,
@@ -67,15 +68,17 @@ function App() {
       <HelmetProvider>
         <DndProvider backend={TouchBackend} options={dragOptions}>
           <ConfigProvider locale={configLanguage}>
-            <Global styles={globalStyle} />
-            <MessageGroup pt={!isProductMode ? "46px" : "0"} />
-            <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
-            <ModalGroup />
-            <RouterProvider router={ILLARoute} />
-            <div
-              className="illaCodeMirrorWrapper"
-              css={illaCodeMirrorTooltipStyle}
-            />
+            <UpgradeCloudProvider>
+              <Global styles={globalStyle} />
+              <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+              <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
+              <ModalGroup />
+              <RouterProvider router={ILLARoute} />
+              <div
+                className="illaCodeMirrorWrapper"
+                css={illaCodeMirrorTooltipStyle}
+              />
+            </UpgradeCloudProvider>
           </ConfigProvider>
         </DndProvider>
       </HelmetProvider>

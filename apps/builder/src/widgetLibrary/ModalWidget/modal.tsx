@@ -301,5 +301,5 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
   )
 }
 
-ModalWidget.displayName = "FormWidget"
+ModalWidget.displayName = "ModalWidget"
 export default ModalWidget

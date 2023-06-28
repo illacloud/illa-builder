@@ -11,6 +11,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { RootComponentNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { FocusManager } from "@/utils/focusManager"
 import { generatePageConfig } from "@/utils/generators/generatePageOrSectionConfig"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { PageItemProps } from "./interface"
@@ -96,6 +97,9 @@ export const PageSpaceTree: FC = () => {
           <PlusIcon />
         </div>
       }
+      onIllaFocus={() => {
+        FocusManager.switchFocus("data_page")
+      }}
     >
       {Array.isArray(pageSortedKey) &&
         pageSortedKey.map((key: string, index: number) => {

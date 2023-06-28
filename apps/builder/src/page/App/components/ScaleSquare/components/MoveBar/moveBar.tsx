@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
@@ -24,6 +24,8 @@ import {
   AVATAR_WIDTH,
   MIN_DISABLE_MARGIN_WIDTH,
 } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
+import { isContainerType } from "@/utils/componentChecker"
+import { FocusManager } from "@/utils/focusManager"
 import { MoveBarPositionShape, MoveBarProps } from "./interface"
 import {
   applyMoveBarWrapperStyle,
@@ -121,8 +123,19 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     bounds.width <=
     (userList.length >= 2 ? MIN_MOVE_BAR_WIDTH : MIN_DISABLE_MARGIN_WIDTH)
 
+  const handleClickOnMoveBar = useCallback(() => {
+    if (isContainerType(widgetType)) {
+      FocusManager.switchFocus("canvas", {
+        displayName: displayName,
+        type: "component",
+        clickPosition: [],
+      })
+    }
+  }, [displayName, widgetType])
+
   return (
     <div
+      onClick={handleClickOnMoveBar}
       css={applyMoveBarWrapperStyle(
         maxWidth,
         minWidth,

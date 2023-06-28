@@ -4,7 +4,10 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedRateProps
-  extends Pick<RateProps, "allowHalf" | "allowClear" | "disabled" | "readonly"> {
+  extends Pick<
+    RateProps,
+    "allowHalf" | "allowClear" | "disabled" | "readonly"
+  > {
   value?: number
   loading?: boolean
   icon?: "star" | "heart"
@@ -17,5 +20,4 @@ export interface RateWidgetProps
   extends WrappedRateProps,
     BaseWidgetProps,
     LabelProps,
-    TooltipWrapperProps {
-}
+    TooltipWrapperProps {}

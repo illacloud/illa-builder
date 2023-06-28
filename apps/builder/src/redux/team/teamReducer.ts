@@ -64,6 +64,6 @@ export const updateMemberListReducer: CaseReducer<
 
   return {
     ...state,
-    memberList: payload,
+    currentMemberList: payload,
   }
 }
