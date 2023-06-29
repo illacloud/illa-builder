@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Nastavit barvu zpráv vlevo",
         "rightMessageColor": "Nastavte barvu zpráv vpravo",
         "toolbar-replay": "Nastavte, zda se zobrazí tlačítko odpovědi při výběru zprávy.",
-        "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy."
+        "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "ZÁKLADNÍ",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Stránka",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Platba úspěšná",
       "button": "Zpět na ILLA Cloud"
     },
-    "redirect_to_stripe": "Přesměrování do Stripe"
+    "redirect_to_stripe": "Přesměrování do Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Chyba sítě, zkuste to prosím později"
