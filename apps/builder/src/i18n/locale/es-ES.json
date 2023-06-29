@@ -1288,6 +1288,9 @@
           "start_button_text": "Iniciar grabación",
           "stop_button_text": "Parar",
           "clear_button_text": "Claro"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID del mensaje de respuesta",
         "senderName": "Nombre del remitente",
         "senderId": "ID del remitente",
-        "showName": "Mostrar nombre"
+        "showName": "Mostrar nombre",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Escribe tu código aquí. Usa JavaScript dentro de {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
