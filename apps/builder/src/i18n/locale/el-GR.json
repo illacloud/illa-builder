@@ -1288,6 +1288,9 @@
           "start_button_text": "Έναρξη εγγραφής",
           "stop_button_text": "Διακοπή",
           "clear_button_text": "Εκκαθάριση"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Id μηνύματος απάντησης",
         "senderName": "Όνομα αποστολέα",
         "senderId": "Id Αποστολέα",
-        "showName": "Εμφάνιση ονόματος"
+        "showName": "Εμφάνιση ονόματος",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Γράψτε τον κώδικά σας εδώ. Χρησιμοποιήστε JavaScript μέσα από {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
