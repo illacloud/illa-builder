@@ -11,19 +11,16 @@
     "containerType": "EDITOR_SCALE_SQUARE",
     "verticalResize": false,
     "h": 5,
-    "w": 13,
+    "w": 6,
     "minH": 3,
-    "minW": 2,
+    "minW": 1,
     "unitW": 14,
     "unitH": 8,
-    "x": 18,
+    "x": 9,
     "y": 17,
     "z": 0,
     "props": {
-      "$dynamicAttrPaths": [
-        "labelWidth",
-        "formDataKey"
-      ],
+      "$dynamicAttrPaths": ["labelWidth", "formDataKey"],
       "colorScheme": "blue",
       "formDataKey": "{{input1.displayName}}",
       "hidden": false,
@@ -48,12 +45,12 @@
     "containerType": "EDITOR_SCALE_SQUARE",
     "verticalResize": false,
     "h": 5,
-    "w": 13,
+    "w": 6,
     "minH": 3,
-    "minW": 2,
+    "minW": 1,
     "unitW": 14,
     "unitH": 8,
-    "x": 33,
+    "x": 16,
     "y": 17,
     "z": 0,
     "props": {
@@ -77,12 +74,12 @@
     "containerType": "EDITOR_SCALE_SQUARE",
     "verticalResize": false,
     "h": 38,
-    "w": 28,
+    "w": 14,
     "minH": 3,
     "minW": 2,
     "unitW": 14,
     "unitH": 8,
-    "x": 18,
+    "x": 9,
     "y": 25,
     "z": 0,
     "props": {
@@ -127,10 +124,7 @@
       "download": false,
       "filter": false,
       "pageSize": "{{10}}",
-      "$dynamicAttrPaths": [
-        "dataSourceJS",
-        "pageSize"
-      ]
+      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"]
     },
     "panelConfig": null
   }
