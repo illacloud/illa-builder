@@ -1915,7 +1915,10 @@
         "leftMessageColor": "设置左侧消息的颜色",
         "rightMessageColor": "设置右侧消息的颜色",
         "toolbar-replay": "设置选择消息时是否显示回复按钮。",
-        "toolbar-delete": "设置选择消息时是否显示删除按钮。"
+        "toolbar-delete": "设置选择消息时是否显示删除按钮。",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1995,6 +1998,10 @@
             "left-click": "左键点击",
             "right-click": "右键点击"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Please click on the frame to specify the paste location.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "预约Demo演示",
