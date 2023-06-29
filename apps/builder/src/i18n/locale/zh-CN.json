@@ -1917,7 +1917,7 @@
         "toolbar-replay": "设置选择消息时是否显示回复按钮。",
         "toolbar-delete": "设置选择消息时是否显示删除按钮。",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "设置标签页的样式"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "线性",
+          "card": "卡片"
         }
       },
       "setter_placeholder": {
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "基础",
-        "frame": "自适应布局"
+        "frame": "布局"
       },
       "tab_title": "页面",
       "tooltips": {
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Please click on the frame to specify the paste location.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "包含多个组件的操作不允许跨画布"
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "撤销成功",
+        "failed": "撤销失败"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "恢复成功",
+        "failed": "恢复失败"
       }
     }
   },
@@ -3501,7 +3501,10 @@
       "title": "支付成功",
       "button": "返回ILLA Cloud"
     },
-    "redirect_to_stripe": "正在重定向至Stripe"
+    "redirect_to_stripe": "正在重定向至Stripe",
+    "appsumo": {
+      "update": "更新AppSumo方案"
+    }
   },
   "network": {
     "error": "网络错误，请稍后重试"
