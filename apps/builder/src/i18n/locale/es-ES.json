@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Establecer el color de los mensajes a la izquierda",
         "rightMessageColor": "Establecer el color de los mensajes a la derecha",
         "toolbar-replay": "Establecer si mostrar un botón de respuesta cuando seleccione un mensaje.",
-        "toolbar-delete": "Establecer si mostrar un botón de borrar cuando seleccione un mensaje."
+        "toolbar-delete": "Establecer si mostrar un botón de borrar cuando seleccione un mensaje.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fijado",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BÁSICO",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Pgina",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Pago exitoso",
       "button": "Volver a ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirigiendo a Stripe"
+    "redirect_to_stripe": "Redirigiendo a Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Error de red, inténtalo de nuevo más tarde"
