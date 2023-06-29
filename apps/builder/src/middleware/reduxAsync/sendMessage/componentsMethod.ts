@@ -154,7 +154,11 @@ export const componentsAsync = (
     case "updateComponentContainerReducer": {
       const updateComponentContainerPayload: UpdateComponentContainerPayload =
         payload
-      const { updateSlices } = updateComponentContainerPayload
+      const {
+        updateSlices,
+        oldParentNodeDisplayName,
+        newParentNodeDisplayName,
+      } = updateComponentContainerPayload
       const allDisplayNames = updateSlices.map((slice) => slice.displayName)
       const allNodes = allDisplayNames
         .map(
@@ -162,9 +166,28 @@ export const componentsAsync = (
             searchDsl(getCanvas(nextRootState), displayName) as ComponentNode,
         )
         .filter((node) => node !== null) as ComponentNode[]
+      if (oldParentNodeDisplayName !== newParentNodeDisplayName) {
+        Connection.getTextRoom("app", currentAppID)?.send(
+          getTextMessagePayload(
+            Signal.MOVE_STATE,
+            Target.COMPONENTS,
+            true,
+            action,
+            teamID,
+            uid,
+            allNodes.map((node) => {
+              return {
+                displayName: node.displayName,
+                parentNode: node.parentNode,
+                childrenNode: node.childrenNode,
+              }
+            }),
+          ),
+        )
+      }
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.MOVE_STATE,
+          Signal.UPDATE_STATE,
           Target.COMPONENTS,
           true,
           action,
@@ -173,6 +196,7 @@ export const componentsAsync = (
           transformComponentReduxPayloadToWsPayload(allNodes),
         ),
       )
+
       break
     }
     case "updateComponentPropsReducer":
