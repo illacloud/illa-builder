@@ -1288,6 +1288,9 @@
           "start_button_text": "Start de opname",
           "stop_button_text": "Stoppen",
           "clear_button_text": "Verwijderen"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Antwoord bericht ID",
         "senderName": "Naam afzender",
         "senderId": "Afzender ID",
-        "showName": "Toon naam"
+        "showName": "Toon naam",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Schrijf hier uw code. Gebruik JavaScript in {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
