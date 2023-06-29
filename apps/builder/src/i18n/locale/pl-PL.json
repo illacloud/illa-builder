@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Ustaw kolor wiadomości po lewej",
         "rightMessageColor": "Ustaw kolor wiadomości po prawej",
         "toolbar-replay": "Ustaw czy wyświetlić przycisk odpowiedzi po wybraniu wiadomości.",
-        "toolbar-delete": "Ustaw czy pokazywać przycisk usuwania po wybraniu wiadomości."
+        "toolbar-delete": "Ustaw czy pokazywać przycisk usuwania po wybraniu wiadomości.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Naprawione",
@@ -1995,6 +1998,10 @@
             "left-click": "Kliknij lewym przyciskiem myszy",
             "right-click": "Prawy przycisk myszy"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Kliknij ramkę, aby określić lokalizację wklejenia."
+    "paste_no_aimed": "Kliknij ramkę, aby określić lokalizację wklejenia.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Zarezerwuj demo",
