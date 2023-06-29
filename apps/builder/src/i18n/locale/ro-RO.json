@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Setează culoarea mesajelor din stânga",
         "rightMessageColor": "Setează culoarea mesajelor din dreapta",
         "toolbar-replay": "Setează dacă se afișează un buton de răspuns când se selectează un mesaj.",
-        "toolbar-delete": "Setează dacă se afișează un buton de ștergere când se selectează un mesaj."
+        "toolbar-delete": "Setează dacă se afișează un buton de ștergere când se selectează un mesaj.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fixat",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "Bază",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Pagină",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Plată reușită",
       "button": "Înapoi la ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirecționare către Stripe"
+    "redirect_to_stripe": "Redirecționare către Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Eroare de rețea, te rugăm să încerci mai târziu"
