@@ -19,6 +19,7 @@ import { MultiSelectedScaleSquare } from "@/page/App/components/DotPanel/compone
 import {
   ADD_ROWS,
   DEFAULT_BODY_COLUMNS_NUMBER,
+  SAFE_ROWS,
   SCROLL_CONTAINER_PADDING,
   UNIT_HEIGHT,
 } from "@/page/App/components/DotPanel/constant/canvas"
@@ -302,8 +303,16 @@ export const RenderComponentCanvasContainer: FC<
         (item) => item.layoutInfo.y + item.layoutInfo.h,
       ),
     )
-    if (maxHeight * UNIT_HEIGHT > fixedBounds.height) {
-      setCanvasHeight(maxHeight * UNIT_HEIGHT)
+
+    if (
+      maxHeight * UNIT_HEIGHT >
+      fixedBounds.height - SAFE_ROWS * UNIT_HEIGHT
+    ) {
+      if (isEditMode) {
+        setCanvasHeight(maxHeight * UNIT_HEIGHT + ADD_ROWS * UNIT_HEIGHT)
+      } else {
+        setCanvasHeight(maxHeight * UNIT_HEIGHT)
+      }
     } else {
       setCanvasHeight(fixedBounds.height)
     }
@@ -312,6 +321,7 @@ export const RenderComponentCanvasContainer: FC<
     collectedProps.isOver,
     containerPadding,
     fixedBounds.height,
+    isEditMode,
   ])
 
   useEffect(() => {
