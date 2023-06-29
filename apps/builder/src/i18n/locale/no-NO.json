@@ -1288,6 +1288,9 @@
           "start_button_text": "Start opptak",
           "stop_button_text": "Stopp",
           "clear_button_text": "Tøm"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Svar på melding-ID",
         "senderName": "Avsenders navn",
         "senderId": "Avsenderen ID",
-        "showName": "Vis navn"
+        "showName": "Vis navn",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Skriv koden din her. Bruk JavaScript innenfor {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
