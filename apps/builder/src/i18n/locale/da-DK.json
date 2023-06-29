@@ -1995,6 +1995,10 @@
             "left-click": "Venstreklik",
             "right-click": "Højreklik"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3096,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt."
+    "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Book en demo",
