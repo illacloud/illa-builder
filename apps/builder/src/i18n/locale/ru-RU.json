@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Установить цвет сообщений слева",
         "rightMessageColor": "Установить цвет сообщений справа",
         "toolbar-replay": "Показывать ли кнопку ответа при выборе сообщения.",
-        "toolbar-delete": "Показывать ли кнопку \"Удалить\" при выборе сообщения."
+        "toolbar-delete": "Показывать ли кнопку \"Удалить\" при выборе сообщения.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Исправлено",
@@ -1995,6 +1998,10 @@
             "left-click": "Левый клик",
             "right-click": "Щелчок правой кнопкой мыши"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Пожалуйста, нажмите на рамку, чтобы указать расположение вставки."
+    "paste_no_aimed": "Пожалуйста, нажмите на рамку, чтобы указать расположение вставки.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Забронировать демо",
