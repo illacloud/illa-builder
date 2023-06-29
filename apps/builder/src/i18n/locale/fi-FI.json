@@ -1288,6 +1288,9 @@
           "start_button_text": "Aloita tallennus",
           "stop_button_text": "Pysäytä",
           "clear_button_text": "Tyhjennä"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Vastauksen tunnus",
         "senderName": "Lähettäjän nimi",
         "senderId": "Lähettäjän Tunnus",
-        "showName": "Näytä nimi"
+        "showName": "Näytä nimi",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Kirjoita koodisi tähän. Käytä JavaScriptiä {{ }} sisällä"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
