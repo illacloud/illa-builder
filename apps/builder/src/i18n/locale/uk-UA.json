@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Встановити колір повідомлень ліворуч",
         "rightMessageColor": "Встановити колір повідомлень праворуч",
         "toolbar-replay": "Вкажіть, чи показувати кнопку відповіді при виборі повідомлення.",
-        "toolbar-delete": "Вкажіть, чи показувати кнопку видалення при виборі повідомлення."
+        "toolbar-delete": "Вкажіть, чи показувати кнопку видалення при виборі повідомлення.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Виправлена",
@@ -1995,6 +1998,10 @@
             "left-click": "Лівий притиск",
             "right-click": "Правий притиск"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Будь ласка, натисніть на кадр, щоб вказати вставку."
+    "paste_no_aimed": "Будь ласка, натисніть на кадр, щоб вказати вставку.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Забронюйте демо",
