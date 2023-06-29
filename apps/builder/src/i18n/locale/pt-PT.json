@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BÁSICO",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Página",
       "tooltips": {
@@ -3501,7 +3501,10 @@
       "title": "Pagamento bem-sucedido",
       "button": "Voltar para ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirecionando para Listra"
+    "redirect_to_stripe": "Redirecionando para Listra",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Erro de rede, por favor, tente novamente mais tarde"
