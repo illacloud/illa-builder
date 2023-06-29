@@ -1288,6 +1288,9 @@
           "start_button_text": "Începe înregistrarea",
           "stop_button_text": "Oprește",
           "clear_button_text": "Curăță"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID mesaj răspuns",
         "senderName": "Nume expeditor",
         "senderId": "ID expeditor",
-        "showName": "Arată numele"
+        "showName": "Arată numele",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Scrie codul tău aici. Folosește JavaScript în interiorul {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
