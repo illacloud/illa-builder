@@ -1288,6 +1288,9 @@
           "start_button_text": "녹음 시작",
           "stop_button_text": "멈추다",
           "clear_button_text": "분명한"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "답장 메시지 ID",
         "senderName": "Sender name",
         "senderId": "Sender ID",
-        "showName": "Show name"
+        "showName": "Show name",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "여기에 코드를 작성하십시오. {{ }} 내부에서 JavaScript 사용"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
