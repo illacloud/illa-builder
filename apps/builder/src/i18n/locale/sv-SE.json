@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Ställ in färgen på meddelandena till vänster",
         "rightMessageColor": "Ställ in färgen på meddelandena till höger",
         "toolbar-replay": "Ange om du vill visa en svarsknapp när du väljer ett meddelande.",
-        "toolbar-delete": "Ange om du vill visa en raderingsknapp när du väljer ett meddelande."
+        "toolbar-delete": "Ange om du vill visa en raderingsknapp när du väljer ett meddelande.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1995,6 +1998,10 @@
             "left-click": "Vänsterklicka",
             "right-click": "Högerklicka"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klicka på ramen för att ange den klistra in platsen."
+    "paste_no_aimed": "Klicka på ramen för att ange den klistra in platsen.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Boka demo",
