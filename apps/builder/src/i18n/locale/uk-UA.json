@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "БАСИК",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Сторінка",
       "tooltips": {
@@ -3501,7 +3501,10 @@
       "title": "Оплата пройшла успішно",
       "button": "Повернутися до хмарки ILLA"
     },
-    "redirect_to_stripe": "Перенаправлення до смуги"
+    "redirect_to_stripe": "Перенаправлення до смуги",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Помилка мережі, будь ласка, спробуйте ще раз пізніше"
