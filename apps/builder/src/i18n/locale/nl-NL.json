@@ -1995,6 +1995,10 @@
             "left-click": "Linksklik",
             "right-click": "Rechtsklik"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3096,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klik op het frame om de locatie te plakken."
+    "paste_no_aimed": "Klik op het frame om de locatie te plakken.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Boek een demo",
