@@ -42,13 +42,15 @@ const DragPreview: FC<DragPreviewProps> = (props) => {
   )
 
   if (!mousePositionInfo) return null
+  const { shape, canDrop } = mousePositionInfo
   return (
     <div
       css={dragPreviewStyle(
-        mousePositionInfo.y * UNIT_HEIGHT,
-        mousePositionInfo.x * unitW,
-        mousePositionInfo.w * unitW,
-        mousePositionInfo.previewH * UNIT_HEIGHT,
+        shape.y * UNIT_HEIGHT,
+        shape.x * unitW,
+        shape.w * unitW,
+        shape.previewH * UNIT_HEIGHT,
+        canDrop,
       )}
     />
   )

@@ -22,15 +22,16 @@ import { getComponentDisplayNameMapDepth } from "@/redux/currentApp/editor/compo
 import {
   getExecutionError,
   getExecutionResult,
+  getExecutionWidgetLayoutInfo,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
 import { isContainerType } from "@/utils/componentChecker"
+import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { isMAC } from "@/utils/userAgent"
-import { CopyManager } from "../../../../../../utils/copyManager"
 import { MoveBar } from "../MoveBar/moveBar"
 import { WrapperContainerProps } from "./interface"
 import { applyWrapperPendingStyle, hoverHotSpotStyle } from "./style"
@@ -44,6 +45,7 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
     widgetType,
     widgetTop,
     children,
+    columnNumber,
   } = props
   const { handleMouseEnter, handleMouseLeave } = useMouseHover()
   const hoveredComponents = useSelector(getHoveredComponents)
@@ -52,6 +54,7 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
   const executionResult = useSelector(getExecutionResult)
   const { t } = useTranslation()
   const shortcut = useContext(ShortCutContext)
+  const widgetExecutionLayoutInfo = useSelector(getExecutionWidgetLayoutInfo)
 
   const isMouseOver =
     hoveredComponents[hoveredComponents.length - 1] === displayName
@@ -102,6 +105,7 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
           displayName: displayName,
           type: "component",
           clickPosition: [],
+          columnNumber,
         })
       }
       if (!isEditMode) return
@@ -128,6 +132,32 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
         if (!isEqual) {
           return
         }
+        if (currentSelectedDisplayName.length > 1) {
+          const firstParentNode =
+            widgetExecutionLayoutInfo[currentSelectedDisplayName[0]].parentNode
+          const isSameParentNode = currentSelectedDisplayName.every(
+            (displayName) => {
+              const parentNode =
+                widgetExecutionLayoutInfo[displayName].parentNode
+              return parentNode === firstParentNode
+            },
+          )
+          if (!isSameParentNode) {
+            const lastParentNode =
+              widgetExecutionLayoutInfo[
+                currentSelectedDisplayName[
+                  currentSelectedDisplayName.length - 1
+                ]
+              ].parentNode
+            currentSelectedDisplayName = currentSelectedDisplayName.filter(
+              (displayName) => {
+                const currentParentNode =
+                  widgetExecutionLayoutInfo[displayName].parentNode
+                return lastParentNode === currentParentNode
+              },
+            )
+          }
+        }
         currentSelectedDisplayName = Array.from(
           new Set(currentSelectedDisplayName),
         )
@@ -139,11 +169,13 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
       dispatch(configActions.updateSelectedComponent([displayName]))
     },
     [
+      columnNumber,
       dispatch,
       displayName,
       displayNameMapDepth,
       isEditMode,
       selectedComponents,
+      widgetExecutionLayoutInfo,
       widgetType,
     ],
   )
@@ -154,11 +186,12 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
         displayName: displayName,
         type: "component",
         clickPosition: [],
+        columnNumber,
       })
       e.stopPropagation()
       dispatch(configActions.updateSelectedComponent([displayName]))
     },
-    [displayName, dispatch],
+    [displayName, columnNumber, dispatch],
   )
 
   return (
@@ -227,6 +260,7 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
             widgetTop={widgetTop}
             widgetType={widgetType}
             userList={filteredComponentAttachedUserList}
+            columnNumber={columnNumber}
           />
           {children}
         </div>

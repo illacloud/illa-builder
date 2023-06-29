@@ -1,21 +1,29 @@
 import i18n from "i18next"
 import { createMessage } from "@illa-design/react"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
+import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
+import { canCrossDifferenceColumnNumber } from "@/page/App/components/DotPanel/utils/getDragShadow"
+import { getComponentNodeResultByRelativeCombineShape } from "@/page/App/components/DotPanel/utils/getDropResult"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ComponentNode,
+  CopyComponentPayload,
+} from "@/redux/currentApp/editor/components/componentsState"
 import store from "@/store"
 import { FocusManager } from "@/utils/focusManager"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getCurrentSectionColumnNumberByChildDisplayName } from "./componentNode/search"
 
 const message = createMessage()
 
 export class CopyManager {
   static currentCopyComponentNodes: ComponentNode[] | null = null
+  static copiedColumnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER
 
   static currentCopyAction: ActionItem<ActionContent> | null = null
 
@@ -31,6 +39,11 @@ export class CopyManager {
 
   static copyComponentNode(node: ComponentNode[]) {
     this.currentCopyComponentNodes = node
+    if (node.length > 0) {
+      const copiedColumnNumber =
+        getCurrentSectionColumnNumberByChildDisplayName(node[0].displayName)
+      this.copiedColumnNumber = copiedColumnNumber
+    }
   }
 
   static paste(sources: "keyboard" | "duplicate") {
@@ -43,26 +56,54 @@ export class CopyManager {
         break
       case "data_component":
         if (this.currentCopyComponentNodes != null) {
+          const clickPosition = FocusManager.getClickPosition()
+
+          const originCopyComponents: CopyComponentPayload[] =
+            this.currentCopyComponentNodes
+              .filter((node) => {
+                return (
+                  node.parentNode && searchDSLByDisplayName(node.parentNode)
+                )
+              })
+              .map((node) => {
+                const parentNode = searchDSLByDisplayName(node.parentNode!!)!!
+                return {
+                  newComponentNode: this.copyComponent(
+                    node,
+                    parentNode,
+                    node.x,
+                    node.y + node.h,
+                  ),
+                  originComponentNode: node,
+                }
+              })
+
+          const addComponents = originCopyComponents.map(
+            (node) => node.newComponentNode,
+          )
+
+          if (
+            clickPosition?.columnNumber !== this.copiedColumnNumber &&
+            !canCrossDifferenceColumnNumber(addComponents)
+          ) {
+            message.error({
+              content: i18n.t("frame.message.session.error"),
+            })
+            return
+          }
+
+          const newComponents = getComponentNodeResultByRelativeCombineShape(
+            addComponents,
+            clickPosition?.columnNumber ?? DEFAULT_BODY_COLUMNS_NUMBER,
+          )
+          const copyComponents = newComponents.map((node, i) => ({
+            newComponentNode: node,
+            originComponentNode: originCopyComponents[i].originComponentNode,
+          }))
+
           store.dispatch(
             componentsActions.copyComponentReducer({
-              copyComponents: this.currentCopyComponentNodes
-                .filter((node) => {
-                  return (
-                    node.parentNode && searchDSLByDisplayName(node.parentNode)
-                  )
-                })
-                .map((node) => {
-                  const parentNode = searchDSLByDisplayName(node.parentNode!!)!!
-                  return {
-                    newComponentNode: this.copyComponent(
-                      node,
-                      parentNode,
-                      node.x,
-                      node.y + node.h,
-                    ),
-                    originComponentNode: node,
-                  }
-                }),
+              copyComponents: copyComponents,
               sources: sources,
             }),
           )
@@ -91,27 +132,54 @@ export class CopyManager {
                   if (targetParentNode) {
                     let leftTopX = Number.MAX_SAFE_INTEGER
                     let leftTopY = Number.MAX_SAFE_INTEGER
-
                     this.currentCopyComponentNodes.forEach((node) => {
                       leftTopX = Math.min(leftTopX, node.x)
                       leftTopY = Math.min(leftTopY, node.y)
                     })
 
+                    const originCopyComponents =
+                      this.currentCopyComponentNodes.map((node) => {
+                        return {
+                          newComponentNode: this.copyComponent(
+                            node,
+                            targetParentNode,
+                            targetNode.x + node.x - leftTopX,
+                            targetNode.y + targetNode.h + node.y - leftTopY,
+                          ),
+                          originComponentNode: node,
+                        }
+                      })
+
+                    const addComponents = originCopyComponents.map(
+                      (node) => node.newComponentNode,
+                    )
+
+                    if (
+                      clickPosition?.columnNumber !== this.copiedColumnNumber &&
+                      !canCrossDifferenceColumnNumber(addComponents)
+                    ) {
+                      message.error({
+                        content: i18n.t("frame.message.session.error"),
+                      })
+                      return
+                    }
+
+                    const newComponents =
+                      getComponentNodeResultByRelativeCombineShape(
+                        addComponents,
+                        clickPosition?.columnNumber ??
+                          DEFAULT_BODY_COLUMNS_NUMBER,
+                      )
+
+                    const copyComponents = newComponents.map((node, i) => ({
+                      newComponentNode: node,
+                      originComponentNode:
+                        originCopyComponents[i].originComponentNode,
+                    }))
+
                     store.dispatch(
                       componentsActions.copyComponentReducer({
-                        copyComponents: this.currentCopyComponentNodes.map(
-                          (node) => {
-                            return {
-                              newComponentNode: this.copyComponent(
-                                node,
-                                targetParentNode,
-                                targetNode.x + node.x - leftTopX,
-                                targetNode.y + targetNode.h + node.y - leftTopY,
-                              ),
-                              originComponentNode: node,
-                            }
-                          },
-                        ),
+                        copyComponents: copyComponents,
                         sources: sources,
                       }),
                     )
@@ -141,25 +209,49 @@ export class CopyManager {
                     leftTopY = Math.min(leftTopY, node.y)
                   })
 
+                  const originCopyComponents =
+                    this.currentCopyComponentNodes.map((node) => {
+                      return {
+                        newComponentNode: this.copyComponent(
+                          node,
+                          containerNode,
+                          clickPosition.clickPosition[0] + node.x - leftTopX,
+                          clickPosition.clickPosition[1] + node.y - leftTopY,
+                        ),
+                        originComponentNode: node,
+                      }
+                    })
+
+                  const addComponents = originCopyComponents.map(
+                    (node) => node.newComponentNode,
+                  )
+
+                  if (
+                    clickPosition?.columnNumber !== this.copiedColumnNumber &&
+                    !canCrossDifferenceColumnNumber(addComponents)
+                  ) {
+                    message.error({
+                      content: i18n.t("frame.message.session.error"),
+                    })
+                    return
+                  }
+
+                  const newComponents =
+                    getComponentNodeResultByRelativeCombineShape(
+                      addComponents,
+                      clickPosition?.columnNumber ??
+                        DEFAULT_BODY_COLUMNS_NUMBER,
+                    )
+
+                  const copyComponents = newComponents.map((node, i) => ({
+                    newComponentNode: node,
+                    originComponentNode:
+                      originCopyComponents[i].originComponentNode,
+                  }))
+
                   store.dispatch(
                     componentsActions.copyComponentReducer({
-                      copyComponents: this.currentCopyComponentNodes.map(
-                        (node) => {
-                          return {
-                            newComponentNode: this.copyComponent(
-                              node,
-                              containerNode,
-                              clickPosition.clickPosition[0] +
-                                node.x -
-                                leftTopX,
-                              clickPosition.clickPosition[1] +
-                                node.y -
-                                leftTopY,
-                            ),
-                            originComponentNode: node,
-                          }
-                        },
-                      ),
+                      copyComponents: copyComponents,
                       sources: sources,
                     }),
                   )
@@ -176,31 +268,57 @@ export class CopyManager {
                 if (targetParentNode) {
                   let leftTopX = Number.MAX_SAFE_INTEGER
                   let leftTopY = Number.MAX_SAFE_INTEGER
-
                   this.currentCopyComponentNodes.forEach((node) => {
                     leftTopX = Math.min(leftTopX, node.x)
                     leftTopY = Math.min(leftTopY, node.y)
                   })
+
+                  const originCopyComponents =
+                    this.currentCopyComponentNodes.map((node) => {
+                      return {
+                        newComponentNode: this.copyComponent(
+                          node,
+                          targetParentNode,
+                          clickPosition.clickPosition[0] + node.x - leftTopX,
+                          clickPosition.clickPosition[1] +
+                            clickPosition.clickPosition[3] +
+                            node.y -
+                            leftTopY,
+                        ),
+                        originComponentNode: node,
+                      }
+                    })
+
+                  const addComponents = originCopyComponents.map(
+                    (node) => node.newComponentNode,
+                  )
+
+                  if (
+                    clickPosition?.columnNumber !== this.copiedColumnNumber &&
+                    !canCrossDifferenceColumnNumber(addComponents)
+                  ) {
+                    message.error({
+                      content: i18n.t("frame.message.session.error"),
+                    })
+                    return
+                  }
+
+                  const newComponents =
+                    getComponentNodeResultByRelativeCombineShape(
+                      addComponents,
+                      clickPosition?.columnNumber ??
+                        DEFAULT_BODY_COLUMNS_NUMBER,
+                    )
+
+                  const copyComponents = newComponents.map((node, i) => ({
+                    newComponentNode: node,
+                    originComponentNode:
+                      originCopyComponents[i].originComponentNode,
+                  }))
+
                   store.dispatch(
                     componentsActions.copyComponentReducer({
-                      copyComponents: this.currentCopyComponentNodes.map(
-                        (node) => {
-                          return {
-                            newComponentNode: this.copyComponent(
-                              node,
-                              targetParentNode,
-                              clickPosition.clickPosition[0] +
-                                node.x -
-                                leftTopX,
-                              clickPosition.clickPosition[1] +
-                                clickPosition.clickPosition[3] +
-                                node.y -
-                                leftTopY,
-                            ),
-                            originComponentNode: node,
-                          }
-                        },
-                      ),
+                      copyComponents: copyComponents,
                       sources: sources,
                     }),
                   )

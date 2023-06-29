@@ -59,6 +59,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
           widgetWidth={width}
           widgetType={widgetType}
           widgetTop={top}
+          columnNumber={columnNumber}
         >
           <TransformWidgetWrapper
             displayName={displayName}

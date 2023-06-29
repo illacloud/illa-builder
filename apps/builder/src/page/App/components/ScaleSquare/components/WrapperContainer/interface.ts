@@ -8,4 +8,5 @@ export interface WrapperContainerProps {
   widgetType: string
   widgetTop: number
   children: ReactNode
+  columnNumber: number
 }

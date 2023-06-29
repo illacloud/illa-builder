@@ -159,8 +159,9 @@ export const getCurrentPageDisplayName = createSelector(
   [getRootNodeExecutionResult],
   (rootNode) => {
     const { pageSortedKey, currentPageIndex } = rootNode
-    if (currentPageIndex > pageSortedKey.lengths) return pageSortedKey[0]
-    return pageSortedKey[currentPageIndex]
+    if (currentPageIndex > pageSortedKey.lengths)
+      return pageSortedKey[0] as string
+    return pageSortedKey[currentPageIndex] as string
   },
 )
 

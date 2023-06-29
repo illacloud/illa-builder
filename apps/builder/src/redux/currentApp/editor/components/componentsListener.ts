@@ -6,6 +6,7 @@ import {
   getReflowResult,
 } from "@/page/App/components/DotPanel/calc"
 import { getNewPositionWithCrossing } from "@/page/App/components/DotPanel/utils/crossingHelper"
+import { combineWidgetInfos } from "@/page/App/components/DotPanel/utils/getDragShadow"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
@@ -188,22 +189,7 @@ const updateComponentReflowComponentsAdapter = (
   switch (action.type) {
     case "components/updateComponentContainerReducer": {
       const { newParentNodeDisplayName, updateSlices } = action.payload
-      const widgetXs = updateSlices.map((info) => info.x)
-      const widgetYs = updateSlices.map((info) => info.y)
-      const widgetRights = updateSlices.map((info) => info.x + info.w)
-      const widgetBottoms = updateSlices.map((info) => info.y + info.h)
-      const widgetX = Math.min(...widgetXs)
-      const widgetY = Math.min(...widgetYs)
-      const widgetRight = Math.max(...widgetRights)
-      const widgetBottom = Math.max(...widgetBottoms)
-      const widgetW = widgetRight - widgetX
-      const widgetH = widgetBottom - widgetY
-      const square = {
-        x: widgetX,
-        y: widgetY,
-        w: widgetW,
-        h: widgetH,
-      }
+      const square = combineWidgetInfos(updateSlices)
       const effectedDisplayNames = updateSlices.map(
         (slice) => slice.displayName,
       )
@@ -252,26 +238,11 @@ const updateComponentReflowComponentsAdapter = (
       const effectedDisplayNames = copyComponents.map((item) => {
         return item.originComponentNode.displayName
       })
-      const widgetXs = copyComponents.map((info) => info.newComponentNode.x)
-      const widgetYs = copyComponents.map((info) => info.newComponentNode.y)
-      const widgetRights = copyComponents.map(
-        (info) => info.newComponentNode.x + info.newComponentNode.w,
+
+      const square = combineWidgetInfos(
+        copyComponents.map((item) => item.newComponentNode),
       )
-      const widgetBottoms = copyComponents.map(
-        (info) => info.newComponentNode.y + info.newComponentNode.h,
-      )
-      const widgetX = Math.min(...widgetXs)
-      const widgetY = Math.min(...widgetYs)
-      const widgetRight = Math.max(...widgetRights)
-      const widgetBottom = Math.max(...widgetBottoms)
-      const widgetW = widgetRight - widgetX
-      const widgetH = widgetBottom - widgetY
-      const square = {
-        x: widgetX,
-        y: widgetY,
-        w: widgetW,
-        h: widgetH,
-      }
+
       const originUpdateSlice = copyComponents.map((slice) => ({
         displayName: slice.newComponentNode.displayName,
         layoutInfo: {

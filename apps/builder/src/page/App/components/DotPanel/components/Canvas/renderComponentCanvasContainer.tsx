@@ -7,9 +7,11 @@ import {
   useState,
 } from "react"
 import { useDrop } from "react-dnd"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useScroll } from "react-use"
 import useMeasure from "react-use-measure"
+import { useMessage } from "@illa-design/react"
 import { ComponentParser } from "@/page/App/components/DotPanel/components/ComponentParser"
 import DragPreview from "@/page/App/components/DotPanel/components/DragPreview"
 import { DragShadowPreview } from "@/page/App/components/DotPanel/components/DragShadowPreview"
@@ -81,6 +83,8 @@ export const RenderComponentCanvasContainer: FC<
   const { y: scrollContainerScrollTop } = useScroll(scrollContainerRef)
   const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
   const [canvasRef, bounds] = useMeasure()
+  const messageHandler = useMessage()
+  const { t } = useTranslation()
   const fixedBounds = {
     top: bounds.top + containerPadding + SCROLL_CONTAINER_PADDING,
     left: bounds.left + containerPadding + SCROLL_CONTAINER_PADDING,
@@ -118,9 +122,10 @@ export const RenderComponentCanvasContainer: FC<
       },
       hover: (dragItem, monitor) => {
         if (dragItem.dropResult) {
-          const { y, previewH } = dragItem.dropResult
+          if (!dragItem.dropResult || !dragItem.dropResult.shape) return
+          const { shape } = dragItem.dropResult
 
-          const bottom = (y + previewH) * UNIT_HEIGHT
+          const bottom = (shape.y + shape.previewH) * UNIT_HEIGHT
           const mouseOffset = monitor.getClientOffset() ?? {
             x: 0,
             y: 0,
@@ -146,18 +151,30 @@ export const RenderComponentCanvasContainer: FC<
         const { draggedComponents, dropResult, dragEffect } = dropItem
         const originParentNode = draggedComponents[0].parentNode
 
-        if (!dropResult)
+        if (dropResult && !dropResult.shape && !dropResult.canDrop) {
+          messageHandler.error({
+            content: t("frame.message.session.error"),
+          })
           return {
             isDropOnCanvas: false,
           }
+        }
+
+        if (!dropResult || !dropResult.shape) {
+          return {
+            isDropOnCanvas: false,
+          }
+        }
+
+        const { shape: dropResultShape } = dropResult
 
         if (draggedComponents.length === 1) {
           switch (dragEffect) {
             case DRAG_EFFECT.ADD: {
               const newComponentNode = newGenerateComponentNode(
-                dropResult.x,
-                dropResult.y,
-                dropResult.w,
+                dropResultShape.x,
+                dropResultShape.y,
+                dropResultShape.w,
                 unitWidth,
                 draggedComponents[0].widgetType,
                 draggedComponents[0].displayName,
@@ -183,9 +200,9 @@ export const RenderComponentCanvasContainer: FC<
               const updateSlices = [
                 {
                   displayName: draggedComponents[0].displayName,
-                  x: dropResult.x,
-                  y: dropResult.y,
-                  w: dropResult.w,
+                  x: dropResultShape.x,
+                  y: dropResultShape.y,
+                  w: dropResultShape.w,
                   h: draggedComponents[0].layoutInfo.h,
                 },
               ]
@@ -212,12 +229,13 @@ export const RenderComponentCanvasContainer: FC<
               const updateSlices = relativeLayoutInfo.map((item) => {
                 const shape = clamWidgetShape(
                   {
-                    x: item.layoutInfo.x + dropResult.x,
-                    y: item.layoutInfo.y + dropResult.y,
+                    x: item.layoutInfo.x + dropResultShape.x,
+                    y: item.layoutInfo.y + dropResultShape.y,
                     w: item.layoutInfo.w,
-                    previewH: item.layoutInfo.h,
+                    h: item.layoutInfo.h,
                   },
                   columnNumber,
+                  draggedComponents.length > 1,
                 )
                 return {
                   ...shape,
@@ -372,12 +390,14 @@ export const RenderComponentCanvasContainer: FC<
             maxRightBottomX - leftTopX,
             maxRightBottomY - leftTopY,
           ],
+          columnNumber,
         })
       } else if (selectedComponents.length === 1) {
         FocusManager.switchFocus("canvas", {
           displayName: selectedComponents[0],
           type: "component",
           clickPosition: [],
+          columnNumber,
         })
       } else {
         FocusManager.switchFocus("canvas", {
@@ -390,6 +410,7 @@ export const RenderComponentCanvasContainer: FC<
             UNIT_HEIGHT,
             columnNumber,
           ),
+          columnNumber,
         })
       }
     },
@@ -417,7 +438,7 @@ export const RenderComponentCanvasContainer: FC<
               columns={columnNumber}
             />
             <MousePreview unitW={unitWidth} displayName={displayName} />
-            {currentLayoutInfo.childrenNode?.map((childName) => {
+            {currentLayoutInfo?.childrenNode?.map((childName) => {
               return (
                 <ComponentParser
                   key={`${displayName}-${childName}}`}
