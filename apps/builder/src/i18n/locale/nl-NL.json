@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Stel de kleur van de berichten aan de linkerkant in",
         "rightMessageColor": "Stel de kleur van de berichten aan de rechterkant in",
         "toolbar-replay": "Stel in of een antwoordknop moet worden weergegeven wanneer een bericht wordt geselecteerd.",
-        "toolbar-delete": "Stel in of een knop 'verwijderen' moet worden weergegeven wanneer een bericht wordt geselecteerd."
+        "toolbar-delete": "Stel in of een knop 'verwijderen' moet worden weergegeven wanneer een bericht wordt geselecteerd.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Opgelost",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Pagina",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Betaling succesvol",
       "button": "Terug naar ILLA Cloud"
     },
-    "redirect_to_stripe": "Omleiden naar Stripe"
+    "redirect_to_stripe": "Omleiden naar Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Netwerk fout, probeer het later opnieuw"
