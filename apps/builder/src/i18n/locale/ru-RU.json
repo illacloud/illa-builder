@@ -1288,6 +1288,9 @@
           "start_button_text": "Начать запись",
           "stop_button_text": "Стоп",
           "clear_button_text": "Очистить"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID сообщения ответа",
         "senderName": "Имя отправителя",
         "senderId": "ID отправителя",
-        "showName": "Показать имя"
+        "showName": "Показать имя",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Напишите ваш код здесь. Используйте JavaScript внутри {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
