@@ -1288,6 +1288,9 @@
           "start_button_text": "Aufnahme starten",
           "stop_button_text": "Stoppen",
           "clear_button_text": "Leeren"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Antwort-ID",
         "senderName": "Absendername",
         "senderId": "Absender-ID",
-        "showName": "Name anzeigen"
+        "showName": "Name anzeigen",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Schreibe hier deinen Code. Verwende JavaScript innerhalb von {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
