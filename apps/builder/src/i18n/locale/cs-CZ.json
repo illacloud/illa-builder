@@ -1288,6 +1288,9 @@
           "start_button_text": "Začít nahrávat",
           "stop_button_text": "Zastavit",
           "clear_button_text": "Vyčistit"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID odpovědi",
         "senderName": "Jméno odesílatele",
         "senderId": "ID odesílatele",
-        "showName": "Zobrazit název"
+        "showName": "Zobrazit název",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Napište svůj kód zde. Použijte JavaScript uvnitř {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
