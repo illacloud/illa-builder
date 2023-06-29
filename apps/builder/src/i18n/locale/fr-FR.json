@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Définir la couleur des messages sur la gauche",
         "rightMessageColor": "Définir la couleur des messages à droite",
         "toolbar-replay": "Définit si le bouton de réponse doit être affiché lors de la sélection d'un message.",
-        "toolbar-delete": "Définit si un bouton de suppression doit être affiché lors de la sélection d'un message."
+        "toolbar-delete": "Définit si un bouton de suppression doit être affiché lors de la sélection d'un message.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fixe",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIQUE",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Page",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Paiement réussi",
       "button": "Retour au Cloud ILLA"
     },
-    "redirect_to_stripe": "Redirection vers Stripe"
+    "redirect_to_stripe": "Redirection vers Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Erreur de réseau, veuillez réessayer plus tard"
