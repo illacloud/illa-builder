@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Definir a cor das mensagens à esquerda",
         "rightMessageColor": "Definir a cor das mensagens à direita",
         "toolbar-replay": "Configura se deve mostrar um botão de resposta quando selecionar uma mensagem.",
-        "toolbar-delete": "Configura se deve mostrar um botão excluir quando selecionar uma mensagem."
+        "toolbar-delete": "Configura se deve mostrar um botão excluir quando selecionar uma mensagem.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Corrigido",
@@ -1995,6 +1998,10 @@
             "left-click": "Clique-esquerdo",
             "right-click": "Clique-direito"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Por favor, clique no quadro para especificar o local de colagem."
+    "paste_no_aimed": "Por favor, clique no quadro para especificar o local de colagem.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Reserve uma demonstração",
