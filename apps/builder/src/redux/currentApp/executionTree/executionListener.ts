@@ -263,8 +263,6 @@ async function handleUpdateReflowEffect(
     }
   })
 
-  console.log("updateSlice3", JSON.parse(JSON.stringify(updateSlice)))
-
   listenerApi.dispatch(
     executionActions.batchUpdateWidgetLayoutInfoReducer(updateSlice),
   )

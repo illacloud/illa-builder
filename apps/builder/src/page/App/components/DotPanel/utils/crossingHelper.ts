@@ -5,7 +5,7 @@ import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionStat
 import store from "@/store"
 import { illaSnapshot } from "../constant/snapshotNew"
 
-interface NodeShape {
+export interface NodeShape {
   x: number
   y: number
   w: number

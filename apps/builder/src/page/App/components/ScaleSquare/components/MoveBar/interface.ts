@@ -9,6 +9,7 @@ export interface MoveBarProps {
   widgetTop: number
   widgetType: string
   userList: CollaboratorsInfo[]
+  columnNumber: number
 }
 
 export interface MoveBarPositionShape {

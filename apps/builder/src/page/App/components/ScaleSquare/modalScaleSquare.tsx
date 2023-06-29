@@ -128,6 +128,7 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
           widgetWidth={width}
           widgetType={widgetType}
           widgetTop={MOVE_BAR_HEIGHT}
+          columnNumber={columnNumber}
         >
           <TransformWidgetWrapper
             displayName={displayName}

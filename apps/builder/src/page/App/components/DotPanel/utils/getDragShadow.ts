@@ -7,7 +7,7 @@ import { DragCollectedProps } from "../components/DragPreview/interface"
 import { DEFAULT_BODY_COLUMNS_NUMBER, UNIT_HEIGHT } from "../constant/canvas"
 import { illaSnapshot } from "../constant/snapshotNew"
 import { getScrollBarContainerByDisplayName } from "../context/scrollBarContext"
-import { getCrossingWidget, isOnlyCrossingY } from "./crossingHelper"
+import { NodeShape, getCrossingWidget, isOnlyCrossingY } from "./crossingHelper"
 import { sendShadowMessageHandler } from "./sendBinaryMessage"
 
 export const getRatio = (
@@ -25,15 +25,11 @@ export const getRatio = (
   }
 }
 
-export const combineWidgetInfos = (widgetLayoutInfos: WidgetLayoutInfo[]) => {
-  const widgetXs = widgetLayoutInfos.map((info) => info.layoutInfo.x)
-  const widgetYs = widgetLayoutInfos.map((info) => info.layoutInfo.y)
-  const widgetRights = widgetLayoutInfos.map(
-    (info) => info.layoutInfo.x + info.layoutInfo.w,
-  )
-  const widgetBottoms = widgetLayoutInfos.map(
-    (info) => info.layoutInfo.y + info.layoutInfo.h,
-  )
+export const combineWidgetInfos = (layoutInfos: NodeShape[]) => {
+  const widgetXs = layoutInfos.map((info) => info.x)
+  const widgetYs = layoutInfos.map((info) => info.y)
+  const widgetRights = layoutInfos.map((info) => info.x + info.w)
+  const widgetBottoms = layoutInfos.map((info) => info.y + info.h)
   const widgetX = Math.min(...widgetXs)
   const widgetY = Math.min(...widgetYs)
   const widgetRight = Math.max(...widgetRights)
@@ -156,12 +152,7 @@ const getLeftAndRightLimit = (
 
 const getDragResult = (
   parentDisplayName: string,
-  relativeMainNode: {
-    x: number
-    y: number
-    w: number
-    h: number
-  },
+  relativeMainNode: NodeShape,
   draggedDisplayNames: string[],
   mouseRealY = relativeMainNode.y,
   mouseRealX = relativeMainNode.x,
@@ -314,10 +305,23 @@ interface ContainerInfo {
 }
 
 export const clamWidgetShape = (
-  dragPreview: { x: number; w: number; y: number; previewH: number },
+  dragPreview: NodeShape,
   columnNumber: number,
+  isMultiDrag: boolean,
 ) => {
-  const { x, w, y, previewH } = dragPreview
+  const { x, w, y, h } = dragPreview
+  if (isMultiDrag) {
+    const newW = clamp(w, 1, columnNumber)
+    const newX = clamp(x, 0, columnNumber - newW)
+    const newY = Math.max(y, 0)
+
+    return {
+      x: newX,
+      w: newW,
+      y: newY,
+      previewH: h,
+    }
+  }
   const newX = clamp(x, 0, columnNumber)
   const newW = clamp(w, 1, columnNumber - newX)
   const newY = Math.max(y, 0)
@@ -325,7 +329,7 @@ export const clamWidgetShape = (
     x: newX,
     w: newW,
     y: newY,
-    previewH,
+    previewH: h,
   }
 }
 
@@ -340,33 +344,24 @@ const transWidgetW = (
   return clamp(newW, minW, newColumnNumber)
 }
 
-const canCrossDifferenceColumnNumber = (
-  draggedComponents: WidgetLayoutInfo[],
-) => {
-  if (draggedComponents.length <= 1) {
+export const canCrossDifferenceColumnNumber = (draggedShapes: NodeShape[]) => {
+  if (draggedShapes.length <= 1) {
     return true
   }
 
-  const sortedLayoutInfoByY = cloneDeep(draggedComponents).sort(
-    (node1, node2) => {
-      if (node1.layoutInfo.y < node2.layoutInfo.y) {
-        return -1
-      }
-      if (node1.layoutInfo.y > node2.layoutInfo.y) {
-        return 1
-      }
-      return 0
-    },
-  )
+  const sortedLayoutInfoByY = cloneDeep(draggedShapes).sort((node1, node2) => {
+    if (node1.y < node2.y) {
+      return -1
+    }
+    if (node1.y > node2.y) {
+      return 1
+    }
+    return 0
+  })
 
   for (let i = 0; i < sortedLayoutInfoByY.length; i++) {
     for (let j = i + 1; j < sortedLayoutInfoByY.length; j++) {
-      if (
-        isOnlyCrossingY(
-          sortedLayoutInfoByY[i].layoutInfo,
-          sortedLayoutInfoByY[j].layoutInfo,
-        )
-      ) {
+      if (isOnlyCrossingY(sortedLayoutInfoByY[i], sortedLayoutInfoByY[j])) {
         return false
       }
     }
@@ -385,6 +380,8 @@ export const getDragPreview = (
   const { initialClientOffset, initialSourceClientOffset, clientOffset, item } =
     dragCollectedProps
 
+  if (!item) return null
+
   const { containerTop, containerLeft } = containerInfo
   const {
     draggedComponents,
@@ -397,10 +394,14 @@ export const getDragPreview = (
 
   const totalScrollTop = getScrollTop(parentNodeDisplayName)
 
-  const canDrop = canCrossDifferenceColumnNumber(draggedComponents)
+  const canDrop = canCrossDifferenceColumnNumber(
+    draggedComponents.map((item) => item.layoutInfo),
+  )
 
   const draggedDisplayNames = draggedComponents.map((item) => item.displayName)
-  const combineWidget = combineWidgetInfos(draggedComponents)
+  const combineWidget = combineWidgetInfos(
+    draggedComponents.map((item) => item.layoutInfo),
+  )
   const currentWidgetLayoutInfo = draggedComponents.find(
     (item) => item.displayName === draggedDisplayName,
   )
@@ -506,11 +507,44 @@ export const getDragPreview = (
       columnNumber !== columnNumberWhenDragged &&
       !canDrop
     ) {
-      item.dropResult = undefined
-      return clamWidgetShape(result, columnNumber)
+      item.dropResult = {
+        shape: undefined,
+        canDrop: false,
+      }
+      return {
+        shape: clamWidgetShape(
+          {
+            ...result,
+            h: result.previewH,
+          },
+          columnNumber,
+          draggedComponents.length > 1,
+        ),
+        canDrop: false,
+      }
     }
-    item.dropResult = clamWidgetShape(result, columnNumber)
-    return clamWidgetShape(result, columnNumber)
+    item.dropResult = {
+      shape: clamWidgetShape(
+        {
+          ...result,
+          h: result.previewH,
+        },
+        columnNumber,
+        draggedComponents.length > 1,
+      ),
+      canDrop: true,
+    }
+    return {
+      shape: clamWidgetShape(
+        {
+          ...result,
+          h: result.previewH,
+        },
+        columnNumber,
+        draggedComponents.length > 1,
+      ),
+      canDrop: true,
+    }
   } else {
     return null
   }

@@ -21,10 +21,13 @@ export interface DragInfo {
   draggedDisplayName: string
   alignTop?: boolean
   dropResult?: {
-    x: number
-    y: number
-    w: number
-    previewH: number
+    shape?: {
+      x: number
+      y: number
+      w: number
+      previewH: number
+    }
+    canDrop: boolean
   }
   columnNumberWhenDragged: number
   unitWWhenDragged: number

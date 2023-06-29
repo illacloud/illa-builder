@@ -204,7 +204,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           finalContext,
         }
       },
-      [originComponentNode.props],
+      [originComponentNode?.props],
     )
 
     const triggerEventHandler = useCallback(
