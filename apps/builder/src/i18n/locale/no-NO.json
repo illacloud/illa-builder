@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Angi fargen på meldingene til venstre",
         "rightMessageColor": "Angi fargen for meldingene til høyre",
         "toolbar-replay": "Angi om du skal vise en svar-knappen når du velger en melding.",
-        "toolbar-delete": "Angi om du skal vise en slette-knapp når du velger en melding. (Automatic Translation)"
+        "toolbar-delete": "Angi om du skal vise en slette-knapp når du velger en melding. (Automatic Translation)",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1995,6 +1998,10 @@
             "left-click": "Venstreklikk",
             "right-click": "Høyreklikk"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klikk på rammen for å angi lime plassering."
+    "paste_no_aimed": "Klikk på rammen for å angi lime plassering.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Bestill en demo",
