@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "PODSTAWOWE",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Strona",
       "tooltips": {
@@ -3501,7 +3501,10 @@
       "title": "Płatność zakończona powodzeniem",
       "button": "Wróć do chmury ILLA"
     },
-    "redirect_to_stripe": "Przekierowanie do Stripe"
+    "redirect_to_stripe": "Przekierowanie do Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Błąd sieci, spróbuj ponownie później"
