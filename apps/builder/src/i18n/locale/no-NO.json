@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "GRUNN",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Side",
       "tooltips": {
@@ -3501,7 +3501,10 @@
       "title": "Vellykket betaling",
       "button": "Tilbake til ILLA Sky"
     },
-    "redirect_to_stripe": "Omdirigerer til Stripe"
+    "redirect_to_stripe": "Omdirigerer til Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Nettverksfeil, vennligst prøv på nytt senere"
