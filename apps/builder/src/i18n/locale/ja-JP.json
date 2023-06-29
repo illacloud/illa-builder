@@ -1995,6 +1995,10 @@
             "left-click": "左クリック",
             "right-click": "右クリック(&R)"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3096,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "フレームをクリックして貼り付け場所を指定してください。"
+    "paste_no_aimed": "フレームをクリックして貼り付け場所を指定してください。",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "デモを予約する",
