@@ -190,9 +190,11 @@ export const Editor: FC = () => {
               <TriggerProvider renderInBody zIndex={10}>
                 <CanvasPanel css={centerPanelStyle} />
               </TriggerProvider>
-              {showBottomPanel && !showDebugger ? (
-                <ActionEditor css={bottomPanelStyle} />
-              ) : null}
+              <TriggerProvider renderInBody zIndex={10}>
+                {showBottomPanel && !showDebugger ? (
+                  <ActionEditor css={bottomPanelStyle} />
+                ) : null}
+              </TriggerProvider>
               {showDebugger && <Debugger css={bottomPanelStyle} />}
             </div>
             {showRightPanel && (
