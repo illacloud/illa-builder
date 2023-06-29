@@ -1288,6 +1288,9 @@
           "start_button_text": "Inizia la registrazione",
           "stop_button_text": "Ferma",
           "clear_button_text": "Pulisci"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID messaggio di risposta",
         "senderName": "Nome mittente",
         "senderId": "Id Mittente",
-        "showName": "Mostra nome"
+        "showName": "Mostra nome",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Scrivi qui il tuo codice. Usa JavaScript all'interno di {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
