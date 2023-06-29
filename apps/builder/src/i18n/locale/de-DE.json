@@ -1995,6 +1995,10 @@
             "left-click": "Linksklick",
             "right-click": "Rechtsklick"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3096,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Bitte klicken Sie auf den Rahmen, um den Ort anzugeben."
+    "paste_no_aimed": "Bitte klicken Sie auf den Rahmen, um den Ort anzugeben.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Demo buchen",
