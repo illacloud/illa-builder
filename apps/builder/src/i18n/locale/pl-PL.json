@@ -1288,6 +1288,9 @@
           "start_button_text": "Rozpocznij nagrywanie",
           "stop_button_text": "Zatrzymaj",
           "clear_button_text": "Wyczyść"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Identyfikator komunikatu odpowiedzi",
         "senderName": "Nazwa nadawcy",
         "senderId": "ID nadawcy",
-        "showName": "Pokaż nazwę"
+        "showName": "Pokaż nazwę",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Napisz tutaj swój kod. Użyj JavaScript wewnątrz {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
