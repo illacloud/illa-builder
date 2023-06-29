@@ -1995,6 +1995,10 @@
             "left-click": "Clic gauche",
             "right-click": "Clic droit"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -3092,7 +3096,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Veuillez cliquer sur le cadre pour spécifier l'emplacement de coller ."
+    "paste_no_aimed": "Veuillez cliquer sur le cadre pour spécifier l'emplacement de coller .",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Réservez une démo",
