@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Sida",
       "tooltips": {
@@ -3501,7 +3501,10 @@
       "title": "Betalning slutförd",
       "button": "Tillbaka till ILLA Cloud"
     },
-    "redirect_to_stripe": "Omdirigerar till Stripe"
+    "redirect_to_stripe": "Omdirigerar till Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Nätverksfel, försök igen senare"
