@@ -1288,6 +1288,9 @@
           "start_button_text": "Розпочати запис",
           "stop_button_text": "Зупинити",
           "clear_button_text": "Очистити"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID повідомлення для відповіді",
         "senderName": "Ім'я відправника",
         "senderId": "ID відправника",
-        "showName": "Показати ім'я"
+        "showName": "Показати ім'я",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Запишіть свій код тут. Використовуйте JavaScript всередині {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
