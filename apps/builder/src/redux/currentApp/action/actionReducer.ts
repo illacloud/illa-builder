@@ -9,7 +9,7 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { isObject } from "@/utils/typeHelper"
 
-export const updateActionListReducer: CaseReducer<
+export const initActionListReducer: CaseReducer<
   ActionItem<ActionContent>[],
   PayloadAction<ActionItem<ActionContent>[]>
 > = (_, action) => {

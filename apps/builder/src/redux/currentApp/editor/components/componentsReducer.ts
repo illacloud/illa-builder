@@ -47,7 +47,7 @@ import {
 } from "@/utils/generators/generatePageOrSectionConfig"
 import { isObject } from "@/utils/typeHelper"
 
-export const updateComponentReducer: CaseReducer<
+export const initComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentsState>
 > = (state, action) => {

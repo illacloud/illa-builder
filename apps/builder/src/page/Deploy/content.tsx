@@ -60,9 +60,9 @@ export const DeployContent: FC = () => {
         const fixedComponents = fixedComponentsToNewComponents(
           appInfo.data.components,
         )
-        dispatch(componentsActions.updateComponentReducer(fixedComponents))
+        dispatch(componentsActions.initComponentReducer(fixedComponents))
         const fixedActions = fixedActionToNewAction(appInfo.data.actions)
-        dispatch(actionActions.updateActionListReducer(fixedActions))
+        dispatch(actionActions.initActionListReducer(fixedActions))
         dispatch(executionActions.startExecutionReducer())
       } else {
         dispatch(configActions.updateIllaMode("production"))
@@ -70,9 +70,9 @@ export const DeployContent: FC = () => {
         const fixedComponents = fixedComponentsToNewComponents(
           appInfo.data.components,
         )
-        dispatch(componentsActions.updateComponentReducer(fixedComponents))
+        dispatch(componentsActions.initComponentReducer(fixedComponents))
         const fixedActions = fixedActionToNewAction(appInfo.data.actions)
-        dispatch(actionActions.updateActionListReducer(fixedActions))
+        dispatch(actionActions.initActionListReducer(fixedActions))
         dispatch(executionActions.startExecutionReducer())
       }
     }
