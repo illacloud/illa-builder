@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Sæt farven på brevene til venstre",
         "rightMessageColor": "Sæt farven på brevene til højre",
         "toolbar-replay": "Angiv, om en svar-knap skal vises når du vælger en besked.",
-        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked."
+        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "GRUNDLÆGGENDE",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Side",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Betaling gennemført",
       "button": "Tilbage til ILLA Cloud"
     },
-    "redirect_to_stripe": "Omdirigerer til Stripe"
+    "redirect_to_stripe": "Omdirigerer til Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Netværksfejl, prøv igen senere"
