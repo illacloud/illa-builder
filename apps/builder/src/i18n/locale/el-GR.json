@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Ορίστε το χρώμα των μηνυμάτων στα αριστερά",
         "rightMessageColor": "Ορίστε το χρώμα των μηνυμάτων στα δεξιά",
         "toolbar-replay": "Ορίστε αν θα εμφανίζεται το κουμπί απάντησης κατά την επιλογή μηνύματος.",
-        "toolbar-delete": "Ορίστε αν θα εμφανίζεται το κουμπί διαγραφής όταν επιλέγεται ένα μήνυμα."
+        "toolbar-delete": "Ορίστε αν θα εμφανίζεται το κουμπί διαγραφής όταν επιλέγεται ένα μήνυμα.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Σταθερό",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "ΒΑΣΙΚΟ",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Σελίδα",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Επιτυχής πληρωμή",
       "button": "Πίσω στο Cloud ILLA"
     },
-    "redirect_to_stripe": "Ανακατεύθυνση σε Stripe"
+    "redirect_to_stripe": "Ανακατεύθυνση σε Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Σφάλμα δικτύου, παρακαλώ προσπαθήστε ξανά αργότερα"
