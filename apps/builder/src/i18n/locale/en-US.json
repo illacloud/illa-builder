@@ -1288,6 +1288,9 @@
           "start_button_text": "Start recording",
           "stop_button_text": "Stop",
           "clear_button_text": "Clear"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Reply message ID",
         "senderName": "Sender name",
         "senderId": "Sender ID",
-        "showName": "Show name"
+        "showName": "Show name",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Write your code here. Use JavaScript inside of {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
