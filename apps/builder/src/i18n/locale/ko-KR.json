@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Set the color of the messages on the left",
         "rightMessageColor": "Set the color of the messages on the right",
         "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "toolbar-delete": "Set whether to show a delete button when select a message.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -1979,7 +1982,7 @@
           "icon": "Icon",
           "solid": "Solid",
           "outline": "Outline",
-          "auto": "Auto",
+          "auto": "Responsive",
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "베이스",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "페이지",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Payment successful",
       "button": "Back to ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirecting to Stripe"
+    "redirect_to_stripe": "Redirecting to Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Network error, please try again later"
