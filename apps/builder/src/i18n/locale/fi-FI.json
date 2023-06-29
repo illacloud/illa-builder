@@ -1915,7 +1915,10 @@
         "leftMessageColor": "Aseta vasemmalla olevien viestien väri",
         "rightMessageColor": "Aseta oikealla olevien viestien väri",
         "toolbar-replay": "Määritä näytetäänkö vastauspainike, kun valitse viesti.",
-        "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti."
+        "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -2091,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "PERUSTE",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Sivu",
       "tooltips": {
@@ -3498,7 +3501,10 @@
       "title": "Maksu onnistui",
       "button": "Takaisin ILLA-pilveen"
     },
-    "redirect_to_stripe": "Uudelleenohjaus raidalle"
+    "redirect_to_stripe": "Uudelleenohjaus raidalle",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Verkkovirhe, yritä myöhemmin uudelleen"
