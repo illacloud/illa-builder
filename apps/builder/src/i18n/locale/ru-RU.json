@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "БАЗИЯ",
-        "frame": "RESPONSIVE LAYOUT"
+        "frame": "LAYOUT"
       },
       "tab_title": "Страница",
       "tooltips": {
@@ -3501,7 +3501,10 @@
       "title": "Платеж выполнен",
       "button": "Вернуться в облако ILLA"
     },
-    "redirect_to_stripe": "Перенаправление на полосу"
+    "redirect_to_stripe": "Перенаправление на полосу",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Ошибка сети, повторите попытку позже"
