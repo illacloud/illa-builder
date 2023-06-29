@@ -1288,6 +1288,9 @@
           "start_button_text": "Starta inspelning",
           "stop_button_text": "Stoppa",
           "clear_button_text": "Rensa"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Svara meddelande-ID",
         "senderName": "Avsändarens namn",
         "senderId": "Avsändarens ID",
-        "showName": "Visa namn"
+        "showName": "Visa namn",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2045,6 +2051,11 @@
       "setter_description": {
         "code": {
           "write_code": "Skriv din kod här. Använd JavaScript inuti {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
