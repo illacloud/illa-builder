@@ -1,12 +1,10 @@
 import { clamp, cloneDeep } from "lodash"
-import { RefObject } from "react"
 import { XYCoord } from "react-dnd"
 import { DRAG_EFFECT } from "@/page/App/components/ScaleSquare/components/DragContainer/interface"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { DragCollectedProps } from "../components/DragPreview/interface"
 import { DEFAULT_BODY_COLUMNS_NUMBER, UNIT_HEIGHT } from "../constant/canvas"
-import { illaSnapshot } from "../constant/snapshotNew"
 import { getScrollBarContainerByDisplayName } from "../context/scrollBarContext"
 import { NodeShape, getCrossingWidget, isOnlyCrossingY } from "./crossingHelper"
 import { sendShadowMessageHandler } from "./sendBinaryMessage"
@@ -47,31 +45,22 @@ export const combineWidgetInfos = (layoutInfos: NodeShape[]) => {
 
 export const getScrollTop = (displayName: string) => {
   let scrollTop = 0
-  const needSearchParentDisplayName = [displayName]
-  const refs: RefObject<HTMLDivElement>[] = []
-  const snapShot = illaSnapshot.getSnapshot()
-
-  while (needSearchParentDisplayName.length > 0) {
-    const needFind = needSearchParentDisplayName.shift()
-    if (!needFind) break
-    const widgetSnapShot = snapShot[needFind]
-    if (widgetSnapShot.containerType === "EDITOR_DOT_PANEL") {
-      const ref = getScrollBarContainerByDisplayName(widgetSnapShot.displayName)
-      if (ref) {
-        refs.push(ref)
-      }
-    }
-    const parentNode = widgetSnapShot.parentNode
-    if (parentNode) {
-      needSearchParentDisplayName.push(parentNode)
-    }
+  const ref = getScrollBarContainerByDisplayName(displayName)
+  if (ref && ref.current) {
+    return ref.current.scrollTop
   }
 
-  refs.forEach((ref) => {
-    scrollTop += ref.current?.scrollTop ?? 0
-  })
-
   return scrollTop
+}
+
+export const getContainerTop = (displayName: string) => {
+  const ref = getScrollBarContainerByDisplayName(displayName)
+  if (ref && ref.current) {
+    const parentNodeDom = ref.current.parentElement as HTMLElement
+    return parentNodeDom!.getBoundingClientRect().top
+  }
+
+  return 0
 }
 
 export const getMousePositionInfo = (
@@ -383,7 +372,8 @@ export const getDragPreview = (
 
   if (!item) return null
 
-  const { containerTop, containerLeft } = containerInfo
+  const { containerLeft } = containerInfo
+  const containerTop = getContainerTop(parentNodeDisplayName)
   const {
     draggedComponents,
     draggedDisplayName,

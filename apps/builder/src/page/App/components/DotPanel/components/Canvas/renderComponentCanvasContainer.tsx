@@ -91,6 +91,7 @@ export const RenderComponentCanvasContainer: FC<
     width: bounds.width - (containerPadding + SCROLL_CONTAINER_PADDING) * 2,
     height: bounds.height - (containerPadding + SCROLL_CONTAINER_PADDING) * 2,
   }
+
   const canShowDot = useSelector(isShowDot)
   const unitWidth = fixedBounds.width / columnNumber
 
