@@ -32,3 +32,4 @@ export const IconWidget: FC<IconWidgetProps> = (props) => {
 }
 
 IconWidget.displayName = "IconWidget"
+export default IconWidget

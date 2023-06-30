@@ -179,3 +179,4 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   )
 }
 RadioGroupWidget.displayName = "RadioGroupWidget"
+export default RadioGroupWidget

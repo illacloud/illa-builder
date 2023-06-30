@@ -1,4 +1,4 @@
-import { sessionTypeMapSessionNameKey } from "@/widgetLibrary/componentListBuilder"
+import { sessionTypeMapSessionNameKey } from "@/page/App/components/ComponentPanel/componentListBuilder"
 import { ComponentSessionProps } from "./interface"
 
 export function getMatchComponent(
@@ -15,7 +15,7 @@ export function getMatchComponent(
 
   const newSessionList: ComponentSessionProps[] = []
   const removeCommonlyOptions = options?.filter((option) => {
-    return option.title !== sessionTypeMapSessionNameKey.COMMON
+    return option.sessionTitle !== sessionTypeMapSessionNameKey.COMMON
   })
   removeCommonlyOptions?.forEach((session) => {
     const res = session.widgetCardInfos.filter((widgetCardInfo) => {

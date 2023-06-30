@@ -1,13 +1,10 @@
 import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
+import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { widgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store, { RootState } from "@/store"
-import {
-  BASIC_BLOCK_COLUMNS,
-  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-} from "@/utils/generators/generatePageOrSectionConfig"
 
 export function searchDSLByDisplayName(
   displayName: string,
@@ -253,28 +250,44 @@ export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
     if (rootDSL == null) {
       return null
     }
-    const components = flattenDslToMapExcludeContainerNode(rootDSL)
+    const components = flattenAllComponentNodeToMap(rootDSL)
     if (!components) return
-    const res: Record<string, widgetLayoutInfo> = {}
+    const res: Record<string, WidgetLayoutInfo> = {}
     Object.keys(components).forEach((key) => {
       const childrenNode = Array.isArray(components[key].childrenNode)
         ? components[key].childrenNode.map((node) => node.displayName)
         : []
+
+      const {
+        displayName,
+        parentNode,
+        type,
+        containerType,
+        x,
+        y,
+        z,
+        w,
+        h,
+        unitW,
+        unitH,
+        minH,
+      } = components[key]
       res[key] = {
-        displayName: components[key].displayName,
-        parentNode: components[key].parentNode as string,
-        widgetType: components[key].type,
+        displayName: displayName,
+        parentNode: parentNode ?? "",
+        widgetType: type,
         childrenNode: childrenNode,
+        containerType: containerType,
         layoutInfo: {
-          x: components[key].x,
-          y: components[key].y,
-          z: components[key].z,
-          w: components[key].w,
-          h: components[key].h,
-          unitW: components[key].unitW,
-          unitH: components[key].unitH,
-          minW: components[key].minW,
-          minH: components[key].minH,
+          x,
+          y,
+          z,
+          w,
+          h,
+          unitW,
+          unitH,
+          minW: DEFAULT_MIN_COLUMN,
+          minH,
         },
       }
     })
@@ -391,14 +404,17 @@ export const getContainerListDisplayNameMappedChildrenNodeDisplayName =
       if (!Array.isArray(get(displayNameMappedChildren, node.displayName))) {
         set(displayNameMappedChildren, node.displayName, [])
       }
-      displayNameMappedChildren[node.displayName].push(
-        containerNode.displayName,
-      )
-      dfsWithListNode(
-        containerNode,
-        displayNameMappedChildren,
-        node.displayName,
-      )
+
+      if (containerNode) {
+        displayNameMappedChildren[node.displayName].push(
+          containerNode.displayName,
+        )
+        dfsWithListNode(
+          containerNode,
+          displayNameMappedChildren,
+          node.displayName,
+        )
+      }
     })
 
     return displayNameMappedChildren
@@ -419,142 +435,6 @@ export const getViewportSizeSelector = createSelector(
       viewportWidth: viewportWidth,
       viewportHeight: viewportHeight,
       viewportSizeType,
-    }
-  },
-)
-
-const getLikeContainerNode = (
-  componentNode: ComponentNode,
-  displayNameMapComponentNode: Record<string, ComponentNode[]>,
-) => {
-  if (Array.isArray(componentNode.childrenNode)) {
-    componentNode.childrenNode.forEach((node) => {
-      if (
-        (node.type === "CONTAINER_WIDGET" ||
-          node.type === "FORM_WIDGET" ||
-          node.type === "LIST_WIDGET") &&
-        Array.isArray(node.childrenNode)
-      ) {
-        node.childrenNode.forEach((childNode) => {
-          if (Array.isArray(childNode.childrenNode)) {
-            const keyDisplayName = `${node.displayName}-${childNode.displayName}`
-            displayNameMapComponentNode[keyDisplayName] = [
-              ...childNode.childrenNode,
-            ]
-            getLikeContainerNode(childNode, displayNameMapComponentNode)
-          }
-        })
-      }
-    })
-  }
-}
-
-const getDisplayNameMapComponentNode = (sectionNode: ComponentNode) => {
-  let displayNameMapComponentNode: Record<string, ComponentNode[]> = {}
-  sectionNode.childrenNode.forEach((sectionContainerNode) => {
-    if (Array.isArray(sectionContainerNode.childrenNode)) {
-      displayNameMapComponentNode[sectionContainerNode.displayName] = [
-        ...sectionContainerNode.childrenNode,
-      ]
-      getLikeContainerNode(sectionContainerNode, displayNameMapComponentNode)
-    }
-  })
-  return displayNameMapComponentNode
-}
-
-export const getCurrentPageBodySectionComponentsSelector = createSelector(
-  [getCurrentPageDisplayName, getCanvas],
-  (pageDisplayName, rootNode) => {
-    if (!rootNode || !pageDisplayName) return {}
-    const pageNode = searchDsl(rootNode, pageDisplayName)
-    if (!pageNode || !Array.isArray(pageNode.childrenNode)) return {}
-    const sectionNode = pageNode.childrenNode.find((node) => {
-      return node.showName === "bodySection"
-    })
-    if (!sectionNode || !Array.isArray(sectionNode.childrenNode)) return {}
-    return getDisplayNameMapComponentNode(sectionNode)
-  },
-)
-
-export const getCurrentPageHeaderSectionComponentsSelector = createSelector(
-  [getCurrentPageDisplayName, getCanvas],
-  (pageDisplayName, rootNode) => {
-    if (!rootNode || !pageDisplayName) return {}
-    const pageNode = searchDsl(rootNode, pageDisplayName)
-    if (!pageNode || !Array.isArray(pageNode.childrenNode)) return {}
-    const sectionNode = pageNode.childrenNode.find((node) => {
-      return node.showName === "headerSection"
-    })
-    if (!sectionNode || !Array.isArray(sectionNode.childrenNode)) return {}
-    return getDisplayNameMapComponentNode(sectionNode)
-  },
-)
-export const getCurrentPageFooterSectionComponentsSelector = createSelector(
-  [getCurrentPageDisplayName, getCanvas],
-  (pageDisplayName, rootNode) => {
-    if (!rootNode || !pageDisplayName) return {}
-    const pageNode = searchDsl(rootNode, pageDisplayName)
-    if (!pageNode || !Array.isArray(pageNode.childrenNode)) return {}
-    const sectionNode = pageNode.childrenNode.find((node) => {
-      return node.showName === "footerSection"
-    })
-    if (!sectionNode || !Array.isArray(sectionNode.childrenNode)) return {}
-    return getDisplayNameMapComponentNode(sectionNode)
-  },
-)
-export const getCurrentPageLeftSectionComponentsSelector = createSelector(
-  [getCurrentPageDisplayName, getCanvas],
-  (pageDisplayName, rootNode) => {
-    if (!rootNode || !pageDisplayName) return {}
-    const pageNode = searchDsl(rootNode, pageDisplayName)
-    if (!pageNode || !Array.isArray(pageNode.childrenNode)) return {}
-    const sectionNode = pageNode.childrenNode.find((node) => {
-      return node.showName === "leftSection"
-    })
-    if (!sectionNode || !Array.isArray(sectionNode.childrenNode)) return {}
-    return getDisplayNameMapComponentNode(sectionNode)
-  },
-)
-export const getCurrentPageRightSectionComponentsSelector = createSelector(
-  [getCurrentPageDisplayName, getCanvas],
-  (pageDisplayName, rootNode) => {
-    if (!rootNode || !pageDisplayName) return {}
-    const pageNode = searchDsl(rootNode, pageDisplayName)
-    if (!pageNode || !Array.isArray(pageNode.childrenNode)) return {}
-    const sectionNode = pageNode.childrenNode.find((node) => {
-      return node.showName === "rightSection"
-    })
-    if (!sectionNode || !Array.isArray(sectionNode.childrenNode)) return {}
-    return getDisplayNameMapComponentNode(sectionNode)
-  },
-)
-
-export const getCurrentPageSectionColumns = createSelector(
-  [getCurrentPageDisplayName, getCanvas],
-  (pageDisplayName, rootNode) => {
-    if (!rootNode || !pageDisplayName)
-      return {
-        leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-        rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-        headerColumns: BASIC_BLOCK_COLUMNS,
-        footerColumns: BASIC_BLOCK_COLUMNS,
-        bodyColumns: BASIC_BLOCK_COLUMNS,
-      }
-    const pageNode = searchDsl(rootNode, pageDisplayName)
-    if (!pageNode || !pageNode.props)
-      return {
-        leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-        rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-        headerColumns: BASIC_BLOCK_COLUMNS,
-        footerColumns: BASIC_BLOCK_COLUMNS,
-        bodyColumns: BASIC_BLOCK_COLUMNS,
-      }
-    return {
-      leftColumns: pageNode.props.leftColumns,
-      rightColumns: pageNode.props.rightColumns,
-      headerColumns: pageNode.props.headerColumns,
-      footerColumns: pageNode.props.footerColumns,
-      bodyColumns: pageNode.props.bodyColumns,
     }
   },
 )

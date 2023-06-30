@@ -15,7 +15,7 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["list", "列表"],
   icon: <ListWidgetIcon />,
   sessionType: "CONTAINER",
-  w: 32,
+  w: 16,
   h: 38,
   childrenNode: [
     {
@@ -23,9 +23,9 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
       childrenNode: [
         {
           ...TEXT_WIDGET_CONFIG,
-          w: 10,
+          w: 6,
           h: 10,
-          x: 22,
+          x: 11,
           y: 0,
           defaults: {
             ...TEXT_WIDGET_CONFIG.defaults,
@@ -49,9 +49,9 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
         // },
         {
           ...IMAGE_WIDGET_CONFIG,
-          w: 16,
+          w: 8,
           h: 15,
-          x: 3,
+          x: 1,
           y: 1,
           defaults: {
             ...IMAGE_WIDGET_CONFIG.defaults,
@@ -63,9 +63,9 @@ export const LIST_WIDGET_CONFIG: WidgetConfig = {
         },
         {
           ...BUTTON_WIDGET_CONFIG,
-          w: 17,
+          w: 8,
           h: 5,
-          x: 47,
+          x: 23,
           y: 5,
           defaults: {
             ...BUTTON_WIDGET_CONFIG.defaults,

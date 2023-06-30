@@ -57,3 +57,4 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
 }
 
 DividerWidget.displayName = "DividerWidget"
+export default DividerWidget

@@ -96,7 +96,13 @@ export default defineConfig(({ command, mode }) => {
             react: ["react", "react-dom", "react-router-dom"],
             "@emotion": ["@emotion/react"],
             "@illa-design": ["@illa-design/react"],
-            "react-icons-vendor": ["react-icons"],
+            "react-icons-vendor": [
+              "react-icons",
+              "react-icons/bs",
+              "react-icons/fc",
+              "react-icons/sl",
+              "react-icons/tb",
+            ],
             "codeMirror-vendor": [
               "@codemirror/autocomplete",
               "@codemirror/commands",

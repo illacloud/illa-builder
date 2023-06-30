@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react"
 import { Button } from "@illa-design/react"
-import { WrappedAudio } from "@/widgetLibrary/AudioWidget"
+import { WrappedAudio } from "@/widgetLibrary/AudioWidget/audio"
 import {
   DefaultClearText,
   DefaultStartText,

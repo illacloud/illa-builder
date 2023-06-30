@@ -253,3 +253,4 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     </AutoHeightContainer>
   )
 }
+export default StepsWidget

@@ -9,7 +9,7 @@ export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   icon: <TimelineWidgetIcon />,
   keywords: ["Timeline", "时间线"],
   sessionType: "PRESENTATION",
-  w: 12,
+  w: 6,
   h: 28,
   defaults: {
     direction: "vertical",

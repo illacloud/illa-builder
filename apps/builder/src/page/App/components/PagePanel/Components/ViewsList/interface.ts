@@ -1,17 +1,30 @@
 import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
 
 export interface HeaderProps {
-  sectionName: string
-  sectionNodeExecutionResult: Record<string, any>
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
+  parentNodeDisplayName: string
 }
 
 export interface ViewListProps {
-  sectionName: string
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
 }
 
 export interface BodyProps {
-  sectionNodeExecutionResult: Record<string, any>
   sectionName: string
+  parentNodeDisplayName: string
+  currentViewIndex: number
+  viewSortedKey: string[]
+  sectionViewConfigs: SectionViewShape[]
 }
 
 export interface ItemProps extends Omit<SectionViewShape, "id" | "key"> {

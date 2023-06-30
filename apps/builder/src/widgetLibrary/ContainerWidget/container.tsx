@@ -1,9 +1,8 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
-import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 import { ContainerEmptyState } from "./emptyState"
 import { containerWrapperStyle } from "./style"
 
@@ -17,16 +16,16 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     viewList,
     tooltipText,
     childrenNode,
-    blockColumns,
+    columnNumber,
     dynamicHeight = "fixed",
     triggerEventHandler,
     updateComponentHeight,
     linkWidgetDisplayName,
     dynamicMaxHeight,
     dynamicMinHeight,
-    h,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
+
   useEffect(() => {
     if (typeof preCurrentViewIndex.current !== "number") {
       preCurrentViewIndex.current = currentIndex
@@ -44,20 +43,16 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
   const renderComponent = useMemo(() => {
     if (Array.isArray(childrenNode) && currentIndex < childrenNode.length) {
       const currentViewComponentNode = childrenNode[currentIndex]
+
       return (
-        <BasicContainer
-          componentNode={currentViewComponentNode}
-          // 8 is the padding of the container , 7 is padding of the wrapper container
-          minHeight={h * UNIT_HEIGHT - 8 - 8}
-          padding={4}
-          safeRowNumber={1}
-          addedRowNumber={1}
-          blockColumns={blockColumns}
+        <RenderChildrenCanvas
+          currentComponentNode={currentViewComponentNode}
+          columnNumber={columnNumber}
         />
       )
     }
     return <ContainerEmptyState />
-  }, [blockColumns, childrenNode, currentIndex, h])
+  }, [columnNumber, childrenNode, currentIndex])
 
   const handleUpdateOriginalDSLAttrs = useCallback(
     (updateSlice: Record<string, any>) => {
@@ -178,12 +173,12 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       case "auto":
         return true
       case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+        return true
       case "fixed":
       default:
         return false
     }
-  }, [dynamicHeight, dynamicMinHeight, h])
+  }, [dynamicHeight])
 
   const dynamicOptions = {
     dynamicMinHeight,
@@ -204,3 +199,5 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     </TooltipWrapper>
   )
 }
+
+export default ContainerWidget

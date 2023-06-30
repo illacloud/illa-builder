@@ -13,7 +13,7 @@ export const TABS_WIDGET_CONFIG: WidgetConfig = {
   displayName: "tabs",
   widgetName: i18n.t("widget.tabs.name"),
   h: 6,
-  w: 12,
+  w: 6,
   type: "TABS_WIDGET",
   icon: <TabsWidgetIcon />,
   keywords: ["Tabs", "选项卡"],

@@ -9,7 +9,7 @@ export const SLIDER_WIDGET_CONFIG: WidgetConfig = {
   icon: <SliderWidgetIcon />,
   keywords: ["Slider", "滑动输入条"],
   sessionType: "INPUTS",
-  w: 20,
+  w: 10,
   h: 10,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

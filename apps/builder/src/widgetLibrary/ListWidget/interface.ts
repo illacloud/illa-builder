@@ -14,7 +14,7 @@ export interface ListWidgetProps extends BaseWidgetProps {
   selectedIndex: number
   itemBackGroundColor: string
   disabled: boolean
-  blockColumns: number
+  columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"
   h: number
   dynamicMinHeight?: number
@@ -24,7 +24,7 @@ export interface ListWidgetProps extends BaseWidgetProps {
 export interface RenderTemplateContainerProps {
   templateComponentNodes: ComponentNode
   templateContainerHeight: number
-  blockColumns: number
+  columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   updateComponentHeight?: (newHeight: number) => void
@@ -37,7 +37,7 @@ export interface RenderTemplateContainerProps {
 export interface RenderCopyContainerProps {
   templateComponentNodes: ComponentNode
   templateContainerHeight: number
-  blockColumns: number
+  columnNumber: number
   displayNamePrefix: string
 }
 

@@ -5,7 +5,7 @@ import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { generateComponentNode } from "@/utils/generators/generateComponentNode"
+import { newGenerateChildrenComponentNode } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ViewItemShape } from "../interface"
 import {
@@ -119,7 +119,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         },
       )
       if (!targetOptionItem) return
-      const newChildrenNodes = generateComponentNode(
+      const newChildrenNodes = newGenerateChildrenComponentNode(
         BasicContainerConfig,
         componentNode.displayName,
       )

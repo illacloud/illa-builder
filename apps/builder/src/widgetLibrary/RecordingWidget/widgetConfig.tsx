@@ -14,7 +14,7 @@ export const RECORDING_WIDGET_CONFIG: WidgetConfig = {
   icon: <RecordingWidgetIcon />,
   keywords: ["Recording", "录音"],
   sessionType: "INPUTS",
-  w: 20,
+  w: 10,
   h: 7,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

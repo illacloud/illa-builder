@@ -30,9 +30,9 @@ export const updateCurrentAppInfo = (
   store.dispatch(configActions.updateIllaMode(mode))
   store.dispatch(appInfoActions.updateAppInfoReducer(data.appInfo))
   const fixedComponents = fixedComponentsToNewComponents(data.components)
-  store.dispatch(componentsActions.updateComponentReducer(fixedComponents))
+  store.dispatch(componentsActions.initComponentReducer(fixedComponents))
   const fixedActions = fixedActionToNewAction(data.actions)
-  store.dispatch(actionActions.updateActionListReducer(fixedActions))
+  store.dispatch(actionActions.initActionListReducer(fixedActions))
 
   DisplayNameGenerator.initApp(appId, teamID, uid)
   DisplayNameGenerator.updateDisplayNameList(data.components, fixedActions)
