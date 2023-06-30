@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "БАСИК",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Сторінка",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Додати необмежену кількість учасників БЕЗКОШТОВНО",
         "publish_public_appli": "Опублікувати публічні додатки",
         "ai_sql_generation": "Генерація AI SQL",
-        "audit_logs": "Журнали аудиту (скоро з'явиться)",
+        "audit_logs": "Журнал аудиту",
         "learn_more": "Дізнатися більше",
         "upgrade": "Апґрейд",
         "pricing": "/редакція/місяць, щороку",
