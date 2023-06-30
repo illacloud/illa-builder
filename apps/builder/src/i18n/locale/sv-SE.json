@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Sida",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Lägg till obegränsat antal läsare GRATIS",
         "publish_public_appli": "Publicera publika program",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Granskningsloggar (Kommer snart)",
+        "audit_logs": "Granskningsloggar",
         "learn_more": "Läs mer",
         "upgrade": "Uppgradera",
         "pricing": "/redaktör/månad, årligt",
