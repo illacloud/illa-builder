@@ -1288,6 +1288,9 @@
           "start_button_text": "Starta inspelning",
           "stop_button_text": "Stoppa",
           "clear_button_text": "Rensa"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Svara meddelande-ID",
         "senderName": "Avsändarens namn",
         "senderId": "Avsändarens ID",
-        "showName": "Visa namn"
+        "showName": "Visa namn",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Ställ in färgen på meddelandena till vänster",
         "rightMessageColor": "Ställ in färgen på meddelandena till höger",
         "toolbar-replay": "Ange om du vill visa en svarsknapp när du väljer ett meddelande.",
-        "toolbar-delete": "Ange om du vill visa en raderingsknapp när du väljer ett meddelande."
+        "toolbar-delete": "Ange om du vill visa en raderingsknapp när du väljer ett meddelande.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1989,6 +1998,10 @@
             "left-click": "Vänsterklicka",
             "right-click": "Högerklicka"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Skriv din kod här. Använd JavaScript inuti {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Sida",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klicka på ramen för att ange den klistra in platsen."
+    "paste_no_aimed": "Klicka på ramen för att ange den klistra in platsen.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Boka demo",
@@ -3470,7 +3501,10 @@
       "title": "Betalning slutförd",
       "button": "Tillbaka till ILLA Cloud"
     },
-    "redirect_to_stripe": "Omdirigerar till Stripe"
+    "redirect_to_stripe": "Omdirigerar till Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Nätverksfel, försök igen senare"

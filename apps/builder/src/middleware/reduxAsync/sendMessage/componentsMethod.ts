@@ -506,12 +506,20 @@ export const componentsAsync = (
       break
     }
     case "addSectionViewReducer": {
-      const { parentNodeName, containerNode } = payload as AddSectionViewPayload
+      const { parentNodeName } = payload as AddSectionViewPayload
       const rootNode = getCanvas(nextRootState)
 
       if (!rootNode) break
       const targetNode = searchDsl(rootNode, parentNodeName)
       if (!targetNode) break
+      const { props } = targetNode
+      const { viewSortedKey } = props as Record<string, any>
+      const lastSortedKey = viewSortedKey.at(-1)
+      if (!lastSortedKey) return
+      const sectionNode = targetNode.childrenNode.find((item) => {
+        return item.displayName === lastSortedKey
+      })
+      if (!sectionNode) return
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(targetNode)
       Connection.getTextRoom("app", currentAppID)?.send(
@@ -533,7 +541,7 @@ export const componentsAsync = (
           action,
           teamID,
           uid,
-          [containerNode],
+          [sectionNode],
         ),
       )
       break

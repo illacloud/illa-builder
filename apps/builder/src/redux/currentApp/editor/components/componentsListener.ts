@@ -1,5 +1,6 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { cloneDeep } from "lodash"
+import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import {
   applyEffectMapToComponentNodes,
   getNearComponentNodes,
@@ -13,6 +14,7 @@ import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collab
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import {
   getCanvas,
+  searchDSLByDisplayName,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -24,6 +26,7 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
+import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
 
 function handleUpdateComponentDisplayNameEffect(
@@ -283,6 +286,33 @@ function handleUpdateComponentReflowEffect(
         },
       })
     })
+  }
+
+  if (!action.from || action.from === REDUX_ACTION_FROM.REDO) {
+    const rootState = listenApi.getState()
+    const originLayoutInfos = updateSlice.map((slice) => {
+      const originLayoutInfo = searchDSLByDisplayName(
+        slice.displayName,
+        rootState,
+      )
+      return {
+        displayName: slice.displayName,
+        layoutInfo: {
+          x: originLayoutInfo!.x,
+          y: originLayoutInfo!.y,
+          w: originLayoutInfo!.w,
+          h: originLayoutInfo!.h,
+        },
+      }
+    })
+    const newAction = {
+      type: "components/batchUpdateComponentLayoutInfoWhenReflowReducer",
+      payload: originLayoutInfos,
+      from: action.from,
+    }
+    IllaUndoRedoManager.modifyUndoStackAtLast([
+      JSON.parse(JSON.stringify(newAction)),
+    ])
   }
 
   listenApi.dispatch(

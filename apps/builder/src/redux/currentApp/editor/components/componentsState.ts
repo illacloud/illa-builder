@@ -179,7 +179,6 @@ export interface DeleteTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  options: Record<string, any>
 }
 
 export interface AddTargetPageSectionPayload {
@@ -189,13 +188,17 @@ export interface AddTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  options: Record<string, any>
 }
 
 export interface AddSectionViewPayload {
   parentNodeName: string
-  containerNode: ComponentNode
-  newSectionViewConfig: SectionViewShape
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
+  originChildrenNode?: ComponentNode[]
 }
 
 export interface DeleteSectionViewPayload {

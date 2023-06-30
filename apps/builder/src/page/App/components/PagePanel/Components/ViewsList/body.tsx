@@ -13,10 +13,14 @@ import { Item } from "./item"
 import { viewsListBodyWrapperStyle } from "./style"
 
 export const ListBody: FC<BodyProps> = (props) => {
-  const { sectionNodeExecutionResult, sectionName } = props
+  const {
+    sectionViewConfigs,
+    currentViewIndex,
+    viewSortedKey,
+    parentNodeDisplayName,
+    sectionName,
+  } = props
   const dispatch = useDispatch()
-  const { sectionViewConfigs, currentViewIndex, viewSortedKey, displayName } =
-    sectionNodeExecutionResult
 
   const [items, setItems] = useState(sectionViewConfigs)
 
@@ -27,7 +31,7 @@ export const ListBody: FC<BodyProps> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sectionViewConfigs])
 
-  const updateItem = (values: unknown) => {
+  const updateItem = (values: SectionViewShape[]) => {
     if (isEqual(values, items)) return
     setItems(values)
   }
@@ -43,7 +47,7 @@ export const ListBody: FC<BodyProps> = (props) => {
       if (keyIndex === -1 || keyIndex === currentViewIndex) return
       dispatch(
         executionActions.updateExecutionByDisplayNameReducer({
-          displayName,
+          displayName: parentNodeDisplayName,
           value: {
             currentViewIndex: keyIndex,
           },
@@ -53,7 +57,7 @@ export const ListBody: FC<BodyProps> = (props) => {
     [
       currentViewIndex,
       dispatch,
-      displayName,
+      parentNodeDisplayName,
       sectionViewConfigs,
       viewSortedKey,
     ],
@@ -61,6 +65,7 @@ export const ListBody: FC<BodyProps> = (props) => {
 
   const handleDeleteSectionView = useCallback(
     (index: number) => {
+      if (sectionViewConfigs.length === 1) return
       if (index > sectionViewConfigs.length) return
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "delete_view",
@@ -71,12 +76,18 @@ export const ListBody: FC<BodyProps> = (props) => {
       dispatch(
         componentsActions.deleteSectionViewReducer({
           viewDisplayName,
-          parentNodeName: displayName,
+          parentNodeName: parentNodeDisplayName,
           originPageSortedKey: viewSortedKey,
         }),
       )
     },
-    [dispatch, displayName, sectionName, sectionViewConfigs, viewSortedKey],
+    [
+      dispatch,
+      parentNodeDisplayName,
+      sectionName,
+      sectionViewConfigs,
+      viewSortedKey,
+    ],
   )
 
   const handleUpdateSectionOrder = useCallback(
@@ -84,14 +95,14 @@ export const ListBody: FC<BodyProps> = (props) => {
       if (isEqual(items, sectionViewConfigs)) return
       dispatch(
         componentsActions.updateSectionViewPropsReducer({
-          parentNodeName: displayName,
+          parentNodeName: parentNodeDisplayName,
           newProps: {
             sectionViewConfigs: items,
           },
         }),
       )
     },
-    [dispatch, displayName, sectionViewConfigs],
+    [dispatch, parentNodeDisplayName, sectionViewConfigs],
   )
 
   const handleUpdateItem = useCallback(
@@ -100,14 +111,14 @@ export const ListBody: FC<BodyProps> = (props) => {
       set(newSectionViewConfigs, path, value)
       dispatch(
         componentsActions.updateSectionViewPropsReducer({
-          parentNodeName: displayName,
+          parentNodeName: parentNodeDisplayName,
           newProps: {
             sectionViewConfigs: newSectionViewConfigs,
           },
         }),
       )
     },
-    [dispatch, displayName, sectionViewConfigs],
+    [dispatch, parentNodeDisplayName, sectionViewConfigs],
   )
 
   return (
@@ -121,9 +132,11 @@ export const ListBody: FC<BodyProps> = (props) => {
       >
         {items.map((config: SectionViewShape, index: number) => {
           const currentDisplayName = viewSortedKey[currentViewIndex]
-          const otherKeys = items
-            .map((views: SectionViewShape, i: number) => views.key || i)
-            .filter((key: string, i: number) => i != index) as string[]
+          const otherKeys = (
+            items.map(
+              (views: SectionViewShape, i: number) => views.key || i,
+            ) as string[]
+          ).filter((key: string, i: number) => i != index)
           const isSelected = currentDisplayName === config.viewDisplayName
           return (
             <Reorder.Item

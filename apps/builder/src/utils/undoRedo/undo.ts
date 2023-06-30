@@ -9,16 +9,16 @@ export const UNDO_REDO_STACK_MAX_LENGTH = 30
 const message = createMessage()
 
 export class ILLA_UNDO_REDO {
-  undoStack: CircularStack<AnyAction>
-  redoStack: CircularStack<AnyAction>
+  undoStack: CircularStack<AnyAction[]>
+  redoStack: CircularStack<AnyAction[]>
 
   constructor(maxStackLength: number = UNDO_REDO_STACK_MAX_LENGTH) {
-    this.undoStack = new CircularStack<AnyAction>(maxStackLength)
-    this.redoStack = new CircularStack<AnyAction>(maxStackLength)
+    this.undoStack = new CircularStack<AnyAction[]>(maxStackLength)
+    this.redoStack = new CircularStack<AnyAction[]>(maxStackLength)
   }
 
-  pushToUndoStack(undoAction: AnyAction) {
-    if (!this.redoStack.isEmpty() && !undoAction.from) {
+  pushToUndoStack(undoAction: AnyAction[]) {
+    if (!this.redoStack.isEmpty() && !undoAction[0].from) {
       this.redoStack.clear()
     }
     this.undoStack.push(undoAction)
@@ -30,13 +30,21 @@ export class ILLA_UNDO_REDO {
         content: "frame.message.undo.nothing",
       })
     } else {
-      const info = this.undoStack.pop() as AnyAction
+      const info = this.undoStack.pop() as AnyAction[]
 
       reduxActionDependOnRestAPI(info, REDUX_ACTION_FROM.UNDO)
     }
   }
 
-  pushToRedoStack(redoAction: AnyAction) {
+  modifyUndoStackAtLast(undoAction: AnyAction[]) {
+    if (this.undoStack.isEmpty()) {
+      return
+    }
+    const lastUndoAction = this.undoStack.pop() as AnyAction[]
+    this.undoStack.push([...undoAction, ...lastUndoAction])
+  }
+
+  pushToRedoStack(redoAction: AnyAction[]) {
     this.redoStack.push(redoAction)
   }
 
@@ -46,7 +54,7 @@ export class ILLA_UNDO_REDO {
         content: "frame.message.redo.nothing",
       })
     } else {
-      const info = this.redoStack.pop() as AnyAction
+      const info = this.redoStack.pop() as AnyAction[]
       reduxActionDependOnRestAPI(info, REDUX_ACTION_FROM.REDO)
     }
   }

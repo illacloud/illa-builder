@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
+import { WIDGET_PADDING } from "../../constant/widget"
 
 export const hoverHotSpotStyle = css`
   width: 100%;
@@ -81,7 +82,7 @@ export const applyWrapperPendingStyle = (
 ) => css`
   width: 100%;
   height: 100%;
-  padding: 2px;
+  padding: ${WIDGET_PADDING}px;
   ${getWrapperBorder(
     isLikProductionMode,
     isSelected,

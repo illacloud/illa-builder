@@ -1288,6 +1288,9 @@
           "start_button_text": "Начать запись",
           "stop_button_text": "Стоп",
           "clear_button_text": "Очистить"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID сообщения ответа",
         "senderName": "Имя отправителя",
         "senderId": "ID отправителя",
-        "showName": "Показать имя"
+        "showName": "Показать имя",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Установить цвет сообщений слева",
         "rightMessageColor": "Установить цвет сообщений справа",
         "toolbar-replay": "Показывать ли кнопку ответа при выборе сообщения.",
-        "toolbar-delete": "Показывать ли кнопку \"Удалить\" при выборе сообщения."
+        "toolbar-delete": "Показывать ли кнопку \"Удалить\" при выборе сообщения.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Исправлено",
@@ -1989,6 +1998,10 @@
             "left-click": "Левый клик",
             "right-click": "Щелчок правой кнопкой мыши"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Напишите ваш код здесь. Используйте JavaScript внутри {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "БАЗИЯ",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Страница",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Пожалуйста, нажмите на рамку, чтобы указать расположение вставки."
+    "paste_no_aimed": "Пожалуйста, нажмите на рамку, чтобы указать расположение вставки.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Забронировать демо",
@@ -3470,7 +3501,10 @@
       "title": "Платеж выполнен",
       "button": "Вернуться в облако ILLA"
     },
-    "redirect_to_stripe": "Перенаправление на полосу"
+    "redirect_to_stripe": "Перенаправление на полосу",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Ошибка сети, повторите попытку позже"
