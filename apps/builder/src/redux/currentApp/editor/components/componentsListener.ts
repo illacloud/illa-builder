@@ -310,9 +310,10 @@ function handleUpdateComponentReflowEffect(
       payload: originLayoutInfos,
       from: action.from,
     }
-    IllaUndoRedoManager.modifyUndoStackAtLast([
-      JSON.parse(JSON.stringify(newAction)),
-    ])
+    IllaUndoRedoManager.modifyUndoStackAtLast(
+      [JSON.parse(JSON.stringify(newAction))],
+      action.from === REDUX_ACTION_FROM.REDO,
+    )
   }
 
   listenApi.dispatch(

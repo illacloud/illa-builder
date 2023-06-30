@@ -1,6 +1,10 @@
 import { AnyAction } from "@reduxjs/toolkit"
+import { cloneDeep } from "lodash"
 import { createMessage } from "@illa-design/react"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
+import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
+import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
+import store from "@/store"
 import { reduxActionDependOnRestAPI } from "./antonymyRule"
 import { CircularStack } from "./circularStack"
 
@@ -25,6 +29,9 @@ export class ILLA_UNDO_REDO {
   }
 
   popFromUndoStack() {
+    const rootState = cloneDeep(store.getState())
+    const snapShot = getExecutionWidgetLayoutInfo(rootState)
+    illaSnapshot.setSnapshot(snapShot)
     if (this.undoStack.isEmpty()) {
       message.warning({
         content: "frame.message.undo.nothing",
@@ -36,12 +43,16 @@ export class ILLA_UNDO_REDO {
     }
   }
 
-  modifyUndoStackAtLast(undoAction: AnyAction[]) {
+  modifyUndoStackAtLast(undoAction: AnyAction[], isRedo: boolean = false) {
     if (this.undoStack.isEmpty()) {
       return
     }
     const lastUndoAction = this.undoStack.pop() as AnyAction[]
-    this.undoStack.push([...undoAction, ...lastUndoAction])
+    if (isRedo) {
+      this.undoStack.push([...lastUndoAction, ...undoAction])
+    } else {
+      this.undoStack.push([...undoAction, ...lastUndoAction])
+    }
   }
 
   pushToRedoStack(redoAction: AnyAction[]) {
@@ -49,6 +60,9 @@ export class ILLA_UNDO_REDO {
   }
 
   popFromRedoStack() {
+    const rootState = cloneDeep(store.getState())
+    const snapShot = getExecutionWidgetLayoutInfo(rootState)
+    illaSnapshot.setSnapshot(snapShot)
     if (this.redoStack.isEmpty()) {
       message.warning({
         content: "frame.message.redo.nothing",
