@@ -1288,6 +1288,9 @@
           "start_button_text": "Start optagelse",
           "stop_button_text": "Stop",
           "clear_button_text": "Ryd"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Svar besked ID",
         "senderName": "Afsenders navn",
         "senderId": "Afsender ID",
-        "showName": "Vis navn"
+        "showName": "Vis navn",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Sæt farven på brevene til venstre",
         "rightMessageColor": "Sæt farven på brevene til højre",
         "toolbar-replay": "Angiv, om en svar-knap skal vises når du vælger en besked.",
-        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked."
+        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1989,6 +1998,10 @@
             "left-click": "Venstreklik",
             "right-click": "Højreklik"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Skriv din kode her. Brug JavaScript inde i {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "GRUNDLÆGGENDE",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Side",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt."
+    "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Book en demo",
@@ -3323,7 +3354,9 @@
         "unsubscribe_license": "Du vil afmelde ILLA Cloud Plus. Efter aflysning, startende fra den næste faktureringscyklus, vil Plus-funktionerne ikke længere være tilgængelige. <0>Lær mere</0>",
         "unsubscribe_storage": "Du vil afmelde ILLA Drev-lager. Efter aflysning, startende fra den næste faktureringscyklus, vil lagerkapaciteten blive genoprettet til 100MB. <0>Læs mere</0>",
         "subscribe_license_monthly": "Du vil tilmelde dig månedligt abonnement på ILLA Cloud Plus. <0>Lær mere</0>",
-        "subscribe_license_yearly": "Du vil tilmelde dig årligt abonnement på ILLA Cloud Plus. <0>Lær mere</0>"
+        "subscribe_license_yearly": "Du vil tilmelde dig årligt abonnement på ILLA Cloud Plus. <0>Lær mere</0>",
+        "subscribe_storage_monthly": "Du kommer til at tilføje {{changeNum}}GB lagerplads. Når bekræftet, vil vi trække omkostningerne for lageret straks. <0>Lær mere</0>",
+        "subscribe_storage_yearly": "Du kommer til at tilføje {{changeNum}}GB lagerplads. Når bekræftet, vil vi trække omkostningerne for lageret straks. <0>Lær mere</0>"
       },
       "description": {
         "add_storage": "Beregningsregler ved hjælp af et månedligt abonnement som eksempel: Lad os overveje et scenarie, hvor du oprindeligt abonnerede på 5 GB fra den 14. marts, og faktureringscyklussen strækker sig fra den 14. i denne måned til den 13. i næste måned. Den 10. maj, beslutter du at tilføje 1 GB. På det tidspunkt Der var 4 dage tilbage indtil slutningen af den aktuelle cyklus den 13. maj (hvilket i alt er 30 dage fra den 14. april til den 13. maj). For at beregne den justerede betaling, vil vi fratrække prisen på 1 GB, hvilket svarer til ca. $ 0. 9, proportionalt med varigheden af 4 dage inden for 30-dages cyklus. Derfor anslås fradraget til 1 licens * $0. 9 / 30 dage * 4 dage, hvilket resulterer i cirka $0, 132. Fra og med den næste faktureringscyklus, vil alle lagergebyrer blive konsolideret og betalt sammen. Hvis du ønsker at reducere licenser eller foretage andre ændringer til abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se venligst vores bruger <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
@@ -3367,8 +3400,8 @@
       },
       "no_license_operate_failed": "På grund af utilstrækkelige licenser mislykkedes.",
       "failed_to_invite_no_license": "På grund af utilstrækkelig licens er nogle medlemsinvitationer mislykkedes.",
-      "error_subscribe": "Failed to change plan. Please try again later.",
-      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
+      "error_subscribe": "Planen kunne ikke ændres. Prøv igen senere.",
+      "unsubscription_fail": "Mislykkedes at annullere abonnementet. Prøv igen senere."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3400,7 +3433,7 @@
         "add_unlimited_viewer": "Tilføj ubegrænset seermedlemmer GRATIS",
         "publish_public_appli": "Offentliggør offentlige programmer",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Revision logs",
+        "audit_logs": "Revision logs (Kommer snart)",
         "learn_more": "Lær mere",
         "upgrade": "Opgradér",
         "pricing": "/redaktør/måned, årligt",
@@ -3467,6 +3500,13 @@
       "desc2": "Omdirigerer til ILLA Cloud på {{time}} sekunder...",
       "title": "Betaling gennemført",
       "button": "Tilbage til ILLA Cloud"
+    },
+    "redirect_to_stripe": "Omdirigerer til Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
     }
+  },
+  "network": {
+    "error": "Netværksfejl, prøv igen senere"
   }
 }

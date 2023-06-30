@@ -1288,6 +1288,9 @@
           "start_button_text": "开始录制",
           "stop_button_text": "停止",
           "clear_button_text": "清空"
+        },
+        "rich_text": {
+          "default_text": "文本"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "回复消息ID",
         "senderName": "发送方名称",
         "senderId": "发送方ID",
-        "showName": "显示名称"
+        "showName": "显示名称",
+        "rich_text": {
+          "default_text": "默认文本"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "设置左侧消息的颜色",
         "rightMessageColor": "设置右侧消息的颜色",
         "toolbar-replay": "设置选择消息时是否显示回复按钮。",
-        "toolbar-delete": "设置选择消息时是否显示删除按钮。"
+        "toolbar-delete": "设置选择消息时是否显示删除按钮。",
+        "tabs": {
+          "variant": "设置标签页的样式"
+        }
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1989,6 +1998,10 @@
             "left-click": "左键点击",
             "right-click": "右键点击"
           }
+        },
+        "tab": {
+          "line": "线性",
+          "card": "卡片"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "在这里写下你的代码。 在 {{ }} 中使用 JavaScript"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "在组件初始化时展示的默认文本"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "基础",
-        "frame": "画布"
+        "frame": "布局"
       },
       "tab_title": "页面",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Please click on the frame to specify the paste location.",
+    "message": {
+      "session": {
+        "error": "包含多个组件的操作不允许跨画布"
+      },
+      "undo": {
+        "suc": "撤销成功",
+        "failed": "撤销失败"
+      },
+      "redo": {
+        "suc": "恢复成功",
+        "failed": "恢复失败"
+      }
+    }
   },
   "bookFrom": {
     "title": "预约Demo演示",
@@ -3323,7 +3354,9 @@
         "unsubscribe_license": "您将要取消订阅 ILLA Cloud Plus。 取消后，从下一个计费周期开始，Plus功能将无法访问。<0>了解更多</0>",
         "unsubscribe_storage": "您将取消订阅 ILLA Drive 存储。取消后，从下一个计费周期开始，存储容量将恢复为100MB。 <0>了解更多</0>",
         "subscribe_license_monthly": "您即将订阅ILLA Cloud Plus月订阅。<0>了解更多</0>",
-        "subscribe_license_yearly": "您即将订阅ILLA Cloud Plus年订阅。<0>了解更多</0>"
+        "subscribe_license_yearly": "您即将订阅ILLA Cloud Plus年订阅。<0>了解更多</0>",
+        "subscribe_storage_monthly": "您即将增加{{changeNum}}GB 存储。一经确认，我们将立即扣除所需费用 <0>了解更多</0>",
+        "subscribe_storage_yearly": "您即将增加{{changeNum}}GB 存储。一经确认，我们将立即扣除所需费用 <0>了解更多</0>"
       },
       "description": {
         "add_storage": "使用每月存储订阅作为示例的计算规则。让我们考虑一个情景，您最初订阅了5GB，从3月14日开始， 而且账单周期从本月第14个月到下个月第13个月。 5月10日，你决定添加 1 GB。 当时， 到5月13日本周期结束时还剩下4天（从4月14日至5月13日总共30天）。 为了计算调整后的付款，我们将扣除相当于大约0美元的1GB的费用。 9 与30天周期内4天的持续时间相称。因此，扣除额估计为1份许可证* $0。 9 天30天* 4天，约占0.132美元。 从下一个计费周期开始，所有储存费都将合并并一起支付。 如果您想要减少许可或对订阅作其他更改，请在下一个期间开始之前更新。 欲了解更多信息，请参阅我们的用户 <0>隐私政策</0> 和 <1>服务条款</1>",
@@ -3400,7 +3433,7 @@
         "add_unlimited_viewer": "免费添加无限个浏览者",
         "publish_public_appli": "发布公开应用",
         "ai_sql_generation": "AI SQL 生成",
-        "audit_logs": "审计日志",
+        "audit_logs": "审计日志(即将上线)",
         "learn_more": "了解更多",
         "upgrade": "升级",
         "pricing": "编辑者/月，年付(月付$10/编辑者)",
@@ -3467,6 +3500,13 @@
       "desc2": "在 {{time}} 秒后重定向到 ILLA Cloud...",
       "title": "支付成功",
       "button": "返回ILLA Cloud"
+    },
+    "redirect_to_stripe": "正在重定向至Stripe",
+    "appsumo": {
+      "update": "更新AppSumo方案"
     }
+  },
+  "network": {
+    "error": "网络错误，请稍后重试"
   }
 }
