@@ -19,7 +19,6 @@ import {
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
   ComponentNode,
-  CopyComponentPayload,
   DeleteComponentNodePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
@@ -92,25 +91,6 @@ export const componentsAsync = (
       )
       break
     }
-    case "copyComponentReducer":
-      const copyComponentPayload = (
-        payload as {
-          copyComponents: CopyComponentPayload[]
-          sources: "keyboard" | "duplicate"
-        }
-      ).copyComponents.map((copyShape) => copyShape.newComponentNode)
-      Connection.getTextRoom("app", currentAppID)?.send(
-        getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.COMPONENTS,
-          true,
-          action,
-          teamID,
-          uid,
-          copyComponentPayload,
-        ),
-      )
-      break
     case "updateComponentReflowReducer":
       const updateComponentReflowPayload: UpdateComponentReflowPayload[] =
         payload
@@ -287,22 +267,6 @@ export const componentsAsync = (
           teamID,
           uid,
           deletePayload.displayNames,
-        ),
-      )
-      break
-    case "resetComponentPropsReducer":
-      const resetWsPayload = transformComponentReduxPayloadToWsPayload(
-        payload as ComponentNode,
-      )
-      Connection.getTextRoom("app", currentAppID)?.send(
-        getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
-          true,
-          action,
-          teamID,
-          uid,
-          resetWsPayload,
         ),
       )
       break
@@ -699,32 +663,6 @@ export const componentsAsync = (
       )
       break
     }
-    case "batchUpdateComponentStatusInfoReducer": {
-      const displayNames = (
-        payload as UpdateComponentNodeLayoutInfoPayload[]
-      ).map((item) => item.displayName)
-      const rootNode = getCanvas(nextRootState)
-      if (!rootNode) break
-      const targetNodes = displayNames
-        .map((displayName) => searchDsl(rootNode, displayName))
-        .filter((node) => node !== null) as ComponentNode[]
-      if (targetNodes.length < 1) break
-      const updateWSPayload =
-        transformComponentReduxPayloadToWsPayload(targetNodes)
-      Connection.getTextRoom("app", currentAppID)?.send(
-        getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
-          true,
-          action,
-          teamID,
-          uid,
-          updateWSPayload,
-        ),
-      )
-      break
-    }
-    case "updateComponentStatusInfoReducer":
     case "updateComponentLayoutInfoReducer": {
       const displayName = (payload as UpdateComponentNodeLayoutInfoPayload)
         .displayName

@@ -3,9 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { DropList, DropListItem } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { defaultPageProps } from "@/utils/generators/generatePageOrSectionConfig"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
@@ -27,17 +25,15 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
 
   const handleClickDropListItem = useCallback(() => {
     if (!pageDisplayName) return
-    const targetNode = searchDSLByDisplayName(pageDisplayName) as ComponentNode
-    const newComponentNode: ComponentNode = {
-      ...targetNode,
-      props: {
-        ...defaultPageProps,
-      },
-    }
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
       element: "reset_page",
     })
-    dispatch(componentsActions.resetComponentPropsReducer(newComponentNode))
+    dispatch(
+      componentsActions.updateComponentPropsReducer({
+        displayName: pageDisplayName,
+        updateSlice: defaultPageProps as unknown as Record<string, unknown>,
+      }),
+    )
   }, [dispatch, pageDisplayName])
 
   return (

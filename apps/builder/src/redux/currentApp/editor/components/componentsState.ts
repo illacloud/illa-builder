@@ -159,11 +159,6 @@ export interface UpdateComponentReflowPayload {
   childNodes: ComponentNode[]
 }
 
-export interface CopyComponentPayload {
-  newComponentNode: ComponentNode
-  originComponentNode: ComponentNode
-}
-
 export interface UpdateTargetPageLayoutPayload {
   pageName: string
   layout: "default" | "presetA" | "presetB" | "presetC" | "presetD" | "presetE"

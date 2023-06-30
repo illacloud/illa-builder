@@ -22,6 +22,7 @@ import guideReducer from "@/redux/guide/guideSlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import teamReducer from "@/redux/team/teamSlice"
 import { mixpanelReport } from "./middleware/mixpanelReport"
+import { UndoRedo } from "./middleware/undoRedo"
 import cursorSlice from "./redux/currentApp/cursor/cursorSlice"
 import { isCloudVersion } from "./utils/typeHelper"
 
@@ -45,7 +46,7 @@ const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
 })
 
-const middlewares = [reduxAsync, guideAsync]
+const middlewares = [reduxAsync, UndoRedo, guideAsync]
 
 if (import.meta.env.DEV) {
   middlewares.push(logger)

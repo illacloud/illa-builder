@@ -361,11 +361,9 @@ export function setupExecutionListeners(
     startListening({
       matcher: isAnyOf(
         componentsActions.addComponentReducer,
-        componentsActions.copyComponentReducer,
         componentsActions.updateComponentPropsReducer,
         componentsActions.deleteComponentNodeReducer,
         componentsActions.batchUpdateMultiComponentSlicePropsReducer,
-        componentsActions.resetComponentPropsReducer,
         componentsActions.updateMultiComponentPropsReducer,
         componentsActions.addTargetPageSectionReducer,
         componentsActions.updateTargetPagePropsReducer,

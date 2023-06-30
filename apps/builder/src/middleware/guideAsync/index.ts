@@ -1,4 +1,4 @@
-import { Middleware } from "redux"
+import { Middleware } from "@reduxjs/toolkit"
 import { guideUpdate } from "@/middleware/guideAsync/guideUpdate"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
 

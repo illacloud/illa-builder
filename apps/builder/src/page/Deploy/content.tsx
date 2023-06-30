@@ -1,8 +1,8 @@
+import { Unsubscribe } from "@reduxjs/toolkit"
 import { AxiosResponse } from "axios"
 import { FC, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useAsyncValue, useBeforeUnload } from "react-router-dom"
-import { Unsubscribe } from "redux"
 import { TriggerProvider } from "@illa-design/react"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { fixedActionToNewAction } from "@/hooks/utils/fixedAction"
@@ -60,9 +60,9 @@ export const DeployContent: FC = () => {
         const fixedComponents = fixedComponentsToNewComponents(
           appInfo.data.components,
         )
-        dispatch(componentsActions.updateComponentReducer(fixedComponents))
+        dispatch(componentsActions.initComponentReducer(fixedComponents))
         const fixedActions = fixedActionToNewAction(appInfo.data.actions)
-        dispatch(actionActions.updateActionListReducer(fixedActions))
+        dispatch(actionActions.initActionListReducer(fixedActions))
         dispatch(executionActions.startExecutionReducer())
       } else {
         dispatch(configActions.updateIllaMode("production"))
@@ -70,9 +70,9 @@ export const DeployContent: FC = () => {
         const fixedComponents = fixedComponentsToNewComponents(
           appInfo.data.components,
         )
-        dispatch(componentsActions.updateComponentReducer(fixedComponents))
+        dispatch(componentsActions.initComponentReducer(fixedComponents))
         const fixedActions = fixedActionToNewAction(appInfo.data.actions)
-        dispatch(actionActions.updateActionListReducer(fixedActions))
+        dispatch(actionActions.initActionListReducer(fixedActions))
         dispatch(executionActions.startExecutionReducer())
       }
     }
