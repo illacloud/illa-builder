@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Seite",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Fügen Sie unbegrenzte Zuschauer Mitglieder kostenlos hinzu",
         "publish_public_appli": "Öffentliche Anwendungen veröffentlichen",
         "ai_sql_generation": "AI SQL Generierung",
-        "audit_logs": "Audit-Protokolle (demnächst verfügbar)",
+        "audit_logs": "Audit-Logs",
         "learn_more": "Mehr erfahren",
         "upgrade": "Upgrade",
         "pricing": "/Editor/Monat, jährlich",
