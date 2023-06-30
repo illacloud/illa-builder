@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "Bază",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Pagină",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Adaugă nelimitat vizitator pentru GRATUIT",
         "publish_public_appli": "Publicare aplicații publice",
         "ai_sql_generation": "Generare AI SQL",
-        "audit_logs": "Jurnale de audit (în curând)",
+        "audit_logs": "Jurnale de audit",
         "learn_more": "Află mai multe",
         "upgrade": "Actualizează",
         "pricing": "/editor/lună, anual",
