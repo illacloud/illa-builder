@@ -4,44 +4,28 @@ import { useDispatch } from "react-redux"
 import { AddIcon, Link } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
-import { generateSectionContainerConfig } from "@/utils/generators/generatePageOrSectionConfig"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { HeaderProps } from "./interface"
 import { headerLabelStyle, viewsListHeaderWrapperStyle } from "./style"
-import { generateNewViewItem } from "./utils"
 
 export const ViewListHeader: FC<HeaderProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { sectionName, sectionNodeExecutionResult } = props
+  const { sectionName, parentNodeDisplayName } = props
 
   const handleClickAddButton = useCallback(() => {
-    const { displayName, sectionViewConfigs } = sectionNodeExecutionResult
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
       element: "add_view",
       parameter2: sectionName.slice(0, -7),
     })
-    const config = generateSectionContainerConfig(
-      displayName,
-      `${sectionName}Container`,
-    )
-    const hasKeys = sectionViewConfigs.map((item: SectionViewShape) => {
-      return `${displayName}-${item.key}`
-    })
-    const newSectionViewConfig = generateNewViewItem(
-      hasKeys,
-      config.displayName,
-      displayName,
-    )
+
     dispatch(
       componentsActions.addSectionViewReducer({
-        parentNodeName: displayName,
-        containerNode: config,
-        newSectionViewConfig,
+        parentNodeName: parentNodeDisplayName,
+        sectionName,
       }),
     )
-  }, [dispatch, sectionName, sectionNodeExecutionResult])
+  }, [dispatch, parentNodeDisplayName, sectionName])
 
   return (
     <div css={viewsListHeaderWrapperStyle}>

@@ -127,7 +127,6 @@ export const PageFrame: FC = () => {
         | "rightSection"
         | "headerSection"
         | "footerSection",
-      options: Record<string, any>,
     ) => {
       if (!currentPageDisplayName) return
       modal.show({
@@ -144,7 +143,6 @@ export const PageFrame: FC = () => {
             componentsActions.deleteTargetPageSectionReducer({
               pageName: currentPageDisplayName,
               deleteSectionName,
-              options,
             }),
           )
         },
@@ -160,14 +158,12 @@ export const PageFrame: FC = () => {
         | "rightSection"
         | "headerSection"
         | "footerSection",
-      options: Record<string, any>,
     ) => {
       if (!currentPageDisplayName) return
       dispatch(
         componentsActions.addTargetPageSectionReducer({
           pageName: currentPageDisplayName,
           addedSectionName,
-          options,
         }),
       )
     },
@@ -617,12 +613,7 @@ export const PageFrame: FC = () => {
                 parameter2: "left",
                 parameter3: "hidden",
               })
-              handleDeleteSection("leftSection", {
-                hasLeft: false,
-                leftWidth: 0,
-                leftPosition: "NONE",
-                layout: "Custom",
-              })
+              handleDeleteSection("leftSection")
             }}
             addPanelAction={() => {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -630,12 +621,7 @@ export const PageFrame: FC = () => {
                 parameter2: "left",
                 parameter3: "show",
               })
-              handleAddSection("leftSection", {
-                hasLeft: true,
-                leftWidth: 20,
-                leftPosition: "FULL",
-                layout: "Custom",
-              })
+              handleAddSection("leftSection")
             }}
           />
         </LeftAndRightLayout>
@@ -700,12 +686,7 @@ export const PageFrame: FC = () => {
                 parameter2: "right",
                 parameter3: "hidden",
               })
-              handleDeleteSection("rightSection", {
-                hasRight: false,
-                rightWidth: 0,
-                rightPosition: "NONE",
-                layout: "Custom",
-              })
+              handleDeleteSection("rightSection")
             }}
             addPanelAction={() => {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -713,12 +694,7 @@ export const PageFrame: FC = () => {
                 parameter2: "right",
                 parameter3: "show",
               })
-              handleAddSection("rightSection", {
-                hasRight: true,
-                rightWidth: 20,
-                rightPosition: "FULL",
-                layout: "Custom",
-              })
+              handleAddSection("rightSection")
             }}
           />
         </LeftAndRightLayout>
@@ -803,11 +779,7 @@ export const PageFrame: FC = () => {
                 parameter2: "header",
                 parameter3: "hidden",
               })
-              handleDeleteSection("headerSection", {
-                hasHeader: false,
-                topHeight: 0,
-                layout: "Custom",
-              })
+              handleDeleteSection("headerSection")
             }}
             addPanelAction={() => {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -815,11 +787,7 @@ export const PageFrame: FC = () => {
                 parameter2: "header",
                 parameter3: "show",
               })
-              handleAddSection("headerSection", {
-                hasHeader: true,
-                topHeight: 96,
-                layout: "Custom",
-              })
+              handleAddSection("headerSection")
             }}
           />
         </LeftAndRightLayout>
@@ -866,11 +834,7 @@ export const PageFrame: FC = () => {
                 parameter2: "footer",
                 parameter3: "hidden",
               })
-              handleDeleteSection("footerSection", {
-                hasFooter: false,
-                bottomHeight: 0,
-                layout: "Custom",
-              })
+              handleDeleteSection("footerSection")
             }}
             addPanelAction={() => {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -878,11 +842,7 @@ export const PageFrame: FC = () => {
                 parameter2: "footer",
                 parameter3: "show",
               })
-              handleAddSection("footerSection", {
-                hasFooter: true,
-                bottomHeight: 96,
-                layout: "Custom",
-              })
+              handleAddSection("footerSection")
             }}
           />
         </LeftAndRightLayout>

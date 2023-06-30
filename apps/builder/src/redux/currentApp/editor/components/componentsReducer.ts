@@ -1,5 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { cloneDeep, set } from "lodash"
+import { generateNewViewItem } from "@/page/App/components/PagePanel/Components/ViewsList/utils"
 import {
   BatchUpdateComponentNodeLayoutInfoPayload,
   LayoutInfo,
@@ -40,6 +41,7 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import {
   generateModalSectionConfig,
   generateSectionConfig,
+  generateSectionContainerConfig,
   layoutValueMapGenerateConfig,
 } from "@/utils/generators/generatePageOrSectionConfig"
 import { isObject } from "@/utils/typeHelper"
@@ -427,12 +429,53 @@ export const updateTargetPagePropsReducer: CaseReducer<
   }
 }
 
+const generationPageOptionsWhenDelete = (
+  deletedSectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection",
+) => {
+  switch (deletedSectionName) {
+    case "leftSection": {
+      return {
+        hasLeft: false,
+        leftWidth: 0,
+        leftPosition: "NONE",
+        layout: "Custom",
+      }
+    }
+    case "rightSection": {
+      return {
+        hasRight: false,
+        rightWidth: 0,
+        rightPosition: "NONE",
+        layout: "Custom",
+      }
+    }
+    case "headerSection": {
+      return {
+        hasHeader: false,
+        topHeight: 0,
+        layout: "Custom",
+      }
+    }
+    case "footerSection": {
+      return {
+        hasFooter: false,
+        bottomHeight: 0,
+        layout: "Custom",
+      }
+    }
+  }
+}
+
 export const deleteTargetPageSectionReducer: CaseReducer<
   ComponentsState,
   PayloadAction<DeleteTargetPageSectionPayload>
 > = (state, action) => {
   if (!state?.childrenNode) return state
-  const { pageName, deleteSectionName, options } = action.payload
+  const { pageName, deleteSectionName } = action.payload
   const targetPageIndex = state.childrenNode.findIndex(
     (node) => node.displayName === pageName,
   )
@@ -441,7 +484,7 @@ export const deleteTargetPageSectionReducer: CaseReducer<
 
   targetPage.props = {
     ...targetPage.props,
-    ...options,
+    ...generationPageOptionsWhenDelete(deleteSectionName),
   }
 
   const targetPageChildrenNodeIndex = targetPage.childrenNode.findIndex(
@@ -452,12 +495,53 @@ export const deleteTargetPageSectionReducer: CaseReducer<
   state.childrenNode.splice(targetPageIndex, 1, targetPage)
 }
 
+const generationPageOptionsWhenAdd = (
+  deletedSectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection",
+) => {
+  switch (deletedSectionName) {
+    case "leftSection": {
+      return {
+        hasLeft: true,
+        leftWidth: 20,
+        leftPosition: "FULL",
+        layout: "Custom",
+      }
+    }
+    case "rightSection": {
+      return {
+        hasRight: true,
+        rightWidth: 20,
+        rightPosition: "FULL",
+        layout: "Custom",
+      }
+    }
+    case "headerSection": {
+      return {
+        hasHeader: true,
+        topHeight: 96,
+        layout: "Custom",
+      }
+    }
+    case "footerSection": {
+      return {
+        hasFooter: true,
+        bottomHeight: 96,
+        layout: "Custom",
+      }
+    }
+  }
+}
+
 export const addTargetPageSectionReducer: CaseReducer<
   ComponentsState,
   PayloadAction<AddTargetPageSectionPayload>
 > = (state, action) => {
   if (!state?.childrenNode) return state
-  const { pageName, addedSectionName, options } = action.payload
+  const { pageName, addedSectionName } = action.payload
   const targetPageIndex = state.childrenNode.findIndex(
     (node) => node.displayName === pageName,
   )
@@ -466,7 +550,7 @@ export const addTargetPageSectionReducer: CaseReducer<
 
   targetPage.props = {
     ...targetPage.props,
-    ...options,
+    ...generationPageOptionsWhenAdd(addedSectionName),
   }
 
   const config = generateSectionConfig(pageName, addedSectionName)
@@ -513,11 +597,26 @@ export const addSectionViewReducer: CaseReducer<
   ComponentsState,
   PayloadAction<AddSectionViewPayload>
 > = (state, action) => {
-  const { parentNodeName, containerNode, newSectionViewConfig } = action.payload
+  const { parentNodeName, sectionName } = action.payload
+
   const parentNode = searchDsl(state, parentNodeName)
   if (!parentNode || !parentNode.props) return
-  parentNode.childrenNode.push(containerNode)
-  parentNode.props.viewSortedKey.push(containerNode.displayName)
+  const config = generateSectionContainerConfig(
+    parentNodeName,
+    `${sectionName}Container`,
+  )
+  const hasKeys = parentNode.props.sectionViewConfigs.map(
+    (item: SectionViewShape) => {
+      return `${parentNodeName}-${item.key}`
+    },
+  )
+  const newSectionViewConfig = generateNewViewItem(
+    hasKeys,
+    config.displayName,
+    parentNodeName,
+  )
+  parentNode.childrenNode.push(config)
+  parentNode.props.viewSortedKey.push(config.displayName)
   parentNode.props.sectionViewConfigs.push(newSectionViewConfig)
 }
 

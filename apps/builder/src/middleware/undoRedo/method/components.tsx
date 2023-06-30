@@ -122,6 +122,68 @@ export const componentsSnapShot = (
           JSON.parse(JSON.stringify(newAction)),
         )
       }
+      break
+    }
+    case "addTargetPageSectionReducer": {
+      const { pageName, addedSectionName } = action.payload
+      const newAction = {
+        type: "components/deleteTargetPageSectionReducer",
+        payload: {
+          pageName,
+          deleteSectionName: addedSectionName,
+        },
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
+      } else {
+        IllaUndoRedoManager.pushToUndoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
+      }
+      break
+    }
+    case "deleteTargetPageSectionReducer": {
+      const { pageName, deleteSectionName } = action.payload
+
+      const currentTargeNode = searchDSLByDisplayName(pageName, _prevRootState)
+      if (!currentTargeNode) break
+      const originSectionNode = currentTargeNode.childrenNode.find(
+        (node) => node.showName === deleteSectionName,
+      )
+      if (!originSectionNode) break
+
+      const newAction = {
+        type: "components/addTargetPageSectionReducer",
+        payload: {
+          pageName,
+          addedSectionName: deleteSectionName,
+        },
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
+      } else {
+        IllaUndoRedoManager.pushToUndoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
+      }
+      break
+    }
+    case "addSectionViewReducer": {
+      // const { parentNodeName, sectionName } = action.payload
+      // const newAction = {
+      //   type:"components/deleteSectionViewReducer",
+      //   payload:{
+
+      //   }
+      // }
+      break
+    }
+    case "x": {
+      break
     }
   }
 }
