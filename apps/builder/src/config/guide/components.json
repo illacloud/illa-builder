@@ -10,20 +10,17 @@
     "type": "INPUT_WIDGET",
     "containerType": "EDITOR_SCALE_SQUARE",
     "verticalResize": false,
-    "h": 5,
-    "w": 13,
+    "h": 6,
+    "w": 8,
     "minH": 3,
-    "minW": 2,
+    "minW": 1,
     "unitW": 14,
     "unitH": 8,
-    "x": 18,
+    "x": 9,
     "y": 17,
     "z": 0,
     "props": {
-      "$dynamicAttrPaths": [
-        "labelWidth",
-        "formDataKey"
-      ],
+      "$dynamicAttrPaths": ["formDataKey", "labelWidth"],
       "colorScheme": "blue",
       "formDataKey": "{{input1.displayName}}",
       "hidden": false,
@@ -48,12 +45,12 @@
     "containerType": "EDITOR_SCALE_SQUARE",
     "verticalResize": false,
     "h": 5,
-    "w": 13,
+    "w": 6,
     "minH": 3,
-    "minW": 2,
+    "minW": 1,
     "unitW": 14,
     "unitH": 8,
-    "x": 33,
+    "x": 17,
     "y": 17,
     "z": 0,
     "props": {
@@ -77,60 +74,102 @@
     "containerType": "EDITOR_SCALE_SQUARE",
     "verticalResize": false,
     "h": 38,
-    "w": 28,
+    "w": 14,
     "minH": 3,
-    "minW": 2,
+    "minW": 1,
     "unitW": 14,
     "unitH": 8,
-    "x": 18,
+    "x": 9,
     "y": 25,
     "z": 0,
     "props": {
-      "dataSourceMode": "dynamic",
-      "dataSourceJS": "{{[\n  {\n    \"month\": \"April\",\n    \"users\": 3700,\n    \"incomes\": 4000\n  },\n  {\n    \"month\": \"May\",\n    \"users\": 5400,\n    \"incomes\": 8700\n  },\n  {\n    \"month\": \"June\",\n    \"users\": 6000,\n    \"incomes\": 12000\n  },\n  {\n    \"month\": \"July\",\n    \"users\": 8000,\n    \"incomes\": 14000\n  }\n]}}",
+      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"],
+      "columnMapper": {
+        "incomes": {
+          "accessorKey": "incomes",
+          "columnIndex": 2,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "incomes",
+          "id": "incomes",
+          "type": "text",
+          "visible": true
+        },
+        "month": {
+          "accessorKey": "month",
+          "columnIndex": 0,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "month",
+          "id": "month",
+          "type": "text",
+          "visible": true
+        },
+        "users": {
+          "accessorKey": "users",
+          "columnIndex": 1,
+          "enableSorting": true,
+          "format": "YYYY-MM-DD",
+          "header": "users",
+          "id": "users",
+          "type": "text",
+          "visible": true
+        }
+      },
+      "columnNameIndices": {
+        "0": "month",
+        "1": "users",
+        "2": "incomes"
+      },
+      "columnVisibility": {
+        "incomes": true,
+        "month": true,
+        "users": true
+      },
       "columns": [
         {
-          "id": "month",
-          "header": "month",
           "accessorKey": "month",
+          "columnIndex": 0,
           "enableSorting": true,
-          "type": "text",
-          "visible": true,
           "format": "YYYY-MM-DD",
-          "columnIndex": 0
+          "header": "month",
+          "id": "month",
+          "type": "text",
+          "visible": true
         },
         {
-          "id": "users",
-          "header": "users",
           "accessorKey": "users",
+          "columnIndex": 1,
           "enableSorting": true,
-          "type": "text",
-          "visible": true,
           "format": "YYYY-MM-DD",
-          "columnIndex": 1
+          "header": "users",
+          "id": "users",
+          "type": "text",
+          "visible": true
         },
         {
-          "id": "incomes",
-          "header": "incomes",
           "accessorKey": "incomes",
+          "columnIndex": 2,
           "enableSorting": true,
-          "type": "text",
-          "visible": true,
           "format": "YYYY-MM-DD",
-          "columnIndex": 2
+          "header": "incomes",
+          "id": "incomes",
+          "type": "text",
+          "visible": true
         }
       ],
+      "customColumnIndices": {},
+      "dataSourceJS": "{{[\n  {\n    \"month\": \"April\",\n    \"users\": 3700,\n    \"incomes\": 4000\n  },\n  {\n    \"month\": \"May\",\n    \"users\": 5400,\n    \"incomes\": 8700\n  },\n  {\n    \"month\": \"June\",\n    \"users\": 6000,\n    \"incomes\": 12000\n  },\n  {\n    \"month\": \"July\",\n    \"users\": 8000,\n    \"incomes\": 14000\n  }\n]}}",
+      "dataSourceMode": "dynamic",
       "defaultSortKey": "default",
       "defaultSortOrder": "ascend",
-      "emptyState": "No rows found",
-      "overFlow": "pagination",
       "download": false,
+      "emptyState": "No rows found",
       "filter": false,
+      "overFlow": "pagination",
       "pageSize": "{{10}}",
-      "$dynamicAttrPaths": [
-        "dataSourceJS",
-        "pageSize"
-      ]
+      "renamedColumnNames": {},
+      "rowEvents": {}
     },
     "panelConfig": null
   }

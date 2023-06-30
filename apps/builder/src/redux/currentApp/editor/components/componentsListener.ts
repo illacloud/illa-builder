@@ -5,17 +5,14 @@ import {
   getNearComponentNodes,
   getReflowResult,
 } from "@/page/App/components/DotPanel/calc"
+import { getNewPositionWithCrossing } from "@/page/App/components/DotPanel/utils/crossingHelper"
+import { combineWidgetInfos } from "@/page/App/components/DotPanel/utils/getDragShadow"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collaborators/collaboratorsHandlers"
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import {
   getCanvas,
-  getCurrentPageBodySectionComponentsSelector,
-  getCurrentPageFooterSectionComponentsSelector,
-  getCurrentPageHeaderSectionComponentsSelector,
-  getCurrentPageLeftSectionComponentsSelector,
-  getCurrentPageRightSectionComponentsSelector,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -27,11 +24,6 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
-import {
-  BASIC_BLOCK_COLUMNS,
-  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-} from "@/utils/generators/generatePageOrSectionConfig"
-import { UpdateComponentNodeLayoutInfoPayload } from "./componentsPayload"
 import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
 
 function handleUpdateComponentDisplayNameEffect(
@@ -138,278 +130,77 @@ async function handleChangeCurrentSectionWhenDelete(
   }
 }
 
-export const modifyComponentNodeX = (
-  componentNode: ComponentNode,
-  oldColumns: number,
-  currentColumns: number,
-) => {
-  const resultComponentNode = cloneDeep(componentNode)
-  const { x, w } = resultComponentNode
-  const scale = currentColumns / oldColumns
-  const scaleW = Math.ceil(w * scale)
-  const scaleX = Math.ceil(x * scale)
-  resultComponentNode.w =
-    scaleW < resultComponentNode.minW ? resultComponentNode.minW : scaleW
-  resultComponentNode.x = scaleX
-  if (resultComponentNode.w === resultComponentNode.minW) {
-    let diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
-    while (diff < 0) {
-      resultComponentNode.x--
-      diff++
-      if (resultComponentNode.x < 0) {
-        resultComponentNode.x = 0
-        break
-      }
-    }
-  } else {
-    let diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
-    while (diff < 0) {
-      resultComponentNode.w--
-      diff++
-      if (resultComponentNode.w < resultComponentNode.minW) {
-        resultComponentNode.x = resultComponentNode.minW
-        diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
-        while (diff < 0) {
-          resultComponentNode.x--
-          diff++
-          if (resultComponentNode.x < 0) {
-            resultComponentNode.x = 0
-            break
-          }
-        }
-        break
-      }
-    }
-  }
-
-  return resultComponentNode
-}
-
-export const modifyComponentNodeY = (
-  componentNodes: ComponentNode[],
-  rootNode: ComponentNode,
-) => {
-  const effectResultMap = new Map<string, ComponentNode>()
-
-  if (Array.isArray(componentNodes) && componentNodes.length > 0) {
-    const allComponents = cloneDeep(componentNodes)
-    const walkedSetDisplayName: Set<string> = new Set()
-    allComponents.forEach((baseComponentNode) => {
-      const parentDisplayName = baseComponentNode.parentNode as string
-      let parentNode = searchDsl(rootNode, parentDisplayName)
-      if (!parentNode) {
-        return
-      }
-      effectResultMap.set(parentDisplayName, {
-        ...parentNode,
-        childrenNode: allComponents,
-      })
-      let otherComponents: ComponentNode[] = allComponents
-
-      otherComponents = otherComponents.filter((node) => {
-        if (node.displayName === baseComponentNode.displayName) {
-          return true
-        }
-        return !walkedSetDisplayName.has(node.displayName)
-      })
-
-      const { effectResultMap: reflowEffectMap } = getReflowResult(
-        baseComponentNode,
-        otherComponents,
-        false,
-      )
-      walkedSetDisplayName.add(baseComponentNode.displayName)
-      reflowEffectMap.forEach((value, key) => {
-        if (parentNode) {
-          const index = allComponents.findIndex(
-            (node) => node.displayName === key,
-          )
-          if (index === -1) {
-            return
-          }
-          allComponents.splice(index, 1, value)
-          effectResultMap.set(parentDisplayName, {
-            ...parentNode,
-            childrenNode: allComponents,
-          })
-        }
-      })
-    }, [])
-  }
-  return effectResultMap
-}
-
-function reflowComponentNodesByUpdateColumns(
-  sectionChildrenNodes: Record<string, ComponentNode[]>,
-  oldColumns: number,
-  newColumns: number,
-  rootNode: ComponentNode,
-  listenerApi: AppListenerEffectAPI,
-) {
-  const updateSlice: UpdateComponentNodeLayoutInfoPayload[] = []
-  Object.keys(sectionChildrenNodes).forEach((key) => {
-    const componentNodes = sectionChildrenNodes[key]
-    const modifyXComponentNode: ComponentNode[] = []
-
-    componentNodes.forEach((component) => {
-      modifyXComponentNode.push(
-        modifyComponentNodeX(component, oldColumns, newColumns as number),
-      )
-    })
-    const effectResultMap = modifyComponentNodeY(modifyXComponentNode, rootNode)
-    if (effectResultMap) {
-      effectResultMap.forEach((node) => {
-        node.childrenNode.forEach((childNode) => {
-          updateSlice.push({
-            displayName: childNode.displayName,
-            layoutInfo: {
-              x: childNode.x,
-              y: childNode.y,
-              w: childNode.w,
-              h: childNode.h,
-            },
-          })
-        })
-      })
-    }
-  })
-  if (updateSlice.length === 0) return
-  listenerApi.dispatch(
-    componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer(
-      updateSlice,
-    ),
-  )
-}
-
-function handleUpdateTargetPagePropsEffect(
-  action: ReturnType<typeof componentsActions.updateTargetPagePropsReducer>,
-  listenerApi: AppListenerEffectAPI,
-) {
-  const {
-    payload: { newProps, options },
-  } = action
-  const rootState = listenerApi.getState()
-  const rootNode = getCanvas(rootState)
-  if (!rootNode) return
-  if (newProps.hasOwnProperty("bodyColumns") && options) {
-    const oldColumns = options.bodyColumns as number
-
-    const sectionChildrenNodes = cloneDeep(
-      getCurrentPageBodySectionComponentsSelector(rootState),
-    )
-    reflowComponentNodesByUpdateColumns(
-      sectionChildrenNodes,
-      oldColumns,
-      newProps.bodyColumns ?? BASIC_BLOCK_COLUMNS,
-      rootNode,
-      listenerApi,
-    )
-  }
-  if (newProps.hasOwnProperty("leftColumns") && options) {
-    const oldColumns = options.leftColumns as number
-
-    const sectionChildrenNodes = cloneDeep(
-      getCurrentPageLeftSectionComponentsSelector(rootState),
-    )
-    reflowComponentNodesByUpdateColumns(
-      sectionChildrenNodes,
-      oldColumns,
-      newProps.leftColumns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      rootNode,
-      listenerApi,
-    )
-  }
-  if (newProps.hasOwnProperty("rightColumns") && options) {
-    const oldColumns = options.rightColumns as number
-
-    const sectionChildrenNodes = cloneDeep(
-      getCurrentPageRightSectionComponentsSelector(rootState),
-    )
-    reflowComponentNodesByUpdateColumns(
-      sectionChildrenNodes,
-      oldColumns,
-      newProps.rightColumns ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      rootNode,
-      listenerApi,
-    )
-  }
-  if (newProps.hasOwnProperty("headerColumns") && options) {
-    const oldColumns = options.headerColumns as number
-
-    const sectionChildrenNodes = cloneDeep(
-      getCurrentPageHeaderSectionComponentsSelector(rootState),
-    )
-    reflowComponentNodesByUpdateColumns(
-      sectionChildrenNodes,
-      oldColumns,
-      newProps.headerColumns ?? BASIC_BLOCK_COLUMNS,
-      rootNode,
-      listenerApi,
-    )
-  }
-  if (newProps.hasOwnProperty("footerColumns") && options) {
-    const oldColumns = options.footerColumns as number
-
-    const sectionChildrenNodes = cloneDeep(
-      getCurrentPageFooterSectionComponentsSelector(rootState),
-    )
-    reflowComponentNodesByUpdateColumns(
-      sectionChildrenNodes,
-      oldColumns,
-      newProps.footerColumns ?? BASIC_BLOCK_COLUMNS,
-      rootNode,
-      listenerApi,
-    )
-  }
-}
-
 const updateComponentReflowComponentsAdapter = (
   action: ReturnType<
     | typeof componentsActions.addComponentReducer
-    | typeof componentsActions.updateComponentContainerReducer
     | typeof componentsActions.updateComponentLayoutInfoReducer
-    | typeof componentsActions.copyComponentReducer
-    | typeof componentsActions.batchUpdateComponentLayoutInfoReducer
+    | typeof componentsActions.updateComponentContainerReducer
   >,
 ) => {
   switch (action.type) {
-    case "components/addComponentReducer": {
-      return action.payload
-    }
     case "components/updateComponentContainerReducer": {
-      return action.payload.updateSlice.map((slice) => {
-        return slice.component
-      })
+      const { newParentNodeDisplayName, updateSlices } = action.payload
+      const square = combineWidgetInfos(updateSlices)
+      const effectedDisplayNames = updateSlices.map(
+        (slice) => slice.displayName,
+      )
+      const originUpdateSlice = updateSlices.map((slice) => ({
+        displayName: slice.displayName,
+        layoutInfo: {
+          x: slice.x,
+          y: slice.y,
+          w: slice.w,
+          h: slice.h,
+        },
+      }))
+      return {
+        parentDisplayName: newParentNodeDisplayName,
+        effectedDisplayNames,
+        square,
+        originUpdateSlice,
+      }
+    }
+    case "components/addComponentReducer": {
+      const effectedDisplayNames = action.payload.map(
+        (item) => item.displayName,
+      )
+      const square = combineWidgetInfos(action.payload)
+
+      const originUpdateSlice = action.payload.map((slice) => ({
+        displayName: slice.displayName,
+        layoutInfo: {
+          x: slice.x,
+          y: slice.y,
+          w: slice.w,
+          h: slice.h,
+        },
+      }))
+      return {
+        parentDisplayName: action.payload[0].parentNode!,
+        effectedDisplayNames: effectedDisplayNames,
+        square: square,
+        originUpdateSlice: originUpdateSlice,
+      }
     }
     case "components/updateComponentLayoutInfoReducer": {
-      return [
-        {
-          displayName: action.payload.displayName,
-          x: action.payload.layoutInfo.x,
-          y: action.payload.layoutInfo.y,
-          w: action.payload.layoutInfo.w,
-          h: action.payload.layoutInfo.h,
-          parentNode: action.payload.options?.parentNode,
+      const { displayName, layoutInfo } = action.payload
+      return {
+        parentDisplayName: action.payload.parentNode,
+        effectedDisplayNames: [displayName],
+        square: {
+          x: layoutInfo.x,
+          y: layoutInfo.y,
+          w: layoutInfo.w,
+          h: layoutInfo.h,
         },
-      ] as ComponentNode[]
+        originUpdateSlice: [
+          {
+            displayName,
+            layoutInfo: layoutInfo,
+          },
+        ],
+      }
     }
-    case "components/copyComponentReducer": {
-      return action.payload.copyComponents.map((slice) => {
-        return slice.newComponentNode
-      })
-    }
-    case "components/batchUpdateComponentLayoutInfoReducer": {
-      return action.payload.map((slice) => ({
-        displayName: slice.displayName,
-        x: slice.layoutInfo.x,
-        y: slice.layoutInfo.y,
-        w: slice.layoutInfo.w,
-        h: slice.layoutInfo.h,
-        parentNode: slice.options?.parentNode,
-      })) as ComponentNode[]
-    }
-    default:
-      return []
   }
 }
 
@@ -417,48 +208,36 @@ function handleUpdateComponentReflowEffect(
   action: AnyAction,
   listenApi: AppListenerEffectAPI,
 ) {
-  const rootState = listenApi.getState()
-  const rootNode = getCanvas(rootState)
-  let updateComponents: ComponentNode[] =
-    updateComponentReflowComponentsAdapter(
-      action as ReturnType<
-        | typeof componentsActions.addComponentReducer
-        | typeof componentsActions.updateComponentContainerReducer
-        | typeof componentsActions.updateComponentLayoutInfoReducer
-        | typeof componentsActions.copyComponentReducer
-      >,
-    )
+  const updateComponents = updateComponentReflowComponentsAdapter(
+    action as ReturnType<
+      | typeof componentsActions.addComponentReducer
+      | typeof componentsActions.updateComponentLayoutInfoReducer
+      | typeof componentsActions.updateComponentContainerReducer
+    >,
+  )
 
-  const effectResultMap = new Map<string, ComponentNode>()
-  const updateSlice: UpdateComponentNodeLayoutInfoPayload[] = []
+  const updateSlice = updateComponents.originUpdateSlice
 
-  updateComponents.forEach((componentNode) => {
-    const parentNodeDisplayName = componentNode.parentNode
-    let parentNode = searchDsl(rootNode, parentNodeDisplayName)
-    if (!parentNode) {
-      return
-    }
-    if (effectResultMap.has(parentNode.displayName)) {
-      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
-    }
-    const childrenNodes = parentNode.childrenNode
-    const { finalState } = getReflowResult(componentNode, childrenNodes, true)
-    finalState.forEach((node) => {
+  const effectMap = getNewPositionWithCrossing(
+    updateComponents.square,
+    updateComponents.parentDisplayName,
+    updateComponents.effectedDisplayNames,
+  )
+
+  if (effectMap && effectMap.size > 0) {
+    effectMap.forEach((widgetLayoutInfo) => {
       updateSlice.push({
-        displayName: node.displayName,
+        displayName: widgetLayoutInfo.displayName,
         layoutInfo: {
-          x: node.x,
-          y: node.y,
-          w: node.w,
-          h: node.h,
+          x: widgetLayoutInfo.layoutInfo.x,
+          y: widgetLayoutInfo.layoutInfo.y,
+          w: widgetLayoutInfo.layoutInfo.w,
+          h: widgetLayoutInfo.layoutInfo.h,
         },
       })
     })
-    effectResultMap.set(parentNode.displayName, {
-      ...parentNode,
-      childrenNode: finalState,
-    })
-  })
+  }
+
   listenApi.dispatch(
     componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer(
       updateSlice,
@@ -605,11 +384,10 @@ export function setupComponentsListeners(
     }),
     startListening({
       matcher: isAnyOf(
-        componentsActions.updateComponentContainerReducer,
         componentsActions.addComponentReducer,
         componentsActions.updateComponentLayoutInfoReducer,
-        componentsActions.copyComponentReducer,
         componentsActions.batchUpdateComponentLayoutInfoReducer,
+        componentsActions.updateComponentContainerReducer,
       ),
       effect: handleUpdateComponentReflowEffect,
     }),
@@ -624,10 +402,6 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.deleteSectionViewReducer,
       effect: handleChangeCurrentSectionWhenDelete,
-    }),
-    startListening({
-      actionCreator: componentsActions.updateTargetPagePropsReducer,
-      effect: handleUpdateTargetPagePropsEffect,
     }),
     startListening({
       actionCreator: componentsActions.updateComponentNodeHeightReducer,

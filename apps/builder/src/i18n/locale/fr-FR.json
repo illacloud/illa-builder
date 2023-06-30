@@ -1288,6 +1288,9 @@
           "start_button_text": "Démarrer l'enregistrement",
           "stop_button_text": "Stop",
           "clear_button_text": "Réinitialiser"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID du message de réponse",
         "senderName": "Nom de l'expéditeur",
         "senderId": "ID de l'expéditeur",
-        "showName": "Afficher le nom"
+        "showName": "Afficher le nom",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Définir la couleur des messages sur la gauche",
         "rightMessageColor": "Définir la couleur des messages à droite",
         "toolbar-replay": "Définit si le bouton de réponse doit être affiché lors de la sélection d'un message.",
-        "toolbar-delete": "Définit si un bouton de suppression doit être affiché lors de la sélection d'un message."
+        "toolbar-delete": "Définit si un bouton de suppression doit être affiché lors de la sélection d'un message.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fixe",
@@ -1989,6 +1998,10 @@
             "left-click": "Clic gauche",
             "right-click": "Clic droit"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Écrivez votre code ici. Utilisez JavaScript à l'intérieur de {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIQUE",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Page",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Veuillez cliquer sur le cadre pour spécifier l'emplacement de coller ."
+    "paste_no_aimed": "Veuillez cliquer sur le cadre pour spécifier l'emplacement de coller .",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Réservez une démo",
@@ -3470,7 +3501,10 @@
       "title": "Paiement réussi",
       "button": "Retour au Cloud ILLA"
     },
-    "redirect_to_stripe": "Redirection vers Stripe"
+    "redirect_to_stripe": "Redirection vers Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Erreur de réseau, veuillez réessayer plus tard"

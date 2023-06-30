@@ -30,7 +30,7 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "table",
   widgetName: i18n.t("widget.table.name"),
   h: 40,
-  w: 32,
+  w: 16,
   type: "TABLE_WIDGET",
   icon: <TableWidgetIcon />,
   keywords: ["Table", "表格"],

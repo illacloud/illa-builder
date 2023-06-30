@@ -165,3 +165,4 @@ export const MapWidget: FC<MapWidgetProps> = (props) => {
 }
 
 MapWidget.displayName = "MapWidget"
+export default MapWidget

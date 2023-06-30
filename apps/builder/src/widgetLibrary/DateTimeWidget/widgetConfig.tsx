@@ -9,7 +9,7 @@ export const DATE_TIME_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Date Time", "日期时间选择器"],
   icon: <DateTimeWidgetIcon />,
   sessionType: "CALENDAR",
-  w: 20,
+  w: 10,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

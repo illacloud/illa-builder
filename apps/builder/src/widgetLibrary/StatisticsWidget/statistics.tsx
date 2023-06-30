@@ -234,3 +234,4 @@ export const StatisticWidget: FC<StatisticWidgetProps> = (props) => {
   )
 }
 StatisticWidget.displayName = "StatisticWidget"
+export default StatisticWidget

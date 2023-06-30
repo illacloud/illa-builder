@@ -17,7 +17,7 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["container", "容器"],
   icon: <ContainerWidgetIcon />,
   sessionType: "CONTAINER",
-  w: 20,
+  w: 10,
   h: 40,
   childrenNode: [
     BasicContainerConfig,

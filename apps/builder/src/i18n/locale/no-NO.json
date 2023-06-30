@@ -1288,6 +1288,9 @@
           "start_button_text": "Start opptak",
           "stop_button_text": "Stopp",
           "clear_button_text": "Tøm"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Svar på melding-ID",
         "senderName": "Avsenders navn",
         "senderId": "Avsenderen ID",
-        "showName": "Vis navn"
+        "showName": "Vis navn",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Angi fargen på meldingene til venstre",
         "rightMessageColor": "Angi fargen for meldingene til høyre",
         "toolbar-replay": "Angi om du skal vise en svar-knappen når du velger en melding.",
-        "toolbar-delete": "Angi om du skal vise en slette-knapp når du velger en melding. (Automatic Translation)"
+        "toolbar-delete": "Angi om du skal vise en slette-knapp når du velger en melding. (Automatic Translation)",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1989,6 +1998,10 @@
             "left-click": "Venstreklikk",
             "right-click": "Høyreklikk"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Skriv koden din her. Bruk JavaScript innenfor {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "GRUNN",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Side",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klikk på rammen for å angi lime plassering."
+    "paste_no_aimed": "Klikk på rammen for å angi lime plassering.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Bestill en demo",
@@ -3470,7 +3501,10 @@
       "title": "Vellykket betaling",
       "button": "Tilbake til ILLA Sky"
     },
-    "redirect_to_stripe": "Omdirigerer til Stripe"
+    "redirect_to_stripe": "Omdirigerer til Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Nettverksfeil, vennligst prøv på nytt senere"

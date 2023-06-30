@@ -1,15 +1,18 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { diff } from "deep-diff"
-import { getReflowResult } from "@/page/App/components/DotPanel/calc"
+import { cloneDeep } from "lodash"
+import {
+  getNewPositionWithCrossing,
+  sortedRuleByYAndX,
+} from "@/page/App/components/DotPanel/utils/crossingHelper"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
 import {
   getAllComponentDisplayNameMapLayoutInfo,
   getCanvas,
+  searchDSLByDisplayName,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
@@ -19,13 +22,14 @@ import {
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { actionDisplayNameMapFetchResult } from "@/utils/action/runAction"
-import {
-  batchMergeLayoutInfoToComponent,
-  mergeLayoutInfoToComponent,
-} from "@/utils/drag/drag"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import { cursorActions } from "../cursor/cursorSlice"
+import { ComponentNode } from "../editor/components/componentsState"
+import {
+  BatchUpdateWidgetLayoutInfoPayload,
+  WidgetLayoutInfo,
+} from "./executionState"
 
 export let executionTree: ExecutionTreeFactory | undefined
 
@@ -144,89 +148,124 @@ async function handleUpdateReflowEffect(
   listenerApi: AppListenerEffectAPI,
 ) {
   const rootState = listenerApi.getState()
-  const rootNode = getCanvas(rootState)
-  const executionResult = getExecutionWidgetLayoutInfo(rootState)
-  let updateComponents: ComponentNode[] = [
+  const widgetLayoutInfos = getExecutionWidgetLayoutInfo(rootState)
+  let updateSlice: BatchUpdateWidgetLayoutInfoPayload[] = []
+
+  const { layoutInfo, displayName, parentNode } = action.payload
+
+  const originNodes = searchDSLByDisplayName(parentNode)
+
+  let originChildrenNode: ComponentNode[] = []
+
+  if (
+    originNodes &&
+    originNodes.childrenNode &&
+    originNodes.childrenNode.length > 0
+  ) {
+    originChildrenNode = originNodes.childrenNode
+  }
+
+  const mainNodeLayoutInfo = {
+    ...widgetLayoutInfos[displayName].layoutInfo,
+    h: layoutInfo.h ?? widgetLayoutInfos[displayName].layoutInfo.h,
+  }
+
+  if (originChildrenNode.length > 0) {
+    originChildrenNode
+      .filter((node) => node.displayName !== displayName)
+      .forEach((node) => {
+        const layoutInfo = widgetLayoutInfos[node.displayName].layoutInfo
+        updateSlice.push({
+          displayName: node.displayName,
+          layoutInfo: {
+            x: layoutInfo.x,
+            y: node.y,
+            w: layoutInfo.w,
+            h: layoutInfo.h,
+          },
+        })
+      })
+  }
+
+  const effectMap = getNewPositionWithCrossing(
     {
-      displayName: action.payload.displayName,
-      parentNode: action.payload.options?.parentNode,
-      x: action.payload.layoutInfo.x,
-      y: action.payload.layoutInfo.y,
-      w: action.payload.layoutInfo.w,
-      h: action.payload.layoutInfo.h,
-    } as ComponentNode,
-  ].map((node) => {
-    const layoutInfo = executionResult[node.displayName].layoutInfo
-    return mergeLayoutInfoToComponent(layoutInfo, node)
+      ...mainNodeLayoutInfo,
+    },
+    parentNode,
+    [displayName],
+    Object.values(widgetLayoutInfos).filter(
+      (item) => item.parentNode === parentNode,
+    ),
+  )
+
+  if (effectMap && effectMap.size > 0) {
+    effectMap.forEach((widgetLayoutInfo) => {
+      const oldSliceIndex = updateSlice.findIndex(
+        (slice) => slice.displayName === widgetLayoutInfo.displayName,
+      )
+      if (oldSliceIndex !== -1) {
+        updateSlice.splice(oldSliceIndex, 1)
+      }
+      updateSlice.push({
+        displayName: widgetLayoutInfo.displayName,
+        layoutInfo: {
+          x: widgetLayoutInfo.layoutInfo.x,
+          y: widgetLayoutInfo.layoutInfo.y,
+          w: widgetLayoutInfo.layoutInfo.w,
+          h: widgetLayoutInfo.layoutInfo.h,
+        },
+      })
+    })
+  }
+
+  const currentLayoutInfos = cloneDeep(widgetLayoutInfos)
+
+  updateSlice.forEach((slice) => {
+    if (currentLayoutInfos[slice.displayName]) {
+      currentLayoutInfos[slice.displayName] = {
+        ...currentLayoutInfos[slice.displayName],
+        layoutInfo: {
+          ...currentLayoutInfos[slice.displayName].layoutInfo,
+          ...slice.layoutInfo!,
+        },
+      }
+    }
   })
 
-  const effectResultMap = new Map<string, ComponentNode>()
-  const updateSlice: Array<{
-    displayName: string
-    layoutInfo: Omit<LayoutInfo, "z" | "unitW" | "unitH" | "minW" | "minH">
-  }> = []
+  const currentLayoutInfosArray = Object.values(currentLayoutInfos)
+    .filter((info) => info.parentNode === parentNode)
+    .sort(sortedRuleByYAndX)
 
-  updateComponents.forEach((componentNode) => {
-    const parentNodeDisplayName = componentNode.parentNode
-    let parentNode = searchDsl(rootNode, parentNodeDisplayName)
-    const originNode = searchDsl(rootNode, componentNode.displayName)
-    if (!parentNode || !originNode) {
-      return
-    }
-    if (effectResultMap.has(parentNode.displayName)) {
-      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
-    }
-    const childrenNodes = batchMergeLayoutInfoToComponent(
-      executionResult,
-      parentNode.childrenNode,
+  let effectName: string[] = []
+  currentLayoutInfosArray.forEach((item) => {
+    effectName.push(item.displayName)
+    const effectMap = getNewPositionWithCrossing(
+      item.layoutInfo,
+      parentNode,
+      effectName,
+      currentLayoutInfosArray,
     )
-
-    if ((action.payload.options?.effectRows ?? 0) >= 0) {
-      const { finalState } = getReflowResult(componentNode, childrenNodes, true)
-      finalState.forEach((node) => {
-        updateSlice.push({
-          displayName: node.displayName,
-          layoutInfo: {
-            x: node.x,
-            y: node.y,
-            w: node.w,
-            h: node.h,
-          },
-        })
-      })
-      effectResultMap.set(parentNode.displayName, {
-        ...parentNode,
-        childrenNode: finalState,
-      })
-    } else {
-      const finalState = childrenNodes.map((node) => {
-        if (node.displayName === componentNode.displayName) {
-          return node
+    if (effectMap && effectMap.size > 0) {
+      effectMap.forEach((widgetLayoutInfo) => {
+        const oldSliceIndex = updateSlice.findIndex(
+          (slice) => slice.displayName === widgetLayoutInfo.displayName,
+        )
+        if (oldSliceIndex !== -1) {
+          updateSlice.splice(oldSliceIndex, 1)
         }
-        const originChildNode = searchDsl(rootNode, node.displayName)
-        if (!originChildNode) return node
-        return {
-          ...node,
-          y:
-            node.y + (action.payload.options?.effectRows as number) <=
-            originChildNode.y
-              ? originChildNode.y
-              : node.y + (action.payload.options?.effectRows as number),
-        }
-      })
-      finalState.forEach((node) => {
         updateSlice.push({
-          displayName: node.displayName,
+          displayName: widgetLayoutInfo.displayName,
           layoutInfo: {
-            x: node.x,
-            y: node.y,
-            w: node.w,
-            h: node.h,
+            x: widgetLayoutInfo.layoutInfo.x,
+            y: widgetLayoutInfo.layoutInfo.y,
+            w: widgetLayoutInfo.layoutInfo.w,
+            h: widgetLayoutInfo.layoutInfo.h,
           },
         })
       })
     }
   })
+
   listenerApi.dispatch(
     executionActions.batchUpdateWidgetLayoutInfoReducer(updateSlice),
   )
@@ -274,10 +313,52 @@ function handleUpdateWidgetPositionInExecutionLayoutInfo(
   listenerApi: AppListenerEffectAPI,
 ) {
   const rootState = listenerApi.getState()
-  const displayNameMapNode = getAllComponentDisplayNameMapLayoutInfo(rootState)
+  let displayNameMapNode = getAllComponentDisplayNameMapLayoutInfo(rootState)
   if (!displayNameMapNode) return
+  const executionLayoutInfos = getExecutionWidgetLayoutInfo(rootState)
+  let setWidgetLayoutInfoReducerActionPayload: Record<
+    string,
+    WidgetLayoutInfo
+  > = {}
+  let effectDisplayNames: string[] = []
+  if (
+    action.type === "components/batchUpdateComponentLayoutInfoWhenReflowReducer"
+  ) {
+    const { payload } = action
+    ;(payload as BatchUpdateWidgetLayoutInfoPayload[]).forEach((item) => {
+      effectDisplayNames.push(item.displayName)
+    })
+  }
+  Object.keys(displayNameMapNode).forEach((displayName) => {
+    if (
+      (displayNameMapNode as Record<string, WidgetLayoutInfo>)[displayName] &&
+      executionLayoutInfos[displayName] &&
+      effectDisplayNames.indexOf(displayName) === -1
+    ) {
+      setWidgetLayoutInfoReducerActionPayload[displayName] = {
+        ...(displayNameMapNode as Record<string, WidgetLayoutInfo>)[
+          displayName
+        ],
+        layoutInfo: {
+          ...(displayNameMapNode as Record<string, WidgetLayoutInfo>)[
+            displayName
+          ].layoutInfo,
+          y: executionLayoutInfos[displayName].layoutInfo.y,
+          h: executionLayoutInfos[displayName].layoutInfo.h,
+        },
+      }
+    } else {
+      setWidgetLayoutInfoReducerActionPayload[displayName] = {
+        ...(displayNameMapNode as Record<string, WidgetLayoutInfo>)[
+          displayName
+        ],
+      }
+    }
+  })
   listenerApi.dispatch(
-    executionActions.setWidgetLayoutInfoReducer(displayNameMapNode),
+    executionActions.setWidgetLayoutInfoReducer(
+      setWidgetLayoutInfoReducerActionPayload,
+    ),
   )
 }
 
@@ -325,11 +406,9 @@ export function setupExecutionListeners(
     startListening({
       matcher: isAnyOf(
         componentsActions.addComponentReducer,
-        componentsActions.copyComponentReducer,
         componentsActions.updateComponentPropsReducer,
         componentsActions.deleteComponentNodeReducer,
         componentsActions.batchUpdateMultiComponentSlicePropsReducer,
-        componentsActions.resetComponentPropsReducer,
         componentsActions.updateMultiComponentPropsReducer,
         componentsActions.addTargetPageSectionReducer,
         componentsActions.updateTargetPagePropsReducer,
@@ -374,8 +453,6 @@ export function setupExecutionListeners(
     }),
     startListening({
       matcher: isAnyOf(
-        componentsActions.addComponentReducer,
-        componentsActions.copyComponentReducer,
         componentsActions.deleteComponentNodeReducer,
         componentsActions.addTargetPageSectionReducer,
         componentsActions.deleteTargetPageSectionReducer,
@@ -383,10 +460,7 @@ export function setupExecutionListeners(
         componentsActions.deletePageNodeReducer,
         componentsActions.deleteSectionViewReducer,
         componentsActions.addModalComponentReducer,
-        componentsActions.updateComponentLayoutInfoReducer,
         componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer,
-        componentsActions.updateComponentContainerReducer,
-        componentsActions.batchUpdateComponentLayoutInfoReducer,
         executionActions.startExecutionReducer,
       ),
       effect: handleUpdateWidgetPositionInExecutionLayoutInfo,

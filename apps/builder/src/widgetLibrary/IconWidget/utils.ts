@@ -1,4 +1,4 @@
-import * as RiLib from "react-icons/"
+import * as RiLib from "react-icons"
 import * as bs from "react-icons/bs"
 import * as fc from "react-icons/fc"
 import * as sl from "react-icons/sl"

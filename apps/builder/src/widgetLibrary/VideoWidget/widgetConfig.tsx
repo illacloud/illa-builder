@@ -9,7 +9,7 @@ export const VIDEO_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Video", "视频"],
   icon: <VideoWidgetIcon />,
   sessionType: "PRESENTATION",
-  w: 32,
+  w: 16,
   h: 25,
   defaults: {
     url: "https://youtu.be/8sUovZlBh_M",

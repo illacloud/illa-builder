@@ -1,13 +1,14 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-
 export interface UpdateComponentContainerPayload {
-  isMove: boolean
-  updateSlice: {
-    component: ComponentNode
-    oldParentDisplayName: string
+  oldParentNodeDisplayName: string
+  newParentNodeDisplayName: string
+  updateSlices: {
+    displayName: string
+    x: number
+    y: number
+    w: number
+    h: number
   }[]
 }
-
 export interface LayoutInfo {
   w: number
   h: number
@@ -27,16 +28,24 @@ export interface StatusInfo {
 
 export interface UpdateComponentNodeLayoutInfoPayload {
   displayName: string
-  layoutInfo: Partial<LayoutInfo>
+  layoutInfo: {
+    x: number
+    y: number
+    h: number
+    w: number
+  }
   statusInfo?: Partial<StatusInfo>
-  options?: Partial<{
-    parentNode: string
-  }>
+  parentNode: string
 }
 
-export interface updateComponentStatusInfoPayload {
+export interface BatchUpdateComponentNodeLayoutInfoPayload {
   displayName: string
-  statusInfo: Partial<StatusInfo>
+  layoutInfo: {
+    x: number
+    y: number
+    h: number
+    w: number
+  }
 }
 
 export interface UpdateComponentSlicePropsPayload {

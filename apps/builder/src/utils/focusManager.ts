@@ -13,6 +13,7 @@ export interface ClickPosition {
   displayName: string
   type: "inner_container" | "component" | "group"
   clickPosition: number[]
+  columnNumber: number
 }
 
 export class FocusManager {
@@ -23,7 +24,6 @@ export class FocusManager {
     illaPanelType: ILLAPanelType,
     clickPosition?: ClickPosition,
   ) {
-    console.log("longbo", illaPanelType, clickPosition)
     this.currentFocus = illaPanelType
     this.currentClickPosition = clickPosition
   }

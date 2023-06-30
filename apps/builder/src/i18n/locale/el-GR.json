@@ -1288,6 +1288,9 @@
           "start_button_text": "Έναρξη εγγραφής",
           "stop_button_text": "Διακοπή",
           "clear_button_text": "Εκκαθάριση"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Id μηνύματος απάντησης",
         "senderName": "Όνομα αποστολέα",
         "senderId": "Id Αποστολέα",
-        "showName": "Εμφάνιση ονόματος"
+        "showName": "Εμφάνιση ονόματος",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Ορίστε το χρώμα των μηνυμάτων στα αριστερά",
         "rightMessageColor": "Ορίστε το χρώμα των μηνυμάτων στα δεξιά",
         "toolbar-replay": "Ορίστε αν θα εμφανίζεται το κουμπί απάντησης κατά την επιλογή μηνύματος.",
-        "toolbar-delete": "Ορίστε αν θα εμφανίζεται το κουμπί διαγραφής όταν επιλέγεται ένα μήνυμα."
+        "toolbar-delete": "Ορίστε αν θα εμφανίζεται το κουμπί διαγραφής όταν επιλέγεται ένα μήνυμα.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Σταθερό",
@@ -1989,6 +1998,10 @@
             "left-click": "Αριστερό κλικ",
             "right-click": "Δεξί κλικ"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Γράψτε τον κώδικά σας εδώ. Χρησιμοποιήστε JavaScript μέσα από {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "ΒΑΣΙΚΟ",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Σελίδα",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Παρακαλώ κάντε κλικ στο πλαίσιο για να καθορίσετε τη θέση επικόλλησης."
+    "paste_no_aimed": "Παρακαλώ κάντε κλικ στο πλαίσιο για να καθορίσετε τη θέση επικόλλησης.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Κλείστε μια επίδειξη",
@@ -3470,7 +3501,10 @@
       "title": "Επιτυχής πληρωμή",
       "button": "Πίσω στο Cloud ILLA"
     },
-    "redirect_to_stripe": "Ανακατεύθυνση σε Stripe"
+    "redirect_to_stripe": "Ανακατεύθυνση σε Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Σφάλμα δικτύου, παρακαλώ προσπαθήστε ξανά αργότερα"

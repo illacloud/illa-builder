@@ -2,52 +2,31 @@ import { configActions } from "@/redux/config/configSlice"
 import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { widgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
+import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
-export function startDragMultiNodes(
-  dragNodes: ComponentNode[],
-  isAdd: boolean = false,
-) {
+export function startDragMultiNodes(dragWidgetInfos: WidgetLayoutInfo[]) {
   store.dispatch(configActions.updateShowDot(true))
-  if (!isAdd) {
-    const displayNames = dragNodes.map((node) => node.displayName)
-    store.dispatch(executionActions.setDraggingNodeIDsReducer(displayNames))
-  }
-}
-
-export function endDrag(
-  dragNode: ComponentNode,
-  isDropOnCanvas: boolean,
-  isAddAction: boolean = false,
-) {
-  store.dispatch(configActions.updateShowDot(false))
-  if (isDropOnCanvas) {
-    store.dispatch(
-      configActions.updateSelectedComponent([dragNode.displayName]),
-    )
-  }
-  if (isAddAction && !isDropOnCanvas) {
-    DisplayNameGenerator.removeDisplayName(dragNode.displayName)
-  }
+  const displayNames = dragWidgetInfos.map((node) => node.displayName)
+  store.dispatch(executionActions.setDraggingNodeIDsReducer(displayNames))
 }
 
 export function endDragMultiNodes(
-  dragNodes: ComponentNode[],
+  dragWidgetInfos: WidgetLayoutInfo[],
   isDropOnCanvas: boolean,
   isAddAction: boolean = false,
 ) {
   store.dispatch(configActions.updateShowDot(false))
-  const displayNames = dragNodes.map((node) => node.displayName)
+  const displayNames = dragWidgetInfos.map((node) => node.displayName)
+  store.dispatch(executionActions.setDraggingNodeIDsReducer([]))
+
   if (isDropOnCanvas) {
     store.dispatch(configActions.updateSelectedComponent(displayNames))
   }
-  if (!isAddAction) {
-    store.dispatch(executionActions.setDraggingNodeIDsReducer([]))
-  }
+
   if (isAddAction && !isDropOnCanvas) {
-    DisplayNameGenerator.removeDisplayName(dragNodes[0].displayName)
+    DisplayNameGenerator.removeDisplayName(dragWidgetInfos[0].displayName)
   }
 }
 
@@ -62,7 +41,7 @@ export const mergeLayoutInfoToComponent = (
 }
 
 export const batchMergeLayoutInfoToComponent = (
-  executionResult: Record<string, widgetLayoutInfo>,
+  executionResult: Record<string, WidgetLayoutInfo>,
   originComponentNodes: ComponentNode[],
 ) => {
   return originComponentNodes.map((componentNode) => {

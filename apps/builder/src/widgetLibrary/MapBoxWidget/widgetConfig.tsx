@@ -10,7 +10,7 @@ export const MAP_WIDGET_CONFIG: WidgetConfig = {
   icon: <MapWidgetIcon />,
   keywords: ["MAP", "地图"],
   sessionType: "PRESENTATION",
-  w: 40,
+  w: 20,
   h: 50,
   defaults: {
     latitudeFieldName: "lat",

@@ -7,7 +7,7 @@ export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
   type: "RADIO_BUTTON_WIDGET",
   widgetName: i18n.t("widget.radio_button.name"),
   displayName: "radioButton",
-  w: 18,
+  w: 9,
   h: 5,
   icon: <RadioButtonWidgetIcon />,
   keywords: ["Radio Button", "按钮单选"],

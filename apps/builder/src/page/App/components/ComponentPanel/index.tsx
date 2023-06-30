@@ -1,8 +1,8 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Search } from "@illa-design/react"
+import { buildComponentList } from "@/page/App/components/ComponentPanel/componentListBuilder"
 import { FocusManager } from "@/utils/focusManager"
-import { buildComponentList } from "@/widgetLibrary/componentListBuilder"
 import { ComponentSession } from "./ComponentSession"
 import { EmptySearchResult } from "./Empty"
 import { ComponentPanelProps, ComponentSessionProps } from "./interface"
@@ -53,7 +53,10 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
       <div css={sessionListContainerStyle}>
         {searchRes && searchRes.length ? (
           searchRes.map((session) => (
-            <ComponentSession key={"session-" + session.title} {...session} />
+            <ComponentSession
+              key={"session-" + session.sessionTitle}
+              {...session}
+            />
           ))
         ) : (
           <EmptySearchResult />

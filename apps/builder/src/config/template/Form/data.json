@@ -1,25 +1,26 @@
 {
   "appInfo": {
-    "appId": "ILAex4p1C74O",
+    "appId": "ILAex4p1C7QV",
     "uid": "00000000-0000-0000-0000-000000000000",
     "teamID": "ILAfx4p1C7d0",
-    "appName": "Survey",
-    "releaseVersion": 5,
-    "mainlineVersion": 5,
+    "appName": "New survey",
+    "releaseVersion": 1,
+    "mainlineVersion": 1,
     "config": {
-      "public": true
+      "public": true,
+      "waterMark": true
     },
     "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-03-16T05:54:50.737713Z",
+    "updatedAt": "2023-06-30T09:46:45.444336Z",
     "appActivity": {
-      "modifier": "Marshall～A",
-      "modifiedAt": "2023-03-16T05:54:50.737713Z"
+      "modifier": "Mikiko",
+      "modifiedAt": "2023-06-30T09:46:45.444336Z"
     }
   },
   "actions": [
     {
-      "actionId": "ILAex4p1C7UZ",
-      "uid": "3a0f3ad5-fc7b-45bd-b4d7-a94404155df6",
+      "actionId": "ILAfx4p1C7UZ",
+      "uid": "fcbe638c-dffc-4d04-9e4b-baaeb68c3c64",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "postgresql1",
@@ -51,11 +52,19 @@
       },
       "triggerMode": "manually",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T02:00:14.061864Z",
+      "createdAt": "2023-06-30T09:45:59.51915Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T11:16:32.440285Z",
+      "updatedAt": "2023-06-30T09:45:59.519151Z",
       "updatedBy": "ILAfx4p1C7eb"
     }
   ],
@@ -135,9 +144,9 @@
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 12,
-                                    "w": 62,
+                                    "w": 31,
                                     "minH": 3,
-                                    "minW": 2,
+                                    "minW": 1,
                                     "unitW": 4.3984375,
                                     "unitH": 8,
                                     "x": 1,
@@ -164,7 +173,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 2,
+                                "minW": 1,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -187,7 +196,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 2,
+                                "minW": 1,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -210,7 +219,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 2,
+                                "minW": 1,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -224,9 +233,9 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 20,
-                            "w": 64,
+                            "w": 32,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 0,
@@ -270,7 +279,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 2,
+                        "minW": 1,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -299,9 +308,9 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 7,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -368,9 +377,9 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 8,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -426,9 +435,9 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 4,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -485,9 +494,9 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 13,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -526,9 +535,9 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 8,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -558,7 +567,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 2,
+                        "minW": 1,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -587,18 +596,16 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 5,
-                            "w": 16,
+                            "w": 8,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 0,
                             "unitH": 8,
-                            "x": 48,
+                            "x": 24,
                             "y": 0,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "loading"
-                              ],
+                              "$dynamicAttrPaths": ["loading"],
                               "colorScheme": "purple",
                               "events": [
                                 {
@@ -622,7 +629,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 2,
+                        "minW": 1,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -636,9 +643,9 @@
                     "containerType": "EDITOR_SCALE_SQUARE",
                     "verticalResize": false,
                     "h": 91,
-                    "w": 64,
+                    "w": 32,
                     "minH": 3,
-                    "minW": 2,
+                    "minW": 1,
                     "unitW": 15.34375,
                     "unitH": 8,
                     "x": 0,
@@ -649,7 +656,7 @@
                       "backgroundColor": "#ffffffff",
                       "borderColor": "#ffffffff",
                       "borderWidth": "4px",
-                      "footerHeight": 7,
+                      "footerHeight": 8,
                       "headerHeight": 22,
                       "radius": "4px",
                       "resetAfterSuccessful": true,
@@ -700,9 +707,7 @@
                   "viewDisplayName": "bodySection1-bodySectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "bodySection1-bodySectionContainer1"
-              ]
+              "viewSortedKey": ["bodySection1-bodySectionContainer1"]
             },
             "panelConfig": null
           },
@@ -743,7 +748,7 @@
         "y": -1,
         "z": 0,
         "props": {
-          "bodyColumns": 64,
+          "bodyColumns": 32,
           "bottomHeight": 0,
           "canvasSize": "fixed",
           "canvasWidth": 1000,
@@ -785,9 +790,7 @@
     "z": 0,
     "props": {
       "currentPageIndex": 0,
-      "pageSortedKey": [
-        "page1"
-      ]
+      "pageSortedKey": ["page1"]
     },
     "panelConfig": null
   },

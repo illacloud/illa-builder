@@ -13,14 +13,9 @@ export const KeyPressComponent: FC<IKeyPressComponentProps> = (props) => {
   return <span css={keyPressComponentStyle}>{props.children}</span>
 }
 
-interface ContainerEmptyStateProps {
-  minHeight?: number
-}
-export const ContainerEmptyState: FC<ContainerEmptyStateProps> = ({
-  minHeight,
-}) => {
+export const ContainerEmptyState: FC = () => {
   return (
-    <div css={applyEmptyStateWrapperStyle(minHeight)}>
+    <div css={applyEmptyStateWrapperStyle}>
       <span css={emptyStateStyle}>
         <Trans
           i18nKey="widget.container.empty"

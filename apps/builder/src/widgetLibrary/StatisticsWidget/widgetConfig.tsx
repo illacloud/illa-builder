@@ -9,7 +9,7 @@ export const STATISTICS_WIDGET_CONFIG: WidgetConfig = {
   icon: <StatisticWidgetIcon />,
   keywords: ["Statistic", "数值"],
   sessionType: "PRESENTATION",
-  w: 12,
+  w: 6,
   h: 7,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
