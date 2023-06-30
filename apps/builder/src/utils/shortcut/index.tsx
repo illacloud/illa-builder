@@ -28,7 +28,7 @@ import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import IllaUndoRedoManager from "@/utils/undoRedo/undo"
+// import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { isMAC } from "@/utils/userAgent"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
@@ -449,27 +449,27 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     [showDotHandler],
   )
 
-  useHotkeys(
-    `${isMAC() ? Key.Meta : Key.Control}+z`,
-    () => {
-      IllaUndoRedoManager.popFromUndoStack()
-    },
-    {
-      enabled: isEditMode,
-    },
-    [showDotHandler],
-  )
+  // useHotkeys(
+  //   `${isMAC() ? Key.Meta : Key.Control}+z`,
+  //   () => {
+  //     IllaUndoRedoManager.popFromUndoStack()
+  //   },
+  //   {
+  //     enabled: isEditMode,
+  //   },
+  //   [showDotHandler],
+  // )
 
-  useHotkeys(
-    `${isMAC() ? Key.Meta : Key.Control}+${Key.Shift}+z`,
-    () => {
-      IllaUndoRedoManager.popFromRedoStack()
-    },
-    {
-      enabled: isEditMode,
-    },
-    [showDotHandler],
-  )
+  // useHotkeys(
+  //   `${isMAC() ? Key.Meta : Key.Control}+${Key.Shift}+z`,
+  //   () => {
+  //     IllaUndoRedoManager.popFromRedoStack()
+  //   },
+  //   {
+  //     enabled: isEditMode,
+  //   },
+  //   [showDotHandler],
+  // )
 
   // cancel show dot
   useEffect(() => {
