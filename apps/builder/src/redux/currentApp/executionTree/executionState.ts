@@ -1,5 +1,6 @@
 import { Diff } from "deep-diff"
 import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
+import { CONTAINER_TYPE } from "../editor/components/componentsState"
 
 export enum ExecutionErrorType {
   EVALUATED = "EVALUATED",
@@ -16,11 +17,12 @@ export interface ErrorShape {
 }
 export type DependenciesState = Record<string, string[]>
 
-export interface widgetLayoutInfo {
+export interface WidgetLayoutInfo {
   displayName: string
   widgetType: string
   layoutInfo: LayoutInfo
   parentNode: string
+  containerType: CONTAINER_TYPE
   childrenNode: string[]
 }
 
@@ -30,7 +32,7 @@ export interface ExecutionState {
   error: Record<string, ErrorShape[]>
   debuggerData: Record<string, ErrorShape[]>
   independencies: DependenciesState
-  widgetsLayoutInfo: Record<string, widgetLayoutInfo>
+  widgetsLayoutInfo: Record<string, WidgetLayoutInfo>
   draggingComponentIDs: string[]
   resizingComponentIDs: string[]
 }
@@ -58,8 +60,11 @@ export interface UpdateExecutionByDisplayNamePayload {
 export interface UpdateWidgetLayoutInfoPayload {
   displayName: string
   layoutInfo: Partial<LayoutInfo>
-  options?: Partial<{
-    parentNode: string
-    effectRows: number
-  }>
+  parentNode: string
+  effectRows?: number
+}
+
+export interface BatchUpdateWidgetLayoutInfoPayload {
+  displayName: string
+  layoutInfo: Partial<LayoutInfo>
 }

@@ -9,7 +9,7 @@ export const JSON_EDITOR_WIDGET_CONFIG: WidgetConfig = {
   icon: <JsonEditorWidgetIcon />,
   keywords: ["JSON Editor", "JSON编辑器"],
   sessionType: "INPUTS",
-  w: 20,
+  w: 10,
   h: 55,
   defaults: {
     colorScheme: "grayBlue",

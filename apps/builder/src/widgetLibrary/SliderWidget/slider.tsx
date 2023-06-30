@@ -246,3 +246,4 @@ export const SliderWidget: FC<SliderWidgetProps> = (props) => {
   )
 }
 SliderWidget.displayName = "SliderWidget"
+export default SliderWidget

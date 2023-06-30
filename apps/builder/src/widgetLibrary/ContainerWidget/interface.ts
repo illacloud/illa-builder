@@ -24,7 +24,7 @@ export interface ContainerProps extends BaseWidgetProps {
   h: number
   linkWidgetDisplayName?: string
   unitH: number
-  blockColumns: number
+  columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"
   dynamicMinHeight?: number
   dynamicMaxHeight?: number

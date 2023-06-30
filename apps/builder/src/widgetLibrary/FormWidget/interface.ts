@@ -14,6 +14,6 @@ export interface FormWidgetProps extends BaseWidgetProps {
   disabledSubmit: boolean
   validateInputsOnSubmit: boolean
   resetAfterSuccessful: boolean
-  blockColumns: number
+  columnNumber: number
   formData?: Record<string, any>
 }

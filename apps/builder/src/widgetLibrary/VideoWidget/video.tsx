@@ -264,3 +264,4 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
 }
 
 VideoWidget.displayName = "VideoWidget"
+export default VideoWidget

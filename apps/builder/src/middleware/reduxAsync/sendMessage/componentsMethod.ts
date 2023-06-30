@@ -19,7 +19,6 @@ import {
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
   ComponentNode,
-  CopyComponentPayload,
   DeleteComponentNodePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
@@ -92,25 +91,6 @@ export const componentsAsync = (
       )
       break
     }
-    case "copyComponentReducer":
-      const copyComponentPayload = (
-        payload as {
-          copyComponents: CopyComponentPayload[]
-          sources: "keyboard" | "duplicate"
-        }
-      ).copyComponents.map((copyShape) => copyShape.newComponentNode)
-      Connection.getTextRoom("app", currentAppID)?.send(
-        getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.COMPONENTS,
-          true,
-          action,
-          teamID,
-          uid,
-          copyComponentPayload,
-        ),
-      )
-      break
     case "updateComponentReflowReducer":
       const updateComponentReflowPayload: UpdateComponentReflowPayload[] =
         payload
@@ -154,29 +134,49 @@ export const componentsAsync = (
     case "updateComponentContainerReducer": {
       const updateComponentContainerPayload: UpdateComponentContainerPayload =
         payload
-
-      const allDisplayNames = updateComponentContainerPayload.updateSlice.map(
-        (slice) => slice.component.displayName,
-      )
+      const {
+        updateSlices,
+        oldParentNodeDisplayName,
+        newParentNodeDisplayName,
+      } = updateComponentContainerPayload
+      const allDisplayNames = updateSlices.map((slice) => slice.displayName)
       const allNodes = allDisplayNames
-        .map((displayName) => {
-          return searchDsl(
-            getCanvas(nextRootState),
-            displayName,
-          ) as ComponentNode
-        })
+        .map(
+          (displayName) =>
+            searchDsl(getCanvas(nextRootState), displayName) as ComponentNode,
+        )
         .filter((node) => node !== null) as ComponentNode[]
+      if (oldParentNodeDisplayName !== newParentNodeDisplayName) {
+        Connection.getTextRoom("app", currentAppID)?.send(
+          getTextMessagePayload(
+            Signal.MOVE_STATE,
+            Target.COMPONENTS,
+            true,
+            action,
+            teamID,
+            uid,
+            allNodes.map((node) => {
+              return {
+                displayName: node.displayName,
+                parentNode: node.parentNode,
+                childrenNode: node.childrenNode,
+              }
+            }),
+          ),
+        )
+      }
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.MOVE_STATE,
+          Signal.UPDATE_STATE,
           Target.COMPONENTS,
           true,
           action,
           teamID,
           uid,
-          allNodes,
+          transformComponentReduxPayloadToWsPayload(allNodes),
         ),
       )
+
       break
     }
     case "updateComponentPropsReducer":
@@ -267,22 +267,6 @@ export const componentsAsync = (
           teamID,
           uid,
           deletePayload.displayNames,
-        ),
-      )
-      break
-    case "resetComponentPropsReducer":
-      const resetWsPayload = transformComponentReduxPayloadToWsPayload(
-        payload as ComponentNode,
-      )
-      Connection.getTextRoom("app", currentAppID)?.send(
-        getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
-          true,
-          action,
-          teamID,
-          uid,
-          resetWsPayload,
         ),
       )
       break
@@ -522,12 +506,20 @@ export const componentsAsync = (
       break
     }
     case "addSectionViewReducer": {
-      const { parentNodeName, containerNode } = payload as AddSectionViewPayload
+      const { parentNodeName } = payload as AddSectionViewPayload
       const rootNode = getCanvas(nextRootState)
 
       if (!rootNode) break
       const targetNode = searchDsl(rootNode, parentNodeName)
       if (!targetNode) break
+      const { props } = targetNode
+      const { viewSortedKey } = props as Record<string, any>
+      const lastSortedKey = viewSortedKey.at(-1)
+      if (!lastSortedKey) return
+      const sectionNode = targetNode.childrenNode.find((item) => {
+        return item.displayName === lastSortedKey
+      })
+      if (!sectionNode) return
       const updateWSPayload =
         transformComponentReduxPayloadToWsPayload(targetNode)
       Connection.getTextRoom("app", currentAppID)?.send(
@@ -549,7 +541,7 @@ export const componentsAsync = (
           action,
           teamID,
           uid,
-          [containerNode],
+          [sectionNode],
         ),
       )
       break
@@ -679,32 +671,6 @@ export const componentsAsync = (
       )
       break
     }
-    case "batchUpdateComponentStatusInfoReducer": {
-      const displayNames = (
-        payload as UpdateComponentNodeLayoutInfoPayload[]
-      ).map((item) => item.displayName)
-      const rootNode = getCanvas(nextRootState)
-      if (!rootNode) break
-      const targetNodes = displayNames
-        .map((displayName) => searchDsl(rootNode, displayName))
-        .filter((node) => node !== null) as ComponentNode[]
-      if (targetNodes.length < 1) break
-      const updateWSPayload =
-        transformComponentReduxPayloadToWsPayload(targetNodes)
-      Connection.getTextRoom("app", currentAppID)?.send(
-        getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
-          true,
-          action,
-          teamID,
-          uid,
-          updateWSPayload,
-        ),
-      )
-      break
-    }
-    case "updateComponentStatusInfoReducer":
     case "updateComponentLayoutInfoReducer": {
       const displayName = (payload as UpdateComponentNodeLayoutInfoPayload)
         .displayName

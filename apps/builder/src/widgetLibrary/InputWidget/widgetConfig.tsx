@@ -9,7 +9,7 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
   icon: <TextInputWidgetIcon />,
   keywords: ["Input", "文本输入框"],
   sessionType: "INPUTS",
-  w: 12,
+  w: 6,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

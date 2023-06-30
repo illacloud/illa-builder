@@ -8,7 +8,7 @@ import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
-import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
+import { TransformWidgetWrapperWithJsonProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
@@ -19,8 +19,8 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   })
 }
 
-export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
-  (props: TransformWidgetProps) => {
+export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonProps> =
+  memo((props: TransformWidgetWrapperWithJsonProps) => {
     const { componentNode } = props
 
     const {
@@ -195,9 +195,9 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
     )
 
     if (!type) return null
-    const widget = widgetBuilder(type)
-    if (!widget) return null
-    const Component = widget.widget
+    const widgetConfig = widgetBuilder(type)
+    if (!widgetConfig) return null
+    const Component = widgetConfig.widget
 
     const {
       hidden,
@@ -246,7 +246,6 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
         />
       </div>
     )
-  },
-)
+  })
 
 TransformWidgetWrapperWithJson.displayName = "TransformWidgetWrapper"

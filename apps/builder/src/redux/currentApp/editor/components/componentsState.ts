@@ -159,10 +159,6 @@ export interface UpdateComponentReflowPayload {
   childNodes: ComponentNode[]
 }
 
-export interface CopyComponentPayload {
-  newComponentNode: ComponentNode
-}
-
 export interface UpdateTargetPageLayoutPayload {
   pageName: string
   layout: "default" | "presetA" | "presetB" | "presetC" | "presetD" | "presetE"
@@ -183,7 +179,6 @@ export interface DeleteTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  options: Record<string, any>
 }
 
 export interface AddTargetPageSectionPayload {
@@ -193,13 +188,16 @@ export interface AddTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  options: Record<string, any>
 }
 
 export interface AddSectionViewPayload {
   parentNodeName: string
-  containerNode: ComponentNode
-  newSectionViewConfig: SectionViewShape
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
 }
 
 export interface DeleteSectionViewPayload {

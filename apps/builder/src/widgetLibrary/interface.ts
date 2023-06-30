@@ -5,7 +5,7 @@ import {
   ComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
-import { SessionType } from "./componentListBuilder"
+import { SessionType } from "../page/App/components/ComponentPanel/componentListBuilder"
 
 export interface EventHandlerConfig {
   events: {

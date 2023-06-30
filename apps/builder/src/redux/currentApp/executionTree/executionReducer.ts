@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { applyChange } from "deep-diff"
 import { has, set } from "lodash"
 import {
+  BatchUpdateWidgetLayoutInfoPayload,
   DependenciesState,
   ErrorShape,
   ExecutionState,
@@ -158,7 +159,7 @@ export const updateWidgetLayoutInfoReducer: CaseReducer<
 
 export const batchUpdateWidgetLayoutInfoReducer: CaseReducer<
   ExecutionState,
-  PayloadAction<UpdateWidgetLayoutInfoPayload[]>
+  PayloadAction<BatchUpdateWidgetLayoutInfoPayload[]>
 > = (state, action) => {
   if (!state) return
   action.payload.forEach((updateSlice) => {

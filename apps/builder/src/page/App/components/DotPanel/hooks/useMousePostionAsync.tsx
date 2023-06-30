@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom"
 import { useWindowSize } from "react-use"
 import { getIsDragging } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getMousePositionWithIllaUnit } from "../calcMouse"
 import { MouseMoveContext } from "../context/mouseMoveContext"
+import { getMousePositionWithIllaUnit } from "../utils/calcMouse"
 import { sendMousePositionHandler } from "../utils/sendBinaryMessage"
 
 interface CursorPosition {
@@ -20,12 +20,12 @@ export const useMousePositionAsync = (
   unitWidth: number,
   displayName: string,
   isRoot: boolean = false,
+  wrapperRef: RefObject<HTMLDivElement>,
 ) => {
   const params = useParams()
   const userInfo = useSelector(getCurrentUser)
   const isDragging = useSelector(getIsDragging)
   const { width, height } = useWindowSize()
-  const wrapperRef = useRef<HTMLDivElement | null>(null)
   const cursorPositionRef = useRef<CursorPosition>({
     xInteger: 0,
     yInteger: 0,
@@ -128,6 +128,7 @@ export const useMousePositionAsync = (
     userInfo.nickname,
     userInfo.userId,
     width,
+    wrapperRef,
   ])
 
   useEffect(() => {
@@ -146,5 +147,5 @@ export const useMousePositionAsync = (
     }
   }, [isRoot, mouseLeaveHandler, pageHideHandler, visibilityChangeHandler])
 
-  return { wrapperRef, cursorPositionRef }
+  return { cursorPositionRef }
 }

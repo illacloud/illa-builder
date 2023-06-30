@@ -1,79 +1,33 @@
 {
   "appInfo": {
-    "appId": "ILAex4p1C74N",
+    "appId": "ILAex4p1C7QU",
     "uid": "00000000-0000-0000-0000-000000000000",
     "teamID": "ILAfx4p1C7d0",
-    "appName": "Admin panel",
-    "releaseVersion": 3,
-    "mainlineVersion": 3,
+    "appName": "New admin panel",
+    "releaseVersion": 2,
+    "mainlineVersion": 2,
     "config": {
-      "public": true
+      "public": true,
+      "waterMark": true
     },
     "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-03-24T10:49:43.802924Z",
+    "updatedAt": "2023-06-30T09:57:16.78257Z",
     "appActivity": {
-      "modifier": "mik",
-      "modifiedAt": "2023-03-24T10:49:43.802924Z"
+      "modifier": "Mikiko",
+      "modifiedAt": "2023-06-30T09:57:16.78257Z"
     }
   },
   "actions": [
     {
-      "actionId": "ILAfx4p1C7tL",
-      "uid": "844f46b6-d3e0-40fa-a242-7c0da2f2edd6",
+      "actionId": "ILAfx4p1C7VO",
+      "uid": "a08d22e2-4bf6-4ee0-93a4-96136e613600",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
-      "displayName": "add_new",
-      "actionType": "postgresql",
-      "content": {
-        "$dynamicAttrPaths": [],
-        "failedEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "fail",
-            "id": "events-d6a0d696-e53b-432d-935b-1f64c6344103",
-            "title": "Failed to add"
-          }
-        ],
-        "mode": "sql",
-        "query": "Update orders set start_time = '{{date2.value}}', expired_time = '{{date3.value}}', charge = '{{input5.value}}', feature_flag = ARRAY[{{\"'\"+checkboxGroup2.value.join(',').replace(\",\",\"','\")+\"'\"}}] where id = '{{select1.value}}'",
-        "successEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "success",
-            "id": "events-0846e855-0972-454d-a31c-cdd84a1995eb",
-            "title": "Successfully added"
-          },
-          {
-            "actionType": "datasource",
-            "eventType": "success",
-            "id": "events-44dcb72a-22c6-46bf-90ce-5a79e90b292a",
-            "queryID": "orders"
-          }
-        ]
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "manually",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T04:20:45.92395Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T04:36:23.680535Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAfx4p1C7t0",
-      "uid": "2befb8da-103c-4beb-a2e8-2314df2b1cdf",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "user_order",
+      "displayName": "orders",
       "actionType": "postgresql",
       "content": {
         "mode": "sql",
-        "query": "select * \n  from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'"
+        "query": "select * from orders\n"
       },
       "transformer": {
         "enable": false,
@@ -81,64 +35,24 @@
       },
       "triggerMode": "automate",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T04:37:14.039388Z",
+      "createdAt": "2023-06-30T09:47:50.957133Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T04:49:23.074257Z",
+      "updatedAt": "2023-06-30T09:56:42.074562Z",
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAfx4p1C7tZ",
-      "uid": "06353ff4-32ba-4165-8da2-342330f90393",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "delete_user",
-      "actionType": "postgresql",
-      "content": {
-        "$dynamicAttrPaths": [],
-        "failedEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "fail",
-            "id": "events-a2ef0578-8d9b-4a5c-b51e-38e3cdaddacc",
-            "notificationType": "error",
-            "title": "Failed to update"
-          }
-        ],
-        "mode": "sql",
-        "query": "DELETE FROM users WHERE id = {{input3.value}};",
-        "successEvent": [
-          {
-            "actionType": "datasource",
-            "eventType": "success",
-            "id": "events-880b77c9-9c86-4fd1-b273-02c155dd7fad",
-            "queryID": "user_order"
-          },
-          {
-            "actionType": "showNotification",
-            "eventType": "success",
-            "id": "events-869c028b-88ae-400c-a9bb-afe68c443f7c",
-            "title": "Deleted successfully"
-          }
-        ]
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "manually",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T04:53:07.82015Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T05:07:25.211674Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAfx4p1C7tY",
-      "uid": "85660f49-e87d-4944-adfd-75160db552c6",
+      "actionId": "ILAfx4p1C7VN",
+      "uid": "57618349-00f3-4a23-af9a-05e7453d3309",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "update_user",
@@ -177,40 +91,24 @@
       },
       "triggerMode": "manually",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T04:52:57.155614Z",
+      "createdAt": "2023-06-30T09:47:50.957132Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T05:05:14.207528Z",
+      "updatedAt": "2023-06-30T09:47:50.957132Z",
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAfx4p1C7tX",
-      "uid": "96aa60a7-7620-46ab-92e7-593a942dd8f3",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "orders",
-      "actionType": "postgresql",
-      "content": {
-        "mode": "sql",
-        "query": "select * from orders\n"
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "automate",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T03:46:09.006881Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T04:15:46.207941Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAfx4p1C7tW",
-      "uid": "16995c67-b356-4257-a9d1-f1536971d745",
+      "actionId": "ILAfx4p1C7VM",
+      "uid": "38056984-d383-4b79-88ba-5ae38535ccc6",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "id",
@@ -225,11 +123,162 @@
       },
       "triggerMode": "automate",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T04:17:47.918258Z",
+      "createdAt": "2023-06-30T09:47:50.957134Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T04:18:05.285667Z",
+      "updatedAt": "2023-06-30T09:56:59.23909Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VL",
+      "uid": "df68185f-ef76-4035-9e8c-cf5660b03d1d",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "user_order",
+      "actionType": "postgresql",
+      "content": {
+        "mode": "sql",
+        "query": "select * \n  from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'"
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "automate",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:47:50.957135Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:57:03.686096Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7V0",
+      "uid": "16a199fa-1d8d-409a-bf75-0f9149003f55",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "delete_user",
+      "actionType": "postgresql",
+      "content": {
+        "$dynamicAttrPaths": [],
+        "failedEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "fail",
+            "id": "events-a2ef0578-8d9b-4a5c-b51e-38e3cdaddacc",
+            "notificationType": "error",
+            "title": "Failed to update"
+          }
+        ],
+        "mode": "sql",
+        "query": "DELETE FROM users WHERE id = {{input3.value}};",
+        "successEvent": [
+          {
+            "actionType": "datasource",
+            "eventType": "success",
+            "id": "events-880b77c9-9c86-4fd1-b273-02c155dd7fad",
+            "queryID": "user_order"
+          },
+          {
+            "actionType": "showNotification",
+            "eventType": "success",
+            "id": "events-869c028b-88ae-400c-a9bb-afe68c443f7c",
+            "title": "Deleted successfully"
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:47:50.957136Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:57:08.208379Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VZ",
+      "uid": "b499bc30-3f97-4346-a19c-8487204fb837",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "add_new",
+      "actionType": "postgresql",
+      "content": {
+        "$dynamicAttrPaths": [],
+        "failedEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "fail",
+            "id": "events-d6a0d696-e53b-432d-935b-1f64c6344103",
+            "title": "Failed to add"
+          }
+        ],
+        "mode": "sql",
+        "query": "Update orders set start_time = '{{date2.value}}', expired_time = '{{date3.value}}', charge = '{{input5.value}}', feature_flag = ARRAY[{{\"'\"+checkboxGroup2.value.join(',').replace(\",\",\"','\")+\"'\"}}] where id = '{{select1.value}}'",
+        "successEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "success",
+            "id": "events-0846e855-0972-454d-a31c-cdd84a1995eb",
+            "title": "Successfully added"
+          },
+          {
+            "actionType": "datasource",
+            "eventType": "success",
+            "id": "events-44dcb72a-22c6-46bf-90ce-5a79e90b292a",
+            "queryID": "orders"
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:47:50.957137Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:57:16.777228Z",
       "updatedBy": "ILAfx4p1C7eb"
     }
   ],
@@ -381,7 +430,7 @@
                                               "hidden": false,
                                               "horizontalAlign": "start",
                                               "resizeDirection": "ALL",
-                                              "value": "{{list1.dataSources.map((currentItem) => ('## ' + currentItem.name))}}",
+                                              "value": "{{list1.dataSources.map((currentItem) =\u003e ('## ' + currentItem.name))}}",
                                               "verticalAlign": "center"
                                             },
                                             "panelConfig": null
@@ -417,7 +466,7 @@
                                               "hidden": false,
                                               "horizontalAlign": "start",
                                               "resizeDirection": "ALL",
-                                              "value": "{{list1.dataSources.map((currentItem) => ('Email: ' + currentItem.email))}}",
+                                              "value": "{{list1.dataSources.map((currentItem) =\u003e ('Email: ' + currentItem.email))}}",
                                               "verticalAlign": "center"
                                             },
                                             "panelConfig": null
@@ -453,7 +502,7 @@
                                               "hidden": false,
                                               "horizontalAlign": "start",
                                               "resizeDirection": "ALL",
-                                              "value": "{{list1.dataSources.map((currentItem) => ('Expired time: ' + currentItem.expired_time))}}",
+                                              "value": "{{list1.dataSources.map((currentItem) =\u003e ('Expired time: ' + currentItem.expired_time))}}",
                                               "verticalAlign": "center"
                                             },
                                             "panelConfig": null
@@ -489,7 +538,7 @@
                                               "hidden": false,
                                               "horizontalAlign": "start",
                                               "resizeDirection": "ALL",
-                                              "value": "{{list1.dataSources.map((currentItem) => ('Feature Flags: ' + currentItem.feature_flag))}}",
+                                              "value": "{{list1.dataSources.map((currentItem) =\u003e ('Feature Flags: ' + currentItem.feature_flag))}}",
                                               "verticalAlign": "center"
                                             },
                                             "panelConfig": null
@@ -519,7 +568,7 @@
                                                 "imageSrc"
                                               ],
                                               "hidden": false,
-                                              "imageSrc": "{{list1.dataSources.map((currentItem) => (currentItem.img))}}",
+                                              "imageSrc": "{{list1.dataSources.map((currentItem) =\u003e (currentItem.img))}}",
                                               "objectFit": "cover",
                                               "radius": "0px"
                                             },
@@ -1539,8 +1588,8 @@
                                                 }
                                               ],
                                               "mappedOption": {
-                                                "labels": "{{select1.dataSources.map((item) => ( item.id))}}",
-                                                "values": "{{select1.dataSources.map((item) => ( item.id))}}"
+                                                "labels": "{{select1.dataSources.map((item) =\u003e ( item.id))}}",
+                                                "values": "{{select1.dataSources.map((item) =\u003e ( item.id))}}"
                                               },
                                               "optionConfigureMode": "dynamic",
                                               "required": true
@@ -1622,6 +1671,72 @@
                                         "pageSize",
                                         "dataSourceJS"
                                       ],
+                                      "columnMapper": {
+                                        "charge": {
+                                          "accessorKey": "charge",
+                                          "columnIndex": 4,
+                                          "enableSorting": true,
+                                          "format": "YYYY-MM-DD",
+                                          "header": "charge",
+                                          "id": "charge",
+                                          "type": "text",
+                                          "visible": true
+                                        },
+                                        "expired_time": {
+                                          "accessorKey": "expired_time",
+                                          "columnIndex": 1,
+                                          "enableSorting": true,
+                                          "format": "YYYY-MM-DD",
+                                          "header": "expired_time",
+                                          "id": "expired_time",
+                                          "type": "text",
+                                          "visible": true
+                                        },
+                                        "feature_flag": {
+                                          "accessorKey": "feature_flag",
+                                          "columnIndex": 3,
+                                          "enableSorting": true,
+                                          "format": "YYYY-MM-DD",
+                                          "header": "feature_flag",
+                                          "id": "feature_flag",
+                                          "type": "text",
+                                          "visible": true
+                                        },
+                                        "id": {
+                                          "accessorKey": "id",
+                                          "columnIndex": 0,
+                                          "enableSorting": true,
+                                          "format": "YYYY-MM-DD",
+                                          "header": "id",
+                                          "id": "id",
+                                          "type": "text",
+                                          "visible": true
+                                        },
+                                        "start_time": {
+                                          "accessorKey": "start_time",
+                                          "columnIndex": 2,
+                                          "enableSorting": true,
+                                          "format": "YYYY-MM-DD",
+                                          "header": "start_time",
+                                          "id": "start_time",
+                                          "type": "text",
+                                          "visible": true
+                                        }
+                                      },
+                                      "columnNameIndices": {
+                                        "0": "id",
+                                        "1": "expired_time",
+                                        "2": "start_time",
+                                        "3": "feature_flag",
+                                        "4": "charge"
+                                      },
+                                      "columnVisibility": {
+                                        "charge": true,
+                                        "expired_time": true,
+                                        "feature_flag": true,
+                                        "id": true,
+                                        "start_time": true
+                                      },
                                       "columns": [
                                         {
                                           "accessorKey": "id",
@@ -1674,6 +1789,7 @@
                                           "visible": true
                                         }
                                       ],
+                                      "customColumnIndices": {},
                                       "dataSourceJS": "{{orders.data}}",
                                       "dataSourceMode": "dynamic",
                                       "defaultSortKey": "id",
@@ -1683,6 +1799,7 @@
                                       "filter": false,
                                       "overFlow": "pagination",
                                       "pageSize": "{{10}}",
+                                      "renamedColumnNames": {},
                                       "rowEvents": {},
                                       "rowSelection": {
                                         "1": true

@@ -300,3 +300,4 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
 }
 
 InputWidget.displayName = "InputWidget"
+export default InputWidget

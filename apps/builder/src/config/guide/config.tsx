@@ -9,20 +9,20 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { guideActions } from "@/redux/guide/guideSlice"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
+import { WidgetConfigMap } from "@/widgetLibrary/widgetBuilder"
 
 export const SELECT_WIDGET_ITEM = {
   INPUT_WIDGET: {
     highlightIcon: InputHighlightIcon,
-    ...WidgetConfig["INPUT_WIDGET"].config,
+    ...WidgetConfigMap["INPUT_WIDGET"].config,
   },
   BUTTON_WIDGET: {
     highlightIcon: ButtonHighlightIcon,
-    ...WidgetConfig["BUTTON_WIDGET"].config,
+    ...WidgetConfigMap["BUTTON_WIDGET"].config,
   },
   TABLE_WIDGET: {
     highlightIcon: TableHighlightIcon,
-    ...WidgetConfig["TABLE_WIDGET"].config,
+    ...WidgetConfigMap["TABLE_WIDGET"].config,
   },
 }
 

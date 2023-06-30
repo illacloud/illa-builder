@@ -1,15 +1,15 @@
 import { v4 } from "uuid"
 import {
+  DEFAULT_ASIDE_COLUMNS_NUMBER,
+  DEFAULT_BODY_COLUMNS_NUMBER,
+} from "@/page/App/components/DotPanel/constant/canvas"
+import {
   CONTAINER_TYPE,
   ModalSectionNode,
   PageNode,
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
-import {
-  BASIC_BLOCK_COLUMNS,
-  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-} from "@/utils/generators/generatePageOrSectionConfig"
 
 export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   displayName: "bodySection1",
@@ -128,11 +128,11 @@ export const BASIC_APP_CONFIG: PageNode[] = [
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
-      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      headerColumns: BASIC_BLOCK_COLUMNS,
-      footerColumns: BASIC_BLOCK_COLUMNS,
-      bodyColumns: BASIC_BLOCK_COLUMNS,
+      leftColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      rightColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      headerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      footerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      bodyColumns: DEFAULT_BODY_COLUMNS_NUMBER,
     },
     childrenNode: [BASIC_BODY_SECTION_CONFIG, BASIC_MODAL_SECTION_CONFIG],
   },

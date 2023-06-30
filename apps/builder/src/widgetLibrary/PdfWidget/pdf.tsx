@@ -213,6 +213,7 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
     scaleMode,
     url,
     showTollBar,
+    // TODO: wei
     w,
     h,
     ...rest
@@ -271,3 +272,4 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
 }
 
 PdfWidget.displayName = "PdfWidget"
+export default PdfWidget

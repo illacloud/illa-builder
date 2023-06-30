@@ -199,3 +199,4 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
 }
 
 DateTimeWidget.displayName = "DateTimeWidget"
+export default DateTimeWidget

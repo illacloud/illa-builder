@@ -9,7 +9,7 @@ export const CASCADER_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["cascader", "级联选择"],
   icon: <CascaderWidgetIcon />,
   sessionType: "SELECT",
-  w: 12,
+  w: 6,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

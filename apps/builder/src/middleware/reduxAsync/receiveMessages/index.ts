@@ -1,17 +1,16 @@
-import { PayloadAction } from "@reduxjs/toolkit"
+import { AnyAction } from "@reduxjs/toolkit"
 import { Connection } from "@/api/ws"
+import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import { ILLARoute } from "@/router"
 
-export const receiveMessage = (
-  action: PayloadAction<any>,
-  currentAppID: string,
-) => {
+export const receiveMessage = (action: AnyAction, currentAppID: string) => {
   const { type, payload } = action
   const typeList = type.split("/")
   const reduxType = typeList[0]
   const reduxAction = typeList[1]
   const newType = `${reduxType}/${reduxAction}`
   action.type = newType
+  action.from = REDUX_ACTION_FROM.WS
   switch (newType) {
     case "apps/removeDashboardAppReducer": {
       if (payload === currentAppID) {

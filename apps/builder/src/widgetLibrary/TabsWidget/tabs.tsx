@@ -149,3 +149,4 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
 }
 
 TabsWidget.displayName = "TabsWidget"
+export default TabsWidget

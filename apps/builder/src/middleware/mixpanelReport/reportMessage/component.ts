@@ -4,10 +4,7 @@ import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import {
-  ComponentNode,
-  CopyComponentPayload,
-} from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 
@@ -25,7 +22,7 @@ export const componentsOperationReport = (
       const payload = action.payload as ComponentNode[]
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.ADD, {
         element: "component",
-        parameter1: payload[0].type,
+        parameter1: payload.map((node) => node.type),
       })
       break
     }
@@ -41,21 +38,6 @@ export const componentsOperationReport = (
         element: "component",
         parameter1: types,
         parameter3: source,
-      })
-      break
-    }
-    case "copyComponentReducer": {
-      const payload = action.payload as {
-        copyComponents: CopyComponentPayload[]
-        sources: "keyboard" | "duplicate"
-      }
-      const types = payload.copyComponents.map(
-        (node) => node.newComponentNode.type,
-      )
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DUPLICATE, {
-        element: "component",
-        parameter1: types,
-        parameter3: payload.sources,
       })
       break
     }
