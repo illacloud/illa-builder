@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "ZÁKLADNÍ",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Stránka",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Přidat neomezený počet členů diváku ZDARMA",
         "publish_public_appli": "Publikovat veřejné aplikace",
         "ai_sql_generation": "Generování AI SQL",
-        "audit_logs": "Protokoly auditu (již brzy)",
+        "audit_logs": "Záznamy auditu",
         "learn_more": "Zjistit více",
         "upgrade": "Vylepšit",
         "pricing": "/editor/měsíc, ročně",
