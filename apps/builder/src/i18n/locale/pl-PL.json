@@ -1288,6 +1288,9 @@
           "start_button_text": "Rozpocznij nagrywanie",
           "stop_button_text": "Zatrzymaj",
           "clear_button_text": "Wyczyść"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Identyfikator komunikatu odpowiedzi",
         "senderName": "Nazwa nadawcy",
         "senderId": "ID nadawcy",
-        "showName": "Pokaż nazwę"
+        "showName": "Pokaż nazwę",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Ustaw kolor wiadomości po lewej",
         "rightMessageColor": "Ustaw kolor wiadomości po prawej",
         "toolbar-replay": "Ustaw czy wyświetlić przycisk odpowiedzi po wybraniu wiadomości.",
-        "toolbar-delete": "Ustaw czy pokazywać przycisk usuwania po wybraniu wiadomości."
+        "toolbar-delete": "Ustaw czy pokazywać przycisk usuwania po wybraniu wiadomości.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Naprawione",
@@ -1989,6 +1998,10 @@
             "left-click": "Kliknij lewym przyciskiem myszy",
             "right-click": "Prawy przycisk myszy"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Napisz tutaj swój kod. Użyj JavaScript wewnątrz {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "PODSTAWOWE",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Strona",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Kliknij ramkę, aby określić lokalizację wklejenia."
+    "paste_no_aimed": "Kliknij ramkę, aby określić lokalizację wklejenia.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Zarezerwuj demo",
@@ -3323,7 +3354,9 @@
         "unsubscribe_license": "Zamierzasz zrezygnować z subskrypcji ILLA Cloud Plus. Po anulowaniu, począwszy od następnego cyklu rozliczeniowego, funkcje Plus nie będą już dostępne. <0>Dowiedz się więcej</0>",
         "unsubscribe_storage": "Zamierzasz zrezygnować z subskrypcji pamięci dyskowej ILLA. Po anulowaniu, począwszy od następnego cyklu rozliczeniowego, pojemność magazynowa zostanie przywrócona do 100MB. <0>Dowiedz się więcej</0>",
         "subscribe_license_monthly": "Zamierzasz subskrybować miesięczną subskrypcję ILLA Cloud Plus. <0>Dowiedz się więcej</0>",
-        "subscribe_license_yearly": "Zamierzasz subskrybować roczną subskrypcję ILLA Cloud Plus. <0>Dowiedz się więcej</0>"
+        "subscribe_license_yearly": "Zamierzasz subskrybować roczną subskrypcję ILLA Cloud Plus. <0>Dowiedz się więcej</0>",
+        "subscribe_storage_monthly": "Dodasz {{changeNum}}GB pamięci. Po potwierdzeniu, natychmiast odliczymy koszt pamięci. <0>Dowiedz się więcej</0>",
+        "subscribe_storage_yearly": "Dodasz {{changeNum}}GB pamięci. Po potwierdzeniu, natychmiast odliczymy koszt pamięci. <0>Dowiedz się więcej</0>"
       },
       "description": {
         "add_storage": "Reguły obliczeniowe przy użyciu miesięcznej subskrypcji magazynu jako przykładu: Rozważmy scenariusz, w którym początkowo subskrybowałeś 5 GB począwszy od 14 marca, a cykl rozliczeniowy obejmuje okres od 14 dnia bieżącego miesiąca do 13 dnia następnego miesiąca. 10 maja zdecydujesz się dodać 1 GB. W tym momencie pozostało 4 dni do końca bieżącego cyklu 13 maja (łącznie 30 dni od 14 kwietnia do 13 maja). Aby obliczyć skorygowaną płatność, odliczymy koszt 1 GB, który wynosi około 0 USD. 9, proporcjonalnie do długości 4 dni w ciągu 30-dniowego cyklu. W związku z tym odliczenie jest szacowane na 1 licencję * USD. 9 / 30 dni * 4 dni, co daje około 0, 132 USD. Począwszy od następnego cyklu rozliczeniowego, wszystkie opłaty za przechowywanie zostaną skonsolidowane i zapłacone razem. Jeśli chcesz zmniejszyć licencje lub wprowadzić inne zmiany w subskrypcji, zaktualizuj je przed rozpoczęciem następnego okresu. Aby uzyskać więcej informacji, zapoznaj się z naszym użytkownikiem <0>Polityką prywatności</0> i <1>Warunki korzystania z usługi</1>",
@@ -3367,8 +3400,8 @@
       },
       "no_license_operate_failed": "Z powodu niewystarczających licencji, operacja nie powiodła się.",
       "failed_to_invite_no_license": "Z powodu niewystarczającej licencji, niektóre zaproszenia użytkowników nie powiodły się.",
-      "error_subscribe": "Failed to change plan. Please try again later.",
-      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
+      "error_subscribe": "Zmiana planu nie powiodła się. Spróbuj ponownie później.",
+      "unsubscription_fail": "Nie udało się anulować subskrypcji. Spróbuj ponownie później."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3400,7 +3433,7 @@
         "add_unlimited_viewer": "Dodaj nieograniczoną liczbę członków przeglądarki za DARMO",
         "publish_public_appli": "Opublikuj aplikacje publiczne",
         "ai_sql_generation": "Generowanie AI SQL",
-        "audit_logs": "Dzienniki audytu",
+        "audit_logs": "Logi audytu (Już wkrótce)",
         "learn_more": "Poznaj więcej",
         "upgrade": "Ulepsz",
         "pricing": "/edytor/miesiąc, rok",
@@ -3467,6 +3500,13 @@
       "desc2": "Przekierowanie do chmury ILLA za {{time}} sekund...",
       "title": "Płatność zakończona powodzeniem",
       "button": "Wróć do chmury ILLA"
+    },
+    "redirect_to_stripe": "Przekierowanie do Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
     }
+  },
+  "network": {
+    "error": "Błąd sieci, spróbuj ponownie później"
   }
 }

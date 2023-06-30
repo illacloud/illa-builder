@@ -1288,6 +1288,9 @@
           "start_button_text": "Začít nahrávat",
           "stop_button_text": "Zastavit",
           "clear_button_text": "Vyčistit"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID odpovědi",
         "senderName": "Jméno odesílatele",
         "senderId": "ID odesílatele",
-        "showName": "Zobrazit název"
+        "showName": "Zobrazit název",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Nastavit barvu zpráv vlevo",
         "rightMessageColor": "Nastavte barvu zpráv vpravo",
         "toolbar-replay": "Nastavte, zda se zobrazí tlačítko odpovědi při výběru zprávy.",
-        "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy."
+        "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -1989,6 +1998,10 @@
             "left-click": "Kliknutí levým tlačítkem",
             "right-click": "Kliknutí pravým tlačítkem"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Napište svůj kód zde. Použijte JavaScript uvnitř {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "ZÁKLADNÍ",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Stránka",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klikněte na rámeček pro zadání vložené polohy."
+    "paste_no_aimed": "Klikněte na rámeček pro zadání vložené polohy.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Objednejte si demo",
@@ -3323,7 +3354,9 @@
         "unsubscribe_license": "Chystáte se odhlásit ILLA Cloud Plus. Po zrušení, počínaje dalším fakturačním cyklem, funkce Plus již nebudou dostupné. <0>Další informace</0>",
         "unsubscribe_storage": "Chystáte se odhlásit úložiště ILLA Drive. Po zrušení, počínaje dalším fakturačním cyklem, bude kapacita úložiště obnovena na 100MB. <0>Další informace</0>",
         "subscribe_license_monthly": "Přihlásíte se k odběru měsíčního předplatného ILLA Cloud Plus. <0>Více informací</0>",
-        "subscribe_license_yearly": "Přihlásíte se k ročnímu předplatnému ILLA Cloud Plus. <0>Více informací</0>"
+        "subscribe_license_yearly": "Přihlásíte se k ročnímu předplatnému ILLA Cloud Plus. <0>Více informací</0>",
+        "subscribe_storage_monthly": "Chystáte se přidat {{changeNum}}GB úložiště. Jakmile bude potvrzeno, okamžitě odečteme náklady na úložiště. <0>Další informace</0>",
+        "subscribe_storage_yearly": "Chystáte se přidat {{changeNum}}GB úložiště. Jakmile bude potvrzeno, okamžitě odečteme náklady na úložiště. <0>Další informace</0>"
       },
       "description": {
         "add_storage": "Pravidla výpočtu s použitím měsíčního předplatného úložiště jako příkladu: zvažme scénář, kdy jste od 14. března původně upsali 5 GB, a zúčtovací cyklus sahá od 14. dne tohoto měsíce do 13. dne příštího měsíce. 10. května se rozhodnete přidat 1 GB. V tomto okamžiku ke třináctému květnu zbývaly čtyři dny do konce aktuálního cyklu (což je celkem 30 dnů od 14. dubna do 13. května). Pro výpočet upravené platby odečteme náklady ve výši 1 GB, která činí přibližně 0 dolarů. 9, úměrně délce 4 dnů během 30denního cyklu. Odpočet se proto odhaduje na 1 licenci * $0. 9 / 30 dní * 4 dny, což vede k přibližně 0,132 USD. Od příštího fakturačního cyklu budou všechny poplatky za skladování konsolidovány a zaplaceny společně. Pokud chcete snížit licence nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v našem uživateli <0>Zásady ochrany osobních údajů</0> a <1>Podmínky služby</1>",
@@ -3367,8 +3400,8 @@
       },
       "no_license_operate_failed": "Z důvodu nedostatku licencí se operace nezdařila.",
       "failed_to_invite_no_license": "Z důvodu nedostatečné licence se některé pozvánky členů nezdařily.",
-      "error_subscribe": "Failed to change plan. Please try again later.",
-      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
+      "error_subscribe": "Nepodařilo se změnit tarif. Opakujte akci později.",
+      "unsubscription_fail": "Nepodařilo se zrušit předplatné. Opakujte akci později."
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3400,7 +3433,7 @@
         "add_unlimited_viewer": "Přidat neomezený počet členů diváku ZDARMA",
         "publish_public_appli": "Publikovat veřejné aplikace",
         "ai_sql_generation": "Generování AI SQL",
-        "audit_logs": "Záznamy auditu",
+        "audit_logs": "Protokoly auditu (již brzy)",
         "learn_more": "Zjistit více",
         "upgrade": "Vylepšit",
         "pricing": "/editor/měsíc, ročně",
@@ -3467,6 +3500,13 @@
       "desc2": "Přesměrování do ILLA Cloudu za {{time}} sekund...",
       "title": "Platba úspěšná",
       "button": "Zpět na ILLA Cloud"
+    },
+    "redirect_to_stripe": "Přesměrování do Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
     }
+  },
+  "network": {
+    "error": "Chyba sítě, zkuste to prosím později"
   }
 }

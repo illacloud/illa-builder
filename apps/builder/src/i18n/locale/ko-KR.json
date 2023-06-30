@@ -1288,6 +1288,9 @@
           "start_button_text": "녹음 시작",
           "stop_button_text": "멈추다",
           "clear_button_text": "분명한"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "답장 메시지 ID",
         "senderName": "Sender name",
         "senderId": "Sender ID",
-        "showName": "Show name"
+        "showName": "Show name",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Set the color of the messages on the left",
         "rightMessageColor": "Set the color of the messages on the right",
         "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "toolbar-delete": "Set whether to show a delete button when select a message.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -1973,7 +1982,7 @@
           "icon": "Icon",
           "solid": "Solid",
           "outline": "Outline",
-          "auto": "Auto",
+          "auto": "Responsive",
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
@@ -1989,6 +1998,10 @@
             "left-click": "Left-click",
             "right-click": "Right-click"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "여기에 코드를 작성하십시오. {{ }} 내부에서 JavaScript 사용"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "베이스",
-        "frame": "캔버스"
+        "frame": "LAYOUT"
       },
       "tab_title": "페이지",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Please click on the frame to specify the paste location.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Book a demo",
@@ -3323,7 +3354,9 @@
         "unsubscribe_license": "You are going to unsubscribe ILLA Cloud Plus. After cancellation, starting from the next billing cycle, the Plus features will no longer be accessible. <0>Learn more</0>",
         "unsubscribe_storage": "You are going to unsubscribe ILLA Drive storage. After cancellation, starting from the next billing cycle, the storage capacity will be restored to 100MB. <0>Learn more</0>",
         "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Plus monthly subscription. <0>Learn more</0>",
-        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>"
+        "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Plus yearly subscription. <0>Learn more</0>",
+        "subscribe_storage_monthly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>",
+        "subscribe_storage_yearly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>"
       },
       "description": {
         "add_storage": "Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our user <0>Privacy Policy</0> and <1>Terms of Service</1>",
@@ -3400,7 +3433,7 @@
         "add_unlimited_viewer": "Add unlimited viewer members for FREE",
         "publish_public_appli": "Publish public applications",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs",
+        "audit_logs": "Audit logs(Coming soon)",
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
         "pricing": "editor/month, yearly (monthly $10/editor)",
@@ -3467,6 +3500,13 @@
       "desc2": "Redirecting to ILLA Cloud in {{time}} seconds...",
       "title": "Payment successful",
       "button": "Back to ILLA Cloud"
+    },
+    "redirect_to_stripe": "Redirecting to Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
     }
+  },
+  "network": {
+    "error": "Network error, please try again later"
   }
 }
