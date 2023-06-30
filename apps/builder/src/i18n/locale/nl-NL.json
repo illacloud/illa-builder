@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Pagina",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Onbeperkte kijkleden GRATIS toevoegen",
         "publish_public_appli": "Publieke toepassingen publiceren",
         "ai_sql_generation": "AI SQL Generatie",
-        "audit_logs": "Audit logs(binnenkort beschikbaar)",
+        "audit_logs": "Audit logs",
         "learn_more": "Meer informatie",
         "upgrade": "Upgraden",
         "pricing": "/editor/maand, jaarlijks",
