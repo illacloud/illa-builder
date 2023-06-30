@@ -10,7 +10,7 @@ export const MULTISELECT_WIDGET_CONFIG: WidgetConfig = {
   icon: <MultiselectWidgetIcon />,
   keywords: ["Multiselect", "多项选择"],
   sessionType: "SELECT",
-  w: 15,
+  w: 7,
   h: 5,
   defaults: {
     label: "Label",

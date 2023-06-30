@@ -93,3 +93,4 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   )
 }
 ImageWidget.displayName = "ImageWidget"
+export default ImageWidget

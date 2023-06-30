@@ -6,7 +6,7 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
   displayName: "upload",
   widgetName: i18n.t("widget.upload.name"),
   h: 5,
-  w: 12,
+  w: 6,
   type: "UPLOAD_WIDGET",
   icon: <UploadWidgetIcon />,
   keywords: ["Upload Input", "上传"],

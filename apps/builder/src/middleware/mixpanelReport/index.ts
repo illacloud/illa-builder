@@ -1,5 +1,5 @@
+import { Middleware } from "@reduxjs/toolkit"
 import { cloneDeep } from "lodash"
-import { Middleware } from "redux"
 import { reportMessage } from "./reportMessage"
 
 export const mixpanelReport: Middleware = (store) => (next) => (action) => {

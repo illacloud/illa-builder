@@ -1,144 +1,26 @@
 {
   "appInfo": {
-    "appId": "ILAex4p1C74H",
+    "appId": "ILAex4p1C7QW",
     "uid": "00000000-0000-0000-0000-000000000000",
     "teamID": "ILAfx4p1C7d0",
-    "appName": "Dashboard",
-    "releaseVersion": 5,
-    "mainlineVersion": 5,
+    "appName": "New dashboard",
+    "releaseVersion": 3,
+    "mainlineVersion": 3,
     "config": {
-      "public": true
+      "public": true,
+      "waterMark": true
     },
     "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-03-15T11:11:05.487758Z",
+    "updatedAt": "2023-06-30T10:47:27.133342Z",
     "appActivity": {
-      "modifier": "Marshall～A",
-      "modifiedAt": "2023-03-15T11:11:05.487758Z"
+      "modifier": "Mikiko",
+      "modifiedAt": "2023-06-30T10:47:27.133342Z"
     }
   },
   "actions": [
     {
-      "actionId": "ILAex4p1C7Uw",
-      "uid": "01be1c05-9c6d-49cc-8e57-30dc74e38739",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "requests",
-      "actionType": "postgresql",
-      "content": {
-        "mode": "sql",
-        "query": "SELECT count(*) as requests FROM survey;"
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "automate",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-14T12:31:02.645027Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T02:30:25.772033Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAex4p1C7Uv",
-      "uid": "2549429c-cdd5-4427-8fa8-cdd3d882d3f5",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "list_all",
-      "actionType": "postgresql",
-      "content": {
-        "mode": "sql",
-        "query": "select * from survey"
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "automate",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T02:31:33.615759Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T02:33:49.585077Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAex4p1C7Uu",
-      "uid": "a959292a-87d0-46bf-acc9-59048ca97d91",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "available",
-      "actionType": "postgresql",
-      "content": {
-        "mode": "sql",
-        "query": "select count(familiar) as requests from survey where available = '1'"
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "automate",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T02:26:24.956908Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T02:27:16.863514Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAex4p1C7Ut",
-      "uid": "c4cbef3f-3326-4b24-9c7b-2ddf7d406efe",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "delete_row",
-      "actionType": "postgresql",
-      "content": {
-        "$dynamicAttrPaths": [],
-        "failedEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "fail",
-            "id": "events-42160dd3-4249-4068-8122-d5db50dea091",
-            "title": "Failed to delete"
-          }
-        ],
-        "mode": "sql",
-        "query": "DELETE FROM survey WHERE id='{{table1.selectedRow[0].id}}';",
-        "successEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "success",
-            "id": "events-5421ab78-1a4e-4c40-8444-891387913c71",
-            "title": "Deleted successfully"
-          },
-          {
-            "actionType": "datasource",
-            "eventType": "success",
-            "id": "events-d21926ac-d664-499b-9070-8c00585aff48",
-            "queryID": "list_all"
-          }
-        ]
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "manually",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T02:50:06.277031Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T03:19:49.91936Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAex4p1C7UI",
-      "uid": "c5ec70e6-685d-4fa6-af1c-8193431f1fcc",
+      "actionId": "ILAfx4p1C7VE",
+      "uid": "300e1a5b-894a-4b03-befc-8b6c304d08a7",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "update_available",
@@ -176,16 +58,24 @@
       },
       "triggerMode": "manually",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T03:20:01.266134Z",
+      "createdAt": "2023-06-30T09:38:06.90894Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T03:21:28.354384Z",
+      "updatedAt": "2023-06-30T09:38:06.90894Z",
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7UH",
-      "uid": "c29418a8-f821-4675-b47b-fa3d392185b2",
+      "actionId": "ILAfx4p1C7VD",
+      "uid": "6924a986-946c-46d0-8172-b802720f8ff1",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "familiar",
@@ -200,11 +90,170 @@
       },
       "triggerMode": "automate",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T03:25:54.038089Z",
+      "createdAt": "2023-06-30T09:38:06.908941Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T03:29:02.04746Z",
+      "updatedAt": "2023-06-30T09:56:01.294508Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VS",
+      "uid": "c0bf3614-47a7-4420-96d9-56ddef3be0d6",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "delete_row",
+      "actionType": "postgresql",
+      "content": {
+        "$dynamicAttrPaths": [],
+        "failedEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "fail",
+            "id": "events-42160dd3-4249-4068-8122-d5db50dea091",
+            "title": "Failed to delete"
+          }
+        ],
+        "mode": "sql",
+        "query": "DELETE FROM survey WHERE id='{{table1.selectedRow[0].id}}';",
+        "successEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "success",
+            "id": "events-5421ab78-1a4e-4c40-8444-891387913c71",
+            "title": "Deleted successfully"
+          },
+          {
+            "actionType": "datasource",
+            "eventType": "success",
+            "id": "events-d21926ac-d664-499b-9070-8c00585aff48",
+            "queryID": "list_all"
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:38:06.908942Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:38:06.908942Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VR",
+      "uid": "6aab46b5-4e70-4b3b-b279-7e28bfd3e205",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "requests",
+      "actionType": "postgresql",
+      "content": {
+        "mode": "sql",
+        "query": "SELECT count(*) as requests FROM survey;"
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "automate",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:38:06.908943Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:56:06.872707Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VQ",
+      "uid": "fe6df63c-87d2-44b9-a93e-33a8603a8407",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "list_all",
+      "actionType": "postgresql",
+      "content": {
+        "mode": "sql",
+        "query": "select * from survey"
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "automate",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:38:06.908944Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:56:11.819797Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VP",
+      "uid": "30fb6001-80d2-4c06-a35c-e2f4ba05755a",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "available",
+      "actionType": "postgresql",
+      "content": {
+        "mode": "sql",
+        "query": "select count(familiar) as requests from survey where available = '1'"
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "automate",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:38:06.908945Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:56:17.782636Z",
       "updatedBy": "ILAfx4p1C7eb"
     }
   ],
@@ -280,11 +329,11 @@
                                     "isDragging": false,
                                     "isResizing": false,
                                     "childrenNode": null,
-                                    "type": "CHART",
+                                    "type": "CHART_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 33,
-                                    "w": 31,
+                                    "w": 16,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 9.9375,
@@ -322,16 +371,16 @@
                                     "isDragging": false,
                                     "isResizing": false,
                                     "childrenNode": null,
-                                    "type": "CHART",
+                                    "type": "CHART_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 33,
-                                    "w": 31,
+                                    "w": 15,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 9.9375,
                                     "unitH": 8,
-                                    "x": 33,
+                                    "x": 17,
                                     "y": 1,
                                     "z": 0,
                                     "props": {
@@ -377,12 +426,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 41,
-                            "w": 62,
+                            "w": 32,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 11.015625,
                             "unitH": 8,
-                            "x": 1,
+                            "x": 0,
                             "y": 31,
                             "z": 0,
                             "props": {
@@ -434,12 +483,12 @@
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 9,
-                                    "w": 59,
+                                    "w": 30,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 4.3046875,
                                     "unitH": 8,
-                                    "x": 3,
+                                    "x": 1,
                                     "y": 7,
                                     "z": 0,
                                     "props": {
@@ -475,12 +524,12 @@
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 5,
-                                    "w": 59,
+                                    "w": 30,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 8.16748046875,
                                     "unitH": 8,
-                                    "x": 3,
+                                    "x": 1,
                                     "y": 1,
                                     "z": 0,
                                     "props": {
@@ -518,12 +567,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 19,
-                            "w": 30,
+                            "w": 16,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 17.859375,
                             "unitH": 8,
-                            "x": 1,
+                            "x": 0,
                             "y": 9,
                             "z": 0,
                             "props": {
@@ -575,12 +624,12 @@
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 9,
-                                    "w": 58,
+                                    "w": 29,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 4.21484375,
                                     "unitH": 8,
-                                    "x": 3,
+                                    "x": 2,
                                     "y": 7,
                                     "z": 0,
                                     "props": {
@@ -615,12 +664,12 @@
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 5,
-                                    "w": 58,
+                                    "w": 29,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 8.16748046875,
                                     "unitH": 8,
-                                    "x": 3,
+                                    "x": 2,
                                     "y": 1,
                                     "z": 0,
                                     "props": {
@@ -658,12 +707,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 19,
-                            "w": 30,
+                            "w": 15,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 11.015625,
                             "unitH": 8,
-                            "x": 33,
+                            "x": 17,
                             "y": 9,
                             "z": 0,
                             "props": {
@@ -699,12 +748,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 5,
-                            "w": 62,
+                            "w": 32,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 11.015625,
                             "unitH": 8,
-                            "x": 1,
+                            "x": 0,
                             "y": 2,
                             "z": 0,
                             "props": {
@@ -733,12 +782,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 40,
-                            "w": 62,
+                            "w": 32,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 17.890625,
                             "unitH": 8,
-                            "x": 1,
+                            "x": 0,
                             "y": 75,
                             "z": 0,
                             "props": {
@@ -749,6 +798,120 @@
                                 "columns[5]",
                                 "columns[5].mappedValue"
                               ],
+                              "columnMapper": {
+                                "available": {
+                                  "accessorKey": "available",
+                                  "columnIndex": 5,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "fromCurrentRow": {
+                                    "mappedValue": true
+                                  },
+                                  "header": "available",
+                                  "id": "available",
+                                  "mappedValue": [
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "❌"
+                                  ],
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "familiar": {
+                                  "accessorKey": "familiar",
+                                  "columnIndex": 0,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "familiar",
+                                  "id": "familiar",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "feature": {
+                                  "accessorKey": "feature",
+                                  "columnIndex": 1,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "feature",
+                                  "id": "feature",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "how_much_pay": {
+                                  "accessorKey": "how_much_pay",
+                                  "columnIndex": 2,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "how_much_pay",
+                                  "id": "how_much_pay",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "how_often": {
+                                  "accessorKey": "how_often",
+                                  "columnIndex": 3,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "how_often",
+                                  "id": "how_often",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "interested": {
+                                  "accessorKey": "interested",
+                                  "columnIndex": 4,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "interested",
+                                  "id": "interested",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "other": {
+                                  "accessorKey": "other",
+                                  "columnIndex": 6,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "other",
+                                  "id": "other",
+                                  "type": "text",
+                                  "visible": true
+                                }
+                              },
+                              "columnNameIndices": {
+                                "0": "familiar",
+                                "1": "feature",
+                                "2": "how_much_pay",
+                                "3": "how_often",
+                                "4": "interested",
+                                "5": "available",
+                                "6": "other"
+                              },
+                              "columnVisibility": {
+                                "available": true,
+                                "familiar": true,
+                                "feature": true,
+                                "how_much_pay": true,
+                                "how_often": true,
+                                "interested": true,
+                                "other": true
+                              },
                               "columns": [
                                 {
                                   "accessorKey": "familiar",
@@ -810,7 +973,7 @@
                                   },
                                   "header": "available",
                                   "id": "available",
-                                  "mappedValue": "{{table2.dataSourceJS.map((currentRow) => ( currentRow.available==\"1\"?\"✅\":\"❌\"))}}",
+                                  "mappedValue": "{{table2.dataSourceJS.map((currentRow) =\u003e ( currentRow.available==\"1\"?\"✅\":\"❌\"))}}",
                                   "type": "text",
                                   "visible": true
                                 },
@@ -825,6 +988,7 @@
                                   "visible": true
                                 }
                               ],
+                              "customColumnIndices": {},
                               "dataSourceJS": "{{list_all.data}}",
                               "dataSourceMode": "dynamic",
                               "defaultSortKey": "default",
@@ -834,6 +998,7 @@
                               "filter": false,
                               "overFlow": "pagination",
                               "pageSize": "{{10}}",
+                              "renamedColumnNames": {},
                               "rowEvents": {},
                               "rowSelection": {
                                 "1": true
@@ -878,7 +1043,7 @@
                     "containerType": "EDITOR_SCALE_SQUARE",
                     "verticalResize": false,
                     "h": 110,
-                    "w": 64,
+                    "w": 32,
                     "minH": 3,
                     "minW": 2,
                     "unitW": 18.109375,
@@ -959,12 +1124,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 6,
-                            "w": 62,
+                            "w": 32,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 17.890625,
                             "unitH": 8,
-                            "x": 1,
+                            "x": 0,
                             "y": 1,
                             "z": 0,
                             "props": {
@@ -993,12 +1158,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 99,
-                            "w": 62,
+                            "w": 32,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 17.890625,
                             "unitH": 8,
-                            "x": 1,
+                            "x": 0,
                             "y": 9,
                             "z": 0,
                             "props": {
@@ -1011,6 +1176,161 @@
                                 "columns[7]",
                                 "columns[7].mappedValue"
                               ],
+                              "columnMapper": {
+                                "Delete": {
+                                  "accessorKey": "column-3c9648c9-5a13-46c2-8a8a-9fd54176e52c",
+                                  "columnIndex": 9,
+                                  "custom": true,
+                                  "enableSorting": true,
+                                  "events": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "format": "YYYY-MM-DD",
+                                  "fromCurrentRow": {
+                                    "mappedValue": false
+                                  },
+                                  "header": "Delete",
+                                  "id": "column-3c9648c9-5a13-46c2-8a8a-9fd54176e52c",
+                                  "mappedValue": "Delete",
+                                  "type": "button",
+                                  "visible": true
+                                },
+                                "Not available": {
+                                  "accessorKey": "column-8947342a-8ceb-4c6c-9dea-af5459047e6c",
+                                  "columnIndex": 8,
+                                  "custom": true,
+                                  "enableSorting": true,
+                                  "events": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "format": "YYYY-MM-DD",
+                                  "fromCurrentRow": {
+                                    "mappedValue": false
+                                  },
+                                  "header": "Not available",
+                                  "id": "column-8947342a-8ceb-4c6c-9dea-af5459047e6c",
+                                  "mappedValue": "Not available",
+                                  "type": "button",
+                                  "visible": true
+                                },
+                                "available": {
+                                  "accessorKey": "available",
+                                  "columnIndex": 7,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "fromCurrentRow": {
+                                    "mappedValue": true
+                                  },
+                                  "header": "available",
+                                  "id": "available",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "familiar": {
+                                  "accessorKey": "familiar",
+                                  "columnIndex": 1,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "familiar",
+                                  "id": "familiar",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "feature": {
+                                  "accessorKey": "feature",
+                                  "columnIndex": 2,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "feature",
+                                  "id": "feature",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "how_much_pay": {
+                                  "accessorKey": "how_much_pay",
+                                  "columnIndex": 3,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "how_much_pay",
+                                  "id": "how_much_pay",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "how_often": {
+                                  "accessorKey": "how_often",
+                                  "columnIndex": 4,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "how_often",
+                                  "id": "how_often",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "id": {
+                                  "accessorKey": "id",
+                                  "columnIndex": 0,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "id",
+                                  "id": "id",
+                                  "type": "text",
+                                  "visible": false
+                                },
+                                "interested": {
+                                  "accessorKey": "interested",
+                                  "columnIndex": 5,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "interested",
+                                  "id": "interested",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "other": {
+                                  "accessorKey": "other",
+                                  "columnIndex": 6,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "other",
+                                  "id": "other",
+                                  "type": "text",
+                                  "visible": true
+                                }
+                              },
+                              "columnNameIndices": {
+                                "0": "id",
+                                "1": "familiar",
+                                "2": "feature",
+                                "3": "how_much_pay",
+                                "4": "how_often",
+                                "5": "interested",
+                                "6": "other",
+                                "7": "available",
+                                "8": "Not available",
+                                "9": "Delete"
+                              },
+                              "columnVisibility": {
+                                "Delete": true,
+                                "Not available": true,
+                                "available": true,
+                                "familiar": true,
+                                "feature": true,
+                                "how_much_pay": true,
+                                "how_often": true,
+                                "id": false,
+                                "interested": true,
+                                "other": true
+                              },
                               "columns": [
                                 {
                                   "accessorKey": "id",
@@ -1092,7 +1412,7 @@
                                   },
                                   "header": "available",
                                   "id": "available",
-                                  "mappedValue": "{{table1.dataSourceJS.map((currentRow) => ( currentRow.available==\"1\"?\"✅\":\"❌\"))}}",
+                                  "mappedValue": "{{table1.dataSourceJS.map((currentRow) =\u003e ( currentRow.available==\"1\"?\"✅\":\"❌\"))}}",
                                   "type": "text",
                                   "visible": true
                                 },
@@ -1143,6 +1463,10 @@
                                   "visible": true
                                 }
                               ],
+                              "customColumnIndices": {
+                                "8": "Not available",
+                                "9": "Delete"
+                              },
                               "dataSourceJS": "{{list_all.data}}",
                               "dataSourceMode": "dynamic",
                               "defaultSortKey": "id",
@@ -1152,299 +1476,10 @@
                               "filter": false,
                               "overFlow": "pagination",
                               "pageSize": "{{10}}",
+                              "renamedColumnNames": {},
                               "rowEvents": {
-                                "8": {
-                                  "0": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "1": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "2": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "3": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "4": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "5": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "6": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "7": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "8": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "9": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "10": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "11": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "12": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "13": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "14": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "15": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "16": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "17": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ]
-                                },
-                                "9": {
-                                  "0": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "1": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "2": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "3": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "4": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "5": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "6": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "7": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "8": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "9": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "10": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "11": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "12": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "13": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "14": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "15": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "16": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "17": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ]
-                                }
+                                "8": {},
+                                "9": {}
                               },
                               "rowSelection": {
                                 "17": true
@@ -1487,7 +1522,7 @@
                     "containerType": "EDITOR_SCALE_SQUARE",
                     "verticalResize": false,
                     "h": 110,
-                    "w": 64,
+                    "w": 32,
                     "minH": 3,
                     "minW": 2,
                     "unitW": 18.109375,
@@ -1850,7 +1885,7 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 15,
-                            "w": 16,
+                            "w": 8,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 12.5,
@@ -1965,7 +2000,7 @@
                     "containerType": "EDITOR_SCALE_SQUARE",
                     "verticalResize": false,
                     "h": 110,
-                    "w": 15,
+                    "w": 8,
                     "minH": 3,
                     "minW": 2,
                     "unitW": 14.9375,
@@ -2064,7 +2099,7 @@
         "y": -1,
         "z": 0,
         "props": {
-          "bodyColumns": 64,
+          "bodyColumns": 32,
           "bottomHeight": 0,
           "canvasSize": "fixed",
           "canvasWidth": 1440,
@@ -2079,9 +2114,9 @@
           "isLeftFixed": true,
           "isRightFixed": true,
           "layout": "Custom",
-          "leftColumns": 16,
+          "leftColumns": 8,
           "leftPosition": "BOTTOM",
-          "leftWidth": 263,
+          "leftWidth": 251,
           "rightColumns": 16,
           "rightPosition": "NONE",
           "rightWidth": 0,

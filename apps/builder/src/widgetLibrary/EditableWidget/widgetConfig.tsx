@@ -10,7 +10,7 @@ export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Editable Text", "可编辑文本"],
   sessionType: "INPUTS",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
-  w: 24,
+  w: 12,
   h: 5,
   defaults: {
     label: "Label",

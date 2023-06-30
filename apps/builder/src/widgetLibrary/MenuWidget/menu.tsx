@@ -119,3 +119,4 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
 }
 
 WrappedMenu.displayName = "WrappedMenu"
+export default MenuWidget

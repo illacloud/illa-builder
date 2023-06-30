@@ -10,7 +10,7 @@ import {
   HEADER_MIN_HEIGHT,
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
-} from "@/page/App/components/DotPanel/renderSection"
+} from "@/page/App/components/DotPanel/constant/canvas"
 import {
   closeIconStyle,
   inputAreaLabelWrapperStyle,

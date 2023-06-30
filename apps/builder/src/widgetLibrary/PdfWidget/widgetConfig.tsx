@@ -8,7 +8,7 @@ export const PDF_WIDGET_CONFIG: WidgetConfig = {
   icon: <PdfWidgetIcon />,
   keywords: ["PDF", "pdf"],
   sessionType: "PRESENTATION",
-  w: 20,
+  w: 10,
   h: 9,
   defaults: {
     url: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Guideline_No._GD-Ed-2214_Marman_Clamp_Systems_Design_Guidelines.pdf",

@@ -208,3 +208,4 @@ export const RecordingWidget: FC<AudioRecorderWidgetProps> = (props) => {
   )
 }
 RecordingWidget.displayName = "RecordingWidget"
+export default RecordingWidget

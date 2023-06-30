@@ -282,3 +282,4 @@ export const TimeRangeWidget: FC<TimeRangeWidgetProps> = (props) => {
   )
 }
 TimeRangeWidget.displayName = "TimeRangeWidget"
+export default TimeRangeWidget

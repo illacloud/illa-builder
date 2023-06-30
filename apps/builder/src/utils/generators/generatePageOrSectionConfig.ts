@@ -1,5 +1,9 @@
 import { v4 } from "uuid"
 import {
+  DEFAULT_ASIDE_COLUMNS_NUMBER,
+  DEFAULT_BODY_COLUMNS_NUMBER,
+} from "@/page/App/components/DotPanel/constant/canvas"
+import {
   CONTAINER_TYPE,
   ComponentNode,
   ModalSectionNode,
@@ -17,10 +21,6 @@ export type SectionNodeType =
   | "headerSection"
   | "footerSection"
   | "modalSection"
-
-export const BASIC_BLOCK_COLUMNS = 64
-
-export const LEFT_OR_RIGHT_DEFAULT_COLUMNS = 16
 
 export const generateSectionContainerConfig = (
   parentNode: string,
@@ -153,11 +153,11 @@ export const defaultPageProps: PageNodeProps = {
   isFooterFixed: true,
   showLeftFoldIcon: false,
   showRightFoldIcon: false,
-  leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-  rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-  headerColumns: BASIC_BLOCK_COLUMNS,
-  footerColumns: BASIC_BLOCK_COLUMNS,
-  bodyColumns: BASIC_BLOCK_COLUMNS,
+  leftColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+  rightColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+  headerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+  footerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+  bodyColumns: DEFAULT_BODY_COLUMNS_NUMBER,
 }
 
 export const generatePageConfig = (): PageNode => {
@@ -235,11 +235,11 @@ export const generateDefaultLayoutConfig = (
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
-      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      headerColumns: BASIC_BLOCK_COLUMNS,
-      footerColumns: BASIC_BLOCK_COLUMNS,
-      bodyColumns: BASIC_BLOCK_COLUMNS,
+      leftColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      rightColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      headerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      footerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      bodyColumns: DEFAULT_BODY_COLUMNS_NUMBER,
     },
     childrenNode: [childrenNode, modalSectionNode],
   }
@@ -299,11 +299,11 @@ export const generatePresetALayoutConfig = (
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
-      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      headerColumns: BASIC_BLOCK_COLUMNS,
-      footerColumns: BASIC_BLOCK_COLUMNS,
-      bodyColumns: BASIC_BLOCK_COLUMNS,
+      leftColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      rightColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      headerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      footerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      bodyColumns: DEFAULT_BODY_COLUMNS_NUMBER,
     },
     childrenNode: [leftSectionNode, bodySectionNode, modalSectionNode],
   }
@@ -367,11 +367,11 @@ export const generatePresetBLayoutConfig = (
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
-      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      headerColumns: BASIC_BLOCK_COLUMNS,
-      footerColumns: BASIC_BLOCK_COLUMNS,
-      bodyColumns: BASIC_BLOCK_COLUMNS,
+      leftColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      rightColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      headerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      footerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      bodyColumns: DEFAULT_BODY_COLUMNS_NUMBER,
     },
     childrenNode: [
       headerSectionNode,
@@ -521,11 +521,11 @@ export const generatePresetDLayoutConfig = (
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
-      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      headerColumns: BASIC_BLOCK_COLUMNS,
-      footerColumns: BASIC_BLOCK_COLUMNS,
-      bodyColumns: BASIC_BLOCK_COLUMNS,
+      leftColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      rightColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      headerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      footerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      bodyColumns: DEFAULT_BODY_COLUMNS_NUMBER,
     },
     childrenNode: [
       headerSectionNode,
@@ -600,11 +600,11 @@ export const generatePresetELayoutConfig = (
       isFooterFixed: true,
       showLeftFoldIcon: false,
       showRightFoldIcon: false,
-      leftColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      rightColumns: LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-      headerColumns: BASIC_BLOCK_COLUMNS,
-      footerColumns: BASIC_BLOCK_COLUMNS,
-      bodyColumns: BASIC_BLOCK_COLUMNS,
+      leftColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      rightColumns: DEFAULT_ASIDE_COLUMNS_NUMBER,
+      headerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      footerColumns: DEFAULT_BODY_COLUMNS_NUMBER,
+      bodyColumns: DEFAULT_BODY_COLUMNS_NUMBER,
     },
     childrenNode: [
       headerSectionNode,

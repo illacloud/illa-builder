@@ -183,3 +183,4 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
 }
 
 CheckboxWidget.displayName = "CheckboxWidget"
+export default CheckboxWidget

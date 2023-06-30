@@ -1,6 +1,11 @@
 import i18n from "i18next"
 import { createMessage } from "@illa-design/react"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { onCopyActionItem } from "@/page/App/components/Actions/api"
+import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
+import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
+import { canCrossDifferenceColumnNumber } from "@/page/App/components/DotPanel/utils/getDragShadow"
+import { getComponentNodeResultByRelativeCombineShape } from "@/page/App/components/DotPanel/utils/getDropResult"
 import {
   ActionContent,
   ActionItem,
@@ -8,14 +13,49 @@ import {
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import { FocusManager } from "@/utils/focusManager"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getCurrentSectionColumnNumberByChildDisplayName } from "./componentNode/search"
+import { trackInEditor } from "./mixpanelHelper"
 
 const message = createMessage()
 
+const doPaste = (
+  originCopyComponents: ComponentNode[],
+  oldColumnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER,
+  newColumnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER,
+  sources: "keyboard" | "duplicate",
+) => {
+  if (
+    newColumnNumber !== oldColumnNumber &&
+    !canCrossDifferenceColumnNumber(originCopyComponents)
+  ) {
+    message.error({
+      content: i18n.t("frame.message.session.error"),
+    })
+    return
+  }
+
+  const newComponents = getComponentNodeResultByRelativeCombineShape(
+    originCopyComponents,
+    newColumnNumber,
+  )
+
+  const types = newComponents.map((component) => component.type)
+
+  trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.DUPLICATE, {
+    element: "component",
+    parameter1: types,
+    parameter3: sources,
+  })
+  store.dispatch(componentsActions.addComponentReducer(newComponents))
+}
+
 export class CopyManager {
   static currentCopyComponentNodes: ComponentNode[] | null = null
+  static copiedColumnNumber: number = DEFAULT_BODY_COLUMNS_NUMBER
 
   static currentCopyAction: ActionItem<ActionContent> | null = null
 
@@ -23,11 +63,33 @@ export class CopyManager {
     this.currentCopyAction = action
   }
 
+  static copyComponentNodeByDisplayName(displayNames: string[]) {
+    if (displayNames.length > 0) {
+      const widgetLayoutInfos = getExecutionWidgetLayoutInfo(store.getState())
+      illaSnapshot.setSnapshot(widgetLayoutInfos)
+      const copiedColumnNumber =
+        getCurrentSectionColumnNumberByChildDisplayName(displayNames[0])
+      this.currentCopyComponentNodes = displayNames.map((displayName) => {
+        return searchDSLByDisplayName(displayName) as ComponentNode
+      })
+      this.copiedColumnNumber = copiedColumnNumber
+    }
+  }
+
   static copyComponentNode(node: ComponentNode[]) {
     this.currentCopyComponentNodes = node
+    if (node.length > 0) {
+      const widgetLayoutInfos = getExecutionWidgetLayoutInfo(store.getState())
+      illaSnapshot.setSnapshot(widgetLayoutInfos)
+      const copiedColumnNumber =
+        getCurrentSectionColumnNumberByChildDisplayName(node[0].displayName)
+      this.copiedColumnNumber = copiedColumnNumber
+    }
   }
 
   static paste(sources: "keyboard" | "duplicate") {
+    const widgetLayoutInfos = getExecutionWidgetLayoutInfo(store.getState())
+    illaSnapshot.setSnapshot(widgetLayoutInfos)
     switch (FocusManager.getFocus()) {
       case "data_action":
       case "action":
@@ -37,27 +99,27 @@ export class CopyManager {
         break
       case "data_component":
         if (this.currentCopyComponentNodes != null) {
-          store.dispatch(
-            componentsActions.copyComponentReducer({
-              copyComponents: this.currentCopyComponentNodes
-                .filter((node) => {
-                  return (
-                    node.parentNode && searchDSLByDisplayName(node.parentNode)
-                  )
-                })
-                .map((node) => {
-                  const parentNode = searchDSLByDisplayName(node.parentNode!!)!!
-                  return {
-                    newComponentNode: this.copyComponent(
-                      node,
-                      parentNode,
-                      node.x,
-                      node.y + node.h,
-                    ),
-                  }
-                }),
-              sources: sources,
-            }),
+          const clickPosition = FocusManager.getClickPosition()
+
+          const originCopyComponents = this.currentCopyComponentNodes
+            .filter((node) => {
+              return node.parentNode && searchDSLByDisplayName(node.parentNode)
+            })
+            .map((node) => {
+              const parentNode = searchDSLByDisplayName(node.parentNode!!)!!
+              return this.copyComponent(
+                node,
+                parentNode,
+                node.x,
+                node.y + node.h,
+              )
+            })
+
+          doPaste(
+            originCopyComponents,
+            this.copiedColumnNumber,
+            clickPosition?.columnNumber,
+            sources,
           )
         }
         break
@@ -84,28 +146,26 @@ export class CopyManager {
                   if (targetParentNode) {
                     let leftTopX = Number.MAX_SAFE_INTEGER
                     let leftTopY = Number.MAX_SAFE_INTEGER
-
                     this.currentCopyComponentNodes.forEach((node) => {
                       leftTopX = Math.min(leftTopX, node.x)
                       leftTopY = Math.min(leftTopY, node.y)
                     })
 
-                    store.dispatch(
-                      componentsActions.copyComponentReducer({
-                        copyComponents: this.currentCopyComponentNodes.map(
-                          (node) => {
-                            return {
-                              newComponentNode: this.copyComponent(
-                                node,
-                                targetParentNode,
-                                targetNode.x + node.x - leftTopX,
-                                targetNode.y + targetNode.h + node.y - leftTopY,
-                              ),
-                            }
-                          },
-                        ),
-                        sources: sources,
-                      }),
+                    const originCopyComponents =
+                      this.currentCopyComponentNodes.map((node) => {
+                        return this.copyComponent(
+                          node,
+                          targetParentNode,
+                          targetNode.x + node.x - leftTopX,
+                          targetNode.y + targetNode.h + node.y - leftTopY,
+                        )
+                      })
+
+                    doPaste(
+                      originCopyComponents,
+                      this.copiedColumnNumber,
+                      clickPosition?.columnNumber,
+                      sources,
                     )
                   }
                 } else {
@@ -133,26 +193,21 @@ export class CopyManager {
                     leftTopY = Math.min(leftTopY, node.y)
                   })
 
-                  store.dispatch(
-                    componentsActions.copyComponentReducer({
-                      copyComponents: this.currentCopyComponentNodes.map(
-                        (node) => {
-                          return {
-                            newComponentNode: this.copyComponent(
-                              node,
-                              containerNode,
-                              clickPosition.clickPosition[0] +
-                                node.x -
-                                leftTopX,
-                              clickPosition.clickPosition[1] +
-                                node.y -
-                                leftTopY,
-                            ),
-                          }
-                        },
-                      ),
-                      sources: sources,
-                    }),
+                  const originCopyComponents =
+                    this.currentCopyComponentNodes.map((node) => {
+                      return this.copyComponent(
+                        node,
+                        containerNode,
+                        clickPosition.clickPosition[0] + node.x - leftTopX,
+                        clickPosition.clickPosition[1] + node.y - leftTopY,
+                      )
+                    })
+
+                  doPaste(
+                    originCopyComponents,
+                    this.copiedColumnNumber,
+                    clickPosition?.columnNumber,
+                    sources,
                   )
                 } else {
                   message.normal({
@@ -167,32 +222,29 @@ export class CopyManager {
                 if (targetParentNode) {
                   let leftTopX = Number.MAX_SAFE_INTEGER
                   let leftTopY = Number.MAX_SAFE_INTEGER
-
                   this.currentCopyComponentNodes.forEach((node) => {
                     leftTopX = Math.min(leftTopX, node.x)
                     leftTopY = Math.min(leftTopY, node.y)
                   })
-                  store.dispatch(
-                    componentsActions.copyComponentReducer({
-                      copyComponents: this.currentCopyComponentNodes.map(
-                        (node) => {
-                          return {
-                            newComponentNode: this.copyComponent(
-                              node,
-                              targetParentNode,
-                              clickPosition.clickPosition[0] +
-                                node.x -
-                                leftTopX,
-                              clickPosition.clickPosition[1] +
-                                clickPosition.clickPosition[3] +
-                                node.y -
-                                leftTopY,
-                            ),
-                          }
-                        },
-                      ),
-                      sources: sources,
-                    }),
+
+                  const originCopyComponents =
+                    this.currentCopyComponentNodes.map((node) => {
+                      return this.copyComponent(
+                        node,
+                        targetParentNode,
+                        clickPosition.clickPosition[0] + node.x - leftTopX,
+                        clickPosition.clickPosition[1] +
+                          clickPosition.clickPosition[3] +
+                          node.y -
+                          leftTopY,
+                      )
+                    })
+
+                  doPaste(
+                    originCopyComponents,
+                    this.copiedColumnNumber,
+                    clickPosition?.columnNumber,
+                    sources,
                   )
                 }
             }

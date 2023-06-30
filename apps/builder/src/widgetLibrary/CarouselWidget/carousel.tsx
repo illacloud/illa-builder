@@ -199,3 +199,4 @@ export const CarouselWidget: FC<CarouselWidgetProps> = (props) => {
 }
 
 CarouselWidget.displayName = "CarouselWidget"
+export default CarouselWidget

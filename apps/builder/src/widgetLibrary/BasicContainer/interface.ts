@@ -4,11 +4,15 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 export interface BasicContainerProps {
   children?: ReactNode
   minHeight?: number
-  componentNode: ComponentNode
-  canResizeY?: boolean
-  padding?: number
-  safeRowNumber?: number
-  addedRowNumber: number
-  blockColumns?: number
+  displayName: string
+  columnNumber?: number
   displayNamePrefix?: string
+}
+
+export interface BasicContainerByJsonProps {
+  children?: ReactNode
+  minHeight?: number
+  columnNumber?: number
+  displayNamePrefix?: string
+  componentNode: ComponentNode
 }

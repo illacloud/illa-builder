@@ -2,10 +2,7 @@ import { FC, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { DropList, DropListItem } from "@illa-design/react"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { PanelHeaderActionProps } from "./interface"
@@ -19,22 +16,20 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const shortcut = useContext(ShortCutContext)
 
   const handleClickDropListItem = useCallback(() => {
-    const defaultProps = widgetBuilder(componentType).config.defaults
+    const defaults = widgetBuilder(componentType)?.config?.defaults
     if (!widgetDisplayName) return
-    const targetNode = searchDSLByDisplayName(
-      widgetDisplayName,
-    ) as ComponentNode
-    const newComponentNode: ComponentNode = {
-      ...targetNode,
-      props: {
-        ...defaultProps,
-      },
+    let defaultProps: unknown = defaults
+    if (typeof defaults === "function") {
+      defaultProps = defaults()
     }
-    newComponentNode.props = getNewWidgetPropsByUpdateSlice(
-      newComponentNode.props || {},
-      {},
+    if (typeof defaultProps !== "object") return
+
+    dispatch(
+      componentsActions.updateComponentPropsReducer({
+        displayName: widgetDisplayName,
+        updateSlice: (defaultProps as Record<string, unknown>) || {},
+      }),
     )
-    dispatch(componentsActions.resetComponentPropsReducer(newComponentNode))
   }, [componentType, dispatch, widgetDisplayName])
 
   return (

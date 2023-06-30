@@ -104,3 +104,4 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
   )
 }
 RateWidget.displayName = "RateWidget"
+export default RateWidget

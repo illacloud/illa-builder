@@ -49,7 +49,7 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   displayName: "menu",
   widgetName: i18n.t("widget.menu.name"),
   h: 7,
-  w: 30,
+  w: 15,
   type: "MENU_WIDGET",
   icon: <MenuWidgetIcon />,
   keywords: ["Menu", "菜单"],
