@@ -22,6 +22,7 @@ import {
   updateTeamPermissionConfig,
   updateTeamsInfo,
 } from "@/services/team"
+import { leaveTeamErrorHandler } from "@/utils/billing/errorHandler"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const Member: FC<MemberProps> = () => {
@@ -49,11 +50,16 @@ export const Member: FC<MemberProps> = () => {
 
   const handleRemoveTeamMembers = useCallback(
     async (teamMemberID: string) => {
-      const res = await removeTeamMembers(teamMemberID)
-      if (teamMemberID === currentTeamMemberID) {
-        window.location.reload()
+      try {
+        const res = await removeTeamMembers(teamMemberID)
+        if (teamMemberID === currentTeamMemberID) {
+          window.location.reload()
+        }
+        return res
+      } catch (e) {
+        leaveTeamErrorHandler(e)
+        return false
       }
-      return res
     },
     [currentTeamMemberID],
   )
