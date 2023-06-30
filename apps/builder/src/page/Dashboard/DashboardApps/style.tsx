@@ -15,9 +15,27 @@ export const appsContainerStyle: SerializedStyles = css`
 
 export const listTitleContainerStyle: SerializedStyles = css`
   display: flex;
-  min-height: 80px;
+  padding: 24px 0;
+  justify-content: space-between;
   align-items: center;
+`
+
+export const teamInfoContainerStyle: SerializedStyles = css`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`
+
+export const teamAvatarStyle: SerializedStyles = css`
+  width: 40px;
+  height: 40px;
+`
+
+export const listContainerStyle: SerializedStyles = css`
+  display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
 `
 
 export const listTitleStyle: SerializedStyles = css`

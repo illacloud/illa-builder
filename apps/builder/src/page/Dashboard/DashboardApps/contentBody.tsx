@@ -7,13 +7,14 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { AppCard } from "@/page/Dashboard/DashboardApps/AppCard"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
 import { DashboardItemMenu } from "../components/DashboardItemMenu"
-import { hoverStyle } from "./style"
+import { hoverStyle, listContainerStyle } from "./style"
 
 interface AppsContentBodyProps {
   canEditApp: boolean
@@ -46,6 +47,24 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
 
   return (
     <>
+      <div css={listContainerStyle}>
+        {finalAppsList.map((item) => {
+          return (
+            <AppCard
+              key={item.appId}
+              appInfo={item}
+              canEditApp={canEditApp}
+              onClick={() => {
+                if (canEditApp) {
+                  navigate(`/${teamIdentifier}/app/${item.appId}`)
+                } else if (item.mainlineVersion !== 0) {
+                  navigate(`/${teamIdentifier}/deploy/app/${item.appId}`)
+                }
+              }}
+            />
+          )
+        })}
+      </div>
       {finalAppsList.length !== 0 && (
         <List
           h={"100%"}
