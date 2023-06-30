@@ -1288,6 +1288,9 @@
           "start_button_text": "録音を開始",
           "stop_button_text": "中止",
           "clear_button_text": "クリア"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "返信メッセージID",
         "senderName": "送信者名",
         "senderId": "送信者ID",
-        "showName": "名前を表示"
+        "showName": "名前を表示",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "左側のメッセージの色を設定します",
         "rightMessageColor": "右側のメッセージの色を設定します",
         "toolbar-replay": "メッセージを選択したときに返信ボタンを表示するかどうかを設定します。",
-        "toolbar-delete": "メッセージを選択したときに削除ボタンを表示するかどうかを設定します。"
+        "toolbar-delete": "メッセージを選択したときに削除ボタンを表示するかどうかを設定します。",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1989,6 +1998,10 @@
             "left-click": "左クリック",
             "right-click": "右クリック(&R)"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "ここにコードを書きます。 {{ }} 内で JavaScript を使用する"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "ベース",
-        "frame": "キャンバス"
+        "frame": "LAYOUT"
       },
       "tab_title": "ページ",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "フレームをクリックして貼り付け場所を指定してください。"
+    "paste_no_aimed": "フレームをクリックして貼り付け場所を指定してください。",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "デモを予約する",
@@ -3470,7 +3501,10 @@
       "title": "支払いが完了しました",
       "button": "ILLAクラウドに戻る"
     },
-    "redirect_to_stripe": "Stripeにリダイレクト中"
+    "redirect_to_stripe": "Stripeにリダイレクト中",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "ネットワークエラーが発生しました。後でもう一度お試しください。"

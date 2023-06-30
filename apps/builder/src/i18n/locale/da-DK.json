@@ -1288,6 +1288,9 @@
           "start_button_text": "Start optagelse",
           "stop_button_text": "Stop",
           "clear_button_text": "Ryd"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Svar besked ID",
         "senderName": "Afsenders navn",
         "senderId": "Afsender ID",
-        "showName": "Vis navn"
+        "showName": "Vis navn",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Sæt farven på brevene til venstre",
         "rightMessageColor": "Sæt farven på brevene til højre",
         "toolbar-replay": "Angiv, om en svar-knap skal vises når du vælger en besked.",
-        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked."
+        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1989,6 +1998,10 @@
             "left-click": "Venstreklik",
             "right-click": "Højreklik"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Skriv din kode her. Brug JavaScript inde i {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "GRUNDLÆGGENDE",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Side",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt."
+    "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Book en demo",
@@ -3470,7 +3501,10 @@
       "title": "Betaling gennemført",
       "button": "Tilbage til ILLA Cloud"
     },
-    "redirect_to_stripe": "Omdirigerer til Stripe"
+    "redirect_to_stripe": "Omdirigerer til Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Netværksfejl, prøv igen senere"

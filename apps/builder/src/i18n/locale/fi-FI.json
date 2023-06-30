@@ -1288,6 +1288,9 @@
           "start_button_text": "Aloita tallennus",
           "stop_button_text": "Pysäytä",
           "clear_button_text": "Tyhjennä"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Vastauksen tunnus",
         "senderName": "Lähettäjän nimi",
         "senderId": "Lähettäjän Tunnus",
-        "showName": "Näytä nimi"
+        "showName": "Näytä nimi",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Aseta vasemmalla olevien viestien väri",
         "rightMessageColor": "Aseta oikealla olevien viestien väri",
         "toolbar-replay": "Määritä näytetäänkö vastauspainike, kun valitse viesti.",
-        "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti."
+        "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -1989,6 +1998,10 @@
             "left-click": "Vasenpainike",
             "right-click": "Oikea-klikkaus"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Kirjoita koodisi tähän. Käytä JavaScriptiä {{ }} sisällä"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "PERUSTE",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Sivu",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Ole hyvä ja klikkaa kehystä määrittääksesi liittämisen sijainnin."
+    "paste_no_aimed": "Ole hyvä ja klikkaa kehystä määrittääksesi liittämisen sijainnin.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Varaa demo",
@@ -3470,7 +3501,10 @@
       "title": "Maksu onnistui",
       "button": "Takaisin ILLA-pilveen"
     },
-    "redirect_to_stripe": "Uudelleenohjaus raidalle"
+    "redirect_to_stripe": "Uudelleenohjaus raidalle",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Verkkovirhe, yritä myöhemmin uudelleen"

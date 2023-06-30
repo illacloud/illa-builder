@@ -1288,6 +1288,9 @@
           "start_button_text": "Розпочати запис",
           "stop_button_text": "Зупинити",
           "clear_button_text": "Очистити"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID повідомлення для відповіді",
         "senderName": "Ім'я відправника",
         "senderId": "ID відправника",
-        "showName": "Показати ім'я"
+        "showName": "Показати ім'я",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Встановити колір повідомлень ліворуч",
         "rightMessageColor": "Встановити колір повідомлень праворуч",
         "toolbar-replay": "Вкажіть, чи показувати кнопку відповіді при виборі повідомлення.",
-        "toolbar-delete": "Вкажіть, чи показувати кнопку видалення при виборі повідомлення."
+        "toolbar-delete": "Вкажіть, чи показувати кнопку видалення при виборі повідомлення.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Виправлена",
@@ -1989,6 +1998,10 @@
             "left-click": "Лівий притиск",
             "right-click": "Правий притиск"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Запишіть свій код тут. Використовуйте JavaScript всередині {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "БАСИК",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Сторінка",
       "tooltips": {
@@ -3081,7 +3099,20 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Будь ласка, натисніть на кадр, щоб вказати вставку."
+    "paste_no_aimed": "Будь ласка, натисніть на кадр, щоб вказати вставку.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed"
+      }
+    }
   },
   "bookFrom": {
     "title": "Забронюйте демо",
@@ -3470,7 +3501,10 @@
       "title": "Оплата пройшла успішно",
       "button": "Повернутися до хмарки ILLA"
     },
-    "redirect_to_stripe": "Перенаправлення до смуги"
+    "redirect_to_stripe": "Перенаправлення до смуги",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Помилка мережі, будь ласка, спробуйте ще раз пізніше"
