@@ -335,7 +335,7 @@
                                     "h": 33,
                                     "w": 16,
                                     "minH": 3,
-                                    "minW": 1,
+                                    "minW": 2,
                                     "unitW": 9.9375,
                                     "unitH": 8,
                                     "x": 0,
@@ -375,7 +375,7 @@
                                     "h": 33,
                                     "w": 15,
                                     "minH": 3,
-                                    "minW": 1,
+                                    "minW": 2,
                                     "unitW": 9.9375,
                                     "unitH": 8,
                                     "x": 17,
@@ -408,7 +408,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 1,
+                                "minW": 2,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -422,12 +422,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 41,
-                            "w": 32,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 1,
+                            "minW": 2,
                             "unitW": 11.015625,
                             "unitH": 8,
-                            "x": 0,
+                            "x": 1,
                             "y": 31,
                             "z": 0,
                             "props": {
@@ -474,17 +474,17 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "STATISTIC_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 9,
                                     "w": 30,
                                     "minH": 3,
-                                    "minW": 1,
+                                    "minW": 2,
                                     "unitW": 4.3046875,
                                     "unitH": 8,
-                                    "x": 1,
+                                    "x": 2,
                                     "y": 7,
                                     "z": 0,
                                     "props": {
@@ -515,17 +515,17 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "TEXT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 5,
                                     "w": 30,
                                     "minH": 3,
-                                    "minW": 1,
+                                    "minW": 2,
                                     "unitW": 8.16748046875,
                                     "unitH": 8,
-                                    "x": 1,
+                                    "x": 2,
                                     "y": 1,
                                     "z": 0,
                                     "props": {
@@ -549,7 +549,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 1,
+                                "minW": 2,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -563,12 +563,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 19,
-                            "w": 16,
+                            "w": 15,
                             "minH": 3,
-                            "minW": 1,
+                            "minW": 2,
                             "unitW": 17.859375,
                             "unitH": 8,
-                            "x": 0,
+                            "x": 1,
                             "y": 9,
                             "z": 0,
                             "props": {
@@ -615,14 +615,14 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "STATISTIC_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 9,
                                     "w": 29,
                                     "minH": 3,
-                                    "minW": 1,
+                                    "minW": 2,
                                     "unitW": 4.21484375,
                                     "unitH": 8,
                                     "x": 2,
@@ -655,14 +655,14 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "TEXT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 5,
                                     "w": 29,
                                     "minH": 3,
-                                    "minW": 1,
+                                    "minW": 2,
                                     "unitW": 8.16748046875,
                                     "unitH": 8,
                                     "x": 2,
@@ -689,7 +689,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 1,
+                                "minW": 2,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -705,7 +705,7 @@
                             "h": 19,
                             "w": 15,
                             "minH": 3,
-                            "minW": 1,
+                            "minW": 2,
                             "unitW": 11.015625,
                             "unitH": 8,
                             "x": 17,
@@ -739,17 +739,17 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TEXT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 5,
-                            "w": 32,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 1,
+                            "minW": 2,
                             "unitW": 11.015625,
                             "unitH": 8,
-                            "x": 0,
+                            "x": 1,
                             "y": 2,
                             "z": 0,
                             "props": {
@@ -773,17 +773,17 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TABLE_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 40,
-                            "w": 32,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 1,
+                            "minW": 2,
                             "unitW": 17.890625,
                             "unitH": 8,
-                            "x": 0,
+                            "x": 1,
                             "y": 75,
                             "z": 0,
                             "props": {
@@ -794,120 +794,6 @@
                                 "columns[5]",
                                 "columns[5].mappedValue"
                               ],
-                              "columnMapper": {
-                                "available": {
-                                  "accessorKey": "available",
-                                  "columnIndex": 5,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "fromCurrentRow": {
-                                    "mappedValue": true
-                                  },
-                                  "header": "available",
-                                  "id": "available",
-                                  "mappedValue": [
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "✅",
-                                    "❌"
-                                  ],
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "familiar": {
-                                  "accessorKey": "familiar",
-                                  "columnIndex": 0,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "familiar",
-                                  "id": "familiar",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "feature": {
-                                  "accessorKey": "feature",
-                                  "columnIndex": 1,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "feature",
-                                  "id": "feature",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "how_much_pay": {
-                                  "accessorKey": "how_much_pay",
-                                  "columnIndex": 2,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "how_much_pay",
-                                  "id": "how_much_pay",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "how_often": {
-                                  "accessorKey": "how_often",
-                                  "columnIndex": 3,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "how_often",
-                                  "id": "how_often",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "interested": {
-                                  "accessorKey": "interested",
-                                  "columnIndex": 4,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "interested",
-                                  "id": "interested",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "other": {
-                                  "accessorKey": "other",
-                                  "columnIndex": 6,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "other",
-                                  "id": "other",
-                                  "type": "text",
-                                  "visible": true
-                                }
-                              },
-                              "columnNameIndices": {
-                                "0": "familiar",
-                                "1": "feature",
-                                "2": "how_much_pay",
-                                "3": "how_often",
-                                "4": "interested",
-                                "5": "available",
-                                "6": "other"
-                              },
-                              "columnVisibility": {
-                                "available": true,
-                                "familiar": true,
-                                "feature": true,
-                                "how_much_pay": true,
-                                "how_often": true,
-                                "interested": true,
-                                "other": true
-                              },
                               "columns": [
                                 {
                                   "accessorKey": "familiar",
@@ -969,7 +855,7 @@
                                   },
                                   "header": "available",
                                   "id": "available",
-                                  "mappedValue": "{{table2.dataSourceJS.map((currentRow) =\u003e ( currentRow.available==\"1\"?\"✅\":\"❌\"))}}",
+                                  "mappedValue": "{{table2.dataSourceJS.map((currentRow) => ( currentRow.available==\"1\"?\"✅\":\"❌\"))}}",
                                   "type": "text",
                                   "visible": true
                                 },
@@ -984,7 +870,6 @@
                                   "visible": true
                                 }
                               ],
-                              "customColumnIndices": {},
                               "dataSourceJS": "{{list_all.data}}",
                               "dataSourceMode": "dynamic",
                               "defaultSortKey": "default",
@@ -994,7 +879,6 @@
                               "filter": false,
                               "overFlow": "pagination",
                               "pageSize": "{{10}}",
-                              "renamedColumnNames": {},
                               "rowEvents": {},
                               "rowSelection": {
                                 "1": true
@@ -1010,7 +894,123 @@
                                   "interested": "Somewhat interested",
                                   "other": "Other feature2"
                                 }
-                              ]
+                              ],
+                              "customColumnIndices": {},
+                              "columnNameIndices": {
+                                "0": "familiar",
+                                "1": "feature",
+                                "2": "how_much_pay",
+                                "3": "how_often",
+                                "4": "interested",
+                                "5": "available",
+                                "6": "other"
+                              },
+                              "renamedColumnNames": {},
+                              "columnVisibility": {
+                                "familiar": true,
+                                "feature": true,
+                                "how_much_pay": true,
+                                "how_often": true,
+                                "interested": true,
+                                "available": true,
+                                "other": true
+                              },
+                              "columnMapper": {
+                                "familiar": {
+                                  "accessorKey": "familiar",
+                                  "columnIndex": 0,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "familiar",
+                                  "id": "familiar",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "feature": {
+                                  "accessorKey": "feature",
+                                  "columnIndex": 1,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "feature",
+                                  "id": "feature",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "how_much_pay": {
+                                  "accessorKey": "how_much_pay",
+                                  "columnIndex": 2,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "how_much_pay",
+                                  "id": "how_much_pay",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "how_often": {
+                                  "accessorKey": "how_often",
+                                  "columnIndex": 3,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "how_often",
+                                  "id": "how_often",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "interested": {
+                                  "accessorKey": "interested",
+                                  "columnIndex": 4,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "interested",
+                                  "id": "interested",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "available": {
+                                  "accessorKey": "available",
+                                  "columnIndex": 5,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "fromCurrentRow": {
+                                    "mappedValue": true
+                                  },
+                                  "header": "available",
+                                  "id": "available",
+                                  "mappedValue": [
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "❌"
+                                  ],
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "other": {
+                                  "accessorKey": "other",
+                                  "columnIndex": 6,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "other",
+                                  "id": "other",
+                                  "type": "text",
+                                  "visible": true
+                                }
+                              }
                             },
                             "panelConfig": null
                           }
@@ -1021,7 +1021,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 1,
+                        "minW": 2,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -1037,7 +1037,7 @@
                     "h": 110,
                     "w": 32,
                     "minH": 3,
-                    "minW": 1,
+                    "minW": 2,
                     "unitW": 18.109375,
                     "unitH": 8,
                     "x": 0,
@@ -1111,17 +1111,17 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TEXT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 6,
-                            "w": 32,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 1,
+                            "minW": 2,
                             "unitW": 17.890625,
                             "unitH": 8,
-                            "x": 0,
+                            "x": 1,
                             "y": 1,
                             "z": 0,
                             "props": {
@@ -1145,17 +1145,17 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TABLE_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 99,
-                            "w": 32,
+                            "w": 31,
                             "minH": 3,
-                            "minW": 1,
+                            "minW": 2,
                             "unitW": 17.890625,
                             "unitH": 8,
-                            "x": 0,
+                            "x": 1,
                             "y": 9,
                             "z": 0,
                             "props": {
@@ -1168,161 +1168,6 @@
                                 "columns[7]",
                                 "columns[7].mappedValue"
                               ],
-                              "columnMapper": {
-                                "Delete": {
-                                  "accessorKey": "column-3c9648c9-5a13-46c2-8a8a-9fd54176e52c",
-                                  "columnIndex": 9,
-                                  "custom": true,
-                                  "enableSorting": true,
-                                  "events": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
-                                      "queryID": "delete_row"
-                                    }
-                                  ],
-                                  "format": "YYYY-MM-DD",
-                                  "fromCurrentRow": {
-                                    "mappedValue": false
-                                  },
-                                  "header": "Delete",
-                                  "id": "column-3c9648c9-5a13-46c2-8a8a-9fd54176e52c",
-                                  "mappedValue": "Delete",
-                                  "type": "button",
-                                  "visible": true
-                                },
-                                "Not available": {
-                                  "accessorKey": "column-8947342a-8ceb-4c6c-9dea-af5459047e6c",
-                                  "columnIndex": 8,
-                                  "custom": true,
-                                  "enableSorting": true,
-                                  "events": [
-                                    {
-                                      "actionType": "datasource",
-                                      "eventType": "clickMenuItem",
-                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
-                                      "queryID": "update_available"
-                                    }
-                                  ],
-                                  "format": "YYYY-MM-DD",
-                                  "fromCurrentRow": {
-                                    "mappedValue": false
-                                  },
-                                  "header": "Not available",
-                                  "id": "column-8947342a-8ceb-4c6c-9dea-af5459047e6c",
-                                  "mappedValue": "Not available",
-                                  "type": "button",
-                                  "visible": true
-                                },
-                                "available": {
-                                  "accessorKey": "available",
-                                  "columnIndex": 7,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "fromCurrentRow": {
-                                    "mappedValue": true
-                                  },
-                                  "header": "available",
-                                  "id": "available",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "familiar": {
-                                  "accessorKey": "familiar",
-                                  "columnIndex": 1,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "familiar",
-                                  "id": "familiar",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "feature": {
-                                  "accessorKey": "feature",
-                                  "columnIndex": 2,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "feature",
-                                  "id": "feature",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "how_much_pay": {
-                                  "accessorKey": "how_much_pay",
-                                  "columnIndex": 3,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "how_much_pay",
-                                  "id": "how_much_pay",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "how_often": {
-                                  "accessorKey": "how_often",
-                                  "columnIndex": 4,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "how_often",
-                                  "id": "how_often",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "id": {
-                                  "accessorKey": "id",
-                                  "columnIndex": 0,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "id",
-                                  "id": "id",
-                                  "type": "text",
-                                  "visible": false
-                                },
-                                "interested": {
-                                  "accessorKey": "interested",
-                                  "columnIndex": 5,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "interested",
-                                  "id": "interested",
-                                  "type": "text",
-                                  "visible": true
-                                },
-                                "other": {
-                                  "accessorKey": "other",
-                                  "columnIndex": 6,
-                                  "enableSorting": true,
-                                  "format": "YYYY-MM-DD",
-                                  "header": "other",
-                                  "id": "other",
-                                  "type": "text",
-                                  "visible": true
-                                }
-                              },
-                              "columnNameIndices": {
-                                "0": "id",
-                                "1": "familiar",
-                                "2": "feature",
-                                "3": "how_much_pay",
-                                "4": "how_often",
-                                "5": "interested",
-                                "6": "other",
-                                "7": "available",
-                                "8": "Not available",
-                                "9": "Delete"
-                              },
-                              "columnVisibility": {
-                                "Delete": true,
-                                "Not available": true,
-                                "available": true,
-                                "familiar": true,
-                                "feature": true,
-                                "how_much_pay": true,
-                                "how_often": true,
-                                "id": false,
-                                "interested": true,
-                                "other": true
-                              },
                               "columns": [
                                 {
                                   "accessorKey": "id",
@@ -1404,7 +1249,7 @@
                                   },
                                   "header": "available",
                                   "id": "available",
-                                  "mappedValue": "{{table1.dataSourceJS.map((currentRow) =\u003e ( currentRow.available==\"1\"?\"✅\":\"❌\"))}}",
+                                  "mappedValue": "{{table1.dataSourceJS.map((currentRow) => ( currentRow.available==\"1\"?\"✅\":\"❌\"))}}",
                                   "type": "text",
                                   "visible": true
                                 },
@@ -1455,10 +1300,6 @@
                                   "visible": true
                                 }
                               ],
-                              "customColumnIndices": {
-                                "8": "Not available",
-                                "9": "Delete"
-                              },
                               "dataSourceJS": "{{list_all.data}}",
                               "dataSourceMode": "dynamic",
                               "defaultSortKey": "id",
@@ -1468,10 +1309,299 @@
                               "filter": false,
                               "overFlow": "pagination",
                               "pageSize": "{{10}}",
-                              "renamedColumnNames": {},
                               "rowEvents": {
-                                "8": {},
-                                "9": {}
+                                "8": {
+                                  "0": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "1": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "2": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "3": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "4": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "5": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "6": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "7": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "8": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "9": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "10": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "11": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "12": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "13": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "14": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "15": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "16": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ],
+                                  "17": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-6e35ed6f-03d0-4abe-9ce3-dfabee5b5ccf",
+                                      "queryID": "update_available"
+                                    }
+                                  ]
+                                },
+                                "9": {
+                                  "0": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "1": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "2": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "3": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "4": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "5": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "6": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "7": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "8": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "9": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "10": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "11": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "12": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "13": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "14": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "15": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "16": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ],
+                                  "17": [
+                                    {
+                                      "actionType": "datasource",
+                                      "eventType": "clickMenuItem",
+                                      "id": "events-94908944-7ada-4180-82d7-c55d077c60c5",
+                                      "queryID": "delete_row"
+                                    }
+                                  ]
+                                }
                               },
                               "rowSelection": {
                                 "17": true
@@ -1498,7 +1628,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 1,
+                        "minW": 2,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -1514,7 +1644,7 @@
                     "h": 110,
                     "w": 32,
                     "minH": 3,
-                    "minW": 1,
+                    "minW": 2,
                     "unitW": 18.109375,
                     "unitH": 8,
                     "x": 0,
@@ -1625,14 +1755,14 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "TEXT_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
                         "verticalResize": false,
                         "h": 5,
                         "w": 10,
                         "minH": 3,
-                        "minW": 1,
+                        "minW": 2,
                         "unitW": 0,
                         "unitH": 8,
                         "x": 0,
@@ -1658,7 +1788,7 @@
                     "h": 0,
                     "w": 0,
                     "minH": 3,
-                    "minW": 1,
+                    "minW": 2,
                     "unitW": 0,
                     "unitH": 8,
                     "x": -1,
@@ -1674,14 +1804,14 @@
                     "error": false,
                     "isDragging": true,
                     "isResizing": false,
-                    "childrenNode": null,
+                    "childrenNode": [],
                     "type": "CANVAS",
                     "containerType": "EDITOR_DOT_PANEL",
                     "verticalResize": false,
                     "h": 0,
                     "w": 0,
                     "minH": 3,
-                    "minW": 1,
+                    "minW": 2,
                     "unitW": 0,
                     "unitH": 8,
                     "x": -1,
@@ -1705,14 +1835,14 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "BUTTON_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
                         "verticalResize": false,
                         "h": 5,
                         "w": 16,
                         "minH": 3,
-                        "minW": 1,
+                        "minW": 2,
                         "unitW": 0,
                         "unitH": 8,
                         "x": 48,
@@ -1742,14 +1872,14 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "BUTTON_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
                         "verticalResize": false,
                         "h": 5,
                         "w": 16,
                         "minH": 3,
-                        "minW": 1,
+                        "minW": 2,
                         "unitW": 0,
                         "unitH": 8,
                         "x": 32,
@@ -1779,7 +1909,7 @@
                     "h": 0,
                     "w": 0,
                     "minH": 3,
-                    "minW": 1,
+                    "minW": 2,
                     "unitW": 0,
                     "unitH": 8,
                     "x": -1,
@@ -1795,7 +1925,7 @@
                 "h": 40,
                 "w": 53,
                 "minH": 3,
-                "minW": 1,
+                "minW": 2,
                 "unitW": 11.015625,
                 "unitH": 8,
                 "x": 0,
@@ -1870,14 +2000,14 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "MENU_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 15,
                             "w": 8,
                             "minH": 3,
-                            "minW": 1,
+                            "minW": 2,
                             "unitW": 12.5,
                             "unitH": 8,
                             "x": 0,
@@ -1928,7 +2058,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 1,
+                        "minW": 2,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -1944,14 +2074,14 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
                         "verticalResize": false,
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 1,
+                        "minW": 2,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -1967,14 +2097,14 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
                         "verticalResize": false,
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 1,
+                        "minW": 2,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -1990,7 +2120,7 @@
                     "h": 110,
                     "w": 8,
                     "minH": 3,
-                    "minW": 1,
+                    "minW": 2,
                     "unitW": 14.9375,
                     "unitH": 8,
                     "x": 0,
@@ -2089,12 +2219,12 @@
           "bottomHeight": 0,
           "canvasSize": "fixed",
           "canvasWidth": 1440,
-          "footerColumns": 64,
+          "footerColumns": 32,
           "hasFooter": false,
           "hasHeader": false,
           "hasLeft": true,
           "hasRight": false,
-          "headerColumns": 64,
+          "headerColumns": 32,
           "isFooterFixed": true,
           "isHeaderFixed": true,
           "isLeftFixed": true,
@@ -2102,8 +2232,8 @@
           "layout": "Custom",
           "leftColumns": 8,
           "leftPosition": "BOTTOM",
-          "leftWidth": 251,
-          "rightColumns": 16,
+          "leftWidth": 263,
+          "rightColumns": 8,
           "rightPosition": "NONE",
           "rightWidth": 0,
           "showLeftFoldIcon": false,
