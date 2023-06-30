@@ -13,6 +13,7 @@ export const componentsSnapShot = (
   _nextRootState: RootState,
 ) => {
   switch (reduxAction) {
+    // COMPONENT
     case "addComponentReducer": {
       const newAction = {
         type: "components/deleteComponentNodeReducer",
@@ -25,13 +26,13 @@ export const componentsSnapShot = (
         from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
@@ -47,13 +48,13 @@ export const componentsSnapShot = (
         from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
@@ -78,13 +79,13 @@ export const componentsSnapShot = (
         from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
@@ -112,18 +113,66 @@ export const componentsSnapShot = (
           newParentNodeDisplayName: action.payload.oldParentNodeDisplayName,
           updateSlices: newUpdateSlices,
         },
+        from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
+    case "updateComponentDisplayNameReducer": {
+      const { displayName, newDisplayName } = action.payload
+
+      const newAction = {
+        type: "components/updateComponentDisplayNameReducer",
+        payload: {
+          displayName: newDisplayName,
+          newDisplayName: displayName,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "updateComponentPropsReducer": {
+      const { displayName } = action.payload
+      const originNode = searchDSLByDisplayName(displayName, _prevRootState)
+      if (!originNode) break
+      const newAction = {
+        type: "components/updateComponentPropsReducer",
+        payload: {
+          displayName,
+          updateSlice: originNode.props,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+
+    // PAGE
     case "addTargetPageSectionReducer": {
       const { pageName, addedSectionName } = action.payload
       const newAction = {
@@ -132,15 +181,16 @@ export const componentsSnapShot = (
           pageName,
           deleteSectionName: addedSectionName,
         },
+        from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
@@ -160,29 +210,110 @@ export const componentsSnapShot = (
           pageName,
           addedSectionName: deleteSectionName,
         },
+        from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
     case "addSectionViewReducer": {
-      // const { parentNodeName, sectionName } = action.payload
-      // const newAction = {
-      //   type:"components/deleteSectionViewReducer",
-      //   payload:{
+      const { parentNodeName } = action.payload
 
-      //   }
-      // }
+      const originParentNode = searchDSLByDisplayName(
+        parentNodeName,
+        _nextRootState,
+      )
+      if (!originParentNode) break
+      const { props } = originParentNode
+      if (!props) break
+      const { viewSortedKey } = props
+      if (!Array.isArray(viewSortedKey)) break
+
+      const lastViewSortedKey = (viewSortedKey as string[]).at(-1)
+      if (!lastViewSortedKey) break
+      const newAction = {
+        type: "components/deleteSectionViewReducer",
+        payload: {
+          viewDisplayName: lastViewSortedKey,
+          parentNodeName,
+          originPageSortedKey: viewSortedKey,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
       break
     }
-    case "x": {
+    case "deleteSectionViewReducer": {
+      const { parentNodeName, viewDisplayName } = action.payload
+      const originParentNode = searchDSLByDisplayName(
+        parentNodeName,
+        _prevRootState,
+      )
+
+      if (!originParentNode) break
+
+      const viewNode = originParentNode.childrenNode.find(
+        (node) => node.displayName === viewDisplayName,
+      )
+      if (!viewNode) break
+      const originChildrenNode = viewNode.childrenNode
+
+      const newAction = {
+        type: "components/addSectionViewReducer",
+        payload: {
+          parentNodeName,
+          sectionName: originParentNode.showName,
+          originChildrenNode: originChildrenNode,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "updateTargetPagePropsReducer": {
+      const { pageName } = action.payload
+      const originPage = searchDSLByDisplayName(pageName, _prevRootState)
+      if (!originPage) break
+      const newAction = {
+        type: "components/updateTargetPagePropsReducer",
+        payload: {
+          pageName,
+          newProps: originPage.props,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
       break
     }
   }

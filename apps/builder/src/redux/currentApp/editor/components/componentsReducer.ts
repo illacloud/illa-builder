@@ -597,7 +597,7 @@ export const addSectionViewReducer: CaseReducer<
   ComponentsState,
   PayloadAction<AddSectionViewPayload>
 > = (state, action) => {
-  const { parentNodeName, sectionName } = action.payload
+  const { parentNodeName, sectionName, originChildrenNode } = action.payload
 
   const parentNode = searchDsl(state, parentNodeName)
   if (!parentNode || !parentNode.props) return
@@ -615,6 +615,16 @@ export const addSectionViewReducer: CaseReducer<
     config.displayName,
     parentNodeName,
   )
+  if (originChildrenNode && Array.isArray(originChildrenNode)) {
+    let cloneDeepChildrenNode = JSON.parse(JSON.stringify(originChildrenNode))
+    cloneDeepChildrenNode = cloneDeepChildrenNode.map(
+      (node: ComponentNode) => ({
+        ...node,
+        parentNode: config.displayName,
+      }),
+    )
+    config.childrenNode = cloneDeepChildrenNode
+  }
   parentNode.childrenNode.push(config)
   parentNode.props.viewSortedKey.push(config.displayName)
   parentNode.props.sectionViewConfigs.push(newSectionViewConfig)

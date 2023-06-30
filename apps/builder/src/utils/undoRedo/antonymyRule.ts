@@ -90,80 +90,83 @@ const updateActionDisplayNameReducerWhenUndoRedo = async (
 }
 
 export const reduxActionDependOnRestAPI = async (
-  action: AnyAction,
+  actions: AnyAction[],
   from: REDUX_ACTION_FROM,
 ) => {
-  switch (action.type) {
-    case "action/addActionItemReducer": {
-      try {
-        const newPayload = await addActionItemWhenUndoRedo(action.payload)
-        store.dispatch({
-          ...action,
-          payload: newPayload,
-          from,
-        })
-        message.success({
-          content: `frame.message.${from}.suc`,
-        })
-      } catch (e) {
-        message.error({
-          content: i18n.t(`frame.message.${from}.failed`),
-        })
-      }
+  for (let i = 0; i < actions.length; i++) {
+    const action = actions[i]
+    switch (action.type) {
+      case "action/addActionItemReducer": {
+        try {
+          const newPayload = await addActionItemWhenUndoRedo(action.payload)
+          store.dispatch({
+            ...action,
+            payload: newPayload,
+            from,
+          })
+          message.success({
+            content: `frame.message.${from}.suc`,
+          })
+        } catch (e) {
+          message.error({
+            content: i18n.t(`frame.message.${from}.failed`),
+          })
+        }
 
-      break
-    }
-    case "action/removeActionItemReducer": {
-      try {
-        await removeActionItemWhenUndoRedo(action.payload.actionID)
+        break
+      }
+      case "action/removeActionItemReducer": {
+        try {
+          await removeActionItemWhenUndoRedo(action.payload.actionID)
+          store.dispatch({
+            ...action,
+            from,
+          })
+          message.success({
+            content: `frame.message.${from}.suc`,
+          })
+        } catch (e) {
+          message.error({
+            content: i18n.t(`frame.message.${from}.failed`),
+          })
+        }
+        break
+      }
+      case "action/updateActionItemReducer": {
+        try {
+          await updateActionItemReducerWhenUndoRedo(action.payload)
+          store.dispatch({
+            ...action,
+            from,
+          })
+        } catch (e) {
+          message.error({
+            content: i18n.t(`frame.message.${from}.failed`),
+          })
+        }
+      }
+      case "action/updateActionDisplayNameReducer": {
+        try {
+          await updateActionDisplayNameReducerWhenUndoRedo(
+            action.payload.oldDisplayName,
+            action.payload.newDisplayName,
+          )
+          store.dispatch({
+            ...action,
+            from,
+          })
+        } catch (e) {
+          message.error({
+            content: i18n.t(`frame.message.${from}.failed`),
+          })
+        }
+      }
+      default: {
         store.dispatch({
           ...action,
           from,
         })
-        message.success({
-          content: `frame.message.${from}.suc`,
-        })
-      } catch (e) {
-        message.error({
-          content: i18n.t(`frame.message.${from}.failed`),
-        })
       }
-      break
-    }
-    case "action/updateActionItemReducer": {
-      try {
-        await updateActionItemReducerWhenUndoRedo(action.payload)
-        store.dispatch({
-          ...action,
-          from,
-        })
-      } catch (e) {
-        message.error({
-          content: i18n.t(`frame.message.${from}.failed`),
-        })
-      }
-    }
-    case "action/updateActionDisplayNameReducer": {
-      try {
-        await updateActionDisplayNameReducerWhenUndoRedo(
-          action.payload.oldDisplayName,
-          action.payload.newDisplayName,
-        )
-        store.dispatch({
-          ...action,
-          from,
-        })
-      } catch (e) {
-        message.error({
-          content: i18n.t(`frame.message.${from}.failed`),
-        })
-      }
-    }
-    default: {
-      store.dispatch({
-        ...action,
-        from,
-      })
     }
   }
 }

@@ -65,6 +65,7 @@ export const ListBody: FC<BodyProps> = (props) => {
 
   const handleDeleteSectionView = useCallback(
     (index: number) => {
+      if (sectionViewConfigs.length === 1) return
       if (index > sectionViewConfigs.length) return
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "delete_view",

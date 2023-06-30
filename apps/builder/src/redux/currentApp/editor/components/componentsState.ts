@@ -198,6 +198,7 @@ export interface AddSectionViewPayload {
     | "headerSection"
     | "footerSection"
     | "bodySection"
+  originChildrenNode?: ComponentNode[]
 }
 
 export interface DeleteSectionViewPayload {
