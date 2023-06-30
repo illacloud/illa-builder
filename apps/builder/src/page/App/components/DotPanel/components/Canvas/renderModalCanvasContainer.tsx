@@ -62,17 +62,15 @@ export const RenderModalCanvasContainer: FC<
       ref={canvasRef}
       onClick={onClickMaskToClose}
     >
-      {currentLayoutInfo.childrenNode?.map((childName) => {
-        return (
-          <ComponentParser
-            key={`${displayName}-${childName}}`}
-            displayName={childName}
-            unitW={unitWidth}
-            parentNodeDisplayName={displayName}
-            columnNumber={columnNumber}
-          />
-        )
-      })}
+      {currentModal && (
+        <ComponentParser
+          key={`${displayName}-${currentModal.displayName}}`}
+          displayName={currentModal.displayName}
+          unitW={unitWidth}
+          parentNodeDisplayName={displayName}
+          columnNumber={columnNumber}
+        />
+      )}
       <div css={maskStyle} />
     </div>
   )
