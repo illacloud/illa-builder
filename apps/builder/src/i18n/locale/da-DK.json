@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "GRUNDLÆGGENDE",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Side",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Tilføj ubegrænset seermedlemmer GRATIS",
         "publish_public_appli": "Offentliggør offentlige programmer",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Revision logs (Kommer snart)",
+        "audit_logs": "Revision logs",
         "learn_more": "Lær mere",
         "upgrade": "Opgradér",
         "pricing": "/redaktør/måned, årligt",
