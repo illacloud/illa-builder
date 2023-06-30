@@ -133,53 +133,6 @@ async function handleChangeCurrentSectionWhenDelete(
   }
 }
 
-export const modifyComponentNodeX = (
-  componentNode: ComponentNode,
-  oldColumns: number,
-  currentColumns: number,
-) => {
-  const resultComponentNode = cloneDeep(componentNode)
-  const { x, w } = resultComponentNode
-  const scale = currentColumns / oldColumns
-  const scaleW = Math.ceil(w * scale)
-  const scaleX = Math.ceil(x * scale)
-  resultComponentNode.w =
-    scaleW < resultComponentNode.minW ? resultComponentNode.minW : scaleW
-  resultComponentNode.x = scaleX
-  if (resultComponentNode.w === resultComponentNode.minW) {
-    let diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
-    while (diff < 0) {
-      resultComponentNode.x--
-      diff++
-      if (resultComponentNode.x < 0) {
-        resultComponentNode.x = 0
-        break
-      }
-    }
-  } else {
-    let diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
-    while (diff < 0) {
-      resultComponentNode.w--
-      diff++
-      if (resultComponentNode.w < resultComponentNode.minW) {
-        resultComponentNode.x = resultComponentNode.minW
-        diff = currentColumns - (resultComponentNode.x + resultComponentNode.w)
-        while (diff < 0) {
-          resultComponentNode.x--
-          diff++
-          if (resultComponentNode.x < 0) {
-            resultComponentNode.x = 0
-            break
-          }
-        }
-        break
-      }
-    }
-  }
-
-  return resultComponentNode
-}
-
 const updateComponentReflowComponentsAdapter = (
   action: ReturnType<
     | typeof componentsActions.addComponentReducer

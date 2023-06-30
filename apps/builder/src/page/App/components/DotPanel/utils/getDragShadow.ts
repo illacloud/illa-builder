@@ -2,6 +2,7 @@ import { clamp, cloneDeep } from "lodash"
 import { RefObject } from "react"
 import { XYCoord } from "react-dnd"
 import { DRAG_EFFECT } from "@/page/App/components/ScaleSquare/components/DragContainer/interface"
+import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { DragCollectedProps } from "../components/DragPreview/interface"
 import { DEFAULT_BODY_COLUMNS_NUMBER, UNIT_HEIGHT } from "../constant/canvas"
@@ -157,7 +158,7 @@ const getDragResult = (
   mouseRealY = relativeMainNode.y,
   mouseRealX = relativeMainNode.x,
   mouseHoveredTopHalf: boolean = true,
-  minWidth = 2,
+  minWidth = DEFAULT_MIN_COLUMN,
 ) => {
   const { h, w, x, y } = relativeMainNode
   let finalY = y

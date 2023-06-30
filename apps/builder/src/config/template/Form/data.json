@@ -146,7 +146,7 @@
                                     "h": 12,
                                     "w": 31,
                                     "minH": 3,
-                                    "minW": 2,
+                                    "minW": 1,
                                     "unitW": 4.3984375,
                                     "unitH": 8,
                                     "x": 1,
@@ -173,7 +173,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 2,
+                                "minW": 1,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -196,7 +196,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 2,
+                                "minW": 1,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -219,7 +219,7 @@
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
-                                "minW": 2,
+                                "minW": 1,
                                 "unitW": 0,
                                 "unitH": 8,
                                 "x": -1,
@@ -235,7 +235,7 @@
                             "h": 20,
                             "w": 32,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 0,
@@ -279,7 +279,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 2,
+                        "minW": 1,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -310,7 +310,7 @@
                             "h": 7,
                             "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -379,7 +379,7 @@
                             "h": 8,
                             "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -437,7 +437,7 @@
                             "h": 4,
                             "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -496,7 +496,7 @@
                             "h": 13,
                             "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -537,7 +537,7 @@
                             "h": 8,
                             "w": 31,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 14.875,
                             "unitH": 8,
                             "x": 1,
@@ -567,7 +567,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 2,
+                        "minW": 1,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -598,16 +598,14 @@
                             "h": 5,
                             "w": 8,
                             "minH": 3,
-                            "minW": 2,
+                            "minW": 1,
                             "unitW": 0,
                             "unitH": 8,
                             "x": 24,
                             "y": 0,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "loading"
-                              ],
+                              "$dynamicAttrPaths": ["loading"],
                               "colorScheme": "purple",
                               "events": [
                                 {
@@ -631,7 +629,7 @@
                         "h": 0,
                         "w": 0,
                         "minH": 3,
-                        "minW": 2,
+                        "minW": 1,
                         "unitW": 0,
                         "unitH": 8,
                         "x": -1,
@@ -647,7 +645,7 @@
                     "h": 91,
                     "w": 32,
                     "minH": 3,
-                    "minW": 2,
+                    "minW": 1,
                     "unitW": 15.34375,
                     "unitH": 8,
                     "x": 0,
@@ -709,9 +707,7 @@
                   "viewDisplayName": "bodySection1-bodySectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "bodySection1-bodySectionContainer1"
-              ]
+              "viewSortedKey": ["bodySection1-bodySectionContainer1"]
             },
             "panelConfig": null
           },
@@ -794,9 +790,7 @@
     "z": 0,
     "props": {
       "currentPageIndex": 0,
-      "pageSortedKey": [
-        "page1"
-      ]
+      "pageSortedKey": ["page1"]
     },
     "panelConfig": null
   },

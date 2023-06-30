@@ -16,6 +16,7 @@ import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimit
 import { DragContainer } from "./components/DragContainer"
 import { getResizeHandler } from "./components/ResizingContainer/utils"
 import { WrapperContainer } from "./components/WrapperContainer"
+import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquareProps } from "./interface"
 import { MOVE_BAR_HEIGHT } from "./style"
 import { getRealShapeAndPositionNew } from "./utils/getRealShapeAndPosition"
@@ -54,7 +55,8 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
     (e, dir, ref, delta) => {
       let finalWidth = Math.round((width + delta.width) / unitW)
       let finalHeight = Math.round((height + delta.height) / UNIT_HEIGHT)
-      finalWidth = finalWidth < layoutInfo.minW ? layoutInfo.minW : finalWidth
+      finalWidth =
+        finalWidth < DEFAULT_MIN_COLUMN ? DEFAULT_MIN_COLUMN : finalWidth
       finalHeight =
         finalHeight < layoutInfo.minH ? layoutInfo.minH : finalHeight
 
@@ -79,7 +81,6 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
       displayName,
       height,
       layoutInfo.minH,
-      layoutInfo.minW,
       parentNodeDisplayName,
       unitW,
       width,
@@ -104,7 +105,7 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
         width,
         height,
       }}
-      minWidth={currentWidgetLayoutInfo.layoutInfo.minW * unitW}
+      minWidth={DEFAULT_MIN_COLUMN * unitW}
       minHeight={currentWidgetLayoutInfo.layoutInfo.minH * UNIT_HEIGHT}
       handleComponent={getResizeHandler(
         RESIZE_DIRECTION.ALL,
