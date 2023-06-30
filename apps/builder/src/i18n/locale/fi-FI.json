@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "PERUSTE",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Sivu",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Lisää rajoittamaton katsojan jäseniä ILMAISEKSI",
         "publish_public_appli": "Julkaise julkiset sovellukset",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Tarkastusloki(Tulossa pian)",
+        "audit_logs": "Tarkastuslokit",
         "learn_more": "Lue lisää",
         "upgrade": "Päivitä",
         "pricing": "/editor/kuukausi, vuosittain",
