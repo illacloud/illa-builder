@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "ΒΑΣΙΚΟ",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Σελίδα",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Προσθέστε απεριόριστα μέλη θεατή για ΔΩΡΕΑΝ",
         "publish_public_appli": "Δημοσίευση δημόσιων εφαρμογών",
         "ai_sql_generation": "Δημιουργία AI Sql",
-        "audit_logs": "Αρχεία καταγραφής ελέγχου(προσεχώς)",
+        "audit_logs": "Αρχεία καταγραφής ελέγχου",
         "learn_more": "Μάθετε περισσότερα",
         "upgrade": "Αναβάθμιση",
         "pricing": "/editor/month ετησίως",
