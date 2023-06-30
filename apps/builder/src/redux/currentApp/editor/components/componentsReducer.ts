@@ -263,18 +263,6 @@ export const batchUpdateMultiComponentSlicePropsReducer: CaseReducer<
   })
 }
 
-export const resetComponentPropsReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<ComponentNode>
-> = (state, action) => {
-  const componentNode = action.payload
-  if (!componentNode) return
-  const displayName = componentNode.displayName
-  const node = searchDsl(state, displayName)
-  if (!node) return
-  node.props = componentNode.props
-}
-
 const changeDisplayName = (
   newDisplayName: string,
   displayName: string,

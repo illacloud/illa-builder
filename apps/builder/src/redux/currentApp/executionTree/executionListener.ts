@@ -365,7 +365,6 @@ export function setupExecutionListeners(
         componentsActions.updateComponentPropsReducer,
         componentsActions.deleteComponentNodeReducer,
         componentsActions.batchUpdateMultiComponentSlicePropsReducer,
-        componentsActions.resetComponentPropsReducer,
         componentsActions.updateMultiComponentPropsReducer,
         componentsActions.addTargetPageSectionReducer,
         componentsActions.updateTargetPagePropsReducer,

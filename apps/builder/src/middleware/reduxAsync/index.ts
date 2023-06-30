@@ -1,5 +1,5 @@
+import * as Redux from "@reduxjs/toolkit"
 import { cloneDeep } from "lodash"
-import * as Redux from "redux"
 import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"

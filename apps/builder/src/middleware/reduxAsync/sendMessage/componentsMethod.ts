@@ -290,22 +290,6 @@ export const componentsAsync = (
         ),
       )
       break
-    case "resetComponentPropsReducer":
-      const resetWsPayload = transformComponentReduxPayloadToWsPayload(
-        payload as ComponentNode,
-      )
-      Connection.getTextRoom("app", currentAppID)?.send(
-        getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
-          true,
-          action,
-          teamID,
-          uid,
-          resetWsPayload,
-        ),
-      )
-      break
     case "updateComponentDisplayNameReducer":
       const { displayName, newDisplayName } =
         action.payload as UpdateComponentDisplayNamePayload

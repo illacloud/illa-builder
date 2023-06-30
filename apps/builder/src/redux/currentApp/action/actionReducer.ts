@@ -3,6 +3,7 @@ import { cloneDeep, set } from "lodash"
 import {
   ActionContent,
   ActionItem,
+  RemoveActionItemReducerPayload,
   UpdateActionDisplayNamePayload,
   UpdateActionSlicePropsPayload,
   actionInitialState,
@@ -74,11 +75,12 @@ export const batchUpdateMultiActionSlicePropsReducer: CaseReducer<
 
 export const removeActionItemReducer: CaseReducer<
   ActionItem<ActionContent>[],
-  PayloadAction<string>
+  PayloadAction<RemoveActionItemReducerPayload>
 > = (state, action) => {
   state.splice(
     state.findIndex(
-      (item: ActionItem<ActionContent>) => item.displayName === action.payload,
+      (item: ActionItem<ActionContent>) =>
+        item.actionId === action.payload.actionID,
     ),
     1,
   )

@@ -28,6 +28,7 @@ import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { isMAC } from "@/utils/userAgent"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
@@ -387,96 +388,55 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   )
 
   useHotkeys(
-    `${Key.Control}+a`,
+    `${isMAC() ? Key.Meta : Key.Control}+a`,
     (e) => {
       e.preventDefault()
       selectAllBodyComponentsHandler()
     },
     {
       preventDefault: true,
-      enabled: isEditMode && !isMAC(),
+      enabled: isEditMode,
     },
     [selectAllBodyComponentsHandler],
   )
-
   useHotkeys(
-    `${Key.Meta}+a`,
-    (e) => {
-      e.preventDefault()
-      selectAllBodyComponentsHandler()
-    },
-    {
-      preventDefault: true,
-      enabled: isEditMode && isMAC(),
-    },
-    [selectAllBodyComponentsHandler],
-  )
-
-  useHotkeys(
-    `${Key.Meta}+c`,
+    `${isMAC() ? Key.Meta : Key.Control}+c`,
     () => {
       copySomethingHandler()
     },
     {
       preventDefault: false,
-      enabled: isEditMode && isMAC(),
+      enabled: isEditMode,
     },
     [copySomethingHandler],
   )
 
   useHotkeys(
-    `${Key.Control}+c`,
-    () => {
-      copySomethingHandler()
-    },
-    { preventDefault: false, enabled: isEditMode && !isMAC() },
-    [copySomethingHandler],
-  )
-
-  useHotkeys(
-    `${Key.Meta}+v`,
+    `${isMAC() ? Key.Meta : Key.Control}+v`,
     () => {
       CopyManager.paste("keyboard")
     },
     {
       preventDefault: false,
-      enabled: isEditMode && isMAC(),
+      enabled: isEditMode,
     },
     [copySomethingHandler],
   )
 
   useHotkeys(
-    `${Key.Control}+v`,
-    () => {
-      CopyManager.paste("keyboard")
-    },
-    { preventDefault: false, enabled: isEditMode && !isMAC() },
-    [copySomethingHandler],
-  )
-
-  useHotkeys(
-    `${Key.Meta}+d`,
+    `${isMAC() ? Key.Meta : Key.Control}+d`,
     () => {
       copyAndPasteHandler()
     },
     {
       preventDefault: true,
-      enabled: isEditMode && isMAC(),
+      enabled: isEditMode,
     },
     [copyAndPasteHandler],
   )
 
   useHotkeys(
-    `${Key.Control}+d`,
-    () => {
-      copyAndPasteHandler()
-    },
-    { preventDefault: true, enabled: isEditMode && !isMAC() },
-    [copyAndPasteHandler],
-  )
-
-  useHotkeys(
-    Key.Meta,
+    `${isMAC() ? Key.Meta : Key.Control}`,
     (keyboardEvent) => {
       showDotHandler(keyboardEvent.type)
     },
@@ -484,21 +444,29 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       keydown: true,
       keyup: true,
       preventDefault: false,
-      enabled: isEditMode && isMAC(),
+      enabled: isEditMode,
     },
     [showDotHandler],
   )
 
   useHotkeys(
-    Key.Control,
-    (keyboardEvent) => {
-      showDotHandler(keyboardEvent.type)
+    `${isMAC() ? Key.Meta : Key.Control}+z`,
+    () => {
+      IllaUndoRedoManager.popFromUndoStack()
     },
     {
-      keydown: true,
-      keyup: true,
-      preventDefault: false,
-      enabled: isEditMode && !isMAC(),
+      enabled: isEditMode,
+    },
+    [showDotHandler],
+  )
+
+  useHotkeys(
+    `${isMAC() ? Key.Meta : Key.Control}+${Key.Shift}+z`,
+    () => {
+      IllaUndoRedoManager.popFromRedoStack()
+    },
+    {
+      enabled: isEditMode,
     },
     [showDotHandler],
   )

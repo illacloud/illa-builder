@@ -11,6 +11,7 @@ import store from "@/store"
 import {
   ADD_DISPLAY_NAME,
   DisplayNameGenerator,
+  GENERATE_OR_UPDATE_DISPLAYNAME,
   REMOVE_DISPLAY_NAME,
   UPDATE_DISPLAY_NAME,
 } from "@/utils/generators/generateDisplayName"
@@ -205,6 +206,9 @@ export class ILLAWebsocket {
               DisplayNameGenerator.displayNameList.delete(payload[0])
               DisplayNameGenerator.displayNameList.add(payload[1])
               break
+            }
+            case `${GENERATE_OR_UPDATE_DISPLAYNAME}/remote`: {
+              DisplayNameGenerator.displayNameList.add(payload)
             }
             default: {
               try {
