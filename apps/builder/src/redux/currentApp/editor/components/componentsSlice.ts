@@ -8,7 +8,6 @@ import {
   batchUpdateComponentLayoutInfoReducer,
   batchUpdateComponentLayoutInfoWhenReflowReducer,
   batchUpdateMultiComponentSlicePropsReducer,
-  copyComponentReducer,
   deleteComponentNodeReducer,
   deleteGlobalStateByKeyReducer,
   deletePageNodeReducer,
@@ -39,7 +38,6 @@ const componentsSlice = createSlice({
   reducers: {
     updateComponentNodeHeightReducer,
     addComponentReducer,
-    copyComponentReducer,
     initComponentReducer,
     updateComponentPropsReducer,
     deleteComponentNodeReducer,

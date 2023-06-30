@@ -3,11 +3,9 @@ import { cloneDeep, set } from "lodash"
 import {
   BatchUpdateComponentNodeLayoutInfoPayload,
   LayoutInfo,
-  StatusInfo,
   UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
   UpdateComponentSlicePropsPayload,
-  updateComponentStatusInfoPayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
@@ -17,7 +15,6 @@ import {
   ComponentNode,
   ComponentsInitialState,
   ComponentsState,
-  CopyComponentPayload,
   DeleteComponentNodePayload,
   DeleteGlobalStatePayload,
   DeletePageNodePayload,
@@ -110,36 +107,6 @@ export const addModalComponentReducer: CaseReducer<
     }
     modalSectionNode.childrenNode.push(modalComponentNode)
   }
-}
-
-export const copyComponentReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<{
-    copyComponents: CopyComponentPayload[]
-    sources: "keyboard" | "duplicate"
-  }>
-> = (state, action) => {
-  action.payload.copyComponents.forEach((copyShape) => {
-    const { newComponentNode } = copyShape
-    if (state == null || newComponentNode.parentNode == null) {
-      return state
-    } else {
-      const parentNode = searchDsl(state, newComponentNode.parentNode)
-      if (parentNode != null) {
-        if (newComponentNode.props) {
-          newComponentNode.props = getNewWidgetPropsByUpdateSlice(
-            newComponentNode.props ?? {},
-            {},
-          )
-        }
-        if (parentNode.childrenNode === null) {
-          parentNode.childrenNode = [newComponentNode]
-        } else {
-          parentNode.childrenNode.push(newComponentNode)
-        }
-      }
-    }
-  })
 }
 
 export const deleteComponentNodeReducer: CaseReducer<
@@ -671,43 +638,6 @@ export const batchUpdateComponentLayoutInfoReducer: CaseReducer<
   action.payload.forEach((updateSlice) => {
     const { displayName, layoutInfo } = updateSlice
     updateComponentLayoutInfoHelper(state, displayName, layoutInfo)
-  })
-}
-
-const updateComponentStatusInfoHelper = (
-  state: ComponentsState,
-  displayName: string,
-  statusInfo: Partial<StatusInfo>,
-) => {
-  let currentNode = searchDsl(state, displayName)
-  if (currentNode && statusInfo && Object.keys(statusInfo).length > 0) {
-    ;(Object.keys(statusInfo) as Partial<Array<keyof StatusInfo>>).forEach(
-      (key) => {
-        ;(currentNode as ComponentNode)[key as keyof StatusInfo] = statusInfo[
-          key as keyof StatusInfo
-        ] as boolean
-      },
-    )
-  }
-}
-
-export const updateComponentStatusInfoReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<updateComponentStatusInfoPayload>
-> = (state, action) => {
-  if (!state) return
-  const { displayName, statusInfo } = action.payload
-  updateComponentStatusInfoHelper(state, displayName, statusInfo)
-}
-
-export const batchUpdateComponentStatusInfoReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<updateComponentStatusInfoPayload[]>
-> = (state, action) => {
-  if (!state) return
-  action.payload.forEach((updateSlice) => {
-    const { displayName, statusInfo } = updateSlice
-    updateComponentStatusInfoHelper(state, displayName, statusInfo)
   })
 }
 

@@ -21,9 +21,13 @@ export const actionsSnapShot = (
         from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(newAction)
+        IllaUndoRedoManager.pushToRedoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
       } else {
-        IllaUndoRedoManager.pushToUndoStack(newAction)
+        IllaUndoRedoManager.pushToUndoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
       }
       break
     }
@@ -36,9 +40,13 @@ export const actionsSnapShot = (
         payload: originAction,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(newAction)
+        IllaUndoRedoManager.pushToRedoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
       } else {
-        IllaUndoRedoManager.pushToUndoStack(newAction)
+        IllaUndoRedoManager.pushToUndoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
       }
       break
     }
@@ -51,9 +59,13 @@ export const actionsSnapShot = (
         payload: originAction,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(newAction)
+        IllaUndoRedoManager.pushToRedoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
       } else {
-        IllaUndoRedoManager.pushToUndoStack(newAction)
+        IllaUndoRedoManager.pushToUndoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
       }
       break
     }
@@ -68,9 +80,13 @@ export const actionsSnapShot = (
       }
 
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(newAction)
+        IllaUndoRedoManager.pushToRedoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
       } else {
-        IllaUndoRedoManager.pushToUndoStack(newAction)
+        IllaUndoRedoManager.pushToUndoStack(
+          JSON.parse(JSON.stringify(newAction)),
+        )
       }
       break
     }

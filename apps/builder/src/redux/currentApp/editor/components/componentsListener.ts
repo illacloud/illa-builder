@@ -18,7 +18,6 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getExecutionResult,
-  getExecutionWidgetLayoutInfo,
   getInDependenciesMap,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
@@ -182,7 +181,6 @@ const updateComponentReflowComponentsAdapter = (
   action: ReturnType<
     | typeof componentsActions.addComponentReducer
     | typeof componentsActions.updateComponentLayoutInfoReducer
-    | typeof componentsActions.copyComponentReducer
     | typeof componentsActions.updateComponentContainerReducer
   >,
 ) => {
@@ -210,53 +208,25 @@ const updateComponentReflowComponentsAdapter = (
       }
     }
     case "components/addComponentReducer": {
-      return {
-        parentDisplayName: action.payload[0].parentNode!,
-        effectedDisplayNames: [action.payload[0].displayName],
-        square: {
-          x: action.payload[0].x,
-          y: action.payload[0].y,
-          w: action.payload[0].w,
-          h: action.payload[0].h,
-        },
-        originUpdateSlice: [
-          {
-            displayName: action.payload[0].displayName,
-            layoutInfo: {
-              x: action.payload[0].x,
-              y: action.payload[0].y,
-              w: action.payload[0].w,
-              h: action.payload[0].h,
-            },
-          },
-        ],
-      }
-    }
-    case "components/copyComponentReducer": {
-      const { copyComponents } = action.payload
-      const parentDisplayName = copyComponents[0].newComponentNode.parentNode
-      const effectedDisplayNames = copyComponents.map((item) => {
-        return item.originComponentNode.displayName
-      })
-
-      const square = combineWidgetInfos(
-        copyComponents.map((item) => item.newComponentNode),
+      const effectedDisplayNames = action.payload.map(
+        (item) => item.displayName,
       )
+      const square = combineWidgetInfos(action.payload)
 
-      const originUpdateSlice = copyComponents.map((slice) => ({
-        displayName: slice.newComponentNode.displayName,
+      const originUpdateSlice = action.payload.map((slice) => ({
+        displayName: slice.displayName,
         layoutInfo: {
-          x: slice.newComponentNode.x,
-          y: slice.newComponentNode.y,
-          w: slice.newComponentNode.w,
-          h: slice.newComponentNode.h,
+          x: slice.x,
+          y: slice.y,
+          w: slice.w,
+          h: slice.h,
         },
       }))
       return {
-        parentDisplayName: parentDisplayName!,
-        effectedDisplayNames,
-        square,
-        originUpdateSlice,
+        parentDisplayName: action.payload[0].parentNode!,
+        effectedDisplayNames: effectedDisplayNames,
+        square: square,
+        originUpdateSlice: originUpdateSlice,
       }
     }
     case "components/updateComponentLayoutInfoReducer": {
@@ -289,7 +259,6 @@ function handleUpdateComponentReflowEffect(
     action as ReturnType<
       | typeof componentsActions.addComponentReducer
       | typeof componentsActions.updateComponentLayoutInfoReducer
-      | typeof componentsActions.copyComponentReducer
       | typeof componentsActions.updateComponentContainerReducer
     >,
   )
@@ -300,9 +269,6 @@ function handleUpdateComponentReflowEffect(
     updateComponents.square,
     updateComponents.parentDisplayName,
     updateComponents.effectedDisplayNames,
-    action.type === "components/copyComponentReducer"
-      ? Object.values(getExecutionWidgetLayoutInfo(listenApi.getState()))
-      : undefined,
   )
 
   if (effectMap && effectMap.size > 0) {
@@ -467,7 +433,6 @@ export function setupComponentsListeners(
       matcher: isAnyOf(
         componentsActions.addComponentReducer,
         componentsActions.updateComponentLayoutInfoReducer,
-        componentsActions.copyComponentReducer,
         componentsActions.batchUpdateComponentLayoutInfoReducer,
         componentsActions.updateComponentContainerReducer,
       ),
