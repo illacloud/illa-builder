@@ -2,6 +2,7 @@ import { memo } from "react"
 import { Rnd } from "react-rnd"
 import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/renderWithJSON"
 import { UNIT_HEIGHT } from "../DotPanel/constant/canvas"
+import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquarePropsWithJSON } from "./interface"
 import { applyWrapperPendingStyle } from "./style"
 import { getRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
@@ -27,7 +28,7 @@ const ScaleSquareWithJSON = (props: ScaleSquarePropsWithJSON) => {
       }}
       enableResizing={false}
       disableDragging
-      minWidth={componentNode.minW * unitW}
+      minWidth={DEFAULT_MIN_COLUMN * unitW}
       minHeight={componentNode.minH * UNIT_HEIGHT}
     >
       <div

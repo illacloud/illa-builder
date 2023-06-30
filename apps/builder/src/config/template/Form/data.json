@@ -139,7 +139,7 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "TEXT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
@@ -189,7 +189,7 @@
                                 "error": false,
                                 "isDragging": true,
                                 "isResizing": false,
-                                "childrenNode": null,
+                                "childrenNode": [],
                                 "type": "CANVAS",
                                 "containerType": "EDITOR_DOT_PANEL",
                                 "verticalResize": false,
@@ -212,7 +212,7 @@
                                 "error": false,
                                 "isDragging": true,
                                 "isResizing": false,
-                                "childrenNode": null,
+                                "childrenNode": [],
                                 "type": "CANVAS",
                                 "containerType": "EDITOR_DOT_PANEL",
                                 "verticalResize": false,
@@ -303,7 +303,7 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "RADIO_GROUP_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
@@ -372,7 +372,7 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "SELECT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
@@ -430,7 +430,7 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "RADIO_GROUP_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
@@ -489,7 +489,7 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TEXTAREA_INPUT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
@@ -530,7 +530,7 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "INPUT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
@@ -591,7 +591,7 @@
                             "error": false,
                             "isDragging": true,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "BUTTON_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
@@ -605,9 +605,7 @@
                             "y": 0,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "loading"
-                              ],
+                              "$dynamicAttrPaths": ["loading"],
                               "colorScheme": "purple",
                               "events": [
                                 {
@@ -658,7 +656,7 @@
                       "backgroundColor": "#ffffffff",
                       "borderColor": "#ffffffff",
                       "borderWidth": "4px",
-                      "footerHeight": 8,
+                      "footerHeight": 7,
                       "headerHeight": 22,
                       "radius": "4px",
                       "resetAfterSuccessful": true,
@@ -709,9 +707,7 @@
                   "viewDisplayName": "bodySection1-bodySectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "bodySection1-bodySectionContainer1"
-              ]
+              "viewSortedKey": ["bodySection1-bodySectionContainer1"]
             },
             "panelConfig": null
           },
@@ -722,7 +718,7 @@
             "error": false,
             "isDragging": false,
             "isResizing": false,
-            "childrenNode": null,
+            "childrenNode": [],
             "type": "MODAL_SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
             "verticalResize": true,
@@ -756,21 +752,21 @@
           "bottomHeight": 0,
           "canvasSize": "fixed",
           "canvasWidth": 1000,
-          "footerColumns": 64,
+          "footerColumns": 32,
           "hasFooter": false,
           "hasHeader": false,
           "hasLeft": false,
           "hasRight": false,
-          "headerColumns": 64,
+          "headerColumns": 32,
           "isFooterFixed": true,
           "isHeaderFixed": true,
           "isLeftFixed": true,
           "isRightFixed": true,
           "layout": "default",
-          "leftColumns": 16,
+          "leftColumns": 8,
           "leftPosition": "NONE",
           "leftWidth": 0,
-          "rightColumns": 16,
+          "rightColumns": 8,
           "rightPosition": "NONE",
           "rightWidth": 0,
           "showLeftFoldIcon": false,
@@ -794,9 +790,7 @@
     "z": 0,
     "props": {
       "currentPageIndex": 0,
-      "pageSortedKey": [
-        "page1"
-      ]
+      "pageSortedKey": ["page1"]
     },
     "panelConfig": null
   },

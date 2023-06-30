@@ -1,3 +1,5 @@
+import { DEFAULT_MIN_COLUMN } from "../ScaleSquare/constant/widget"
+
 interface WidgetShape {
   x: number
   y: number
@@ -13,12 +15,11 @@ export const getLargeItemShapeWithNodeScale = (
   const left = Math.min(...selectedComponents.map((item) => item.x))
   const bottom = Math.max(...selectedComponents.map((item) => item.y + item.h))
   const right = Math.max(...selectedComponents.map((item) => item.x + item.w))
-  const minW = Math.max(...selectedComponents.map((item) => item.minW))
   return {
     x: left,
     y: top,
     w: right - left,
     h: bottom - top,
-    minW,
+    minW: DEFAULT_MIN_COLUMN,
   }
 }

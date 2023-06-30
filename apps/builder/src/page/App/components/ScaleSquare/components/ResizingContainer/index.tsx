@@ -8,6 +8,7 @@ import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNe
 import { getNewPositionWithCrossing } from "@/page/App/components/DotPanel/utils/crossingHelper"
 import { sendShadowMessageHandler } from "@/page/App/components/DotPanel/utils/sendBinaryMessage"
 import { AutoHeightWithLimitedContainer } from "@/page/App/components/ScaleSquare/components/AutoHeightWithLimitedContainer"
+import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import { useScaleStateSelector } from "@/page/App/components/ScaleSquare/utils/useScaleStateSelector"
 import {
   getIsILLAEditMode,
@@ -31,7 +32,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { BatchUpdateWidgetLayoutInfoPayload } from "@/redux/currentApp/executionTree/executionState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
@@ -165,10 +166,11 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       e.preventDefault()
       e.stopPropagation()
       dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
-      illaSnapshot.setSnapshot(layoutInfoResult)
+      const rootState = store.getState()
+      illaSnapshot.setSnapshot(getExecutionWidgetLayoutInfo(rootState))
       dispatch(configActions.updateShowDot(true))
     },
-    [dispatch, displayName, layoutInfoResult],
+    [dispatch, displayName],
   )
 
   const handleResize: RndResizeCallback = useCallback(
@@ -225,10 +227,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       let finalH = Math.round((widgetHeight + deltaHeight) / UNIT_HEIGHT)
       const x = Math.round(position.x / unitW)
       const y = Math.round(position.y / UNIT_HEIGHT)
-      finalW =
-        finalW < currentWidgetLayoutInfo.layoutInfo.minW
-          ? currentWidgetLayoutInfo.layoutInfo.minW
-          : finalW
+      finalW = finalW < DEFAULT_MIN_COLUMN ? DEFAULT_MIN_COLUMN : finalW
       finalH =
         finalH < currentWidgetLayoutInfo.layoutInfo.minH
           ? currentWidgetLayoutInfo.layoutInfo.minH
@@ -296,7 +295,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
           ? getEnableResizing(resizeDirection)
           : false
       }
-      minWidth={currentWidgetLayoutInfo?.layoutInfo.minW * unitW}
+      minWidth={DEFAULT_MIN_COLUMN * unitW}
       minHeight={currentWidgetLayoutInfo?.layoutInfo.minH * UNIT_HEIGHT}
       resizeHandleComponent={getResizeHandler(
         resizeDirection,
