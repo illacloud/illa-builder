@@ -66,19 +66,19 @@ export const templateConfig = {
     nameKey: "editor.tutorial.panel.tutorial.templates_name.table",
     config: formatAppDataToConfig(TABLE_DATA),
     example:
-      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74H",
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7QW",
   },
   Form: {
     nameKey: "editor.tutorial.panel.tutorial.templates_name.form",
     config: formatAppDataToConfig(FORM_DATA),
     example:
-      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74O",
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7QV",
   },
   List: {
     nameKey: "editor.tutorial.panel.tutorial.templates_name.list",
     config: formatAppDataToConfig(LIST_DATA),
     example:
-      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C74N",
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7QU",
   },
 }
 
@@ -87,21 +87,21 @@ export const Templates: TemplateSetting[] = [
     type: "Table",
     nameKey: "editor.tutorial.panel.tutorial.templates_name.table",
     descKey: "editor.tutorial.panel.tutorial.templates_description.table",
-    appId: "ILAex4p1C74H",
+    appId: "ILAex4p1C7QW",
     icon: TableIcon,
   },
   {
     type: "Form",
     nameKey: "editor.tutorial.panel.tutorial.templates_name.form",
     descKey: "editor.tutorial.panel.tutorial.templates_description.form",
-    appId: "ILAex4p1C74O",
+    appId: "ILAex4p1C7QV",
     icon: FormIcon,
   },
   {
     type: "List",
     nameKey: "editor.tutorial.panel.tutorial.templates_name.list",
     descKey: "editor.tutorial.panel.tutorial.templates_description.list",
-    appId: "ILAex4p1C74N",
+    appId: "ILAex4p1C7QU",
     icon: ListIcon,
   },
 ]
