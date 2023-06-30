@@ -1,5 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
+import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
@@ -256,22 +257,37 @@ export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
       const childrenNode = Array.isArray(components[key].childrenNode)
         ? components[key].childrenNode.map((node) => node.displayName)
         : []
+
+      const {
+        displayName,
+        parentNode,
+        type,
+        containerType,
+        x,
+        y,
+        z,
+        w,
+        h,
+        unitW,
+        unitH,
+        minH,
+      } = components[key]
       res[key] = {
-        displayName: components[key].displayName,
-        parentNode: components[key].parentNode as string,
-        widgetType: components[key].type,
+        displayName: displayName,
+        parentNode: parentNode ?? "",
+        widgetType: type,
         childrenNode: childrenNode,
-        containerType: components[key].containerType,
+        containerType: containerType,
         layoutInfo: {
-          x: components[key].x,
-          y: components[key].y,
-          z: components[key].z,
-          w: components[key].w,
-          h: components[key].h,
-          unitW: components[key].unitW,
-          unitH: components[key].unitH,
-          minW: components[key].minW,
-          minH: components[key].minH,
+          x,
+          y,
+          z,
+          w,
+          h,
+          unitW,
+          unitH,
+          minW: DEFAULT_MIN_COLUMN,
+          minH,
         },
       }
     })

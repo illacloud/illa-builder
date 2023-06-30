@@ -2,6 +2,7 @@ import { cloneDeep, get, set } from "lodash"
 import { isObject } from "@illa-design/react"
 import { buildInitDragInfo } from "@/page/App/components/ComponentPanel/componentListBuilder"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
+import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import {
   CONTAINER_TYPE,
   ComponentNode,
@@ -34,7 +35,7 @@ export const generateWidgetLayoutInfo = (
       x: currentComponentConfig.x ?? 0,
       y: currentComponentConfig.y ?? 0,
       z: 0,
-      minW: currentComponentConfig.minW ?? 2,
+      minW: DEFAULT_MIN_COLUMN,
       minH: currentComponentConfig.minH ?? 3,
       unitW: 0,
       unitH: UNIT_HEIGHT,
@@ -59,7 +60,7 @@ export const generateComponentNodeByWidgetInfo = (
     y = 0,
     w = 0,
     h = 0,
-    minW = 2,
+    minW = DEFAULT_MIN_COLUMN,
     minH = 3,
     type,
     displayName: showName,
@@ -163,7 +164,7 @@ export const newGenerateChildrenComponentNode = (
     return {
       w: widgetInfo.w,
       h: widgetInfo.h,
-      minW: widgetInfo.minW,
+      minW: DEFAULT_MIN_COLUMN,
       minH: widgetInfo.minH,
       verticalResize: false,
       isDragging: false,
@@ -210,8 +211,9 @@ export const newGenerateComponentNode = (
   let childrenNodeDSL: ComponentNode[] = []
   const {
     defaults,
+    w,
     h,
-    minW = 2,
+    minW = DEFAULT_MIN_COLUMN,
     minH = 3,
     type,
     displayName: showName,
@@ -261,7 +263,7 @@ export const newGenerateComponentNode = (
   }
 
   baseDSL = {
-    w: defaultW,
+    w: type === "MODAL_WIDGET" ? w : defaultW,
     h,
     minW,
     minH,

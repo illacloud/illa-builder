@@ -13,17 +13,14 @@
     "h": 6,
     "w": 8,
     "minH": 3,
-    "minW": 2,
+    "minW": 1,
     "unitW": 14,
     "unitH": 8,
     "x": 9,
     "y": 17,
     "z": 0,
     "props": {
-      "$dynamicAttrPaths": [
-        "formDataKey",
-        "labelWidth"
-      ],
+      "$dynamicAttrPaths": ["formDataKey", "labelWidth"],
       "colorScheme": "blue",
       "formDataKey": "{{input1.displayName}}",
       "hidden": false,
@@ -50,7 +47,7 @@
     "h": 5,
     "w": 6,
     "minH": 3,
-    "minW": 2,
+    "minW": 1,
     "unitW": 14,
     "unitH": 8,
     "x": 17,
@@ -79,17 +76,14 @@
     "h": 38,
     "w": 14,
     "minH": 3,
-    "minW": 2,
+    "minW": 1,
     "unitW": 14,
     "unitH": 8,
     "x": 9,
     "y": 25,
     "z": 0,
     "props": {
-      "$dynamicAttrPaths": [
-        "dataSourceJS",
-        "pageSize"
-      ],
+      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"],
       "columnMapper": {
         "incomes": {
           "accessorKey": "incomes",

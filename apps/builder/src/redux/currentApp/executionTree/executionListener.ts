@@ -26,7 +26,10 @@ import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeF
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import { cursorActions } from "../cursor/cursorSlice"
 import { ComponentNode } from "../editor/components/componentsState"
-import { BatchUpdateWidgetLayoutInfoPayload } from "./executionState"
+import {
+  BatchUpdateWidgetLayoutInfoPayload,
+  WidgetLayoutInfo,
+} from "./executionState"
 
 export let executionTree: ExecutionTreeFactory | undefined
 
@@ -310,10 +313,52 @@ function handleUpdateWidgetPositionInExecutionLayoutInfo(
   listenerApi: AppListenerEffectAPI,
 ) {
   const rootState = listenerApi.getState()
-  const displayNameMapNode = getAllComponentDisplayNameMapLayoutInfo(rootState)
+  let displayNameMapNode = getAllComponentDisplayNameMapLayoutInfo(rootState)
   if (!displayNameMapNode) return
+  const executionLayoutInfos = getExecutionWidgetLayoutInfo(rootState)
+  let setWidgetLayoutInfoReducerActionPayload: Record<
+    string,
+    WidgetLayoutInfo
+  > = {}
+  let effectDisplayNames: string[] = []
+  if (
+    action.type === "components/batchUpdateComponentLayoutInfoWhenReflowReducer"
+  ) {
+    const { payload } = action
+    ;(payload as BatchUpdateWidgetLayoutInfoPayload[]).forEach((item) => {
+      effectDisplayNames.push(item.displayName)
+    })
+  }
+  Object.keys(displayNameMapNode).forEach((displayName) => {
+    if (
+      (displayNameMapNode as Record<string, WidgetLayoutInfo>)[displayName] &&
+      executionLayoutInfos[displayName] &&
+      effectDisplayNames.indexOf(displayName) === -1
+    ) {
+      setWidgetLayoutInfoReducerActionPayload[displayName] = {
+        ...(displayNameMapNode as Record<string, WidgetLayoutInfo>)[
+          displayName
+        ],
+        layoutInfo: {
+          ...(displayNameMapNode as Record<string, WidgetLayoutInfo>)[
+            displayName
+          ].layoutInfo,
+          y: executionLayoutInfos[displayName].layoutInfo.y,
+          h: executionLayoutInfos[displayName].layoutInfo.h,
+        },
+      }
+    } else {
+      setWidgetLayoutInfoReducerActionPayload[displayName] = {
+        ...(displayNameMapNode as Record<string, WidgetLayoutInfo>)[
+          displayName
+        ],
+      }
+    }
+  })
   listenerApi.dispatch(
-    executionActions.setWidgetLayoutInfoReducer(displayNameMapNode),
+    executionActions.setWidgetLayoutInfoReducer(
+      setWidgetLayoutInfoReducerActionPayload,
+    ),
   )
 }
 
