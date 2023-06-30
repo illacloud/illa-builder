@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASE",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Pagina",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Aggiungi GRATIS i membri illimitati del visualizzatore",
         "publish_public_appli": "Pubblica applicazioni pubbliche",
         "ai_sql_generation": "Generazione Ai SQL",
-        "audit_logs": "Registri di verifica (presto in corso)",
+        "audit_logs": "Registri di controllo",
         "learn_more": "Scopri di più",
         "upgrade": "Aggiorna",
         "pricing": "/editor/mese, annuale",
