@@ -1982,7 +1982,7 @@
           "icon": "Icon",
           "solid": "Solid",
           "outline": "Outline",
-          "auto": "Responsive",
+          "auto": "Auto",
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "베이스",
-        "frame": "LAYOUT"
+        "frame": "캔버스"
       },
       "tab_title": "페이지",
       "tooltips": {
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Add unlimited viewer members for FREE",
         "publish_public_appli": "Publish public applications",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs(Coming soon)",
+        "audit_logs": "Audit logs",
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
         "pricing": "editor/month, yearly (monthly $10/editor)",
