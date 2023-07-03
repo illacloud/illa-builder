@@ -1290,7 +1290,7 @@
           "clear_button_text": "Ryd"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "tekst"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Afsender ID",
         "showName": "Vis navn",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Standard tekst"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Angiv, om en svar-knap skal vises når du vælger en besked.",
         "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "For at indstille varianten af faneblade"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Linje",
+          "card": "Kort"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Standard teksten vises når komponenten er initialiseret"
         }
       }
     },
@@ -2510,7 +2510,7 @@
       "name": "Cirkel Fremgang"
     },
     "container": {
-      "empty": "Tryk på <keyPress>D</keyPress> eller <keyPress>K</keyPress> og træk komponenter her",
+      "empty": "Træk komponenter hertil",
       "key_duplicated": "Nøglen er duplikeret. Brug venligst unikke nøgler for at undgå fejl.",
       "name": "Container",
       "value_duplicated": "Værdien er duplikeret. Brug venligst unikke værdier for at undgå fejl."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Operationer med flere komponenter er ikke tilladt på tværs af lærreder."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Fortryd succesfuld",
+        "failed": "Fortryd mislykkedes"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Gendannelse lykkedes",
+        "failed": "Gendannelse mislykkedes"
       }
     }
   },
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Omdirigerer til Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Opdater AppSumo abonnement"
     }
   },
   "network": {
