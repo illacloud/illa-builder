@@ -465,6 +465,7 @@ export function setupExecutionListeners(
         componentsActions.addComponentReducer,
         componentsActions.updateTargetPageLayoutReducer,
         componentsActions.updateSectionViewPropsReducer,
+        componentsActions.updateComponentDisplayNameReducer,
         executionActions.startExecutionReducer,
       ),
       effect: handleUpdateWidgetPositionInExecutionLayoutInfo,

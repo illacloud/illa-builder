@@ -73,28 +73,10 @@ export class DisplayNameGenerator {
     })
   }
 
-  static updateDisplayName(
-    displayName: string,
-    oldDisplayName?: string,
-  ): boolean | void {
-    if (this.isAlreadyGenerate(displayName)) {
-      return false
-    }
-    if (oldDisplayName !== undefined) {
-      this.removeDisplayName(oldDisplayName)
-    }
-    this.displayNameList.add(displayName)
-    Connection.getTextRoom("app", this.appId)?.send(
-      getTextMessagePayload(
-        Signal.BROADCAST_ONLY,
-        Target.DISPLAY_NAME,
-        true,
-        { type: UPDATE_DISPLAY_NAME, payload: [oldDisplayName, displayName] },
-        this.teamID,
-        this.uid,
-        [],
-      ),
-    )
+  static addDisplayNames(displayNames: string[]) {
+    displayNames.forEach((displayName) => {
+      this.displayNameList.add(displayName)
+    })
   }
 
   static updateOrGenerateDisplayName(displayName: string) {
