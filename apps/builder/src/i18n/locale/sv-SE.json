@@ -1686,7 +1686,7 @@
         "senderId": "Avsändarens ID",
         "showName": "Visa namn",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Förvald text"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Ange om du vill visa en svarsknapp när du väljer ett meddelande.",
         "toolbar-delete": "Ange om du vill visa en raderingsknapp när du väljer ett meddelande.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "För att ställa in variant av flikar"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Linje",
+          "card": "Kort"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Standardtexten som visas när komponenten är initierad"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Sida",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Cirkel framsteg"
     },
     "container": {
-      "empty": "Tryck på <keyPress>D</keyPress> eller <keyPress>K</keyPress> och dra komponenter hit",
+      "empty": "Dra komponenter hit",
       "key_duplicated": "Nyckeln är duplicerad. Använd unika nycklar för att undvika fel.",
       "name": "Behållare",
       "value_duplicated": "Värdet dupliceras. Använd unika värden för att undvika fel."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Klicka på ramen för att ange den klistra in platsen.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Verksamheten med flera komponenter tillåts inte över dukar."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Ångra lyckad",
+        "failed": "Ångra misslyckades"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Upprepade lyckades",
+        "failed": "Upprepa misslyckades"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Lägg till obegränsat antal läsare GRATIS",
         "publish_public_appli": "Publicera publika program",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Granskningsloggar (Kommer snart)",
+        "audit_logs": "Granskningsloggar",
         "learn_more": "Läs mer",
         "upgrade": "Uppgradera",
         "pricing": "/redaktör/månad, årligt",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Omdirigerar till Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Uppdatera AppSumo plan"
     }
   },
   "network": {

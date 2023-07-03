@@ -1686,7 +1686,7 @@
         "senderId": "ID expeditor",
         "showName": "Arată numele",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Text implicit"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Setează dacă se afișează un buton de răspuns când se selectează un mesaj.",
         "toolbar-delete": "Setează dacă se afișează un buton de ștergere când se selectează un mesaj.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Pentru a seta varianta taburilor"
         }
       },
       "setter_option": {
@@ -2000,7 +2000,7 @@
           }
         },
         "tab": {
-          "line": "Line",
+          "line": "Linie",
           "card": "Card"
         }
       },
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Textul implicit afişat atunci când componenta este iniţializată"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "Bază",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Pagină",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Progresul cercului"
     },
     "container": {
-      "empty": "Apăsați <keyPress>D</keyPress> sau <keyPress>K</keyPress> și trageți componentele aici",
+      "empty": "Trage componentele aici",
       "key_duplicated": "Cheia este duplicată. Utilizați chei unice pentru a evita erorile.",
       "name": "Recipient",
       "value_duplicated": "Valoarea este duplicată. Vă rugăm să folosiţi valori unice pentru a evita erorile."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Vă rugăm să faceţi clic pe cadru pentru a specifica locaţia de lipire.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Operațiunile care implică mai multe componente nu sunt permise de-a lungul pânzelor."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Anulare reușită",
+        "failed": "Anulare eșuată"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Redo cu succes",
+        "failed": "Refacere eșuată"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Adaugă nelimitat vizitator pentru GRATUIT",
         "publish_public_appli": "Publicare aplicații publice",
         "ai_sql_generation": "Generare AI SQL",
-        "audit_logs": "Jurnale de audit (în curând)",
+        "audit_logs": "Jurnale de audit",
         "learn_more": "Află mai multe",
         "upgrade": "Actualizează",
         "pricing": "/editor/lună, anual",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Redirecționare către Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Actualizați planul AppSumo"
     }
   },
   "network": {

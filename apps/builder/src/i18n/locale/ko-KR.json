@@ -1982,7 +1982,7 @@
           "icon": "Icon",
           "solid": "Solid",
           "outline": "Outline",
-          "auto": "Responsive",
+          "auto": "Auto",
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "베이스",
-        "frame": "LAYOUT"
+        "frame": "캔버스"
       },
       "tab_title": "페이지",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "원형 진행률 표시줄"
     },
     "container": {
-      "empty": "<keyPress> D </keyPress> 또는 <keyPress> K </keyPress> 를 누른 상태에서 구성 요소를 컨테이너로 드래그",
+      "empty": "구성요소를 여기로 드래그",
       "key_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오.",
       "name": "컨테이너",
       "value_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오."
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Add unlimited viewer members for FREE",
         "publish_public_appli": "Publish public applications",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs(Coming soon)",
+        "audit_logs": "Audit logs",
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
         "pricing": "editor/month, yearly (monthly $10/editor)",
