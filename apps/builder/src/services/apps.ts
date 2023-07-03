@@ -69,11 +69,14 @@ export const fetchPrivateAppInitData = async (
   )
 }
 
-export const fetchDeployApp = (appID: string) => {
+export const fetchDeployApp = (appID: string, isPublic?: boolean) => {
   return builderRequest<DeployResp>(
     {
       url: `/apps/${appID}/deploy`,
       method: "POST",
+      data: {
+        public: isPublic,
+      },
     },
     {
       needTeamID: true,

@@ -1,6 +1,12 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
+export const CARD_WIDTH = 380
+export const CARD_GAP_SIZE = 24
+export const fullWidthStyle: SerializedStyles = css`
+  width: 100%;
+  height: 100%;
+`
 export const appsContainerStyle: SerializedStyles = css`
   display: flex;
   height: 100%;
@@ -35,7 +41,8 @@ export const listContainerStyle: SerializedStyles = css`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: ${CARD_GAP_SIZE}px;
+  margin-bottom: ${CARD_GAP_SIZE}px;
 `
 
 export const listTitleStyle: SerializedStyles = css`

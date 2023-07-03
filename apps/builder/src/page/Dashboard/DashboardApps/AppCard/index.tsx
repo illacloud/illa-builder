@@ -1,6 +1,11 @@
 import { FC, HTMLAttributes } from "react"
 import { useTranslation } from "react-i18next"
-import { Button, Tag } from "@illa-design/react"
+import { useNavigate, useParams } from "react-router-dom"
+import { Button, PenIcon, Space, Tag } from "@illa-design/react"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import {
   appNameStyle,
   cardStyle,
@@ -13,6 +18,7 @@ import {
 import { AppCardActionItem } from "@/page/Dashboard/DashboardApps/AppCardActionItem"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fromNow } from "@/utils/dayjs"
+import { track } from "@/utils/mixpanelHelper"
 
 interface AppCardProps extends HTMLAttributes<HTMLDivElement> {
   appInfo: DashboardApp
@@ -21,6 +27,8 @@ interface AppCardProps extends HTMLAttributes<HTMLDivElement> {
 export const AppCard: FC<AppCardProps> = (props) => {
   const { t } = useTranslation()
   const { appInfo, canEditApp, ...rest } = props
+  const { teamIdentifier } = useParams()
+  const navigate = useNavigate()
 
   return (
     <div css={cardStyle} {...rest}>
@@ -68,9 +76,48 @@ export const AppCard: FC<AppCardProps> = (props) => {
             {appInfo.config.public ? "Public" : "Private"}
           </div>
         </div>
-        <div className="actions">
-          <Button size="small">ddd</Button>
-        </div>
+        <Space
+          direction="horizontal"
+          w="100%"
+          justifyContent="end"
+          size="8px"
+          alignItems="center"
+        >
+          {appInfo.deployed ? (
+            <Button
+              size="small"
+              colorScheme="white"
+              onClick={(e) => {
+                e.stopPropagation()
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "app_launch", parameter5: appInfo.appId },
+                )
+                navigate(`/${teamIdentifier}/deploy/app/${appInfo.appId}`)
+              }}
+            >
+              {t("launch")}
+            </Button>
+          ) : null}
+          {canEditApp ? (
+            <Button
+              size="small"
+              colorScheme="grayBlue"
+              leftIcon={<PenIcon />}
+              onClick={() => {
+                track(
+                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                  { element: "app_edit", parameter5: appInfo.appId },
+                )
+                navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
+              }}
+            >
+              {t("edit")}
+            </Button>
+          ) : null}
+        </Space>
       </div>
     </div>
   )

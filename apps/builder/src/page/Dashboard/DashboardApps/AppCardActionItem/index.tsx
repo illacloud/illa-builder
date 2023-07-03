@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import {
   Button,
   CopyIcon,
-  DeleteIcon,
+  DeleteOutlineIcon,
   DependencyIcon,
   DropList,
   DropListItem,
@@ -323,7 +323,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                 value="delete"
                 title={
                   <div>
-                    <DeleteIcon mr="8px" />
+                    <DeleteOutlineIcon mr="8px" />
                     <span>{t("dashboard.common.delete")}</span>
                   </div>
                 }
@@ -436,7 +436,12 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
               <DropListItem
                 key="share"
                 value="share"
-                title={t("share")}
+                title={
+                  <div>
+                    <DependencyIcon mr="8px" />
+                    <span>{t("share")}</span>
+                  </div>
+                }
                 onClick={() => {
                   setShareVisible(true)
                   track(

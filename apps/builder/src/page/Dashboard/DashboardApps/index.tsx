@@ -9,7 +9,7 @@ import {
   useLoaderData,
   useParams,
 } from "react-router-dom"
-import { Button, Divider, useMessage } from "@illa-design/react"
+import { Button, useMessage } from "@illa-design/react"
 import { Avatar } from "@/illa-public-component/Avatar"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
@@ -141,7 +141,6 @@ export const DashboardApps: FC = () => {
             ) : null}
           </div>
         </div>
-        <Divider direction="horizontal" />
         <Suspense fallback={<DashBoardLoading />}>
           <Await resolve={appList} errorElement={<DashboardErrorElement />}>
             <AppsContentBody canEditApp={canEditApp} />
