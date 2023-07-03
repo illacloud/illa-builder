@@ -1290,7 +1290,7 @@
           "clear_button_text": "Tyhjennä"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "teksti"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Lähettäjän Tunnus",
         "showName": "Näytä nimi",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Oletus teksti"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Määritä näytetäänkö vastauspainike, kun valitse viesti.",
         "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Jos haluat asettaa välilehtien muunnoksen"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Viiva",
+          "card": "Kortti"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Oletusteksti näytetään, kun komponentti on alustettu"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "PERUSTE",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Sivu",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Ympyrän Edistyminen"
     },
     "container": {
-      "empty": "Paina <keyPress>D</keyPress> tai <keyPress>K</keyPress> ja vedä osat tähän",
+      "empty": "Vedä komponentit tähän",
       "key_duplicated": "Avain on kopioitu. Ole hyvä ja käytä ainutlaatuisia avaimia välttääksesi virheitä.",
       "name": "Säiliö",
       "value_duplicated": "Arvo on kopioitu. Käytä yksilöllisiä arvoja välttääksesi virheitä."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Ole hyvä ja klikkaa kehystä määrittääksesi liittämisen sijainnin.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Useita komponentteja sisältäviä toimintoja ei sallita kaikissa kannoissa."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Kumoaminen onnistui",
+        "failed": "Peruminen epäonnistui"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Uudelleensyöttö onnistui",
+        "failed": "Toisto epäonnistui"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Lisää rajoittamaton katsojan jäseniä ILMAISEKSI",
         "publish_public_appli": "Julkaise julkiset sovellukset",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Tarkastusloki(Tulossa pian)",
+        "audit_logs": "Tarkastuslokit",
         "learn_more": "Lue lisää",
         "upgrade": "Päivitä",
         "pricing": "/editor/kuukausi, vuosittain",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Uudelleenohjaus raidalle",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Päivitä AppSumo suunnitelma"
     }
   },
   "network": {

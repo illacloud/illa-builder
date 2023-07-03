@@ -1290,7 +1290,7 @@
           "clear_button_text": "Wyczyść"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "tekst"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID nadawcy",
         "showName": "Pokaż nazwę",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Domyślny tekst"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Ustaw czy wyświetlić przycisk odpowiedzi po wybraniu wiadomości.",
         "toolbar-delete": "Ustaw czy pokazywać przycisk usuwania po wybraniu wiadomości.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Aby ustawić wariant kart"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Linia",
+          "card": "Karta"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Domyślny tekst wyświetlany po zainicjowaniu komponentu"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "PODSTAWOWE",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Strona",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Postęp okręgu"
     },
     "container": {
-      "empty": "Naciśnij <keyPress>D</keyPress> lub <keyPress>K</keyPress> i przeciągnij tutaj elementy",
+      "empty": "Przeciągnij tutaj elementy",
       "key_duplicated": "Klucz jest zduplikowany. Użyj unikalnych kluczy aby uniknąć błędów.",
       "name": "Pojemnik",
       "value_duplicated": "Wartość jest zduplikowana. Proszę użyć unikalnych wartości, aby uniknąć błędów."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Kliknij ramkę, aby określić lokalizację wklejenia.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Operacje obejmujące wiele części składowych nie są dozwolone na powierzchni płótna."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Cofnij pomyślne",
+        "failed": "Cofnięcie nie powiodło się"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Powtórz pomyślnie",
+        "failed": "Powtórz nie powiodło się"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Dodaj nieograniczoną liczbę członków przeglądarki za DARMO",
         "publish_public_appli": "Opublikuj aplikacje publiczne",
         "ai_sql_generation": "Generowanie AI SQL",
-        "audit_logs": "Logi audytu (Już wkrótce)",
+        "audit_logs": "Dzienniki audytu",
         "learn_more": "Poznaj więcej",
         "upgrade": "Ulepsz",
         "pricing": "/edytor/miesiąc, rok",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Przekierowanie do Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Aktualizuj plan AppSumo"
     }
   },
   "network": {

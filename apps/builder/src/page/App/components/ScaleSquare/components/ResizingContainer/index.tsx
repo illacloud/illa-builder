@@ -13,7 +13,7 @@ import { useScaleStateSelector } from "@/page/App/components/ScaleSquare/utils/u
 import {
   getIsILLAEditMode,
   getIsLikeProductMode,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -64,7 +64,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
 
   const isEditMode = useSelector(getIsILLAEditMode)
   const isLikeProductionMode = useSelector(getIsLikeProductMode)
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const executionResult = useSelector(getExecutionResult)
   const layoutInfoResult = useSelector(getExecutionWidgetLayoutInfo)
   const currentWidgetLayoutInfo = layoutInfoResult[displayName]

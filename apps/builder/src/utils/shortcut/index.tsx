@@ -9,7 +9,7 @@ import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
   getIsILLAEditMode,
   getSelectedAction,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -17,13 +17,12 @@ import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSele
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
-  searchDSLByDisplayName,
+  getSelectedComponentNode,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import store, { RootState } from "@/store"
+import store from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -38,18 +37,9 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const isEditMode = useSelector(getIsILLAEditMode)
   const message = useMessage()
 
-  const currentSelectedComponent = useSelector(getSelectedComponents)
+  const currentSelectedComponent = useSelector(getSelectedComponentDisplayNames)
 
-  const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
-    (rootState) => {
-      const currentSelectedComponentDisplayName =
-        getSelectedComponents(rootState)
-      const result = currentSelectedComponentDisplayName.map((displayName) => {
-        return searchDSLByDisplayName(displayName)
-      })
-      return result.filter((node) => node) as ComponentNode[]
-    },
-  )
+  const currentSelectedComponentNode = useSelector(getSelectedComponentNode)
 
   const currentSelectedAction = useSelector(getSelectedAction)
 

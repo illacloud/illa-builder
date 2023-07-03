@@ -6,7 +6,7 @@ import { PanelBar } from "@/components/PanelBar"
 import { WorkSpaceTreeGroup } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeGroup"
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
 import { hiddenFields } from "@/page/App/components/DataWorkspace/constant"
-import { getSelectedComponents } from "@/redux/config/configSelector"
+import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import {
   getCurrentPageGeneralWidgetExecutionResultArray,
@@ -25,7 +25,7 @@ export const ComponentSpaceTree: FC = () => {
   const modalWidgetExecutionArray = useSelector(
     getCurrentPageModalWidgetExecutionResultArray,
   )
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
 
   const handleGeneralComponentSelect = useCallback(
     (selectedKeys: string[]) => {
