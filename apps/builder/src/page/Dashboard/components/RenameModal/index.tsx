@@ -8,7 +8,7 @@ import {
 } from "@/illa-public-component/MixpanelUtils/interface"
 import { RenameModalProps } from "@/page/Dashboard/components/RenameModal/interface"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { fetchChangeAppName } from "@/services/apps"
+import { fetchChangeAppSetting } from "@/services/apps"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
 
@@ -89,7 +89,7 @@ export const RenameModal: FC<RenameModalProps> = (props) => {
           },
         )
         setLoading(true)
-        fetchChangeAppName(app.appId, nameRef.current)
+        fetchChangeAppSetting(app.appId, nameRef.current)
           .then(
             () => {
               dispatch(

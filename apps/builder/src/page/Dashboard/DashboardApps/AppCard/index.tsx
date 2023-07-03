@@ -16,6 +16,7 @@ import {
   titleInfoStyle,
 } from "@/page/Dashboard/DashboardApps/AppCard/style"
 import { AppCardActionItem } from "@/page/Dashboard/DashboardApps/AppCardActionItem"
+import AppConfigSelect from "@/page/Dashboard/DashboardApps/AppConfigSelect"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
@@ -71,10 +72,17 @@ export const AppCard: FC<AppCardProps> = (props) => {
         ))}
       </div>
       <div css={footerStyle}>
-        <div className="public-info">
-          <div className="public-text">
-            {appInfo.config.public ? "Public" : "Private"}
-          </div>
+        <div
+          className="public-info"
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+        >
+          <AppConfigSelect
+            appId={appInfo.appId}
+            isPublic={appInfo.config.public}
+            canEditApp={canEditApp}
+          />
         </div>
         <Space
           direction="horizontal"

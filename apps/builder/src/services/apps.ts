@@ -84,13 +84,20 @@ export const fetchDeployApp = (appID: string, isPublic?: boolean) => {
   )
 }
 
-export const fetchChangeAppName = (appID: string, appName: string) => {
+export const fetchChangeAppSetting = (
+  appID: string,
+  appName: string,
+  description?: string,
+) => {
   return builderRequest(
     {
       url: `/apps/${appID}`,
       method: "PUT",
       data: {
         appName,
+        config: {
+          description,
+        },
       },
     },
     {
