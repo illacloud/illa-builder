@@ -1290,7 +1290,7 @@
           "clear_button_text": "Claro"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "texto"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID del remitente",
         "showName": "Mostrar nombre",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Texto por defecto"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Establecer si mostrar un botón de respuesta cuando seleccione un mensaje.",
         "toolbar-delete": "Establecer si mostrar un botón de borrar cuando seleccione un mensaje.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Para establecer la variante de las pestañas"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Línea",
+          "card": "Tarjeta"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "El texto por defecto mostrado cuando el componente está inicializado"
         }
       }
     },
@@ -2510,7 +2510,7 @@
       "name": "Progreso del círculo"
     },
     "container": {
-      "empty": "Pulsa <keyPress>D</keyPress> o <keyPress>K</keyPress> y arrastra los componentes aquí",
+      "empty": "Arrastra componentes aquí",
       "key_duplicated": "La clave está duplicada. Por favor, utilice claves únicas para evitar errores.",
       "name": "Contenedor",
       "value_duplicated": "El valor está duplicado. Por favor, utilice valores únicos para evitar errores."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Por favor, haga clic en el marco para especificar la ubicación de la pega.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Las operaciones con múltiples componentes no están permitidas a través de lienzos."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Deshacer con éxito",
+        "failed": "Deshacer fallido"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Rehacer correctamente",
+        "failed": "Rehacer fallido"
       }
     }
   },
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Redirigiendo a Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Actualizar plan de AppSumo"
     }
   },
   "network": {
