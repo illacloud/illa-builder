@@ -1290,7 +1290,7 @@
           "clear_button_text": "Очистить"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "текст"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID отправителя",
         "showName": "Показать имя",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Текст по умолчанию"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Показывать ли кнопку ответа при выборе сообщения.",
         "toolbar-delete": "Показывать ли кнопку \"Удалить\" при выборе сообщения.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Установить вариант вкладок"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Линия",
+          "card": "Карта"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Текст по умолчанию, отображаемый при инициализации компонента"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "БАЗИЯ",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Страница",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Прогресс круга"
     },
     "container": {
-      "empty": "Нажмите <keyPress>D</keyPress> или <keyPress>K</keyPress> и перетащите компоненты сюда",
+      "empty": "Перетащите компоненты сюда",
       "key_duplicated": "Ключ дублируется. Пожалуйста, используйте уникальные ключи для избежания ошибок.",
       "name": "Контейнер",
       "value_duplicated": "Значение дублируется. Пожалуйста, используйте уникальные значения, чтобы избежать ошибок."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Пожалуйста, нажмите на рамку, чтобы указать расположение вставки.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Операции с участием нескольких компонентов во всех полотнах не допускаются."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Успешно отменено",
+        "failed": "Не удалось отменить"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Успешно повторено",
+        "failed": "Не удалось повторить"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Добавить неограниченное количество пользователей бесплатно",
         "publish_public_appli": "Публикация публичных приложений",
         "ai_sql_generation": "ИИ SQL Generation",
-        "audit_logs": "Журналы аудита (скоро)",
+        "audit_logs": "Журналы аудита",
         "learn_more": "Узнать больше",
         "upgrade": "Улучшить",
         "pricing": "/editor/месяц, год",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Перенаправление на полосу",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Обновить план AppSumo"
     }
   },
   "network": {

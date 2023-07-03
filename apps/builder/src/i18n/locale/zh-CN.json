@@ -2510,7 +2510,7 @@
       "name": "圆形进度条"
     },
     "container": {
-      "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器",
+      "empty": "将组件拖动到这里",
       "key_duplicated": "键值重复，请使用唯一值以避免报错。",
       "name": "容器",
       "value_duplicated": "值重复，请使用唯一值以避免报错。"

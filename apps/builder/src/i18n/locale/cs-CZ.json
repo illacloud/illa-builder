@@ -1686,7 +1686,7 @@
         "senderId": "ID odesílatele",
         "showName": "Zobrazit název",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Výchozí text"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Nastavte, zda se zobrazí tlačítko odpovědi při výběru zprávy.",
         "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Možnost nastavení záložek"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Řádek",
+          "card": "Karta"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Výchozí text zobrazený při inicializaci komponenty"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "ZÁKLADNÍ",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Stránka",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Průběh kruhu"
     },
     "container": {
-      "empty": "Stiskněte <keyPress>D</keyPress> nebo <keyPress>K</keyPress> a přetáhněte součásti sem",
+      "empty": "Zde přetáhněte komponenty",
       "key_duplicated": "Klíč je duplikován. Použijte prosím unikátní klíče, abyste se vyhnuli chybám.",
       "name": "Kontejner",
       "value_duplicated": "Hodnota je duplicitní. Použijte prosím unikátní hodnoty, abyste se vyhnuli chybám."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Klikněte na rámeček pro zadání vložené polohy.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Provoz zahrnující více součástí není povolen napříč plátny."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Vrátit zpět úspěšné",
+        "failed": "Vrátit zpět neúspěšné"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Opakování úspěšné",
+        "failed": "Opakování selhalo"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Přidat neomezený počet členů diváku ZDARMA",
         "publish_public_appli": "Publikovat veřejné aplikace",
         "ai_sql_generation": "Generování AI SQL",
-        "audit_logs": "Protokoly auditu (již brzy)",
+        "audit_logs": "Záznamy auditu",
         "learn_more": "Zjistit více",
         "upgrade": "Vylepšit",
         "pricing": "/editor/měsíc, ročně",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Přesměrování do Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Aktualizovat plán AppSumo"
     }
   },
   "network": {

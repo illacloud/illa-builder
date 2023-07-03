@@ -17,6 +17,7 @@ import {
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import { RestApiAuth } from "@/redux/resource/restapiResource"
+import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
 import {
   fetchActionTestConnection,
   fetchCreateAction,
@@ -214,8 +215,8 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       return {
         host: data.host.trim(),
         port: data.port.toString(),
-        databaseIndex: data.databaseIndex ?? 0,
-        databaseUsername: data.databaseUsername,
+        databaseIndex: DATABASE_INDEX,
+        databaseUsername: DEFAULT_NAME,
         databasePassword: data.databasePassword,
         ssl: true,
       }

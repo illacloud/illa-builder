@@ -1290,7 +1290,7 @@
           "clear_button_text": "Tøm"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "tekst"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Avsenderen ID",
         "showName": "Vis navn",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Standard tekst"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Angi om du skal vise en svar-knappen når du velger en melding.",
         "toolbar-delete": "Angi om du skal vise en slette-knapp når du velger en melding. (Automatic Translation)",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Å definere varianten av faner"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Linje",
+          "card": "Kort"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Standardteksten som vises når komponenten initialiseres"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "GRUNN",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Side",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Sirkel fremgang"
     },
     "container": {
-      "empty": "Trykk <keyPress>D</keyPress> eller <keyPress>K</keyPress> og dra komponenter her",
+      "empty": "Dra komponenter hit",
       "key_duplicated": "Nøkkelen er duplisert. Vennligst bruk unike nøkler for å unngå feil.",
       "name": "Beholder",
       "value_duplicated": "Verdien er duplisert. Vennligst bruk unike verdier for å unngå feil."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Klikk på rammen for å angi lime plassering.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Operasjoner som involverer flere komponenter, er ikke tillatt på tvers av lerretet."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Angre vellykket",
+        "failed": "Angre mislyktes"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Redo vellykket",
+        "failed": "Redo feilet"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Legg til ubegrenset antall seere GRATIS",
         "publish_public_appli": "Publiser offentlige søknader",
         "ai_sql_generation": "AI SQL Generering",
-        "audit_logs": "Revisjonslogg (Kommer snart)",
+        "audit_logs": "Revisjon logger",
         "learn_more": "Lær mer",
         "upgrade": "Oppgrader",
         "pricing": "/rediger/måned, årlig",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Omdirigerer til Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Oppdater AppSumo plan"
     }
   },
   "network": {

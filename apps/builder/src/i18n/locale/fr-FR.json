@@ -1290,7 +1290,7 @@
           "clear_button_text": "Réinitialiser"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "texte"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID de l'expéditeur",
         "showName": "Afficher le nom",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Texte par défaut"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Définit si le bouton de réponse doit être affiché lors de la sélection d'un message.",
         "toolbar-delete": "Définit si un bouton de suppression doit être affiché lors de la sélection d'un message.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Pour définir la variante d'onglets"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Lignes",
+          "card": "Cartes"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Le texte par défaut affiché lors de l'initialisation du composant"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIQUE",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Page",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Progression du cercle"
     },
     "container": {
-      "empty": "Appuyez sur <keyPress>D</keyPress> ou <keyPress>K</keyPress> et faites glisser les composants ici",
+      "empty": "Faites glisser les composants ici",
       "key_duplicated": "La clé est dupliquée. Veuillez utiliser des clés uniques pour éviter les erreurs.",
       "name": "Conteneur",
       "value_duplicated": "La valeur est dupliquée. Veuillez utiliser des valeurs uniques pour éviter les erreurs."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Veuillez cliquer sur le cadre pour spécifier l'emplacement de coller .",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Les opérations impliquant plusieurs composants ne sont pas autorisées à travers les toiles."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Annulation réussie",
+        "failed": "Échec de l'annulation"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Refaire avec succès",
+        "failed": "Refaire a échoué"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Ajoutez un nombre illimité de spectateurs gratuitement",
         "publish_public_appli": "Publier des applications publiques",
         "ai_sql_generation": "Génération de l'IA SQL",
-        "audit_logs": "Journaux d'audit (à venir)",
+        "audit_logs": "Journaux d'audit",
         "learn_more": "En savoir plus",
         "upgrade": "Mise à jour",
         "pricing": "/fr/editor/mois, annuellement",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Redirection vers Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Mettre à jour le plan AppSumo"
     }
   },
   "network": {
