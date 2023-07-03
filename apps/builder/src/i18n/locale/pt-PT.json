@@ -1290,7 +1290,7 @@
           "clear_button_text": "Limpar"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Texto"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Identificação do remetente",
         "showName": "Exibir nome",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Texto padrão"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Configura se deve mostrar um botão de resposta quando selecionar uma mensagem.",
         "toolbar-delete": "Configura se deve mostrar um botão excluir quando selecionar uma mensagem.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Para definir a variante das abas"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Linha",
+          "card": "Carta"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "O texto padrão exibido quando o componente é inicializado"
         }
       }
     },
@@ -2510,7 +2510,7 @@
       "name": "Progresso do Círculo"
     },
     "container": {
-      "empty": "Pressione <keyPress>D</keyPress> ou <keyPress>K</keyPress> e arraste os componentes aqui",
+      "empty": "Arraste componentes aqui",
       "key_duplicated": "A chave está duplicada. Por favor, utilize chaves únicas para evitar erros.",
       "name": "Contêiner",
       "value_duplicated": "O valor está duplicado. Por favor, use valores únicos para evitar erros."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Por favor, clique no quadro para especificar o local de colagem.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Operações envolvendo vários componentes não são permitidas entre tela."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Restaurado com sucesso",
+        "failed": "Desfazer falhou"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Refazer com sucesso",
+        "failed": "Refazer falhou"
       }
     }
   },
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Redirecionando para Listra",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Atualizar plano do AppSumo"
     }
   },
   "network": {
