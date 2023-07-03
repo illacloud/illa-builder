@@ -2510,7 +2510,7 @@
       "name": "Circle Progress"
     },
     "container": {
-      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
+      "empty": "Drag components here",
       "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
       "name": "Container",
       "value_duplicated": "The value is duplicated. Please use unique values to avoid errors."
