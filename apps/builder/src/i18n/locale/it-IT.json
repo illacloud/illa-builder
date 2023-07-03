@@ -1290,7 +1290,7 @@
           "clear_button_text": "Pulisci"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "testo"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Id Mittente",
         "showName": "Mostra nome",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Testo predefinito"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Imposta se mostrare un pulsante di risposta quando si seleziona un messaggio.",
         "toolbar-delete": "Imposta se mostrare un pulsante elimina quando si seleziona un messaggio.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Per impostare la variante delle schede"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Linea",
+          "card": "Carta"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Il testo predefinito visualizzato quando il componente è inizializzato"
         }
       }
     },
@@ -2510,7 +2510,7 @@
       "name": "Progresso Cerchio"
     },
     "container": {
-      "empty": "Premi <keyPress>D</keyPress> o <keyPress>K</keyPress> e trascina i componenti qui",
+      "empty": "Trascina i componenti qui",
       "key_duplicated": "La chiave è duplicata. Si prega di utilizzare chiavi uniche per evitare errori.",
       "name": "Contenitore",
       "value_duplicated": "Il valore è duplicato. Si prega di utilizzare valori univoci per evitare errori."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Fare clic sul riquadro per specificare la posizione di incolla.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Non sono ammesse operazioni che coinvolgono più componenti su tele."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Annullamento riuscito",
+        "failed": "Annullamento fallito"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Ripeti con successo",
+        "failed": "Ripeti fallita"
       }
     }
   },
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Reindirizzamento a Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Aggiorna piano AppSumo"
     }
   },
   "network": {
