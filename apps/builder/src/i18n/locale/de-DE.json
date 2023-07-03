@@ -1686,7 +1686,7 @@
         "senderId": "Absender-ID",
         "showName": "Name anzeigen",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Standardtext"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Legen Sie fest, ob eine Antwort angezeigt werden soll, wenn Sie eine Nachricht auswählen.",
         "toolbar-delete": "Legen Sie fest, ob eine Löschtaste angezeigt werden soll, wenn Sie eine Nachricht auswählen.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Um die Variante der Tabs zu setzen"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Linie",
+          "card": "Karte"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Der Standardtext, der angezeigt wird, wenn die Komponente initialisiert wird"
         }
       }
     },
@@ -2510,7 +2510,7 @@
       "name": "Kreisfortschritt"
     },
     "container": {
-      "empty": "Drücken Sie <keyPress>D</keyPress> oder <keyPress>K</keyPress> und ziehen Sie Komponenten hierher",
+      "empty": "Teile hierher ziehen",
       "key_duplicated": "Der Schlüssel wurde dupliziert. Bitte verwenden Sie eindeutige Schlüssel, um Fehler zu vermeiden.",
       "name": "Container",
       "value_duplicated": "Der Wert wurde dupliziert. Bitte verwenden Sie eindeutige Werte, um Fehler zu vermeiden."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Bitte klicken Sie auf den Rahmen, um den Ort anzugeben.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Operationen mit mehreren Komponenten sind über Leinwände hinweg nicht erlaubt."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Rückgängig erfolgreich",
+        "failed": "Rückgängig fehlgeschlagen"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Erneut erfolgreich",
+        "failed": "Redo fehlgeschlagen"
       }
     }
   },
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Umleitung zu Streifen",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "AppSumo Plan aktualisieren"
     }
   },
   "network": {
