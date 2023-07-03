@@ -15,5 +15,4 @@ export interface IconWidgetProps
     Pick<TooltipWrapperProps, "tooltipText"> {
   iconName?: string
   colorScheme?: string
-  footerHeight?: number
 }

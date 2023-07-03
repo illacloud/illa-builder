@@ -61,7 +61,7 @@ export const messageContentStyle = css`
     width: auto;
     border-radius: 0;
     padding: 0;
-    background-color: transparent!important;
+    background-color: transparent !important;
   }
   .cs-message__avatar {
     margin-top: 12px;
@@ -246,3 +246,30 @@ export const optionsStyle = (isAllShow: boolean) => {
     }
   `
 }
+
+export const loadingStyle = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${getColor("gray", "01")}; // ??
+  color: ${getColor("black", "01")};
+`
+export const audioWrapperStyle = css`
+  & > audio {
+    &::-webkit-media-controls {
+      justify-content: center;
+    }
+  }
+`
+
+export const audioStyle = (isReplay?: boolean) => css`
+  height: 50px;
+  width: ${isReplay ? 320 : 300}px;
+`
+
+export const videoStyle = (isReplay?: boolean) => css`
+  height: 150px;
+  width: ${isReplay ? 320 : 300}px;
+`

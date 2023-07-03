@@ -49,3 +49,13 @@ export interface ChatWidgetProps
   mappedOption?: Pluralize<MessageContent>
   columnNumber: number
 }
+
+export interface MessageSpecProps {
+  content?: string
+  isReply?: boolean
+  isOwnMessage?: boolean
+  leftMessageColor?: string
+  rightMessageColor?: string
+}
+
+export const SendMessageProps = {}
