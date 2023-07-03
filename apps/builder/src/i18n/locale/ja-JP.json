@@ -1290,7 +1290,7 @@
           "clear_button_text": "クリア"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "テキスト"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "送信者ID",
         "showName": "名前を表示",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "既定のテキスト"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "メッセージを選択したときに返信ボタンを表示するかどうかを設定します。",
         "toolbar-delete": "メッセージを選択したときに削除ボタンを表示するかどうかを設定します。",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "タブのバリエーションを設定する"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "線",
+          "card": "カード"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "コンポーネントが初期化されたときに表示される既定のテキスト"
         }
       }
     },
@@ -2510,7 +2510,7 @@
       "name": "円形の進行状況バー"
     },
     "container": {
-      "empty": "<keyPress> D </keyPress>または<keyPress> K </keyPress>を押したまま、コンポーネントをコンテナにドラッグします",
+      "empty": "コンポーネントをここにドラッグ",
       "key_duplicated": "キー値が重複しています。エラーを避けるために一意の値を使用してください。",
       "name": "容器",
       "value_duplicated": "値が重複しています。エラーを避けるために一意の値を使用してください。"
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "フレームをクリックして貼り付け場所を指定してください。",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "複数のコンポーネントを含む操作はキャンバス全体では許可されません。"
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "正常に元に戻す",
+        "failed": "元に戻すに失敗しました"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "やり直しに成功しました",
+        "failed": "やり直しに失敗しました"
       }
     }
   },
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Stripeにリダイレクト中",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "AppSumo プランを更新"
     }
   },
   "network": {
