@@ -2510,7 +2510,7 @@
       "name": "원형 진행률 표시줄"
     },
     "container": {
-      "empty": "<keyPress> D </keyPress> 또는 <keyPress> K </keyPress> 를 누른 상태에서 구성 요소를 컨테이너로 드래그",
+      "empty": "구성요소를 여기로 드래그",
       "key_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오.",
       "name": "컨테이너",
       "value_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오."
