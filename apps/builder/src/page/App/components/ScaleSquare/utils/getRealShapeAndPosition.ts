@@ -31,11 +31,10 @@ export const getRealShapeAndPosition = (
     w: sharpeW,
     h: sharpeH,
   } = layoutInfo
-  const x = (propsPositionX || componentNode.x) * (unitW || componentNode.unitW)
-  const y =
-    (propsPositionY || componentNode.y) * (UNIT_HEIGHT || componentNode.unitH)
-  const w = (sharpeW || componentNode.w) * (unitW || componentNode.unitW)
-  const h = (sharpeH || componentNode.h) * (UNIT_HEIGHT || componentNode.unitH)
+  const x = (propsPositionX || componentNode.x) * unitW
+  const y = (propsPositionY || componentNode.y) * UNIT_HEIGHT
+  const w = (sharpeW || componentNode.w) * unitW
+  const h = (sharpeH || componentNode.h) * UNIT_HEIGHT
   return {
     x,
     y,

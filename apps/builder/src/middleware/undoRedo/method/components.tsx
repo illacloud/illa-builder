@@ -1,7 +1,10 @@
 import { AnyAction } from "@reduxjs/toolkit"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import { UpdateComponentContainerPayload } from "@/redux/currentApp/editor/components/componentsPayload"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getCanvas,
+  searchDSLByDisplayName,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { RootState } from "@/store"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
@@ -305,6 +308,75 @@ export const componentsSnapShot = (
           newProps: originPage.props,
         },
         from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "addPageNodeWithSortOrderReducer": {
+      const { displayName } = action.payload
+      const rootNode = getCanvas(_nextRootState)
+      if (!rootNode || !rootNode.props) break
+
+      const newAction = {
+        type: "components/deletePageNodeReducer",
+        payload: {
+          displayName: displayName,
+          originPageSortedKey: rootNode.props.pageSortedKey,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "deletePageNodeReducer": {
+      const originPageNode = searchDSLByDisplayName(
+        action.payload.displayName,
+        _prevRootState,
+      )
+      if (!originPageNode) break
+      const newAction = {
+        type: "components/addPageNodeWithSortOrderReducer",
+        payload: originPageNode,
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "updateTargetPageLayoutReducer": {
+      const { pageName } = action.payload
+      const originPageNode = searchDSLByDisplayName(pageName, _prevRootState)
+      if (!originPageNode || !originPageNode.props) break
+      const newAction = {
+        type: "components/updateTargetPageLayoutReducer",
+        payload: {
+          pageName: pageName,
+          layout: originPageNode.props.layout,
+          originPageNode,
+        },
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
         IllaUndoRedoManager.pushToRedoStack([

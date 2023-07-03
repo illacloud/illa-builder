@@ -150,17 +150,47 @@ export const reduxActionDependOnRestAPI = async (
         }
         break
       }
-      case "components/deleteComponentNodeReducer":
-      case "components/updateComponentLayoutInfoReducer":
-      case "components/updateComponentContainerReducer":
-      case "components/updateComponentPropsReducer":
-      case "components/updateComponentDisplayNameReducer":
-      case "components/updateTargetPagePropsReducer":
-      case "components/deleteSectionViewReducer":
+      case "components/addPageNodeWithSortOrderReducer": {
+        const originNode = action.payload
+        const newOriginNodeByChangeDisplayName =
+          changeDisplayNameHelperWhenUndoRedo(originNode)
+        store.dispatch({
+          ...action,
+          from,
+          payload: {
+            ...action.payload,
+            originChildrenNode: newOriginNodeByChangeDisplayName,
+          },
+        })
+        message.success({
+          content: `frame.message.${from}.suc`,
+        })
+        break
+      }
+      case "components/updateTargetPageLayoutReducer": {
+        const originNode = action.payload.originPageNode
+        const newOriginNodeByChangeDisplayName =
+          changeDisplayNameHelperWhenUndoRedo(originNode)
+        store.dispatch({
+          ...action,
+          from,
+          payload: {
+            ...action.payload,
+            originChildrenNode: newOriginNodeByChangeDisplayName,
+          },
+        })
+        message.success({
+          content: `frame.message.${from}.suc`,
+        })
+        break
+      }
       default: {
         store.dispatch({
           ...action,
           from,
+        })
+        message.success({
+          content: `frame.message.${from}.suc`,
         })
       }
     }
