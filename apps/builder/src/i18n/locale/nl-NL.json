@@ -1290,7 +1290,7 @@
           "clear_button_text": "Verwijderen"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Tekst"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Afzender ID",
         "showName": "Toon naam",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Standaard tekst"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Stel in of een antwoordknop moet worden weergegeven wanneer een bericht wordt geselecteerd.",
         "toolbar-delete": "Stel in of een knop 'verwijderen' moet worden weergegeven wanneer een bericht wordt geselecteerd.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Om de variant van tabbladen in te stellen"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Lijn",
+          "card": "Creditcard"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "De standaardtekst die wordt weergegeven wanneer het component wordt geïnitialiseerd"
         }
       }
     },
@@ -2094,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "LAYOUT"
+        "frame": "FRAME"
       },
       "tab_title": "Pagina",
       "tooltips": {
@@ -2510,7 +2510,7 @@
       "name": "Voortgang cirkel"
     },
     "container": {
-      "empty": "Druk op <keyPress>D</keyPress> of <keyPress>K</keyPress> en sleep componenten hier",
+      "empty": "Sleep componenten hierheen",
       "key_duplicated": "De sleutel wordt gedupliceerd. Gebruik unieke sleutels om fouten te voorkomen.",
       "name": "Container",
       "value_duplicated": "Deze waarde wordt gedupliceerd. Gebruik unieke waarden om fouten te voorkomen."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Klik op het frame om de locatie te plakken.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Bewerkingen met meerdere componenten zijn niet toegestaan over verschillende canvasen."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Succesvol ongedaan gemaakt",
+        "failed": "Herstel mislukt"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Opnieuw succesvol",
+        "failed": "Opnieuw verzenden mislukt"
       }
     }
   },
@@ -3433,7 +3433,7 @@
         "add_unlimited_viewer": "Onbeperkte kijkleden GRATIS toevoegen",
         "publish_public_appli": "Publieke toepassingen publiceren",
         "ai_sql_generation": "AI SQL Generatie",
-        "audit_logs": "Audit logs(binnenkort beschikbaar)",
+        "audit_logs": "Audit logs",
         "learn_more": "Meer informatie",
         "upgrade": "Upgraden",
         "pricing": "/editor/maand, jaarlijks",
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Omleiden naar Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "AppSumo plan bijwerken"
     }
   },
   "network": {
