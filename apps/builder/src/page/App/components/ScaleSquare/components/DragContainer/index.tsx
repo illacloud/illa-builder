@@ -8,7 +8,7 @@ import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNe
 import { sendShadowMessageHandler } from "@/page/App/components/DotPanel/utils/sendBinaryMessage"
 import {
   getIsILLAEditMode,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
 } from "@/redux/config/configSelector"
 import {
   getExecutionWidgetLayoutInfo,
@@ -31,7 +31,7 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
   } = props
   const isEditMode = useSelector(getIsILLAEditMode)
   const isResizingStateInGlobal = useSelector(getIsResizing)
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
 
   const [, dragRef, dragPreviewRef] = useDrag<DragInfo, DropResultInfo>(
     () => ({

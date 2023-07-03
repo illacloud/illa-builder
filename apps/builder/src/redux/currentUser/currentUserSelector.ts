@@ -1,9 +1,17 @@
+import { createSelector } from "@reduxjs/toolkit"
 import { Locale, enUS, jaJP, koKR, zhCN } from "@illa-design/react"
 import { RootState } from "@/store"
 
 export const getCurrentUser = (state: RootState) => {
   return state.currentUser
 }
+
+export const getCurrentUserId = createSelector(
+  [getCurrentUser],
+  (currentUser) => {
+    return currentUser.userId
+  },
+)
 
 export const getIsTutorialViewed = (state: RootState) => {
   return state.currentUser.isTutorialViewed

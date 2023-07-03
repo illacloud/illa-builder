@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
-import { getSelectedComponents } from "@/redux/config/configSelector"
+import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store, { RootState } from "@/store"
@@ -136,8 +136,19 @@ export const getAppComponents = (state: RootState) => {
   return state.currentApp.editor.components?.childrenNode
 }
 
+export const getSelectedComponentNode = createSelector(
+  [getSelectedComponentDisplayNames, getCanvas],
+  (selectedComponentDisplayNames, rootCanvas) => {
+    return selectedComponentDisplayNames
+      .map((displayName) => {
+        return searchDsl(rootCanvas, displayName)
+      })
+      .filter((node) => node != null) as ComponentNode[]
+  },
+)
+
 export const getComponentNodeBySingleSelected = createSelector(
-  [getCanvas, getSelectedComponents],
+  [getCanvas, getSelectedComponentDisplayNames],
   (rootDsl, selectedComponentDisplayNames) => {
     if (selectedComponentDisplayNames.length === 1) {
       return searchDsl(rootDsl, selectedComponentDisplayNames[0])

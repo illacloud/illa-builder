@@ -5,7 +5,7 @@ import Selecto, { OnDragStart, SelectoEvents } from "react-selecto"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getIsILLAProductMode,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -41,7 +41,7 @@ export const MultiSelectCanvas: FC<MultiSelectCanvasProps> = (props) => {
   const startScrollTop = useRef<number>(0)
   const selectoRef = useRef<Selecto | null>(null)
 
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const isProductionMode = useSelector(getIsILLAProductMode)
   const dispatch = useDispatch()
 

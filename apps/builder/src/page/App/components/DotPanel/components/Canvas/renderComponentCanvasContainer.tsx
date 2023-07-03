@@ -36,7 +36,7 @@ import {
 import {
   getIsILLAEditMode,
   getIsLikeProductMode,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -100,7 +100,7 @@ export const RenderComponentCanvasContainer: FC<
   const childWidgetLayoutInfo = Object.values(widgetLayoutInfo).filter(
     (item) => item.parentNode === displayName,
   )
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
 
   const dispatch = useDispatch()
   const isDraggingGlobal = useSelector(getIsDragging)
