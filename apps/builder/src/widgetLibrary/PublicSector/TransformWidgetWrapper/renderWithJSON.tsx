@@ -1,6 +1,7 @@
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, memo, useCallback, useMemo } from "react"
 import { useDispatch } from "react-redux"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -21,15 +22,13 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
 
 export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonProps> =
   memo((props: TransformWidgetWrapperWithJsonProps) => {
-    const { componentNode } = props
+    const { componentNode, unitW } = props
 
     const {
       displayName,
       type,
       w,
       h,
-      unitW,
-      unitH,
       childrenNode,
       props: nodeProps,
     } = componentNode
@@ -229,7 +228,7 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
           w={w}
           h={h}
           unitW={unitW}
-          unitH={unitH}
+          unitH={UNIT_HEIGHT}
           updateComponentRuntimeProps={updateComponentRuntimeProps}
           deleteComponentRuntimeProps={deleteComponentRuntimeProps}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}

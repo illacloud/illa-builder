@@ -67,9 +67,7 @@ export const PageSpaceTree: FC = () => {
         element: "add_page",
       })
       const newPageConfig = generatePageConfig()
-      dispatch(
-        componentsActions.addPageNodeWithSortOrderReducer([newPageConfig]),
-      )
+      dispatch(componentsActions.addPageNodeWithSortOrderReducer(newPageConfig))
     },
     [dispatch],
   )

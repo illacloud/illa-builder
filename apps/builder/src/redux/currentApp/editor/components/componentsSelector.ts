@@ -268,8 +268,6 @@ export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
         z,
         w,
         h,
-        unitW,
-        unitH,
         minH,
       } = components[key]
       res[key] = {
@@ -284,8 +282,6 @@ export const getAllComponentDisplayNameMapLayoutInfo = createSelector(
           z,
           w,
           h,
-          unitW,
-          unitH,
           minW: DEFAULT_MIN_COLUMN,
           minH,
         },

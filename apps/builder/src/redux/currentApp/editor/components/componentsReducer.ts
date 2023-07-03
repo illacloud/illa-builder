@@ -391,32 +391,27 @@ export const updateHeaderSectionReducer: CaseReducer<
   }
 }
 
-const transComponentNode = (node: ComponentNode, displayName: string[]) => {
-  if (Array.isArray(node.childrenNode)) {
-    node.childrenNode.forEach((child) => {
-      displayName.push(child.displayName)
-      transComponentNode(child, displayName)
-    })
-  }
-}
-
 export const updateTargetPageLayoutReducer: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateTargetPageLayoutPayload>
 > = (state, action) => {
   if (!state) return state
-  const { pageName, layout } = action.payload
+  const { pageName, layout, originPageNode } = action.payload
   const config = layoutValueMapGenerateConfig[layout]
   let targetPageNodeIndex = state.childrenNode.findIndex(
     (node) => node.displayName === pageName,
   )
   if (targetPageNodeIndex === -1) return state
   const targetPageNode = state.childrenNode[targetPageNodeIndex]
-  const allComponentDisplayName: string[] = []
-  transComponentNode(targetPageNode, allComponentDisplayName)
+  if (!targetPageNode) return state
+  const needRemoveDisplayName = removeDisplayNames(targetPageNode)
   const pageConfig = config(targetPageNode.displayName)
-  DisplayNameGenerator.removeDisplayNameMulti(allComponentDisplayName)
-  state.childrenNode.splice(targetPageNodeIndex, 1, pageConfig)
+  DisplayNameGenerator.removeDisplayNameMulti(needRemoveDisplayName)
+  state.childrenNode.splice(
+    targetPageNodeIndex,
+    1,
+    originPageNode ?? pageConfig,
+  )
 }
 
 export const updateTargetPagePropsReducer: CaseReducer<
@@ -592,21 +587,20 @@ export const updateRootNodePropsReducer: CaseReducer<
 
 export const addPageNodeWithSortOrderReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<ComponentNode[]>
+  PayloadAction<ComponentNode>
 > = (state, action) => {
-  action.payload.forEach((node) => {
-    const parentNode = searchDsl(
-      state,
-      node.parentNode,
-    ) as RootComponentNode | null
-    if (!parentNode) return
-    parentNode.props.pageSortedKey.push(node.displayName)
-    if (!Array.isArray(parentNode.childrenNode)) {
-      parentNode.childrenNode = [node]
-    } else {
-      parentNode.childrenNode.push(node)
-    }
-  })
+  const node = action.payload
+  const parentNode = searchDsl(
+    state,
+    node.parentNode,
+  ) as RootComponentNode | null
+  if (!parentNode) return
+  parentNode.props.pageSortedKey.push(node.displayName)
+  if (!Array.isArray(parentNode.childrenNode)) {
+    parentNode.childrenNode = [node]
+  } else {
+    parentNode.childrenNode.push(node)
+  }
 }
 
 export const addSectionViewReducer: CaseReducer<

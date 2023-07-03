@@ -447,8 +447,8 @@ export const componentsAsync = (
     }
     case "addPageNodeWithSortOrderReducer": {
       const rootNode = getCanvas(nextRootState)
-      const nodes = action.payload as ComponentNode[]
-      if (!rootNode || !Array.isArray(nodes) || nodes.length === 0) break
+      const node = action.payload as ComponentNode
+      if (!rootNode || !node) break
       const rootNodeUpdateWSPayload =
         transformComponentReduxPayloadToWsPayload(rootNode)
       Connection.getTextRoom("app", currentAppID)?.send(
@@ -470,7 +470,7 @@ export const componentsAsync = (
           action,
           teamID,
           uid,
-          nodes,
+          [node],
         ),
       )
       break

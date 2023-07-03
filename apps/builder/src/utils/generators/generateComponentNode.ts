@@ -1,7 +1,6 @@
 import { cloneDeep, get, set } from "lodash"
 import { isObject } from "@illa-design/react"
 import { buildInitDragInfo } from "@/page/App/components/ComponentPanel/componentListBuilder"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import {
   CONTAINER_TYPE,
@@ -37,8 +36,6 @@ export const generateWidgetLayoutInfo = (
       z: 0,
       minW: DEFAULT_MIN_COLUMN,
       minH: currentComponentConfig.minH ?? 3,
-      unitW: 0,
-      unitH: UNIT_HEIGHT,
     },
     containerType,
     parentNode: "",
@@ -114,11 +111,6 @@ export const generateComponentNodeByWidgetInfo = (
     h,
     minW,
     minH,
-    verticalResize: false,
-    isDragging: false,
-    isResizing: false,
-    unitH: UNIT_HEIGHT,
-    unitW: 0,
     x,
     y,
     z: 0,
@@ -166,11 +158,6 @@ export const newGenerateChildrenComponentNode = (
       h: widgetInfo.h,
       minW: DEFAULT_MIN_COLUMN,
       minH: widgetInfo.minH,
-      verticalResize: false,
-      isDragging: false,
-      isResizing: false,
-      unitH: UNIT_HEIGHT,
-      unitW: 0,
       x: -1,
       y: -1,
       z: 0,
@@ -267,11 +254,6 @@ export const newGenerateComponentNode = (
     h,
     minW,
     minH,
-    verticalResize: false,
-    isDragging: false,
-    isResizing: false,
-    unitH: UNIT_HEIGHT,
-    unitW: unitW,
     x,
     y,
     z: 0,
