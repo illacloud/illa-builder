@@ -1290,7 +1290,7 @@
           "clear_button_text": "Εκκαθάριση"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "κείμενο"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Id Αποστολέα",
         "showName": "Εμφάνιση ονόματος",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Προεπιλεγμένο κείμενο"
         }
       },
       "setter_tooltip": {
@@ -1917,7 +1917,7 @@
         "toolbar-replay": "Ορίστε αν θα εμφανίζεται το κουμπί απάντησης κατά την επιλογή μηνύματος.",
         "toolbar-delete": "Ορίστε αν θα εμφανίζεται το κουμπί διαγραφής όταν επιλέγεται ένα μήνυμα.",
         "tabs": {
-          "variant": "To set the variant of tabs"
+          "variant": "Για να ορίσετε την παραλλαγή των καρτελών"
         }
       },
       "setter_option": {
@@ -2000,8 +2000,8 @@
           }
         },
         "tab": {
-          "line": "Line",
-          "card": "Card"
+          "line": "Γραμμή",
+          "card": "Κάρτα"
         }
       },
       "setter_placeholder": {
@@ -2062,7 +2062,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "Το προεπιλεγμένο κείμενο που εμφανίζεται όταν το στοιχείο είναι προετοιμασμένο"
         }
       }
     },
@@ -2510,7 +2510,7 @@
       "name": "Πρόοδος Κύκλου"
     },
     "container": {
-      "empty": "Πατήστε <keyPress>D</keyPress> ή <keyPress>K</keyPress> και σύρετε τα στοιχεία εδώ",
+      "empty": "Σύρετε στοιχεία εδώ",
       "key_duplicated": "Το κλειδί είναι διπλό. Παρακαλούμε χρησιμοποιήστε μοναδικά κλειδιά για να αποφύγετε σφάλματα.",
       "name": "Περιέκτης",
       "value_duplicated": "Η τιμή είναι διπλότυπη. Παρακαλούμε χρησιμοποιήστε μοναδικές τιμές για να αποφύγετε σφάλματα."
@@ -3102,15 +3102,15 @@
     "paste_no_aimed": "Παρακαλώ κάντε κλικ στο πλαίσιο για να καθορίσετε τη θέση επικόλλησης.",
     "message": {
       "session": {
-        "error": "Operations involving multiple components are not allowed across canvases."
+        "error": "Οι εργασίες που αφορούν πολλαπλά συστατικά δεν επιτρέπονται σε καμβάδες."
       },
       "undo": {
-        "suc": "Undo successful",
-        "failed": "Undo failed"
+        "suc": "Επιτυχής αναίρεση",
+        "failed": "Αναίρεση απέτυχε"
       },
       "redo": {
-        "suc": "Redo successful",
-        "failed": "Redo failed"
+        "suc": "Επιτυχής επαναφορά",
+        "failed": "Η επαναφορά απέτυχε"
       }
     }
   },
@@ -3503,7 +3503,7 @@
     },
     "redirect_to_stripe": "Ανακατεύθυνση σε Stripe",
     "appsumo": {
-      "update": "Update AppSumo plan"
+      "update": "Ενημέρωση του προγράμματος AppSumo"
     }
   },
   "network": {
