@@ -209,6 +209,7 @@ export const componentsSnapShot = (
         payload: {
           pageName,
           addedSectionName: deleteSectionName,
+          originSectionNode,
         },
         from: action.from,
       }

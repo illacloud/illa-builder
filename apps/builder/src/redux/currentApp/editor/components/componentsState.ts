@@ -188,6 +188,7 @@ export interface AddTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
+  originSectionNode?: ComponentNode
 }
 
 export interface AddSectionViewPayload {

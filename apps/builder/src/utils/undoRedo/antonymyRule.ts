@@ -1,93 +1,18 @@
 import { AnyAction } from "@reduxjs/toolkit"
-import { omit } from "lodash"
-import { v4 } from "uuid"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
-import { getIsILLAGuideMode } from "@/redux/config/configSelector"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
-import {
-  fetchCreateAction,
-  fetchDeleteAction,
-  fetchUpdateAction,
-} from "@/services/action"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import store from "@/store"
-import { DisplayNameGenerator } from "../generators/generateDisplayName"
+import { changeDisplayNameHelperWhenUndoRedo } from "../componentNode/changeDisplayNameHelper"
+import {
+  addActionItemWhenUndoRedo,
+  removeActionItemWhenUndoRedo,
+  updateActionDisplayNameReducerWhenUndoRedo,
+  updateActionItemReducerWhenUndoRedo,
+} from "./undoRedoMethod/action"
 
 const message = createMessage()
-
-const addActionItemWhenUndoRedo = async (action: ActionItem<ActionContent>) => {
-  const isGuideMode = getIsILLAGuideMode(store.getState())
-  const newAction = omit(action, ["displayName", "actionId"])
-  const displayName = DisplayNameGenerator.isAlreadyGenerate(action.displayName)
-    ? DisplayNameGenerator.generateDisplayName(action.actionType)
-    : DisplayNameGenerator.updateOrGenerateDisplayName(action.displayName)
-  const data: Omit<ActionItem<ActionContent>, "actionId"> = {
-    ...newAction,
-    displayName,
-  }
-  if (isGuideMode) {
-    const createActionData: ActionItem<ActionContent> = {
-      ...data,
-      actionId: v4(),
-    }
-    return createActionData
-  }
-  try {
-    const response = await fetchCreateAction(data)
-    return response.data
-  } catch (e) {
-    DisplayNameGenerator.removeDisplayName(displayName)
-    throw e
-  }
-}
-
-const removeActionItemWhenUndoRedo = async (actionID: string) => {
-  const isGuideMode = getIsILLAGuideMode(store.getState())
-  if (!isGuideMode) {
-    try {
-      await fetchDeleteAction(actionID)
-    } catch (e) {
-      throw e
-    }
-  }
-}
-
-const updateActionItemReducerWhenUndoRedo = async (
-  action: ActionItem<ActionContent>,
-) => {
-  const isGuideMode = getIsILLAGuideMode(store.getState())
-
-  if (!isGuideMode) {
-    try {
-      await fetchUpdateAction(action)
-    } catch (e) {
-      throw e
-    }
-  }
-}
-
-const updateActionDisplayNameReducerWhenUndoRedo = async (
-  oldDisplayName: string,
-  newDisplayName: string,
-) => {
-  const isGuideMode = getIsILLAGuideMode(store.getState())
-  const actionList = getActionList(store.getState())
-  const action = actionList.find(
-    (action) => action.displayName === oldDisplayName,
-  )
-  if (!isGuideMode && action) {
-    try {
-      await fetchUpdateAction({ ...action, displayName: newDisplayName })
-    } catch (e) {
-      throw e
-    }
-  }
-}
 
 export const reduxActionDependOnRestAPI = async (
   actions: AnyAction[],
@@ -139,11 +64,15 @@ export const reduxActionDependOnRestAPI = async (
             ...action,
             from,
           })
+          message.success({
+            content: `frame.message.${from}.suc`,
+          })
         } catch (e) {
           message.error({
             content: i18n.t(`frame.message.${from}.failed`),
           })
         }
+        break
       }
       case "action/updateActionDisplayNameReducer": {
         try {
@@ -155,12 +84,79 @@ export const reduxActionDependOnRestAPI = async (
             ...action,
             from,
           })
+          message.success({
+            content: `frame.message.${from}.suc`,
+          })
         } catch (e) {
           message.error({
             content: i18n.t(`frame.message.${from}.failed`),
           })
         }
+        break
       }
+      case "components/addComponentReducer": {
+        const originNode = action.payload
+        const newOriginNodeByChangeDisplayName = originNode.map(
+          (item: ComponentNode) => changeDisplayNameHelperWhenUndoRedo(item),
+        )
+
+        store.dispatch({
+          ...action,
+          from,
+          payload: newOriginNodeByChangeDisplayName,
+        })
+        message.success({
+          content: `frame.message.${from}.suc`,
+        })
+        break
+      }
+      case "components/addTargetPageSectionReducer": {
+        if (action.payload.originSectionNode) {
+          const newOriginNodeByChangeDisplayName =
+            changeDisplayNameHelperWhenUndoRedo(
+              action.payload.originSectionNode,
+            )
+          store.dispatch({
+            ...action,
+            from,
+            payload: {
+              ...action.payload,
+              originSectionNode: newOriginNodeByChangeDisplayName,
+            },
+          })
+          message.success({
+            content: `frame.message.${from}.suc`,
+          })
+        }
+        break
+      }
+      case "components/addSectionViewReducer": {
+        if (Array.isArray(action.payload.originChildrenNode)) {
+          const newOriginNodeByChangeDisplayName =
+            action.payload.originChildrenNode.map((item: ComponentNode) =>
+              changeDisplayNameHelperWhenUndoRedo(item),
+            )
+          store.dispatch({
+            ...action,
+            from,
+            payload: {
+              ...action.payload,
+              originChildrenNode: newOriginNodeByChangeDisplayName,
+            },
+          })
+          message.success({
+            content: `frame.message.${from}.suc`,
+          })
+        }
+        break
+      }
+      case "components/deleteComponentNodeReducer":
+      case "components/updateComponentLayoutInfoReducer":
+      case "components/updateComponentContainerReducer":
+      case "components/updateComponentPropsReducer":
+      case "components/updateComponentDisplayNameReducer":
+      case "components/updateTargetPagePropsReducer":
+      case "components/deleteSectionViewReducer":
       default: {
         store.dispatch({
           ...action,
