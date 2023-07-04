@@ -308,6 +308,48 @@ function handleUpdateModalEffect(
   )
 }
 
+const updateWidgetPositionAdapter = (
+  action: ReturnType<
+    | typeof componentsActions.addComponentReducer
+    | typeof componentsActions.updateComponentLayoutInfoReducer
+    | typeof componentsActions.updateComponentContainerReducer
+    | typeof componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer
+  >,
+) => {
+  let effectDisplayNames: string[] = []
+
+  switch (action.type) {
+    case "components/addComponentReducer": {
+      const { payload } = action
+      payload.forEach((item) => {
+        effectDisplayNames.push(item.displayName)
+      })
+      break
+    }
+    case "components/updateComponentLayoutInfoReducer": {
+      const { payload } = action
+      const { displayName } = payload
+      effectDisplayNames.push(displayName)
+      break
+    }
+    case "components/updateComponentContainerReducer": {
+      const { payload } = action
+      payload.updateSlices.forEach((item) => {
+        effectDisplayNames.push(item.displayName)
+      })
+      break
+    }
+    case "components/batchUpdateComponentLayoutInfoWhenReflowReducer": {
+      const { payload } = action
+      payload.forEach((item) => {
+        effectDisplayNames.push(item.displayName)
+      })
+      break
+    }
+  }
+  return effectDisplayNames
+}
+
 function handleUpdateWidgetPositionInExecutionLayoutInfo(
   action: AnyAction,
   listenerApi: AppListenerEffectAPI,
@@ -320,15 +362,15 @@ function handleUpdateWidgetPositionInExecutionLayoutInfo(
     string,
     WidgetLayoutInfo
   > = {}
-  let effectDisplayNames: string[] = []
-  if (
-    action.type === "components/batchUpdateComponentLayoutInfoWhenReflowReducer"
-  ) {
-    const { payload } = action
-    ;(payload as BatchUpdateWidgetLayoutInfoPayload[]).forEach((item) => {
-      effectDisplayNames.push(item.displayName)
-    })
-  }
+  let effectDisplayNames: string[] = updateWidgetPositionAdapter(
+    action as ReturnType<
+      | typeof componentsActions.addComponentReducer
+      | typeof componentsActions.updateComponentLayoutInfoReducer
+      | typeof componentsActions.updateComponentContainerReducer
+      | typeof componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer
+    >,
+  )
+
   Object.keys(displayNameMapNode).forEach((displayName) => {
     if (
       (displayNameMapNode as Record<string, WidgetLayoutInfo>)[displayName] &&
@@ -466,6 +508,7 @@ export function setupExecutionListeners(
         componentsActions.updateTargetPageLayoutReducer,
         componentsActions.updateSectionViewPropsReducer,
         componentsActions.updateComponentDisplayNameReducer,
+        componentsActions.updateComponentContainerReducer,
         executionActions.startExecutionReducer,
       ),
       effect: handleUpdateWidgetPositionInExecutionLayoutInfo,
