@@ -3511,40 +3511,40 @@
   },
   "new_dashboard": {
     "status": {
-      "deployed": "Deployed",
-      "undeploy": "Undeploy"
+      "deployed": "Розгорнуто",
+      "undeploy": "Розгортання"
     },
     "desc": {
-      "no_description": "No description"
+      "no_description": "Без опису"
     },
     "app_setting": {
-      "app_setting": "App setting",
-      "app_name": "App name",
-      "description": "Description",
-      "save": "Save"
+      "app_setting": "Налаштування додатку",
+      "app_name": "Назва застосунка",
+      "description": "Опис",
+      "save": "Зберегти"
     },
     "access": {
-      "public": "Public",
-      "private": "Private"
+      "public": "Загальнодоступна",
+      "private": "Приватний"
     }
   },
   "new_deploy": {
     "title": {
-      "private_app": "Private app",
-      "public_app": "Public app"
+      "private_app": "Приватний додаток",
+      "public_app": "Публічний додаток"
     },
     "desc": {
-      "private_app": "Only the team members can access the deployed app",
-      "public_app": "Anyone with the app link can access the deployed app"
+      "private_app": "Тільки члени команди можуть отримувати доступ до розгорнутого додатка",
+      "public_app": "Будь-хто з посиланням додатку може отримати доступ до розгорнутого додатку"
     }
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use"
+      "invite_to_edit": "Запросити до редагування",
+      "invite_to_use": "Запросити"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+      "undeploy": "Додаток не розгорнуто. Доступ до публічного доступу і глядача можуть стикатися з помилками. "
     }
   }
 }
