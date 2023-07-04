@@ -34,6 +34,7 @@ export const titleInfoStyle = css`
   justify-content: center;
   align-items: flex-start;
   gap: 2px;
+  overflow: hidden;
 `
 
 export const appNameStyle = css`
@@ -41,7 +42,10 @@ export const appNameStyle = css`
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
-  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
 `
 
 export const editedStyle = css`

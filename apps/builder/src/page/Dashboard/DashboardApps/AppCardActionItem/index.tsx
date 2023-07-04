@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import {
   Button,
   CopyIcon,
@@ -29,7 +29,7 @@ import {
 import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { canManageApp } from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
+import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -59,6 +59,7 @@ export interface AppCardActionItemProps extends HTMLAttributes<HTMLDivElement> {
   canEditApp: boolean
   isDeploy: boolean
 }
+
 export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const { appId, canEditApp, isDeploy, ...rest } = props
 
@@ -66,6 +67,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const message = useMessage()
   const modal = useModal()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { teamIdentifier } = useParams()
 
   const app = useSelector((state: RootState) => {
@@ -78,7 +80,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
 
   const [shareVisible, setShareVisible] = useState(false)
   const [renameVisible, setRenameVisible] = useState(false)
-  const [duplicateVisible, setDuplicateVisible] = useState(false)
+  const [duplicateLoading, setDuplicateLoading] = useState(false)
 
   const members = useSelector(getCurrentMemberList) ?? []
   const {
@@ -180,6 +182,40 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     return res
   }
 
+  const handleDuplicateApp = () => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_duplicate",
+      parameter5: appId,
+    })
+    if (duplicateLoading) return
+    setDuplicateLoading(true)
+    duplicateApp(app.appId, app.appName)
+      .then(
+        (response) => {
+          dispatch(
+            dashboardAppActions.addDashboardAppReducer({
+              app: response.data,
+            }),
+          )
+          navigate(`/${teamIdentifier}/app/${response.data.appId}`)
+        },
+        (failure) => {
+          if (isILLAAPiError(failure)) {
+            message.error({
+              content: t("dashboard.app.duplicate_fail"),
+            })
+          } else {
+            message.error({
+              content: t("network_error"),
+            })
+          }
+        },
+      )
+      .finally(() => {
+        setDuplicateLoading(false)
+      })
+  }
+
   useEffect(() => {
     if (canEditApp || (isDeploy && canSetPublic)) {
       track(
@@ -213,15 +249,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         { element: "rename_modal", parameter5: appId },
       )
   }, [renameVisible, appId])
-
-  useEffect(() => {
-    duplicateVisible &&
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "duplicate_modal", parameter5: appId },
-      )
-  }, [appId, duplicateVisible])
 
   return (
     <div {...rest}>
@@ -297,14 +324,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                     <span>{t("duplicate")}</span>
                   </div>
                 }
-                onClick={() => {
-                  setDuplicateVisible(true)
-                  track(
-                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                    { element: "app_duplicate", parameter5: appId },
-                  )
-                }}
+                onClick={handleDuplicateApp}
               />
               <DropListItem
                 key="delete"
@@ -487,13 +507,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         visible={renameVisible}
         onVisibleChange={(visible) => {
           setRenameVisible(visible)
-        }}
-      />
-      <DuplicateModal
-        appId={app.appId}
-        visible={duplicateVisible}
-        onVisibleChange={(visible) => {
-          setDuplicateVisible(visible)
         }}
       />
     </div>
