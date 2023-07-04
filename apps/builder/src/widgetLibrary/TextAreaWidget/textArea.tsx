@@ -310,16 +310,18 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
           />
         </div>
       </TooltipWrapper>
-      <div
-        css={applyValidateMessageWrapperStyle(
-          labelWidth,
-          labelPosition,
-          labelHidden || !label,
-        )}
-        ref={messageWrapperRef}
-      >
-        <InvalidMessage validateMessage={validateMessage} />
-      </div>
+      {!hideValidationMessage && (
+        <div
+          css={applyValidateMessageWrapperStyle(
+            labelWidth,
+            labelPosition,
+            labelHidden || !label,
+          )}
+          ref={messageWrapperRef}
+        >
+          <InvalidMessage validateMessage={validateMessage} />
+        </div>
+      )}
     </AutoHeightContainer>
   )
 }
