@@ -3511,40 +3511,40 @@
   },
   "new_dashboard": {
     "status": {
-      "deployed": "Deployed",
-      "undeploy": "Undeploy"
+      "deployed": "Развертывание",
+      "undeploy": "Отключать"
     },
     "desc": {
-      "no_description": "No description"
+      "no_description": "Нет описания"
     },
     "app_setting": {
-      "app_setting": "App setting",
-      "app_name": "App name",
-      "description": "Description",
-      "save": "Save"
+      "app_setting": "Настройки приложения",
+      "app_name": "Название приложения",
+      "description": "Описание",
+      "save": "Сохранить"
     },
     "access": {
-      "public": "Public",
-      "private": "Private"
+      "public": "Публичный",
+      "private": "Приватный"
     }
   },
   "new_deploy": {
     "title": {
-      "private_app": "Private app",
-      "public_app": "Public app"
+      "private_app": "Приватное приложение",
+      "public_app": "Публичное приложение"
     },
     "desc": {
-      "private_app": "Only the team members can access the deployed app",
-      "public_app": "Anyone with the app link can access the deployed app"
+      "private_app": "Только члены команды могут получить доступ к развернутому приложению",
+      "public_app": "Любой пользователь с ссылкой на приложение может получить доступ к развернутому приложению"
     }
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use"
+      "invite_to_edit": "Пригласить для редактирования",
+      "invite_to_use": "Пригласить использовать"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+      "undeploy": "Приложение не было развернуто. Доступ общественности и доступ к просмотрщику могут столкнуться с ошибками. "
     }
   }
 }
