@@ -6,6 +6,7 @@ import { INPUT_WIDGET_CONFIG } from "@/widgetLibrary/InputWidget"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 
 export const CHAT_WIDGET_CONFIG: WidgetConfig = {
+  version: 0,
   type: "CHAT_WIDGET",
   displayName: "chat",
   widgetName: i18n.t("widget.chat.name"),

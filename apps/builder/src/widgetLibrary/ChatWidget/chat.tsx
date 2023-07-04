@@ -89,6 +89,7 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
       <RenderChildrenCanvas
         currentComponentNode={footerComponentNode}
         columnNumber={columnNumber}
+        handleUpdateHeight={() => {}}
       />
     )
   }, [childrenNode, columnNumber])
