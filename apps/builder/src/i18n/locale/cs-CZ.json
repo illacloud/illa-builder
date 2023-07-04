@@ -3511,40 +3511,40 @@
   },
   "new_dashboard": {
     "status": {
-      "deployed": "Deployed",
-      "undeploy": "Undeploy"
+      "deployed": "Publikováno",
+      "undeploy": "Rozmístit"
     },
     "desc": {
-      "no_description": "No description"
+      "no_description": "Bez popisu"
     },
     "app_setting": {
-      "app_setting": "App setting",
-      "app_name": "App name",
-      "description": "Description",
-      "save": "Save"
+      "app_setting": "Nastavení aplikace",
+      "app_name": "Název aplikace",
+      "description": "L 343, 22.12.2009, s. 1).",
+      "save": "Uložit"
     },
     "access": {
-      "public": "Public",
-      "private": "Private"
+      "public": "Veřejnost",
+      "private": "Soukromé"
     }
   },
   "new_deploy": {
     "title": {
-      "private_app": "Private app",
-      "public_app": "Public app"
+      "private_app": "Soukromá aplikace",
+      "public_app": "Veřejná aplikace"
     },
     "desc": {
-      "private_app": "Only the team members can access the deployed app",
-      "public_app": "Anyone with the app link can access the deployed app"
+      "private_app": "Pouze členové týmu mají přístup k nasazené aplikaci",
+      "public_app": "Každý, kdo má odkaz na aplikaci, má přístup k rozmístěné aplikaci"
     }
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use"
+      "invite_to_edit": "Pozvat k úpravě",
+      "invite_to_use": "Pozvat k použití"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
     }
   }
 }
