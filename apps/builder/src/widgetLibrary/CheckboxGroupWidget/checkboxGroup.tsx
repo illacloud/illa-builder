@@ -169,15 +169,17 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
           />
         </div>
       </TooltipWrapper>
-      <div
-        css={applyValidateMessageWrapperStyle(
-          labelWidth,
-          labelPosition,
-          labelHidden || !label,
-        )}
-      >
-        <InvalidMessage validateMessage={validateMessage} />
-      </div>
+      {!hideValidationMessage && (
+        <div
+          css={applyValidateMessageWrapperStyle(
+            labelWidth,
+            labelPosition,
+            labelHidden || !label,
+          )}
+        >
+          <InvalidMessage validateMessage={validateMessage} />
+        </div>
+      )}
     </AutoHeightContainer>
   )
 }
