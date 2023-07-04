@@ -79,7 +79,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const currentUserInfo = useSelector(getCurrentUser)
 
   const [shareVisible, setShareVisible] = useState(false)
-  const [renameVisible, setRenameVisible] = useState(false)
+  const [appSettingVisible, setAppSettingVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
 
   const members = useSelector(getCurrentMemberList) ?? []
@@ -216,6 +216,14 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       })
   }
 
+  const handleOpenAppSettingModal = () => {
+    setAppSettingVisible(true)
+    track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_setting_modal",
+      parameter5: appId,
+    })
+  }
+
   useEffect(() => {
     if (canEditApp || (isDeploy && canSetPublic)) {
       track(
@@ -240,15 +248,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         { element: "invite_modal", parameter5: appId },
       )
   }, [appId, shareVisible])
-
-  useEffect(() => {
-    renameVisible &&
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "rename_modal", parameter5: appId },
-      )
-  }, [renameVisible, appId])
 
   return (
     <div {...rest}>
@@ -293,9 +292,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                     <span>{t("new_dashboard.app_setting.app_setting")}</span>
                   </div>
                 }
-                onClick={() => {
-                  setRenameVisible(true)
-                }}
+                onClick={handleOpenAppSettingModal}
               />
               <DropListItem
                 key="share"
@@ -504,9 +501,29 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       </MixpanelTrackProvider>
       <AppSettingModal
         appInfo={app}
-        visible={renameVisible}
+        visible={appSettingVisible}
         onVisibleChange={(visible) => {
-          setRenameVisible(visible)
+          setAppSettingVisible(visible)
+        }}
+        onOk={() => {
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            {
+              element: "app_setting_modal_save",
+              parameter5: app.appId,
+            },
+          )
+        }}
+        onCancel={() => {
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            {
+              element: "app_setting_modal_close",
+              parameter5: app.appId,
+            },
+          )
         }}
       />
     </div>

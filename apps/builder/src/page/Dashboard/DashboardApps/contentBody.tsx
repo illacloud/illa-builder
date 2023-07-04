@@ -37,7 +37,13 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
   const [ref, { width }] = useMeasure({
     polyfill: ResizeObserver,
   })
-  const cardsPerRow = Math.floor(width / (CARD_WIDTH + CARD_GAP_SIZE))
+
+  const actualCardsPerRow = useMemo(() => {
+    const cardsPerRow = Math.floor(width / (CARD_WIDTH + CARD_GAP_SIZE))
+    const cardAreaWidth = width - (cardsPerRow - 1) * CARD_GAP_SIZE
+
+    return Math.floor(cardAreaWidth / CARD_WIDTH)
+  }, [width])
 
   useEffect(() => {
     if (Array.isArray(appsList)) {
@@ -65,8 +71,8 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
           renderRaw
           render={(_item, index) => {
             const cardsInThisRow = finalAppsList.slice(
-              index * cardsPerRow,
-              (index + 1) * cardsPerRow,
+              index * actualCardsPerRow,
+              (index + 1) * actualCardsPerRow,
             )
 
             return (

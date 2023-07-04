@@ -15,7 +15,7 @@ export const appsContainerStyle: SerializedStyles = css`
   flex-direction: column;
   margin: 0 auto;
   // Compatible child element box-shadow style
-  width: calc(67% + 16px);
+  width: calc(70% + 16px);
   padding: 40px 16px;
 `
 

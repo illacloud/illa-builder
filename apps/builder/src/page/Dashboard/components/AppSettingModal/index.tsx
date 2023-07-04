@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
@@ -10,15 +10,10 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { applyConfigItemLabelText } from "@/page/App/components/ControlledElement/style"
 import { AppSettingModalProps } from "@/page/Dashboard/components/AppSettingModal/interface"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchChangeAppSetting } from "@/services/apps"
-import { track } from "@/utils/mixpanelHelper"
 import {
   formLabelStyle,
   gridFormFieldStyle,
@@ -33,16 +28,18 @@ export interface AppSettingFields {
 }
 
 export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
-  const { appInfo, visible, onVisibleChange } = props
+  const { appInfo, visible, onVisibleChange, onOk, onCancel } = props
 
-  const { control, formState, handleSubmit } = useForm<AppSettingFields>({
-    mode: "onSubmit",
-    criteriaMode: "firstError",
-    defaultValues: {
-      appName: appInfo?.appName ?? "",
-      description: appInfo?.config?.description ?? "",
+  const { control, formState, handleSubmit, reset } = useForm<AppSettingFields>(
+    {
+      mode: "onSubmit",
+      criteriaMode: "firstError",
+      defaultValues: {
+        appName: appInfo?.appName ?? "",
+        description: appInfo?.config?.description ?? "",
+      },
     },
-  })
+  )
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -50,37 +47,36 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
   const [loading, setLoading] = useState(false)
   const message = useMessage()
 
-  const onSubmit = async (data: AppSettingFields) => {
-    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
-      element: "rename_modal_save",
-      parameter5: appInfo.appId,
-    })
-
-    setLoading(true)
-    fetchChangeAppSetting(appInfo.appId, data.appName, data.description)
-      .then(
-        () => {
-          dispatch(
-            dashboardAppActions.renameDashboardAppReducer({
-              appId: appInfo.appId,
-              newName: data.appName,
-            }),
-          )
-          message.success({
-            content: t("dashboard.app.rename_success"),
-          })
-          onVisibleChange(false)
-        },
-        () => {
-          message.error({
-            content: t("dashboard.app.rename_fail"),
-          })
-        },
-      )
-      .finally(() => {
-        setLoading(false)
-      })
-  }
+  const onSubmit = useCallback(
+    (data: AppSettingFields) => {
+      setLoading(true)
+      onOk()
+      fetchChangeAppSetting(appInfo.appId, data.appName, data.description)
+        .then(
+          () => {
+            dispatch(
+              dashboardAppActions.renameDashboardAppReducer({
+                appId: appInfo.appId,
+                newName: data.appName,
+              }),
+            )
+            message.success({
+              content: t("dashboard.app.rename_success"),
+            })
+            onVisibleChange(false)
+          },
+          () => {
+            message.error({
+              content: t("dashboard.app.rename_fail"),
+            })
+          },
+        )
+        .finally(() => {
+          setLoading(false)
+        })
+    },
+    [appInfo.appId, dispatch, message, onOk, onVisibleChange, t],
+  )
 
   return (
     <Modal
@@ -95,15 +91,12 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
       }}
       okLoading={loading}
       onCancel={() => {
+        onCancel()
         onVisibleChange(false)
-        track(
-          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-          {
-            element: "rename_modal_close",
-            parameter5: appInfo.appId,
-          },
-        )
+        reset({
+          appName: appInfo?.appName ?? "",
+          description: appInfo?.config?.description ?? "",
+        })
       }}
       okText={t("save")}
       cancelText={t("dashboard.common.cancel")}

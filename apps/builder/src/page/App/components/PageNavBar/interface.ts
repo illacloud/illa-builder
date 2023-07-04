@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
 export interface PageNavBarProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -7,5 +8,5 @@ export interface AppNameEditorModalProps {
 }
 
 export interface AppNameProps {
-  appName: string
+  appInfo: DashboardApp
 }

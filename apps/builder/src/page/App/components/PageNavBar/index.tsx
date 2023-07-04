@@ -279,7 +279,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div css={rowCenter}>
         <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
         <div css={informationStyle}>
-          <AppName appName={appInfo.appName} />
+          <AppName appInfo={appInfo} />
           {isOnline ? (
             <div css={descriptionStyle}>
               {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
