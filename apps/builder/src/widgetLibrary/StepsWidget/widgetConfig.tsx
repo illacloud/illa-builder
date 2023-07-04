@@ -33,5 +33,6 @@ export const STEPS_WIDGET_CONFIG: WidgetConfig = {
     currentIndex: 0,
     dataSources: `{{${JSON.stringify(originData, null, 2)}}}`,
     resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+    disabled: false,
   },
 }

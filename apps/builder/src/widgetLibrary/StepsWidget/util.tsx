@@ -89,6 +89,7 @@ export const getStepItemTitle = (title: any, tooltip?: any) => {
 export const formatStepsData = (
   optionConfigureMode: "dynamic" | "static",
   formatOptionConfigData: StepsOptionsType[] | StepsMappedOptionType,
+  disabled?: boolean,
 ) => {
   if (optionConfigureMode === "static") {
     const uniqueManualOptions = formatOptionConfigData as StepsOptionsType[]
@@ -98,6 +99,7 @@ export const formatStepsData = (
       return {
         title: getStepItemTitle(titleContent, tooltip),
         description: caption,
+        disabled,
       }
     })
     return {

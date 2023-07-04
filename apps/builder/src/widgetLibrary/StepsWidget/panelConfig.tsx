@@ -209,6 +209,23 @@ export const STEPS_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
+    children: [
+      {
+        id: `${baseWidgetName}-interaction-disabled`,
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
+        placeholder: "{{false}}",
+        attrName: "disabled",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        bindAttrName: ["submit"],
+        shown: (value) => !value,
+      },
+    ],
+  },
+  {
     id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
