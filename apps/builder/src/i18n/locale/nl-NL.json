@@ -3511,40 +3511,40 @@
   },
   "new_dashboard": {
     "status": {
-      "deployed": "Deployed",
-      "undeploy": "Undeploy"
+      "deployed": "Geïmplementeerd",
+      "undeploy": "Undeployen"
     },
     "desc": {
-      "no_description": "No description"
+      "no_description": "Geen beschrijving"
     },
     "app_setting": {
-      "app_setting": "App setting",
-      "app_name": "App name",
-      "description": "Description",
-      "save": "Save"
+      "app_setting": "App instelling",
+      "app_name": "App naam",
+      "description": "Beschrijving",
+      "save": "Opslaan"
     },
     "access": {
-      "public": "Public",
-      "private": "Private"
+      "public": "Openbaar",
+      "private": "Privé"
     }
   },
   "new_deploy": {
     "title": {
-      "private_app": "Private app",
-      "public_app": "Public app"
+      "private_app": "Privé app",
+      "public_app": "Publieke app"
     },
     "desc": {
-      "private_app": "Only the team members can access the deployed app",
-      "public_app": "Anyone with the app link can access the deployed app"
+      "private_app": "Alleen de teamleden hebben toegang tot de geïmplementeerde app",
+      "public_app": "Iedereen met de app link heeft toegang tot de geïmplementeerde app"
     }
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use"
+      "invite_to_edit": "Uitnodigen om te bewerken",
+      "invite_to_use": "Uitnodigen om te gebruiken"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
     }
   }
 }
