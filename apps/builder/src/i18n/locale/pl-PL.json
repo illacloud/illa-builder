@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Błąd sieci, spróbuj ponownie później"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Wdrożono",
+      "undeploy": "Usuń wdrożenie"
+    },
+    "desc": {
+      "no_description": "Brak opisu"
+    },
+    "app_setting": {
+      "app_setting": "Ustawienia aplikacji",
+      "app_name": "Nazwa aplikacji",
+      "description": "Opis",
+      "save": "Zapisz"
+    },
+    "access": {
+      "public": "Publiczne",
+      "private": "Prywatny"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Prywatna aplikacja",
+      "public_app": "Publiczna aplikacja"
+    },
+    "desc": {
+      "private_app": "Tylko członkowie zespołu mogą uzyskać dostęp do wdrożonej aplikacji",
+      "public_app": "Każdy z linkiem do aplikacji może uzyskać dostęp do wdrożonej aplikacji"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Zaproś do edycji",
+      "invite_to_use": "Zaproś do użycia"
+    },
+    "desc": {
+      "undeploy": "Aplikacja nie została wdrożona. Publiczny dostęp i dostęp do przeglądarki mogą napotkać błędy. "
+    }
   }
 }

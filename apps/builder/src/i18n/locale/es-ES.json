@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Error de red, inténtalo de nuevo más tarde"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Desplegado",
+      "undeploy": "Desdesplegar"
+    },
+    "desc": {
+      "no_description": "Sin descripción"
+    },
+    "app_setting": {
+      "app_setting": "Ajustes de app",
+      "app_name": "Nombre de aplicación",
+      "description": "Descripción",
+      "save": "Guardar"
+    },
+    "access": {
+      "public": "Público",
+      "private": "Privado"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "App privada",
+      "public_app": "App pública"
+    },
+    "desc": {
+      "private_app": "Sólo los miembros del equipo pueden acceder a la aplicación desplegada",
+      "public_app": "Cualquiera con el enlace de la aplicación puede acceder a la aplicación implementada"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Invitar a editar",
+      "invite_to_use": "Invitar a usar"
+    },
+    "desc": {
+      "undeploy": "La aplicación no ha sido desplegada. El acceso público y el acceso al visor pueden encontrarse errores. "
+    }
   }
 }

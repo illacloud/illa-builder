@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Erreur de réseau, veuillez réessayer plus tard"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Déployé",
+      "undeploy": "Annuler le déploiement"
+    },
+    "desc": {
+      "no_description": "Pas de description"
+    },
+    "app_setting": {
+      "app_setting": "Réglage de l'application",
+      "app_name": "Nom de l'application",
+      "description": "Libellé",
+      "save": "Enregistrer"
+    },
+    "access": {
+      "public": "Publique",
+      "private": "Privé"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Application privée",
+      "public_app": "Application publique"
+    },
+    "desc": {
+      "private_app": "Seuls les membres de l'équipe peuvent accéder à l'application déployée",
+      "public_app": "N'importe qui avec le lien de l'application peut accéder à l'application déployée"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Inviter à modifier",
+      "invite_to_use": "Inviter à utiliser"
+    },
+    "desc": {
+      "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. "
+    }
   }
 }

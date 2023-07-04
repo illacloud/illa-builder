@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Chyba sítě, zkuste to prosím později"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Publikováno",
+      "undeploy": "Rozmístit"
+    },
+    "desc": {
+      "no_description": "Bez popisu"
+    },
+    "app_setting": {
+      "app_setting": "Nastavení aplikace",
+      "app_name": "Název aplikace",
+      "description": "L 343, 22.12.2009, s. 1).",
+      "save": "Uložit"
+    },
+    "access": {
+      "public": "Veřejnost",
+      "private": "Soukromé"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Soukromá aplikace",
+      "public_app": "Veřejná aplikace"
+    },
+    "desc": {
+      "private_app": "Pouze členové týmu mají přístup k nasazené aplikaci",
+      "public_app": "Každý, kdo má odkaz na aplikaci, má přístup k rozmístěné aplikaci"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Pozvat k úpravě",
+      "invite_to_use": "Pozvat k použití"
+    },
+    "desc": {
+      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
+    }
   }
 }

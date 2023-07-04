@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Netzwerkfehler, bitte versuchen Sie es später erneut"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Ausgestellt",
+      "undeploy": "Deaktivieren"
+    },
+    "desc": {
+      "no_description": "Keine Beschreibung"
+    },
+    "app_setting": {
+      "app_setting": "App-Einstellung",
+      "app_name": "App-Name",
+      "description": "Beschreibung",
+      "save": "Speichern"
+    },
+    "access": {
+      "public": "Öffentlich",
+      "private": "Privat"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Private App",
+      "public_app": "Öffentliche App"
+    },
+    "desc": {
+      "private_app": "Nur die Teammitglieder können auf die eingesetzte App zugreifen",
+      "public_app": "Jeder mit dem App-Link kann auf die installierte App zugreifen"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Zum Bearbeiten einladen",
+      "invite_to_use": "Zur Nutzung einladen"
+    },
+    "desc": {
+      "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. "
+    }
   }
 }
