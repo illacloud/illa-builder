@@ -240,11 +240,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
               track(
                 ILLA_MIXPANEL_EVENT_TYPE.SHOW,
                 ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                { element: "app_rename", parameter5: appId },
-              )
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
                 { element: "app_duplicate", parameter5: appId },
               )
               track(
@@ -268,38 +263,31 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                 title={
                   <div>
                     <PenIcon mr="8px" />
-                    <span>{t("rename")}</span>
+                    <span>{t("new_dashboard.app_setting.app_setting")}</span>
                   </div>
                 }
                 onClick={() => {
                   setRenameVisible(true)
+                }}
+              />
+              <DropListItem
+                key="share"
+                value="share"
+                title={
+                  <div>
+                    <DependencyIcon mr="8px" />
+                    <span>{t("share")}</span>
+                  </div>
+                }
+                onClick={() => {
+                  setShareVisible(true)
                   track(
                     ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                     ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                    { element: "app_rename", parameter5: appId },
+                    { element: "app_share", parameter5: appId },
                   )
                 }}
               />
-              {isDeploy && (
-                <DropListItem
-                  key="share"
-                  value="share"
-                  title={
-                    <div>
-                      <DependencyIcon mr="8px" />
-                      <span>{t("share")}</span>
-                    </div>
-                  }
-                  onClick={() => {
-                    setShareVisible(true)
-                    track(
-                      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                      { element: "app_share", parameter5: appId },
-                    )
-                  }}
-                />
-              )}
               <DropListItem
                 key="duplicate"
                 value="duplicate"

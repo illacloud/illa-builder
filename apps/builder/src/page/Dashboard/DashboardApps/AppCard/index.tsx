@@ -20,6 +20,7 @@ import AppConfigSelect from "@/page/Dashboard/DashboardApps/AppConfigSelect"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 interface AppCardProps extends HTMLAttributes<HTMLDivElement> {
   appInfo: DashboardApp
@@ -78,11 +79,13 @@ export const AppCard: FC<AppCardProps> = (props) => {
             e.stopPropagation()
           }}
         >
-          <AppConfigSelect
-            appId={appInfo.appId}
-            isPublic={appInfo.config.public}
-            canEditApp={canEditApp}
-          />
+          {isCloudVersion ? (
+            <AppConfigSelect
+              appId={appInfo.appId}
+              isPublic={appInfo.config.public}
+              canEditApp={canEditApp}
+            />
+          ) : null}
         </div>
         <Space
           direction="horizontal"
