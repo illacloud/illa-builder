@@ -72,8 +72,8 @@ export const formatEventOptions = (
           label: safeNodeValue(titleItem),
           title: safeNodeValue(titleItem),
           id: safeNodeValue(idItem),
-          start: startItem ? new Date(startItem) : new Date(),
-          end: endItem ? new Date(endItem) : new Date(),
+          start: getSafeDate(startItem),
+          end: getSafeDate(endItem),
           resourceId: safeNodeValue(resourceIdItem),
           resourceTitle: safeNodeValue(resourceIdTitleItem),
           description: safeNodeValue(descriptionItem),
@@ -118,8 +118,8 @@ export const formatEventOptions = (
           label: safeNodeValue(titleItem),
           title: safeNodeValue(titleItem),
           id: safeNodeValue(idItem),
-          start: startItem ? new Date(startItem) : new Date(),
-          end: endItem ? new Date(endItem) : new Date(),
+          start: getSafeDate(startItem),
+          end: getSafeDate(endItem),
           resourceId: safeNodeValue(resourceIdItem),
           resourceTitle: safeNodeValue(resourceIdTitleItem),
           description: safeNodeValue(descriptionItem),
@@ -195,4 +195,15 @@ export const isLightColor = (color: string): boolean => {
 
 const safeNodeValue = (value: unknown) => {
   return typeof value === "string" ? value : ""
+}
+
+export const getSafeDate = (value: string | Date | undefined) => {
+  if (value) {
+    const date = new Date(value)
+    if (isNaN(date.getTime())) {
+      return new Date()
+    }
+    return date
+  }
+  return new Date()
 }
