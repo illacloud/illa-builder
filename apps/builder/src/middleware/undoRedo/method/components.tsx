@@ -61,6 +61,26 @@ export const componentsSnapShot = (
       }
       break
     }
+    case "addModalComponentReducer": {
+      const newAction = {
+        type: "components/deleteComponentNodeReducer",
+        payload: {
+          displayNames: [action.payload.modalComponentNode.displayName],
+          source: "undoRedo", // TODO: 待更新
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
     case "updateComponentLayoutInfoReducer": {
       const originActionComponentNode = searchDSLByDisplayName(
         action.payload.displayName,
