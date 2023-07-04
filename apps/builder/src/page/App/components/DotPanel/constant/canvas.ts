@@ -1,4 +1,6 @@
 export const UNIT_HEIGHT = 8
+export const LABEL_TOP_UNIT_HEIGHT = 32
+export const VALIDATE_MESSAGE_HEIGHT = 33
 export const DEFAULT_BODY_COLUMNS_NUMBER = 32
 export const DEFAULT_ASIDE_COLUMNS_NUMBER = 8
 export const HEADER_MIN_HEIGHT = 40

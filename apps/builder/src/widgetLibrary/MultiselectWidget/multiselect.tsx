@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   MultiselectWidgetProps,
   WrappedMultiselectProps,
@@ -105,7 +104,6 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     mappedOption,
     manualOptions,
     //TODO: wei
-    h,
     updateComponentHeight,
     triggerEventHandler,
   } = props
@@ -184,12 +182,12 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
       case "auto":
         return true
       case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+        return true
       case "fixed":
       default:
         return false
     }
-  }, [dynamicHeight, dynamicMinHeight, h])
+  }, [dynamicHeight])
 
   const dynamicOptions = {
     dynamicMinHeight,

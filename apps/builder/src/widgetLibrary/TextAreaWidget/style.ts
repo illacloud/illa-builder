@@ -1,16 +1,27 @@
 import { css } from "@emotion/react"
+import { VALIDATE_MESSAGE_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const getTextareaContentContainerStyle = (
   labelPosition: "left" | "right" | "top" = "left",
-  height: number,
+  showValidationMessage: boolean,
 ) => {
   return css`
     display: flex;
-    flex: 1;
+    height: ${showValidationMessage
+      ? `calc(100% - ${VALIDATE_MESSAGE_HEIGHT})px`
+      : "100%"};
     flex-direction: ${labelPosition === "top" ? "column" : "row"};
-    min-height: calc(100% - ${height}px);
     & textarea {
       resize: none;
     }
   `
 }
+
+export const textAreaStyle = css`
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  & > textarea:hover {
+    z-index: 0;
+  }
+`

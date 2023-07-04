@@ -4,7 +4,6 @@ import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { Pagination } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,
@@ -72,12 +71,12 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
       case "auto":
         return true
       case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+        return true
       case "fixed":
       default:
         return false
     }
-  }, [dynamicHeight, dynamicMinHeight, h])
+  }, [dynamicHeight])
 
   const dynamicOptions = useMemo(
     () => ({

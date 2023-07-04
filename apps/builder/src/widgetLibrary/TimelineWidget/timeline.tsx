@@ -1,6 +1,5 @@
 import { FC, useEffect, useMemo } from "react"
 import { Timeline, TimelineItem } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import {
   TimelineWidgetProps,
@@ -39,7 +38,6 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     displayName,
     dynamicHeight = "fixed",
     // TODO: wei
-    h,
     dynamicMinHeight,
     dynamicMaxHeight,
     handleUpdateDsl,
@@ -76,12 +74,12 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
       case "auto":
         return true
       case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+        return true
       case "fixed":
       default:
         return false
     }
-  }, [dynamicHeight, dynamicMinHeight, h])
+  }, [dynamicHeight])
 
   const dynamicOptions = {
     dynamicMinHeight,

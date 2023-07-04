@@ -1,7 +1,11 @@
 import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
 import useMeasure from "react-use-measure"
 import { TextArea } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
+import {
+  LABEL_TOP_UNIT_HEIGHT,
+  UNIT_HEIGHT,
+  VALIDATE_MESSAGE_HEIGHT,
+} from "@/page/App/components/DotPanel/constant/canvas"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
@@ -15,7 +19,10 @@ import {
   TextareaWidgetProps,
   WrappedTextareaProps,
 } from "@/widgetLibrary/TextAreaWidget/interface"
-import { getTextareaContentContainerStyle } from "@/widgetLibrary/TextAreaWidget/style"
+import {
+  getTextareaContentContainerStyle,
+  textAreaStyle,
+} from "@/widgetLibrary/TextAreaWidget/style"
 
 export const WrappedTextarea = forwardRef<
   HTMLTextAreaElement,
@@ -38,8 +45,10 @@ export const WrappedTextarea = forwardRef<
     handleUpdateMultiExecutionResult,
     getValidateMessage,
     dynamicHeight,
-    dynamicMinHeight,
-    dynamicMaxHeight,
+    dynamicMinHeight = 0,
+    dynamicMaxHeight = Infinity,
+    labelPosition,
+    showValidationMessage,
   } = props
 
   const handleClear = () => handleUpdateDsl({ value: "" })
@@ -70,24 +79,46 @@ export const WrappedTextarea = forwardRef<
     ],
   )
 
-  const limitedStyle =
-    dynamicHeight === "limited"
-      ? {
-          minH:
-            dynamicMinHeight !== undefined
-              ? `${dynamicMinHeight}px`
-              : undefined,
-          maxH:
-            dynamicMaxHeight !== undefined
-              ? `${dynamicMaxHeight}px`
-              : undefined,
-        }
-      : {}
+  const limitedStyle = useMemo(() => {
+    const limitLinePosition =
+      labelPosition === "top" ? LABEL_TOP_UNIT_HEIGHT : UNIT_HEIGHT
+    const minH = `${
+      showValidationMessage
+        ? dynamicMinHeight - limitLinePosition - VALIDATE_MESSAGE_HEIGHT
+        : dynamicMinHeight - limitLinePosition
+    }px`
+    const maxH = `${
+      showValidationMessage
+        ? dynamicMaxHeight - limitLinePosition - VALIDATE_MESSAGE_HEIGHT
+        : dynamicMaxHeight - limitLinePosition
+    }px`
+    if (dynamicHeight === "limited") {
+      return {
+        minH,
+        maxH,
+        h: "auto",
+      }
+    }
+    return {
+      minH: showValidationMessage
+        ? `calc(100% - ${VALIDATE_MESSAGE_HEIGHT})px`
+        : "100%",
+      maxH: showValidationMessage
+        ? `calc(100% - ${VALIDATE_MESSAGE_HEIGHT})px`
+        : "100%",
+      h: "auto",
+    }
+  }, [
+    dynamicHeight,
+    dynamicMaxHeight,
+    dynamicMinHeight,
+    labelPosition,
+    showValidationMessage,
+  ])
 
   return (
     <TextArea
-      w="100%"
-      flex="1"
+      css={textAreaStyle}
       {...limitedStyle}
       textAreaRef={ref}
       value={value}
@@ -102,7 +133,7 @@ export const WrappedTextarea = forwardRef<
       onBlur={handleOnBlur}
       onChange={handleChange}
       onClear={handleClear}
-      autoSize={dynamicHeight === "fixed" ? false : true}
+      autoSize
     />
   )
 })
@@ -135,7 +166,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     validateMessage,
     triggerEventHandler,
     dynamicHeight = "fixed",
-    h,
     dynamicMinHeight,
     dynamicMaxHeight,
   } = props
@@ -237,18 +267,21 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
       case "auto":
         return true
       case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
+        return true
       case "fixed":
       default:
         return false
     }
-  }, [dynamicHeight, dynamicMinHeight, h])
+  }, [dynamicHeight])
 
   const dynamicOptions = {
     dynamicMinHeight,
     dynamicMaxHeight,
   }
 
+  const showValidationMessage = useMemo(() => {
+    return Boolean(!hideValidationMessage && validateMessage)
+  }, [hideValidationMessage, validateMessage])
   const minMaxValueRef = useRef<{ min?: number; max?: number }>({})
 
   const getMinMaxHeight = (
@@ -280,16 +313,19 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
   }
 
   return (
-    <AutoHeightContainer
-      updateComponentHeight={updateComponentHeight}
-      enable={enableAutoHeight}
-      dynamicOptions={dynamicOptions}
-    >
-      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <AutoHeightContainer
+        updateComponentHeight={updateComponentHeight}
+        enable={enableAutoHeight}
+        dynamicOptions={dynamicOptions}
+      >
         <div
           css={[
             applyLabelAndComponentWrapperStyle(labelPosition),
-            getTextareaContentContainerStyle(labelPosition, bounds.height),
+            getTextareaContentContainerStyle(
+              labelPosition,
+              showValidationMessage,
+            ),
           ]}
         >
           <Label
@@ -311,24 +347,23 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
             handleOnChange={handleOnChange}
             handleOnFocus={handleOnFocus}
             handleOnBlur={handleOnBlur}
-            dynamicMinHeight={minMaxValueRef.current.min}
-            dynamicMaxHeight={minMaxValueRef.current.max}
+            showValidationMessage={showValidationMessage}
           />
         </div>
-      </TooltipWrapper>
-      {!hideValidationMessage && (
-        <div
-          css={applyValidateMessageWrapperStyle(
-            labelWidth,
-            labelPosition,
-            labelHidden || !label,
-          )}
-          ref={messageWrapperRef}
-        >
-          <InvalidMessage validateMessage={validateMessage} />
-        </div>
-      )}
-    </AutoHeightContainer>
+        {!hideValidationMessage && (
+          <div
+            css={applyValidateMessageWrapperStyle(
+              labelWidth,
+              labelPosition,
+              labelHidden || !label,
+            )}
+            ref={messageWrapperRef}
+          >
+            <InvalidMessage validateMessage={validateMessage} />
+          </div>
+        )}
+      </AutoHeightContainer>
+    </TooltipWrapper>
   )
 }
 
