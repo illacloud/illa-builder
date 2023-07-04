@@ -3511,40 +3511,40 @@
   },
   "new_dashboard": {
     "status": {
-      "deployed": "Deployed",
-      "undeploy": "Undeploy"
+      "deployed": "Dispiegato",
+      "undeploy": "Dispiega"
     },
     "desc": {
-      "no_description": "No description"
+      "no_description": "Nessuna descrizione"
     },
     "app_setting": {
-      "app_setting": "App setting",
-      "app_name": "App name",
-      "description": "Description",
-      "save": "Save"
+      "app_setting": "Impostazioni app",
+      "app_name": "Nome app",
+      "description": "Descrizione",
+      "save": "Salva"
     },
     "access": {
-      "public": "Public",
-      "private": "Private"
+      "public": "Pubblico",
+      "private": "Privato"
     }
   },
   "new_deploy": {
     "title": {
-      "private_app": "Private app",
-      "public_app": "Public app"
+      "private_app": "App privata",
+      "public_app": "Applicazione pubblica"
     },
     "desc": {
-      "private_app": "Only the team members can access the deployed app",
-      "public_app": "Anyone with the app link can access the deployed app"
+      "private_app": "Solo i membri del team possono accedere all'app distribuita",
+      "public_app": "Chiunque con il link dell'app può accedere all'app distribuita"
     }
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use"
+      "invite_to_edit": "Invita a modificare",
+      "invite_to_use": "Invita da usare"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
     }
   }
 }
