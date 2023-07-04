@@ -18,6 +18,7 @@ export interface WrappedStepsProps
   current?: number
   currentIndex?: number
   defaultStep?: string
+  disabled?: boolean
   handleStepsChange?: (current: number) => void
 }
 
