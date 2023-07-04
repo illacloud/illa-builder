@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Netværksfejl, prøv igen senere"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Implementeret",
+      "undeploy": "Deaktiver"
+    },
+    "desc": {
+      "no_description": "Ingen beskrivelse"
+    },
+    "app_setting": {
+      "app_setting": "App indstilling",
+      "app_name": "Navn på app",
+      "description": "Varebeskrivelse",
+      "save": "Gem"
+    },
+    "access": {
+      "public": "Offentlig",
+      "private": "Privat"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Privat app",
+      "public_app": "Offentlig app"
+    },
+    "desc": {
+      "private_app": "Kun teammedlemmer kan tilgå den implementerede app",
+      "public_app": "Alle med app-linket kan få adgang til den implementerede app"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Inviter til at redigere",
+      "invite_to_use": "Inviter til brug"
+    },
+    "desc": {
+      "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. "
+    }
   }
 }

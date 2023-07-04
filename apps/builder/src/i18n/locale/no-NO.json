@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Nettverksfeil, vennligst prøv på nytt senere"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Utlevert",
+      "undeploy": "Avinstaller"
+    },
+    "desc": {
+      "no_description": "Ingen beskrivelse"
+    },
+    "app_setting": {
+      "app_setting": "Innstillinger for app",
+      "app_name": "Navn på app",
+      "description": "Beskrivelse",
+      "save": "Lagre"
+    },
+    "access": {
+      "public": "Offentlig",
+      "private": "Privat"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Privat app",
+      "public_app": "Offentlig app"
+    },
+    "desc": {
+      "private_app": "Bare gruppemedlemmene har tilgang til den utplasserte appen",
+      "public_app": "Alle med app-koblingen kan få tilgang til den utplasserte appen"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Inviter til å redigere",
+      "invite_to_use": "Inviter til bruk"
+    },
+    "desc": {
+      "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
+    }
   }
 }

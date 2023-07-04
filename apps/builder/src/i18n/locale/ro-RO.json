@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Eroare de rețea, te rugăm să încerci mai târziu"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Desfășurat",
+      "undeploy": "Desfășurare"
+    },
+    "desc": {
+      "no_description": "Nici o descriere"
+    },
+    "app_setting": {
+      "app_setting": "Setare aplicație",
+      "app_name": "Numele aplicației",
+      "description": "Descriere",
+      "save": "Salvează"
+    },
+    "access": {
+      "public": "Publice",
+      "private": "Privat"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Aplicație privată",
+      "public_app": "Aplicație publică"
+    },
+    "desc": {
+      "private_app": "Numai membrii echipei pot accesa aplicația trimisă",
+      "public_app": "Oricine are link-ul aplicației poate accesa aplicația implementată"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Invită să editezi",
+      "invite_to_use": "Invită să utilizezi"
+    },
+    "desc": {
+      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
+    }
   }
 }

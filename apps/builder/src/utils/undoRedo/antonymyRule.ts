@@ -97,9 +97,6 @@ export const reduxActionDependOnRestAPI = async (
           from,
           payload: newOriginNodeByChangeDisplayName,
         })
-        message.success({
-          content: `frame.message.${from}.suc`,
-        })
         break
       }
       case "components/addTargetPageSectionReducer": {
@@ -148,9 +145,6 @@ export const reduxActionDependOnRestAPI = async (
             originChildrenNode: newOriginNodeByChangeDisplayName,
           },
         })
-        message.success({
-          content: `frame.message.${from}.suc`,
-        })
         break
       }
       case "components/updateTargetPageLayoutReducer": {
@@ -165,9 +159,6 @@ export const reduxActionDependOnRestAPI = async (
             originChildrenNode: newOriginNodeByChangeDisplayName,
           },
         })
-        message.success({
-          content: `frame.message.${from}.suc`,
-        })
         break
       }
       default: {
@@ -179,6 +170,6 @@ export const reduxActionDependOnRestAPI = async (
     }
   }
   message.success({
-    content: `frame.message.${from}.suc`,
+    content: i18n.t(`frame.message.${from}.suc`),
   })
 }
