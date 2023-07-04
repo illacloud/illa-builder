@@ -320,7 +320,7 @@ export const ApplyCustomStyle = (
         border-radius: ${view !== "month" ? "4px" : "0"}!important;
       }
       .rbc-selected {
-        background-color: ${getColor(eventBackground, "07")};
+        background-color: ${getColor(eventBackground, "07")}!important;
       }
       .rbc-addons-dnd-resize-ew-anchor {
         top: 50%;

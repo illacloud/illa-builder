@@ -43,6 +43,7 @@ import {
   format2EventList,
   formatDateTime,
   formatEventOptions,
+  getSafeDate,
 } from "@/widgetLibrary/EventCalendarWidget/utils"
 
 const DragAndDropCalendar = withDragAndDrop(Calendar)
@@ -207,16 +208,10 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     handleUpdateMultiExecutionResult,
   } = props
 
-  const currentDefaultDate = useMemo(() => {
-    if (defaultDate) {
-      try {
-        return new Date(defaultDate)
-      } catch {
-        return new Date()
-      }
-    }
-    return new Date()
-  }, [defaultDate])
+  const currentDefaultDate = useMemo(
+    () => getSafeDate(defaultDate),
+    [defaultDate],
+  )
 
   const isInEdit = useSelector(getIsILLAEditMode)
   const message = useMessage()
