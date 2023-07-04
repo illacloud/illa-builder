@@ -36,6 +36,7 @@ import {
   RedisResourceInitial,
 } from "@/redux/resource/redisResource"
 import { Resource } from "@/redux/resource/resourceState"
+import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
@@ -109,8 +110,8 @@ export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
       {
         host: data.host.trim(),
         port: data.port.toString(),
-        databaseIndex: data.databaseIndex ?? 0,
-        databaseUsername: data.databaseUsername,
+        databaseIndex: DATABASE_INDEX,
+        databaseUsername: DEFAULT_NAME,
         databasePassword: data.databasePassword,
         ssl: sslOpenWatch,
       },
