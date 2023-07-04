@@ -33,11 +33,11 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
   const options: { label: string; value: boolean }[] = useMemo(() => {
     return [
       {
-        label: t("private"),
+        label: t("new_dashboard.access.private"),
         value: false,
       },
       {
-        label: t("public"),
+        label: t("new_dashboard.access.public"),
         value: true,
       },
     ]
@@ -62,7 +62,9 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
   if (!canChange) {
     return (
       <div css={valueLabelStyle} className={className}>
-        {isPublic ? t("public") : t("private")}
+        {isPublic
+          ? t("new_dashboard.access.public")
+          : t("new_dashboard.access.private")}
       </div>
     )
   }
@@ -97,7 +99,9 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
       }
     >
       <div css={[valueLabelStyle, pointerStyle]} className={className}>
-        {isPublic ? t("public") : t("private")}
+        {isPublic
+          ? t("new_dashboard.access.public")
+          : t("new_dashboard.access.private")}
         {popupVisible ? <UpIcon /> : <DownIcon />}
       </div>
     </Trigger>

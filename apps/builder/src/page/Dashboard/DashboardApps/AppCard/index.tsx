@@ -46,11 +46,11 @@ export const AppCard: FC<AppCardProps> = (props) => {
           <div className="deployed">
             {appInfo.deployed ? (
               <Tag colorScheme="green" size="small">
-                Deployed
+                {t("new_dashboard.status.deployed")}
               </Tag>
             ) : (
               <Tag colorScheme="grayBlue" size="small">
-                Undeploy
+                {t("new_dashboard.status.undeploy")}
               </Tag>
             )}
           </div>
@@ -65,7 +65,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
         />
       </div>
       <div css={descriptionStyle}>
-        {appInfo.config.description || "No description"}
+        {appInfo.config.description || t("new_dashboard.desc.no_description")}
       </div>
       <div className="images">
         {appInfo?.editedBy?.map((editor, index) => (

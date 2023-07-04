@@ -30,7 +30,7 @@ import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mix
 import { canManageApp } from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
-import { RenameModal } from "@/page/Dashboard/components/RenameModal"
+import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import {
@@ -502,8 +502,8 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
           />
         </MemberListContext.Provider>
       </MixpanelTrackProvider>
-      <RenameModal
-        appId={app.appId}
+      <AppSettingModal
+        appInfo={app}
         visible={renameVisible}
         onVisibleChange={(visible) => {
           setRenameVisible(visible)
