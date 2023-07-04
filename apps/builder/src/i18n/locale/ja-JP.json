@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "ネットワークエラーが発生しました。後でもう一度お試しください。"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "配備済み",
+      "undeploy": "デプロイを解除"
+    },
+    "desc": {
+      "no_description": "説明がありません"
+    },
+    "app_setting": {
+      "app_setting": "アプリの設定",
+      "app_name": "アプリ名",
+      "description": "説明",
+      "save": "保存"
+    },
+    "access": {
+      "public": "公開",
+      "private": "非公開"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "プライベートアプリ",
+      "public_app": "公開アプリ"
+    },
+    "desc": {
+      "private_app": "チームメンバーのみがデプロイされたアプリにアクセスできます",
+      "public_app": "アプリのリンクを持っている誰でも、デプロイされたアプリにアクセスできます"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "編集に招待",
+      "invite_to_use": "招待する"
+    },
+    "desc": {
+      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
+    }
   }
 }

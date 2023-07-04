@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Erro de rede, por favor, tente novamente mais tarde"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Implantado",
+      "undeploy": "Desimplantar"
+    },
+    "desc": {
+      "no_description": "Sem descrição"
+    },
+    "app_setting": {
+      "app_setting": "Configuração do aplicativo",
+      "app_name": "Nome do aplicativo",
+      "description": "Descrição:",
+      "save": "Guardar"
+    },
+    "access": {
+      "public": "Público",
+      "private": "Privado"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Aplicativo privado",
+      "public_app": "Aplicativo público"
+    },
+    "desc": {
+      "private_app": "Somente os membros da equipe podem acessar o app implementado",
+      "public_app": "Qualquer um com o link do app pode acessar o app implantado"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Convidar para editar",
+      "invite_to_use": "Convidar para usar"
+    },
+    "desc": {
+      "undeploy": "O app não foi implantado. O acesso público e o acesso ao visualizador podem encontrar erros. "
+    }
   }
 }

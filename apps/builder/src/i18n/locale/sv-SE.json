@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Nätverksfel, försök igen senare"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Utplacerad",
+      "undeploy": "Odistribuera"
+    },
+    "desc": {
+      "no_description": "Ingen beskrivning"
+    },
+    "app_setting": {
+      "app_setting": "Appens inställning",
+      "app_name": "Appens namn",
+      "description": "Beskrivning",
+      "save": "Spara"
+    },
+    "access": {
+      "public": "Publik",
+      "private": "Privat"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Privat app",
+      "public_app": "Publik app"
+    },
+    "desc": {
+      "private_app": "Endast teammedlemmar kan komma åt den distribuerade appen",
+      "public_app": "Vem som helst med app-länken kan komma åt den distribuerade appen"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Bjud in att redigera",
+      "invite_to_use": "Bjud in att använda"
+    },
+    "desc": {
+      "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. "
+    }
   }
 }

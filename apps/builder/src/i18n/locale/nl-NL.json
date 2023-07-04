@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Netwerk fout, probeer het later opnieuw"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Geïmplementeerd",
+      "undeploy": "Undeployen"
+    },
+    "desc": {
+      "no_description": "Geen beschrijving"
+    },
+    "app_setting": {
+      "app_setting": "App instelling",
+      "app_name": "App naam",
+      "description": "Beschrijving",
+      "save": "Opslaan"
+    },
+    "access": {
+      "public": "Openbaar",
+      "private": "Privé"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Privé app",
+      "public_app": "Publieke app"
+    },
+    "desc": {
+      "private_app": "Alleen de teamleden hebben toegang tot de geïmplementeerde app",
+      "public_app": "Iedereen met de app link heeft toegang tot de geïmplementeerde app"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Uitnodigen om te bewerken",
+      "invite_to_use": "Uitnodigen om te gebruiken"
+    },
+    "desc": {
+      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
+    }
   }
 }

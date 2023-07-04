@@ -3508,5 +3508,43 @@
   },
   "network": {
     "error": "Verkkovirhe, yritä myöhemmin uudelleen"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Käyttöönotettu",
+      "undeploy": "Poista"
+    },
+    "desc": {
+      "no_description": "Ei kuvausta"
+    },
+    "app_setting": {
+      "app_setting": "Sovelluksen asetus",
+      "app_name": "Sovelluksen nimi",
+      "description": "Kuvaus",
+      "save": "Tallenna"
+    },
+    "access": {
+      "public": "Julkinen",
+      "private": "Yksityinen"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Yksityinen sovellus",
+      "public_app": "Julkinen sovellus"
+    },
+    "desc": {
+      "private_app": "Vain tiimin jäsenet voivat käyttää käyttöön otettua sovellusta",
+      "public_app": "Kuka tahansa, jolla on sovelluslinkki, voi käyttää otettua sovellusta"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Kutsu muokattavaksi",
+      "invite_to_use": "Kutsu käyttämään"
+    },
+    "desc": {
+      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. "
+    }
   }
 }
