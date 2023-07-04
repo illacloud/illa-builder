@@ -3511,40 +3511,40 @@
   },
   "new_dashboard": {
     "status": {
-      "deployed": "Deployed",
-      "undeploy": "Undeploy"
+      "deployed": "已部署",
+      "undeploy": "未部署"
     },
     "desc": {
-      "no_description": "No description"
+      "no_description": "暂无描述"
     },
     "app_setting": {
-      "app_setting": "App setting",
-      "app_name": "App name",
-      "description": "Description",
-      "save": "Save"
+      "app_setting": "项目设置",
+      "app_name": "项目名称",
+      "description": "描述",
+      "save": "保存"
     },
     "access": {
-      "public": "Public",
-      "private": "Private"
+      "public": "公开",
+      "private": "私密"
     }
   },
   "new_deploy": {
     "title": {
-      "private_app": "Private app",
-      "public_app": "Public app"
+      "private_app": "公开项目",
+      "public_app": "私密项目"
     },
     "desc": {
-      "private_app": "Only the team members can access the deployed app",
-      "public_app": "Anyone with the app link can access the deployed app"
+      "private_app": "仅团队成员可以访问",
+      "public_app": "任何获取到项目链接的人都可以访问"
     }
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use"
+      "invite_to_edit": "邀请进行编辑",
+      "invite_to_use": "邀请使用"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
     }
   }
 }
