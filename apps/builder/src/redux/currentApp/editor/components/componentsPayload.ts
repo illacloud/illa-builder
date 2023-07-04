@@ -15,8 +15,6 @@ export interface LayoutInfo {
   x: number
   y: number
   z: number
-  unitW: number
-  unitH: number
   minW: number
   minH: number
 }

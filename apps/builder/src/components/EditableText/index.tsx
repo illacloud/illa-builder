@@ -63,7 +63,6 @@ export const EditableText: FC<EditableTextProps> = (props) => {
       return
     }
     onValidate?.("suc")
-    DisplayNameGenerator.updateDisplayName(inputValue, displayName)
     updateDisplayNameByBlur(inputValue)
   }, [
     displayName,

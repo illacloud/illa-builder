@@ -9,7 +9,7 @@ import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
   getIsILLAEditMode,
   getSelectedAction,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -17,45 +17,30 @@ import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSele
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
-  searchDSLByDisplayName,
+  getSelectedComponentNode,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import store, { RootState } from "@/store"
+import store from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-// import IllaUndoRedoManager from "@/utils/undoRedo/undo"
+import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { isMAC } from "@/utils/userAgent"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-
-  const isEditMode = useSelector(getIsILLAEditMode)
   const message = useMessage()
 
-  const currentSelectedComponent = useSelector(getSelectedComponents)
-
-  const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
-    (rootState) => {
-      const currentSelectedComponentDisplayName =
-        getSelectedComponents(rootState)
-      const result = currentSelectedComponentDisplayName.map((displayName) => {
-        return searchDSLByDisplayName(displayName)
-      })
-      return result.filter((node) => node) as ComponentNode[]
-    },
-  )
-
+  const isEditMode = useSelector(getIsILLAEditMode)
+  const currentSelectedComponent = useSelector(getSelectedComponentDisplayNames)
+  const currentSelectedComponentNode = useSelector(getSelectedComponentNode)
   const currentSelectedAction = useSelector(getSelectedAction)
-
   const canvasRootNode = useSelector(getCanvas)
   const executionResult = useSelector(getExecutionResult)
-
   const showShadows = useSelector(isShowDot)
 
   // shortcut
@@ -315,24 +300,10 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   }, [dispatch, showShadows])
 
   useHotkeys(
-    `${Key.Meta}+s`,
-    () => {
-      message.success({
-        content: t("dont_need_save"),
-      })
-    },
-    {
-      enableOnFormTags: true,
-      enableOnContentEditable: true,
-      preventDefault: true,
-      enabled: isEditMode && isMAC(),
-    },
-    [],
-  )
+    `${isMAC() ? Key.Meta : Key.Control}+s`,
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
 
-  useHotkeys(
-    `${Key.Control}+s`,
-    () => {
       message.success({
         content: t("dont_need_save"),
       })
@@ -341,13 +312,14 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       enableOnFormTags: true,
       enableOnContentEditable: true,
       preventDefault: true,
-      enabled: isEditMode && !isMAC(),
+      enabled: isEditMode,
     },
   )
 
   useHotkeys(
     Key.Backspace,
-    () => {
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       switch (FocusManager.getFocus()) {
         case "data_page":
           break
@@ -389,8 +361,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}+a`,
-    (e) => {
-      e.preventDefault()
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       selectAllBodyComponentsHandler()
     },
     {
@@ -401,7 +373,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   )
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}+c`,
-    () => {
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       copySomethingHandler()
     },
     {
@@ -413,7 +386,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}+v`,
-    () => {
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       CopyManager.paste("keyboard")
     },
     {
@@ -425,7 +399,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}+d`,
-    () => {
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       copyAndPasteHandler()
     },
     {
@@ -438,6 +413,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}`,
     (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
+
       showDotHandler(keyboardEvent.type)
     },
     {
@@ -449,27 +426,30 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     [showDotHandler],
   )
 
-  // useHotkeys(
-  //   `${isMAC() ? Key.Meta : Key.Control}+z`,
-  //   () => {
-  //     IllaUndoRedoManager.popFromUndoStack()
-  //   },
-  //   {
-  //     enabled: isEditMode,
-  //   },
-  //   [showDotHandler],
-  // )
+  useHotkeys(
+    `${isMAC() ? Key.Meta : Key.Control}+z`,
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
 
-  // useHotkeys(
-  //   `${isMAC() ? Key.Meta : Key.Control}+${Key.Shift}+z`,
-  //   () => {
-  //     IllaUndoRedoManager.popFromRedoStack()
-  //   },
-  //   {
-  //     enabled: isEditMode,
-  //   },
-  //   [showDotHandler],
-  // )
+      IllaUndoRedoManager.popFromUndoStack()
+    },
+    {
+      enabled: isEditMode,
+    },
+    [isEditMode],
+  )
+
+  useHotkeys(
+    `${isMAC() ? Key.Meta : Key.Control}+${Key.Shift}+z`,
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
+      IllaUndoRedoManager.popFromRedoStack()
+    },
+    {
+      enabled: isEditMode,
+    },
+    [isEditMode],
+  )
 
   // cancel show dot
   useEffect(() => {

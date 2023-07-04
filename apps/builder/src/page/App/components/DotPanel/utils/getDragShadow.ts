@@ -56,8 +56,7 @@ export const getScrollTop = (displayName: string) => {
 export const getContainerTop = (displayName: string) => {
   const ref = getScrollBarContainerByDisplayName(displayName)
   if (ref && ref.current) {
-    const parentNodeDom = ref.current.parentElement as HTMLElement
-    return parentNodeDom!.getBoundingClientRect().top
+    return ref.current!.getBoundingClientRect().top
   }
 
   return 0

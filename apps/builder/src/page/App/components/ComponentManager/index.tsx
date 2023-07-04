@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { SimpleTabs, getRenderBody } from "@/components/Tabs"
 import { COMPONENT_MANAGER_TABS } from "@/components/Tabs/constant"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { getSelectedComponents } from "@/redux/config/configSelector"
+import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -15,7 +15,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
 
   const [activeKey, setActiveKey] = useState("Insert")
 
-  const selectedDisplayNames = useSelector(getSelectedComponents)
+  const selectedDisplayNames = useSelector(getSelectedComponentDisplayNames)
   const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
   const prevPageDisplayName = useRef<string>(currentPageDisplayName)
   const isClickChange = useRef<boolean>(false)
