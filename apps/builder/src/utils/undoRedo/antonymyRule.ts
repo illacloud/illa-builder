@@ -29,13 +29,11 @@ export const reduxActionDependOnRestAPI = async (
             payload: newPayload,
             from,
           })
-          message.success({
-            content: `frame.message.${from}.suc`,
-          })
         } catch (e) {
           message.error({
             content: i18n.t(`frame.message.${from}.failed`),
           })
+          return
         }
 
         break
@@ -47,13 +45,11 @@ export const reduxActionDependOnRestAPI = async (
             ...action,
             from,
           })
-          message.success({
-            content: `frame.message.${from}.suc`,
-          })
         } catch (e) {
           message.error({
             content: i18n.t(`frame.message.${from}.failed`),
           })
+          return
         }
         break
       }
@@ -64,13 +60,11 @@ export const reduxActionDependOnRestAPI = async (
             ...action,
             from,
           })
-          message.success({
-            content: `frame.message.${from}.suc`,
-          })
         } catch (e) {
           message.error({
             content: i18n.t(`frame.message.${from}.failed`),
           })
+          return
         }
         break
       }
@@ -84,13 +78,11 @@ export const reduxActionDependOnRestAPI = async (
             ...action,
             from,
           })
-          message.success({
-            content: `frame.message.${from}.suc`,
-          })
         } catch (e) {
           message.error({
             content: i18n.t(`frame.message.${from}.failed`),
           })
+          return
         }
         break
       }
@@ -124,9 +116,6 @@ export const reduxActionDependOnRestAPI = async (
               originSectionNode: newOriginNodeByChangeDisplayName,
             },
           })
-          message.success({
-            content: `frame.message.${from}.suc`,
-          })
         }
         break
       }
@@ -143,9 +132,6 @@ export const reduxActionDependOnRestAPI = async (
               ...action.payload,
               originChildrenNode: newOriginNodeByChangeDisplayName,
             },
-          })
-          message.success({
-            content: `frame.message.${from}.suc`,
           })
         }
         break
@@ -189,10 +175,10 @@ export const reduxActionDependOnRestAPI = async (
           ...action,
           from,
         })
-        message.success({
-          content: `frame.message.${from}.suc`,
-        })
       }
     }
   }
+  message.success({
+    content: `frame.message.${from}.suc`,
+  })
 }
