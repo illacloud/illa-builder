@@ -104,14 +104,13 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
 const RenderCopyContainer: FC<RenderCopyContainerProps> = (props) => {
   const {
     templateComponentNodes,
-    templateContainerHeight,
+    templateContainerHeight: _templateContainerHeight,
     columnNumber,
     displayNamePrefix,
   } = props
   return (
     <BasicContainerWithJSON
       componentNode={templateComponentNodes}
-      minHeight={templateContainerHeight - 16}
       columnNumber={columnNumber}
       displayNamePrefix={displayNamePrefix}
     />

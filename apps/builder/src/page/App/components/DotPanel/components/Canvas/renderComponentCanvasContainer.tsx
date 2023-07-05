@@ -355,6 +355,8 @@ export const RenderComponentCanvasContainer: FC<
     }
   }, [isDraggingGlobal, scrollContainerScrollTop])
 
+  console.log("displayName", displayName)
+
   const { cursorPositionRef } = useMousePositionAsync(
     scrollContainerRef,
     unitWidth,

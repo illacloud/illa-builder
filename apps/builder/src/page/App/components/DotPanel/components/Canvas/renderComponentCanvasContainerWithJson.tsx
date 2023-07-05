@@ -9,14 +9,12 @@ import { outerComponentCanvasContainerWithJsonStyle } from "./style"
 export const RenderComponentCanvasWithJson: FC<{
   componentNode: ComponentNode
   containerPadding: number
-  minHeight?: number
   columnNumber?: number
   canAutoScroll?: boolean
   displayNamePrefix?: string
 }> = (props) => {
   const {
     componentNode,
-    minHeight,
     columnNumber = DEFAULT_BODY_COLUMNS_NUMBER,
     displayNamePrefix,
     containerPadding,
@@ -37,7 +35,6 @@ export const RenderComponentCanvasWithJson: FC<{
             <BasicContainer
               displayName={item.displayName}
               key={item.displayName}
-              minHeight={minHeight}
               columnNumber={columnNumber}
             />
           )
@@ -55,13 +52,7 @@ export const RenderComponentCanvasWithJson: FC<{
           return null
       }
     })
-  }, [
-    columnNumber,
-    componentNode.childrenNode,
-    displayNamePrefix,
-    minHeight,
-    unitWidth,
-  ])
+  }, [columnNumber, componentNode.childrenNode, displayNamePrefix, unitWidth])
 
   return (
     <div

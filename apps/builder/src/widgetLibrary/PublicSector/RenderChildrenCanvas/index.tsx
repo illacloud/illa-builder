@@ -22,7 +22,6 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
   return (
     <BasicContainer
       displayName={currentComponentNode.displayName}
-      minHeight={500}
       columnNumber={columnNumber}
     />
   )
