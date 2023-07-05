@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Fortryd succesfuld",
-        "failed": "Fortryd mislykkedes"
+        "failed": "Fortryd mislykkedes",
+        "nothing": "Intet at fortryde"
       },
       "redo": {
         "suc": "Gendannelse lykkedes",
-        "failed": "Gendannelse mislykkedes"
+        "failed": "Gendannelse mislykkedes",
+        "nothing": "Intet at gentage"
       }
     }
   },
@@ -3521,11 +3523,19 @@
       "app_setting": "App indstilling",
       "app_name": "Navn på app",
       "description": "Varebeskrivelse",
-      "save": "Gem"
+      "save": "Gem",
+      "placeholder": {
+        "description": "Angiv beskrivelsen for appen",
+        "app_name": "Angiv et navn til app'en"
+      }
     },
     "access": {
       "public": "Offentlig",
       "private": "Privat"
+    },
+    "message": {
+      "update_failed": "Opdatering mislykkedes",
+      "update_suc": "Opdatering lykkedes"
     }
   },
   "new_deploy": {
@@ -3545,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. "
+    },
+    "tips": {
+      "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
+      "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
+      "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
     }
   }
 }

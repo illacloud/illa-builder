@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Vrátit zpět úspěšné",
-        "failed": "Vrátit zpět neúspěšné"
+        "failed": "Vrátit zpět neúspěšné",
+        "nothing": "Nic k vrácení"
       },
       "redo": {
         "suc": "Opakování úspěšné",
-        "failed": "Opakování selhalo"
+        "failed": "Opakování selhalo",
+        "nothing": "Nic k reakci"
       }
     }
   },
@@ -3521,11 +3523,19 @@
       "app_setting": "Nastavení aplikace",
       "app_name": "Název aplikace",
       "description": "L 343, 22.12.2009, s. 1).",
-      "save": "Uložit"
+      "save": "Uložit",
+      "placeholder": {
+        "description": "Zadejte popis aplikace",
+        "app_name": "Zadejte název aplikace"
+      }
     },
     "access": {
       "public": "Veřejnost",
       "private": "Soukromé"
+    },
+    "message": {
+      "update_failed": "Aktualizace se nezdařila",
+      "update_suc": "Úspěšně aktualizováno"
     }
   },
   "new_deploy": {
@@ -3545,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
+    },
+    "tips": {
+      "admin": "Člen, který může spravovat všechny členy kromě vlastníka, upravit APP a zobrazit APP",
+      "editor": "Člen, který může spravovat členy editorů a diváků, upravit APP a zobrazit APP",
+      "viewer": "Člen, který může spravovat členy diváku a prohlížet APP"
     }
   }
 }

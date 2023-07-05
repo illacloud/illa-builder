@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Annullamento riuscito",
-        "failed": "Annullamento fallito"
+        "failed": "Annullamento fallito",
+        "nothing": "Niente da annullare"
       },
       "redo": {
         "suc": "Ripeti con successo",
-        "failed": "Ripeti fallita"
+        "failed": "Ripeti fallita",
+        "nothing": "Niente da rifare"
       }
     }
   },
@@ -3521,11 +3523,19 @@
       "app_setting": "Impostazioni app",
       "app_name": "Nome app",
       "description": "Descrizione",
-      "save": "Salva"
+      "save": "Salva",
+      "placeholder": {
+        "description": "Inserisci la descrizione per l'app",
+        "app_name": "Inserisci un nome per l'applicazione"
+      }
     },
     "access": {
       "public": "Pubblico",
       "private": "Privato"
+    },
+    "message": {
+      "update_failed": "Impossibile aggiornare",
+      "update_suc": "Aggiornato correttamente"
     }
   },
   "new_deploy": {
@@ -3545,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
+    },
+    "tips": {
+      "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
+      "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
+      "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
     }
   }
 }
