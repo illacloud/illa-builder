@@ -38,6 +38,7 @@ export const actionsSnapShot = (
       const newAction = {
         type: "action/addActionItemReducer",
         payload: originAction,
+        from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
         IllaUndoRedoManager.pushToRedoStack([
@@ -57,6 +58,7 @@ export const actionsSnapShot = (
       const newAction = {
         type: "action/updateActionItemReducer",
         payload: originAction,
+        from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
         IllaUndoRedoManager.pushToRedoStack([
@@ -77,6 +79,7 @@ export const actionsSnapShot = (
           oldDisplayName: action.payload.newDisplayName,
           actionID: action.payload.actionID,
         },
+        from: action.from,
       }
 
       if (action.from === REDUX_ACTION_FROM.UNDO) {
