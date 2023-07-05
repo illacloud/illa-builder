@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Alleen de teamleden hebben toegang tot de geïmplementeerde app",
       "public_app": "Iedereen met de app link heeft toegang tot de geïmplementeerde app"
+    },
+    "button": {
+      "public": "Openbaar"
     }
   },
   "new_share": {

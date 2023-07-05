@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "仅团队成员可以访问",
       "public_app": "任何获取到项目链接的人都可以访问"
+    },
+    "button": {
+      "public": "公开部署"
     }
   },
   "new_share": {
@@ -3558,8 +3561,8 @@
     },
     "tips": {
       "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
-      "editor": "可以管理编辑者和查看者、编辑 APP和查看APP",
-      "viewer": "可以管理查看者、查看APP"
+      "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
+      "viewer": "可以管理浏览者、查看APP"
     }
   }
 }

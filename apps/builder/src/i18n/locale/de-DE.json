@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Nur die Teammitglieder können auf die eingesetzte App zugreifen",
       "public_app": "Jeder mit dem App-Link kann auf die installierte App zugreifen"
+    },
+    "button": {
+      "public": "Öffentlich"
     }
   },
   "new_share": {

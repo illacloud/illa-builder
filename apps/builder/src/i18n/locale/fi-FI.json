@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Vain tiimin jäsenet voivat käyttää käyttöön otettua sovellusta",
       "public_app": "Kuka tahansa, jolla on sovelluslinkki, voi käyttää otettua sovellusta"
+    },
+    "button": {
+      "public": "Julkinen"
     }
   },
   "new_share": {

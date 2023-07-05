@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Tylko członkowie zespołu mogą uzyskać dostęp do wdrożonej aplikacji",
       "public_app": "Każdy z linkiem do aplikacji może uzyskać dostęp do wdrożonej aplikacji"
+    },
+    "button": {
+      "public": "Publiczne"
     }
   },
   "new_share": {
