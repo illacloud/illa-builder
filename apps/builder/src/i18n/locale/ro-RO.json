@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Anulare reușită",
-        "failed": "Anulare eșuată"
+        "failed": "Anulare eșuată",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Redo cu succes",
-        "failed": "Refacere eșuată"
+        "failed": "Refacere eșuată",
+        "nothing": "Nothing to redo"
       }
     }
   },
