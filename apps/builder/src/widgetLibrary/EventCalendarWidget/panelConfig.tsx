@@ -328,7 +328,7 @@ export const EVENT_CALENDAR_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.eventCalendar.default_date",
         ),
         labelDesc: i18n.t(
-          "ditor.inspect.setter_tips.eventCalendar.default_date",
+          "editor.inspect.setter_tips.eventCalendar.default_date",
         ),
         attrName: "defaultDate",
         setterType: "INPUT_SETTER",
