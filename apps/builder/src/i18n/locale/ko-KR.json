@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Undo successful",
-        "failed": "Undo failed"
+        "failed": "Undo failed",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Redo successful",
-        "failed": "Redo failed"
+        "failed": "Redo failed",
+        "nothing": "Nothing to redo"
       }
     }
   },
