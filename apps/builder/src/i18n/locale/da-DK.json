@@ -1288,6 +1288,9 @@
           "start_button_text": "Start optagelse",
           "stop_button_text": "Stop",
           "clear_button_text": "Ryd"
+        },
+        "rich_text": {
+          "default_text": "tekst"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Svar besked ID",
         "senderName": "Afsenders navn",
         "senderId": "Afsender ID",
-        "showName": "Vis navn"
+        "showName": "Vis navn",
+        "rich_text": {
+          "default_text": "Standard tekst"
+        }
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Sæt farven på brevene til venstre",
         "rightMessageColor": "Sæt farven på brevene til højre",
         "toolbar-replay": "Angiv, om en svar-knap skal vises når du vælger en besked.",
-        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked."
+        "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked.",
+        "tabs": {
+          "variant": "For at indstille varianten af faneblade"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1989,6 +1998,10 @@
             "left-click": "Venstreklik",
             "right-click": "Højreklik"
           }
+        },
+        "tab": {
+          "line": "Linje",
+          "card": "Kort"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "Skriv din kode her. Brug JavaScript inde i {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "Standard teksten vises når komponenten er initialiseret"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "Cirkel Fremgang"
     },
     "container": {
-      "empty": "Tryk på <keyPress>D</keyPress> eller <keyPress>K</keyPress> og træk komponenter her",
+      "empty": "Træk komponenter hertil",
       "key_duplicated": "Nøglen er duplikeret. Brug venligst unikke nøgler for at undgå fejl.",
       "name": "Container",
       "value_duplicated": "Værdien er duplikeret. Brug venligst unikke værdier for at undgå fejl."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt."
+    "paste_no_aimed": "Klik venligst på rammen for at angive placeringen af indsæt.",
+    "message": {
+      "session": {
+        "error": "Operationer med flere komponenter er ikke tilladt på tværs af lærreder."
+      },
+      "undo": {
+        "suc": "Fortryd succesfuld",
+        "failed": "Fortryd mislykkedes",
+        "nothing": "Intet at fortryde"
+      },
+      "redo": {
+        "suc": "Gendannelse lykkedes",
+        "failed": "Gendannelse mislykkedes",
+        "nothing": "Intet at gentage"
+      }
+    }
   },
   "bookFrom": {
     "title": "Book en demo",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Tilføj ubegrænset seermedlemmer GRATIS",
         "publish_public_appli": "Offentliggør offentlige programmer",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Revision logs (Kommer snart)",
+        "audit_logs": "Revision logs",
         "learn_more": "Lær mere",
         "upgrade": "Opgradér",
         "pricing": "/redaktør/måned, årligt",
@@ -3470,9 +3503,63 @@
       "title": "Betaling gennemført",
       "button": "Tilbage til ILLA Cloud"
     },
-    "redirect_to_stripe": "Omdirigerer til Stripe"
+    "redirect_to_stripe": "Omdirigerer til Stripe",
+    "appsumo": {
+      "update": "Opdater AppSumo abonnement"
+    }
   },
   "network": {
     "error": "Netværksfejl, prøv igen senere"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Implementeret",
+      "undeploy": "Deaktiver"
+    },
+    "desc": {
+      "no_description": "Ingen beskrivelse"
+    },
+    "app_setting": {
+      "app_setting": "App indstilling",
+      "app_name": "Navn på app",
+      "description": "Varebeskrivelse",
+      "save": "Gem",
+      "placeholder": {
+        "description": "Angiv beskrivelsen for appen",
+        "app_name": "Angiv et navn til app'en"
+      }
+    },
+    "access": {
+      "public": "Offentlig",
+      "private": "Privat"
+    },
+    "message": {
+      "update_failed": "Opdatering mislykkedes",
+      "update_suc": "Opdatering lykkedes"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Privat app",
+      "public_app": "Offentlig app"
+    },
+    "desc": {
+      "private_app": "Kun teammedlemmer kan tilgå den implementerede app",
+      "public_app": "Alle med app-linket kan få adgang til den implementerede app"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Inviter til at redigere",
+      "invite_to_use": "Inviter til brug"
+    },
+    "desc": {
+      "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. "
+    },
+    "tips": {
+      "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
+      "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
+      "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
+    }
   }
 }

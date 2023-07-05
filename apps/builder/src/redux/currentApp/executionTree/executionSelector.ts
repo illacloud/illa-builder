@@ -4,13 +4,11 @@ import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import {
   getAllComponentDisplayNameMapProps,
-  getFlattenArrayComponentNodes,
   getOriginalGlobalData,
   getPageNameMapDescendantNodeDisplayNames,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
-import { batchMergeLayoutInfoToComponent } from "@/utils/drag/drag"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 import { isObject } from "@/utils/typeHelper"
 
@@ -161,8 +159,9 @@ export const getCurrentPageDisplayName = createSelector(
   [getRootNodeExecutionResult],
   (rootNode) => {
     const { pageSortedKey, currentPageIndex } = rootNode
-    if (currentPageIndex > pageSortedKey.lengths) return pageSortedKey[0]
-    return pageSortedKey[currentPageIndex]
+    if (currentPageIndex > pageSortedKey.lengths)
+      return pageSortedKey[0] as string
+    return pageSortedKey[currentPageIndex] as string
   },
 )
 
@@ -301,23 +300,6 @@ export const getExecutionWidgetLayoutInfo = createSelector(
   [getExecution],
   (execution) => {
     return execution.widgetsLayoutInfo
-  },
-)
-
-export const getAllComponentsWithRealShapeSelector = createSelector(
-  [getFlattenArrayComponentNodes, getExecutionWidgetLayoutInfo],
-  (allComponentNodes, widgetsLayoutInfo) => {
-    let childrenNodes = allComponentNodes ? cloneDeep(allComponentNodes) : []
-    if (Array.isArray(childrenNodes)) {
-      const mergedChildrenNode = batchMergeLayoutInfoToComponent(
-        widgetsLayoutInfo,
-        childrenNodes,
-      )
-      childrenNodes = cloneDeep(mergedChildrenNode)
-    } else {
-      childrenNodes = []
-    }
-    return childrenNodes
   },
 )
 

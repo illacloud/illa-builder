@@ -9,7 +9,7 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Bar Progress", "进度条"],
   icon: <LineProgressWidgetIcon />,
   sessionType: "PRESENTATION",
-  w: 16,
+  w: 8,
   h: 3,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

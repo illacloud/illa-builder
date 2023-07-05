@@ -9,7 +9,7 @@ export const DIVIDER_WIDGET_CONFIG: WidgetConfig = {
   icon: <DividerWidgetIcon />,
   keywords: ["Divider", "分割线"],
   sessionType: "PRESENTATION",
-  w: 16,
+  w: 8,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

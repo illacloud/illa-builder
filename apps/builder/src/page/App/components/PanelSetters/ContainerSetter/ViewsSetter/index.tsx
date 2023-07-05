@@ -22,7 +22,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import store, { RootState } from "@/store"
-import { generateComponentNode } from "@/utils/generators/generateComponentNode"
+import { newGenerateChildrenComponentNode } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 export const ViewsSetter: FC<ViewSetterProps> = memo(
@@ -110,7 +110,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
 
     const handleAddViewItem = useCallback(() => {
       const newItem = generateNewViewItem(allViewsKeys)
-      const newChildrenNodes = generateComponentNode(
+      const newChildrenNodes = newGenerateChildrenComponentNode(
         BasicContainerConfig,
         _componentNode?.displayName,
       )

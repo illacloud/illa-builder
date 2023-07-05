@@ -1288,6 +1288,9 @@
           "start_button_text": "Iniciar gravação",
           "stop_button_text": "Interromper",
           "clear_button_text": "Limpar"
+        },
+        "rich_text": {
+          "default_text": "Texto"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Responder ID da mensagem",
         "senderName": "Nome do remetente",
         "senderId": "Identificação do remetente",
-        "showName": "Exibir nome"
+        "showName": "Exibir nome",
+        "rich_text": {
+          "default_text": "Texto padrão"
+        }
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Definir a cor das mensagens à esquerda",
         "rightMessageColor": "Definir a cor das mensagens à direita",
         "toolbar-replay": "Configura se deve mostrar um botão de resposta quando selecionar uma mensagem.",
-        "toolbar-delete": "Configura se deve mostrar um botão excluir quando selecionar uma mensagem."
+        "toolbar-delete": "Configura se deve mostrar um botão excluir quando selecionar uma mensagem.",
+        "tabs": {
+          "variant": "Para definir a variante das abas"
+        }
       },
       "setter_option": {
         "fixed": "Corrigido",
@@ -1989,6 +1998,10 @@
             "left-click": "Clique-esquerdo",
             "right-click": "Clique-direito"
           }
+        },
+        "tab": {
+          "line": "Linha",
+          "card": "Carta"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "Escreva seu código aqui. Use JavaScript dentro de {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "O texto padrão exibido quando o componente é inicializado"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "Progresso do Círculo"
     },
     "container": {
-      "empty": "Pressione <keyPress>D</keyPress> ou <keyPress>K</keyPress> e arraste os componentes aqui",
+      "empty": "Arraste componentes aqui",
       "key_duplicated": "A chave está duplicada. Por favor, utilize chaves únicas para evitar erros.",
       "name": "Contêiner",
       "value_duplicated": "O valor está duplicado. Por favor, use valores únicos para evitar erros."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Por favor, clique no quadro para especificar o local de colagem."
+    "paste_no_aimed": "Por favor, clique no quadro para especificar o local de colagem.",
+    "message": {
+      "session": {
+        "error": "Operações envolvendo vários componentes não são permitidas entre tela."
+      },
+      "undo": {
+        "suc": "Restaurado com sucesso",
+        "failed": "Desfazer falhou",
+        "nothing": "Nada para desfazer"
+      },
+      "redo": {
+        "suc": "Refazer com sucesso",
+        "failed": "Refazer falhou",
+        "nothing": "Nada para refazer"
+      }
+    }
   },
   "bookFrom": {
     "title": "Reserve uma demonstração",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Adicione membros de espectadores ilimitados GRÁTIS",
         "publish_public_appli": "Publicar aplicações públicas",
         "ai_sql_generation": "Geração de SQL AI",
-        "audit_logs": "Logs de auditoria (Em breve)",
+        "audit_logs": "Logs de auditoria",
         "learn_more": "Mais informações",
         "upgrade": "PRO",
         "pricing": "/editor/mês, anual",
@@ -3470,9 +3503,63 @@
       "title": "Pagamento bem-sucedido",
       "button": "Voltar para ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirecionando para Listra"
+    "redirect_to_stripe": "Redirecionando para Listra",
+    "appsumo": {
+      "update": "Atualizar plano do AppSumo"
+    }
   },
   "network": {
     "error": "Erro de rede, por favor, tente novamente mais tarde"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Implantado",
+      "undeploy": "Desimplantar"
+    },
+    "desc": {
+      "no_description": "Sem descrição"
+    },
+    "app_setting": {
+      "app_setting": "Configuração do aplicativo",
+      "app_name": "Nome do aplicativo",
+      "description": "Descrição:",
+      "save": "Guardar",
+      "placeholder": {
+        "description": "Digite a descrição para o aplicativo",
+        "app_name": "Digite um nome para o aplicativo"
+      }
+    },
+    "access": {
+      "public": "Público",
+      "private": "Privado"
+    },
+    "message": {
+      "update_failed": "Falha ao atualizar",
+      "update_suc": "Atualizado com Sucesso"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Aplicativo privado",
+      "public_app": "Aplicativo público"
+    },
+    "desc": {
+      "private_app": "Somente os membros da equipe podem acessar o app implementado",
+      "public_app": "Qualquer um com o link do app pode acessar o app implantado"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Convidar para editar",
+      "invite_to_use": "Convidar para usar"
+    },
+    "desc": {
+      "undeploy": "O app não foi implantado. O acesso público e o acesso ao visualizador podem encontrar erros. "
+    },
+    "tips": {
+      "admin": "O membro que pode gerenciar todos os membros, exceto o proprietário, edite APP e veja os APPs",
+      "editor": "O membro que pode gerenciar membros do editor e visualizador, editar APP e ver APPs",
+      "viewer": "O membro que pode gerenciar o visualizador e visualizar os APPs"
+    }
   }
 }

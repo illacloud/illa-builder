@@ -12,21 +12,31 @@ import { fetchUpdateAction } from "@/services/action"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { registerActionPeriod } from "@/utils/action/runAction"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import {
   ActionContent,
   ActionItem,
   UpdateActionSlicePropsPayload,
 } from "./actionState"
 
-async function handleRemoveActionItem(
+async function handleRemoveActionItemEffect(
   action: ReturnType<typeof actionActions.removeActionItemReducer>,
   listenerApi: AppListenerEffectAPI,
 ) {
+  DisplayNameGenerator.removeDisplayName(action.payload.displayName)
   if (
-    action.payload === listenerApi.getState().config.selectedAction?.displayName
+    action.payload.actionID ===
+    listenerApi.getState().config.selectedAction?.actionId
   ) {
     listenerApi.dispatch(configActions.changeSelectedAction(null))
   }
+}
+
+async function handleAddActionItemEffect(
+  action: ReturnType<typeof actionActions.addActionItemReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  listenerApi.dispatch(configActions.changeSelectedAction(action.payload))
 }
 
 async function handleUpdateActionItem(
@@ -34,8 +44,8 @@ async function handleUpdateActionItem(
   listenerApi: AppListenerEffectAPI,
 ) {
   if (
-    action.payload.actionId ===
-    listenerApi.getState().config.selectedAction?.actionId
+    action.payload.displayName ===
+    listenerApi.getState().config.selectedAction?.displayName
   ) {
     listenerApi.dispatch(configActions.changeSelectedAction(action.payload))
   }
@@ -131,11 +141,15 @@ export function setupActionListeners(
   const subscriptions = [
     startListening({
       actionCreator: actionActions.removeActionItemReducer,
-      effect: handleRemoveActionItem,
+      effect: handleRemoveActionItemEffect,
     }),
     startListening({
       actionCreator: actionActions.updateActionItemReducer,
       effect: handleUpdateActionItem,
+    }),
+    startListening({
+      actionCreator: actionActions.addActionItemReducer,
+      effect: handleAddActionItemEffect,
     }),
     startListening({
       actionCreator: actionActions.updateActionDisplayNameReducer,

@@ -196,3 +196,5 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
   )
 }
 DateWidget.displayName = "DateWidget"
+
+export default DateWidget

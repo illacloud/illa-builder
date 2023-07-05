@@ -1288,6 +1288,9 @@
           "start_button_text": "Start recording",
           "stop_button_text": "Stop",
           "clear_button_text": "Clear"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Reply message ID",
         "senderName": "Sender name",
         "senderId": "Sender ID",
-        "showName": "Show name"
+        "showName": "Show name",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Set the color of the messages on the left",
         "rightMessageColor": "Set the color of the messages on the right",
         "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "toolbar-delete": "Set whether to show a delete button when select a message.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "Fixed",
@@ -1973,7 +1982,7 @@
           "icon": "Icon",
           "solid": "Solid",
           "outline": "Outline",
-          "auto": "Auto",
+          "auto": "Responsive",
           "limited": "Limited",
           "limit_offset_based": "Limit offset based",
           "cursor_based": "Cursor based",
@@ -1989,6 +1998,10 @@
             "left-click": "Left-click",
             "right-click": "Right-click"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "Write your code here. Use JavaScript inside of {{ }}"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "BASIC",
-        "frame": "FRAME"
+        "frame": "LAYOUT"
       },
       "tab_title": "Page",
       "tooltips": {
@@ -2492,7 +2510,7 @@
       "name": "Circle Progress"
     },
     "container": {
-      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
+      "empty": "Drag components here",
       "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors.",
       "name": "Container",
       "value_duplicated": "The value is duplicated. Please use unique values to avoid errors."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Please click on the frame to specify the paste location.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed",
+        "nothing": "Nothing to undo"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed",
+        "nothing": "Nothing to redo"
+      }
+    }
   },
   "bookFrom": {
     "title": "Book a demo",
@@ -3470,9 +3503,63 @@
       "title": "Payment successful",
       "button": "Back to ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirecting to Stripe"
+    "redirect_to_stripe": "Redirecting to Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Network error, please try again later"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Deployed",
+      "undeploy": "Undeploy"
+    },
+    "desc": {
+      "no_description": "No description"
+    },
+    "app_setting": {
+      "app_setting": "App setting",
+      "app_name": "App name",
+      "description": "Description",
+      "save": "Save",
+      "placeholder": {
+        "description": "Enter the description for the app",
+        "app_name": "Enter a name for the app"
+      }
+    },
+    "access": {
+      "public": "Public",
+      "private": "Private"
+    },
+    "message": {
+      "update_failed": "Failed to update",
+      "update_suc": "Successfully updated"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Private app",
+      "public_app": "Public app"
+    },
+    "desc": {
+      "private_app": "Only the team members can access the deployed app",
+      "public_app": "Anyone with the app link can access the deployed app"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Invite to edit",
+      "invite_to_use": "Invite to use"
+    },
+    "desc": {
+      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+    },
+    "tips": {
+      "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
+      "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
+      "viewer": "The member who can manage viewer members and view APPs"
+    }
   }
 }

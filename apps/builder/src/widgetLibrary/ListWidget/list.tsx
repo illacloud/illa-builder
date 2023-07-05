@@ -1,7 +1,7 @@
 import { chunk, cloneDeep, get, isEqual, set, toPath } from "lodash"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { Pagination } from "@illa-design/react"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
@@ -16,15 +16,13 @@ import {
   getExecutionResult,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
-import {
-  BasicContainer,
-  BasicContainerWithJSON,
-} from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { BasicContainerWithJSON } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import {
   ListWidgetProps,
   ListWidgetPropsWithChildrenNodes,
@@ -40,11 +38,12 @@ import {
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
+import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
   const {
     templateComponentNodes,
-    blockColumns,
+    columnNumber,
     dynamicHeight,
     handleUpdateOriginalDSLMultiAttr,
     updateComponentHeight,
@@ -52,7 +51,6 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
     h,
     dynamicMinHeight,
     dynamicMaxHeight,
-    templateContainerHeight,
   } = props
 
   const updateAllComponentHeight = useCallback(
@@ -89,30 +87,15 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
     [dynamicMaxHeight, dynamicMinHeight],
   )
 
-  const basicContainerProps =
-    dynamicHeight !== "fixed"
-      ? {
-          canResizeY: true,
-          safeRowNumber: 1,
-          addedRowNumber: 1,
-        }
-      : {
-          canResizeY: false,
-          addedRowNumber: 0,
-        }
-
   return (
     <AutoHeightContainer
       updateComponentHeight={updateAllComponentHeight}
       enable={enableAutoHeight}
       dynamicOptions={dynamicOptions}
     >
-      <BasicContainer
-        {...basicContainerProps}
-        componentNode={templateComponentNodes}
-        minHeight={templateContainerHeight - 16}
-        padding={8}
-        blockColumns={blockColumns}
+      <RenderChildrenCanvas
+        currentComponentNode={templateComponentNodes}
+        columnNumber={columnNumber}
       />
     </AutoHeightContainer>
   )
@@ -121,18 +104,14 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
 const RenderCopyContainer: FC<RenderCopyContainerProps> = (props) => {
   const {
     templateComponentNodes,
-    templateContainerHeight,
-    blockColumns,
+    templateContainerHeight: _templateContainerHeight,
+    columnNumber,
     displayNamePrefix,
   } = props
   return (
     <BasicContainerWithJSON
       componentNode={templateComponentNodes}
-      canResizeY={false}
-      minHeight={templateContainerHeight - 16}
-      padding={8}
-      addedRowNumber={0}
-      blockColumns={blockColumns}
+      columnNumber={columnNumber}
       displayNamePrefix={displayNamePrefix}
     />
   )
@@ -154,11 +133,6 @@ const resizeBottomHandler = () => {
   }
 }
 
-const handleResizeStart: ResizeStartCallback = (e) => {
-  e.preventDefault()
-  e.stopPropagation()
-}
-
 export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
   props,
 ) => {
@@ -174,13 +148,14 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     pageSize,
     handleUpdateSelectedItem,
     itemBackGroundColor,
-    blockColumns,
+    columnNumber,
     dynamicHeight = "fixed",
     h,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
   const isEditMode = useSelector(getIsILLAEditMode)
+  const dispatch = useDispatch()
 
   const itemNumber = useMemo(() => {
     return (
@@ -212,6 +187,12 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       : chunkData[0]
   }, [copyComponents, currentPage, itemNumber])
 
+  const handleResizeStart: ResizeStartCallback = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+  }
+
   const handleOnResizeTopStop: ResizeCallback = useCallback(
     (e, dir, elementRef, delta) => {
       const { height } = delta
@@ -219,8 +200,9 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
       handleUpdateOriginalDSLMultiAttr({
         itemHeight: finalHeight,
       })
+      dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
-    [handleUpdateOriginalDSLMultiAttr, itemHeight],
+    [dispatch, handleUpdateOriginalDSLMultiAttr, itemHeight],
   )
 
   const canShowBorder = isEditMode && isMouseHover
@@ -272,7 +254,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
             <RenderTemplateContainer
               templateComponentNodes={childrenNode[0]}
               templateContainerHeight={itemHeight}
-              blockColumns={blockColumns}
+              columnNumber={columnNumber}
               dynamicHeight={dynamicHeight}
               handleUpdateOriginalDSLMultiAttr={
                 handleUpdateOriginalDSLMultiAttr
@@ -305,7 +287,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
               <RenderCopyContainer
                 templateComponentNodes={node}
                 templateContainerHeight={itemHeight}
-                blockColumns={blockColumns}
+                columnNumber={columnNumber}
                 displayNamePrefix={`list-child-${index}-`}
               />
             </div>
@@ -338,16 +320,18 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
     copyComponents = [],
     handleUpdateSelectedItem,
     itemBackGroundColor,
-    blockColumns,
+    columnNumber,
     dynamicHeight,
     updateComponentHeight,
     h,
     dynamicMinHeight,
     dynamicMaxHeight,
+    displayName,
   } = props
   const [containerRef, containerBounds] = useMeasure()
   const [isMouseHover, setIsMouseHover] = useState(false)
   const isEditMode = useSelector(getIsILLAEditMode)
+  const dispatch = useDispatch()
 
   const propsRef = useRef(props)
 
@@ -357,15 +341,21 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
     }
   }, [props])
 
+  const handleResizeStart: ResizeStartCallback = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+  }
+
   const handleOnResizeTopStop: ResizeCallback = useCallback(
     (e, dir, elementRef, delta) => {
-      const { height } = delta
-      let finalHeight = itemHeight + height
+      let finalHeight = itemHeight + delta.height
       handleUpdateOriginalDSLMultiAttr({
         itemHeight: finalHeight,
       })
+      dispatch(executionActions.setResizingNodeIDsReducer([]))
     },
-    [handleUpdateOriginalDSLMultiAttr, itemHeight],
+    [dispatch, handleUpdateOriginalDSLMultiAttr, itemHeight],
   )
 
   const canShowBorder = isEditMode && isMouseHover
@@ -415,7 +405,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
           <RenderTemplateContainer
             templateComponentNodes={childrenNode[0]}
             templateContainerHeight={itemHeight}
-            blockColumns={blockColumns}
+            columnNumber={columnNumber}
             dynamicHeight={dynamicHeight}
             handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
             itemNumber={copyComponents?.length}
@@ -448,7 +438,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
             <RenderCopyContainer
               templateComponentNodes={node}
               templateContainerHeight={itemHeight}
-              blockColumns={blockColumns}
+              columnNumber={columnNumber}
               displayNamePrefix={`list-child-${index}-`}
             />
           </div>
@@ -656,3 +646,5 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
     />
   )
 }
+
+export default ListWidget

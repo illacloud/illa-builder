@@ -183,3 +183,4 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
   )
 }
 RadioButtonWidget.displayName = "RadioButtonWidget"
+export default RadioButtonWidget

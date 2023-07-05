@@ -16,20 +16,21 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/
 import {
   BODY_MIN_HEIGHT,
   BODY_MIN_WIDTH,
-  DEFAULT_PERCENT_WIDTH,
-  DEFAULT_PX_WIDTH,
   FOOTER_MIN_HEIGHT,
   HEADER_MIN_HEIGHT,
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
-} from "@/page/App/components/DotPanel/renderSection"
+} from "@/page/App/components/DotPanel/constant/canvas"
+import {
+  DEFAULT_PERCENT_WIDTH,
+  DEFAULT_PX_WIDTH,
+} from "@/page/App/components/DotPanel/constant/canvas"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { LayoutSelect } from "@/page/App/components/PagePanel/Components/LayoutSelect"
 import { PanelActionBar } from "@/page/App/components/PagePanel/Components/PanelActionBar"
 import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
-import { ColumnsControl } from "@/page/App/components/PagePanel/Modules/Frame/Components/ColumnsControl"
 import { optionListWrapperStyle } from "@/page/App/components/PagePanel/style"
 import { getCanvasShape } from "@/redux/config/configSelector"
 import {
@@ -40,30 +41,8 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { PageNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import {
-  BASIC_BLOCK_COLUMNS,
-  LEFT_OR_RIGHT_DEFAULT_COLUMNS,
-} from "@/utils/generators/generatePageOrSectionConfig"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { groupWrapperStyle } from "./style"
-
-const getDefaultColumns = (attrName: string, value?: number) => {
-  switch (attrName) {
-    case "rightColumns":
-    case "leftColumns": {
-      return value ?? LEFT_OR_RIGHT_DEFAULT_COLUMNS
-    }
-    case "bodyColumns":
-    case "footerColumns":
-    case "headerColumns": {
-      return value ?? BASIC_BLOCK_COLUMNS
-    }
-
-    default: {
-      return BASIC_BLOCK_COLUMNS
-    }
-  }
-}
 
 const getRealCanvasWidth = (canvasWidth: unknown) => {
   if (typeof canvasWidth !== "number") return 100
@@ -122,11 +101,6 @@ export const PageFrame: FC = () => {
     hasHeader,
     showLeftFoldIcon,
     showRightFoldIcon,
-    leftColumns,
-    rightColumns,
-    bodyColumns,
-    footerColumns,
-    headerColumns,
   } = pageProps
 
   const bodyWidth = useMemo(() => {
@@ -153,7 +127,6 @@ export const PageFrame: FC = () => {
         | "rightSection"
         | "headerSection"
         | "footerSection",
-      options: Record<string, any>,
     ) => {
       if (!currentPageDisplayName) return
       modal.show({
@@ -170,7 +143,6 @@ export const PageFrame: FC = () => {
             componentsActions.deleteTargetPageSectionReducer({
               pageName: currentPageDisplayName,
               deleteSectionName,
-              options,
             }),
           )
         },
@@ -186,14 +158,12 @@ export const PageFrame: FC = () => {
         | "rightSection"
         | "headerSection"
         | "footerSection",
-      options: Record<string, any>,
     ) => {
       if (!currentPageDisplayName) return
       dispatch(
         componentsActions.addTargetPageSectionReducer({
           pageName: currentPageDisplayName,
           addedSectionName,
-          options,
         }),
       )
     },
@@ -643,12 +613,7 @@ export const PageFrame: FC = () => {
                 parameter2: "left",
                 parameter3: "hidden",
               })
-              handleDeleteSection("leftSection", {
-                hasLeft: false,
-                leftWidth: 0,
-                leftPosition: "NONE",
-                layout: "Custom",
-              })
+              handleDeleteSection("leftSection")
             }}
             addPanelAction={() => {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -656,12 +621,7 @@ export const PageFrame: FC = () => {
                 parameter2: "left",
                 parameter3: "show",
               })
-              handleAddSection("leftSection", {
-                hasLeft: true,
-                leftWidth: 20,
-                leftPosition: "FULL",
-                layout: "Custom",
-              })
+              handleAddSection("leftSection")
             }}
           />
         </LeftAndRightLayout>
@@ -686,12 +646,6 @@ export const PageFrame: FC = () => {
                 />
               </SetterPadding>
             </LeftAndRightLayout>
-            <ColumnsControl
-              labelName={t("editor.page.label_name.columns")}
-              columns={getDefaultColumns("leftColumns", leftColumns)}
-              attrName="leftColumns"
-              currentPageDisplayName={currentPageDisplayName}
-            />
             <LeftAndRightLayout>
               <PageLabel
                 labelName={t("editor.page.label_name.show_fold_icon")}
@@ -732,12 +686,7 @@ export const PageFrame: FC = () => {
                 parameter2: "right",
                 parameter3: "hidden",
               })
-              handleDeleteSection("rightSection", {
-                hasRight: false,
-                rightWidth: 0,
-                rightPosition: "NONE",
-                layout: "Custom",
-              })
+              handleDeleteSection("rightSection")
             }}
             addPanelAction={() => {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -745,12 +694,7 @@ export const PageFrame: FC = () => {
                 parameter2: "right",
                 parameter3: "show",
               })
-              handleAddSection("rightSection", {
-                hasRight: true,
-                rightWidth: 20,
-                rightPosition: "FULL",
-                layout: "Custom",
-              })
+              handleAddSection("rightSection")
             }}
           />
         </LeftAndRightLayout>
@@ -775,12 +719,6 @@ export const PageFrame: FC = () => {
                 />
               </SetterPadding>
             </LeftAndRightLayout>
-            <ColumnsControl
-              labelName={t("editor.page.label_name.columns")}
-              columns={getDefaultColumns("rightColumns", rightColumns)}
-              attrName="rightColumns"
-              currentPageDisplayName={currentPageDisplayName}
-            />
             <LeftAndRightLayout>
               <PageLabel
                 labelName={t("editor.page.label_name.show_fold_icon")}
@@ -824,12 +762,6 @@ export const PageFrame: FC = () => {
             />
           </SetterPadding>
         </LeftAndRightLayout>
-        <ColumnsControl
-          labelName={t("editor.page.label_name.columns")}
-          columns={getDefaultColumns("bodyColumns", bodyColumns)}
-          attrName="bodyColumns"
-          currentPageDisplayName={currentPageDisplayName}
-        />
       </div>
       <PanelDivider hasMargin={false} />
       <div css={groupWrapperStyle}>
@@ -847,11 +779,7 @@ export const PageFrame: FC = () => {
                 parameter2: "header",
                 parameter3: "hidden",
               })
-              handleDeleteSection("headerSection", {
-                hasHeader: false,
-                topHeight: 0,
-                layout: "Custom",
-              })
+              handleDeleteSection("headerSection")
             }}
             addPanelAction={() => {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -859,11 +787,7 @@ export const PageFrame: FC = () => {
                 parameter2: "header",
                 parameter3: "show",
               })
-              handleAddSection("headerSection", {
-                hasHeader: true,
-                topHeight: 96,
-                layout: "Custom",
-              })
+              handleAddSection("headerSection")
             }}
           />
         </LeftAndRightLayout>
@@ -891,12 +815,6 @@ export const PageFrame: FC = () => {
                 />
               </SetterPadding>
             </LeftAndRightLayout>
-            <ColumnsControl
-              labelName={t("editor.page.label_name.columns")}
-              columns={getDefaultColumns("headerColumns", headerColumns)}
-              attrName="headerColumns"
-              currentPageDisplayName={currentPageDisplayName}
-            />
           </>
         )}
       </div>
@@ -916,11 +834,7 @@ export const PageFrame: FC = () => {
                 parameter2: "footer",
                 parameter3: "hidden",
               })
-              handleDeleteSection("footerSection", {
-                hasFooter: false,
-                bottomHeight: 0,
-                layout: "Custom",
-              })
+              handleDeleteSection("footerSection")
             }}
             addPanelAction={() => {
               trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
@@ -928,11 +842,7 @@ export const PageFrame: FC = () => {
                 parameter2: "footer",
                 parameter3: "show",
               })
-              handleAddSection("footerSection", {
-                hasFooter: true,
-                bottomHeight: 96,
-                layout: "Custom",
-              })
+              handleAddSection("footerSection")
             }}
           />
         </LeftAndRightLayout>
@@ -960,12 +870,6 @@ export const PageFrame: FC = () => {
                 />
               </SetterPadding>
             </LeftAndRightLayout>
-            <ColumnsControl
-              labelName={t("editor.page.label_name.columns")}
-              columns={getDefaultColumns("footerColumns", footerColumns)}
-              attrName="footerColumns"
-              currentPageDisplayName={currentPageDisplayName}
-            />
           </>
         )}
       </div>

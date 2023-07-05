@@ -229,3 +229,4 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   )
 }
 NumberInputWidget.displayName = "NumberInputWidget"
+export default NumberInputWidget

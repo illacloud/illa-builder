@@ -1288,6 +1288,9 @@
           "start_button_text": "Start opptak",
           "stop_button_text": "Stopp",
           "clear_button_text": "Tøm"
+        },
+        "rich_text": {
+          "default_text": "tekst"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Svar på melding-ID",
         "senderName": "Avsenders navn",
         "senderId": "Avsenderen ID",
-        "showName": "Vis navn"
+        "showName": "Vis navn",
+        "rich_text": {
+          "default_text": "Standard tekst"
+        }
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Angi fargen på meldingene til venstre",
         "rightMessageColor": "Angi fargen for meldingene til høyre",
         "toolbar-replay": "Angi om du skal vise en svar-knappen når du velger en melding.",
-        "toolbar-delete": "Angi om du skal vise en slette-knapp når du velger en melding. (Automatic Translation)"
+        "toolbar-delete": "Angi om du skal vise en slette-knapp når du velger en melding. (Automatic Translation)",
+        "tabs": {
+          "variant": "Å definere varianten av faner"
+        }
       },
       "setter_option": {
         "fixed": "Fast",
@@ -1989,6 +1998,10 @@
             "left-click": "Venstreklikk",
             "right-click": "Høyreklikk"
           }
+        },
+        "tab": {
+          "line": "Linje",
+          "card": "Kort"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "Skriv koden din her. Bruk JavaScript innenfor {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "Standardteksten som vises når komponenten initialiseres"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "Sirkel fremgang"
     },
     "container": {
-      "empty": "Trykk <keyPress>D</keyPress> eller <keyPress>K</keyPress> og dra komponenter her",
+      "empty": "Dra komponenter hit",
       "key_duplicated": "Nøkkelen er duplisert. Vennligst bruk unike nøkler for å unngå feil.",
       "name": "Beholder",
       "value_duplicated": "Verdien er duplisert. Vennligst bruk unike verdier for å unngå feil."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klikk på rammen for å angi lime plassering."
+    "paste_no_aimed": "Klikk på rammen for å angi lime plassering.",
+    "message": {
+      "session": {
+        "error": "Operasjoner som involverer flere komponenter, er ikke tillatt på tvers av lerretet."
+      },
+      "undo": {
+        "suc": "Angre vellykket",
+        "failed": "Angre mislyktes",
+        "nothing": "Ingenting å angre"
+      },
+      "redo": {
+        "suc": "Redo vellykket",
+        "failed": "Redo feilet",
+        "nothing": "Ingenting å gjenta"
+      }
+    }
   },
   "bookFrom": {
     "title": "Bestill en demo",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Legg til ubegrenset antall seere GRATIS",
         "publish_public_appli": "Publiser offentlige søknader",
         "ai_sql_generation": "AI SQL Generering",
-        "audit_logs": "Revisjonslogg (Kommer snart)",
+        "audit_logs": "Revisjon logger",
         "learn_more": "Lær mer",
         "upgrade": "Oppgrader",
         "pricing": "/rediger/måned, årlig",
@@ -3470,9 +3503,63 @@
       "title": "Vellykket betaling",
       "button": "Tilbake til ILLA Sky"
     },
-    "redirect_to_stripe": "Omdirigerer til Stripe"
+    "redirect_to_stripe": "Omdirigerer til Stripe",
+    "appsumo": {
+      "update": "Oppdater AppSumo plan"
+    }
   },
   "network": {
     "error": "Nettverksfeil, vennligst prøv på nytt senere"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Utlevert",
+      "undeploy": "Avinstaller"
+    },
+    "desc": {
+      "no_description": "Ingen beskrivelse"
+    },
+    "app_setting": {
+      "app_setting": "Innstillinger for app",
+      "app_name": "Navn på app",
+      "description": "Beskrivelse",
+      "save": "Lagre",
+      "placeholder": {
+        "description": "Skriv inn beskrivelsen for appen",
+        "app_name": "Angi et navn for appen"
+      }
+    },
+    "access": {
+      "public": "Offentlig",
+      "private": "Privat"
+    },
+    "message": {
+      "update_failed": "Kunne ikke oppdatere",
+      "update_suc": "Oppdatering ferdig"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Privat app",
+      "public_app": "Offentlig app"
+    },
+    "desc": {
+      "private_app": "Bare gruppemedlemmene har tilgang til den utplasserte appen",
+      "public_app": "Alle med app-koblingen kan få tilgang til den utplasserte appen"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Inviter til å redigere",
+      "invite_to_use": "Inviter til bruk"
+    },
+    "desc": {
+      "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
+    },
+    "tips": {
+      "admin": "Medlemmet som kan administrere alle medlemmer unntatt eier, redigere APP og vise APPer",
+      "editor": "Medlemmet som kan behandle redigeringsprogram og vise medlemmer, redigere APPer og vise APPer",
+      "viewer": "Medlemmet som kan administrere seermedlemmer og vise APPer"
+    }
   }
 }

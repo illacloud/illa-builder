@@ -1288,6 +1288,9 @@
           "start_button_text": "Aloita tallennus",
           "stop_button_text": "Pysäytä",
           "clear_button_text": "Tyhjennä"
+        },
+        "rich_text": {
+          "default_text": "teksti"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Vastauksen tunnus",
         "senderName": "Lähettäjän nimi",
         "senderId": "Lähettäjän Tunnus",
-        "showName": "Näytä nimi"
+        "showName": "Näytä nimi",
+        "rich_text": {
+          "default_text": "Oletus teksti"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Aseta vasemmalla olevien viestien väri",
         "rightMessageColor": "Aseta oikealla olevien viestien väri",
         "toolbar-replay": "Määritä näytetäänkö vastauspainike, kun valitse viesti.",
-        "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti."
+        "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti.",
+        "tabs": {
+          "variant": "Jos haluat asettaa välilehtien muunnoksen"
+        }
       },
       "setter_option": {
         "fixed": "Kiinteä",
@@ -1989,6 +1998,10 @@
             "left-click": "Vasenpainike",
             "right-click": "Oikea-klikkaus"
           }
+        },
+        "tab": {
+          "line": "Viiva",
+          "card": "Kortti"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "Kirjoita koodisi tähän. Käytä JavaScriptiä {{ }} sisällä"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "Oletusteksti näytetään, kun komponentti on alustettu"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "Ympyrän Edistyminen"
     },
     "container": {
-      "empty": "Paina <keyPress>D</keyPress> tai <keyPress>K</keyPress> ja vedä osat tähän",
+      "empty": "Vedä komponentit tähän",
       "key_duplicated": "Avain on kopioitu. Ole hyvä ja käytä ainutlaatuisia avaimia välttääksesi virheitä.",
       "name": "Säiliö",
       "value_duplicated": "Arvo on kopioitu. Käytä yksilöllisiä arvoja välttääksesi virheitä."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Ole hyvä ja klikkaa kehystä määrittääksesi liittämisen sijainnin."
+    "paste_no_aimed": "Ole hyvä ja klikkaa kehystä määrittääksesi liittämisen sijainnin.",
+    "message": {
+      "session": {
+        "error": "Useita komponentteja sisältäviä toimintoja ei sallita kaikissa kannoissa."
+      },
+      "undo": {
+        "suc": "Kumoaminen onnistui",
+        "failed": "Peruminen epäonnistui",
+        "nothing": "Ei mitään peruttavaa"
+      },
+      "redo": {
+        "suc": "Uudelleensyöttö onnistui",
+        "failed": "Toisto epäonnistui",
+        "nothing": "Ei uudelleensuoritettavaa"
+      }
+    }
   },
   "bookFrom": {
     "title": "Varaa demo",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Lisää rajoittamaton katsojan jäseniä ILMAISEKSI",
         "publish_public_appli": "Julkaise julkiset sovellukset",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Tarkastusloki(Tulossa pian)",
+        "audit_logs": "Tarkastuslokit",
         "learn_more": "Lue lisää",
         "upgrade": "Päivitä",
         "pricing": "/editor/kuukausi, vuosittain",
@@ -3470,9 +3503,63 @@
       "title": "Maksu onnistui",
       "button": "Takaisin ILLA-pilveen"
     },
-    "redirect_to_stripe": "Uudelleenohjaus raidalle"
+    "redirect_to_stripe": "Uudelleenohjaus raidalle",
+    "appsumo": {
+      "update": "Päivitä AppSumo suunnitelma"
+    }
   },
   "network": {
     "error": "Verkkovirhe, yritä myöhemmin uudelleen"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Käyttöönotettu",
+      "undeploy": "Poista"
+    },
+    "desc": {
+      "no_description": "Ei kuvausta"
+    },
+    "app_setting": {
+      "app_setting": "Sovelluksen asetus",
+      "app_name": "Sovelluksen nimi",
+      "description": "Kuvaus",
+      "save": "Tallenna",
+      "placeholder": {
+        "description": "Syötä sovelluksen kuvaus",
+        "app_name": "Syötä sovelluksen nimi"
+      }
+    },
+    "access": {
+      "public": "Julkinen",
+      "private": "Yksityinen"
+    },
+    "message": {
+      "update_failed": "Päivitys epäonnistui",
+      "update_suc": "Päivitys onnistui"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Yksityinen sovellus",
+      "public_app": "Julkinen sovellus"
+    },
+    "desc": {
+      "private_app": "Vain tiimin jäsenet voivat käyttää käyttöön otettua sovellusta",
+      "public_app": "Kuka tahansa, jolla on sovelluslinkki, voi käyttää otettua sovellusta"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Kutsu muokattavaksi",
+      "invite_to_use": "Kutsu käyttämään"
+    },
+    "desc": {
+      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. "
+    },
+    "tips": {
+      "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
+      "editor": "Jäsen, joka voi hallita editoria ja katsojan jäseniä, muokata APP:eja ja tarkastella APP:eja",
+      "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
+    }
   }
 }

@@ -1288,6 +1288,9 @@
           "start_button_text": "녹음 시작",
           "stop_button_text": "멈추다",
           "clear_button_text": "분명한"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "답장 메시지 ID",
         "senderName": "Sender name",
         "senderId": "Sender ID",
-        "showName": "Show name"
+        "showName": "Show name",
+        "rich_text": {
+          "default_text": "Default text"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Set the color of the messages on the left",
         "rightMessageColor": "Set the color of the messages on the right",
         "toolbar-replay": "Set whether to show a reply button when select a message.",
-        "toolbar-delete": "Set whether to show a delete button when select a message."
+        "toolbar-delete": "Set whether to show a delete button when select a message.",
+        "tabs": {
+          "variant": "To set the variant of tabs"
+        }
       },
       "setter_option": {
         "fixed": "고정 높이",
@@ -1989,6 +1998,10 @@
             "left-click": "Left-click",
             "right-click": "Right-click"
           }
+        },
+        "tab": {
+          "line": "Line",
+          "card": "Card"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "여기에 코드를 작성하십시오. {{ }} 내부에서 JavaScript 사용"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "The default text displayed when the component is initialized"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "원형 진행률 표시줄"
     },
     "container": {
-      "empty": "<keyPress> D </keyPress> 또는 <keyPress> K </keyPress> 를 누른 상태에서 구성 요소를 컨테이너로 드래그",
+      "empty": "구성요소를 여기로 드래그",
       "key_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오.",
       "name": "컨테이너",
       "value_duplicated": "중복 키 값, 오류를 방지하기 위해 고유한 값을 사용하십시오."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Please click on the frame to specify the paste location.",
+    "message": {
+      "session": {
+        "error": "Operations involving multiple components are not allowed across canvases."
+      },
+      "undo": {
+        "suc": "Undo successful",
+        "failed": "Undo failed",
+        "nothing": "Nothing to undo"
+      },
+      "redo": {
+        "suc": "Redo successful",
+        "failed": "Redo failed",
+        "nothing": "Nothing to redo"
+      }
+    }
   },
   "bookFrom": {
     "title": "Book a demo",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Add unlimited viewer members for FREE",
         "publish_public_appli": "Publish public applications",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs(Coming soon)",
+        "audit_logs": "Audit logs",
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
         "pricing": "editor/month, yearly (monthly $10/editor)",
@@ -3470,9 +3503,63 @@
       "title": "Payment successful",
       "button": "Back to ILLA Cloud"
     },
-    "redirect_to_stripe": "Redirecting to Stripe"
+    "redirect_to_stripe": "Redirecting to Stripe",
+    "appsumo": {
+      "update": "Update AppSumo plan"
+    }
   },
   "network": {
     "error": "Network error, please try again later"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Deployed",
+      "undeploy": "Undeploy"
+    },
+    "desc": {
+      "no_description": "No description"
+    },
+    "app_setting": {
+      "app_setting": "App setting",
+      "app_name": "App name",
+      "description": "Description",
+      "save": "Save",
+      "placeholder": {
+        "description": "Enter the description for the app",
+        "app_name": "Enter a name for the app"
+      }
+    },
+    "access": {
+      "public": "Public",
+      "private": "Private"
+    },
+    "message": {
+      "update_failed": "Failed to update",
+      "update_suc": "Successfully updated"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Private app",
+      "public_app": "Public app"
+    },
+    "desc": {
+      "private_app": "Only the team members can access the deployed app",
+      "public_app": "Anyone with the app link can access the deployed app"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Invite to edit",
+      "invite_to_use": "Invite to use"
+    },
+    "desc": {
+      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+    },
+    "tips": {
+      "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
+      "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
+      "viewer": "The member who can manage viewer members and view APPs"
+    }
   }
 }

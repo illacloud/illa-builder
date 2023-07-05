@@ -218,3 +218,4 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
   )
 }
 EditableTextWidget.displayName = "EditableTextWidget"
+export default EditableTextWidget

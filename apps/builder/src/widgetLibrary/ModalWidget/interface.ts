@@ -11,5 +11,5 @@ export interface ModalWidgetProps extends BaseWidgetProps {
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   unitH: number
   isVisible: boolean
-  blockColumns: number
+  columnNumber: number
 }

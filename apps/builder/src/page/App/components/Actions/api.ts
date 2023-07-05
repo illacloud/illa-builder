@@ -3,7 +3,6 @@ import { v4 } from "uuid"
 import { createMessage, omit } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   ActionContent,
@@ -18,6 +17,7 @@ import {
   generateSSLConfig,
 } from "@/redux/resource/resourceState"
 import { RestApiAuth } from "@/redux/resource/restapiResource"
+import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
 import {
   fetchActionTestConnection,
   fetchCreateAction,
@@ -50,7 +50,6 @@ export async function onCopyActionItem(action: ActionItem<ActionContent>) {
       actionId: v4(),
     }
     store.dispatch(actionActions.addActionItemReducer(createActionData))
-    store.dispatch(configActions.changeSelectedAction(createActionData))
     message.success({
       content: i18n.t("editor.action.action_list.message.success_created"),
     })
@@ -62,7 +61,6 @@ export async function onCopyActionItem(action: ActionItem<ActionContent>) {
       content: i18n.t("editor.action.action_list.message.success_created"),
     })
     store.dispatch(actionActions.addActionItemReducer(response.data))
-    store.dispatch(configActions.changeSelectedAction(response.data))
   } catch (e) {
     if (isILLAAPiError(e)) {
       message.error({
@@ -79,8 +77,12 @@ export async function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const isGuideMode = getIsILLAGuideMode(store.getState())
   const { actionId, displayName } = action
   if (isGuideMode) {
-    DisplayNameGenerator.removeDisplayName(displayName)
-    store.dispatch(actionActions.removeActionItemReducer(displayName))
+    store.dispatch(
+      actionActions.removeActionItemReducer({
+        actionID: actionId,
+        displayName,
+      }),
+    )
     message.success({
       content: i18n.t("editor.action.action_list.message.success_deleted"),
     })
@@ -88,8 +90,12 @@ export async function onDeleteActionItem(action: ActionItem<ActionContent>) {
   }
   try {
     await fetchDeleteAction(actionId)
-    DisplayNameGenerator.removeDisplayName(displayName)
-    store.dispatch(actionActions.removeActionItemReducer(displayName))
+    store.dispatch(
+      actionActions.removeActionItemReducer({
+        actionID: actionId,
+        displayName,
+      }),
+    )
     message.success({
       content: i18n.t("editor.action.action_list.message.success_deleted"),
     })
@@ -209,8 +215,8 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
       return {
         host: data.host.trim(),
         port: data.port.toString(),
-        databaseIndex: data.databaseIndex ?? 0,
-        databaseUsername: data.databaseUsername,
+        databaseIndex: DATABASE_INDEX,
+        databaseUsername: DEFAULT_NAME,
         databasePassword: data.databasePassword,
         ssl: true,
       }

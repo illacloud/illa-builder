@@ -205,3 +205,4 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
   )
 }
 SelectWidget.displayName = "SelectWidget"
+export default SelectWidget

@@ -1,9 +1,6 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix } from "@illa-design/react"
-import {
-  MoveBarPositionShape,
-  ScaleSquareType,
-} from "@/page/App/components/ScaleSquare/interface"
+import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
 
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 
@@ -284,122 +281,6 @@ export function applyBarHandlerStyle(
     position: absolute;
   `
 }
-
-export const applyMoveBarWrapperStyle = (
-  maxWidth: number,
-  minWidth: number,
-  isError: boolean,
-  selected: boolean,
-  isLikeProductionMode: boolean,
-  position: MoveBarPositionShape,
-  isFreeze: boolean,
-  hasEditors: boolean,
-  isMouseHover: boolean,
-) => {
-  let positionStyle: SerializedStyles
-  let borderRadiusStyle = css`
-    border-radius: 4px 4px 0 0;
-  `
-
-  if (position.direction === "top") {
-    positionStyle = css`
-      top: ${position.position}px;
-    `
-  } else {
-    positionStyle = css`
-      bottom: ${position.position}px;
-    `
-    borderRadiusStyle = css`
-      border-radius: 0 0 4px 4px;
-    `
-  }
-  const backgroundColorStyle = isFreeze
-    ? "transparent"
-    : isError
-    ? globalColor(`--${illaPrefix}-red-03`)
-    : globalColor(`--${illaPrefix}-techPurple-01`)
-  return css`
-    height: ${MOVE_BAR_HEIGHT}px;
-    padding: 1px 4px 1px 0;
-    background-color: ${backgroundColorStyle};
-    ${borderRadiusStyle};
-    display: flex;
-    position: absolute;
-    ${positionStyle};
-    left: 0;
-    align-items: center;
-    font-size: 12px;
-    color: #fff;
-    max-width: ${maxWidth}px;
-    min-width: ${minWidth}px;
-    visibility: ${!isLikeProductionMode &&
-    (selected || hasEditors || isMouseHover)
-      ? "visible"
-      : "hidden"};
-    z-index: 100;
-    cursor: move;
-  `
-}
-
-export const displayNameContainerStyle = css`
-  display: flex;
-  min-width: 12px;
-  flex-grow: 1;
-  align-items: center;
-`
-
-export const dragPointIconWrapperStyle = css`
-  width: 12px;
-  height: 12px;
-  flex: none;
-`
-
-export const freezeIconStyle = css`
-  width: 12px;
-  height: 12px;
-  flex: none;
-  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
-`
-
-export const moveBarDisplayNameStyle = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 16px;
-`
-
-export const freezeTipsStyle = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
-`
-
-export const applyRNDWrapperStyle = (
-  hasEditors: boolean,
-  isSelected: boolean,
-  hasError: boolean,
-  isShowCanvasDot: boolean,
-  isDragging: boolean,
-  isEditor: boolean,
-) => css`
-  :hover {
-    > .wrapperPending {
-      border-color: ${isEditor
-        ? hasError && !isSelected
-          ? globalColor(`--${illaPrefix}-red-03`)
-          : globalColor(`--${illaPrefix}-techPurple-01`)
-        : "transparent"};
-
-      > #moveBar {
-        visibility: ${isEditor ? "visible" : "hidden"};
-      }
-    }
-
-    z-index: 6;
-  }
-
-  z-index: ${hasEditors || isSelected ? 5 : 1};
-  opacity: ${isDragging ? 0 : 100};
-`
 
 const getWrapperBorderColor = (
   isLikProductionMode: boolean,

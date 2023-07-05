@@ -1,81 +1,35 @@
-import { FC, MutableRefObject, useRef } from "react"
-import { RenderComponentCanvas } from "@/page/App/components/DotPanel/renderComponentCanvas"
-import { RenderComponentCanvasWithJson } from "@/page/App/components/DotPanel/renderComponentCanvasWithJSON"
+import { FC } from "react"
+import { RenderComponentCanvasContainer } from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
+import { RenderComponentCanvasWithJson } from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainerWithJson"
+import { LIKE_CONTAINER_WIDGET_PADDING } from "@/page/App/components/ScaleSquare/constant/widget"
 import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
-import { BasicContainerProps } from "./interface"
-import { basicContainerWrapperStyle } from "./style"
+import { BasicContainerByJsonProps, BasicContainerProps } from "./interface"
 
 export const BasicContainer: FC<BasicContainerProps> = (props) => {
-  const {
-    componentNode,
-    canResizeY = true,
-    minHeight,
-    padding,
-    safeRowNumber = 8,
-    addedRowNumber = 8,
-    blockColumns,
-  } = props
-  const containerRef: MutableRefObject<HTMLDivElement | null> =
-    useRef<HTMLDivElement>(null)
+  const { displayName, columnNumber } = props
 
-  return (
-    <div
-      css={basicContainerWrapperStyle(canResizeY, padding)}
-      ref={(node) => {
-        containerRef.current = node
-      }}
-    >
-      {componentNode && (
-        <RenderComponentCanvas
-          componentNode={componentNode}
-          containerPadding={4}
-          containerRef={containerRef}
-          canResizeY={canResizeY}
-          minHeight={minHeight}
-          safeRowNumber={safeRowNumber}
-          addedRowNumber={addedRowNumber}
-          blockColumns={blockColumns}
-        />
-      )}
-    </div>
-  )
+  return displayName ? (
+    <RenderComponentCanvasContainer
+      displayName={displayName}
+      containerPadding={LIKE_CONTAINER_WIDGET_PADDING}
+      columnNumber={columnNumber}
+    />
+  ) : null
 }
 
-export const BasicContainerWithJSON: FC<BasicContainerProps> = (props) => {
-  const {
-    componentNode,
-    canResizeY = true,
-    minHeight,
-    padding,
-    safeRowNumber = 8,
-    addedRowNumber = 8,
-    blockColumns,
-    displayNamePrefix,
-  } = props
-  const containerRef: MutableRefObject<HTMLDivElement | null> =
-    useRef<HTMLDivElement>(null)
-  return (
-    <div
-      css={basicContainerWrapperStyle(canResizeY, padding)}
-      ref={(node) => {
-        containerRef.current = node
-      }}
-    >
-      {componentNode && (
-        <RenderComponentCanvasWithJson
-          componentNode={componentNode}
-          containerPadding={4}
-          containerRef={containerRef}
-          canResizeY={canResizeY}
-          minHeight={minHeight}
-          safeRowNumber={safeRowNumber}
-          addedRowNumber={addedRowNumber}
-          blockColumns={blockColumns}
-          displayNamePrefix={displayNamePrefix}
-        />
-      )}
-    </div>
-  )
+export const BasicContainerWithJSON: FC<BasicContainerByJsonProps> = (
+  props,
+) => {
+  const { componentNode, columnNumber, displayNamePrefix } = props
+
+  return componentNode ? (
+    <RenderComponentCanvasWithJson
+      componentNode={componentNode}
+      containerPadding={LIKE_CONTAINER_WIDGET_PADDING}
+      columnNumber={columnNumber}
+      displayNamePrefix={displayNamePrefix}
+    />
+  ) : null
 }
 
 BasicContainer.displayName = "BasicContainer"

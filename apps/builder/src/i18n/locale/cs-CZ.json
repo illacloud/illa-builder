@@ -1288,6 +1288,9 @@
           "start_button_text": "Začít nahrávat",
           "stop_button_text": "Zastavit",
           "clear_button_text": "Vyčistit"
+        },
+        "rich_text": {
+          "default_text": "text"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID odpovědi",
         "senderName": "Jméno odesílatele",
         "senderId": "ID odesílatele",
-        "showName": "Zobrazit název"
+        "showName": "Zobrazit název",
+        "rich_text": {
+          "default_text": "Výchozí text"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Nastavit barvu zpráv vlevo",
         "rightMessageColor": "Nastavte barvu zpráv vpravo",
         "toolbar-replay": "Nastavte, zda se zobrazí tlačítko odpovědi při výběru zprávy.",
-        "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy."
+        "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy.",
+        "tabs": {
+          "variant": "Možnost nastavení záložek"
+        }
       },
       "setter_option": {
         "fixed": "Fixní",
@@ -1989,6 +1998,10 @@
             "left-click": "Kliknutí levým tlačítkem",
             "right-click": "Kliknutí pravým tlačítkem"
           }
+        },
+        "tab": {
+          "line": "Řádek",
+          "card": "Karta"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "Napište svůj kód zde. Použijte JavaScript uvnitř {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "Výchozí text zobrazený při inicializaci komponenty"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "Průběh kruhu"
     },
     "container": {
-      "empty": "Stiskněte <keyPress>D</keyPress> nebo <keyPress>K</keyPress> a přetáhněte součásti sem",
+      "empty": "Zde přetáhněte komponenty",
       "key_duplicated": "Klíč je duplikován. Použijte prosím unikátní klíče, abyste se vyhnuli chybám.",
       "name": "Kontejner",
       "value_duplicated": "Hodnota je duplicitní. Použijte prosím unikátní hodnoty, abyste se vyhnuli chybám."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Klikněte na rámeček pro zadání vložené polohy."
+    "paste_no_aimed": "Klikněte na rámeček pro zadání vložené polohy.",
+    "message": {
+      "session": {
+        "error": "Provoz zahrnující více součástí není povolen napříč plátny."
+      },
+      "undo": {
+        "suc": "Vrátit zpět úspěšné",
+        "failed": "Vrátit zpět neúspěšné",
+        "nothing": "Nic k vrácení"
+      },
+      "redo": {
+        "suc": "Opakování úspěšné",
+        "failed": "Opakování selhalo",
+        "nothing": "Nic k reakci"
+      }
+    }
   },
   "bookFrom": {
     "title": "Objednejte si demo",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Přidat neomezený počet členů diváku ZDARMA",
         "publish_public_appli": "Publikovat veřejné aplikace",
         "ai_sql_generation": "Generování AI SQL",
-        "audit_logs": "Protokoly auditu (již brzy)",
+        "audit_logs": "Záznamy auditu",
         "learn_more": "Zjistit více",
         "upgrade": "Vylepšit",
         "pricing": "/editor/měsíc, ročně",
@@ -3470,9 +3503,63 @@
       "title": "Platba úspěšná",
       "button": "Zpět na ILLA Cloud"
     },
-    "redirect_to_stripe": "Přesměrování do Stripe"
+    "redirect_to_stripe": "Přesměrování do Stripe",
+    "appsumo": {
+      "update": "Aktualizovat plán AppSumo"
+    }
   },
   "network": {
     "error": "Chyba sítě, zkuste to prosím později"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Publikováno",
+      "undeploy": "Rozmístit"
+    },
+    "desc": {
+      "no_description": "Bez popisu"
+    },
+    "app_setting": {
+      "app_setting": "Nastavení aplikace",
+      "app_name": "Název aplikace",
+      "description": "L 343, 22.12.2009, s. 1).",
+      "save": "Uložit",
+      "placeholder": {
+        "description": "Zadejte popis aplikace",
+        "app_name": "Zadejte název aplikace"
+      }
+    },
+    "access": {
+      "public": "Veřejnost",
+      "private": "Soukromé"
+    },
+    "message": {
+      "update_failed": "Aktualizace se nezdařila",
+      "update_suc": "Úspěšně aktualizováno"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Soukromá aplikace",
+      "public_app": "Veřejná aplikace"
+    },
+    "desc": {
+      "private_app": "Pouze členové týmu mají přístup k nasazené aplikaci",
+      "public_app": "Každý, kdo má odkaz na aplikaci, má přístup k rozmístěné aplikaci"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Pozvat k úpravě",
+      "invite_to_use": "Pozvat k použití"
+    },
+    "desc": {
+      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
+    },
+    "tips": {
+      "admin": "Člen, který může spravovat všechny členy kromě vlastníka, upravit APP a zobrazit APP",
+      "editor": "Člen, který může spravovat členy editorů a diváků, upravit APP a zobrazit APP",
+      "viewer": "Člen, který může spravovat členy diváku a prohlížet APP"
+    }
   }
 }

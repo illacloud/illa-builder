@@ -1288,6 +1288,9 @@
           "start_button_text": "开始录制",
           "stop_button_text": "停止",
           "clear_button_text": "清空"
+        },
+        "rich_text": {
+          "default_text": "文本"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "回复消息ID",
         "senderName": "发送方名称",
         "senderId": "发送方ID",
-        "showName": "显示名称"
+        "showName": "显示名称",
+        "rich_text": {
+          "default_text": "默认文本"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "设置左侧消息的颜色",
         "rightMessageColor": "设置右侧消息的颜色",
         "toolbar-replay": "设置选择消息时是否显示回复按钮。",
-        "toolbar-delete": "设置选择消息时是否显示删除按钮。"
+        "toolbar-delete": "设置选择消息时是否显示删除按钮。",
+        "tabs": {
+          "variant": "设置标签页的样式"
+        }
       },
       "setter_option": {
         "fixed": "固定高度",
@@ -1989,6 +1998,10 @@
             "left-click": "左键点击",
             "right-click": "右键点击"
           }
+        },
+        "tab": {
+          "line": "线性",
+          "card": "卡片"
         }
       },
       "setter_placeholder": {
@@ -2046,6 +2059,11 @@
         "code": {
           "write_code": "在这里写下你的代码。 在 {{ }} 中使用 JavaScript"
         }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "在组件初始化时展示的默认文本"
+        }
       }
     },
     "page": {
@@ -2076,7 +2094,7 @@
       },
       "panel_bar_title": {
         "basic": "基础",
-        "frame": "画布"
+        "frame": "布局"
       },
       "tab_title": "页面",
       "tooltips": {
@@ -2492,7 +2510,7 @@
       "name": "圆形进度条"
     },
     "container": {
-      "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器",
+      "empty": "将组件拖动到这里",
       "key_duplicated": "键值重复，请使用唯一值以避免报错。",
       "name": "容器",
       "value_duplicated": "值重复，请使用唯一值以避免报错。"
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Please click on the frame to specify the paste location."
+    "paste_no_aimed": "Please click on the frame to specify the paste location.",
+    "message": {
+      "session": {
+        "error": "包含多个组件的操作不允许跨画布"
+      },
+      "undo": {
+        "suc": "撤销成功",
+        "failed": "撤销失败",
+        "nothing": "没有可撤消的操作"
+      },
+      "redo": {
+        "suc": "恢复成功",
+        "failed": "恢复失败",
+        "nothing": "没有可重做的操作"
+      }
+    }
   },
   "bookFrom": {
     "title": "预约Demo演示",
@@ -3470,9 +3503,63 @@
       "title": "支付成功",
       "button": "返回ILLA Cloud"
     },
-    "redirect_to_stripe": "正在重定向至Stripe"
+    "redirect_to_stripe": "正在重定向至Stripe",
+    "appsumo": {
+      "update": "更新AppSumo方案"
+    }
   },
   "network": {
     "error": "网络错误，请稍后重试"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "已部署",
+      "undeploy": "未部署"
+    },
+    "desc": {
+      "no_description": "暂无描述"
+    },
+    "app_setting": {
+      "app_setting": "项目设置",
+      "app_name": "项目名称",
+      "description": "描述",
+      "save": "保存",
+      "placeholder": {
+        "description": "输入项目描述",
+        "app_name": "输入项目名称"
+      }
+    },
+    "access": {
+      "public": "公开",
+      "private": "私密"
+    },
+    "message": {
+      "update_failed": "更新失败",
+      "update_suc": "更新成功"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "公开项目",
+      "public_app": "私密项目"
+    },
+    "desc": {
+      "private_app": "仅团队成员可以访问",
+      "public_app": "任何获取到项目链接的人都可以访问"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "邀请进行编辑",
+      "invite_to_use": "邀请使用"
+    },
+    "desc": {
+      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
+    },
+    "tips": {
+      "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
+      "editor": "可以管理编辑者和查看者、编辑 APP和查看APP",
+      "viewer": "可以管理查看者、查看APP"
+    }
   }
 }

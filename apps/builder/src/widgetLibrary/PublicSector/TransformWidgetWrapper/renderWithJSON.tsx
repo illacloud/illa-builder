@@ -1,6 +1,7 @@
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, memo, useCallback, useMemo } from "react"
 import { useDispatch } from "react-redux"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -8,7 +9,7 @@ import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
-import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
+import { TransformWidgetWrapperWithJsonProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
@@ -19,17 +20,15 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   })
 }
 
-export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
-  (props: TransformWidgetProps) => {
-    const { componentNode } = props
+export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonProps> =
+  memo((props: TransformWidgetWrapperWithJsonProps) => {
+    const { componentNode, unitW } = props
 
     const {
       displayName,
       type,
       w,
       h,
-      unitW,
-      unitH,
       childrenNode,
       props: nodeProps,
     } = componentNode
@@ -195,9 +194,9 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
     )
 
     if (!type) return null
-    const widget = widgetBuilder(type)
-    if (!widget) return null
-    const Component = widget.widget
+    const widgetConfig = widgetBuilder(type)
+    if (!widgetConfig) return null
+    const Component = widgetConfig.widget
 
     const {
       hidden,
@@ -229,7 +228,7 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
           w={w}
           h={h}
           unitW={unitW}
-          unitH={unitH}
+          unitH={UNIT_HEIGHT}
           updateComponentRuntimeProps={updateComponentRuntimeProps}
           deleteComponentRuntimeProps={deleteComponentRuntimeProps}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
@@ -246,7 +245,6 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetProps> = memo(
         />
       </div>
     )
-  },
-)
+  })
 
 TransformWidgetWrapperWithJson.displayName = "TransformWidgetWrapper"

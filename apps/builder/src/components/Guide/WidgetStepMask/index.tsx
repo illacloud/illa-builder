@@ -11,10 +11,12 @@ import {
 } from "@/components/Guide/WidgetStepMask/style"
 import { ReactComponent as MoveIcon } from "@/components/Guide/assets/move.svg"
 import { GUIDE_SELECT_WIDGET } from "@/config/guide/config"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
+import {
+  DEFAULT_BODY_COLUMNS_NUMBER,
+  UNIT_HEIGHT,
+} from "@/page/App/components/DotPanel/constant/canvas"
 import { getCanvasShape } from "@/redux/config/configSelector"
-import { BASIC_BLOCK_COLUMNS } from "@/utils/generators/generatePageOrSectionConfig"
-import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
+import { WidgetConfigMap } from "@/widgetLibrary/widgetBuilder"
 
 export interface StepMaskProps {
   currentStep: number
@@ -27,12 +29,12 @@ export const WidgetStepMask: FC<StepMaskProps> = (props) => {
   const canvasShape = useSelector(getCanvasShape)
 
   const unitWidth = useMemo(() => {
-    return canvasShape.canvasWidth / BASIC_BLOCK_COLUMNS
+    return canvasShape.canvasWidth / DEFAULT_BODY_COLUMNS_NUMBER
   }, [canvasShape.canvasWidth])
 
   const widgetShape = useMemo(() => {
     return GUIDE_SELECT_WIDGET.map((widget) => {
-      const { w, h } = WidgetConfig[widget].config
+      const { w, h } = WidgetConfigMap[widget].config
       return {
         width: w * unitWidth,
         height: h * UNIT_HEIGHT,

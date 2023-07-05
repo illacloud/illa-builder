@@ -1288,6 +1288,9 @@
           "start_button_text": "Inizia la registrazione",
           "stop_button_text": "Ferma",
           "clear_button_text": "Pulisci"
+        },
+        "rich_text": {
+          "default_text": "testo"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID messaggio di risposta",
         "senderName": "Nome mittente",
         "senderId": "Id Mittente",
-        "showName": "Mostra nome"
+        "showName": "Mostra nome",
+        "rich_text": {
+          "default_text": "Testo predefinito"
+        }
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Imposta il colore dei messaggi a sinistra",
         "rightMessageColor": "Imposta il colore dei messaggi a destra",
         "toolbar-replay": "Imposta se mostrare un pulsante di risposta quando si seleziona un messaggio.",
-        "toolbar-delete": "Imposta se mostrare un pulsante elimina quando si seleziona un messaggio."
+        "toolbar-delete": "Imposta se mostrare un pulsante elimina quando si seleziona un messaggio.",
+        "tabs": {
+          "variant": "Per impostare la variante delle schede"
+        }
       },
       "setter_option": {
         "fixed": "Fisso",
@@ -1989,6 +1998,10 @@
             "left-click": "Click Sinistro",
             "right-click": "Click Destro"
           }
+        },
+        "tab": {
+          "line": "Linea",
+          "card": "Carta"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "Scrivi qui il tuo codice. Usa JavaScript all'interno di {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "Il testo predefinito visualizzato quando il componente è inizializzato"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "Progresso Cerchio"
     },
     "container": {
-      "empty": "Premi <keyPress>D</keyPress> o <keyPress>K</keyPress> e trascina i componenti qui",
+      "empty": "Trascina i componenti qui",
       "key_duplicated": "La chiave è duplicata. Si prega di utilizzare chiavi uniche per evitare errori.",
       "name": "Contenitore",
       "value_duplicated": "Il valore è duplicato. Si prega di utilizzare valori univoci per evitare errori."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Fare clic sul riquadro per specificare la posizione di incolla."
+    "paste_no_aimed": "Fare clic sul riquadro per specificare la posizione di incolla.",
+    "message": {
+      "session": {
+        "error": "Non sono ammesse operazioni che coinvolgono più componenti su tele."
+      },
+      "undo": {
+        "suc": "Annullamento riuscito",
+        "failed": "Annullamento fallito",
+        "nothing": "Niente da annullare"
+      },
+      "redo": {
+        "suc": "Ripeti con successo",
+        "failed": "Ripeti fallita",
+        "nothing": "Niente da rifare"
+      }
+    }
   },
   "bookFrom": {
     "title": "Prenota una demo",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Aggiungi GRATIS i membri illimitati del visualizzatore",
         "publish_public_appli": "Pubblica applicazioni pubbliche",
         "ai_sql_generation": "Generazione Ai SQL",
-        "audit_logs": "Registri di verifica (presto in corso)",
+        "audit_logs": "Registri di controllo",
         "learn_more": "Scopri di più",
         "upgrade": "Aggiorna",
         "pricing": "/editor/mese, annuale",
@@ -3470,9 +3503,63 @@
       "title": "Pagamento riuscito",
       "button": "Torna a ILLA Cloud"
     },
-    "redirect_to_stripe": "Reindirizzamento a Stripe"
+    "redirect_to_stripe": "Reindirizzamento a Stripe",
+    "appsumo": {
+      "update": "Aggiorna piano AppSumo"
+    }
   },
   "network": {
     "error": "Errore di rete, riprova più tardi"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Dispiegato",
+      "undeploy": "Dispiega"
+    },
+    "desc": {
+      "no_description": "Nessuna descrizione"
+    },
+    "app_setting": {
+      "app_setting": "Impostazioni app",
+      "app_name": "Nome app",
+      "description": "Descrizione",
+      "save": "Salva",
+      "placeholder": {
+        "description": "Inserisci la descrizione per l'app",
+        "app_name": "Inserisci un nome per l'applicazione"
+      }
+    },
+    "access": {
+      "public": "Pubblico",
+      "private": "Privato"
+    },
+    "message": {
+      "update_failed": "Impossibile aggiornare",
+      "update_suc": "Aggiornato correttamente"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "App privata",
+      "public_app": "Applicazione pubblica"
+    },
+    "desc": {
+      "private_app": "Solo i membri del team possono accedere all'app distribuita",
+      "public_app": "Chiunque con il link dell'app può accedere all'app distribuita"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Invita a modificare",
+      "invite_to_use": "Invita da usare"
+    },
+    "desc": {
+      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
+    },
+    "tips": {
+      "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
+      "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
+      "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
+    }
   }
 }

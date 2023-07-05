@@ -3,6 +3,10 @@ import { INIT_ACTION_ADVANCED_CONFIG } from "@/page/App/components/Actions/Advan
 import { RootState } from "@/store"
 import { ACTION_RUN_TIME } from "../currentApp/action/actionState"
 
+const getEditorConfig = (state: RootState) => {
+  return state.config
+}
+
 const isEditMode = (state: RootState) => {
   return state.config.mode === "edit" || state.config.mode === "template-edit"
 }
@@ -31,17 +35,23 @@ export const getIllaMode = (state: RootState) => {
   return state.config.mode
 }
 
-export const isShowDot = (state: RootState) => {
-  return state.config.showDot && isEditMode(state)
-}
+export const isShowDot = createSelector(
+  [getEditorConfig, isEditMode],
+  (editorConfig, isEditMode) => {
+    return editorConfig.showDot && isEditMode
+  },
+)
 
 export const getScale = (state: RootState) => {
   return state.config.scale
 }
 
-export const getSelectedComponents = (state: RootState) => {
-  return state.config.selectedComponents
-}
+export const getSelectedComponentDisplayNames = createSelector(
+  [getEditorConfig],
+  (editorConfig) => {
+    return editorConfig.selectedComponents
+  },
+)
 
 export const getSelectedAction = (state: RootState) => {
   return state.config.selectedAction
@@ -63,16 +73,15 @@ export const getExpandedKeys = (state: RootState) => {
   return state.config.expandedKeys
 }
 
-export const getFreezeState = (state: RootState) => {
-  return state.config.freezeCanvas
-}
-
-export const getCanvasShape = (state: RootState) => {
-  return {
-    canvasWidth: state.config.canvasWidth,
-    canvasHeight: state.config.canvasHeight,
-  }
-}
+export const getCanvasShape = createSelector(
+  [getEditorConfig],
+  (editorConfig) => {
+    return {
+      canvasWidth: editorConfig.canvasWidth,
+      canvasHeight: editorConfig.canvasHeight,
+    }
+  },
+)
 
 export const getIsOnline = (state: RootState) => {
   return state.config.isOnline
@@ -94,9 +103,12 @@ export const getIsILLAProductMode = (state: RootState) => {
   return state.config.mode === "production"
 }
 
-export const getIsLikeProductMode = (state: RootState) => {
-  return state.config.mode === "preview" || state.config.mode === "production"
-}
+export const getIsLikeProductMode = createSelector(
+  [getEditorConfig],
+  (editorConfig) => {
+    return editorConfig.mode === "preview" || editorConfig.mode === "production"
+  },
+)
 
 export const getWSStatus = (state: RootState) => {
   return state.config.wsStatus
@@ -110,9 +122,12 @@ export const getAppWSStatus = (state: RootState) => {
   return state.config.wsStatus.APP
 }
 
-export const getHoveredComponents = (state: RootState) => {
-  return state.config.hoveredComponents
-}
+export const getHoveredComponents = createSelector(
+  [getEditorConfig],
+  (editorConfig) => {
+    return editorConfig.hoveredComponents
+  },
+)
 
 export const getCachedActionAdvancedConfig = createSelector(
   [getCachedAction],

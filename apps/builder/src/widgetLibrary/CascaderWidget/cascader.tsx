@@ -183,3 +183,5 @@ export const CascaderWidget: FC<CascaderWidgetProps> = (props) => {
     </AutoHeightContainer>
   )
 }
+
+export default CascaderWidget

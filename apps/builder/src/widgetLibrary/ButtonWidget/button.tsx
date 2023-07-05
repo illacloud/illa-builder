@@ -52,3 +52,4 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
 }
 
 ButtonWidget.displayName = "ButtonWidget"
+export default ButtonWidget

@@ -7,10 +7,9 @@ import { createModal, useMessage } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
-  getFreezeState,
   getIsILLAEditMode,
   getSelectedAction,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -18,45 +17,30 @@ import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSele
 import {
   flattenAllComponentNodeToMap,
   getCanvas,
-  searchDSLByDisplayName,
+  getSelectedComponentNode,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import store, { RootState } from "@/store"
+import store from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { isMAC } from "@/utils/userAgent"
 
 export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-
-  const isEditMode = useSelector(getIsILLAEditMode)
   const message = useMessage()
 
-  const currentSelectedComponent = useSelector(getSelectedComponents)
-
-  const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
-    (rootState) => {
-      const currentSelectedComponentDisplayName =
-        getSelectedComponents(rootState)
-      const result = currentSelectedComponentDisplayName.map((displayName) => {
-        return searchDSLByDisplayName(displayName)
-      })
-      return result.filter((node) => node) as ComponentNode[]
-    },
-  )
-
+  const isEditMode = useSelector(getIsILLAEditMode)
+  const currentSelectedComponent = useSelector(getSelectedComponentDisplayNames)
+  const currentSelectedComponentNode = useSelector(getSelectedComponentNode)
   const currentSelectedAction = useSelector(getSelectedAction)
-
   const canvasRootNode = useSelector(getCanvas)
   const executionResult = useSelector(getExecutionResult)
-  const freezeState = useSelector(getFreezeState)
-
   const showShadows = useSelector(isShowDot)
 
   // shortcut
@@ -316,24 +300,10 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   }, [dispatch, showShadows])
 
   useHotkeys(
-    `${Key.Meta}+s`,
-    () => {
-      message.success({
-        content: t("dont_need_save"),
-      })
-    },
-    {
-      enableOnFormTags: true,
-      enableOnContentEditable: true,
-      preventDefault: true,
-      enabled: isEditMode && isMAC(),
-    },
-    [],
-  )
+    `${isMAC() ? Key.Meta : Key.Control}+s`,
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
 
-  useHotkeys(
-    `${Key.Control}+s`,
-    () => {
       message.success({
         content: t("dont_need_save"),
       })
@@ -342,13 +312,14 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       enableOnFormTags: true,
       enableOnContentEditable: true,
       preventDefault: true,
-      enabled: isEditMode && !isMAC(),
+      enabled: isEditMode,
     },
   )
 
   useHotkeys(
     Key.Backspace,
-    () => {
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       switch (FocusManager.getFocus()) {
         case "data_page":
           break
@@ -389,141 +360,95 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   )
 
   useHotkeys(
-    "d,k",
+    `${isMAC() ? Key.Meta : Key.Control}+a`,
     (keyboardEvent) => {
-      if (keyboardEvent.type === "keydown" && freezeState === false) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.KEYDOWN, {
-          element: "lock_icon",
-          parameter2: "lock",
-        })
-        dispatch(configActions.updateFreezeStateReducer(true))
-      } else if (keyboardEvent.type === "keyup" && freezeState === true) {
-        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.KEYUP, {
-          element: "lock_icon",
-          parameter2: "unlock",
-        })
-        dispatch(configActions.updateFreezeStateReducer(false))
-      }
-    },
-    { keydown: true, keyup: true, enabled: isEditMode },
-    [dispatch, freezeState],
-  )
-
-  useHotkeys(
-    `${Key.Control}+a`,
-    (e) => {
-      e.preventDefault()
+      if (keyboardEvent.repeat) return
       selectAllBodyComponentsHandler()
     },
     {
       preventDefault: true,
-      enabled: isEditMode && !isMAC(),
+      enabled: isEditMode,
     },
     [selectAllBodyComponentsHandler],
   )
-
   useHotkeys(
-    `${Key.Meta}+a`,
-    (e) => {
-      e.preventDefault()
-      selectAllBodyComponentsHandler()
-    },
-    {
-      preventDefault: true,
-      enabled: isEditMode && isMAC(),
-    },
-    [selectAllBodyComponentsHandler],
-  )
-
-  useHotkeys(
-    `${Key.Meta}+c`,
-    () => {
+    `${isMAC() ? Key.Meta : Key.Control}+c`,
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       copySomethingHandler()
     },
     {
       preventDefault: false,
-      enabled: isEditMode && isMAC(),
+      enabled: isEditMode,
     },
     [copySomethingHandler],
   )
 
   useHotkeys(
-    `${Key.Control}+c`,
-    () => {
-      copySomethingHandler()
-    },
-    { preventDefault: false, enabled: isEditMode && !isMAC() },
-    [copySomethingHandler],
-  )
-
-  useHotkeys(
-    `${Key.Meta}+v`,
-    () => {
+    `${isMAC() ? Key.Meta : Key.Control}+v`,
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       CopyManager.paste("keyboard")
     },
     {
       preventDefault: false,
-      enabled: isEditMode && isMAC(),
+      enabled: isEditMode,
     },
     [copySomethingHandler],
   )
 
   useHotkeys(
-    `${Key.Control}+v`,
-    () => {
-      CopyManager.paste("keyboard")
-    },
-    { preventDefault: false, enabled: isEditMode && !isMAC() },
-    [copySomethingHandler],
-  )
-
-  useHotkeys(
-    `${Key.Meta}+d`,
-    () => {
+    `${isMAC() ? Key.Meta : Key.Control}+d`,
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
       copyAndPasteHandler()
     },
     {
       preventDefault: true,
-      enabled: isEditMode && isMAC(),
+      enabled: isEditMode,
     },
     [copyAndPasteHandler],
   )
 
   useHotkeys(
-    `${Key.Control}+d`,
-    () => {
-      copyAndPasteHandler()
-    },
-    { preventDefault: true, enabled: isEditMode && !isMAC() },
-    [copyAndPasteHandler],
-  )
-
-  useHotkeys(
-    Key.Meta,
+    `${isMAC() ? Key.Meta : Key.Control}`,
     (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
+
       showDotHandler(keyboardEvent.type)
     },
     {
       keydown: true,
       keyup: true,
       preventDefault: false,
-      enabled: isEditMode && isMAC(),
+      enabled: isEditMode,
     },
     [showDotHandler],
   )
 
   useHotkeys(
-    Key.Control,
+    `${isMAC() ? Key.Meta : Key.Control}+z`,
     (keyboardEvent) => {
-      showDotHandler(keyboardEvent.type)
+      if (keyboardEvent.repeat) return
+
+      IllaUndoRedoManager.popFromUndoStack()
     },
     {
-      keydown: true,
-      keyup: true,
-      preventDefault: false,
-      enabled: isEditMode && !isMAC(),
+      enabled: isEditMode,
     },
-    [showDotHandler],
+    [isEditMode],
+  )
+
+  useHotkeys(
+    `${isMAC() ? Key.Meta : Key.Control}+${Key.Shift}+z`,
+    (keyboardEvent) => {
+      if (keyboardEvent.repeat) return
+      IllaUndoRedoManager.popFromRedoStack()
+    },
+    {
+      enabled: isEditMode,
+    },
+    [isEditMode],
   )
 
   // cancel show dot

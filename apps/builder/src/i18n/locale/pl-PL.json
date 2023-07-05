@@ -1288,6 +1288,9 @@
           "start_button_text": "Rozpocznij nagrywanie",
           "stop_button_text": "Zatrzymaj",
           "clear_button_text": "Wyczyść"
+        },
+        "rich_text": {
+          "default_text": "tekst"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "Identyfikator komunikatu odpowiedzi",
         "senderName": "Nazwa nadawcy",
         "senderId": "ID nadawcy",
-        "showName": "Pokaż nazwę"
+        "showName": "Pokaż nazwę",
+        "rich_text": {
+          "default_text": "Domyślny tekst"
+        }
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Ustaw kolor wiadomości po lewej",
         "rightMessageColor": "Ustaw kolor wiadomości po prawej",
         "toolbar-replay": "Ustaw czy wyświetlić przycisk odpowiedzi po wybraniu wiadomości.",
-        "toolbar-delete": "Ustaw czy pokazywać przycisk usuwania po wybraniu wiadomości."
+        "toolbar-delete": "Ustaw czy pokazywać przycisk usuwania po wybraniu wiadomości.",
+        "tabs": {
+          "variant": "Aby ustawić wariant kart"
+        }
       },
       "setter_option": {
         "fixed": "Naprawione",
@@ -1989,6 +1998,10 @@
             "left-click": "Kliknij lewym przyciskiem myszy",
             "right-click": "Prawy przycisk myszy"
           }
+        },
+        "tab": {
+          "line": "Linia",
+          "card": "Karta"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "Napisz tutaj swój kod. Użyj JavaScript wewnątrz {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "Domyślny tekst wyświetlany po zainicjowaniu komponentu"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "Postęp okręgu"
     },
     "container": {
-      "empty": "Naciśnij <keyPress>D</keyPress> lub <keyPress>K</keyPress> i przeciągnij tutaj elementy",
+      "empty": "Przeciągnij tutaj elementy",
       "key_duplicated": "Klucz jest zduplikowany. Użyj unikalnych kluczy aby uniknąć błędów.",
       "name": "Pojemnik",
       "value_duplicated": "Wartość jest zduplikowana. Proszę użyć unikalnych wartości, aby uniknąć błędów."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Kliknij ramkę, aby określić lokalizację wklejenia."
+    "paste_no_aimed": "Kliknij ramkę, aby określić lokalizację wklejenia.",
+    "message": {
+      "session": {
+        "error": "Operacje obejmujące wiele części składowych nie są dozwolone na powierzchni płótna."
+      },
+      "undo": {
+        "suc": "Cofnij pomyślne",
+        "failed": "Cofnięcie nie powiodło się",
+        "nothing": "Nic do cofnięcia"
+      },
+      "redo": {
+        "suc": "Powtórz pomyślnie",
+        "failed": "Powtórz nie powiodło się",
+        "nothing": "Nic do powtórki"
+      }
+    }
   },
   "bookFrom": {
     "title": "Zarezerwuj demo",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Dodaj nieograniczoną liczbę członków przeglądarki za DARMO",
         "publish_public_appli": "Opublikuj aplikacje publiczne",
         "ai_sql_generation": "Generowanie AI SQL",
-        "audit_logs": "Logi audytu (Już wkrótce)",
+        "audit_logs": "Dzienniki audytu",
         "learn_more": "Poznaj więcej",
         "upgrade": "Ulepsz",
         "pricing": "/edytor/miesiąc, rok",
@@ -3470,9 +3503,63 @@
       "title": "Płatność zakończona powodzeniem",
       "button": "Wróć do chmury ILLA"
     },
-    "redirect_to_stripe": "Przekierowanie do Stripe"
+    "redirect_to_stripe": "Przekierowanie do Stripe",
+    "appsumo": {
+      "update": "Aktualizuj plan AppSumo"
+    }
   },
   "network": {
     "error": "Błąd sieci, spróbuj ponownie później"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Wdrożono",
+      "undeploy": "Usuń wdrożenie"
+    },
+    "desc": {
+      "no_description": "Brak opisu"
+    },
+    "app_setting": {
+      "app_setting": "Ustawienia aplikacji",
+      "app_name": "Nazwa aplikacji",
+      "description": "Opis",
+      "save": "Zapisz",
+      "placeholder": {
+        "description": "Wprowadź opis aplikacji",
+        "app_name": "Wprowadź nazwę aplikacji"
+      }
+    },
+    "access": {
+      "public": "Publiczne",
+      "private": "Prywatny"
+    },
+    "message": {
+      "update_failed": "Aktualizacja nie powiodła się",
+      "update_suc": "Pomyślnie zaktualizowano"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Prywatna aplikacja",
+      "public_app": "Publiczna aplikacja"
+    },
+    "desc": {
+      "private_app": "Tylko członkowie zespołu mogą uzyskać dostęp do wdrożonej aplikacji",
+      "public_app": "Każdy z linkiem do aplikacji może uzyskać dostęp do wdrożonej aplikacji"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Zaproś do edycji",
+      "invite_to_use": "Zaproś do użycia"
+    },
+    "desc": {
+      "undeploy": "Aplikacja nie została wdrożona. Publiczny dostęp i dostęp do przeglądarki mogą napotkać błędy. "
+    },
+    "tips": {
+      "admin": "Użytkownik, który może zarządzać wszystkimi użytkownikami z wyjątkiem właściciela, edytować APPs i przeglądać APP",
+      "editor": "Użytkownik, który może zarządzać edytorami i użytkownikami przeglądarek, edytować aplikacje i przeglądać aplikacje",
+      "viewer": "Użytkownik, który może zarządzać użytkownikami przeglądarki i przeglądać APP"
+    }
   }
 }

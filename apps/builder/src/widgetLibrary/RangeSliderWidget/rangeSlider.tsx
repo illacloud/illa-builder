@@ -264,3 +264,4 @@ export const RangeSliderWidget: FC<RangeSliderWidgetProps> = (props) => {
   )
 }
 RangeSliderWidget.displayName = "RangeSliderWidget"
+export default RangeSliderWidget

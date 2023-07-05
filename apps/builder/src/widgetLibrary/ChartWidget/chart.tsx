@@ -163,10 +163,6 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
 
 export const ChartWidget: FC<WrappedChartProps> = (props) => {
   const {
-    w,
-    h,
-    unitW,
-    unitH,
     dataSource,
     dataSourceJS,
     dataSourceMode,
@@ -279,10 +275,6 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
 
   return (
     <Chart
-      w={w}
-      h={h}
-      unitH={unitH}
-      unitW={unitW}
       xAxis={realXAxis}
       datasets={realDatasets}
       chartType={chartType}
@@ -294,3 +286,4 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
 }
 
 ChartWidget.displayName = "ChartWidget"
+export default ChartWidget

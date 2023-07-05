@@ -1,79 +1,33 @@
 {
   "appInfo": {
-    "appId": "ILAex4p1C74N",
+    "appId": "ILAex4p1C7QU",
     "uid": "00000000-0000-0000-0000-000000000000",
     "teamID": "ILAfx4p1C7d0",
-    "appName": "Admin panel",
-    "releaseVersion": 3,
-    "mainlineVersion": 3,
+    "appName": "New admin panel",
+    "releaseVersion": 2,
+    "mainlineVersion": 2,
     "config": {
-      "public": true
+      "public": true,
+      "waterMark": true
     },
     "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-03-24T10:49:43.802924Z",
+    "updatedAt": "2023-06-30T09:57:16.78257Z",
     "appActivity": {
-      "modifier": "mik",
-      "modifiedAt": "2023-03-24T10:49:43.802924Z"
+      "modifier": "Mikiko",
+      "modifiedAt": "2023-06-30T09:57:16.78257Z"
     }
   },
   "actions": [
     {
-      "actionId": "ILAfx4p1C7tL",
-      "uid": "844f46b6-d3e0-40fa-a242-7c0da2f2edd6",
+      "actionId": "ILAfx4p1C7VO",
+      "uid": "a08d22e2-4bf6-4ee0-93a4-96136e613600",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
-      "displayName": "add_new",
-      "actionType": "postgresql",
-      "content": {
-        "$dynamicAttrPaths": [],
-        "failedEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "fail",
-            "id": "events-d6a0d696-e53b-432d-935b-1f64c6344103",
-            "title": "Failed to add"
-          }
-        ],
-        "mode": "sql",
-        "query": "Update orders set start_time = '{{date2.value}}', expired_time = '{{date3.value}}', charge = '{{input5.value}}', feature_flag = ARRAY[{{\"'\"+checkboxGroup2.value.join(',').replace(\",\",\"','\")+\"'\"}}] where id = '{{select1.value}}'",
-        "successEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "success",
-            "id": "events-0846e855-0972-454d-a31c-cdd84a1995eb",
-            "title": "Successfully added"
-          },
-          {
-            "actionType": "datasource",
-            "eventType": "success",
-            "id": "events-44dcb72a-22c6-46bf-90ce-5a79e90b292a",
-            "queryID": "orders"
-          }
-        ]
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "manually",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T04:20:45.92395Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T04:36:23.680535Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAfx4p1C7t0",
-      "uid": "2befb8da-103c-4beb-a2e8-2314df2b1cdf",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "user_order",
+      "displayName": "orders",
       "actionType": "postgresql",
       "content": {
         "mode": "sql",
-        "query": "select * \n  from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'"
+        "query": "select * from orders\n"
       },
       "transformer": {
         "enable": false,
@@ -81,64 +35,24 @@
       },
       "triggerMode": "automate",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T04:37:14.039388Z",
+      "createdAt": "2023-06-30T09:47:50.957133Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T04:49:23.074257Z",
+      "updatedAt": "2023-06-30T09:56:42.074562Z",
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAfx4p1C7tZ",
-      "uid": "06353ff4-32ba-4165-8da2-342330f90393",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "delete_user",
-      "actionType": "postgresql",
-      "content": {
-        "$dynamicAttrPaths": [],
-        "failedEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "fail",
-            "id": "events-a2ef0578-8d9b-4a5c-b51e-38e3cdaddacc",
-            "notificationType": "error",
-            "title": "Failed to update"
-          }
-        ],
-        "mode": "sql",
-        "query": "DELETE FROM users WHERE id = {{input3.value}};",
-        "successEvent": [
-          {
-            "actionType": "datasource",
-            "eventType": "success",
-            "id": "events-880b77c9-9c86-4fd1-b273-02c155dd7fad",
-            "queryID": "user_order"
-          },
-          {
-            "actionType": "showNotification",
-            "eventType": "success",
-            "id": "events-869c028b-88ae-400c-a9bb-afe68c443f7c",
-            "title": "Deleted successfully"
-          }
-        ]
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "manually",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T04:53:07.82015Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T05:07:25.211674Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAfx4p1C7tY",
-      "uid": "85660f49-e87d-4944-adfd-75160db552c6",
+      "actionId": "ILAfx4p1C7VN",
+      "uid": "57618349-00f3-4a23-af9a-05e7453d3309",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "update_user",
@@ -177,40 +91,24 @@
       },
       "triggerMode": "manually",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T04:52:57.155614Z",
+      "createdAt": "2023-06-30T09:47:50.957132Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T05:05:14.207528Z",
+      "updatedAt": "2023-06-30T09:47:50.957132Z",
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAfx4p1C7tX",
-      "uid": "96aa60a7-7620-46ab-92e7-593a942dd8f3",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "orders",
-      "actionType": "postgresql",
-      "content": {
-        "mode": "sql",
-        "query": "select * from orders\n"
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "automate",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T03:46:09.006881Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T04:15:46.207941Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAfx4p1C7tW",
-      "uid": "16995c67-b356-4257-a9d1-f1536971d745",
+      "actionId": "ILAfx4p1C7VM",
+      "uid": "38056984-d383-4b79-88ba-5ae38535ccc6",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "id",
@@ -225,11 +123,162 @@
       },
       "triggerMode": "automate",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T04:17:47.918258Z",
+      "createdAt": "2023-06-30T09:47:50.957134Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T04:18:05.285667Z",
+      "updatedAt": "2023-06-30T09:56:59.23909Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VL",
+      "uid": "df68185f-ef76-4035-9e8c-cf5660b03d1d",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "user_order",
+      "actionType": "postgresql",
+      "content": {
+        "mode": "sql",
+        "query": "select * \n  from users\njoin orders\non users.id = orders.id\nwhere {{!input1.value}} or lower(users.name) like '%{{input1.value.toLowerCase()}}%'"
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "automate",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:47:50.957135Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:57:03.686096Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7V0",
+      "uid": "16a199fa-1d8d-409a-bf75-0f9149003f55",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "delete_user",
+      "actionType": "postgresql",
+      "content": {
+        "$dynamicAttrPaths": [],
+        "failedEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "fail",
+            "id": "events-a2ef0578-8d9b-4a5c-b51e-38e3cdaddacc",
+            "notificationType": "error",
+            "title": "Failed to update"
+          }
+        ],
+        "mode": "sql",
+        "query": "DELETE FROM users WHERE id = {{input3.value}};",
+        "successEvent": [
+          {
+            "actionType": "datasource",
+            "eventType": "success",
+            "id": "events-880b77c9-9c86-4fd1-b273-02c155dd7fad",
+            "queryID": "user_order"
+          },
+          {
+            "actionType": "showNotification",
+            "eventType": "success",
+            "id": "events-869c028b-88ae-400c-a9bb-afe68c443f7c",
+            "title": "Deleted successfully"
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:47:50.957136Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:57:08.208379Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VZ",
+      "uid": "b499bc30-3f97-4346-a19c-8487204fb837",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "add_new",
+      "actionType": "postgresql",
+      "content": {
+        "$dynamicAttrPaths": [],
+        "failedEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "fail",
+            "id": "events-d6a0d696-e53b-432d-935b-1f64c6344103",
+            "title": "Failed to add"
+          }
+        ],
+        "mode": "sql",
+        "query": "Update orders set start_time = '{{date2.value}}', expired_time = '{{date3.value}}', charge = '{{input5.value}}', feature_flag = ARRAY[{{\"'\"+checkboxGroup2.value.join(',').replace(\",\",\"','\")+\"'\"}}] where id = '{{select1.value}}'",
+        "successEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "success",
+            "id": "events-0846e855-0972-454d-a31c-cdd84a1995eb",
+            "title": "Successfully added"
+          },
+          {
+            "actionType": "datasource",
+            "eventType": "success",
+            "id": "events-44dcb72a-22c6-46bf-90ce-5a79e90b292a",
+            "queryID": "orders"
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:47:50.957137Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:57:16.777228Z",
       "updatedBy": "ILAfx4p1C7eb"
     }
   ],
@@ -304,12 +353,12 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "INPUT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 5,
-                                    "w": 33,
+                                    "w": 17,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 21.78125,
@@ -357,23 +406,21 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "TEXT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 9,
-                                            "w": 51,
+                                            "w": 26,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 11.1962890625,
                                             "unitH": 8,
-                                            "x": 11,
+                                            "x": 6,
                                             "y": 1,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "value"
-                                              ],
+                                              "$dynamicAttrPaths": ["value"],
                                               "colorScheme": "grayBlue",
                                               "disableMarkdown": false,
                                               "dynamicHeight": "fixed",
@@ -393,23 +440,21 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "TEXT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 59,
+                                            "w": 30,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 11.1962890625,
                                             "unitH": 8,
-                                            "x": 3,
+                                            "x": 2,
                                             "y": 12,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "value"
-                                              ],
+                                              "$dynamicAttrPaths": ["value"],
                                               "colorScheme": "grayBlue",
                                               "disableMarkdown": false,
                                               "dynamicHeight": "fixed",
@@ -429,23 +474,21 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "TEXT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 59,
+                                            "w": 30,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 10.85595703125,
                                             "unitH": 8,
-                                            "x": 3,
+                                            "x": 2,
                                             "y": 24,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "value"
-                                              ],
+                                              "$dynamicAttrPaths": ["value"],
                                               "colorScheme": "grayBlue",
                                               "disableMarkdown": false,
                                               "dynamicHeight": "fixed",
@@ -465,23 +508,21 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "TEXT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 59,
+                                            "w": 30,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 10.85595703125,
                                             "unitH": 8,
-                                            "x": 3,
+                                            "x": 2,
                                             "y": 18,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "value"
-                                              ],
+                                              "$dynamicAttrPaths": ["value"],
                                               "colorScheme": "grayBlue",
                                               "disableMarkdown": false,
                                               "dynamicHeight": "fixed",
@@ -501,23 +542,21 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "IMAGE_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 10,
-                                            "w": 7,
+                                            "w": 4,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 10.85595703125,
                                             "unitH": 8,
-                                            "x": 3,
+                                            "x": 2,
                                             "y": 1,
                                             "z": 0,
                                             "props": {
-                                              "$dynamicAttrPaths": [
-                                                "imageSrc"
-                                              ],
+                                              "$dynamicAttrPaths": ["imageSrc"],
                                               "hidden": false,
                                               "imageSrc": "{{list1.dataSources.map((currentItem) => (currentItem.img))}}",
                                               "objectFit": "cover",
@@ -546,7 +585,7 @@
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 87,
-                                    "w": 33,
+                                    "w": 17,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 21.78125,
@@ -593,12 +632,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "INPUT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 8,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.279296875,
@@ -633,12 +672,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "INPUT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 8,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.279296875,
@@ -671,12 +710,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "INPUT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 8,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.279296875,
@@ -709,12 +748,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "CHECKBOX_GROUP_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 7,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.279296875,
@@ -768,12 +807,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "BUTTON_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 31,
+                                            "w": 16,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.279296875,
@@ -805,17 +844,17 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "BUTTON_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 30,
+                                            "w": 15,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.279296875,
                                             "unitH": 8,
-                                            "x": 33,
+                                            "x": 17,
                                             "y": 62,
                                             "z": 0,
                                             "props": {
@@ -842,12 +881,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "DATE_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 8,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.279296875,
@@ -899,12 +938,12 @@
                                                     "error": false,
                                                     "isDragging": false,
                                                     "isResizing": false,
-                                                    "childrenNode": null,
+                                                    "childrenNode": [],
                                                     "type": "TEXT_WIDGET",
                                                     "containerType": "EDITOR_SCALE_SQUARE",
                                                     "verticalResize": false,
                                                     "h": 5,
-                                                    "w": 64,
+                                                    "w": 32,
                                                     "minH": 3,
                                                     "minW": 2,
                                                     "unitW": 8.7705078125,
@@ -949,7 +988,7 @@
                                                 "error": false,
                                                 "isDragging": true,
                                                 "isResizing": false,
-                                                "childrenNode": null,
+                                                "childrenNode": [],
                                                 "type": "CANVAS",
                                                 "containerType": "EDITOR_DOT_PANEL",
                                                 "verticalResize": false,
@@ -972,7 +1011,7 @@
                                                 "error": false,
                                                 "isDragging": true,
                                                 "isResizing": false,
-                                                "childrenNode": null,
+                                                "childrenNode": [],
                                                 "type": "CANVAS",
                                                 "containerType": "EDITOR_DOT_PANEL",
                                                 "verticalResize": false,
@@ -993,7 +1032,7 @@
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 10,
-                                            "w": 64,
+                                            "w": 32,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.279296875,
@@ -1055,7 +1094,7 @@
                                         "error": false,
                                         "isDragging": true,
                                         "isResizing": false,
-                                        "childrenNode": null,
+                                        "childrenNode": [],
                                         "type": "CANVAS",
                                         "containerType": "EDITOR_DOT_PANEL",
                                         "verticalResize": false,
@@ -1078,7 +1117,7 @@
                                         "error": false,
                                         "isDragging": true,
                                         "isResizing": false,
-                                        "childrenNode": null,
+                                        "childrenNode": [],
                                         "type": "CANVAS",
                                         "containerType": "EDITOR_DOT_PANEL",
                                         "verticalResize": false,
@@ -1099,12 +1138,12 @@
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 71,
-                                    "w": 28,
+                                    "w": 14,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 21.78125,
                                     "unitH": 8,
-                                    "x": 35,
+                                    "x": 18,
                                     "y": 7,
                                     "z": 0,
                                     "props": {
@@ -1201,12 +1240,12 @@
                                                     "error": false,
                                                     "isDragging": false,
                                                     "isResizing": false,
-                                                    "childrenNode": null,
+                                                    "childrenNode": [],
                                                     "type": "TEXT_WIDGET",
                                                     "containerType": "EDITOR_SCALE_SQUARE",
                                                     "verticalResize": false,
                                                     "h": 5,
-                                                    "w": 62,
+                                                    "w": 31,
                                                     "minH": 3,
                                                     "minW": 2,
                                                     "unitW": 9.7412109375,
@@ -1249,7 +1288,7 @@
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 12,
-                                            "w": 64,
+                                            "w": 32,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.9599609375,
@@ -1285,12 +1324,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "DATE_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.9599609375,
@@ -1323,12 +1362,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "DATE_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 8,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.9599609375,
@@ -1361,12 +1400,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "INPUT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.9599609375,
@@ -1399,12 +1438,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "CHECKBOX_GROUP_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 4,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.9599609375,
@@ -1455,12 +1494,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "BUTTON_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.9599609375,
@@ -1492,12 +1531,12 @@
                                             "error": false,
                                             "isDragging": false,
                                             "isResizing": false,
-                                            "childrenNode": null,
+                                            "childrenNode": [],
                                             "type": "SELECT_WIDGET",
                                             "containerType": "EDITOR_SCALE_SQUARE",
                                             "verticalResize": false,
                                             "h": 5,
-                                            "w": 62,
+                                            "w": 31,
                                             "minH": 3,
                                             "minW": 2,
                                             "unitW": 9.9599609375,
@@ -1568,12 +1607,12 @@
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 74,
-                                    "w": 30,
+                                    "w": 15,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 21.78125,
                                     "unitH": 8,
-                                    "x": 33,
+                                    "x": 17,
                                     "y": 1,
                                     "z": 0,
                                     "props": {
@@ -1604,12 +1643,12 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "TABLE_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 74,
-                                    "w": 31,
+                                    "w": 16,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 21.78125,
@@ -1691,9 +1730,7 @@
                                         {
                                           "charge": "40000",
                                           "expired_time": "2024-1-2",
-                                          "feature_flag": [
-                                            "Feature3"
-                                          ],
+                                          "feature_flag": ["Feature3"],
                                           "id": "3",
                                           "start_time": "2023-1-3"
                                         }
@@ -1722,7 +1759,7 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 97,
-                            "w": 64,
+                            "w": 32,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 21.96875,
@@ -1764,12 +1801,12 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TABS_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 6,
-                            "w": 64,
+                            "w": 32,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 22,
@@ -1839,7 +1876,7 @@
                     "containerType": "EDITOR_SCALE_SQUARE",
                     "verticalResize": false,
                     "h": 107,
-                    "w": 64,
+                    "w": 32,
                     "minH": 3,
                     "minW": 2,
                     "unitW": 22.21875,
@@ -1908,9 +1945,7 @@
                   "viewDisplayName": "bodySection1-bodySectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "bodySection1-bodySectionContainer1"
-              ]
+              "viewSortedKey": ["bodySection1-bodySectionContainer1"]
             },
             "panelConfig": null
           },
@@ -1921,7 +1956,7 @@
             "error": false,
             "isDragging": false,
             "isResizing": false,
-            "childrenNode": null,
+            "childrenNode": [],
             "type": "MODAL_SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
             "verticalResize": true,
@@ -1951,25 +1986,25 @@
         "y": -1,
         "z": 0,
         "props": {
-          "bodyColumns": 64,
+          "bodyColumns": 32,
           "bottomHeight": 0,
           "canvasSize": "fixed",
           "canvasWidth": 1440,
-          "footerColumns": 64,
+          "footerColumns": 32,
           "hasFooter": false,
           "hasHeader": false,
           "hasLeft": false,
           "hasRight": false,
-          "headerColumns": 64,
+          "headerColumns": 32,
           "isFooterFixed": true,
           "isHeaderFixed": true,
           "isLeftFixed": true,
           "isRightFixed": true,
           "layout": "default",
-          "leftColumns": 16,
+          "leftColumns": 8,
           "leftPosition": "NONE",
           "leftWidth": 0,
-          "rightColumns": 16,
+          "rightColumns": 8,
           "rightPosition": "NONE",
           "rightWidth": 0,
           "showLeftFoldIcon": false,
@@ -1993,9 +2028,7 @@
     "z": 0,
     "props": {
       "currentPageIndex": 0,
-      "pageSortedKey": [
-        "page1"
-      ]
+      "pageSortedKey": ["page1"]
     },
     "panelConfig": null
   },

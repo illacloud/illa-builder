@@ -1,144 +1,26 @@
 {
   "appInfo": {
-    "appId": "ILAex4p1C74H",
+    "appId": "ILAex4p1C7QW",
     "uid": "00000000-0000-0000-0000-000000000000",
     "teamID": "ILAfx4p1C7d0",
-    "appName": "Dashboard",
-    "releaseVersion": 5,
-    "mainlineVersion": 5,
+    "appName": "New dashboard",
+    "releaseVersion": 3,
+    "mainlineVersion": 3,
     "config": {
-      "public": true
+      "public": true,
+      "waterMark": true
     },
     "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-03-15T11:11:05.487758Z",
+    "updatedAt": "2023-06-30T10:47:27.133342Z",
     "appActivity": {
-      "modifier": "Marshall～A",
-      "modifiedAt": "2023-03-15T11:11:05.487758Z"
+      "modifier": "Mikiko",
+      "modifiedAt": "2023-06-30T10:47:27.133342Z"
     }
   },
   "actions": [
     {
-      "actionId": "ILAex4p1C7Uw",
-      "uid": "01be1c05-9c6d-49cc-8e57-30dc74e38739",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "requests",
-      "actionType": "postgresql",
-      "content": {
-        "mode": "sql",
-        "query": "SELECT count(*) as requests FROM survey;"
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "automate",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-14T12:31:02.645027Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T02:30:25.772033Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAex4p1C7Uv",
-      "uid": "2549429c-cdd5-4427-8fa8-cdd3d882d3f5",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "list_all",
-      "actionType": "postgresql",
-      "content": {
-        "mode": "sql",
-        "query": "select * from survey"
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "automate",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T02:31:33.615759Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T02:33:49.585077Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAex4p1C7Uu",
-      "uid": "a959292a-87d0-46bf-acc9-59048ca97d91",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "available",
-      "actionType": "postgresql",
-      "content": {
-        "mode": "sql",
-        "query": "select count(familiar) as requests from survey where available = '1'"
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "automate",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T02:26:24.956908Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T02:27:16.863514Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAex4p1C7Ut",
-      "uid": "c4cbef3f-3326-4b24-9c7b-2ddf7d406efe",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
-      "displayName": "delete_row",
-      "actionType": "postgresql",
-      "content": {
-        "$dynamicAttrPaths": [],
-        "failedEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "fail",
-            "id": "events-42160dd3-4249-4068-8122-d5db50dea091",
-            "title": "Failed to delete"
-          }
-        ],
-        "mode": "sql",
-        "query": "DELETE FROM survey WHERE id='{{table1.selectedRow[0].id}}';",
-        "successEvent": [
-          {
-            "actionType": "showNotification",
-            "eventType": "success",
-            "id": "events-5421ab78-1a4e-4c40-8444-891387913c71",
-            "title": "Deleted successfully"
-          },
-          {
-            "actionType": "datasource",
-            "eventType": "success",
-            "id": "events-d21926ac-d664-499b-9070-8c00585aff48",
-            "queryID": "list_all"
-          }
-        ]
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "manually",
-      "config": {
-        "public": true
-      },
-      "createdAt": "2023-03-15T02:50:06.277031Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T03:19:49.91936Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAex4p1C7UI",
-      "uid": "c5ec70e6-685d-4fa6-af1c-8193431f1fcc",
+      "actionId": "ILAfx4p1C7VE",
+      "uid": "300e1a5b-894a-4b03-befc-8b6c304d08a7",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "update_available",
@@ -176,16 +58,24 @@
       },
       "triggerMode": "manually",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T03:20:01.266134Z",
+      "createdAt": "2023-06-30T09:38:06.90894Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T03:21:28.354384Z",
+      "updatedAt": "2023-06-30T09:38:06.90894Z",
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAex4p1C7UH",
-      "uid": "c29418a8-f821-4675-b47b-fa3d392185b2",
+      "actionId": "ILAfx4p1C7VD",
+      "uid": "6924a986-946c-46d0-8172-b802720f8ff1",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAfx4p1C7cn",
       "displayName": "familiar",
@@ -200,11 +90,170 @@
       },
       "triggerMode": "automate",
       "config": {
-        "public": true
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
       },
-      "createdAt": "2023-03-15T03:25:54.038089Z",
+      "createdAt": "2023-06-30T09:38:06.908941Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-03-15T03:29:02.04746Z",
+      "updatedAt": "2023-06-30T09:56:01.294508Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VS",
+      "uid": "c0bf3614-47a7-4420-96d9-56ddef3be0d6",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "delete_row",
+      "actionType": "postgresql",
+      "content": {
+        "$dynamicAttrPaths": [],
+        "failedEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "fail",
+            "id": "events-42160dd3-4249-4068-8122-d5db50dea091",
+            "title": "Failed to delete"
+          }
+        ],
+        "mode": "sql",
+        "query": "DELETE FROM survey WHERE id='{{table1.selectedRow[0].id}}';",
+        "successEvent": [
+          {
+            "actionType": "showNotification",
+            "eventType": "success",
+            "id": "events-5421ab78-1a4e-4c40-8444-891387913c71",
+            "title": "Deleted successfully"
+          },
+          {
+            "actionType": "datasource",
+            "eventType": "success",
+            "id": "events-d21926ac-d664-499b-9070-8c00585aff48",
+            "queryID": "list_all"
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:38:06.908942Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:38:06.908942Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VR",
+      "uid": "6aab46b5-4e70-4b3b-b279-7e28bfd3e205",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "requests",
+      "actionType": "postgresql",
+      "content": {
+        "mode": "sql",
+        "query": "SELECT count(*) as requests FROM survey;"
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "automate",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:38:06.908943Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:56:06.872707Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VQ",
+      "uid": "fe6df63c-87d2-44b9-a93e-33a8603a8407",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "list_all",
+      "actionType": "postgresql",
+      "content": {
+        "mode": "sql",
+        "query": "select * from survey"
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "automate",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:38:06.908944Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:56:11.819797Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAfx4p1C7VP",
+      "uid": "30fb6001-80d2-4c06-a35c-e2f4ba05755a",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAfx4p1C7cn",
+      "displayName": "available",
+      "actionType": "postgresql",
+      "content": {
+        "mode": "sql",
+        "query": "select count(familiar) as requests from survey where available = '1'"
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "automate",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "appLoaded",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-06-30T09:38:06.908945Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-06-30T09:56:17.782636Z",
       "updatedBy": "ILAfx4p1C7eb"
     }
   ],
@@ -280,11 +329,11 @@
                                     "isDragging": false,
                                     "isResizing": false,
                                     "childrenNode": null,
-                                    "type": "CHART",
+                                    "type": "CHART_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 33,
-                                    "w": 31,
+                                    "w": 16,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 9.9375,
@@ -293,9 +342,7 @@
                                     "y": 1,
                                     "z": 0,
                                     "props": {
-                                      "$dynamicAttrPaths": [
-                                        "dataSourceJS"
-                                      ],
+                                      "$dynamicAttrPaths": ["dataSourceJS"],
                                       "chartTitle": "How much would you expect to pay for the product",
                                       "chartType": "bar",
                                       "dataSourceJS": "{{list_all.data}}",
@@ -322,22 +369,20 @@
                                     "isDragging": false,
                                     "isResizing": false,
                                     "childrenNode": null,
-                                    "type": "CHART",
+                                    "type": "CHART_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 33,
-                                    "w": 31,
+                                    "w": 15,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 9.9375,
                                     "unitH": 8,
-                                    "x": 33,
+                                    "x": 17,
                                     "y": 1,
                                     "z": 0,
                                     "props": {
-                                      "$dynamicAttrPaths": [
-                                        "dataSourceJS"
-                                      ],
+                                      "$dynamicAttrPaths": ["dataSourceJS"],
                                       "chartTitle": "Are you familiar with the product?",
                                       "chartType": "pie",
                                       "dataSourceJS": "{{list_all.data}}",
@@ -377,7 +422,7 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 41,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 11.015625,
@@ -429,17 +474,17 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "STATISTIC_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 9,
-                                    "w": 59,
+                                    "w": 30,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 4.3046875,
                                     "unitH": 8,
-                                    "x": 3,
+                                    "x": 2,
                                     "y": 7,
                                     "z": 0,
                                     "props": {
@@ -470,17 +515,17 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "TEXT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 5,
-                                    "w": 59,
+                                    "w": 30,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 8.16748046875,
                                     "unitH": 8,
-                                    "x": 3,
+                                    "x": 2,
                                     "y": 1,
                                     "z": 0,
                                     "props": {
@@ -518,7 +563,7 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 19,
-                            "w": 30,
+                            "w": 15,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 17.859375,
@@ -570,17 +615,17 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "STATISTIC_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 9,
-                                    "w": 58,
+                                    "w": 29,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 4.21484375,
                                     "unitH": 8,
-                                    "x": 3,
+                                    "x": 2,
                                     "y": 7,
                                     "z": 0,
                                     "props": {
@@ -610,17 +655,17 @@
                                     "error": false,
                                     "isDragging": false,
                                     "isResizing": false,
-                                    "childrenNode": null,
+                                    "childrenNode": [],
                                     "type": "TEXT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
                                     "verticalResize": false,
                                     "h": 5,
-                                    "w": 58,
+                                    "w": 29,
                                     "minH": 3,
                                     "minW": 2,
                                     "unitW": 8.16748046875,
                                     "unitH": 8,
-                                    "x": 3,
+                                    "x": 2,
                                     "y": 1,
                                     "z": 0,
                                     "props": {
@@ -658,12 +703,12 @@
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 19,
-                            "w": 30,
+                            "w": 15,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 11.015625,
                             "unitH": 8,
-                            "x": 33,
+                            "x": 17,
                             "y": 9,
                             "z": 0,
                             "props": {
@@ -694,12 +739,12 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TEXT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 5,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 11.015625,
@@ -728,12 +773,12 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TABLE_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 40,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 17.890625,
@@ -842,18 +887,130 @@
                                 {
                                   "available": "1",
                                   "familiar": "Yes, I have seen it.",
-                                  "feature": [
-                                    "Feature 1",
-                                    "Feature3",
-                                    "Other"
-                                  ],
+                                  "feature": ["Feature 1", "Feature3", "Other"],
                                   "how_much_pay": "5000",
                                   "how_often": "Option 2",
                                   "id": "2",
                                   "interested": "Somewhat interested",
                                   "other": "Other feature2"
                                 }
-                              ]
+                              ],
+                              "customColumnIndices": {},
+                              "columnNameIndices": {
+                                "0": "familiar",
+                                "1": "feature",
+                                "2": "how_much_pay",
+                                "3": "how_often",
+                                "4": "interested",
+                                "5": "available",
+                                "6": "other"
+                              },
+                              "renamedColumnNames": {},
+                              "columnVisibility": {
+                                "familiar": true,
+                                "feature": true,
+                                "how_much_pay": true,
+                                "how_often": true,
+                                "interested": true,
+                                "available": true,
+                                "other": true
+                              },
+                              "columnMapper": {
+                                "familiar": {
+                                  "accessorKey": "familiar",
+                                  "columnIndex": 0,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "familiar",
+                                  "id": "familiar",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "feature": {
+                                  "accessorKey": "feature",
+                                  "columnIndex": 1,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "feature",
+                                  "id": "feature",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "how_much_pay": {
+                                  "accessorKey": "how_much_pay",
+                                  "columnIndex": 2,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "how_much_pay",
+                                  "id": "how_much_pay",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "how_often": {
+                                  "accessorKey": "how_often",
+                                  "columnIndex": 3,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "how_often",
+                                  "id": "how_often",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "interested": {
+                                  "accessorKey": "interested",
+                                  "columnIndex": 4,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "interested",
+                                  "id": "interested",
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "available": {
+                                  "accessorKey": "available",
+                                  "columnIndex": 5,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "fromCurrentRow": {
+                                    "mappedValue": true
+                                  },
+                                  "header": "available",
+                                  "id": "available",
+                                  "mappedValue": [
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "✅",
+                                    "❌"
+                                  ],
+                                  "type": "text",
+                                  "visible": true
+                                },
+                                "other": {
+                                  "accessorKey": "other",
+                                  "columnIndex": 6,
+                                  "enableSorting": true,
+                                  "format": "YYYY-MM-DD",
+                                  "header": "other",
+                                  "id": "other",
+                                  "type": "text",
+                                  "visible": true
+                                }
+                              }
                             },
                             "panelConfig": null
                           }
@@ -878,7 +1035,7 @@
                     "containerType": "EDITOR_SCALE_SQUARE",
                     "verticalResize": false,
                     "h": 110,
-                    "w": 64,
+                    "w": 32,
                     "minH": 3,
                     "minW": 2,
                     "unitW": 18.109375,
@@ -954,12 +1111,12 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TEXT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 6,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 17.890625,
@@ -988,12 +1145,12 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "TABLE_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 99,
-                            "w": 62,
+                            "w": 31,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 17.890625,
@@ -1453,9 +1610,7 @@
                                 {
                                   "available": "0",
                                   "familiar": "Maybe, Im not sure.",
-                                  "feature": [
-                                    "Feature 1"
-                                  ],
+                                  "feature": ["Feature 1"],
                                   "how_much_pay": "7000",
                                   "how_often": "Option 1",
                                   "id": "4",
@@ -1487,7 +1642,7 @@
                     "containerType": "EDITOR_SCALE_SQUARE",
                     "verticalResize": false,
                     "h": 110,
-                    "w": 64,
+                    "w": 32,
                     "minH": 3,
                     "minW": 2,
                     "unitW": 18.109375,
@@ -1600,7 +1755,7 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "TEXT_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
                         "verticalResize": false,
@@ -1649,7 +1804,7 @@
                     "error": false,
                     "isDragging": true,
                     "isResizing": false,
-                    "childrenNode": null,
+                    "childrenNode": [],
                     "type": "CANVAS",
                     "containerType": "EDITOR_DOT_PANEL",
                     "verticalResize": false,
@@ -1680,7 +1835,7 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "BUTTON_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
                         "verticalResize": false,
@@ -1717,7 +1872,7 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "BUTTON_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
                         "verticalResize": false,
@@ -1845,12 +2000,12 @@
                             "error": false,
                             "isDragging": false,
                             "isResizing": false,
-                            "childrenNode": null,
+                            "childrenNode": [],
                             "type": "MENU_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
                             "verticalResize": false,
                             "h": 15,
-                            "w": 16,
+                            "w": 8,
                             "minH": 3,
                             "minW": 2,
                             "unitW": 12.5,
@@ -1892,9 +2047,7 @@
                                 }
                               ],
                               "mode": "vertical",
-                              "selectedValues": [
-                                "subMenu1"
-                              ]
+                              "selectedValues": ["subMenu1"]
                             },
                             "panelConfig": null
                           }
@@ -1921,7 +2074,7 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
                         "verticalResize": false,
@@ -1944,7 +2097,7 @@
                         "error": false,
                         "isDragging": true,
                         "isResizing": false,
-                        "childrenNode": null,
+                        "childrenNode": [],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
                         "verticalResize": false,
@@ -1965,7 +2118,7 @@
                     "containerType": "EDITOR_SCALE_SQUARE",
                     "verticalResize": false,
                     "h": 110,
-                    "w": 15,
+                    "w": 8,
                     "minH": 3,
                     "minW": 2,
                     "unitW": 14.9375,
@@ -2044,9 +2197,7 @@
                   "viewDisplayName": "leftSection1-leftSectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "leftSection1-leftSectionContainer1"
-              ]
+              "viewSortedKey": ["leftSection1-leftSectionContainer1"]
             },
             "panelConfig": null
           }
@@ -2064,25 +2215,25 @@
         "y": -1,
         "z": 0,
         "props": {
-          "bodyColumns": 64,
+          "bodyColumns": 32,
           "bottomHeight": 0,
           "canvasSize": "fixed",
           "canvasWidth": 1440,
-          "footerColumns": 64,
+          "footerColumns": 32,
           "hasFooter": false,
           "hasHeader": false,
           "hasLeft": true,
           "hasRight": false,
-          "headerColumns": 64,
+          "headerColumns": 32,
           "isFooterFixed": true,
           "isHeaderFixed": true,
           "isLeftFixed": true,
           "isRightFixed": true,
           "layout": "Custom",
-          "leftColumns": 16,
+          "leftColumns": 8,
           "leftPosition": "BOTTOM",
           "leftWidth": 263,
-          "rightColumns": 16,
+          "rightColumns": 8,
           "rightPosition": "NONE",
           "rightWidth": 0,
           "showLeftFoldIcon": false,
@@ -2106,9 +2257,7 @@
     "z": 0,
     "props": {
       "currentPageIndex": 0,
-      "pageSortedKey": [
-        "page1"
-      ]
+      "pageSortedKey": ["page1"]
     },
     "panelConfig": null
   },

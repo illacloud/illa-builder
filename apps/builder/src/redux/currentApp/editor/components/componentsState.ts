@@ -18,20 +18,13 @@ export interface ComponentNode {
   displayName: string
   parentNode: string | null
   showName: string
-  isDragging: boolean
-  isResizing: boolean
   childrenNode: ComponentNode[]
   type: string
   containerType: CONTAINER_TYPE
-  verticalResize: boolean
   h: number
   w: number
   minH: number
   minW: number
-  // default 0
-  unitW: number
-  // default 0
-  unitH: number
   // default -1
   x: number
   // default -1
@@ -159,13 +152,10 @@ export interface UpdateComponentReflowPayload {
   childNodes: ComponentNode[]
 }
 
-export interface CopyComponentPayload {
-  newComponentNode: ComponentNode
-}
-
 export interface UpdateTargetPageLayoutPayload {
   pageName: string
   layout: "default" | "presetA" | "presetB" | "presetC" | "presetD" | "presetE"
+  originPageNode?: ComponentNode
 }
 
 export interface UpdateTargetPagePropsPayload {
@@ -183,7 +173,6 @@ export interface DeleteTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  options: Record<string, any>
 }
 
 export interface AddTargetPageSectionPayload {
@@ -193,13 +182,18 @@ export interface AddTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  options: Record<string, any>
+  originSectionNode?: ComponentNode
 }
 
 export interface AddSectionViewPayload {
   parentNodeName: string
-  containerNode: ComponentNode
-  newSectionViewConfig: SectionViewShape
+  sectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+    | "bodySection"
+  originChildrenNode?: ComponentNode[]
 }
 
 export interface DeleteSectionViewPayload {

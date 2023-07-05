@@ -9,7 +9,7 @@ export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
   icon: <NumberInputWidgetIcon />,
   keywords: ["Number Input", "数字输入框"],
   sessionType: "INPUTS",
-  w: 12,
+  w: 6,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

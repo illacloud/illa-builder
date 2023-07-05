@@ -1,58 +1,57 @@
 import { memo } from "react"
 import { Rnd } from "react-rnd"
 import { TransformWidgetWrapperWithJson } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/renderWithJSON"
+import { UNIT_HEIGHT } from "../DotPanel/constant/canvas"
+import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquarePropsWithJSON } from "./interface"
 import { applyWrapperPendingStyle } from "./style"
 import { getRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 
-export const ScaleSquareWithJSON = memo<ScaleSquarePropsWithJSON>(
-  (props: ScaleSquarePropsWithJSON) => {
-    const { componentNode, unitW, unitH, blockColumns, displayNamePrefix } =
-      props
-    const { x, y, w, h } = getRealShapeAndPosition(
-      componentNode,
-      unitH,
-      unitW,
-      displayNamePrefix,
-    )
+const ScaleSquareWithJSON = (props: ScaleSquarePropsWithJSON) => {
+  const { componentNode, unitW, displayNamePrefix } = props
+  const { x, y, w, h } = getRealShapeAndPosition(
+    componentNode,
+    unitW,
+    displayNamePrefix,
+  )
 
-    return (
-      <Rnd
-        bounds="parent"
-        size={{
-          width: w,
-          height: h,
-        }}
-        position={{
-          x: x,
-          y: y,
-        }}
-        enableResizing={false}
-        disableDragging
-        minWidth={componentNode.minW * unitW}
-        minHeight={componentNode.minH * unitH}
+  return (
+    <Rnd
+      bounds="parent"
+      size={{
+        width: w,
+        height: h,
+      }}
+      position={{
+        x: x,
+        y: y,
+      }}
+      enableResizing={false}
+      disableDragging
+      minWidth={DEFAULT_MIN_COLUMN * unitW}
+      minHeight={componentNode.minH * UNIT_HEIGHT}
+    >
+      <div
+        className="wrapperPending"
+        css={applyWrapperPendingStyle(
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+        )}
       >
-        <div
-          className="wrapperPending"
-          css={applyWrapperPendingStyle(
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-          )}
-        >
-          <TransformWidgetWrapperWithJson
-            componentNode={componentNode}
-            blockColumns={blockColumns}
-          />
-        </div>
-      </Rnd>
-    )
-  },
-)
+        <TransformWidgetWrapperWithJson
+          componentNode={componentNode}
+          unitW={unitW}
+        />
+      </div>
+    </Rnd>
+  )
+}
 
 ScaleSquareWithJSON.displayName = "ScaleSquareWithJSON"
+export default memo(ScaleSquareWithJSON)

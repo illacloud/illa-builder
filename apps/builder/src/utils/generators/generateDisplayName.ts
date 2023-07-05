@@ -10,6 +10,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"
 export const UPDATE_DISPLAY_NAME = "updateDisplayName"
+export const GENERATE_OR_UPDATE_DISPLAYNAME = "generateOrUpdateDisplayName"
 
 export const PLACEHOLDER_DISPLAYNAME = ["document"]
 
@@ -72,15 +73,15 @@ export class DisplayNameGenerator {
     })
   }
 
-  static updateDisplayName(
-    displayName: string,
-    oldDisplayName?: string,
-  ): boolean | void {
-    if (this.isAlreadyGenerate(displayName)) {
-      return false
-    }
-    if (oldDisplayName !== undefined) {
-      this.removeDisplayName(oldDisplayName)
+  static addDisplayNames(displayNames: string[]) {
+    displayNames.forEach((displayName) => {
+      this.displayNameList.add(displayName)
+    })
+  }
+
+  static updateOrGenerateDisplayName(displayName: string) {
+    if (this.displayNameList.has(displayName)) {
+      return this.generateDisplayName(displayName)
     }
     this.displayNameList.add(displayName)
     Connection.getTextRoom("app", this.appId)?.send(
@@ -88,12 +89,16 @@ export class DisplayNameGenerator {
         Signal.BROADCAST_ONLY,
         Target.DISPLAY_NAME,
         true,
-        { type: UPDATE_DISPLAY_NAME, payload: [oldDisplayName, displayName] },
+        {
+          type: GENERATE_OR_UPDATE_DISPLAYNAME,
+          payload: displayName,
+        },
         this.teamID,
         this.uid,
         [],
       ),
     )
+    return displayName
   }
 
   static removeDisplayName(displayName: string) {

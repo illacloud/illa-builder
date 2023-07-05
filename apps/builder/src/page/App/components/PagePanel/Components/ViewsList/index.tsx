@@ -36,11 +36,14 @@ export const ViewList: FC<ViewListProps> = (props) => {
     <div css={viewsListWrapperStyle}>
       <ViewListHeader
         sectionName={sectionName}
-        sectionNodeExecutionResult={sectionNodeExecutionResult}
+        parentNodeDisplayName={sectionNodeExecutionResult.displayName}
       />
       <ListBody
-        sectionNodeExecutionResult={sectionNodeExecutionResult}
         sectionName={sectionName}
+        parentNodeDisplayName={sectionNodeExecutionResult.displayName}
+        currentViewIndex={sectionNodeExecutionResult.currentViewIndex}
+        viewSortedKey={sectionNodeExecutionResult.viewSortedKey}
+        sectionViewConfigs={sectionNodeExecutionResult.sectionViewConfigs}
       />
     </div>
   )

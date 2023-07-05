@@ -331,3 +331,4 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
 }
 
 WrappedTextarea.displayName = "WrappedTextarea"
+export default TextareaWidget

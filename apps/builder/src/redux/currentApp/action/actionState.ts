@@ -178,3 +178,8 @@ export type ActionContent =
   | AirtableAction<AirtableActionConfigType>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
+
+export interface RemoveActionItemReducerPayload {
+  actionID: string
+  displayName: string
+}

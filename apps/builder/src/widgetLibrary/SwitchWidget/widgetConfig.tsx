@@ -6,7 +6,7 @@ export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
   displayName: "switch",
   widgetName: i18n.t("widget.switch.name"),
   h: 3,
-  w: 10,
+  w: 5,
   type: "SWITCH_WIDGET",
   icon: <SwitchWidgetIcon />,
   keywords: ["Switch", "开关"],

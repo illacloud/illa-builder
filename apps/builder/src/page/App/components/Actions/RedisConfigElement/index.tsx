@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useState } from "react"
+import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -29,12 +29,14 @@ import {
   optionLabelStyle,
 } from "@/page/App/components/Actions/styles"
 import { ControlledElement } from "@/page/App/components/ControlledElement"
+import { ControlledType } from "@/page/App/components/ControlledElement/interface"
 import { TextLink } from "@/page/User/components/TextLink"
 import {
   RedisResource,
   RedisResourceInitial,
 } from "@/redux/resource/redisResource"
 import { Resource } from "@/redux/resource/resourceState"
+import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { isCloudVersion } from "@/utils/typeHelper"
@@ -63,6 +65,28 @@ export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
   const { track } = useContext(MixpanelTrackContext)
 
   const sslOpenWatch = watch("ssl", content.ssl ?? false)
+  const userNameOrPassword = useMemo(() => {
+    if (type === "redis") {
+      return {
+        title: t("editor.action.resource.db.label.username_password"),
+        controlledType: ["input", "password"] as ControlledType[],
+        name: ["databaseUsername", "databasePassword"],
+        defaultValue: [content.databaseUsername, content.databasePassword],
+        placeholders: [
+          t("editor.action.resource.db.placeholder.username"),
+          t("editor.action.resource.db.placeholder.password"),
+        ],
+      }
+    } else {
+      return {
+        title: t("editor.action.resource.db.label.password"),
+        controlledType: "password" as ControlledType,
+        name: "databasePassword",
+        defaultValue: content.databasePassword,
+        placeholders: [t("editor.action.resource.db.placeholder.password")],
+      }
+    }
+  }, [content.databasePassword, content.databaseUsername, t, type])
 
   const handleHostValidate = useCallback(
     (value: string) => {
@@ -86,8 +110,8 @@ export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
       {
         host: data.host.trim(),
         port: data.port.toString(),
-        databaseIndex: data.databaseIndex ?? 0,
-        databaseUsername: data.databaseUsername,
+        databaseIndex: DATABASE_INDEX,
+        databaseUsername: DEFAULT_NAME,
         databasePassword: data.databasePassword,
         ssl: sslOpenWatch,
       },
@@ -200,26 +224,25 @@ export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
             }
           />
         )}
+        {type === "redis" && (
+          <ControlledElement
+            title={t("editor.action.resource.db.label.database_index")}
+            defaultValue={content.databaseIndex}
+            name="databaseIndex"
+            placeholders={[
+              t("editor.action.resource.db.placeholder.database_index"),
+            ]}
+            controlledType="number"
+            control={control}
+          />
+        )}
         <ControlledElement
-          title={t("editor.action.resource.db.label.database_index")}
-          defaultValue={content.databaseIndex}
-          name="databaseIndex"
-          placeholders={[
-            t("editor.action.resource.db.placeholder.database_index"),
-          ]}
-          controlledType="number"
+          title={userNameOrPassword.title}
+          controlledType={userNameOrPassword.controlledType}
           control={control}
-        />
-        <ControlledElement
-          title={t("editor.action.resource.db.label.username_password")}
-          controlledType={["input", "password"]}
-          control={control}
-          defaultValue={[content.databaseUsername, content.databasePassword]}
-          name={["databaseUsername", "databasePassword"]}
-          placeholders={[
-            t("editor.action.resource.db.placeholder.username"),
-            t("editor.action.resource.db.placeholder.password"),
-          ]}
+          defaultValue={userNameOrPassword.defaultValue}
+          name={userNameOrPassword.name}
+          placeholders={userNameOrPassword.placeholders}
         />
         {isCloudVersion && (
           <>

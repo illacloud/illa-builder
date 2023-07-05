@@ -1,44 +1,67 @@
 import { cloneDeep, get, set } from "lodash"
 import { isObject } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
+import { buildInitDragInfo } from "@/page/App/components/ComponentPanel/componentListBuilder"
+import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
 import {
   CONTAINER_TYPE,
   ComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { WidgetCardInfo } from "@/widgetLibrary/interface"
-import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
+import { WidgetConfig } from "@/widgetLibrary/interface"
+import { WidgetType, widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
-export const generateComponentNode = (
-  widgetInfo: Partial<WidgetCardInfo>,
-  parentNodeDisplayName?: string,
+export const generateWidgetLayoutInfo = (
+  type: string,
+  baseDisplayName: string,
+  containerType: CONTAINER_TYPE = CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+): WidgetLayoutInfo | undefined => {
+  const realDisplayName = DisplayNameGenerator.generateDisplayName(
+    type,
+    baseDisplayName,
+  )
+  const currentComponentConfig = buildInitDragInfo(type)
+  if (currentComponentConfig === undefined) {
+    return undefined
+  }
+
+  return {
+    displayName: realDisplayName,
+    widgetType: type,
+    layoutInfo: {
+      w: currentComponentConfig.w,
+      h: currentComponentConfig.h,
+      x: currentComponentConfig.x ?? 0,
+      y: currentComponentConfig.y ?? 0,
+      z: 0,
+      minW: DEFAULT_MIN_COLUMN,
+      minH: currentComponentConfig.minH ?? 3,
+    },
+    containerType,
+    parentNode: "",
+    childrenNode: [] as string[],
+  }
+}
+
+export const generateComponentNodeByWidgetInfo = (
+  displayName: string,
+  widgetInfo: Omit<WidgetConfig, "icon" | "sessionType" | "keywords">,
+  parentNodeDisplayName: string,
   pathToChildren: string[] = [],
-): ComponentNode => {
+) => {
   let baseDSL: ComponentNode
-  if (
-    (!widgetInfo.type ||
-      typeof widgetInfo.type !== "string" ||
-      !WidgetTypeList.includes(widgetInfo.type)) &&
-    widgetInfo.type !== "CANVAS"
-  ) {
-    throw new Error("Widget is not registered")
-  }
-
-  if (widgetInfo.w == undefined || widgetInfo.h == undefined) {
-    throw new Error("dsl must have default width and height")
-  }
   let childrenNodeDSL: ComponentNode[] = []
   const {
     defaults,
-    w,
-    h,
-    minW = 4,
+    x = 0,
+    y = 0,
+    w = 0,
+    h = 0,
+    minW = DEFAULT_MIN_COLUMN,
     minH = 3,
     type,
-    displayName = "",
+    displayName: showName,
     containerType = CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
-    x = -1,
-    y = -1,
   } = widgetInfo
   let props: Record<string, any> | undefined = {}
   if (typeof defaults === "function") {
@@ -46,13 +69,8 @@ export const generateComponentNode = (
   } else {
     props = cloneDeep(defaults)
   }
-  const realDisplayName = DisplayNameGenerator.generateDisplayName(
-    type,
-    displayName,
-  )
-
   if (isObject(props) && Object.hasOwn(props, "formDataKey")) {
-    props.formDataKey = `{{${realDisplayName}.displayName}}`
+    props.formDataKey = `{{${displayName}.displayName}}`
   }
 
   if (
@@ -71,16 +89,17 @@ export const generateComponentNode = (
       }
     })
   }
+
   if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
     pathToChildren =
       containerType === CONTAINER_TYPE.EDITOR_SCALE_SQUARE
-        ? [...pathToChildren, realDisplayName]
+        ? [...pathToChildren, displayName]
         : pathToChildren
     widgetInfo.childrenNode.map((childNode) => {
       if (!childrenNodeDSL) childrenNodeDSL = []
-      const child = generateComponentNode(
+      const child = newGenerateChildrenComponentNode(
         childNode,
-        realDisplayName,
+        displayName,
         pathToChildren,
       )
       childrenNodeDSL.push(child)
@@ -92,19 +111,157 @@ export const generateComponentNode = (
     h,
     minW,
     minH,
-    verticalResize: false,
-    isDragging: false,
-    isResizing: false,
-    unitH: UNIT_HEIGHT,
-    unitW: 0,
     x,
     y,
     z: 0,
-    showName: displayName,
+    showName: showName,
     type,
-    displayName: realDisplayName,
+    displayName: displayName,
     containerType,
-    parentNode: parentNodeDisplayName || null,
+    parentNode: parentNodeDisplayName,
+    childrenNode: childrenNodeDSL,
+    props: props ?? {},
+  }
+  if (baseDSL.type === "LIST_WIDGET") {
+    baseDSL = transformListWidget(baseDSL)
+  }
+  return baseDSL
+}
+
+export const newGenerateChildrenComponentNode = (
+  widgetInfo: Omit<WidgetConfig, "icon" | "sessionType" | "keywords">,
+  parentNodeDisplayName: string,
+  pathToChildren: string[] = [],
+): ComponentNode => {
+  if (widgetInfo.type === "CANVAS") {
+    const realDisplayName = DisplayNameGenerator.generateDisplayName(
+      widgetInfo.type,
+      widgetInfo.displayName,
+    )
+    let childrenNodeDSL: ComponentNode[] = []
+    if (
+      Array.isArray(widgetInfo.childrenNode) &&
+      widgetInfo.childrenNode.length > 0
+    ) {
+      widgetInfo.childrenNode.map((childNode) => {
+        if (!childrenNodeDSL) childrenNodeDSL = []
+        const child = newGenerateChildrenComponentNode(
+          childNode,
+          realDisplayName,
+          pathToChildren,
+        )
+        childrenNodeDSL.push(child)
+      })
+    }
+    return {
+      w: widgetInfo.w,
+      h: widgetInfo.h,
+      minW: DEFAULT_MIN_COLUMN,
+      minH: widgetInfo.minH,
+      x: -1,
+      y: -1,
+      z: 0,
+      showName: widgetInfo.displayName,
+      type: widgetInfo.type,
+      containerType: widgetInfo.containerType,
+      parentNode: parentNodeDisplayName,
+      childrenNode: childrenNodeDSL,
+      displayName: realDisplayName,
+    } as ComponentNode
+  }
+  const layoutInfo = generateWidgetLayoutInfo(
+    widgetInfo.type,
+    widgetInfo.displayName,
+    widgetInfo.containerType,
+  )
+
+  return generateComponentNodeByWidgetInfo(
+    layoutInfo?.displayName!,
+    widgetInfo,
+    parentNodeDisplayName,
+    pathToChildren,
+  )
+}
+
+export const newGenerateComponentNode = (
+  x: number,
+  y: number,
+  defaultW: number,
+  unitW: number,
+  widgetType: WidgetType,
+  displayName: string,
+  parentNodeDisplayName: string,
+  pathToChildren: string[] = [],
+) => {
+  let baseDSL: ComponentNode
+  const baseConfig = widgetBuilder(widgetType).config
+  let childrenNodeDSL: ComponentNode[] = []
+  const {
+    defaults,
+    w,
+    h,
+    minW = DEFAULT_MIN_COLUMN,
+    minH = 3,
+    type,
+    displayName: showName,
+    containerType = CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+  } = baseConfig
+  let props: Record<string, any> | undefined = {}
+  if (typeof defaults === "function") {
+    props = cloneDeep(defaults())
+  } else {
+    props = cloneDeep(defaults)
+  }
+  if (isObject(props) && Object.hasOwn(props, "formDataKey")) {
+    props.formDataKey = `{{${displayName}.displayName}}`
+  }
+
+  if (
+    isObject(props) &&
+    Object.hasOwn(props, "events") &&
+    Array.isArray(props.events)
+  ) {
+    props.events = props.events.map((event) => {
+      if (event.actionType !== "widget") {
+        return event
+      } else {
+        return {
+          ...event,
+          widgetID: pathToChildren[pathToChildren.length - 1] || "unknown",
+        }
+      }
+    })
+  }
+
+  if (baseConfig.childrenNode && Array.isArray(baseConfig.childrenNode)) {
+    pathToChildren =
+      containerType === CONTAINER_TYPE.EDITOR_SCALE_SQUARE
+        ? [...pathToChildren, displayName]
+        : pathToChildren
+    baseConfig.childrenNode.map((childNode) => {
+      if (!childrenNodeDSL) childrenNodeDSL = []
+      const child = newGenerateChildrenComponentNode(
+        childNode,
+        displayName,
+        pathToChildren,
+      )
+      childrenNodeDSL.push(child)
+    })
+  }
+
+  baseDSL = {
+    w: type === "MODAL_WIDGET" ? w : defaultW,
+    h,
+    minW,
+    minH,
+    x,
+    y,
+    z: 0,
+    showName: showName,
+    type,
+    displayName: displayName,
+    containerType,
+    parentNode: parentNodeDisplayName,
     childrenNode: childrenNodeDSL,
     props: props ?? {},
   }

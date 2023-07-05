@@ -10,7 +10,7 @@ export const SWITCH_GROUP_WIDGET_CONFIG: WidgetConfig = {
   icon: <SwitchGroupWidgetIcon />,
   keywords: ["switchGroup", "开关组"],
   sessionType: "SELECT",
-  w: 20,
+  w: 10,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {

@@ -1288,6 +1288,9 @@
           "start_button_text": "Démarrer l'enregistrement",
           "stop_button_text": "Stop",
           "clear_button_text": "Réinitialiser"
+        },
+        "rich_text": {
+          "default_text": "texte"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "ID du message de réponse",
         "senderName": "Nom de l'expéditeur",
         "senderId": "ID de l'expéditeur",
-        "showName": "Afficher le nom"
+        "showName": "Afficher le nom",
+        "rich_text": {
+          "default_text": "Texte par défaut"
+        }
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "Définir la couleur des messages sur la gauche",
         "rightMessageColor": "Définir la couleur des messages à droite",
         "toolbar-replay": "Définit si le bouton de réponse doit être affiché lors de la sélection d'un message.",
-        "toolbar-delete": "Définit si un bouton de suppression doit être affiché lors de la sélection d'un message."
+        "toolbar-delete": "Définit si un bouton de suppression doit être affiché lors de la sélection d'un message.",
+        "tabs": {
+          "variant": "Pour définir la variante d'onglets"
+        }
       },
       "setter_option": {
         "fixed": "Fixe",
@@ -1989,6 +1998,10 @@
             "left-click": "Clic gauche",
             "right-click": "Clic droit"
           }
+        },
+        "tab": {
+          "line": "Lignes",
+          "card": "Cartes"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "Écrivez votre code ici. Utilisez JavaScript à l'intérieur de {{ }}"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "Le texte par défaut affiché lors de l'initialisation du composant"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "Progression du cercle"
     },
     "container": {
-      "empty": "Appuyez sur <keyPress>D</keyPress> ou <keyPress>K</keyPress> et faites glisser les composants ici",
+      "empty": "Faites glisser les composants ici",
       "key_duplicated": "La clé est dupliquée. Veuillez utiliser des clés uniques pour éviter les erreurs.",
       "name": "Conteneur",
       "value_duplicated": "La valeur est dupliquée. Veuillez utiliser des valeurs uniques pour éviter les erreurs."
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "Veuillez cliquer sur le cadre pour spécifier l'emplacement de coller ."
+    "paste_no_aimed": "Veuillez cliquer sur le cadre pour spécifier l'emplacement de coller .",
+    "message": {
+      "session": {
+        "error": "Les opérations impliquant plusieurs composants ne sont pas autorisées à travers les toiles."
+      },
+      "undo": {
+        "suc": "Annulation réussie",
+        "failed": "Échec de l'annulation",
+        "nothing": "Rien à annuler"
+      },
+      "redo": {
+        "suc": "Refaire avec succès",
+        "failed": "Refaire a échoué",
+        "nothing": "Rien à refaire"
+      }
+    }
   },
   "bookFrom": {
     "title": "Réservez une démo",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "Ajoutez un nombre illimité de spectateurs gratuitement",
         "publish_public_appli": "Publier des applications publiques",
         "ai_sql_generation": "Génération de l'IA SQL",
-        "audit_logs": "Journaux d'audit (à venir)",
+        "audit_logs": "Journaux d'audit",
         "learn_more": "En savoir plus",
         "upgrade": "Mise à jour",
         "pricing": "/fr/editor/mois, annuellement",
@@ -3470,9 +3503,63 @@
       "title": "Paiement réussi",
       "button": "Retour au Cloud ILLA"
     },
-    "redirect_to_stripe": "Redirection vers Stripe"
+    "redirect_to_stripe": "Redirection vers Stripe",
+    "appsumo": {
+      "update": "Mettre à jour le plan AppSumo"
+    }
   },
   "network": {
     "error": "Erreur de réseau, veuillez réessayer plus tard"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Déployé",
+      "undeploy": "Annuler le déploiement"
+    },
+    "desc": {
+      "no_description": "Pas de description"
+    },
+    "app_setting": {
+      "app_setting": "Réglage de l'application",
+      "app_name": "Nom de l'application",
+      "description": "Libellé",
+      "save": "Enregistrer",
+      "placeholder": {
+        "description": "Entrez la description de l'application",
+        "app_name": "Entrez un nom pour l'application"
+      }
+    },
+    "access": {
+      "public": "Publique",
+      "private": "Privé"
+    },
+    "message": {
+      "update_failed": "Échec de la mise à jour",
+      "update_suc": "Mis à jour avec succès"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Application privée",
+      "public_app": "Application publique"
+    },
+    "desc": {
+      "private_app": "Seuls les membres de l'équipe peuvent accéder à l'application déployée",
+      "public_app": "N'importe qui avec le lien de l'application peut accéder à l'application déployée"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Inviter à modifier",
+      "invite_to_use": "Inviter à utiliser"
+    },
+    "desc": {
+      "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. "
+    },
+    "tips": {
+      "admin": "Le membre qui peut gérer tous les membres sauf le propriétaire, modifier les APP et voir les APPs",
+      "editor": "Le membre qui peut gérer les membres de l'éditeur, éditer les APP et afficher les APP",
+      "viewer": "Le membre qui peut gérer les membres de la visionneuse et voir les APP"
+    }
   }
 }

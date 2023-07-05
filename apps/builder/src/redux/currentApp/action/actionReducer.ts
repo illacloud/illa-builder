@@ -3,13 +3,15 @@ import { cloneDeep, set } from "lodash"
 import {
   ActionContent,
   ActionItem,
+  RemoveActionItemReducerPayload,
   UpdateActionDisplayNamePayload,
   UpdateActionSlicePropsPayload,
   actionInitialState,
 } from "@/redux/currentApp/action/actionState"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { isObject } from "@/utils/typeHelper"
 
-export const updateActionListReducer: CaseReducer<
+export const initActionListReducer: CaseReducer<
   ActionItem<ActionContent>[],
   PayloadAction<ActionItem<ActionContent>[]>
 > = (_, action) => {
@@ -45,7 +47,9 @@ export const updateActionDisplayNameReducer: CaseReducer<
     return item.actionId === action.payload.actionID
   })
   if (index != -1) {
+    DisplayNameGenerator.removeDisplayName(state[index].displayName)
     state[index].displayName = action.payload.newDisplayName
+    DisplayNameGenerator.addDisplayNames([action.payload.newDisplayName])
   }
   return state
 }
@@ -74,11 +78,12 @@ export const batchUpdateMultiActionSlicePropsReducer: CaseReducer<
 
 export const removeActionItemReducer: CaseReducer<
   ActionItem<ActionContent>[],
-  PayloadAction<string>
+  PayloadAction<RemoveActionItemReducerPayload>
 > = (state, action) => {
   state.splice(
     state.findIndex(
-      (item: ActionItem<ActionContent>) => item.displayName === action.payload,
+      (item: ActionItem<ActionContent>) =>
+        item.actionId === action.payload.actionID,
     ),
     1,
   )

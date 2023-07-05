@@ -1288,6 +1288,9 @@
           "start_button_text": "録音を開始",
           "stop_button_text": "中止",
           "clear_button_text": "クリア"
+        },
+        "rich_text": {
+          "default_text": "テキスト"
         }
       },
       "setter_group": {
@@ -1681,7 +1684,10 @@
         "replayMessageId": "返信メッセージID",
         "senderName": "送信者名",
         "senderId": "送信者ID",
-        "showName": "名前を表示"
+        "showName": "名前を表示",
+        "rich_text": {
+          "default_text": "既定のテキスト"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1909,7 +1915,10 @@
         "leftMessageColor": "左側のメッセージの色を設定します",
         "rightMessageColor": "右側のメッセージの色を設定します",
         "toolbar-replay": "メッセージを選択したときに返信ボタンを表示するかどうかを設定します。",
-        "toolbar-delete": "メッセージを選択したときに削除ボタンを表示するかどうかを設定します。"
+        "toolbar-delete": "メッセージを選択したときに削除ボタンを表示するかどうかを設定します。",
+        "tabs": {
+          "variant": "タブのバリエーションを設定する"
+        }
       },
       "setter_option": {
         "fixed": "固定高さ",
@@ -1989,6 +1998,10 @@
             "left-click": "左クリック",
             "right-click": "右クリック(&R)"
           }
+        },
+        "tab": {
+          "line": "線",
+          "card": "カード"
         }
       },
       "setter_placeholder": {
@@ -2045,6 +2058,11 @@
       "setter_description": {
         "code": {
           "write_code": "ここにコードを書きます。 {{ }} 内で JavaScript を使用する"
+        }
+      },
+      "setter_hover": {
+        "rich_text": {
+          "default_text": "コンポーネントが初期化されたときに表示される既定のテキスト"
         }
       }
     },
@@ -2492,7 +2510,7 @@
       "name": "円形の進行状況バー"
     },
     "container": {
-      "empty": "<keyPress> D </keyPress>または<keyPress> K </keyPress>を押したまま、コンポーネントをコンテナにドラッグします",
+      "empty": "コンポーネントをここにドラッグ",
       "key_duplicated": "キー値が重複しています。エラーを避けるために一意の値を使用してください。",
       "name": "容器",
       "value_duplicated": "値が重複しています。エラーを避けるために一意の値を使用してください。"
@@ -3081,7 +3099,22 @@
     }
   },
   "frame": {
-    "paste_no_aimed": "フレームをクリックして貼り付け場所を指定してください。"
+    "paste_no_aimed": "フレームをクリックして貼り付け場所を指定してください。",
+    "message": {
+      "session": {
+        "error": "複数のコンポーネントを含む操作はキャンバス全体では許可されません。"
+      },
+      "undo": {
+        "suc": "正常に元に戻す",
+        "failed": "元に戻すに失敗しました",
+        "nothing": "元に戻すものがありません"
+      },
+      "redo": {
+        "suc": "やり直しに成功しました",
+        "failed": "やり直しに失敗しました",
+        "nothing": "やり直すものがありません"
+      }
+    }
   },
   "bookFrom": {
     "title": "デモを予約する",
@@ -3402,7 +3435,7 @@
         "add_unlimited_viewer": "無制限の視聴者メンバーを無料で追加",
         "publish_public_appli": "公開アプリケーションを公開",
         "ai_sql_generation": "AI SQLの生成",
-        "audit_logs": "監査ログ（近日公開予定）",
+        "audit_logs": "監査ログ",
         "learn_more": "もっと詳しく",
         "upgrade": "アップグレードする",
         "pricing": "/editor/month, year",
@@ -3470,9 +3503,63 @@
       "title": "支払いが完了しました",
       "button": "ILLAクラウドに戻る"
     },
-    "redirect_to_stripe": "Stripeにリダイレクト中"
+    "redirect_to_stripe": "Stripeにリダイレクト中",
+    "appsumo": {
+      "update": "AppSumo プランを更新"
+    }
   },
   "network": {
     "error": "ネットワークエラーが発生しました。後でもう一度お試しください。"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "配備済み",
+      "undeploy": "デプロイを解除"
+    },
+    "desc": {
+      "no_description": "説明がありません"
+    },
+    "app_setting": {
+      "app_setting": "アプリの設定",
+      "app_name": "アプリ名",
+      "description": "説明",
+      "save": "保存",
+      "placeholder": {
+        "description": "アプリの説明を入力してください",
+        "app_name": "アプリの名前を入力してください"
+      }
+    },
+    "access": {
+      "public": "公開",
+      "private": "非公開"
+    },
+    "message": {
+      "update_failed": "更新に失敗しました",
+      "update_suc": "正常に更新されました"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "プライベートアプリ",
+      "public_app": "公開アプリ"
+    },
+    "desc": {
+      "private_app": "チームメンバーのみがデプロイされたアプリにアクセスできます",
+      "public_app": "アプリのリンクを持っている誰でも、デプロイされたアプリにアクセスできます"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "編集に招待",
+      "invite_to_use": "招待する"
+    },
+    "desc": {
+      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
+    },
+    "tips": {
+      "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
+      "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
+      "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+    }
   }
 }

@@ -21,7 +21,6 @@ export interface ConfigState {
   cachedAction: ActionItem<ActionContent> | null
   expandedKeys: string[]
   mode: IllaMode
-  freezeCanvas: boolean
   canvasHeight: number
   canvasWidth: number
   isOnline: boolean
@@ -41,7 +40,6 @@ export const ConfigInitialState: ConfigState = {
   cachedAction: null,
   showDot: false,
   expandedKeys: [],
-  freezeCanvas: false,
   canvasHeight: 1080,
   canvasWidth: 1920,
   isOnline: true,
