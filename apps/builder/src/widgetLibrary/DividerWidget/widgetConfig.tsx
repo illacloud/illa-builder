@@ -12,6 +12,7 @@ export const DIVIDER_WIDGET_CONFIG: WidgetConfig = {
   w: 8,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     colorScheme: "grayBlue",
     fs: "14px",

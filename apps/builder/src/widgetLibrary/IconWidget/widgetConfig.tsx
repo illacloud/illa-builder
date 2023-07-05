@@ -11,6 +11,7 @@ export const ICON_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 1,
   h: 4,
+  version: 0,
   defaults: {
     iconName: "BsHandThumbsUp",
     colorScheme: "grayBlue",

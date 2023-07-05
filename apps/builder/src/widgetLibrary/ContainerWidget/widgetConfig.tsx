@@ -19,6 +19,7 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "CONTAINER",
   w: 10,
   h: 18,
+  version: 0,
   childrenNode: [
     BasicContainerConfig,
     BasicContainerConfig,

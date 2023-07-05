@@ -33,6 +33,7 @@ export const CAROUSEL_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   h: 30,
   w: 20,
+  version: 0,
   defaults: {
     configureMode: "static",
     radius: "0px",

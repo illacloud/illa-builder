@@ -12,6 +12,7 @@ export const MAP_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 20,
   h: 50,
+  version: 0,
   defaults: {
     latitudeFieldName: "lat",
     longitudeFieldName: "lng",

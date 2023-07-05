@@ -9,7 +9,7 @@ import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { DeleteDashboardAppResponse } from "@/page/Dashboard/components/DashboardItemMenu/interface"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import { getAppComponents } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
@@ -111,7 +111,7 @@ export const fetchAppList = (signal: AbortSignal) => {
 
 interface IAppCreateRequestData {
   appName: string
-  initScheme: ComponentNode[]
+  initScheme: ComponentNode
 }
 export const fetchCreateApp = (data: IAppCreateRequestData) => {
   return builderRequest<DashboardApp>(
@@ -231,10 +231,7 @@ export const updateWaterMarkConfig = async (
   )
 }
 
-export const createApp = async (
-  appName: string,
-  initScheme: ComponentNode[],
-) => {
+export const createApp = async (appName: string, initScheme: ComponentNode) => {
   const requestData = { appName, initScheme }
   const response = await fetchCreateApp(requestData)
   store.dispatch(
@@ -247,9 +244,9 @@ export const createApp = async (
 
 export const forkCurrentApp = async (appName: string) => {
   const actions = getActionList(store.getState())
-  const components = getAppComponents(store.getState()) ?? []
+  const rootComponentNode = getCanvas(store.getState()) as ComponentNode
   // fork app
-  const appId = await createApp(appName, components)
+  const appId = await createApp(appName, rootComponentNode)
   // fork actions
   await Promise.all(
     actions.map((data) => {

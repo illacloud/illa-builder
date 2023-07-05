@@ -12,6 +12,7 @@ export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "SELECT",
   w: 10,
   h: 5,
+  version: 0,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     optionConfigureMode: "static",

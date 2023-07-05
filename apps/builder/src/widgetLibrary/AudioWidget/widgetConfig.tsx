@@ -11,6 +11,7 @@ export const AUDIO_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 16,
   h: 7,
+  version: 0,
   defaults: {
     url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     hidden: false,
