@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Restaurado com sucesso",
-        "failed": "Desfazer falhou"
+        "failed": "Desfazer falhou",
+        "nothing": "Nada para desfazer"
       },
       "redo": {
         "suc": "Refazer com sucesso",
-        "failed": "Refazer falhou"
+        "failed": "Refazer falhou",
+        "nothing": "Nada para refazer"
       }
     }
   },
@@ -3521,11 +3523,19 @@
       "app_setting": "Configuração do aplicativo",
       "app_name": "Nome do aplicativo",
       "description": "Descrição:",
-      "save": "Guardar"
+      "save": "Guardar",
+      "placeholder": {
+        "description": "Digite a descrição para o aplicativo",
+        "app_name": "Digite um nome para o aplicativo"
+      }
     },
     "access": {
       "public": "Público",
       "private": "Privado"
+    },
+    "message": {
+      "update_failed": "Falha ao atualizar",
+      "update_suc": "Atualizado com Sucesso"
     }
   },
   "new_deploy": {
@@ -3545,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "O app não foi implantado. O acesso público e o acesso ao visualizador podem encontrar erros. "
+    },
+    "tips": {
+      "admin": "O membro que pode gerenciar todos os membros, exceto o proprietário, edite APP e veja os APPs",
+      "editor": "O membro que pode gerenciar membros do editor e visualizador, editar APP e ver APPs",
+      "viewer": "O membro que pode gerenciar o visualizador e visualizar os APPs"
     }
   }
 }

@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Cofnij pomyślne",
-        "failed": "Cofnięcie nie powiodło się"
+        "failed": "Cofnięcie nie powiodło się",
+        "nothing": "Nic do cofnięcia"
       },
       "redo": {
         "suc": "Powtórz pomyślnie",
-        "failed": "Powtórz nie powiodło się"
+        "failed": "Powtórz nie powiodło się",
+        "nothing": "Nic do powtórki"
       }
     }
   },
@@ -3521,11 +3523,19 @@
       "app_setting": "Ustawienia aplikacji",
       "app_name": "Nazwa aplikacji",
       "description": "Opis",
-      "save": "Zapisz"
+      "save": "Zapisz",
+      "placeholder": {
+        "description": "Wprowadź opis aplikacji",
+        "app_name": "Wprowadź nazwę aplikacji"
+      }
     },
     "access": {
       "public": "Publiczne",
       "private": "Prywatny"
+    },
+    "message": {
+      "update_failed": "Aktualizacja nie powiodła się",
+      "update_suc": "Pomyślnie zaktualizowano"
     }
   },
   "new_deploy": {
@@ -3545,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "Aplikacja nie została wdrożona. Publiczny dostęp i dostęp do przeglądarki mogą napotkać błędy. "
+    },
+    "tips": {
+      "admin": "Użytkownik, który może zarządzać wszystkimi użytkownikami z wyjątkiem właściciela, edytować APPs i przeglądać APP",
+      "editor": "Użytkownik, który może zarządzać edytorami i użytkownikami przeglądarek, edytować aplikacje i przeglądać aplikacje",
+      "viewer": "Użytkownik, który może zarządzać użytkownikami przeglądarki i przeglądać APP"
     }
   }
 }

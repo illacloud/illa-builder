@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Deshacer con éxito",
-        "failed": "Deshacer fallido"
+        "failed": "Deshacer fallido",
+        "nothing": "Nada que deshacer"
       },
       "redo": {
         "suc": "Rehacer correctamente",
-        "failed": "Rehacer fallido"
+        "failed": "Rehacer fallido",
+        "nothing": "Nada que rehacer"
       }
     }
   },
@@ -3521,11 +3523,19 @@
       "app_setting": "Ajustes de app",
       "app_name": "Nombre de aplicación",
       "description": "Descripción",
-      "save": "Guardar"
+      "save": "Guardar",
+      "placeholder": {
+        "description": "Introduzca la descripción de la aplicación",
+        "app_name": "Introduzca un nombre para la aplicación"
+      }
     },
     "access": {
       "public": "Público",
       "private": "Privado"
+    },
+    "message": {
+      "update_failed": "Error al actualizar",
+      "update_suc": "Actualizado correctamente"
     }
   },
   "new_deploy": {
@@ -3545,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "La aplicación no ha sido desplegada. El acceso público y el acceso al visor pueden encontrarse errores. "
+    },
+    "tips": {
+      "admin": "El miembro que puede administrar a todos los miembros excepto al propietario, editar APPs, y ver APPs",
+      "editor": "El miembro que puede administrar el editor y los espectadores, editar APPs, y ver APPs",
+      "viewer": "El miembro que puede administrar a los espectadores y ver APP)"
     }
   }
 }

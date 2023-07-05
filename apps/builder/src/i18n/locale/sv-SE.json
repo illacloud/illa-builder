@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Ångra lyckad",
-        "failed": "Ångra misslyckades"
+        "failed": "Ångra misslyckades",
+        "nothing": "Inget att ångra"
       },
       "redo": {
         "suc": "Upprepade lyckades",
-        "failed": "Upprepa misslyckades"
+        "failed": "Upprepa misslyckades",
+        "nothing": "Inget att göra om"
       }
     }
   },
@@ -3521,11 +3523,19 @@
       "app_setting": "Appens inställning",
       "app_name": "Appens namn",
       "description": "Beskrivning",
-      "save": "Spara"
+      "save": "Spara",
+      "placeholder": {
+        "description": "Ange beskrivning för appen",
+        "app_name": "Ange ett namn för appen"
+      }
     },
     "access": {
       "public": "Publik",
       "private": "Privat"
+    },
+    "message": {
+      "update_failed": "Det gick inte att uppdatera",
+      "update_suc": "Uppdaterades framgångsrikt"
     }
   },
   "new_deploy": {
@@ -3545,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. "
+    },
+    "tips": {
+      "admin": "Medlemmen som kan hantera alla medlemmar utom ägare, redigera APP och visa APP",
+      "editor": "Medlemmen som kan hantera redigerings- och tittarmedlemmar, redigera APP:er och visa APP:er",
+      "viewer": "Medlemmen som kan hantera tittarmedlemmar och visa APP:er"
     }
   }
 }

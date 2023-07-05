@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Annulation réussie",
-        "failed": "Échec de l'annulation"
+        "failed": "Échec de l'annulation",
+        "nothing": "Rien à annuler"
       },
       "redo": {
         "suc": "Refaire avec succès",
-        "failed": "Refaire a échoué"
+        "failed": "Refaire a échoué",
+        "nothing": "Rien à refaire"
       }
     }
   },
@@ -3521,11 +3523,19 @@
       "app_setting": "Réglage de l'application",
       "app_name": "Nom de l'application",
       "description": "Libellé",
-      "save": "Enregistrer"
+      "save": "Enregistrer",
+      "placeholder": {
+        "description": "Entrez la description de l'application",
+        "app_name": "Entrez un nom pour l'application"
+      }
     },
     "access": {
       "public": "Publique",
       "private": "Privé"
+    },
+    "message": {
+      "update_failed": "Échec de la mise à jour",
+      "update_suc": "Mis à jour avec succès"
     }
   },
   "new_deploy": {
@@ -3545,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. "
+    },
+    "tips": {
+      "admin": "Le membre qui peut gérer tous les membres sauf le propriétaire, modifier les APP et voir les APPs",
+      "editor": "Le membre qui peut gérer les membres de l'éditeur, éditer les APP et afficher les APP",
+      "viewer": "Le membre qui peut gérer les membres de la visionneuse et voir les APP"
     }
   }
 }
