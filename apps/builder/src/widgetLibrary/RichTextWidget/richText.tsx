@@ -1,5 +1,4 @@
 import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
@@ -36,9 +35,6 @@ export const RichTextWidget: FC<RichTextWidgetProps> = (props) => {
     displayName,
     tooltipText,
     dynamicHeight,
-    dynamicMinHeight,
-    dynamicMaxHeight,
-    h,
     updateComponentHeight,
     deleteComponentRuntimeProps,
     updateComponentRuntimeProps,
@@ -49,22 +45,9 @@ export const RichTextWidget: FC<RichTextWidgetProps> = (props) => {
   const editorRef = useRef<ICustomRef>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const dynamicOptions = {
-    dynamicMinHeight,
-    dynamicMaxHeight,
-  }
-
   const enableAutoHeight = useMemo(() => {
-    switch (dynamicHeight) {
-      case "auto":
-        return true
-      case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
-      case "fixed":
-      default:
-        return false
-    }
-  }, [dynamicHeight, dynamicMinHeight, h])
+    return dynamicHeight !== "fixed"
+  }, [dynamicHeight])
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -119,7 +102,6 @@ export const RichTextWidget: FC<RichTextWidgetProps> = (props) => {
     <AutoHeightContainer
       updateComponentHeight={updateComponentHeight}
       enable={enableAutoHeight}
-      dynamicOptions={dynamicOptions}
     >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div ref={containerRef} style={{ height: "100%", width: "100%" }}>
