@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Somente os membros da equipe podem acessar o app implementado",
       "public_app": "Qualquer um com o link do app pode acessar o app implantado"
+    },
+    "button": {
+      "public": "Público"
     }
   },
   "new_share": {
