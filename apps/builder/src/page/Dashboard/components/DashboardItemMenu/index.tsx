@@ -16,6 +16,7 @@ import { ERROR_FLAG } from "@/api/errorFlag"
 import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
 import { MemberListContext } from "@/illa-public-component/MemberList/context/MemberListContext"
 import {
+  REDIRECT_PAGE_TYPE,
   SubscribeInfo,
   TotalTeamLicense,
 } from "@/illa-public-component/MemberList/interface"
@@ -96,8 +97,12 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     teamInfo?.permission?.allowViewerManageTeamMember,
   )
 
-  const handleInviteByEmail = (email: string, userRole: USER_ROLE) => {
-    return shareAppByEmail(email, userRole, appId).then((res) => {
+  const handleInviteByEmail = (
+    email: string,
+    userRole: USER_ROLE,
+    redirectPage?: REDIRECT_PAGE_TYPE,
+  ) => {
+    return shareAppByEmail(email, userRole, appId, redirectPage).then((res) => {
       updateMembers()
       return res
     })
@@ -497,6 +502,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             isCloudVersion={isCloudVersion}
             appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
             isAppPublic={app?.config?.public}
+            inviteToUseAppStatus={app?.deployed ? "deployed" : "unDeployed"}
             fetchInviteLink={fetchShareLink}
             renewInviteLink={renewShareLink}
             configInviteLink={setInviteLinkEnabled}

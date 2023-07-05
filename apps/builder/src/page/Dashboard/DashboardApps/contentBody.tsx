@@ -1,19 +1,23 @@
 import { FC, useEffect, useMemo } from "react"
-import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue, useNavigate, useParams } from "react-router-dom"
-import { Empty, List, ListItem, ListItemMeta } from "@illa-design/react"
+import useMeasure from "react-use-measure"
+import { Empty, List } from "@illa-design/react"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { AppCard } from "@/page/Dashboard/DashboardApps/AppCard"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
-import { DashboardItemMenu } from "../components/DashboardItemMenu"
-import { hoverStyle } from "./style"
+import {
+  CARD_GAP_SIZE,
+  CARD_WIDTH,
+  fullWidthStyle,
+  listContainerStyle,
+} from "./style"
 
 interface AppsContentBodyProps {
   canEditApp: boolean
@@ -25,11 +29,21 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
     data: DashboardApp[]
   }
   let navigate = useNavigate()
-  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { teamIdentifier } = useParams()
 
   const appListInRedux: DashboardApp[] = useSelector(getDashboardApps)
+
+  const [ref, { width }] = useMeasure({
+    polyfill: ResizeObserver,
+  })
+
+  const actualCardsPerRow = useMemo(() => {
+    const cardsPerRow = Math.floor(width / (CARD_WIDTH + CARD_GAP_SIZE))
+    const cardAreaWidth = width - (cardsPerRow - 1) * CARD_GAP_SIZE
+
+    return Math.floor(cardAreaWidth / CARD_WIDTH)
+  }, [width])
 
   useEffect(() => {
     if (Array.isArray(appsList)) {
@@ -45,60 +59,60 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
   }, [canEditApp, appListInRedux])
 
   return (
-    <>
+    <div css={fullWidthStyle} ref={ref}>
       {finalAppsList.length !== 0 && (
         <List
+          w={"100%"}
           h={"100%"}
           ov={"auto"}
           data={finalAppsList}
           bordered={false}
           hoverable={true}
-          render={(item) => {
+          renderRaw
+          render={(_item, index) => {
+            const cardsInThisRow = finalAppsList.slice(
+              index * actualCardsPerRow,
+              (index + 1) * actualCardsPerRow,
+            )
+            if (cardsInThisRow.length === 0) return <></>
+
             return (
-              <ListItem
-                css={hoverStyle}
-                data-element="listItem"
-                onMouseEnter={(e) => {
-                  if (
-                    (e.target as HTMLDivElement).dataset?.element !== "listItem"
-                  )
-                    return
-                  canEditApp &&
-                    track(
-                      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                      { element: "app_edit", parameter5: item.appId },
-                    )
-                  item.mainlineVersion !== 0 &&
-                    track(
-                      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                      { element: "app_launch", parameter5: item.appId },
-                    )
-                }}
-                extra={
-                  <DashboardItemMenu
-                    appId={item.appId}
+              <div css={listContainerStyle}>
+                {cardsInThisRow?.map((item) => (
+                  <AppCard
+                    key={item.appId}
+                    data-element="listItem"
+                    appInfo={item}
                     canEditApp={canEditApp}
-                    isDeploy={item.mainlineVersion !== 0}
+                    onClick={() => {
+                      if (canEditApp) {
+                        navigate(`/${teamIdentifier}/app/${item.appId}`)
+                      } else if (item.mainlineVersion !== 0) {
+                        navigate(`/${teamIdentifier}/deploy/app/${item.appId}`)
+                      }
+                    }}
+                    onMouseEnter={(e) => {
+                      if (
+                        (e.target as HTMLDivElement).dataset?.element !==
+                        "listItem"
+                      )
+                        return
+                      canEditApp &&
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                          { element: "app_edit", parameter5: item.appId },
+                        )
+                      item.mainlineVersion !== 0 &&
+                        track(
+                          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                          { element: "app_launch", parameter5: item.appId },
+                        )
+                    }}
                   />
-                }
-              >
-                <ListItemMeta
-                  onClick={() => {
-                    if (canEditApp) {
-                      navigate(`/${teamIdentifier}/app/${item.appId}`)
-                    } else if (item.mainlineVersion !== 0) {
-                      navigate(`/${teamIdentifier}/deploy/app/${item.appId}`)
-                    }
-                  }}
-                  title={item.appName}
-                  description={t("dashboard.app.edited_time", {
-                    time: fromNow(item.updatedAt),
-                    user: item.appActivity.modifier,
-                  })}
-                />
-              </ListItem>
+                ))}
+              </div>
             )
           }}
           renderKey={(item) => {
@@ -107,6 +121,6 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
         />
       )}
       {finalAppsList.length == 0 && <Empty paddingVertical="120px" />}
-    </>
+    </div>
   )
 }

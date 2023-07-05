@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Kun teammedlemmer kan tilgå den implementerede app",
       "public_app": "Alle med app-linket kan få adgang til den implementerede app"
+    },
+    "button": {
+      "public": "Offentlig"
     }
   },
   "new_share": {

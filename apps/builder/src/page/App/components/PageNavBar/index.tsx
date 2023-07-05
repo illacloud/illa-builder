@@ -15,7 +15,6 @@ import {
   BugIcon,
   Button,
   ButtonGroup,
-  CaretRightIcon,
   DropList,
   DropListItem,
   Dropdown,
@@ -37,9 +36,11 @@ import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
+import { DeployButtonGroup } from "@/page/App/components/PageNavBar/DeloyButtonGroup"
+import { ShareAppButton } from "@/page/App/components/PageNavBar/ShareAppButton"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
-import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
+import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
 import {
   getIsILLAEditMode,
   getIsILLAGuideMode,
@@ -53,6 +54,7 @@ import {
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   fetchDeployApp,
@@ -61,7 +63,7 @@ import {
 } from "@/services/apps"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { isCloudVersion } from "@/utils/typeHelper"
+import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import {
   descriptionStyle,
   informationStyle,
@@ -94,9 +96,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const teamInfo = useSelector(getCurrentTeamInfo)
   const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
-  const [duplicateVisible, setDuplicateVisible] = useState(false)
   const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
+  const [duplicateLoading, setDuplicateLoading] = useState(false)
 
   const previewButtonText = isEditMode
     ? t("preview.button_text")
@@ -124,9 +126,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }, [debugMessageNumber])
 
   const deployApp = useCallback(
-    (appId: string) => {
+    (appId: string, isPublic: boolean) => {
       setDeployLoading(true)
-      fetchDeployApp(appId)
+      fetchDeployApp(appId, isPublic)
         .then(
           () => {
             window.open(
@@ -161,7 +163,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       setDeployLoading(true)
       const appId = await forkCurrentApp(appName)
       setForkModalVisible(false)
-      deployApp(appId)
+      deployApp(appId, false)
     },
     [deployApp, message, t],
   )
@@ -173,9 +175,20 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "deploy",
       })
-      deployApp(appInfo.appId)
+      deployApp(appInfo.appId, appInfo.config.public)
     }
-  }, [appInfo.appId, isGuideMode, deployApp])
+  }, [appInfo.appId, appInfo.config.public, isGuideMode, deployApp])
+
+  const handleClickDeployMenu = useCallback(
+    (key: string | number) => {
+      if (key === "public" && !canUseBillingFeature) {
+        handleUpgradeModalVisible(true, "upgrade")
+      } else {
+        deployApp(appInfo.appId, key === "public")
+      }
+    },
+    [appInfo.appId, deployApp, canUseBillingFeature, handleUpgradeModalVisible],
+  )
 
   const handlePreviewButtonClick = useCallback(() => {
     if (isEditMode) {
@@ -190,6 +203,40 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       dispatch(configActions.updateIllaMode("edit"))
     }
   }, [dispatch, isEditMode])
+
+  const handleDuplicateApp = () => {
+    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+      element: "app_duplicate",
+      parameter5: appId,
+    })
+    if (duplicateLoading) return
+    setDuplicateLoading(true)
+    duplicateApp(appInfo.appId, appInfo.appName)
+      .then(
+        (response) => {
+          dispatch(
+            dashboardAppActions.addDashboardAppReducer({
+              app: response.data,
+            }),
+          )
+          navigate(`/${teamIdentifier}/app/${response.data.appId}`)
+        },
+        (failure) => {
+          if (isILLAAPiError(failure)) {
+            message.error({
+              content: t("dashboard.app.duplicate_fail"),
+            })
+          } else {
+            message.error({
+              content: t("network_error"),
+            })
+          }
+        },
+      )
+      .finally(() => {
+        setDuplicateLoading(false)
+      })
+  }
 
   const handleWaterMarkChange = useCallback(
     async (value: boolean, event: MouseEvent) => {
@@ -227,20 +274,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     navigate(`/${teamIdentifier}/dashboard/apps`)
   }, [navigate, teamIdentifier])
 
-  useEffect(() => {
-    duplicateVisible &&
-      trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
-        element: "duplicate_modal",
-        parameter5: appId,
-      })
-  }, [appId, duplicateVisible])
-
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
         <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
         <div css={informationStyle}>
-          <AppName appName={appInfo.appName} />
+          <AppName appInfo={appInfo} />
           {isOnline ? (
             <div css={descriptionStyle}>
               {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
@@ -258,7 +297,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         <AppSizeButtonGroup />
       </div>
       <div css={rightContentStyle}>
-        {!isGuideMode && <CollaboratorsList />}
+        {!isGuideMode && (
+          <>
+            <CollaboratorsList />
+            <ShareAppButton
+              appInfo={appInfo}
+              canUseBillingFeature={canUseBillingFeature}
+            />
+          </>
+        )}
         {isEditMode ? (
           <div>
             {!isGuideMode && (
@@ -280,13 +327,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                       key="duplicate"
                       value="duplicate"
                       title={t("duplicate")}
-                      onClick={() => {
-                        setDuplicateVisible(true)
-                        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-                          element: "app_duplicate",
-                          parameter5: appId,
-                        })
-                      }}
+                      onClick={handleDuplicateApp}
                     />
                     {isCloudVersion && (
                       <DropListItem
@@ -332,17 +373,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Badge>
               {PreviewButton}
-              <Button
+              <DeployButtonGroup
                 loading={deployLoading}
-                colorScheme="techPurple"
-                size="medium"
-                leftIcon={<CaretRightIcon />}
-                onClick={handleClickDeploy}
-              >
-                {isGuideMode
-                  ? t("editor.tutorial.panel.tutorial.modal.fork")
-                  : t("deploy")}
-              </Button>
+                isPublic={appInfo?.config?.public}
+                isGuideMode={isGuideMode}
+                canUseBillingFeature={canUseBillingFeature}
+                onClickDeploy={handleClickDeploy}
+                onClickDeployMenu={handleClickDeployMenu}
+              />
             </ButtonGroup>
           </div>
         ) : (
@@ -355,15 +393,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         onOk={forkGuideAppAndDeploy}
         onVisibleChange={setForkModalVisible}
       />
-      {appId ? (
-        <DuplicateModal
-          appId={appId}
-          visible={duplicateVisible}
-          onVisibleChange={(visible) => {
-            setDuplicateVisible(visible)
-          }}
-        />
-      ) : null}
     </div>
   )
 }

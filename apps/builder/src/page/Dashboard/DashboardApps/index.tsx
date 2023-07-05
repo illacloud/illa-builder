@@ -9,7 +9,8 @@ import {
   useLoaderData,
   useParams,
 } from "react-router-dom"
-import { Button, Divider, useMessage } from "@illa-design/react"
+import { Button, useMessage } from "@illa-design/react"
+import { Avatar } from "@/illa-public-component/Avatar"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -38,6 +39,8 @@ import {
   appsContainerStyle,
   listTitleContainerStyle,
   listTitleStyle,
+  teamAvatarStyle,
+  teamInfoContainerStyle,
 } from "./style"
 
 export const DashboardApps: FC = () => {
@@ -99,36 +102,45 @@ export const DashboardApps: FC = () => {
     <>
       <div css={appsContainerStyle}>
         <div css={listTitleContainerStyle}>
-          <span css={listTitleStyle}>{t("dashboard.app.all_apps")}</span>
-          {isCloudVersion ? null : (
-            <Button
-              colorScheme="gray"
-              onClick={() => {
-                copy(window.location.href)
-                message.success({ content: t("link_copied") })
-              }}
-            >
-              {t("share")}
-            </Button>
-          )}
-          {canCreateApp ? (
-            <Button
-              ml="4px"
-              colorScheme="techPurple"
-              onClick={() => {
-                setCreateNewModalVisible(true)
-                track(
-                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                  { element: "create_new_app" },
-                )
-              }}
-            >
-              {t("create_new_app")}
-            </Button>
-          ) : null}
+          <div css={teamInfoContainerStyle}>
+            <Avatar
+              css={teamAvatarStyle}
+              avatarUrl={teamInfo?.icon}
+              name={teamInfo?.name}
+              id={teamInfo?.id}
+            />
+            <span css={listTitleStyle}>{teamInfo?.name}</span>
+          </div>
+          <div>
+            {isCloudVersion ? null : (
+              <Button
+                colorScheme="gray"
+                onClick={() => {
+                  copy(window.location.href)
+                  message.success({ content: t("link_copied") })
+                }}
+              >
+                {t("share")}
+              </Button>
+            )}
+            {canCreateApp ? (
+              <Button
+                ml="4px"
+                colorScheme="techPurple"
+                onClick={() => {
+                  setCreateNewModalVisible(true)
+                  track(
+                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+                    { element: "create_new_app" },
+                  )
+                }}
+              >
+                {t("create_new_app")}
+              </Button>
+            ) : null}
+          </div>
         </div>
-        <Divider direction="horizontal" />
         <Suspense fallback={<DashBoardLoading />}>
           <Await resolve={appList} errorElement={<DashboardErrorElement />}>
             <AppsContentBody canEditApp={canEditApp} />
