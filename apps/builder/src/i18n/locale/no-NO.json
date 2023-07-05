@@ -3107,12 +3107,12 @@
       "undo": {
         "suc": "Angre vellykket",
         "failed": "Angre mislyktes",
-        "nothing": "Nothing to undo"
+        "nothing": "Ingenting å angre"
       },
       "redo": {
         "suc": "Redo vellykket",
         "failed": "Redo feilet",
-        "nothing": "Nothing to redo"
+        "nothing": "Ingenting å gjenta"
       }
     }
   },
@@ -3523,11 +3523,19 @@
       "app_setting": "Innstillinger for app",
       "app_name": "Navn på app",
       "description": "Beskrivelse",
-      "save": "Lagre"
+      "save": "Lagre",
+      "placeholder": {
+        "description": "Skriv inn beskrivelsen for appen",
+        "app_name": "Angi et navn for appen"
+      }
     },
     "access": {
       "public": "Offentlig",
       "private": "Privat"
+    },
+    "message": {
+      "update_failed": "Kunne ikke oppdatere",
+      "update_suc": "Oppdatering ferdig"
     }
   },
   "new_deploy": {
@@ -3547,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
+    },
+    "tips": {
+      "admin": "Medlemmet som kan administrere alle medlemmer unntatt eier, redigere APP og vise APPer",
+      "editor": "Medlemmet som kan behandle redigeringsprogram og vise medlemmer, redigere APPer og vise APPer",
+      "viewer": "Medlemmet som kan administrere seermedlemmer og vise APPer"
     }
   }
 }
