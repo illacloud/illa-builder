@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Annulation réussie",
-        "failed": "Échec de l'annulation"
+        "failed": "Échec de l'annulation",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Refaire avec succès",
-        "failed": "Refaire a échoué"
+        "failed": "Refaire a échoué",
+        "nothing": "Nothing to redo"
       }
     }
   },
