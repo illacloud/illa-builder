@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Angre vellykket",
-        "failed": "Angre mislyktes"
+        "failed": "Angre mislyktes",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Redo vellykket",
-        "failed": "Redo feilet"
+        "failed": "Redo feilet",
+        "nothing": "Nothing to redo"
       }
     }
   },
