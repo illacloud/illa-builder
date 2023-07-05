@@ -4,7 +4,7 @@ import { ActionMenu } from "@/page/App/components/PanelSetters/OptionListSetter/
 import { MoreProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 
 export const More: FC<MoreProps> = (props) => {
-  const { index } = props
+  const { index, label } = props
 
   const [actionMenuVisible, setActionMenuVisible] = useState(false)
   const handleCloseActionMenu = useCallback(() => {
@@ -14,7 +14,11 @@ export const More: FC<MoreProps> = (props) => {
     <Dropdown
       popupVisible={actionMenuVisible}
       dropList={
-        <ActionMenu index={index} handleCloseMode={handleCloseActionMenu} />
+        <ActionMenu
+          label={label}
+          index={index}
+          handleCloseMode={handleCloseActionMenu}
+        />
       }
       trigger="click"
       position="bottom-end"

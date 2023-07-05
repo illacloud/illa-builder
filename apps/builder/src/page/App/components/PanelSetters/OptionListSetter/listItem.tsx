@@ -11,7 +11,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
     <div {...otherProps}>
       <div css={optionListItemStyle}>
         <DragIconAndLabel index={index} label={label} />
-        <More index={index} />
+        <More index={index} label={label} />
       </div>
     </div>
   )
