@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Only the team members can access the deployed app",
       "public_app": "Anyone with the app link can access the deployed app"
+    },
+    "button": {
+      "public": "Public"
     }
   },
   "new_share": {
