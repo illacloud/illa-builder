@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Deshacer con éxito",
-        "failed": "Deshacer fallido"
+        "failed": "Deshacer fallido",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Rehacer correctamente",
-        "failed": "Rehacer fallido"
+        "failed": "Rehacer fallido",
+        "nothing": "Nothing to redo"
       }
     }
   },
