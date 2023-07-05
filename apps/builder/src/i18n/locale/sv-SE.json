@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Ångra lyckad",
-        "failed": "Ångra misslyckades"
+        "failed": "Ångra misslyckades",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Upprepade lyckades",
-        "failed": "Upprepa misslyckades"
+        "failed": "Upprepa misslyckades",
+        "nothing": "Nothing to redo"
       }
     }
   },
