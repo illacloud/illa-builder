@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Succesvol ongedaan gemaakt",
-        "failed": "Herstel mislukt"
+        "failed": "Herstel mislukt",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Opnieuw succesvol",
-        "failed": "Opnieuw verzenden mislukt"
+        "failed": "Opnieuw verzenden mislukt",
+        "nothing": "Nothing to redo"
       }
     }
   },
