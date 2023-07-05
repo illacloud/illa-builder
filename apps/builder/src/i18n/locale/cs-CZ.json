@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Pouze členové týmu mají přístup k nasazené aplikaci",
       "public_app": "Každý, kdo má odkaz na aplikaci, má přístup k rozmístěné aplikaci"
+    },
+    "button": {
+      "public": "Veřejnost"
     }
   },
   "new_share": {

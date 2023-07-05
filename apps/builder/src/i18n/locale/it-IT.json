@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Solo i membri del team possono accedere all'app distribuita",
       "public_app": "Chiunque con il link dell'app può accedere all'app distribuita"
+    },
+    "button": {
+      "public": "Pubblico"
     }
   },
   "new_share": {
