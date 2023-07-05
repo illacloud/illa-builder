@@ -13,6 +13,7 @@ export const valueLabelStyle = css`
   font-size: 14px;
   line-height: 22px;
   font-weight: 500;
+  width: 150px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 

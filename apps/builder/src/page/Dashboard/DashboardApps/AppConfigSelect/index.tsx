@@ -1,10 +1,22 @@
-import { FC, HTMLAttributes, useMemo, useState } from "react"
+import {
+  FC,
+  HTMLAttributes,
+  ReactNode,
+  useContext,
+  useMemo,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
-import { DownIcon, Trigger, UpIcon } from "@illa-design/react"
+import { useDispatch, useSelector } from "react-redux"
+import { DownIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
+import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { ReactComponent as CheckmarkIcon } from "@/illa-public-component/RoleSelect/assets/success.svg"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { updateAppPublicConfig } from "@/services/apps"
+import { isCloudVersion } from "@/utils/typeHelper"
 import {
   optionContentStyle,
   optionItemStyle,
@@ -24,24 +36,38 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
+  const teamInfo = useSelector(getCurrentTeamInfo)
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+
   const [popupVisible, setPopupVisible] = useState<boolean>()
 
-  const canChange = useMemo(() => {
-    return canEditApp
-  }, [canEditApp])
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
 
-  const options: { label: string; value: boolean }[] = useMemo(() => {
+  const options: { label: ReactNode; value: boolean }[] = useMemo(() => {
     return [
       {
         label: t("new_dashboard.access.private"),
         value: false,
       },
       {
-        label: t("new_dashboard.access.public"),
+        label: (
+          <div>
+            {t("new_dashboard.access.public")}
+            {!canUseBillingFeature && (
+              <Tag ml="8px" colorScheme="techPurple">
+                <UpgradeIcon /> {t("billing.homepage.upgrade")}
+              </Tag>
+            )}
+          </div>
+        ),
         value: true,
       },
     ]
-  }, [t])
+  }, [t, canUseBillingFeature])
 
   const updateAppConfig = async (isPublic: boolean) => {
     const res = await updateAppPublicConfig(isPublic, appId)
@@ -59,7 +85,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
     }
   }
 
-  if (!canChange) {
+  if (!canEditApp) {
     return (
       <div css={valueLabelStyle} className={className}>
         {isPublic
@@ -80,12 +106,16 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
       onVisibleChange={onVisibleChange}
       content={
         <div css={optionContentStyle}>
-          {options.map((option) => {
+          {options.map((option, index) => {
             return (
               <div
                 css={optionItemStyle}
-                key={option.label}
+                key={index}
                 onClick={() => {
+                  if (isCloudVersion && !canUseBillingFeature) {
+                    handleUpgradeModalVisible(true, "upgrade")
+                    return
+                  }
                   onVisibleChange(false)
                   updateAppConfig(option.value)
                 }}
