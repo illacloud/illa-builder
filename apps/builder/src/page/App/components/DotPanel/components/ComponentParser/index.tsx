@@ -17,11 +17,7 @@ export const ComponentParser: FC<ComponentParserProps> = (props) => {
   switch (containerType) {
     case "EDITOR_DOT_PANEL":
       return (
-        <BasicContainer
-          displayName={displayName}
-          minHeight={600}
-          columnNumber={columnNumber}
-        />
+        <BasicContainer displayName={displayName} columnNumber={columnNumber} />
       )
     case "EDITOR_SCALE_SQUARE":
       if (widgetType === "MODAL_WIDGET") {

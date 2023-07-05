@@ -241,12 +241,11 @@ function handleUpdateComponentReflowEffect(
     })
   }
 
-  const filteredUpdateSlice = updateSlice.filter(
-    (slice) =>
-      !updateComponents.effectedDisplayNames.includes(slice.displayName),
-  )
-
   if (!action.from || action.from === REDUX_ACTION_FROM.REDO) {
+    const filteredUpdateSlice = updateSlice.filter(
+      (slice) =>
+        !updateComponents.effectedDisplayNames.includes(slice.displayName),
+    )
     const rootState = listenApi.getState()
     const originLayoutInfos = filteredUpdateSlice.map((slice) => {
       const originLayoutInfo = searchDSLByDisplayName(
@@ -276,7 +275,7 @@ function handleUpdateComponentReflowEffect(
 
   listenApi.dispatch(
     componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer(
-      filteredUpdateSlice,
+      updateSlice,
     ),
   )
 }

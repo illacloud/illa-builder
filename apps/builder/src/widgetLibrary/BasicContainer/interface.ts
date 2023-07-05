@@ -3,7 +3,6 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 
 export interface BasicContainerProps {
   children?: ReactNode
-  minHeight?: number
   displayName: string
   columnNumber?: number
   displayNamePrefix?: string
@@ -11,7 +10,6 @@ export interface BasicContainerProps {
 
 export interface BasicContainerByJsonProps {
   children?: ReactNode
-  minHeight?: number
   columnNumber?: number
   displayNamePrefix?: string
   componentNode: ComponentNode
