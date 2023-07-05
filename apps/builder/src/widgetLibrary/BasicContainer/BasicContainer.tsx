@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { RenderComponentCanvasContainer } from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
-import { RenderComponentCanvasWithJson } from "@/page/App/components/DotPanel/components/Canvas/renderCompontCanvasContainerWithJson"
+import { RenderComponentCanvasWithJson } from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainerWithJson"
+import { LIKE_CONTAINER_WIDGET_PADDING } from "@/page/App/components/ScaleSquare/constant/widget"
 import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
 import { BasicContainerByJsonProps, BasicContainerProps } from "./interface"
 
@@ -10,7 +11,7 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
   return displayName ? (
     <RenderComponentCanvasContainer
       displayName={displayName}
-      containerPadding={4}
+      containerPadding={LIKE_CONTAINER_WIDGET_PADDING}
       columnNumber={columnNumber}
     />
   ) : null
@@ -19,13 +20,12 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
 export const BasicContainerWithJSON: FC<BasicContainerByJsonProps> = (
   props,
 ) => {
-  const { componentNode, minHeight, columnNumber, displayNamePrefix } = props
+  const { componentNode, columnNumber, displayNamePrefix } = props
 
   return componentNode ? (
     <RenderComponentCanvasWithJson
       componentNode={componentNode}
-      containerPadding={4}
-      minHeight={minHeight}
+      containerPadding={LIKE_CONTAINER_WIDGET_PADDING}
       columnNumber={columnNumber}
       displayNamePrefix={displayNamePrefix}
     />
