@@ -15,8 +15,6 @@ import {
   BugIcon,
   Button,
   ButtonGroup,
-  CaretRightIcon,
-  DownIcon,
   DropList,
   DropListItem,
   Dropdown,
@@ -38,6 +36,8 @@ import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
+import { DeployButtonGroup } from "@/page/App/components/PageNavBar/DeloyButtonGroup"
+import { ShareAppButton } from "@/page/App/components/PageNavBar/ShareAppButton"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
@@ -65,10 +65,6 @@ import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import {
-  deployConfigButtonStyle,
-  deployConfigDescStyle,
-  deployLabelStyle,
-  deployMenuStyle,
   descriptionStyle,
   informationStyle,
   logoCursorStyle,
@@ -304,7 +300,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {!isGuideMode && (
           <>
             <CollaboratorsList />
-            <Button colorScheme="grayBlue">{t("share")}</Button>
+            <ShareAppButton />
           </>
         )}
         {isEditMode ? (
@@ -374,86 +370,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Badge>
               {PreviewButton}
-              {!isCloudVersion || isGuideMode ? (
-                <Button
-                  loading={deployLoading}
-                  colorScheme="techPurple"
-                  size="medium"
-                  leftIcon={<CaretRightIcon />}
-                  onClick={handleClickDeploy}
-                >
-                  {isGuideMode
-                    ? t("editor.tutorial.panel.tutorial.modal.fork")
-                    : t("deploy")}
-                </Button>
-              ) : (
-                <div>
-                  <Button
-                    loading={deployLoading}
-                    colorScheme="techPurple"
-                    size="medium"
-                    bdRadius="8px 0 0 8px"
-                    leftIcon={<CaretRightIcon />}
-                    onClick={handleClickDeploy}
-                  >
-                    {appInfo?.config?.public
-                      ? t("new_deploy.button.public")
-                      : t("deploy")}
-                  </Button>
-                  <Dropdown
-                    position="bottom-end"
-                    trigger="click"
-                    triggerProps={{ closeDelay: 0, openDelay: 0 }}
-                    dropList={
-                      <DropList onClickItem={handleClickDeployMenu}>
-                        <DropListItem
-                          key="private"
-                          value="private"
-                          title={
-                            <div css={deployMenuStyle}>
-                              <div css={deployLabelStyle}>
-                                {t("new_deploy.title.private_app")}
-                              </div>
-                              <div css={deployConfigDescStyle}>
-                                {t("new_deploy.desc.private_app")}
-                              </div>
-                            </div>
-                          }
-                        />
-                        <DropListItem
-                          key="public"
-                          value="public"
-                          title={
-                            <div css={deployMenuStyle}>
-                              <div>
-                                <span css={deployLabelStyle}>
-                                  {t("new_deploy.title.public_app")}
-                                </span>
-                                {!canUseBillingFeature && (
-                                  <Tag ml="8px" colorScheme="techPurple">
-                                    <UpgradeIcon />{" "}
-                                    {t("billing.homepage.upgrade")}
-                                  </Tag>
-                                )}
-                              </div>
-                              <div css={deployConfigDescStyle}>
-                                {t("new_deploy.desc.public_app")}
-                              </div>
-                            </div>
-                          }
-                        />
-                      </DropList>
-                    }
-                  >
-                    <Button
-                      css={deployConfigButtonStyle}
-                      colorScheme="techPurple"
-                      bdRadius="0 8px 8px 0"
-                      leftIcon={<DownIcon />}
-                    />
-                  </Dropdown>
-                </div>
-              )}
+              <DeployButtonGroup
+                loading={deployLoading}
+                isPublic={appInfo?.config?.public}
+                isGuideMode={isGuideMode}
+                canUseBillingFeature={canUseBillingFeature}
+                onClickDeploy={handleClickDeploy}
+                onClickDeployMenu={handleClickDeployMenu}
+              />
             </ButtonGroup>
           </div>
         ) : (
