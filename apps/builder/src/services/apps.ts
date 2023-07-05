@@ -1,6 +1,7 @@
 import { createAction } from "@/api/actions"
 import { builderRequest, cloudRequest } from "@/api/http"
 import {
+  REDIRECT_PAGE_TYPE,
   fetchInviteLinkResponse,
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
@@ -163,6 +164,7 @@ export const shareAppByEmail = async (
   email: string,
   userRole: USER_ROLE,
   appID: string,
+  redirectPage?: REDIRECT_PAGE_TYPE,
 ) => {
   const response = await cloudRequest<inviteByEmailResponse>(
     {
@@ -172,6 +174,7 @@ export const shareAppByEmail = async (
         email,
         userRole,
         appID,
+        redirectPage,
         hosts: !isCloudVersion ? window.location.origin : undefined,
       },
     },
@@ -180,22 +183,30 @@ export const shareAppByEmail = async (
   return response.data
 }
 
-export const fetchShareAppLink = async (userRole: USER_ROLE, appID: string) => {
+export const fetchShareAppLink = async (
+  userRole: USER_ROLE,
+  appID: string,
+  redirectPage?: REDIRECT_PAGE_TYPE,
+) => {
   const response = await cloudRequest<fetchInviteLinkResponse>(
     {
       method: "GET",
-      url: `/shareAppLink/userRole/${userRole}/apps/${appID}`,
+      url: `/shareAppLink/userRole/${userRole}/apps/${appID}/redirectPage/${redirectPage}`,
     },
     { needTeamID: true },
   )
   return response.data
 }
 
-export const renewShareAppLink = async (userRole: USER_ROLE, appID: string) => {
+export const renewShareAppLink = async (
+  userRole: USER_ROLE,
+  appID: string,
+  redirectPage?: REDIRECT_PAGE_TYPE,
+) => {
   const response = await cloudRequest<fetchInviteLinkResponse>(
     {
       method: "GET",
-      url: `/newShareAppLink/userRole/${userRole}/apps/${appID}`,
+      url: `/newShareAppLink/userRole/${userRole}/apps/${appID}/redirectPage/${redirectPage}`,
     },
     {
       needTeamID: true,
