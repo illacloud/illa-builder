@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "撤销成功",
-        "failed": "撤销失败"
+        "failed": "撤销失败",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "恢复成功",
-        "failed": "恢复失败"
+        "failed": "恢复失败",
+        "nothing": "Nothing to redo"
       }
     }
   },
