@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Bare gruppemedlemmene har tilgang til den utplasserte appen",
       "public_app": "Alle med app-koblingen kan få tilgang til den utplasserte appen"
+    },
+    "button": {
+      "public": "Offentlig"
     }
   },
   "new_share": {
