@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Numai membrii echipei pot accesa aplicația trimisă",
       "public_app": "Oricine are link-ul aplicației poate accesa aplicația implementată"
+    },
+    "button": {
+      "public": "Publice"
     }
   },
   "new_share": {
