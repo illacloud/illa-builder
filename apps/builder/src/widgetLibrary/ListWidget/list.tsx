@@ -45,7 +45,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
     templateComponentNodes,
     columnNumber,
     dynamicHeight,
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     updateComponentHeight,
     itemNumber = 1,
     h,
@@ -56,7 +56,7 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
   const updateAllComponentHeight = useCallback(
     (height: number) => {
       if (height * itemNumber + 8 * (itemNumber - 1) === h) return
-      handleUpdateOriginalDSLMultiAttr({
+      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo({
         itemHeight: height,
       })
       updateComponentHeight &&
@@ -64,7 +64,12 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
           updateComponentHeight?.(height * itemNumber + 8 * (itemNumber - 1))
         }, 60)
     },
-    [h, handleUpdateOriginalDSLMultiAttr, itemNumber, updateComponentHeight],
+    [
+      h,
+      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
+      itemNumber,
+      updateComponentHeight,
+    ],
   )
 
   const enableAutoHeight = useMemo(() => {
@@ -144,6 +149,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     childrenNode,
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     copyComponents,
     pageSize,
     handleUpdateSelectedItem,
@@ -256,8 +262,8 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
               templateContainerHeight={itemHeight}
               columnNumber={columnNumber}
               dynamicHeight={dynamicHeight}
-              handleUpdateOriginalDSLMultiAttr={
-                handleUpdateOriginalDSLMultiAttr
+              handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo={
+                handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo
               }
               h={h}
             />
@@ -316,6 +322,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
   const {
     itemHeight = 48,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     childrenNode,
     copyComponents = [],
     handleUpdateSelectedItem,
@@ -407,7 +414,9 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
             templateContainerHeight={itemHeight}
             columnNumber={columnNumber}
             dynamicHeight={dynamicHeight}
-            handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+            handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo={
+              handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo
+            }
             itemNumber={copyComponents?.length}
             updateComponentHeight={updateComponentHeight}
             h={h}

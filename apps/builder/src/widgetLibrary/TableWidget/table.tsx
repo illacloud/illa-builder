@@ -74,7 +74,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
       handleOnRowSelectChange,
       handleOnCellSelect,
       handleUpdateMultiExecutionResult,
-      handleUpdateOriginalDSLMultiAttr,
+      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     } = props
 
     const mode = useSelector(getIllaMode)
@@ -123,7 +123,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
     const handleUpdateMulti = useCallback(
       (value: Record<string, any>) => {
         if (mode === "edit") {
-          handleUpdateOriginalDSLMultiAttr(value)
+          handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo(value)
         } else {
           handleUpdateMultiExecutionResult([
             {
@@ -136,7 +136,7 @@ export const WrappedTable = forwardRef<TableHandler<any>, WrappedTableProps>(
       [
         mode,
         handleUpdateMultiExecutionResult,
-        handleUpdateOriginalDSLMultiAttr,
+        handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
         displayName,
       ],
     )
@@ -350,7 +350,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
     triggerMappedEventHandler,
@@ -498,10 +498,10 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [columns, realDataSourceArray?.length])
 
   useEffect(() => {
-    handleUpdateOriginalDSLMultiAttr({
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo({
       rowEvents,
     })
-  }, [handleUpdateOriginalDSLMultiAttr, rowEvents])
+  }, [handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo, rowEvents])
 
   useEffect(() => {
     // use accessorKey as origin column name
@@ -558,14 +558,14 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       {},
     )
 
-    handleUpdateOriginalDSLMultiAttr({
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo({
       customColumnIndices,
       columnNameIndices,
       renamedColumnNames,
       columnVisibility,
       columnMapper,
     })
-  }, [handleUpdateOriginalDSLMultiAttr, columns])
+  }, [handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo, columns])
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -653,7 +653,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       triggerMappedEventHandler={triggerMappedEventHandler}
       updateComponentRuntimeProps={updateComponentRuntimeProps}
       deleteComponentRuntimeProps={deleteComponentRuntimeProps}
-      handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo={
+        handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo
+      }
       handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
       handleUpdateDsl={handleUpdateDsl}
       handleOnCellSelect={handleOnCellSelect}
