@@ -3523,11 +3523,19 @@
       "app_setting": "App setting",
       "app_name": "App name",
       "description": "Description",
-      "save": "Save"
+      "save": "Save",
+      "placeholder": {
+        "description": "Enter the description for the app",
+        "app_name": "Enter a name for the app"
+      }
     },
     "access": {
       "public": "Public",
       "private": "Private"
+    },
+    "message": {
+      "update_failed": "Failed to update",
+      "update_suc": "Successfully updated"
     }
   },
   "new_deploy": {
@@ -3547,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+    },
+    "tips": {
+      "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
+      "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
+      "viewer": "The member who can manage viewer members and view APPs"
     }
   }
 }
