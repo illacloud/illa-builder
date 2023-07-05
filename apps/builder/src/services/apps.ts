@@ -241,6 +241,27 @@ export const updateWaterMarkConfig = async (
   )
 }
 
+export const updateAppConfig = async (
+  appID: string,
+  config: {
+    public?: boolean
+    waterMark?: boolean
+    description?: string
+    appName?: string
+  },
+) => {
+  return builderRequest<DashboardApp>(
+    {
+      method: "PATCH",
+      url: `/apps/${appID}/config`,
+      data: config,
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
 export const createApp = async (
   appName: string,
   initScheme: ComponentNode[],

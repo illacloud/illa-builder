@@ -6,7 +6,7 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/
 import { AppNameEditorModalProps } from "@/page/App/components/PageNavBar/interface"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { fetchChangeAppSetting } from "@/services/apps"
+import { updateAppConfig } from "@/services/apps"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   appNameEditorSaveButtonWrapperStyle,
@@ -48,7 +48,9 @@ export const AppNameEditModal: FC<AppNameEditorModalProps> = (props) => {
       parameter3: appNewName.length,
     })
     setSaveLoading(true)
-    fetchChangeAppSetting(appInfo.appId, appNewName)
+    updateAppConfig(appInfo.appId, {
+      appName: appNewName,
+    })
       .then(
         (response) => {
           dispatch(appInfoActions.updateAppNameReducer(response.data))

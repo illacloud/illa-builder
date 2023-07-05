@@ -13,7 +13,7 @@ import {
 import { applyConfigItemLabelText } from "@/page/App/components/ControlledElement/style"
 import { AppSettingModalProps } from "@/page/Dashboard/components/AppSettingModal/interface"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { fetchChangeAppSetting } from "@/services/apps"
+import { updateAppConfig } from "@/services/apps"
 import {
   formLabelStyle,
   gridFormFieldStyle,
@@ -51,7 +51,10 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
     (data: AppSettingFields) => {
       setLoading(true)
       onOk()
-      fetchChangeAppSetting(appInfo.appId, data.appName, data.description)
+      updateAppConfig(appInfo.appId, {
+        description: data.description,
+        appName: data.appName,
+      })
         .then(
           () => {
             dispatch(
@@ -83,6 +86,7 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
       closable
       autoFocus={false}
       footer={false}
+      maskClosable={false}
       footerAlign="right"
       visible={visible}
       title={t("new_dashboard.app_setting.app_setting")}
@@ -123,7 +127,7 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
                     {...field}
                     colorScheme="techPurple"
                     error={!!formState?.errors.appName}
-                    placeholder={t("page.user.sign_up.placeholder.username")}
+                    placeholder={t("Enter a name for the app")}
                   />
                 )}
                 rules={{
@@ -156,7 +160,7 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
                     autoSize={{ minRows: 6, maxRows: 6 }}
                     colorScheme="techPurple"
                     error={!!formState?.errors.description}
-                    placeholder={t("page.user.sign_up.placeholder.email")}
+                    placeholder={t("Enter a description for the app")}
                   />
                 )}
               />

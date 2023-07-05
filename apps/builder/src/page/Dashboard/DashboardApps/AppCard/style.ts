@@ -64,6 +64,18 @@ export const descriptionStyle = css`
   word-wrap: break-word;
 `
 
+export const editorContainerStyle = css`
+  display: flex;
+  align-items: flex-start;
+`
+export const editorAvatarStyle = css`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid ${getColor("white", "01")};
+  margin-right: -6px;
+`
+
 export const footerStyle = css`
   display: flex;
   justify-content: space-between;

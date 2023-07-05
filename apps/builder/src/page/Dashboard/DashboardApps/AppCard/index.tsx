@@ -2,6 +2,7 @@ import { FC, HTMLAttributes } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, PenIcon, Space, Tag } from "@illa-design/react"
+import { Avatar } from "@/illa-public-component/Avatar"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -11,6 +12,8 @@ import {
   cardStyle,
   descriptionStyle,
   editedStyle,
+  editorAvatarStyle,
+  editorContainerStyle,
   footerStyle,
   headerStyle,
   titleInfoStyle,
@@ -67,9 +70,15 @@ export const AppCard: FC<AppCardProps> = (props) => {
       <div css={descriptionStyle}>
         {appInfo.config.description || t("new_dashboard.desc.no_description")}
       </div>
-      <div className="images">
-        {appInfo?.editedBy?.map((editor, index) => (
-          <img key={index} className="avatar" src={editor.avatar} alt="" />
+      <div css={editorContainerStyle}>
+        {appInfo?.editedBy?.map((editor) => (
+          <Avatar
+            key={editor.userID}
+            css={editorAvatarStyle}
+            avatarUrl={editor.avatar}
+            name={editor.nickname}
+            id={editor.userID}
+          />
         ))}
       </div>
       <div css={footerStyle}>
