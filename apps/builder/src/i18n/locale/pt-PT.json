@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Restaurado com sucesso",
-        "failed": "Desfazer falhou"
+        "failed": "Desfazer falhou",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Refazer com sucesso",
-        "failed": "Refazer falhou"
+        "failed": "Refazer falhou",
+        "nothing": "Nothing to redo"
       }
     }
   },
