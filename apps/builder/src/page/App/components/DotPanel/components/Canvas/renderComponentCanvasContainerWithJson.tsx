@@ -3,7 +3,6 @@ import useMeasure from "react-use-measure"
 import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
 import ScaleSquareWithJSON from "@/page/App/components/ScaleSquare/scaleSquareWithJSON"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { outerComponentCanvasContainerWithJsonStyle } from "./style"
 
 export const RenderComponentCanvasWithJson: FC<{
@@ -30,14 +29,6 @@ export const RenderComponentCanvasWithJson: FC<{
     const childrenNode = componentNode.childrenNode
     return childrenNode?.map<ReactNode>((item) => {
       switch (item.containerType) {
-        case "EDITOR_DOT_PANEL":
-          return (
-            <BasicContainer
-              displayName={item.displayName}
-              key={item.displayName}
-              columnNumber={columnNumber}
-            />
-          )
         case "EDITOR_SCALE_SQUARE":
           return (
             <ScaleSquareWithJSON

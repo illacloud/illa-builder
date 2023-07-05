@@ -2,6 +2,10 @@ import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
+import {
+  WIDGET_PADDING,
+  WIDGET_SCALE_SQUARE_BORDER_WIDTH,
+} from "@/page/App/components/ScaleSquare/constant/widget"
 import { LayoutInfo } from "@/redux/currentApp/editor/components/componentsPayload"
 import {
   getCanvas,
@@ -14,7 +18,6 @@ import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
   getIsDragging,
-  getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { RootState } from "@/store"
@@ -57,7 +60,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     )
 
     const isDraggingInGlobal = useSelector(getIsDragging)
-    const isResizingInGlobal = useSelector(getIsResizing)
 
     const listContainerDisabled = useMemo(() => {
       const listWidgetDisplayNames = Object.keys(containerListMapChildName)
@@ -98,15 +100,49 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       ILLAEditorRuntimePropsCollectorInstance.deleteRuntimeProp(displayName)
     }, [displayName])
 
+    const {
+      dynamicHeight = "fixed",
+      dynamicMinHeight,
+      dynamicMaxHeight,
+    } = realProps
+
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
-        if (isDraggingInGlobal || isResizingInGlobal) return
+        if (isDraggingInGlobal) return
         const rootState = store.getState()
         const widgetLayoutInfos = getExecutionWidgetLayoutInfo(rootState)
         const oldH = widgetLayoutInfos[displayName]?.layoutInfo.h ?? 0
-        // padding 2px so this is +4
+
+        if (dynamicHeight !== "fixed") {
+          if (
+            dynamicMaxHeight &&
+            newHeight >
+              dynamicMaxHeight -
+                (WIDGET_PADDING + WIDGET_SCALE_SQUARE_BORDER_WIDTH) * 2
+          ) {
+            newHeight =
+              dynamicMaxHeight -
+              (WIDGET_PADDING + WIDGET_SCALE_SQUARE_BORDER_WIDTH) * 2
+          }
+
+          if (
+            dynamicMinHeight &&
+            newHeight <=
+              dynamicMinHeight -
+                (WIDGET_PADDING + WIDGET_SCALE_SQUARE_BORDER_WIDTH) * 2
+          ) {
+            newHeight =
+              dynamicMinHeight -
+              (WIDGET_PADDING + WIDGET_SCALE_SQUARE_BORDER_WIDTH) * 2
+          }
+        }
+
         const newH = Math.max(
-          Math.ceil((newHeight + 6) / UNIT_HEIGHT),
+          Math.round(
+            (newHeight +
+              (WIDGET_PADDING + WIDGET_SCALE_SQUARE_BORDER_WIDTH) * 2) /
+              UNIT_HEIGHT,
+          ),
           MIN_HEIGHT,
         )
 
@@ -126,8 +162,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [
         dispatch,
         displayName,
+        dynamicHeight,
+        dynamicMaxHeight,
+        dynamicMinHeight,
         isDraggingInGlobal,
-        isResizingInGlobal,
         parentNodeDisplayName,
       ],
     )

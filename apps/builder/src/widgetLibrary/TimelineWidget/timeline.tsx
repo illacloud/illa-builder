@@ -1,6 +1,5 @@
 import { FC, useEffect, useMemo } from "react"
 import { Timeline, TimelineItem } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import {
   TimelineWidgetProps,
@@ -38,10 +37,6 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     pending,
     displayName,
     dynamicHeight = "fixed",
-    // TODO: wei
-    h,
-    dynamicMinHeight,
-    dynamicMaxHeight,
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -71,28 +66,12 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     deleteComponentRuntimeProps,
   ])
 
-  const enableAutoHeight = useMemo(() => {
-    switch (dynamicHeight) {
-      case "auto":
-        return true
-      case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
-      case "fixed":
-      default:
-        return false
-    }
-  }, [dynamicHeight, dynamicMinHeight, h])
-
-  const dynamicOptions = {
-    dynamicMinHeight,
-    dynamicMaxHeight,
-  }
+  const enableAutoHeight = dynamicHeight !== "fixed"
 
   return (
     <AutoHeightContainer
       updateComponentHeight={updateComponentHeight}
       enable={enableAutoHeight}
-      dynamicOptions={dynamicOptions}
     >
       <WrappedTimeline {...props} />
     </AutoHeightContainer>

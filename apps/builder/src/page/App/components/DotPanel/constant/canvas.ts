@@ -13,7 +13,7 @@ export const FOLDER_ICON_CONTAINER_HEIGHT = 28
 export const BORDER_WIDTH = 2
 export const DOT_DIAMETER = 1
 export const ADD_ROWS = 40
-export const SAFE_ROWS = 5
+export const SAFE_ROWS = 10
 export const DEFAULT_PERCENT_WIDTH = {
   LEFT: 20,
   RIGHT: 20,
