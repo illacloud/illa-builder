@@ -3107,12 +3107,12 @@
       "undo": {
         "suc": "撤销成功",
         "failed": "撤销失败",
-        "nothing": "Nothing to undo"
+        "nothing": "没有可撤消的操作"
       },
       "redo": {
         "suc": "恢复成功",
         "failed": "恢复失败",
-        "nothing": "Nothing to redo"
+        "nothing": "没有可重做的操作"
       }
     }
   },
@@ -3523,11 +3523,19 @@
       "app_setting": "项目设置",
       "app_name": "项目名称",
       "description": "描述",
-      "save": "保存"
+      "save": "保存",
+      "placeholder": {
+        "description": "输入项目描述",
+        "app_name": "输入项目名称"
+      }
     },
     "access": {
       "public": "公开",
       "private": "私密"
+    },
+    "message": {
+      "update_failed": "更新失败",
+      "update_suc": "更新成功"
     }
   },
   "new_deploy": {
@@ -3547,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
+    },
+    "tips": {
+      "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
+      "editor": "可以管理编辑者和查看者、编辑 APP和查看APP",
+      "viewer": "可以管理查看者、查看APP"
     }
   }
 }
