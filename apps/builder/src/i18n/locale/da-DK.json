@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Fortryd succesfuld",
-        "failed": "Fortryd mislykkedes"
+        "failed": "Fortryd mislykkedes",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Gendannelse lykkedes",
-        "failed": "Gendannelse mislykkedes"
+        "failed": "Gendannelse mislykkedes",
+        "nothing": "Nothing to redo"
       }
     }
   },
