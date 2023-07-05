@@ -13,6 +13,7 @@ export const SWITCH_GROUP_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     optionConfigureMode: "static",
     label: "Label",

@@ -11,6 +11,7 @@ export const JSON_EDITOR_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "INPUTS",
   w: 10,
   h: 55,
+  version: 0,
   defaults: {
     colorScheme: "grayBlue",
     hidden: false,

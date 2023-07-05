@@ -12,6 +12,7 @@ export const RANGE_SLIDER_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   h: 10,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     startValue: "{{3}}",
     endValue: "{{7}}",

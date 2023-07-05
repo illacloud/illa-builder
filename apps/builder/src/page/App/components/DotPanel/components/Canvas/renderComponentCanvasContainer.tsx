@@ -183,7 +183,6 @@ export const RenderComponentCanvasContainer: FC<
                 dropResultShape.x,
                 dropResultShape.y,
                 dropResultShape.w,
-                unitWidth,
                 draggedComponents[0].widgetType,
                 draggedComponents[0].displayName,
                 displayName,

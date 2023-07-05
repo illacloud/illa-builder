@@ -12,6 +12,7 @@ export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Switch", "开关"],
   sessionType: "SELECT",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     label: "Label",
     labelAlign: "left",

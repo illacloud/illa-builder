@@ -7,6 +7,7 @@ export const BasicContainerConfig = {
   containerType: CONTAINER_TYPE.EDITOR_DOT_PANEL,
   w: 0,
   h: 0,
+  version: 0,
 }
 
 export const generateBasicContainerConfig = (displayName: string) => {

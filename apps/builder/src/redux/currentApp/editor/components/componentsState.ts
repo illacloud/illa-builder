@@ -15,6 +15,7 @@ export enum SECTION_POSITION {
 export type ViewportSizeType = "fluid" | "desktop" | "tablet" | "custom"
 
 export interface ComponentNode {
+  version: number
   displayName: string
   parentNode: string | null
   showName: string

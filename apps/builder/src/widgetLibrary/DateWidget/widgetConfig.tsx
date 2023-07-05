@@ -13,6 +13,7 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
   w: 6,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     value: dayjs().format("YYYY-MM-DD"),
     dateFormat: "YYYY-MM-DD",

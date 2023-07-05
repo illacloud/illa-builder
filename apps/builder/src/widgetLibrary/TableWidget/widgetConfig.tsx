@@ -35,6 +35,7 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   icon: <TableWidgetIcon />,
   keywords: ["Table", "表格"],
   sessionType: "DATA",
+  version: 0,
   defaults: initTableWidgetDefaultProps(),
 }
 

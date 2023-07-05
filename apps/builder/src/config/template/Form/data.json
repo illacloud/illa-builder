@@ -72,83 +72,64 @@
     "displayName": "root",
     "parentNode": "",
     "showName": "root",
-    "error": false,
-    "isDragging": false,
-    "isResizing": false,
+
     "childrenNode": [
       {
         "displayName": "page1",
         "parentNode": "root",
         "showName": "page",
-        "error": false,
-        "isDragging": false,
-        "isResizing": false,
+
         "childrenNode": [
           {
             "displayName": "bodySection1",
             "parentNode": "page1",
             "showName": "bodySection",
-            "error": false,
-            "isDragging": false,
-            "isResizing": false,
+
             "childrenNode": [
               {
                 "displayName": "bodySection1-bodySectionContainer1",
                 "parentNode": "bodySection1",
                 "showName": "bodySection1-bodySectionContainer1",
-                "error": false,
-                "isDragging": false,
-                "isResizing": false,
+
                 "childrenNode": [
                   {
                     "displayName": "form1",
                     "parentNode": "bodySection1-bodySectionContainer1",
                     "showName": "form",
-                    "error": false,
-                    "isDragging": false,
-                    "isResizing": false,
+
                     "childrenNode": [
                       {
                         "displayName": "canvas1",
                         "parentNode": "form1",
                         "showName": "canvas",
-                        "error": false,
-                        "isDragging": true,
-                        "isResizing": false,
+
                         "childrenNode": [
                           {
                             "displayName": "container1",
                             "parentNode": "canvas1",
                             "showName": "container",
-                            "error": false,
-                            "isDragging": false,
-                            "isResizing": false,
+
                             "childrenNode": [
                               {
                                 "displayName": "canvas4",
                                 "parentNode": "container1",
                                 "showName": "canvas",
-                                "error": false,
-                                "isDragging": true,
-                                "isResizing": false,
+
                                 "childrenNode": [
                                   {
                                     "displayName": "text2",
                                     "parentNode": "canvas4",
                                     "showName": "text",
-                                    "error": false,
-                                    "isDragging": false,
-                                    "isResizing": false,
+
                                     "childrenNode": [],
                                     "type": "TEXT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
-                                    "verticalResize": false,
+
                                     "h": 12,
                                     "w": 31,
                                     "minH": 3,
                                     "minW": 2,
-                                    "unitW": 4.3984375,
-                                    "unitH": 8,
+
                                     "x": 1,
                                     "y": 3,
                                     "z": 0,
@@ -163,81 +144,69 @@
                                       "resizeDirection": "ALL",
                                       "value": "Product pricing survey",
                                       "verticalAlign": "center"
-                                    },
-                                    "panelConfig": null
+                                    }
                                   }
                                 ],
                                 "type": "CANVAS",
                                 "containerType": "EDITOR_DOT_PANEL",
-                                "verticalResize": false,
+
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
                                 "minW": 2,
-                                "unitW": 0,
-                                "unitH": 8,
+
                                 "x": -1,
                                 "y": -1,
                                 "z": 0,
-                                "props": {},
-                                "panelConfig": null
+                                "props": {}
                               },
                               {
                                 "displayName": "canvas5",
                                 "parentNode": "container1",
                                 "showName": "canvas",
-                                "error": false,
-                                "isDragging": true,
-                                "isResizing": false,
+
                                 "childrenNode": [],
                                 "type": "CANVAS",
                                 "containerType": "EDITOR_DOT_PANEL",
-                                "verticalResize": false,
+
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
                                 "minW": 2,
-                                "unitW": 0,
-                                "unitH": 8,
+
                                 "x": -1,
                                 "y": -1,
                                 "z": 0,
-                                "props": {},
-                                "panelConfig": null
+                                "props": {}
                               },
                               {
                                 "displayName": "canvas6",
                                 "parentNode": "container1",
                                 "showName": "canvas",
-                                "error": false,
-                                "isDragging": true,
-                                "isResizing": false,
+
                                 "childrenNode": [],
                                 "type": "CANVAS",
                                 "containerType": "EDITOR_DOT_PANEL",
-                                "verticalResize": false,
+
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
                                 "minW": 2,
-                                "unitW": 0,
-                                "unitH": 8,
+
                                 "x": -1,
                                 "y": -1,
                                 "z": 0,
-                                "props": {},
-                                "panelConfig": null
+                                "props": {}
                               }
                             ],
                             "type": "CONTAINER_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
-                            "verticalResize": false,
+
                             "h": 20,
                             "w": 32,
                             "minH": 3,
                             "minW": 2,
-                            "unitW": 14.875,
-                            "unitH": 8,
+
                             "x": 0,
                             "y": 0,
                             "z": 0,
@@ -269,50 +238,42 @@
                                   "label": "View 3"
                                 }
                               ]
-                            },
-                            "panelConfig": null
+                            }
                           }
                         ],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
-                        "verticalResize": false,
+
                         "h": 0,
                         "w": 0,
                         "minH": 3,
                         "minW": 2,
-                        "unitW": 0,
-                        "unitH": 8,
+
                         "x": -1,
                         "y": -1,
                         "z": 0,
-                        "props": {},
-                        "panelConfig": null
+                        "props": {}
                       },
                       {
                         "displayName": "canvas2",
                         "parentNode": "form1",
                         "showName": "canvas",
-                        "error": false,
-                        "isDragging": true,
-                        "isResizing": false,
+
                         "childrenNode": [
                           {
                             "displayName": "radioGroup1",
                             "parentNode": "canvas2",
                             "showName": "radioGroup",
-                            "error": false,
-                            "isDragging": false,
-                            "isResizing": false,
+
                             "childrenNode": [],
                             "type": "RADIO_GROUP_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
-                            "verticalResize": false,
+
                             "h": 7,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
-                            "unitW": 14.875,
-                            "unitH": 8,
+
                             "x": 1,
                             "y": 3,
                             "z": 0,
@@ -362,26 +323,22 @@
                               "optionConfigureMode": "static",
                               "required": true,
                               "value": "Option 1"
-                            },
-                            "panelConfig": null
+                            }
                           },
                           {
                             "displayName": "select2",
                             "parentNode": "canvas2",
                             "showName": "select",
-                            "error": false,
-                            "isDragging": false,
-                            "isResizing": false,
+
                             "childrenNode": [],
                             "type": "SELECT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
-                            "verticalResize": false,
+
                             "h": 8,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
-                            "unitW": 14.875,
-                            "unitH": 8,
+
                             "x": 1,
                             "y": 22,
                             "z": 0,
@@ -420,26 +377,22 @@
                               "optionConfigureMode": "static",
                               "placeholder": "Select an option",
                               "required": true
-                            },
-                            "panelConfig": null
+                            }
                           },
                           {
                             "displayName": "radioGroup2",
                             "parentNode": "canvas2",
                             "showName": "radioGroup",
-                            "error": false,
-                            "isDragging": false,
-                            "isResizing": false,
+
                             "childrenNode": [],
                             "type": "RADIO_GROUP_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
-                            "verticalResize": false,
+
                             "h": 4,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
-                            "unitW": 14.875,
-                            "unitH": 8,
+
                             "x": 1,
                             "y": 32,
                             "z": 0,
@@ -479,26 +432,22 @@
                               "optionConfigureMode": "static",
                               "required": true,
                               "value": "Option 1"
-                            },
-                            "panelConfig": null
+                            }
                           },
                           {
                             "displayName": "textarea1",
                             "parentNode": "canvas2",
                             "showName": "textarea",
-                            "error": false,
-                            "isDragging": false,
-                            "isResizing": false,
+
                             "childrenNode": [],
                             "type": "TEXTAREA_INPUT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
-                            "verticalResize": false,
+
                             "h": 13,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
-                            "unitW": 14.875,
-                            "unitH": 8,
+
                             "x": 1,
                             "y": 41,
                             "z": 0,
@@ -520,26 +469,22 @@
                               "placeholder": "enter sth",
                               "resizeDirection": "ALL",
                               "value": ""
-                            },
-                            "panelConfig": null
+                            }
                           },
                           {
                             "displayName": "input1",
                             "parentNode": "canvas2",
                             "showName": "input",
-                            "error": false,
-                            "isDragging": false,
-                            "isResizing": false,
+
                             "childrenNode": [],
                             "type": "INPUT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
-                            "verticalResize": false,
+
                             "h": 8,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
-                            "unitW": 14.875,
-                            "unitH": 8,
+
                             "x": 1,
                             "y": 12,
                             "z": 0,
@@ -557,50 +502,42 @@
                               "labelWidth": "{{33}}",
                               "placeholder": "input sth",
                               "value": ""
-                            },
-                            "panelConfig": null
+                            }
                           }
                         ],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
-                        "verticalResize": false,
+
                         "h": 0,
                         "w": 0,
                         "minH": 3,
                         "minW": 2,
-                        "unitW": 0,
-                        "unitH": 8,
+
                         "x": -1,
                         "y": -1,
                         "z": 0,
-                        "props": {},
-                        "panelConfig": null
+                        "props": {}
                       },
                       {
                         "displayName": "canvas3",
                         "parentNode": "form1",
                         "showName": "canvas",
-                        "error": false,
-                        "isDragging": true,
-                        "isResizing": false,
+
                         "childrenNode": [
                           {
                             "displayName": "button2",
                             "parentNode": "canvas3",
                             "showName": "button",
-                            "error": false,
-                            "isDragging": true,
-                            "isResizing": false,
+
                             "childrenNode": [],
                             "type": "BUTTON_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
-                            "verticalResize": false,
+
                             "h": 5,
                             "w": 8,
                             "minH": 3,
                             "minW": 2,
-                            "unitW": 0,
-                            "unitH": 8,
+
                             "x": 24,
                             "y": 0,
                             "z": 0,
@@ -619,35 +556,31 @@
                               "loading": "{{postgresql1.isRunning}}",
                               "text": "Submit",
                               "variant": "fill"
-                            },
-                            "panelConfig": null
+                            }
                           }
                         ],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
-                        "verticalResize": false,
+
                         "h": 0,
                         "w": 0,
                         "minH": 3,
                         "minW": 2,
-                        "unitW": 0,
-                        "unitH": 8,
+
                         "x": -1,
                         "y": -1,
                         "z": 0,
-                        "props": {},
-                        "panelConfig": null
+                        "props": {}
                       }
                     ],
                     "type": "FORM_WIDGET",
                     "containerType": "EDITOR_SCALE_SQUARE",
-                    "verticalResize": false,
+
                     "h": 91,
                     "w": 32,
                     "minH": 3,
                     "minW": 2,
-                    "unitW": 15.34375,
-                    "unitH": 8,
+
                     "x": 0,
                     "y": 2,
                     "z": 0,
@@ -664,35 +597,31 @@
                       "showFooter": true,
                       "showHeader": true,
                       "validateInputsOnSubmit": true
-                    },
-                    "panelConfig": null
+                    }
                   }
                 ],
                 "type": "CONTAINER_NODE",
                 "containerType": "EDITOR_DOT_PANEL",
-                "verticalResize": true,
+
                 "h": 0,
                 "w": 0,
                 "minH": 0,
                 "minW": 0,
-                "unitW": 0,
-                "unitH": 0,
+
                 "x": -1,
                 "y": -1,
                 "z": 0,
-                "props": {},
-                "panelConfig": null
+                "props": {}
               }
             ],
             "type": "SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
-            "verticalResize": true,
+
             "h": 0,
             "w": 0,
             "minH": 0,
             "minW": 0,
-            "unitW": 0,
-            "unitH": 0,
+
             "x": -1,
             "y": -1,
             "z": 0,
@@ -708,42 +637,36 @@
                 }
               ],
               "viewSortedKey": ["bodySection1-bodySectionContainer1"]
-            },
-            "panelConfig": null
+            }
           },
           {
             "displayName": "modalSection1",
             "parentNode": "page1",
             "showName": "modalSection",
-            "error": false,
-            "isDragging": false,
-            "isResizing": false,
+
             "childrenNode": [],
             "type": "MODAL_SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
-            "verticalResize": true,
+
             "h": 0,
             "w": 0,
             "minH": 0,
             "minW": 0,
-            "unitW": 0,
-            "unitH": 0,
+
             "x": -1,
             "y": -1,
             "z": 0,
-            "props": {},
-            "panelConfig": null
+            "props": {}
           }
         ],
         "type": "PAGE_NODE",
         "containerType": "EDITOR_PAGE_SQUARE",
-        "verticalResize": true,
+
         "h": 0,
         "w": 0,
         "minH": 0,
         "minW": 0,
-        "unitW": 0,
-        "unitH": 0,
+
         "x": -1,
         "y": -1,
         "z": 0,
@@ -772,27 +695,24 @@
           "showLeftFoldIcon": false,
           "showRightFoldIcon": false,
           "topHeight": 0
-        },
-        "panelConfig": null
+        }
       }
     ],
     "type": "DOT_PANEL",
     "containerType": "EDITOR_DOT_PANEL",
-    "verticalResize": true,
+
     "h": 0,
     "w": 0,
     "minH": 0,
     "minW": 0,
-    "unitW": 0,
-    "unitH": 0,
+
     "x": -1,
     "y": -1,
     "z": 0,
     "props": {
       "currentPageIndex": 0,
       "pageSortedKey": ["page1"]
-    },
-    "panelConfig": null
+    }
   },
   "dependenciesState": {},
   "dragShadowState": {},

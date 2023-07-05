@@ -13,6 +13,7 @@ export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Radio Button", "按钮单选"],
   sessionType: "SELECT",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     optionConfigureMode: "static",
     label: "Label",

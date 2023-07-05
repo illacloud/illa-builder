@@ -11,6 +11,7 @@ export const CIRCLE_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 3,
   h: 12,
+  version: 0,
   defaults: {
     value: "50",
     alignment: "center",

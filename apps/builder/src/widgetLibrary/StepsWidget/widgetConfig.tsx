@@ -19,6 +19,7 @@ export const STEPS_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "NAVIGATION",
   w: 18,
   h: 4,
+  version: 0,
   defaults: {
     direction: "horizontal",
     alignment: "start",

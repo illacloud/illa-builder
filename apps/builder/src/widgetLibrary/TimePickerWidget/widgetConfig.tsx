@@ -12,6 +12,7 @@ export const TIME_PICKER_WIDGET_CONFIG: WidgetConfig = {
   w: 6,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     placeholder: i18n.t(
       "editor.inspect.setter_default_value.time_picker.select_time",

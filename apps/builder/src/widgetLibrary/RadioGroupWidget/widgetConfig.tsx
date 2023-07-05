@@ -13,6 +13,7 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   w: 13,
   h: 3,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     optionConfigureMode: "static",
     label: "Label",

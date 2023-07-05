@@ -11,6 +11,7 @@ export const VIDEO_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 16,
   h: 25,
+  version: 0,
   defaults: {
     url: "https://youtu.be/8sUovZlBh_M",
     hidden: false,

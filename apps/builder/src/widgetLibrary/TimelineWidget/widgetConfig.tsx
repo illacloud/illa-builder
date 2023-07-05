@@ -11,6 +11,7 @@ export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 6,
   h: 28,
+  version: 0,
   defaults: {
     direction: "vertical",
     items: `{{["The first milestone","The second milestone","The third milestone"]}}`,
