@@ -3107,12 +3107,12 @@
       "undo": {
         "suc": "Rückgängig erfolgreich",
         "failed": "Rückgängig fehlgeschlagen",
-        "nothing": "Nothing to undo"
+        "nothing": "Nichts zu rückgängig machen"
       },
       "redo": {
         "suc": "Erneut erfolgreich",
         "failed": "Redo fehlgeschlagen",
-        "nothing": "Nothing to redo"
+        "nothing": "Nichts zu wiederholen"
       }
     }
   },
@@ -3523,11 +3523,19 @@
       "app_setting": "App-Einstellung",
       "app_name": "App-Name",
       "description": "Beschreibung",
-      "save": "Speichern"
+      "save": "Speichern",
+      "placeholder": {
+        "description": "Geben Sie die Beschreibung für die App ein",
+        "app_name": "Geben Sie einen Namen für die App ein"
+      }
     },
     "access": {
       "public": "Öffentlich",
       "private": "Privat"
+    },
+    "message": {
+      "update_failed": "Update fehlgeschlagen",
+      "update_suc": "Erfolgreich aktualisiert"
     }
   },
   "new_deploy": {
@@ -3547,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. "
+    },
+    "tips": {
+      "admin": "Das Mitglied, das alle Mitglieder außer Eigentümer verwalten kann, APPs bearbeiten und APPs anzeigen kann",
+      "editor": "Das Mitglied, das Editor- und Viewer-Mitglieder verwalten kann, APPs bearbeiten und APPs anzeigen kann",
+      "viewer": "Das Mitglied, das Viewer-Mitglieder verwalten und APPs anzeigen kann"
     }
   }
 }
