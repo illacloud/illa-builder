@@ -6,6 +6,7 @@ export const CARD_GAP_SIZE = 24
 export const fullWidthStyle: SerializedStyles = css`
   width: 100%;
   height: 100%;
+  padding-bottom: 50px;
 `
 export const appsContainerStyle: SerializedStyles = css`
   display: flex;

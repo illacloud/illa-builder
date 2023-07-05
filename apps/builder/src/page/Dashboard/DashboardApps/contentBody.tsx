@@ -74,6 +74,7 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
               index * actualCardsPerRow,
               (index + 1) * actualCardsPerRow,
             )
+            if (cardsInThisRow.length === 0) return <></>
 
             return (
               <div css={listContainerStyle}>

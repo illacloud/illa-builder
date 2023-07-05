@@ -1,4 +1,11 @@
-import { FC, HTMLAttributes, useEffect, useState } from "react"
+import {
+  FC,
+  HTMLAttributes,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -15,42 +22,23 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { ERROR_FLAG } from "@/api/errorFlag"
-import { InviteModal } from "@/illa-public-component/MemberList/components/Header/InviteModal"
-import { MemberListContext } from "@/illa-public-component/MemberList/context/MemberListContext"
-import {
-  REDIRECT_PAGE_TYPE,
-  SubscribeInfo,
-  TotalTeamLicense,
-} from "@/illa-public-component/MemberList/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
 import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
-import { canManageApp } from "@/illa-public-component/UserRoleUtils"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import {
+  canManageApp,
+  canUseUpgradeFeature,
+} from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
+import { AppInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import {
-  getCurrentMemberList,
-  getCurrentTeamInfo,
-} from "@/redux/team/teamSelector"
-import {
-  fetchDeleteApp,
-  fetchShareAppLink,
-  renewShareAppLink,
-  shareAppByEmail,
-  updateAppPublicConfig,
-} from "@/services/apps"
-import {
-  changeTeamMembersRole,
-  setInviteLinkEnabled,
-  updateMembers,
-  updateTeamsInfo,
-} from "@/services/team"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
@@ -77,120 +65,26 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     )!!
   })
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const currentUserInfo = useSelector(getCurrentUser)
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
   const [shareVisible, setShareVisible] = useState(false)
   const [appSettingVisible, setAppSettingVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
 
-  const members = useSelector(getCurrentMemberList) ?? []
-  const {
-    inviteLinkEnabled,
-    currentUserRole,
-    allowEditorManageTeamMember,
-    allowViewerManageTeamMember,
-  } = {
-    currentUserRole: teamInfo?.myRole ?? USER_ROLE.VIEWER,
-    inviteLinkEnabled: teamInfo?.permission.inviteLinkEnabled ?? false,
-    allowEditorManageTeamMember:
-      teamInfo?.permission.allowEditorManageTeamMember ?? false,
-    allowViewerManageTeamMember:
-      teamInfo?.permission.allowViewerManageTeamMember ?? false,
-  }
-
   const canSetPublic = canManageApp(
-    currentUserRole,
+    teamInfo?.myRole ?? USER_ROLE.VIEWER,
     teamInfo?.permission?.allowEditorManageTeamMember,
     teamInfo?.permission?.allowViewerManageTeamMember,
   )
 
-  const handleInviteByEmail = (
-    email: string,
-    userRole: USER_ROLE,
-    redirectPage?: REDIRECT_PAGE_TYPE,
-  ) => {
-    return shareAppByEmail(email, userRole, appId, redirectPage).then((res) => {
-      updateMembers()
-      return res
-    })
-  }
-
-  const handleChangeTeamMembersRole = (
-    teamMemberID: string,
-    userRole: USER_ROLE,
-  ) => {
-    return changeTeamMembersRole(teamMemberID, userRole)
-      .then((res) => {
-        if (userRole === USER_ROLE.OWNER) {
-          message.success({
-            content: t("user_management.mes.transfer_suc"),
-          })
-          updateTeamsInfo(teamIdentifier)
-        } else {
-          message.success({
-            content: t("user_management.mes.change_role_suc"),
-          })
-        }
-        updateMembers()
-        return res
-      })
-      .catch((error) => {
-        if (isILLAAPiError(error)) {
-          switch (error.data.errorFlag) {
-            case ERROR_FLAG.ERROR_FLAG_ACCESS_DENIED:
-            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_INCREASE_TEAM_MEMBER_DUE_TO_NO_BALANCE:
-              message.error({
-                content: t("user_management.mes.change_role_fail"),
-              })
-              break
-            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_UPDATE_TEAM_MEMBER_ROLE_BECAUSE_APPSUMO_BUYER:
-              message.error({
-                content: t("billing.message.appsumo.transfer"),
-              })
-              break
-            default:
-              if (userRole === USER_ROLE.OWNER) {
-                message.error({
-                  content: t("user_management.mes.transfer_fail"),
-                })
-              } else {
-                message.error({
-                  content: t("user_management.mes.change_role_fail"),
-                })
-              }
-              break
-          }
-        }
-        return false
-      })
-  }
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
 
   const closeInviteModal = () => {
     setShareVisible(false)
-  }
-
-  const fetchShareLink = (
-    userRole: USER_ROLE,
-    redirectPage?: REDIRECT_PAGE_TYPE,
-  ) => {
-    return fetchShareAppLink(userRole, appId, redirectPage)
-  }
-  const renewShareLink = (
-    userRole: USER_ROLE,
-    redirectPage?: REDIRECT_PAGE_TYPE,
-  ) => {
-    return renewShareAppLink(userRole, appId, redirectPage)
-  }
-
-  const updateAppConfig = async (isPublic: boolean) => {
-    const res = await updateAppPublicConfig(isPublic, appId)
-    dispatch(
-      dashboardAppActions.modifyConfigDashboardAppReducer({
-        appId,
-        config: { public: isPublic },
-      }),
-    )
-    return res
   }
 
   const handleDuplicateApp = () => {
@@ -234,6 +128,18 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       parameter5: appId,
     })
   }
+
+  const openInviteModal = useCallback(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_share",
+      parameter5: appId,
+    })
+    if (isCloudVersion && !canUseBillingFeature) {
+      handleUpgradeModalVisible(true, "upgrade")
+      return
+    }
+    setShareVisible(true)
+  }, [appId, canUseBillingFeature, handleUpgradeModalVisible])
 
   useEffect(() => {
     if (canEditApp || (isDeploy && canSetPublic)) {
@@ -314,14 +220,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                     <span>{t("share")}</span>
                   </div>
                 }
-                onClick={() => {
-                  setShareVisible(true)
-                  track(
-                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                    { element: "app_share", parameter5: appId },
-                  )
-                }}
+                onClick={openInviteModal}
               />
               <DropListItem
                 key="duplicate"
@@ -477,39 +376,11 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
       >
-        <MemberListContext.Provider
-          value={{
-            isCloudVersion,
-            currentTeamLicense:
-              teamInfo?.currentTeamLicense ?? ({} as SubscribeInfo),
-            totalTeamLicense:
-              teamInfo?.totalTeamLicense ?? ({} as TotalTeamLicense),
-          }}
-        >
-          <InviteModal
-            hasApp
-            teamName={isCloudVersion ? teamInfo?.name : "ILLA"}
-            userNickname={currentUserInfo.nickname}
-            isCloudVersion={isCloudVersion}
-            appLink={`${window.location.origin}/${teamIdentifier}/deploy/app/${app.appId}`}
-            isAppPublic={app?.config?.public}
-            inviteToUseAppStatus={app?.deployed ? "deployed" : "unDeployed"}
-            fetchInviteLink={fetchShareLink}
-            renewInviteLink={renewShareLink}
-            configInviteLink={setInviteLinkEnabled}
-            allowInviteByLink={inviteLinkEnabled}
-            allowEditorManageTeamMember={allowEditorManageTeamMember}
-            allowViewerManageTeamMember={allowViewerManageTeamMember}
-            userListData={members}
-            currentUserRole={currentUserRole}
-            inviteByEmail={handleInviteByEmail}
-            changeTeamMembersRole={handleChangeTeamMembersRole}
-            updateAppPublicConfig={updateAppConfig}
-            visible={shareVisible}
-            handleCloseModal={closeInviteModal}
-            appID={app.appId}
-          />
-        </MemberListContext.Provider>
+        <AppInviteModal
+          appInfo={app}
+          visible={shareVisible}
+          handleCloseModal={closeInviteModal}
+        />
       </MixpanelTrackProvider>
       <AppSettingModal
         appInfo={app}
