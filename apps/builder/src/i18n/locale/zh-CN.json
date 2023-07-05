@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "仅团队成员可以访问",
       "public_app": "任何获取到项目链接的人都可以访问"
+    },
+    "button": {
+      "public": "公开部署"
     }
   },
   "new_share": {
