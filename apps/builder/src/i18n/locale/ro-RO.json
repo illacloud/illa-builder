@@ -3107,12 +3107,12 @@
       "undo": {
         "suc": "Anulare reușită",
         "failed": "Anulare eșuată",
-        "nothing": "Nothing to undo"
+        "nothing": "Nimic de anulat"
       },
       "redo": {
         "suc": "Redo cu succes",
         "failed": "Refacere eșuată",
-        "nothing": "Nothing to redo"
+        "nothing": "Nimic de refăcut"
       }
     }
   },
@@ -3523,11 +3523,19 @@
       "app_setting": "Setare aplicație",
       "app_name": "Numele aplicației",
       "description": "Descriere",
-      "save": "Salvează"
+      "save": "Salvează",
+      "placeholder": {
+        "description": "Introduceți descrierea aplicației",
+        "app_name": "Introduceți un nume pentru aplicație"
+      }
     },
     "access": {
       "public": "Publice",
       "private": "Privat"
+    },
+    "message": {
+      "update_failed": "Actualizarea a eșuat",
+      "update_suc": "Actualizare reușită"
     }
   },
   "new_deploy": {
@@ -3547,6 +3555,11 @@
     },
     "desc": {
       "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
+    },
+    "tips": {
+      "admin": "Membrul care poate gestiona toţi membrii cu excepţia Owner, editează APP-urile şi vizualizează APP-urile",
+      "editor": "Membrul care poate gestiona membrii editorului şi vizualizatorului, editează APP-urile şi vizualizează APP-urile",
+      "viewer": "Membrul care poate gestiona utilizatorii şi vizualiza APP-urile"
     }
   }
 }
