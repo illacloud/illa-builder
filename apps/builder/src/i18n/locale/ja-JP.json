@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "正常に元に戻す",
-        "failed": "元に戻すに失敗しました"
+        "failed": "元に戻すに失敗しました",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "やり直しに成功しました",
-        "failed": "やり直しに失敗しました"
+        "failed": "やり直しに失敗しました",
+        "nothing": "Nothing to redo"
       }
     }
   },
