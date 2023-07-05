@@ -116,7 +116,17 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       )
       const snapshotMap = cloneDeep(illaSnapshot.getSnapshot())
 
-      const updateSlice: BatchUpdateWidgetLayoutInfoPayload[] = []
+      const updateSlice: BatchUpdateWidgetLayoutInfoPayload[] = [
+        {
+          displayName: newItem.displayName,
+          layoutInfo: {
+            x: newItem.layoutInfo.x,
+            y: newItem.layoutInfo.y,
+            w: newItem.layoutInfo.w,
+            h: newItem.layoutInfo.h,
+          },
+        },
+      ]
 
       for (let i = 0; i < prevEffectedDisplayNamesRef.current.length; i++) {
         const effectName = prevEffectedDisplayNamesRef.current[i]
@@ -176,9 +186,15 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
   const handleResize: RndResizeCallback = useCallback(
     (e, dir, elementRef, delta, position) => {
       const item = currentWidgetLayoutInfo
+      const snapShot = illaSnapshot.getSnapshot()
+      const snapShotShape = snapShot[displayName]
       const { width: deltaWidth, height: deltaHeight } = delta
-      const finalWidth = Math.round((widgetWidth + deltaWidth) / unitW)
-      const finalHeight = Math.round((widgetHeight + deltaHeight) / UNIT_HEIGHT)
+      const finalWidth = Math.round(
+        (snapShotShape.layoutInfo.w * unitW + deltaWidth) / unitW,
+      )
+      const finalHeight = Math.round(
+        (snapShotShape.layoutInfo.h * UNIT_HEIGHT + deltaHeight) / UNIT_HEIGHT,
+      )
       const positionX = Math.round(position.x / unitW)
       const positionY = Math.round(position.y / UNIT_HEIGHT)
 
@@ -192,9 +208,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
           h: finalHeight,
         },
       }
-
       throttleUpdateComponentPositionByReflow(newItem)
-
       sendShadowMessageHandler(
         2,
         parentNodeDisplayName,
@@ -215,16 +229,20 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       parentNodeDisplayName,
       throttleUpdateComponentPositionByReflow,
       unitW,
-      widgetHeight,
-      widgetWidth,
     ],
   )
 
   const handleOnResizeStop: RndResizeCallback = useCallback(
     (e, dir, ref, delta, position) => {
       const { width: deltaWidth, height: deltaHeight } = delta
-      let finalW = Math.round((widgetWidth + deltaWidth) / unitW)
-      let finalH = Math.round((widgetHeight + deltaHeight) / UNIT_HEIGHT)
+      const snapShot = illaSnapshot.getSnapshot()
+      const snapShotShape = snapShot[displayName]
+      let finalW = Math.round(
+        (snapShotShape.layoutInfo.w * unitW + deltaWidth) / unitW,
+      )
+      let finalH = Math.round(
+        (snapShotShape.layoutInfo.h * UNIT_HEIGHT + deltaHeight) / UNIT_HEIGHT,
+      )
       const x = Math.round(position.x / unitW)
       const y = Math.round(position.y / UNIT_HEIGHT)
       finalW = finalW < DEFAULT_MIN_COLUMN ? DEFAULT_MIN_COLUMN : finalW
@@ -257,14 +275,12 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       prevEffectedDisplayNamesRef.current = []
     },
     [
-      currentWidgetLayoutInfo.layoutInfo,
+      currentWidgetLayoutInfo.layoutInfo.minH,
       currentWidgetProps.$widgetType,
       dispatch,
       displayName,
       parentNodeDisplayName,
       unitW,
-      widgetHeight,
-      widgetWidth,
     ],
   )
 

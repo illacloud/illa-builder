@@ -121,15 +121,21 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
 
   const isEditMode = useSelector(getIsILLAEditMode)
 
+  const handleUpdateHeight = useCallback((_height: number) => {
+    // console.log("height", height)
+    // TODO: auto height
+  }, [])
+
   const renderHeader = useMemo(() => {
     const headerComponentNode = childrenNode[0]
     return (
       <RenderChildrenCanvas
         currentComponentNode={headerComponentNode}
         columnNumber={columnNumber}
+        handleUpdateHeight={handleUpdateHeight}
       />
     )
-  }, [columnNumber, childrenNode])
+  }, [childrenNode, columnNumber, handleUpdateHeight])
 
   const renderBody = useMemo(() => {
     const bodyComponentNode = childrenNode[1]
@@ -138,9 +144,10 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       <RenderChildrenCanvas
         currentComponentNode={bodyComponentNode}
         columnNumber={columnNumber}
+        handleUpdateHeight={handleUpdateHeight}
       />
     )
-  }, [columnNumber, childrenNode])
+  }, [childrenNode, columnNumber, handleUpdateHeight])
 
   const renderFooter = useMemo(() => {
     const footerComponentNode = childrenNode[2]
@@ -148,9 +155,10 @@ export const ModalWidget: FC<ModalWidgetProps> = (props) => {
       <RenderChildrenCanvas
         currentComponentNode={footerComponentNode}
         columnNumber={columnNumber}
+        handleUpdateHeight={handleUpdateHeight}
       />
     )
-  }, [columnNumber, childrenNode])
+  }, [childrenNode, columnNumber, handleUpdateHeight])
 
   const resizeTopHandler = useMemo(() => {
     return {

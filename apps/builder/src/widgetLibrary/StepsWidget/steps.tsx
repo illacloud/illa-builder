@@ -240,10 +240,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
   ])
 
   return (
-    <AutoHeightContainer
-      updateComponentHeight={updateComponentHeight}
-      dynamicOptions={{}}
-    >
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <WrappedSteps
         {...props}
         items={items}

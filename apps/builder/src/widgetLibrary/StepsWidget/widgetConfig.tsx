@@ -18,7 +18,7 @@ export const STEPS_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Steps", "步骤"],
   sessionType: "NAVIGATION",
   w: 18,
-  h: 7,
+  h: 4,
   defaults: {
     direction: "horizontal",
     alignment: "start",

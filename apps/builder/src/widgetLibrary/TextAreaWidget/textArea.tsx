@@ -244,11 +244,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     }
   }, [dynamicHeight, dynamicMinHeight, h])
 
-  const dynamicOptions = {
-    dynamicMinHeight,
-    dynamicMaxHeight,
-  }
-
   const minMaxValueRef = useRef<{ min?: number; max?: number }>({})
 
   const getMinMaxHeight = (
@@ -283,7 +278,6 @@ export const TextareaWidget: FC<TextareaWidgetProps> = (props) => {
     <AutoHeightContainer
       updateComponentHeight={updateComponentHeight}
       enable={enableAutoHeight}
-      dynamicOptions={dynamicOptions}
     >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div

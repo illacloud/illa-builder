@@ -18,7 +18,7 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
   icon: <ContainerWidgetIcon />,
   sessionType: "CONTAINER",
   w: 10,
-  h: 40,
+  h: 18,
   childrenNode: [
     BasicContainerConfig,
     BasicContainerConfig,
@@ -33,7 +33,7 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
     radius: "4px",
     borderWidth: "1px",
     shadow: "small",
-    dynamicHeight: "fixed",
-    resizeDirection: RESIZE_DIRECTION.ALL,
+    dynamicHeight: "auto",
+    resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   },
 }
