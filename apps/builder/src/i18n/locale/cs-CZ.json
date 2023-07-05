@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Vrátit zpět úspěšné",
-        "failed": "Vrátit zpět neúspěšné"
+        "failed": "Vrátit zpět neúspěšné",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Opakování úspěšné",
-        "failed": "Opakování selhalo"
+        "failed": "Opakování selhalo",
+        "nothing": "Nothing to redo"
       }
     }
   },
