@@ -101,7 +101,7 @@
     "toposort": "^2.0.2",
     "ts-key-enum": "^2.0.12",
     "uuid": "^8.3.2",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
