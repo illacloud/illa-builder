@@ -179,6 +179,8 @@ export const componentsAsync = (
 
       break
     }
+    case "setComponentPropsReducer":
+    case "updateComponentPropsReducerNotWithUndoRedo":
     case "updateComponentPropsReducer":
       const updatePayload: UpdateComponentPropsPayload = payload
       const finalNode = searchDsl(

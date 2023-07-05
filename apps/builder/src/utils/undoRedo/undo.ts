@@ -73,6 +73,10 @@ export class ILLA_UNDO_REDO {
       reduxActionDependOnRestAPI(info, REDUX_ACTION_FROM.REDO)
     }
   }
+  destroy() {
+    this.undoStack.clear()
+    this.redoStack.clear()
+  }
 }
 
 export default new ILLA_UNDO_REDO()
