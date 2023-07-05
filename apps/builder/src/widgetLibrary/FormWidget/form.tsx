@@ -110,6 +110,7 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     validateInputsOnSubmit,
     columnNumber,
     formData: propsFormData,
+    dynamicHeight = "fixed",
     handleUpdateOriginalDSLMultiAttr,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -384,15 +385,23 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
     )
   }, [containerBounds.height, headerHeight])
 
+  const handleUpdateHeight = useCallback((_height: number) => {
+    // TODO: update height
+  }, [])
+
+  const canResizeCanvas = dynamicHeight !== "fixed"
+
   const renderHeader = useMemo(() => {
     const headerComponentNode = childrenNode[0]
     return (
       <RenderChildrenCanvas
         currentComponentNode={headerComponentNode}
         columnNumber={columnNumber}
+        handleUpdateHeight={handleUpdateHeight}
+        canResizeCanvas={canResizeCanvas}
       />
     )
-  }, [columnNumber, childrenNode])
+  }, [canResizeCanvas, childrenNode, columnNumber, handleUpdateHeight])
 
   const renderBody = useMemo(() => {
     const bodyComponentNode = childrenNode[1]
@@ -400,9 +409,11 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       <RenderChildrenCanvas
         currentComponentNode={bodyComponentNode}
         columnNumber={columnNumber}
+        handleUpdateHeight={handleUpdateHeight}
+        canResizeCanvas={canResizeCanvas}
       />
     )
-  }, [columnNumber, childrenNode])
+  }, [canResizeCanvas, childrenNode, columnNumber, handleUpdateHeight])
 
   const renderFooter = useMemo(() => {
     const footerComponentNode = childrenNode[2]
@@ -410,9 +421,11 @@ export const FormWidget: FC<FormWidgetProps> = (props) => {
       <RenderChildrenCanvas
         currentComponentNode={footerComponentNode}
         columnNumber={columnNumber}
+        handleUpdateHeight={handleUpdateHeight}
+        canResizeCanvas={canResizeCanvas}
       />
     )
-  }, [columnNumber, childrenNode])
+  }, [canResizeCanvas, childrenNode, columnNumber, handleUpdateHeight])
 
   const resizeTopHandler = useMemo(() => {
     return {

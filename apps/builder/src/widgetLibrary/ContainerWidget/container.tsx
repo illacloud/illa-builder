@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 import { ContainerEmptyState } from "./emptyState"
@@ -21,8 +20,6 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     triggerEventHandler,
     updateComponentHeight,
     linkWidgetDisplayName,
-    dynamicMaxHeight,
-    dynamicMinHeight,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
 
@@ -40,19 +37,13 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     triggerEventHandler("click")
   }, [triggerEventHandler])
 
-  const renderComponent = useMemo(() => {
-    if (Array.isArray(childrenNode) && currentIndex < childrenNode.length) {
-      const currentViewComponentNode = childrenNode[currentIndex]
-
-      return (
-        <RenderChildrenCanvas
-          currentComponentNode={currentViewComponentNode}
-          columnNumber={columnNumber}
-        />
-      )
-    }
-    return <ContainerEmptyState />
-  }, [columnNumber, childrenNode, currentIndex])
+  const handleUpdateHeight = useCallback(
+    (height: number) => {
+      if (!updateComponentHeight) return
+      updateComponentHeight(height + 2)
+    },
+    [updateComponentHeight],
+  )
 
   const handleUpdateOriginalDSLAttrs = useCallback(
     (updateSlice: Record<string, any>) => {
@@ -180,21 +171,19 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     }
   }, [dynamicHeight])
 
-  const dynamicOptions = {
-    dynamicMinHeight,
-    dynamicMaxHeight,
-  }
-
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={containerWrapperStyle} onClick={handleOnClick}>
-        <AutoHeightContainer
-          updateComponentHeight={updateComponentHeight}
-          enable={enableAutoHeight}
-          dynamicOptions={dynamicOptions}
-        >
-          {renderComponent}
-        </AutoHeightContainer>
+        {Array.isArray(childrenNode) && currentIndex < childrenNode.length ? (
+          <RenderChildrenCanvas
+            currentComponentNode={childrenNode[currentIndex]}
+            columnNumber={columnNumber}
+            handleUpdateHeight={handleUpdateHeight}
+            canResizeCanvas={enableAutoHeight}
+          />
+        ) : (
+          <ContainerEmptyState />
+        )}
       </div>
     </TooltipWrapper>
   )

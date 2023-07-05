@@ -15,5 +15,6 @@ export interface FormWidgetProps extends BaseWidgetProps {
   validateInputsOnSubmit: boolean
   resetAfterSuccessful: boolean
   columnNumber: number
+  dynamicHeight: "auto" | "fixed" | "limited"
   formData?: Record<string, any>
 }

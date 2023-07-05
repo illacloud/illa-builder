@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useEffect, useRef } from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
@@ -111,31 +111,14 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     updateComponentRuntimeProps,
   ])
 
-  const enableAutoHeight = useMemo(() => {
-    switch (dynamicHeight) {
-      case "auto":
-        return true
-      case "limited":
-        return true
-      case "fixed":
-      default:
-        return false
-    }
-  }, [dynamicHeight])
+  const enableAutoHeight = dynamicHeight! === "fixed"
 
-  const dynamicOptions = useMemo(() => {
-    return dynamicHeight === "fixed"
-      ? {
-          dynamicMinHeight,
-          dynamicMaxHeight,
-        }
-      : undefined
-  }, [dynamicHeight, dynamicMaxHeight, dynamicMinHeight])
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
-  const [containerRef] = useAutoUpdateHeight(
+  useAutoUpdateHeight(
     updateComponentHeight,
+    containerRef.current,
     enableAutoHeight,
-    dynamicOptions,
   )
 
   return (
