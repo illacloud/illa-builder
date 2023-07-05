@@ -3106,11 +3106,13 @@
       },
       "undo": {
         "suc": "Cofnij pomyślne",
-        "failed": "Cofnięcie nie powiodło się"
+        "failed": "Cofnięcie nie powiodło się",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Powtórz pomyślnie",
-        "failed": "Powtórz nie powiodło się"
+        "failed": "Powtórz nie powiodło się",
+        "nothing": "Nothing to redo"
       }
     }
   },
