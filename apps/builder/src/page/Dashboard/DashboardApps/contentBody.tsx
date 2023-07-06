@@ -50,8 +50,12 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
   })
 
   const actualCardsPerRow = useMemo(() => {
-    const cardsPerRow = Math.floor(width / (CARD_WIDTH + CARD_GAP_SIZE))
-    const cardAreaWidth = width - (cardsPerRow - 1) * CARD_GAP_SIZE
+    const calculatedWidth = width || window.innerWidth * 0.7 + 16
+
+    const cardsPerRow = Math.floor(
+      calculatedWidth / (CARD_WIDTH + CARD_GAP_SIZE),
+    )
+    const cardAreaWidth = calculatedWidth - (cardsPerRow - 1) * CARD_GAP_SIZE
 
     return Math.floor(cardAreaWidth / CARD_WIDTH) || 1
   }, [width])
