@@ -3518,7 +3518,8 @@
       "undeploy": "Desdesplegar"
     },
     "desc": {
-      "no_description": "Sin descripción"
+      "no_description": "Sin descripción",
+      "blank": "Ninguna aplicación"
     },
     "app_setting": {
       "app_setting": "Ajustes de app",
@@ -3537,6 +3538,9 @@
     "message": {
       "update_failed": "Error al actualizar",
       "update_suc": "Actualizado correctamente"
+    },
+    "button": {
+      "blank": "Crea tu primera aplicación"
     }
   },
   "new_deploy": {
