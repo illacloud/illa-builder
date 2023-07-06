@@ -1323,7 +1323,8 @@
           "calendar": "Kalendarz"
         },
         "event": "Wydarzenie",
-        "MESSAGE": "WIADOMOŚĆ"
+        "MESSAGE": "WIADOMOŚĆ",
+        "Toolbar": "OBSŁUGA"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Włącz wybór wiadomości",
           "selection_type": "Typ wyboru",
           "loading_when_sending": "Wczytywanie podczas wysyłania",
-          "image_background": "Tło obrazu",
-          "senderAvatar": "Awatar nadawcy"
+          "image_background": "Tło obrazu"
         },
         "action": "Akcja",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Pokaż nazwę",
         "rich_text": {
           "default_text": "Domyślny tekst"
-        }
+        },
+        "senderAvatar": "Awatar nadawcy"
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Ustaw czy pokazywać awatar",
         "showName": "Ustaw czy pokazywać nazwę",
         "showSendTime": "Ustaw czy pokazywać czas wysyłania",
-        "showFooter": "Ustaw czy pokazywać stopkę"
+        "showFooter": "Ustaw czy pokazywać stopkę",
+        "senderAvatar": "Ustaw awatar nadawcy. Na przykład w twoim źródle danych awatar nadawcy jest polem sendAvatar i możesz ustawić pole na {{item.sendAvatar}}.",
+        "receiving": "Ustaw czy wyświetlić ładowanie podczas odbierania wiadomości. Jeśli wiadomość jest odebrana z akcji1, możesz ją ustawić na {{action1.isRunning}}, a status ładowania będzie wyświetlany po uruchomieniu akcji1."
       },
       "tab_title": "Zbadaj",
       "unselected_tip1": "Nie wybrano komponentów.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "Źródło danych komponentu czatu. Użyj {{actionName.data}} aby użyć danych z baz danych lub API",
-          "sender_avatar": "Ustaw awatar nadawcy. Na przykład w twoim źródle danych awatar nadawcy jest polem sendAvatar i możesz ustawić pole na {{item.sendAvatar}}.",
           "enable_message_selec": "Ustaw czy zezwolić na wybranie wiadomości",
           "selection_type": "Ustaw jak wybrać wiadomość, kliknij lewym lub prawym przyciskiem myszy. Gdy używany jest na urządzeniu mobilnym, jest ona kliknięta, aby wyzwalać wybór. ",
-          "loading_when_receivi": "Ustaw czy wyświetlić ładowanie podczas odbierania wiadomości. Jeśli wiadomość jest odebrana z akcji1, możesz ją ustawić na {{action1.isRunning}}, a status ładowania będzie wyświetlany po uruchomieniu akcji1.",
           "loading_when_sending": "Ustaw czy wyświetlać ładowanie podczas wysyłania wiadomości. Jeśli wiadomość została wysłana do akcji1, możesz ją ustawić na {{action1.isRunning}}, a status ładowania będzie wyświetlany po uruchomieniu akcji1.",
           "image_background": "Ustaw tło obrazu. Base64 i adres URL obrazu są obsługiwane"
         },

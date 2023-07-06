@@ -1323,7 +1323,8 @@
           "calendar": "Kalender"
         },
         "event": "Händelse",
-        "MESSAGE": "MEDDELANDE"
+        "MESSAGE": "MEDDELANDE",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Aktivera meddelandeval",
           "selection_type": "Typ av val",
           "loading_when_sending": "Laddar när du skickar",
-          "image_background": "Bild bakgrund",
-          "senderAvatar": "Avsändarens avatar"
+          "image_background": "Bild bakgrund"
         },
         "action": "Åtgärd",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Visa namn",
         "rich_text": {
           "default_text": "Förvald text"
-        }
+        },
+        "senderAvatar": "Avsändarens avatar"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Ange om avatar ska visas",
         "showName": "Ange om namnet ska visas",
         "showSendTime": "Ange om sändningstiden ska visas",
-        "showFooter": "Ange om sidfoten ska visas"
+        "showFooter": "Ange om sidfoten ska visas",
+        "senderAvatar": "Ange avsändaravataren. Till exempel, i din datakälla, avatar är sendAvatar fältet och du kan ställa in fältet till {{item.sendAvatar}}.",
+        "receiving": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs."
       },
       "tab_title": "Inspektera",
       "unselected_tip1": "Inga komponenter valda.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "Datakällan för chattkomponenten. Använd {{actionName.data}} för att använda data från dina databaser eller API:er",
-          "sender_avatar": "Ange avsändaravataren. Till exempel, i din datakälla, avatar är sendAvatar fältet och du kan ställa in fältet till {{item.sendAvatar}}.",
           "enable_message_selec": "Ange om ett meddelande ska väljas",
           "selection_type": "Ställ in hur du väljer ett meddelande, vänster-klicka eller högerklick. När det används på en mobil enhet klickas det för att utlösa valet. ",
-          "loading_when_receivi": "Ställ in om du vill visa inläsning när du tar emot meddelanden. Om ditt meddelande tas emot från action1, kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
           "loading_when_sending": "Ange om du vill visa inläsning när du skickar meddelanden. Om ditt meddelande skickas till åtgärden 1 kan du ställa in det till {{action1.isRunning}}, och laddnings status kommer att visas när åtgärden 1 körs.",
           "image_background": "Ange en bildbakgrund. Base64 och bild-URL stöds"
         },
