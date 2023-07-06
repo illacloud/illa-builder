@@ -10,7 +10,7 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom"
-import { Button, useMessage } from "@illa-design/react"
+import { Button, PlusIcon, useMessage } from "@illa-design/react"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
 import { Avatar } from "@/illa-public-component/Avatar"
 import {
@@ -73,7 +73,10 @@ export const DashboardApps: FC = () => {
     ACTION_MANAGE.CREATE_APP,
   )
 
-  const createApp = useCallback(() => {
+  const handleCreateApp = useCallback(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "create_new_app",
+    })
     if (loading) return
     setLoading(true)
     fetchCreateApp({
@@ -156,15 +159,9 @@ export const DashboardApps: FC = () => {
             <Button
               ml="4px"
               colorScheme="techPurple"
+              leftIcon={<PlusIcon />}
               loading={loading}
-              onClick={() => {
-                track(
-                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                  { element: "create_new_app" },
-                )
-                createApp()
-              }}
+              onClick={handleCreateApp}
             >
               {t("create_new_app")}
             </Button>
@@ -173,7 +170,11 @@ export const DashboardApps: FC = () => {
       </div>
       <Suspense fallback={<DashBoardLoading />}>
         <Await resolve={appList} errorElement={<DashboardErrorElement />}>
-          <AppsContentBody canEditApp={canEditApp} />
+          <AppsContentBody
+            canEditApp={canEditApp}
+            onCreatedApp={handleCreateApp}
+            loading={loading}
+          />
         </Await>
       </Suspense>
     </div>
