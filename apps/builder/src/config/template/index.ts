@@ -52,7 +52,7 @@ export const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
     },
   ) as TemplateActions
 
-  const appConfig = currentApp.components
+  const appConfig = currentApp.components.childrenNode
 
   return {
     appConfig,

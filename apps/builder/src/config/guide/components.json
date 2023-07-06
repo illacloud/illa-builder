@@ -3,15 +3,19 @@
     "displayName": "input1",
     "parentNode": "bodySection1-bodySectionContainer1",
     "showName": "input",
+    "error": false,
+    "isDragging": false,
+    "isResizing": false,
     "childrenNode": null,
     "type": "INPUT_WIDGET",
     "containerType": "EDITOR_SCALE_SQUARE",
-
+    "verticalResize": false,
     "h": 6,
     "w": 8,
     "minH": 3,
     "minW": 1,
-
+    "unitW": 14,
+    "unitH": 8,
     "x": 9,
     "y": 17,
     "z": 0,
@@ -26,22 +30,26 @@
       "labelWidth": "{{33}}",
       "placeholder": "input sth",
       "value": ""
-    }
+    },
+    "panelConfig": null
   },
   {
     "displayName": "button1",
     "parentNode": "bodySection1-bodySectionContainer1",
     "showName": "button",
-
+    "error": false,
+    "isDragging": false,
+    "isResizing": false,
     "childrenNode": null,
     "type": "BUTTON_WIDGET",
     "containerType": "EDITOR_SCALE_SQUARE",
-
+    "verticalResize": false,
     "h": 5,
     "w": 6,
     "minH": 3,
     "minW": 1,
-
+    "unitW": 14,
+    "unitH": 8,
     "x": 17,
     "y": 17,
     "z": 0,
@@ -51,22 +59,26 @@
       "hidden": false,
       "text": "Button",
       "variant": "fill"
-    }
+    },
+    "panelConfig": null
   },
   {
     "displayName": "table1",
     "parentNode": "bodySection1-bodySectionContainer1",
     "showName": "table",
-
+    "error": false,
+    "isDragging": false,
+    "isResizing": false,
     "childrenNode": null,
     "type": "TABLE_WIDGET",
     "containerType": "EDITOR_SCALE_SQUARE",
-
+    "verticalResize": false,
     "h": 38,
     "w": 14,
     "minH": 3,
     "minW": 1,
-
+    "unitW": 14,
+    "unitH": 8,
     "x": 9,
     "y": 25,
     "z": 0,
@@ -158,6 +170,7 @@
       "pageSize": "{{10}}",
       "renamedColumnNames": {},
       "rowEvents": {}
-    }
+    },
+    "panelConfig": null
   }
 ]

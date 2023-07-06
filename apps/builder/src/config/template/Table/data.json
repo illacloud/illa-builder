@@ -261,54 +261,83 @@
     "displayName": "root",
     "parentNode": "",
     "showName": "root",
+    "error": false,
+    "isDragging": false,
+    "isResizing": false,
     "childrenNode": [
       {
         "displayName": "page1",
         "parentNode": "root",
         "showName": "page",
+        "error": false,
+        "isDragging": false,
+        "isResizing": false,
         "childrenNode": [
           {
             "displayName": "bodySection1",
             "parentNode": "page1",
             "showName": "bodySection",
+            "error": false,
+            "isDragging": false,
+            "isResizing": false,
             "childrenNode": [
               {
                 "displayName": "bodySection1-bodySectionContainer1",
                 "parentNode": "bodySection1",
                 "showName": "bodySection1-bodySectionContainer1",
+                "error": false,
+                "isDragging": false,
+                "isResizing": false,
                 "childrenNode": [
                   {
                     "displayName": "container9",
                     "parentNode": "bodySection1-bodySectionContainer1",
                     "showName": "container",
-
+                    "error": false,
+                    "isDragging": false,
+                    "isResizing": false,
                     "childrenNode": [
                       {
                         "displayName": "canvas10",
                         "parentNode": "container9",
                         "showName": "canvas",
-
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
                         "childrenNode": [
                           {
                             "displayName": "container10",
                             "parentNode": "canvas10",
                             "showName": "container",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
                             "childrenNode": [
                               {
                                 "displayName": "canvas11",
                                 "parentNode": "container10",
                                 "showName": "canvas",
+                                "error": false,
+                                "isDragging": true,
+                                "isResizing": false,
                                 "childrenNode": [
                                   {
                                     "displayName": "chart5",
                                     "parentNode": "canvas11",
                                     "showName": "chart",
+                                    "error": false,
+                                    "isDragging": false,
+                                    "isResizing": false,
                                     "childrenNode": null,
                                     "type": "CHART_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
+                                    "verticalResize": false,
                                     "h": 33,
                                     "w": 16,
+                                    "minH": 3,
                                     "minW": 2,
+                                    "unitW": 9.9375,
+                                    "unitH": 8,
                                     "x": 0,
                                     "y": 1,
                                     "z": 0,
@@ -329,19 +358,26 @@
                                         }
                                       ],
                                       "xAxis": "how_much_pay"
-                                    }
+                                    },
+                                    "panelConfig": null
                                   },
                                   {
                                     "displayName": "chart6",
                                     "parentNode": "canvas11",
                                     "showName": "chart",
+                                    "error": false,
+                                    "isDragging": false,
+                                    "isResizing": false,
                                     "childrenNode": null,
                                     "type": "CHART_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
+                                    "verticalResize": false,
                                     "h": 33,
                                     "w": 15,
                                     "minH": 3,
                                     "minW": 2,
+                                    "unitW": 9.9375,
+                                    "unitH": 8,
                                     "x": 17,
                                     "y": 1,
                                     "z": 0,
@@ -362,27 +398,35 @@
                                         }
                                       ],
                                       "xAxis": "familiar"
-                                    }
+                                    },
+                                    "panelConfig": null
                                   }
                                 ],
                                 "type": "CANVAS",
                                 "containerType": "EDITOR_DOT_PANEL",
+                                "verticalResize": false,
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
                                 "minW": 2,
+                                "unitW": 0,
+                                "unitH": 8,
                                 "x": -1,
                                 "y": -1,
                                 "z": 0,
-                                "props": {}
+                                "props": {},
+                                "panelConfig": null
                               }
                             ],
                             "type": "CONTAINER_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
                             "h": 41,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
+                            "unitW": 11.015625,
+                            "unitH": 8,
                             "x": 1,
                             "y": 31,
                             "z": 0,
@@ -404,29 +448,42 @@
                                   "label": "View 1"
                                 }
                               ]
-                            }
+                            },
+                            "panelConfig": null
                           },
                           {
                             "displayName": "container11",
                             "parentNode": "canvas10",
                             "showName": "container",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
                             "childrenNode": [
                               {
                                 "displayName": "canvas12",
                                 "parentNode": "container11",
                                 "showName": "canvas",
+                                "error": false,
+                                "isDragging": true,
+                                "isResizing": false,
                                 "childrenNode": [
                                   {
                                     "displayName": "statistic5",
                                     "parentNode": "canvas12",
                                     "showName": "statistic",
+                                    "error": false,
+                                    "isDragging": false,
+                                    "isResizing": false,
                                     "childrenNode": [],
                                     "type": "STATISTIC_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
+                                    "verticalResize": false,
                                     "h": 9,
                                     "w": 30,
                                     "minH": 3,
                                     "minW": 2,
+                                    "unitW": 4.3046875,
+                                    "unitH": 8,
                                     "x": 2,
                                     "y": 7,
                                     "z": 0,
@@ -448,19 +505,26 @@
                                       "secondaryPositiveSign": "TbTrendingUp",
                                       "secondaryValue": "",
                                       "textAlign": "start"
-                                    }
+                                    },
+                                    "panelConfig": null
                                   },
                                   {
                                     "displayName": "text4",
                                     "parentNode": "canvas12",
                                     "showName": "text",
+                                    "error": false,
+                                    "isDragging": false,
+                                    "isResizing": false,
                                     "childrenNode": [],
                                     "type": "TEXT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
+                                    "verticalResize": false,
                                     "h": 5,
                                     "w": 30,
                                     "minH": 3,
                                     "minW": 2,
+                                    "unitW": 8.16748046875,
+                                    "unitH": 8,
                                     "x": 2,
                                     "y": 1,
                                     "z": 0,
@@ -475,27 +539,35 @@
                                       "resizeDirection": "ALL",
                                       "value": "Requests",
                                       "verticalAlign": "center"
-                                    }
+                                    },
+                                    "panelConfig": null
                                   }
                                 ],
                                 "type": "CANVAS",
                                 "containerType": "EDITOR_DOT_PANEL",
+                                "verticalResize": false,
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
                                 "minW": 2,
+                                "unitW": 0,
+                                "unitH": 8,
                                 "x": -1,
                                 "y": -1,
                                 "z": 0,
-                                "props": {}
+                                "props": {},
+                                "panelConfig": null
                               }
                             ],
                             "type": "CONTAINER_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
                             "h": 19,
                             "w": 15,
                             "minH": 3,
                             "minW": 2,
+                            "unitW": 17.859375,
+                            "unitH": 8,
                             "x": 1,
                             "y": 9,
                             "z": 0,
@@ -517,29 +589,42 @@
                                   "label": "View 1"
                                 }
                               ]
-                            }
+                            },
+                            "panelConfig": null
                           },
                           {
                             "displayName": "container12",
                             "parentNode": "canvas10",
                             "showName": "container",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
                             "childrenNode": [
                               {
                                 "displayName": "canvas14",
                                 "parentNode": "container12",
                                 "showName": "canvas",
+                                "error": false,
+                                "isDragging": true,
+                                "isResizing": false,
                                 "childrenNode": [
                                   {
                                     "displayName": "statistic6",
                                     "parentNode": "canvas14",
                                     "showName": "statistic",
+                                    "error": false,
+                                    "isDragging": false,
+                                    "isResizing": false,
                                     "childrenNode": [],
                                     "type": "STATISTIC_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
+                                    "verticalResize": false,
                                     "h": 9,
                                     "w": 29,
                                     "minH": 3,
                                     "minW": 2,
+                                    "unitW": 4.21484375,
+                                    "unitH": 8,
                                     "x": 2,
                                     "y": 7,
                                     "z": 0,
@@ -560,19 +645,26 @@
                                       "secondaryNegativeSign": "TbTrendingDown",
                                       "secondaryPositiveSign": "TbTrendingUp",
                                       "textAlign": "start"
-                                    }
+                                    },
+                                    "panelConfig": null
                                   },
                                   {
                                     "displayName": "text5",
                                     "parentNode": "canvas14",
                                     "showName": "text",
+                                    "error": false,
+                                    "isDragging": false,
+                                    "isResizing": false,
                                     "childrenNode": [],
                                     "type": "TEXT_WIDGET",
                                     "containerType": "EDITOR_SCALE_SQUARE",
+                                    "verticalResize": false,
                                     "h": 5,
                                     "w": 29,
                                     "minH": 3,
                                     "minW": 2,
+                                    "unitW": 8.16748046875,
+                                    "unitH": 8,
                                     "x": 2,
                                     "y": 1,
                                     "z": 0,
@@ -587,27 +679,35 @@
                                       "resizeDirection": "ALL",
                                       "value": "Available requests",
                                       "verticalAlign": "center"
-                                    }
+                                    },
+                                    "panelConfig": null
                                   }
                                 ],
                                 "type": "CANVAS",
                                 "containerType": "EDITOR_DOT_PANEL",
+                                "verticalResize": false,
                                 "h": 0,
                                 "w": 0,
                                 "minH": 3,
                                 "minW": 2,
+                                "unitW": 0,
+                                "unitH": 8,
                                 "x": -1,
                                 "y": -1,
                                 "z": 0,
-                                "props": {}
+                                "props": {},
+                                "panelConfig": null
                               }
                             ],
                             "type": "CONTAINER_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
                             "h": 19,
                             "w": 15,
                             "minH": 3,
                             "minW": 2,
+                            "unitW": 11.015625,
+                            "unitH": 8,
                             "x": 17,
                             "y": 9,
                             "z": 0,
@@ -629,19 +729,26 @@
                                   "label": "View 1"
                                 }
                               ]
-                            }
+                            },
+                            "panelConfig": null
                           },
                           {
                             "displayName": "text3",
                             "parentNode": "canvas10",
                             "showName": "text",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
                             "childrenNode": [],
                             "type": "TEXT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
                             "h": 5,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
+                            "unitW": 11.015625,
+                            "unitH": 8,
                             "x": 1,
                             "y": 2,
                             "z": 0,
@@ -656,19 +763,26 @@
                               "resizeDirection": "ALL",
                               "value": "# Dashboard",
                               "verticalAlign": "center"
-                            }
+                            },
+                            "panelConfig": null
                           },
                           {
                             "displayName": "table2",
                             "parentNode": "canvas10",
                             "showName": "table",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
                             "childrenNode": [],
                             "type": "TABLE_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
                             "h": 40,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
+                            "unitW": 17.890625,
+                            "unitH": 8,
                             "x": 1,
                             "y": 75,
                             "z": 0,
@@ -897,31 +1011,35 @@
                                   "visible": true
                                 }
                               }
-                            }
+                            },
+                            "panelConfig": null
                           }
                         ],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
-
+                        "verticalResize": false,
                         "h": 0,
                         "w": 0,
                         "minH": 3,
                         "minW": 2,
-
+                        "unitW": 0,
+                        "unitH": 8,
                         "x": -1,
                         "y": -1,
                         "z": 0,
-                        "props": {}
+                        "props": {},
+                        "panelConfig": null
                       }
                     ],
                     "type": "CONTAINER_WIDGET",
                     "containerType": "EDITOR_SCALE_SQUARE",
-
+                    "verticalResize": false,
                     "h": 110,
                     "w": 32,
                     "minH": 3,
                     "minW": 2,
-
+                    "unitW": 18.109375,
+                    "unitH": 8,
                     "x": 0,
                     "y": 11,
                     "z": 0,
@@ -943,51 +1061,66 @@
                           "label": "View 1"
                         }
                       ]
-                    }
+                    },
+                    "panelConfig": null
                   }
                 ],
                 "type": "CONTAINER_NODE",
                 "containerType": "EDITOR_DOT_PANEL",
-
+                "verticalResize": true,
                 "h": 0,
                 "w": 0,
                 "minH": 0,
                 "minW": 0,
-
+                "unitW": 0,
+                "unitH": 0,
                 "x": -1,
                 "y": -1,
                 "z": 0,
-                "props": {}
+                "props": {},
+                "panelConfig": null
               },
               {
                 "displayName": "bodySection1-bodySectionContainer2",
                 "parentNode": "bodySection1",
                 "showName": "bodySectionContainer",
-
+                "error": false,
+                "isDragging": false,
+                "isResizing": false,
                 "childrenNode": [
                   {
                     "displayName": "container1",
                     "parentNode": "bodySection1-bodySectionContainer2",
                     "showName": "container",
-
+                    "error": false,
+                    "isDragging": false,
+                    "isResizing": false,
                     "childrenNode": [
                       {
                         "displayName": "canvas1",
                         "parentNode": "container1",
                         "showName": "canvas",
-
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
                         "childrenNode": [
                           {
                             "displayName": "text1",
                             "parentNode": "canvas1",
                             "showName": "text",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
                             "childrenNode": [],
                             "type": "TEXT_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
                             "h": 6,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
+                            "unitW": 17.890625,
+                            "unitH": 8,
                             "x": 1,
                             "y": 1,
                             "z": 0,
@@ -1002,19 +1135,26 @@
                               "resizeDirection": "ALL",
                               "value": "# Management",
                               "verticalAlign": "center"
-                            }
+                            },
+                            "panelConfig": null
                           },
                           {
                             "displayName": "table1",
                             "parentNode": "canvas1",
                             "showName": "table",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
                             "childrenNode": [],
                             "type": "TABLE_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
                             "h": 99,
                             "w": 31,
                             "minH": 3,
                             "minW": 2,
+                            "unitW": 17.890625,
+                            "unitH": 8,
                             "x": 1,
                             "y": 9,
                             "z": 0,
@@ -1478,31 +1618,35 @@
                                   "other": ""
                                 }
                               ]
-                            }
+                            },
+                            "panelConfig": null
                           }
                         ],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
-
+                        "verticalResize": false,
                         "h": 0,
                         "w": 0,
                         "minH": 3,
                         "minW": 2,
-
+                        "unitW": 0,
+                        "unitH": 8,
                         "x": -1,
                         "y": -1,
                         "z": 0,
-                        "props": {}
+                        "props": {},
+                        "panelConfig": null
                       }
                     ],
                     "type": "CONTAINER_WIDGET",
                     "containerType": "EDITOR_SCALE_SQUARE",
-
+                    "verticalResize": false,
                     "h": 110,
                     "w": 32,
                     "minH": 3,
                     "minW": 2,
-
+                    "unitW": 18.109375,
+                    "unitH": 8,
                     "x": 0,
                     "y": 11,
                     "z": 0,
@@ -1524,31 +1668,35 @@
                           "label": "View 1"
                         }
                       ]
-                    }
+                    },
+                    "panelConfig": null
                   }
                 ],
                 "type": "CONTAINER_NODE",
                 "containerType": "EDITOR_DOT_PANEL",
-
+                "verticalResize": true,
                 "h": 0,
                 "w": 0,
                 "minH": 0,
                 "minW": 0,
-
+                "unitW": 0,
+                "unitH": 0,
                 "x": -1,
                 "y": -1,
                 "z": 0,
-                "props": {}
+                "props": {},
+                "panelConfig": null
               }
             ],
             "type": "SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
-
+            "verticalResize": true,
             "h": 0,
             "w": 0,
             "minH": 0,
             "minW": 0,
-
+            "unitW": 0,
+            "unitH": 0,
             "x": -1,
             "y": -1,
             "z": 0,
@@ -1573,40 +1721,50 @@
                 "bodySection1-bodySectionContainer1",
                 "bodySection1-bodySectionContainer2"
               ]
-            }
+            },
+            "panelConfig": null
           },
           {
             "displayName": "modalSection1",
             "parentNode": "page1",
             "showName": "modalSection",
-
+            "error": false,
+            "isDragging": false,
+            "isResizing": false,
             "childrenNode": [
               {
                 "displayName": "modal1",
                 "parentNode": "modalSection1",
                 "showName": "modal",
-
+                "error": false,
+                "isDragging": false,
+                "isResizing": false,
                 "childrenNode": [
                   {
                     "displayName": "canvas2",
                     "parentNode": "modal1",
                     "showName": "canvas",
-
+                    "error": false,
+                    "isDragging": true,
+                    "isResizing": false,
                     "childrenNode": [
                       {
                         "displayName": "text2",
                         "parentNode": "canvas2",
                         "showName": "text",
-
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
                         "childrenNode": [],
                         "type": "TEXT_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
-
+                        "verticalResize": false,
                         "h": 5,
                         "w": 10,
                         "minH": 3,
                         "minW": 2,
-
+                        "unitW": 0,
+                        "unitH": 8,
                         "x": 0,
                         "y": 0,
                         "z": 0,
@@ -1620,61 +1778,73 @@
                           "resizeDirection": "ALL",
                           "value": "### Modal",
                           "verticalAlign": "center"
-                        }
+                        },
+                        "panelConfig": null
                       }
                     ],
                     "type": "CANVAS",
                     "containerType": "EDITOR_DOT_PANEL",
-
+                    "verticalResize": false,
                     "h": 0,
                     "w": 0,
                     "minH": 3,
                     "minW": 2,
-
+                    "unitW": 0,
+                    "unitH": 8,
                     "x": -1,
                     "y": -1,
                     "z": 0,
-                    "props": {}
+                    "props": {},
+                    "panelConfig": null
                   },
                   {
                     "displayName": "canvas3",
                     "parentNode": "modal1",
                     "showName": "canvas",
-
+                    "error": false,
+                    "isDragging": true,
+                    "isResizing": false,
                     "childrenNode": [],
                     "type": "CANVAS",
                     "containerType": "EDITOR_DOT_PANEL",
-
+                    "verticalResize": false,
                     "h": 0,
                     "w": 0,
                     "minH": 3,
                     "minW": 2,
-
+                    "unitW": 0,
+                    "unitH": 8,
                     "x": -1,
                     "y": -1,
                     "z": 0,
-                    "props": {}
+                    "props": {},
+                    "panelConfig": null
                   },
                   {
                     "displayName": "canvas4",
                     "parentNode": "modal1",
                     "showName": "canvas",
-
+                    "error": false,
+                    "isDragging": true,
+                    "isResizing": false,
                     "childrenNode": [
                       {
                         "displayName": "button1",
                         "parentNode": "canvas4",
                         "showName": "button",
-
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
                         "childrenNode": [],
                         "type": "BUTTON_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
-
+                        "verticalResize": false,
                         "h": 5,
                         "w": 16,
                         "minH": 3,
                         "minW": 2,
-
+                        "unitW": 0,
+                        "unitH": 8,
                         "x": 48,
                         "y": 0,
                         "z": 0,
@@ -1692,22 +1862,26 @@
                           "hidden": false,
                           "text": "Confirm",
                           "variant": "fill"
-                        }
+                        },
+                        "panelConfig": null
                       },
                       {
                         "displayName": "button2",
                         "parentNode": "canvas4",
                         "showName": "button",
-
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
                         "childrenNode": [],
                         "type": "BUTTON_WIDGET",
                         "containerType": "EDITOR_SCALE_SQUARE",
-
+                        "verticalResize": false,
                         "h": 5,
                         "w": 16,
                         "minH": 3,
                         "minW": 2,
-
+                        "unitW": 0,
+                        "unitH": 8,
                         "x": 32,
                         "y": 0,
                         "z": 0,
@@ -1725,31 +1899,35 @@
                           "hidden": false,
                           "text": "Cancel",
                           "variant": "outline"
-                        }
+                        },
+                        "panelConfig": null
                       }
                     ],
                     "type": "CANVAS",
                     "containerType": "EDITOR_DOT_PANEL",
-
+                    "verticalResize": false,
                     "h": 0,
                     "w": 0,
                     "minH": 3,
                     "minW": 2,
-
+                    "unitW": 0,
+                    "unitH": 8,
                     "x": -1,
                     "y": -1,
                     "z": 0,
-                    "props": {}
+                    "props": {},
+                    "panelConfig": null
                   }
                 ],
                 "type": "MODAL_WIDGET",
                 "containerType": "EDITOR_SCALE_SQUARE",
-
+                "verticalResize": false,
                 "h": 40,
                 "w": 53,
                 "minH": 3,
                 "minW": 2,
-
+                "unitW": 11.015625,
+                "unitH": 8,
                 "x": 0,
                 "y": 1536,
                 "z": 0,
@@ -1764,57 +1942,74 @@
                   "shadow": "small",
                   "showFooter": true,
                   "showHeader": true
-                }
+                },
+                "panelConfig": null
               }
             ],
             "type": "MODAL_SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
-
+            "verticalResize": true,
             "h": 0,
             "w": 0,
             "minH": 0,
             "minW": 0,
-
+            "unitW": 0,
+            "unitH": 0,
             "x": -1,
             "y": -1,
             "z": 0,
-            "props": {}
+            "props": {},
+            "panelConfig": null
           },
           {
             "displayName": "leftSection1",
             "parentNode": "page1",
             "showName": "leftSection",
-
+            "error": false,
+            "isDragging": false,
+            "isResizing": false,
             "childrenNode": [
               {
                 "displayName": "leftSection1-leftSectionContainer1",
                 "parentNode": "leftSection1",
                 "showName": "leftSectionContainer",
-
+                "error": false,
+                "isDragging": false,
+                "isResizing": false,
                 "childrenNode": [
                   {
                     "displayName": "container3",
                     "parentNode": "leftSection1-leftSectionContainer1",
                     "showName": "container",
-
+                    "error": false,
+                    "isDragging": false,
+                    "isResizing": false,
                     "childrenNode": [
                       {
                         "displayName": "canvas7",
                         "parentNode": "container3",
                         "showName": "canvas",
-
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
                         "childrenNode": [
                           {
                             "displayName": "menu1",
                             "parentNode": "canvas7",
                             "showName": "menu",
+                            "error": false,
+                            "isDragging": false,
+                            "isResizing": false,
                             "childrenNode": [],
                             "type": "MENU_WIDGET",
                             "containerType": "EDITOR_SCALE_SQUARE",
+                            "verticalResize": false,
                             "h": 15,
                             "w": 8,
                             "minH": 3,
                             "minW": 2,
+                            "unitW": 12.5,
+                            "unitH": 8,
                             "x": 0,
                             "y": 1,
                             "z": 0,
@@ -1853,69 +2048,81 @@
                               ],
                               "mode": "vertical",
                               "selectedValues": ["subMenu1"]
-                            }
+                            },
+                            "panelConfig": null
                           }
                         ],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
-
+                        "verticalResize": false,
                         "h": 0,
                         "w": 0,
                         "minH": 3,
                         "minW": 2,
-
+                        "unitW": 0,
+                        "unitH": 8,
                         "x": -1,
                         "y": -1,
                         "z": 0,
-                        "props": {}
+                        "props": {},
+                        "panelConfig": null
                       },
                       {
                         "displayName": "canvas8",
                         "parentNode": "container3",
                         "showName": "canvas",
-
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
                         "childrenNode": [],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
-
+                        "verticalResize": false,
                         "h": 0,
                         "w": 0,
                         "minH": 3,
                         "minW": 2,
-
+                        "unitW": 0,
+                        "unitH": 8,
                         "x": -1,
                         "y": -1,
                         "z": 0,
-                        "props": {}
+                        "props": {},
+                        "panelConfig": null
                       },
                       {
                         "displayName": "canvas9",
                         "parentNode": "container3",
                         "showName": "canvas",
-
+                        "error": false,
+                        "isDragging": true,
+                        "isResizing": false,
                         "childrenNode": [],
                         "type": "CANVAS",
                         "containerType": "EDITOR_DOT_PANEL",
-
+                        "verticalResize": false,
                         "h": 0,
                         "w": 0,
                         "minH": 3,
                         "minW": 2,
-
+                        "unitW": 0,
+                        "unitH": 8,
                         "x": -1,
                         "y": -1,
                         "z": 0,
-                        "props": {}
+                        "props": {},
+                        "panelConfig": null
                       }
                     ],
                     "type": "CONTAINER_WIDGET",
                     "containerType": "EDITOR_SCALE_SQUARE",
-
+                    "verticalResize": false,
                     "h": 110,
                     "w": 8,
                     "minH": 3,
                     "minW": 2,
-
+                    "unitW": 14.9375,
+                    "unitH": 8,
                     "x": 0,
                     "y": 11,
                     "z": 0,
@@ -1947,31 +2154,35 @@
                           "label": "View 3"
                         }
                       ]
-                    }
+                    },
+                    "panelConfig": null
                   }
                 ],
                 "type": "CONTAINER_NODE",
                 "containerType": "EDITOR_DOT_PANEL",
-
+                "verticalResize": true,
                 "h": 0,
                 "w": 0,
                 "minH": 0,
                 "minW": 0,
-
+                "unitW": 0,
+                "unitH": 0,
                 "x": -1,
                 "y": -1,
                 "z": 0,
-                "props": {}
+                "props": {},
+                "panelConfig": null
               }
             ],
             "type": "SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
-
+            "verticalResize": true,
             "h": 0,
             "w": 0,
             "minH": 0,
             "minW": 0,
-
+            "unitW": 0,
+            "unitH": 0,
             "x": -1,
             "y": -1,
             "z": 0,
@@ -1987,16 +2198,19 @@
                 }
               ],
               "viewSortedKey": ["leftSection1-leftSectionContainer1"]
-            }
+            },
+            "panelConfig": null
           }
         ],
         "type": "PAGE_NODE",
         "containerType": "EDITOR_PAGE_SQUARE",
+        "verticalResize": true,
         "h": 0,
         "w": 0,
         "minH": 0,
         "minW": 0,
-
+        "unitW": 0,
+        "unitH": 0,
         "x": -1,
         "y": -1,
         "z": 0,
@@ -2025,22 +2239,27 @@
           "showLeftFoldIcon": false,
           "showRightFoldIcon": false,
           "topHeight": 0
-        }
+        },
+        "panelConfig": null
       }
     ],
     "type": "DOT_PANEL",
     "containerType": "EDITOR_DOT_PANEL",
+    "verticalResize": true,
     "h": 0,
     "w": 0,
     "minH": 0,
     "minW": 0,
+    "unitW": 0,
+    "unitH": 0,
     "x": -1,
     "y": -1,
     "z": 0,
     "props": {
       "currentPageIndex": 0,
       "pageSortedKey": ["page1"]
-    }
+    },
+    "panelConfig": null
   },
   "dependenciesState": {},
   "dragShadowState": {},
