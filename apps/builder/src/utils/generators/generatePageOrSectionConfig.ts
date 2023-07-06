@@ -45,7 +45,6 @@ export const generateSectionContainerConfig = (
     y: -1,
     z: 0,
     childrenNode: childrenNode,
-    version: 0,
     props: {},
   }
 }
@@ -75,7 +74,6 @@ export const generateSectionConfig = (
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: {
       currentViewIndex: 0,
       viewSortedKey: [childrenNode.displayName],
@@ -115,7 +113,6 @@ export const generateModalSectionConfig = (
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: {},
     childrenNode: [],
   }
@@ -167,7 +164,6 @@ export const generatePageConfig = (): PageNode => {
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: defaultPageProps,
     childrenNode: [childrenNode],
   }
@@ -194,7 +190,6 @@ export const generateDefaultLayoutConfig = (
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: {
       canvasSize: "auto",
       canvasWidth: 100,
@@ -254,7 +249,6 @@ export const generatePresetALayoutConfig = (
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: {
       canvasSize: "auto",
       canvasWidth: 100,
@@ -318,7 +312,6 @@ export const generatePresetBLayoutConfig = (
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: {
       canvasSize: "auto",
       canvasWidth: 100,
@@ -391,7 +384,6 @@ export const generatePresetCLayoutConfig = (
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: {
       canvasSize: "auto",
       canvasWidth: 100,
@@ -464,7 +456,6 @@ export const generatePresetDLayoutConfig = (
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: {
       canvasSize: "auto",
       canvasWidth: 100,
@@ -539,7 +530,6 @@ export const generatePresetELayoutConfig = (
     x: -1,
     y: -1,
     z: 0,
-    version: 0,
     props: {
       canvasSize: "auto",
       canvasWidth: 100,
