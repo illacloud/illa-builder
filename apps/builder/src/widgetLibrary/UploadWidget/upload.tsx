@@ -358,7 +358,6 @@ export const UploadWidget: FC<UploadWidgetProps> = (props) => {
     <AutoHeightContainer
       updateComponentHeight={updateComponentHeight}
       enable={true}
-      dynamicOptions={{}}
     >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={uploadLayoutStyle}>

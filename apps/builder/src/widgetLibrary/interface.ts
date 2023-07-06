@@ -48,6 +48,7 @@ export interface BaseWidgetInfo {
   sessionType?: SessionType
   keywords?: string[]
   resizeDirection?: RESIZE_DIRECTION
+  version: number
 }
 
 type defaultsType = () => Record<string, any>

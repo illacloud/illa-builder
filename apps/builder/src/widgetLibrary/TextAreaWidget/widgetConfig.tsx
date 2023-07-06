@@ -11,6 +11,7 @@ export const TEXTAREA_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "INPUTS",
   w: 7,
   h: 8,
+  version: 0,
   defaults: {
     value: "",
     label: "Label",

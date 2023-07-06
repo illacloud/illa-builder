@@ -15,6 +15,7 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "CONTAINER",
   w: 16,
   h: 40,
+  version: 0,
   childrenNode: [
     {
       ...BasicContainerConfig,
@@ -38,9 +39,9 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
       childrenNode: [
         {
           ...BUTTON_WIDGET_CONFIG,
-          w: 16,
+          w: 8,
           h: 5,
-          x: 48,
+          x: 24,
           y: 0,
           defaults: {
             ...BUTTON_WIDGET_CONFIG.defaults,

@@ -3,4 +3,6 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 export interface IRenderChildrenCanvasProps {
   currentComponentNode: ComponentNode
   columnNumber: number
+  handleUpdateHeight: (height: number) => void
+  canResizeCanvas?: boolean
 }

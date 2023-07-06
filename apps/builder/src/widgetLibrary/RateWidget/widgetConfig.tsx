@@ -12,6 +12,7 @@ export const RATE_WIDGET_CONFIG: WidgetConfig = {
   w: 6,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     value: "{{4}}",
     allowHalf: true,

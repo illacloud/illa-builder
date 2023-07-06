@@ -12,6 +12,7 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "DATA",
   w: 10,
   h: 40,
+  version: 0,
   defaults: initChartWidgetDefaultProps,
 }
 
@@ -24,6 +25,7 @@ export const CHART_WIDGET_V2_CONFIG: WidgetConfig = {
   sessionType: "DATA",
   w: 10,
   h: 40,
+  version: 0,
   defaults: initChartWidgetDefaultProps,
 }
 

@@ -32,6 +32,7 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["EventCalendar", "活动日历"],
   sessionType: "CALENDAR",
   resizeDirection: RESIZE_DIRECTION.ALL,
+  version: 0,
   defaults: {
     eventConfigureMode: "static",
     manualOptions: [

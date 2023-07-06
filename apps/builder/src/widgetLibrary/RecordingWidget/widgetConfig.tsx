@@ -17,6 +17,7 @@ export const RECORDING_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   h: 7,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     value: "",
     dataURI: "",

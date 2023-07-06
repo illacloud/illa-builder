@@ -1,6 +1,9 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { WIDGET_PADDING } from "../../constant/widget"
+import {
+  WIDGET_PADDING,
+  WIDGET_SCALE_SQUARE_BORDER_WIDTH,
+} from "@/page/App/components/ScaleSquare/constant/widget"
 
 export const hoverHotSpotStyle = css`
   width: 100%;
@@ -53,7 +56,7 @@ const getWrapperBorder = (
     `
   }
   return css`
-    border-width: 1px;
+    border-width: ${WIDGET_SCALE_SQUARE_BORDER_WIDTH}px;
     border-style: ${getWrapperBorderStyle(
       hasEditors,
       isSelected,

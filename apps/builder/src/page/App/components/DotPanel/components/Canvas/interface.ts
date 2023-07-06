@@ -3,6 +3,9 @@ export interface RenderComponentCanvasContainerProps {
   containerPadding: number
   columnNumber?: number
   isRootCanvas?: boolean
+  canResizeCanvas?: boolean
+  safeRowNumber?: number
+  handleUpdateHeight?: (height: number) => void
 }
 
 export interface DropCollectedProps {
