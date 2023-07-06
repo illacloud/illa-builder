@@ -20,10 +20,12 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getExecutionResult,
+  getExecutionWidgetLayoutInfo,
   getInDependenciesMap,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
@@ -139,6 +141,7 @@ const updateComponentReflowComponentsAdapter = (
     | typeof componentsActions.updateComponentLayoutInfoReducer
     | typeof componentsActions.updateComponentContainerReducer
   >,
+  currentLayoutInfo: Record<string, WidgetLayoutInfo>,
 ) => {
   switch (action.type) {
     case "components/updateComponentContainerReducer": {
@@ -187,6 +190,7 @@ const updateComponentReflowComponentsAdapter = (
     }
     case "components/updateComponentLayoutInfoReducer": {
       const { displayName, layoutInfo } = action.payload
+      const currentWidgetLayoutInfo = currentLayoutInfo[displayName]
       return {
         parentDisplayName: action.payload.parentNode,
         effectedDisplayNames: [displayName],
@@ -194,12 +198,15 @@ const updateComponentReflowComponentsAdapter = (
           x: layoutInfo.x,
           y: layoutInfo.y,
           w: layoutInfo.w,
-          h: layoutInfo.h,
+          h: layoutInfo.h ?? currentWidgetLayoutInfo.layoutInfo.h,
         },
         originUpdateSlice: [
           {
             displayName,
-            layoutInfo: layoutInfo,
+            layoutInfo: {
+              ...layoutInfo,
+              h: layoutInfo.h ?? currentWidgetLayoutInfo.layoutInfo.h,
+            },
           },
         ],
       }
@@ -211,12 +218,14 @@ function handleUpdateComponentReflowEffect(
   action: AnyAction,
   listenApi: AppListenerEffectAPI,
 ) {
+  const currentLayoutInfo = getExecutionWidgetLayoutInfo(listenApi.getState())
   const updateComponents = updateComponentReflowComponentsAdapter(
     action as ReturnType<
       | typeof componentsActions.addComponentReducer
       | typeof componentsActions.updateComponentLayoutInfoReducer
       | typeof componentsActions.updateComponentContainerReducer
     >,
+    currentLayoutInfo,
   )
 
   const updateSlice = updateComponents.originUpdateSlice

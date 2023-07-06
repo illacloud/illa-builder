@@ -66,7 +66,8 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     deleteComponentRuntimeProps,
   ])
 
-  const enableAutoHeight = dynamicHeight !== "fixed"
+  const enableAutoHeight =
+    dynamicHeight !== "fixed" && dynamicHeight != undefined
 
   return (
     <AutoHeightContainer

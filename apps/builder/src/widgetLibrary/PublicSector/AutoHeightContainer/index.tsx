@@ -1,9 +1,8 @@
-import { FC, ReactNode, useRef } from "react"
+import { FC, ReactNode, useEffect, useRef } from "react"
 import {
   autoHeightContainerStyle,
   fixedHeightContainerStyle,
 } from "@/widgetLibrary/PublicSector/AutoHeightContainer/style"
-import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 
 interface AutoHeightContainerProps {
   updateComponentHeight: (height: number) => void
@@ -17,7 +16,24 @@ export const AutoHeightContainer: FC<AutoHeightContainerProps> = ({
   enable = true,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
-  useAutoUpdateHeight(updateComponentHeight, containerRef.current, enable)
+
+  useEffect(() => {
+    const containerDom = containerRef.current
+    const observerRef = new ResizeObserver((entries) => {
+      if (!updateComponentHeight) return
+      const height = entries[0].contentRect.height
+      updateComponentHeight?.(height)
+    })
+    if (observerRef && containerDom && enable) {
+      observerRef.observe(containerDom)
+    }
+
+    return () => {
+      if (containerDom && enable) {
+        observerRef.unobserve(containerDom)
+      }
+    }
+  }, [enable, updateComponentHeight])
 
   return (
     <div
