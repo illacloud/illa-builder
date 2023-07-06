@@ -6,4 +6,5 @@ export interface AppSettingModalProps {
   onVisibleChange: (visible: boolean) => void
   onCancel: () => void
   onOk: () => void
+  maskClosable?: boolean
 }

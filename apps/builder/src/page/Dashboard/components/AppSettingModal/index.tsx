@@ -1,12 +1,13 @@
-import { FC, useCallback, useState } from "react"
+import { FC, MouseEvent, useCallback, useState } from "react"
+import { createPortal } from "react-dom"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import {
   Button,
+  CloseIcon,
   Input,
-  Modal,
   TextArea,
   getColor,
   useMessage,
@@ -17,11 +18,17 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { updateAppConfig } from "@/services/apps"
 import {
+  closeIconHotSpotStyle,
   formLabelStyle,
   gridFormFieldStyle,
   gridFormStyle,
   gridItemStyle,
   gridValidStyle,
+  maskStyle,
+  modalHeaderWrapperStyle,
+  modalTitleStyle,
+  modalWithMaskWrapperStyle,
+  modalWrapperStyle,
 } from "./style"
 
 export interface AppSettingFields {
@@ -30,7 +37,8 @@ export interface AppSettingFields {
 }
 
 export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
-  const { appInfo, visible, onVisibleChange, onOk, onCancel } = props
+  const { appInfo, visible, maskClosable, onVisibleChange, onOk, onCancel } =
+    props
 
   const { control, formState, handleSubmit, reset } = useForm<AppSettingFields>(
     {
@@ -82,97 +90,117 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
     [appInfo.appId, appId, dispatch, message, onOk, onVisibleChange, t],
   )
 
+  const handleCloseModal = useCallback(() => {
+    onCancel()
+    onVisibleChange(false)
+    reset({
+      appName: appInfo?.appName ?? "",
+      description: appInfo?.config?.description ?? "",
+    })
+  }, [
+    appInfo?.appName,
+    appInfo?.config?.description,
+    onCancel,
+    onVisibleChange,
+    reset,
+  ])
+
+  const handleClickMask = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      maskClosable && handleCloseModal()
+    },
+    [maskClosable, handleCloseModal],
+  )
+
   return (
-    <Modal
-      closable
-      autoFocus={false}
-      footer={false}
-      maskClosable={false}
-      footerAlign="right"
-      visible={visible}
-      title={t("new_dashboard.app_setting.app_setting")}
-      okButtonProps={{
-        colorScheme: "techPurple",
-      }}
-      okLoading={loading}
-      onCancel={() => {
-        onCancel()
-        onVisibleChange(false)
-        reset({
-          appName: appInfo?.appName ?? "",
-          description: appInfo?.config?.description ?? "",
-        })
-      }}
-      okText={t("save")}
-      cancelText={t("dashboard.common.cancel")}
-    >
-      <form
-        css={gridFormStyle}
-        autoComplete="off"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <section css={gridFormFieldStyle}>
-          <section css={gridItemStyle}>
-            <label css={formLabelStyle}>
-              {t("new_dashboard.app_setting.app_name")}
-              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                *
-              </span>
-            </label>
-            <div css={gridValidStyle}>
-              <Controller
-                name="appName"
-                control={control}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    colorScheme="techPurple"
-                    error={!!formState?.errors.appName}
-                    placeholder={t("Enter a name for the app")}
-                  />
-                )}
-                rules={{
-                  required: t(
-                    "page.user.sign_up.error_message.username.require",
-                  ),
-                  maxLength: {
-                    value: 280,
-                    message: t(
-                      "page.user.sign_up.error_message.username.length",
-                    ),
-                  },
-                }}
-              />
+    <div>
+      {visible &&
+        createPortal(
+          <div css={modalWithMaskWrapperStyle}>
+            <div css={modalWrapperStyle}>
+              <header css={modalHeaderWrapperStyle}>
+                <h3 css={modalTitleStyle}>
+                  {t("new_dashboard.app_setting.app_setting")}
+                </h3>
+                <span css={closeIconHotSpotStyle} onClick={handleCloseModal}>
+                  <CloseIcon />
+                </span>
+              </header>
+              <form
+                css={gridFormStyle}
+                autoComplete="off"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <section css={gridFormFieldStyle}>
+                  <section css={gridItemStyle}>
+                    <label css={formLabelStyle}>
+                      {t("new_dashboard.app_setting.app_name")}
+                      <span
+                        css={applyConfigItemLabelText(getColor("red", "02"))}
+                      >
+                        *
+                      </span>
+                    </label>
+                    <div css={gridValidStyle}>
+                      <Controller
+                        name="appName"
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            {...field}
+                            colorScheme="techPurple"
+                            error={!!formState?.errors.appName}
+                            placeholder={t("Enter a name for the app")}
+                          />
+                        )}
+                        rules={{
+                          required: t(
+                            "page.user.sign_up.error_message.username.require",
+                          ),
+                          maxLength: {
+                            value: 280,
+                            message: t(
+                              "page.user.sign_up.error_message.username.length",
+                            ),
+                          },
+                        }}
+                      />
+                    </div>
+                  </section>
+                  <section css={gridItemStyle}>
+                    <label css={formLabelStyle}>
+                      {t("new_dashboard.app_setting.description")}
+                    </label>
+                    <div css={gridValidStyle}>
+                      <Controller
+                        name="description"
+                        control={control}
+                        render={({ field }) => (
+                          <TextArea
+                            {...field}
+                            showWordLimit
+                            maxLength={180}
+                            autoSize={{ minRows: 6, maxRows: 6 }}
+                            colorScheme="techPurple"
+                            error={!!formState?.errors.description}
+                            placeholder={t("Enter a description for the app")}
+                          />
+                        )}
+                      />
+                    </div>
+                  </section>
+                </section>
+                <Button colorScheme="techPurple" loading={loading} fullWidth>
+                  {t("save")}
+                </Button>
+              </form>
             </div>
-          </section>
-          <section css={gridItemStyle}>
-            <label css={formLabelStyle}>
-              {t("new_dashboard.app_setting.description")}
-            </label>
-            <div css={gridValidStyle}>
-              <Controller
-                name="description"
-                control={control}
-                render={({ field }) => (
-                  <TextArea
-                    {...field}
-                    showWordLimit
-                    maxLength={180}
-                    autoSize={{ minRows: 6, maxRows: 6 }}
-                    colorScheme="techPurple"
-                    error={!!formState?.errors.description}
-                    placeholder={t("Enter a description for the app")}
-                  />
-                )}
-              />
-            </div>
-          </section>
-        </section>
-        <Button colorScheme="techPurple" loading={loading} fullWidth>
-          {t("save")}
-        </Button>
-      </form>
-    </Modal>
+            <div css={maskStyle} onClick={handleClickMask} />
+          </div>,
+          document.body,
+        )}
+    </div>
   )
 }
 
