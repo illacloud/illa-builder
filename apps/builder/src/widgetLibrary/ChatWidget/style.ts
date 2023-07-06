@@ -10,7 +10,8 @@ export const resizeLineStyle = css`
 `
 export const footerStyle = css`
   width: 100%;
-  overflow: hidden;
+  height: 100%;
+  // overflow: hidden;
   display: flex;
   flex-direction: row;
 `

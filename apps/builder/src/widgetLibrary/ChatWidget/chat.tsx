@@ -83,16 +83,6 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
     handleOnSizeChange()
   }, [handleOnSizeChange])
 
-  const renderFooter = useMemo(() => {
-    const footerComponentNode = childrenNode[0]
-    return (
-      <RenderChildrenCanvas
-        currentComponentNode={footerComponentNode}
-        columnNumber={columnNumber}
-        handleUpdateHeight={() => {}}
-      />
-    )
-  }, [childrenNode, columnNumber])
 
   const handleOnSelect = useCallback(
     (message: MessageContent) => {
@@ -166,7 +156,13 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
             onResize={handleOnResize}
           >
             <div css={resizeLineStyle} />
-            <div css={footerStyle}>{renderFooter}</div>
+            <div css={footerStyle}>
+              <RenderChildrenCanvas
+                currentComponentNode={childrenNode[0]}
+                columnNumber={columnNumber}
+                handleUpdateHeight={() => {}}
+              />
+            </div>
           </Resizable>
         )}
       </div>
