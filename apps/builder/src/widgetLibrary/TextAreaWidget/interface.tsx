@@ -9,7 +9,8 @@ export interface WrappedTextareaProps
       TextAreaProps,
       "placeholder" | "disabled" | "readOnly" | "maxLength" | "colorScheme"
     >,
-    BaseWidgetProps {
+    BaseWidgetProps,
+    LabelProps {
   showCharacterCount?: TextAreaProps["showWordLimit"]
   value?: string
   allowClear?: TextAreaProps["allowClear"]
@@ -27,12 +28,12 @@ export interface WrappedTextareaProps
   dynamicMinHeight?: number
   dynamicMaxHeight?: number
   getValidateMessage: (value: string) => string
+  showValidationMessage: boolean
 }
 
 export interface TextareaWidgetProps
   extends WrappedTextareaProps,
     BaseWidgetProps,
-    LabelProps,
     TooltipWrapperProps,
     ValidateMessageOldProps {
   validateMessage: string
