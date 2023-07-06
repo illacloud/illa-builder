@@ -1,11 +1,10 @@
-import { FC, useEffect, useRef } from "react"
+import { FC, useEffect, useLayoutEffect, useRef } from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
 import remarkGfm from "remark-gfm"
 import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
 import { TextProps, TextWidgetProps } from "./interface"
 import {
@@ -111,15 +110,29 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     updateComponentRuntimeProps,
   ])
 
-  const enableAutoHeight = dynamicHeight! === "fixed"
+  const enableAutoHeight =
+    dynamicHeight !== "fixed" && dynamicHeight != undefined
 
   const containerRef = useRef<HTMLDivElement | null>(null)
 
-  useAutoUpdateHeight(
-    updateComponentHeight,
-    containerRef.current,
-    enableAutoHeight,
-  )
+  useLayoutEffect(() => {
+    const containerDOM = containerRef.current
+    const observerRef = new ResizeObserver((entries) => {
+      if (!updateComponentHeight) return
+      const height = entries[0].contentRect.height
+      updateComponentHeight?.(height)
+    })
+    if (observerRef && containerDOM && enableAutoHeight) {
+      observerRef.unobserve(containerDOM)
+      observerRef.observe(containerDOM)
+    }
+
+    return () => {
+      if (containerDOM && enableAutoHeight) {
+        observerRef.unobserve(containerDOM)
+      }
+    }
+  }, [enableAutoHeight, updateComponentHeight])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
