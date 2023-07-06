@@ -91,16 +91,20 @@ export const DeployButtonGroup: FC<DeployButtonGroupProps> = (props) => {
               value="public"
               title={
                 <div css={deployMenuStyle}>
-                  <div>
-                    <span css={deployLabelStyle}>
+                  {canUseBillingFeature ? (
+                    <div css={deployLabelStyle}>
                       {t("new_deploy.title.public_app")}
-                    </span>
-                    {!canUseBillingFeature && (
+                    </div>
+                  ) : (
+                    <div>
+                      <span css={deployLabelStyle}>
+                        {t("new_deploy.title.public_app")}
+                      </span>
                       <Tag ml="8px" colorScheme="techPurple">
                         <UpgradeIcon /> {t("billing.homepage.upgrade")}
                       </Tag>
-                    )}
-                  </div>
+                    </div>
+                  )}
                   <div css={deployConfigDescStyle}>
                     {t("new_deploy.desc.public_app")}
                   </div>
