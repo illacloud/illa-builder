@@ -44,8 +44,8 @@ async function handleUpdateActionItem(
   listenerApi: AppListenerEffectAPI,
 ) {
   if (
-    action.payload.actionId ===
-    listenerApi.getState().config.selectedAction?.actionId
+    action.payload.displayName ===
+    listenerApi.getState().config.selectedAction?.displayName
   ) {
     listenerApi.dispatch(configActions.changeSelectedAction(action.payload))
   }

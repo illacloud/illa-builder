@@ -8,11 +8,11 @@ import {
   formHeaderStyle,
   multiSelectedPanelWrapper,
 } from "@/page/App/components/InspectPanel/style"
-import { getSelectedComponents } from "@/redux/config/configSelector"
+import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
 export const MultiSelectedPanel: FC = () => {
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const { t } = useTranslation()
   const shortcut = useContext(ShortCutContext)
 

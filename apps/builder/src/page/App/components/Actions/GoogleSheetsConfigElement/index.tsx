@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -74,6 +74,28 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   // refresh Google OAuth Status
   useOAuthRefresh(resourceId)
 
+  const oauthMethodOptions = useMemo(() => {
+    if (import.meta.env.ILLA_APP_ENV === "production") {
+      return [
+        {
+          label: t("editor.action.form.option.gs.service_account"),
+          value: "serviceAccount",
+        },
+      ]
+    } else {
+      return [
+        {
+          label: t("editor.action.form.option.gs.service_account"),
+          value: "serviceAccount",
+        },
+        {
+          label: t("editor.action.form.option.gs.oauth_2.0"),
+          value: "oauth2",
+        },
+      ]
+    }
+  }, [t])
+
   const handleOAuthConnect = async (
     resourceId: string,
     accessType: AccessType,
@@ -129,16 +151,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
           name="authentication"
           controlledType="select"
           control={control}
-          options={[
-            {
-              label: t("editor.action.form.option.gs.service_account"),
-              value: "serviceAccount",
-            },
-            // {
-            //   label: t("editor.action.form.option.gs.oauth_2.0"),
-            //   value: "oauth2",
-            // },
-          ]}
+          options={oauthMethodOptions}
         />
         {isOauthType ? (
           <ControlledElement

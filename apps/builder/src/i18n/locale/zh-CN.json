@@ -1323,7 +1323,8 @@
           "calendar": "日历"
         },
         "event": "事件",
-        "MESSAGE": "消息"
+        "MESSAGE": "消息",
+        "Toolbar": "工具栏"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "启用消息选择",
           "selection_type": "选择类型",
           "loading_when_sending": "发送时加载",
-          "image_background": "图像背景",
-          "senderAvatar": "发送方头像"
+          "image_background": "图像背景"
         },
         "action": "动作",
         "align": "对齐",
@@ -1687,7 +1687,8 @@
         "showName": "显示名称",
         "rich_text": {
           "default_text": "默认文本"
-        }
+        },
+        "senderAvatar": "发送方头像"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1746,7 +1747,9 @@
         "showAvatar": "设置是否显示头像",
         "showName": "设置是否显示名称",
         "showSendTime": "设置是否显示发送时间",
-        "showFooter": "设置是否显示页脚"
+        "showFooter": "设置是否显示页脚",
+        "senderAvatar": "设置发送方头像。 例如，在您的数据源中，发送者头像是 sendAvatar 字段，您可以将字段设置为 {{item.sendAvatar}}。",
+        "receiving": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。"
       },
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "聊天组件的数据源。使用 {{actionName.data}} 来使用您的数据库或 API 的数据",
-          "sender_avatar": "设置发送方头像。 例如，在您的数据源中，发送者头像是 sendAvatar 字段，您可以将字段设置为 {{item.sendAvatar}}。",
           "enable_message_selec": "设置是否允许选择一条消息",
           "selection_type": "设定如何选择消息，左键点击或右键点击。当在移动设备上使用时，会点击它来触发选择。 ",
-          "loading_when_receivi": "设置接收消息时是否显示加载。 如果您的消息是从action1收到的，您可以将其设置为 {{action1.isRunning}}， action1运行时将显示加载状态。",
           "loading_when_sending": "设置是否在发送或接收消息时显示加载状态。 如果您的消息被发送到Action1，您可以将其设置为 {{action1.isRunning}}， Action1运行时将显示加载状态。",
           "image_background": "设置图像背景。支持Base64和图像 URL"
         },
@@ -3106,11 +3107,13 @@
       },
       "undo": {
         "suc": "撤销成功",
-        "failed": "撤销失败"
+        "failed": "撤销失败",
+        "nothing": "没有可撤消的操作"
       },
       "redo": {
         "suc": "恢复成功",
-        "failed": "恢复失败"
+        "failed": "恢复失败",
+        "nothing": "没有可重做的操作"
       }
     }
   },
@@ -3508,5 +3511,59 @@
   },
   "network": {
     "error": "网络错误，请稍后重试"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "已部署",
+      "undeploy": "未部署"
+    },
+    "desc": {
+      "no_description": "暂无描述"
+    },
+    "app_setting": {
+      "app_setting": "项目设置",
+      "app_name": "项目名称",
+      "description": "描述",
+      "save": "保存",
+      "placeholder": {
+        "description": "输入项目描述",
+        "app_name": "输入项目名称"
+      }
+    },
+    "access": {
+      "public": "公开",
+      "private": "私密"
+    },
+    "message": {
+      "update_failed": "更新失败",
+      "update_suc": "更新成功"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "公开项目",
+      "public_app": "私密项目"
+    },
+    "desc": {
+      "private_app": "仅团队成员可以访问",
+      "public_app": "任何获取到项目链接的人都可以访问"
+    },
+    "button": {
+      "public": "公开部署"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "邀请进行编辑",
+      "invite_to_use": "邀请使用"
+    },
+    "desc": {
+      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
+    },
+    "tips": {
+      "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
+      "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
+      "viewer": "可以管理浏览者、查看APP"
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { AnyAction, Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { cloneDeep } from "lodash"
+import { REDUX_ACTION_FROM } from "@/middleware/undoRedo/interface"
 import {
   applyEffectMapToComponentNodes,
   getNearComponentNodes,
@@ -13,17 +14,21 @@ import { handleClearSelectedComponentExecution } from "@/redux/currentApp/collab
 import { cursorActions } from "@/redux/currentApp/cursor/cursorSlice"
 import {
   getCanvas,
+  searchDSLByDisplayName,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getExecutionResult,
+  getExecutionWidgetLayoutInfo,
   getInDependenciesMap,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
+import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { CONTAINER_TYPE, ComponentNode } from "./componentsState"
 
 function handleUpdateComponentDisplayNameEffect(
@@ -136,6 +141,7 @@ const updateComponentReflowComponentsAdapter = (
     | typeof componentsActions.updateComponentLayoutInfoReducer
     | typeof componentsActions.updateComponentContainerReducer
   >,
+  currentLayoutInfo: Record<string, WidgetLayoutInfo>,
 ) => {
   switch (action.type) {
     case "components/updateComponentContainerReducer": {
@@ -184,6 +190,7 @@ const updateComponentReflowComponentsAdapter = (
     }
     case "components/updateComponentLayoutInfoReducer": {
       const { displayName, layoutInfo } = action.payload
+      const currentWidgetLayoutInfo = currentLayoutInfo[displayName]
       return {
         parentDisplayName: action.payload.parentNode,
         effectedDisplayNames: [displayName],
@@ -191,12 +198,15 @@ const updateComponentReflowComponentsAdapter = (
           x: layoutInfo.x,
           y: layoutInfo.y,
           w: layoutInfo.w,
-          h: layoutInfo.h,
+          h: layoutInfo.h ?? currentWidgetLayoutInfo.layoutInfo.h,
         },
         originUpdateSlice: [
           {
             displayName,
-            layoutInfo: layoutInfo,
+            layoutInfo: {
+              ...layoutInfo,
+              h: layoutInfo.h ?? currentWidgetLayoutInfo.layoutInfo.h,
+            },
           },
         ],
       }
@@ -208,12 +218,14 @@ function handleUpdateComponentReflowEffect(
   action: AnyAction,
   listenApi: AppListenerEffectAPI,
 ) {
+  const currentLayoutInfo = getExecutionWidgetLayoutInfo(listenApi.getState())
   const updateComponents = updateComponentReflowComponentsAdapter(
     action as ReturnType<
       | typeof componentsActions.addComponentReducer
       | typeof componentsActions.updateComponentLayoutInfoReducer
       | typeof componentsActions.updateComponentContainerReducer
     >,
+    currentLayoutInfo,
   )
 
   const updateSlice = updateComponents.originUpdateSlice
@@ -236,6 +248,38 @@ function handleUpdateComponentReflowEffect(
         },
       })
     })
+  }
+
+  if (!action.from || action.from === REDUX_ACTION_FROM.REDO) {
+    const filteredUpdateSlice = updateSlice.filter(
+      (slice) =>
+        !updateComponents.effectedDisplayNames.includes(slice.displayName),
+    )
+    const rootState = listenApi.getState()
+    const originLayoutInfos = filteredUpdateSlice.map((slice) => {
+      const originLayoutInfo = searchDSLByDisplayName(
+        slice.displayName,
+        rootState,
+      )
+      return {
+        displayName: slice.displayName,
+        layoutInfo: {
+          x: originLayoutInfo!.x,
+          y: originLayoutInfo!.y,
+          w: originLayoutInfo!.w,
+          h: originLayoutInfo!.h,
+        },
+      }
+    })
+    const newAction = {
+      type: "components/batchUpdateComponentLayoutInfoWhenReflowReducer",
+      payload: originLayoutInfos,
+      from: action.from,
+    }
+    IllaUndoRedoManager.modifyUndoStackAtLast(
+      [JSON.parse(JSON.stringify(newAction))],
+      action.from === REDUX_ACTION_FROM.REDO,
+    )
   }
 
   listenApi.dispatch(

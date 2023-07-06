@@ -44,7 +44,10 @@ const ScaleSquareWithJSON = (props: ScaleSquarePropsWithJSON) => {
           false,
         )}
       >
-        <TransformWidgetWrapperWithJson componentNode={componentNode} />
+        <TransformWidgetWrapperWithJson
+          componentNode={componentNode}
+          unitW={unitW}
+        />
       </div>
     </Rnd>
   )

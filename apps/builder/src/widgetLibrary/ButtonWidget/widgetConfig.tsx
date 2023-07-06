@@ -11,6 +11,7 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 6,
   h: 5,
+  version: 0,
   defaults: {
     text: i18n.t("widget.button.default_text"),
     variant: "fill",

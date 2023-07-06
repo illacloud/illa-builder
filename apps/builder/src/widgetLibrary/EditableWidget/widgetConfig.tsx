@@ -12,6 +12,7 @@ export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   w: 12,
   h: 5,
+  version: 0,
   defaults: {
     label: "Label",
     labelAlign: "left",

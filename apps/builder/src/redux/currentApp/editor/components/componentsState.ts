@@ -1,3 +1,5 @@
+import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
+
 export enum CONTAINER_TYPE {
   "EDITOR_DOT_PANEL" = "EDITOR_DOT_PANEL",
   "EDITOR_SCALE_SQUARE" = "EDITOR_SCALE_SQUARE",
@@ -18,20 +20,13 @@ export interface ComponentNode {
   displayName: string
   parentNode: string | null
   showName: string
-  isDragging: boolean
-  isResizing: boolean
   childrenNode: ComponentNode[]
   type: string
   containerType: CONTAINER_TYPE
-  verticalResize: boolean
   h: number
   w: number
   minH: number
   minW: number
-  // default 0
-  unitW: number
-  // default 0
-  unitH: number
   // default -1
   x: number
   // default -1
@@ -149,6 +144,21 @@ export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, unknown>
 }
+
+export interface AddContainerComponentViewsReducerPayload {
+  displayName: string
+  containerDisplayName: string
+  linkedDisplayName?: string
+  addedViewItem: ViewItemShape[]
+  addComponent: ComponentNode
+}
+
+export interface DeleteContainerComponentViewsReducerPayload {
+  displayName: string
+  containerDisplayName: string
+  linkedDisplayName?: string
+  deletedIndex: number
+}
 export interface UpdateComponentDisplayNamePayload {
   displayName: string
   newDisplayName: string
@@ -162,6 +172,7 @@ export interface UpdateComponentReflowPayload {
 export interface UpdateTargetPageLayoutPayload {
   pageName: string
   layout: "default" | "presetA" | "presetB" | "presetC" | "presetD" | "presetE"
+  originPageNode?: ComponentNode
 }
 
 export interface UpdateTargetPagePropsPayload {
@@ -188,6 +199,7 @@ export interface AddTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
+  originSectionNode?: ComponentNode
 }
 
 export interface AddSectionViewPayload {
@@ -198,6 +210,7 @@ export interface AddSectionViewPayload {
     | "headerSection"
     | "footerSection"
     | "bodySection"
+  originChildrenNode?: ComponentNode[]
 }
 
 export interface DeleteSectionViewPayload {

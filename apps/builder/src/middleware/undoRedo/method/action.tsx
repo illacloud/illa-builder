@@ -21,51 +21,53 @@ export const actionsSnapShot = (
         from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
     case "removeActionItemReducer": {
       const originAction = getActionList(_prevRootState).find(
-        (item) => item.actionId === action.payload.actionID,
+        (item) => item.displayName === action.payload.displayName,
       )
       const newAction = {
         type: "action/addActionItemReducer",
         payload: originAction,
+        from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
     case "updateActionItemReducer": {
       const originAction = getActionList(_prevRootState).find(
-        (item) => item.actionId === action.payload.actionId,
+        (item) => item.displayName === action.payload.displayName,
       )
       const newAction = {
         type: "action/updateActionItemReducer",
         payload: originAction,
+        from: action.from,
       }
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }
@@ -77,16 +79,17 @@ export const actionsSnapShot = (
           oldDisplayName: action.payload.newDisplayName,
           actionID: action.payload.actionID,
         },
+        from: action.from,
       }
 
       if (action.from === REDUX_ACTION_FROM.UNDO) {
-        IllaUndoRedoManager.pushToRedoStack(
+        IllaUndoRedoManager.pushToRedoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       } else {
-        IllaUndoRedoManager.pushToUndoStack(
+        IllaUndoRedoManager.pushToUndoStack([
           JSON.parse(JSON.stringify(newAction)),
-        )
+        ])
       }
       break
     }

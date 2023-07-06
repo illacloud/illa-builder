@@ -1323,7 +1323,8 @@
           "calendar": "Calendar"
         },
         "event": "Event",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "MESSAGE",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Enable message selection",
           "selection_type": "Selection type",
           "loading_when_sending": "Loading when sending",
-          "image_background": "Image background",
-          "senderAvatar": "Sender avatar"
+          "image_background": "Image background"
         },
         "action": "Action",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Show name",
         "rich_text": {
           "default_text": "Default text"
-        }
+        },
+        "senderAvatar": "Sender avatar"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Set whether to show the avatar",
         "showName": "Set whether to show the name",
         "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer"
+        "showFooter": "Set whether to show the footer",
+        "senderAvatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
+        "receiving": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running."
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
           "enable_message_selec": "Set whether to allow a message to be selected",
           "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "image_background": "Set a image background. Base64 and image URL are supported"
         },
@@ -3106,11 +3107,13 @@
       },
       "undo": {
         "suc": "Undo successful",
-        "failed": "Undo failed"
+        "failed": "Undo failed",
+        "nothing": "Nothing to undo"
       },
       "redo": {
         "suc": "Redo successful",
-        "failed": "Redo failed"
+        "failed": "Redo failed",
+        "nothing": "Nothing to redo"
       }
     }
   },
@@ -3508,5 +3511,59 @@
   },
   "network": {
     "error": "Network error, please try again later"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Deployed",
+      "undeploy": "Undeploy"
+    },
+    "desc": {
+      "no_description": "No description"
+    },
+    "app_setting": {
+      "app_setting": "App setting",
+      "app_name": "App name",
+      "description": "Description",
+      "save": "Save",
+      "placeholder": {
+        "description": "Enter the description for the app",
+        "app_name": "Enter a name for the app"
+      }
+    },
+    "access": {
+      "public": "Public",
+      "private": "Private"
+    },
+    "message": {
+      "update_failed": "Failed to update",
+      "update_suc": "Successfully updated"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Private app",
+      "public_app": "Public app"
+    },
+    "desc": {
+      "private_app": "Only the team members can access the deployed app",
+      "public_app": "Anyone with the app link can access the deployed app"
+    },
+    "button": {
+      "public": "Public"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Invite to edit",
+      "invite_to_use": "Invite to use"
+    },
+    "desc": {
+      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+    },
+    "tips": {
+      "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
+      "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
+      "viewer": "The member who can manage viewer members and view APPs"
+    }
   }
 }

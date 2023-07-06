@@ -2,7 +2,7 @@ import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import {
   getIsILLAEditMode,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
 } from "@/redux/config/configSelector"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimitedContainer"
@@ -28,7 +28,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const canDrag = widgetType !== "MODAL_WIDGET"
 
   const isEditMode = useSelector(getIsILLAEditMode)
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const isSelected = useMemo(() => {
     return selectedComponents.some((currentDisplayName) => {
       return displayName === currentDisplayName

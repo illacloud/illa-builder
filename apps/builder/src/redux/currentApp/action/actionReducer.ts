@@ -8,6 +8,7 @@ import {
   UpdateActionSlicePropsPayload,
   actionInitialState,
 } from "@/redux/currentApp/action/actionState"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { isObject } from "@/utils/typeHelper"
 
 export const initActionListReducer: CaseReducer<
@@ -46,7 +47,9 @@ export const updateActionDisplayNameReducer: CaseReducer<
     return item.actionId === action.payload.actionID
   })
   if (index != -1) {
+    DisplayNameGenerator.removeDisplayName(state[index].displayName)
     state[index].displayName = action.payload.newDisplayName
+    DisplayNameGenerator.addDisplayNames([action.payload.newDisplayName])
   }
   return state
 }
@@ -80,7 +83,7 @@ export const removeActionItemReducer: CaseReducer<
   state.splice(
     state.findIndex(
       (item: ActionItem<ActionContent>) =>
-        item.actionId === action.payload.actionID,
+        item.displayName === action.payload.displayName,
     ),
     1,
   )

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useScroll } from "react-use"
 import useMeasure from "react-use-measure"
 import { useMessage } from "@illa-design/react"
+import { getMousePointerPosition } from "@/page/App/components/DotPanel/calc"
 import { ComponentParser } from "@/page/App/components/DotPanel/components/ComponentParser"
 import DragPreview from "@/page/App/components/DotPanel/components/DragPreview"
 import { DragShadowPreview } from "@/page/App/components/DotPanel/components/DragShadowPreview"
@@ -25,6 +26,10 @@ import {
   SCROLL_CONTAINER_PADDING,
   UNIT_HEIGHT,
 } from "@/page/App/components/DotPanel/constant/canvas"
+import {
+  removeScrollBarContainerControllerByDisplayName,
+  setScrollBarContainerController,
+} from "@/page/App/components/DotPanel/context/scrollBarContext"
 import { useMousePositionAsync } from "@/page/App/components/DotPanel/hooks/useMousePostionAsync"
 import { clamWidgetShape } from "@/page/App/components/DotPanel/utils/getDragShadow"
 import { getLayoutInfosWithRelativeCombineShape } from "@/page/App/components/DotPanel/utils/getDropResult"
@@ -36,7 +41,7 @@ import {
 import {
   getIsILLAEditMode,
   getIsLikeProductMode,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -45,14 +50,11 @@ import {
   getCurrentPageDisplayName,
   getExecutionWidgetLayoutInfo,
   getIsDragging,
+  getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { newGenerateComponentNode } from "@/utils/generators/generateComponentNode"
-import { getMousePointerPosition } from "../../calc"
-import {
-  removeScrollBarContainerControllerByDisplayName,
-  setScrollBarContainerController,
-} from "../../context/scrollBarContext"
+import { useAutoUpdateCanvasHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import {
   DropCollectedProps,
   DropResultInfo,
@@ -75,6 +77,9 @@ export const RenderComponentCanvasContainer: FC<
     isRootCanvas,
     displayName,
     containerPadding,
+    canResizeCanvas = false,
+    safeRowNumber = SAFE_ROWS,
+    handleUpdateHeight,
   } = props
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null)
@@ -84,6 +89,7 @@ export const RenderComponentCanvasContainer: FC<
   const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
   const [canvasRef, bounds] = useMeasure()
   const messageHandler = useMessage()
+  const innerCanvasRef = useRef<HTMLDivElement | null>(null)
   const { t } = useTranslation()
   const fixedBounds = {
     top: bounds.top + containerPadding + SCROLL_CONTAINER_PADDING,
@@ -100,10 +106,11 @@ export const RenderComponentCanvasContainer: FC<
   const childWidgetLayoutInfo = Object.values(widgetLayoutInfo).filter(
     (item) => item.parentNode === displayName,
   )
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
 
   const dispatch = useDispatch()
   const isDraggingGlobal = useSelector(getIsDragging)
+  const isResizingGlobal = useSelector(getIsResizing)
   const isLikeProductMode = useSelector(getIsLikeProductMode)
 
   const isEditMode = useSelector(getIsILLAEditMode)
@@ -176,7 +183,6 @@ export const RenderComponentCanvasContainer: FC<
                 dropResultShape.x,
                 dropResultShape.y,
                 dropResultShape.w,
-                unitWidth,
                 draggedComponents[0].widgetType,
                 draggedComponents[0].displayName,
                 displayName,
@@ -294,17 +300,17 @@ export const RenderComponentCanvasContainer: FC<
       const { clientY } = e
       window.clearInterval(autoScrollTimeID.current)
       autoScrollTimeID.current = window.setInterval(() => {
-        if (clientY < top + UNIT_HEIGHT * 10) {
+        if (clientY < top + UNIT_HEIGHT * safeRowNumber) {
           scrollContainer!.scrollBy({
-            top: -10,
+            top: -8,
           })
         }
-        if (clientY > bottom - UNIT_HEIGHT * 10) {
+        if (clientY > bottom - UNIT_HEIGHT * safeRowNumber) {
           scrollContainer!.scrollBy({
-            top: 10,
+            top: 8,
           })
         }
-      }, 180)
+      }, 160)
     }
     scrollContainer?.addEventListener("mousemove", autoScroll)
     return () => {
@@ -313,7 +319,7 @@ export const RenderComponentCanvasContainer: FC<
       }
       window.clearInterval(autoScrollTimeID.current)
     }
-  }, [collectedProps.isOver, isRootCanvas])
+  }, [collectedProps.isOver, isRootCanvas, safeRowNumber])
 
   useEffect(() => {
     if (collectedProps.isOver) return
@@ -323,11 +329,21 @@ export const RenderComponentCanvasContainer: FC<
       ),
     )
 
+    if (canResizeCanvas) {
+      setCanvasHeight(
+        maxHeight * UNIT_HEIGHT < 15 * UNIT_HEIGHT
+          ? 15 * UNIT_HEIGHT
+          : maxHeight * UNIT_HEIGHT,
+      )
+
+      return
+    }
+
     if (
       maxHeight * UNIT_HEIGHT >
-      fixedBounds.height - SAFE_ROWS * UNIT_HEIGHT
+      fixedBounds.height - safeRowNumber * UNIT_HEIGHT
     ) {
-      if (isEditMode) {
+      if (isEditMode && isRootCanvas) {
         setCanvasHeight(maxHeight * UNIT_HEIGHT + ADD_ROWS * UNIT_HEIGHT)
       } else {
         setCanvasHeight(maxHeight * UNIT_HEIGHT)
@@ -336,11 +352,16 @@ export const RenderComponentCanvasContainer: FC<
       setCanvasHeight(fixedBounds.height)
     }
   }, [
+    canResizeCanvas,
     childWidgetLayoutInfo,
     collectedProps.isOver,
     containerPadding,
     fixedBounds.height,
+    handleUpdateHeight,
     isEditMode,
+    isResizingGlobal,
+    isRootCanvas,
+    safeRowNumber,
   ])
 
   useEffect(() => {
@@ -354,6 +375,22 @@ export const RenderComponentCanvasContainer: FC<
       dragStartScrollTop.current = scrollContainerScrollTop
     }
   }, [isDraggingGlobal, scrollContainerScrollTop])
+
+  const canvasUpdateHeightHandler = useCallback(
+    (height: number) => {
+      if (!handleUpdateHeight) return
+      handleUpdateHeight(
+        height + SCROLL_CONTAINER_PADDING * 2 + containerPadding * 2,
+      )
+    },
+    [containerPadding, handleUpdateHeight],
+  )
+
+  useAutoUpdateCanvasHeight(
+    canvasUpdateHeightHandler,
+    innerCanvasRef.current,
+    canResizeCanvas,
+  )
 
   const { cursorPositionRef } = useMousePositionAsync(
     scrollContainerRef,
@@ -424,7 +461,14 @@ export const RenderComponentCanvasContainer: FC<
       ref={canvasRef}
     >
       <div css={componentCanvasContainerStyle} ref={scrollContainerRef}>
-        <div ref={dropRef} css={dropZoneStyle(canvasHeight)}>
+        <div
+          ref={(node) => {
+            dropRef(node)
+            innerCanvasRef.current = node
+          }}
+          data-candropCanvas={displayName}
+          css={dropZoneStyle(canvasHeight)}
+        >
           <div
             css={[
               applyComponentCanvasStyle(unitWidth, canShowDot),

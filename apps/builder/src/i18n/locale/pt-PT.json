@@ -1323,7 +1323,8 @@
           "calendar": "calendário"
         },
         "event": "Evento",
-        "MESSAGE": "MENSAGEM"
+        "MESSAGE": "MENSAGEM",
+        "Toolbar": "FERRAMENTO"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Ativar seleção de mensagens",
           "selection_type": "Tipo de seleção",
           "loading_when_sending": "Carregando ao enviar",
-          "image_background": "Fundo da imagem",
-          "senderAvatar": "Avatar do remetente"
+          "image_background": "Fundo da imagem"
         },
         "action": "Acão",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Exibir nome",
         "rich_text": {
           "default_text": "Texto padrão"
-        }
+        },
+        "senderAvatar": "Avatar do remetente"
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Definir se deseja mostrar o avatar",
         "showName": "Definir se deve mostrar o nome",
         "showSendTime": "Definir se deseja mostrar o tempo de envio",
-        "showFooter": "Definir se deseja mostrar o rodapé"
+        "showFooter": "Definir se deseja mostrar o rodapé",
+        "senderAvatar": "Defina o avatar do remetente. Por exemplo, na fonte de dados, o avatar do remetente é o campo sendAvatar e você pode definir o campo como {{item.sendAvatar}}.",
+        "receiving": "Defina se deve exibir o carregamento quando receber mensagens. Se sua mensagem é recebida da ação 1, você pode defini-la para {{action1.isRunning}}, e o status de carregamento será exibido quando a ação 1 estiver em execução."
       },
       "tab_title": "Visualizar",
       "unselected_tip1": "Nenhum componente selecionado.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "A fonte de dados do componente de bate-papo. Use {{actionName.data}} para usar os dados de suas bases de dados ou APIs",
-          "sender_avatar": "Defina o avatar do remetente. Por exemplo, na fonte de dados, o avatar do remetente é o campo sendAvatar e você pode definir o campo como {{item.sendAvatar}}.",
           "enable_message_selec": "Configura se deseja permitir que uma mensagem seja selecionada",
           "selection_type": "Defina como selecionar uma mensagem, clique com o botão esquerdo ou botão direito. Quando usado em um dispositivo móvel, é clicado para acionar a seleção. ",
-          "loading_when_receivi": "Defina se deve exibir o carregamento quando receber mensagens. Se sua mensagem é recebida da ação 1, você pode defini-la para {{action1.isRunning}}, e o status de carregamento será exibido quando a ação 1 estiver em execução.",
           "loading_when_sending": "Defina se deve exibir carregamento ao enviar mensagens. (Automatic Translation) Se sua mensagem é enviada para a ação1, você pode defini-la para {{action1.isRunning}}, e o status de carregamento será exibido quando a ação 1 estiver em execução.",
           "image_background": "Definir um fundo de imagem. Base64 e URL da imagem são suportados"
         },
@@ -3106,11 +3107,13 @@
       },
       "undo": {
         "suc": "Restaurado com sucesso",
-        "failed": "Desfazer falhou"
+        "failed": "Desfazer falhou",
+        "nothing": "Nada para desfazer"
       },
       "redo": {
         "suc": "Refazer com sucesso",
-        "failed": "Refazer falhou"
+        "failed": "Refazer falhou",
+        "nothing": "Nada para refazer"
       }
     }
   },
@@ -3508,5 +3511,59 @@
   },
   "network": {
     "error": "Erro de rede, por favor, tente novamente mais tarde"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Implantado",
+      "undeploy": "Desimplantar"
+    },
+    "desc": {
+      "no_description": "Sem descrição"
+    },
+    "app_setting": {
+      "app_setting": "Configuração do aplicativo",
+      "app_name": "Nome do aplicativo",
+      "description": "Descrição:",
+      "save": "Guardar",
+      "placeholder": {
+        "description": "Digite a descrição para o aplicativo",
+        "app_name": "Digite um nome para o aplicativo"
+      }
+    },
+    "access": {
+      "public": "Público",
+      "private": "Privado"
+    },
+    "message": {
+      "update_failed": "Falha ao atualizar",
+      "update_suc": "Atualizado com Sucesso"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Aplicativo privado",
+      "public_app": "Aplicativo público"
+    },
+    "desc": {
+      "private_app": "Somente os membros da equipe podem acessar o app implementado",
+      "public_app": "Qualquer um com o link do app pode acessar o app implantado"
+    },
+    "button": {
+      "public": "Público"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Convidar para editar",
+      "invite_to_use": "Convidar para usar"
+    },
+    "desc": {
+      "undeploy": "O app não foi implantado. O acesso público e o acesso ao visualizador podem encontrar erros. "
+    },
+    "tips": {
+      "admin": "O membro que pode gerenciar todos os membros, exceto o proprietário, edite APP e veja os APPs",
+      "editor": "O membro que pode gerenciar membros do editor e visualizador, editar APP e ver APPs",
+      "viewer": "O membro que pode gerenciar o visualizador e visualizar os APPs"
+    }
   }
 }

@@ -9,4 +9,5 @@ export interface TransformWidgetProps {
 
 export interface TransformWidgetWrapperWithJsonProps {
   componentNode: ComponentNode
+  unitW: number
 }

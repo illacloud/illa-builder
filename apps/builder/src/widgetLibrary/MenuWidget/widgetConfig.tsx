@@ -55,6 +55,7 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Menu", "菜单"],
   sessionType: "NAVIGATION",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     items,
     selectedValues: ["subMenu1"],

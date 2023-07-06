@@ -278,6 +278,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
             containerPadding={BASIC_CANVAS_PADDING}
             columnNumber={columnNumber}
             isRootCanvas
+            safeRowNumber={0}
           />
         )}
       </div>
@@ -472,6 +473,7 @@ export const RenderFooterSection: FC<RenderFooterSectionProps> = (props) => {
             containerPadding={BASIC_CANVAS_PADDING}
             columnNumber={columnNumber}
             isRootCanvas
+            safeRowNumber={0}
           />
         )}
       </div>

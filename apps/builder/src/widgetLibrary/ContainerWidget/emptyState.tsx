@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react"
-import { Trans } from "react-i18next"
+import { useTranslation } from "react-i18next"
 import {
   applyEmptyStateWrapperStyle,
   emptyStateStyle,
@@ -14,16 +14,10 @@ export const KeyPressComponent: FC<IKeyPressComponentProps> = (props) => {
 }
 
 export const ContainerEmptyState: FC = () => {
+  const { t } = useTranslation()
   return (
     <div css={applyEmptyStateWrapperStyle}>
-      <span css={emptyStateStyle}>
-        <Trans
-          i18nKey="widget.container.empty"
-          components={{
-            keyPress: <KeyPressComponent />,
-          }}
-        />
-      </span>
+      <span css={emptyStateStyle}>{t("widget.container.empty")}</span>
     </div>
   )
 }

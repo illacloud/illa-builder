@@ -12,6 +12,7 @@ export const CASCADER_WIDGET_CONFIG: WidgetConfig = {
   w: 6,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     dataSourceJS: `{{[
   {

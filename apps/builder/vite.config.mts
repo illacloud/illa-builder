@@ -45,15 +45,12 @@ export default defineConfig(({ command, mode }) => {
           project: "illa-builder",
           url: "http://sentry.illasoft.com/",
           authToken: env.ILLA_SENTRY_AUTH_TOKEN,
-          sourcemaps: {
-            assets: "./dist/assets/**",
-            ignore: ["node_modules"],
-          },
           release: {
             name: `illa-builder@${version}`,
             uploadLegacySourcemaps: {
               urlPrefix: "~/assets",
               paths: ["./dist/assets"],
+              ignore: ["node_modules"],
             },
             deploy: {
               env: env.ILLA_APP_ENV,

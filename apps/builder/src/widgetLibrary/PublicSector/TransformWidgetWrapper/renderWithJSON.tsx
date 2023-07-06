@@ -1,6 +1,7 @@
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, memo, useCallback, useMemo } from "react"
 import { useDispatch } from "react-redux"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -21,15 +22,13 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
 
 export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonProps> =
   memo((props: TransformWidgetWrapperWithJsonProps) => {
-    const { componentNode } = props
+    const { componentNode, unitW } = props
 
     const {
       displayName,
       type,
       w,
       h,
-      unitW,
-      unitH,
       childrenNode,
       props: nodeProps,
     } = componentNode
@@ -86,11 +85,37 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
       [dispatch, displayName],
     )
 
+    const handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo = useCallback(
+      (updateSlice: Record<string, any>) => {
+        if (!isObject(updateSlice)) return
+        dispatch(
+          componentsActions.updateComponentPropsReducerNotWithUndoRedo({
+            displayName: displayName,
+            updateSlice,
+          }),
+        )
+      },
+      [dispatch, displayName],
+    )
+
     const handleUpdateOriginalDSLOtherMultiAttr = useCallback(
       (displayName: string, updateSlice: Record<string, any>) => {
         if (!displayName || !isObject(updateSlice)) return
         dispatch(
           componentsActions.updateComponentPropsReducer({
+            displayName,
+            updateSlice,
+          }),
+        )
+      },
+      [dispatch],
+    )
+
+    const handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo = useCallback(
+      (displayName: string, updateSlice: Record<string, any>) => {
+        if (!displayName || !isObject(updateSlice)) return
+        dispatch(
+          componentsActions.updateComponentPropsReducerNotWithUndoRedo({
             displayName,
             updateSlice,
           }),
@@ -229,7 +254,7 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
           w={w}
           h={h}
           unitW={unitW}
-          unitH={unitH}
+          unitH={UNIT_HEIGHT}
           updateComponentRuntimeProps={updateComponentRuntimeProps}
           deleteComponentRuntimeProps={deleteComponentRuntimeProps}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
@@ -243,6 +268,12 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
           componentNode={componentNode}
           triggerEventHandler={triggerEventHandler}
           triggerMappedEventHandler={triggerMappedEventHandler}
+          handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo={
+            handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo
+          }
+          handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo={
+            handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo
+          }
         />
       </div>
     )

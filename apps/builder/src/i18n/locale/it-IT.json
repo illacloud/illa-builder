@@ -1323,7 +1323,8 @@
           "calendar": "Calendario"
         },
         "event": "Evento",
-        "MESSAGE": "MESSAGGIO"
+        "MESSAGE": "MESSAGGIO",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Abilita selezione messaggi",
           "selection_type": "Tipo di selezione",
           "loading_when_sending": "Caricamento durante l'invio",
-          "image_background": "Sfondo immagine",
-          "senderAvatar": "Avatar mittente"
+          "image_background": "Sfondo immagine"
         },
         "action": "Azione",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Mostra nome",
         "rich_text": {
           "default_text": "Testo predefinito"
-        }
+        },
+        "senderAvatar": "Avatar mittente"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Imposta se mostrare l'avatar",
         "showName": "Imposta se mostrare il nome",
         "showSendTime": "Imposta se mostrare il tempo di invio",
-        "showFooter": "Imposta se mostrare il piè di pagina"
+        "showFooter": "Imposta se mostrare il piè di pagina",
+        "senderAvatar": "Imposta l'avatar del mittente. Ad esempio, nella sorgente dei dati, l'avatar del mittente è il campo sendAvatar e puoi impostare il campo su {{item.sendAvatar}}.",
+        "receiving": "Imposta se visualizzare il caricamento durante la ricezione dei messaggi. Se il tuo messaggio viene ricevuto dall'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione."
       },
       "tab_title": "Esamina",
       "unselected_tip1": "Nessun componente selezionato.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "La sorgente dati del componente della chat. Usa {{actionName.data}} per utilizzare i dati dai tuoi database o dalle API",
-          "sender_avatar": "Imposta l'avatar del mittente. Ad esempio, nella sorgente dei dati, l'avatar del mittente è il campo sendAvatar e puoi impostare il campo su {{item.sendAvatar}}.",
           "enable_message_selec": "Imposta se consentire la selezione di un messaggio",
           "selection_type": "Imposta come selezionare un messaggio, fare clic con il tasto sinistro o fare clic con il tasto destro. Quando utilizzato su un dispositivo mobile, viene fatto clic per attivare la selezione. ",
-          "loading_when_receivi": "Imposta se visualizzare il caricamento durante la ricezione dei messaggi. Se il tuo messaggio viene ricevuto dall'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione.",
           "loading_when_sending": "Imposta se visualizzare il caricamento durante l'invio dei messaggi. Se il tuo messaggio viene inviato all'azione1, puoi impostarlo a {{action1.isRunning}}, e lo stato di caricamento verrà visualizzato quando l'azione1 è in esecuzione.",
           "image_background": "Impostare uno sfondo immagine. Base64 e l'URL dell'immagine sono supportati"
         },
@@ -3106,11 +3107,13 @@
       },
       "undo": {
         "suc": "Annullamento riuscito",
-        "failed": "Annullamento fallito"
+        "failed": "Annullamento fallito",
+        "nothing": "Niente da annullare"
       },
       "redo": {
         "suc": "Ripeti con successo",
-        "failed": "Ripeti fallita"
+        "failed": "Ripeti fallita",
+        "nothing": "Niente da rifare"
       }
     }
   },
@@ -3508,5 +3511,59 @@
   },
   "network": {
     "error": "Errore di rete, riprova più tardi"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Dispiegato",
+      "undeploy": "Dispiega"
+    },
+    "desc": {
+      "no_description": "Nessuna descrizione"
+    },
+    "app_setting": {
+      "app_setting": "Impostazioni app",
+      "app_name": "Nome app",
+      "description": "Descrizione",
+      "save": "Salva",
+      "placeholder": {
+        "description": "Inserisci la descrizione per l'app",
+        "app_name": "Inserisci un nome per l'applicazione"
+      }
+    },
+    "access": {
+      "public": "Pubblico",
+      "private": "Privato"
+    },
+    "message": {
+      "update_failed": "Impossibile aggiornare",
+      "update_suc": "Aggiornato correttamente"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "App privata",
+      "public_app": "Applicazione pubblica"
+    },
+    "desc": {
+      "private_app": "Solo i membri del team possono accedere all'app distribuita",
+      "public_app": "Chiunque con il link dell'app può accedere all'app distribuita"
+    },
+    "button": {
+      "public": "Pubblico"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Invita a modificare",
+      "invite_to_use": "Invita da usare"
+    },
+    "desc": {
+      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
+    },
+    "tips": {
+      "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
+      "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
+      "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
+    }
   }
 }

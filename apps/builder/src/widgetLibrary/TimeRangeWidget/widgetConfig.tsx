@@ -12,6 +12,7 @@ export const TIME_RANGE_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     format: "HH:mm:ss",
     minuteStep: "{{15}}",

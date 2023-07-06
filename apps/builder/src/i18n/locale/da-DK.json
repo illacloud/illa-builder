@@ -1323,7 +1323,8 @@
           "calendar": "Kalender"
         },
         "event": "Begivenhed",
-        "MESSAGE": "BESKYTTELSE"
+        "MESSAGE": "BESKYTTELSE",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Aktiver valg af besked",
           "selection_type": "Markering type",
           "loading_when_sending": "Indlæser ved afsendelse",
-          "image_background": "Billede baggrund",
-          "senderAvatar": "Afsenders avatar"
+          "image_background": "Billede baggrund"
         },
         "action": "Handling",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Vis navn",
         "rich_text": {
           "default_text": "Standard tekst"
-        }
+        },
+        "senderAvatar": "Afsenders avatar"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Angiv, om avataren skal vises",
         "showName": "Angiv, om navnet skal vises",
         "showSendTime": "Angiv, om sendetiden skal vises",
-        "showFooter": "Angiv, om footeren skal vises"
+        "showFooter": "Angiv, om footeren skal vises",
+        "senderAvatar": "Indstil afsenderens avatar. For eksempel, i din datakilde, afsenderen avatar er sendAvatar feltet og du kan indstille feltet til {{item.sendAvatar}}.",
+        "receiving": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører."
       },
       "tab_title": "Inspicer",
       "unselected_tip1": "Ingen komponenter valgt.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "Datakilden for chatkomponenten. Brug {{actionName.data}} til at bruge data fra dine databaser eller API'er",
-          "sender_avatar": "Indstil afsenderens avatar. For eksempel, i din datakilde, afsenderen avatar er sendAvatar feltet og du kan indstille feltet til {{item.sendAvatar}}.",
           "enable_message_selec": "Angiv, om en besked skal vælges",
           "selection_type": "Indstil hvordan du vælger en besked, venstreklik eller højreklik. Når det bruges på en mobil enhed, klikkes det for at udløse valget. ",
-          "loading_when_receivi": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
           "loading_when_sending": "Angiv, om indlæsning skal vises, når der sendes beskeder. Hvis din besked bliver sendt til handling1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
           "image_background": "Angiv en billedbaggrund. Base64 og billed-URL understøttes"
         },
@@ -3106,11 +3107,13 @@
       },
       "undo": {
         "suc": "Fortryd succesfuld",
-        "failed": "Fortryd mislykkedes"
+        "failed": "Fortryd mislykkedes",
+        "nothing": "Intet at fortryde"
       },
       "redo": {
         "suc": "Gendannelse lykkedes",
-        "failed": "Gendannelse mislykkedes"
+        "failed": "Gendannelse mislykkedes",
+        "nothing": "Intet at gentage"
       }
     }
   },
@@ -3508,5 +3511,59 @@
   },
   "network": {
     "error": "Netværksfejl, prøv igen senere"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "Implementeret",
+      "undeploy": "Deaktiver"
+    },
+    "desc": {
+      "no_description": "Ingen beskrivelse"
+    },
+    "app_setting": {
+      "app_setting": "App indstilling",
+      "app_name": "Navn på app",
+      "description": "Varebeskrivelse",
+      "save": "Gem",
+      "placeholder": {
+        "description": "Angiv beskrivelsen for appen",
+        "app_name": "Angiv et navn til app'en"
+      }
+    },
+    "access": {
+      "public": "Offentlig",
+      "private": "Privat"
+    },
+    "message": {
+      "update_failed": "Opdatering mislykkedes",
+      "update_suc": "Opdatering lykkedes"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "Privat app",
+      "public_app": "Offentlig app"
+    },
+    "desc": {
+      "private_app": "Kun teammedlemmer kan tilgå den implementerede app",
+      "public_app": "Alle med app-linket kan få adgang til den implementerede app"
+    },
+    "button": {
+      "public": "Offentlig"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "Inviter til at redigere",
+      "invite_to_use": "Inviter til brug"
+    },
+    "desc": {
+      "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. "
+    },
+    "tips": {
+      "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
+      "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
+      "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
+    }
   }
 }

@@ -40,7 +40,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     defaultStep,
     updateComponentHeight,
     handleUpdateMultiExecutionResult,
-    handleUpdateOriginalDSLOtherMultiAttr,
+    handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
     optionConfigureMode,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -104,14 +104,21 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
   const handleUpdateMultiExecutionResults = useCallback(
     (updateSliceItem: Record<string, any>) => {
       if (linkWidgetDisplayName) {
-        handleUpdateOriginalDSLOtherMultiAttr(
+        handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
           linkWidgetDisplayName,
           updateSliceItem,
         )
       }
-      handleUpdateOriginalDSLOtherMultiAttr(displayName, updateSliceItem)
+      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
+        displayName,
+        updateSliceItem,
+      )
     },
-    [displayName, handleUpdateOriginalDSLOtherMultiAttr, linkWidgetDisplayName],
+    [
+      displayName,
+      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
+      linkWidgetDisplayName,
+    ],
   )
 
   const handleStepsChange = useCallback(
@@ -200,11 +207,14 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
           },
         ])
         if (linkWidgetDisplayName) {
-          handleUpdateOriginalDSLOtherMultiAttr(linkWidgetDisplayName, {
-            linkWidgetDisplayName: undefined,
-          })
+          handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
+            linkWidgetDisplayName,
+            {
+              linkWidgetDisplayName: undefined,
+            },
+          )
         }
-        handleUpdateOriginalDSLOtherMultiAttr(displayName, {
+        handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(displayName, {
           linkWidgetDisplayName: undefined,
         })
       }
@@ -214,7 +224,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     displayName,
     executionResult,
     handleUpdateMultiExecutionResult,
-    handleUpdateOriginalDSLOtherMultiAttr,
+    handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
     linkContainer,
     linkWidgetDisplayName,
     uniqueOptions,
@@ -240,10 +250,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
   ])
 
   return (
-    <AutoHeightContainer
-      updateComponentHeight={updateComponentHeight}
-      dynamicOptions={{}}
-    >
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <WrappedSteps
         {...props}
         items={items}

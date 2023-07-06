@@ -9,7 +9,7 @@ import {
   getHoveredComponents,
   getIsILLAEditMode,
   getIsLikeProductMode,
-  getSelectedComponents,
+  getSelectedComponentDisplayNames,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -17,15 +17,13 @@ import {
   getComponentAttachUsers,
   getTargetCurrentUsersExpendMe,
 } from "@/redux/currentApp/collaborators/collaboratorsSelector"
-import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { getComponentDisplayNameMapDepth } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   getExecutionError,
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { RootState } from "@/store"
+import { getCurrentUserId } from "@/redux/currentUser/currentUserSelector"
 import { isContainerType } from "@/utils/componentChecker"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
@@ -59,22 +57,19 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
   const isMouseOver =
     hoveredComponents[hoveredComponents.length - 1] === displayName
 
-  const filteredComponentAttachedUserList = useSelector<
-    RootState,
-    CollaboratorsInfo[]
-  >((rootState) => {
-    const currentUserInfo = getCurrentUser(rootState)
-    const currentUserID = currentUserInfo.userId
-    const componentsAttachedUsers = getComponentAttachUsers(rootState)
+  const currentUserID = useSelector(getCurrentUserId)
+  const componentsAttachedUsers = useSelector(getComponentAttachUsers)
+
+  const filteredComponentAttachedUserList = useMemo(() => {
     return getTargetCurrentUsersExpendMe(
       componentsAttachedUsers,
       displayName,
       currentUserID,
     )
-  })
+  }, [componentsAttachedUsers, currentUserID, displayName])
   const dispatch = useDispatch()
   const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
-  const selectedComponents = useSelector(getSelectedComponents)
+  const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const isEditMode = useSelector(getIsILLAEditMode)
   const errors = useSelector(getExecutionError)
 

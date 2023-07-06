@@ -15,8 +15,6 @@ export interface LayoutInfo {
   x: number
   y: number
   z: number
-  unitW: number
-  unitH: number
   minW: number
   minH: number
 }
@@ -31,7 +29,7 @@ export interface UpdateComponentNodeLayoutInfoPayload {
   layoutInfo: {
     x: number
     y: number
-    h: number
+    h?: number
     w: number
   }
   statusInfo?: Partial<StatusInfo>

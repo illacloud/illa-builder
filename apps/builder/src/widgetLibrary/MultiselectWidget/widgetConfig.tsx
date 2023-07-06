@@ -12,6 +12,7 @@ export const MULTISELECT_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "SELECT",
   w: 7,
   h: 5,
+  version: 0,
   defaults: {
     label: "Label",
     optionConfigureMode: "static",

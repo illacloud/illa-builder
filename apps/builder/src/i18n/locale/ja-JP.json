@@ -1323,7 +1323,8 @@
           "calendar": "カレンダー"
         },
         "event": "イベント",
-        "MESSAGE": "メッセージ"
+        "MESSAGE": "メッセージ",
+        "Toolbar": "ツールバー"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "メッセージの選択を有効にする",
           "selection_type": "選択タイプ",
           "loading_when_sending": "送信時に読み込み中",
-          "image_background": "画像の背景",
-          "senderAvatar": "送信者のアバター"
+          "image_background": "画像の背景"
         },
         "action": "アクション",
         "align": "整列する",
@@ -1687,7 +1687,8 @@
         "showName": "名前を表示",
         "rich_text": {
           "default_text": "既定のテキスト"
-        }
+        },
+        "senderAvatar": "送信者のアバター"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1746,7 +1747,9 @@
         "showAvatar": "アバターを表示するかどうかを設定します",
         "showName": "名前を表示するか否かの設定",
         "showSendTime": "送信時刻を表示するかどうかを設定します",
-        "showFooter": "フッターを表示するかどうかを設定します"
+        "showFooter": "フッターを表示するかどうかを設定します",
+        "senderAvatar": "送信者アバターを設定します。 たとえば、データソースでは、送信者のアバターはsendAvatarフィールドで、 {{item.sendAvatar}}に設定できます。",
+        "receiving": "メッセージの受信時に読み込みを表示するかどうかを設定します。 アクション1からメッセージを受信した場合は、 {{action1.isRunning}}に設定できます。 そしてロード状態は action1 が実行されているときに表示されます。"
       },
       "tab_title": "属性",
       "unselected_tip1": "コンポーネントが選択されていません。",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "チャットコンポーネントのデータソース。データベースや API からのデータを使用するには {{actionName.data}} を使用します。",
-          "sender_avatar": "送信者アバターを設定します。 たとえば、データソースでは、送信者のアバターはsendAvatarフィールドで、 {{item.sendAvatar}}に設定できます。",
           "enable_message_selec": "メッセージを選択するかどうかを設定します",
           "selection_type": "メッセージの選択方法を設定し、左クリックまたは右クリックします。モバイルデバイスで使用する場合は、クリックして選択をトリガーします。 ",
-          "loading_when_receivi": "メッセージの受信時に読み込みを表示するかどうかを設定します。 アクション1からメッセージを受信した場合は、 {{action1.isRunning}}に設定できます。 そしてロード状態は action1 が実行されているときに表示されます。",
           "loading_when_sending": "メッセージ送信時に読み込みを表示するかどうかを設定します。 あなたのメッセージが action1 に送信された場合、 {{action1.isRunning}}に設定することができます。 そしてロード状態は action1 が実行されているときに表示されます。",
           "image_background": "画像の背景を設定します。Base64と画像のURLはサポートされています"
         },
@@ -3106,11 +3107,13 @@
       },
       "undo": {
         "suc": "正常に元に戻す",
-        "failed": "元に戻すに失敗しました"
+        "failed": "元に戻すに失敗しました",
+        "nothing": "元に戻すものがありません"
       },
       "redo": {
         "suc": "やり直しに成功しました",
-        "failed": "やり直しに失敗しました"
+        "failed": "やり直しに失敗しました",
+        "nothing": "やり直すものがありません"
       }
     }
   },
@@ -3508,5 +3511,59 @@
   },
   "network": {
     "error": "ネットワークエラーが発生しました。後でもう一度お試しください。"
+  },
+  "new_dashboard": {
+    "status": {
+      "deployed": "配備済み",
+      "undeploy": "デプロイを解除"
+    },
+    "desc": {
+      "no_description": "説明がありません"
+    },
+    "app_setting": {
+      "app_setting": "アプリの設定",
+      "app_name": "アプリ名",
+      "description": "説明",
+      "save": "保存",
+      "placeholder": {
+        "description": "アプリの説明を入力してください",
+        "app_name": "アプリの名前を入力してください"
+      }
+    },
+    "access": {
+      "public": "公開",
+      "private": "非公開"
+    },
+    "message": {
+      "update_failed": "更新に失敗しました",
+      "update_suc": "正常に更新されました"
+    }
+  },
+  "new_deploy": {
+    "title": {
+      "private_app": "プライベートアプリ",
+      "public_app": "公開アプリ"
+    },
+    "desc": {
+      "private_app": "チームメンバーのみがデプロイされたアプリにアクセスできます",
+      "public_app": "アプリのリンクを持っている誰でも、デプロイされたアプリにアクセスできます"
+    },
+    "button": {
+      "public": "公開"
+    }
+  },
+  "new_share": {
+    "title": {
+      "invite_to_edit": "編集に招待",
+      "invite_to_use": "招待する"
+    },
+    "desc": {
+      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
+    },
+    "tips": {
+      "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
+      "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
+      "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+    }
   }
 }

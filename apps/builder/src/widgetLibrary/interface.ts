@@ -48,6 +48,7 @@ export interface BaseWidgetInfo {
   sessionType?: SessionType
   keywords?: string[]
   resizeDirection?: RESIZE_DIRECTION
+  version: number
 }
 
 type defaultsType = () => Record<string, any>
@@ -78,6 +79,9 @@ export interface BaseWidgetProps {
   ) => void
   updateComponentHeight: (newHeight: number) => void
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
+  handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo: (
+    updateSlice: Record<string, any>,
+  ) => void
   triggerEventHandler: (
     eventType: string,
     path?: string,
