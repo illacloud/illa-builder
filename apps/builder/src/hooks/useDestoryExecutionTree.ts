@@ -9,6 +9,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { destroyExecutionTree } from "@/redux/currentApp/executionTree/executionListener"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { removeAllActionPeriod } from "@/utils/action/runAction"
+import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 
 export const useDestroyApp = () => {
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ export const useDestroyApp = () => {
       dispatch(dragShadowActions.resetDragShadowInfoReducer())
       destroyExecutionTree()
       removeAllActionPeriod()
+      IllaUndoRedoManager.destroy()
     }
   }, [dispatch, appId])
 }

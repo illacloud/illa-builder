@@ -11,8 +11,8 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     currentIndex,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateOriginalDSLMultiAttr,
-    handleUpdateOriginalDSLOtherMultiAttr,
+    handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     viewList,
     tooltipText,
     childrenNode,
@@ -56,17 +56,17 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   const handleUpdateOriginalDSLAttrs = useCallback(
     (updateSlice: Record<string, any>) => {
-      handleUpdateOriginalDSLMultiAttr(updateSlice)
+      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo(updateSlice)
       if (linkWidgetDisplayName) {
-        handleUpdateOriginalDSLOtherMultiAttr?.(
+        handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo?.(
           linkWidgetDisplayName,
           updateSlice,
         )
       }
     },
     [
-      handleUpdateOriginalDSLMultiAttr,
-      handleUpdateOriginalDSLOtherMultiAttr,
+      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
+      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
       linkWidgetDisplayName,
     ],
   )
