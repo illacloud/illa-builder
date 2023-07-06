@@ -18,6 +18,7 @@ export const valueLabelStyle = css`
 `
 
 export const optionContentStyle = css`
+  cursor: pointer;
   width: 160px;
   padding: 8px 0;
   font-size: 14px;

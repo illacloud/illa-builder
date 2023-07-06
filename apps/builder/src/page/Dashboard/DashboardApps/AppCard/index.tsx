@@ -106,7 +106,8 @@ export const AppCard: FC<AppCardProps> = (props) => {
           {appInfo.deployed ? (
             <Button
               size="small"
-              colorScheme="white"
+              variant="text"
+              colorScheme="grayBlue"
               onClick={(e) => {
                 e.stopPropagation()
                 track(
