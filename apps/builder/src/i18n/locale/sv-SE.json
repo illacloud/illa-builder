@@ -3518,7 +3518,8 @@
       "undeploy": "Odistribuera"
     },
     "desc": {
-      "no_description": "Ingen beskrivning"
+      "no_description": "Ingen beskrivning",
+      "blank": "Ingen applikation"
     },
     "app_setting": {
       "app_setting": "Appens inställning",
@@ -3537,6 +3538,9 @@
     "message": {
       "update_failed": "Det gick inte att uppdatera",
       "update_suc": "Uppdaterades framgångsrikt"
+    },
+    "button": {
+      "blank": "Skapa din första app"
     }
   },
   "new_deploy": {

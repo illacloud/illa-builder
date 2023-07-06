@@ -3518,7 +3518,8 @@
       "undeploy": "未部署"
     },
     "desc": {
-      "no_description": "暂无描述"
+      "no_description": "暂无描述",
+      "blank": "没有项目"
     },
     "app_setting": {
       "app_setting": "项目设置",
@@ -3537,6 +3538,9 @@
     "message": {
       "update_failed": "更新失败",
       "update_suc": "更新成功"
+    },
+    "button": {
+      "blank": "创建第一个项目"
     }
   },
   "new_deploy": {
