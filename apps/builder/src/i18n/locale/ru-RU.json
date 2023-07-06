@@ -1324,7 +1324,7 @@
         },
         "event": "Событие",
         "MESSAGE": "СООБЩЕНИЕ",
-        "Toolbar": "TOOLBAR"
+        "Toolbar": "ТОЛЬКО"
       },
       "setter_label": {
         "chat": {
