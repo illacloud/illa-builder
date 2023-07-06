@@ -50,6 +50,8 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "Snowflake"
       case "postgresql":
         return "PostgreSQL"
+      case "hydra":
+        return "Hydra"
       case "mariadb":
         return "MariaDB"
       case "tidb":
@@ -131,6 +133,8 @@ export function getResourceNameFromResourceType(
         return "Snowflake"
       case "postgresql":
         return "PostgreSQL"
+      case "hydra":
+        return "Hydra"
       case "mariadb":
         return "MariaDB"
       case "tidb":

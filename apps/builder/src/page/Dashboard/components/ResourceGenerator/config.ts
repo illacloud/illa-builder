@@ -75,6 +75,10 @@ export const Databases: ResourceDataItem[] = [
     resourceType: "appwrite",
     isDraft: false,
   },
+  {
+    resourceType: "hydra",
+    isDraft: false,
+  },
 ]
 
 export const Apis: ResourceDataItem[] = [

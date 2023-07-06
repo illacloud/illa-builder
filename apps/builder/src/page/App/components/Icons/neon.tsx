@@ -60,4 +60,5 @@ export const NeonIcon = createIcon({
     </>
   ),
 })
+
 NeonIcon.displayName = "NeonIcon"

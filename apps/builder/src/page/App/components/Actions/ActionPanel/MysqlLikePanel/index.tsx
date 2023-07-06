@@ -64,6 +64,7 @@ export const MysqlLikePanel: FC = () => {
 
   const mode = useMemo(() => {
     switch (currentAction.actionType) {
+      case "hydra":
       case "postgresql":
         return CODE_LANG.PGSQL
       default:
