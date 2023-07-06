@@ -42,15 +42,19 @@ export const titleInfoStyle = css`
   overflow: hidden;
 `
 
+export const textEllipsisStyle = css`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+`
+
 export const appNameStyle = css`
   color: #1d2129;
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
+  ${textEllipsisStyle};
 `
 
 export const editedStyle = css`
@@ -58,7 +62,7 @@ export const editedStyle = css`
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
-  word-wrap: break-word;
+  ${textEllipsisStyle};
 `
 
 export const descriptionStyle = css`
