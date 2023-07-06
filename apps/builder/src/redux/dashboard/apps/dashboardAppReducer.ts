@@ -55,6 +55,21 @@ export const renameDashboardAppReducer: CaseReducer<
   }
 }
 
+export const updateDashboardAppReducer: CaseReducer<
+  DashboardAppsState,
+  PayloadAction<DashboardApp>
+> = (state, action) => {
+  let index = state.list.findIndex((element) => {
+    return element.appId == action.payload.appId
+  })
+  if (index != -1) {
+    state.list[index] = {
+      ...state.list[index],
+      ...action.payload,
+    }
+  }
+}
+
 export const modifyConfigDashboardAppReducer: CaseReducer<
   DashboardAppsState,
   PayloadAction<ModifyConfigDashboardAppPayload>
