@@ -1,6 +1,12 @@
-import copy from "copy-to-clipboard"
 import { isBoolean } from "lodash"
-import { FC, Suspense, useCallback, useEffect, useState } from "react"
+import {
+  FC,
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -17,12 +23,17 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import {
+  canManage,
+  canUseUpgradeFeature,
+} from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
   USER_ROLE,
 } from "@/illa-public-component/UserRoleUtils/interface"
+import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { openGuideModal } from "@/page/Template/gideModeModal"
 import { getIsTutorialViewed } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -56,8 +67,10 @@ export const DashboardApps: FC = () => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)
   const isTutorialViewed = useSelector(getIsTutorialViewed)
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
   const [loading, setLoading] = useState(false)
+  const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
 
@@ -71,6 +84,12 @@ export const DashboardApps: FC = () => {
     currentUserRole,
     ATTRIBUTE_GROUP.APP,
     ACTION_MANAGE.CREATE_APP,
+  )
+
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
   const handleCreateApp = useCallback(() => {
@@ -100,6 +119,18 @@ export const DashboardApps: FC = () => {
         setLoading(false)
       })
   }, [loading, teamIdentifier, dispatch, navigate, message, t])
+
+  const closeInviteModal = () => {
+    setInviteModalVisible(false)
+  }
+
+  const openInviteModal = useCallback(() => {
+    if (isCloudVersion && !canUseBillingFeature) {
+      handleUpgradeModalVisible(true, "upgrade")
+      return
+    }
+    setInviteModalVisible(true)
+  }, [canUseBillingFeature, handleUpgradeModalVisible])
 
   if (
     isBoolean(isTutorialViewed) &&
@@ -143,21 +174,14 @@ export const DashboardApps: FC = () => {
           />
           <span css={listTitleStyle}>{teamInfo?.name}</span>
         </div>
-        <div>
-          {isCloudVersion ? null : (
-            <Button
-              colorScheme="gray"
-              onClick={() => {
-                copy(window.location.href)
-                message.success({ content: t("link_copied") })
-              }}
-            >
-              {t("share")}
+        {canCreateApp ? (
+          <div>
+            <Button w="200px" colorScheme="grayBlue" onClick={openInviteModal}>
+              {t("user_management.page.invite")}
             </Button>
-          )}
-          {canCreateApp ? (
             <Button
               ml="4px"
+              w="200px"
               colorScheme="techPurple"
               leftIcon={<PlusIcon />}
               loading={loading}
@@ -165,8 +189,8 @@ export const DashboardApps: FC = () => {
             >
               {t("create_new_app")}
             </Button>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </div>
       <Suspense fallback={<DashBoardLoading />}>
         <Await resolve={appList} errorElement={<DashboardErrorElement />}>
@@ -177,6 +201,11 @@ export const DashboardApps: FC = () => {
           />
         </Await>
       </Suspense>
+      <DashBoardInviteModal
+        hasApp={false}
+        visible={inviteModalVisible}
+        handleCloseModal={closeInviteModal}
+      />
     </div>
   )
 }

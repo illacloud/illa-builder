@@ -34,7 +34,7 @@ import {
 } from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
-import { AppInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
+import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -380,7 +380,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
       >
-        <AppInviteModal
+        <DashBoardInviteModal
           appInfo={app}
           visible={shareVisible}
           handleCloseModal={closeInviteModal}
