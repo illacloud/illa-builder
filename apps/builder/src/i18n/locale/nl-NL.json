@@ -1323,7 +1323,8 @@
           "calendar": "Kalender"
         },
         "event": "Gebeurtenis",
-        "MESSAGE": "BERICHT"
+        "MESSAGE": "BERICHT",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Berichtselectie inschakelen",
           "selection_type": "Type selectie",
           "loading_when_sending": "Laden tijdens verzenden",
-          "image_background": "Afbeelding achtergrond",
-          "senderAvatar": "Afzender avatar"
+          "image_background": "Afbeelding achtergrond"
         },
         "action": "actie",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Toon naam",
         "rich_text": {
           "default_text": "Standaard tekst"
-        }
+        },
+        "senderAvatar": "Afzender avatar"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Stel in of de avatar moet worden weergegeven",
         "showName": "Stel in of de naam moet worden weergegeven",
         "showSendTime": "Stel in of de verzendtijd moet worden weergegeven",
-        "showFooter": "Stel in of de voettekst moet worden weergegeven"
+        "showFooter": "Stel in of de voettekst moet worden weergegeven",
+        "senderAvatar": "Stel de afzender avatar in. Bijvoorbeeld, in je gegevensbron is de avatar van de afzender het sendAvatar veld en je kunt het veld instellen op {{item.sendAvatar}}.",
+        "receiving": "Instellen of laden moet worden weergegeven tijdens het ontvangen van berichten. Als uw bericht van actie 1 wordt ontvangen, kunt u het instellen op {{action1.isRunning}}, en de laadstatus wordt weergegeven wanneer actie 1 wordt uitgevoerd."
       },
       "tab_title": "Inspecteren",
       "unselected_tip1": "Geen componenten geselecteerd.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "De gegevensbron van het chatcomponent. Gebruik {{actionName.data}} om de gegevens uit uw databases of API's te gebruiken",
-          "sender_avatar": "Stel de afzender avatar in. Bijvoorbeeld, in je gegevensbron is de avatar van de afzender het sendAvatar veld en je kunt het veld instellen op {{item.sendAvatar}}.",
           "enable_message_selec": "Instellen of een bericht moet worden geselecteerd",
           "selection_type": "Stel in hoe een bericht moet worden geselecteerd, met de rechtermuisknop of met de rechtermuisknop. Wanneer deze wordt gebruikt op een mobiel apparaat, wordt er op geklikt om de selectie te activeren. ",
-          "loading_when_receivi": "Instellen of laden moet worden weergegeven tijdens het ontvangen van berichten. Als uw bericht van actie 1 wordt ontvangen, kunt u het instellen op {{action1.isRunning}}, en de laadstatus wordt weergegeven wanneer actie 1 wordt uitgevoerd.",
           "loading_when_sending": "Instellen of laden moet worden weergegeven bij het verzenden van berichten. Als uw bericht naar actie 1 wordt verzonden, kunt u het instellen op {{action1.isRunning}}, en de laadstatus wordt weergegeven wanneer actie 1 wordt uitgevoerd.",
           "image_background": "Stel een achtergrond in. Base64 en afbeelding URL worden ondersteund"
         },
