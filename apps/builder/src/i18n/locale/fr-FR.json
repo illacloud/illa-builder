@@ -3518,7 +3518,8 @@
       "undeploy": "Annuler le déploiement"
     },
     "desc": {
-      "no_description": "Pas de description"
+      "no_description": "Pas de description",
+      "blank": "Aucune application"
     },
     "app_setting": {
       "app_setting": "Réglage de l'application",
@@ -3537,6 +3538,9 @@
     "message": {
       "update_failed": "Échec de la mise à jour",
       "update_suc": "Mis à jour avec succès"
+    },
+    "button": {
+      "blank": "Créez votre première application"
     }
   },
   "new_deploy": {

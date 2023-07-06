@@ -3518,7 +3518,8 @@
       "undeploy": "Отключать"
     },
     "desc": {
-      "no_description": "Нет описания"
+      "no_description": "Нет описания",
+      "blank": "Нет приложения"
     },
     "app_setting": {
       "app_setting": "Настройки приложения",
@@ -3537,6 +3538,9 @@
     "message": {
       "update_failed": "Не удалось обновить",
       "update_suc": "Успешно обновлено"
+    },
+    "button": {
+      "blank": "Создайте ваше первое приложение"
     }
   },
   "new_deploy": {

@@ -3518,7 +3518,8 @@
       "undeploy": "Undeployen"
     },
     "desc": {
-      "no_description": "Geen beschrijving"
+      "no_description": "Geen beschrijving",
+      "blank": "Geen toepassing"
     },
     "app_setting": {
       "app_setting": "App instelling",
@@ -3537,6 +3538,9 @@
     "message": {
       "update_failed": "Bijwerken mislukt",
       "update_suc": "Succesvol geüpdatet"
+    },
+    "button": {
+      "blank": "Maak je eerste app"
     }
   },
   "new_deploy": {

@@ -3518,7 +3518,8 @@
       "undeploy": "デプロイを解除"
     },
     "desc": {
-      "no_description": "説明がありません"
+      "no_description": "説明がありません",
+      "blank": "アプリケーションがありません"
     },
     "app_setting": {
       "app_setting": "アプリの設定",
@@ -3537,6 +3538,9 @@
     "message": {
       "update_failed": "更新に失敗しました",
       "update_suc": "正常に更新されました"
+    },
+    "button": {
+      "blank": "最初のアプリを作成する"
     }
   },
   "new_deploy": {
