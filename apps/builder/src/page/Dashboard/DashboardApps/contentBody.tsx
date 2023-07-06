@@ -150,6 +150,7 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
               <div>{t("new_dashboard.desc.blank")}</div>
               <div>
                 <Button
+                  variant="text"
                   colorScheme="grayBlue"
                   loading={loading}
                   leftIcon={<PlusIcon size="10px" />}
