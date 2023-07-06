@@ -63,3 +63,14 @@ export const hoverStyle = css`
     }
   }
 `
+
+export const emptyStyle: SerializedStyles = css`
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-weight: 600;
+  line-height: 22px;
+`

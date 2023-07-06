@@ -2,7 +2,15 @@ import { FC, useEffect, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue, useNavigate, useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
-import { Empty, List } from "@illa-design/react"
+import {
+  Button,
+  Empty,
+  EmptyIcon,
+  List,
+  PlusIcon,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -15,16 +23,19 @@ import { track } from "@/utils/mixpanelHelper"
 import {
   CARD_GAP_SIZE,
   CARD_WIDTH,
+  emptyStyle,
   fullWidthStyle,
   listContainerStyle,
 } from "./style"
 
 interface AppsContentBodyProps {
   canEditApp: boolean
+  loading: boolean
+  onCreatedApp: () => void
 }
 
 export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
-  const { canEditApp } = props
+  const { canEditApp, loading, onCreatedApp } = props
   const { data: appsList } = useAsyncValue() as {
     data: DashboardApp[]
   }
@@ -120,7 +131,34 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
           }}
         />
       )}
-      {finalAppsList.length == 0 && <Empty paddingVertical="120px" />}
+      {finalAppsList.length === 0 && (
+        <Empty
+          paddingVertical="120px"
+          icon={
+            <EmptyIcon
+              size="48px"
+              color={globalColor(`--${illaPrefix}-grayBlue-02`)}
+            />
+          }
+          description={
+            <div css={emptyStyle}>
+              <div>Empty</div>
+              <div>
+                <Button
+                  colorScheme="grayBlue"
+                  loading={loading}
+                  leftIcon={<PlusIcon />}
+                  onClick={() => {
+                    onCreatedApp()
+                  }}
+                >
+                  Create your first app
+                </Button>
+              </div>
+            </div>
+          }
+        />
+      )}
     </div>
   )
 }

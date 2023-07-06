@@ -124,6 +124,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
           {canEditApp ? (
             <Button
               size="small"
+              variant="text"
               colorScheme="grayBlue"
               leftIcon={<PenIcon />}
               onClick={() => {
