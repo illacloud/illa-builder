@@ -1,3 +1,4 @@
+import VirtualList from "rc-virtual-list"
 import { FC, useEffect, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue, useNavigate, useParams } from "react-router-dom"
@@ -6,7 +7,6 @@ import {
   Button,
   Empty,
   EmptyIcon,
-  List,
   PlusIcon,
   globalColor,
   illaPrefix,
@@ -22,6 +22,7 @@ import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { track } from "@/utils/mixpanelHelper"
 import {
   CARD_GAP_SIZE,
+  CARD_HEIGHT,
   CARD_WIDTH,
   emptyStyle,
   fullWidthStyle,
@@ -44,8 +45,7 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
   const { teamIdentifier } = useParams()
 
   const appListInRedux: DashboardApp[] = useSelector(getDashboardApps)
-
-  const [ref, { width }] = useMeasure({
+  const [ref, { width, height }] = useMeasure({
     polyfill: ResizeObserver,
   })
 
@@ -53,8 +53,21 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
     const cardsPerRow = Math.floor(width / (CARD_WIDTH + CARD_GAP_SIZE))
     const cardAreaWidth = width - (cardsPerRow - 1) * CARD_GAP_SIZE
 
-    return Math.floor(cardAreaWidth / CARD_WIDTH)
+    return Math.floor(cardAreaWidth / CARD_WIDTH) || 1
   }, [width])
+
+  const finalAppsList = useMemo(() => {
+    const appList = canEditApp
+      ? appListInRedux
+      : appListInRedux.filter((item) => {
+          return item.mainlineVersion !== 0
+        })
+    let rows = []
+    for (let i = 0; i < appList.length; i += actualCardsPerRow) {
+      rows.push(appList.slice(i, i + actualCardsPerRow))
+    }
+    return rows
+  }, [canEditApp, appListInRedux, actualCardsPerRow])
 
   useEffect(() => {
     if (Array.isArray(appsList)) {
@@ -62,33 +75,26 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
     }
   }, [appsList, dispatch])
 
-  const finalAppsList = useMemo(() => {
-    if (canEditApp) return appListInRedux
-    return appListInRedux.filter((item) => {
-      return item.mainlineVersion !== 0
-    })
-  }, [canEditApp, appListInRedux])
-
   return (
     <div css={fullWidthStyle} ref={ref}>
       {finalAppsList.length !== 0 && (
-        <List
-          w={"100%"}
-          h={"100%"}
-          ov={"auto"}
-          data={finalAppsList}
-          bordered={false}
-          hoverable={true}
-          renderRaw
-          render={(_item, index) => {
-            const cardsInThisRow = finalAppsList.slice(
-              index * actualCardsPerRow,
-              (index + 1) * actualCardsPerRow,
-            )
-            if (cardsInThisRow.length === 0) return <></>
+        <VirtualList
+          style={{ gap: 24 }}
+          height={height}
+          itemHeight={CARD_HEIGHT + CARD_GAP_SIZE}
+          itemKey={(item) => item[0]?.appId}
+          data={finalAppsList as DashboardApp[][]}
+        >
+          {(cardsInThisRow) => {
+            console.log(cardsInThisRow, "cardsInThisRow")
+            //
+            // if (cardsInThisRow.length === 0) return <></>
 
             return (
-              <div css={listContainerStyle}>
+              <div
+                css={listContainerStyle}
+                style={{ height: CARD_HEIGHT + CARD_GAP_SIZE }}
+              >
                 {cardsInThisRow?.map((item) => (
                   <AppCard
                     key={item.appId}
@@ -126,10 +132,7 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
               </div>
             )
           }}
-          renderKey={(item) => {
-            return item.appId
-          }}
-        />
+        </VirtualList>
       )}
       {finalAppsList.length === 0 && (
         <Empty

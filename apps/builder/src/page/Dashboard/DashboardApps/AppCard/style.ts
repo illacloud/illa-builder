@@ -1,6 +1,10 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { CARD_WIDTH } from "@/page/Dashboard/DashboardApps/style"
+import {
+  CARD_GAP_SIZE,
+  CARD_HEIGHT,
+  CARD_WIDTH,
+} from "@/page/Dashboard/DashboardApps/style"
 
 export const cardStyle = css`
   display: flex;
@@ -8,11 +12,13 @@ export const cardStyle = css`
   gap: 16px;
   padding: 24px;
   width: ${CARD_WIDTH}px;
+  height: ${CARD_HEIGHT}px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
   background: ${getColor("white", "01")};
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  margin-bottom: ${CARD_GAP_SIZE}px;
 
   &:hover {
     border-color: ${getColor("techPurple", "01")};
@@ -60,12 +66,15 @@ export const descriptionStyle = css`
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
-  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export const editorContainerStyle = css`
   display: flex;
   align-items: flex-start;
+  min-height: 24px;
 `
 export const editorAvatarStyle = css`
   width: 24px;

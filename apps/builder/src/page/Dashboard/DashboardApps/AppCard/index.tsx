@@ -71,15 +71,17 @@ export const AppCard: FC<AppCardProps> = (props) => {
         {appInfo.config.description || t("new_dashboard.desc.no_description")}
       </div>
       <div css={editorContainerStyle}>
-        {appInfo?.editedBy?.map((editor) => (
-          <Avatar
-            key={editor.userID}
-            css={editorAvatarStyle}
-            avatarUrl={editor.avatar}
-            name={editor.nickname}
-            id={editor.userID}
-          />
-        ))}
+        {appInfo?.editedBy?.map((editor) =>
+          editor ? (
+            <Avatar
+              key={editor.userID}
+              css={editorAvatarStyle}
+              avatarUrl={editor.avatar}
+              name={editor.nickname}
+              id={editor.userID}
+            />
+          ) : null,
+        )}
       </div>
       <div css={footerStyle}>
         <div
