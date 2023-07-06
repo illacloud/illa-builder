@@ -1,5 +1,6 @@
 import VirtualList from "rc-virtual-list"
 import { FC, useEffect, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue, useNavigate, useParams } from "react-router-dom"
 import useMeasure from "react-use-measure"
@@ -36,6 +37,7 @@ interface AppsContentBodyProps {
 }
 
 export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
+  const { t } = useTranslation()
   const { canEditApp, loading, onCreatedApp } = props
   const { data: appsList } = useAsyncValue() as {
     data: DashboardApp[]
@@ -90,10 +92,6 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
           data={finalAppsList as DashboardApp[][]}
         >
           {(cardsInThisRow) => {
-            console.log(cardsInThisRow, "cardsInThisRow")
-            //
-            // if (cardsInThisRow.length === 0) return <></>
-
             return (
               <div
                 css={listContainerStyle}
@@ -149,17 +147,17 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
           }
           description={
             <div css={emptyStyle}>
-              <div>Empty</div>
+              <div>{t("new_dashboard.desc.blank")}</div>
               <div>
                 <Button
                   colorScheme="grayBlue"
                   loading={loading}
-                  leftIcon={<PlusIcon />}
+                  leftIcon={<PlusIcon size="10px" />}
                   onClick={() => {
                     onCreatedApp()
                   }}
                 >
-                  Create your first app
+                  {t("new_dashboard.button.blank")}
                 </Button>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -30,6 +30,9 @@ import {
 } from "@/services/apps"
 import {
   changeTeamMembersRole,
+  fetchInviteLink,
+  fetchRenewInviteLink,
+  inviteByEmail,
   setInviteLinkEnabled,
   updateMembers,
   updateTeamsInfo,
@@ -39,26 +42,27 @@ import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 export interface AppInviteModalProps
   extends Pick<
     InviteModalProps,
-    "visible" | "handleCloseModal" | "inviteToUseAppStatus"
+    "visible" | "handleCloseModal" | "inviteToUseAppStatus" | "hasApp"
   > {
-  appInfo: DashboardApp
+  appInfo?: DashboardApp
 }
 
-export const AppInviteModal: FC<AppInviteModalProps> = (props) => {
+export const DashBoardInviteModal: FC<AppInviteModalProps> = (props) => {
   const message = useMessage()
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const { teamIdentifier } = useParams()
-  const { appInfo, visible, handleCloseModal, ...rest } = props
+  const { appInfo, visible, handleCloseModal, hasApp = true, ...rest } = props
 
   const teamInfo = useSelector(getCurrentTeamInfo)
   const currentUserInfo = useSelector(getCurrentUser)
   const members = useSelector(getCurrentMemberList) ?? []
 
+  const appId = useMemo(() => appInfo?.appId ?? "", [appInfo?.appId])
+
   const appLink = useMemo(
-    () =>
-      `${window.location.origin}/${teamIdentifier}/deploy/app/${appInfo.appId}`,
-    [teamIdentifier, appInfo.appId],
+    () => `${window.location.origin}/${teamIdentifier}/deploy/app/${appId}`,
+    [teamIdentifier, appId],
   )
 
   const handleChangeTeamMembersRole = (
@@ -111,37 +115,40 @@ export const AppInviteModal: FC<AppInviteModalProps> = (props) => {
       })
   }
 
-  const fetchShareLink = (
-    userRole: USER_ROLE,
-    redirectPage?: REDIRECT_PAGE_TYPE,
-  ) => {
-    return fetchShareAppLink(userRole, appInfo.appId, redirectPage)
-  }
-  const renewShareLink = (
-    userRole: USER_ROLE,
-    redirectPage?: REDIRECT_PAGE_TYPE,
-  ) => {
-    return renewShareAppLink(userRole, appInfo.appId, redirectPage)
-  }
+  const fetchShareLink = useCallback(
+    (userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
+      const getShareLink = hasApp ? fetchShareAppLink : fetchInviteLink
+      return getShareLink(userRole, appId, redirectPage)
+    },
+    [appId, hasApp],
+  )
 
-  const handleInviteByEmail = (
-    email: string,
-    userRole: USER_ROLE,
-    redirectPage?: REDIRECT_PAGE_TYPE,
-  ) => {
-    return shareAppByEmail(email, userRole, appInfo.appId, redirectPage).then(
-      (res) => {
-        updateMembers()
-        return res
-      },
-    )
-  }
+  const handleRenewShareLink = useCallback(
+    (userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
+      const renewShareLink = hasApp ? renewShareAppLink : fetchRenewInviteLink
+      return renewShareLink(userRole, appId, redirectPage)
+    },
+    [appId, hasApp],
+  )
+
+  const handleInviteByEmail = useCallback(
+    (email: string, userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
+      const fetchInviteByEmail = hasApp ? shareAppByEmail : inviteByEmail
+      return fetchInviteByEmail(email, userRole, appId, redirectPage).then(
+        (res) => {
+          updateMembers()
+          return res
+        },
+      )
+    },
+    [appId, hasApp],
+  )
 
   const updateAppConfig = async (isPublic: boolean) => {
-    const res = await updateAppPublicConfig(isPublic, appInfo.appId)
+    const res = await updateAppPublicConfig(isPublic, appId)
     dispatch(
       dashboardAppActions.modifyConfigDashboardAppReducer({
-        appId: appInfo.appId,
+        appId,
         config: { public: isPublic },
       }),
     )
@@ -159,16 +166,16 @@ export const AppInviteModal: FC<AppInviteModalProps> = (props) => {
       }}
     >
       <InviteModal
-        hasApp
+        hasApp={hasApp}
         teamName={isCloudVersion ? teamInfo?.name : "ILLA"}
         userNickname={currentUserInfo.nickname}
         isCloudVersion={isCloudVersion}
         appLink={appLink}
         isAppPublic={appInfo?.config?.public}
         inviteToUseAppStatus={appInfo?.deployed ? "deployed" : "unDeployed"}
-        appID={appInfo.appId}
+        appID={appId}
         fetchInviteLink={fetchShareLink}
-        renewInviteLink={renewShareLink}
+        renewInviteLink={handleRenewShareLink}
         configInviteLink={setInviteLinkEnabled}
         allowInviteByLink={teamInfo?.permission.inviteLinkEnabled ?? false}
         allowEditorManageTeamMember={

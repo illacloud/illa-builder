@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { Button, getColor } from "@illa-design/react"
 import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { AppInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
+import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { isCloudVersion } from "@/utils/typeHelper"
 
@@ -47,7 +47,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
         {t("share")}
       </Button>
 
-      <AppInviteModal
+      <DashBoardInviteModal
         appInfo={appInfo}
         visible={shareModalVisible}
         handleCloseModal={closeInviteModal}
