@@ -14,7 +14,8 @@ export const appInfoAsync = (
 ) => {
   const { payload } = action
   switch (reduxAction) {
-    case "updateAppNameReducer": {
+    case "updateAppNameReducer":
+    case "updateAppInfoReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
           Signal.UPDATE_STATE,

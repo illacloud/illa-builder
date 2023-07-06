@@ -2,6 +2,7 @@ import { FC, useCallback, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
+import { useParams } from "react-router-dom"
 import {
   Button,
   Input,
@@ -12,6 +13,7 @@ import {
 } from "@illa-design/react"
 import { applyConfigItemLabelText } from "@/page/App/components/ControlledElement/style"
 import { AppSettingModalProps } from "@/page/Dashboard/components/AppSettingModal/interface"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { updateAppConfig } from "@/services/apps"
 import {
@@ -42,6 +44,7 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
   )
 
   const { t } = useTranslation()
+  const { appId } = useParams()
   const dispatch = useDispatch()
 
   const [loading, setLoading] = useState(false)
@@ -56,13 +59,11 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
         appName: data.appName,
       })
         .then(
-          () => {
-            dispatch(
-              dashboardAppActions.renameDashboardAppReducer({
-                appId: appInfo.appId,
-                newName: data.appName,
-              }),
-            )
+          (res) => {
+            dispatch(dashboardAppActions.updateDashboardAppReducer(res.data))
+            if (res.data.appId === appId) {
+              dispatch(appInfoActions.updateAppInfoReducer(res.data))
+            }
             message.success({
               content: t("dashboard.app.rename_success"),
             })
@@ -78,7 +79,7 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
           setLoading(false)
         })
     },
-    [appInfo.appId, dispatch, message, onOk, onVisibleChange, t],
+    [appInfo.appId, appId, dispatch, message, onOk, onVisibleChange, t],
   )
 
   return (
