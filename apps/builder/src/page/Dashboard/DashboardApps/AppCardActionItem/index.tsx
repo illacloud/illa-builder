@@ -324,7 +324,11 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             </DropList>
           }
         >
-          <Button colorScheme="grayBlue" leftIcon={<MoreIcon size="14px" />} />
+          <Button
+            variant="text"
+            colorScheme="grayBlue"
+            leftIcon={<MoreIcon size="14px" />}
+          />
         </Dropdown>
       ) : isDeploy && canSetPublic ? (
         // for viewer

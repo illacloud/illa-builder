@@ -9,13 +9,12 @@ export const cardStyle = css`
   padding: 24px;
   width: ${CARD_WIDTH}px;
   border-radius: 8px;
-  //border: 1px solid var(--illa-grayblue-08, #e5e6eb);
   border: 1px solid ${getColor("grayBlue", "08")};
   background: ${getColor("white", "01")};
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
     border-color: ${getColor("techPurple", "01")};
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
   }
