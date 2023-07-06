@@ -152,7 +152,7 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
                 <Button
                   colorScheme="grayBlue"
                   loading={loading}
-                  leftIcon={<PlusIcon />}
+                  leftIcon={<PlusIcon size="10px" />}
                   onClick={() => {
                     onCreatedApp()
                   }}

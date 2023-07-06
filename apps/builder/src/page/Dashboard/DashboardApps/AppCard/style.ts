@@ -69,7 +69,6 @@ export const descriptionStyle = css`
   color: #787e85;
   font-size: 12px;
   font-weight: 400;
-  line-height: 20px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

@@ -183,7 +183,7 @@ export const DashboardApps: FC = () => {
               ml="4px"
               w="200px"
               colorScheme="techPurple"
-              leftIcon={<PlusIcon />}
+              leftIcon={<PlusIcon size="10px" />}
               loading={loading}
               onClick={handleCreateApp}
             >
