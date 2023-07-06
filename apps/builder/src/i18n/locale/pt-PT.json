@@ -3518,7 +3518,8 @@
       "undeploy": "Desimplantar"
     },
     "desc": {
-      "no_description": "Sem descrição"
+      "no_description": "Sem descrição",
+      "blank": "Nenhum aplicativo"
     },
     "app_setting": {
       "app_setting": "Configuração do aplicativo",
@@ -3537,6 +3538,9 @@
     "message": {
       "update_failed": "Falha ao atualizar",
       "update_suc": "Atualizado com Sucesso"
+    },
+    "button": {
+      "blank": "Crie seu primeiro aplicativo"
     }
   },
   "new_deploy": {
