@@ -116,17 +116,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
       )
       const snapshotMap = cloneDeep(illaSnapshot.getSnapshot())
 
-      const updateSlice: BatchUpdateWidgetLayoutInfoPayload[] = [
-        {
-          displayName: newItem.displayName,
-          layoutInfo: {
-            x: newItem.layoutInfo.x,
-            y: newItem.layoutInfo.y,
-            w: newItem.layoutInfo.w,
-            h: newItem.layoutInfo.h,
-          },
-        },
-      ]
+      const updateSlice: BatchUpdateWidgetLayoutInfoPayload[] = []
 
       for (let i = 0; i < prevEffectedDisplayNamesRef.current.length; i++) {
         const effectName = prevEffectedDisplayNamesRef.current[i]
@@ -260,7 +250,7 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
             x,
             y,
             w: finalW,
-            h: finalH,
+            h: finalH === snapShotShape.layoutInfo.h ? undefined : finalH,
           },
           parentNode: parentNodeDisplayName,
         }),

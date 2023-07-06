@@ -174,7 +174,8 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     triggerEventHandler("blur")
   }, [triggerEventHandler])
 
-  const enableAutoHeight = dynamicHeight !== "fixed"
+  const enableAutoHeight =
+    dynamicHeight !== "fixed" && dynamicHeight != undefined
 
   const finalOptions = useMemo(() => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
