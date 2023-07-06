@@ -1323,7 +1323,8 @@
           "calendar": "Kalender"
         },
         "event": "Begivenhed",
-        "MESSAGE": "BESKYTTELSE"
+        "MESSAGE": "BESKYTTELSE",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Aktiver valg af besked",
           "selection_type": "Markering type",
           "loading_when_sending": "Indlæser ved afsendelse",
-          "image_background": "Billede baggrund",
-          "senderAvatar": "Afsenders avatar"
+          "image_background": "Billede baggrund"
         },
         "action": "Handling",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Vis navn",
         "rich_text": {
           "default_text": "Standard tekst"
-        }
+        },
+        "senderAvatar": "Afsenders avatar"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Angiv, om avataren skal vises",
         "showName": "Angiv, om navnet skal vises",
         "showSendTime": "Angiv, om sendetiden skal vises",
-        "showFooter": "Angiv, om footeren skal vises"
+        "showFooter": "Angiv, om footeren skal vises",
+        "senderAvatar": "Indstil afsenderens avatar. For eksempel, i din datakilde, afsenderen avatar er sendAvatar feltet og du kan indstille feltet til {{item.sendAvatar}}.",
+        "receiving": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører."
       },
       "tab_title": "Inspicer",
       "unselected_tip1": "Ingen komponenter valgt.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "Datakilden for chatkomponenten. Brug {{actionName.data}} til at bruge data fra dine databaser eller API'er",
-          "sender_avatar": "Indstil afsenderens avatar. For eksempel, i din datakilde, afsenderen avatar er sendAvatar feltet og du kan indstille feltet til {{item.sendAvatar}}.",
           "enable_message_selec": "Angiv, om en besked skal vælges",
           "selection_type": "Indstil hvordan du vælger en besked, venstreklik eller højreklik. Når det bruges på en mobil enhed, klikkes det for at udløse valget. ",
-          "loading_when_receivi": "Angiv, om der skal vises indlæsning, når der modtages beskeder. Hvis din besked er modtaget fra action1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
           "loading_when_sending": "Angiv, om indlæsning skal vises, når der sendes beskeder. Hvis din besked bliver sendt til handling1, kan du indstille den til {{action1.isRunning}}, og indlæsningsstatus vil blive vist, når action1 kører.",
           "image_background": "Angiv en billedbaggrund. Base64 og billed-URL understøttes"
         },

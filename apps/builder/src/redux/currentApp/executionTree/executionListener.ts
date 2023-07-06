@@ -465,6 +465,7 @@ export function setupExecutionListeners(
         componentsActions.addModalComponentReducer,
         componentsActions.setGlobalStateReducer,
         componentsActions.deleteGlobalStateByKeyReducer,
+        componentsActions.updateComponentPropsReducerNotWithUndoRedo,
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,

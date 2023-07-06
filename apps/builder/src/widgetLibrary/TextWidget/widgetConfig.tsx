@@ -12,6 +12,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Text", "文本"],
   sessionType: "PRESENTATION",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     value: i18n.t("widget.text.default_value"),
     horizontalAlign: "start",

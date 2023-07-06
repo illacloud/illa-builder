@@ -11,6 +11,7 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 8,
   h: 3,
+  version: 0,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     value: "50",

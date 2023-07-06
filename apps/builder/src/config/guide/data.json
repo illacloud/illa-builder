@@ -46,59 +46,48 @@
     "displayName": "root",
     "parentNode": "",
     "showName": "root",
-    "error": false,
-    "isDragging": false,
-    "isResizing": false,
+
     "childrenNode": [
       {
         "displayName": "page1",
         "parentNode": "root",
         "showName": "page",
-        "error": false,
-        "isDragging": false,
-        "isResizing": false,
+
         "childrenNode": [
           {
             "displayName": "bodySection1",
             "parentNode": "page1",
             "showName": "bodySection",
-            "error": false,
-            "isDragging": false,
-            "isResizing": false,
+
             "childrenNode": [
               {
                 "displayName": "bodySection1-bodySectionContainer1",
                 "parentNode": "bodySection1",
                 "showName": "bodySection1-bodySectionContainer1",
-                "error": false,
-                "isDragging": false,
-                "isResizing": false,
+
                 "childrenNode": null,
                 "type": "CONTAINER_NODE",
                 "containerType": "EDITOR_DOT_PANEL",
-                "verticalResize": true,
+
                 "h": 0,
                 "w": 0,
                 "minH": 0,
                 "minW": 0,
-                "unitW": 0,
-                "unitH": 0,
+
                 "x": -1,
                 "y": -1,
                 "z": 0,
-                "props": {},
-                "panelConfig": null
+                "props": {}
               }
             ],
             "type": "SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
-            "verticalResize": true,
+
             "h": 0,
             "w": 0,
             "minH": 0,
             "minW": 0,
-            "unitW": 0,
-            "unitH": 0,
+
             "x": -1,
             "y": -1,
             "z": 0,
@@ -114,42 +103,36 @@
                 }
               ],
               "viewSortedKey": ["bodySection1-bodySectionContainer1"]
-            },
-            "panelConfig": null
+            }
           },
           {
             "displayName": "modalSection1",
             "parentNode": "page1",
             "showName": "modalSection",
-            "error": false,
-            "isDragging": false,
-            "isResizing": false,
+
             "childrenNode": null,
             "type": "MODAL_SECTION_NODE",
             "containerType": "EDITOR_LAYOUT_SQUARE",
-            "verticalResize": true,
+
             "h": 0,
             "w": 0,
             "minH": 0,
             "minW": 0,
-            "unitW": 0,
-            "unitH": 0,
+
             "x": -1,
             "y": -1,
             "z": 0,
-            "props": {},
-            "panelConfig": null
+            "props": {}
           }
         ],
         "type": "PAGE_NODE",
         "containerType": "EDITOR_PAGE_SQUARE",
-        "verticalResize": true,
+
         "h": 0,
         "w": 0,
         "minH": 0,
         "minW": 0,
-        "unitW": 0,
-        "unitH": 0,
+
         "x": -1,
         "y": -1,
         "z": 0,
@@ -178,27 +161,24 @@
           "showLeftFoldIcon": false,
           "showRightFoldIcon": false,
           "topHeight": 0
-        },
-        "panelConfig": null
+        }
       }
     ],
     "type": "DOT_PANEL",
     "containerType": "EDITOR_DOT_PANEL",
-    "verticalResize": true,
+
     "h": 0,
     "w": 0,
     "minH": 0,
     "minW": 0,
-    "unitW": 0,
-    "unitH": 0,
+
     "x": -1,
     "y": -1,
     "z": 0,
     "props": {
       "currentPageIndex": 0,
       "pageSortedKey": ["page1"]
-    },
-    "panelConfig": null
+    }
   },
   "dependenciesState": {},
   "dragShadowState": {},

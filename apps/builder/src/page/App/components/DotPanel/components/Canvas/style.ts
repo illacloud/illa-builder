@@ -2,6 +2,7 @@ import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 import {
   BORDER_WIDTH,
+  SCROLL_CONTAINER_PADDING,
   UNIT_HEIGHT,
 } from "@/page/App/components/DotPanel/constant/canvas"
 
@@ -38,7 +39,7 @@ export const componentCanvasContainerStyle = css`
   width: 100%;
   height: 100%;
   position: relative;
-  padding: 2px;
+  padding: ${SCROLL_CONTAINER_PADDING}px;
   overflow: hidden auto;
 `
 

@@ -1,11 +1,10 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useEffect, useLayoutEffect, useRef } from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
 import remarkGfm from "remark-gfm"
 import { Text as ILLAText, Link, Paragraph } from "@illa-design/react"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { useAutoUpdateHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
 import { TextProps, TextWidgetProps } from "./interface"
 import {
@@ -111,32 +110,29 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     updateComponentRuntimeProps,
   ])
 
-  const enableAutoHeight = useMemo(() => {
-    switch (dynamicHeight) {
-      case "auto":
-        return true
-      case "limited":
-        return true
-      case "fixed":
-      default:
-        return false
+  const enableAutoHeight =
+    dynamicHeight !== "fixed" && dynamicHeight != undefined
+
+  const containerRef = useRef<HTMLDivElement | null>(null)
+
+  useLayoutEffect(() => {
+    const containerDOM = containerRef.current
+    const observerRef = new ResizeObserver((entries) => {
+      if (!updateComponentHeight) return
+      const height = entries[0].contentRect.height
+      updateComponentHeight?.(height)
+    })
+    if (observerRef && containerDOM && enableAutoHeight) {
+      observerRef.unobserve(containerDOM)
+      observerRef.observe(containerDOM)
     }
-  }, [dynamicHeight])
 
-  const dynamicOptions = useMemo(() => {
-    return dynamicHeight === "fixed"
-      ? {
-          dynamicMinHeight,
-          dynamicMaxHeight,
-        }
-      : undefined
-  }, [dynamicHeight, dynamicMaxHeight, dynamicMinHeight])
-
-  const [containerRef] = useAutoUpdateHeight(
-    updateComponentHeight,
-    enableAutoHeight,
-    dynamicOptions,
-  )
+    return () => {
+      if (containerDOM && enableAutoHeight) {
+        observerRef.unobserve(containerDOM)
+      }
+    }
+  }, [enableAutoHeight, updateComponentHeight])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

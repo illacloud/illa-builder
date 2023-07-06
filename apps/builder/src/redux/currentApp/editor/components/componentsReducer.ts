@@ -201,6 +201,34 @@ export const updateComponentPropsReducer: CaseReducer<
   node.props = getNewWidgetPropsByUpdateSlice(updateSlice, clonedWidgetProps)
 }
 
+export const setComponentPropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentPropsPayload>
+> = (state, action) => {
+  const { displayName, updateSlice } = action.payload
+  if (!isObject(updateSlice) || !displayName) {
+    return
+  }
+  const node = searchDsl(state, displayName)
+  if (!node) return
+  node.props = getNewWidgetPropsByUpdateSlice(updateSlice, {})
+}
+
+export const updateComponentPropsReducerNotWithUndoRedo: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentPropsPayload>
+> = (state, action) => {
+  const { displayName, updateSlice } = action.payload
+  if (!isObject(updateSlice) || !displayName) {
+    return
+  }
+  const node = searchDsl(state, displayName)
+  if (!node) return
+  const widgetProps = node.props || {}
+  const clonedWidgetProps = cloneDeep(widgetProps)
+  node.props = getNewWidgetPropsByUpdateSlice(updateSlice, clonedWidgetProps)
+}
+
 export const updateMultiComponentPropsReducer: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateComponentPropsPayload[]>

@@ -12,6 +12,7 @@ export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
   w: 8,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     dateFormat: "YYYY-MM-DD",
     startPlaceholder: "Start date",

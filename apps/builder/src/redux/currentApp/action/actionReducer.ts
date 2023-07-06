@@ -83,7 +83,7 @@ export const removeActionItemReducer: CaseReducer<
   state.splice(
     state.findIndex(
       (item: ActionItem<ActionContent>) =>
-        item.actionId === action.payload.actionID,
+        item.displayName === action.payload.displayName,
     ),
     1,
   )

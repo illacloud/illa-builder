@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   MultiselectWidgetProps,
   WrappedMultiselectProps,
@@ -99,13 +98,9 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     validateMessage,
-    dynamicMinHeight,
-    dynamicMaxHeight,
     optionConfigureMode,
     mappedOption,
     manualOptions,
-    //TODO: wei
-    h,
     updateComponentHeight,
     triggerEventHandler,
   } = props
@@ -179,22 +174,8 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     triggerEventHandler("blur")
   }, [triggerEventHandler])
 
-  const enableAutoHeight = useMemo(() => {
-    switch (dynamicHeight) {
-      case "auto":
-        return true
-      case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
-      case "fixed":
-      default:
-        return false
-    }
-  }, [dynamicHeight, dynamicMinHeight, h])
-
-  const dynamicOptions = {
-    dynamicMinHeight,
-    dynamicMaxHeight,
-  }
+  const enableAutoHeight =
+    dynamicHeight !== "fixed" && dynamicHeight != undefined
 
   const finalOptions = useMemo(() => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
@@ -204,7 +185,6 @@ export const MultiselectWidget: FC<MultiselectWidgetProps> = (props) => {
     <AutoHeightContainer
       updateComponentHeight={updateComponentHeight}
       enable={enableAutoHeight}
-      dynamicOptions={dynamicOptions}
     >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>

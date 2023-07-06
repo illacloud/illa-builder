@@ -1323,7 +1323,8 @@
           "calendar": "Calendar"
         },
         "event": "Eveniment",
-        "MESSAGE": "MESAJ"
+        "MESSAGE": "MESAJ",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Activează selecția mesajelor",
           "selection_type": "Tipul de selecţie",
           "loading_when_sending": "Se încarcă la trimitere",
-          "image_background": "Imagine fundal",
-          "senderAvatar": "Avatarul expeditorului"
+          "image_background": "Imagine fundal"
         },
         "action": "Acțiune",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Arată numele",
         "rich_text": {
           "default_text": "Text implicit"
-        }
+        },
+        "senderAvatar": "Avatarul expeditorului"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Setează dacă se afișează avatarul",
         "showName": "Setează dacă se afișează numele",
         "showSendTime": "Setează dacă se afișează ora trimiterii",
-        "showFooter": "Setează dacă să afișeze subsolul"
+        "showFooter": "Setează dacă să afișeze subsolul",
+        "senderAvatar": "Setează avatarul expeditorului. De exemplu, în sursa de date, avatarul expeditorului este câmpul sendAvatar și puteți seta câmpul {{item.sendAvatar}}.",
+        "receiving": "Setați dacă se afișează încărcarea la primirea mesajelor. Dacă mesajul tău este primit de la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1."
       },
       "tab_title": "Inspectează",
       "unselected_tip1": "Nicio componentă selectată.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "Sursa de date a componentei de chat. Folosește {{actionName.data}} pentru a utiliza datele din bazele de date sau API-urile tale",
-          "sender_avatar": "Setează avatarul expeditorului. De exemplu, în sursa de date, avatarul expeditorului este câmpul sendAvatar și puteți seta câmpul {{item.sendAvatar}}.",
           "enable_message_selec": "Setează dacă se permite sau nu selectarea mesajului",
           "selection_type": "Setați cum să selectați un mesaj, click stânga sau click-dreapta. Când este folosit pe un dispozitiv mobil, este apăsat pentru a declanșa selecția. ",
-          "loading_when_receivi": "Setați dacă se afișează încărcarea la primirea mesajelor. Dacă mesajul tău este primit de la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
           "loading_when_sending": "Setați dacă se afișează încărcarea la trimiterea mesajelor. Dacă mesajul tău este trimis la acțiune1, îl poți seta la {{action1.isRunning}}, iar starea de încărcare va fi afișată când se execută acțiunea1.",
           "image_background": "Setați un fundal pentru imagine. Base64 și URL-ul imaginii sunt suportate"
         },

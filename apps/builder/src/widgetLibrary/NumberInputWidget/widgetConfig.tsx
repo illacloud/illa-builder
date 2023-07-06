@@ -12,6 +12,7 @@ export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
   w: 6,
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     label: "Label",
     labelAlign: "left",

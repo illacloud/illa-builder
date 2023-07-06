@@ -1323,7 +1323,8 @@
           "calendar": "Kalenteri"
         },
         "event": "Tapahtuma",
-        "MESSAGE": "VIESTI"
+        "MESSAGE": "VIESTI",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Ota viestivalinnat käyttöön",
           "selection_type": "Valinnan tyyppi",
           "loading_when_sending": "Ladataan lähetettäessä",
-          "image_background": "Kuvan tausta",
-          "senderAvatar": "Lähettäjän avatar"
+          "image_background": "Kuvan tausta"
         },
         "action": "Toiminto",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Näytä nimi",
         "rich_text": {
           "default_text": "Oletus teksti"
-        }
+        },
+        "senderAvatar": "Lähettäjän avatar"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Aseta näytetäänkö hahmo",
         "showName": "Aseta näytetäänkö nimi",
         "showSendTime": "Aseta näytetäänkö lähetysaika @ info: whatsthis",
-        "showFooter": "Määritä näytetäänkö alatunniste"
+        "showFooter": "Määritä näytetäänkö alatunniste",
+        "senderAvatar": "Aseta lähettäjän avatari. Esimerkiksi tietolähteessäsi lähettäjän avatar on sendAvatar kenttä ja voit asettaa kentän arvoon {{item.sendAvatar}}.",
+        "receiving": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä."
       },
       "tab_title": "Tutki",
       "unselected_tip1": "Komponentteja ei ole valittu.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "Chat-komponentin tietolähde. Käytä {{actionName.data}} käyttääksesi tietokantojesi tai rajapintojen tietoja",
-          "sender_avatar": "Aseta lähettäjän avatari. Esimerkiksi tietolähteessäsi lähettäjän avatar on sendAvatar kenttä ja voit asettaa kentän arvoon {{item.sendAvatar}}.",
           "enable_message_selec": "Määritä sallitaanko viestin valinta vai ei.",
           "selection_type": "Määritä kuinka voit valita viestin, hiiren vasenpainikkeella tai hiiren oikealla painikkeella. Kun käytetään mobiililaitteessa, sitä napsautetaan käynnistääksesi valinnan. ",
-          "loading_when_receivi": "Määritä näytetäänkö lataus viestien vastaanottamisen yhteydessä. Jos viestisi on vastaanotettu action1, voit asettaa sen arvoon {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä.",
           "loading_when_sending": "Määritä näytetäänkö lataus viestien lähettämisen yhteydessä. Jos viestisi lähetetään toiminto1, voit asettaa sen osoitteeseen {{action1.isRunning}}, ja lataustila näkyy, kun toiminto 1 on käynnissä.",
           "image_background": "Aseta kuvatausta. Base64 ja kuvan URL ovat tuettuja"
         },

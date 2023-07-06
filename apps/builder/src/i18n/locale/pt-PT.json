@@ -1323,7 +1323,8 @@
           "calendar": "calendário"
         },
         "event": "Evento",
-        "MESSAGE": "MENSAGEM"
+        "MESSAGE": "MENSAGEM",
+        "Toolbar": "FERRAMENTO"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Ativar seleção de mensagens",
           "selection_type": "Tipo de seleção",
           "loading_when_sending": "Carregando ao enviar",
-          "image_background": "Fundo da imagem",
-          "senderAvatar": "Avatar do remetente"
+          "image_background": "Fundo da imagem"
         },
         "action": "Acão",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Exibir nome",
         "rich_text": {
           "default_text": "Texto padrão"
-        }
+        },
+        "senderAvatar": "Avatar do remetente"
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Definir se deseja mostrar o avatar",
         "showName": "Definir se deve mostrar o nome",
         "showSendTime": "Definir se deseja mostrar o tempo de envio",
-        "showFooter": "Definir se deseja mostrar o rodapé"
+        "showFooter": "Definir se deseja mostrar o rodapé",
+        "senderAvatar": "Defina o avatar do remetente. Por exemplo, na fonte de dados, o avatar do remetente é o campo sendAvatar e você pode definir o campo como {{item.sendAvatar}}.",
+        "receiving": "Defina se deve exibir o carregamento quando receber mensagens. Se sua mensagem é recebida da ação 1, você pode defini-la para {{action1.isRunning}}, e o status de carregamento será exibido quando a ação 1 estiver em execução."
       },
       "tab_title": "Visualizar",
       "unselected_tip1": "Nenhum componente selecionado.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "A fonte de dados do componente de bate-papo. Use {{actionName.data}} para usar os dados de suas bases de dados ou APIs",
-          "sender_avatar": "Defina o avatar do remetente. Por exemplo, na fonte de dados, o avatar do remetente é o campo sendAvatar e você pode definir o campo como {{item.sendAvatar}}.",
           "enable_message_selec": "Configura se deseja permitir que uma mensagem seja selecionada",
           "selection_type": "Defina como selecionar uma mensagem, clique com o botão esquerdo ou botão direito. Quando usado em um dispositivo móvel, é clicado para acionar a seleção. ",
-          "loading_when_receivi": "Defina se deve exibir o carregamento quando receber mensagens. Se sua mensagem é recebida da ação 1, você pode defini-la para {{action1.isRunning}}, e o status de carregamento será exibido quando a ação 1 estiver em execução.",
           "loading_when_sending": "Defina se deve exibir carregamento ao enviar mensagens. (Automatic Translation) Se sua mensagem é enviada para a ação1, você pode defini-la para {{action1.isRunning}}, e o status de carregamento será exibido quando a ação 1 estiver em execução.",
           "image_background": "Definir um fundo de imagem. Base64 e URL da imagem são suportados"
         },

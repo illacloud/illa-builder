@@ -40,7 +40,7 @@ export const reduxActionDependOnRestAPI = async (
       }
       case "action/removeActionItemReducer": {
         try {
-          await removeActionItemWhenUndoRedo(action.payload.actionID)
+          await removeActionItemWhenUndoRedo(action.payload.displayName)
           store.dispatch({
             ...action,
             from,

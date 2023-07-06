@@ -12,6 +12,7 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Upload Input", "上传"],
   sessionType: "INPUTS",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
+  version: 0,
   defaults: {
     type: "button",
     buttonText: i18n.t("widget.upload.default_button_text"),

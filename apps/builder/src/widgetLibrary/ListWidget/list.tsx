@@ -4,7 +4,12 @@ import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
 import { Pagination } from "@illa-design/react"
-import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
+import { RenderComponentCanvasWithJson } from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainerWithJson"
+import {
+  LIKE_CONTAINER_WIDGET_PADDING,
+  LIST_ITEM_MARGIN_TOP,
+  WIDGET_SCALE_SQUARE_BORDER_WIDTH,
+} from "@/page/App/components/ScaleSquare/constant/widget"
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,
@@ -22,7 +27,6 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
 import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
-import { BasicContainerWithJSON } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import {
   ListWidgetProps,
   ListWidgetPropsWithChildrenNodes,
@@ -37,7 +41,6 @@ import {
   listParentContainerWithPagination,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
-import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
@@ -45,59 +48,49 @@ const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
     templateComponentNodes,
     columnNumber,
     dynamicHeight,
-    handleUpdateOriginalDSLMultiAttr,
+    templateContainerHeight,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     updateComponentHeight,
     itemNumber = 1,
-    h,
-    dynamicMinHeight,
-    dynamicMaxHeight,
   } = props
 
-  const updateAllComponentHeight = useCallback(
+  const enableAutoHeight = dynamicHeight !== "fixed"
+
+  const handleUpdateHeight = useCallback(
     (height: number) => {
-      if (height * itemNumber + 8 * (itemNumber - 1) === h) return
-      handleUpdateOriginalDSLMultiAttr({
-        itemHeight: height,
-      })
-      updateComponentHeight &&
-        setTimeout(() => {
-          updateComponentHeight?.(height * itemNumber + 8 * (itemNumber - 1))
-        }, 60)
+      if (!updateComponentHeight) return
+      if (
+        height + 2 * WIDGET_SCALE_SQUARE_BORDER_WIDTH !==
+        templateContainerHeight
+      ) {
+        handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo({
+          itemHeight: height + 2 * WIDGET_SCALE_SQUARE_BORDER_WIDTH,
+        })
+      }
+      updateComponentHeight(
+        height +
+          2 * WIDGET_SCALE_SQUARE_BORDER_WIDTH +
+          (height +
+            2 * WIDGET_SCALE_SQUARE_BORDER_WIDTH +
+            LIST_ITEM_MARGIN_TOP) *
+            (itemNumber - 1),
+      )
     },
-    [h, handleUpdateOriginalDSLMultiAttr, itemNumber, updateComponentHeight],
-  )
-
-  const enableAutoHeight = useMemo(() => {
-    switch (dynamicHeight) {
-      case "auto":
-        return true
-      case "limited":
-        return h * UNIT_HEIGHT >= (dynamicMinHeight ?? h * UNIT_HEIGHT)
-      case "fixed":
-      default:
-        return false
-    }
-  }, [dynamicHeight, dynamicMinHeight, h])
-
-  const dynamicOptions = useMemo(
-    () => ({
-      dynamicMinHeight,
-      dynamicMaxHeight,
-    }),
-    [dynamicMaxHeight, dynamicMinHeight],
+    [
+      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
+      itemNumber,
+      templateContainerHeight,
+      updateComponentHeight,
+    ],
   )
 
   return (
-    <AutoHeightContainer
-      updateComponentHeight={updateAllComponentHeight}
-      enable={enableAutoHeight}
-      dynamicOptions={dynamicOptions}
-    >
-      <RenderChildrenCanvas
-        currentComponentNode={templateComponentNodes}
-        columnNumber={columnNumber}
-      />
-    </AutoHeightContainer>
+    <RenderChildrenCanvas
+      currentComponentNode={templateComponentNodes}
+      columnNumber={columnNumber}
+      handleUpdateHeight={handleUpdateHeight}
+      canResizeCanvas={enableAutoHeight}
+    />
   )
 }
 
@@ -108,13 +101,14 @@ const RenderCopyContainer: FC<RenderCopyContainerProps> = (props) => {
     columnNumber,
     displayNamePrefix,
   } = props
-  return (
-    <BasicContainerWithJSON
+  return templateComponentNodes ? (
+    <RenderComponentCanvasWithJson
       componentNode={templateComponentNodes}
+      containerPadding={LIKE_CONTAINER_WIDGET_PADDING}
       columnNumber={columnNumber}
       displayNamePrefix={displayNamePrefix}
     />
-  )
+  ) : null
 }
 
 const resizeBottomHandler = () => {
@@ -144,6 +138,7 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
     childrenNode,
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     copyComponents,
     pageSize,
     handleUpdateSelectedItem,
@@ -256,8 +251,8 @@ export const ListWidgetWithPagination: FC<ListWidgetPropsWithChildrenNodes> = (
               templateContainerHeight={itemHeight}
               columnNumber={columnNumber}
               dynamicHeight={dynamicHeight}
-              handleUpdateOriginalDSLMultiAttr={
-                handleUpdateOriginalDSLMultiAttr
+              handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo={
+                handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo
               }
               h={h}
             />
@@ -316,6 +311,7 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
   const {
     itemHeight = 48,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     childrenNode,
     copyComponents = [],
     handleUpdateSelectedItem,
@@ -407,7 +403,9 @@ export const ListWidgetWithScroll: FC<ListWidgetPropsWithChildrenNodes> = (
             templateContainerHeight={itemHeight}
             columnNumber={columnNumber}
             dynamicHeight={dynamicHeight}
-            handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+            handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo={
+              handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo
+            }
             itemNumber={copyComponents?.length}
             updateComponentHeight={updateComponentHeight}
             h={h}

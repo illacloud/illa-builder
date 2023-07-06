@@ -12,6 +12,7 @@ jobs:
           command: |
             git submodule init
             git submodule update
+            git submodule foreach git checkout ${CIRCLE_BRANCH}
       - restore_cache:
           keys:
             - v1-{{ .Branch }}

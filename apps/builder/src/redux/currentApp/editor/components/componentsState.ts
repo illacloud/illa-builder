@@ -1,3 +1,5 @@
+import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
+
 export enum CONTAINER_TYPE {
   "EDITOR_DOT_PANEL" = "EDITOR_DOT_PANEL",
   "EDITOR_SCALE_SQUARE" = "EDITOR_SCALE_SQUARE",
@@ -15,6 +17,7 @@ export enum SECTION_POSITION {
 export type ViewportSizeType = "fluid" | "desktop" | "tablet" | "custom"
 
 export interface ComponentNode {
+  version: number
   displayName: string
   parentNode: string | null
   showName: string
@@ -141,6 +144,21 @@ export interface SortComponentNodeChildrenPayload {
 export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, unknown>
+}
+
+export interface AddContainerComponentViewsReducerPayload {
+  displayName: string
+  containerDisplayName: string
+  linkedDisplayName?: string
+  addedViewItem: ViewItemShape[]
+  addComponent: ComponentNode
+}
+
+export interface DeleteContainerComponentViewsReducerPayload {
+  displayName: string
+  containerDisplayName: string
+  linkedDisplayName?: string
+  deletedIndex: number
 }
 export interface UpdateComponentDisplayNamePayload {
   displayName: string

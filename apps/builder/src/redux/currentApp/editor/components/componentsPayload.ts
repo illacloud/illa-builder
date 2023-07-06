@@ -29,7 +29,7 @@ export interface UpdateComponentNodeLayoutInfoPayload {
   layoutInfo: {
     x: number
     y: number
-    h: number
+    h?: number
     w: number
   }
   statusInfo?: Partial<StatusInfo>
