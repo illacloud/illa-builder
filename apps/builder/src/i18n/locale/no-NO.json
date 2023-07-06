@@ -1323,7 +1323,8 @@
           "calendar": "Kalender"
         },
         "event": "Hendelse",
-        "MESSAGE": "MELDING"
+        "MESSAGE": "MELDING",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Aktiver meldingsvalg",
           "selection_type": "Type utvalg",
           "loading_when_sending": "Laster når du sender",
-          "image_background": "Bilde bakgrunn",
-          "senderAvatar": "Avsenders profilbilde"
+          "image_background": "Bilde bakgrunn"
         },
         "action": "Handling",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Vis navn",
         "rich_text": {
           "default_text": "Standard tekst"
-        }
+        },
+        "senderAvatar": "Avsenders profilbilde"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Velg om du vil vise avataren",
         "showName": "Angi om du skal vise navnet",
         "showSendTime": "Angi om du vil vise sendertiden",
-        "showFooter": "Angi om du vil vise bunnteksten"
+        "showFooter": "Angi om du vil vise bunnteksten",
+        "senderAvatar": "Angi avsenderens profilbilde. For eksempel, i datakilden, er avsender avataren et sendAvatar felt, og du kan sette feltet til {{item.sendAvatar}}.",
+        "receiving": "Angi om du vil vise lasting når du mottar meldinger. (Automatic Translation) Hvis meldingen mottas fra handling, kan du sette den til {{action1.isRunning}}, og lastestatusen vil vises når action1 kjører."
       },
       "tab_title": "Undersøk",
       "unselected_tip1": "Ingen komponenter er valgt.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "Datakilden til chatte komponenten. Bruk {{actionName.data}} for å bruke dataene fra dine databaser eller APIer",
-          "sender_avatar": "Angi avsenderens profilbilde. For eksempel, i datakilden, er avsender avataren et sendAvatar felt, og du kan sette feltet til {{item.sendAvatar}}.",
           "enable_message_selec": "Angi om å tillate en melding skal velges",
           "selection_type": "Angi hvordan du velger en melding, venstreklikk eller høyreklikk. Når det brukes på en mobilenhet, blir det klikket til å vise valget. ",
-          "loading_when_receivi": "Angi om du vil vise lasting når du mottar meldinger. (Automatic Translation) Hvis meldingen mottas fra handling, kan du sette den til {{action1.isRunning}}, og lastestatusen vil vises når action1 kjører.",
           "loading_when_sending": "Angi om lasting skal vises når meldinger sendes. (Automatic Translation) Hvis meldingen din sendes til handling1, kan du sette den til {{action1.isRunning}}, og lastestatusen vil vises når action1 kjører.",
           "image_background": "Angi en bildebakgrunn. Base64 og bildets URL støttes"
         },

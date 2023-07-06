@@ -1323,7 +1323,8 @@
           "calendar": "Calendrier"
         },
         "event": "Evénement",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "MESSAGE",
+        "Toolbar": "BARRE D'OUTIL"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Activer la sélection des messages",
           "selection_type": "Type de sélection",
           "loading_when_sending": "Chargement lors de l'envoi",
-          "image_background": "Arrière-plan de l'image",
-          "senderAvatar": "Avatar de l'expéditeur"
+          "image_background": "Arrière-plan de l'image"
         },
         "action": "Action",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Afficher le nom",
         "rich_text": {
           "default_text": "Texte par défaut"
-        }
+        },
+        "senderAvatar": "Avatar de l'expéditeur"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Définir si vous voulez afficher l'avatar",
         "showName": "Définir si le nom doit être affiché",
         "showSendTime": "Définir s'il faut afficher l'heure d'envoi",
-        "showFooter": "Définir s'il faut afficher le pied de page"
+        "showFooter": "Définir s'il faut afficher le pied de page",
+        "senderAvatar": "Définir l'avatar de l'expéditeur. Par exemple, dans votre source de données, l'avatar de l'expéditeur est le champ sendAvatar et vous pouvez définir le champ à {{item.sendAvatar}}.",
+        "receiving": "Définit s'il faut afficher le chargement lors de la réception de messages. Si votre message est reçu de l'action 1, vous pouvez le définir à {{action1.isRunning}}, et le statut de chargement sera affiché lorsque l'action 1 est en cours d'exécution."
       },
       "tab_title": "Inspecter",
       "unselected_tip1": "Aucun composant sélectionné.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "La source de données du composant de chat. Utilisez {{actionName.data}} pour utiliser les données de vos bases de données ou APIs",
-          "sender_avatar": "Définir l'avatar de l'expéditeur. Par exemple, dans votre source de données, l'avatar de l'expéditeur est le champ sendAvatar et vous pouvez définir le champ à {{item.sendAvatar}}.",
           "enable_message_selec": "Définir s'il faut autoriser la sélection d'un message",
           "selection_type": "Définissez comment sélectionner un message, clic gauche ou clic droit. Lorsqu'il est utilisé sur un appareil mobile, il est cliqué pour déclencher la sélection. ",
-          "loading_when_receivi": "Définit s'il faut afficher le chargement lors de la réception de messages. Si votre message est reçu de l'action 1, vous pouvez le définir à {{action1.isRunning}}, et le statut de chargement sera affiché lorsque l'action 1 est en cours d'exécution.",
           "loading_when_sending": "Définit s'il faut afficher le chargement lors de l'envoi de messages. Si votre message est envoyé à l'action1, vous pouvez le définir à {{action1.isRunning}}, et le statut de chargement sera affiché lorsque l'action 1 est en cours d'exécution.",
           "image_background": "Définir un fond d'image. Base64 et l'URL de l'image sont pris en charge"
         },

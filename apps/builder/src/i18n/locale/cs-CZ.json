@@ -1323,7 +1323,8 @@
           "calendar": "Kalendář"
         },
         "event": "Událost",
-        "MESSAGE": "ZPRÁVA"
+        "MESSAGE": "ZPRÁVA",
+        "Toolbar": "JEDNACÍ ŘÁD"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Povolit výběr zprávy",
           "selection_type": "Typ výběru",
           "loading_when_sending": "Načítání při odesílání",
-          "image_background": "Pozadí obrázku",
-          "senderAvatar": "Avatar odesílatele"
+          "image_background": "Pozadí obrázku"
         },
         "action": "Akce",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Zobrazit název",
         "rich_text": {
           "default_text": "Výchozí text"
-        }
+        },
+        "senderAvatar": "Avatar odesílatele"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Nastavte, zda zobrazit avatar",
         "showName": "Nastavte, zda zobrazit název",
         "showSendTime": "Nastavte, zda zobrazit čas odeslání",
-        "showFooter": "Nastavte, zda zobrazit zápatí"
+        "showFooter": "Nastavte, zda zobrazit zápatí",
+        "senderAvatar": "Nastavte avatar odesílatele. Například ve vašem zdroji dat je avatar odesílatele pole sendAvatar a toto pole můžete nastavit na {{item.sendAvatar}}.",
+        "receiving": "Nastavte, zda se zobrazí načítání při přijímání zpráv. Pokud je vaše zpráva přijata z akce 1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1."
       },
       "tab_title": "Kontrolovat",
       "unselected_tip1": "Nebyly vybrány žádné komponenty.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "Zdroj dat komponenty chatu. Použijte {{actionName.data}} pro použití dat z vašich databází nebo API",
-          "sender_avatar": "Nastavte avatar odesílatele. Například ve vašem zdroji dat je avatar odesílatele pole sendAvatar a toto pole můžete nastavit na {{item.sendAvatar}}.",
           "enable_message_selec": "Nastavte, zda povolit výběr zprávy",
           "selection_type": "Nastavte, jak vybrat zprávu, kliknutím levým tlačítkem myši nebo kliknutím pravým myši na mobilní zařízení se spustí výběr. ",
-          "loading_when_receivi": "Nastavte, zda se zobrazí načítání při přijímání zpráv. Pokud je vaše zpráva přijata z akce 1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1.",
           "loading_when_sending": "Nastavte, zda se zobrazí načítání při odesílání zpráv. Pokud je vaše zpráva odeslána na akci1, můžete ji nastavit na {{action1.isRunning}}, a stav načítání se zobrazí při spuštění akce 1.",
           "image_background": "Nastavte pozadí obrázku. Základní hodnota 64 a URL obrázku jsou podporovány"
         },

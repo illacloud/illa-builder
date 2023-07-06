@@ -1323,7 +1323,8 @@
           "calendar": "Calendar"
         },
         "event": "Event",
-        "MESSAGE": "MESSAGE"
+        "MESSAGE": "MESSAGE",
+        "Toolbar": "TOOLBAR"
       },
       "setter_label": {
         "chat": {
@@ -1331,8 +1332,7 @@
           "enable_message_selec": "Enable message selection",
           "selection_type": "Selection type",
           "loading_when_sending": "Loading when sending",
-          "image_background": "Image background",
-          "senderAvatar": "Sender avatar"
+          "image_background": "Image background"
         },
         "action": "Action",
         "align": "Align",
@@ -1687,7 +1687,8 @@
         "showName": "Show name",
         "rich_text": {
           "default_text": "Default text"
-        }
+        },
+        "senderAvatar": "Sender avatar"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1746,7 +1747,9 @@
         "showAvatar": "Set whether to show the avatar",
         "showName": "Set whether to show the name",
         "showSendTime": "Set whether to show the send time",
-        "showFooter": "Set whether to show the footer"
+        "showFooter": "Set whether to show the footer",
+        "senderAvatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
+        "receiving": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running."
       },
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
@@ -1760,10 +1763,8 @@
       "setter_tips": {
         "chat": {
           "data_source": "The data source of the chat component. Use {{actionName.data}} to use the data from your databases or APIs",
-          "sender_avatar": "Set the sender avatar. For example, in your data source, the sender avatar is the sendAvatar field and you can set the field to {{item.sendAvatar}}.",
           "enable_message_selec": "Set whether to allow a message to be selected",
           "selection_type": "Set how to select a message, left-click or right-click. When used on a mobile device, it is clicked to trigger the selection. ",
-          "loading_when_receivi": "Set whether to display loading when receiving messages. If your message is received from action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "loading_when_sending": "Set whether to display loading when sending messages. If your message is sent to action1, you can set it to {{action1.isRunning}}, and the loading status will be displayed when action1 is running.",
           "image_background": "Set a image background. Base64 and image URL are supported"
         },
