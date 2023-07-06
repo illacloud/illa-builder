@@ -62,6 +62,7 @@ export const generateComponentNodeByWidgetInfo = (
     type,
     displayName: showName,
     containerType = CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+    version,
   } = widgetInfo
   let props: Record<string, any> | undefined = {}
   if (typeof defaults === "function") {
@@ -120,6 +121,7 @@ export const generateComponentNodeByWidgetInfo = (
     containerType,
     parentNode: parentNodeDisplayName,
     childrenNode: childrenNodeDSL,
+    version,
     props: props ?? {},
   }
   if (baseDSL.type === "LIST_WIDGET") {
@@ -157,17 +159,19 @@ export const newGenerateChildrenComponentNode = (
       w: widgetInfo.w,
       h: widgetInfo.h,
       minW: DEFAULT_MIN_COLUMN,
-      minH: widgetInfo.minH,
+      minH: widgetInfo.minH as number,
       x: -1,
       y: -1,
       z: 0,
       showName: widgetInfo.displayName,
       type: widgetInfo.type,
-      containerType: widgetInfo.containerType,
+      containerType: widgetInfo.containerType as CONTAINER_TYPE,
       parentNode: parentNodeDisplayName,
       childrenNode: childrenNodeDSL,
       displayName: realDisplayName,
-    } as ComponentNode
+      props: {},
+      version: widgetInfo.version,
+    }
   }
   const layoutInfo = generateWidgetLayoutInfo(
     widgetInfo.type,
@@ -204,6 +208,7 @@ export const newGenerateComponentNode = (
     type,
     displayName: showName,
     containerType = CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+    version,
   } = baseConfig
   let props: Record<string, any> | undefined = {}
   if (typeof defaults === "function") {
@@ -263,6 +268,7 @@ export const newGenerateComponentNode = (
     parentNode: parentNodeDisplayName,
     childrenNode: childrenNodeDSL,
     props: props ?? {},
+    version,
   }
   if (baseDSL.type === "LIST_WIDGET") {
     baseDSL = transformListWidget(baseDSL)
