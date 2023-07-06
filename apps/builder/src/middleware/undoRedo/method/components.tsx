@@ -171,12 +171,13 @@ export const componentsSnapShot = (
       }
       break
     }
+    case "setComponentPropsReducer":
     case "updateComponentPropsReducer": {
       const { displayName } = action.payload
       const originNode = searchDSLByDisplayName(displayName, _prevRootState)
       if (!originNode) break
       const newAction = {
-        type: "components/updateComponentPropsReducer",
+        type: "components/setComponentPropsReducer",
         payload: {
           displayName,
           updateSlice: originNode.props,
@@ -194,7 +195,6 @@ export const componentsSnapShot = (
       }
       break
     }
-
     // PAGE
     case "addTargetPageSectionReducer": {
       const { pageName, addedSectionName } = action.payload

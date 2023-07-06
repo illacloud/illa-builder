@@ -82,7 +82,6 @@ WrappedVideo.displayName = "WrappedVideo"
 
 export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   const {
-    handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -117,7 +116,12 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
           console.error("TypeError: url is not a string")
           return
         }
-        handleUpdateOriginalDSLMultiAttr({ url })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { url },
+          },
+        ])
       },
       seekTo: (time: number, type: "seconds" | "fraction" = "seconds") => {
         if (!isNumber(time)) {
@@ -197,7 +201,6 @@ export const VideoWidget: FC<VideoWidgetProps> = (props) => {
   }, [
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
     displayName,
   ])

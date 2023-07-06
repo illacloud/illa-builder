@@ -3546,6 +3546,9 @@
     "desc": {
       "private_app": "Seuls les membres de l'équipe peuvent accéder à l'application déployée",
       "public_app": "N'importe qui avec le lien de l'application peut accéder à l'application déployée"
+    },
+    "button": {
+      "public": "Publique"
     }
   },
   "new_share": {

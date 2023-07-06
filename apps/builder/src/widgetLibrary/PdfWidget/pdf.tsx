@@ -206,17 +206,16 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
     displayName,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateMultiExecutionResult,
+    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
     tooltipText,
     width,
     height,
     scaleMode,
     url,
     showTollBar,
-    // TODO: wei
     w,
     h,
-    ...rest
   } = props
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -224,7 +223,12 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
   useEffect(() => {
     updateComponentRuntimeProps({
       setFileUrl: (url: string) => {
-        handleUpdateOriginalDSLMultiAttr({ url })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { url },
+          },
+        ])
       },
     })
     return () => {
@@ -233,7 +237,8 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
   }, [
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateMultiExecutionResult,
+    displayName,
   ])
 
   useEffect(() => {
@@ -244,27 +249,26 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
       offsetHeight &&
       (offsetWidth !== width || offsetHeight !== height)
     ) {
-      handleUpdateOriginalDSLMultiAttr?.({
+      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo?.({
         width: wrapperRef.current.offsetWidth,
         height: wrapperRef.current.offsetHeight,
       })
     }
-  }, [w, h, handleUpdateOriginalDSLMultiAttr, width, height])
+  }, [w, h, handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo, width, height])
 
   return (
     <div css={pdfWrapperStyle} ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <Pdf
+          {...props}
           updateComponentRuntimeProps={updateComponentRuntimeProps}
           deleteComponentRuntimeProps={deleteComponentRuntimeProps}
-          handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
           displayName={displayName}
           width={width}
           height={height}
           scaleMode={scaleMode}
           url={url}
           showTollBar={showTollBar}
-          {...rest}
         />
       </TooltipWrapper>
     </div>

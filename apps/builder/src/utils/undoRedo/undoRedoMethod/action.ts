@@ -42,16 +42,18 @@ export const addActionItemWhenUndoRedo = async (
   }
 }
 
-export const removeActionItemWhenUndoRedo = async (actionID: string) => {
+export const removeActionItemWhenUndoRedo = async (displayName: string) => {
   const isGuideMode = getIsILLAGuideMode(store.getState())
   const actionList = getActionList(store.getState())
-  const targetAction = actionList.find((item) => item.actionId === actionID)
+  const targetAction = actionList.find(
+    (item) => item.displayName === displayName,
+  )
   if (!targetAction) {
     throw new Error("action not found")
   }
   if (!isGuideMode) {
     try {
-      await fetchDeleteAction(actionID)
+      await fetchDeleteAction(targetAction.actionId)
     } catch (e) {
       throw e
     }

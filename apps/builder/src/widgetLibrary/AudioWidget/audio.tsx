@@ -85,7 +85,7 @@ WrappedAudio.displayName = "WrappedAudio"
 
 export const AudioWidget: FC<AudioWidgetProps> = (props) => {
   const {
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateDsl,
     handleUpdateMultiExecutionResult,
     displayName,
     tooltipText,
@@ -119,7 +119,12 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
           console.error("TypeError: url is not a string")
           return
         }
-        handleUpdateOriginalDSLMultiAttr({ url })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: { url },
+          },
+        ])
       },
       seekTo: (time: number, type: "seconds" | "fraction" = "seconds") => {
         if (!isNumber(time)) {
@@ -202,7 +207,7 @@ export const AudioWidget: FC<AudioWidgetProps> = (props) => {
   }, [
     displayName,
     handleUpdateMultiExecutionResult,
-    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
   ])
