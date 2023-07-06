@@ -1,5 +1,68 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { getColor, globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/react"
+
+export const modalWrapperStyle = css`
+  background-color: ${getColor("white", "01")};
+  border: 1px solid ${getColor("grayBlue", "08")};
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 24px 24px 0;
+  width: 528px;
+`
+
+export const modalWithMaskWrapperStyle = css`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: ${zIndex.modal};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const maskStyle = css`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: ${getColor("white", "05")};
+  backdrop-filter: blur(5px);
+  z-index: -1;
+`
+
+export const modalHeaderWrapperStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px 16px;
+  width: 486px;
+  position: relative;
+`
+
+export const modalTitleStyle = css`
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${getColor("grayBlue", "02")};
+  margin: 0;
+  text-align: center;
+`
+
+export const closeIconHotSpotStyle = css`
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+`
 
 export const gridFormStyle: SerializedStyles = css`
   display: grid;
