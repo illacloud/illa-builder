@@ -2065,6 +2065,9 @@
         "rich_text": {
           "default_text": "The default text displayed when the component is initialized"
         }
+      },
+      "widget": {
+        "reply": "Reply to: "
       }
     },
     "page": {
