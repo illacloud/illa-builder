@@ -44,6 +44,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "tidb":
       case "mariadb":
       case "mysql":
+      case "hydra":
       case "postgresql":
         return (
           <MysqlLikeConfigElement

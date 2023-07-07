@@ -58,6 +58,7 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
       case "tidb":
       case "mariadb":
       case "mysql":
+      case "hydra":
       case "postgresql":
         return (
           <MysqlLikeConfigElement

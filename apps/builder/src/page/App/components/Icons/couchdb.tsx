@@ -20,3 +20,5 @@ export const CouchDBIcon = createIcon({
     </>
   ),
 })
+
+CouchDBIcon.displayName = "CouchDBIcon"

@@ -25,3 +25,5 @@ export const AirtableIcon = createIcon({
     </>
   ),
 })
+
+AirtableIcon.displayName = "AirtableIcon"
