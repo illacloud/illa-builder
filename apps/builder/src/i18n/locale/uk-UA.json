@@ -2217,7 +2217,8 @@
         "clear_selection": "Очистити вибране",
         "set_filters": "Встановити фільтри",
         "onFreeTimeDragOrClick": "Клацніть безкоштовно"
-      }
+      },
+      "clearReplyMessage": "Очистити повідомлення про відповідь"
     },
     "tutorial": {
       "panel": {
