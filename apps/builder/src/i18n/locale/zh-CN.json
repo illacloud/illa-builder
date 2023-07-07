@@ -2067,7 +2067,10 @@
         }
       },
       "widget": {
-        "reply": "Reply to: "
+        "reply": "回复：",
+        "reply_image": "[图片]",
+        "reply_video": "[视频]",
+        "reply_audio": "[音频]"
       }
     },
     "page": {
