@@ -2367,7 +2367,7 @@
   "title": "Bienvenido a illa",
   "unfreeze_tips": "Congela el lienzo y arrastra componentes hacia o fuera de contenedores. (D o K)",
   "user": {
-    "description": "Una plataforma de código bajo abierto para desarrolladores.",
+    "description": "Build internal tools at lightning speed",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Regístrate con Google"
         }
       },
-      "description": "Una plataforma de código bajo abierto para desarrolladores."
+      "description": "Build internal tools at lightning speed"
     },
     "left": {
       "menu": {
