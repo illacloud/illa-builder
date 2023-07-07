@@ -2065,6 +2065,9 @@
         "rich_text": {
           "default_text": "O texto padrão exibido quando o componente é inicializado"
         }
+      },
+      "widget": {
+        "reply": "Reply to: "
       }
     },
     "page": {
