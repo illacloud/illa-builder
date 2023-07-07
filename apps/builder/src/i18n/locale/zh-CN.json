@@ -2217,7 +2217,8 @@
         "clear_selection": "清除选择",
         "set_filters": "设置过滤器",
         "onFreeTimeDragOrClick": "点击空闲时间"
-      }
+      },
+      "clearReplyMessage": "清除回复消息"
     },
     "tutorial": {
       "panel": {
