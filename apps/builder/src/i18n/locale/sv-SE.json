@@ -2367,7 +2367,7 @@
   "title": "Välkommen till illa",
   "unfreeze_tips": "Frysa duken och dra komponenter till eller ut ur behållare. (D eller K)",
   "user": {
-    "description": "Snabbare lösningar på interna verktyg och instrumentpaneler",
+    "description": "Build internal tools at lightning speed",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Registrera dig med Google"
         }
       },
-      "description": "Snabbare lösningar på interna verktyg och instrumentpaneler"
+      "description": "Build internal tools at lightning speed"
     },
     "left": {
       "menu": {
