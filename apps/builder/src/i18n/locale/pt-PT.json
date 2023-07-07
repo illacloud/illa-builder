@@ -2367,7 +2367,7 @@
   "title": "Bem-vindo à illa",
   "unfreeze_tips": "Congele a tela e arraste os componentes para dentro ou para fora de contêineres. (D ou K)",
   "user": {
-    "description": "Soluções mais rápidas em ferramentas e painéis internos",
+    "description": "Construa ferramentas internas na velocidade dos raios",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Cadastre-se com o Google"
         }
       },
-      "description": "Soluções mais rápidas em ferramentas e painéis internos"
+      "description": "Construa ferramentas internas na velocidade dos raios"
     },
     "left": {
       "menu": {
