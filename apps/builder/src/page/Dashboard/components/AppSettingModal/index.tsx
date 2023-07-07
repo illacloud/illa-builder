@@ -59,33 +59,29 @@ export const AppSettingModal: FC<AppSettingModalProps> = (props) => {
   const message = useMessage()
 
   const onSubmit = useCallback(
-    (data: AppSettingFields) => {
+    async (data: AppSettingFields) => {
       setLoading(true)
       onOk()
-      updateAppConfig(appInfo.appId, {
-        description: data.description,
-        appName: data.appName,
-      })
-        .then(
-          (res) => {
-            dispatch(dashboardAppActions.updateDashboardAppReducer(res.data))
-            if (res.data.appId === appId) {
-              dispatch(appInfoActions.updateAppInfoReducer(res.data))
-            }
-            message.success({
-              content: t("dashboard.app.rename_success"),
-            })
-            onVisibleChange(false)
-          },
-          () => {
-            message.error({
-              content: t("dashboard.app.rename_fail"),
-            })
-          },
-        )
-        .finally(() => {
-          setLoading(false)
+      try {
+        const res = await updateAppConfig(appInfo.appId, {
+          description: data.description,
+          appName: data.appName,
         })
+        dispatch(dashboardAppActions.updateDashboardAppReducer(res.data))
+        if (res.data.appId === appId) {
+          dispatch(appInfoActions.updateAppInfoReducer(res.data))
+        }
+        message.success({
+          content: t("dashboard.app.rename_success"),
+        })
+        onVisibleChange(false)
+      } catch (error) {
+        message.error({
+          content: t("dashboard.app.rename_fail"),
+        })
+      } finally {
+        setLoading(false)
+      }
     },
     [appInfo.appId, appId, dispatch, message, onOk, onVisibleChange, t],
   )

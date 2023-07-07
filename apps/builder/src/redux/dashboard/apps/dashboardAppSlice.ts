@@ -3,7 +3,6 @@ import {
   addDashboardAppReducer,
   modifyConfigDashboardAppReducer,
   removeDashboardAppReducer,
-  renameDashboardAppReducer,
   updateDashboardAppListReducer,
   updateDashboardAppReducer,
 } from "@/redux/dashboard/apps/dashboardAppReducer"
@@ -15,7 +14,6 @@ const dashboardAppSlice = createSlice({
   reducers: {
     addDashboardAppReducer,
     removeDashboardAppReducer,
-    renameDashboardAppReducer,
     updateDashboardAppReducer,
     updateDashboardAppListReducer,
     modifyConfigDashboardAppReducer,
