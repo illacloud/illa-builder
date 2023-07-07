@@ -2367,7 +2367,7 @@
   "title": "Bienvenue à la illa",
   "unfreeze_tips": "Geler la toile et faire glisser les composants dans ou hors des conteneurs. (D ou K)",
   "user": {
-    "description": "Des solutions plus rapides aux outils internes et aux tableaux de bord",
+    "description": "Construire des outils internes à la vitesse de la foudre",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "S'inscrire avec Google"
         }
       },
-      "description": "Des solutions plus rapides aux outils internes et aux tableaux de bord"
+      "description": "Construire des outils internes à la vitesse de la foudre"
     },
     "left": {
       "menu": {
