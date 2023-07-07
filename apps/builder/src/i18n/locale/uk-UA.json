@@ -2367,7 +2367,7 @@
   "title": "Ласкаво просимо до illa",
   "unfreeze_tips": "Заморозити полотно та перетягнути компоненти у контейнери (D або K)",
   "user": {
-    "description": "Швидші рішення у внутрішніх інструментах та панелі",
+    "description": "Build internal tools at lightning speed",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Увійти через Google"
         }
       },
-      "description": "Швидші рішення у внутрішніх інструментах та панелі"
+      "description": "Build internal tools at lightning speed"
     },
     "left": {
       "menu": {
