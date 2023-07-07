@@ -26,6 +26,7 @@ import {
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import {
   canManage,
+  canManageApp,
   canUseUpgradeFeature,
 } from "@/illa-public-component/UserRoleUtils"
 import {
@@ -84,6 +85,12 @@ export const DashboardApps: FC = () => {
     currentUserRole,
     ATTRIBUTE_GROUP.APP,
     ACTION_MANAGE.CREATE_APP,
+  )
+
+  const canSetPublic = canManageApp(
+    currentUserRole,
+    teamInfo?.permission?.allowEditorManageTeamMember,
+    teamInfo?.permission?.allowViewerManageTeamMember,
   )
 
   const canUseBillingFeature = canUseUpgradeFeature(
@@ -174,11 +181,13 @@ export const DashboardApps: FC = () => {
           />
           <span css={listTitleStyle}>{teamInfo?.name}</span>
         </div>
-        {canCreateApp ? (
-          <div>
+        <div>
+          {canSetPublic ? (
             <Button w="200px" colorScheme="grayBlue" onClick={openInviteModal}>
               {t("user_management.page.invite")}
             </Button>
+          ) : null}
+          {canCreateApp ? (
             <Button
               ml="4px"
               w="200px"
@@ -189,8 +198,8 @@ export const DashboardApps: FC = () => {
             >
               {t("create_new_app")}
             </Button>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
       </div>
       <Suspense fallback={<DashBoardLoading />}>
         <Await resolve={appList} errorElement={<DashboardErrorElement />}>
