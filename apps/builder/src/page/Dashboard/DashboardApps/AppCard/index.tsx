@@ -67,8 +67,10 @@ export const AppCard: FC<AppCardProps> = (props) => {
           }}
         />
       </div>
-      <div css={descriptionStyle}>
-        {appInfo.config.description || t("new_dashboard.desc.no_description")}
+      <div>
+        <div css={descriptionStyle}>
+          {appInfo.config.description || t("new_dashboard.desc.no_description")}
+        </div>
       </div>
       <div css={editorContainerStyle}>
         {appInfo?.editedBy?.map((editor) =>
