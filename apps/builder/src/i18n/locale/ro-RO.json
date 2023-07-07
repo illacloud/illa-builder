@@ -2065,6 +2065,9 @@
         "rich_text": {
           "default_text": "Textul implicit afişat atunci când componenta este iniţializată"
         }
+      },
+      "widget": {
+        "reply": "Reply to: "
       }
     },
     "page": {
