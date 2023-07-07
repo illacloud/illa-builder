@@ -2367,7 +2367,7 @@
   "title": "Welcome to ILLA",
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
   "user": {
-    "description": "Faster solutions at internal tools and dashboards",
+    "description": "Build internal tools at lightning speed",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Sign up with Google"
         }
       },
-      "description": "Faster solutions at internal tools and dashboards"
+      "description": "Build internal tools at lightning speed"
     },
     "left": {
       "menu": {
