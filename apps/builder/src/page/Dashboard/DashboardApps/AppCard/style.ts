@@ -23,6 +23,11 @@ export const cardStyle = css`
   &:hover {
     border-color: ${getColor("techPurple", "01")};
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+
+    .dashboardAppEditButton,
+    .dashboardAppLaunchButton {
+      visibility: visible;
+    }
   }
 `
 
@@ -93,4 +98,9 @@ export const footerStyle = css`
   justify-content: space-between;
   align-items: center;
   gap: 24px;
+`
+
+export const appActionButtonStyle = css`
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
 `
