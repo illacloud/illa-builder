@@ -2217,7 +2217,8 @@
         "clear_selection": "Rensa markering",
         "set_filters": "Ställ in filter",
         "onFreeTimeDragOrClick": "Klicka på fritiden"
-      }
+      },
+      "clearReplyMessage": "Rensa svarsmeddelande"
     },
     "tutorial": {
       "panel": {
