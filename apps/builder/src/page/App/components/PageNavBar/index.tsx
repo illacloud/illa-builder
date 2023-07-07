@@ -32,7 +32,6 @@ import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
-import { ForkAndDeployModal } from "@/page/App/components/ForkAndDeployModal"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
@@ -96,7 +95,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const teamInfo = useSelector(getCurrentTeamInfo)
   const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
-  const [forkModalVisible, setForkModalVisible] = useState(false)
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
 
@@ -154,30 +152,30 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const forkGuideAppAndDeploy = useCallback(
     async (appName: string) => {
-      if (appName === undefined || appName === "" || appName?.trim() === "") {
-        message.error({
-          content: t("dashboard.app.name_empty"),
-        })
-        return
-      }
       setDeployLoading(true)
       const appId = await forkCurrentApp(appName)
-      setForkModalVisible(false)
       deployApp(appId, false)
     },
-    [deployApp, message, t],
+    [deployApp],
   )
 
   const handleClickDeploy = useCallback(() => {
     if (isGuideMode) {
-      setForkModalVisible(true)
+      forkGuideAppAndDeploy(appInfo.appName)
     } else {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "deploy",
       })
-      deployApp(appInfo.appId, appInfo.config.public)
+      deployApp(appInfo.appId, appInfo.config?.public)
     }
-  }, [appInfo.appId, appInfo.config.public, isGuideMode, deployApp])
+  }, [
+    appInfo.appId,
+    appInfo.config?.public,
+    appInfo.appName,
+    isGuideMode,
+    deployApp,
+    forkGuideAppAndDeploy,
+  ])
 
   const handleClickDeployMenu = useCallback(
     (key: string | number) => {
@@ -387,12 +385,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           <>{PreviewButton}</>
         )}
       </div>
-      <ForkAndDeployModal
-        visible={forkModalVisible}
-        okLoading={deployLoading}
-        onOk={forkGuideAppAndDeploy}
-        onVisibleChange={setForkModalVisible}
-      />
     </div>
   )
 }
