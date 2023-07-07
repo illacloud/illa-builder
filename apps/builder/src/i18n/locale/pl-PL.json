@@ -2367,7 +2367,7 @@
   "title": "Witaj w illi",
   "unfreeze_tips": "Zamroź płótno i przeciągnij elementy do lub z kontenerów. (D lub K)",
   "user": {
-    "description": "Szybsze rozwiązania na wewnętrznych narzędziach i pulpitach nawigacyjnych",
+    "description": "Zbuduj wewnętrzne narzędzia z prędkością piorunów",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Zarejestruj się przez Google"
         }
       },
-      "description": "Szybsze rozwiązania na wewnętrznych narzędziach i pulpitach nawigacyjnych"
+      "description": "Zbuduj wewnętrzne narzędzia z prędkością piorunów"
     },
     "left": {
       "menu": {
