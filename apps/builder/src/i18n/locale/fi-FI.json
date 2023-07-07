@@ -2065,6 +2065,9 @@
         "rich_text": {
           "default_text": "Oletusteksti näytetään, kun komponentti on alustettu"
         }
+      },
+      "widget": {
+        "reply": "Reply to: "
       }
     },
     "page": {
