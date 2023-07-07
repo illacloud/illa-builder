@@ -2367,7 +2367,7 @@
   "title": "Velkommen til illa",
   "unfreeze_tips": "Frys lerretet og dra komponenter inn i eller ut av beholderne. (D eller K)",
   "user": {
-    "description": "Raskere løsninger ved interne verktøy og dashbord",
+    "description": "Bygg interne verktøy med lynhastighet",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Registrer deg med Google"
         }
       },
-      "description": "Raskere løsninger ved interne verktøy og dashbord"
+      "description": "Bygg interne verktøy med lynhastighet"
     },
     "left": {
       "menu": {
