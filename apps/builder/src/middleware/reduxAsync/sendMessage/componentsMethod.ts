@@ -68,25 +68,13 @@ export const componentsAsync = (
       if (!parentNode) return
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.CREATE_OR_UPDATE_STATE,
-          Target.COMPONENTS,
-          true,
-          null,
-          teamID,
-          uid,
-          [parentNode],
-        ),
-      )
-      const allChildrenNodes = parentNode.childrenNode
-      Connection.getTextRoom("app", currentAppID)?.send(
-        getTextMessagePayload(
-          Signal.CREATE_OR_UPDATE_STATE,
+          Signal.CREATE_STATE,
           Target.COMPONENTS,
           true,
           action,
           teamID,
           uid,
-          allChildrenNodes,
+          [payload.modalComponentNode],
         ),
       )
       break
