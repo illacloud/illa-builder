@@ -2217,7 +2217,8 @@
         "clear_selection": "Wyczyść zaznaczenie",
         "set_filters": "Ustaw filtry",
         "onFreeTimeDragOrClick": "Kliknij darmowy czas"
-      }
+      },
+      "clearReplyMessage": "Wyczyść wiadomość odpowiedzi"
     },
     "tutorial": {
       "panel": {
