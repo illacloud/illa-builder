@@ -41,7 +41,6 @@ export const appsAsync = (
       )
       break
     case "updateDashboardAppReducer":
-    case "renameDashboardAppReducer":
     case "modifyConfigDashboardAppReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
