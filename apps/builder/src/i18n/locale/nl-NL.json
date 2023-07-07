@@ -2217,7 +2217,8 @@
         "clear_selection": "Selectie wissen",
         "set_filters": "Filters instellen",
         "onFreeTimeDragOrClick": "Klik vrije tijd"
-      }
+      },
+      "clearReplyMessage": "Antwoord-bericht wissen"
     },
     "tutorial": {
       "panel": {
