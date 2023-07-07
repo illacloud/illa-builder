@@ -2065,6 +2065,9 @@
         "rich_text": {
           "default_text": "Domyślny tekst wyświetlany po zainicjowaniu komponentu"
         }
+      },
+      "widget": {
+        "reply": "Reply to: "
       }
     },
     "page": {
