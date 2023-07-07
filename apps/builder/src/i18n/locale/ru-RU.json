@@ -2217,7 +2217,8 @@
         "clear_selection": "Очистить выделенное",
         "set_filters": "Установить фильтры",
         "onFreeTimeDragOrClick": "Нажмите свободное время"
-      }
+      },
+      "clearReplyMessage": "Очистить сообщение ответа"
     },
     "tutorial": {
       "panel": {
