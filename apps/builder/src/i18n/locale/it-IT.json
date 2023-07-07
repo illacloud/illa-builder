@@ -2367,7 +2367,7 @@
   "title": "Benvenuto a illa",
   "unfreeze_tips": "Congela la tela e trascina i componenti dentro o fuori dai contenitori. (D o K)",
   "user": {
-    "description": "Soluzioni più rapide a strumenti interni e cruscotti",
+    "description": "Costruisci strumenti interni alla velocità del fulmine",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Iscriviti con Google"
         }
       },
-      "description": "Soluzioni più rapide a strumenti interni e cruscotti"
+      "description": "Costruisci strumenti interni alla velocità del fulmine"
     },
     "left": {
       "menu": {
