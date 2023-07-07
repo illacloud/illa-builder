@@ -2065,6 +2065,9 @@
         "rich_text": {
           "default_text": "Výchozí text zobrazený při inicializaci komponenty"
         }
+      },
+      "widget": {
+        "reply": "Reply to: "
       }
     },
     "page": {
