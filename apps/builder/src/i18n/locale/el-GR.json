@@ -2217,7 +2217,8 @@
         "clear_selection": "Καθαρισμός επιλογής",
         "set_filters": "Ορισμός φίλτρων",
         "onFreeTimeDragOrClick": "Κάντε κλικ στον ελεύθερο χρόνο"
-      }
+      },
+      "clearReplyMessage": "Εκκαθάριση μηνύματος απάντησης"
     },
     "tutorial": {
       "panel": {
