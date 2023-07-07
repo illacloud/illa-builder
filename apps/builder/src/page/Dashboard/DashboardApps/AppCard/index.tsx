@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from "react"
+import { FC, HTMLAttributes, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Space, Tag } from "@illa-design/react"
@@ -32,12 +32,64 @@ interface AppCardProps extends HTMLAttributes<HTMLDivElement> {
 }
 export const AppCard: FC<AppCardProps> = (props) => {
   const { t } = useTranslation()
-  const { appInfo, canEditApp, ...rest } = props
+  const { appInfo, canEditApp, onClick, onMouseEnter, ...rest } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
+  const stopPropagation = (e: MouseEvent<HTMLElement>) => {
+    e.stopPropagation()
+  }
+
+  const onClickCard = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      onClick && onClick(e)
+      if (canEditApp) {
+        navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
+      } else if (appInfo.mainlineVersion !== 0) {
+        navigate(`/${teamIdentifier}/deploy/app/${appInfo.appId}`)
+      }
+    },
+    [
+      appInfo.appId,
+      appInfo.mainlineVersion,
+      canEditApp,
+      navigate,
+      teamIdentifier,
+      onClick,
+    ],
+  )
+
+  const handleMouseEnter = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      onMouseEnter && onMouseEnter(e)
+      if ((e.target as HTMLDivElement).dataset?.element !== "listItem") return
+
+      if (canEditApp) {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app_edit", parameter5: appInfo.appId },
+        )
+      }
+
+      if (appInfo.mainlineVersion !== 0) {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app_launch", parameter5: appInfo.appId },
+        )
+      }
+    },
+    [onMouseEnter, canEditApp, appInfo.appId, appInfo.mainlineVersion],
+  )
+
   return (
-    <div css={cardStyle} {...rest}>
+    <div
+      css={cardStyle}
+      onClick={onClickCard}
+      onMouseEnter={handleMouseEnter}
+      {...rest}
+    >
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <div css={appNameStyle}>{appInfo.appName}</div>
@@ -63,9 +115,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
           appId={appInfo.appId}
           canEditApp={canEditApp}
           isDeploy={appInfo.mainlineVersion !== 0}
-          onClick={(e) => {
-            e.stopPropagation()
-          }}
+          onClick={stopPropagation}
         />
       </div>
       <div>

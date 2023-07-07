@@ -44,6 +44,7 @@ export const listContainerStyle: SerializedStyles = css`
   flex-direction: row;
   flex-wrap: wrap;
   gap: ${CARD_GAP_SIZE}px;
+  height: ${CARD_HEIGHT + CARD_GAP_SIZE}px;
 `
 
 export const listTitleStyle: SerializedStyles = css`

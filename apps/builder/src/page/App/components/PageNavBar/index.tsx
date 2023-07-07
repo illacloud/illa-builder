@@ -202,38 +202,28 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }, [dispatch, isEditMode])
 
-  const handleDuplicateApp = () => {
+  const handleDuplicateApp = async () => {
     trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
       element: "app_duplicate",
       parameter5: appId,
     })
     if (duplicateLoading) return
     setDuplicateLoading(true)
-    duplicateApp(appInfo.appId, appInfo.appName)
-      .then(
-        (response) => {
-          dispatch(
-            dashboardAppActions.addDashboardAppReducer({
-              app: response.data,
-            }),
-          )
-          navigate(`/${teamIdentifier}/app/${response.data.appId}`)
-        },
-        (failure) => {
-          if (isILLAAPiError(failure)) {
-            message.error({
-              content: t("dashboard.app.duplicate_fail"),
-            })
-          } else {
-            message.error({
-              content: t("network_error"),
-            })
-          }
-        },
+    try {
+      const response = await duplicateApp(appInfo.appId, appInfo.appName)
+      dispatch(
+        dashboardAppActions.addDashboardAppReducer({ app: response.data }),
       )
-      .finally(() => {
-        setDuplicateLoading(false)
-      })
+      navigate(`/${teamIdentifier}/app/${response.data.appId}`)
+    } catch (error) {
+      if (isILLAAPiError(error)) {
+        message.error({ content: t("dashboard.app.duplicate_fail") })
+      } else {
+        message.error({ content: t("network_error") })
+      }
+    } finally {
+      setDuplicateLoading(false)
+    }
   }
 
   const handleWaterMarkChange = useCallback(

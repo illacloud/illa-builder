@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor } from "@illa-design/react"
 
 export const listWrapperStyle = css`
   display: flex;
@@ -14,7 +14,7 @@ export const valueLabelStyle = css`
   line-height: 22px;
   font-weight: 500;
   width: 150px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const optionContentStyle = css`
@@ -24,7 +24,7 @@ export const optionContentStyle = css`
   font-size: 14px;
   line-height: 22px;
   font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${getColor("grayBlue", "02")};
 `
 
 export const optionItemStyle = css`
@@ -36,7 +36,7 @@ export const optionItemStyle = css`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    background-color: ${getColor("grayBlue", "09")};
   }
 
   & > svg {

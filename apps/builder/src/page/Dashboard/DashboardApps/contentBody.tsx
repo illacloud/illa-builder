@@ -2,7 +2,7 @@ import VirtualList from "rc-virtual-list"
 import { FC, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue, useNavigate, useParams } from "react-router-dom"
+import { useAsyncValue } from "react-router-dom"
 import useMeasure from "react-use-measure"
 import {
   Button,
@@ -12,15 +12,10 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { AppCard } from "@/page/Dashboard/DashboardApps/AppCard"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { track } from "@/utils/mixpanelHelper"
 import {
   CARD_GAP_SIZE,
   CARD_HEIGHT,
@@ -42,9 +37,7 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
   const { data: appsList } = useAsyncValue() as {
     data: DashboardApp[]
   }
-  let navigate = useNavigate()
   const dispatch = useDispatch()
-  const { teamIdentifier } = useParams()
 
   const appListInRedux: DashboardApp[] = useSelector(getDashboardApps)
   const [ref, { width, height }] = useMeasure({
@@ -93,42 +86,13 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
         >
           {(cardsInThisRow) => {
             return (
-              <div
-                css={listContainerStyle}
-                style={{ height: CARD_HEIGHT + CARD_GAP_SIZE }}
-              >
+              <div css={listContainerStyle}>
                 {cardsInThisRow?.map((item) => (
                   <AppCard
                     key={item.appId}
                     data-element="listItem"
                     appInfo={item}
                     canEditApp={canEditApp}
-                    onClick={() => {
-                      if (canEditApp) {
-                        navigate(`/${teamIdentifier}/app/${item.appId}`)
-                      } else if (item.mainlineVersion !== 0) {
-                        navigate(`/${teamIdentifier}/deploy/app/${item.appId}`)
-                      }
-                    }}
-                    onMouseEnter={(e) => {
-                      if (
-                        (e.target as HTMLDivElement).dataset?.element !==
-                        "listItem"
-                      )
-                        return
-                      canEditApp &&
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                          { element: "app_edit", parameter5: item.appId },
-                        )
-                      item.mainlineVersion !== 0 &&
-                        track(
-                          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                          { element: "app_launch", parameter5: item.appId },
-                        )
-                    }}
                   />
                 ))}
               </div>
@@ -153,9 +117,7 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
                   colorScheme="grayBlue"
                   loading={loading}
                   leftIcon={<PlusIcon size="10px" />}
-                  onClick={() => {
-                    onCreatedApp()
-                  }}
+                  onClick={onCreatedApp}
                 >
                   {t("new_dashboard.button.blank")}
                 </Button>
