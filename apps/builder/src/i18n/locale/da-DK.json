@@ -2367,7 +2367,7 @@
   "title": "Velkommen til illa",
   "unfreeze_tips": "Frys lærredet og træk komponenter ind eller ud af beholdere. (D eller K)",
   "user": {
-    "description": "Hurtigere løsninger på interne værktøjer og dashboards",
+    "description": "Byg interne værktøjer med lyn hastighed",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Tilmeld dig med Google"
         }
       },
-      "description": "Hurtigere løsninger på interne værktøjer og dashboards"
+      "description": "Byg interne værktøjer med lyn hastighed"
     },
     "left": {
       "menu": {
