@@ -2065,6 +2065,9 @@
         "rich_text": {
           "default_text": "在组件初始化时展示的默认文本"
         }
+      },
+      "widget": {
+        "reply": "Reply to: "
       }
     },
     "page": {
