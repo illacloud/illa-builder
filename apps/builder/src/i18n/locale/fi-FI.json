@@ -2217,7 +2217,8 @@
         "clear_selection": "Tyhjennä valinta",
         "set_filters": "Aseta suodattimet",
         "onFreeTimeDragOrClick": "Klikkaa vapaa-aikaa"
-      }
+      },
+      "clearReplyMessage": "Tyhjennä vastausviesti"
     },
     "tutorial": {
       "panel": {
