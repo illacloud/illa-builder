@@ -2217,7 +2217,8 @@
         "clear_selection": "選択をクリア",
         "set_filters": "フィルターを設定",
         "onFreeTimeDragOrClick": "クリックの空き時間"
-      }
+      },
+      "clearReplyMessage": "返信メッセージをクリア"
     },
     "tutorial": {
       "panel": {
