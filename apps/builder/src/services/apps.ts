@@ -8,7 +8,6 @@ import {
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
-import { DeleteDashboardAppResponse } from "@/page/Dashboard/components/DashboardItemMenu/interface"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -136,7 +135,7 @@ export const fetchCreateApp = (data: IAppCreateRequestData) => {
 }
 
 export const fetchDeleteApp = (appID: string) => {
-  return builderRequest<DeleteDashboardAppResponse>(
+  return builderRequest<{ appID: string }>(
     {
       url: `/apps/${appID}`,
       method: "DELETE",
