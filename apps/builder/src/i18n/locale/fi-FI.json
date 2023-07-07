@@ -2367,7 +2367,7 @@
   "title": "Tervetuloa iltaan",
   "unfreeze_tips": "Jäädytä kangas ja vedä osat säiliöihin tai ulos niistä. (D tai K)",
   "user": {
-    "description": "Nopeammat ratkaisut sisäisille työkaluille ja kojelaudoille",
+    "description": "Rakenna sisäisiä työkaluja salaman nopeudella",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Rekisteröidy käyttäen Googlea"
         }
       },
-      "description": "Nopeammat ratkaisut sisäisille työkaluille ja kojelaudoille"
+      "description": "Rakenna sisäisiä työkaluja salaman nopeudella"
     },
     "left": {
       "menu": {
