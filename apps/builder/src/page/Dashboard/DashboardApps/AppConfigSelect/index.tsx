@@ -1,6 +1,5 @@
 import {
   FC,
-  HTMLAttributes,
   ReactNode,
   useContext,
   useMemo,
@@ -24,15 +23,14 @@ import {
   valueLabelStyle,
 } from "./style"
 
-interface AppConfigSelectProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+interface AppConfigSelectProps {
   canEditApp: boolean
   appId: string
   isPublic: boolean
 }
 
 const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
-  const { className, canEditApp, appId, isPublic } = props
+  const { canEditApp, appId, isPublic } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
@@ -87,7 +85,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
 
   if (!canEditApp) {
     return (
-      <div css={valueLabelStyle} className={className}>
+      <div css={valueLabelStyle}>
         {isPublic
           ? t("new_dashboard.access.public")
           : t("new_dashboard.access.private")}
@@ -128,7 +126,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
         </div>
       }
     >
-      <div css={[valueLabelStyle, pointerStyle]} className={className}>
+      <div css={[valueLabelStyle, pointerStyle]}>
         {isPublic
           ? t("new_dashboard.access.public")
           : t("new_dashboard.access.private")}

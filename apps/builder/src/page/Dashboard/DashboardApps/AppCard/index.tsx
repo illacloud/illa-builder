@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, MouseEvent, useCallback } from "react"
+import { FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Space, Tag } from "@illa-design/react"
@@ -26,13 +26,13 @@ import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
-interface AppCardProps extends HTMLAttributes<HTMLDivElement> {
+interface AppCardProps {
   appInfo: DashboardApp
   canEditApp: boolean
 }
 export const AppCard: FC<AppCardProps> = (props) => {
   const { t } = useTranslation()
-  const { appInfo, canEditApp, onClick, onMouseEnter, ...rest } = props
+  const { appInfo, canEditApp, ...rest } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
@@ -41,8 +41,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
   }
 
   const onClickCard = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
-      onClick && onClick(e)
+    () => {
       if (canEditApp) {
         navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
       } else if (appInfo.mainlineVersion !== 0) {
@@ -55,13 +54,11 @@ export const AppCard: FC<AppCardProps> = (props) => {
       canEditApp,
       navigate,
       teamIdentifier,
-      onClick,
     ],
   )
 
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
-      onMouseEnter && onMouseEnter(e)
       if ((e.target as HTMLDivElement).dataset?.element !== "listItem") return
 
       if (canEditApp) {
@@ -80,7 +77,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
         )
       }
     },
-    [onMouseEnter, canEditApp, appInfo.appId, appInfo.mainlineVersion],
+    [canEditApp, appInfo.appId, appInfo.mainlineVersion],
   )
 
   return (
