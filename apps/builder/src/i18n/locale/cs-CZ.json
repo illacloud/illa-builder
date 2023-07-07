@@ -2217,7 +2217,8 @@
         "clear_selection": "Vymazat výběr",
         "set_filters": "Nastavit filtry",
         "onFreeTimeDragOrClick": "Klikněte na volný čas"
-      }
+      },
+      "clearReplyMessage": "Vymazat zprávu odpovědi"
     },
     "tutorial": {
       "panel": {
