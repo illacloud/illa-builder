@@ -2367,7 +2367,7 @@
   "title": "Bine ai venit la illa",
   "unfreeze_tips": "Îngheață pânza și trage componentele în sau în afara containerelor. (D sau K)",
   "user": {
-    "description": "Soluții mai rapide la nivelul instrumentelor și tablourilor de bord interne",
+    "description": "Build internal tools at lightning speed",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Înregistrați-vă cu Google"
         }
       },
-      "description": "Soluții mai rapide la nivelul instrumentelor și tablourilor de bord interne"
+      "description": "Build internal tools at lightning speed"
     },
     "left": {
       "menu": {
