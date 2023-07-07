@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useSelector } from "react-redux"
-import { RenderComponentCanvasContainer } from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
+import RenderComponentCanvasContainer from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
 import { LIKE_CONTAINER_WIDGET_PADDING } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getIsILLAEditMode, isShowDot } from "@/redux/config/configSelector"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"

@@ -1,6 +1,7 @@
 import {
   FC,
   MouseEventHandler,
+  memo,
   useCallback,
   useEffect,
   useRef,
@@ -13,12 +14,12 @@ import { useScroll } from "react-use"
 import useMeasure from "react-use-measure"
 import { useMessage } from "@illa-design/react"
 import { getMousePointerPosition } from "@/page/App/components/DotPanel/calc"
-import { ComponentParser } from "@/page/App/components/DotPanel/components/ComponentParser"
+import ComponentParser from "@/page/App/components/DotPanel/components/ComponentParser"
 import DragPreview from "@/page/App/components/DotPanel/components/DragPreview"
 import { DragShadowPreview } from "@/page/App/components/DotPanel/components/DragShadowPreview"
 import { MousePreview } from "@/page/App/components/DotPanel/components/MousePreview"
 import { MultiSelectCanvas } from "@/page/App/components/DotPanel/components/MultiSelectCanvas"
-import { MultiSelectedScaleSquare } from "@/page/App/components/DotPanel/components/MultiSelectedContainer"
+import MultiSelectedScaleSquare from "@/page/App/components/DotPanel/components/MultiSelectedContainer"
 import {
   ADD_ROWS,
   DEFAULT_BODY_COLUMNS_NUMBER,
@@ -69,7 +70,7 @@ import {
   selectoSelectionStyle,
 } from "./style"
 
-export const RenderComponentCanvasContainer: FC<
+const RenderComponentCanvasContainer: FC<
   RenderComponentCanvasContainerProps
 > = (props) => {
   const {
@@ -107,7 +108,6 @@ export const RenderComponentCanvasContainer: FC<
     (item) => item.parentNode === displayName,
   )
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
-
   const dispatch = useDispatch()
   const isDraggingGlobal = useSelector(getIsDragging)
   const isResizingGlobal = useSelector(getIsResizing)
@@ -460,13 +460,18 @@ export const RenderComponentCanvasContainer: FC<
       css={outerComponentCanvasContainerStyle(containerPadding)}
       ref={canvasRef}
     >
-      <div css={componentCanvasContainerStyle} ref={scrollContainerRef}>
+      <div
+        css={componentCanvasContainerStyle}
+        ref={scrollContainerRef}
+        data-scroll-container={displayName}
+        data-column-number={columnNumber}
+        data-unit-width={unitWidth}
+      >
         <div
           ref={(node) => {
             dropRef(node)
             innerCanvasRef.current = node
           }}
-          data-candropCanvas={displayName}
           css={dropZoneStyle(canvasHeight)}
         >
           <div
@@ -474,8 +479,11 @@ export const RenderComponentCanvasContainer: FC<
               applyComponentCanvasStyle(unitWidth, canShowDot),
               selectoSelectionStyle,
             ]}
-            data-isroot={isRootCanvas}
             onClick={handleClickOnCanvas}
+            data-isroot={isRootCanvas}
+            data-canvas-container={displayName}
+            data-column-number={columnNumber}
+            data-unit-width={unitWidth}
           >
             <DragShadowPreview
               unitW={unitWidth}
@@ -523,3 +531,6 @@ export const RenderComponentCanvasContainer: FC<
     </div>
   )
 }
+
+RenderComponentCanvasContainer.displayName = "RenderComponentCanvasContainer"
+export default memo(RenderComponentCanvasContainer)
