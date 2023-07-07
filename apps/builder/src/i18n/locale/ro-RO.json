@@ -2217,7 +2217,8 @@
         "clear_selection": "Ștergeți selecția",
         "set_filters": "Setare filtre",
         "onFreeTimeDragOrClick": "Click pe timp gratuit"
-      }
+      },
+      "clearReplyMessage": "Ștergeți mesajul de răspuns"
     },
     "tutorial": {
       "panel": {
