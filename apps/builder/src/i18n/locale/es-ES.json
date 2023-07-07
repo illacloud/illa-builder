@@ -2217,7 +2217,8 @@
         "clear_selection": "Borrar selección",
         "set_filters": "Definir filtros",
         "onFreeTimeDragOrClick": "Clic tiempo libre"
-      }
+      },
+      "clearReplyMessage": "Borrar mensaje de respuesta"
     },
     "tutorial": {
       "panel": {
