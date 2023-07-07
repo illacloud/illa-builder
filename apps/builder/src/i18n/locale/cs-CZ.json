@@ -2367,7 +2367,7 @@
   "title": "Vítejte v illa",
   "unfreeze_tips": "Zmrazte plátno a přetáhněte součásti do kontejnerů nebo z nich (D nebo K)",
   "user": {
-    "description": "Rychlejší řešení na vnitřních nástrojích a řídicích deskách",
+    "description": "Vytvářejte interní nástroje rychlostí blesku",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Zaregistrovat se přes Google"
         }
       },
-      "description": "Rychlejší řešení na vnitřních nástrojích a řídicích deskách"
+      "description": "Vytvářejte interní nástroje rychlostí blesku"
     },
     "left": {
       "menu": {
