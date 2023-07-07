@@ -2065,6 +2065,9 @@
         "rich_text": {
           "default_text": "Standard teksten vises når komponenten er initialiseret"
         }
+      },
+      "widget": {
+        "reply": "Reply to: "
       }
     },
     "page": {
