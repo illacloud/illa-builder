@@ -2367,7 +2367,7 @@
   "title": "Welkom bij de illa",
   "unfreeze_tips": "Bevries het canvas en sleep componenten naar of uit containers. (D of K)",
   "user": {
-    "description": "Snellere oplossingen op interne tools en dashboards",
+    "description": "Bouw interne gereedschappen op bliksemsnelheid",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2840,7 +2840,7 @@
           "google": "Registreer met Google"
         }
       },
-      "description": "Snellere oplossingen op interne tools en dashboards"
+      "description": "Bouw interne gereedschappen op bliksemsnelheid"
     },
     "left": {
       "menu": {
