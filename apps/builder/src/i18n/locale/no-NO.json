@@ -2217,7 +2217,8 @@
         "clear_selection": "Tøm valg",
         "set_filters": "Angi filtre",
         "onFreeTimeDragOrClick": "Klikk fritid"
-      }
+      },
+      "clearReplyMessage": "Tøm svarmelding"
     },
     "tutorial": {
       "panel": {
