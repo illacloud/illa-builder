@@ -10,6 +10,11 @@ export interface WrappedTabsProps
   disabled?: boolean
   viewList?: viewListItemShaper[]
   tabList?: viewListItemShaper[]
+  linkWidgetDisplayName?: string
+  handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo: (
+    displayName: string,
+    updateSlice: Record<string, any>,
+  ) => void
   handleOnChange?: () => void
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   handleUpdateMultiExecutionResult: (

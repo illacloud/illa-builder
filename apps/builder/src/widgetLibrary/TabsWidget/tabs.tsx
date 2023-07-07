@@ -14,7 +14,7 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
     colorScheme,
     tabPosition,
     handleOnChange,
-    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
+    handleUpdateOriginalDSLMultiAttr,
   } = props
 
   return (
@@ -27,10 +27,7 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
       onChange={(value) => {
         new Promise((resolve) => {
           const currentIndex = tabList?.findIndex((view) => view.key === value)
-          handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo({
-            currentKey: value,
-            currentIndex,
-          })
+          handleUpdateOriginalDSLMultiAttr({ currentKey: value, currentIndex })
           resolve(true)
         }).then(() => {
           handleOnChange?.()
@@ -67,12 +64,12 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     handleUpdateDsl,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
-    handleUpdateMultiExecutionResult,
     tooltipText,
     colorScheme,
     tabPosition,
     triggerEventHandler,
     updateComponentHeight,
+    handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
   } = props
 
   useEffect(() => {
@@ -101,27 +98,24 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     return tabList
   }, [navigateContainer, tabList, viewList])
 
-  const handleUpdateMultiAttrDSL = useCallback(
-    (updateSlice: Record<string, any>) => {
-      let allUpdateSLice = [
-        {
-          displayName,
-          value: updateSlice,
-        },
-      ]
+  const handleUpdateMultiExecutionResults = useCallback(
+    (updateSliceItem: Record<string, any>) => {
       if (navigateContainer && linkWidgetDisplayName) {
-        allUpdateSLice.push({
-          displayName: linkWidgetDisplayName,
-          value: updateSlice,
-        })
+        handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
+          linkWidgetDisplayName,
+          updateSliceItem,
+        )
       }
-      handleUpdateMultiExecutionResult?.(allUpdateSLice)
+      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
+        displayName,
+        updateSliceItem,
+      )
     },
     [
       displayName,
-      navigateContainer,
+      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
       linkWidgetDisplayName,
-      handleUpdateMultiExecutionResult,
+      navigateContainer,
     ],
   )
 
@@ -142,7 +136,8 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
             colorScheme={colorScheme}
             tabPosition={tabPosition}
             disabled={disabled}
-            handleUpdateOriginalDSLMultiAttr={handleUpdateMultiAttrDSL}
+            linkWidgetDisplayName={linkWidgetDisplayName}
+            handleUpdateOriginalDSLMultiAttr={handleUpdateMultiExecutionResults}
             handleOnChange={handleOnChange}
           />
         </div>
