@@ -1,13 +1,14 @@
 import { FC, HTMLAttributes } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button, PenIcon, Space, Tag } from "@illa-design/react"
+import { Button, Space, Tag } from "@illa-design/react"
 import { Avatar } from "@/illa-public-component/Avatar"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
 import {
+  appActionButtonStyle,
   appNameStyle,
   cardStyle,
   descriptionStyle,
@@ -109,7 +110,8 @@ export const AppCard: FC<AppCardProps> = (props) => {
         >
           {appInfo.deployed ? (
             <Button
-              size="small"
+              css={appActionButtonStyle}
+              className="dashboardAppEditButton"
               variant="text"
               colorScheme="grayBlue"
               onClick={(e) => {
@@ -127,10 +129,10 @@ export const AppCard: FC<AppCardProps> = (props) => {
           ) : null}
           {canEditApp ? (
             <Button
-              size="small"
+              css={appActionButtonStyle}
+              className="dashboardAppLaunchButton"
               variant="text"
               colorScheme="grayBlue"
-              leftIcon={<PenIcon />}
               onClick={() => {
                 track(
                   ILLA_MIXPANEL_EVENT_TYPE.CLICK,
