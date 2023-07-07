@@ -2067,7 +2067,10 @@
         }
       },
       "widget": {
-        "reply": "Reply to: "
+        "reply": "Răspunde la: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
