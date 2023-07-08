@@ -40,8 +40,10 @@ import {
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 
 export interface AppInviteModalProps
-  extends Pick<InviteModalProps,
-    "visible" | "handleCloseModal" | "inviteToUseAppStatus" | "hasApp"> {
+  extends Pick<
+    InviteModalProps,
+    "visible" | "handleCloseModal" | "inviteToUseAppStatus" | "hasApp"
+  > {
   appInfo?: DashboardApp
 }
 
@@ -50,7 +52,13 @@ export const DashBoardInviteModal: FC<AppInviteModalProps> = (props) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const { teamIdentifier } = useParams()
-  const { appInfo, visible, handleCloseModal, hasApp = true, inviteToUseAppStatus } = props
+  const {
+    appInfo,
+    visible,
+    handleCloseModal,
+    hasApp = true,
+    inviteToUseAppStatus,
+  } = props
 
   const teamInfo = useSelector(getCurrentTeamInfo)
   const currentUserInfo = useSelector(getCurrentUser)
@@ -170,7 +178,13 @@ export const DashBoardInviteModal: FC<AppInviteModalProps> = (props) => {
         isCloudVersion={isCloudVersion}
         appLink={appLink}
         isAppPublic={appInfo?.config?.public}
-        inviteToUseAppStatus={inviteToUseAppStatus ? inviteToUseAppStatus : (appInfo?.deployed ? "deployed" : "unDeployed")}
+        inviteToUseAppStatus={
+          inviteToUseAppStatus
+            ? inviteToUseAppStatus
+            : appInfo?.deployed
+            ? "deployed"
+            : "unDeployed"
+        }
         appID={appId}
         fetchInviteLink={fetchShareLink}
         renewInviteLink={handleRenewShareLink}

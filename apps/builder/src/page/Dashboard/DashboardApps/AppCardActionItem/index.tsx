@@ -142,16 +142,14 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   }, [appId, canUseBillingFeature, handleUpgradeModalVisible])
 
   const handleDeleteApp = useCallback(() => {
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-      { element: "app_delete", parameter5: appId },
-    )
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-      { element: "app_delete_modal", parameter5: appId },
-    )
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_delete",
+      parameter5: appId,
+    })
+    track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_delete_modal",
+      parameter5: appId,
+    })
     const modalId = modal.show({
       w: "496px",
       blockOkHide: true,
@@ -219,53 +217,48 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     })
   }, [appId, dispatch, modal, message, t])
 
-  const onVisibleChange = useCallback((visible: boolean) => {
-    if (visible) {
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "app_more", parameter5: appId },
-      )
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "app_duplicate", parameter5: appId },
-      )
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "app_delete", parameter5: appId },
-      )
-      isDeploy &&
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "app_share", parameter5: appId },
-      )
-    }
-  }, [appId, isDeploy])
+  const onVisibleChange = useCallback(
+    (visible: boolean) => {
+      if (visible) {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app_more", parameter5: appId },
+        )
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app_duplicate", parameter5: appId },
+        )
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app_delete", parameter5: appId },
+        )
+        isDeploy &&
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            { element: "app_share", parameter5: appId },
+          )
+      }
+    },
+    [appId, isDeploy],
+  )
 
   const onAppSettingOk = useCallback(() => {
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-      {
-        element: "app_setting_modal_save",
-        parameter5: appId,
-      },
-    );
-  }, [appId]);
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_setting_modal_save",
+      parameter5: appId,
+    })
+  }, [appId])
 
   const onAppSettingCancel = useCallback(() => {
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-      {
-        element: "app_setting_modal_close",
-        parameter5: appId,
-      },
-    );
-  }, [appId]);
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_setting_modal_close",
+      parameter5: appId,
+    })
+  }, [appId])
 
   useEffect(() => {
     if (canEditApp || (isDeploy && canSetPublic)) {

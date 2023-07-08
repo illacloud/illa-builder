@@ -40,22 +40,19 @@ export const AppCard: FC<AppCardProps> = (props) => {
     e.stopPropagation()
   }
 
-  const onClickCard = useCallback(
-    () => {
-      if (canEditApp) {
-        navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
-      } else if (appInfo.mainlineVersion !== 0) {
-        navigate(`/${teamIdentifier}/deploy/app/${appInfo.appId}`)
-      }
-    },
-    [
-      appInfo.appId,
-      appInfo.mainlineVersion,
-      canEditApp,
-      navigate,
-      teamIdentifier,
-    ],
-  )
+  const onClickCard = useCallback(() => {
+    if (canEditApp) {
+      navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
+    } else if (appInfo.mainlineVersion !== 0) {
+      navigate(`/${teamIdentifier}/deploy/app/${appInfo.appId}`)
+    }
+  }, [
+    appInfo.appId,
+    appInfo.mainlineVersion,
+    canEditApp,
+    navigate,
+    teamIdentifier,
+  ])
 
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
