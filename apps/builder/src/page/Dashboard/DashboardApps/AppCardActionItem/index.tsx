@@ -94,7 +94,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     })
     if (duplicateLoading) return
     setDuplicateLoading(true)
-    duplicateApp(app.appId, app.appName)
+    duplicateApp(appId, app.appName)
       .then(
         (response) => {
           dispatch(
@@ -141,6 +141,125 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     setShareVisible(true)
   }, [appId, canUseBillingFeature, handleUpgradeModalVisible])
 
+  const handleDeleteApp = useCallback(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_delete",
+      parameter5: appId,
+    })
+    track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_delete_modal",
+      parameter5: appId,
+    })
+    const modalId = modal.show({
+      w: "496px",
+      blockOkHide: true,
+      title: t("dashboard.common.delete_title"),
+      children: t("dashboard.common.delete_content"),
+      cancelText: t("dashboard.common.delete_cancel_text"),
+      okText: t("dashboard.common.delete_ok_text"),
+      okButtonProps: {
+        colorScheme: "red",
+      },
+      closable: false,
+      onOk: () => {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          {
+            element: "app_delete_modal_delete",
+            parameter5: appId,
+          },
+        )
+        modal.update(modalId, {
+          okLoading: true,
+        })
+        fetchDeleteApp(appId)
+          .then(
+            (response) => {
+              dispatch(
+                dashboardAppActions.removeDashboardAppReducer(
+                  response.data.appID,
+                ),
+              )
+              message.success({
+                content: t("dashboard.app.trash_success"),
+              })
+              modal.close(modalId)
+            },
+            (error) => {
+              if (isILLAAPiError(error)) {
+                message.success({
+                  content: t("dashboard.app.trash_failure"),
+                })
+              } else {
+                message.error({
+                  content: t("network_error"),
+                })
+              }
+            },
+          )
+          .finally(() => {
+            modal.update(modalId, {
+              okLoading: false,
+            })
+          })
+      },
+      onCancel: () => {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          {
+            element: "app_delete_modal_close",
+            parameter5: appId,
+          },
+        )
+      },
+    })
+  }, [appId, dispatch, modal, message, t])
+
+  const onVisibleChange = useCallback(
+    (visible: boolean) => {
+      if (visible) {
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app_more", parameter5: appId },
+        )
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app_duplicate", parameter5: appId },
+        )
+        track(
+          ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+          ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+          { element: "app_delete", parameter5: appId },
+        )
+        isDeploy &&
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            { element: "app_share", parameter5: appId },
+          )
+      }
+    },
+    [appId, isDeploy],
+  )
+
+  const onAppSettingOk = useCallback(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_setting_modal_save",
+      parameter5: appId,
+    })
+  }, [appId])
+
+  const onAppSettingCancel = useCallback(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "app_setting_modal_close",
+      parameter5: appId,
+    })
+  }, [appId])
+
   useEffect(() => {
     if (canEditApp || (isDeploy && canSetPublic)) {
       track(
@@ -173,31 +292,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
           position="bottom-end"
           trigger="click"
           triggerProps={{ closeDelay: 0, openDelay: 0 }}
-          onVisibleChange={(visible) => {
-            if (visible) {
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                { element: "app_more", parameter5: appId },
-              )
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                { element: "app_duplicate", parameter5: appId },
-              )
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                { element: "app_delete", parameter5: appId },
-              )
-              isDeploy &&
-                track(
-                  ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                  { element: "app_share", parameter5: appId },
-                )
-            }
-          }}
+          onVisibleChange={onVisibleChange}
           dropList={
             <DropList w={"184px"}>
               <DropListItem
@@ -243,83 +338,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                   </div>
                 }
                 deleted
-                onClick={() => {
-                  track(
-                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                    { element: "app_delete", parameter5: appId },
-                  )
-                  track(
-                    ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                    { element: "app_delete_modal", parameter5: appId },
-                  )
-                  const modalId = modal.show({
-                    w: "496px",
-                    blockOkHide: true,
-                    title: t("dashboard.common.delete_title"),
-                    children: t("dashboard.common.delete_content"),
-                    cancelText: t("dashboard.common.delete_cancel_text"),
-                    okText: t("dashboard.common.delete_ok_text"),
-                    okButtonProps: {
-                      colorScheme: "red",
-                    },
-                    closable: false,
-                    onOk: () => {
-                      track(
-                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                        {
-                          element: "app_delete_modal_delete",
-                          parameter5: appId,
-                        },
-                      )
-                      modal.update(modalId, {
-                        okLoading: true,
-                      })
-                      fetchDeleteApp(app.appId)
-                        .then(
-                          (response) => {
-                            dispatch(
-                              dashboardAppActions.removeDashboardAppReducer(
-                                response.data.appID,
-                              ),
-                            )
-                            message.success({
-                              content: t("dashboard.app.trash_success"),
-                            })
-                            modal.close(modalId)
-                          },
-                          (error) => {
-                            if (isILLAAPiError(error)) {
-                              message.success({
-                                content: t("dashboard.app.trash_failure"),
-                              })
-                            } else {
-                              message.error({
-                                content: t("network_error"),
-                              })
-                            }
-                          },
-                        )
-                        .finally(() => {
-                          modal.update(modalId, {
-                            okLoading: false,
-                          })
-                        })
-                    },
-                    onCancel: () => {
-                      track(
-                        ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                        {
-                          element: "app_delete_modal_close",
-                          parameter5: appId,
-                        },
-                      )
-                    },
-                  })
-                }}
+                onClick={handleDeleteApp}
               />
             </DropList>
           }
@@ -361,14 +380,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                     <span>{t("share")}</span>
                   </div>
                 }
-                onClick={() => {
-                  setShareVisible(true)
-                  track(
-                    ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                    ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                    { element: "app_share", parameter5: appId },
-                  )
-                }}
+                onClick={openInviteModal}
               />
             </DropList>
           }
@@ -396,26 +408,8 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         onVisibleChange={(visible) => {
           setAppSettingVisible(visible)
         }}
-        onOk={() => {
-          track(
-            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-            {
-              element: "app_setting_modal_save",
-              parameter5: app.appId,
-            },
-          )
-        }}
-        onCancel={() => {
-          track(
-            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-            {
-              element: "app_setting_modal_close",
-              parameter5: app.appId,
-            },
-          )
-        }}
+        onOk={onAppSettingOk}
+        onCancel={onAppSettingCancel}
       />
     </div>
   )
