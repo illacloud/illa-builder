@@ -32,7 +32,7 @@ interface AppCardProps {
 }
 export const AppCard: FC<AppCardProps> = (props) => {
   const { t } = useTranslation()
-  const { appInfo, canEditApp, onClick, onMouseEnter, ...rest } = props
+  const { appInfo, canEditApp, ...rest } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
