@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "Domyślny tekst wyświetlany po zainicjowaniu komponentu"
         }
+      },
+      "widget": {
+        "reply": "Odpowiedz do: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Wyczyść zaznaczenie",
         "set_filters": "Ustaw filtry",
         "onFreeTimeDragOrClick": "Kliknij darmowy czas"
-      }
+      },
+      "clearReplyMessage": "Wyczyść wiadomość odpowiedzi"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Witaj w illi",
   "unfreeze_tips": "Zamroź płótno i przeciągnij elementy do lub z kontenerów. (D lub K)",
   "user": {
-    "description": "Szybsze rozwiązania na wewnętrznych narzędziach i pulpitach nawigacyjnych",
+    "description": "Zbuduj wewnętrzne narzędzia z prędkością piorunów",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Zarejestruj się przez Google"
         }
       },
-      "description": "Szybsze rozwiązania na wewnętrznych narzędziach i pulpitach nawigacyjnych"
+      "description": "Zbuduj wewnętrzne narzędzia z prędkością piorunów"
     },
     "left": {
       "menu": {

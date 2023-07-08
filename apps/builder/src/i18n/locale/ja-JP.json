@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "コンポーネントが初期化されたときに表示される既定のテキスト"
         }
+      },
+      "widget": {
+        "reply": "返信先: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "選択をクリア",
         "set_filters": "フィルターを設定",
         "onFreeTimeDragOrClick": "クリックの空き時間"
-      }
+      },
+      "clearReplyMessage": "返信メッセージをクリア"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "エラ クラウドへようこそ",
   "unfreeze_tips": "キャンバスをフリーズした後、コンポーネントをコンテナ内外にドラッグできます。 (D または K)",
   "user": {
-    "description": "内部ツールとダッシュボードを構築する — より速く、より簡単に、より良い",
+    "description": "雷速度で内部ツールを構築する",
     "forgot_password": {
       "actions": {
         "reset": "リセット",
@@ -2833,7 +2840,7 @@
           "google": "Google にサインアップ"
         }
       },
-      "description": "内部ツールとダッシュボードを構築する — より速く、より簡単に、より良い"
+      "description": "雷速度で内部ツールを構築する"
     },
     "left": {
       "menu": {

@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "Oletusteksti näytetään, kun komponentti on alustettu"
         }
+      },
+      "widget": {
+        "reply": "Vastaa kohteeseen: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Tyhjennä valinta",
         "set_filters": "Aseta suodattimet",
         "onFreeTimeDragOrClick": "Klikkaa vapaa-aikaa"
-      }
+      },
+      "clearReplyMessage": "Tyhjennä vastausviesti"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Tervetuloa iltaan",
   "unfreeze_tips": "Jäädytä kangas ja vedä osat säiliöihin tai ulos niistä. (D tai K)",
   "user": {
-    "description": "Nopeammat ratkaisut sisäisille työkaluille ja kojelaudoille",
+    "description": "Rakenna sisäisiä työkaluja salaman nopeudella",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Rekisteröidy käyttäen Googlea"
         }
       },
-      "description": "Nopeammat ratkaisut sisäisille työkaluille ja kojelaudoille"
+      "description": "Rakenna sisäisiä työkaluja salaman nopeudella"
     },
     "left": {
       "menu": {
