@@ -11,16 +11,10 @@ export const CHAT_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.replay",
-      ),
-      value: "replay",
-    },
-    {
-      label: i18n.t(
         "editor.inspect.setter_content.widget_action_type_name.delete",
       ),
       value: "delete",
     },
   ],
-  methods: [],
+  methods: ["clearReplyMessage"],
 }

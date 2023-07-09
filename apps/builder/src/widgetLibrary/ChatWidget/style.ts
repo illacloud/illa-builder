@@ -17,10 +17,16 @@ export const footerStyle = css`
 `
 export const chatContainerStyle = (backgroundColor: string) => css`
   height: 100%;
+  padding-top: 16px;
   display: flex;
   overflow: hidden;
   flex-direction: column;
   background-color: ${getColor(backgroundColor, "01")};
+`
+
+export const messageListContainerStyle = css`
+  height: 100%;
+  overflow: auto;
 `
 
 export const messageHeaderStyle = (isOwn: boolean) => {
@@ -53,6 +59,7 @@ export const messageHeaderTimeStyle = css`
 export const messageContentStyle = (isOwn: boolean) => css`
   .cs-message__content-wrapper {
     margin-top: 12px;
+    width: 100%;
   }
   .cs-message__footer {
     margin: 0;
@@ -76,11 +83,26 @@ export const messageContentStyle = (isOwn: boolean) => css`
   }
   .cs-message__custom-content {
     padding-bottom: 8px;
+    display: flex;
   }
 `
-export const messageItemContainerStyle = css`
-  display: flex;
+
+export const messageFooterStyle = (isOwn: boolean) => css`
+  flex-direction: ${isOwn ? "row-reverse" : "row"};
+  width: 100%;
+  & > div {
+    width: 100%;
+  }
+`
+
+export const messageItemContainerStyle = (isOwn: boolean) => css`
+  width: 100%;
   flex-shrink: 1;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: ${isOwn ? "flex-end" : "flex-start"};
+  padding-left: ${isOwn ? "40px" : "0"};
+  padding-right: ${isOwn ? "0" : "40px"};
 `
 export const messageTextStyle = (
   isOwn: boolean,
@@ -101,6 +123,7 @@ export const messageTextStyle = (
     border-radius: 8px;
     max-width: 344px;
     word-wrap: break-word;
+    display: inline-block;
     span,
     a {
       color: ${color};
@@ -170,9 +193,10 @@ export const sendingStyle = css`
   }
 `
 
-export const replayMessageStyle = css`
+export const replyMessageStyle = css`
   & > div {
     max-width: 344px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     flex-shrink: 1;
@@ -182,7 +206,7 @@ export const replayMessageStyle = css`
     border-radius: 8px;
   }
 `
-export const replayImageStyle = css`
+export const replyImageStyle = css`
   width: 200px;
   height: 100px;
   background-color: ${getColor("grayBlue", "09")};
@@ -193,13 +217,13 @@ export const replayImageStyle = css`
   }
 `
 
-export const replayNameStyle = css`
+export const replyNameStyle = css`
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
   color: ${getColor("grayBlue", "02")};
 `
-export const replayTextStyle = css`
+export const replyTextStyle = css`
   max-height: 200px;
   overflow-y: auto;
   word-wrap: break-word;
@@ -208,8 +232,7 @@ export const replayTextStyle = css`
 export const receivingContainerStyle = css`
   display: flex;
   flex-direction: row;
-  gap: 16px;
-  padding: 8px 0;
+  padding: 16px 40px 0;
 `
 
 export const receivingAvatarStyle = css`
@@ -264,12 +287,60 @@ export const audioWrapperStyle = css`
   }
 `
 
-export const audioStyle = (isReplay?: boolean) => css`
+export const audioStyle = (isReply?: boolean) => css`
   height: 50px;
-  width: ${isReplay ? 320 : 300}px;
+  width: ${isReply ? "200px" : "50%"};
+  max-width: ${isReply ? 320 : 344}px;
+  min-width: 290px;
 `
 
-export const videoStyle = (isReplay?: boolean) => css`
+export const videoStyle = (isReply?: boolean) => css`
   height: 150px;
-  width: ${isReplay ? 320 : 300}px;
+  width: ${isReply ? "200px" : "50%"};
+  max-width: ${isReply ? 320 : 344}px;
+  min-width: 290px;
+`
+
+export const sendImageStyle = css`
+  width: 50%;
+  max-width: 344px;
+  min-width: 290px;
+`
+
+export const replyToStyle = css`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px;
+  box-shadow: 0px -4px 12px 0px rgba(0, 0, 0, 0.04);
+`
+export const replyContent = css`
+  overflow: hidden;
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+`
+
+export const replyToHeaderStyle = css`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: ${getColor("blue", "03")};
+  text-align: justify;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  & > span:last-of-type {
+    cursor: pointer;
+  }
 `

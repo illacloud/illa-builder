@@ -1,25 +1,25 @@
 import { FC } from "react"
 import { ReactComponent as DeleteSvg } from "@/assets/chat/delete.svg"
-import { ReactComponent as ReplaySvg } from "@/assets/chat/replay.svg"
-import { IMessageItem } from "./interface"
-import { optionsStyle } from "./style"
+import { ReactComponent as ReplySvg } from "@/assets/chat/replay.svg"
+import { OptionsProps } from "@/widgetLibrary/ChatWidget/interface"
+import { optionsStyle } from "@/widgetLibrary/ChatWidget/style"
 
-export const Options: FC<IMessageItem> = ({
+export const Options: FC<Partial<OptionsProps>> = ({
   message,
   toolbarDelete,
-  handleOnReplay,
-  toolbarReplay,
+  handleOnReply,
+  toolbarReply,
   handleOnDelete,
 }) => {
   return (
-    <div css={optionsStyle(Boolean(toolbarReplay && toolbarDelete))}>
-      {toolbarReplay && (
+    <div css={optionsStyle(Boolean(toolbarReply && toolbarDelete))}>
+      {toolbarReply && (
         <div
           onClick={() => {
-            handleOnReplay && handleOnReplay(message)
+            handleOnReply && handleOnReply(message)
           }}
         >
-          <ReplaySvg />
+          <ReplySvg />
         </div>
       )}
       {toolbarDelete && (
