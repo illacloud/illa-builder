@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "The default text displayed when the component is initialized"
         }
+      },
+      "widget": {
+        "reply": "Reply to: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Clear selection",
         "set_filters": "Set filters",
         "onFreeTimeDragOrClick": "Click free time"
-      }
+      },
+      "clearReplyMessage": "Clear reply message"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Welcome to ILLA",
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
   "user": {
-    "description": "Faster solutions at internal tools and dashboards",
+    "description": "Build internal tools at lightning speed",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Sign up with Google"
         }
       },
-      "description": "Faster solutions at internal tools and dashboards"
+      "description": "Build internal tools at lightning speed"
     },
     "left": {
       "menu": {
@@ -3436,7 +3443,7 @@
         "add_unlimited_viewer": "Add unlimited viewer members for FREE",
         "publish_public_appli": "Publish public applications",
         "ai_sql_generation": "AI SQL Generation",
-        "audit_logs": "Audit logs(Coming soon)",
+        "audit_logs": "Audit logs",
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
         "pricing": "editor/month, yearly (monthly $10/editor)",
@@ -3518,7 +3525,8 @@
       "undeploy": "Undeploy"
     },
     "desc": {
-      "no_description": "No description"
+      "no_description": "No description",
+      "blank": "No application"
     },
     "app_setting": {
       "app_setting": "App setting",
@@ -3537,6 +3545,9 @@
     "message": {
       "update_failed": "Failed to update",
       "update_suc": "Successfully updated"
+    },
+    "button": {
+      "blank": "Create your first app"
     }
   },
   "new_deploy": {

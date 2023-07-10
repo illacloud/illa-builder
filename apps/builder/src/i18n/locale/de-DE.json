@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "Der Standardtext, der angezeigt wird, wenn die Komponente initialisiert wird"
         }
+      },
+      "widget": {
+        "reply": "Antwort auf: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Auswahl löschen",
         "set_filters": "Filter setzen",
         "onFreeTimeDragOrClick": "Klicke auf Freizeit"
-      }
+      },
+      "clearReplyMessage": "Antwort löschen"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Willkommen bei illa",
   "unfreeze_tips": "Die Leinwand einfrieren und Komponenten in oder aus Containern ziehen. (D oder K)",
   "user": {
-    "description": "Schnellere Lösungen in internen Tools und Dashboards",
+    "description": "Erstelle interne Werkzeuge mit Blitzgeschwindigkeit",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Mit Google anmelden"
         }
       },
-      "description": "Schnellere Lösungen in internen Tools und Dashboards"
+      "description": "Erstelle interne Werkzeuge mit Blitzgeschwindigkeit"
     },
     "left": {
       "menu": {
@@ -3518,7 +3525,8 @@
       "undeploy": "Deaktivieren"
     },
     "desc": {
-      "no_description": "Keine Beschreibung"
+      "no_description": "Keine Beschreibung",
+      "blank": "Keine Anwendung"
     },
     "app_setting": {
       "app_setting": "App-Einstellung",
@@ -3537,6 +3545,9 @@
     "message": {
       "update_failed": "Update fehlgeschlagen",
       "update_suc": "Erfolgreich aktualisiert"
+    },
+    "button": {
+      "blank": "Erstelle deine erste App"
     }
   },
   "new_deploy": {

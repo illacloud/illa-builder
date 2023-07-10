@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "Standardteksten som vises når komponenten initialiseres"
         }
+      },
+      "widget": {
+        "reply": "Svar til: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Tøm valg",
         "set_filters": "Angi filtre",
         "onFreeTimeDragOrClick": "Klikk fritid"
-      }
+      },
+      "clearReplyMessage": "Tøm svarmelding"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Velkommen til illa",
   "unfreeze_tips": "Frys lerretet og dra komponenter inn i eller ut av beholderne. (D eller K)",
   "user": {
-    "description": "Raskere løsninger ved interne verktøy og dashbord",
+    "description": "Bygg interne verktøy med lynhastighet",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Registrer deg med Google"
         }
       },
-      "description": "Raskere løsninger ved interne verktøy og dashbord"
+      "description": "Bygg interne verktøy med lynhastighet"
     },
     "left": {
       "menu": {
@@ -3518,7 +3525,8 @@
       "undeploy": "Avinstaller"
     },
     "desc": {
-      "no_description": "Ingen beskrivelse"
+      "no_description": "Ingen beskrivelse",
+      "blank": "Ingen programmer"
     },
     "app_setting": {
       "app_setting": "Innstillinger for app",
@@ -3537,6 +3545,9 @@
     "message": {
       "update_failed": "Kunne ikke oppdatere",
       "update_suc": "Oppdatering ferdig"
+    },
+    "button": {
+      "blank": "Opprett din første app"
     }
   },
   "new_deploy": {

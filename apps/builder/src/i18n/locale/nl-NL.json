@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "De standaardtekst die wordt weergegeven wanneer het component wordt geïnitialiseerd"
         }
+      },
+      "widget": {
+        "reply": "Antwoord op: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Selectie wissen",
         "set_filters": "Filters instellen",
         "onFreeTimeDragOrClick": "Klik vrije tijd"
-      }
+      },
+      "clearReplyMessage": "Antwoord-bericht wissen"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Welkom bij de illa",
   "unfreeze_tips": "Bevries het canvas en sleep componenten naar of uit containers. (D of K)",
   "user": {
-    "description": "Snellere oplossingen op interne tools en dashboards",
+    "description": "Bouw interne gereedschappen op bliksemsnelheid",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Registreer met Google"
         }
       },
-      "description": "Snellere oplossingen op interne tools en dashboards"
+      "description": "Bouw interne gereedschappen op bliksemsnelheid"
     },
     "left": {
       "menu": {
@@ -3518,7 +3525,8 @@
       "undeploy": "Undeployen"
     },
     "desc": {
-      "no_description": "Geen beschrijving"
+      "no_description": "Geen beschrijving",
+      "blank": "Geen toepassing"
     },
     "app_setting": {
       "app_setting": "App instelling",
@@ -3537,6 +3545,9 @@
     "message": {
       "update_failed": "Bijwerken mislukt",
       "update_suc": "Succesvol geüpdatet"
+    },
+    "button": {
+      "blank": "Maak je eerste app"
     }
   },
   "new_deploy": {

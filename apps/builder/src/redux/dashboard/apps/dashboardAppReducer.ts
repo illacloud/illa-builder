@@ -2,7 +2,6 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   AddDashboardAppPayload,
   ModifyConfigDashboardAppPayload,
-  RenameDashboardAppPayload,
 } from "@/redux/dashboard/apps/dashboardAppPayload"
 import {
   DashboardApp,
@@ -40,9 +39,9 @@ export const removeDashboardAppReducer: CaseReducer<
   }
 }
 
-export const renameDashboardAppReducer: CaseReducer<
+export const updateDashboardAppReducer: CaseReducer<
   DashboardAppsState,
-  PayloadAction<RenameDashboardAppPayload>
+  PayloadAction<DashboardApp>
 > = (state, action) => {
   let index = state.list.findIndex((element) => {
     return element.appId == action.payload.appId
@@ -50,7 +49,7 @@ export const renameDashboardAppReducer: CaseReducer<
   if (index != -1) {
     state.list[index] = {
       ...state.list[index],
-      appName: action.payload.newName,
+      ...action.payload,
     }
   }
 }

@@ -12,4 +12,5 @@ export const needSavedSearchParams = [
   "appID",
   "teamIdentifier",
   "token",
+  "redirectPage",
 ]

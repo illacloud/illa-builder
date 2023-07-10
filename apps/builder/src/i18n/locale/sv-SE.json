@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "Standardtexten som visas när komponenten är initierad"
         }
+      },
+      "widget": {
+        "reply": "Svara på: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Rensa markering",
         "set_filters": "Ställ in filter",
         "onFreeTimeDragOrClick": "Klicka på fritiden"
-      }
+      },
+      "clearReplyMessage": "Rensa svarsmeddelande"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Välkommen till illa",
   "unfreeze_tips": "Frysa duken och dra komponenter till eller ut ur behållare. (D eller K)",
   "user": {
-    "description": "Snabbare lösningar på interna verktyg och instrumentpaneler",
+    "description": "Bygg interna verktyg med blixthastighet",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Registrera dig med Google"
         }
       },
-      "description": "Snabbare lösningar på interna verktyg och instrumentpaneler"
+      "description": "Bygg interna verktyg med blixthastighet"
     },
     "left": {
       "menu": {
@@ -3518,7 +3525,8 @@
       "undeploy": "Odistribuera"
     },
     "desc": {
-      "no_description": "Ingen beskrivning"
+      "no_description": "Ingen beskrivning",
+      "blank": "Ingen applikation"
     },
     "app_setting": {
       "app_setting": "Appens inställning",
@@ -3537,6 +3545,9 @@
     "message": {
       "update_failed": "Det gick inte att uppdatera",
       "update_suc": "Uppdaterades framgångsrikt"
+    },
+    "button": {
+      "blank": "Skapa din första app"
     }
   },
   "new_deploy": {

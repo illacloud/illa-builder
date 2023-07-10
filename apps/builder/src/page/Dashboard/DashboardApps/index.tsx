@@ -1,30 +1,46 @@
-import copy from "copy-to-clipboard"
 import { isBoolean } from "lodash"
-import { FC, Suspense, useEffect, useState } from "react"
+import {
+  FC,
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
   Await,
   useBeforeUnload,
   useLoaderData,
+  useNavigate,
   useParams,
 } from "react-router-dom"
-import { Button, Divider, useMessage } from "@illa-design/react"
+import { Button, PlusIcon, useMessage } from "@illa-design/react"
+import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
+import { Avatar } from "@/illa-public-component/Avatar"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import {
+  canManage,
+  canManageApp,
+  canUseUpgradeFeature,
+} from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
   USER_ROLE,
 } from "@/illa-public-component/UserRoleUtils/interface"
-import { CreateNewModal } from "@/page/Dashboard/components/CreateNewModal"
+import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { openGuideModal } from "@/page/Template/gideModeModal"
 import { getIsTutorialViewed } from "@/redux/currentUser/currentUserSelector"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchCreateApp } from "@/services/apps"
 import {
   track,
   trackPageDurationEnd,
@@ -38,18 +54,24 @@ import {
   appsContainerStyle,
   listTitleContainerStyle,
   listTitleStyle,
+  teamAvatarStyle,
+  teamInfoContainerStyle,
 } from "./style"
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
   const { teamIdentifier } = useParams()
   const message = useMessage()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { appList } = useLoaderData() as { appList: DashboardApp[] }
 
   const teamInfo = useSelector(getCurrentTeamInfo)
   const isTutorialViewed = useSelector(getIsTutorialViewed)
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
-  const [createNewModalVisible, setCreateNewModalVisible] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
 
@@ -64,6 +86,58 @@ export const DashboardApps: FC = () => {
     ATTRIBUTE_GROUP.APP,
     ACTION_MANAGE.CREATE_APP,
   )
+
+  const canSetPublic = canManageApp(
+    currentUserRole,
+    teamInfo?.permission?.allowEditorManageTeamMember,
+    teamInfo?.permission?.allowViewerManageTeamMember,
+  )
+
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
+
+  const handleCreateApp = useCallback(() => {
+    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
+      element: "create_new_app",
+    })
+    if (loading) return
+    setLoading(true)
+    fetchCreateApp({
+      appName: "Untitled app",
+      initScheme: BASIC_APP_CONFIG,
+    })
+      .then(
+        (response) => {
+          dispatch(
+            dashboardAppActions.addDashboardAppReducer({
+              app: response.data,
+            }),
+          )
+          navigate(`/${teamIdentifier}/app/${response.data.appId}`)
+        },
+        () => {
+          message.error({ content: t("create_fail") })
+        },
+      )
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [loading, teamIdentifier, dispatch, navigate, message, t])
+
+  const closeInviteModal = () => {
+    setInviteModalVisible(false)
+  }
+
+  const openInviteModal = useCallback(() => {
+    if (isCloudVersion && !canUseBillingFeature) {
+      handleUpgradeModalVisible(true, "upgrade")
+      return
+    }
+    setInviteModalVisible(true)
+  }, [canUseBillingFeature, handleUpgradeModalVisible])
 
   if (
     isBoolean(isTutorialViewed) &&
@@ -96,55 +170,52 @@ export const DashboardApps: FC = () => {
   }, [canCreateApp])
 
   return (
-    <>
-      <div css={appsContainerStyle}>
-        <div css={listTitleContainerStyle}>
-          <span css={listTitleStyle}>{t("dashboard.app.all_apps")}</span>
-          {isCloudVersion ? null : (
-            <Button
-              colorScheme="gray"
-              onClick={() => {
-                copy(window.location.href)
-                message.success({ content: t("link_copied") })
-              }}
-            >
-              {t("share")}
+    <div css={appsContainerStyle}>
+      <div css={listTitleContainerStyle}>
+        <div css={teamInfoContainerStyle}>
+          <Avatar
+            css={teamAvatarStyle}
+            avatarUrl={teamInfo?.icon}
+            name={teamInfo?.name}
+            id={teamInfo?.id}
+          />
+          <span css={listTitleStyle}>{teamInfo?.name}</span>
+        </div>
+        <div>
+          {canSetPublic ? (
+            <Button w="200px" colorScheme="grayBlue" onClick={openInviteModal}>
+              {t("user_management.page.invite")}
             </Button>
-          )}
+          ) : null}
           {canCreateApp ? (
             <Button
               ml="4px"
+              w="200px"
               colorScheme="techPurple"
-              onClick={() => {
-                setCreateNewModalVisible(true)
-                track(
-                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                  { element: "create_new_app" },
-                )
-              }}
+              leftIcon={<PlusIcon size="10px" />}
+              loading={loading}
+              onClick={handleCreateApp}
             >
               {t("create_new_app")}
             </Button>
           ) : null}
         </div>
-        <Divider direction="horizontal" />
-        <Suspense fallback={<DashBoardLoading />}>
-          <Await resolve={appList} errorElement={<DashboardErrorElement />}>
-            <AppsContentBody canEditApp={canEditApp} />
-          </Await>
-        </Suspense>
       </div>
-      <CreateNewModal
-        onCreateSuccess={() => {
-          setCreateNewModalVisible(false)
-        }}
-        visible={createNewModalVisible}
-        onVisibleChange={(visible) => {
-          setCreateNewModalVisible(visible)
-        }}
+      <Suspense fallback={<DashBoardLoading />}>
+        <Await resolve={appList} errorElement={<DashboardErrorElement />}>
+          <AppsContentBody
+            canEditApp={canEditApp}
+            onCreatedApp={handleCreateApp}
+            loading={loading}
+          />
+        </Await>
+      </Suspense>
+      <DashBoardInviteModal
+        hasApp={false}
+        visible={inviteModalVisible}
+        handleCloseModal={closeInviteModal}
       />
-    </>
+    </div>
   )
 }
 

@@ -16,3 +16,5 @@ export const ClickhouseIcon = createIcon({
     </>
   ),
 })
+
+ClickhouseIcon.displayName = "ClickhouseIcon"
