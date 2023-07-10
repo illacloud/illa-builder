@@ -83,6 +83,7 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
       displayName,
       unitWidth,
       columnNumber,
+      canDrag,
     ],
   )
 

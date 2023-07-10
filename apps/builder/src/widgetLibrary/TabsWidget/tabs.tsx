@@ -14,7 +14,7 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
     colorScheme,
     tabPosition,
     handleOnChange,
-    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
+    handleUpdateOriginalDSLMultiAttr,
   } = props
 
   return (
@@ -27,10 +27,13 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
       onChange={(value) => {
         new Promise((resolve) => {
           const currentIndex = tabList?.findIndex((view) => view.key === value)
-          handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo({
-            currentKey: value,
-            currentIndex,
-          })
+          handleUpdateOriginalDSLMultiAttr(
+            {
+              currentKey: value,
+              currentIndex,
+            },
+            true,
+          )
           resolve(true)
         }).then(() => {
           handleOnChange?.()

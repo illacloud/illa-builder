@@ -207,7 +207,7 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
     handleUpdateMultiExecutionResult,
-    handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo,
+    handleUpdateOriginalDSLMultiAttr,
     tooltipText,
     width,
     height,
@@ -249,12 +249,15 @@ export const PdfWidget: FC<PdfWidgetProps> = (props) => {
       offsetHeight &&
       (offsetWidth !== width || offsetHeight !== height)
     ) {
-      handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo?.({
-        width: wrapperRef.current.offsetWidth,
-        height: wrapperRef.current.offsetHeight,
-      })
+      handleUpdateOriginalDSLMultiAttr?.(
+        {
+          width: wrapperRef.current.offsetWidth,
+          height: wrapperRef.current.offsetHeight,
+        },
+        true,
+      )
     }
-  }, [w, h, handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo, width, height])
+  }, [w, h, handleUpdateOriginalDSLMultiAttr, width, height])
 
   return (
     <div css={pdfWrapperStyle} ref={wrapperRef}>

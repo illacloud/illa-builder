@@ -26,9 +26,7 @@ export interface RenderTemplateContainerProps {
   templateContainerHeight: number
   columnNumber: number
   dynamicHeight: "auto" | "fixed" | "limited"
-  handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo: (
-    updateSlice: Record<string, any>,
-  ) => void
+  handleUpdateOriginalDSLMultiAttr: BaseWidgetProps["handleUpdateOriginalDSLMultiAttr"]
   updateComponentHeight?: (newHeight: number) => void
   itemNumber?: number
   h: number

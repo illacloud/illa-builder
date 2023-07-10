@@ -1,6 +1,10 @@
 import { FC } from "react"
 import { useSelector } from "react-redux"
 import RenderComponentCanvasContainer from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
+import {
+  SAFE_ROWS,
+  UNIT_HEIGHT,
+} from "@/page/App/components/DotPanel/constant/canvas"
 import { LIKE_CONTAINER_WIDGET_PADDING } from "@/page/App/components/ScaleSquare/constant/widget"
 import { getIsILLAEditMode, isShowDot } from "@/redux/config/configSelector"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
@@ -23,7 +27,7 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
       currentComponentNode.childrenNode.length === 0) ||
       !currentComponentNode.displayName)
   ) {
-    return <ContainerEmptyState />
+    return <ContainerEmptyState handleUpdateHeight={handleUpdateHeight} />
   }
 
   return (
@@ -33,7 +37,8 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
       columnNumber={columnNumber}
       handleUpdateHeight={handleUpdateHeight}
       canResizeCanvas={canResizeCanvas}
-      safeRowNumber={0}
+      safeRowNumber={canResizeCanvas ? 0 : SAFE_ROWS}
+      minHeight={canResizeCanvas ? 15 * UNIT_HEIGHT : undefined}
     />
   )
 }

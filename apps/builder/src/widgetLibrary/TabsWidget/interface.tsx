@@ -11,7 +11,6 @@ export interface WrappedTabsProps
   viewList?: viewListItemShaper[]
   tabList?: viewListItemShaper[]
   handleOnChange?: () => void
-  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   handleUpdateMultiExecutionResult: (
     updateSlice: {
       displayName: string
