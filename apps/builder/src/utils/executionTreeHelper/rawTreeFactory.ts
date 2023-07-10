@@ -15,7 +15,7 @@ export const CURRENT_USER_INFO_ACCESS_LIST_KEY = [
   "avatar",
   "language",
   "createdAt",
-  "updateAt",
+  "updatedAt",
 ]
 
 export class RawTreeFactory {
