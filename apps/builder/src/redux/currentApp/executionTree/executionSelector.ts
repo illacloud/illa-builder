@@ -252,6 +252,16 @@ export const getGlobalDataExecutionResult = createSelector(
   },
 )
 
+export const getBuilderInfoExecutionResult = createSelector(
+  [getExecutionResult],
+  (result) => get(result, "builderInfo", {}),
+)
+
+export const getCurrentUserInfoExecutionResult = createSelector(
+  [getExecutionResult],
+  (result) => get(result, "currentUserInfo", {}),
+)
+
 export const getURLParamsExecutionResult = createSelector(
   getExecutionResult,
   (result) => {
@@ -268,8 +278,8 @@ export const getLocalStorageExecutionResult = createSelector(
 
 export const getGlobalInfoExecutionResult = createSelector(
   [
-    getCurrentUser,
-    getBuilderInfo,
+    getCurrentUserInfoExecutionResult,
+    getBuilderInfoExecutionResult,
     getURLParamsExecutionResult,
     getLocalStorageExecutionResult,
   ],
