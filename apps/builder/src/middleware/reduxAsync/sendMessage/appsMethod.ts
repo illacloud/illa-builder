@@ -40,19 +40,7 @@ export const appsAsync = (
         ),
       )
       break
-    case "renameDashboardAppReducer":
-      Connection.getTextRoom("dashboard", "")?.send(
-        getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.APPS,
-          true,
-          action,
-          teamID,
-          uid,
-          [payload],
-        ),
-      )
-      break
+    case "updateDashboardAppReducer":
     case "modifyConfigDashboardAppReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
