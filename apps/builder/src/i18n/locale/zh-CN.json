@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "在组件初始化时展示的默认文本"
         }
+      },
+      "widget": {
+        "reply": "回复：",
+        "reply_image": "[图片]",
+        "reply_video": "[视频]",
+        "reply_audio": "[音频]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "清除选择",
         "set_filters": "设置过滤器",
         "onFreeTimeDragOrClick": "点击空闲时间"
-      }
+      },
+      "clearReplyMessage": "清除回复消息"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "欢迎使用ILLA",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
   "user": {
-    "description": "搭建内部工具和仪表板更好的解决方案",
+    "description": "以超乎想象的速度构建内部工具",
     "forgot_password": {
       "actions": {
         "reset": "重置",
@@ -2833,7 +2840,7 @@
           "google": "使用Google账户注册"
         }
       },
-      "description": "搭建内部工具和仪表板更好的解决方案"
+      "description": "以超乎想象的速度构建内部工具"
     },
     "left": {
       "menu": {
@@ -3436,7 +3443,7 @@
         "add_unlimited_viewer": "免费添加无限个浏览者",
         "publish_public_appli": "发布公开应用",
         "ai_sql_generation": "AI SQL 生成",
-        "audit_logs": "审计日志(即将上线)",
+        "audit_logs": "审计日志",
         "learn_more": "了解更多",
         "upgrade": "升级",
         "pricing": "编辑者/月，年付(月付$10/编辑者)",

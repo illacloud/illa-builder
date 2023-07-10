@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "El texto por defecto mostrado cuando el componente está inicializado"
         }
+      },
+      "widget": {
+        "reply": "Responder a: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Borrar selección",
         "set_filters": "Definir filtros",
         "onFreeTimeDragOrClick": "Clic tiempo libre"
-      }
+      },
+      "clearReplyMessage": "Borrar mensaje de respuesta"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Bienvenido a illa",
   "unfreeze_tips": "Congela el lienzo y arrastra componentes hacia o fuera de contenedores. (D o K)",
   "user": {
-    "description": "Una plataforma de código bajo abierto para desarrolladores.",
+    "description": "Construir herramientas internas a velocidad de iluminación",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Regístrate con Google"
         }
       },
-      "description": "Una plataforma de código bajo abierto para desarrolladores."
+      "description": "Construir herramientas internas a velocidad de iluminación"
     },
     "left": {
       "menu": {

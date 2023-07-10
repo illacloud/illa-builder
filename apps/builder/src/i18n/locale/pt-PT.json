@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "O texto padrão exibido quando o componente é inicializado"
         }
+      },
+      "widget": {
+        "reply": "Responder a: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Limpar seleção",
         "set_filters": "Configurar filtros",
         "onFreeTimeDragOrClick": "Tempo livre de clique"
-      }
+      },
+      "clearReplyMessage": "Limpar mensagem de resposta"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Bem-vindo à illa",
   "unfreeze_tips": "Congele a tela e arraste os componentes para dentro ou para fora de contêineres. (D ou K)",
   "user": {
-    "description": "Soluções mais rápidas em ferramentas e painéis internos",
+    "description": "Construa ferramentas internas na velocidade dos raios",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Cadastre-se com o Google"
         }
       },
-      "description": "Soluções mais rápidas em ferramentas e painéis internos"
+      "description": "Construa ferramentas internas na velocidade dos raios"
     },
     "left": {
       "menu": {
