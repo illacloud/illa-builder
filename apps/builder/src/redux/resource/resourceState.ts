@@ -47,6 +47,7 @@ export type ResourceType =
   | "elasticsearch"
   | "dynamodb"
   | "snowflake"
+  | "hydra"
   | "postgresql"
   | "mariadb"
   | "tidb"

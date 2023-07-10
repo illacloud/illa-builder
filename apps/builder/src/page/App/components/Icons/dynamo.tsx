@@ -25,3 +25,5 @@ export const DynamoIcon = createIcon({
     </>
   ),
 })
+
+DynamoIcon.displayName = "DynamoIcon"

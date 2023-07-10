@@ -1,35 +1,72 @@
+import VirtualList from "rc-virtual-list"
 import { FC, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue, useNavigate, useParams } from "react-router-dom"
-import { Empty, List, ListItem, ListItemMeta } from "@illa-design/react"
+import { useAsyncValue } from "react-router-dom"
+import useMeasure from "react-use-measure"
 import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
+  Button,
+  Empty,
+  EmptyIcon,
+  PlusIcon,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
+import { AppCard } from "@/page/Dashboard/DashboardApps/AppCard"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { fromNow } from "@/utils/dayjs"
-import { track } from "@/utils/mixpanelHelper"
-import { DashboardItemMenu } from "../components/DashboardItemMenu"
-import { hoverStyle } from "./style"
+import {
+  CARD_GAP_SIZE,
+  CARD_HEIGHT,
+  CARD_WIDTH,
+  emptyStyle,
+  fullWidthStyle,
+  listContainerStyle,
+} from "./style"
 
 interface AppsContentBodyProps {
   canEditApp: boolean
+  loading: boolean
+  onCreatedApp: () => void
 }
 
 export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
-  const { canEditApp } = props
+  const { t } = useTranslation()
+  const { canEditApp, loading, onCreatedApp } = props
   const { data: appsList } = useAsyncValue() as {
     data: DashboardApp[]
   }
-  let navigate = useNavigate()
-  const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { teamIdentifier } = useParams()
 
   const appListInRedux: DashboardApp[] = useSelector(getDashboardApps)
+  const [ref, { width, height }] = useMeasure({
+    polyfill: ResizeObserver,
+  })
+
+  const actualCardsPerRow = useMemo(() => {
+    const calculatedWidth = width || window.innerWidth * 0.7 + 16
+
+    const cardsPerRow = Math.floor(
+      calculatedWidth / (CARD_WIDTH + CARD_GAP_SIZE),
+    )
+    const cardAreaWidth = calculatedWidth - (cardsPerRow - 1) * CARD_GAP_SIZE
+
+    return Math.floor(cardAreaWidth / CARD_WIDTH) || 1
+  }, [width])
+
+  const finalAppsList = useMemo(() => {
+    const appList = canEditApp
+      ? appListInRedux
+      : appListInRedux.filter((item) => {
+          return item.mainlineVersion !== 0
+        })
+    let rows = []
+    for (let i = 0; i < appList.length; i += actualCardsPerRow) {
+      rows.push(appList.slice(i, i + actualCardsPerRow))
+    }
+    return rows
+  }, [canEditApp, appListInRedux, actualCardsPerRow])
 
   useEffect(() => {
     if (Array.isArray(appsList)) {
@@ -37,76 +74,58 @@ export const AppsContentBody: FC<AppsContentBodyProps> = (props) => {
     }
   }, [appsList, dispatch])
 
-  const finalAppsList = useMemo(() => {
-    if (canEditApp) return appListInRedux
-    return appListInRedux.filter((item) => {
-      return item.mainlineVersion !== 0
-    })
-  }, [canEditApp, appListInRedux])
-
   return (
-    <>
+    <div css={fullWidthStyle} ref={ref}>
       {finalAppsList.length !== 0 && (
-        <List
-          h={"100%"}
-          ov={"auto"}
-          data={finalAppsList}
-          bordered={false}
-          hoverable={true}
-          render={(item) => {
+        <VirtualList
+          style={{ gap: 24 }}
+          height={height}
+          itemHeight={CARD_HEIGHT + CARD_GAP_SIZE}
+          itemKey={(item) => item[0]?.appId}
+          data={finalAppsList as DashboardApp[][]}
+        >
+          {(cardsInThisRow) => {
             return (
-              <ListItem
-                css={hoverStyle}
-                data-element="listItem"
-                onMouseEnter={(e) => {
-                  if (
-                    (e.target as HTMLDivElement).dataset?.element !== "listItem"
-                  )
-                    return
-                  canEditApp &&
-                    track(
-                      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                      { element: "app_edit", parameter5: item.appId },
-                    )
-                  item.mainlineVersion !== 0 &&
-                    track(
-                      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-                      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                      { element: "app_launch", parameter5: item.appId },
-                    )
-                }}
-                extra={
-                  <DashboardItemMenu
-                    appId={item.appId}
+              <div css={listContainerStyle}>
+                {cardsInThisRow?.map((item) => (
+                  <AppCard
+                    key={item.appId}
+                    data-element="listItem"
+                    appInfo={item}
                     canEditApp={canEditApp}
-                    isDeploy={item.mainlineVersion !== 0}
                   />
-                }
-              >
-                <ListItemMeta
-                  onClick={() => {
-                    if (canEditApp) {
-                      navigate(`/${teamIdentifier}/app/${item.appId}`)
-                    } else if (item.mainlineVersion !== 0) {
-                      navigate(`/${teamIdentifier}/deploy/app/${item.appId}`)
-                    }
-                  }}
-                  title={item.appName}
-                  description={t("dashboard.app.edited_time", {
-                    time: fromNow(item.updatedAt),
-                    user: item.appActivity.modifier,
-                  })}
-                />
-              </ListItem>
+                ))}
+              </div>
             )
           }}
-          renderKey={(item) => {
-            return item.appId
-          }}
+        </VirtualList>
+      )}
+      {finalAppsList.length === 0 && (
+        <Empty
+          paddingVertical="120px"
+          icon={
+            <EmptyIcon
+              size="48px"
+              color={globalColor(`--${illaPrefix}-grayBlue-02`)}
+            />
+          }
+          description={
+            <div css={emptyStyle}>
+              <div>{t("new_dashboard.desc.blank")}</div>
+              <div>
+                <Button
+                  colorScheme="grayBlue"
+                  loading={loading}
+                  leftIcon={<PlusIcon size="10px" />}
+                  onClick={onCreatedApp}
+                >
+                  {t("new_dashboard.button.blank")}
+                </Button>
+              </div>
+            </div>
+          }
         />
       )}
-      {finalAppsList.length == 0 && <Empty paddingVertical="120px" />}
-    </>
+    </div>
   )
 }

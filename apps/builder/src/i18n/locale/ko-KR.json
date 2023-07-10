@@ -3525,7 +3525,8 @@
       "undeploy": "Undeploy"
     },
     "desc": {
-      "no_description": "No description"
+      "no_description": "No description",
+      "blank": "No application"
     },
     "app_setting": {
       "app_setting": "App setting",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Failed to update",
       "update_suc": "Successfully updated"
+    },
+    "button": {
+      "blank": "Create your first app"
     }
   },
   "new_deploy": {

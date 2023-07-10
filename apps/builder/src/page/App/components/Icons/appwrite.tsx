@@ -18,3 +18,5 @@ export const AppwriteIcon = createIcon({
     </>
   ),
 })
+
+AppwriteIcon.displayName = "AppwriteIcon"

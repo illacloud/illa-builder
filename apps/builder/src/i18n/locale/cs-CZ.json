@@ -3525,7 +3525,8 @@
       "undeploy": "Rozmístit"
     },
     "desc": {
-      "no_description": "Bez popisu"
+      "no_description": "Bez popisu",
+      "blank": "Žádná aplikace"
     },
     "app_setting": {
       "app_setting": "Nastavení aplikace",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Aktualizace se nezdařila",
       "update_suc": "Úspěšně aktualizováno"
+    },
+    "button": {
+      "blank": "Vytvořte svou první aplikaci"
     }
   },
   "new_deploy": {

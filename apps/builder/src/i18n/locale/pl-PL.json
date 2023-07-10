@@ -3525,7 +3525,8 @@
       "undeploy": "Usuń wdrożenie"
     },
     "desc": {
-      "no_description": "Brak opisu"
+      "no_description": "Brak opisu",
+      "blank": "Brak aplikacji"
     },
     "app_setting": {
       "app_setting": "Ustawienia aplikacji",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Aktualizacja nie powiodła się",
       "update_suc": "Pomyślnie zaktualizowano"
+    },
+    "button": {
+      "blank": "Utwórz swoją pierwszą aplikację"
     }
   },
   "new_deploy": {

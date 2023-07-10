@@ -19,12 +19,16 @@ export const translateSearchParamsToURLPathWithSelfHost = (
   const inviteToken = searchParams.get("inviteToken")
   const teamIdentifier = searchParams.get("teamIdentifier")
   const appID = searchParams.get("appID")
+  const redirectPage = searchParams.get("redirectPage")
   const qs = getQS(searchParams)
   const authToken = getAuthToken()
   // go to deploy
   if (inviteToken && teamIdentifier && appID) {
     if (authToken) {
       const qs = removeIgnoredQS(searchParams)
+      if (redirectPage === "edit") {
+        return `/${teamIdentifier}/app/${appID}${qs}`
+      }
       return `/${teamIdentifier}/deploy/app/${appID}${qs}`
     }
     return `/register${qs}`

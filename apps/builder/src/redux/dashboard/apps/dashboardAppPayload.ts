@@ -5,11 +5,6 @@ export interface AddDashboardAppPayload {
   index?: number
 }
 
-export interface RenameDashboardAppPayload {
-  appId: string
-  newName: string
-}
-
 export interface ModifyConfigDashboardAppPayload {
   appId: string
   config: Partial<DashboardAppConfig>

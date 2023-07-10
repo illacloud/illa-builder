@@ -3525,7 +3525,8 @@
       "undeploy": "Deaktivieren"
     },
     "desc": {
-      "no_description": "Keine Beschreibung"
+      "no_description": "Keine Beschreibung",
+      "blank": "Keine Anwendung"
     },
     "app_setting": {
       "app_setting": "App-Einstellung",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Update fehlgeschlagen",
       "update_suc": "Erfolgreich aktualisiert"
+    },
+    "button": {
+      "blank": "Erstelle deine erste App"
     }
   },
   "new_deploy": {

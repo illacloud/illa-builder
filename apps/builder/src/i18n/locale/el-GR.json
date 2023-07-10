@@ -3525,7 +3525,8 @@
       "undeploy": "Κατάργηση"
     },
     "desc": {
-      "no_description": "Χωρίς περιγραφή"
+      "no_description": "Χωρίς περιγραφή",
+      "blank": "Καμία εφαρμογή"
     },
     "app_setting": {
       "app_setting": "Ρύθμιση εφαρμογής",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Αποτυχία ενημέρωσης",
       "update_suc": "Επιτυχής ενημέρωση"
+    },
+    "button": {
+      "blank": "Δημιουργήστε την πρώτη σας εφαρμογή"
     }
   },
   "new_deploy": {

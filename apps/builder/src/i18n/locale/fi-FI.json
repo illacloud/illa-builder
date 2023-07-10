@@ -3525,7 +3525,8 @@
       "undeploy": "Poista"
     },
     "desc": {
-      "no_description": "Ei kuvausta"
+      "no_description": "Ei kuvausta",
+      "blank": "Ei sovellusta"
     },
     "app_setting": {
       "app_setting": "Sovelluksen asetus",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Päivitys epäonnistui",
       "update_suc": "Päivitys onnistui"
+    },
+    "button": {
+      "blank": "Luo ensimmäinen sovelluksesi"
     }
   },
   "new_deploy": {

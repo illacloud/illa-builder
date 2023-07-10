@@ -3525,7 +3525,8 @@
       "undeploy": "Desfășurare"
     },
     "desc": {
-      "no_description": "Nici o descriere"
+      "no_description": "Nici o descriere",
+      "blank": "Nicio cerere"
     },
     "app_setting": {
       "app_setting": "Setare aplicație",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Actualizarea a eșuat",
       "update_suc": "Actualizare reușită"
+    },
+    "button": {
+      "blank": "Creează prima ta aplicație"
     }
   },
   "new_deploy": {

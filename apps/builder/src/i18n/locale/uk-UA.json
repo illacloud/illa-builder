@@ -3525,7 +3525,8 @@
       "undeploy": "Розгортання"
     },
     "desc": {
-      "no_description": "Без опису"
+      "no_description": "Без опису",
+      "blank": "Додаток відсутній"
     },
     "app_setting": {
       "app_setting": "Налаштування додатку",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Не вдалося оновити",
       "update_suc": "Вдало оновлено"
+    },
+    "button": {
+      "blank": "Створити свій перший додаток"
     }
   },
   "new_deploy": {

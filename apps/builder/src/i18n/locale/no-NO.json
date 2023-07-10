@@ -3525,7 +3525,8 @@
       "undeploy": "Avinstaller"
     },
     "desc": {
-      "no_description": "Ingen beskrivelse"
+      "no_description": "Ingen beskrivelse",
+      "blank": "Ingen programmer"
     },
     "app_setting": {
       "app_setting": "Innstillinger for app",
@@ -3544,6 +3545,9 @@
     "message": {
       "update_failed": "Kunne ikke oppdatere",
       "update_suc": "Oppdatering ferdig"
+    },
+    "button": {
+      "blank": "Opprett din første app"
     }
   },
   "new_deploy": {

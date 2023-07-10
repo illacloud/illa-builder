@@ -72,6 +72,7 @@ export const ResourcesContentBody: FC = () => {
         case "clickhouse":
         case "supabasedb":
         case "postgresql":
+        case "hydra":
         case "mysql":
         case "tidb":
         case "mariadb":

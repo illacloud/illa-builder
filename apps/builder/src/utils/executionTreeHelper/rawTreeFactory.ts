@@ -51,7 +51,6 @@ export class RawTreeFactory {
       return acc
     }, {} as CurrentUserInfoInTree)
 
-    console.log("canShownUserInfo", canShownUserInfo)
     rawTree.builderInfo = builderInfo
     rawTree.currentUserInfo = canShownUserInfo
     rawTree.globalData = globalData
