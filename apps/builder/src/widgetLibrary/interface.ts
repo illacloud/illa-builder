@@ -78,9 +78,14 @@ export interface BaseWidgetProps {
     }[],
   ) => void
   updateComponentHeight: (newHeight: number) => void
-  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
-  handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo: (
+  handleUpdateOriginalDSLMultiAttr: (
     updateSlice: Record<string, any>,
+    notUseUndoRedo?: boolean,
+  ) => void
+  handleUpdateOriginalDSLOtherMultiAttr: (
+    displayName: string,
+    updateSlice: Record<string, any>,
+    notUseUndoRedo?: boolean,
   ) => void
   triggerEventHandler: (
     eventType: string,

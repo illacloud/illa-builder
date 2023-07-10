@@ -192,25 +192,13 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     )
 
     const handleUpdateOriginalDSLMultiAttr = useCallback(
-      (updateSlice: Record<string, any>) => {
+      (updateSlice: Record<string, any>, notUseUndoRedo?: boolean) => {
         if (!isObject(updateSlice)) return
         dispatch(
           componentsActions.updateComponentPropsReducer({
             displayName: displayName,
             updateSlice,
-          }),
-        )
-      },
-      [dispatch, displayName],
-    )
-
-    const handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo = useCallback(
-      (updateSlice: Record<string, any>) => {
-        if (!isObject(updateSlice)) return
-        dispatch(
-          componentsActions.updateComponentPropsReducerNotWithUndoRedo({
-            displayName: displayName,
-            updateSlice,
+            notUseUndoRedo,
           }),
         )
       },
@@ -218,25 +206,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     )
 
     const handleUpdateOriginalDSLOtherMultiAttr = useCallback(
-      (displayName: string, updateSlice: Record<string, any>) => {
+      (
+        displayName: string,
+        updateSlice: Record<string, any>,
+        notUseUndoRedo?: boolean,
+      ) => {
         if (!displayName || !isObject(updateSlice)) return
         dispatch(
           componentsActions.updateComponentPropsReducer({
             displayName,
             updateSlice,
-          }),
-        )
-      },
-      [dispatch],
-    )
-
-    const handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo = useCallback(
-      (displayName: string, updateSlice: Record<string, any>) => {
-        if (!displayName || !isObject(updateSlice)) return
-        dispatch(
-          componentsActions.updateComponentPropsReducerNotWithUndoRedo({
-            displayName,
-            updateSlice,
+            notUseUndoRedo,
           }),
         )
       },
@@ -405,12 +385,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
             triggerMappedEventHandler={triggerMappedEventHandler}
             updateComponentRuntimeProps={updateComponentRuntimeProps}
             deleteComponentRuntimeProps={deleteComponentRuntimeProps}
-            handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo={
-              handleUpdateOriginalDSLMultiAttrNotUseUnDoRedo
-            }
-            handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo={
-              handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo
-            }
           />
         </Suspense>
       </div>
