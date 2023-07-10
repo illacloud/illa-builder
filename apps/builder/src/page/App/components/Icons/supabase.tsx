@@ -50,3 +50,5 @@ export const SupabaseIcon = createIcon({
     </>
   ),
 })
+
+SupabaseIcon.displayName = "SupabaseIcon"

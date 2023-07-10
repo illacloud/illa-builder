@@ -3,6 +3,7 @@ import { AirtableIcon } from "@/page/App/components/Icons/airtable"
 import { AppwriteIcon } from "@/page/App/components/Icons/appwrite"
 import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
 import { CouchDBIcon } from "@/page/App/components/Icons/couchdb"
+import { HydraIcon } from "@/page/App/components/Icons/dydra"
 import { DynamoIcon } from "@/page/App/components/Icons/dynamo"
 import { ElasticIcon } from "@/page/App/components/Icons/elastic"
 import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
@@ -70,6 +71,8 @@ export function getIconFromResourceType(
       return <RedisIcon size={size} />
     case "upstash":
       return <UpstashIcon size={size} />
+    case "hydra":
+      return <HydraIcon size={size} />
     case "postgresql":
       return <PostgreSqlIcon size={size} />
     case "firebase":
@@ -132,6 +135,8 @@ export function getIconFromActionType(
       return <RedisIcon size={size} />
     case "upstash":
       return <UpstashIcon size={size} />
+    case "hydra":
+      return <HydraIcon size={size} />
     case "postgresql":
       return <PostgreSqlIcon size={size} />
     case "firebase":

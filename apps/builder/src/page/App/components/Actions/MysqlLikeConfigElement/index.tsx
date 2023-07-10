@@ -46,6 +46,7 @@ import { MysqlLikeConfigElementProps } from "./interface"
 
 const getResourceDefaultPort = (resourceType: string) => {
   switch (resourceType) {
+    case "hydra":
     case "postgresql":
     case "supabasedb":
       return "5432"
@@ -79,24 +80,34 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   const [saving, setSaving] = useState(false)
   const { track } = useContext(MixpanelTrackContext)
 
-  const sslDefaultValue = resource?.content.ssl.ssl ?? resourceType === "tidb"
+  const sslDefaultValue =
+    resource?.content.ssl.ssl ??
+    (resourceType === "tidb" || resourceType === "hydra")
   const serverCertDefaultValue =
     resource?.content.ssl.serverCert ??
-    (resourceType === "tidb" ? tiDBServertCertDefaultValue : "")
+    (resourceType === "tidb" || resourceType === "hydra"
+      ? tiDBServertCertDefaultValue
+      : "")
 
   const serverCertTip = useMemo(() => {
-    return resourceType === "tidb" ? (
+    return resourceType === "tidb" || resourceType === "hydra" ? (
       <Trans
         i18nKey="editor.action.form.tips.tidb.ca_certificate"
         t={t}
         components={[
           <TextLink
             key="ca-link"
-            onClick={() =>
-              handleLinkOpen(
-                "https://docs.pingcap.com/tidbcloud/tidb-cloud-tls-connect-to-dedicated-tier",
-              )
-            }
+            onClick={() => {
+              if (resourceType === "tidb") {
+                handleLinkOpen(
+                  "https://docs.pingcap.com/tidbcloud/tidb-cloud-tls-connect-to-dedicated-tier",
+                )
+              } else if (resourceType === "hydra") {
+                handleLinkOpen(
+                  "https://docs.hydra.so/cloud-warehouse-operations/tls",
+                )
+              }
+            }}
           />,
         ]}
       />

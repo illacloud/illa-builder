@@ -18,3 +18,5 @@ export const GoogleSheetIcon = createIcon({
     </>
   ),
 })
+
+GoogleSheetIcon.displayName = "GoogleSheetIcon"

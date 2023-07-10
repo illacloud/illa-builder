@@ -19,3 +19,5 @@ export const OracleDBIcon = createIcon({
     </>
   ),
 })
+
+OracleDBIcon.displayName = "OracleDBIcon"

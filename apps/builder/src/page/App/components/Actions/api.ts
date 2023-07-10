@@ -194,6 +194,7 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
     case "mariadb":
     case "mysql":
     case "postgresql":
+    case "hydra":
       return {
         host: data.host.trim(),
         port: data.port.toString(),

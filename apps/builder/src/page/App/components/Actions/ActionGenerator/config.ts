@@ -75,6 +75,10 @@ export const Databases: ActionDataItem[] = [
     actionType: "appwrite",
     isDraft: false,
   },
+  {
+    actionType: "hydra",
+    isDraft: false,
+  },
 ]
 
 export const Apis: ActionDataItem[] = [

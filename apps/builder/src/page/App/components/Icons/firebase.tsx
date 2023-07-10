@@ -20,3 +20,5 @@ export const FirebaseIcon = createIcon({
     </>
   ),
 })
+
+FirebaseIcon.displayName = "FirebaseIcon"

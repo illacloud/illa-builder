@@ -91,6 +91,7 @@ export type ActionType =
   | "dynamodb"
   | "snowflake"
   | "postgresql"
+  | "hydra"
   | "mariadb"
   | "tidb"
   | "neon"
