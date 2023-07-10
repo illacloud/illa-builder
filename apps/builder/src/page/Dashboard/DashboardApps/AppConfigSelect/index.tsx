@@ -21,10 +21,11 @@ interface AppConfigSelectProps {
   canEditApp: boolean
   appId: string
   isPublic: boolean
+  isDeployed: boolean
 }
 
 const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
-  const { canEditApp, appId, isPublic } = props
+  const { canEditApp, appId, isPublic, isDeployed } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
@@ -77,7 +78,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
     }
   }
 
-  if (!canEditApp) {
+  if (!canEditApp || !isDeployed) {
     return (
       <div css={valueLabelStyle}>
         {isPublic
