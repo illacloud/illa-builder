@@ -137,10 +137,11 @@ export const AppCard: FC<AppCardProps> = (props) => {
             e.stopPropagation()
           }}
         >
-          {isCloudVersion && appInfo.deployed ? (
+          {isCloudVersion ? (
             <AppConfigSelect
               appId={appInfo.appId}
               isPublic={appInfo.config.public}
+              isDeployed={appInfo.deployed}
               canEditApp={canEditApp}
             />
           ) : null}
