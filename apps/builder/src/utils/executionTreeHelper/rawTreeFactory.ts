@@ -15,7 +15,7 @@ export const CURRENT_USER_INFO_ACCESS_LIST_KEY = [
   "avatar",
   "language",
   "createdAt",
-  "updateAt",
+  "updatedAt",
 ]
 
 export class RawTreeFactory {
@@ -51,6 +51,7 @@ export class RawTreeFactory {
       return acc
     }, {} as CurrentUserInfoInTree)
 
+    console.log("canShownUserInfo", canShownUserInfo)
     rawTree.builderInfo = builderInfo
     rawTree.currentUserInfo = canShownUserInfo
     rawTree.globalData = globalData
