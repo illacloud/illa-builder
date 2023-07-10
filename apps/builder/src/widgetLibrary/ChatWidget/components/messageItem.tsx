@@ -1,18 +1,16 @@
 import { Avatar, Message } from "@chatscope/chat-ui-kit-react"
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css"
 import dayjs from "dayjs"
-import { FC, useRef } from "react"
-import { Trigger } from "@illa-design/react"
+import { FC } from "react"
+import { ReplyMessage } from "@/widgetLibrary/ChatWidget/components/messageItems/replayMessage"
+import { SendMessage } from "@/widgetLibrary/ChatWidget/components/messageItems/sendMessage"
 import { IMessageItem } from "@/widgetLibrary/ChatWidget/interface"
-import { Options } from "@/widgetLibrary/ChatWidget/options"
-import { ReplayMessage } from "./messageItems/replayMessage"
-import { SendMessage } from "./messageItems/sendMessage"
 import {
   messageContentStyle,
   messageHeaderNameStyle,
   messageHeaderStyle,
   messageHeaderTimeStyle,
-} from "./style"
+} from "../style"
 
 export const MessageItem: FC<IMessageItem> = (props) => {
   const {
@@ -22,8 +20,6 @@ export const MessageItem: FC<IMessageItem> = (props) => {
     rightMessageColor = "blue",
     value = [],
     timeFormat,
-    toolbarReplay,
-    toolbarDelete,
     showAvatar,
     showName,
     showSendTime,
@@ -40,7 +36,6 @@ export const MessageItem: FC<IMessageItem> = (props) => {
   } = message
 
   const isOwnMessage = !!currentSenderId && senderId === currentSenderId
-  const messageItemRef = useRef<HTMLDivElement>(null)
 
   return (
     <>
@@ -65,34 +60,23 @@ export const MessageItem: FC<IMessageItem> = (props) => {
           </div>
         </Message.Header>
         <Message.CustomContent>
-          <Trigger
-            bdRadius="4px"
-            bg="white"
-            content={<Options {...props} />}
-            colorScheme="transparent"
-            disabled={!toolbarDelete && !toolbarReplay}
-            position={isOwnMessage ? "left-start" : "right-start"}
-            showArrow={false}
-            autoFitPosition={false}
-            withoutPadding
-            trigger="hover"
-            withoutShadow
-          >
-            <SendMessage
-              ref={messageItemRef}
-              messageType={messageType}
-              isOwnMessage={isOwnMessage}
-              leftMessageColor={leftMessageColor}
-              rightMessageColor={rightMessageColor}
-              content={content}
-            />
-          </Trigger>
+          <SendMessage
+            {...props}
+            messageType={messageType}
+            isOwnMessage={isOwnMessage}
+            leftMessageColor={leftMessageColor}
+            rightMessageColor={rightMessageColor}
+            content={content}
+          />
         </Message.CustomContent>
         {value.length && replyMessageId && (
           <Message.Footer
-            style={{ flexDirection: isOwnMessage ? "row-reverse" : "row" }}
+            style={{
+              flexDirection: isOwnMessage ? "row-reverse" : "row",
+              width: "100%",
+            }}
           >
-            <ReplayMessage messageId={replyMessageId} value={value} />
+            <ReplyMessage messageId={replyMessageId} value={value} />
           </Message.Footer>
         )}
       </Message>

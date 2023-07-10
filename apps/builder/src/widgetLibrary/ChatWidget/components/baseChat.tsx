@@ -1,19 +1,15 @@
 import { forwardRef } from "react"
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso"
+import { MessageItem } from "@/widgetLibrary/ChatWidget/components/messageItem"
+import { Receiving } from "@/widgetLibrary/ChatWidget/components/receiving"
 import { BaseChatProps } from "@/widgetLibrary/ChatWidget/interface"
-import { MessageItem } from "@/widgetLibrary/ChatWidget/messageItem"
-import { Receiving } from "@/widgetLibrary/ChatWidget/receiving"
+import { messageListContainerStyle } from "@/widgetLibrary/ChatWidget/style"
 
 export const BaseChat = forwardRef<VirtuosoHandle, BaseChatProps>(
   (props, ref) => {
     const { value = [], leftMessageColor, showAvatar } = props
     return (
-      <div
-        style={{
-          height: "100%",
-          overflow: "auto",
-        }}
-      >
+      <div css={messageListContainerStyle}>
         <Virtuoso
           ref={ref}
           totalCount={value.length}

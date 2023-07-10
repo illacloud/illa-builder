@@ -4,6 +4,7 @@ import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContai
 import { BUTTON_WIDGET_CONFIG } from "@/widgetLibrary/ButtonWidget"
 import { INPUT_WIDGET_CONFIG } from "@/widgetLibrary/InputWidget"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { emptyMessage } from "./constants"
 
 export const CHAT_WIDGET_CONFIG: WidgetConfig = {
   version: 0,
@@ -76,7 +77,7 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
     leftMessageColor: "grayBlue",
     rightMessageColor: "blue",
     enableMessageSelection: "{{true}}",
-    toolbarReplay: "{{true}}",
+    toolbarReply: "{{true}}",
     toolbarDelete: "{{true}}",
     showAvatar: "{{true}}",
     showName: "{{true}}",
@@ -84,16 +85,8 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
     showFooter: "{{true}}",
     timeFormat: "YYYY-MM-DD hh:mm:ss",
     selectionType: "rightClick",
-    selectedMessage: {
-      messageId: "",
-      message: "",
-      sendTime: "",
-      replyMessageId: "",
-      senderName: "",
-      senderId: "",
-      senderAvatar: "",
-      messageType: "",
-    },
+    selectedMessage: emptyMessage,
+    replyMessage: emptyMessage,
     radius: "4px",
     borderWidth: "1px",
     shadow: "small",

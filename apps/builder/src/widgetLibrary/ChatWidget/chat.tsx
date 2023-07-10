@@ -1,8 +1,9 @@
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
-import { FC, useCallback, useEffect, useMemo } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useDispatch } from "react-redux"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { BaseChat } from "@/widgetLibrary/ChatWidget/baseChat"
+import { BaseChat } from "@/widgetLibrary/ChatWidget/components/baseChat"
+import { ReplyTo } from "@/widgetLibrary/ChatWidget/components/replyTo"
 import {
   ChatWidgetProps,
   MessageContent,
@@ -19,6 +20,7 @@ import {
 } from "@/widgetLibrary/ChatWidget/utils"
 import { RenderChildrenCanvas } from "@/widgetLibrary/PublicSector/RenderChildrenCanvas"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { emptyMessage } from "./constants"
 
 export const ChatWidget: FC<ChatWidgetProps> = (props) => {
   const {
@@ -35,11 +37,15 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
     triggerEventHandler,
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateMultiExecutionResult,
+    updateComponentRuntimeProps,
+    deleteComponentRuntimeProps,
   } = props
   const { messageListRef, containerRef, handleOnSizeChange } = useSizeChange(
     value.length,
   )
   const dispatch = useDispatch()
+  const [replyShow, setReplyShow] = useState(false)
+  const [replyMessage, setReplyMessage] = useState<MessageContent>({})
 
   const messageList = useMemo(() => {
     return formatEventOptions(mappedOption)
@@ -83,7 +89,6 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
     handleOnSizeChange()
   }, [handleOnSizeChange])
 
-
   const handleOnSelect = useCallback(
     (message: MessageContent) => {
       return new Promise((resolve) => {
@@ -102,17 +107,39 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
     },
     [displayName, handleUpdateMultiExecutionResult, triggerEventHandler],
   )
-  const handleOnReplay = useCallback(
-    (message: MessageContent) => {
-      handleOnSelect(message).then(() => {
-        triggerEventHandler("replay")
-      })
+  const handleOnReply = useCallback(
+    (message: MessageContent | undefined) => {
+      if (!message) return
+      handleOnSelect(message)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            replyMessage: message,
+          },
+        },
+      ])
+      setReplyShow(true)
+      setReplyMessage(message)
     },
-    [handleOnSelect, triggerEventHandler],
+    [displayName, handleOnSelect, handleUpdateMultiExecutionResult],
   )
 
+  const clearReplyMessage = useCallback(() => {
+    setReplyShow(false)
+    handleUpdateMultiExecutionResult([
+      {
+        displayName,
+        value: {
+          replyMessage: emptyMessage,
+        },
+      },
+    ])
+  }, [displayName, handleUpdateMultiExecutionResult])
+
   const handleOnDelete = useCallback(
-    (message: MessageContent) => {
+    (message: MessageContent | undefined) => {
+      if (!message) return
       handleOnSelect(message).then(() => {
         triggerEventHandler("delete")
       })
@@ -128,25 +155,44 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
     addOrDelLoading(receiving, value, handleUpdateValue)
   }, [handleUpdateValue, receiving, value])
 
+  useEffect(() => {
+    updateComponentRuntimeProps({
+      clearReplyMessage: clearReplyMessage,
+    })
+    return () => {
+      deleteComponentRuntimeProps()
+    }
+  }, [
+    clearReplyMessage,
+    deleteComponentRuntimeProps,
+    updateComponentRuntimeProps,
+  ])
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={chatContainerStyle(backgroundColor)} ref={containerRef}>
-        <div style={{ height: "100%" }}>
+        <div style={{ height: "100%", paddingBottom: "12px" }}>
           <BaseChat
             {...props}
             ref={messageListRef}
             value={value}
             handleOnDelete={handleOnDelete}
-            handleOnReplay={handleOnReplay}
+            handleOnReply={handleOnReply}
           />
         </div>
+        {replyShow && (
+          <ReplyTo
+            replyMessage={replyMessage}
+            clearReplyMessage={clearReplyMessage}
+          />
+        )}
         {showFooter && (
           <Resizable
             size={{
               width: "100%",
               height: footerHeight,
             }}
-            minHeight={50}
+            minHeight={55}
             maxHeight="80%"
             enable={{
               top: true,

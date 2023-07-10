@@ -11,6 +11,16 @@ export interface IMessageItem extends BaseChatProps {
   message: MessageContent
 }
 
+export interface OptionsProps
+  extends Partial<
+    Pick<
+      BaseChatProps,
+      "toolbarDelete" | "handleOnDelete" | "handleOnReply" | "toolbarReply"
+    >
+  > {
+  message: MessageContent | undefined
+}
+
 export interface MessageContent {
   messageId?: string
   message?: string
@@ -31,15 +41,15 @@ export interface BaseChatProps extends BaseWidgetProps {
   receiving?: boolean
   selectedMessage?: MessageContent
   timeFormat?: string
-  toolbarReplay?: boolean
+  toolbarReply?: boolean
   toolbarDelete?: boolean
   showAvatar?: boolean
   showName?: boolean
   showSendTime?: boolean
   showFooter?: boolean
   backgroundColor?: string
-  handleOnReplay?: (message: MessageContent) => void
-  handleOnDelete?: (message: MessageContent) => void
+  handleOnReply?: (message: MessageContent | undefined) => void
+  handleOnDelete?: (message: MessageContent | undefined) => void
 }
 
 export interface ChatWidgetProps
@@ -48,14 +58,13 @@ export interface ChatWidgetProps
   footerHeight?: number
   mappedOption?: Pluralize<MessageContent>
   columnNumber: number
+  replyMessage: MessageContent
 }
 
-export interface MessageSpecProps {
+export interface MessageSpecProps extends OptionsProps {
   content?: string
   isReply?: boolean
   isOwnMessage?: boolean
   leftMessageColor?: string
   rightMessageColor?: string
 }
-
-export const SendMessageProps = {}
