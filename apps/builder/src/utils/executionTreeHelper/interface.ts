@@ -5,10 +5,20 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 
+export interface CurrentUserInfoInTree {
+  userID: string
+  nickname: string
+  email: string
+  avatar: string
+  language: string
+  createdAt: string
+  updateAt: string
+}
+
 export interface RawTreeShape {
   [key: string]: any
-  builderInfo: BuilderInfoSeedShape
-  currentUserInfo: CurrenUserInfoSeedShape
+  builderInfo: BuilderInfo
+  currentUserInfo: CurrentUserInfoInTree
 }
 
 type ActionSeedShape = ActionItem<ActionContent>[]
@@ -22,14 +32,10 @@ interface WidgetSeedShape {
   [key: string]: WidgetShape
 }
 
-type BuilderInfoSeedShape = BuilderInfo
-
-type CurrenUserInfoSeedShape = CurrentUser
-
 export interface RawTreeSeedShape {
   widgets: WidgetSeedShape
   actions: ActionSeedShape
-  builderInfo: BuilderInfoSeedShape
-  currentUserInfo: CurrenUserInfoSeedShape
+  builderInfo: BuilderInfo
+  currentUserInfo: CurrentUser
   globalData: Record<string, unknown>
 }
