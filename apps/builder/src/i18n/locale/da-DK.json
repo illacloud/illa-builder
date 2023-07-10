@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "Standard teksten vises når komponenten er initialiseret"
         }
+      },
+      "widget": {
+        "reply": "Svar til: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Ryd valg",
         "set_filters": "Angiv filtre",
         "onFreeTimeDragOrClick": "Klik på fri tid"
-      }
+      },
+      "clearReplyMessage": "Ryd svarbesked"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "Velkommen til illa",
   "unfreeze_tips": "Frys lærredet og træk komponenter ind eller ud af beholdere. (D eller K)",
   "user": {
-    "description": "Hurtigere løsninger på interne værktøjer og dashboards",
+    "description": "Byg interne værktøjer med lyn hastighed",
     "forgot_password": {
       "actions": {
         "reset": "Reset",
@@ -2833,7 +2840,7 @@
           "google": "Tilmeld dig med Google"
         }
       },
-      "description": "Hurtigere løsninger på interne værktøjer og dashboards"
+      "description": "Byg interne værktøjer med lyn hastighed"
     },
     "left": {
       "menu": {

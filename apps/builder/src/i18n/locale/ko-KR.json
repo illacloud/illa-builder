@@ -2065,6 +2065,12 @@
         "rich_text": {
           "default_text": "The default text displayed when the component is initialized"
         }
+      },
+      "widget": {
+        "reply": "Reply to: ",
+        "reply_image": "[Image]",
+        "reply_video": "[Video]",
+        "reply_audio": "[Audio]"
       }
     },
     "page": {
@@ -2211,7 +2217,8 @@
         "clear_selection": "Clear selection",
         "set_filters": "Set filters",
         "onFreeTimeDragOrClick": "Click free time"
-      }
+      },
+      "clearReplyMessage": "Clear reply message"
     },
     "tutorial": {
       "panel": {
@@ -2360,7 +2367,7 @@
   "title": "엘라 클라우드에 오신 것을 환영합니다",
   "unfreeze_tips": "캔버스를 고정한 후 구성 요소를 컨테이너 안팎으로 드래그할 수 있습니다. (디 또는 케이)",
   "user": {
-    "description": "내부 도구 및 대시보드에서 더 빠른 솔루션",
+    "description": "Build internal tools at lightning speed",
     "forgot_password": {
       "actions": {
         "reset": "초기화",
@@ -2833,7 +2840,7 @@
           "google": "Google에 가입"
         }
       },
-      "description": "내부 도구 및 대시보드에서 더 빠른 솔루션"
+      "description": "Build internal tools at lightning speed"
     },
     "left": {
       "menu": {
