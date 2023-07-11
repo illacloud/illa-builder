@@ -78,7 +78,6 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
     widgetType,
     userList,
     isMouseOver,
-    columnNumber,
   } = props
 
   const [currentState, setCurrentState] = useState<string>("right")
@@ -130,10 +129,9 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         displayName: displayName,
         type: "component",
         clickPosition: [],
-        columnNumber,
       })
     }
-  }, [columnNumber, displayName, widgetType])
+  }, [displayName, widgetType])
 
   return (
     <div

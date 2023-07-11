@@ -5,6 +5,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store from "@/store"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { FocusManager } from "../focusManager"
 
 export function startDragMultiNodes(dragWidgetInfos: WidgetLayoutInfo[]) {
   store.dispatch(configActions.updateShowDot(true))
@@ -22,6 +23,11 @@ export function endDragMultiNodes(
   store.dispatch(executionActions.setDraggingNodeIDsReducer([]))
 
   if (isDropOnCanvas) {
+    FocusManager.switchFocus("canvas", {
+      displayName: displayNames[0],
+      type: "component",
+      clickPosition: [],
+    })
     store.dispatch(configActions.updateSelectedComponent(displayNames))
   }
 

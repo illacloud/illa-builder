@@ -1,6 +1,7 @@
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch } from "react-redux"
+import { Skeleton } from "@illa-design/react"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -230,7 +231,22 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
           type,
         )}
       >
-        <Suspense fallback={<WidgetLoading />}>
+        <Suspense
+          fallback={
+            <Skeleton
+              animation
+              text={false}
+              image={{
+                shape: "square",
+                w: "100%",
+                h: "100%",
+                mr: "0 !important",
+              }}
+              h="100%"
+              w="100%"
+            />
+          }
+        >
           <Component
             {...realProps}
             w={w}
