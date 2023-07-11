@@ -1290,7 +1290,7 @@
           "clear_button_text": "Wyczyść"
         },
         "rich_text": {
-          "default_text": "tekst"
+          "default_text": "Wpisz tekst tutaj"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID nadawcy",
         "showName": "Pokaż nazwę",
         "rich_text": {
-          "default_text": "Domyślny tekst"
+          "default_text": "Zastępca"
         },
         "senderAvatar": "Awatar nadawcy"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Domyślny tekst wyświetlany po zainicjowaniu komponentu"
+          "default_text": "Wartość będzie wyświetlana, gdy pole wejściowe jest puste."
         }
       },
       "widget": {
