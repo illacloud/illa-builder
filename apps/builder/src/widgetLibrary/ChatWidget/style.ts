@@ -238,6 +238,7 @@ export const receivingContainerStyle = css`
 export const receivingAvatarStyle = css`
   height: 32px;
   width: 32px;
+  margin-right: 16px;
   background-color: ${getColor("grayBlue", "09")};
   border-radius: 50%;
 `
