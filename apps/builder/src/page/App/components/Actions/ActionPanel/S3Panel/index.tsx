@@ -33,7 +33,7 @@ import { UploadMultiplePart } from "./UploadMultiplePart"
 import { UploadPart } from "./UploadPart"
 import { actionItemContainer, s3ContainerStyle } from "./style"
 
-export const S3Panel: FC = () => {
+const S3Panel: FC = () => {
   const { t } = useTranslation()
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     S3Action<S3ActionTypeContent>
@@ -130,3 +130,4 @@ export const S3Panel: FC = () => {
 }
 
 S3Panel.displayName = "S3Panel"
+export default S3Panel

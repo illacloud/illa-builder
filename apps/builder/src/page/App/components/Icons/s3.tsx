@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const S3Icon = createIcon({
+const S3Icon = createIcon({
   title: "S3Icon",
   viewBox: "0 0 24 24",
   path: (
@@ -46,3 +46,4 @@ export const S3Icon = createIcon({
 })
 
 S3Icon.displayName = "S3Icon"
+export default S3Icon

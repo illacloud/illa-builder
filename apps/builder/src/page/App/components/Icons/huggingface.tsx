@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const HuggingFaceIcon = createIcon({
+const HuggingFaceIcon = createIcon({
   title: "HuggingFaceIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -73,3 +73,4 @@ export const HuggingFaceIcon = createIcon({
 })
 
 HuggingFaceIcon.displayName = "HuggingFaceIcon"
+export default HuggingFaceIcon

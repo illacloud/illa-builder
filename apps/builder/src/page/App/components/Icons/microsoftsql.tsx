@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const MicrosoftSqlIcon = createIcon({
+const MicrosoftSqlIcon = createIcon({
   title: "MicrosoftSqlIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -31,5 +31,7 @@ export const MicrosoftSqlIcon = createIcon({
     </>
   ),
 })
+
+export default MicrosoftSqlIcon
 
 MicrosoftSqlIcon.displayName = "MicrosoftSqlIcon"

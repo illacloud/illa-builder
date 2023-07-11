@@ -16,7 +16,7 @@ import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { actionItemContainer } from "./style"
 
-export const GraphQLPanel: FC = () => {
+const GraphQLPanel: FC = () => {
   const { t } = useTranslation()
 
   const cachedAction = useSelector(getCachedAction) as ActionItem<GraphQLAction>
@@ -144,3 +144,4 @@ export const GraphQLPanel: FC = () => {
 }
 
 GraphQLPanel.displayName = "GraphQLPanel"
+export default GraphQLPanel

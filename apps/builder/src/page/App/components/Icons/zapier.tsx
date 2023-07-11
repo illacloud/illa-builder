@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const ZapierIcon = createIcon({
+const ZapierIcon = createIcon({
   title: "ZapierIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -21,3 +21,5 @@ export const ZapierIcon = createIcon({
 })
 
 ZapierIcon.displayName = "ZapierIcon"
+
+export default ZapierIcon

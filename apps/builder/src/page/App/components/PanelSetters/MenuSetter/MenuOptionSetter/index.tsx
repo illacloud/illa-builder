@@ -222,3 +222,4 @@ export const MenuOptionSetter: FC<MenuOptionSetterProps> = (props) => {
 }
 
 MenuOptionSetter.displayName = "MenuOptionSetter"
+export default MenuOptionSetter

@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, Suspense } from "react"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import {
   getResourceNameFromResourceType,
@@ -26,12 +26,12 @@ export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
         }
       }}
     >
-      {getIconFromResourceType(resourceType, "24px")}
+      <Suspense>{getIconFromResourceType(resourceType, "24px")}</Suspense>
       <div css={titleContainerStyle}>
         <div css={nameStyle}>
           {getResourceNameFromResourceType(resourceType)}
         </div>
-        {subTitle !== "" && <div css={subTitleStyle}>{subTitle}</div>}
+        {subTitle !== "" && <div css={subTitleStyle}>{subTitle}</div>}S
       </div>
     </div>
   )

@@ -15,7 +15,7 @@ import {
 } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 
-export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
+const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
   const {
     labelName,
     labelDesc,
@@ -140,3 +140,7 @@ export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
     </>
   )
 }
+
+BaseDynamicSelect.displayName = "BaseDynamicSelect"
+
+export default BaseDynamicSelect

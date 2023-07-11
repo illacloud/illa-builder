@@ -8,9 +8,7 @@ import { AddActionLabel } from "@/page/App/components/PanelSetters/PublicCompone
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ListBody } from "./List/body"
 
-export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
-  props,
-) => {
+const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (props) => {
   const {
     widgetType,
     value,
@@ -72,3 +70,4 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
 }
 
 EventHandlerSetter.displayName = "EventHandlerSetter"
+export default EventHandlerSetter

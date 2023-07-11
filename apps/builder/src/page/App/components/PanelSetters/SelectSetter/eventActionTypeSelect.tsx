@@ -3,10 +3,10 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { BaseSelectSetter } from "./baseSelect"
+import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
-export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
+const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
     attrName,
     parentAttrName,
@@ -57,3 +57,4 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   )
 }
 EventActionTypeSelect.displayName = "EventActionTypeSelect"
+export default EventActionTypeSelect

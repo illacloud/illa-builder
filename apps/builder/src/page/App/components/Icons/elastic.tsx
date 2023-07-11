@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const ElasticIcon = createIcon({
+const ElasticIcon = createIcon({
   title: "ElasticIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -41,3 +41,4 @@ export const ElasticIcon = createIcon({
 })
 
 ElasticIcon.displayName = "ElasticIcon"
+export default ElasticIcon

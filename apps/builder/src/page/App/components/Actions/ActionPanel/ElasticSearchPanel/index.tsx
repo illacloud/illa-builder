@@ -27,7 +27,7 @@ import {
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { actionItemContainer, esContainerStyle } from "./style"
 
-export const ElasticSearchPanel: FC = () => {
+const ElasticSearchPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const cachedAction = useSelector(
@@ -170,3 +170,4 @@ export const ElasticSearchPanel: FC = () => {
 }
 
 ElasticSearchPanel.displayName = "ElasticSearchPanel"
+export default ElasticSearchPanel

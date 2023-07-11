@@ -10,7 +10,7 @@ import {
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { AllData } from "@/widgetLibrary/IconWidget/utils"
 
-export const IconSelector: FC<IconSelectorProps> = (props) => {
+const IconSelector: FC<IconSelectorProps> = (props) => {
   const { value, widgetType, attrName } = props
   const [rightPanelData, setRightPanelData] = useState<IconDataType>({
     name: value,
@@ -69,4 +69,6 @@ export const IconSelector: FC<IconSelectorProps> = (props) => {
     </Trigger>
   )
 }
+
 IconSelector.displayName = "IconSelector"
+export default IconSelector
