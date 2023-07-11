@@ -318,16 +318,37 @@ const RenderComponentCanvasContainer: FC<
     }
   }, [collectedProps.isOver, isResizingGlobal, isRootCanvas, safeRowNumber])
 
+  const isDraggingOver =
+    scrollContainerRef.current?.dataset.isDraggingOver === "true"
+
+  const prevMaxHeight = useRef<number>(0)
+  const maxHeight = Math.max(
+    ...childWidgetLayoutInfo.map(
+      (item) => item.layoutInfo.y + item.layoutInfo.h,
+    ),
+  )
+  useEffect(() => {
+    if (
+      isDraggingOver &&
+      isFinite(maxHeight) &&
+      maxHeight > prevMaxHeight.current
+    ) {
+      prevMaxHeight.current = maxHeight
+    }
+
+    if (!isDraggingOver) {
+      prevMaxHeight.current = maxHeight
+    }
+  }, [isDraggingOver, maxHeight])
+
   useEffect(() => {
     const innerCanvasDOM = innerCanvasRef.current
     if (!innerCanvasDOM) return
     const innerCanvasDOMRect = innerCanvasDOM.getBoundingClientRect()
-    const maxHeight = Math.max(
-      ...childWidgetLayoutInfo.map(
-        (item) => item.layoutInfo.y + item.layoutInfo.h,
-      ),
-    )
 
+    if (isFinite(maxHeight) && prevMaxHeight.current > maxHeight) {
+      return
+    }
     if (canResizeCanvas) {
       if (isFinite(maxHeight)) {
         setCanvasHeight(maxHeight * UNIT_HEIGHT)
@@ -362,6 +383,7 @@ const RenderComponentCanvasContainer: FC<
     fixedBounds.height,
     isEditMode,
     isRootCanvas,
+    maxHeight,
     minHeight,
   ])
 
@@ -455,9 +477,6 @@ const RenderComponentCanvasContainer: FC<
     },
     [columnNumber, displayName, selectedComponents, unitWidth],
   )
-
-  const isDraggingOver =
-    scrollContainerRef.current?.dataset.isDraggingOver === "true"
 
   useResizingUpdateRealTime(isDraggingOver)
 
