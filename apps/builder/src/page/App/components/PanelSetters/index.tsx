@@ -229,6 +229,12 @@ const SetterTypeMapSetter = {
         "@/page/App/components/PanelSetters/SelectSetter/eventCalendarSelect"
       ),
   ),
+  DRIVE_WITH_STATUS_SWITCH_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/PanelSetters/SwitchSetter/driveWithStatusSwitch"
+      ),
+  ),
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

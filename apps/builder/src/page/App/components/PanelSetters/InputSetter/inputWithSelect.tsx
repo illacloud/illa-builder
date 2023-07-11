@@ -38,7 +38,6 @@ const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (props) => {
     labelName,
     labelDesc,
     attrName,
-    attrNames,
     handleUpdateDsl,
     value,
     options,
@@ -92,10 +91,9 @@ const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (props) => {
   }
 
   const handleOptionsItemClick = (value: string | number) => {
-    handleUpdateDsl(attrNames?.[2] || attrName, value)
+    handleUpdateDsl(attrName[2], value)
     onVisibleChange(false)
   }
-
   return (
     <div css={inputWithSelectSetterStyle}>
       <div css={labelContainerStyle}>
