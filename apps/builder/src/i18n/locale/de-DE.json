@@ -1290,7 +1290,7 @@
           "clear_button_text": "Leeren"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Text hier eingeben"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Absender-ID",
         "showName": "Name anzeigen",
         "rich_text": {
-          "default_text": "Standardtext"
+          "default_text": "Platzhalter"
         },
         "senderAvatar": "Absender-Avatar"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Der Standardtext, der angezeigt wird, wenn die Komponente initialisiert wird"
+          "default_text": "Der Wert wird angezeigt, wenn das Eingabefeld leer ist."
         }
       },
       "widget": {
