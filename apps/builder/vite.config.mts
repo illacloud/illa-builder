@@ -14,11 +14,11 @@ import pkg from "./package.json"
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "")
   const BASIC_PLUGIN = [
+    mdx(),
     react({
       jsxImportSource: "@emotion/react",
     }),
     svgr(),
-    mdx(),
     checker({
       typescript: true,
       eslint: {
