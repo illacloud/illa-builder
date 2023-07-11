@@ -14,7 +14,6 @@ import { TransformWidgetWrapperWithJsonProps } from "@/widgetLibrary/PublicSecto
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import WidgetLoading from "../WidgetLoading"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {

@@ -20,7 +20,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "turbo": "1.8.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
@@ -43,7 +44,6 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.1.1",
     "prettier": "^2.8.4",
-    "turbo": "^1.10.7",
     "typescript": "^5.0.4",
     "vite": "^4.4.2"
   },
