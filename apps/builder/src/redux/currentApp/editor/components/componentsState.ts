@@ -144,6 +144,7 @@ export interface SortComponentNodeChildrenPayload {
 export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, unknown>
+  notUseUndoRedo?: boolean
 }
 
 export interface AddContainerComponentViewsReducerPayload {
@@ -180,9 +181,8 @@ export interface UpdateTargetPagePropsPayload {
   pageName: string
   newProps: Partial<PageNodeProps>
   options?: Record<string, unknown>
+  notUseUndoRedo?: boolean
 }
-
-export interface UpdateRootNodePropsPayload {}
 
 export interface DeleteTargetPageSectionPayload {
   pageName: string

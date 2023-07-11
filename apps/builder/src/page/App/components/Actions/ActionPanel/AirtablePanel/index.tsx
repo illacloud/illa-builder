@@ -42,7 +42,7 @@ import {
 } from "@/redux/currentApp/action/airtableAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const AirtablePanel: FC = () => {
+const AirtablePanel: FC = () => {
   const { t } = useTranslation()
 
   const cachedAction = useSelector(getCachedAction) as ActionItem<
@@ -183,3 +183,4 @@ export const AirtablePanel: FC = () => {
 }
 
 AirtablePanel.displayName = "AirtablePanel"
+export default AirtablePanel

@@ -62,7 +62,7 @@ const updateActionContent = <T extends Record<string, unknown>>(
   return { ...obj, [currentKey]: updatedObj } as T
 }
 
-export const CouchDBPanel: FC = () => {
+const CouchDBPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const selectedAction = useSelector(getSelectedAction) as CouchDBPanelType
@@ -157,3 +157,4 @@ export const CouchDBPanel: FC = () => {
   )
 }
 CouchDBPanel.displayName = "CouchDBPanel"
+export default CouchDBPanel

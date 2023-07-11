@@ -2,7 +2,7 @@ import { get, isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
-import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
+import BaseDynamicSelect from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { TableDataSourceSetterProps } from "@/page/App/components/PanelSetters/TableSetter/interface"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -19,9 +19,7 @@ import {
   tansTableDataToColumns,
 } from "@/widgetLibrary/TableWidget/utils"
 
-export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
-  props,
-) => {
+const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (props) => {
   const {
     widgetDisplayName,
     labelName,
@@ -184,3 +182,4 @@ export const TableDataSourceSelectSetter: FC<TableDataSourceSetterProps> = (
 }
 
 TableDataSourceSelectSetter.displayName = "TableDataSourceSelectSetter"
+export default TableDataSourceSelectSetter

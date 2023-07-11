@@ -9,7 +9,7 @@ import {
 import { chartColorLabelStyle } from "@/page/App/components/PanelSetters/ChartSetter/style"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
-import { BaseSelectSetter } from "../SelectSetter/baseSelect"
+import BaseSelectSetter from "../SelectSetter/baseSelect"
 import { ChartColorSelectSetterProps } from "./interface"
 
 interface CHartColorLabelProps {
@@ -26,9 +26,7 @@ export const ChartColorLabel: FC<CHartColorLabelProps> = (props) => {
   )
 }
 
-export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = (
-  props,
-) => {
+const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = (props) => {
   const { widgetDisplayName } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -67,3 +65,4 @@ export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = (
 }
 
 ChartColorSelectSetter.displayName = "BaseSelect"
+export default ChartColorSelectSetter

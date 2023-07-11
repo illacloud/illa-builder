@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const RestApiIcon = createIcon({
+const RestApiIcon = createIcon({
   title: "RestApiIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -30,3 +30,4 @@ export const RestApiIcon = createIcon({
 })
 
 RestApiIcon.displayName = "RestApiIcon"
+export default RestApiIcon

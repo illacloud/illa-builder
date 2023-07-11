@@ -2,7 +2,7 @@ import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
-import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
+import BaseDynamicSelect from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { BaseDynamicSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
@@ -16,7 +16,7 @@ export interface DynamicSelectSetterProps extends BaseDynamicSelectSetterProps {
   inputAttrName?: string
 }
 
-export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
+const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
   const {
     handleUpdateDsl,
     widgetDisplayName,
@@ -128,3 +128,5 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
 }
 
 DynamicSelectSetter.displayName = "DynamicSelectSetter"
+
+export default DynamicSelectSetter

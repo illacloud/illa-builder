@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import useMeasure from "react-use-measure"
-import { ComponentParser } from "@/page/App/components/DotPanel/components/ComponentParser"
+import ComponentParser from "@/page/App/components/DotPanel/components/ComponentParser"
 import { DEFAULT_BODY_COLUMNS_NUMBER } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   getExecutionResult,

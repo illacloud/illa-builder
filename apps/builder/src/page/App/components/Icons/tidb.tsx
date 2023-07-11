@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const TidbIcon = createIcon({
+const TidbIcon = createIcon({
   title: "TidbIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -25,3 +25,4 @@ export const TidbIcon = createIcon({
 })
 
 TidbIcon.displayName = "TidbIcon"
+export default TidbIcon

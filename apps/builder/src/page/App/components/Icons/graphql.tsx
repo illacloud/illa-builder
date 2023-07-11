@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const GraphQLIcon = createIcon({
+const GraphQLIcon = createIcon({
   title: "GraphQLIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -36,3 +36,4 @@ export const GraphQLIcon = createIcon({
 })
 
 GraphQLIcon.displayName = "GraphQLIcon"
+export default GraphQLIcon

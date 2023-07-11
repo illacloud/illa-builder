@@ -15,11 +15,11 @@ import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimitedContainer"
 import { DragContainer } from "./components/DragContainer"
 import { getResizeHandler } from "./components/ResizingContainer/utils"
-import { WrapperContainer } from "./components/WrapperContainer"
+import WrapperContainer from "./components/WrapperContainer"
+import { MOVE_BAR_HEIGHT } from "./constant/moveBar"
 import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquareProps } from "./interface"
-import { MOVE_BAR_HEIGHT } from "./style"
-import { getRealShapeAndPositionNew } from "./utils/getRealShapeAndPosition"
+import { useGetRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 import { useScaleStateSelector } from "./utils/useScaleStateSelector"
 
 export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
@@ -30,7 +30,7 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
     widgetType,
     columnNumber,
   } = props
-  const { width, height } = getRealShapeAndPositionNew(displayName, unitW)
+  const { width, height } = useGetRealShapeAndPosition(displayName, unitW)
 
   const dispatch = useDispatch()
 

@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import {
@@ -9,25 +10,6 @@ import {
 import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
-import { AirtablePanel } from "@/page/App/components/Actions/ActionPanel/AirtablePanel"
-import { AppwritePanel } from "@/page/App/components/Actions/ActionPanel/AppwritePanel"
-import { CouchDBPanel } from "@/page/App/components/Actions/ActionPanel/CouchDBPanel"
-import { DynamoDBPanel } from "@/page/App/components/Actions/ActionPanel/DynamoDBPanel"
-import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
-import { FirebasePanel } from "@/page/App/components/Actions/ActionPanel/FirebasePanel"
-import { GoogleSheetsPanel } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel"
-import { GraphQLPanel } from "@/page/App/components/Actions/ActionPanel/GraphQLPanel"
-import { HuggingFaceEndpointPanel } from "@/page/App/components/Actions/ActionPanel/HuggingFaceEndpointPanel"
-import { HuggingFacePanel } from "@/page/App/components/Actions/ActionPanel/HuggingFacePanel"
-import { MicrosoftSqlPanel } from "@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel"
-import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
-import { MysqlLikePanel } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel"
-import { OracleDBPanel } from "@/page/App/components/Actions/ActionPanel/OracleDBPanel"
-import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
-import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
-import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
-import { SMTPPanel } from "@/page/App/components/Actions/ActionPanel/SMTPPanel"
-import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
 import {
   actionContentStyle,
   actionPanelContainerStyle,
@@ -38,7 +20,72 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { AdvancedPanel } from "../AdvancedPanel"
+import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
+
+const AdvancedPanel = lazy(
+  () => import("@/page/App/components/Actions/AdvancedPanel"),
+)
+
+const AirtablePanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/AirtablePanel"),
+)
+const AppwritePanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/AppwritePanel"),
+)
+const CouchDBPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/CouchDBPanel"),
+)
+const DynamoDBPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/DynamoDBPanel"),
+)
+const ElasticSearchPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"),
+)
+const FirebasePanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/FirebasePanel"),
+)
+const GoogleSheetsPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel"),
+)
+const GraphQLPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/GraphQLPanel"),
+)
+const HuggingFaceEndpointPanel = lazy(
+  () =>
+    import(
+      "@/page/App/components/Actions/ActionPanel/HuggingFaceEndpointPanel"
+    ),
+)
+const HuggingFacePanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/HuggingFacePanel"),
+)
+const MicrosoftSqlPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/MicrosoftSqlPanel"),
+)
+const MongoDbPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/MongoDbPanel"),
+)
+const MysqlLikePanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/MysqlLikePanel"),
+)
+const OracleDBPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/OracleDBPanel"),
+)
+const RedisPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/RedisPanel"),
+)
+const RestApiPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/RestApiPanel"),
+)
+const S3Panel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/S3Panel"),
+)
+const SMTPPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/SMTPPanel"),
+)
+const TransformerPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/TransformerPanel"),
+)
 
 export const ActionPanel: FC = () => {
   const cachedAction = useSelector(getCachedAction)
@@ -148,15 +195,19 @@ export const ActionPanel: FC = () => {
           activeTab={activeKey}
           handleChangeTab={handleClickChangeTab}
         />
-        {activeKey === "general" && <div css={actionContentStyle}>{panel}</div>}
-        {activeKey === "advanced" && (
-          <MixpanelTrackProvider
-            basicTrack={basicTrack}
-            pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
-          >
-            <AdvancedPanel />
-          </MixpanelTrackProvider>
-        )}
+        <Suspense fallback={<WidgetLoading />}>
+          {activeKey === "general" && (
+            <div css={actionContentStyle}>{panel}</div>
+          )}
+          {activeKey === "advanced" && (
+            <MixpanelTrackProvider
+              basicTrack={basicTrack}
+              pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.PLACEHOLDER}
+            >
+              <AdvancedPanel />
+            </MixpanelTrackProvider>
+          )}
+        </Suspense>
         <ActionResult
           key={selectedAction.actionId}
           visible={resultVisible}

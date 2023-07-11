@@ -14,7 +14,7 @@ import {
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 
-export const ColorPickerSetter: FC<any> = (props) => {
+const ColorPickerSetter: FC<any> = (props) => {
   const { attrName, handleUpdateDsl, value, widgetType } = props
   const currentColor = useRef<string>(value)
   const debounceOnChange = debounce(handleUpdateDsl, 300)
@@ -74,3 +74,5 @@ export const ColorPickerSetter: FC<any> = (props) => {
 }
 
 ColorPickerSetter.displayName = "ColorPickerSetter"
+
+export default ColorPickerSetter

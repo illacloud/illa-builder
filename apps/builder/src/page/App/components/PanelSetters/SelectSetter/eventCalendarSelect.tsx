@@ -1,8 +1,8 @@
 import { FC, useMemo } from "react"
-import { BaseSelectSetter } from "./baseSelect"
+import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
-export const EventCalendarSelect: FC<BaseSelectSetterProps> = (props) => {
+const EventCalendarSelect: FC<BaseSelectSetterProps> = (props) => {
   const { value, options, panelConfig } = props
   const finalOptions = useMemo(() => {
     if (panelConfig && panelConfig.showResource) {
@@ -26,3 +26,7 @@ export const EventCalendarSelect: FC<BaseSelectSetterProps> = (props) => {
     <BaseSelectSetter {...props} value={finalValue} options={finalOptions} />
   )
 }
+
+EventCalendarSelect.displayName = "EventCalendarSelect"
+
+export default EventCalendarSelect

@@ -1,5 +1,12 @@
 import { isEqual } from "lodash"
-import { forwardRef, useCallback, useEffect, useMemo, useState } from "react"
+import {
+  Suspense,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -244,7 +251,9 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
         >
           <div css={actionItemLeftStyle}>
             <div css={actionIconContainer}>
-              {getIconFromActionType(action.actionType, "16px")}
+              <Suspense>
+                {getIconFromActionType(action.actionType, "16px")}
+              </Suspense>
               {error && <WarningCircleIcon css={warningCircleStyle} />}
             </div>
             {!editName ? (

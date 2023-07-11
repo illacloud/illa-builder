@@ -5,10 +5,10 @@ import {
   getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import { BaseSelectSetter } from "./baseSelect"
+import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
-export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
+const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
   const { widgetDisplayName, value, widgetOrAction } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
@@ -86,3 +86,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     />
   )
 }
+
+EventTargetWidgetSelect.displayName = "EventTargetWidgetSelect"
+
+export default EventTargetWidgetSelect

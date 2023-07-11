@@ -154,6 +154,10 @@ export const generatePageConfig = (): PageNode => {
     "page",
   )
   const childrenNode = generateSectionConfig(displayName, "bodySection")
+  const modalSectionNode = generateModalSectionConfig(
+    displayName,
+    "modalSection",
+  )
   return {
     displayName: displayName,
     parentNode: "root",
@@ -169,7 +173,7 @@ export const generatePageConfig = (): PageNode => {
     z: 0,
     version: 0,
     props: defaultPageProps,
-    childrenNode: [childrenNode],
+    childrenNode: [childrenNode, modalSectionNode],
   }
 }
 
