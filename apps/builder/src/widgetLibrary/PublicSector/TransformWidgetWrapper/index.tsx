@@ -375,7 +375,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
                 shape: "square",
                 w: "100%",
                 h: "100%",
-                mr: "0",
+                mr: "0 !important",
               }}
               h="100%"
               w="100%"
