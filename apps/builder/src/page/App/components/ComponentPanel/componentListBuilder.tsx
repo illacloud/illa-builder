@@ -17,6 +17,7 @@ export const sessionTypeMapSessionNameKey = {
   COMMON: i18n.t("editor.widget_picker.sessions.commonly"),
   INPUTS: i18n.t("editor.widget_picker.sessions.inputs"),
   SELECT: i18n.t("editor.widget_picker.sessions.selects"),
+  ILLA_DRIVE: i18n.t("editor.widget_picker.sessions.drive"),
   CALENDAR: i18n.t("editor.widget_picker.sessions.calendar"),
   PRESENTATION: i18n.t("editor.widget_picker.sessions.presentation"),
   DATA: i18n.t("editor.widget_picker.sessions.data"),
@@ -29,8 +30,9 @@ const COMMONLY_WIDGET = new Set([
   "TEXT_WIDGET",
   "BUTTON_WIDGET",
   "INPUT_WIDGET",
+  // TODO: wtf 下面这个要换
   "NUMBER_INPUT_WIDGET",
-  "SELECT_WIDGET",
+  "DRIVE_PICKER_WIDGET",
   "CONTAINER_WIDGET",
   "FORM_WIDGET",
   "MODAL_WIDGET",
@@ -47,6 +49,7 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
   const sessionConfigs: TypeMapComponent = {
     COMMON: [],
     INPUTS: [],
+    ILLA_DRIVE: [],
     SELECT: [],
     CALENDAR: [],
     DATA: [],

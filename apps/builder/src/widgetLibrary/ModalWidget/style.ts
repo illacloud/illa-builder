@@ -2,8 +2,10 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const formContainerStyle = css`
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
+  height: 20px;
+  width: 50px;
   display: flex;
   flex-direction: column;
   position: relative;
