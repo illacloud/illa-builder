@@ -1290,7 +1290,7 @@
           "clear_button_text": "クリア"
         },
         "rich_text": {
-          "default_text": "テキスト"
+          "default_text": "ここにテキストを入力"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "送信者ID",
         "showName": "名前を表示",
         "rich_text": {
-          "default_text": "既定のテキスト"
+          "default_text": "プレースホルダー"
         },
         "senderAvatar": "送信者のアバター"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "コンポーネントが初期化されたときに表示される既定のテキスト"
+          "default_text": "値は入力フィールドが空の場合に表示されます。"
         }
       },
       "widget": {
