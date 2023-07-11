@@ -1290,7 +1290,7 @@
           "clear_button_text": "Ryd"
         },
         "rich_text": {
-          "default_text": "tekst"
+          "default_text": "Skriv tekst her"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Afsender ID",
         "showName": "Vis navn",
         "rich_text": {
-          "default_text": "Standard tekst"
+          "default_text": "Pladsholder"
         },
         "senderAvatar": "Afsenders avatar"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Standard teksten vises når komponenten er initialiseret"
+          "default_text": "Værdien vil blive vist når inputfeltet er tomt."
         }
       },
       "widget": {
