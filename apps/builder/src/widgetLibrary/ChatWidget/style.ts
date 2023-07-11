@@ -194,6 +194,7 @@ export const sendingStyle = css`
 `
 
 export const replyMessageStyle = css`
+  padding-bottom: 8px;
   & > div {
     max-width: 344px;
     width: 100%;
