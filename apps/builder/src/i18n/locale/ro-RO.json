@@ -1290,7 +1290,7 @@
           "clear_button_text": "Curăță"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Scrie textul aici"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID expeditor",
         "showName": "Arată numele",
         "rich_text": {
-          "default_text": "Text implicit"
+          "default_text": "Substituent"
         },
         "senderAvatar": "Avatarul expeditorului"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Textul implicit afişat atunci când componenta este iniţializată"
+          "default_text": "Valoarea va fi afișată când câmpul de intrare este gol."
         }
       },
       "widget": {
