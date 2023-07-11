@@ -1290,7 +1290,7 @@
           "clear_button_text": "Очистити"
         },
         "rich_text": {
-          "default_text": "текст"
+          "default_text": "Введіть текст тут"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID відправника",
         "showName": "Показати ім'я",
         "rich_text": {
-          "default_text": "Текст за замовчуванням"
+          "default_text": "Мітка-заповнювач"
         },
         "senderAvatar": "Аватар відправника"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Текст, що відображається по замовчуванню, коли компонент ініціалізовано"
+          "default_text": "Значення буде показано, коли поле вводу порожнє."
         }
       },
       "widget": {
