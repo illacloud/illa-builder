@@ -962,7 +962,7 @@
             "name": "Nimi",
             "oauth_callback_url": "OAuth callback URL",
             "refresh_token": "Päivitä Token",
-            "scopes": "Scopes (separated by\n a space)",
+            "scopes": "Soveltamisalueet (välilyönnillä\n erotettuina)",
             "share_oauth2_credentials_between_users": "Jaa OAuth2.0 käyttäjätunnukset käyttäjien välillä",
             "url_parameters": "Url-Parametrit",
             "use_client_credentials_auth": "Käytä asiakkaan tunnistautumistietoja",
@@ -1290,7 +1290,7 @@
           "clear_button_text": "Tyhjennä"
         },
         "rich_text": {
-          "default_text": "teksti"
+          "default_text": "Kirjoita teksti tähän"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Lähettäjän Tunnus",
         "showName": "Näytä nimi",
         "rich_text": {
-          "default_text": "Oletus teksti"
+          "default_text": "Paikkamerkki"
         },
         "senderAvatar": "Lähettäjän avatar"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Oletusteksti näytetään, kun komponentti on alustettu"
+          "default_text": "Arvo näytetään, kun syöttökenttä on tyhjä."
         }
       },
       "widget": {
