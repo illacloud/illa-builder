@@ -1290,7 +1290,7 @@
           "clear_button_text": "Rensa"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Skriv text här"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Avsändarens ID",
         "showName": "Visa namn",
         "rich_text": {
-          "default_text": "Förvald text"
+          "default_text": "Platshållare"
         },
         "senderAvatar": "Avsändarens avatar"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Standardtexten som visas när komponenten är initierad"
+          "default_text": "Värdet kommer att visas när inmatningsfältet är tomt."
         }
       },
       "widget": {
