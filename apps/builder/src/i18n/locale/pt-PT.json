@@ -1290,7 +1290,7 @@
           "clear_button_text": "Limpar"
         },
         "rich_text": {
-          "default_text": "Texto"
+          "default_text": "Digite o texto aqui"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Identificação do remetente",
         "showName": "Exibir nome",
         "rich_text": {
-          "default_text": "Texto padrão"
+          "default_text": "Espaço reservado"
         },
         "senderAvatar": "Avatar do remetente"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "O texto padrão exibido quando o componente é inicializado"
+          "default_text": "O valor será exibido quando o campo de entrada estiver vazio."
         }
       },
       "widget": {
