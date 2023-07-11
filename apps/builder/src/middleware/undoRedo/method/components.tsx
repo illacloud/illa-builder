@@ -173,7 +173,8 @@ export const componentsSnapShot = (
     }
     case "setComponentPropsReducer":
     case "updateComponentPropsReducer": {
-      const { displayName } = action.payload
+      const { displayName, notUseUndoRedo } = action.payload
+      if (notUseUndoRedo) break
       const originNode = searchDSLByDisplayName(displayName, _prevRootState)
       if (!originNode) break
       const newAction = {
@@ -318,7 +319,8 @@ export const componentsSnapShot = (
       break
     }
     case "updateTargetPagePropsReducer": {
-      const { pageName } = action.payload
+      const { pageName, notUseUndoRedo } = action.payload
+      if (notUseUndoRedo) break
       const originPage = searchDSLByDisplayName(pageName, _prevRootState)
       if (!originPage) break
       const newAction = {

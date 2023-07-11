@@ -17,7 +17,7 @@ import {
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { actionItemContainer, smtpContainerStyle } from "./style"
 
-export const SMTPPanel: FC = () => {
+const SMTPPanel: FC = () => {
   const { t } = useTranslation()
   const cachedAction = useSelector(getCachedAction) as ActionItem<SMPTAction>
   const content = cachedAction.content as SMPTAction
@@ -141,3 +141,4 @@ export const SMTPPanel: FC = () => {
 }
 
 SMTPPanel.displayName = "SMTPPanel"
+export default SMTPPanel

@@ -4,7 +4,7 @@ import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { EmptySelected } from "./empty"
 import { SelectedPanel } from "./selectedPanel"
 
-export const InspectPanel: FC = () => {
+const InspectPanel: FC = () => {
   const selectedComponentsDisplayNames = useSelector(
     getSelectedComponentDisplayNames,
   )
@@ -21,3 +21,4 @@ export const InspectPanel: FC = () => {
 }
 
 InspectPanel.displayName = "InspectPanel"
+export default InspectPanel

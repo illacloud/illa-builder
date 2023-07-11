@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, memo, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { getLargeItemShapeWithNodeScale } from "@/page/App/components/DotPanel/utils"
@@ -10,9 +10,7 @@ import {
 } from "./interface"
 import { applyMultiSelectedScaleSquareStyle } from "./style"
 
-export const MultiSelectedScaleSquare: FC<MultiSelectedScaleSquareProps> = (
-  props,
-) => {
+const MultiSelectedScaleSquare: FC<MultiSelectedScaleSquareProps> = (props) => {
   const { unitW, containerDisplayName } = props
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const widgetExecutionResult = useSelector(getExecutionWidgetLayoutInfo)
@@ -48,3 +46,7 @@ export const MultiSelectedScaleSquare: FC<MultiSelectedScaleSquareProps> = (
     />
   )
 }
+
+MultiSelectedScaleSquare.displayName = "MultiSelectedScaleSquare"
+
+export default memo(MultiSelectedScaleSquare)

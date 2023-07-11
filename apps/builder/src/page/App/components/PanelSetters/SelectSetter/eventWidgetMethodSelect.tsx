@@ -4,10 +4,10 @@ import { useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import { BaseSelectSetter } from "./baseSelect"
+import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
-export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
+const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   const { parentAttrName, value, widgetDisplayName, widgetOrAction } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
@@ -58,3 +58,4 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   )
 }
 EventWidgetMethodSelect.displayName = "EventWidgetMethodSelect"
+export default EventWidgetMethodSelect

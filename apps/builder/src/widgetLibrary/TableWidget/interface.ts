@@ -160,7 +160,6 @@ export interface TableCommonProps
       value: Record<string, any>
     }[],
   ) => void
-  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
 export interface WrappedTableProps

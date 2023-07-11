@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const MariaDbIcon = createIcon({
+const MariaDbIcon = createIcon({
   title: "MariaDbIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -12,3 +12,4 @@ export const MariaDbIcon = createIcon({
 })
 
 MariaDbIcon.displayName = "MariaDbIcon"
+export default MariaDbIcon

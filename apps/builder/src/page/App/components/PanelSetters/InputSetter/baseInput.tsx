@@ -16,7 +16,7 @@ import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 
-export const BaseInput: FC<BaseInputSetterProps> = (props) => {
+const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
     className,
     isSetterSingleRow,
@@ -128,3 +128,4 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
 }
 
 BaseInput.displayName = "BaseInput"
+export default BaseInput

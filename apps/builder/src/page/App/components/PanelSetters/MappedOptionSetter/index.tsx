@@ -1,9 +1,9 @@
 import { FC } from "react"
-import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
+import RenderFieldAndLabel from "@/page/App/components/InspectPanel/components/FieldAndLabel"
 import { MappedOptionSetterProps } from "./interface"
 import { listStyle, listWrapperStyle, optionListHeaderStyle } from "./style"
 
-export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
+const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
   const { attrName, labelName, childrenSetter, widgetDisplayName } = props
 
   return (
@@ -13,11 +13,16 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
       </div>
       <div css={listWrapperStyle}>
         {childrenSetter?.map((child) => {
-          return renderFieldAndLabel(
-            child,
-            widgetDisplayName ?? "",
-            true,
-            attrName,
+          const { id } = child
+
+          return (
+            <RenderFieldAndLabel
+              key={`${id}-${widgetDisplayName}`}
+              config={child}
+              displayName={widgetDisplayName ?? ""}
+              isInList
+              parentAttrName={attrName}
+            />
           )
         })}
       </div>
@@ -26,3 +31,4 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
 }
 
 MappedOptionSetter.displayName = "MappedOptionSetter"
+export default MappedOptionSetter

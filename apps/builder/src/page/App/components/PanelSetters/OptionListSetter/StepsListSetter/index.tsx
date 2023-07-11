@@ -1,10 +1,10 @@
 import { FC } from "react"
 import i18n from "@/i18n/config"
-import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListSetter"
+import OptionListSetter from "@/page/App/components/PanelSetters/OptionListSetter"
 import { StepsListSetterProps } from "@/page/App/components/PanelSetters/OptionListSetter/StepsListSetter/interface"
 import { emptyEmptyBodyStyle } from "@/page/App/components/PanelSetters/OptionListSetter/style"
 
-export const StepsListSetter: FC<StepsListSetterProps> = (props) => {
+const StepsListSetter: FC<StepsListSetterProps> = (props) => {
   return (
     <OptionListSetter
       headerName={i18n.t("widget.step.name")}
@@ -16,3 +16,5 @@ export const StepsListSetter: FC<StepsListSetterProps> = (props) => {
 }
 
 StepsListSetter.displayName = "StepsListSetter"
+
+export default StepsListSetter

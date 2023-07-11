@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const PostgreSqlIcon = createIcon({
+const PostgreSqlIcon = createIcon({
   title: "PostgreSqlIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -32,3 +32,4 @@ export const PostgreSqlIcon = createIcon({
 })
 
 PostgreSqlIcon.displayName = "PostgreSqlIcon"
+export default PostgreSqlIcon

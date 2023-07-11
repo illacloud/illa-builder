@@ -1,5 +1,5 @@
 import { FC, useCallback } from "react"
-import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
+import BaseSelectSetter from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { BaseSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
 import {
   generateNewButtonCellContent,
@@ -13,9 +13,7 @@ import {
 
 interface ColumnTypeSelectSetterProps extends BaseSelectSetterProps {}
 
-export const ColumnTypeSelectSetter: FC<ColumnTypeSelectSetterProps> = (
-  props,
-) => {
+const ColumnTypeSelectSetter: FC<ColumnTypeSelectSetterProps> = (props) => {
   const { parentAttrName, handleUpdateMultiAttrDSL } = props
 
   const handleUpdateDsl = useCallback(
@@ -59,3 +57,7 @@ export const ColumnTypeSelectSetter: FC<ColumnTypeSelectSetterProps> = (
     />
   )
 }
+
+ColumnTypeSelectSetter.displayName = "ColumnTypeSelectSetter"
+
+export default ColumnTypeSelectSetter

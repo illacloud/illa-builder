@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const UpstashIcon = createIcon({
+const UpstashIcon = createIcon({
   title: "UpstashIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -36,3 +36,4 @@ export const UpstashIcon = createIcon({
 })
 
 UpstashIcon.displayName = "UpstashIcon"
+export default UpstashIcon

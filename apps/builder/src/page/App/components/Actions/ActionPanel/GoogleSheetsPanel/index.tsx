@@ -48,7 +48,7 @@ const SubPanelMap: Record<GoogleSheetsActionType, any> = {
   get: GetSpreadsheetSubPanel,
 }
 
-export const GoogleSheetsPanel: FC = () => {
+const GoogleSheetsPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
@@ -151,3 +151,4 @@ export const GoogleSheetsPanel: FC = () => {
 }
 
 GoogleSheetsPanel.displayName = "GoogleSheetsPanel"
+export default GoogleSheetsPanel

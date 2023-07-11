@@ -1,8 +1,10 @@
+import { lazy } from "react"
 import i18n from "@/i18n/config"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
-import { ConfigPanel } from "@/page/App/components/ConfigPanel"
-import { PagePanel } from "@/page/App/components/PagePanel"
 import { SimpleTabsItem } from "./interface"
+
+const ConfigPanel = lazy(() => import("@/page/App/components/ConfigPanel"))
+const PagePanel = lazy(() => import("@/page/App/components/PagePanel"))
 
 export const ACTION_PANEL_TABS: SimpleTabsItem[] = [
   {

@@ -50,6 +50,7 @@ import {
 import { Shortcut } from "@/utils/shortcut"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { PageNavBar } from "./components/PageNavBar"
+import { useResize } from "./components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
 import {
   bottomPanelStyle,
   centerPanelStyle,
@@ -169,13 +170,15 @@ export const Editor: FC = () => {
     trackPageDurationEnd(ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR)
   })
 
+  const [, resizeDropRef] = useResize()
+
   const combineLoadingState =
     loadingState ||
     wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
     wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
 
   return (
-    <div css={editorContainerStyle}>
+    <div css={editorContainerStyle} ref={resizeDropRef}>
       {combineLoadingState && <AppLoading />}
       {!combineLoadingState && (
         <Shortcut>

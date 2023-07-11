@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const SnowflakeIcon = createIcon({
+const SnowflakeIcon = createIcon({
   title: "SnowflakeIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -23,3 +23,4 @@ export const SnowflakeIcon = createIcon({
 })
 
 SnowflakeIcon.displayName = "SnowflakeIcon"
+export default SnowflakeIcon

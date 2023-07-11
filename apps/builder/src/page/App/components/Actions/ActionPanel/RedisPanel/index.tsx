@@ -16,7 +16,7 @@ import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const RedisPanel: FC = () => {
+const RedisPanel: FC = () => {
   const action = useSelector(getCachedAction)!!
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
@@ -70,3 +70,5 @@ export const RedisPanel: FC = () => {
     </div>
   )
 }
+RedisPanel.displayName = "RedisPanel"
+export default RedisPanel

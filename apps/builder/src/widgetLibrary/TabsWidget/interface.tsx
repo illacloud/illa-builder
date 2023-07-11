@@ -16,7 +16,6 @@ export interface WrappedTabsProps
     updateSlice: Record<string, any>,
   ) => void
   handleOnChange?: () => void
-  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   handleUpdateMultiExecutionResult: (
     updateSlice: {
       displayName: string

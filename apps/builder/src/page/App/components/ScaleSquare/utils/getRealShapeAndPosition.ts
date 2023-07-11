@@ -1,4 +1,5 @@
 import { get } from "lodash"
+import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getExecutionWidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionSelector"
@@ -43,13 +44,12 @@ export const getRealShapeAndPosition = (
   }
 }
 
-export const getRealShapeAndPositionNew = (
+export const useGetRealShapeAndPosition = (
   displayName: string,
   unitW: number,
   displayNamePrefix?: string,
 ) => {
-  const rootState = store.getState()
-  const layoutInfos = getExecutionWidgetLayoutInfo(rootState)
+  const layoutInfos = useSelector(getExecutionWidgetLayoutInfo)
   let realDisplayName = displayName
   if (displayNamePrefix) {
     realDisplayName = realDisplayName.replace(displayNamePrefix, "")

@@ -1,5 +1,5 @@
 import { cloneDeep, get } from "lodash"
-import { FC, MouseEvent, useCallback, useContext, useMemo } from "react"
+import { FC, MouseEvent, memo, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
@@ -34,7 +34,7 @@ import { MoveBar } from "../MoveBar/moveBar"
 import { WrapperContainerProps } from "./interface"
 import { applyWrapperPendingStyle, hoverHotSpotStyle } from "./style"
 
-export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
+const WrapperContainer: FC<WrapperContainerProps> = (props) => {
   const {
     displayName,
     parentNodeDisplayName,
@@ -100,7 +100,6 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
           displayName: displayName,
           type: "component",
           clickPosition: [],
-          columnNumber,
         })
       }
       if (!isEditMode) return
@@ -164,7 +163,6 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
       dispatch(configActions.updateSelectedComponent([displayName]))
     },
     [
-      columnNumber,
       dispatch,
       displayName,
       displayNameMapDepth,
@@ -181,12 +179,11 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
         displayName: displayName,
         type: "component",
         clickPosition: [],
-        columnNumber,
       })
       e.stopPropagation()
       dispatch(configActions.updateSelectedComponent([displayName]))
     },
-    [displayName, columnNumber, dispatch],
+    [displayName, dispatch],
   )
 
   return (
@@ -263,3 +260,7 @@ export const WrapperContainer: FC<WrapperContainerProps> = (props) => {
     </Dropdown>
   )
 }
+
+WrapperContainer.displayName = "WrapperContainer"
+
+export default memo(WrapperContainer)

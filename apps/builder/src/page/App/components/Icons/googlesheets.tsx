@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const GoogleSheetIcon = createIcon({
+const GoogleSheetIcon = createIcon({
   title: "GoogleSheetIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -20,3 +20,4 @@ export const GoogleSheetIcon = createIcon({
 })
 
 GoogleSheetIcon.displayName = "GoogleSheetIcon"
+export default GoogleSheetIcon

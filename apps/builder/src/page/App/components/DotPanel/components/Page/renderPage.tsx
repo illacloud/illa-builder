@@ -31,13 +31,13 @@ import {
 } from "@/utils/action/runAction"
 import { PageLoading } from "../PageLoading/pageLoading"
 import {
+  RenderBodySection,
   RenderFooterSection,
   RenderHeaderSection,
   RenderLeftSection,
   RenderModalSection,
   RenderRightSection,
-  RenderSection,
-} from "../Section/renderSection"
+} from "../Section"
 import { RenderPageProps } from "./interface"
 import {
   applyCanvasContainerWrapperStyle,
@@ -409,8 +409,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           <RenderHeaderSection
             sectionNode={headerSection}
             topHeight={topHeight}
-            offsetTop={bounds.top}
-            mode={mode}
             footerHeight={hasFooter ? bottomHeight : 0}
             containerHeight={bounds.height}
             currentPageDisplayName={currentPageDisplayName}
@@ -424,7 +422,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             sectionNode={leftSection}
             offsetLeft={bounds.left}
             containerWidth={bounds.width}
-            mode={mode}
             leftWidth={realLeftWidth}
             rightWidth={realRightWidth}
             currentPageDisplayName={currentPageDisplayName}
@@ -437,9 +434,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           />
         )}
         {bodySection && currentPageDisplayName && (
-          <RenderSection
+          <RenderBodySection
             sectionNode={bodySection}
-            mode={mode}
             columnNumber={bodyColumns ?? DEFAULT_BODY_COLUMNS_NUMBER}
           />
         )}
@@ -448,7 +444,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
             sectionNode={rightSection}
             offsetLeft={bounds.left}
             containerWidth={bounds.width}
-            mode={mode}
             leftWidth={realLeftWidth}
             currentPageDisplayName={currentPageDisplayName}
             rightPosition={rightPosition}
@@ -464,9 +459,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           <RenderFooterSection
             sectionNode={footerSection}
             bottomHeight={bottomHeight}
-            offsetTop={bounds.top}
             containerHeight={bounds.height}
-            mode={mode}
             headerHeight={hasHeader ? topHeight : 0}
             currentPageDisplayName={currentPageDisplayName}
             leftPosition={leftPosition}

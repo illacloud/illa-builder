@@ -16,12 +16,7 @@ import {
   DRAG_EFFECT,
   DragInfo,
 } from "../ScaleSquare/components/DragContainer/interface"
-import {
-  dragPreviewStyle,
-  iconStyle,
-  itemContainerStyle,
-  nameStyle,
-} from "./style"
+import { iconStyle, itemContainerStyle, nameStyle } from "./style"
 
 export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {
@@ -30,7 +25,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
     const isEditMode = useSelector(getIsILLAEditMode)
     const isGuideOpen = useSelector(getGuideStatus)
 
-    const [, dragRef, dragPreviewRef] = useDrag<DragInfo, DropResultInfo>(
+    const [, dragRef] = useDrag<DragInfo, DropResultInfo>(
       () => ({
         type: "components",
         canDrag: () => {
@@ -82,7 +77,6 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
         ref={dragRef}
         {...(isGuideOpen ? { "data-onboarding-element": widgetType } : {})}
       >
-        <div css={dragPreviewStyle} ref={dragPreviewRef} />
         <span
           css={iconStyle}
           {...(isGuideOpen ? { "data-onboarding-icon": widgetType } : {})}

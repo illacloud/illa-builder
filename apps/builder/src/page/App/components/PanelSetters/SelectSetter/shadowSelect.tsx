@@ -11,7 +11,7 @@ import {
 } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 
-export const ShadowSelect: FC<BaseSelectSetterProps> = (props) => {
+const ShadowSelect: FC<BaseSelectSetterProps> = (props) => {
   const { options, attrName, handleUpdateDsl, value, widgetType } = props
 
   const { t } = useTranslation()
@@ -68,3 +68,7 @@ export const ShadowSelect: FC<BaseSelectSetterProps> = (props) => {
     </div>
   )
 }
+
+ShadowSelect.displayName = "ShadowSelect"
+
+export default ShadowSelect

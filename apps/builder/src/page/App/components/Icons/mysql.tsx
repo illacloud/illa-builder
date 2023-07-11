@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const MySqlIcon = createIcon({
+const MySqlIcon = createIcon({
   title: "MySqlIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -19,3 +19,4 @@ export const MySqlIcon = createIcon({
 })
 
 MySqlIcon.displayName = "MySqlIcon"
+export default MySqlIcon
