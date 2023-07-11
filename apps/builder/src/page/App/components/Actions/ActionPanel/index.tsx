@@ -20,6 +20,7 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
 
 const AdvancedPanel = lazy(
   () => import("@/page/App/components/Actions/AdvancedPanel"),
@@ -194,7 +195,7 @@ export const ActionPanel: FC = () => {
           activeTab={activeKey}
           handleChangeTab={handleClickChangeTab}
         />
-        <Suspense>
+        <Suspense fallback={<WidgetLoading />}>
           {activeKey === "general" && (
             <div css={actionContentStyle}>{panel}</div>
           )}

@@ -14,6 +14,7 @@ import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import WidgetLoading from "@/widgetLibrary/PublicSector/WidgetLoading"
 
 export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   props,
@@ -79,7 +80,9 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
         activeKey={activeKey}
         handleClickChangeTab={handleClickChangeTab}
       />
-      <Suspense>{getRenderBody(activeKey, COMPONENT_MANAGER_TABS)}</Suspense>
+      <Suspense fallback={<WidgetLoading />}>
+        {getRenderBody(activeKey, COMPONENT_MANAGER_TABS)}
+      </Suspense>
     </div>
   )
 }
