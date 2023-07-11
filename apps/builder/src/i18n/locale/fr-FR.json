@@ -1290,7 +1290,7 @@
           "clear_button_text": "Réinitialiser"
         },
         "rich_text": {
-          "default_text": "texte"
+          "default_text": "Tapez du texte ici"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID de l'expéditeur",
         "showName": "Afficher le nom",
         "rich_text": {
-          "default_text": "Texte par défaut"
+          "default_text": "Placeholder"
         },
         "senderAvatar": "Avatar de l'expéditeur"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Le texte par défaut affiché lors de l'initialisation du composant"
+          "default_text": "La valeur sera affichée lorsque le champ de saisie est vide."
         }
       },
       "widget": {
