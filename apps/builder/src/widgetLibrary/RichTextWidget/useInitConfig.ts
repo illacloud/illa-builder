@@ -31,6 +31,7 @@ export const useInitConfig = (
     if (!editorRef.current) {
       const editorInstance = new EditorJS({
         holder: "editor-container",
+        placeholder: defaultText,
         tools: {
           header: {
             class: Header,
@@ -71,17 +72,6 @@ export const useInitConfig = (
             inlineToolbar: true,
           },
           embed: Embed,
-        },
-        data: {
-          blocks: [
-            {
-              type: "paragraph",
-              data: {
-                text: defaultText,
-                level: 1,
-              },
-            },
-          ],
         },
         onChange: async (_) => {
           const blocks = await _.saver.save()
