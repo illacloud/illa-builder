@@ -1,5 +1,5 @@
 import { CellContext, ColumnDef } from "@tanstack/react-table"
-import { FC, useEffect, useMemo } from "react"
+import { FC, Suspense, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue } from "react-router-dom"
@@ -131,7 +131,7 @@ export const ResourcesContentBody: FC = () => {
           const type = props.row.original.resourceType
           return (
             <Space size="8px" alignItems="center" direction="horizontal">
-              {getIconFromResourceType(type, "24px")}
+              <Suspense> {getIconFromResourceType(type, "24px")}</Suspense>
               <span css={[applyTableTextStyle(true), resourceNameStyle]}>
                 {props.getValue()}
               </span>

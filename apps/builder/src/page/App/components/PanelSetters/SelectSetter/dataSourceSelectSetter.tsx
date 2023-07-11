@@ -3,14 +3,14 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
-import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
+import BaseDynamicSelect from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const DataSourceSetter: FC<ChartDataSourceSetterProps> = (props) => {
+const DataSourceSetter: FC<ChartDataSourceSetterProps> = (props) => {
   const { handleUpdateDsl, widgetDisplayName, labelName, labelDesc } = props
   const actions = useSelector(getActionList)
   const isError = useSelector<RootState, boolean>((state) => {
@@ -100,3 +100,4 @@ export const DataSourceSetter: FC<ChartDataSourceSetterProps> = (props) => {
 }
 
 DataSourceSetter.displayName = "DataSourceSetter"
+export default DataSourceSetter

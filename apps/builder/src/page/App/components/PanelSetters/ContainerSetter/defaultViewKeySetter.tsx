@@ -3,13 +3,13 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 import { ContainerDefaultViewKeySetterProps } from "@/page/App/components/PanelSetters/ContainerSetter/interface"
-import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
+import BaseInput from "@/page/App/components/PanelSetters/InputSetter/baseInput"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 
-export const ContainerDefaultViewKeySetter: FC<
-  ContainerDefaultViewKeySetterProps
-> = (props) => {
+const ContainerDefaultViewKeySetter: FC<ContainerDefaultViewKeySetterProps> = (
+  props,
+) => {
   const {
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
@@ -64,3 +64,4 @@ export const ContainerDefaultViewKeySetter: FC<
 }
 
 ContainerDefaultViewKeySetter.displayName = "ContainerDefaultViewKeySetter"
+export default ContainerDefaultViewKeySetter

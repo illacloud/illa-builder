@@ -37,7 +37,7 @@ const ConfigTypeOptions = [
 
 type MSSQLActionType = MicrosoftSqlAction<MicrosoftSqlActionType>
 
-export const MicrosoftSqlPanel: FC = () => {
+const MicrosoftSqlPanel: FC = () => {
   const { t } = useTranslation()
   const cachedAction = useSelector(
     getCachedAction,
@@ -130,3 +130,4 @@ export const MicrosoftSqlPanel: FC = () => {
   )
 }
 MicrosoftSqlPanel.displayName = "MicrosoftSqlPanel"
+export default MicrosoftSqlPanel

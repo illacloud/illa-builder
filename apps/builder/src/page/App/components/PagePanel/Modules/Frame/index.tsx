@@ -89,8 +89,6 @@ export const PageFrame: FC = () => {
     layout,
     leftWidth,
     rightWidth,
-    topHeight,
-    bottomHeight,
     isLeftFixed,
     isRightFixed,
     isFooterFixed,
@@ -355,70 +353,6 @@ export const PageFrame: FC = () => {
       dispatch,
       finalLeftWidth,
       leftWidth,
-    ],
-  )
-
-  const handleUpdateHeaderPanelWidth = useCallback(
-    (value?: number) => {
-      if (!currentPageDisplayName || !value) return
-      let finalValue = value
-      if (canvasSize === "fixed") {
-      } else {
-        if (canvasShape.canvasHeight - value - bottomHeight < BODY_MIN_HEIGHT) {
-          finalValue = canvasShape.canvasHeight - bottomHeight - BODY_MIN_HEIGHT
-        }
-        if (value < HEADER_MIN_HEIGHT) {
-          finalValue = HEADER_MIN_HEIGHT
-        }
-      }
-
-      dispatch(
-        componentsActions.updateTargetPagePropsReducer({
-          pageName: currentPageDisplayName,
-          newProps: {
-            topHeight: finalValue,
-          },
-        }),
-      )
-    },
-    [
-      bottomHeight,
-      canvasShape.canvasHeight,
-      canvasSize,
-      currentPageDisplayName,
-      dispatch,
-    ],
-  )
-
-  const handleUpdateFooterPanelWidth = useCallback(
-    (value?: number) => {
-      if (!currentPageDisplayName || !value) return
-      let finalValue = value
-      if (canvasSize === "fixed") {
-      } else {
-        if (canvasShape.canvasHeight - value - topHeight < BODY_MIN_HEIGHT) {
-          finalValue = canvasShape.canvasHeight - topHeight - BODY_MIN_HEIGHT
-        }
-        if (value < FOOTER_MIN_HEIGHT) {
-          finalValue = FOOTER_MIN_HEIGHT
-        }
-      }
-
-      dispatch(
-        componentsActions.updateTargetPagePropsReducer({
-          pageName: currentPageDisplayName,
-          newProps: {
-            bottomHeight: finalValue,
-          },
-        }),
-      )
-    },
-    [
-      canvasShape.canvasHeight,
-      canvasSize,
-      currentPageDisplayName,
-      dispatch,
-      topHeight,
     ],
   )
 
@@ -791,32 +725,6 @@ export const PageFrame: FC = () => {
             }}
           />
         </LeftAndRightLayout>
-        {hasHeader && (
-          <>
-            <LeftAndRightLayout>
-              <PageLabel
-                labelName={`${t("editor.page.label_name.height")}(px)`}
-                size="small"
-              />
-              <SetterPadding>
-                <InputNumber
-                  w="96px"
-                  value={topHeight}
-                  colorScheme="techPurple"
-                  onChange={handleUpdateHeaderPanelWidth}
-                  step={1}
-                  onBlur={(e) => {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-                      element: "panel_height",
-                      parameter2: "header",
-                      parameter3: e.target.value,
-                    })
-                  }}
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
-          </>
-        )}
       </div>
       <PanelDivider hasMargin={false} />
       <div css={groupWrapperStyle}>
@@ -846,32 +754,6 @@ export const PageFrame: FC = () => {
             }}
           />
         </LeftAndRightLayout>
-        {hasFooter && (
-          <>
-            <LeftAndRightLayout>
-              <PageLabel
-                labelName={`${t("editor.page.label_name.height")}(px)`}
-                size="small"
-              />
-              <SetterPadding>
-                <InputNumber
-                  w="96px"
-                  value={bottomHeight}
-                  colorScheme="techPurple"
-                  onChange={handleUpdateFooterPanelWidth}
-                  step={1}
-                  onBlur={(e) => {
-                    trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.BLUR, {
-                      element: "panel_height",
-                      parameter2: "footer",
-                      parameter3: e.target.value,
-                    })
-                  }}
-                />
-              </SetterPadding>
-            </LeftAndRightLayout>
-          </>
-        )}
       </div>
     </PanelBar>
   )

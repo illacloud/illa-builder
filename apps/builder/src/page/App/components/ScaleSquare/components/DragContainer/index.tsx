@@ -19,7 +19,7 @@ import store from "@/store"
 import { endDragMultiNodes, startDragMultiNodes } from "@/utils/drag/drag"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { DRAG_EFFECT, DragContainerProps, DragInfo } from "./interface"
-import { dragContainerStyle, dragPreviewStyle } from "./style"
+import { dragContainerStyle } from "./style"
 
 export const DragContainer: FC<DragContainerProps> = (props) => {
   const {
@@ -33,7 +33,7 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
   const isResizingStateInGlobal = useSelector(getIsResizing)
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
 
-  const [, dragRef, dragPreviewRef] = useDrag<DragInfo, DropResultInfo>(
+  const [, dragRef] = useDrag<DragInfo, DropResultInfo>(
     () => ({
       type: "components",
       canDrag: isEditMode && canDrag && !isResizingStateInGlobal,
@@ -83,13 +83,13 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
       displayName,
       unitWidth,
       columnNumber,
+      canDrag,
     ],
   )
 
   return (
     <div css={dragContainerStyle} ref={dragRef}>
       {children}
-      <div ref={dragPreviewRef} css={dragPreviewStyle} />
     </div>
   )
 }

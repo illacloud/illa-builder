@@ -35,7 +35,7 @@ const AppwriteSubComponentMap = {
   list: ListDocumentsSubPanel,
 }
 
-export const AppwritePanel: FC = () => {
+const AppwritePanel: FC = () => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     AppwriteAction<AppwriteActionTypes>
   >
@@ -127,3 +127,4 @@ export const AppwritePanel: FC = () => {
   )
 }
 AppwritePanel.displayName = "AppwritePanel"
+export default AppwritePanel

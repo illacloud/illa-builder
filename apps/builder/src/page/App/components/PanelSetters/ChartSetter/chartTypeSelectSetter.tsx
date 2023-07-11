@@ -14,7 +14,7 @@ import {
   chartTypeStringCss,
   chatOptionContainerStyle,
 } from "@/page/App/components/PanelSetters/ChartSetter/style"
-import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
+import BaseSelectSetter from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import {
   getCanvas,
   searchDsl,
@@ -69,9 +69,7 @@ const typeOptions = [
   },
 ]
 
-export const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (
-  props,
-) => {
+const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (props) => {
   const { widgetDisplayName, handleUpdateMultiAttrDSL } = props
 
   const insertValues = useSelector<RootState, Record<string, any>>(
@@ -136,3 +134,6 @@ export const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (
     />
   )
 }
+
+ChartTypeSelectSetter.displayName = "ChartTypeSelectSetter"
+export default ChartTypeSelectSetter

@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const SmtpIcon = createIcon({
+const SmtpIcon = createIcon({
   title: "SmtpIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -16,3 +16,4 @@ export const SmtpIcon = createIcon({
 })
 
 SmtpIcon.displayName = "SmtpIcon"
+export default SmtpIcon

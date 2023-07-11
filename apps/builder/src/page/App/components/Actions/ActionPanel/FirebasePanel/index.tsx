@@ -47,7 +47,7 @@ import {
 } from "@/redux/currentApp/action/firebaseAction"
 import { actionContainerStyle, actionItemContainer } from "./style"
 
-export const FirebasePanel: FC = () => {
+const FirebasePanel: FC = () => {
   const { t } = useTranslation()
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     FirebaseAction<FirebaseContentType>
@@ -195,3 +195,4 @@ export const FirebasePanel: FC = () => {
 }
 
 FirebasePanel.displayName = "FirebasePanel"
+export default FirebasePanel

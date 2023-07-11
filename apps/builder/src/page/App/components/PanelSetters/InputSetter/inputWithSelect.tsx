@@ -33,9 +33,7 @@ import {
 } from "@/page/App/components/PanelSetters/InputSetter/util"
 import { getContainerListDisplayNameMappedChildrenNodeDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 
-export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
-  props,
-) => {
+const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (props) => {
   const {
     labelName,
     labelDesc,
@@ -181,3 +179,4 @@ export const InputWithSelectSetter: FC<InputWithSelectSetterProps> = (
   )
 }
 InputWithSelectSetter.displayName = "InputWithSelectSetter"
+export default InputWithSelectSetter

@@ -4,24 +4,6 @@ import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
 
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 
-export const MOVE_BAR_HEIGHT = 18
-
-export function getStateColor(scaleSquareType: ScaleSquareType): string {
-  let stateColor: string
-  switch (scaleSquareType) {
-    case "error":
-      stateColor = globalColor(`--${illaPrefix}-red-03`)
-      break
-    case "normal":
-      stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
-      break
-    default:
-      stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
-      break
-  }
-  return stateColor
-}
-
 export function getSelectedColor(selected: boolean): string {
   return selected ? globalColor(`--${illaPrefix}-techPurple-01`) : "transparent"
 }
@@ -93,10 +75,6 @@ export function applySquarePointerStyle(
     }
   `
 }
-
-export const warningStyle = css`
-  margin-left: 4px;
-`
 
 export const applyBarPointerShapeStyle = (barPosition: BarPosition) => {
   let barPositionStyle: SerializedStyles
@@ -181,45 +159,6 @@ export function applyBarPointerStyle(
       background-color: ${isLimitedMode
         ? getColor("techPink", "01")
         : getColor("techPurple", "01")};
-    }
-  `
-}
-
-export function applyBorderStyle(
-  selected: boolean,
-  scaleSquareState: ScaleSquareType,
-): SerializedStyles {
-  if (scaleSquareState === "production") {
-    return css`
-      width: calc(100%);
-      height: calc(100%);
-      position: absolute;
-    `
-  }
-
-  return css`
-    width: calc(100%);
-    height: calc(100%);
-    position: absolute;
-    cursor: move;
-    border: 1px solid ${getSelectedColor(selected)};
-    background-color: ${scaleSquareState === "error" && !selected
-      ? globalColor(`--${illaPrefix}-red-07`)
-      : "transparent"};
-
-    &:hover {
-      border-color: ${selected
-        ? globalColor(`--${illaPrefix}-techPurple-01`)
-        : getStateColor(scaleSquareState)};
-      background-color: transparent;
-
-      .handler {
-        visibility: visible;
-      }
-    }
-
-    &:active {
-      border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
     }
   `
 }
@@ -404,28 +343,4 @@ export const applyXDirectionDashedLineStyle = (
   border-right: ${isShowCanvasDot && !isSelected && !isDragging
     ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
     : "none"};
-`
-
-export const docIconStyle = css`
-  height: 100%;
-  margin-left: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-export const docTipsWrapperStyle = css`
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
-  color: ${getColor("grayBlue", "02")};
-  word-break: break-all;
-`
-
-export const hoverHotspotStyle = css`
-  width: 100%;
-  height: 100%;
 `

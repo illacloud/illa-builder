@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, memo, useMemo } from "react"
 import { useSelector } from "react-redux"
 import {
   getIsILLAEditMode,
@@ -8,11 +8,11 @@ import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWi
 import { AutoHeightWithLimitedContainer } from "./components/AutoHeightWithLimitedContainer"
 import { DragContainer } from "./components/DragContainer"
 import { ResizingContainer } from "./components/ResizingContainer"
-import { WrapperContainer } from "./components/WrapperContainer"
+import WrapperContainer from "./components/WrapperContainer"
 import { ScaleSquareProps } from "./interface"
-import { getRealShapeAndPositionNew } from "./utils/getRealShapeAndPosition"
+import { useGetRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 
-export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
+const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const {
     unitW,
     displayName,
@@ -20,7 +20,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     widgetType,
     columnNumber,
   } = props
-  const { width, height, left, top } = getRealShapeAndPositionNew(
+  const { width, height, left, top } = useGetRealShapeAndPosition(
     displayName,
     unitW,
   )
@@ -78,5 +78,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     </ResizingContainer>
   )
 }
+
+export default memo(ScaleSquare)
 
 ScaleSquare.displayName = "NewScaleSquare"

@@ -40,6 +40,7 @@ import { getGuideStatus } from "@/redux/guide/guideSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
+import { useResize } from "../App/components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
 
 const GuideApp: FC = () => {
   const teamInfo = useSelector(getCurrentTeamInfo)
@@ -78,9 +79,10 @@ const GuideApp: FC = () => {
   // init app
   const { loadingState } = useInitGuideApp()
   const isOpen = useSelector(getGuideStatus)
+  const [, resizeDropRef] = useResize()
 
   return (
-    <div css={editorContainerStyle}>
+    <div css={editorContainerStyle} ref={resizeDropRef}>
       {loadingState && <AppLoading />}
       {!loadingState && (
         <Shortcut>

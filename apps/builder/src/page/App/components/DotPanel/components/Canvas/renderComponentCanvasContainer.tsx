@@ -1,6 +1,7 @@
 import {
   FC,
   MouseEventHandler,
+  memo,
   useCallback,
   useEffect,
   useRef,
@@ -13,12 +14,12 @@ import { useScroll } from "react-use"
 import useMeasure from "react-use-measure"
 import { useMessage } from "@illa-design/react"
 import { getMousePointerPosition } from "@/page/App/components/DotPanel/calc"
-import { ComponentParser } from "@/page/App/components/DotPanel/components/ComponentParser"
+import ComponentParser from "@/page/App/components/DotPanel/components/ComponentParser"
 import DragPreview from "@/page/App/components/DotPanel/components/DragPreview"
 import { DragShadowPreview } from "@/page/App/components/DotPanel/components/DragShadowPreview"
 import { MousePreview } from "@/page/App/components/DotPanel/components/MousePreview"
 import { MultiSelectCanvas } from "@/page/App/components/DotPanel/components/MultiSelectCanvas"
-import { MultiSelectedScaleSquare } from "@/page/App/components/DotPanel/components/MultiSelectedContainer"
+import MultiSelectedScaleSquare from "@/page/App/components/DotPanel/components/MultiSelectedContainer"
 import {
   ADD_ROWS,
   DEFAULT_BODY_COLUMNS_NUMBER,
@@ -38,6 +39,7 @@ import {
   DRAG_EFFECT,
   DragInfo,
 } from "@/page/App/components/ScaleSquare/components/DragContainer/interface"
+import { useResizingUpdateRealTime } from "@/page/App/components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"
 import {
   getIsILLAEditMode,
   getIsLikeProductMode,
@@ -54,6 +56,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { newGenerateComponentNode } from "@/utils/generators/generateComponentNode"
+import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { useAutoUpdateCanvasHeight } from "@/widgetLibrary/PublicSector/utils/autoUpdateHeight"
 import {
   DropCollectedProps,
@@ -69,7 +72,7 @@ import {
   selectoSelectionStyle,
 } from "./style"
 
-export const RenderComponentCanvasContainer: FC<
+const RenderComponentCanvasContainer: FC<
   RenderComponentCanvasContainerProps
 > = (props) => {
   const {
@@ -79,6 +82,7 @@ export const RenderComponentCanvasContainer: FC<
     containerPadding,
     canResizeCanvas = false,
     safeRowNumber = SAFE_ROWS,
+    minHeight,
     handleUpdateHeight,
   } = props
 
@@ -107,7 +111,6 @@ export const RenderComponentCanvasContainer: FC<
     (item) => item.parentNode === displayName,
   )
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
-
   const dispatch = useDispatch()
   const isDraggingGlobal = useSelector(getIsDragging)
   const isResizingGlobal = useSelector(getIsResizing)
@@ -127,21 +130,6 @@ export const RenderComponentCanvasContainer: FC<
       accept: ["components"],
       canDrop: () => {
         return isEditMode
-      },
-      hover: (dragItem, monitor) => {
-        if (dragItem.dropResult) {
-          if (!dragItem.dropResult || !dragItem.dropResult.shape) return
-          const { shape } = dragItem.dropResult
-
-          const bottom = (shape.y + shape.previewH) * UNIT_HEIGHT
-          const mouseOffset = monitor.getClientOffset() ?? {
-            x: 0,
-            y: 0,
-          }
-          if (isRootCanvas && mouseOffset.y > fixedBounds.height - 100) {
-            setCanvasHeight(bottom + 5 * ADD_ROWS)
-          }
-        }
       },
       drop: (dropItem, monitor) => {
         const didDrop = monitor.didDrop()
@@ -274,9 +262,11 @@ export const RenderComponentCanvasContainer: FC<
           isDropOnCanvas: true,
         }
       },
-      collect: (monitor) => ({
-        isOver: monitor.isOver({ shallow: true }),
-      }),
+      collect: (monitor) => {
+        return {
+          isOver: monitor.isOver({ shallow: true }),
+        }
+      },
     }),
     [isEditMode, unitWidth, fixedBounds, scrollContainerScrollTop],
   )
@@ -295,7 +285,14 @@ export const RenderComponentCanvasContainer: FC<
     const scrollContainer = scrollContainerRef.current
     if (!scrollContainer) return
     const autoScroll = (e: MouseEvent) => {
-      if (!collectedProps.isOver || !scrollContainer || !isRootCanvas) return
+      if (
+        (!collectedProps.isOver &&
+          scrollContainer.dataset.isDraggingOver !== "true") ||
+        !scrollContainer ||
+        !isRootCanvas
+      ) {
+        return
+      }
       const { top, bottom } = scrollContainer.getBoundingClientRect()
       const { clientY } = e
       window.clearInterval(autoScrollTimeID.current)
@@ -319,49 +316,75 @@ export const RenderComponentCanvasContainer: FC<
       }
       window.clearInterval(autoScrollTimeID.current)
     }
-  }, [collectedProps.isOver, isRootCanvas, safeRowNumber])
+  }, [collectedProps.isOver, isResizingGlobal, isRootCanvas, safeRowNumber])
+
+  const isDraggingOver =
+    scrollContainerRef.current?.dataset.isDraggingOver === "true"
+
+  const prevMaxHeight = useRef<number>(0)
+  const maxHeight = Math.max(
+    ...childWidgetLayoutInfo.map(
+      (item) => item.layoutInfo.y + item.layoutInfo.h,
+    ),
+  )
+  useEffect(() => {
+    if (
+      isDraggingOver &&
+      isFinite(maxHeight) &&
+      maxHeight > prevMaxHeight.current
+    ) {
+      prevMaxHeight.current = maxHeight
+    }
+
+    if (!isDraggingOver) {
+      prevMaxHeight.current = maxHeight
+    }
+  }, [isDraggingOver, maxHeight])
 
   useEffect(() => {
-    if (collectedProps.isOver) return
-    const maxHeight = Math.max(
-      ...childWidgetLayoutInfo.map(
-        (item) => item.layoutInfo.y + item.layoutInfo.h,
-      ),
-    )
+    const innerCanvasDOM = innerCanvasRef.current
+    if (!innerCanvasDOM) return
+    const innerCanvasDOMRect = innerCanvasDOM.getBoundingClientRect()
 
+    if (isFinite(maxHeight) && prevMaxHeight.current > maxHeight) {
+      return
+    }
     if (canResizeCanvas) {
-      setCanvasHeight(
-        maxHeight * UNIT_HEIGHT < 15 * UNIT_HEIGHT
-          ? 15 * UNIT_HEIGHT
-          : maxHeight * UNIT_HEIGHT,
-      )
+      if (isFinite(maxHeight)) {
+        setCanvasHeight(maxHeight * UNIT_HEIGHT)
+      } else {
+        setCanvasHeight(minHeight as number)
+      }
+      return
+    }
 
+    if (maxHeight * UNIT_HEIGHT < fixedBounds.height) {
+      setCanvasHeight(fixedBounds.height)
       return
     }
 
     if (
-      maxHeight * UNIT_HEIGHT >
-      fixedBounds.height - safeRowNumber * UNIT_HEIGHT
+      maxHeight * UNIT_HEIGHT >=
+      innerCanvasDOMRect.height - UNIT_HEIGHT * ADD_ROWS
     ) {
       if (isEditMode && isRootCanvas) {
-        setCanvasHeight(maxHeight * UNIT_HEIGHT + ADD_ROWS * UNIT_HEIGHT)
+        setCanvasHeight(maxHeight * UNIT_HEIGHT + UNIT_HEIGHT * ADD_ROWS)
       } else {
         setCanvasHeight(maxHeight * UNIT_HEIGHT)
       }
-    } else {
-      setCanvasHeight(fixedBounds.height)
+      return
     }
+
+    setCanvasHeight(maxHeight * UNIT_HEIGHT)
   }, [
     canResizeCanvas,
     childWidgetLayoutInfo,
-    collectedProps.isOver,
-    containerPadding,
+    displayName,
     fixedBounds.height,
-    handleUpdateHeight,
     isEditMode,
-    isResizingGlobal,
     isRootCanvas,
-    safeRowNumber,
+    maxHeight,
+    minHeight,
   ])
 
   useEffect(() => {
@@ -428,14 +451,6 @@ export const RenderComponentCanvasContainer: FC<
             maxRightBottomX - leftTopX,
             maxRightBottomY - leftTopY,
           ],
-          columnNumber,
-        })
-      } else if (selectedComponents.length === 1) {
-        FocusManager.switchFocus("canvas", {
-          displayName: selectedComponents[0],
-          type: "component",
-          clickPosition: [],
-          columnNumber,
         })
       } else {
         FocusManager.switchFocus("canvas", {
@@ -448,34 +463,45 @@ export const RenderComponentCanvasContainer: FC<
             UNIT_HEIGHT,
             columnNumber,
           ),
-          columnNumber,
         })
       }
     },
     [columnNumber, displayName, selectedComponents, unitWidth],
   )
 
+  useResizingUpdateRealTime(isDraggingOver)
+
   return (
     <div
       css={outerComponentCanvasContainerStyle(containerPadding)}
       ref={canvasRef}
     >
-      <div css={componentCanvasContainerStyle} ref={scrollContainerRef}>
+      <div
+        css={componentCanvasContainerStyle}
+        ref={scrollContainerRef}
+        data-scroll-container={displayName}
+        data-column-number={columnNumber}
+        data-unit-width={unitWidth}
+        data-is-dragging-over={false}
+      >
         <div
           ref={(node) => {
             dropRef(node)
             innerCanvasRef.current = node
           }}
-          data-candropCanvas={displayName}
           css={dropZoneStyle(canvasHeight)}
+          onClick={handleClickOnCanvas}
         >
           <div
             css={[
               applyComponentCanvasStyle(unitWidth, canShowDot),
               selectoSelectionStyle,
             ]}
-            data-isroot={isRootCanvas}
             onClick={handleClickOnCanvas}
+            data-isroot={isRootCanvas}
+            data-canvas-container={displayName}
+            data-column-number={columnNumber}
+            data-unit-width={unitWidth}
           >
             <DragShadowPreview
               unitW={unitWidth}
@@ -483,17 +509,21 @@ export const RenderComponentCanvasContainer: FC<
               columns={columnNumber}
             />
             <MousePreview unitW={unitWidth} displayName={displayName} />
-            {currentLayoutInfo?.childrenNode?.map((childName) => {
-              return (
-                <ComponentParser
-                  key={`${displayName}-${childName}}`}
-                  displayName={childName}
-                  unitW={unitWidth}
-                  parentNodeDisplayName={displayName}
-                  columnNumber={columnNumber}
-                />
-              )
-            })}
+            {currentLayoutInfo?.childrenNode?.length > 0 ? (
+              currentLayoutInfo?.childrenNode?.map((childName) => {
+                return (
+                  <ComponentParser
+                    key={`${displayName}-${childName}}`}
+                    displayName={childName}
+                    unitW={unitWidth}
+                    parentNodeDisplayName={displayName}
+                    columnNumber={columnNumber}
+                  />
+                )
+              })
+            ) : isRootCanvas ? null : (
+              <ContainerEmptyState isInner />
+            )}
             {collectedProps.isOver && (
               <DragPreview
                 containerLeft={fixedBounds.left}
@@ -523,3 +553,6 @@ export const RenderComponentCanvasContainer: FC<
     </div>
   )
 }
+
+RenderComponentCanvasContainer.displayName = "RenderComponentCanvasContainer"
+export default memo(RenderComponentCanvasContainer)

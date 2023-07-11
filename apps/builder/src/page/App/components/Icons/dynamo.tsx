@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const DynamoIcon = createIcon({
+const DynamoIcon = createIcon({
   title: "DynamoIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -27,3 +27,4 @@ export const DynamoIcon = createIcon({
 })
 
 DynamoIcon.displayName = "DynamoIcon"
+export default DynamoIcon

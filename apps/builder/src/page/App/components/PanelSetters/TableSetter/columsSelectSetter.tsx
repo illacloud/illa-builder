@@ -1,13 +1,13 @@
 import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
+import BaseSelectSetter from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { ColumnsSelectSetterProps, SelectOptions } from "./interface"
 
-export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
+const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
   const {
     widgetDisplayName,
     attrName,
@@ -72,3 +72,5 @@ export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
 }
 
 ColumnsSelectSetter.displayName = "ColumnsSelectSetter"
+
+export default ColumnsSelectSetter

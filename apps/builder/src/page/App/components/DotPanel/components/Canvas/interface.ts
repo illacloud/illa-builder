@@ -6,6 +6,7 @@ export interface RenderComponentCanvasContainerProps {
   canResizeCanvas?: boolean
   safeRowNumber?: number
   handleUpdateHeight?: (height: number) => void
+  minHeight?: number
 }
 
 export interface DropCollectedProps {

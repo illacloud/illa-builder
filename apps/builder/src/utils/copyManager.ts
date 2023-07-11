@@ -99,8 +99,6 @@ export class CopyManager {
         break
       case "data_component":
         if (this.currentCopyComponentNodes != null) {
-          const clickPosition = FocusManager.getClickPosition()
-
           const originCopyComponents = this.currentCopyComponentNodes
             .filter((node) => {
               return node.parentNode && searchDSLByDisplayName(node.parentNode)
@@ -114,11 +112,13 @@ export class CopyManager {
                 node.y + node.h,
               )
             })
-
+          const columnNumber = getCurrentSectionColumnNumberByChildDisplayName(
+            originCopyComponents[0].displayName,
+          )
           doPaste(
             originCopyComponents,
             this.copiedColumnNumber,
-            clickPosition?.columnNumber,
+            columnNumber,
             sources,
           )
         }
@@ -140,6 +140,10 @@ export class CopyManager {
                   clickPosition.displayName,
                 )
                 if (targetNode && targetNode.parentNode) {
+                  const columnNumber =
+                    getCurrentSectionColumnNumberByChildDisplayName(
+                      targetNode.displayName,
+                    )
                   const targetParentNode = searchDSLByDisplayName(
                     targetNode.parentNode,
                   )
@@ -164,7 +168,7 @@ export class CopyManager {
                     doPaste(
                       originCopyComponents,
                       this.copiedColumnNumber,
-                      clickPosition?.columnNumber,
+                      columnNumber,
                       sources,
                     )
                   }
@@ -185,6 +189,10 @@ export class CopyManager {
                   clickPosition.displayName,
                 )
                 if (containerNode) {
+                  const columnNumber =
+                    getCurrentSectionColumnNumberByChildDisplayName(
+                      containerNode.displayName,
+                    )
                   let leftTopX = Number.MAX_SAFE_INTEGER
                   let leftTopY = Number.MAX_SAFE_INTEGER
 
@@ -206,7 +214,7 @@ export class CopyManager {
                   doPaste(
                     originCopyComponents,
                     this.copiedColumnNumber,
-                    clickPosition?.columnNumber,
+                    columnNumber,
                     sources,
                   )
                 } else {
@@ -220,6 +228,10 @@ export class CopyManager {
                   clickPosition.displayName,
                 )
                 if (targetParentNode) {
+                  const columnNumber =
+                    getCurrentSectionColumnNumberByChildDisplayName(
+                      targetParentNode.displayName,
+                    )
                   let leftTopX = Number.MAX_SAFE_INTEGER
                   let leftTopY = Number.MAX_SAFE_INTEGER
                   this.currentCopyComponentNodes.forEach((node) => {
@@ -243,7 +255,7 @@ export class CopyManager {
                   doPaste(
                     originCopyComponents,
                     this.copiedColumnNumber,
-                    clickPosition?.columnNumber,
+                    columnNumber,
                     sources,
                   )
                 }

@@ -5,7 +5,7 @@ import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseSelectSetterProps } from "./interface"
 
-export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
+const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   const {
     isSetterSingleRow,
     options,
@@ -54,3 +54,5 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
 }
 
 BaseSelectSetter.displayName = "BaseSelect"
+
+export default BaseSelectSetter

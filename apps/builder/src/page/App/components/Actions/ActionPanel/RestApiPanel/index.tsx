@@ -60,7 +60,7 @@ const getMethod = (actionType: ActionType) => {
   }
 }
 
-export const RestApiPanel: FC = () => {
+const RestApiPanel: FC = () => {
   const { t } = useTranslation()
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     RestApiAction<BodyContent>
@@ -366,3 +366,4 @@ export const RestApiPanel: FC = () => {
 }
 
 RestApiPanel.displayName = "RestApiPanel"
+export default RestApiPanel

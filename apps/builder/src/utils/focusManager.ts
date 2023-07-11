@@ -13,7 +13,6 @@ export interface ClickPosition {
   displayName: string
   type: "inner_container" | "component" | "group"
   clickPosition: number[]
-  columnNumber: number
 }
 
 export class FocusManager {

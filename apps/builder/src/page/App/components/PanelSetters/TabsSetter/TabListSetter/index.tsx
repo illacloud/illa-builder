@@ -10,60 +10,59 @@ import { ListBody } from "./listBody"
 import { setterPublicWrapper, viewSetterWrapperStyle } from "./style"
 import { generateNewViewItem } from "./utils/generateNewOptions"
 
-export const TabListSetter: FC<ViewSetterProps> = memo(
-  (props: ViewSetterProps) => {
-    const {
-      value,
-      handleUpdateDsl,
-      attrName,
-      widgetDisplayName,
-      childrenSetter,
-      handleUpdateMultiAttrDSL,
-    } = props
-    const { t } = useTranslation()
-    const executionResult = useSelector(getExecutionResult)
+const TabListSetter: FC<ViewSetterProps> = memo((props: ViewSetterProps) => {
+  const {
+    value,
+    handleUpdateDsl,
+    attrName,
+    widgetDisplayName,
+    childrenSetter,
+    handleUpdateMultiAttrDSL,
+  } = props
+  const { t } = useTranslation()
+  const executionResult = useSelector(getExecutionResult)
 
-    const allViews = useMemo(() => {
-      return get(
-        executionResult,
-        `${widgetDisplayName}.${attrName}`,
-        [],
-      ) as ViewItemShape[]
-    }, [attrName, executionResult, widgetDisplayName])
+  const allViews = useMemo(() => {
+    return get(
+      executionResult,
+      `${widgetDisplayName}.${attrName}`,
+      [],
+    ) as ViewItemShape[]
+  }, [attrName, executionResult, widgetDisplayName])
 
-    const allViewsKeys = useMemo(() => {
-      return allViews.map((view) => view.key)
-    }, [allViews])
+  const allViewsKeys = useMemo(() => {
+    return allViews.map((view) => view.key)
+  }, [allViews])
 
-    const handleAddViewItem = useCallback(() => {
-      const newItem = generateNewViewItem(allViewsKeys)
-      handleUpdateMultiAttrDSL?.({
-        [attrName]: [...value, newItem],
-      })
-    }, [allViewsKeys, handleUpdateMultiAttrDSL, attrName, value])
+  const handleAddViewItem = useCallback(() => {
+    const newItem = generateNewViewItem(allViewsKeys)
+    handleUpdateMultiAttrDSL?.({
+      [attrName]: [...value, newItem],
+    })
+  }, [allViewsKeys, handleUpdateMultiAttrDSL, attrName, value])
 
-    return (
-      <TabListSetterProvider
-        list={value}
-        childrenSetter={childrenSetter || []}
-        handleUpdateDsl={handleUpdateDsl}
-        widgetDisplayName={widgetDisplayName}
-        attrPath={attrName}
-        handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
-      >
-        <div css={setterPublicWrapper}>
-          <div css={viewSetterWrapperStyle}>
-            <Header
-              labelName={t("editor.inspect.setter_content.tabs_setter.tabs")}
-              addAction={handleAddViewItem}
-              hasAddAction
-            />
-            <ListBody />
-          </div>
+  return (
+    <TabListSetterProvider
+      list={value}
+      childrenSetter={childrenSetter || []}
+      handleUpdateDsl={handleUpdateDsl}
+      widgetDisplayName={widgetDisplayName}
+      attrPath={attrName}
+      handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+    >
+      <div css={setterPublicWrapper}>
+        <div css={viewSetterWrapperStyle}>
+          <Header
+            labelName={t("editor.inspect.setter_content.tabs_setter.tabs")}
+            addAction={handleAddViewItem}
+            hasAddAction
+          />
+          <ListBody />
         </div>
-      </TabListSetterProvider>
-    )
-  },
-)
+      </div>
+    </TabListSetterProvider>
+  )
+})
 
 TabListSetter.displayName = "TabListSetter"
+export default TabListSetter

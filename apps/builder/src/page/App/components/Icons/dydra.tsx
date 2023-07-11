@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const HydraIcon = createIcon({
+const HydraIcon = createIcon({
   title: "HydraIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -12,3 +12,4 @@ export const HydraIcon = createIcon({
 })
 
 HydraIcon.displayName = "HydraIcon"
+export default HydraIcon

@@ -8,10 +8,10 @@ import {
 import { PageNode } from "@/redux/currentApp/editor/components/componentsState"
 import { RootState } from "@/store"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
-import { BaseSelectSetter } from "./baseSelect"
+import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
-export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
+const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
   const { attrName, value, componentNode, widgetOrAction, panelConfig } = props
 
   let parentAttrNameArray = toPath(attrName)
@@ -69,3 +69,7 @@ export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
     />
   )
 }
+
+EventTargetViewSelect.displayName = "EventTargetViewSelect"
+
+export default EventTargetViewSelect

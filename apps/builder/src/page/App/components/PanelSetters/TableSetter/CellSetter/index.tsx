@@ -15,7 +15,7 @@ import {
   generateNewIconCellContent,
 } from "./utils/generateNewColumns"
 
-export const CellSetter: FC<CellSetterProps> = (props) => {
+const CellSetter: FC<CellSetterProps> = (props) => {
   const {
     attrName,
     handleUpdateDsl,
@@ -70,3 +70,5 @@ export const CellSetter: FC<CellSetterProps> = (props) => {
 }
 
 CellSetter.displayName = "CellSetter"
+
+export default CellSetter
