@@ -26,7 +26,7 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
           w: 28,
           h: 5,
           x: 0,
-          y: 0,
+          y: 1,
           defaults: {
             ...INPUT_WIDGET_CONFIG.defaults,
             labelHidden: true,
@@ -39,7 +39,7 @@ export const CHAT_WIDGET_CONFIG: WidgetConfig = {
           w: 3,
           h: 5,
           x: 29,
-          y: 0,
+          y: 1,
           defaults: {
             ...BUTTON_WIDGET_CONFIG.defaults,
             text: "Send",
