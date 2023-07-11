@@ -1290,7 +1290,7 @@
           "clear_button_text": "Pulisci"
         },
         "rich_text": {
-          "default_text": "testo"
+          "default_text": "Digita il testo qui"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Id Mittente",
         "showName": "Mostra nome",
         "rich_text": {
-          "default_text": "Testo predefinito"
+          "default_text": "Segnaposto"
         },
         "senderAvatar": "Avatar mittente"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Il testo predefinito visualizzato quando il componente è inizializzato"
+          "default_text": "Il valore verrà mostrato quando il campo di input è vuoto."
         }
       },
       "widget": {
