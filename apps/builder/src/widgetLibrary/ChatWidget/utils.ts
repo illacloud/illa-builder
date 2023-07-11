@@ -62,14 +62,13 @@ export const addOrDelLoading = (
   receiving: boolean,
   messageList: MessageContent[],
   updateLoading: (messageList: MessageContent[]) => void,
+  handleOnSizeChange: () => void,
 ) => {
   if (!messageList.length) return
-  const loadingIndex = messageList.findIndex((item) => item.loading === true)
-  if (receiving && loadingIndex === -1) {
+  if (receiving) {
     updateLoading([...messageList, { loading: true }])
-  } else if (!receiving && loadingIndex !== -1) {
-    const messageListCopy = [...messageList]
-    messageListCopy.splice(loadingIndex, 1)
-    updateLoading(messageListCopy)
+  } else {
+    updateLoading(messageList)
+    handleOnSizeChange()
   }
 }

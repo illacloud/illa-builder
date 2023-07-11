@@ -232,7 +232,7 @@ export const replyTextStyle = css`
 export const receivingContainerStyle = css`
   display: flex;
   flex-direction: row;
-  padding: 16px 40px 0;
+  padding: 16px 40px 8px;
 `
 
 export const receivingAvatarStyle = css`

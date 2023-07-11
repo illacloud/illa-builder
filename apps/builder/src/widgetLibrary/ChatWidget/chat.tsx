@@ -1,6 +1,7 @@
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useDispatch } from "react-redux"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { BaseChat } from "@/widgetLibrary/ChatWidget/components/baseChat"
 import { ReplyTo } from "@/widgetLibrary/ChatWidget/components/replyTo"
@@ -152,8 +153,13 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
   }, [handleUpdateValue, messageList])
 
   useEffect(() => {
-    addOrDelLoading(receiving, value, handleUpdateValue)
-  }, [handleUpdateValue, receiving, value])
+    addOrDelLoading(
+      receiving,
+      messageList,
+      handleUpdateValue,
+      handleOnSizeChange,
+    )
+  }, [handleUpdateValue, receiving, messageList, handleOnSizeChange])
 
   useEffect(() => {
     updateComponentRuntimeProps({
@@ -171,7 +177,7 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={chatContainerStyle(backgroundColor)} ref={containerRef}>
-        <div style={{ height: "100%", paddingBottom: "12px" }}>
+        <div style={{ height: "100%" }}>
           <BaseChat
             {...props}
             ref={messageListRef}
@@ -192,7 +198,7 @@ export const ChatWidget: FC<ChatWidgetProps> = (props) => {
               width: "100%",
               height: footerHeight,
             }}
-            minHeight={55}
+            minHeight={8 * UNIT_HEIGHT}
             maxHeight="80%"
             enable={{
               top: true,
