@@ -1290,7 +1290,7 @@
           "clear_button_text": "Vyčistit"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Zde napište text"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID odesílatele",
         "showName": "Zobrazit název",
         "rich_text": {
-          "default_text": "Výchozí text"
+          "default_text": "Zástupný symbol"
         },
         "senderAvatar": "Avatar odesílatele"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Výchozí text zobrazený při inicializaci komponenty"
+          "default_text": "Hodnota bude zobrazena, když je vstupní pole prázdné."
         }
       },
       "widget": {
