@@ -1290,7 +1290,7 @@
           "clear_button_text": "Verwijderen"
         },
         "rich_text": {
-          "default_text": "Tekst"
+          "default_text": "Typ de tekst hier"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Afzender ID",
         "showName": "Toon naam",
         "rich_text": {
-          "default_text": "Standaard tekst"
+          "default_text": "Plaatsaanduiding"
         },
         "senderAvatar": "Afzender avatar"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "De standaardtekst die wordt weergegeven wanneer het component wordt geïnitialiseerd"
+          "default_text": "De waarde wordt getoond wanneer het invoerveld leeg is."
         }
       },
       "widget": {
