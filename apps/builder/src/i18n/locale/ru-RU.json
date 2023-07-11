@@ -1290,7 +1290,7 @@
           "clear_button_text": "Очистить"
         },
         "rich_text": {
-          "default_text": "текст"
+          "default_text": "Введите текст здесь"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID отправителя",
         "showName": "Показать имя",
         "rich_text": {
-          "default_text": "Текст по умолчанию"
+          "default_text": "Заполнитель"
         },
         "senderAvatar": "Аватар отправителя"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Текст по умолчанию, отображаемый при инициализации компонента"
+          "default_text": "Значение будет показано, когда поле ввода пустое."
         }
       },
       "widget": {
