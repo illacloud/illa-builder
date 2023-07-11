@@ -4,7 +4,7 @@ import { AdvancedOptionSetting } from "./Model/AdvancedOption"
 import { TimingSetting } from "./Model/Timing"
 import { advancedPanelStyle } from "./style"
 
-export const AdvancedPanel: FC = () => {
+const AdvancedPanel: FC = () => {
   return (
     <div css={advancedPanelStyle}>
       <AdvancedPanelSpace />
@@ -14,3 +14,6 @@ export const AdvancedPanel: FC = () => {
     </div>
   )
 }
+
+AdvancedPanel.displayName = "ActionAdvancedPanel"
+export default AdvancedPanel

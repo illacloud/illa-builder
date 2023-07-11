@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const MongoDbIcon = createIcon({
+const MongoDbIcon = createIcon({
   title: "MongoDbIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -26,3 +26,4 @@ export const MongoDbIcon = createIcon({
 })
 
 MongoDbIcon.displayName = "MongoDbIcon"
+export default MongoDbIcon

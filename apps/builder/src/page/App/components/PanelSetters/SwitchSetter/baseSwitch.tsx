@@ -5,7 +5,7 @@ import { dynamicWidthStyle } from "@/page/App/components/PanelSetters/style"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseSwitchProps } from "./interface"
 
-export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
+const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
   const { value, attrName, handleUpdateDsl, widgetType } = props
 
   return (
@@ -27,3 +27,5 @@ export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
 }
 
 BaseSwitchSetter.displayName = "BaseSwitchSetter"
+
+export default BaseSwitchSetter

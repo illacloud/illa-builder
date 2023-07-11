@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const OracleDBIcon = createIcon({
+const OracleDBIcon = createIcon({
   title: "OracleDBIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -21,3 +21,4 @@ export const OracleDBIcon = createIcon({
 })
 
 OracleDBIcon.displayName = "OracleDBIcon"
+export default OracleDBIcon

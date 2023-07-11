@@ -8,7 +8,7 @@ import {
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseRadioGroupProps } from "./interface"
 
-export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
+const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
   const {
     value,
     options,
@@ -42,3 +42,5 @@ export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
 }
 
 BaseRadioGroupSetter.displayName = "BaseRadioGroupSetter"
+
+export default BaseRadioGroupSetter

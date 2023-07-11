@@ -37,7 +37,7 @@ import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const MysqlLikePanel: FC = () => {
+const MysqlLikePanel: FC = () => {
   const currentAction = useSelector(getCachedAction)!!
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
   const dispatch = useDispatch()
@@ -247,3 +247,4 @@ export const MysqlLikePanel: FC = () => {
 }
 
 MysqlLikePanel.displayName = "MysqlPanel"
+export default MysqlLikePanel

@@ -10,7 +10,7 @@ import { trackInEditor } from "@/utils/mixpanelHelper"
 
 const valueWithMeasureRegex = /^\d+(\.\d+)?(px|vh|vw|%|em|rem|cm|mm|in|pt|pc)$/
 
-export const EditableInputWithMeasureSetter: FC<EditableInputSetterProps> = (
+const EditableInputWithMeasureSetter: FC<EditableInputSetterProps> = (
   props,
 ) => {
   const { value, handleUpdateDsl, attrName, icon, widgetType } = props
@@ -59,3 +59,7 @@ export const EditableInputWithMeasureSetter: FC<EditableInputSetterProps> = (
     </div>
   )
 }
+
+EditableInputWithMeasureSetter.displayName = "EditableInputWithMeasureSetter"
+
+export default EditableInputWithMeasureSetter

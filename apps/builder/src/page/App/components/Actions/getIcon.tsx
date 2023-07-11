@@ -1,38 +1,53 @@
-import { ReactElement } from "react"
-import { AirtableIcon } from "@/page/App/components/Icons/airtable"
-import { AppwriteIcon } from "@/page/App/components/Icons/appwrite"
-import { ClickhouseIcon } from "@/page/App/components/Icons/clickhouse"
-import { CouchDBIcon } from "@/page/App/components/Icons/couchdb"
-import { HydraIcon } from "@/page/App/components/Icons/dydra"
-import { DynamoIcon } from "@/page/App/components/Icons/dynamo"
-import { ElasticIcon } from "@/page/App/components/Icons/elastic"
-import { FirebaseIcon } from "@/page/App/components/Icons/firebase"
-import { GoogleSheetIcon } from "@/page/App/components/Icons/googlesheets"
-import { GraphQLIcon } from "@/page/App/components/Icons/graphql"
-import { HuggingFaceIcon } from "@/page/App/components/Icons/huggingface"
-import { MariaDbIcon } from "@/page/App/components/Icons/mariadb"
-import { MicrosoftSqlIcon } from "@/page/App/components/Icons/microsoftsql"
-import { MongoDbIcon } from "@/page/App/components/Icons/mongodb"
-import { MySqlIcon } from "@/page/App/components/Icons/mysql"
-import { NeonIcon } from "@/page/App/components/Icons/neon"
-import { OracleDBIcon } from "@/page/App/components/Icons/oracle"
-import { PostgreSqlIcon } from "@/page/App/components/Icons/postgresql"
-import { RedisIcon } from "@/page/App/components/Icons/redis"
-import { RestApiIcon } from "@/page/App/components/Icons/restapi"
-import { S3Icon } from "@/page/App/components/Icons/s3"
-import { SmtpIcon } from "@/page/App/components/Icons/smtp"
-import { SnowflakeIcon } from "@/page/App/components/Icons/snowflake"
-import { SupabaseIcon } from "@/page/App/components/Icons/supabase"
-import { TidbIcon } from "@/page/App/components/Icons/tidb"
-import { TransformerIcon } from "@/page/App/components/Icons/transformer"
-import { UpstashIcon } from "@/page/App/components/Icons/upstash"
+import { ReactNode, lazy } from "react"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ResourceType } from "@/redux/resource/resourceState"
+
+const SupabaseIcon = lazy(() => import("@/page/App/components/Icons/supabase"))
+const GraphQLIcon = lazy(() => import("@/page/App/components/Icons/graphql"))
+const ElasticIcon = lazy(() => import("@/page/App/components/Icons/elastic"))
+const DynamoIcon = lazy(() => import("@/page/App/components/Icons/dynamo"))
+const SnowflakeIcon = lazy(
+  () => import("@/page/App/components/Icons/snowflake"),
+)
+const SmtpIcon = lazy(() => import("@/page/App/components/Icons/smtp"))
+const GoogleSheetIcon = lazy(
+  () => import("@/page/App/components/Icons/googlesheets"),
+)
+const HuggingFaceIcon = lazy(
+  () => import("@/page/App/components/Icons/huggingface"),
+)
+const MariaDbIcon = lazy(() => import("@/page/App/components/Icons/mariadb"))
+const TidbIcon = lazy(() => import("@/page/App/components/Icons/tidb"))
+const NeonIcon = lazy(() => import("@/page/App/components/Icons/neon"))
+const S3Icon = lazy(() => import("@/page/App/components/Icons/s3"))
+const MySqlIcon = lazy(() => import("@/page/App/components/Icons/mysql"))
+const MicrosoftSqlIcon = lazy(
+  () => import("@/page/App/components/Icons/microsoftsql"),
+)
+const RestApiIcon = lazy(() => import("@/page/App/components/Icons/restapi"))
+const MongoDbIcon = lazy(() => import("@/page/App/components/Icons/mongodb"))
+const RedisIcon = lazy(() => import("@/page/App/components/Icons/redis"))
+const UpstashIcon = lazy(() => import("@/page/App/components/Icons/upstash"))
+const HydraIcon = lazy(() => import("@/page/App/components/Icons/dydra"))
+const PostgreSqlIcon = lazy(
+  () => import("@/page/App/components/Icons/postgresql"),
+)
+const FirebaseIcon = lazy(() => import("@/page/App/components/Icons/firebase"))
+const ClickhouseIcon = lazy(
+  () => import("@/page/App/components/Icons/clickhouse"),
+)
+const CouchDBIcon = lazy(() => import("@/page/App/components/Icons/couchdb"))
+const OracleDBIcon = lazy(() => import("@/page/App/components/Icons/oracle"))
+const AppwriteIcon = lazy(() => import("@/page/App/components/Icons/appwrite"))
+const AirtableIcon = lazy(() => import("@/page/App/components/Icons/airtable"))
+const TransformerIcon = lazy(
+  () => import("@/page/App/components/Icons/transformer"),
+)
 
 export function getIconFromResourceType(
   type: ResourceType,
   size: string,
-): ReactElement | null {
+): ReactNode | null {
   switch (type) {
     case "supabasedb":
       return <SupabaseIcon size={size} />
@@ -94,7 +109,7 @@ export function getIconFromResourceType(
 export function getIconFromActionType(
   type: ActionType,
   size: string,
-): ReactElement | null {
+): ReactNode | null {
   switch (type) {
     case "graphql":
       return <GraphQLIcon size={size} />

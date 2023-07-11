@@ -346,7 +346,11 @@ const RenderComponentCanvasContainer: FC<
       maxHeight * UNIT_HEIGHT >=
       innerCanvasDOMRect.height - UNIT_HEIGHT * ADD_ROWS
     ) {
-      setCanvasHeight(maxHeight * UNIT_HEIGHT + UNIT_HEIGHT * ADD_ROWS)
+      if (isEditMode && isRootCanvas) {
+        setCanvasHeight(maxHeight * UNIT_HEIGHT + UNIT_HEIGHT * ADD_ROWS)
+      } else {
+        setCanvasHeight(maxHeight * UNIT_HEIGHT)
+      }
       return
     }
 
@@ -356,6 +360,8 @@ const RenderComponentCanvasContainer: FC<
     childWidgetLayoutInfo,
     displayName,
     fixedBounds.height,
+    isEditMode,
+    isRootCanvas,
     minHeight,
   ])
 
@@ -505,7 +511,7 @@ const RenderComponentCanvasContainer: FC<
                 )
               })
             ) : isRootCanvas ? null : (
-              <ContainerEmptyState />
+              <ContainerEmptyState isInner />
             )}
             {collectedProps.isOver && (
               <DragPreview

@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, Suspense } from "react"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import {
   subTitleStyle,
@@ -25,7 +25,7 @@ export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
         }
       }}
     >
-      {getIconFromActionType(actionType, "24px")}
+      <Suspense> {getIconFromActionType(actionType, "24px")}</Suspense>
       <div css={titleContainerStyle}>
         <div css={nameStyle}>{getActionNameFromActionType(actionType)}</div>
         {subTitle !== "" && <div css={subTitleStyle}>{subTitle}</div>}

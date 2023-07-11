@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const AirtableIcon = createIcon({
+const AirtableIcon = createIcon({
   title: "AirtableIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -27,3 +27,4 @@ export const AirtableIcon = createIcon({
 })
 
 AirtableIcon.displayName = "AirtableIcon"
+export default AirtableIcon

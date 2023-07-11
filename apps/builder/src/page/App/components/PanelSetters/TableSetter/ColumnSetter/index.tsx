@@ -13,7 +13,7 @@ import {
 } from "./style"
 import { generateNewColumnItem } from "./utils/generateNewColumns"
 
-export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
+const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   const {
     attrName,
     handleUpdateDsl,
@@ -64,3 +64,5 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
 }
 
 ColumnSetter.displayName = "ColumnSetter"
+
+export default ColumnSetter

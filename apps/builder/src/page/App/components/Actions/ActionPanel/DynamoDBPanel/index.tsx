@@ -43,7 +43,7 @@ const DynamoActionMap = {
   deleteItem: DeleteItemPanel,
 }
 
-export const DynamoDBPanel: FC = () => {
+const DynamoDBPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const selectedAction = useSelector(getSelectedAction) as ActionItem<
@@ -169,3 +169,4 @@ export const DynamoDBPanel: FC = () => {
   )
 }
 DynamoDBPanel.displayName = "DynamoDBPanel"
+export default DynamoDBPanel

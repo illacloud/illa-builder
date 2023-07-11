@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const CouchDBIcon = createIcon({
+const CouchDBIcon = createIcon({
   title: "CouchDBIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -22,3 +22,4 @@ export const CouchDBIcon = createIcon({
 })
 
 CouchDBIcon.displayName = "CouchDBIcon"
+export default CouchDBIcon

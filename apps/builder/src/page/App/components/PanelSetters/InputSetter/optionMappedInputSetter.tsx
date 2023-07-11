@@ -3,10 +3,10 @@ import {
   getNeedComputedValue,
   realInputValue,
 } from "@/utils/InspectHelper/selectWidgetHelper"
-import { BaseInput } from "./baseInput"
+import BaseInput from "./baseInput"
 import { BaseInputSetterProps } from "./interface"
 
-export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
+const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
   const { handleUpdateDsl, value, widgetDisplayName } = props
 
   const handleValueChange = useCallback(
@@ -35,3 +35,4 @@ export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
 }
 
 OptionMappedInputSetter.displayName = "OptionMappedInputSetter"
+export default OptionMappedInputSetter

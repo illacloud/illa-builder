@@ -7,8 +7,9 @@ import {
 import { UNIT_HEIGHT } from "../../page/App/components/DotPanel/constant/canvas"
 
 export const ContainerEmptyState: FC<{
+  isInner?: boolean
   handleUpdateHeight?: (height: number) => void
-}> = ({ handleUpdateHeight }) => {
+}> = ({ handleUpdateHeight, isInner }) => {
   const { t } = useTranslation()
   useEffect(() => {
     if (handleUpdateHeight) {
@@ -16,7 +17,7 @@ export const ContainerEmptyState: FC<{
     }
   }, [handleUpdateHeight])
   return (
-    <div css={applyEmptyStateWrapperStyle}>
+    <div css={applyEmptyStateWrapperStyle(isInner)}>
       <span css={emptyStateStyle}>{t("widget.container.empty")}</span>
     </div>
   )
