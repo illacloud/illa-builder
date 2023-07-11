@@ -452,12 +452,6 @@ const RenderComponentCanvasContainer: FC<
             maxRightBottomY - leftTopY,
           ],
         })
-      } else if (selectedComponents.length === 1) {
-        FocusManager.switchFocus("canvas", {
-          displayName: selectedComponents[0],
-          type: "component",
-          clickPosition: [],
-        })
       } else {
         FocusManager.switchFocus("canvas", {
           displayName: displayName,
@@ -496,6 +490,7 @@ const RenderComponentCanvasContainer: FC<
             innerCanvasRef.current = node
           }}
           css={dropZoneStyle(canvasHeight)}
+          onClick={handleClickOnCanvas}
         >
           <div
             css={[
