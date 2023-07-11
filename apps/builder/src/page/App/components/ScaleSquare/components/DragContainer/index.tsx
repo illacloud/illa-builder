@@ -5,7 +5,10 @@ import { useSelector } from "react-redux"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { DropResultInfo } from "@/page/App/components/DotPanel/components/Canvas/interface"
 import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
-import { sendShadowMessageHandler } from "@/page/App/components/DotPanel/utils/sendBinaryMessage"
+import {
+  sendMousePositionHandler,
+  sendShadowMessageHandler,
+} from "@/page/App/components/DotPanel/utils/sendBinaryMessage"
 import {
   getIsILLAEditMode,
   getSelectedComponentDisplayNames,
@@ -28,6 +31,7 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
     canDrag = true,
     columnNumber,
     unitWidth,
+    parentNodeDisplayName,
   } = props
   const isEditMode = useSelector(getIsILLAEditMode)
   const isResizingStateInGlobal = useSelector(getIsResizing)
@@ -67,6 +71,7 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
             node.displayName === displayName,
         )
         startDragMultiNodes(draggedSelectedComponents)
+        sendMousePositionHandler(parentNodeDisplayName, 0, 0, 0, 0, true)
         return {
           draggedComponents: draggedSelectedComponents,
           dragEffect: DRAG_EFFECT.UPDATE,
@@ -84,6 +89,7 @@ export const DragContainer: FC<DragContainerProps> = (props) => {
       unitWidth,
       columnNumber,
       canDrag,
+      parentNodeDisplayName,
     ],
   )
 

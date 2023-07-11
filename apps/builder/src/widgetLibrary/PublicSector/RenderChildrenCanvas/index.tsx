@@ -38,7 +38,7 @@ export const RenderChildrenCanvas: FC<IRenderChildrenCanvasProps> = (props) => {
       handleUpdateHeight={handleUpdateHeight}
       canResizeCanvas={canResizeCanvas}
       safeRowNumber={canResizeCanvas ? 0 : SAFE_ROWS}
-      minHeight={canResizeCanvas ? 15 * UNIT_HEIGHT : undefined}
+      minHeight={canResizeCanvas ? 13 * UNIT_HEIGHT : undefined}
     />
   )
 }
