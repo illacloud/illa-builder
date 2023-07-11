@@ -53,18 +53,18 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
     })
   }, [displayName, selectedComponents])
 
-  return (
-    <PositionContainer x={widgetLeft} y={widgetTop} displayName={displayName}>
-      <InnerResizingContainer
-        width={widgetWidth}
-        height={widgetHeight}
-        minWidth={DEFAULT_MIN_COLUMN * unitW}
-        minHeight={
-          (currentWidgetLayoutInfo?.layoutInfo.minH ?? 3) * UNIT_HEIGHT
-        }
-        displayName={displayName}
-      >
-        {!isResizingWithOthers && (
+  return !isResizingWithOthers ? (
+    <>
+      <PositionContainer x={widgetLeft} y={widgetTop} displayName={displayName}>
+        <InnerResizingContainer
+          width={widgetWidth}
+          height={widgetHeight}
+          minWidth={DEFAULT_MIN_COLUMN * unitW}
+          minHeight={
+            (currentWidgetLayoutInfo?.layoutInfo.minH ?? 3) * UNIT_HEIGHT
+          }
+          displayName={displayName}
+        >
           <>
             {children}
             {isEditMode &&
@@ -77,8 +77,8 @@ export const ResizingContainer: FC<ResizingContainerProps> = (props) => {
                 />
               )}
           </>
-        )}
-      </InnerResizingContainer>
-    </PositionContainer>
-  )
+        </InnerResizingContainer>
+      </PositionContainer>
+    </>
+  ) : null
 }
