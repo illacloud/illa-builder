@@ -1290,7 +1290,7 @@
           "clear_button_text": "Εκκαθάριση"
         },
         "rich_text": {
-          "default_text": "κείμενο"
+          "default_text": "Πληκτρολογήστε το κείμενο εδώ"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Id Αποστολέα",
         "showName": "Εμφάνιση ονόματος",
         "rich_text": {
-          "default_text": "Προεπιλεγμένο κείμενο"
+          "default_text": "Υποκατάστατο"
         },
         "senderAvatar": "avatar αποστολέα"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Το προεπιλεγμένο κείμενο που εμφανίζεται όταν το στοιχείο είναι προετοιμασμένο"
+          "default_text": "Η τιμή θα εμφανίζεται όταν το πεδίο εισαγωγής είναι κενό."
         }
       },
       "widget": {
