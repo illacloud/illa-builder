@@ -1290,7 +1290,7 @@
           "clear_button_text": "Claro"
         },
         "rich_text": {
-          "default_text": "texto"
+          "default_text": "Escribe el texto aquí"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "ID del remitente",
         "showName": "Mostrar nombre",
         "rich_text": {
-          "default_text": "Texto por defecto"
+          "default_text": "Marcador de posición"
         },
         "senderAvatar": "Avatar del remitente"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "El texto por defecto mostrado cuando el componente está inicializado"
+          "default_text": "El valor se mostrará cuando el campo de entrada esté vacío."
         }
       },
       "widget": {
