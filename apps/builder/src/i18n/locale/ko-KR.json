@@ -1290,7 +1290,7 @@
           "clear_button_text": "분명한"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Type text here"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Sender ID",
         "showName": "Show name",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Placeholder"
         },
         "senderAvatar": "Sender avatar"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "The value will be shown when the input field is empty."
         }
       },
       "widget": {
