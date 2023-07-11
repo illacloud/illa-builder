@@ -100,7 +100,6 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
           displayName: displayName,
           type: "component",
           clickPosition: [],
-          columnNumber,
         })
       }
       if (!isEditMode) return
@@ -164,7 +163,6 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
       dispatch(configActions.updateSelectedComponent([displayName]))
     },
     [
-      columnNumber,
       dispatch,
       displayName,
       displayNameMapDepth,
@@ -181,12 +179,11 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
         displayName: displayName,
         type: "component",
         clickPosition: [],
-        columnNumber,
       })
       e.stopPropagation()
       dispatch(configActions.updateSelectedComponent([displayName]))
     },
-    [displayName, columnNumber, dispatch],
+    [displayName, dispatch],
   )
 
   return (

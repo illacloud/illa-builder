@@ -1,6 +1,7 @@
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Skeleton } from "@illa-design/react"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   WIDGET_PADDING,
@@ -30,7 +31,6 @@ import { isObject } from "@/utils/typeHelper"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import WidgetLoading from "../WidgetLoading"
 import { MIN_HEIGHT } from "./config"
 
 export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
@@ -366,7 +366,22 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           widgetType,
         )}
       >
-        <Suspense fallback={<WidgetLoading />}>
+        <Suspense
+          fallback={
+            <Skeleton
+              animation
+              text={false}
+              image={{
+                shape: "square",
+                w: "100%",
+                h: "100%",
+                mr: "0",
+              }}
+              h="100%"
+              w="100%"
+            />
+          }
+        >
           <Component
             {...realProps}
             h={layoutInfo.h}

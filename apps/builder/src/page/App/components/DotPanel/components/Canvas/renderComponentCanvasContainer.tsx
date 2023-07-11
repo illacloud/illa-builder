@@ -451,14 +451,12 @@ const RenderComponentCanvasContainer: FC<
             maxRightBottomX - leftTopX,
             maxRightBottomY - leftTopY,
           ],
-          columnNumber,
         })
       } else if (selectedComponents.length === 1) {
         FocusManager.switchFocus("canvas", {
           displayName: selectedComponents[0],
           type: "component",
           clickPosition: [],
-          columnNumber,
         })
       } else {
         FocusManager.switchFocus("canvas", {
@@ -471,7 +469,6 @@ const RenderComponentCanvasContainer: FC<
             UNIT_HEIGHT,
             columnNumber,
           ),
-          columnNumber,
         })
       }
     },
