@@ -1290,7 +1290,7 @@
           "clear_button_text": "Tøm"
         },
         "rich_text": {
-          "default_text": "tekst"
+          "default_text": "Skriv tekst her"
         }
       },
       "setter_group": {
@@ -1686,7 +1686,7 @@
         "senderId": "Avsenderen ID",
         "showName": "Vis navn",
         "rich_text": {
-          "default_text": "Standard tekst"
+          "default_text": "Plassholder"
         },
         "senderAvatar": "Avsenders profilbilde"
       },
@@ -2063,7 +2063,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Standardteksten som vises når komponenten initialiseres"
+          "default_text": "Verdien vil bli vist når inndatafeltet er tomt."
         }
       },
       "widget": {
