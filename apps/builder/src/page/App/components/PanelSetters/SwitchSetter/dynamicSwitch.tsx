@@ -5,7 +5,7 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { BaseInput } from "../InputSetter/baseInput"
+import BaseInput from "../InputSetter/baseInput"
 import { DynamicSwitchProps } from "./interface"
 import {
   applyLabelWrapperStyle,
@@ -14,7 +14,7 @@ import {
   dynamicSwitchWrapperStyle,
 } from "./style"
 
-export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
+const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const {
     attrName,
     labelName,
@@ -99,3 +99,5 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
 }
 
 DynamicSwitchSetter.displayName = "DynamicSwitchSetter"
+
+export default DynamicSwitchSetter

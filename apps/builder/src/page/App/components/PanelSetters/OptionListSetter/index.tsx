@@ -13,7 +13,7 @@ import { OptionListHeader } from "./header"
 import { OptionItemShape, OptionListSetterProps } from "./interface"
 import { ListStyle } from "./style"
 
-export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
+const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   const {
     attrName,
     headerName,
@@ -73,3 +73,4 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
 }
 
 OptionListSetter.displayName = "OptionListSetter"
+export default OptionListSetter

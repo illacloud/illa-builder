@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 import { CHART_PRESET_COLOR } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
-import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
+import BaseSelectSetter from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import {
   getCanvas,
   searchDsl,
@@ -14,9 +14,7 @@ import { RootState } from "@/store"
 import { formatDataAsObject } from "@/utils/formatData"
 import { isObject } from "@/utils/typeHelper"
 
-export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (
-  props,
-) => {
+const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (props) => {
   const { widgetDisplayName, attrName, value, handleUpdateMultiAttrDSL } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -118,3 +116,5 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (
 }
 
 ChartKeysSelectSetter.displayName = "ChartXAxisSetter"
+
+export default ChartKeysSelectSetter

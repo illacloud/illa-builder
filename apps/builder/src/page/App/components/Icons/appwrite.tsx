@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const AppwriteIcon = createIcon({
+const AppwriteIcon = createIcon({
   title: "AppwriteIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -20,3 +20,4 @@ export const AppwriteIcon = createIcon({
 })
 
 AppwriteIcon.displayName = "AppwriteIcon"
+export default AppwriteIcon

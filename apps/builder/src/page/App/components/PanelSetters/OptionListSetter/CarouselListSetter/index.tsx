@@ -21,7 +21,7 @@ export const generateNewImageItem = (number: number): CarouselSettings => ({
   url: CAROUSEL_DEFAULT_IMAGE,
 })
 
-export const CarouselListSetter: FC<CarouselListSetterProps> = (props) => {
+const CarouselListSetter: FC<CarouselListSetterProps> = (props) => {
   const {
     attrName,
     handleUpdateDsl,
@@ -76,3 +76,4 @@ export const CarouselListSetter: FC<CarouselListSetterProps> = (props) => {
 }
 
 CarouselListSetter.displayName = "CarouselListSetter"
+export default CarouselListSetter

@@ -1,10 +1,10 @@
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { getPageExecutionResultArray } from "@/redux/currentApp/executionTree/executionSelector"
-import { BaseSelectSetter } from "./baseSelect"
+import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
 
-export const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
+const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
   const { value } = props
   const pageArray = useSelector(getPageExecutionResultArray)
 
@@ -35,3 +35,6 @@ export const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
     />
   )
 }
+
+EventTargetPageSelect.displayName = "EventTargetPageSelect"
+export default EventTargetPageSelect

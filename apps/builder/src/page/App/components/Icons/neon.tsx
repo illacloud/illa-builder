@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const NeonIcon = createIcon({
+const NeonIcon = createIcon({
   title: "NeonIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -62,3 +62,4 @@ export const NeonIcon = createIcon({
 })
 
 NeonIcon.displayName = "NeonIcon"
+export default NeonIcon

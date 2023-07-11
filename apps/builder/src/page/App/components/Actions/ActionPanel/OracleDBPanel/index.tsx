@@ -23,7 +23,7 @@ import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const OracleDBPanel: FC = () => {
+const OracleDBPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const cachedAction = useSelector(getCachedAction) as ActionItem<
@@ -82,3 +82,4 @@ export const OracleDBPanel: FC = () => {
   )
 }
 OracleDBPanel.displayName = "OracleDBPanel"
+export default OracleDBPanel

@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react"
 import { useSelector } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
-import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
+import BaseSelectSetter from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { HeightModeSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
 import { DEFAULT_MAX_HEIGHT } from "@/page/App/components/ScaleSquare/components/AutoHeightWithLimitedContainer"
 import {
@@ -12,7 +12,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { RootState } from "@/store"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 
-export const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {
+const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {
   const currentNode = useSelector((state: RootState) => {
     const rootNode = getCanvas(state) as ComponentNode
     return searchDsl(rootNode, props.widgetDisplayName) as ComponentNode
@@ -48,3 +48,5 @@ export const HeightModeSelect: FC<HeightModeSetterProps> = (props) => {
 }
 
 HeightModeSelect.displayName = "HeightModeSelect"
+
+export default HeightModeSelect

@@ -12,7 +12,7 @@ import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { transformerPanelContainerStyle, transformerTipStyle } from "./style"
 
-export const TransformerPanel: FC = () => {
+const TransformerPanel: FC = () => {
   const { t } = useTranslation()
 
   const action = useSelector(getCachedAction)!!
@@ -57,3 +57,4 @@ export const TransformerPanel: FC = () => {
 }
 
 TransformerPanel.displayName = "TransformerPanel"
+export default TransformerPanel

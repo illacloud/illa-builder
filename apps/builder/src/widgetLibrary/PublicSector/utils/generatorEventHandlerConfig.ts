@@ -765,3 +765,33 @@ export const generatorEventHandlerConfig = (
     ],
   }
 }
+
+export const actionSuccessEventHandlerConfig = generatorEventHandlerConfig(
+  "success-event",
+  [
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.success",
+      ),
+      value: "success",
+    },
+  ],
+  i18n.t("editor.inspect.setter_label.success"),
+  "successEvent",
+  "success",
+)
+
+export const actionFailedEventHandlerConfig = generatorEventHandlerConfig(
+  "failed-event",
+  [
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.fail",
+      ),
+      value: "fail",
+    },
+  ],
+  i18n.t("editor.inspect.setter_label.failure"),
+  "failedEvent",
+  "fail",
+)

@@ -56,7 +56,7 @@ import {
 } from "@/redux/currentApp/action/mongoDbAction"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const MongoDbPanel: FC = () => {
+const MongoDbPanel: FC = () => {
   const { t } = useTranslation()
 
   const cachedAction = useSelector(getCachedAction) as ActionItem<
@@ -225,3 +225,4 @@ export const MongoDbPanel: FC = () => {
 }
 
 MongoDbPanel.displayName = "MongoDbPanel"
+export default MongoDbPanel

@@ -5,7 +5,7 @@ import { BaseInputSetterProps } from "@/page/App/components/PanelSetters/InputSe
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { JSToString, stringToJS } from "@/utils/evaluateDynamicString/utils"
-import { BaseInput } from "../InputSetter/baseInput"
+import BaseInput from "../InputSetter/baseInput"
 
 const realInputValue = (
   attrValue: string | undefined,
@@ -32,9 +32,7 @@ const getNeedComputedValue = (
   return `{{${widgetDisplayName}.${dataPath}.map((currentRow) => ( ${stringToCanEvaluate}))}}`
 }
 
-export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
-  props,
-) => {
+const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (props) => {
   const { parentAttrName, handleUpdateDsl, value, widgetDisplayName } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -109,3 +107,4 @@ export const TableMappedValueInputSetter: FC<BaseInputSetterProps> = (
 }
 
 TableMappedValueInputSetter.displayName = "TableMappedValueInputSetter"
+export default TableMappedValueInputSetter

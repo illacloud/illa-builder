@@ -6,7 +6,7 @@ import { PageBasic } from "./Modules/Basic"
 import { PageFrame } from "./Modules/Frame"
 import { PagePanelWrapperStyle, PageScrollContainerWrapperStyle } from "./style"
 
-export const PagePanel: FC = () => {
+const PagePanel: FC = () => {
   return (
     <div
       css={PagePanelWrapperStyle}
@@ -25,3 +25,4 @@ export const PagePanel: FC = () => {
 }
 
 PagePanel.displayName = "PagePanel"
+export default PagePanel

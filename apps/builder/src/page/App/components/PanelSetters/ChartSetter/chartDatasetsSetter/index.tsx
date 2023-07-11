@@ -10,7 +10,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { RootState } from "@/store"
 import { ListBody } from "./listBody"
 
-export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
+const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
   const {
     value,
     childrenSetter,
@@ -93,3 +93,5 @@ export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
 }
 
 ChartDatasetsSetter.displayName = "ChartDatasetsSetter"
+
+export default ChartDatasetsSetter

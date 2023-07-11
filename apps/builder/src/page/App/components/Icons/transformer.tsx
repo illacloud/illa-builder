@@ -1,6 +1,6 @@
 import { createIcon } from "@illa-design/react"
 
-export const TransformerIcon = createIcon({
+const TransformerIcon = createIcon({
   title: "TransformerIcon",
   viewBox: "0 0 24 24",
   path: (
@@ -20,3 +20,4 @@ export const TransformerIcon = createIcon({
 })
 
 TransformerIcon.displayName = "TransformerIcon"
+export default TransformerIcon

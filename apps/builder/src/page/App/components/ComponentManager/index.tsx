@@ -1,4 +1,11 @@
-import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
+import {
+  FC,
+  HTMLAttributes,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { useSelector } from "react-redux"
 import { SimpleTabs, getRenderBody } from "@/components/Tabs"
 import { COMPONENT_MANAGER_TABS } from "@/components/Tabs/constant"
@@ -72,7 +79,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
         activeKey={activeKey}
         handleClickChangeTab={handleClickChangeTab}
       />
-      {getRenderBody(activeKey, COMPONENT_MANAGER_TABS)}
+      <Suspense>{getRenderBody(activeKey, COMPONENT_MANAGER_TABS)}</Suspense>
     </div>
   )
 }

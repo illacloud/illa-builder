@@ -1,5 +1,5 @@
 import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
-import { FC, memo, useCallback, useMemo } from "react"
+import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch } from "react-redux"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -13,6 +13,7 @@ import { TransformWidgetWrapperWithJsonProps } from "@/widgetLibrary/PublicSecto
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import WidgetLoading from "../WidgetLoading"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -229,26 +230,28 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
           type,
         )}
       >
-        <Component
-          {...realProps}
-          w={w}
-          h={h}
-          unitW={unitW}
-          unitH={UNIT_HEIGHT}
-          updateComponentRuntimeProps={updateComponentRuntimeProps}
-          deleteComponentRuntimeProps={deleteComponentRuntimeProps}
-          handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
-          handleUpdateOriginalDSLOtherMultiAttr={
-            handleUpdateOriginalDSLOtherMultiAttr
-          }
-          handleUpdateDsl={handleUpdateDsl}
-          handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
-          displayName={displayName}
-          childrenNode={childrenNode}
-          componentNode={componentNode}
-          triggerEventHandler={triggerEventHandler}
-          triggerMappedEventHandler={triggerMappedEventHandler}
-        />
+        <Suspense fallback={<WidgetLoading />}>
+          <Component
+            {...realProps}
+            w={w}
+            h={h}
+            unitW={unitW}
+            unitH={UNIT_HEIGHT}
+            updateComponentRuntimeProps={updateComponentRuntimeProps}
+            deleteComponentRuntimeProps={deleteComponentRuntimeProps}
+            handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+            handleUpdateOriginalDSLOtherMultiAttr={
+              handleUpdateOriginalDSLOtherMultiAttr
+            }
+            handleUpdateDsl={handleUpdateDsl}
+            handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
+            displayName={displayName}
+            childrenNode={childrenNode}
+            componentNode={componentNode}
+            triggerEventHandler={triggerEventHandler}
+            triggerMappedEventHandler={triggerMappedEventHandler}
+          />
+        </Suspense>
       </div>
     )
   })

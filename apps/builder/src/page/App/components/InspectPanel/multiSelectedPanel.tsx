@@ -11,7 +11,7 @@ import {
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
-export const MultiSelectedPanel: FC = () => {
+const MultiSelectedPanel: FC = () => {
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
   const { t } = useTranslation()
   const shortcut = useContext(ShortCutContext)
@@ -51,3 +51,4 @@ export const MultiSelectedPanel: FC = () => {
 }
 
 MultiSelectedPanel.displayName = "MultiSelectedPanel"
+export default MultiSelectedPanel

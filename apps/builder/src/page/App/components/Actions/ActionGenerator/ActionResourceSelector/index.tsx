@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, Suspense, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import {
@@ -97,7 +97,9 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
                 setSelectedResourceId(r.resourceId)
               }}
             >
-              {getIconFromActionType(r.resourceType, "24px")}
+              <Suspense>
+                {getIconFromActionType(r.resourceType, "24px")}
+              </Suspense>
               <span css={resourceItemTitleStyle}>{r.resourceName}</span>
               <span css={resourceItemTimeStyle}>
                 {t("created_at") + " " + fromNow(r.createdAt)}

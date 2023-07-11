@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, Suspense, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -128,7 +128,9 @@ export const ResourceChoose: FC = () => {
                 <Option value={item.resourceId} key={item.resourceId}>
                   <div css={itemContainer}>
                     <span css={itemLogo}>
-                      {getIconFromResourceType(item.resourceType, "14px")}
+                      <Suspense>
+                        {getIconFromResourceType(item.resourceType, "14px")}
+                      </Suspense>
                     </span>
                     <span css={itemText}>{item.resourceName}</span>
                   </div>
