@@ -1937,7 +1937,7 @@
           "variant": "Para definir a variante das abas"
         },
         "drive_builder": {
-          "allow_public_use": "Defina se deve ser usado em uma aplicação pública. Quando usado em um aplicativo público, para proteger a segurança do seu arquivo, ele só será capaz de acessar a pasta de acesso público aos aplicativos",
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
           "illa_drive_folder": "Para especificar uma pasta, os usuários só podem selecionar arquivos desta pasta ao usar este componente",
           "generate_signed_url": "Para definir se deve gerar uma URL assinada. Todos os usuários podem acessar o arquivo através de uma URL assinada. Isso geralmente é usado quando você precisa exibir conteúdo em seu site ou permitir que os usuários façam o download. ",
           "expired_time": "Para definir o tempo de expiração. Quando expirado, a URL assinada será inacessível.",
