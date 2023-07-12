@@ -2041,8 +2041,8 @@
             "never": "Never",
             "customer": "Custom"
           },
-          "single_file": "Single file",
-          "multiple_files": "Multiple files"
+          "single_file": "单个文件",
+          "multiple_files": "多个文件"
         }
       },
       "setter_placeholder": {
@@ -2096,9 +2096,9 @@
           "max_duration": "请最多录制 {{maximum}}秒"
         },
         "drive_builder": {
-          "min_size": "Please select a file with a size greater than {{min}}",
-          "max_size": "Please select a file with a size smaller than {{max}}",
-          "min_files": "Please select at least {{min}} files",
+          "min_size": "请选择大小不小于{{min}}的文件",
+          "max_size": "请选择大小不超过{{max}}的文件",
+          "min_files": "请至少选择{{min}}个文件",
           "max_files": "请最多选择{{max}}个文件"
         }
       },
