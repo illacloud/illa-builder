@@ -1690,20 +1690,20 @@
         },
         "senderAvatar": "Avsändarens avatar",
         "drive_builder": {
-          "allow_public_use": "Use in public app",
-          "illa_drive_folder": "ILLA Drive folder",
-          "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time",
-          "time": "Time(s)",
-          "turn_on_hotlink": "Turn on hotlink protect",
-          "button_text": "Button text",
-          "selection_type": "Selection type",
-          "allowed_file_types": "Allowed file types",
-          "file_list": "File list",
+          "allow_public_use": "Använd i publik app",
+          "illa_drive_folder": "ILLA Drive-mapp",
+          "generate_signed_url": "Generera signerad URL",
+          "expired_time": "Förfallen tid",
+          "time": "Tid(er)",
+          "turn_on_hotlink": "Skydda mot hotlink",
+          "button_text": "Knappens text",
+          "selection_type": "Typ av val",
+          "allowed_file_types": "Tillåtna filtyper",
+          "file_list": "Lista över filer",
           "min_size": "Min size",
           "max_size": "Max size",
-          "min_file_num": "Min file num",
-          "max_file_num": "Max file num"
+          "min_file_num": "Minsta antal filer",
+          "max_file_num": "Max filnum"
         }
       },
       "setter_tooltip": {
@@ -1937,20 +1937,20 @@
           "variant": "För att ställa in variant av flikar"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
-          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
-          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
-          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
-          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
-          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
-          "button_text": "To set the text on the button",
-          "selection_type": "Set whether to allow the user to select a single file or multiple files",
-          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
-          "file_list": "To set whether to show the selected file list. ",
-          "min_size": "To set the allowed minimum file size",
-          "max_size": "To set the allowed maximum file size",
-          "min_file_num": "To set the minimum number of files allowed to be selected",
-          "max_file_num": "To set the maximum number of files allowed to be selected"
+          "allow_public_use": "Ange om du vill använda den publika appen. När den används i en offentlig app, för att skydda din filsäkerhet, kommer den endast att kunna komma åt mappen Publika appar åtkomst",
+          "illa_drive_folder": "För att ange en mapp kan användare bara välja filer från den här mappen när den här komponenten används",
+          "generate_signed_url": "Ange om du vill generera en signerad URL. Alla användare kan nå filen via en signerad URL. Detta används vanligtvis när du behöver visa innehåll på din webbplats eller tillåta användare att ladda ner det. ",
+          "expired_time": "För att ställa in den förfallna tiden. När den signerade webbadressen har löpt ut kommer den att vara otillgänglig.",
+          "time": "Använd taltypen i sekunder för att ställa in utgångstiden. Till exempel {{300}} (vilket betyder 300 sekunder eller 5 minuter)",
+          "turn_on_hotlink": "För att ställa in om du slår på hotlink-skyddet. Om du slår på den, kommer filen endast att nås via webbplatsen på illacloud.com",
+          "button_text": "För att ställa in texten på knappen",
+          "selection_type": "Ställ in om användaren ska kunna välja en fil eller flera filer",
+          "allowed_file_types": "Använd en sträng array för att ställa in tillåtna filtyper, såsom att tillåta jpg och png, fyll i {{[\".jpg\", \".png\"]}}. Lämna tomt för att tillåta alla filtyper. ",
+          "file_list": "Ange om du vill visa den valda fillistan. ",
+          "min_size": "För att ställa in minsta tillåtna filstorlek",
+          "max_size": "För att ställa in den tillåtna maximala filstorleken",
+          "min_file_num": "För att ställa in det minsta antalet filer som får väljas",
+          "max_file_num": "För att ställa in maximalt antal filer som tillåts att väljas"
         }
       },
       "setter_option": {
@@ -2038,11 +2038,11 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never",
-            "customer": "Custom"
+            "never": "Aldrig",
+            "customer": "Anpassad"
           },
-          "single_file": "Single file",
-          "multiple_files": "Multiple files"
+          "single_file": "En fil",
+          "multiple_files": "Flera filer"
         }
       },
       "setter_placeholder": {
@@ -2096,10 +2096,10 @@
           "max_duration": "Vänligen spela in som mest {{maximum}}s"
         },
         "drive_builder": {
-          "min_size": "Please select a file with a size greater than {{min}}",
-          "max_size": "Please select a file with a size smaller than {{max}}",
-          "min_files": "Please select at least {{min}} files",
-          "max_files": "Please select at most {{max}} files"
+          "min_size": "Välj en fil med en storlek större än {{min}}",
+          "max_size": "Välj en fil med en storlek mindre än {{max}}",
+          "min_files": "Välj minst {{min}} filer",
+          "max_files": "Välj som mest {{max}} filer"
         }
       },
       "setter_description": {
