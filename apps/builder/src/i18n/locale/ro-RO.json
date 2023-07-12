@@ -1937,7 +1937,7 @@
           "variant": "Pentru a seta varianta taburilor"
         },
         "drive_builder": {
-          "allow_public_use": "Setați dacă să utilizați în aplicația publică. Când este folosit într-o aplicație publică, pentru a proteja securitatea fișierelor, va putea accesa doar dosarul de acces al aplicațiilor publice",
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
           "illa_drive_folder": "Pentru a specifica un dosar, utilizatorii pot selecta doar fişiere din acest dosar atunci când utilizează această componentă",
           "generate_signed_url": "Pentru a seta dacă se generează un URL semnat. Toți utilizatorii pot ajunge la fișier printr-un URL semnat. Acest lucru este de obicei folosit atunci când trebuie să afișezi conținut pe site-ul tău web sau să permitem utilizatorilor să-l descarce. ",
           "expired_time": "Pentru a seta ora expirată. Când a expirat, URL-ul semnat va fi inaccesibil.",
