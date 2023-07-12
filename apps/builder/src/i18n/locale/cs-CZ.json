@@ -1690,20 +1690,20 @@
         },
         "senderAvatar": "Avatar odesílatele",
         "drive_builder": {
-          "allow_public_use": "Use in public app",
-          "illa_drive_folder": "ILLA Drive folder",
-          "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time",
-          "time": "Time(s)",
-          "turn_on_hotlink": "Turn on hotlink protect",
-          "button_text": "Button text",
-          "selection_type": "Selection type",
-          "allowed_file_types": "Allowed file types",
-          "file_list": "File list",
+          "allow_public_use": "Použít ve veřejné aplikaci",
+          "illa_drive_folder": "Složka ILLA Drive",
+          "generate_signed_url": "Generovat podepsanou URL",
+          "expired_time": "Čas vypršení platnosti",
+          "time": "Čas (časy)",
+          "turn_on_hotlink": "Zapnout ochranu hotlink",
+          "button_text": "Text tlačítka",
+          "selection_type": "Typ výběru",
+          "allowed_file_types": "Povolené typy souborů",
+          "file_list": "Seznam souborů",
           "min_size": "Min size",
           "max_size": "Max size",
-          "min_file_num": "Min file num",
-          "max_file_num": "Max file num"
+          "min_file_num": "Min číslo souboru",
+          "max_file_num": "Maximální počet souborů"
         }
       },
       "setter_tooltip": {
@@ -1937,20 +1937,20 @@
           "variant": "Možnost nastavení záložek"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
-          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
-          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
-          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
-          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
-          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
-          "button_text": "To set the text on the button",
-          "selection_type": "Set whether to allow the user to select a single file or multiple files",
-          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
-          "file_list": "To set whether to show the selected file list. ",
-          "min_size": "To set the allowed minimum file size",
-          "max_size": "To set the allowed maximum file size",
-          "min_file_num": "To set the minimum number of files allowed to be selected",
-          "max_file_num": "To set the maximum number of files allowed to be selected"
+          "allow_public_use": "Nastavte, zda má být použito ve veřejné aplikaci. Při použití ve veřejné aplikaci, aby byla chráněna bezpečnost souborů, bude mít přístup pouze ke složce veřejných aplikací",
+          "illa_drive_folder": "Chcete-li specifikovat složku, mohou uživatelé vybrat pouze soubory z této složky při použití této komponenty",
+          "generate_signed_url": "Chcete-li nastavit, zda vygenerovat podepsanou URL adresu. Všichni uživatelé mohou mít přístup k souboru prostřednictvím podepsané URL adresy. Obvykle se používá, když potřebujete zobrazit obsah na vašich webových stránkách nebo povolit uživatelům jeho stažení. ",
+          "expired_time": "Chcete-li nastavit vypršející čas. Po vypršení platnosti bude podepsaná URL nepřístupná.",
+          "time": "Použijte typ čísla v sekundách pro nastavení doby vypršení platnosti. Například, {{300}} (což znamená 300 sekund nebo 5 minut)",
+          "turn_on_hotlink": "Chcete-li nastavit, zda zapnout ochranu hotlinku. Pokud jste ji zapnuli, soubor bude přístupný pouze prostřednictvím webové stránky na illacloud.com",
+          "button_text": "Chcete-li nastavit text na tlačítku",
+          "selection_type": "Nastavte, zda povolit uživateli vybrat jeden nebo více souborů",
+          "allowed_file_types": "Použijte pole řetězce pro nastavení povolených typů souborů, například povolení jpg a png, vyplňte {{[\".jpg\", \".png\"]}}. Ponechte prázdné pro povolení všech typů souborů. ",
+          "file_list": "Nastavení, zda zobrazit seznam vybraných souborů. ",
+          "min_size": "Možnost nastavení minimální povolené velikosti souboru",
+          "max_size": "Možnost nastavení maximální povolené velikosti souboru",
+          "min_file_num": "Pro nastavení minimálního počtu povolených souborů",
+          "max_file_num": "Možnost nastavit maximální počet souborů k výběru"
         }
       },
       "setter_option": {
@@ -2038,11 +2038,11 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never",
-            "customer": "Custom"
+            "never": "Nikdy",
+            "customer": "Vlastní"
           },
-          "single_file": "Single file",
-          "multiple_files": "Multiple files"
+          "single_file": "Jeden soubor",
+          "multiple_files": "Více souborů"
         }
       },
       "setter_placeholder": {
@@ -2096,10 +2096,10 @@
           "max_duration": "Prosím nahrávejte maximálně {{maximum}}s"
         },
         "drive_builder": {
-          "min_size": "Please select a file with a size greater than {{min}}",
-          "max_size": "Please select a file with a size smaller than {{max}}",
-          "min_files": "Please select at least {{min}} files",
-          "max_files": "Please select at most {{max}} files"
+          "min_size": "Vyberte soubor o velikosti větší než {{min}}",
+          "max_size": "Vyberte soubor o velikosti menší než {{max}}",
+          "min_files": "Vyberte alespoň {{min}} soubory",
+          "max_files": "Vyberte prosím nanejvýš {{max}} soubory"
         }
       },
       "setter_description": {
