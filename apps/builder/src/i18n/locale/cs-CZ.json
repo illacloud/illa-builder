@@ -1937,7 +1937,7 @@
           "variant": "Možnost nastavení záložek"
         },
         "drive_builder": {
-          "allow_public_use": "Nastavte, zda má být použito ve veřejné aplikaci. Při použití ve veřejné aplikaci, aby byla chráněna bezpečnost souborů, bude mít přístup pouze ke složce veřejných aplikací",
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
           "illa_drive_folder": "Chcete-li specifikovat složku, mohou uživatelé vybrat pouze soubory z této složky při použití této komponenty",
           "generate_signed_url": "Chcete-li nastavit, zda vygenerovat podepsanou URL adresu. Všichni uživatelé mohou mít přístup k souboru prostřednictvím podepsané URL adresy. Obvykle se používá, když potřebujete zobrazit obsah na vašich webových stránkách nebo povolit uživatelům jeho stažení. ",
           "expired_time": "Chcete-li nastavit vypršející čas. Po vypršení platnosti bude podepsaná URL nepřístupná.",
