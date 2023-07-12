@@ -1937,7 +1937,7 @@
           "variant": "Pour définir la variante d'onglets"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
+          "allow_public_use": "Définir s'il faut utiliser ou non dans l'application publique. Lorsqu'il est utilisé dans une application publique, afin de protéger la sécurité de vos fichiers, il ne pourra accéder qu'au dossier PublicAccess",
           "illa_drive_folder": "Pour spécifier un dossier, les utilisateurs ne peuvent sélectionner que des fichiers de ce dossier lors de l'utilisation de ce composant",
           "generate_signed_url": "Pour définir s'il faut générer une URL signée. Tous les utilisateurs peuvent atteindre le fichier via une URL signée. Ceci est généralement utilisé lorsque vous avez besoin d'afficher du contenu sur votre site Web ou de permettre aux utilisateurs de le télécharger. ",
           "expired_time": "Pour définir le temps expiré. Une fois expiré, l'URL signée sera inaccessible.",
