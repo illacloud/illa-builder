@@ -1937,7 +1937,7 @@
           "variant": "タブのバリエーションを設定する"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
+          "allow_public_use": "公開アプリで使用するかどうかを設定します。 公開アプリで使用した場合、ファイルのセキュリティを保護するため、PublicAccessフォルダにのみアクセスできます",
           "illa_drive_folder": "フォルダを指定するには、このコンポーネントを使用する場合にのみ、このフォルダからファイルを選択できます",
           "generate_signed_url": "署名された URL を生成するかどうかを設定します。すべてのユーザーは署名された URL を介してファイルにアクセスできます。 これは通常、あなたのウェブサイトにコンテンツを表示したり、ユーザーがそれをダウンロードできるようにする必要があるときに使用されます。 ",
           "expired_time": "有効期限を設定します。有効期限が切れると、署名された URL にアクセスできなくなります。",
