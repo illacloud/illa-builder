@@ -1937,7 +1937,7 @@
           "variant": "Per impostare la variante delle schede"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
+          "allow_public_use": "Imposta se usare nell'app pubblica. Se utilizzato in un'applicazione pubblica, al fine di proteggere la sicurezza dei file, sarà possibile accedere solo alla cartella PublicAccess",
           "illa_drive_folder": "Per specificare una cartella, gli utenti possono selezionare solo i file da questa cartella quando usano questo componente",
           "generate_signed_url": "Per impostare se generare un URL firmato. Tutti gli utenti possono raggiungere il file tramite un URL firmato. Questo viene solitamente utilizzato quando è necessario visualizzare il contenuto sul tuo sito web o consentire agli utenti di scaricarlo. ",
           "expired_time": "Per impostare l'ora scaduta. Quando scaduto, l'URL firmato sarà inaccessibile.",
