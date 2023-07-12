@@ -1690,10 +1690,20 @@
         },
         "senderAvatar": "发送方头像",
         "drive_builder": {
-          "allow_public_use": "Use in public app",
-          "illa_drive_folder": "ILLA Drive folder",
-          "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time"
+          "allow_public_use": "在公开项目中使用",
+          "illa_drive_folder": "ILLA Drive文件夹",
+          "generate_signed_url": "生成签名URL",
+          "expired_time": "过期时间",
+          "time": "时间(s)",
+          "turn_on_hotlink": "开启防盗链",
+          "button_text": "按钮文案",
+          "selection_type": "选择类型",
+          "allowed_file_types": "允许的文件类型",
+          "file_list": "文件列表",
+          "min_size": "最小大小",
+          "max_size": "最大大小",
+          "min_file_num": "最小文件数量",
+          "max_file_num": "最大文件大小"
         }
       },
       "setter_tooltip": {
@@ -1927,10 +1937,20 @@
           "variant": "设置标签页的样式"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
+          "allow_public_use": "设置是否在公开项目中使用。当在公开项目中使用时，为了保护您的文件安全，将只能访问Public apps access folder",
           "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
           "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
-          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable."
+          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
+          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
+          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
+          "button_text": "To set the text on the button",
+          "selection_type": "Set whether to allow the user to select a single file or multiple files",
+          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
+          "file_list": "To set whether to show the selected file list. ",
+          "min_size": "To set the allowed minimum file size",
+          "max_size": "To set the allowed maximum file size",
+          "min_file_num": "To set the minimum number of files allowed to be selected",
+          "max_file_num": "To set the maximum number of files allowed to be selected"
         }
       },
       "setter_option": {
@@ -2018,8 +2038,11 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never"
-          }
+            "never": "Never",
+            "customer": "Custom"
+          },
+          "single_file": "Single file",
+          "multiple_files": "Multiple files"
         }
       },
       "setter_placeholder": {
@@ -2071,6 +2094,12 @@
           "cannot_set_value_dur": "无法在录制过程中设置值",
           "min_duration": "请至少录制 {{minimum}}秒",
           "max_duration": "请最多录制 {{maximum}}秒"
+        },
+        "drive_builder": {
+          "min_size": "Please select a file with a size greater than {{min}}",
+          "max_size": "Please select a file with a size smaller than {{max}}",
+          "min_files": "Please select at least {{min}} files",
+          "max_files": "请最多选择{{max}}个文件"
         }
       },
       "setter_description": {
