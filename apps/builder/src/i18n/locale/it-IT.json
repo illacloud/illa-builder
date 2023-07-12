@@ -1690,20 +1690,20 @@
         },
         "senderAvatar": "Avatar mittente",
         "drive_builder": {
-          "allow_public_use": "Use in public app",
-          "illa_drive_folder": "ILLA Drive folder",
-          "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time",
-          "time": "Time(s)",
-          "turn_on_hotlink": "Turn on hotlink protect",
-          "button_text": "Button text",
-          "selection_type": "Selection type",
-          "allowed_file_types": "Allowed file types",
-          "file_list": "File list",
+          "allow_public_use": "Usa nell'app pubblica",
+          "illa_drive_folder": "Cartella ILLA Drive",
+          "generate_signed_url": "Genera URL firmato",
+          "expired_time": "Tempo di scadenza",
+          "time": "Tempo(i)",
+          "turn_on_hotlink": "Attiva la protezione hotlink",
+          "button_text": "Testo pulsante",
+          "selection_type": "Tipo di selezione",
+          "allowed_file_types": "Tipi di file consentiti",
+          "file_list": "Elenco file",
           "min_size": "Min size",
           "max_size": "Max size",
-          "min_file_num": "Min file num",
-          "max_file_num": "Max file num"
+          "min_file_num": "Num file minimo",
+          "max_file_num": "Numero massimo di file"
         }
       },
       "setter_tooltip": {
@@ -1937,20 +1937,20 @@
           "variant": "Per impostare la variante delle schede"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
-          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
-          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
-          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
-          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
-          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
-          "button_text": "To set the text on the button",
-          "selection_type": "Set whether to allow the user to select a single file or multiple files",
-          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
-          "file_list": "To set whether to show the selected file list. ",
-          "min_size": "To set the allowed minimum file size",
-          "max_size": "To set the allowed maximum file size",
-          "min_file_num": "To set the minimum number of files allowed to be selected",
-          "max_file_num": "To set the maximum number of files allowed to be selected"
+          "allow_public_use": "Imposta se usare nell'app pubblica. Se utilizzato in un'applicazione pubblica, al fine di proteggere la sicurezza dei file, sarà possibile accedere solo alla cartella di accesso alle applicazioni pubbliche",
+          "illa_drive_folder": "Per specificare una cartella, gli utenti possono selezionare solo i file da questa cartella quando usano questo componente",
+          "generate_signed_url": "Per impostare se generare un URL firmato. Tutti gli utenti possono raggiungere il file tramite un URL firmato. Questo viene solitamente utilizzato quando è necessario visualizzare il contenuto sul tuo sito web o consentire agli utenti di scaricarlo. ",
+          "expired_time": "Per impostare l'ora scaduta. Quando scaduto, l'URL firmato sarà inaccessibile.",
+          "time": "Usa il tipo di numero in secondi per impostare il tempo di scadenza. Per esempio, {{300}} (che significa 300 secondi o 5 minuti)",
+          "turn_on_hotlink": "Per impostare se attivare la protezione hotlink. Se attivata, il file sarà accessibile solo tramite il sito web su illacloud.com",
+          "button_text": "Per impostare il testo sul pulsante",
+          "selection_type": "Imposta se consentire all'utente di selezionare un singolo file o più file",
+          "allowed_file_types": "Usa un array di stringhe per impostare i tipi di file consentiti, come consentire jpg e png, riempire in {{[\".jpg\", \".png\"]}}. Lasciare vuoto per consentire tutti i tipi di file. ",
+          "file_list": "Per impostare se mostrare l'elenco dei file selezionati. ",
+          "min_size": "Per impostare la dimensione minima consentita del file",
+          "max_size": "Per impostare la dimensione massima consentita del file",
+          "min_file_num": "Per impostare il numero minimo di file selezionati",
+          "max_file_num": "Per impostare il numero massimo di file selezionati"
         }
       },
       "setter_option": {
@@ -2038,11 +2038,11 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never",
-            "customer": "Custom"
+            "never": "Mai",
+            "customer": "Personalizzato"
           },
-          "single_file": "Single file",
-          "multiple_files": "Multiple files"
+          "single_file": "File singolo",
+          "multiple_files": "File multipli"
         }
       },
       "setter_placeholder": {
@@ -2096,10 +2096,10 @@
           "max_duration": "Per favore registra al massimo {{maximum}}s"
         },
         "drive_builder": {
-          "min_size": "Please select a file with a size greater than {{min}}",
-          "max_size": "Please select a file with a size smaller than {{max}}",
-          "min_files": "Please select at least {{min}} files",
-          "max_files": "Please select at most {{max}} files"
+          "min_size": "Seleziona un file con una dimensione maggiore di {{min}}",
+          "max_size": "Seleziona un file con una dimensione più piccola di {{max}}",
+          "min_files": "Seleziona almeno i file {{min}}",
+          "max_files": "Si prega di selezionare al massimo i file {{max}}"
         }
       },
       "setter_description": {
