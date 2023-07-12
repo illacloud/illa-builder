@@ -22,4 +22,5 @@ export interface ILLACodeMirrorProps
   placeholder?: string
   className?: string
   tooltipContainer?: RefObject<HTMLElement>
+  canShowResultRealtime: boolean
 }

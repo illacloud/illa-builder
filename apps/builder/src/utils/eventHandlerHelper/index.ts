@@ -23,6 +23,7 @@ import {
 import { downloadFileFromEventHandler } from "@/utils/file"
 import { runOriginAction } from "../action/runAction"
 import { LIMIT_MEMORY, estimateMemoryUsage } from "../calculateMemoryUsage"
+import { wrapperScriptCode } from "../evaluateDynamicString/valueConverter"
 
 const message = createMessage()
 
@@ -442,6 +443,13 @@ export const transformEvents = (
       script: () => {
         runOriginAction(actionItem)
       },
+      enabled,
+    }
+  }
+  if (actionType === "script") {
+    const { script, enabled } = event
+    return {
+      script: wrapperScriptCode(script, true),
       enabled,
     }
   }

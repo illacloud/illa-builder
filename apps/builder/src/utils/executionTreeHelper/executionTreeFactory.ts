@@ -34,6 +34,7 @@ import {
 } from "../action/runAction"
 
 const message = createMessage()
+
 export const IGNORE_ACTION_RUN_ATTR_NAME = [
   "isRunning",
   "startTime",
@@ -42,6 +43,18 @@ export const IGNORE_ACTION_RUN_ATTR_NAME = [
   "runResult",
   "responseHeaders",
 ]
+
+export const IGNORE_AUTO_RUN_WITH_RUN_SCRIPT_ATTR_RULES = [
+  /events\[\d+\]\.script/,
+  /content\.successEvent\[\d+\]\.script/,
+  /content\.failedEvent\[\d+\]\.script/,
+]
+
+export const isRunScriptAttr = (attrPath: string) => {
+  return IGNORE_AUTO_RUN_WITH_RUN_SCRIPT_ATTR_RULES.some((rule) => {
+    return rule.test(attrPath)
+  })
+}
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}
@@ -634,6 +647,7 @@ export class ExecutionTreeFactory {
                 widgetOrActionAttribute,
                 current,
               )
+
               set(current, fullPath, evaluateValue)
             } catch (e) {
               const oldError = get(errorTree, fullPath, []) as ErrorShape[]

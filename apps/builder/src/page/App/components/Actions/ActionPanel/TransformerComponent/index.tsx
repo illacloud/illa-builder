@@ -97,6 +97,7 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
             value={cachedAction.transformer.rawData}
             wrapperCss={codeMirrorStyle}
             showLineNumbers
+            canShowCompleteInfo
             height="88px"
             expectValueType={VALIDATION_TYPES.STRING}
             lang={CODE_LANG.JAVASCRIPT}

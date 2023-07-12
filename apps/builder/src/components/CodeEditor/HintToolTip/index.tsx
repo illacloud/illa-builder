@@ -54,6 +54,7 @@ export const HintToolTip: FC<HintTooltipProps> = (props) => {
     resultType,
     children,
     toolTipContainer,
+    canShowResultRealtime,
   } = props
   const [isHovered, setIsHovered] = useState(false)
 
@@ -68,6 +69,7 @@ export const HintToolTip: FC<HintTooltipProps> = (props) => {
       position="bottom-start"
       colorScheme="white"
       popupContainer={toolTipContainer}
+      disabled={!canShowResultRealtime}
       content={
         <HintTooltipContent
           hasError={hasError}
