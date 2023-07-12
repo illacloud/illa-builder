@@ -1,14 +1,14 @@
-import { FC, MouseEvent, useCallback } from "react"
+import { FC, MouseEvent, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button, Space, Tag } from "@illa-design/react"
+import { Tag } from "@illa-design/react"
 import { Avatar } from "@/illa-public-component/Avatar"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import { ActionButtonGroup } from "@/page/Dashboard/DashboardApps/AppCard/ActionButtonGroup"
 import {
-  appActionButtonStyle,
   appNameStyle,
   cardStyle,
   descriptionStyle,
@@ -30,13 +30,14 @@ interface AppCardProps {
   appInfo: DashboardApp
   canEditApp: boolean
 }
+
 export const AppCard: FC<AppCardProps> = (props) => {
   const { t } = useTranslation()
   const { appInfo, canEditApp, ...rest } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
-  const stopPropagation = (e: MouseEvent<HTMLElement>) => {
+  const stopPropagation = (e: MouseEvent) => {
     e.stopPropagation()
   }
 
@@ -76,6 +77,24 @@ export const AppCard: FC<AppCardProps> = (props) => {
     },
     [canEditApp, appInfo.appId, appInfo.mainlineVersion],
   )
+
+  const editors = useMemo(() => {
+    return (
+      <div css={editorContainerStyle}>
+        {appInfo?.editedBy?.map((editor) =>
+          editor ? (
+            <Avatar
+              key={editor.userID}
+              css={editorAvatarStyle}
+              avatarUrl={editor.avatar}
+              name={editor.nickname}
+              id={editor.userID}
+            />
+          ) : null,
+        )}
+      </div>
+    )
+  }, [appInfo?.editedBy])
 
   return (
     <div
@@ -117,81 +136,27 @@ export const AppCard: FC<AppCardProps> = (props) => {
           {appInfo.config.description || t("new_dashboard.desc.no_description")}
         </div>
       </div>
-      <div css={editorContainerStyle}>
-        {appInfo?.editedBy?.map((editor) =>
-          editor ? (
-            <Avatar
-              key={editor.userID}
-              css={editorAvatarStyle}
-              avatarUrl={editor.avatar}
-              name={editor.nickname}
-              id={editor.userID}
-            />
-          ) : null,
-        )}
-      </div>
-      <div css={footerStyle}>
-        <div
-          className="public-info"
-          onClick={(e) => {
-            e.stopPropagation()
-          }}
-        >
-          {isCloudVersion ? (
-            <AppConfigSelect
-              appId={appInfo.appId}
-              isPublic={appInfo.config.public}
-              isDeployed={appInfo.deployed}
-              canEditApp={canEditApp}
-            />
-          ) : null}
+      {isCloudVersion ? (
+        <>
+          {editors}
+          <div css={footerStyle}>
+            <div className="public-info" onClick={stopPropagation}>
+              <AppConfigSelect
+                appId={appInfo.appId}
+                isPublic={appInfo.config.public}
+                isDeployed={appInfo.deployed}
+                canEditApp={canEditApp}
+              />
+            </div>
+            <ActionButtonGroup appInfo={appInfo} canEditApp={canEditApp} />
+          </div>
+        </>
+      ) : (
+        <div css={footerStyle}>
+          {editors}
+          <ActionButtonGroup appInfo={appInfo} canEditApp={canEditApp} />
         </div>
-        <Space
-          direction="horizontal"
-          w="100%"
-          justifyContent="end"
-          size="8px"
-          alignItems="center"
-        >
-          {appInfo.deployed ? (
-            <Button
-              css={appActionButtonStyle}
-              className="dashboardAppEditButton"
-              variant="text"
-              colorScheme="grayBlue"
-              onClick={(e) => {
-                e.stopPropagation()
-                track(
-                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                  { element: "app_launch", parameter5: appInfo.appId },
-                )
-                navigate(`/${teamIdentifier}/deploy/app/${appInfo.appId}`)
-              }}
-            >
-              {t("launch")}
-            </Button>
-          ) : null}
-          {canEditApp ? (
-            <Button
-              css={appActionButtonStyle}
-              className="dashboardAppLaunchButton"
-              variant="text"
-              colorScheme="grayBlue"
-              onClick={() => {
-                track(
-                  ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                  ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                  { element: "app_edit", parameter5: appInfo.appId },
-                )
-                navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
-              }}
-            >
-              {t("edit")}
-            </Button>
-          ) : null}
-        </Space>
-      </div>
+      )}
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { CARD_HEIGHT } from "@/page/Dashboard/DashboardApps/style"
 
 export const cardStyle = css`
   display: flex;
@@ -8,7 +7,6 @@ export const cardStyle = css`
   gap: 16px;
   padding: 24px;
   width: 100%;
-  height: ${CARD_HEIGHT}px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
   background: ${getColor("white", "01")};
