@@ -1937,7 +1937,7 @@
           "variant": "For at indstille varianten af faneblade"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
+          "allow_public_use": "Angiv om der skal bruges i offentlig app. Når det bruges i en offentlig app, for at beskytte din fil sikkerhed, vil det kun være i stand til at få adgang til mappen PublicAccess",
           "illa_drive_folder": "For at angive en mappe, kan brugere kun vælge filer fra denne mappe, når du bruger denne komponent",
           "generate_signed_url": "For at angive, om der skal oprettes en underskrevet URL. Alle brugere kan nå filen via en underskrevet URL. Dette bruges normalt, når du har brug for at vise indhold på dit websted eller give brugerne mulighed for at downloade det. ",
           "expired_time": "For at indstille den udløbne tid. Når udløbet, vil den signerede URL være utilgængelig.",
