@@ -1937,7 +1937,7 @@
           "variant": "Um die Variante der Tabs zu setzen"
         },
         "drive_builder": {
-          "allow_public_use": "Legen Sie fest, ob in der öffentlichen App verwendet werden soll. Wenn sie in einer öffentlichen App verwendet wird, um Ihre Datei-Sicherheit zu schützen, kann sie nur auf den öffentlichen App-Zugriffsordner zugreifen",
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
           "illa_drive_folder": "Um einen Ordner anzugeben, können Benutzer nur Dateien aus diesem Ordner auswählen, wenn diese Komponente verwendet wird",
           "generate_signed_url": "Um festzulegen, ob eine signierte URL generiert werden soll. Alle Benutzer können die Datei über eine signierte URL erreichen. Dies wird in der Regel verwendet, wenn Sie Inhalte auf Ihrer Website anzeigen oder Benutzern erlauben müssen, sie herunterzuladen. ",
           "expired_time": "Um die abgelaufene Zeit zu setzen. Wenn abgelaufen ist, ist die signierte URL nicht zugänglich.",
