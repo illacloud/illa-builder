@@ -1945,7 +1945,7 @@
           "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
           "button_text": "To set the text on the button",
           "selection_type": "Set whether to allow the user to select a single file or multiple files",
-          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
+          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}. Leave blank to allow all file types. ",
           "file_list": "To set whether to show the selected file list. ",
           "min_size": "To set the allowed minimum file size",
           "max_size": "To set the allowed maximum file size",
