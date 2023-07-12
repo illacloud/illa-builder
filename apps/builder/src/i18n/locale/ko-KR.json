@@ -1937,7 +1937,7 @@
           "variant": "To set the variant of tabs"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
           "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
           "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
           "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
