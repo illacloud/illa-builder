@@ -8,6 +8,7 @@ export interface HintTooltipProps {
   result?: string
   children: ReactNode
   toolTipContainer?: RefObject<HTMLElement>
+  canShowResultRealtime: boolean
 }
 
 export interface HintTooltipContentProps

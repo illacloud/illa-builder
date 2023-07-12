@@ -3,7 +3,10 @@ import { FC, useCallback, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { ReactComponent as OpenWindowIcon } from "@/assets/public/openWindow.svg"
 import { ILLACodeMirrorCore } from "@/components/CodeEditor/CodeMirror/core"
-import { IExpressionShape } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import {
+  CODE_TYPE,
+  IExpressionShape,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { githubLightScheme } from "@/components/CodeEditor/CodeMirror/theme"
 import { ModalCodeMirror } from "@/components/CodeEditor/ModalCodeMirror"
 import { CodeEditorProps } from "@/components/CodeEditor/interface"
@@ -99,7 +102,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     readOnly,
     extensions,
     expectValueType,
-    codeType,
+    codeType = CODE_TYPE.EXPRESSION,
     minWidth,
     minHeight,
     canShowCompleteInfo,
@@ -118,6 +121,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const popupContainerRef = useRef<HTMLDivElement>(null)
   const innerCanExpand = canExpand && !readOnly && editable
+  const canShowResultRealTime = codeType === CODE_TYPE.EXPRESSION
 
   const calcContext = useSelector<RootState, Record<string, unknown>>(
     (rootState) => {
@@ -128,9 +132,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   )
 
   const stringSnippets = useMemo(() => {
+    const result: IExpressionShape[] = []
+    if (!canShowResultRealTime) return result
     const realInput = wrappedCodeFunc ? wrappedCodeFunc(value) : value
     const dynamicStrings = getStringSnippets(realInput)
-    const result: IExpressionShape[] = []
     const errors: string[] = []
     const calcResultArray: unknown[] = []
     const calcResultMap: Map<string, number[]> = new Map()
@@ -204,7 +209,13 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       )
     }
     return result
-  }, [wrappedCodeFunc, value, expectValueType, calcContext])
+  }, [
+    wrappedCodeFunc,
+    value,
+    expectValueType,
+    calcContext,
+    canShowResultRealTime,
+  ])
 
   const debounceHandleChange = useMemo(() => {
     return debounce(onChange, 160)
@@ -253,6 +264,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         scopeOfAutoComplete={scopeOfAutoComplete}
         onBlur={onBlur}
         onFocus={onFocus}
+        canShowResultRealtime={canShowResultRealTime}
       />
       {innerCanExpand && (
         <div

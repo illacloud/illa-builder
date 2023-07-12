@@ -9,6 +9,10 @@ import {
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
+import {
+  realInputValueWithScript,
+  wrapperScriptCode,
+} from "@/utils/evaluateDynamicString/valueConverter"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { transformerPanelContainerStyle, transformerTipStyle } from "./style"
 
@@ -21,12 +25,7 @@ const TransformerPanel: FC = () => {
   const dispatch = useDispatch()
 
   const realInputValue = useMemo(() => {
-    return content.transformerString?.includes("{{(function (){")
-      ? content.transformerString?.substring(
-          `{{(function (){`.length,
-          content.transformerString?.length - 6,
-        )
-      : content.transformerString
+    return realInputValueWithScript(content.transformerString)
   }, [content.transformerString])
 
   return (
@@ -34,6 +33,7 @@ const TransformerPanel: FC = () => {
       <CodeEditor
         value={realInputValue}
         showLineNumbers
+        canShowCompleteInfo
         height="88px"
         expectValueType={VALIDATION_TYPES.STRING}
         lang={CODE_LANG.JAVASCRIPT}
@@ -43,7 +43,7 @@ const TransformerPanel: FC = () => {
             configActions.updateCachedAction({
               ...action,
               content: {
-                transformerString: `{{(function (){${value}})()}}`,
+                transformerString: wrapperScriptCode(value),
               },
             }),
           )

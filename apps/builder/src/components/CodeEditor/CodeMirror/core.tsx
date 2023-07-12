@@ -51,6 +51,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
     onFocus,
     tooltipContainer,
     scopeOfAutoComplete,
+    canShowResultRealtime,
   } = props
 
   const [isFocus, setIsFocus] = useState(false)
@@ -240,6 +241,7 @@ export const ILLACodeMirrorCore: FC<ILLACodeMirrorProps> = (props) => {
       hasError={hasError}
       resultType={resultType}
       toolTipContainer={tooltipContainer}
+      canShowResultRealtime={canShowResultRealtime}
     >
       <div
         ref={editorWrapperRef}

@@ -34,8 +34,8 @@ import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHe
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { fetchS3ClientResult } from "./fetchS3ClientResult"
 import { runAllEventHandler } from "./runActionEventHandler"
+import { runTransformer } from "./runActionTransformer"
 import { transResponse } from "./transResponse"
-import { updateFetchResultDisplayName } from "./updateFetchResult"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
@@ -79,45 +79,6 @@ const fetchActionResult = async (
     content: actionContent,
   }
   return await fetchActionRunResult(appId, actionId, requestBody, isPublic)
-}
-
-const successHandler = (
-  actionType: ActionType,
-  displayName: string,
-  response: unknown,
-  successEvent: any[],
-  transformer: any,
-  isClientS3: boolean,
-) => {
-  const transedResponse = transResponse(actionType, response, isClientS3)
-  updateFetchResultDisplayName(displayName, transedResponse, transformer)
-  const realSuccessEvent: any[] = successEvent || []
-  runAllEventHandler(realSuccessEvent)
-}
-
-const failureHandler = (
-  displayName: string,
-  failedEvent: any[],
-  res?: AxiosResponse<ILLAApiError>,
-) => {
-  let runResult = {
-    error: true,
-    message: res?.data?.errorMessage || "An unknown error",
-  }
-
-  const realSuccessEvent: any[] = failedEvent || []
-  runAllEventHandler(realSuccessEvent)
-  store.dispatch(
-    executionActions.updateExecutionByDisplayNameReducer({
-      displayName: displayName,
-      value: {
-        data: undefined,
-        runResult: runResult,
-        isRunning: false,
-        endTime: new Date().getTime(),
-      },
-    }),
-  )
 }
 
 export interface IExecutionActions extends ActionItem<ActionContent> {
@@ -193,22 +154,53 @@ export const runActionWithExecutionResult = async (
     if (isClientS3) {
       response = await fetchS3ClientResult(response.data.Rows, actionContent)
     }
-    successHandler(
+    const illaInnerTransformedResponse = transResponse(
       actionType,
-      displayName,
       response,
-      successEvent,
-      transformer,
       isClientS3,
     )
-    return Promise.resolve(true)
+    let userTransformedData = runTransformer(
+      transformer,
+      illaInnerTransformedResponse.data ?? "",
+    )
+
+    actionDisplayNameMapFetchResult[displayName] = userTransformedData
+    store.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: displayName,
+        value: {
+          data: userTransformedData,
+          runResult: undefined,
+          isRunning: false,
+          endTime: new Date().getTime(),
+        },
+      }),
+    )
+    runAllEventHandler(successEvent)
+
+    return Promise.resolve(userTransformedData)
   } catch (e) {
-    if (isILLAAPiError(e)) {
-      failureHandler(displayName, failedEvent, e)
-      return Promise.reject(false)
+    let runResult = {
+      error: true,
+      message: "An unknown error",
     }
-    failureHandler(displayName, failedEvent)
-    return Promise.reject(false)
+    if (isILLAAPiError(e)) {
+      runResult.message = e.data?.errorMessage || "An unknown error"
+    }
+    store.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: displayName,
+        value: {
+          data: undefined,
+          runResult: runResult,
+          isRunning: false,
+          endTime: new Date().getTime(),
+        },
+      }),
+    )
+    runAllEventHandler(failedEvent)
+
+    return Promise.reject(runResult)
   }
 }
 
