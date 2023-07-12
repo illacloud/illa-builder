@@ -1690,20 +1690,20 @@
         },
         "senderAvatar": "avatar αποστολέα",
         "drive_builder": {
-          "allow_public_use": "Use in public app",
-          "illa_drive_folder": "ILLA Drive folder",
-          "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time",
-          "time": "Time(s)",
-          "turn_on_hotlink": "Turn on hotlink protect",
-          "button_text": "Button text",
-          "selection_type": "Selection type",
-          "allowed_file_types": "Allowed file types",
-          "file_list": "File list",
+          "allow_public_use": "Χρήση σε δημόσια εφαρμογή",
+          "illa_drive_folder": "Φάκελος μονάδας δίσκου ILLA",
+          "generate_signed_url": "Δημιουργία υπογεγραμμένου URL",
+          "expired_time": "Λήξη ώρας",
+          "time": "Χρόνος(οι)",
+          "turn_on_hotlink": "Ενεργοποίηση hotlink προστασίας",
+          "button_text": "Κείμενο κουμπιού",
+          "selection_type": "Τύπος επιλογής",
+          "allowed_file_types": "Επιτρεπόμενοι τύποι αρχείων",
+          "file_list": "Λίστα αρχείων",
           "min_size": "Min size",
           "max_size": "Max size",
-          "min_file_num": "Min file num",
-          "max_file_num": "Max file num"
+          "min_file_num": "Ελάχιστο αρχείο num",
+          "max_file_num": "Μέγιστος αριθμός αρχείου"
         }
       },
       "setter_tooltip": {
@@ -1937,20 +1937,20 @@
           "variant": "Για να ορίσετε την παραλλαγή των καρτελών"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
-          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
-          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
-          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
-          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
-          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
-          "button_text": "To set the text on the button",
-          "selection_type": "Set whether to allow the user to select a single file or multiple files",
-          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
-          "file_list": "To set whether to show the selected file list. ",
-          "min_size": "To set the allowed minimum file size",
-          "max_size": "To set the allowed maximum file size",
-          "min_file_num": "To set the minimum number of files allowed to be selected",
-          "max_file_num": "To set the maximum number of files allowed to be selected"
+          "allow_public_use": "Ορίστε αν θα χρησιμοποιείται στη δημόσια εφαρμογή. Όταν χρησιμοποιείται σε μια δημόσια εφαρμογή, για την προστασία της ασφάλειας των αρχείων σας, θα μπορεί να έχει πρόσβαση μόνο στο φάκελο πρόσβασης δημόσιων εφαρμογών",
+          "illa_drive_folder": "Για να καθορίσετε ένα φάκελο, οι χρήστες μπορούν να επιλέξουν αρχεία μόνο από αυτόν το φάκελο όταν χρησιμοποιούν αυτό το στοιχείο",
+          "generate_signed_url": "Για να ορίσετε αν θα δημιουργηθεί ένα υπογεγραμμένο URL. Όλοι οι χρήστες μπορούν να φτάσουν στο αρχείο μέσω ενός υπογεγραμμένου URL. Αυτό χρησιμοποιείται συνήθως όταν χρειάζεται να εμφανίσετε περιεχόμενο στην ιστοσελίδα σας ή να επιτρέψετε στους χρήστες να το κατεβάσουν. ",
+          "expired_time": "Για να ορίσετε την ώρα που έχει λήξει. Όταν λήξει, το υπογεγραμμένο URL θα είναι απρόσιτο.",
+          "time": "Χρησιμοποιήστε τον τύπο αριθμού σε δευτερόλεπτα για να ορίσετε το χρόνο λήξης. Για παράδειγμα, {{300}} (που σημαίνει 300 δευτερόλεπτα ή 5 λεπτά)",
+          "turn_on_hotlink": "Για να ορίσετε αν θα ενεργοποιήσετε την προστασία hotlink. Αν την ενεργοποιήσετε, το αρχείο θα προσπελαστεί μόνο μέσω της ιστοσελίδας στο illacloud.com",
+          "button_text": "Για να ορίσετε το κείμενο στο κουμπί",
+          "selection_type": "Ορίστε αν θα επιτρέπεται στο χρήστη να επιλέξει ένα μόνο αρχείο ή πολλά αρχεία",
+          "allowed_file_types": "Χρησιμοποιήστε έναν πίνακα συμβολοσειράς για να ορίσετε τους επιτρεπόμενους τύπους αρχείων, όπως επιτρέποντας jpg και png, συμπληρώστε το {{[\".jpg\", \".png\"]}}. Αφήστε κενό για να επιτρέψετε όλους τους τύπους αρχείων. ",
+          "file_list": "Για να ορίσετε αν θα εμφανίζεται η επιλεγμένη λίστα αρχείων. ",
+          "min_size": "Για να ορίσετε το ελάχιστο επιτρεπόμενο μέγεθος αρχείου",
+          "max_size": "Για να ορίσετε το μέγιστο επιτρεπόμενο μέγεθος αρχείου",
+          "min_file_num": "Για να ορίσετε τον ελάχιστο αριθμό αρχείων που επιτρέπεται να επιλεγούν",
+          "max_file_num": "Για να ορίσετε το μέγιστο αριθμό αρχείων που επιτρέπεται να επιλεγούν"
         }
       },
       "setter_option": {
@@ -2038,11 +2038,11 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never",
-            "customer": "Custom"
+            "never": "Ποτέ",
+            "customer": "Προσαρμοσμένο"
           },
-          "single_file": "Single file",
-          "multiple_files": "Multiple files"
+          "single_file": "Μονό αρχείο",
+          "multiple_files": "Πολλαπλά αρχεία"
         }
       },
       "setter_placeholder": {
@@ -2096,10 +2096,10 @@
           "max_duration": "Παρακαλούμε εγγραφείτε το πολύ {{maximum}}s"
         },
         "drive_builder": {
-          "min_size": "Please select a file with a size greater than {{min}}",
-          "max_size": "Please select a file with a size smaller than {{max}}",
-          "min_files": "Please select at least {{min}} files",
-          "max_files": "Please select at most {{max}} files"
+          "min_size": "Παρακαλώ επιλέξτε ένα αρχείο με μέγεθος μεγαλύτερο από το {{min}}",
+          "max_size": "Παρακαλώ επιλέξτε ένα αρχείο με μέγεθος μικρότερο από το {{max}}",
+          "min_files": "Παρακαλώ επιλέξτε τουλάχιστον {{min}} αρχεία",
+          "max_files": "Παρακαλώ επιλέξτε το πολύ {{max}} αρχεία"
         }
       },
       "setter_description": {
