@@ -1937,7 +1937,7 @@
           "variant": "För att ställa in variant av flikar"
         },
         "drive_builder": {
-          "allow_public_use": "Ange om du vill använda den publika appen. När den används i en offentlig app, för att skydda din filsäkerhet, kommer den endast att kunna komma åt mappen Publika appar åtkomst",
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
           "illa_drive_folder": "För att ange en mapp kan användare bara välja filer från den här mappen när den här komponenten används",
           "generate_signed_url": "Ange om du vill generera en signerad URL. Alla användare kan nå filen via en signerad URL. Detta används vanligtvis när du behöver visa innehåll på din webbplats eller tillåta användare att ladda ner det. ",
           "expired_time": "För att ställa in den förfallna tiden. När den signerade webbadressen har löpt ut kommer den att vara otillgänglig.",
