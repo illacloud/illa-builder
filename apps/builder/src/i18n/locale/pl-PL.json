@@ -1937,7 +1937,7 @@
           "variant": "Aby ustawić wariant kart"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
+          "allow_public_use": "Ustaw czy chcesz używać w publicznej aplikacji. Gdy używany jest w aplikacji publicznej, aby chronić bezpieczeństwo plików, będzie mieć dostęp tylko do folderu PublicAccess",
           "illa_drive_folder": "Aby określić folder, użytkownicy mogą wybrać pliki z tego folderu tylko podczas używania tego komponentu",
           "generate_signed_url": "Aby ustawić czy wygenerować podpisany adres URL. Wszyscy użytkownicy mogą dotrzeć do pliku za pomocą podpisanego adresu URL. Jest to zwykle używane kiedy musisz wyświetlać treści na swojej stronie internetowej lub zezwolić użytkownikom na ich pobieranie. ",
           "expired_time": "Aby ustawić czas wygaśnięcia. Po wygaśnięciu podpisany adres URL będzie niedostępny.",
