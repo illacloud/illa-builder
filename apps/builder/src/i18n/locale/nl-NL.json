@@ -1690,20 +1690,20 @@
         },
         "senderAvatar": "Afzender avatar",
         "drive_builder": {
-          "allow_public_use": "Use in public app",
-          "illa_drive_folder": "ILLA Drive folder",
-          "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time",
-          "time": "Time(s)",
-          "turn_on_hotlink": "Turn on hotlink protect",
-          "button_text": "Button text",
-          "selection_type": "Selection type",
-          "allowed_file_types": "Allowed file types",
-          "file_list": "File list",
+          "allow_public_use": "Gebruik in openbare app",
+          "illa_drive_folder": "ILLA Drive map",
+          "generate_signed_url": "Genereer ondertekende URL",
+          "expired_time": "Verlopen tijd",
+          "time": "Tijd(en)",
+          "turn_on_hotlink": "Hotlink-beveiliging inschakelen",
+          "button_text": "Knop tekst",
+          "selection_type": "Type selectie",
+          "allowed_file_types": "Toegestane bestandstypen",
+          "file_list": "Bestand lijst",
           "min_size": "Min size",
           "max_size": "Max size",
-          "min_file_num": "Min file num",
-          "max_file_num": "Max file num"
+          "min_file_num": "Min. aantal bestanden",
+          "max_file_num": "Max bestand nr"
         }
       },
       "setter_tooltip": {
@@ -1937,20 +1937,20 @@
           "variant": "Om de variant van tabbladen in te stellen"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
-          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
-          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
-          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
-          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
-          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
-          "button_text": "To set the text on the button",
-          "selection_type": "Set whether to allow the user to select a single file or multiple files",
-          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
-          "file_list": "To set whether to show the selected file list. ",
-          "min_size": "To set the allowed minimum file size",
-          "max_size": "To set the allowed maximum file size",
-          "min_file_num": "To set the minimum number of files allowed to be selected",
-          "max_file_num": "To set the maximum number of files allowed to be selected"
+          "allow_public_use": "Instellen of in openbare app moet worden gebruikt. Als het wordt gebruikt in een openbare app, om de beveiliging van uw bestanden te beschermen, zal het alleen toegang hebben tot de Openbare apps",
+          "illa_drive_folder": "Om een map op te geven, gebruikers kunnen alleen bestanden uit deze map selecteren wanneer ze dit onderdeel gebruiken",
+          "generate_signed_url": "Om in te stellen of een ondertekende URL moet worden gegenereerd. Alle gebruikers kunnen het bestand bereiken via een ondertekende URL. Dit wordt meestal gebruikt wanneer je inhoud op je website wilt weergeven of om gebruikers toe te staan deze te downloaden. ",
+          "expired_time": "Om de verlopen tijd in te stellen. Wanneer verlopen zal de ondertekende URL niet toegankelijk zijn.",
+          "time": "Gebruik het type nummer in seconden om de vervaltijd in te stellen. Bijvoorbeeld, {{300}} (wat betekent 300 seconden of 5 minuten)",
+          "turn_on_hotlink": "Om in te stellen of de hotlink bescherming wordt ingeschakeld. Als u deze inschakelt, wordt het bestand alleen toegankelijk via de website op illacloud.com",
+          "button_text": "Om de tekst op de knop in te stellen",
+          "selection_type": "Stel in of de gebruiker een enkel bestand of meerdere bestanden mag selecteren",
+          "allowed_file_types": "Gebruik een string array om de toegestane bestandstypes in te stellen, zoals het toestaan van jpg en png, vul {{[\".jpg\", \".png\"]}}in. Laat leeg om alle bestandstypes toe te staan. ",
+          "file_list": "Om te bepalen of de geselecteerde bestandslijst moet worden weergegeven. ",
+          "min_size": "Om de minimale bestandsgrootte in te stellen",
+          "max_size": "Om de maximale bestandsgrootte in te stellen",
+          "min_file_num": "Om het minimum aantal bestanden dat mag worden geselecteerd in te stellen",
+          "max_file_num": "Om het maximale aantal bestanden dat mag worden geselecteerd in te stellen"
         }
       },
       "setter_option": {
@@ -2038,11 +2038,11 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never",
-            "customer": "Custom"
+            "never": "Nooit",
+            "customer": "Aangepaste"
           },
-          "single_file": "Single file",
-          "multiple_files": "Multiple files"
+          "single_file": "Enkel bestand",
+          "multiple_files": "Meerdere bestanden"
         }
       },
       "setter_placeholder": {
@@ -2096,10 +2096,10 @@
           "max_duration": "Opname mag maximaal {{maximum}}s"
         },
         "drive_builder": {
-          "min_size": "Please select a file with a size greater than {{min}}",
-          "max_size": "Please select a file with a size smaller than {{max}}",
-          "min_files": "Please select at least {{min}} files",
-          "max_files": "Please select at most {{max}} files"
+          "min_size": "Selecteer een bestand met een grootte groter dan {{min}}",
+          "max_size": "Selecteer een bestand met een grootte kleiner dan {{max}}",
+          "min_files": "Selecteer ten minste {{min}} bestanden",
+          "max_files": "Selecteer maximaal {{max}} bestanden"
         }
       },
       "setter_description": {
