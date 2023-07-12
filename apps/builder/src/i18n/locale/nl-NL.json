@@ -1937,7 +1937,7 @@
           "variant": "Om de variant van tabbladen in te stellen"
         },
         "drive_builder": {
-          "allow_public_use": "Instellen of in openbare app moet worden gebruikt. Als het wordt gebruikt in een openbare app, om de beveiliging van uw bestanden te beschermen, zal het alleen toegang hebben tot de Openbare apps",
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
           "illa_drive_folder": "Om een map op te geven, gebruikers kunnen alleen bestanden uit deze map selecteren wanneer ze dit onderdeel gebruiken",
           "generate_signed_url": "Om in te stellen of een ondertekende URL moet worden gegenereerd. Alle gebruikers kunnen het bestand bereiken via een ondertekende URL. Dit wordt meestal gebruikt wanneer je inhoud op je website wilt weergeven of om gebruikers toe te staan deze te downloaden. ",
           "expired_time": "Om de verlopen tijd in te stellen. Wanneer verlopen zal de ondertekende URL niet toegankelijk zijn.",
