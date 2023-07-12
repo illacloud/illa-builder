@@ -278,9 +278,6 @@ importers:
       qs:
         specifier: ^6.11.0
         version: 6.11.0
-      rc-virtual-list:
-        specifier: ^3.4.2
-        version: 3.4.13(react-dom@18.2.0)(react@18.2.0)
       re-resizable:
         specifier: ^6.9.9
         version: 6.9.9(react-dom@18.2.0)(react@18.2.0)
@@ -325,7 +322,7 @@ importers:
         version: 2.11.2(react@18.2.0)
       react-redux:
         specifier: ^8.1.1
-        version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+        version: 8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       react-rnd:
         specifier: ^10.3.7
         version: 10.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -473,7 +470,7 @@ importers:
         version: 5.9.0(rollup@3.26.0)
       vite-plugin-checker:
         specifier: ^0.6.1
-        version: 0.6.1(eslint@8.33.0)(typescript@5.0.4)(vite@4.4.2)
+        version: 0.6.1(vite@4.4.2)
       vite-plugin-svgr:
         specifier: ^2.1.0
         version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
@@ -4008,7 +4005,7 @@ packages:
     dependencies:
       immer: 9.0.21
       react: 18.2.0
-      react-redux: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      react-redux: 8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       redux: 4.2.1
       redux-thunk: 2.4.2(redux@4.2.1)
       reselect: 4.1.8
@@ -4742,6 +4739,7 @@ packages:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
     dependencies:
       '@types/react': 18.0.27
+    dev: true
 
   /@types/react-pdf@6.2.0:
     resolution: {integrity: sha512-OSCYmrfaJvpXkM5V4seUMAhUDOAOqbGQf9kwv14INyTf7AjDs2ukfkkQrLWRQ8OjWrDklbXYWh5l7pT7l0N76g==}
@@ -10232,7 +10230,7 @@ packages:
       react-fast-compare: 3.2.0
     dev: false
 
-  /react-redux@8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
+  /react-redux@8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
     resolution: {integrity: sha512-5W0QaKtEhj+3bC0Nj0NkqkhIv8gLADH/2kYFMTHxCVqQILiWzLv6MaLuV5wJU3BQEdHKzTfcvPN0WMS6SC1oyA==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -10256,7 +10254,6 @@ packages:
       '@babel/runtime': 7.22.5
       '@types/hoist-non-react-statics': 3.3.1
       '@types/react': 18.2.14
-      '@types/react-dom': 18.0.10
       '@types/use-sync-external-store': 0.0.3
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
@@ -11917,7 +11914,7 @@ packages:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  /vite-plugin-checker@0.6.1(eslint@8.33.0)(typescript@5.0.4)(vite@4.4.2):
+  /vite-plugin-checker@0.6.1(vite@4.4.2):
     resolution: {integrity: sha512-4fAiu3W/IwRJuJkkUZlWbLunSzsvijDf0eDN6g/MGh6BUK4SMclOTGbLJCPvdAcMOQvVmm8JyJeYLYd4//8CkA==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -11953,7 +11950,6 @@ packages:
       chalk: 4.1.2
       chokidar: 3.5.3
       commander: 8.3.0
-      eslint: 8.33.0
       fast-glob: 3.2.12
       fs-extra: 11.1.0
       lodash.debounce: 4.0.8
@@ -11962,7 +11958,6 @@ packages:
       semver: 7.5.4
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.1
-      typescript: 5.0.4
       vite: 4.4.2(@types/node@18.14.5)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0

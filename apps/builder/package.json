@@ -82,7 +82,6 @@
     "papaparse": "^5.4.1",
     "pdfjs-dist": "2.16.105",
     "qs": "^6.11.0",
-    "rc-virtual-list": "^3.4.2",
     "re-resizable": "^6.9.9",
     "react-big-calendar": "^1.6.9",
     "react-chartjs-2": "^4.3.1",
