@@ -1690,20 +1690,20 @@
         },
         "senderAvatar": "送信者のアバター",
         "drive_builder": {
-          "allow_public_use": "Use in public app",
-          "illa_drive_folder": "ILLA Drive folder",
-          "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time",
-          "time": "Time(s)",
-          "turn_on_hotlink": "Turn on hotlink protect",
-          "button_text": "Button text",
-          "selection_type": "Selection type",
-          "allowed_file_types": "Allowed file types",
-          "file_list": "File list",
+          "allow_public_use": "パブリックアプリで使用",
+          "illa_drive_folder": "ILLA Driveフォルダ",
+          "generate_signed_url": "署名済みURLを生成",
+          "expired_time": "期限切れ時間",
+          "time": "回数",
+          "turn_on_hotlink": "ホットリンク保護をオンにする",
+          "button_text": "ボタンのテキスト",
+          "selection_type": "選択タイプ",
+          "allowed_file_types": "許可されたファイルの種類",
+          "file_list": "ファイルリスト",
           "min_size": "Min size",
           "max_size": "Max size",
-          "min_file_num": "Min file num",
-          "max_file_num": "Max file num"
+          "min_file_num": "最小ファイル num",
+          "max_file_num": "最大ファイル num"
         }
       },
       "setter_tooltip": {
@@ -1937,20 +1937,20 @@
           "variant": "タブのバリエーションを設定する"
         },
         "drive_builder": {
-          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
-          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
-          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
-          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
-          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
-          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
-          "button_text": "To set the text on the button",
-          "selection_type": "Set whether to allow the user to select a single file or multiple files",
-          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
-          "file_list": "To set whether to show the selected file list. ",
-          "min_size": "To set the allowed minimum file size",
-          "max_size": "To set the allowed maximum file size",
-          "min_file_num": "To set the minimum number of files allowed to be selected",
-          "max_file_num": "To set the maximum number of files allowed to be selected"
+          "allow_public_use": "公開アプリで使用するかどうかを設定します。 公開アプリで使用すると、ファイルのセキュリティを保護するため、公開アプリのアクセスフォルダにのみアクセスできます",
+          "illa_drive_folder": "フォルダを指定するには、このコンポーネントを使用する場合にのみ、このフォルダからファイルを選択できます",
+          "generate_signed_url": "署名された URL を生成するかどうかを設定します。すべてのユーザーは署名された URL を介してファイルにアクセスできます。 これは通常、あなたのウェブサイトにコンテンツを表示したり、ユーザーがそれをダウンロードできるようにする必要があるときに使用されます。 ",
+          "expired_time": "有効期限を設定します。有効期限が切れると、署名された URL にアクセスできなくなります。",
+          "time": "数字の種類を秒単位で使用して有効期限を設定します。例えば、 {{300}} (300秒または5分)",
+          "turn_on_hotlink": "ホットリンクプロテクトをオンにするかどうかを設定します。オンにすると、ファイルはillacloud.comのウェブサイトからのみアクセスされます。",
+          "button_text": "ボタンにテキストを設定する",
+          "selection_type": "ユーザーに単一のファイルまたは複数のファイルを選択させるかを設定します",
+          "allowed_file_types": "jpg や png などの許可されているファイルタイプを設定するには文字列配列を使用し、 {{[\".jpg\", \".png\"]}}を入力します。 すべてのファイルタイプを許可するには空白のままにしてください。 ",
+          "file_list": "選択したファイルリストを表示するかどうかを設定します。 ",
+          "min_size": "許可されている最小ファイルサイズを設定する",
+          "max_size": "許可された最大ファイルサイズを設定する",
+          "min_file_num": "選択できるファイルの最小数を設定する",
+          "max_file_num": "選択できるファイルの最大数を設定する"
         }
       },
       "setter_option": {
@@ -2038,11 +2038,11 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never",
-            "customer": "Custom"
+            "never": "一切なし",
+            "customer": "カスタム"
           },
-          "single_file": "Single file",
-          "multiple_files": "Multiple files"
+          "single_file": "単一のファイル",
+          "multiple_files": "複数のファイル"
         }
       },
       "setter_placeholder": {
@@ -2096,10 +2096,10 @@
           "max_duration": "最大 {{maximum}}秒で録音してください"
         },
         "drive_builder": {
-          "min_size": "Please select a file with a size greater than {{min}}",
-          "max_size": "Please select a file with a size smaller than {{max}}",
-          "min_files": "Please select at least {{min}} files",
-          "max_files": "Please select at most {{max}} files"
+          "min_size": "{{min}}より大きいサイズのファイルを選択してください",
+          "max_size": "{{max}}より小さいサイズのファイルを選択してください",
+          "min_files": "少なくとも {{min}} ファイルを選択してください",
+          "max_files": "最大 {{max}} ファイルを選択してください"
         }
       },
       "setter_description": {
