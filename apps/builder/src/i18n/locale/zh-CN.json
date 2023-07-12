@@ -1937,7 +1937,7 @@
           "variant": "设置标签页的样式"
         },
         "drive_builder": {
-          "allow_public_use": "设置是否在公开项目中使用。当在公开项目中使用时，为了保护您的文件安全，将只能访问Public apps access folder",
+          "allow_public_use": "设置是否在公开项目中使用。当在公开项目中使用时，为了保护您的文件安全，将只能访问PublicAccess文件夹",
           "illa_drive_folder": "用于指定文件夹，用户只能从您指定的文件夹里选择文件",
           "generate_signed_url": "设置是否生成签名URL。所有用户都可以通过签名URL访问文件。这通常用于您需要在您的网站上展示内容或允许用户下载内容的场景",
           "expired_time": "设置过期时间。过期后，签名URL将不可访问",
