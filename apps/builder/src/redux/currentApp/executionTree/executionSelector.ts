@@ -10,7 +10,6 @@ import {
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
-import { isObject } from "@/utils/typeHelper"
 
 export const getRawTree = createSelector(
   [
@@ -177,18 +176,6 @@ export const getExecutionResultToGlobalCodeMirror = createSelector(
         result[key] = cloneDeep(executionResult[key])
       }
     })
-    Object.keys(result).forEach((key) => {
-      const componentOrAction = result[key]
-      if (isObject(componentOrAction)) {
-        Object.keys(componentOrAction as Record<string, unknown>).forEach(
-          (key) => {
-            if (key.startsWith("$")) {
-              delete (componentOrAction as Record<string, unknown>)[key]
-            }
-          },
-        )
-      }
-    })
     return result
   },
 )
@@ -219,18 +206,6 @@ export const getExecutionResultToCurrentPageCodeMirror = createSelector(
       }
       if (currentSeed && currentSeed.$type !== "WIDGET") {
         result[key] = cloneDeep(executionResult[key])
-      }
-    })
-    Object.keys(result).forEach((key) => {
-      const componentOrAction = result[key]
-      if (isObject(componentOrAction)) {
-        Object.keys(componentOrAction as Record<string, unknown>).forEach(
-          (key) => {
-            if (key.startsWith("$")) {
-              delete (componentOrAction as Record<string, unknown>)[key]
-            }
-          },
-        )
       }
     })
     return result

@@ -1,10 +1,8 @@
-import download from "downloadjs"
 import XLSX from "xlsx"
 import { createMessage, isArray, isObject } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { fetchDownloadFileFromURL } from "@/services/action"
-import { isBlobURLOrUrl } from "@/utils/typeHelper"
-import { isBase64 } from "@/utils/url/base64"
+import { downloadFile } from "../eventHandlerHelper/utils/commonUtils"
 
 export const calculateFileSize = (data: string | string[]) => {
   const blobArr = Array.isArray(data) ? data : [data]
@@ -100,7 +98,7 @@ export const getContentTypeByFileExtension = (extension: string) => {
   )
 }
 
-const downloadExcelFile = (data: any, contentType: string) => {
+export const downloadExcelFile = (data: any, contentType: string) => {
   const bookType =
     contentType ===
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -151,7 +149,7 @@ const convertObj = (obj: any, format?: boolean): any => {
   return obj
 }
 
-const convertToCSV = (data: any): string => {
+export const convertToCSV = (data: any): string => {
   if (Array.isArray(data)) {
     if (data.length === 0) {
       return ""
@@ -186,7 +184,7 @@ const convertToCSV = (data: any): string => {
   }
 }
 
-const convertToTSV = (data: any): string => {
+export const convertToTSV = (data: any): string => {
   if (Array.isArray(data)) {
     if (data.length === 0) {
       return ""
@@ -221,7 +219,7 @@ const convertToTSV = (data: any): string => {
   }
 }
 
-const getFileName = (fileName: string, fileType: string) => {
+export const getFileName = (fileName: string, fileType: string) => {
   const namePart = fileName.split(".")
   const length = namePart.length
   const fileRealName =
@@ -243,7 +241,7 @@ const getFileName = (fileName: string, fileType: string) => {
   return `${fileRealName}`
 }
 
-const downloadFileFromURL = async (
+export const downloadFileFromURL = async (
   data: string,
   fileDownloadName: string,
   contentType: string,
@@ -251,79 +249,16 @@ const downloadFileFromURL = async (
   const message = createMessage()
   try {
     const res = await fetchDownloadFileFromURL(data)
-    downloadFileFromEventHandler(contentType, fileDownloadName, res.data)
+    downloadFile({
+      fileType: contentType,
+      fileName: fileDownloadName,
+      data: res,
+    })
     return
   } catch (e) {
     message.error({
       content: i18n.t("editor.method.file_download.message.fail"),
     })
     return
-  }
-}
-
-export const downloadFileFromEventHandler = (
-  fileType: string,
-  fileName: string,
-  data: any,
-) => {
-  const message = createMessage()
-  try {
-    const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
-    const contentType = getContentTypeByFileExtension(
-      fileDownloadName.split(".")[1],
-    )
-    const isBase64Suffix = typeof data === "string" && isBase64(data)
-    const isValidBase64 = typeof data === "string" && isBase64(data, true)
-    const formatData = isArray(data) ? data : isObject(data) ? [data] : data
-    const isValidUrl = typeof data === "string" && isBlobURLOrUrl(data)
-
-    let params
-
-    if (isValidBase64 || data instanceof Blob) {
-      params = data
-    } else if (isBase64Suffix) {
-      params = `data:${contentType};base64,${data}`
-    } else if (isValidUrl) {
-      downloadFileFromURL(data, fileDownloadName, contentType)
-      return
-    } else {
-      switch (contentType) {
-        case "text/csv":
-          {
-            params = new Blob(["\ufeff", convertToCSV(formatData)], {
-              type: "text/csv;charset=utf-8",
-            })
-          }
-          break
-        case "application/vnd.ms-excel":
-        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-          {
-            params = new Blob([downloadExcelFile(data, contentType)], {
-              type: "application/octet-stream",
-            })
-          }
-          break
-        case "text/tab-separated-values":
-          {
-            params = convertToTSV(formatData)
-          }
-          break
-        default:
-          {
-            if (typeof data === "object") {
-              params = JSON.stringify(data)
-            } else {
-              params = data
-            }
-          }
-          break
-      }
-    }
-    download(params, fileDownloadName, contentType)
-  } catch (e) {
-    message.error({
-      content: i18n.t("editor.method.file_download.message.download_failed"),
-    })
-    console.error(e)
   }
 }

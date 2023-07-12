@@ -27,13 +27,14 @@ import {
   isWidget,
 } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
-import { validationFactory } from "@/utils/validationFactory"
+import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 import {
   IExecutionActions,
   runActionWithExecutionResult,
 } from "../action/runAction"
 
 const message = createMessage()
+
 export const IGNORE_ACTION_RUN_ATTR_NAME = [
   "isRunning",
   "startTime",
@@ -42,6 +43,18 @@ export const IGNORE_ACTION_RUN_ATTR_NAME = [
   "runResult",
   "responseHeaders",
 ]
+
+export const IGNORE_AUTO_RUN_WITH_RUN_SCRIPT_ATTR_RULES = [
+  /events\[\d+\]\.script/,
+  /content\.successEvent\[\d+\]\.script/,
+  /content\.failedEvent\[\d+\]\.script/,
+]
+
+export const isRunScriptAttr = (attrPath: string) => {
+  return IGNORE_AUTO_RUN_WITH_RUN_SCRIPT_ATTR_RULES.some((rule) => {
+    return rule.test(attrPath)
+  })
+}
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}
@@ -126,7 +139,9 @@ export class ExecutionTreeFactory {
       }
       if (isObject(validationPaths)) {
         Object.keys(validationPaths).forEach((validationPath) => {
-          const validationType = validationPaths[validationPath]
+          const validationType = validationPaths[
+            validationPath
+          ] as VALIDATION_TYPES
           const fullPath = `${displayName}.${validationPath}`
           const validationFunc = validationFactory[validationType]
           const value = get(widgetOrAction, validationPath)
@@ -634,6 +649,7 @@ export class ExecutionTreeFactory {
                 widgetOrActionAttribute,
                 current,
               )
+
               set(current, fullPath, evaluateValue)
             } catch (e) {
               const oldError = get(errorTree, fullPath, []) as ErrorShape[]

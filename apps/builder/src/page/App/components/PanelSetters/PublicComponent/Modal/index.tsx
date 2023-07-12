@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { FC, useMemo } from "react"
+import { FC, Suspense, useMemo } from "react"
 import { ModalBody } from "./body"
 import { ModalHeader } from "./header"
 import { ModalProps } from "./interface"
@@ -42,7 +42,7 @@ export const BaseModal: FC<ModalProps> = (props) => {
   return (
     <div css={css(modalWrapperStyle, _css)}>
       {_header}
-      {renderBody}
+      <Suspense>{renderBody}</Suspense>
       {extraElement}
     </div>
   )

@@ -272,7 +272,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
             const dynamicString = get(needRunEvents, realPath, "")
             if (dynamicString) {
               const calcValue = evaluateDynamicString(
-                "",
+                `events${realPath}`,
                 dynamicString,
                 finalContext,
               )
@@ -311,7 +311,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
 
             if (dynamicString) {
               const calcValue = evaluateDynamicString(
-                "",
+                `events${realPath}`,
                 dynamicString,
                 finalContext,
               )

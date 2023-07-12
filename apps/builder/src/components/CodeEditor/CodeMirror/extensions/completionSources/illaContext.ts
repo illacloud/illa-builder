@@ -10,6 +10,10 @@ import {
 } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/TernServer"
 import { CODE_TYPE } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
+import {
+  removeIgnoredKeys,
+  removeWidgetOrActionMethods,
+} from "@/utils/executionTreeHelper/utils"
 import { isFunction, isObject } from "@/utils/typeHelper"
 
 const formatUtils = (data: unknown) => {
@@ -96,11 +100,21 @@ export const buildIllaContextCompletionSource = (
 ): ((
   context: CompletionContext,
 ) => CompletionResult | Promise<CompletionResult | null> | null) => {
-  const isFunction = codeType === CODE_TYPE.FUNCTION
-  const executionResult =
+  const isFunction =
+    codeType === CODE_TYPE.FUNCTION || codeType === CODE_TYPE.NO_METHOD_FUNCTION
+  const firstCalcContext =
     scopeOfAutoComplete === "global"
       ? ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContextWithLimit()
       : ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext()
+  let executionResult = firstCalcContext
+  if (codeType === CODE_TYPE.FUNCTION) {
+    executionResult = removeIgnoredKeys(executionResult)
+  } else {
+    executionResult = removeIgnoredKeys(
+      removeWidgetOrActionMethods(executionResult),
+    )
+  }
+
   return (context: CompletionContext) => {
     const isCursorInDynamicFlag = checkCursorInDynamicFlag(context, isFunction)
     if (!isCursorInDynamicFlag) {

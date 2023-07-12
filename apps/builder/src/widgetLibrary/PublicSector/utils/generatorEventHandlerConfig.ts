@@ -43,6 +43,10 @@ export const generatorEventHandlerConfig = (
             value: "widget",
           },
           {
+            label: i18n.t("editor.inspect.setter_label.run_script"),
+            value: "script",
+          },
+          {
             label: i18n.t("editor.inspect.setter_label.go_to_url"),
             value: "openUrl",
           },
@@ -508,7 +512,7 @@ export const generatorEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-script`,
-        setterType: "INPUT_SETTER",
+        setterType: "SCRIPT_INPUT_SETTER",
         attrName: "script",
         bindAttrName: ["actionType"],
         expectedType: VALIDATION_TYPES.STRING,
