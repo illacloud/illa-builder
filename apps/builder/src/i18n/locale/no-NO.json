@@ -1937,7 +1937,7 @@
           "variant": "Å definere varianten av faner"
         },
         "drive_builder": {
-          "allow_public_use": "Angi om den skal brukes i offentlig app. (Automatic Translation) Når den brukes i en offentlig app, for å beskytte filsikkerheten din, vil den bare få tilgang til mappen Offentlige apper",
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
           "illa_drive_folder": "For å spesifisere en mappe, kan brukere bare velge filer fra denne mappen når du bruker denne komponenten",
           "generate_signed_url": "For å angi om du vil generere en signert URL. Alle brukere kan nå filen via en signert URL. Dette brukes vanligvis når du trenger å vise innhold på nettstedet ditt, eller så kan brukere laste det ned. ",
           "expired_time": "For å sette utløpt tid. Når utløpt, vil signert URL være utilgjengelig.",
