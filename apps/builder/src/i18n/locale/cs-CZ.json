@@ -1688,7 +1688,13 @@
         "rich_text": {
           "default_text": "Zástupný symbol"
         },
-        "senderAvatar": "Avatar odesílatele"
+        "senderAvatar": "Avatar odesílatele",
+        "drive_builder": {
+          "allow_public_use": "Use in public app",
+          "illa_drive_folder": "ILLA Drive folder",
+          "generate_signed_url": "Generate signed URL",
+          "expired_time": "Expired time"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1919,6 +1925,12 @@
         "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy.",
         "tabs": {
           "variant": "Možnost nastavení záložek"
+        },
+        "drive_builder": {
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
+          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
+          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
+          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable."
         }
       },
       "setter_option": {
