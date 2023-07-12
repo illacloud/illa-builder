@@ -1290,7 +1290,7 @@
           "clear_button_text": "Leeren"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Text hier eingeben"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "Absender-ID",
         "showName": "Name anzeigen",
         "rich_text": {
-          "default_text": "Standardtext"
+          "default_text": "Platzhalter"
         },
-        "senderAvatar": "Absender-Avatar"
+        "senderAvatar": "Absender-Avatar",
+        "drive_builder": {
+          "allow_public_use": "In öffentlicher App verwenden",
+          "illa_drive_folder": "ILLA Drive Ordner",
+          "generate_signed_url": "Signierte URL generieren",
+          "expired_time": "Abgelaufene Zeit",
+          "time": "Zeit(e)",
+          "turn_on_hotlink": "Hotlink-Schutz einschalten",
+          "button_text": "Schaltflächentext",
+          "selection_type": "Auswahltyp",
+          "allowed_file_types": "Erlaubte Dateitypen",
+          "file_list": "Dateiliste",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Min. Datei num",
+          "max_file_num": "Maximale Datei-num"
+        }
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Legen Sie fest, ob eine Löschtaste angezeigt werden soll, wenn Sie eine Nachricht auswählen.",
         "tabs": {
           "variant": "Um die Variante der Tabs zu setzen"
+        },
+        "drive_builder": {
+          "allow_public_use": "Legen Sie fest, ob in der öffentlichen App verwendet werden soll. Wenn sie in einer öffentlichen App verwendet wird, um Ihre Datei-Sicherheit zu schützen, kann sie nur auf den öffentlichen App-Zugriffsordner zugreifen",
+          "illa_drive_folder": "Um einen Ordner anzugeben, können Benutzer nur Dateien aus diesem Ordner auswählen, wenn diese Komponente verwendet wird",
+          "generate_signed_url": "Um festzulegen, ob eine signierte URL generiert werden soll. Alle Benutzer können die Datei über eine signierte URL erreichen. Dies wird in der Regel verwendet, wenn Sie Inhalte auf Ihrer Website anzeigen oder Benutzern erlauben müssen, sie herunterzuladen. ",
+          "expired_time": "Um die abgelaufene Zeit zu setzen. Wenn abgelaufen ist, ist die signierte URL nicht zugänglich.",
+          "time": "Verwenden Sie den Zahlentyp in Sekunden, um die Ablaufzeit festzulegen. Zum Beispiel {{300}} (was 300 Sekunden oder 5 Minuten bedeutet)",
+          "turn_on_hotlink": "Aktivieren Sie den Hotlink-Schutz. Wenn Sie ihn aktiviert haben, wird die Datei nur über die Webseite auf illacloud.com aufgerufen",
+          "button_text": "Um den Text auf die Schaltfläche zu setzen",
+          "selection_type": "Legen Sie fest, ob der Benutzer eine einzelne Datei oder mehrere Dateien auswählen darf",
+          "allowed_file_types": "Verwenden Sie ein String Array, um die erlaubten Dateitypen wie jpg und png zu setzen, füllen Sie {{[\".jpg\", \".png\"]}}aus. Leer lassen, um alle Dateitypen zuzulassen. ",
+          "file_list": "Um festzulegen, ob die ausgewählte Dateiliste angezeigt werden soll. ",
+          "min_size": "Um die minimale Dateigröße zu setzen",
+          "max_size": "Maximale Dateigröße festlegen",
+          "min_file_num": "Um die minimale Anzahl an Dateien zu setzen, die ausgewählt werden dürfen",
+          "max_file_num": "Um die maximale Anzahl an Dateien zu setzen, die ausgewählt werden dürfen"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Linie",
           "card": "Karte"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Nie",
+            "customer": "Eigene"
+          },
+          "single_file": "Einzelne Datei",
+          "multiple_files": "Mehrere Dateien"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Wert kann während der Aufnahme nicht gesetzt werden",
           "min_duration": "Bitte mindestens {{minimum}}s aufnehmen",
           "max_duration": "Bitte höchstens {{maximum}}s aufnehmen"
+        },
+        "drive_builder": {
+          "min_size": "Bitte wählen Sie eine Datei mit einer Größe größer als {{min}}",
+          "max_size": "Bitte wählen Sie eine Datei mit einer Größe kleiner als {{max}}",
+          "min_files": "Bitte wählen Sie mindestens {{min}} Dateien",
+          "max_files": "Bitte wählen Sie maximal {{max}} Dateien"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Der Standardtext, der angezeigt wird, wenn die Komponente initialisiert wird"
+          "default_text": "Der Wert wird angezeigt, wenn das Eingabefeld leer ist."
         }
       },
       "widget": {

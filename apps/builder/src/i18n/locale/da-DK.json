@@ -1290,7 +1290,7 @@
           "clear_button_text": "Ryd"
         },
         "rich_text": {
-          "default_text": "tekst"
+          "default_text": "Skriv tekst her"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "Afsender ID",
         "showName": "Vis navn",
         "rich_text": {
-          "default_text": "Standard tekst"
+          "default_text": "Pladsholder"
         },
-        "senderAvatar": "Afsenders avatar"
+        "senderAvatar": "Afsenders avatar",
+        "drive_builder": {
+          "allow_public_use": "Brug i offentlig app",
+          "illa_drive_folder": "ILLA drev mappe",
+          "generate_signed_url": "Generer signeret URL",
+          "expired_time": "Udløbet tid",
+          "time": "Tid(er)",
+          "turn_on_hotlink": "Slå hotlink-beskyttelse til",
+          "button_text": "Knap tekst",
+          "selection_type": "Markering type",
+          "allowed_file_types": "Tilladte filtyper",
+          "file_list": "Fil liste",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Min. fil num",
+          "max_file_num": "Maks. fil num"
+        }
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Angiv, om en sletningsknap skal vises, når du vælger en besked.",
         "tabs": {
           "variant": "For at indstille varianten af faneblade"
+        },
+        "drive_builder": {
+          "allow_public_use": "Angiv om der skal bruges i offentlig app. Når den bruges i en offentlig app, vil den for at beskytte din filsikkerhed kun kunne tilgå mappen Offentlige apps adgang",
+          "illa_drive_folder": "For at angive en mappe, kan brugere kun vælge filer fra denne mappe, når du bruger denne komponent",
+          "generate_signed_url": "For at angive, om der skal oprettes en underskrevet URL. Alle brugere kan nå filen via en underskrevet URL. Dette bruges normalt, når du har brug for at vise indhold på dit websted eller give brugerne mulighed for at downloade det. ",
+          "expired_time": "For at indstille den udløbne tid. Når udløbet, vil den signerede URL være utilgængelig.",
+          "time": "Brug taltypen i sekunder til at indstille udløbstiden. For eksempel, {{300}} (hvilket betyder 300 sekunder eller 5 minutter)",
+          "turn_on_hotlink": "For at angive, om du aktiverer hotlink-beskyttelsen. Hvis du aktiverer den, vil filen kun blive tilgået via hjemmesiden på illacloud.com",
+          "button_text": "Sådan indstiller du teksten på knappen",
+          "selection_type": "Angiv, om brugeren skal kunne vælge en enkelt fil eller flere filer",
+          "allowed_file_types": "Brug et strengarray til at indstille de tilladte filtyper, såsom at tillade jpg og png, udfyld {{[\".jpg\", \".png\"]}}. Lad stå tomt for at tillade alle filtyper. ",
+          "file_list": "For at indstille om den valgte filliste skal vises. ",
+          "min_size": "For at indstille den tilladte minimumsfilstørrelse",
+          "max_size": "For at indstille den tilladte maksimale filstørrelse",
+          "min_file_num": "For at indstille det mindste antal filer der må vælges",
+          "max_file_num": "For at indstille det maksimale antal filer der må vælges"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Linje",
           "card": "Kort"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Aldrig",
+            "customer": "Tilpasset"
+          },
+          "single_file": "Enkelt fil",
+          "multiple_files": "Flere filer"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Kan ikke indstille værdi under optagelse",
           "min_duration": "Optager mindst {{minimum}}s",
           "max_duration": "Optager højst {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Vælg en fil med en størrelse større end {{min}}",
+          "max_size": "Vælg en fil med en størrelse mindre end {{max}}",
+          "min_files": "Vælg mindst {{min}} filer",
+          "max_files": "Vælg højst {{max}} filer"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Standard teksten vises når komponenten er initialiseret"
+          "default_text": "Værdien vil blive vist når inputfeltet er tomt."
         }
       },
       "widget": {
