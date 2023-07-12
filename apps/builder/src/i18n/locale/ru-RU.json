@@ -1693,7 +1693,17 @@
           "allow_public_use": "Use in public app",
           "illa_drive_folder": "ILLA Drive folder",
           "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time"
+          "expired_time": "Expired time",
+          "time": "Time(s)",
+          "turn_on_hotlink": "Turn on hotlink protect",
+          "button_text": "Button text",
+          "selection_type": "Selection type",
+          "allowed_file_types": "Allowed file types",
+          "file_list": "File list",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Min file num",
+          "max_file_num": "Max file num"
         }
       },
       "setter_tooltip": {
@@ -1930,7 +1940,17 @@
           "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the Public apps access folder",
           "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
           "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
-          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable."
+          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
+          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
+          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
+          "button_text": "To set the text on the button",
+          "selection_type": "Set whether to allow the user to select a single file or multiple files",
+          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}",
+          "file_list": "To set whether to show the selected file list. ",
+          "min_size": "To set the allowed minimum file size",
+          "max_size": "To set the allowed maximum file size",
+          "min_file_num": "To set the minimum number of files allowed to be selected",
+          "max_file_num": "To set the maximum number of files allowed to be selected"
         }
       },
       "setter_option": {
@@ -2018,8 +2038,11 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never"
-          }
+            "never": "Never",
+            "customer": "Custom"
+          },
+          "single_file": "Single file",
+          "multiple_files": "Multiple files"
         }
       },
       "setter_placeholder": {
@@ -2071,6 +2094,12 @@
           "cannot_set_value_dur": "Невозможно установить значение во время записи",
           "min_duration": "Пожалуйста, записывайте не менее {{minimum}}с",
           "max_duration": "Пожалуйста, записывайте не более {{maximum}}с"
+        },
+        "drive_builder": {
+          "min_size": "Please select a file with a size greater than {{min}}",
+          "max_size": "Please select a file with a size smaller than {{max}}",
+          "min_files": "Please select at least {{min}} files",
+          "max_files": "Please select at most {{max}} files"
         }
       },
       "setter_description": {
