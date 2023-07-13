@@ -1,7 +1,7 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
 
-export const CARD_WIDTH = 380
+export const CARD_WIDTH = 320
 export const CARD_HEIGHT = 228
 export const CARD_GAP_SIZE = 24
 export const fullWidthStyle: SerializedStyles = css`
@@ -37,6 +37,12 @@ export const teamInfoContainerStyle: SerializedStyles = css`
 export const teamAvatarStyle: SerializedStyles = css`
   width: 40px;
   height: 40px;
+`
+
+export const cardContainerStyle: SerializedStyles = css`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(${CARD_WIDTH}px, 1fr));
+  grid-gap: 24px 24px;
 `
 
 export const listContainerStyle: SerializedStyles = css`
