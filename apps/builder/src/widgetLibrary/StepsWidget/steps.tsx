@@ -38,6 +38,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     currentIndex,
     linkWidgetDisplayName,
     defaultStep,
+    disabled,
     updateComponentHeight,
     handleUpdateMultiExecutionResult,
     handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
@@ -80,7 +81,11 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
    */
   const { items, uniqueOptions } = useMemo(() => {
     if (!isLinkedContainer) {
-      return formatStepsData(optionConfigureMode, formatOptionConfigData)
+      return formatStepsData(
+        optionConfigureMode,
+        formatOptionConfigData,
+        disabled,
+      )
     }
     const results = transformedContainerList.map((item, index) => {
       const { label, value, caption, tooltip = "" } = item
@@ -88,6 +93,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
       return {
         title: getStepItemTitle(titleContent, tooltip),
         description: caption,
+        disabled,
       }
     })
     return {
@@ -99,6 +105,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     transformedContainerList,
     optionConfigureMode,
     formatOptionConfigData,
+    disabled,
   ])
 
   const handleUpdateMultiExecutionResults = useCallback(

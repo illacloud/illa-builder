@@ -22,5 +22,5 @@ export const EVENT_CALENDAR_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "DragOrClickNoEventArea",
     },
   ],
-  methods: ["addEvent", "deleteEvent"],
+  methods: [],
 }
