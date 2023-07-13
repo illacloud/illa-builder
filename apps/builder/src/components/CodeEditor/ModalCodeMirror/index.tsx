@@ -12,6 +12,7 @@ export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
     description,
     lang,
     expectValueType,
+    codeType,
     onChange,
     onClickSaveButton,
     onClose,
@@ -41,6 +42,7 @@ export const ModalCodeMirror: FC<ModalCodeMirrorProps> = (props) => {
           onBlur={onBlur}
           onFocus={onFocus}
           scopeOfAutoComplete={scopeOfAutoComplete}
+          codeType={codeType}
         />
       }
       footerContent={

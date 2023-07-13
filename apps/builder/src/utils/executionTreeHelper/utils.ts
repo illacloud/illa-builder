@@ -1,8 +1,7 @@
 import { toPath } from "lodash"
 import { extractIdentifiersFromCode } from "@/utils/ast/ast"
-import { isInt } from "@/utils/typeHelper"
+import { isInt, isObject } from "@/utils/typeHelper"
 
-const _ignorePathsForEvalRegex = /.(\$dynamicAttrPaths|\$validationPaths)/
 const IMMEDIATE_PARENT_REGEX = /^(.*)(\..*|\[.*\])$/
 
 export const convertPathToString = (attrPath: string[] | number[]) => {
@@ -78,4 +77,59 @@ export const getImmediateParentsOfPropertyPaths = (
   })
 
   return Array.from(parents)
+}
+
+export const removeIgnoredKeys = (result: Record<string, unknown>) => {
+  return Object.keys(result).reduce(
+    (acc: Record<string, unknown>, key: string) => {
+      const componentOrAction = result[key]
+      if (isObject(componentOrAction)) {
+        const updatedComponentOrAction = Object.keys(componentOrAction).reduce(
+          (obj: Record<string, unknown>, innerKey: string) => {
+            if (!innerKey.startsWith("$")) {
+              obj[innerKey] = componentOrAction[innerKey]
+            }
+            return obj
+          },
+          {},
+        )
+        acc[key] = updatedComponentOrAction
+      } else {
+        acc[key] = componentOrAction
+      }
+      return acc
+    },
+    {},
+  )
+}
+
+export const removeWidgetOrActionMethods = (
+  result: Record<string, unknown>,
+) => {
+  return Object.keys(result).reduce(
+    (acc: Record<string, unknown>, key: string) => {
+      const componentOrAction = result[key]
+      if (
+        isObject(componentOrAction) &&
+        (componentOrAction.$type === "WIDGET" ||
+          componentOrAction.$type === "ACTION")
+      ) {
+        const updatedComponentOrAction = Object.keys(componentOrAction).reduce(
+          (obj: Record<string, unknown>, innerKey: string) => {
+            const innerValue = componentOrAction[innerKey]
+            if (typeof innerValue !== "function") {
+              obj[innerKey] = componentOrAction[innerKey]
+            }
+            return obj
+          },
+          {},
+        )
+        acc[key] = updatedComponentOrAction
+      } else {
+        acc[key] = componentOrAction
+      }
+      return acc
+    },
+    {},
+  )
 }

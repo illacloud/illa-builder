@@ -73,7 +73,7 @@ export const getDynamicValue = (
   const calcContext = merge(
     {},
     dataTree,
-    ILLAEditorRuntimePropsCollectorInstance.getRuntimeProps(),
+    ILLAEditorRuntimePropsCollectorInstance.getThirdPartyPackages(),
   )
   if (stringSnippets.length) {
     const values = jsSnippets.map((jsSnippet, index) => {

@@ -18,13 +18,16 @@ import i18n from "@/i18n/config"
 import {
   getExecutionResultToCurrentPageCodeMirror,
   getExecutionResultToGlobalCodeMirror,
-  removeIgnoredKeys,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { LIMIT_MEMORY, estimateMemoryUsage } from "@/utils/calculateMemoryUsage"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import { isDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
+import {
+  removeIgnoredKeys,
+  removeWidgetOrActionMethods,
+} from "@/utils/executionTreeHelper/utils"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const getResultType = (result: unknown) => {
@@ -131,14 +134,16 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         : getExecutionResultToCurrentPageCodeMirror(rootState)
     },
   )
-  const calcContext = useMemo(
-    () => removeIgnoredKeys(tmpCalcContext),
-    [tmpCalcContext],
-  )
+  const calcContext = useMemo(() => {
+    if (codeType === CODE_TYPE.FUNCTION) {
+      return removeIgnoredKeys(tmpCalcContext)
+    } else {
+      return removeIgnoredKeys(removeWidgetOrActionMethods(tmpCalcContext))
+    }
+  }, [codeType, tmpCalcContext])
 
   const stringSnippets = useMemo(() => {
     const result: IExpressionShape[] = []
-    if (!canShowResultRealTime) return result
     const realInput = wrappedCodeFunc ? wrappedCodeFunc(value) : value
     const dynamicStrings = getStringSnippets(realInput)
     const errors: string[] = []
@@ -214,13 +219,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       )
     }
     return result
-  }, [
-    wrappedCodeFunc,
-    value,
-    expectValueType,
-    calcContext,
-    canShowResultRealTime,
-  ])
+  }, [wrappedCodeFunc, value, expectValueType, calcContext])
 
   const debounceHandleChange = useMemo(() => {
     return debounce(onChange, 160)
@@ -294,6 +293,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           onBlur={onBlur}
           onFocus={onFocus}
           scopeOfAutoComplete={scopeOfAutoComplete}
+          codeType={codeType}
         />
       )}
     </div>

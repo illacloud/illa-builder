@@ -12,6 +12,31 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import { runActionWithExecutionResult } from "../action/runAction"
+import {
+  copyToClipboard,
+  downloadFile,
+  goToURL,
+  setRouter,
+  showNotification,
+} from "../eventHandlerHelper/utils/commonUtils"
+
+const THIRD_PARTY_PACKAGES = {
+  _,
+  uuid: {
+    NIL,
+    parse,
+    stringify,
+    v1,
+    v3,
+    v4,
+    v5,
+    validate,
+    version,
+  },
+  dayjs,
+  numbro,
+  Papa,
+}
 
 class ILLAEditorRuntimePropsCollector {
   private _runtimeProps: Record<string, unknown> = {}
@@ -19,21 +44,14 @@ class ILLAEditorRuntimePropsCollector {
 
   constructor() {
     this._runtimeProps = {
-      _,
-      uuid: {
-        NIL,
-        parse,
-        stringify,
-        v1,
-        v3,
-        v4,
-        v5,
-        validate,
-        version,
+      ...THIRD_PARTY_PACKAGES,
+      utils: {
+        goToURL,
+        showNotification,
+        copyToClipboard,
+        setRouter,
+        downloadFile,
       },
-      dayjs,
-      numbro,
-      Papa,
     }
   }
 
@@ -56,6 +74,10 @@ class ILLAEditorRuntimePropsCollector {
 
   public getRuntimeProps() {
     return this._runtimeProps
+  }
+
+  public getThirdPartyPackages() {
+    return THIRD_PARTY_PACKAGES
   }
 
   public getMergedRuntimeProps(otherProps: Record<string, unknown>) {

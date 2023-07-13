@@ -37,7 +37,7 @@ const TransformerPanel: FC = () => {
         height="88px"
         expectValueType={VALIDATION_TYPES.STRING}
         lang={CODE_LANG.JAVASCRIPT}
-        codeType={CODE_TYPE.FUNCTION}
+        codeType={CODE_TYPE.NO_METHOD_FUNCTION}
         onChange={(value) => {
           dispatch(
             configActions.updateCachedAction({

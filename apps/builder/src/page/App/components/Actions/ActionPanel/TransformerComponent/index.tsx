@@ -101,7 +101,7 @@ export const TransformerComponent: FC<TransformComponentProps> = (props) => {
             height="88px"
             expectValueType={VALIDATION_TYPES.STRING}
             lang={CODE_LANG.JAVASCRIPT}
-            codeType={CODE_TYPE.FUNCTION}
+            codeType={CODE_TYPE.NO_METHOD_FUNCTION}
             modalTitle={t("editor.action.panel.label.transformer")}
             onChange={(value) => {
               dispatch(
