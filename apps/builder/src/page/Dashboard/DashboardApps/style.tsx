@@ -8,23 +8,23 @@ export const fullWidthStyle: SerializedStyles = css`
   width: 100%;
   height: 100%;
   overflow: auto;
+  padding: 0 15%;
 `
 export const appsContainerStyle: SerializedStyles = css`
   display: flex;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   flex-grow: 1;
   flex-direction: column;
   margin: 0 auto;
   // Compatible child element box-shadow style
-  width: calc(70% + 16px);
-  min-width: 650px;
-  padding: 40px 16px;
+  padding: 40px 0;
 `
 
 export const listTitleContainerStyle: SerializedStyles = css`
   display: flex;
-  padding: 24px 0;
+  padding: 24px 15%;
   justify-content: space-between;
   align-items: center;
 `
@@ -40,12 +40,6 @@ export const teamAvatarStyle: SerializedStyles = css`
   width: 40px;
   height: 40px;
   flex-shrink: 0;
-`
-
-export const cardContainerStyle: SerializedStyles = css`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(${CARD_WIDTH}px, 1fr));
-  grid-gap: 24px 24px;
 `
 
 export const cardContainerStyle: SerializedStyles = css`
