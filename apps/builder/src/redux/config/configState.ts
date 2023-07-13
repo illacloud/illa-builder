@@ -7,7 +7,12 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 
-export type IllaMode = "preview" | "edit" | "production" | "template-edit"
+export type IllaMode =
+  | "preview"
+  | "edit"
+  | "production"
+  | "template-edit"
+  | "history"
 
 export interface ConfigState {
   openLeftPanel: boolean
