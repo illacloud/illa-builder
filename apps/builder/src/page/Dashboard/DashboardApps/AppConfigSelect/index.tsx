@@ -3,13 +3,18 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DownIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
 import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@/illa-public-component/MixpanelUtils/interface"
 import { ReactComponent as CheckmarkIcon } from "@/illa-public-component/RoleSelect/assets/success.svg"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { updateAppPublicConfig } from "@/services/apps"
-import { isCloudVersion } from "@/utils/typeHelper"
+import { track } from "@/utils/mixpanelHelper"
+import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import {
   optionContentStyle,
   optionItemStyle,
@@ -63,15 +68,53 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
   }, [t, canUseBillingFeature])
 
   const updateAppConfig = async (isPublic: boolean) => {
-    const res = await updateAppPublicConfig(isPublic, appId)
-    dispatch(
-      dashboardAppActions.modifyConfigDashboardAppReducer({
-        appId,
-        config: { public: isPublic },
-      }),
+    track?.(
+      ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+      {
+        element: "invite_modal_public_switch",
+        parameter1: "dashboard",
+        parameter2: "trigger",
+        parameter4: !isPublic ? "on" : "off",
+        parameter5: appId,
+      },
     )
-    return res
+    try {
+      const res = await updateAppPublicConfig(isPublic, appId)
+      track?.(
+        ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        {
+          element: "invite_modal_public_switch",
+          parameter1: "dashboard",
+          parameter2: "suc",
+          parameter4: !isPublic ? "on" : "off",
+          parameter5: appId,
+        },
+      )
+      dispatch(
+        dashboardAppActions.modifyConfigDashboardAppReducer({
+          appId,
+          config: { public: isPublic },
+        }),
+      )
+      return res
+    } catch (e) {
+      console.error(e)
+      track?.(
+        ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        {
+          element: "invite_modal_public_switch",
+          parameter2: "failed",
+          parameter3: isILLAAPiError(e) ? e?.data?.errorFlag : "unknown",
+          parameter4: !isPublic ? "on" : "off",
+          parameter5: appId,
+        },
+      )
+    }
   }
+
   const onVisibleChange = (visible: boolean) => {
     if (popupVisible !== visible) {
       setPopupVisible(visible)
