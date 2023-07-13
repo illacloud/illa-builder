@@ -1290,7 +1290,7 @@
           "clear_button_text": "清空"
         },
         "rich_text": {
-          "default_text": "文本"
+          "default_text": "在此输入文本"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "发送方ID",
         "showName": "显示名称",
         "rich_text": {
-          "default_text": "默认文本"
+          "default_text": "占位符"
         },
-        "senderAvatar": "发送方头像"
+        "senderAvatar": "发送方头像",
+        "drive_builder": {
+          "allow_public_use": "在公开项目中使用",
+          "illa_drive_folder": "ILLA Drive文件夹",
+          "generate_signed_url": "生成签名URL",
+          "expired_time": "过期时间",
+          "time": "时间(s)",
+          "turn_on_hotlink": "开启防盗链",
+          "button_text": "按钮文案",
+          "selection_type": "选择类型",
+          "allowed_file_types": "允许的文件类型",
+          "file_list": "文件列表",
+          "min_size": "最小大小",
+          "max_size": "最大大小",
+          "min_file_num": "最小文件数量",
+          "max_file_num": "最大文件大小"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "设置选择消息时是否显示删除按钮。",
         "tabs": {
           "variant": "设置标签页的样式"
+        },
+        "drive_builder": {
+          "allow_public_use": "设置是否在公开项目中使用。当在公开项目中使用时，为了保护您的文件安全，将只能访问Public apps access folder",
+          "illa_drive_folder": "用于指定文件夹，用户只能从您指定的文件夹里选择文件",
+          "generate_signed_url": "设置是否生成签名URL。所有用户都可以通过签名URL访问文件。这通常用于您需要在您的网站上展示内容或允许用户下载内容的场景",
+          "expired_time": "设置过期时间。过期后，签名URL将不可访问",
+          "time": "使用以秒为单位的数字类型来设置过期时间。例如，{{300}}，即300秒或5分钟",
+          "turn_on_hotlink": "设置是否开启防盗链。如果开启，文件将只能通过illacloud.com下的网站访问",
+          "button_text": "设置button上显示的文本",
+          "selection_type": "设置允许用户选择多个文件还是单个文件",
+          "allowed_file_types": "使用字符串数组设置允许的文件类型，如只允许jpg和png，填入{{[\".jpg\", \".png\"]}}。留空时允许全部文件类型",
+          "file_list": "设置是否展示已选择的文件列表",
+          "min_size": "设置允许选择的最小文件大小",
+          "max_size": "设置允许选择的最大文件大小",
+          "min_file_num": "设置允许选择的最少文件数量",
+          "max_file_num": "设置允许选择的最大文件数量"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "线性",
           "card": "卡片"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "永不",
+            "customer": "自定义"
+          },
+          "single_file": "单个文件",
+          "multiple_files": "多个文件"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "无法在录制过程中设置值",
           "min_duration": "请至少录制 {{minimum}}秒",
           "max_duration": "请最多录制 {{maximum}}秒"
+        },
+        "drive_builder": {
+          "min_size": "请选择大小不小于{{min}}的文件",
+          "max_size": "请选择大小不超过{{max}}的文件",
+          "min_files": "请至少选择{{min}}个文件",
+          "max_files": "请最多选择{{max}}个文件"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "在组件初始化时展示的默认文本"
+          "default_text": "当输入中没有值时，展示的信息。"
         }
       },
       "widget": {
