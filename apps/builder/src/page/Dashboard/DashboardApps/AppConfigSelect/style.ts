@@ -13,7 +13,7 @@ export const valueLabelStyle = css`
   font-size: 14px;
   line-height: 22px;
   font-weight: 500;
-  width: 150px;
+  width: 110px;
   color: ${getColor("grayBlue", "02")};
 `
 

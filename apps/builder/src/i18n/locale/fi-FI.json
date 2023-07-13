@@ -1937,7 +1937,7 @@
           "variant": "Jos haluat asettaa välilehtien muunnoksen"
         },
         "drive_builder": {
-          "allow_public_use": "Määritä, käytetäänkö sitä julkisessa sovelluksessa. Kun sitä käytetään julkisessa sovelluksessa, suojataksesi tiedoston turvallisuutta, se voi käyttää vain Julkisia sovelluksia pääset hakemistoon",
+          "allow_public_use": "Määritä, käytetäänkö sitä julkisessa sovelluksessa. Kun sitä käytetään julkisessa sovelluksessa tiedostojen turvallisuuden suojaamiseksi, se voi käyttää vain PublicAccess-kansiota",
           "illa_drive_folder": "Määrittääksesi kansion, käyttäjät voivat valita vain tiedostoja tästä kansiosta käyttäessäsi tätä komponenttia",
           "generate_signed_url": "Määrittää, luodaanko allekirjoitettu URL-osoite. Kaikki käyttäjät voivat tavoittaa tiedoston allekirjoitetun URL-osoitteen kautta. Tätä käytetään yleensä silloin, kun sinun on näytettävä sivustosi sisältöä tai annettava käyttäjien ladata se. ",
           "expired_time": "Jos haluat määrittää vanhentuneen ajan, allekirjoitettu URL-osoite ei ole käytettävissä.",
