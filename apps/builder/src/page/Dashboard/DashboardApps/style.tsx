@@ -39,6 +39,7 @@ export const teamInfoContainerStyle: SerializedStyles = css`
 export const teamAvatarStyle: SerializedStyles = css`
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
 `
 
 export const cardContainerStyle: SerializedStyles = css`
