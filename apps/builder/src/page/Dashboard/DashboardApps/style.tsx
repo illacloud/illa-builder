@@ -18,6 +18,7 @@ export const appsContainerStyle: SerializedStyles = css`
   margin: 0 auto;
   // Compatible child element box-shadow style
   width: calc(70% + 16px);
+  min-width: 650px;
   padding: 40px 16px;
 `
 
@@ -32,11 +33,19 @@ export const teamInfoContainerStyle: SerializedStyles = css`
   display: flex;
   align-items: center;
   gap: 16px;
+  max-width: calc(100% - 424px);
 `
 
 export const teamAvatarStyle: SerializedStyles = css`
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
+`
+
+export const cardContainerStyle: SerializedStyles = css`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(${CARD_WIDTH}px, 1fr));
+  grid-gap: 24px 24px;
 `
 
 export const cardContainerStyle: SerializedStyles = css`
@@ -58,6 +67,9 @@ export const listTitleStyle: SerializedStyles = css`
   font-weight: 500;
   flex-grow: 1;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 export const hoverStyle = css`

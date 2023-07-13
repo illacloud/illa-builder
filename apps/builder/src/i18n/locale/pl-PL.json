@@ -1290,7 +1290,7 @@
           "clear_button_text": "Wyczyść"
         },
         "rich_text": {
-          "default_text": "tekst"
+          "default_text": "Wpisz tekst tutaj"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "ID nadawcy",
         "showName": "Pokaż nazwę",
         "rich_text": {
-          "default_text": "Domyślny tekst"
+          "default_text": "Zastępca"
         },
-        "senderAvatar": "Awatar nadawcy"
+        "senderAvatar": "Awatar nadawcy",
+        "drive_builder": {
+          "allow_public_use": "Używaj w publicznej aplikacji",
+          "illa_drive_folder": "Folder ILLA Drive",
+          "generate_signed_url": "Generuj podpisany adres URL",
+          "expired_time": "Czas wygaśnięcia",
+          "time": "Czas(y)",
+          "turn_on_hotlink": "Włącz ochronę hotlink",
+          "button_text": "Tekst przycisku",
+          "selection_type": "Typ wyboru",
+          "allowed_file_types": "Dozwolone typy plików",
+          "file_list": "Lista plików",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Min. plik num",
+          "max_file_num": "Maksymalna ilość pliku num"
+        }
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Ustaw czy pokazywać przycisk usuwania po wybraniu wiadomości.",
         "tabs": {
           "variant": "Aby ustawić wariant kart"
+        },
+        "drive_builder": {
+          "allow_public_use": "Ustaw czy chcesz używać w publicznej aplikacji. Gdy używany jest w aplikacji publicznej, w celu ochrony bezpieczeństwa plików, będzie mieć dostęp tylko do folderu aplikacji publicznych",
+          "illa_drive_folder": "Aby określić folder, użytkownicy mogą wybrać pliki z tego folderu tylko podczas używania tego komponentu",
+          "generate_signed_url": "Aby ustawić czy wygenerować podpisany adres URL. Wszyscy użytkownicy mogą dotrzeć do pliku za pomocą podpisanego adresu URL. Jest to zwykle używane kiedy musisz wyświetlać treści na swojej stronie internetowej lub zezwolić użytkownikom na ich pobieranie. ",
+          "expired_time": "Aby ustawić czas wygaśnięcia. Po wygaśnięciu podpisany adres URL będzie niedostępny.",
+          "time": "Użyj typu liczby w sekundach, aby ustawić czas wygaśnięcia. Na przykład {{300}} (co oznacza 300 sekund lub 5 minut)",
+          "turn_on_hotlink": "Aby ustawić czy włączyć ochronę hotlinku. Jeśli włączysz go, plik będzie dostępny tylko za pośrednictwem strony na illacloud.com",
+          "button_text": "Aby ustawić tekst na przycisku",
+          "selection_type": "Ustaw czy zezwolić użytkownikowi na wybranie pojedynczego pliku czy wielu plików",
+          "allowed_file_types": "Użyj tablicy ciągów, aby ustawić dozwolone typy plików, takie jak zezwalanie na jpg i png, wypełnij {{[\".jpg\", \".png\"]}}. Pozostaw puste, aby zezwolić na wszystkie typy plików. ",
+          "file_list": "Aby ustawić czy pokazać wybraną listę plików. ",
+          "min_size": "Aby ustawić dozwolony minimalny rozmiar pliku",
+          "max_size": "Aby ustawić dozwolony maksymalny rozmiar pliku",
+          "min_file_num": "Aby ustawić minimalną liczbę plików dozwolonych do wybrania",
+          "max_file_num": "Aby ustawić maksymalną liczbę plików dozwolonych do wybrania"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Linia",
           "card": "Karta"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Nigdy",
+            "customer": "Własny"
+          },
+          "single_file": "Pojedynczy plik",
+          "multiple_files": "Wiele plików"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Nie można ustawić wartości podczas nagrywania",
           "min_duration": "Proszę nagrywać co najmniej {{minimum}}s",
           "max_duration": "Proszę nagrywać co najwyżej {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Wybierz plik o rozmiarze większym niż {{min}}",
+          "max_size": "Wybierz plik o rozmiarze mniejszym niż {{max}}",
+          "min_files": "Wybierz co najmniej pliki {{min}}",
+          "max_files": "Proszę wybrać co najwyżej plik {{max}}"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Domyślny tekst wyświetlany po zainicjowaniu komponentu"
+          "default_text": "Wartość będzie wyświetlana, gdy pole wejściowe jest puste."
         }
       },
       "widget": {

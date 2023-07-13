@@ -962,7 +962,7 @@
             "name": "Nimi",
             "oauth_callback_url": "OAuth callback URL",
             "refresh_token": "Päivitä Token",
-            "scopes": "Scopes (separated by\n a space)",
+            "scopes": "Soveltamisalueet (välilyönnillä\n erotettuina)",
             "share_oauth2_credentials_between_users": "Jaa OAuth2.0 käyttäjätunnukset käyttäjien välillä",
             "url_parameters": "Url-Parametrit",
             "use_client_credentials_auth": "Käytä asiakkaan tunnistautumistietoja",
@@ -1290,7 +1290,7 @@
           "clear_button_text": "Tyhjennä"
         },
         "rich_text": {
-          "default_text": "teksti"
+          "default_text": "Kirjoita teksti tähän"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "Lähettäjän Tunnus",
         "showName": "Näytä nimi",
         "rich_text": {
-          "default_text": "Oletus teksti"
+          "default_text": "Paikkamerkki"
         },
-        "senderAvatar": "Lähettäjän avatar"
+        "senderAvatar": "Lähettäjän avatar",
+        "drive_builder": {
+          "allow_public_use": "Käytä julkisessa sovelluksessa",
+          "illa_drive_folder": "ILLA Drive kansio",
+          "generate_signed_url": "Luo allekirjoitettu URL-osoite",
+          "expired_time": "Vanhentunut aika",
+          "time": "Aika(t)",
+          "turn_on_hotlink": "Ota hotlink suojaus käyttöön",
+          "button_text": "Painikkeen teksti",
+          "selection_type": "Valinnan tyyppi",
+          "allowed_file_types": "Sallitut tiedostotyypit",
+          "file_list": "Tiedoston luettelo",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Minimi tiedoston numero",
+          "max_file_num": "Tiedoston maksimi numero"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Määritä näytetäänkö poistamispainike, kun valitse viesti.",
         "tabs": {
           "variant": "Jos haluat asettaa välilehtien muunnoksen"
+        },
+        "drive_builder": {
+          "allow_public_use": "Määritä, käytetäänkö sitä julkisessa sovelluksessa. Kun sitä käytetään julkisessa sovelluksessa, suojataksesi tiedoston turvallisuutta, se voi käyttää vain Julkisia sovelluksia pääset hakemistoon",
+          "illa_drive_folder": "Määrittääksesi kansion, käyttäjät voivat valita vain tiedostoja tästä kansiosta käyttäessäsi tätä komponenttia",
+          "generate_signed_url": "Määrittää, luodaanko allekirjoitettu URL-osoite. Kaikki käyttäjät voivat tavoittaa tiedoston allekirjoitetun URL-osoitteen kautta. Tätä käytetään yleensä silloin, kun sinun on näytettävä sivustosi sisältöä tai annettava käyttäjien ladata se. ",
+          "expired_time": "Jos haluat määrittää vanhentuneen ajan, allekirjoitettu URL-osoite ei ole käytettävissä.",
+          "time": "Käytä numerotyyppiä sekunteina asettaaksesi vanhentumisajan. Esimerkiksi, {{300}} (joka tarkoittaa 300 sekuntia tai 5 minuuttia)",
+          "turn_on_hotlink": "Määrittää, onko hotlink käytössä suojaa. Jos otat sen käyttöön, tiedostoon pääsee vain sivuston kautta illacloud.com",
+          "button_text": "Jos haluat asettaa tekstin nappiin",
+          "selection_type": "Määritä sallitaanko käyttäjä valita yhden tiedoston tai useita tiedostoja",
+          "allowed_file_types": "Käytä merkkijonotaulukkoa asettaaksesi sallitut tiedostotyypit, kuten sallimalla jpg ja png, täytä {{[\".jpg\", \".png\"]}}. Jätä tyhjäksi salliaksesi kaikki tiedostotyypit. ",
+          "file_list": "Valitaksesi näytetäänkö valitun tiedoston luettelo. @ info: whatsthis ",
+          "min_size": "Valitaksesi sallitun tiedoston vähimmäiskoon",
+          "max_size": "Valitaksesi sallitun tiedoston enimmäiskoon",
+          "min_file_num": "Jos haluat määrittää vähimmäismäärän tiedostoja, jotka voidaan valita,",
+          "max_file_num": "Jos haluat määrittää tiedoston enimmäismäärän, joka voidaan valita,"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Viiva",
           "card": "Kortti"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Ei Koskaan",
+            "customer": "Mukautettu"
+          },
+          "single_file": "Yksittäinen tiedosto",
+          "multiple_files": "Useita tiedostoja"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Arvoa ei voi asettaa nauhoituksen aikana",
           "min_duration": "Nauhoita vähintään {{minimum}}s",
           "max_duration": "Nauhoita enintään {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Valitse tiedosto, jonka koko on suurempi kuin {{min}}",
+          "max_size": "Valitse tiedosto, jonka koko on pienempi kuin {{max}}",
+          "min_files": "Please select at least {{min}} files",
+          "max_files": "Please select at most {{max}} files"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Oletusteksti näytetään, kun komponentti on alustettu"
+          "default_text": "Arvo näytetään, kun syöttökenttä on tyhjä."
         }
       },
       "widget": {

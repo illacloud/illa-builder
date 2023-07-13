@@ -1290,7 +1290,7 @@
           "clear_button_text": "Verwijderen"
         },
         "rich_text": {
-          "default_text": "Tekst"
+          "default_text": "Typ de tekst hier"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "Afzender ID",
         "showName": "Toon naam",
         "rich_text": {
-          "default_text": "Standaard tekst"
+          "default_text": "Plaatsaanduiding"
         },
-        "senderAvatar": "Afzender avatar"
+        "senderAvatar": "Afzender avatar",
+        "drive_builder": {
+          "allow_public_use": "Gebruik in openbare app",
+          "illa_drive_folder": "ILLA Drive map",
+          "generate_signed_url": "Genereer ondertekende URL",
+          "expired_time": "Verlopen tijd",
+          "time": "Tijd(en)",
+          "turn_on_hotlink": "Hotlink-beveiliging inschakelen",
+          "button_text": "Knop tekst",
+          "selection_type": "Type selectie",
+          "allowed_file_types": "Toegestane bestandstypen",
+          "file_list": "Bestand lijst",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Min. aantal bestanden",
+          "max_file_num": "Max bestand nr"
+        }
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Stel in of een knop 'verwijderen' moet worden weergegeven wanneer een bericht wordt geselecteerd.",
         "tabs": {
           "variant": "Om de variant van tabbladen in te stellen"
+        },
+        "drive_builder": {
+          "allow_public_use": "Instellen of in openbare app moet worden gebruikt. Als het wordt gebruikt in een openbare app, om de beveiliging van uw bestanden te beschermen, zal het alleen toegang hebben tot de Openbare apps",
+          "illa_drive_folder": "Om een map op te geven, gebruikers kunnen alleen bestanden uit deze map selecteren wanneer ze dit onderdeel gebruiken",
+          "generate_signed_url": "Om in te stellen of een ondertekende URL moet worden gegenereerd. Alle gebruikers kunnen het bestand bereiken via een ondertekende URL. Dit wordt meestal gebruikt wanneer je inhoud op je website wilt weergeven of om gebruikers toe te staan deze te downloaden. ",
+          "expired_time": "Om de verlopen tijd in te stellen. Wanneer verlopen zal de ondertekende URL niet toegankelijk zijn.",
+          "time": "Gebruik het type nummer in seconden om de vervaltijd in te stellen. Bijvoorbeeld, {{300}} (wat betekent 300 seconden of 5 minuten)",
+          "turn_on_hotlink": "Om in te stellen of de hotlink bescherming wordt ingeschakeld. Als u deze inschakelt, wordt het bestand alleen toegankelijk via de website op illacloud.com",
+          "button_text": "Om de tekst op de knop in te stellen",
+          "selection_type": "Stel in of de gebruiker een enkel bestand of meerdere bestanden mag selecteren",
+          "allowed_file_types": "Gebruik een string array om de toegestane bestandstypes in te stellen, zoals het toestaan van jpg en png, vul {{[\".jpg\", \".png\"]}}in. Laat leeg om alle bestandstypes toe te staan. ",
+          "file_list": "Om te bepalen of de geselecteerde bestandslijst moet worden weergegeven. ",
+          "min_size": "Om de minimale bestandsgrootte in te stellen",
+          "max_size": "Om de maximale bestandsgrootte in te stellen",
+          "min_file_num": "Om het minimum aantal bestanden dat mag worden geselecteerd in te stellen",
+          "max_file_num": "Om het maximale aantal bestanden dat mag worden geselecteerd in te stellen"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Lijn",
           "card": "Creditcard"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Nooit",
+            "customer": "Aangepaste"
+          },
+          "single_file": "Enkel bestand",
+          "multiple_files": "Meerdere bestanden"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Kan waarde niet instellen tijdens opname",
           "min_duration": "Neem ten minste {{minimum}}s op",
           "max_duration": "Opname mag maximaal {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Selecteer een bestand met een grootte groter dan {{min}}",
+          "max_size": "Selecteer een bestand met een grootte kleiner dan {{max}}",
+          "min_files": "Selecteer ten minste {{min}} bestanden",
+          "max_files": "Selecteer maximaal {{max}} bestanden"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "De standaardtekst die wordt weergegeven wanneer het component wordt geïnitialiseerd"
+          "default_text": "De waarde wordt getoond wanneer het invoerveld leeg is."
         }
       },
       "widget": {

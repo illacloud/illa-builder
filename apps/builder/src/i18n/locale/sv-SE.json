@@ -1290,7 +1290,7 @@
           "clear_button_text": "Rensa"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Skriv text här"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "Avsändarens ID",
         "showName": "Visa namn",
         "rich_text": {
-          "default_text": "Förvald text"
+          "default_text": "Platshållare"
         },
-        "senderAvatar": "Avsändarens avatar"
+        "senderAvatar": "Avsändarens avatar",
+        "drive_builder": {
+          "allow_public_use": "Använd i publik app",
+          "illa_drive_folder": "ILLA Drive-mapp",
+          "generate_signed_url": "Generera signerad URL",
+          "expired_time": "Förfallen tid",
+          "time": "Tid(er)",
+          "turn_on_hotlink": "Skydda mot hotlink",
+          "button_text": "Knappens text",
+          "selection_type": "Typ av val",
+          "allowed_file_types": "Tillåtna filtyper",
+          "file_list": "Lista över filer",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Minsta antal filer",
+          "max_file_num": "Max filnum"
+        }
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Ange om du vill visa en raderingsknapp när du väljer ett meddelande.",
         "tabs": {
           "variant": "För att ställa in variant av flikar"
+        },
+        "drive_builder": {
+          "allow_public_use": "Ange om du vill använda den publika appen. När den används i en offentlig app, för att skydda din filsäkerhet, kommer den endast att kunna komma åt mappen Publika appar åtkomst",
+          "illa_drive_folder": "För att ange en mapp kan användare bara välja filer från den här mappen när den här komponenten används",
+          "generate_signed_url": "Ange om du vill generera en signerad URL. Alla användare kan nå filen via en signerad URL. Detta används vanligtvis när du behöver visa innehåll på din webbplats eller tillåta användare att ladda ner det. ",
+          "expired_time": "För att ställa in den förfallna tiden. När den signerade webbadressen har löpt ut kommer den att vara otillgänglig.",
+          "time": "Använd taltypen i sekunder för att ställa in utgångstiden. Till exempel {{300}} (vilket betyder 300 sekunder eller 5 minuter)",
+          "turn_on_hotlink": "För att ställa in om du slår på hotlink-skyddet. Om du slår på den, kommer filen endast att nås via webbplatsen på illacloud.com",
+          "button_text": "För att ställa in texten på knappen",
+          "selection_type": "Ställ in om användaren ska kunna välja en fil eller flera filer",
+          "allowed_file_types": "Använd en sträng array för att ställa in tillåtna filtyper, såsom att tillåta jpg och png, fyll i {{[\".jpg\", \".png\"]}}. Lämna tomt för att tillåta alla filtyper. ",
+          "file_list": "Ange om du vill visa den valda fillistan. ",
+          "min_size": "För att ställa in minsta tillåtna filstorlek",
+          "max_size": "För att ställa in den tillåtna maximala filstorleken",
+          "min_file_num": "För att ställa in det minsta antalet filer som får väljas",
+          "max_file_num": "För att ställa in maximalt antal filer som tillåts att väljas"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Linje",
           "card": "Kort"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Aldrig",
+            "customer": "Anpassad"
+          },
+          "single_file": "En fil",
+          "multiple_files": "Flera filer"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Kan inte ställa in värde under inspelning",
           "min_duration": "Vänligen spela in minst {{minimum}}s",
           "max_duration": "Vänligen spela in som mest {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Välj en fil med en storlek större än {{min}}",
+          "max_size": "Välj en fil med en storlek mindre än {{max}}",
+          "min_files": "Välj minst {{min}} filer",
+          "max_files": "Välj som mest {{max}} filer"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Standardtexten som visas när komponenten är initierad"
+          "default_text": "Värdet kommer att visas när inmatningsfältet är tomt."
         }
       },
       "widget": {

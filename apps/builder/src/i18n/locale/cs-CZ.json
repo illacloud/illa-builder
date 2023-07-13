@@ -1290,7 +1290,7 @@
           "clear_button_text": "Vyčistit"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Zde napište text"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "ID odesílatele",
         "showName": "Zobrazit název",
         "rich_text": {
-          "default_text": "Výchozí text"
+          "default_text": "Zástupný symbol"
         },
-        "senderAvatar": "Avatar odesílatele"
+        "senderAvatar": "Avatar odesílatele",
+        "drive_builder": {
+          "allow_public_use": "Použít ve veřejné aplikaci",
+          "illa_drive_folder": "Složka ILLA Drive",
+          "generate_signed_url": "Generovat podepsanou URL",
+          "expired_time": "Čas vypršení platnosti",
+          "time": "Čas (časy)",
+          "turn_on_hotlink": "Zapnout ochranu hotlink",
+          "button_text": "Text tlačítka",
+          "selection_type": "Typ výběru",
+          "allowed_file_types": "Povolené typy souborů",
+          "file_list": "Seznam souborů",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Min číslo souboru",
+          "max_file_num": "Maximální počet souborů"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Nastavte, zda se zobrazí tlačítko mazat při výběru zprávy.",
         "tabs": {
           "variant": "Možnost nastavení záložek"
+        },
+        "drive_builder": {
+          "allow_public_use": "Nastavte, zda má být použito ve veřejné aplikaci. Při použití ve veřejné aplikaci, aby byla chráněna bezpečnost souborů, bude mít přístup pouze ke složce veřejných aplikací",
+          "illa_drive_folder": "Chcete-li specifikovat složku, mohou uživatelé vybrat pouze soubory z této složky při použití této komponenty",
+          "generate_signed_url": "Chcete-li nastavit, zda vygenerovat podepsanou URL adresu. Všichni uživatelé mohou mít přístup k souboru prostřednictvím podepsané URL adresy. Obvykle se používá, když potřebujete zobrazit obsah na vašich webových stránkách nebo povolit uživatelům jeho stažení. ",
+          "expired_time": "Chcete-li nastavit vypršející čas. Po vypršení platnosti bude podepsaná URL nepřístupná.",
+          "time": "Použijte typ čísla v sekundách pro nastavení doby vypršení platnosti. Například, {{300}} (což znamená 300 sekund nebo 5 minut)",
+          "turn_on_hotlink": "Chcete-li nastavit, zda zapnout ochranu hotlinku. Pokud jste ji zapnuli, soubor bude přístupný pouze prostřednictvím webové stránky na illacloud.com",
+          "button_text": "Chcete-li nastavit text na tlačítku",
+          "selection_type": "Nastavte, zda povolit uživateli vybrat jeden nebo více souborů",
+          "allowed_file_types": "Použijte pole řetězce pro nastavení povolených typů souborů, například povolení jpg a png, vyplňte {{[\".jpg\", \".png\"]}}. Ponechte prázdné pro povolení všech typů souborů. ",
+          "file_list": "Nastavení, zda zobrazit seznam vybraných souborů. ",
+          "min_size": "Možnost nastavení minimální povolené velikosti souboru",
+          "max_size": "Možnost nastavení maximální povolené velikosti souboru",
+          "min_file_num": "Pro nastavení minimálního počtu povolených souborů",
+          "max_file_num": "Možnost nastavit maximální počet souborů k výběru"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Řádek",
           "card": "Karta"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Nikdy",
+            "customer": "Vlastní"
+          },
+          "single_file": "Jeden soubor",
+          "multiple_files": "Více souborů"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Nelze nastavit hodnotu během nahrávání",
           "min_duration": "Nahrajte prosím alespoň {{minimum}}s",
           "max_duration": "Prosím nahrávejte maximálně {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Vyberte soubor o velikosti větší než {{min}}",
+          "max_size": "Vyberte soubor o velikosti menší než {{max}}",
+          "min_files": "Vyberte alespoň {{min}} soubory",
+          "max_files": "Vyberte prosím nanejvýš {{max}} soubory"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Výchozí text zobrazený při inicializaci komponenty"
+          "default_text": "Hodnota bude zobrazena, když je vstupní pole prázdné."
         }
       },
       "widget": {

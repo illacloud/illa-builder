@@ -124,28 +124,21 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }, [debugMessageNumber])
 
   const deployApp = useCallback(
-    (appId: string, isPublic: boolean) => {
+    async (appId: string, isPublic: boolean) => {
       setDeployLoading(true)
-      fetchDeployApp(appId, isPublic)
-        .then(
-          () => {
-            window.open(
-              window.location.protocol +
-                "//" +
-                window.location.host +
-                `/${teamIdentifier}/deploy/app/${appId}`,
-              "_blank",
-            )
-          },
-          () => {
-            message.error({
-              content: t("editor.deploy.fail"),
-            })
-          },
+      try {
+        await fetchDeployApp(appId, isPublic)
+        window.open(
+          `${window.location.protocol}//${window.location.host}/${teamIdentifier}/deploy/app/${appId}`,
+          "_blank",
         )
-        .finally(() => {
-          setDeployLoading(false)
+      } catch {
+        message.error({
+          content: t("editor.deploy.fail"),
         })
+      } finally {
+        setDeployLoading(false)
+      }
     },
     [teamIdentifier, message, t],
   )
@@ -159,14 +152,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [deployApp],
   )
 
-  const handleClickDeploy = useCallback(() => {
+  const handleClickDeploy = useCallback(async () => {
     if (isGuideMode) {
       forkGuideAppAndDeploy(appInfo.appName)
     } else {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "deploy",
       })
-      deployApp(appInfo.appId, appInfo.config?.public)
+      await deployApp(appInfo.appId, appInfo.config?.public)
+      location.reload()
     }
   }, [
     appInfo.appId,
@@ -178,11 +172,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   ])
 
   const handleClickDeployMenu = useCallback(
-    (key: string | number) => {
+    async (key: string | number) => {
       if (key === "public" && !canUseBillingFeature) {
         handleUpgradeModalVisible(true, "upgrade")
       } else {
-        deployApp(appInfo.appId, key === "public")
+        await deployApp(appInfo.appId, key === "public")
+        location.reload()
       }
     },
     [appInfo.appId, deployApp, canUseBillingFeature, handleUpgradeModalVisible],
