@@ -27,7 +27,7 @@ import {
   isWidget,
 } from "@/utils/executionTreeHelper/utils"
 import { isObject } from "@/utils/typeHelper"
-import { validationFactory } from "@/utils/validationFactory"
+import { VALIDATION_TYPES, validationFactory } from "@/utils/validationFactory"
 import {
   IExecutionActions,
   runActionWithExecutionResult,
@@ -139,7 +139,9 @@ export class ExecutionTreeFactory {
       }
       if (isObject(validationPaths)) {
         Object.keys(validationPaths).forEach((validationPath) => {
-          const validationType = validationPaths[validationPath]
+          const validationType = validationPaths[
+            validationPath
+          ] as VALIDATION_TYPES
           const fullPath = `${displayName}.${validationPath}`
           const validationFunc = validationFactory[validationType]
           const value = get(widgetOrAction, validationPath)

@@ -165,6 +165,30 @@ export const getCurrentPageDisplayName = createSelector(
   },
 )
 
+export const removeIgnoredKeys = (result: Record<string, unknown>) => {
+  return Object.keys(result).reduce(
+    (acc: Record<string, unknown>, key: string) => {
+      const componentOrAction = result[key]
+      if (isObject(componentOrAction)) {
+        const updatedComponentOrAction = Object.keys(componentOrAction).reduce(
+          (obj: Record<string, unknown>, innerKey: string) => {
+            if (!innerKey.startsWith("$")) {
+              obj[innerKey] = componentOrAction[innerKey]
+            }
+            return obj
+          },
+          {},
+        )
+        acc[key] = updatedComponentOrAction
+      } else {
+        acc[key] = componentOrAction
+      }
+      return acc
+    },
+    {},
+  )
+}
+
 export const getExecutionResultToGlobalCodeMirror = createSelector(
   [getExecutionResult],
   (executionResult) => {
@@ -175,18 +199,6 @@ export const getExecutionResultToGlobalCodeMirror = createSelector(
         executionResult[key] != undefined
       ) {
         result[key] = cloneDeep(executionResult[key])
-      }
-    })
-    Object.keys(result).forEach((key) => {
-      const componentOrAction = result[key]
-      if (isObject(componentOrAction)) {
-        Object.keys(componentOrAction as Record<string, unknown>).forEach(
-          (key) => {
-            if (key.startsWith("$")) {
-              delete (componentOrAction as Record<string, unknown>)[key]
-            }
-          },
-        )
       }
     })
     return result
@@ -219,18 +231,6 @@ export const getExecutionResultToCurrentPageCodeMirror = createSelector(
       }
       if (currentSeed && currentSeed.$type !== "WIDGET") {
         result[key] = cloneDeep(executionResult[key])
-      }
-    })
-    Object.keys(result).forEach((key) => {
-      const componentOrAction = result[key]
-      if (isObject(componentOrAction)) {
-        Object.keys(componentOrAction as Record<string, unknown>).forEach(
-          (key) => {
-            if (key.startsWith("$")) {
-              delete (componentOrAction as Record<string, unknown>)[key]
-            }
-          },
-        )
       }
     })
     return result

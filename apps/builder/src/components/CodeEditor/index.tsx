@@ -18,6 +18,7 @@ import i18n from "@/i18n/config"
 import {
   getExecutionResultToCurrentPageCodeMirror,
   getExecutionResultToGlobalCodeMirror,
+  removeIgnoredKeys,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { LIMIT_MEMORY, estimateMemoryUsage } from "@/utils/calculateMemoryUsage"
@@ -123,12 +124,16 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const innerCanExpand = canExpand && !readOnly && editable
   const canShowResultRealTime = codeType === CODE_TYPE.EXPRESSION
 
-  const calcContext = useSelector<RootState, Record<string, unknown>>(
+  const tmpCalcContext = useSelector<RootState, Record<string, unknown>>(
     (rootState) => {
       return scopeOfAutoComplete === "global"
         ? getExecutionResultToGlobalCodeMirror(rootState)
         : getExecutionResultToCurrentPageCodeMirror(rootState)
     },
+  )
+  const calcContext = useMemo(
+    () => removeIgnoredKeys(tmpCalcContext),
+    [tmpCalcContext],
   )
 
   const stringSnippets = useMemo(() => {
