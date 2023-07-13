@@ -13,13 +13,13 @@ export const valueLabelStyle = css`
   font-size: 14px;
   line-height: 22px;
   font-weight: 500;
-  width: 150px;
+  width: 110px;
   color: ${getColor("grayBlue", "02")};
 `
 
 export const optionContentStyle = css`
   cursor: pointer;
-  min-width: 160px;
+  min-width: 110px;
   padding: 8px 0;
   font-size: 14px;
   line-height: 22px;

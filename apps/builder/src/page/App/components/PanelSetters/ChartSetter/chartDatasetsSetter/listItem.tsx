@@ -1,10 +1,12 @@
 import { FC, useCallback, useContext, useState } from "react"
+import { useTranslation } from "react-i18next"
 import {
   EyeOffIcon,
   EyeOnIcon,
   Trigger,
   globalColor,
   illaPrefix,
+  useModal,
 } from "@illa-design/react"
 import { ReactComponent as DeleteIcon } from "@/assets/delete-dataset-icon.svg"
 import { DatasetsContext } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
@@ -123,6 +125,8 @@ export const ColorArea: FC<ColorAreaProps> = ({ color }) => {
 export const ListItem: FC<ListItemProps> = (props) => {
   const { color, isHidden, datasetName, datasetMethod, index } = props
   const [modalVisible, setModalVisible] = useState(false)
+  const modal = useModal()
+  const { t } = useTranslation()
 
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
@@ -135,6 +139,25 @@ export const ListItem: FC<ListItemProps> = (props) => {
     handleHiddenDataset,
     handleDeleteDataSet,
   } = useContext(DatasetsContext)
+
+  const handleDeleteClick = useCallback(() => {
+    modal.show({
+      id: "deleteDatasetItem",
+      title: t("editor.component.delete_title", {
+        displayName: datasetName,
+      }),
+      children: t("editor.component.delete_content"),
+      cancelText: t("editor.component.cancel"),
+      okText: t("editor.component.delete"),
+      okButtonProps: {
+        colorScheme: "red",
+      },
+      onOk: () => {
+        handleDeleteDataSet(index)
+      },
+    })
+  }, [datasetName, handleDeleteDataSet, index, modal, t])
+
   return (
     <Trigger
       withoutPadding
@@ -190,7 +213,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
             css={baseIconStyle}
             onClick={(e) => {
               e.stopPropagation()
-              handleDeleteDataSet(index)
+              handleDeleteClick()
             }}
           />
         </div>

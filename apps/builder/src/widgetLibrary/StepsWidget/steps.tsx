@@ -38,9 +38,10 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     currentIndex,
     linkWidgetDisplayName,
     defaultStep,
+    disabled,
     updateComponentHeight,
     handleUpdateMultiExecutionResult,
-    handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
+    handleUpdateOriginalDSLOtherMultiAttr,
     optionConfigureMode,
     updateComponentRuntimeProps,
     deleteComponentRuntimeProps,
@@ -80,7 +81,11 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
    */
   const { items, uniqueOptions } = useMemo(() => {
     if (!isLinkedContainer) {
-      return formatStepsData(optionConfigureMode, formatOptionConfigData)
+      return formatStepsData(
+        optionConfigureMode,
+        formatOptionConfigData,
+        disabled,
+      )
     }
     const results = transformedContainerList.map((item, index) => {
       const { label, value, caption, tooltip = "" } = item
@@ -88,6 +93,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
       return {
         title: getStepItemTitle(titleContent, tooltip),
         description: caption,
+        disabled,
       }
     })
     return {
@@ -99,26 +105,21 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     transformedContainerList,
     optionConfigureMode,
     formatOptionConfigData,
+    disabled,
   ])
 
   const handleUpdateMultiExecutionResults = useCallback(
     (updateSliceItem: Record<string, any>) => {
       if (linkWidgetDisplayName) {
-        handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
+        handleUpdateOriginalDSLOtherMultiAttr(
           linkWidgetDisplayName,
           updateSliceItem,
+          true,
         )
       }
-      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
-        displayName,
-        updateSliceItem,
-      )
+      handleUpdateOriginalDSLOtherMultiAttr(displayName, updateSliceItem, true)
     },
-    [
-      displayName,
-      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
-      linkWidgetDisplayName,
-    ],
+    [displayName, handleUpdateOriginalDSLOtherMultiAttr, linkWidgetDisplayName],
   )
 
   const handleStepsChange = useCallback(
@@ -207,16 +208,21 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
           },
         ])
         if (linkWidgetDisplayName) {
-          handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
+          handleUpdateOriginalDSLOtherMultiAttr(
             linkWidgetDisplayName,
             {
               linkWidgetDisplayName: undefined,
             },
+            true,
           )
         }
-        handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(displayName, {
-          linkWidgetDisplayName: undefined,
-        })
+        handleUpdateOriginalDSLOtherMultiAttr(
+          displayName,
+          {
+            linkWidgetDisplayName: undefined,
+          },
+          true,
+        )
       }
     }
   }, [
@@ -224,7 +230,7 @@ export const StepsWidget: FC<StepsWidgetProps> = (props) => {
     displayName,
     executionResult,
     handleUpdateMultiExecutionResult,
-    handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
+    handleUpdateOriginalDSLOtherMultiAttr,
     linkContainer,
     linkWidgetDisplayName,
     uniqueOptions,

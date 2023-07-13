@@ -124,28 +124,28 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }, [debugMessageNumber])
 
   const deployApp = useCallback(
-    (appId: string, isPublic: boolean) => {
+    async (
+      appId: string,
+      isPublic: boolean,
+      onSuccess?: () => void,
+      onFailed?: (error: unknown) => void,
+    ) => {
       setDeployLoading(true)
-      fetchDeployApp(appId, isPublic)
-        .then(
-          () => {
-            window.open(
-              window.location.protocol +
-                "//" +
-                window.location.host +
-                `/${teamIdentifier}/deploy/app/${appId}`,
-              "_blank",
-            )
-          },
-          () => {
-            message.error({
-              content: t("editor.deploy.fail"),
-            })
-          },
+      try {
+        await fetchDeployApp(appId, isPublic)
+        window.open(
+          `${window.location.protocol}//${window.location.host}/${teamIdentifier}/deploy/app/${appId}`,
+          "_blank",
         )
-        .finally(() => {
-          setDeployLoading(false)
+        onSuccess?.()
+      } catch (error) {
+        message.error({
+          content: t("editor.deploy.fail"),
         })
+        onFailed?.(error)
+      } finally {
+        setDeployLoading(false)
+      }
     },
     [teamIdentifier, message, t],
   )
@@ -159,14 +159,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [deployApp],
   )
 
-  const handleClickDeploy = useCallback(() => {
+  const handleClickDeploy = useCallback(async () => {
     if (isGuideMode) {
       forkGuideAppAndDeploy(appInfo.appName)
     } else {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "deploy",
       })
-      deployApp(appInfo.appId, appInfo.config?.public)
+      await deployApp(appInfo.appId, appInfo.config?.public)
+      location.reload()
     }
   }, [
     appInfo.appId,
@@ -178,14 +179,52 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   ])
 
   const handleClickDeployMenu = useCallback(
-    (key: string | number) => {
+    async (key: string | number) => {
       if (key === "public" && !canUseBillingFeature) {
         handleUpgradeModalVisible(true, "upgrade")
       } else {
-        deployApp(appInfo.appId, key === "public")
+        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
+          element: "invite_modal_public_switch",
+          parameter1: "deploy",
+          parameter2: "trigger",
+          parameter4: appInfo.config?.public ? "on" : "off",
+          parameter5: appInfo.appId,
+        })
+        await deployApp(
+          appInfo.appId,
+          key === "public",
+          () => {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
+              element: "invite_modal_public_switch",
+              parameter1: "deploy",
+              parameter2: "suc",
+              parameter4: appInfo.config?.public ? "on" : "off",
+              parameter5: appInfo.appId,
+            })
+          },
+          (error) => {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
+              element: "invite_modal_public_switch",
+              parameter1: "deploy",
+              parameter2: "failed",
+              parameter3: isILLAAPiError(error)
+                ? error?.data?.errorFlag
+                : "unknown",
+              parameter4: appInfo.config?.public ? "on" : "off",
+              parameter5: appInfo.appId,
+            })
+          },
+        )
+        location.reload()
       }
     },
-    [appInfo.appId, deployApp, canUseBillingFeature, handleUpgradeModalVisible],
+    [
+      appInfo.appId,
+      appInfo.config?.public,
+      deployApp,
+      canUseBillingFeature,
+      handleUpgradeModalVisible,
+    ],
   )
 
   const handlePreviewButtonClick = useCallback(() => {

@@ -51,7 +51,8 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
         appInfo={appInfo}
         visible={shareModalVisible}
         handleCloseModal={closeInviteModal}
-        inviteToUseAppStatus={"hidden"}
+        inviteToUseAppStatus="hidden"
+        from="builder_editor"
       />
     </div>
   )
