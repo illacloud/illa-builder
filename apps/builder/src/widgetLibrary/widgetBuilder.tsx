@@ -31,6 +31,11 @@ import {
   CHART_WIDGET_V2_CONFIG,
 } from "@/widgetLibrary/ChartWidget"
 import {
+  CHAT_EVENT_HANDLER_CONFIG,
+  CHAT_PANEL_CONFIG,
+  CHAT_WIDGET_CONFIG,
+} from "@/widgetLibrary/ChatWidget"
+import {
   CHECKBOX_GROUP_PANEL_CONFIG,
   CHECKBOX_GROUP_WIDGET_CONFIG,
   CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
@@ -160,6 +165,11 @@ import {
   RECORDING_PANEL_CONFIG,
   RECORDING_WIDGET_CONFIG,
 } from "@/widgetLibrary/RecordingWidget"
+import {
+  RICH_TEXT_EVENT_HANDLER_CONFIG,
+  RICH_TEXT_PANEL_CONFIG,
+  RICH_TEXT_WIDGET_CONFIG,
+} from "@/widgetLibrary/RichTextWidget"
 import {
   SELECT_EVENT_HANDLER_CONFIG,
   SELECT_PANEL_CONFIG,
@@ -301,6 +311,12 @@ export const WidgetConfigMap: Record<
     panelConfig: JSON_EDITOR_PANEL_CONFIG,
     eventHandlerConfig: JSON_EDITOR_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/JsonEditorWidget/jsonEditor")),
+  },
+  RICH_TEXT_WIDGET: {
+    widget: lazy(() => import("@/widgetLibrary/RichTextWidget/richText")),
+    config: RICH_TEXT_WIDGET_CONFIG,
+    panelConfig: RICH_TEXT_PANEL_CONFIG,
+    eventHandlerConfig: RICH_TEXT_EVENT_HANDLER_CONFIG,
   },
   // select inputs
   SWITCH_WIDGET: {
@@ -459,6 +475,12 @@ export const WidgetConfigMap: Record<
     panelConfig: BUTTON_PANEL_CONFIG,
     eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/ButtonWidget/button")),
+  },
+  CHAT_WIDGET: {
+    widget: lazy(() => import("@/widgetLibrary/ChatWidget/chat")),
+    config: CHAT_WIDGET_CONFIG,
+    panelConfig: CHAT_PANEL_CONFIG,
+    eventHandlerConfig: CHAT_EVENT_HANDLER_CONFIG,
   },
   ICON_WIDGET: {
     config: ICON_WIDGET_CONFIG,

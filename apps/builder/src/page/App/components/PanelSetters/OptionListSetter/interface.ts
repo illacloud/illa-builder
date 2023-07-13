@@ -25,6 +25,7 @@ export interface DragIconAndLabelProps {
 
 export interface MoreProps {
   index: number
+  label?: string
 }
 
 export interface OptionListSetterProps extends BaseSetter {
@@ -43,6 +44,7 @@ export interface DragItem {
 
 export interface ActionMenuProps {
   index: number
+  label?: string
   handleCloseMode: () => void
 }
 

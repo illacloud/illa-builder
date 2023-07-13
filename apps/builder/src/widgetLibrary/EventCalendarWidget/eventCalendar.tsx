@@ -206,8 +206,6 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
     resizeMsg,
     triggerEventHandler,
     handleUpdateMultiExecutionResult,
-    updateComponentRuntimeProps,
-    deleteComponentRuntimeProps,
   } = props
 
   const currentDefaultDate = useMemo(
@@ -221,55 +219,6 @@ export const EventCalendarWidget: FC<EventCalendarWidgetProps> = (props) => {
   const [finalEventOptions, finalResourceOptions] = useMemo(() => {
     return formatEventOptions(eventConfigureMode, manualOptions, mappedOption)
   }, [eventConfigureMode, manualOptions, mappedOption])
-
-  useEffect(() => {
-    updateComponentRuntimeProps?.({
-      addEvent: (event: Event) => {
-        if (
-          !event ||
-          typeof event !== "object" ||
-          !event.title ||
-          !event.start ||
-          !event.end ||
-          !event.id
-        )
-          return
-        const eventItems = eventList.filter((item) => item.id !== event.id)
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              eventList: [...eventItems, event],
-              addEventValue: event,
-            },
-          },
-        ])
-      },
-      deleteEvent: (eventId: string | number) => {
-        const deleteEventValue = eventList.find((item) => item.id === eventId)
-        if (!deleteEventValue) return
-        const eventItems = eventList.filter((item) => item.id !== eventId)
-        handleUpdateMultiExecutionResult([
-          {
-            displayName,
-            value: {
-              eventList: eventItems,
-              deleteEventValue,
-            },
-          },
-        ])
-      },
-    })
-    return () => {
-      deleteComponentRuntimeProps()
-    }
-  }, [
-    displayName,
-    eventList,
-    updateComponentRuntimeProps,
-    deleteComponentRuntimeProps,
-    handleUpdateMultiExecutionResult,
-  ])
 
   useEffect(() => {
     handleUpdateMultiExecutionResult([

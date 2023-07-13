@@ -42,7 +42,7 @@ import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 export interface AppInviteModalProps
   extends Pick<
     InviteModalProps,
-    "visible" | "handleCloseModal" | "inviteToUseAppStatus" | "hasApp"
+    "visible" | "handleCloseModal" | "inviteToUseAppStatus" | "hasApp" | "from"
   > {
   appInfo?: DashboardApp
 }
@@ -58,6 +58,7 @@ export const DashBoardInviteModal: FC<AppInviteModalProps> = (props) => {
     handleCloseModal,
     hasApp = true,
     inviteToUseAppStatus,
+    from = "builder_app",
   } = props
 
   const teamInfo = useSelector(getCurrentTeamInfo)
@@ -203,6 +204,7 @@ export const DashBoardInviteModal: FC<AppInviteModalProps> = (props) => {
         updateAppPublicConfig={updateAppConfig}
         visible={visible}
         handleCloseModal={handleCloseModal}
+        from={from}
       />
     </MemberListContext.Provider>
   )

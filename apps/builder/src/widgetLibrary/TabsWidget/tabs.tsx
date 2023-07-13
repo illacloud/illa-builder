@@ -75,7 +75,7 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     tabPosition,
     triggerEventHandler,
     updateComponentHeight,
-    handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
+    handleUpdateOriginalDSLOtherMultiAttr,
   } = props
 
   useEffect(() => {
@@ -107,19 +107,17 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   const handleUpdateMultiExecutionResults = useCallback(
     (updateSliceItem: Record<string, any>) => {
       if (navigateContainer && linkWidgetDisplayName) {
-        handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
+        handleUpdateOriginalDSLOtherMultiAttr(
           linkWidgetDisplayName,
           updateSliceItem,
+          true,
         )
       }
-      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo(
-        displayName,
-        updateSliceItem,
-      )
+      handleUpdateOriginalDSLOtherMultiAttr(displayName, updateSliceItem, true)
     },
     [
       displayName,
-      handleUpdateOriginalDSLOtherMultiAttrNotUseUnDoRedo,
+      handleUpdateOriginalDSLOtherMultiAttr,
       linkWidgetDisplayName,
       navigateContainer,
     ],

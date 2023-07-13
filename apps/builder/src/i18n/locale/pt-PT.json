@@ -1290,7 +1290,7 @@
           "clear_button_text": "Limpar"
         },
         "rich_text": {
-          "default_text": "Texto"
+          "default_text": "Digite o texto aqui"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "Identificação do remetente",
         "showName": "Exibir nome",
         "rich_text": {
-          "default_text": "Texto padrão"
+          "default_text": "Espaço reservado"
         },
-        "senderAvatar": "Avatar do remetente"
+        "senderAvatar": "Avatar do remetente",
+        "drive_builder": {
+          "allow_public_use": "Usar no aplicativo público",
+          "illa_drive_folder": "Pasta do ILLA Drive",
+          "generate_signed_url": "Gerar URL assinada",
+          "expired_time": "Tempo expirado",
+          "time": "Horário(s)",
+          "turn_on_hotlink": "Ativar proteção de hotlink",
+          "button_text": "Texto do Botão",
+          "selection_type": "Tipo de seleção",
+          "allowed_file_types": "Tipos de arquivo permitidos",
+          "file_list": "Lista de arquivos",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Número mínimo de arquivo",
+          "max_file_num": "Número máximo de arquivo"
+        }
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Configura se deve mostrar um botão excluir quando selecionar uma mensagem.",
         "tabs": {
           "variant": "Para definir a variante das abas"
+        },
+        "drive_builder": {
+          "allow_public_use": "Defina se deve ser usado em uma aplicação pública. Quando usado em um aplicativo público, a fim de proteger a segurança do seu arquivo, ele só será capaz de acessar a pasta PublicAccess",
+          "illa_drive_folder": "Para especificar uma pasta, os usuários só podem selecionar arquivos desta pasta ao usar este componente",
+          "generate_signed_url": "Para definir se deve gerar uma URL assinada. Todos os usuários podem acessar o arquivo através de uma URL assinada. Isso geralmente é usado quando você precisa exibir conteúdo em seu site ou permitir que os usuários façam o download. ",
+          "expired_time": "Para definir o tempo de expiração. Quando expirado, a URL assinada será inacessível.",
+          "time": "Use o tipo de número em segundos para definir o tempo de expiração. Por exemplo, {{300}} (o que significa 300 segundos ou 5 minutos)",
+          "turn_on_hotlink": "Para definir se a proteção de hotlink será ativada. Se você ativá-la, o arquivo só será acessado através do site em illacloud.com",
+          "button_text": "Definir o texto no botão",
+          "selection_type": "Defina se deve permitir que o usuário selecione um único arquivo ou vários arquivos",
+          "allowed_file_types": "Use um array de strings para definir os tipos de arquivo permitidos, como permitir jpg e png, preencher {{[\".jpg\", \".png\"]}}. Deixe em branco para permitir que todos os tipos de arquivo. ",
+          "file_list": "Para definir se deseja mostrar a lista de arquivos selecionados. ",
+          "min_size": "Definir o tamanho mínimo permitido de arquivo",
+          "max_size": "Para definir o tamanho máximo de arquivo permitido",
+          "min_file_num": "Para definir o número mínimo de arquivos permitidos para ser selecionado",
+          "max_file_num": "Para definir o número máximo de arquivos permitidos para ser selecionado"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Linha",
           "card": "Carta"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "nunca",
+            "customer": "Personalizado"
+          },
+          "single_file": "Arquivo único",
+          "multiple_files": "Múltiplos arquivos"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Não é possível definir valor durante a gravação",
           "min_duration": "Gravando pelo menos {{minimum}}s",
           "max_duration": "Gravando no máximo {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Por favor, selecione um arquivo com um tamanho maior que {{min}}",
+          "max_size": "Por favor, selecione um arquivo com um tamanho menor que {{max}}",
+          "min_files": "Por favor, selecione pelo menos arquivos {{min}}",
+          "max_files": "Por favor, selecione no máximo arquivos {{max}}"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "O texto padrão exibido quando o componente é inicializado"
+          "default_text": "O valor será exibido quando o campo de entrada estiver vazio."
         }
       },
       "widget": {

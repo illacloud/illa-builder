@@ -1290,7 +1290,7 @@
           "clear_button_text": "クリア"
         },
         "rich_text": {
-          "default_text": "テキスト"
+          "default_text": "ここにテキストを入力"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "送信者ID",
         "showName": "名前を表示",
         "rich_text": {
-          "default_text": "既定のテキスト"
+          "default_text": "プレースホルダー"
         },
-        "senderAvatar": "送信者のアバター"
+        "senderAvatar": "送信者のアバター",
+        "drive_builder": {
+          "allow_public_use": "パブリックアプリで使用",
+          "illa_drive_folder": "ILLA Driveフォルダ",
+          "generate_signed_url": "署名済みURLを生成",
+          "expired_time": "期限切れ時間",
+          "time": "回数",
+          "turn_on_hotlink": "ホットリンク保護をオンにする",
+          "button_text": "ボタンのテキスト",
+          "selection_type": "選択タイプ",
+          "allowed_file_types": "許可されたファイルの種類",
+          "file_list": "ファイルリスト",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "最小ファイル num",
+          "max_file_num": "最大ファイル num"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "メッセージを選択したときに削除ボタンを表示するかどうかを設定します。",
         "tabs": {
           "variant": "タブのバリエーションを設定する"
+        },
+        "drive_builder": {
+          "allow_public_use": "公開アプリで使用するかどうかを設定します。 公開アプリで使用した場合、ファイルのセキュリティを保護するため、PublicAccessフォルダにのみアクセスできます",
+          "illa_drive_folder": "フォルダを指定するには、このコンポーネントを使用する場合にのみ、このフォルダからファイルを選択できます",
+          "generate_signed_url": "署名された URL を生成するかどうかを設定します。すべてのユーザーは署名された URL を介してファイルにアクセスできます。 これは通常、あなたのウェブサイトにコンテンツを表示したり、ユーザーがそれをダウンロードできるようにする必要があるときに使用されます。 ",
+          "expired_time": "有効期限を設定します。有効期限が切れると、署名された URL にアクセスできなくなります。",
+          "time": "数字の種類を秒単位で使用して有効期限を設定します。例えば、 {{300}} (300秒または5分)",
+          "turn_on_hotlink": "ホットリンクプロテクトをオンにするかどうかを設定します。オンにすると、ファイルはillacloud.comのウェブサイトからのみアクセスされます。",
+          "button_text": "ボタンにテキストを設定する",
+          "selection_type": "ユーザーに単一のファイルまたは複数のファイルを選択させるかを設定します",
+          "allowed_file_types": "jpg や png などの許可されているファイルタイプを設定するには文字列配列を使用し、 {{[\".jpg\", \".png\"]}}を入力します。 すべてのファイルタイプを許可するには空白のままにしてください。 ",
+          "file_list": "選択したファイルリストを表示するかどうかを設定します。 ",
+          "min_size": "許可されている最小ファイルサイズを設定する",
+          "max_size": "許可された最大ファイルサイズを設定する",
+          "min_file_num": "選択できるファイルの最小数を設定する",
+          "max_file_num": "選択できるファイルの最大数を設定する"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "線",
           "card": "カード"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "一切なし",
+            "customer": "カスタム"
+          },
+          "single_file": "単一のファイル",
+          "multiple_files": "複数のファイル"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "録音中に値を設定できません",
           "min_duration": "少なくとも {{minimum}}秒以上記録してください",
           "max_duration": "最大 {{maximum}}秒で録音してください"
+        },
+        "drive_builder": {
+          "min_size": "{{min}}より大きいサイズのファイルを選択してください",
+          "max_size": "{{max}}より小さいサイズのファイルを選択してください",
+          "min_files": "少なくとも {{min}} ファイルを選択してください",
+          "max_files": "最大 {{max}} ファイルを選択してください"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "コンポーネントが初期化されたときに表示される既定のテキスト"
+          "default_text": "値は入力フィールドが空の場合に表示されます。"
         }
       },
       "widget": {

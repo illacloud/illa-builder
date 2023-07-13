@@ -1290,7 +1290,7 @@
           "clear_button_text": "Curăță"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Scrie textul aici"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "ID expeditor",
         "showName": "Arată numele",
         "rich_text": {
-          "default_text": "Text implicit"
+          "default_text": "Substituent"
         },
-        "senderAvatar": "Avatarul expeditorului"
+        "senderAvatar": "Avatarul expeditorului",
+        "drive_builder": {
+          "allow_public_use": "Utilizare în aplicația publică",
+          "illa_drive_folder": "Dosar ILLA Drive",
+          "generate_signed_url": "Generează adresa semnată",
+          "expired_time": "Timp expirat",
+          "time": "Ora",
+          "turn_on_hotlink": "Activați protecția prin hotlink",
+          "button_text": "Text buton",
+          "selection_type": "Tipul de selecţie",
+          "allowed_file_types": "Tipuri de fișiere permise",
+          "file_list": "Listă de fișiere",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Numar fisier minim",
+          "max_file_num": "Nr. max. fișier"
+        }
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Setează dacă se afișează un buton de ștergere când se selectează un mesaj.",
         "tabs": {
           "variant": "Pentru a seta varianta taburilor"
+        },
+        "drive_builder": {
+          "allow_public_use": "Setați dacă să utilizați în aplicația publică. Când este folosit într-o aplicație publică, pentru a proteja securitatea fișierului, va putea accesa doar dosarul cu acces public",
+          "illa_drive_folder": "Pentru a specifica un dosar, utilizatorii pot selecta doar fişiere din acest dosar atunci când utilizează această componentă",
+          "generate_signed_url": "Pentru a seta dacă se generează un URL semnat. Toți utilizatorii pot ajunge la fișier printr-un URL semnat. Acest lucru este de obicei folosit atunci când trebuie să afișezi conținut pe site-ul tău web sau să permitem utilizatorilor să-l descarce. ",
+          "expired_time": "Pentru a seta ora expirată. Când a expirat, URL-ul semnat va fi inaccesibil.",
+          "time": "Utilizaţi tipul de număr în secunde pentru a seta ora de expirare. De exemplu, {{300}} (care înseamnă 300 de secunde sau 5 minute)",
+          "turn_on_hotlink": "Pentru a seta dacă activați hotlink protect. Dacă l-ați activat, fișierul va fi accesat doar prin intermediul website-ului de pe illacloud.com",
+          "button_text": "Pentru a seta textul pe buton",
+          "selection_type": "Stabiliți dacă permiteți utilizatorului să selecteze un singur fișier sau mai multe fișiere",
+          "allowed_file_types": "Utilizați un șir de caractere pentru a seta tipurile de fișiere permise, cum ar fi permiterea jpg și png, completați {{[\".jpg\", \".png\"]}}. Lăsați necompletat pentru a permite toate tipurile de fișiere. ",
+          "file_list": "Pentru a seta dacă se afișează lista de fișiere selectată. ",
+          "min_size": "Pentru a seta dimensiunea minimă permisă a fișierului",
+          "max_size": "Pentru a seta dimensiunea maximă permisă a fișierului",
+          "min_file_num": "Pentru a seta numărul minim de fișiere care pot fi selectate",
+          "max_file_num": "Pentru a seta numărul maxim de fișiere care pot fi selectate"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Linie",
           "card": "Card"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Niciodată",
+            "customer": "Personalizat"
+          },
+          "single_file": "Fişier unic",
+          "multiple_files": "Fișiere multiple"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "Nu se poate seta valoarea în timpul înregistrării",
           "min_duration": "Vă rugăm să înregistrați cel puțin {{minimum}}s",
           "max_duration": "Vă rugăm să înregistrați cel mult {{maximum}}s"
+        },
+        "drive_builder": {
+          "min_size": "Vă rugăm să selectați un fișier cu o dimensiune mai mare decât {{min}}",
+          "max_size": "Vă rugăm să selectaţi un fişier cu o dimensiune mai mică decât {{max}}",
+          "min_files": "Vă rugăm să selectaţi cel puţin {{min}} fişiere",
+          "max_files": "Vă rugăm să selectaţi cel mult {{max}} fişiere"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "Textul implicit afişat atunci când componenta este iniţializată"
+          "default_text": "Valoarea va fi afișată când câmpul de intrare este gol."
         }
       },
       "widget": {

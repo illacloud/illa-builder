@@ -1290,7 +1290,7 @@
           "clear_button_text": "분명한"
         },
         "rich_text": {
-          "default_text": "text"
+          "default_text": "Type text here"
         }
       },
       "setter_group": {
@@ -1686,9 +1686,25 @@
         "senderId": "Sender ID",
         "showName": "Show name",
         "rich_text": {
-          "default_text": "Default text"
+          "default_text": "Placeholder"
         },
-        "senderAvatar": "Sender avatar"
+        "senderAvatar": "Sender avatar",
+        "drive_builder": {
+          "allow_public_use": "Use in public app",
+          "illa_drive_folder": "ILLA Drive folder",
+          "generate_signed_url": "Generate signed URL",
+          "expired_time": "Expired time",
+          "time": "Time(s)",
+          "turn_on_hotlink": "Turn on hotlink protect",
+          "button_text": "Button text",
+          "selection_type": "Selection type",
+          "allowed_file_types": "Allowed file types",
+          "file_list": "File list",
+          "min_size": "Min size",
+          "max_size": "Max size",
+          "min_file_num": "Min file num",
+          "max_file_num": "Max file num"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1919,6 +1935,22 @@
         "toolbar-delete": "Set whether to show a delete button when select a message.",
         "tabs": {
           "variant": "To set the variant of tabs"
+        },
+        "drive_builder": {
+          "allow_public_use": "Set whether to use in public app. When used in a public app, in order to protect your file security, it will only be able to access the PublicAccess folder",
+          "illa_drive_folder": "To specify a folder, users can only select files from this folder when using this component",
+          "generate_signed_url": "To set whether to generate a signed URL. All users can reach the file via a signed URL. This is usually used when you need to display content on your website or allow users to download it. ",
+          "expired_time": "To set the expired time. When expired, the signed URL will be unaccessiable.",
+          "time": "Use the number type in seconds to set the expiration time. For example, {{300}} (which means 300 seconds or 5 minutes)",
+          "turn_on_hotlink": "To set whether turn on the hotlink protect. If you turned on it, the file will only be accessed via the website on illacloud.com",
+          "button_text": "To set the text on the button",
+          "selection_type": "Set whether to allow the user to select a single file or multiple files",
+          "allowed_file_types": "Use a string array to set the allowed file types, such as allowing jpg and png, fill in {{[\".jpg\", \".png\"]}}. Leave blank to allow all file types. ",
+          "file_list": "To set whether to show the selected file list. ",
+          "min_size": "To set the allowed minimum file size",
+          "max_size": "To set the allowed maximum file size",
+          "min_file_num": "To set the minimum number of files allowed to be selected",
+          "max_file_num": "To set the maximum number of files allowed to be selected"
         }
       },
       "setter_option": {
@@ -2003,6 +2035,14 @@
         "tab": {
           "line": "Line",
           "card": "Card"
+        },
+        "drive_builder": {
+          "expired_time": {
+            "never": "Never",
+            "customer": "Custom"
+          },
+          "single_file": "Single file",
+          "multiple_files": "Multiple files"
         }
       },
       "setter_placeholder": {
@@ -2054,6 +2094,12 @@
           "cannot_set_value_dur": "기록 중에는 값을 설정할 수 없습니다.",
           "min_duration": "최소 {{minimum}}초 이상 녹음하세요.",
           "max_duration": "{{maximum}}초 이내로 녹화하세요."
+        },
+        "drive_builder": {
+          "min_size": "Please select a file with a size greater than {{min}}",
+          "max_size": "Please select a file with a size smaller than {{max}}",
+          "min_files": "Please select at least {{min}} files",
+          "max_files": "Please select at most {{max}} files"
         }
       },
       "setter_description": {
@@ -2063,7 +2109,7 @@
       },
       "setter_hover": {
         "rich_text": {
-          "default_text": "The default text displayed when the component is initialized"
+          "default_text": "The value will be shown when the input field is empty."
         }
       },
       "widget": {
