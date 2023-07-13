@@ -285,6 +285,15 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       )
   }, [appId, shareVisible])
 
+  useEffect(() => {
+    appSettingVisible &&
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "app_setting_modal", parameter5: appId },
+      )
+  }, [appId, appSettingVisible])
+
   return (
     <div {...rest}>
       {canEditApp ? (

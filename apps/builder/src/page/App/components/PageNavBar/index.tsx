@@ -124,7 +124,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }, [debugMessageNumber])
 
   const deployApp = useCallback(
-    async (appId: string, isPublic: boolean) => {
+    async (
+      appId: string,
+      isPublic: boolean,
+      onSuccess?: () => void,
+      onFailed?: (error: unknown) => void,
+    ) => {
       setDeployLoading(true)
       try {
         await fetchDeployApp(appId, isPublic)
@@ -132,10 +137,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           `${window.location.protocol}//${window.location.host}/${teamIdentifier}/deploy/app/${appId}`,
           "_blank",
         )
-      } catch {
+        onSuccess?.()
+      } catch (error) {
         message.error({
           content: t("editor.deploy.fail"),
         })
+        onFailed?.(error)
       } finally {
         setDeployLoading(false)
       }
@@ -176,11 +183,48 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       if (key === "public" && !canUseBillingFeature) {
         handleUpgradeModalVisible(true, "upgrade")
       } else {
-        await deployApp(appInfo.appId, key === "public")
+        trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
+          element: "invite_modal_public_switch",
+          parameter1: "deploy",
+          parameter2: "trigger",
+          parameter4: appInfo.config?.public ? "on" : "off",
+          parameter5: appInfo.appId,
+        })
+        await deployApp(
+          appInfo.appId,
+          key === "public",
+          () => {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
+              element: "invite_modal_public_switch",
+              parameter1: "deploy",
+              parameter2: "suc",
+              parameter4: appInfo.config?.public ? "on" : "off",
+              parameter5: appInfo.appId,
+            })
+          },
+          (error) => {
+            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
+              element: "invite_modal_public_switch",
+              parameter1: "deploy",
+              parameter2: "failed",
+              parameter3: isILLAAPiError(error)
+                ? error?.data?.errorFlag
+                : "unknown",
+              parameter4: appInfo.config?.public ? "on" : "off",
+              parameter5: appInfo.appId,
+            })
+          },
+        )
         location.reload()
       }
     },
-    [appInfo.appId, deployApp, canUseBillingFeature, handleUpgradeModalVisible],
+    [
+      appInfo.appId,
+      appInfo.config?.public,
+      deployApp,
+      canUseBillingFeature,
+      handleUpgradeModalVisible,
+    ],
   )
 
   const handlePreviewButtonClick = useCallback(() => {
