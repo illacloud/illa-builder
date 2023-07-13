@@ -88,6 +88,7 @@ export interface IExecutionActions extends ActionItem<ActionContent> {
 
 export const runActionWithExecutionResult = async (
   action: IExecutionActions,
+  needRunEventHandler: boolean = true,
 ) => {
   const { displayName } = action as ActionItem<
     MysqlLikeAction | RestApiAction<BodyContent>
@@ -176,8 +177,7 @@ export const runActionWithExecutionResult = async (
         },
       }),
     )
-    runAllEventHandler(successEvent)
-
+    if (needRunEventHandler) runAllEventHandler(successEvent)
     return Promise.resolve(userTransformedData)
   } catch (e) {
     let runResult = {
@@ -198,7 +198,7 @@ export const runActionWithExecutionResult = async (
         },
       }),
     )
-    runAllEventHandler(failedEvent)
+    if (needRunEventHandler) runAllEventHandler(failedEvent)
 
     return Promise.reject(runResult)
   }
