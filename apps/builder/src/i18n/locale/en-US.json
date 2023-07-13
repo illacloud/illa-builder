@@ -2182,7 +2182,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Presentation",
-        "selects": "Select inputs"
+        "selects": "Select inputs",
+        "drive": "ILLA Drive"
       },
       "tab_title": "Insert"
     },
