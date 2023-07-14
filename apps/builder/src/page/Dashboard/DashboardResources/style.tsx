@@ -1,5 +1,6 @@
 import { SerializedStyles, css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/react"
+import { contentStyle } from "@/page/Dashboard/DashboardApps/style"
 
 export function applyTableTextStyle(highlight: boolean): SerializedStyles {
   return css`
@@ -21,6 +22,7 @@ export const resourceNameStyle = css`
 export const hoverStyle = css`
   overflow: auto;
   min-height: 150px;
+  ${contentStyle};
 
   &::-webkit-scrollbar {
     display: none;
