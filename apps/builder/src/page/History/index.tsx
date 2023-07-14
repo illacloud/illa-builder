@@ -1,56 +1,28 @@
-import { Unsubscribe } from "@reduxjs/toolkit"
-import { FC, useCallback, useEffect } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { TriggerProvider } from "@illa-design/react"
-import { Connection } from "@/api/ws"
-import {
-  ILLA_WEBSOCKET_CONTEXT,
-  ILLA_WEBSOCKET_STATUS,
-} from "@/api/ws/interface"
-import { useInitBuilderApp } from "@/hooks/useInitApp"
+import { FC } from "react"
+import { useSelector } from "react-redux"
+import { Loading, TriggerProvider } from "@illa-design/react"
+import { useInitHistoryApp } from "@/hooks/useInitHistoryApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@/illa-public-component/UserRoleUtils/interface"
-import { AppLoading } from "@/page/App/components/AppLoading"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
 import {
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
+  loadingStyle,
   middlePanelStyle,
   rightPanelStyle,
 } from "@/page/App/style"
-import { setupConfigListeners } from "@/redux/config/configListener"
-import { getAppWSStatus, isOpenRightPanel } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
-import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
-import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
-import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
-import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { isOpenRightPanel } from "@/redux/config/configSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { startAppListening } from "@/store"
-import { Shortcut } from "@/utils/shortcut"
 
-export const Editor: FC = () => {
-  const dispatch = useDispatch()
-  const { t } = useTranslation()
-  let { appId } = useParams()
-
-  const currentUser = useSelector(getCurrentUser)
+export const History: FC = () => {
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const wsStatus = useSelector(getAppWSStatus)
-
   const currentUserRole = teamInfo?.myRole
-
-  const handleLeaveRoom = useCallback(() => {
-    Connection.leaveRoom("app", appId ?? "")
-  }, [appId])
 
   // check if user can manage the app
   if (currentUserRole) {
@@ -64,72 +36,35 @@ export const Editor: FC = () => {
     }
   }
 
-  useEffect(() => {
-    if (currentUser != null && currentUser.userId != "") {
-      Connection.enterRoom("app", appId ?? "")
-      window.addEventListener("beforeunload", handleLeaveRoom)
-    }
-    return () => {
-      handleLeaveRoom()
-      dispatch(
-        collaboratorsActions.setInRoomUsers({
-          inRoomUsers: [],
-        }),
-      )
-      dispatch(
-        configActions.updateWSStatusReducer({
-          context: ILLA_WEBSOCKET_CONTEXT.APP,
-          wsStatus: ILLA_WEBSOCKET_STATUS.CLOSED,
-        }),
-      )
-      window.removeEventListener("beforeunload", handleLeaveRoom)
-    }
-  }, [currentUser, appId, handleLeaveRoom, dispatch])
-
-  useEffect(() => {
-    const subscriptions: Unsubscribe[] = [
-      setupExecutionListeners(startAppListening),
-      setupComponentsListeners(startAppListening),
-      setupActionListeners(startAppListening),
-      setupConfigListeners(startAppListening),
-    ]
-    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
-  }, [])
-
   const showRightPanel = useSelector(isOpenRightPanel)
 
   // init app
-  const { loadingState } = useInitBuilderApp("edit")
-
-  const combineLoadingState =
-    loadingState ||
-    wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
-    wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
+  const { loadingState } = useInitHistoryApp()
 
   return (
     <div css={editorContainerStyle}>
-      {combineLoadingState ? (
-        <AppLoading />
+      {loadingState ? (
+        <div css={loadingStyle}>
+          <Loading colorScheme="techPurple" />
+        </div>
       ) : (
-        <Shortcut>
-          <div css={contentStyle}>
-            <div css={middlePanelStyle}>
-              <TriggerProvider renderInBody zIndex={10}>
-                <CanvasPanel css={centerPanelStyle} />
-              </TriggerProvider>
-            </div>
-            {showRightPanel && (
-              <TriggerProvider renderInBody zIndex={10}>
-                <ComponentsManager css={rightPanelStyle} />
-              </TriggerProvider>
-            )}
+        <div css={contentStyle}>
+          <div css={middlePanelStyle}>
+            <TriggerProvider renderInBody zIndex={10}>
+              <CanvasPanel css={centerPanelStyle} />
+            </TriggerProvider>
           </div>
-        </Shortcut>
+          {showRightPanel && (
+            <TriggerProvider renderInBody zIndex={10}>
+              <ComponentsManager css={rightPanelStyle} />
+            </TriggerProvider>
+          )}
+        </div>
       )}
     </div>
   )
 }
 
-export default Editor
+export default History
 
-Editor.displayName = "Editor"
+History.displayName = "History"
