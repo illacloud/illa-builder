@@ -135,7 +135,7 @@ export const fetchDownloadURLByTinyURL = async (
   fileID: string,
 ) => {
   return await publicDriveRequest<IFetchDownloadURLByTinyURL>({
-    url: `${tinyURL}/${fileID}`,
+    url: `/${tinyURL}/${fileID}`,
     method: "GET",
   })
 }

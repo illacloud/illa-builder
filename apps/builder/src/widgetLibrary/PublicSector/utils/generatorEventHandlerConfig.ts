@@ -63,6 +63,14 @@ export const generatorEventHandlerConfig = (
             value: "setRouter",
           },
           {
+            label: "Save to ILLA Drive", //  todo: i18n
+            value: "saveToILLADrive",
+          },
+          {
+            label: "Download from ILLA Drive", // todo: i18n,
+            value: "downloadFromILLADrive",
+          },
+          {
             label: i18n.t("editor.method.file_download.download"),
             value: "downloadFile",
           },
@@ -690,8 +698,9 @@ export const generatorEventHandlerConfig = (
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "fileName",
         bindAttrName: ["actionType"],
-        shown: (type) => type === "downloadFile",
+        shown: (type) => type === "downloadFile" || type === "saveToILLADrive",
       },
+
       {
         id: `${baseWidgetName}-interaction-event-handler-fileData`,
         labelName: i18n.t(
@@ -704,7 +713,7 @@ export const generatorEventHandlerConfig = (
         setterType: "INPUT_SETTER",
         attrName: "fileData",
         bindAttrName: ["actionType"],
-        shown: (type) => type === "downloadFile",
+        shown: (type) => type === "downloadFile" || type === "saveToILLADrive",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-fileType`,
@@ -716,7 +725,7 @@ export const generatorEventHandlerConfig = (
         attrName: "fileType",
         bindAttrName: ["actionType"],
         defaultValue: "auto",
-        shown: (type) => type === "downloadFile",
+        shown: (type) => type === "downloadFile" || type === "saveToILLADrive",
         options: [
           {
             label: i18n.t("editor.inspect.setter_option.file_download.auto"),
@@ -757,6 +766,38 @@ export const generatorEventHandlerConfig = (
             value: "xlsx",
           },
         ],
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-allow-anonymous-use`,
+        labelName: "Allow anonymous use", // TODO: i18n
+        labelDesc: i18n.t("editor.inspect.setter_tips.file_download.file_data"),
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        attrName: "allowAnonymous",
+        bindAttrName: ["actionType"],
+        useCustomLayout: true,
+        openDynamic: true,
+        shown: (type) => type === "downloadFromILLADrive",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-download-info-with-drive`,
+        labelName: "Download URL", // TODO: i18n
+        labelDesc: i18n.t("editor.inspect.setter_tips.file_download.file_data"),
+        placeholder: `{{["fileURL1"]}}`,
+        setterType: "INPUT_SETTER",
+        attrName: "downloadInfo",
+        bindAttrName: ["actionType"],
+        shown: (type) => type === "downloadFromILLADrive",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-as-zip-with-download`,
+        labelName: "Download as a ZIP", // TODO: i18n
+        labelDesc: i18n.t("editor.inspect.setter_tips.file_download.file_data"),
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        attrName: "asZip",
+        bindAttrName: ["actionType"],
+        useCustomLayout: true,
+        openDynamic: true,
+        shown: (type) => type === "downloadFromILLADrive",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-enabled`,

@@ -18,6 +18,7 @@ import {
   setRouter,
   showNotification,
 } from "../eventHandlerHelper/utils/commonUtils"
+import { downloadFromILLADrive } from "../eventHandlerHelper/utils/driveUtils"
 
 const THIRD_PARTY_PACKAGES = {
   _,
@@ -36,7 +37,6 @@ const THIRD_PARTY_PACKAGES = {
   numbro,
   Papa,
 }
-
 class ILLAEditorRuntimePropsCollector {
   private _runtimeProps: Record<string, unknown> = {}
   private static instance: ILLAEditorRuntimePropsCollector | null = null
@@ -50,6 +50,7 @@ class ILLAEditorRuntimePropsCollector {
         copyToClipboard,
         setRouter,
         downloadFile,
+        downloadFromILLADrive,
       },
     }
   }

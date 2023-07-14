@@ -14,6 +14,7 @@ import {
   setRouter,
   showNotification,
 } from "./utils/commonUtils"
+import { downloadFromILLADrive } from "./utils/driveUtils"
 import { setInGlobalData, setValueGlobalData } from "./utils/globalDataUtils"
 import { clearLocalStorage, setValueLocalStorage } from "./utils/localStorage"
 
@@ -28,6 +29,7 @@ export enum EVENT_ACTION_TYPE {
   WIDGET = "widget",
   DATA_SOURCE = "datasource",
   SCRIPT = "script",
+  DOWNLOAD_FROM_ILLA_DRIVE = "downloadFromILLADrive",
 }
 const message = createMessage()
 
@@ -365,6 +367,18 @@ export const transformEvents = (
       return {
         script: () => {
           runOriginAction(actionItem)
+        },
+        enabled,
+      }
+    }
+    case EVENT_ACTION_TYPE.DOWNLOAD_FROM_ILLA_DRIVE: {
+      const { downloadInfo, asZip, enabled } = event
+      return {
+        script: () => {
+          downloadFromILLADrive({
+            downloadInfo,
+            asZip,
+          })
         },
         enabled,
       }

@@ -239,6 +239,9 @@ importers:
       events:
         specifier: ^3.3.0
         version: 3.3.0
+      fflate:
+        specifier: ^0.8.0
+        version: 0.8.0
       fnv-plus:
         specifier: ^1.3.1
         version: 1.3.1
@@ -359,6 +362,9 @@ importers:
       slick-carousel:
         specifier: ^1.8.1
         version: 1.8.1(jquery@3.7.0)
+      streamsaver:
+        specifier: ^2.0.6
+        version: 2.0.6
       stylis:
         specifier: ^4.1.3
         version: 4.1.3
@@ -441,6 +447,9 @@ importers:
       '@types/redux-logger':
         specifier: ^3.0.9
         version: 3.0.9
+      '@types/streamsaver':
+        specifier: ^2.0.1
+        version: 2.0.1
       '@types/stylis':
         specifier: ^4.0.2
         version: 4.0.2
@@ -4802,6 +4811,10 @@ packages:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
     dev: true
 
+  /@types/streamsaver@2.0.1:
+    resolution: {integrity: sha512-I49NtT8w6syBI3Zg3ixCyygTHoTVMY0z2TMRcTgccdIsVd2MwlKk7ITLHLsJtgchUHcOd7QEARG9h0ifcA6l2Q==}
+    dev: true
+
   /@types/stylis@4.0.2:
     resolution: {integrity: sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==}
     dev: true
@@ -7286,6 +7299,10 @@ packages:
     dependencies:
       reusify: 1.0.4
     dev: true
+
+  /fflate@0.8.0:
+    resolution: {integrity: sha512-FAdS4qMuFjsJj6XHbBaZeXOgaypXp8iw/Tpyuq/w3XA41jjLHT8NPA+n7czH/DDhdncq0nAyDZmPeWXh2qmdIg==}
+    dev: false
 
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -11152,6 +11169,10 @@ packages:
     dependencies:
       mixme: 0.5.5
     dev: true
+
+  /streamsaver@2.0.6:
+    resolution: {integrity: sha512-LK4e7TfCV8HzuM0PKXuVUfKyCB1FtT9L0EGxsFk5Up8njj0bXK8pJM9+Wq2Nya7/jslmCQwRK39LFm55h7NBTw==}
+    dev: false
 
   /string-argv@0.3.1:
     resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}
