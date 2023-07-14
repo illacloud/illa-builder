@@ -1,9 +1,9 @@
 import { RootState } from "@/store"
 
-export const getGuideInfo = (state: RootState) => {
-  return state.guide
+export const getCurrentAppSnapshotList = (state: RootState) => {
+  return state.currentAppHistory.snapshotList
 }
 
-export const getCurrentStep = (state: RootState) => {
-  return state.guide.currentStep
+export const getCurrentAppSnapshotID = (state: RootState) => {
+  return state.currentAppHistory.currentSnapshotID
 }
