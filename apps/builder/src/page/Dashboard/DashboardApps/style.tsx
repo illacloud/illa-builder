@@ -4,12 +4,17 @@ import { globalColor, illaPrefix } from "@illa-design/react"
 export const CARD_WIDTH = 320
 export const CARD_HEIGHT = 228
 export const CARD_GAP_SIZE = 24
+
+export const contentStyle: SerializedStyles = css`
+  padding: 0 15%;
+`
 export const fullWidthStyle: SerializedStyles = css`
   width: 100%;
   height: 100%;
   overflow: auto;
-  padding: 0 15%;
+  ${contentStyle};
 `
+
 export const appsContainerStyle: SerializedStyles = css`
   display: flex;
   width: 100%;
