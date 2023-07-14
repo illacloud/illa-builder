@@ -2,11 +2,9 @@
 import Axios from "axios"
 import { HTTP_REQUEST_PUBLIC_BASE_URL } from "./constant"
 import { authInterceptor } from "./interceptors/request/auth"
-import { addToPendingPoolInterceptor } from "./interceptors/request/pendingPool"
 import { errorHandlerInterceptor } from "./interceptors/response/errorHandler"
-import { removeFromPendingPoolInterceptor } from "./interceptors/response/pendingPool"
 
-const basicAxios = Axios.create({
+const notNeedAuthAxios = Axios.create({
   baseURL: HTTP_REQUEST_PUBLIC_BASE_URL,
   timeout: 10000,
   headers: {
@@ -15,7 +13,7 @@ const basicAxios = Axios.create({
   },
 })
 
-const authAxios = Axios.create({
+const needAuthAxios = Axios.create({
   baseURL: HTTP_REQUEST_PUBLIC_BASE_URL,
   timeout: 10000,
   headers: {
@@ -33,16 +31,9 @@ const actionRuntimeAxios = Axios.create({
   },
 })
 
-basicAxios.interceptors.request.use(addToPendingPoolInterceptor)
-basicAxios.interceptors.request.use(authInterceptor)
-basicAxios.interceptors.response.use(
-  removeFromPendingPoolInterceptor,
-  errorHandlerInterceptor,
-)
+needAuthAxios.interceptors.request.use(authInterceptor)
+needAuthAxios.interceptors.response.use(undefined, errorHandlerInterceptor)
 
 actionRuntimeAxios.interceptors.request.use(authInterceptor)
 
-authAxios.interceptors.request.use(addToPendingPoolInterceptor)
-authAxios.interceptors.response.use(removeFromPendingPoolInterceptor)
-
-export { basicAxios, actionRuntimeAxios, authAxios }
+export { actionRuntimeAxios, notNeedAuthAxios, needAuthAxios }

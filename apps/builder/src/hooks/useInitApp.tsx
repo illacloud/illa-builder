@@ -69,47 +69,32 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     [mode, appId, teamID, uid],
   )
 
-  const initApp = useCallback(
-    async (
-      controller: AbortController,
-      resolve: (value: CurrentAppResp) => void,
-      reject: (reason?: any) => void,
-    ) => {
-      try {
-        const response = await fetchPrivateAppInitData(
-          appId,
-          versionId,
-          controller.signal,
-        )
-        const resourceResponse = await fetchResources(controller.signal)
-        dispatch(
-          resourceActions.updateResourceListReducer(resourceResponse.data),
-        )
-        handleCurrentApp(response.data)
-        resolve(response.data)
-      } catch (e) {
-        reject(e)
-      }
-    },
-    [appId, dispatch, handleCurrentApp, versionId],
-  )
-
   useEffect(() => {
     const controller = new AbortController()
     if (isOnline) {
-      new Promise<CurrentAppResp>(async (resolve, reject) => {
-        setErrorState(false)
-        setLoadingState(true)
-        await initApp(controller, resolve, reject)
-        setLoadingState(false)
-      })
+      setErrorState(false)
+      setLoadingState(true)
+      Promise.all([
+        fetchPrivateAppInitData(appId, versionId, controller.signal),
+        fetchResources(controller.signal),
+      ])
+        .then((res) => {
+          dispatch(resourceActions.updateResourceListReducer(res[1].data))
+          handleCurrentApp(res[0].data)
+        })
+        .catch(() => {
+          setErrorState(true)
+        })
+        .finally(() => {
+          setLoadingState(false)
+        })
     }
 
     return () => {
       controller.abort()
       dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
     }
-  }, [dispatch, initApp, isOnline])
+  }, [appId, dispatch, handleCurrentApp, isOnline, versionId])
 
   return { loadingState, errorState }
 }
