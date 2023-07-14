@@ -15,7 +15,10 @@ import {
   ATTRIBUTE_GROUP,
   USER_ROLE,
 } from "@/illa-public-component/UserRoleUtils/interface"
-import { appsContainerStyle } from "@/page/Dashboard/DashboardApps/style"
+import {
+  appsContainerStyle,
+  contentStyle,
+} from "@/page/Dashboard/DashboardApps/style"
 import { TemplateList } from "@/page/Dashboard/Tutorial/TemplateList"
 import {
   cardBgStyle,
@@ -72,42 +75,44 @@ const Tutorial: FC = () => {
 
   return (
     <Spin css={appsContainerStyle} colorScheme="techPurple" loading={loading}>
-      <div>
-        <div css={titleStyle}>
-          {t("editor.tutorial.panel.tutorial.tab.title")}
+      <div css={contentStyle}>
+        <div>
+          <div css={titleStyle}>
+            {t("editor.tutorial.panel.tutorial.tab.title")}
+          </div>
+          <div
+            css={cardStyle}
+            onClick={() => {
+              track(
+                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+                ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
+                { element: "tutorial_onboarding_app" },
+              )
+              toGuideModeApp()
+            }}
+          >
+            <CardCover css={cardBgStyle} />
+            <div css={cardTitleStyle}>
+              {t("editor.tutorial.panel.tutorial.onboarding_app.name")}
+            </div>
+            <div css={cardDescStyle}>
+              {t("editor.tutorial.panel.tutorial.onboarding_app.description")}
+            </div>
+            <div css={cardFooterStyle}>
+              {t("editor.tutorial.panel.tutorial.onboarding_app.action")}{" "}
+              <NextIcon />
+            </div>
+          </div>
         </div>
-        <div
-          css={cardStyle}
-          onClick={() => {
-            track(
-              ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-              ILLA_MIXPANEL_BUILDER_PAGE_NAME.TUTORIAL,
-              { element: "tutorial_onboarding_app" },
-            )
-            toGuideModeApp()
-          }}
-        >
-          <CardCover css={cardBgStyle} />
-          <div css={cardTitleStyle}>
-            {t("editor.tutorial.panel.tutorial.onboarding_app.name")}
-          </div>
-          <div css={cardDescStyle}>
-            {t("editor.tutorial.panel.tutorial.onboarding_app.description")}
-          </div>
-          <div css={cardFooterStyle}>
-            {t("editor.tutorial.panel.tutorial.onboarding_app.action")}{" "}
-            <NextIcon />
-          </div>
+        <div css={[titleStyle]}>
+          {t("editor.tutorial.panel.tutorial.title.templates")}
         </div>
+        <TemplateList
+          data={Templates}
+          loading={loading}
+          setLoading={setLoading}
+        />
       </div>
-      <div css={titleStyle}>
-        {t("editor.tutorial.panel.tutorial.title.templates")}
-      </div>
-      <TemplateList
-        data={Templates}
-        loading={loading}
-        setLoading={setLoading}
-      />
     </Spin>
   )
 }
