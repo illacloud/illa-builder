@@ -6,12 +6,13 @@ import { updateCurrentAppInfo } from "@/hooks/useInitApp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { IllaMode } from "@/redux/config/configState"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { getSnapShot, getSnapShotList } from "@/services/history"
+import { fetchSnapShot, fetchSnapShotList } from "@/services/history"
 
 export const useInitHistoryApp = (mode: IllaMode = "history") => {
-  const { appId, snapshotID } = useParams()
+  const { appId } = useParams()
   const dispatch = useDispatch()
   const teamInfo = useSelector(getCurrentTeamInfo)
   const { teamIdentifier } = useParams()
@@ -36,26 +37,37 @@ export const useInitHistoryApp = (mode: IllaMode = "history") => {
   useEffect(() => {
     const controller = new AbortController()
     if (appId) {
-      new Promise<CurrentAppResp>(async (resolve) => {
+      new Promise<CurrentAppResp>(async (resolve, reject) => {
         setErrorState(false)
         setLoadingState(true)
-        getSnapShotList({
+        fetchSnapShotList({
           page: 0,
           appID: appId,
           signal: controller.signal,
-        }).then((response) => {
-          const { data } = response
-          const currentSnapshotID =
-            snapshotID || data.snapshotList[0].snapshotID
-          getSnapShot(appId, currentSnapshotID)
-            .then((res) => {
-              handleCurrentApp(res.data)
-              resolve(res.data)
-            })
-            .finally(() => {
-              setLoadingState(false)
-            })
         })
+          .then((response) => {
+            const { data } = response
+            const currentSnapshotID = data.snapshotList[0].snapshotID
+            dispatch(
+              currentAppHistoryActions.updateCurrentAppHistoryReducer(
+                data.snapshotList,
+              ),
+            )
+            fetchSnapShot(appId, currentSnapshotID)
+              .then((res) => {
+                handleCurrentApp(res.data)
+                resolve(res.data)
+              })
+              .finally(() => {
+                setLoadingState(false)
+              })
+          })
+          .catch(() => {
+            reject()
+          })
+      }).catch(() => {
+        setErrorState(true)
+        setLoadingState(false)
       })
     }
 

@@ -16,6 +16,7 @@ import collaboratorsReducer from "@/redux/currentApp/collaborators/collaborators
 import dragShadowReducer from "@/redux/currentApp/dragShadow/dragShadowSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
+import currentAppHistoryReducer from "@/redux/currentAppHistory/currentAppHistorySlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import guideReducer from "@/redux/guide/guideSlice"
@@ -62,6 +63,7 @@ const store = configureStore({
     currentApp: appReducer,
     dashboard: dashboardReducer,
     currentUser: currentUserReducer,
+    currentAppHistory: currentAppHistoryReducer,
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
     team: teamReducer,

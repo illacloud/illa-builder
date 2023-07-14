@@ -8,7 +8,6 @@ import {
   ATTRIBUTE_GROUP,
 } from "@/illa-public-component/UserRoleUtils/interface"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
-import { ComponentsManager } from "@/page/App/components/ComponentManager"
 import {
   centerPanelStyle,
   contentStyle,
@@ -17,7 +16,7 @@ import {
   middlePanelStyle,
   rightPanelStyle,
 } from "@/page/App/style"
-import { isOpenRightPanel } from "@/redux/config/configSelector"
+import { SnapShotList } from "@/page/History/components/SnapShotList"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 
 export const History: FC = () => {
@@ -36,8 +35,6 @@ export const History: FC = () => {
     }
   }
 
-  const showRightPanel = useSelector(isOpenRightPanel)
-
   // init app
   const { loadingState } = useInitHistoryApp()
 
@@ -54,11 +51,9 @@ export const History: FC = () => {
               <CanvasPanel css={centerPanelStyle} />
             </TriggerProvider>
           </div>
-          {showRightPanel && (
-            <TriggerProvider renderInBody zIndex={10}>
-              <ComponentsManager css={rightPanelStyle} />
-            </TriggerProvider>
-          )}
+          <TriggerProvider renderInBody zIndex={10}>
+            <SnapShotList css={rightPanelStyle} />
+          </TriggerProvider>
         </div>
       )}
     </div>
