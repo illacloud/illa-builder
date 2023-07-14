@@ -59,7 +59,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     <Select
       allowClear={showClear}
       options={options}
-      value={value}
+      value={typeof value === "object" ? JSON.stringify(value) : value}
       placeholder={placeholder}
       disabled={disabled}
       loading={loading}
@@ -206,5 +206,6 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     </AutoHeightContainer>
   )
 }
+
 SelectWidget.displayName = "SelectWidget"
 export default SelectWidget
