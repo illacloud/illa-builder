@@ -1,4 +1,4 @@
-import { basicRequest, builderRequest } from "@/api/http"
+import { builderRequest, notNeedAuthRequest } from "@/api/http"
 import { AccessType } from "@/redux/resource/googleSheetResource"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
@@ -36,7 +36,7 @@ interface IWhiteListIPResponse {
   resources: string[]
 }
 export const requestWhiteListIP = async () => {
-  return await basicRequest<IWhiteListIPResponse>({
+  return await notNeedAuthRequest<IWhiteListIPResponse>({
     url: "https://peripheral-api.illasoft.com/v1/meta",
     method: "GET",
   })

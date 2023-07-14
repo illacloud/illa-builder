@@ -77,6 +77,15 @@ jobs:
             doctl kubernetes cluster kubeconfig save $DO_CLUSTER
             kubectl version
       - run:
+          name: Re-setup kubectl on fail status
+          command: |
+            doctl auth init --access-token $DO_TOKEN
+            mkdir -p /home/circleci/.kube
+            sudo snap connect doctl:kube-config
+            doctl kubernetes cluster kubeconfig save $DO_CLUSTER
+            kubectl version
+          when: on_fail
+      - run:
           name: Download deployment configs
           command: |
             git clone $DEPLOY_REPO

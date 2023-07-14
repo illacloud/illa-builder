@@ -342,6 +342,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
 
   const [isPageLoading, setIsPageLoading] = useState(false)
   useEffect(() => {
+    const abortController = new AbortController()
     const rootState = store.getState()
     const pageLoadingActions = getPageLoadingActions(rootState)
     const currentPageActions = pageLoadingActions.filter((action) =>
@@ -355,14 +356,27 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     }
     const requests = currentPageActions.map((action) => {
       if (action.config.advancedConfig.delayWhenLoaded > 0) {
-        return runActionWithDelay(action as IExecutionActions)
+        return runActionWithDelay(
+          action as IExecutionActions,
+          abortController.signal,
+        )
       } else {
-        return runActionWithExecutionResult(action as IExecutionActions)
+        return runActionWithExecutionResult(
+          action as IExecutionActions,
+          true,
+          abortController.signal,
+        )
       }
     })
-    Promise.all(requests).finally(() => {
-      setIsPageLoading(false)
-    })
+    Promise.all(requests)
+      .catch((_e) => {})
+      .finally(() => {
+        setIsPageLoading(false)
+      })
+
+    return () => {
+      abortController.abort()
+    }
   }, [currentPageDisplayName])
 
   if (isPageLoading) {

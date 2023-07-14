@@ -1,4 +1,4 @@
-import { cloudRequest } from "@/api/http"
+import { authCloudRequest } from "@/api/http"
 import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,
@@ -11,14 +11,14 @@ import { isCloudVersion } from "@/utils/typeHelper"
 import store from "../store"
 
 export const fetchMyTeamsInfo = () => {
-  return cloudRequest<TeamInfo[]>({
+  return authCloudRequest<TeamInfo[]>({
     url: "/teams/my",
     method: "GET",
   })
 }
 
 export const fetchUpdateMembers = () => {
-  return cloudRequest<MemberInfo[]>(
+  return authCloudRequest<MemberInfo[]>(
     {
       method: "GET",
       url: "/members",
@@ -30,7 +30,7 @@ export const fetchUpdateMembers = () => {
 }
 
 export const fetchRemoveTeam = () => {
-  return cloudRequest(
+  return authCloudRequest(
     {
       method: "DELETE",
     },
@@ -44,7 +44,7 @@ interface IInviteLinkStatusRequest {
   inviteLinkEnabled: boolean
 }
 export const fetchUpdateInviteLinkStatus = (data: IInviteLinkStatusRequest) => {
-  return cloudRequest(
+  return authCloudRequest(
     {
       method: "PATCH",
       url: `/configInviteLink`,
@@ -63,7 +63,7 @@ interface IUpdateTeamPermissionConfigRequest {
 export const fetchUpdateTeamPermissionConfig = (
   data: IUpdateTeamPermissionConfigRequest,
 ) => {
-  return cloudRequest(
+  return authCloudRequest(
     {
       method: "PATCH",
       url: `/permission`,
@@ -76,7 +76,7 @@ export const fetchUpdateTeamPermissionConfig = (
 }
 
 export const fetchInviteLink = async (userRole: USER_ROLE) => {
-  const response = await cloudRequest<fetchInviteLinkResponse>(
+  const response = await authCloudRequest<fetchInviteLinkResponse>(
     {
       method: "GET",
       url: `/inviteLink/userRole/${userRole}`,
@@ -89,7 +89,7 @@ export const fetchInviteLink = async (userRole: USER_ROLE) => {
 }
 
 export const fetchRenewInviteLink = async (userRole: USER_ROLE) => {
-  const response = await cloudRequest<fetchInviteLinkResponse>(
+  const response = await authCloudRequest<fetchInviteLinkResponse>(
     {
       method: "GET",
       url: `/newInviteLink/userRole/${userRole}`,
@@ -107,7 +107,7 @@ interface IInviteByEmailRequest {
   hosts?: string
 }
 export const fetchInviteByEmail = (data: IInviteByEmailRequest) => {
-  return cloudRequest<inviteByEmailResponse>(
+  return authCloudRequest<inviteByEmailResponse>(
     {
       method: "POST",
       url: `/inviteByEmail`,
@@ -127,7 +127,7 @@ export const fetchChangeUserRole = (
   teamMemberID: string,
   data: IUpdateChangeUserRoleRequest,
 ) => {
-  return cloudRequest<inviteByEmailResponse>(
+  return authCloudRequest<inviteByEmailResponse>(
     {
       method: "PATCH",
       url: `/teamMembers/${teamMemberID}/role`,
@@ -140,7 +140,7 @@ export const fetchChangeUserRole = (
 }
 
 export const fetchRemoveTeamMember = (teamMemberID: string) => {
-  return cloudRequest(
+  return authCloudRequest(
     {
       method: "DELETE",
       url: `/teamMembers/${teamMemberID}`,

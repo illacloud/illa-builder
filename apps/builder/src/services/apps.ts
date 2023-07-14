@@ -1,5 +1,5 @@
 import { createAction } from "@/api/actions"
-import { builderRequest, cloudRequest } from "@/api/http"
+import { authCloudRequest, builderRequest } from "@/api/http"
 import {
   REDIRECT_PAGE_TYPE,
   fetchInviteLinkResponse,
@@ -165,7 +165,7 @@ export const shareAppByEmail = async (
   appID: string,
   redirectPage?: REDIRECT_PAGE_TYPE,
 ) => {
-  const response = await cloudRequest<inviteByEmailResponse>(
+  const response = await authCloudRequest<inviteByEmailResponse>(
     {
       method: "POST",
       url: `/shareAppByEmail`,
@@ -187,7 +187,7 @@ export const fetchShareAppLink = async (
   appID: string,
   redirectPage?: REDIRECT_PAGE_TYPE,
 ) => {
-  const response = await cloudRequest<fetchInviteLinkResponse>(
+  const response = await authCloudRequest<fetchInviteLinkResponse>(
     {
       method: "GET",
       url: `/shareAppLink/userRole/${userRole}/apps/${appID}/redirectPage/${redirectPage}`,
@@ -202,7 +202,7 @@ export const renewShareAppLink = async (
   appID: string,
   redirectPage?: REDIRECT_PAGE_TYPE,
 ) => {
-  const response = await cloudRequest<fetchInviteLinkResponse>(
+  const response = await authCloudRequest<fetchInviteLinkResponse>(
     {
       method: "GET",
       url: `/newShareAppLink/userRole/${userRole}/apps/${appID}/redirectPage/${redirectPage}`,

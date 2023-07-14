@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { basicRequest, cloudRequest } from "@/api/http"
+import { authCloudRequest, needAuthRequest } from "@/api/http"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { fetchSendEmail } from "@/services/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
@@ -23,7 +23,7 @@ interface IUserInfoResponse {
   userID: string
 }
 export const fetchUserInfo = () => {
-  return cloudRequest<IUserInfoResponse>({
+  return authCloudRequest<IUserInfoResponse>({
     url: "/users",
   })
 }
@@ -32,7 +32,7 @@ export const fetchUserAvatarUploadAddress = (
   fileName: string,
   type: string,
 ) => {
-  return cloudRequest<UploadResponse>({
+  return authCloudRequest<UploadResponse>({
     url: `/users/avatar/uploadAddress/fileName/${fileName}.${type}`,
     method: "GET",
   })
@@ -66,7 +66,7 @@ export const getUserAvatarUploadAddress = async (type: string) => {
 
 export const upload = async (url: string, file: Blob) => {
   const resUrl = url.split("?")[0]
-  await basicRequest({
+  await needAuthRequest({
     url,
     method: "PUT",
     data: file,
@@ -80,7 +80,7 @@ export const upload = async (url: string, file: Blob) => {
 }
 
 export const updateUserAvatar = async (avatar: string) => {
-  await cloudRequest({
+  await authCloudRequest({
     url: "/users/avatar",
     method: "PATCH",
     data: {
@@ -105,7 +105,7 @@ export const sendEmail = async (
 }
 
 export const updateTutorialViewed = async (isTutorialViewed: boolean) => {
-  await cloudRequest({
+  await authCloudRequest({
     url: "/users/tutorialViewed",
     method: "PATCH",
     data: {
