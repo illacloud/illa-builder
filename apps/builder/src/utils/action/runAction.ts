@@ -66,6 +66,7 @@ const fetchActionResult = async (
   appId: string,
   actionId: string,
   actionContent: ActionContent,
+  abortSignal?: AbortSignal,
 ) => {
   const canSendRequest = checkCanSendRequest(actionType, actionContent)
   if (!canSendRequest) {
@@ -78,7 +79,13 @@ const fetchActionResult = async (
     displayName,
     content: actionContent,
   }
-  return await fetchActionRunResult(appId, actionId, requestBody, isPublic)
+  return await fetchActionRunResult(
+    appId,
+    actionId,
+    requestBody,
+    isPublic,
+    abortSignal,
+  )
 }
 
 const successHandler = (
@@ -127,6 +134,7 @@ export interface IExecutionActions extends ActionItem<ActionContent> {
 
 export const runActionWithExecutionResult = async (
   action: IExecutionActions,
+  abortSignal?: AbortSignal,
 ) => {
   const { displayName } = action as ActionItem<
     MysqlLikeAction | RestApiAction<BodyContent>
@@ -181,6 +189,7 @@ export const runActionWithExecutionResult = async (
       appId,
       currentActionId,
       actionContent,
+      abortSignal,
     )) as AxiosResponse<
       IActionRunResultResponseData<Record<string, any>[]>,
       unknown
@@ -220,22 +229,27 @@ export const runOriginAction = async (action: ActionItem<ActionContent>) => {
   return await runActionWithExecutionResult(realAction)
 }
 
-export const runActionWithDelay = (action: IExecutionActions) => {
+export const runActionWithDelay = (
+  action: IExecutionActions,
+  abortSignal?: AbortSignal,
+) => {
   const { config } = action
   if (!config || !config.advancedConfig) {
-    runActionWithExecutionResult(action)
+    runActionWithExecutionResult(action, abortSignal)
     return
   }
   const { advancedConfig } = config
   const { delayWhenLoaded } = advancedConfig
   return new Promise((resolve, reject) => {
     const timeoutID = window.setTimeout(async () => {
-      const result = await runActionWithExecutionResult(action)
       window.clearTimeout(timeoutID)
-      if (result) {
-        resolve(result)
-      } else {
-        reject(result)
+
+      try {
+        const result = await runActionWithExecutionResult(action, abortSignal)
+        return resolve(result)
+      } catch (e) {
+        console.log("e", e)
+        return reject(e)
       }
     }, delayWhenLoaded as unknown as number)
   })

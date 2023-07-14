@@ -8,3 +8,5 @@ export const HTTP_REQUEST_PUBLIC_BASE_URL = isCloudVersion
 export const BUILDER_REQUEST_PREFIX = "/builder/api/v1"
 export const CLOUD_REQUEST_PREFIX = "/supervisor/api/v1"
 export const ACTION_REQUEST_PREFIX = "/action/api/v1"
+export const DRIVE_REQUEST_PREFIX = "/drive/api/v1"
+export const PUBLIC_DRIVE_REQUEST_PREFIX = "/drive/f"
