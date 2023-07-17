@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useState } from "react"
+import { FC, HTMLAttributes } from "react"
 import { useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
 import { ActionArea } from "@/page/History/components/ActionArea"
@@ -9,6 +9,7 @@ import {
   snapShotListWrapperStyle,
 } from "@/page/History/components/SnapShotList/style"
 import {
+  getCurrentAppSnapshotID,
   getCurrentAppSnapshotList,
   getSnapshotListHasMore,
 } from "@/redux/currentAppHistory/currentAppHistorySelector"
@@ -19,9 +20,7 @@ export const SnapShotList: FC<SnapShotListProps> = (props) => {
   const { className, ...rest } = props
   const snapshotList = useSelector(getCurrentAppSnapshotList)
   const hasMore = useSelector(getSnapshotListHasMore)
-  const [selectedID, setSelectedID] = useState<string>(
-    snapshotList[0].snapshotID,
-  )
+  const currentSnapshotID = useSelector(getCurrentAppSnapshotID)
 
   return (
     <div css={snapShotListWrapperStyle} className={className} {...rest}>
@@ -34,8 +33,7 @@ export const SnapShotList: FC<SnapShotListProps> = (props) => {
               key={snapshot.snapshotID}
               snapshot={snapshot}
               last={snapshotList.length - 1 === index}
-              selected={selectedID === snapshot.snapshotID}
-              onClickItem={setSelectedID}
+              selected={currentSnapshotID === snapshot.snapshotID}
             />
           )
         })}

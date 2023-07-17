@@ -1,6 +1,8 @@
 import { FC, useCallback, useState } from "react"
+import { useDispatch } from "react-redux"
 import { Button } from "@illa-design/react"
 import { Avatar } from "@/illa-public-component/Avatar"
+import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
 import { Snapshot } from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot } from "@/services/history"
 import {
@@ -23,15 +25,19 @@ interface SnapShotListProps {
   snapshot: Snapshot
   selected?: boolean
   last: boolean
-  onClickItem: (snapshotID: string) => void
 }
 export const SnapShotItem: FC<SnapShotListProps> = (props) => {
-  const { snapshot, selected, last, onClickItem } = props
+  const dispatch = useDispatch()
+  const { snapshot, selected, last } = props
   const [loading, setLoading] = useState(false)
 
   const handleClickItem = useCallback(() => {
-    onClickItem(snapshot.snapshotID)
-  }, [onClickItem, snapshot.snapshotID])
+    dispatch(
+      currentAppHistoryActions.updateCurrentSnapshotIDReducer(
+        snapshot.snapshotID,
+      ),
+    )
+  }, [dispatch, snapshot.snapshotID])
 
   const handleRecoverSnapShot = useCallback(async () => {
     setLoading(true)

@@ -36,7 +36,7 @@ export const History: FC = () => {
   }
 
   // init app
-  const { loadingState } = useInitHistoryApp()
+  const { loadingState, contentLoading } = useInitHistoryApp()
 
   return (
     <div css={editorContainerStyle}>
@@ -47,9 +47,15 @@ export const History: FC = () => {
       ) : (
         <div css={contentStyle}>
           <div css={middlePanelStyle}>
-            <TriggerProvider renderInBody zIndex={10}>
-              <CanvasPanel css={centerPanelStyle} />
-            </TriggerProvider>
+            {contentLoading ? (
+              <div css={loadingStyle}>
+                <Loading colorScheme="techPurple" />
+              </div>
+            ) : (
+              <TriggerProvider renderInBody zIndex={10}>
+                <CanvasPanel css={centerPanelStyle} />
+              </TriggerProvider>
+            )}
           </div>
           <TriggerProvider renderInBody zIndex={10}>
             <SnapShotList css={rightPanelStyle} />
