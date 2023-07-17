@@ -1220,9 +1220,9 @@
           "onCellSelect": "Vælg en celle",
           "delete": "Slet",
           "replay": "Svar",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Start upload",
+          "uploadSuccessfully": "Uploadet succesfuldt",
+          "uploadFailed": "Upload mislykkedes"
         },
         "image_list": {
           "title": "Billeder",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Skriv tekst her"
+        },
+        "drive_builder": {
+          "button_text": "Vælg"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Brug i offentlig app",
           "illa_drive_folder": "ILLA drev mappe",
           "generate_signed_url": "Generer signeret URL",
-          "expired_time": "Udløbet tid",
-          "time": "Tid(er)",
+          "expired_time": "Udløbet type",
+          "time": "Udløbet tid(er)",
           "turn_on_hotlink": "Slå hotlink-beskyttelse til",
           "button_text": "Knap tekst",
           "selection_type": "Markering type",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Min. fil num",
           "max_file_num": "Maks. fil num",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Fil navn duplikering",
+          "fileData": "Fil data",
+          "downloadZIP": "Download som et postnummer"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "For at indstille den tilladte maksimale filstørrelse",
           "min_file_num": "For at indstille det mindste antal filer der må vælges",
           "max_file_num": "For at indstille det maksimale antal filer der må vælges",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "For at indstille hvordan man håndterer duplikerede filnavne. I tilfælde af at beholde begge vil en tilfældig streng blive tilføjet til filnavnet uploadet.",
+          "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"name\", \"FileID\":\"ID\"}. Du kan bruge Kør filvælgerkomponenten til at vælge filer og indstille denne værdi direkte via {{filePciker1.value}}.",
+          "downloadZIP": "For at angive, om filerne skal downloades som en ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Aldrig",
+            "never": "Persistent",
             "customer": "Tilpasset"
           },
           "single_file": "Enkelt fil",
-          "multiple_files": "Flere filer"
-        },
-        "": {
+          "multiple_files": "Flere filer",
+          "anonymous_modal": {
+            "title": "Tillad offentlige brugere at få adgang til ILLA Drive?",
+            "desc": "Når det er slået til, kan kun denne apps offentlige apps-adgangsmappe tilgås. Når en APP er indstillet som offentlig, kan alle brugere få adgang til mappen.",
+            "cancelBtn": "Annuller",
+            "submitBtn": "Slå til"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Erstat",
+            "keepboth": "Behold begge"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Præsentation",
         "selects": "Vælg input",
-        "drive": "ILLA Drive"
+        "drive": "ILLA Drev"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Tilføjet {{operationTargetName}}",
+        "Deleted": "Slettede {{operationTargetName}}",
+        "Updated": "Opdateret {{operationTargetName}}",
+        "Moved": "Flyttet {{operationTargetName}}",
+        "Reseted": "Nulstillede {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Gem som historik",
+      "history": "Historik",
+      "more": "Mere",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
+        "current": "Aktuel",
+        "manual": "Manuelt",
+        "January": "Januar",
+        "February": "Februar",
+        "March": "Marts",
         "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
+        "May": "Maj",
+        "June": "Juni",
+        "July": "Juli",
         "August": "August",
         "September": "September",
-        "October": "October",
+        "October": "Oktober",
         "November": "November",
         "December": "December"
       },
-      "restore": "Restore this version",
+      "restore": "Gendan denne version",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Den aktuelle app-version er ændret"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Drev filvælger",
+      "modal": {
+        "files": "Filer",
+        "confirm": "Bekræft",
+        "cancel": "Annuller",
+        "no_file": "Ingen fil"
+      }
     }
   },
   "page": {
