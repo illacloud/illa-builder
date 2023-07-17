@@ -2389,7 +2389,8 @@
         "September": "Сентябрь",
         "October": "Октябрь",
         "November": "Ноябрь",
-        "December": "Декабрь"
+        "December": "Декабрь",
+        "final_node": "Больше нет истории"
       },
       "restore": "Восстановить эту версию",
       "message": {
