@@ -10,6 +10,7 @@ import {
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
+import { Iframe } from "@/components/Iframe"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
@@ -25,9 +26,11 @@ import { AppLoading } from "@/page/App/components/AppLoading"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
 import { Debugger } from "@/page/App/components/Debugger"
+import { frameStyle } from "@/page/Template/style"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import {
   getAppWSStatus,
+  getIsILLAHistoryMode,
   getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
@@ -68,12 +71,13 @@ import {
 export const Editor: FC = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  let { appId } = useParams()
+  const { appId, teamIdentifier } = useParams()
   const controls = useAnimation()
 
   const currentUser = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
   const wsStatus = useSelector(getAppWSStatus)
+  const isHistoryMode = useSelector(getIsILLAHistoryMode)
 
   const currentUserRole = teamInfo?.myRole
 
@@ -176,6 +180,19 @@ export const Editor: FC = () => {
     loadingState ||
     wsStatus === ILLA_WEBSOCKET_STATUS.INIT ||
     wsStatus === ILLA_WEBSOCKET_STATUS.CONNECTING
+
+  if (isHistoryMode) {
+    const historyUrl = `${window.location.origin}/${teamIdentifier}/appHistory/${appId}`
+
+    return (
+      <div css={editorContainerStyle}>
+        <TriggerProvider renderInBody zIndex={10}>
+          <PageNavBar css={navbarStyle} />
+          <Iframe css={frameStyle} src={historyUrl} />
+        </TriggerProvider>
+      </div>
+    )
+  }
 
   return (
     <div css={editorContainerStyle} ref={resizeDropRef}>

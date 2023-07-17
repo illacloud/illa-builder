@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { updateCurrentAppInfo } from "@/hooks/useInitApp"
@@ -90,6 +90,8 @@ export const useInitHistoryApp = (mode: IllaMode = "history") => {
   const teamInfo = useSelector(getCurrentTeamInfo)
   const { teamIdentifier } = useParams()
 
+  const currentApp = useRef<CurrentAppResp>()
+
   const [loadingState, setLoadingState] = useState(true)
   const [errorState, setErrorState] = useState(false)
 
@@ -114,6 +116,9 @@ export const useInitHistoryApp = (mode: IllaMode = "history") => {
       fetchSnapShot(appId, currentSnapshotID, controller.signal)
         .then((res) => {
           handleCurrentApp(res.data)
+          if (!currentApp.current) {
+            currentApp.current = res.data
+          }
         })
         .finally(() => {
           setContentLoading(false)
@@ -121,6 +126,7 @@ export const useInitHistoryApp = (mode: IllaMode = "history") => {
     }
     return () => {
       controller.abort()
+      currentApp.current && handleCurrentApp(currentApp.current)
     }
   }, [appId, currentSnapshotID, handleCurrentApp])
 
