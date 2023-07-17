@@ -24,7 +24,7 @@ export const tabPrefixStyle = css`
   align-self: center;
   margin-left: 16px;
   padding: 0 16px;
-  flex: 1;
+  flex-grow: 1;
 `
 export const preIconStyle = css`
   display: inline-block;
@@ -37,8 +37,4 @@ export const tabPreTextStyle = css`
 
 export const backAreaStyle = css`
   cursor: pointer;
-`
-
-export const tabSuffixStyle = css`
-  visibility: hidden;
 `
