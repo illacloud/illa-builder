@@ -1220,9 +1220,9 @@
           "onCellSelect": "Sélectionnez une cellule",
           "delete": "Supprimez",
           "replay": "Répondre",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Commencer à télécharger",
+          "uploadSuccessfully": "Téléchargé avec succès",
+          "uploadFailed": "Échec du téléchargement"
         },
         "image_list": {
           "title": "Images",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Tapez du texte ici"
+        },
+        "drive_builder": {
+          "button_text": "Sélectionner"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Utiliser dans l'application publique",
           "illa_drive_folder": "Dossier ILLA Drive",
           "generate_signed_url": "Générer une URL signée",
-          "expired_time": "Date d'expiration",
-          "time": "Heure(s)",
+          "expired_time": "Type expiré",
+          "time": "Temps d'expiration (s)",
           "turn_on_hotlink": "Activer la protection des raccourcis clavier",
           "button_text": "Texte du bouton",
           "selection_type": "Type de sélection",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "N° de fichier minimum",
           "max_file_num": "Nombre maximum de fichiers",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Duplication du nom du fichier",
+          "fileData": "Données du fichier",
+          "downloadZIP": "Télécharger en tant que ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Pour définir la taille maximale autorisée du fichier",
           "min_file_num": "Pour définir le nombre minimum de fichiers autorisés à être sélectionnés",
           "max_file_num": "Pour définir le nombre maximum de fichiers autorisés à être sélectionnés",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Pour définir comment gérer les noms de fichiers dupliqués. Dans le cas de conserver les deux, une chaîne aléatoire sera ajoutée au nom du fichier téléchargé.",
+          "fileData": "Définit les données du fichier en utilisant un tableau d'objet, le format de l'objet est {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Vous pouvez utiliser le composant Lecteur de fichiers pour sélectionner des fichiers et définir cette valeur directement via {{filePciker1.value}}.",
+          "downloadZIP": "Pour définir s'il faut télécharger les fichiers en un seul ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Jamais",
+            "never": "Persistent",
             "customer": "Personnalisé"
           },
           "single_file": "Fichier unique",
-          "multiple_files": "Plusieurs fichiers"
-        },
-        "": {
+          "multiple_files": "Plusieurs fichiers",
+          "anonymous_modal": {
+            "title": "Autoriser les utilisateurs publics à accéder au lecteur ILLA ?",
+            "desc": "Lorsque cette option est activée, seuls les applications publiques accèdent au dossier d'accès de cette application. Lorsqu'une application est définie comme publique, tous les utilisateurs peuvent accéder au dossier.",
+            "cancelBtn": "Abandonner",
+            "submitBtn": "Allumer"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Remplacer",
+            "keepboth": "Garder les deux"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Présentation",
         "selects": "Sélectionner les entrées",
-        "drive": "ILLA Drive"
+        "drive": "Lecteur ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
+        "Added": "Ajouté {{operationTargetName}}",
         "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Updated": "Mise à jour {{operationTargetName}}",
+        "Moved": "A déplacé {{operationTargetName}}",
+        "Reseted": "Remise à zéro {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Enregistrer comme historique",
+      "history": "Historique",
+      "more": "En savoir plus",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Actuel",
+        "manual": "Manuelle",
+        "January": "Janvier",
+        "February": "Février",
+        "March": "Marche",
+        "April": "Avril",
+        "May": "Mai",
+        "June": "Juin",
+        "July": "Juillet",
+        "August": "Août",
+        "September": "Septembre",
+        "October": "Octobre",
+        "November": "Novembre",
+        "December": "Décembre"
       },
-      "restore": "Restore this version",
+      "restore": "Restaurer cette version",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "La version actuelle de l'application a changé"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Sélecteur de fichier du lecteur",
+      "modal": {
+        "files": "Fichiers",
+        "confirm": "Valider",
+        "cancel": "Abandonner",
+        "no_file": "Aucun fichier"
+      }
     }
   },
   "page": {
