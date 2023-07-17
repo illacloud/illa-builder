@@ -2389,7 +2389,8 @@
         "September": "Září",
         "October": "Říjen",
         "November": "Listopad",
-        "December": "prosinec"
+        "December": "prosinec",
+        "final_node": "Žádná historie"
       },
       "restore": "Obnovit tuto verzi",
       "message": {
