@@ -2389,7 +2389,8 @@
         "September": "September",
         "October": "October",
         "November": "November",
-        "December": "December"
+        "December": "December",
+        "final_node": "No more history"
       },
       "restore": "Restore this version",
       "message": {
