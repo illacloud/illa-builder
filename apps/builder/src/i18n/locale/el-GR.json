@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Αλλαγή επιλογής γραμμής",
           "onCellSelect": "Επιλέξτε ένα κελί",
           "delete": "Διαγραφή",
-          "replay": "Απάντηση"
+          "replay": "Απάντηση",
+          "startUploading": "Start uploading",
+          "uploadSuccessfully": "Uploaded successfully",
+          "uploadFailed": "Failed to upload"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1703,7 +1706,9 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Ελάχιστο αρχείο num",
-          "max_file_num": "Μέγιστος αριθμός αρχείου"
+          "max_file_num": "Μέγιστος αριθμός αρχείου",
+          "file_name_duplicatio": "File name duplication",
+          "fileData": "File data"
         }
       },
       "setter_tooltip": {
@@ -1950,7 +1955,8 @@
           "min_size": "Για να ορίσετε το ελάχιστο επιτρεπόμενο μέγεθος αρχείου",
           "max_size": "Για να ορίσετε το μέγιστο επιτρεπόμενο μέγεθος αρχείου",
           "min_file_num": "Για να ορίσετε τον ελάχιστο αριθμό αρχείων που επιτρέπεται να επιλεγούν",
-          "max_file_num": "Για να ορίσετε το μέγιστο αριθμό αρχείων που επιτρέπεται να επιλεγούν"
+          "max_file_num": "Για να ορίσετε το μέγιστο αριθμό αρχείων που επιτρέπεται να επιλεγούν",
+          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
         }
       },
       "setter_option": {
@@ -2043,6 +2049,12 @@
           },
           "single_file": "Μονό αρχείο",
           "multiple_files": "Πολλαπλά αρχεία"
+        },
+        "": {
+          "file_name_duplicatio": {
+            "replace": "Replace",
+            "keepboth": "Keep both"
+          }
         }
       },
       "setter_placeholder": {
@@ -2182,7 +2194,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Παρουσίαση",
-        "selects": "Επιλογή εισόδων"
+        "selects": "Επιλογή εισόδων",
+        "drive": "ILLA Drive"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2349,42 @@
     },
     "general": {
       "length_limit": "Το τρέχον περιεχόμενο εισόδου είναι πολύ μεγάλο, έχουμε σταματήσει αυτόματα τον υπολογισμό των δεδομένων, μπορείτε να συνεχίσετε να εισάγετε, αυτό δεν θα επηρεάσει τη χρήση σας."
+    },
+    "history": {
+      "operation": {
+        "Added": "Added {{operationTargetName}}",
+        "Deleted": "Deleted {{operationTargetName}}",
+        "Updated": "Updated {{operationTargetName}}",
+        "Moved": "Moved {{operationTargetName}}",
+        "Reseted": "Reseted {{operationTargetName}}"
+      },
+      "save": "Save as history",
+      "history": "History",
+      "more": "More",
+      "save_keyboard": {
+        "cmds": "CMD+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Current",
+        "manual": "Manual",
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December"
+      },
+      "restore": "Restore this version",
+      "message": {
+        "version_change": "The current app version has changed"
+      }
     }
   },
   "exit_preview": "Έξοδος Προεπισκόπησης",
