@@ -1220,9 +1220,9 @@
           "onCellSelect": "Wybierz komórkę",
           "delete": "Usuń",
           "replay": "Odpowiedz",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Rozpocznij przesyłanie",
+          "uploadSuccessfully": "Przesłano pomyślnie",
+          "uploadFailed": "Nie udało się przesłać"
         },
         "image_list": {
           "title": "Obrazy",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Wpisz tekst tutaj"
+        },
+        "drive_builder": {
+          "button_text": "Wybierz"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Używaj w publicznej aplikacji",
           "illa_drive_folder": "Folder ILLA Drive",
           "generate_signed_url": "Generuj podpisany adres URL",
-          "expired_time": "Czas wygaśnięcia",
-          "time": "Czas(y)",
+          "expired_time": "Typ wygasł",
+          "time": "Czas (czasy) wygaśnięcia",
           "turn_on_hotlink": "Włącz ochronę hotlink",
           "button_text": "Tekst przycisku",
           "selection_type": "Typ wyboru",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Min. plik num",
           "max_file_num": "Maksymalna ilość pliku num",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Powielanie nazwy pliku",
+          "fileData": "Dane pliku",
+          "downloadZIP": "Pobierz jako ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Aby ustawić dozwolony maksymalny rozmiar pliku",
           "min_file_num": "Aby ustawić minimalną liczbę plików dozwolonych do wybrania",
           "max_file_num": "Aby ustawić maksymalną liczbę plików dozwolonych do wybrania",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Aby ustawić sposób obsługi duplikatów plików. W przypadku zachowania obu stron zostanie dodany losowy ciąg znaków do nazwy pliku.",
+          "fileData": "Ustaw dane pliku za pomocą tablicy obiektów, format obiektu to {\"fileName\":\"name\", \"FileID\":\"the ID\"}. Możesz użyć komponentu do wybierania plików na dysku i ustawić tę wartość bezpośrednio przez {{filePciker1.value}}.",
+          "downloadZIP": "Aby ustawić czy pobierać pliki jako jeden ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nigdy",
+            "never": "Persistent",
             "customer": "Własny"
           },
           "single_file": "Pojedynczy plik",
-          "multiple_files": "Wiele plików"
-        },
-        "": {
+          "multiple_files": "Wiele plików",
+          "anonymous_modal": {
+            "title": "Zezwolić publicznym użytkownikom na dostęp do Dysku ILLIA?",
+            "desc": "Po włączeniu tylko publiczny folder dostępu do tej aplikacji może być dostępny. Gdy aplikacja jest ustawiona jako publiczna, wszyscy użytkownicy mogą uzyskać dostęp do folderu.",
+            "cancelBtn": "Anuluj",
+            "submitBtn": "Włącz"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Zamień",
+            "keepboth": "Zachowaj oba"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Prezentacja",
         "selects": "Wybierz wejścia",
-        "drive": "ILLA Drive"
+        "drive": "Dysk ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Dodano {{operationTargetName}}",
+        "Deleted": "Usunięto {{operationTargetName}}",
+        "Updated": "Zaktualizowano {{operationTargetName}}",
+        "Moved": "Przeniesiono {{operationTargetName}}",
+        "Reseted": "Przesłano {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Zapisz jako historię",
+      "history": "Historia",
+      "more": "Więcej",
       "save_keyboard": {
-        "cmds": "CMD+S",
-        "ctrls": "Ctrl+S"
+        "cmds": "Cmd + S",
+        "ctrls": "Ctrl + S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Bieżący",
+        "manual": "Ręcznie",
+        "January": "Styczeń",
+        "February": "Luty",
+        "March": "Marzec",
+        "April": "Kwiecień",
+        "May": "Maj",
+        "June": "Czerwiec",
+        "July": "Lipiec",
+        "August": "Sierpień",
+        "September": "Wrzesień",
+        "October": "Październik",
+        "November": "Listopad",
+        "December": "Grudzień"
       },
-      "restore": "Restore this version",
+      "restore": "Przywróć tę wersję",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Aktualna wersja aplikacji została zmieniona"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Selektor plików dysku",
+      "modal": {
+        "files": "Pliki",
+        "confirm": "Potwierdź",
+        "cancel": "Anuluj",
+        "no_file": "Brak pliku"
+      }
     }
   },
   "page": {
