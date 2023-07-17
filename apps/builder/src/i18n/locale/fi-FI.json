@@ -1220,9 +1220,9 @@
           "onCellSelect": "Valitse solu",
           "delete": "Poista",
           "replay": "Vastaa",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Aloita lataaminen",
+          "uploadSuccessfully": "Ladattu onnistuneesti",
+          "uploadFailed": "Lataaminen epäonnistui"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Kirjoita teksti tähän"
+        },
+        "drive_builder": {
+          "button_text": "Valitse"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Käytä julkisessa sovelluksessa",
           "illa_drive_folder": "ILLA Drive kansio",
           "generate_signed_url": "Luo allekirjoitettu URL-osoite",
-          "expired_time": "Vanhentunut aika",
-          "time": "Aika(t)",
+          "expired_time": "Vanhentunut tyyppi",
+          "time": "Vanhentuneet ajat",
           "turn_on_hotlink": "Ota hotlink suojaus käyttöön",
           "button_text": "Painikkeen teksti",
           "selection_type": "Valinnan tyyppi",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Minimi tiedoston numero",
           "max_file_num": "Tiedoston maksimi numero",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Tiedoston nimen kaksoiskappale",
+          "fileData": "Tiedoston tiedot",
+          "downloadZIP": "Lataa ZIP:nä"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Valitaksesi sallitun tiedoston enimmäiskoon",
           "min_file_num": "Jos haluat määrittää vähimmäismäärän tiedostoja, jotka voidaan valita,",
           "max_file_num": "Jos haluat määrittää tiedoston enimmäismäärän, joka voidaan valita,",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Määrittää, miten käsitellä kaksoiskappaleita tiedostonimiä. Jos kyseessä on säilytys molemmat, tiedoston nimi lisätään satunnainen merkkijono.",
+          "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Voit käyttää Drive-tiedostovalitsimen komponenttia tiedostojen valintaan ja asettaa tämän arvon suoraan {{filePciker1.value}} kautta.",
+          "downloadZIP": "Määrittää, ladataako tiedostot yhdeksi ZIP:ksi. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Ei Koskaan",
+            "never": "Persistent",
             "customer": "Mukautettu"
           },
           "single_file": "Yksittäinen tiedosto",
-          "multiple_files": "Useita tiedostoja"
-        },
-        "": {
+          "multiple_files": "Useita tiedostoja",
+          "anonymous_modal": {
+            "title": "Salli julkisten käyttäjien käyttää ILLA Drive?",
+            "desc": "Kun käytössä, vain Julkiset sovellukset voivat käyttää tämän sovelluksen kansiota. Kun APP on asetettu julkiseksi, kaikki käyttäjät voivat käyttää kansiota.",
+            "cancelBtn": "Peruuta",
+            "submitBtn": "Ota käyttöön"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Korvaa",
+            "keepboth": "Pidä molemmat"
           }
         }
       },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Lisätty {{operationTargetName}}",
+        "Deleted": "Poistettu {{operationTargetName}}",
+        "Updated": "Päivitetty {{operationTargetName}}",
+        "Moved": "Siirretty {{operationTargetName}}",
+        "Reseted": "Palautettu {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Tallenna historiana",
+      "history": "Historia",
+      "more": "Lisää",
       "save_keyboard": {
         "cmds": "CMD+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Nykyinen",
+        "manual": "Manuaalinen",
+        "January": "Tammikuu",
+        "February": "Helmikuu",
+        "March": "Maaliskuu",
+        "April": "Huhtikuu",
+        "May": "Toukokuu",
+        "June": "Kesäkuu",
+        "July": "Heinäkuu",
+        "August": "Elokuu",
+        "September": "Syyskuu",
+        "October": "Lokakuu",
+        "November": "Marraskuu",
+        "December": "Joulukuu"
       },
-      "restore": "Restore this version",
+      "restore": "Palauta tämä versio",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Sovelluksen nykyinen versio on muuttunut"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Asema tiedostonvalitsin",
+      "modal": {
+        "files": "Tiedostot",
+        "confirm": "Vahvista",
+        "cancel": "Peruuta",
+        "no_file": "Ei tiedostoa"
+      }
     }
   },
   "page": {
