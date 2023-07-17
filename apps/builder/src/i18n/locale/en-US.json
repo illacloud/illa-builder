@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Row select change",
           "onCellSelect": "Select a cell",
           "delete": "Delete",
-          "replay": "Reply"
+          "replay": "Reply",
+          "startUploading": "Start uploading",
+          "uploadSuccessfully": "Uploaded successfully",
+          "uploadFailed": "Failed to upload"
         },
         "image_list": {
           "title": "Images",
@@ -1703,7 +1706,9 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min file num",
-          "max_file_num": "Max file num"
+          "max_file_num": "Max file num",
+          "file_name_duplicatio": "File name duplication",
+          "fileData": "File data"
         }
       },
       "setter_tooltip": {
@@ -1950,7 +1955,8 @@
           "min_size": "To set the allowed minimum file size",
           "max_size": "To set the allowed maximum file size",
           "min_file_num": "To set the minimum number of files allowed to be selected",
-          "max_file_num": "To set the maximum number of files allowed to be selected"
+          "max_file_num": "To set the maximum number of files allowed to be selected",
+          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
         }
       },
       "setter_option": {
@@ -2043,6 +2049,12 @@
           },
           "single_file": "Single file",
           "multiple_files": "Multiple files"
+        },
+        "": {
+          "file_name_duplicatio": {
+            "replace": "Replace",
+            "keepboth": "Keep both"
+          }
         }
       },
       "setter_placeholder": {
@@ -2182,7 +2194,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Presentation",
-        "selects": "Select inputs"
+        "selects": "Select inputs",
+        "drive": "ILLA Drive"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2349,42 @@
     },
     "general": {
       "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+    },
+    "history": {
+      "operation": {
+        "Added": "Added {{operationTargetName}}",
+        "Deleted": "Deleted {{operationTargetName}}",
+        "Updated": "Updated {{operationTargetName}}",
+        "Moved": "Moved {{operationTargetName}}",
+        "Reseted": "Reseted {{operationTargetName}}"
+      },
+      "save": "Save as history",
+      "history": "History",
+      "more": "More",
+      "save_keyboard": {
+        "cmds": "CMD+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Current",
+        "manual": "Manual",
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December"
+      },
+      "restore": "Restore this version",
+      "message": {
+        "version_change": "The current app version has changed"
+      }
     }
   },
   "exit_preview": "Exit Preview",
