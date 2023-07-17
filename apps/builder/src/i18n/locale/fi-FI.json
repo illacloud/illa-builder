@@ -2389,7 +2389,8 @@
         "September": "Syyskuu",
         "October": "Lokakuu",
         "November": "Marraskuu",
-        "December": "Joulukuu"
+        "December": "Joulukuu",
+        "final_node": "Ei enää historiaa"
       },
       "restore": "Palauta tämä versio",
       "message": {
