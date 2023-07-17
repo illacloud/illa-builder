@@ -1220,9 +1220,9 @@
           "onCellSelect": "Selecteer een cel",
           "delete": "Verwijderen",
           "replay": "Beantwoorden",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Uploaden starten",
+          "uploadSuccessfully": "Succesvol geüpload",
+          "uploadFailed": "Uploaden mislukt"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Typ de tekst hier"
+        },
+        "drive_builder": {
+          "button_text": "Selecteren"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Gebruik in openbare app",
           "illa_drive_folder": "ILLA Drive map",
           "generate_signed_url": "Genereer ondertekende URL",
-          "expired_time": "Verlopen tijd",
-          "time": "Tijd(en)",
+          "expired_time": "Verlopen type",
+          "time": "Verlopen tijden",
           "turn_on_hotlink": "Hotlink-beveiliging inschakelen",
           "button_text": "Knop tekst",
           "selection_type": "Type selectie",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Min. aantal bestanden",
           "max_file_num": "Max bestand nr",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Bestandsnaam duplicatie",
+          "fileData": "Bestand gegevens",
+          "downloadZIP": "Downloaden als ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Om de maximale bestandsgrootte in te stellen",
           "min_file_num": "Om het minimum aantal bestanden dat mag worden geselecteerd in te stellen",
           "max_file_num": "Om het maximale aantal bestanden dat mag worden geselecteerd in te stellen",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Om in te stellen hoe dubbele bestandsnamen moeten worden behandeld. In het geval van bewaar beide, wordt een willekeurige tekenreeks toegevoegd aan de bestandsnaam geüpload.",
+          "fileData": "Stel de bestandsgegevens in met behulp van een object array, het formaat van het object is {\"fileName\":\"name\", \"FileID\":\"the ID\"}. U kunt de Drive bestandskiezer component gebruiken om bestanden te selecteren en deze waarde rechtstreeks via {{filePciker1.value}} in te stellen.",
+          "downloadZIP": "Om de bestanden als één ZIP te downloaden. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nooit",
+            "never": "Persistent",
             "customer": "Aangepaste"
           },
           "single_file": "Enkel bestand",
-          "multiple_files": "Meerdere bestanden"
-        },
-        "": {
+          "multiple_files": "Meerdere bestanden",
+          "anonymous_modal": {
+            "title": "Openbare gebruikers toegang geven tot de ILLA Drive?",
+            "desc": "Wanneer ingeschakeld kunnen alleen de openbare apps toegang tot deze app krijgen. Wanneer een APP is ingesteld als openbaar hebben alle gebruikers toegang tot de map.",
+            "cancelBtn": "annuleren",
+            "submitBtn": "Inschakelen"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Vervangen",
+            "keepboth": "Houd beide"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Presentatie",
         "selects": "Selecteer invoer",
-        "drive": "ILLA Drive"
+        "drive": "ILLA Aandrijving"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Toegevoegd {{operationTargetName}}",
+        "Deleted": "Verwijderd {{operationTargetName}}",
+        "Updated": "Bijgewerkt {{operationTargetName}}",
+        "Moved": "Verplaatst {{operationTargetName}}",
+        "Reseted": "{{operationTargetName}} gereset"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Opslaan als geschiedenis",
+      "history": "Geschiedenis",
+      "more": "Meer",
       "save_keyboard": {
-        "cmds": "CMD+S",
-        "ctrls": "Ctrl+S"
+        "cmds": "Cmd+S",
+        "ctrls": "CTRL"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Stroom",
+        "manual": "Handleiding",
+        "January": "januari",
+        "February": "februari",
+        "March": "maart",
+        "April": "april",
+        "May": "mei",
+        "June": "juni",
+        "July": "juli",
+        "August": "augustus",
+        "September": "september",
+        "October": "oktober",
+        "November": "november",
+        "December": "december"
       },
-      "restore": "Restore this version",
+      "restore": "Herstel deze versie",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "De huidige app versie is gewijzigd"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Schijf bestand kiezer",
+      "modal": {
+        "files": "Bestanden",
+        "confirm": "Bevestigen",
+        "cancel": "annuleren",
+        "no_file": "Geen bestand"
+      }
     }
   },
   "page": {
