@@ -1220,9 +1220,9 @@
           "onCellSelect": "セルを選択",
           "delete": "削除",
           "replay": "返信",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "アップロードを開始",
+          "uploadSuccessfully": "正常にアップロードしました",
+          "uploadFailed": "アップロードに失敗しました"
         },
         "image_list": {
           "title": "イメージ",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "ここにテキストを入力"
+        },
+        "drive_builder": {
+          "button_text": "選択"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "パブリックアプリで使用",
           "illa_drive_folder": "ILLA Driveフォルダ",
           "generate_signed_url": "署名済みURLを生成",
-          "expired_time": "期限切れ時間",
-          "time": "回数",
+          "expired_time": "期限切れのタイプ",
+          "time": "期限切れ時間",
           "turn_on_hotlink": "ホットリンク保護をオンにする",
           "button_text": "ボタンのテキスト",
           "selection_type": "選択タイプ",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "最小ファイル num",
           "max_file_num": "最大ファイル num",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "ファイル名の重複",
+          "fileData": "ファイルデータ",
+          "downloadZIP": "ZIP形式でダウンロード"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "許可された最大ファイルサイズを設定する",
           "min_file_num": "選択できるファイルの最小数を設定する",
           "max_file_num": "選択できるファイルの最大数を設定する",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "重複したファイル名を扱う方法を設定します。両方を保持する場合、アップロードされたファイル名にランダムな文字列が追加されます。",
+          "fileData": "オブジェクト配列を使用してファイルデータを設定し、オブジェクトのフォーマットは {\"fileName\":\"name\", \"FileID\":\"ID\"}です。 ドライブファイルピッカーコンポーネントを使用してファイルを選択し、 {{filePciker1.value}} を介してこの値を直接設定することができます。",
+          "downloadZIP": "ファイルを1つのZIPとしてダウンロードするかどうかを設定する。 "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "一切なし",
+            "never": "Persistent",
             "customer": "カスタム"
           },
           "single_file": "単一のファイル",
-          "multiple_files": "複数のファイル"
-        },
-        "": {
+          "multiple_files": "複数のファイル",
+          "anonymous_modal": {
+            "title": "一般ユーザーがILLAドライブにアクセスできるようにしますか?",
+            "desc": "オンにすると、このアプリの公開アプリのアクセスフォルダのみにアクセスできます。 APPがパブリックに設定されている場合、すべてのユーザーがフォルダにアクセスできます。",
+            "cancelBtn": "キャンセル",
+            "submitBtn": "オンにする"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "置換",
+            "keepboth": "両方を保持"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "ナビゲーション",
         "presentation": "クラス コンポーネントの表示",
         "selects": "クラスコンポーネントを選択",
-        "drive": "ILLA Drive"
+        "drive": "ILLAドライブ"
       },
       "tab_title": "コンポーネント"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "{{operationTargetName}} を追加しました",
+        "Deleted": "{{operationTargetName}} を削除しました",
+        "Updated": "{{operationTargetName}} を更新しました",
+        "Moved": "{{operationTargetName}} が移動しました",
+        "Reseted": "リセット済み {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "履歴として保存",
+      "history": "沿革",
+      "more": "もっと見る",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "現在",
+        "manual": "マニュアル",
+        "January": "1月",
+        "February": "2月",
+        "March": "3月",
+        "April": "4月",
+        "May": "5月",
+        "June": "6月",
+        "July": "7月",
+        "August": "8月",
+        "September": "9月",
+        "October": "10月",
+        "November": "11月",
+        "December": "12月"
       },
-      "restore": "Restore this version",
+      "restore": "このバージョンを復元",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "現在のアプリのバージョンが変更されました"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "ドライブファイルピッカー",
+      "modal": {
+        "files": "ファイル",
+        "confirm": "確認する",
+        "cancel": "キャンセル",
+        "no_file": "ファイルがありません"
+      }
     }
   },
   "page": {
