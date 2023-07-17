@@ -1220,9 +1220,9 @@
           "onCellSelect": "Välj en cell",
           "delete": "Radera",
           "replay": "Svara",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Börja ladda upp",
+          "uploadSuccessfully": "Uppladdningen lyckades",
+          "uploadFailed": "Det gick inte att ladda upp"
         },
         "image_list": {
           "title": "Bilder",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Skriv text här"
+        },
+        "drive_builder": {
+          "button_text": "Välj"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Använd i publik app",
           "illa_drive_folder": "ILLA Drive-mapp",
           "generate_signed_url": "Generera signerad URL",
-          "expired_time": "Förfallen tid",
-          "time": "Tid(er)",
+          "expired_time": "Förfallen typ",
+          "time": "Förfallen tid(er)",
           "turn_on_hotlink": "Skydda mot hotlink",
           "button_text": "Knappens text",
           "selection_type": "Typ av val",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Minsta antal filer",
           "max_file_num": "Max filnum",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Filnamn duplicering",
+          "fileData": "Fil data",
+          "downloadZIP": "Ladda ner som ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "För att ställa in den tillåtna maximala filstorleken",
           "min_file_num": "För att ställa in det minsta antalet filer som får väljas",
           "max_file_num": "För att ställa in maximalt antal filer som tillåts att väljas",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "För att ställa in hur du hanterar dubbla filnamn. Vid behåll kommer en slumpmässig sträng att läggas till filnamnet som laddats upp.",
+          "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. (Automatic Copy) Du kan använda komponenten Drive filväljare för att välja filer och ställa in detta värde direkt via {{filePciker1.value}}.",
+          "downloadZIP": "För att ställa in om du vill ladda ner filerna som en ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Aldrig",
+            "never": "Persistent",
             "customer": "Anpassad"
           },
           "single_file": "En fil",
-          "multiple_files": "Flera filer"
-        },
-        "": {
+          "multiple_files": "Flera filer",
+          "anonymous_modal": {
+            "title": "Tillåt offentliga användare att komma åt ILLA Drive?",
+            "desc": "När den är aktiverad kan endast åtkomstmappen för den här appen öppnas. När en APP är inställd som offentlig kan alla användare komma åt mappen.",
+            "cancelBtn": "Avbryt",
+            "submitBtn": "Slå på"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Ersätt",
+            "keepboth": "Behåll båda"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Presentation",
         "selects": "Välj indata",
-        "drive": "ILLA Drive"
+        "drive": "ILLA enhet"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Lade till {{operationTargetName}}",
+        "Deleted": "Raderad {{operationTargetName}}",
+        "Updated": "Uppdaterad {{operationTargetName}}",
+        "Moved": "Flyttad {{operationTargetName}}",
+        "Reseted": "Återställt {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Spara som historik",
+      "history": "Historik",
+      "more": "Mer",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Nuvarande",
+        "manual": "Manuell",
+        "January": "Januari",
+        "February": "Februari",
+        "March": "Mars",
+        "April": "april",
+        "May": "Maj",
+        "June": "Juni",
+        "July": "Juli",
+        "August": "Augusti",
+        "September": "september",
+        "October": "Oktober",
+        "November": "november",
+        "December": "december"
       },
-      "restore": "Restore this version",
+      "restore": "Återställ denna version",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Den aktuella appversionen har ändrats"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Kör filväljare",
+      "modal": {
+        "files": "Filer",
+        "confirm": "Bekräfta",
+        "cancel": "Avbryt",
+        "no_file": "Ingen fil"
+      }
     }
   },
   "page": {
