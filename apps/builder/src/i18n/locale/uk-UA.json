@@ -2389,7 +2389,8 @@
         "September": "Вересні",
         "October": "Жовтень",
         "November": "Листопад",
-        "December": "Грудень"
+        "December": "Грудень",
+        "final_node": "Більше немає історії"
       },
       "restore": "Відновити цю версію",
       "message": {
