@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Ændring af række",
           "onCellSelect": "Vælg en celle",
           "delete": "Slet",
-          "replay": "Svar"
+          "replay": "Svar",
+          "startUploading": "Start uploading",
+          "uploadSuccessfully": "Uploaded successfully",
+          "uploadFailed": "Failed to upload"
         },
         "image_list": {
           "title": "Billeder",
@@ -1703,7 +1706,9 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min. fil num",
-          "max_file_num": "Maks. fil num"
+          "max_file_num": "Maks. fil num",
+          "file_name_duplicatio": "File name duplication",
+          "fileData": "File data"
         }
       },
       "setter_tooltip": {
@@ -1950,7 +1955,8 @@
           "min_size": "For at indstille den tilladte minimumsfilstørrelse",
           "max_size": "For at indstille den tilladte maksimale filstørrelse",
           "min_file_num": "For at indstille det mindste antal filer der må vælges",
-          "max_file_num": "For at indstille det maksimale antal filer der må vælges"
+          "max_file_num": "For at indstille det maksimale antal filer der må vælges",
+          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
         }
       },
       "setter_option": {
@@ -2043,6 +2049,12 @@
           },
           "single_file": "Enkelt fil",
           "multiple_files": "Flere filer"
+        },
+        "": {
+          "file_name_duplicatio": {
+            "replace": "Replace",
+            "keepboth": "Keep both"
+          }
         }
       },
       "setter_placeholder": {
@@ -2182,7 +2194,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Præsentation",
-        "selects": "Vælg input"
+        "selects": "Vælg input",
+        "drive": "ILLA Drive"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2349,42 @@
     },
     "general": {
       "length_limit": "Det aktuelle inputindhold er for langt, vi er stoppet automatisk beregning af data, du kan stadig fortsætte med at input, dette vil ikke påvirke din brug."
+    },
+    "history": {
+      "operation": {
+        "Added": "Added {{operationTargetName}}",
+        "Deleted": "Deleted {{operationTargetName}}",
+        "Updated": "Updated {{operationTargetName}}",
+        "Moved": "Moved {{operationTargetName}}",
+        "Reseted": "Reseted {{operationTargetName}}"
+      },
+      "save": "Save as history",
+      "history": "History",
+      "more": "More",
+      "save_keyboard": {
+        "cmds": "CMD+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Current",
+        "manual": "Manual",
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December"
+      },
+      "restore": "Restore this version",
+      "message": {
+        "version_change": "The current app version has changed"
+      }
     }
   },
   "exit_preview": "Afslut Forhåndsvisning",
