@@ -1220,9 +1220,9 @@
           "onCellSelect": "Zelle auswählen",
           "delete": "Löschen",
           "replay": "Antwort",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Hochladen starten",
+          "uploadSuccessfully": "Upload erfolgreich",
+          "uploadFailed": "Upload fehlgeschlagen"
         },
         "image_list": {
           "title": "Bilder",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Text hier eingeben"
+        },
+        "drive_builder": {
+          "button_text": "Auswählen"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "In öffentlicher App verwenden",
           "illa_drive_folder": "ILLA Drive Ordner",
           "generate_signed_url": "Signierte URL generieren",
-          "expired_time": "Abgelaufene Zeit",
-          "time": "Zeit(e)",
+          "expired_time": "Abgelaufener Typ",
+          "time": "Abgelaufene Zeit(e)",
           "turn_on_hotlink": "Hotlink-Schutz einschalten",
           "button_text": "Schaltflächentext",
           "selection_type": "Auswahltyp",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Min. Datei num",
           "max_file_num": "Maximale Datei-num",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Dateiname Duplikation",
+          "fileData": "Datei-Daten",
+          "downloadZIP": "Als ZIP herunterladen"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Maximale Dateigröße festlegen",
           "min_file_num": "Um die minimale Anzahl an Dateien zu setzen, die ausgewählt werden dürfen",
           "max_file_num": "Um die maximale Anzahl an Dateien zu setzen, die ausgewählt werden dürfen",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Um festzulegen, wie mit doppelten Dateinamen umgegangen werden soll. Wenn beides beibehalten wird, wird dem Dateinamen eine zufällige Zeichenkette hinzugefügt.",
+          "fileData": "Legen Sie die Dateidaten unter Verwendung eines Arrays fest, das Format des Objekts ist {\"fileName\":\"The name\", \"FileID\":\"The ID\"}. Sie können die Laufwerk-Datei-Picker-Komponente verwenden, um Dateien auszuwählen und diesen Wert direkt über {{filePciker1.value}} zu setzen.",
+          "downloadZIP": "Um festzulegen, ob die Dateien als ein ZIP heruntergeladen werden sollen. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nie",
+            "never": "Persistent",
             "customer": "Eigene"
           },
           "single_file": "Einzelne Datei",
-          "multiple_files": "Mehrere Dateien"
-        },
-        "": {
+          "multiple_files": "Mehrere Dateien",
+          "anonymous_modal": {
+            "title": "öffentlichen Benutzern den Zugriff auf das ILLA Laufwerk erlauben?",
+            "desc": "Wenn aktiviert, kann nur auf den öffentlichen App-Zugriffsordner dieser App zugegriffen werden. Wenn eine APP als öffentlich eingestellt wird, können alle Benutzer auf den Ordner zugreifen.",
+            "cancelBtn": "Abbrechen",
+            "submitBtn": "Einschalten"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Ersetzen",
+            "keepboth": "Beides behalten"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Präsentation",
         "selects": "Eingaben auswählen",
-        "drive": "ILLA Drive"
+        "drive": "ILLA-Laufwerk"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "{{operationTargetName}} hinzugefügt",
+        "Deleted": "Gelöschte {{operationTargetName}}",
+        "Updated": "{{operationTargetName}} aktualisiert",
+        "Moved": "{{operationTargetName}} verschoben",
+        "Reseted": "{{operationTargetName}} zurückgesetzt"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Als Verlauf speichern",
+      "history": "Verlauf",
+      "more": "Mehr",
       "save_keyboard": {
-        "cmds": "CMD+S",
-        "ctrls": "Ctrl+S"
+        "cmds": "Cmd+S",
+        "ctrls": "Strg+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
+        "current": "Aktuell",
+        "manual": "Manuell",
+        "January": "Januar",
+        "February": "Februar",
+        "March": "Marsch",
+        "April": "Ascherz",
+        "May": "Mai",
+        "June": "Juni",
+        "July": "Juli",
+        "August": "Luciano",
         "September": "September",
-        "October": "October",
+        "October": "Oktober",
         "November": "November",
-        "December": "December"
+        "December": "Dezember"
       },
-      "restore": "Restore this version",
+      "restore": "Diese Version wiederherstellen",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Die aktuelle App-Version hat sich geändert"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Laufwerk-Dateiauswahl",
+      "modal": {
+        "files": "Dateien",
+        "confirm": "Bestätigen",
+        "cancel": "Abbrechen",
+        "no_file": "Keine Datei"
+      }
     }
   },
   "page": {
