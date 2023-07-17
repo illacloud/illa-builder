@@ -1220,9 +1220,9 @@
           "onCellSelect": "Seleziona una cella",
           "delete": "Elimina",
           "replay": "Rispondi",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Inizia a caricare",
+          "uploadSuccessfully": "Caricato con successo",
+          "uploadFailed": "Impossibile caricare"
         },
         "image_list": {
           "title": "Immagini",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Digita il testo qui"
+        },
+        "drive_builder": {
+          "button_text": "Seleziona"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Usa nell'app pubblica",
           "illa_drive_folder": "Cartella ILLA Drive",
           "generate_signed_url": "Genera URL firmato",
-          "expired_time": "Tempo di scadenza",
-          "time": "Tempo(i)",
+          "expired_time": "Tipo scaduto",
+          "time": "Volta(e) scaduta",
           "turn_on_hotlink": "Attiva la protezione hotlink",
           "button_text": "Testo pulsante",
           "selection_type": "Tipo di selezione",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Num file minimo",
           "max_file_num": "Numero massimo di file",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Duplicazione nome file",
+          "fileData": "Dati del file",
+          "downloadZIP": "Scarica come ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Per impostare la dimensione massima consentita del file",
           "min_file_num": "Per impostare il numero minimo di file selezionati",
           "max_file_num": "Per impostare il numero massimo di file selezionati",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Per impostare come gestire i nomi dei file duplicati. Nel caso di mantenere entrambi, verrà aggiunta una stringa casuale al nome del file caricato.",
+          "fileData": "Imposta i dati del file usando un array di oggetti, il formato dell'oggetto è {\"fileName\":\"il nome\", \"FileID\":\"l'ID\"}. È possibile utilizzare il componente di selezione file Drive per selezionare i file e impostare questo valore direttamente tramite {{filePciker1.value}}.",
+          "downloadZIP": "Per impostare se scaricare i file come un unico ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Mai",
+            "never": "Persistent",
             "customer": "Personalizzato"
           },
           "single_file": "File singolo",
-          "multiple_files": "File multipli"
-        },
-        "": {
+          "multiple_files": "File multipli",
+          "anonymous_modal": {
+            "title": "Consentire agli utenti pubblici di accedere a ILLA Drive?",
+            "desc": "Quando attivato, è possibile accedere solo alla cartella di accesso alle applicazioni pubbliche di questa app. Quando una APP è impostata come pubblica, tutti gli utenti possono accedere alla cartella.",
+            "cancelBtn": "Annulla",
+            "submitBtn": "Attiva"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Sostituisci",
+            "keepboth": "Mantieni entrambi"
           }
         }
       },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Aggiunto {{operationTargetName}}",
+        "Deleted": "Eliminato {{operationTargetName}}",
+        "Updated": "Aggiornato {{operationTargetName}}",
+        "Moved": "Spostato {{operationTargetName}}",
+        "Reseted": "Ripristinato {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Salva come cronologia",
+      "history": "Storico",
+      "more": "Altro",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Corrente",
+        "manual": "Manuale",
+        "January": "Gennaio",
+        "February": "Febbraio",
+        "March": "Marzo",
+        "April": "Aprile",
+        "May": "Maggio",
+        "June": "Giugno",
+        "July": "Luglio",
+        "August": "Agosto",
+        "September": "Settembre",
+        "October": "Ottobre",
+        "November": "Novembre",
+        "December": "Dicembre"
       },
-      "restore": "Restore this version",
+      "restore": "Ripristina questa versione",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "La versione corrente dell'app è cambiata"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Selettore file drive",
+      "modal": {
+        "files": "File",
+        "confirm": "Conferma",
+        "cancel": "Annulla",
+        "no_file": "Nessun file"
+      }
     }
   },
   "page": {
