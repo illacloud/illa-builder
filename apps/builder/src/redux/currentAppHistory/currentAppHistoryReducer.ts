@@ -1,15 +1,15 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   CurrentAppHistory,
-  Snapshot,
+  CurrentSnapshotList,
 } from "@/redux/currentAppHistory/currentAppHistoryState"
 
 export const updateCurrentAppHistoryReducer: CaseReducer<
   CurrentAppHistory,
-  PayloadAction<Snapshot[]>
+  PayloadAction<CurrentSnapshotList>
 > = (state, action) => {
   const { payload } = action
-  state.snapshotList = payload
+  return { ...state, ...payload }
 }
 
 // update currentSnapshotID

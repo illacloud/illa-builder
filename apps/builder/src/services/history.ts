@@ -1,10 +1,6 @@
 import { builderRequest } from "@/api/http"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
-import { Snapshot } from "@/redux/currentAppHistory/currentAppHistoryState"
-
-export interface SnapshotList {
-  snapshotList: Snapshot[]
-}
+import { SnapshotList } from "@/redux/currentAppHistory/currentAppHistoryState"
 
 export const fetchSnapShotList = (params: {
   appID: string

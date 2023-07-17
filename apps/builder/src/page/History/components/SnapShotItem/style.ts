@@ -48,13 +48,17 @@ export const timelineStyle = css`
   display: flex;
 `
 
-export const timeStyle = css`
-  color: ${getColor("techPurple", "01")};
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-`
-
+export const applyTimeStyle = (selected?: boolean) => {
+  return css`
+    color: ${selected
+      ? getColor("techPurple", "01")
+      : getColor("grayBlue", "02")};
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    cursor: pointer;
+  `
+}
 export const contentStyle = css`
   flex-direction: column;
   justify-content: start;

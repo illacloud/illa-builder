@@ -20,8 +20,18 @@ export interface Snapshot {
   createdAt: string
 }
 
-export interface CurrentAppHistory {
+export interface SnapshotList {
   snapshotList: Snapshot[]
+  totalPage: number
+}
+
+export interface CurrentSnapshotList extends SnapshotList {
+  snapshotList: Snapshot[]
+  totalPage: number
+  hasMore: boolean
+}
+
+export interface CurrentAppHistory extends CurrentSnapshotList {
   currentSnapshotID?: string
 }
 
@@ -71,4 +81,6 @@ const initialSnapshot = [
 ]
 export const CurrentAppHistoryInitialState: CurrentAppHistory = {
   snapshotList: initialSnapshot,
+  totalPage: 0,
+  hasMore: false,
 }

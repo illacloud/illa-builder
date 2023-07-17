@@ -1,7 +1,8 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { Button } from "@illa-design/react"
 import { Snapshot } from "@/redux/currentAppHistory/currentAppHistoryState"
 import {
+  applyTimeStyle,
   avatarStyle,
   badgeDotStyle,
   contentStyle,
@@ -13,15 +14,21 @@ import {
   modifyContentStyle,
   nameStyle,
   textStyle,
-  timeStyle,
   timelineStyle,
 } from "./style"
 
 interface SnapShotListProps {
   snapshot: Snapshot
+  selected?: boolean
+  last: boolean
+  onClickItem: (snapshotID: string) => void
 }
 export const SnapShotItem: FC<SnapShotListProps> = (props) => {
-  const { snapshot } = props
+  const { snapshot, selected, last, onClickItem } = props
+
+  const handleClickItem = useCallback(() => {
+    onClickItem(snapshot.snapshotID)
+  }, [onClickItem, snapshot.snapshotID])
 
   return (
     <div css={timelineStyle}>
@@ -29,10 +36,12 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
         <div css={badgeDotStyle}>
           <div css={ellipse49Style} />
         </div>
-        <div css={lineStyle} />
+        {!last && <div css={lineStyle} />}
       </div>
       <div css={textStyle}>
-        <div css={timeStyle}>{snapshot.createdAt}</div>
+        <div css={applyTimeStyle(selected)} onClick={handleClickItem}>
+          {snapshot.createdAt}
+        </div>
         <div css={contentStyle}>
           {snapshot.modifyHistory.map((modify) => {
             return (
@@ -47,7 +56,9 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
               </div>
             )
           })}
-          <Button colorScheme="blackAlpha">{"Restore this version"}</Button>
+          {selected && (
+            <Button colorScheme="blackAlpha">{"Restore this version"}</Button>
+          )}
         </div>
       </div>
     </div>

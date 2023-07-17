@@ -11,6 +11,7 @@ import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppSta
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchSnapShot, fetchSnapShotList } from "@/services/history"
 
+const INITIAL_PAGE = 0
 export const useInitHistoryApp = (mode: IllaMode = "history") => {
   const { appId } = useParams()
   const dispatch = useDispatch()
@@ -41,7 +42,7 @@ export const useInitHistoryApp = (mode: IllaMode = "history") => {
         setErrorState(false)
         setLoadingState(true)
         fetchSnapShotList({
-          page: 0,
+          page: INITIAL_PAGE,
           appID: appId,
           signal: controller.signal,
         })
@@ -49,9 +50,10 @@ export const useInitHistoryApp = (mode: IllaMode = "history") => {
             const { data } = response
             const currentSnapshotID = data.snapshotList[0].snapshotID
             dispatch(
-              currentAppHistoryActions.updateCurrentAppHistoryReducer(
-                data.snapshotList,
-              ),
+              currentAppHistoryActions.updateCurrentAppHistoryReducer({
+                ...data,
+                hasMore: data.totalPage - 1 !== INITIAL_PAGE,
+              }),
             )
             fetchSnapShot(appId, currentSnapshotID)
               .then((res) => {
