@@ -1220,9 +1220,9 @@
           "onCellSelect": "Επιλέξτε ένα κελί",
           "delete": "Διαγραφή",
           "replay": "Απάντηση",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Εκκίνηση μεταφόρτωσης",
+          "uploadSuccessfully": "Επιτυχής μεταφόρτωση",
+          "uploadFailed": "Αποτυχία μεταφόρτωσης"
         },
         "image_list": {
           "title": "Εικόνες",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Πληκτρολογήστε το κείμενο εδώ"
+        },
+        "drive_builder": {
+          "button_text": "Επιλογή"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Χρήση σε δημόσια εφαρμογή",
           "illa_drive_folder": "Φάκελος μονάδας δίσκου ILLA",
           "generate_signed_url": "Δημιουργία υπογεγραμμένου URL",
-          "expired_time": "Λήξη ώρας",
-          "time": "Χρόνος(οι)",
+          "expired_time": "Ληγμένος τύπος",
+          "time": "Λήξη ώρας(ων)",
           "turn_on_hotlink": "Ενεργοποίηση hotlink προστασίας",
           "button_text": "Κείμενο κουμπιού",
           "selection_type": "Τύπος επιλογής",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Ελάχιστο αρχείο num",
           "max_file_num": "Μέγιστος αριθμός αρχείου",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Αντιγραφή ονόματος αρχείου",
+          "fileData": "Δεδομένα αρχείου",
+          "downloadZIP": "Λήψη ως ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Για να ορίσετε το μέγιστο επιτρεπόμενο μέγεθος αρχείου",
           "min_file_num": "Για να ορίσετε τον ελάχιστο αριθμό αρχείων που επιτρέπεται να επιλεγούν",
           "max_file_num": "Για να ορίσετε το μέγιστο αριθμό αρχείων που επιτρέπεται να επιλεγούν",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Για να ορίσετε πώς να χειριστείτε διπλότυπα ονόματα αρχείων. Στην περίπτωση διατήρησης και των δύο, μια τυχαία συμβολοσειρά θα προστεθεί στο όνομα αρχείου που φορτώθηκε.",
+          "fileData": "Ορίστε τα δεδομένα του αρχείου χρησιμοποιώντας ένα αντικείμενο array, η μορφή του αντικειμένου είναι {\"fileName\":\"το όνομα\", \"FileID\": \"το ID\"}. Μπορείτε να χρησιμοποιήσετε το στοιχείο επιλογέα αρχείων Drive για να επιλέξετε αρχεία και να ορίσετε αυτήν την τιμή απευθείας μέσω {{filePciker1.value}}.",
+          "downloadZIP": "Για να ορίσετε αν θα γίνει λήψη των αρχείων ως ένα ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Ποτέ",
+            "never": "Persistent",
             "customer": "Προσαρμοσμένο"
           },
           "single_file": "Μονό αρχείο",
-          "multiple_files": "Πολλαπλά αρχεία"
-        },
-        "": {
+          "multiple_files": "Πολλαπλά αρχεία",
+          "anonymous_modal": {
+            "title": "Επιτρέψτε στους δημόσιους χρήστες να έχουν πρόσβαση στο ILLA Drive?",
+            "desc": "Όταν είναι ενεργοποιημένο, μόνο ο φάκελος πρόσβασης δημόσιων εφαρμογών αυτής της εφαρμογής μπορεί να έχει πρόσβαση. Όταν ένα APP έχει οριστεί ως δημόσιο, όλοι οι χρήστες μπορούν να έχουν πρόσβαση στο φάκελο.",
+            "cancelBtn": "Ακύρωση",
+            "submitBtn": "Ενεργοποίηση"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Αντικατάσταση",
+            "keepboth": "Κρατήστε και τα δύο"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Παρουσίαση",
         "selects": "Επιλογή εισόδων",
-        "drive": "ILLA Drive"
+        "drive": "Κίνηση ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
+        "Added": "Προστέθηκε {{operationTargetName}}",
         "Deleted": "Deleted {{operationTargetName}}",
         "Updated": "Updated {{operationTargetName}}",
         "Moved": "Moved {{operationTargetName}}",
         "Reseted": "Reseted {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Αποθήκευση ως ιστορικό",
+      "history": "Ιστορικό",
+      "more": "Περισσότερα",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Τρέχων",
+        "manual": "Χειροκίνητα",
+        "January": "Ιανουάριος",
+        "February": "Φεβρουάριος",
+        "March": "Μάρτιος",
+        "April": "Απριλίου",
+        "May": "Μάιος",
+        "June": "Ιουνίου",
+        "July": "Ιούλιος",
+        "August": "Αύγουστος",
+        "September": "Σεπτέμβριος",
+        "October": "Οκτώβριος",
+        "November": "Νοέμβριος",
+        "December": "Δεκέμβριος"
       },
-      "restore": "Restore this version",
+      "restore": "Επαναφορά αυτής της έκδοσης",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Η τρέχουσα έκδοση της εφαρμογής έχει αλλάξει"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Επιλογέας αρχείων κίνησης",
+      "modal": {
+        "files": "Αρχεία",
+        "confirm": "Επιβεβαίωση",
+        "cancel": "Ακύρωση",
+        "no_file": "Κανένα αρχείο"
+      }
     }
   },
   "page": {
