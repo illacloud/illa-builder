@@ -1504,7 +1504,7 @@
         "show_dot": "Show dots at the bottom",
         "hidden_images": "Hidden images",
         "file_type": "File types",
-        "selection_types": "Selection types",
+        "selection_types": "Selection type",
         "append_newly_files": "Append newly selected files",
         "file_list": "File list",
         "parse_value": "Parse Value",
