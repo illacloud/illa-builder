@@ -2389,7 +2389,8 @@
         "September": "9月",
         "October": "10月",
         "November": "11月",
-        "December": "12月"
+        "December": "12月",
+        "final_node": "履歴はありません"
       },
       "restore": "このバージョンを復元",
       "message": {
