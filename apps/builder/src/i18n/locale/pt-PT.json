@@ -1220,9 +1220,9 @@
           "onCellSelect": "Selecione uma célula",
           "delete": "excluir",
           "replay": "Responder",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Iniciar upload",
+          "uploadSuccessfully": "Carregado com sucesso",
+          "uploadFailed": "Falha ao fazer upload"
         },
         "image_list": {
           "title": "Imagens",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Digite o texto aqui"
+        },
+        "drive_builder": {
+          "button_text": "Selecionar"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Usar no aplicativo público",
           "illa_drive_folder": "Pasta do ILLA Drive",
           "generate_signed_url": "Gerar URL assinada",
-          "expired_time": "Tempo expirado",
-          "time": "Horário(s)",
+          "expired_time": "Tipo expirado",
+          "time": "Vez(es) expirado(s)",
           "turn_on_hotlink": "Ativar proteção de hotlink",
           "button_text": "Texto do Botão",
           "selection_type": "Tipo de seleção",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Número mínimo de arquivo",
           "max_file_num": "Número máximo de arquivo",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Duplicação de nome de arquivo",
+          "fileData": "Arquivo de dados",
+          "downloadZIP": "Baixar como um ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Para definir o tamanho máximo de arquivo permitido",
           "min_file_num": "Para definir o número mínimo de arquivos permitidos para ser selecionado",
           "max_file_num": "Para definir o número máximo de arquivos permitidos para ser selecionado",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Para definir como lidar com nomes de arquivos duplicados. No caso de manter ambos, uma seqüência aleatória será adicionada ao nome do arquivo carregado.",
+          "fileData": "Definir os dados usando um array de objeto, o formato do objeto é {\"fileName\":\"nome\", \"FileID\":\"the ID\"}. Você pode usar o componente de selecionador de arquivos Drive para selecionar arquivos e definir esse valor diretamente através do {{filePciker1.value}}.",
+          "downloadZIP": "Para definir se deve baixar os arquivos como um ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "nunca",
+            "never": "Persistent",
             "customer": "Personalizado"
           },
           "single_file": "Arquivo único",
-          "multiple_files": "Múltiplos arquivos"
-        },
-        "": {
+          "multiple_files": "Múltiplos arquivos",
+          "anonymous_modal": {
+            "title": "Permitir que usuários públicos acessem a unidade ILLA?",
+            "desc": "Quando ativado, somente a pasta de acesso público de aplicativos deste app pode ser acessada. Quando um app é configurado como público, todos os usuários podem acessar a pasta.",
+            "cancelBtn": "cancelar",
+            "submitBtn": "Ativar agora"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Substituir",
+            "keepboth": "Manter ambos"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Apresentação",
         "selects": "Selecionar entradas",
-        "drive": "ILLA Drive"
+        "drive": "Drive ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
+        "Added": "Adicionada {{operationTargetName}}",
+        "Deleted": "{{operationTargetName}} Excluído",
         "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
+        "Moved": "Mover em {{operationTargetName}}",
         "Reseted": "Reseted {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Salvar como histórico",
+      "history": "Histórico",
+      "more": "MAIS",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Atual",
+        "manual": "Manualmente",
+        "January": "janeiro",
+        "February": "fevereiro",
+        "March": "março",
+        "April": "abril",
+        "May": "maio",
+        "June": "junho",
+        "July": "julho",
+        "August": "agosto",
+        "September": "setembro",
+        "October": "outubro",
+        "November": "novembro",
+        "December": "dezembro"
       },
-      "restore": "Restore this version",
+      "restore": "Restaurar esta versão",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "A versão atual do aplicativo foi alterada"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Seletor de arquivo Drive",
+      "modal": {
+        "files": "arquivos",
+        "confirm": "Confirmar",
+        "cancel": "cancelar",
+        "no_file": "Nenhum arquivo"
+      }
     }
   },
   "page": {
