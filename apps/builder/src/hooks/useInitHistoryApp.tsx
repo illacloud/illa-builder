@@ -17,7 +17,7 @@ const initialSnapshot = [
   {
     snapshotID: "ILA00012",
     teamID: "ILAex4p1C7YJ",
-    appRefID: "ILAex4p1C7U3",
+    appID: "ILAex4p1C7U3",
     targetVersion: 0, // 0 代表当前正在编辑的版本, 是不能恢复到这个版本的.
     snapshotTriggerMode: 1, // 1, automatic, 2, manual
     modifyHistory: [
@@ -51,7 +51,7 @@ const initialSnapshot = [
   {
     snapshotID: "ILA00013",
     teamID: "ILAex4p1C7YJ",
-    appRefID: "ILAex4p1C7U3",
+    appID: "ILAex4p1C7U3",
     targetVersion: 192, // 非 0 版本即为 App 的内部历史快照内部版本, 是内部使用的, 恢复快照需要传 snapshotID, 而不是这个字段.
     snapshotTriggerMode: 2, // 1, automatic, 2, manual
     modifyHistory: [

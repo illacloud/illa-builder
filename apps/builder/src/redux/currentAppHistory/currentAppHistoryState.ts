@@ -22,7 +22,7 @@ export interface ModifyHistory {
 
 export interface Snapshot {
   teamID: string
-  appRefID: string
+  appID: string
   snapshotID: string
   snapshotTriggerMode: SnapshotTriggerMode
   modifyHistory: ModifyHistory[]

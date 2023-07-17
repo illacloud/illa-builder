@@ -42,13 +42,13 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const handleRecoverSnapShot = useCallback(async () => {
     setLoading(true)
     try {
-      await recoverSnapShot(snapshot.appRefID, snapshot.snapshotID)
+      await recoverSnapShot(snapshot.appID, snapshot.snapshotID)
     } catch (e) {
       console.log("recoverSnapShot error", e)
     } finally {
       setLoading(false)
     }
-  }, [snapshot.appRefID, snapshot.snapshotID])
+  }, [snapshot.appID, snapshot.snapshotID])
 
   return (
     <div css={timelineStyle}>
