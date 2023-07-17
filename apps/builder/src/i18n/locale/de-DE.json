@@ -2389,7 +2389,8 @@
         "September": "September",
         "October": "Oktober",
         "November": "November",
-        "December": "Dezember"
+        "December": "Dezember",
+        "final_node": "Keine weiteren Chroniken"
       },
       "restore": "Diese Version wiederherstellen",
       "message": {
