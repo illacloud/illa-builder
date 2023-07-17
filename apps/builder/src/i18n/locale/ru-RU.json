@@ -1220,9 +1220,9 @@
           "onCellSelect": "Выбрать ячейку",
           "delete": "Удалить",
           "replay": "Ответ",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Начать загрузку",
+          "uploadSuccessfully": "Загружено успешно",
+          "uploadFailed": "Не удалось загрузить"
         },
         "image_list": {
           "title": "Изображения",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Введите текст здесь"
+        },
+        "drive_builder": {
+          "button_text": "Выбрать"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Использовать в публичном приложении",
           "illa_drive_folder": "Папка ILLA Drive",
           "generate_signed_url": "Генерировать подписанный URL",
-          "expired_time": "Истекло время",
-          "time": "Время(я)",
+          "expired_time": "Тип просрочен",
+          "time": "Истекло время",
           "turn_on_hotlink": "Включить защиту горячей ссылки",
           "button_text": "Текст кнопки",
           "selection_type": "Тип выбора",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Мин. номер файла",
           "max_file_num": "Макс. номер файла",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Дублирование имени файла",
+          "fileData": "Данные файла",
+          "downloadZIP": "Скачать как ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Установить максимально допустимый размер файла",
           "min_file_num": "Установить минимальное количество файлов, разрешенное для выбора",
           "max_file_num": "Установить максимальное количество файлов, разрешенных для выбора",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Чтобы установить способ обработки повторяющихся имен файлов. В случае сохранения одновременно будет добавлена случайная строка к имени загруженного файла.",
+          "fileData": "Установите данные файла с помощью объектного массива, формат объекта {\"fileName\":\"имя\", \"FileID\":\"ID\"}. Вы можете использовать компонент выбора файлов дисков для выбора файлов и установки этого значения непосредственно через {{filePciker1.value}}.",
+          "downloadZIP": "Чтобы установить, загружать ли файлы как ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Никогда",
+            "never": "Persistent",
             "customer": "Свой"
           },
           "single_file": "Один файл",
-          "multiple_files": "Несколько файлов"
-        },
-        "": {
+          "multiple_files": "Несколько файлов",
+          "anonymous_modal": {
+            "title": "Разрешить публичным пользователям доступ к ILLA Drive?",
+            "desc": "Когда включено, только общедоступные приложения могут иметь доступ к папке доступа. Когда приложение установлено в качестве публичного, все пользователи могут получить доступ к папке.",
+            "cancelBtn": "Отмена",
+            "submitBtn": "Включить"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Заменить",
+            "keepboth": "Оставить оба"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Представление",
         "selects": "Выбрать ввод",
-        "drive": "ILLA Drive"
+        "drive": "ILLA привод"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Добавлено {{operationTargetName}}",
+        "Deleted": "{{operationTargetName}} удалена",
+        "Updated": "Обновлено {{operationTargetName}}",
+        "Moved": "Перемещено {{operationTargetName}}",
+        "Reseted": "Повторно {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Сохранить как историю",
+      "history": "История",
+      "more": "Ещё",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Кмд+С",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Текущее",
+        "manual": "Ручной",
+        "January": "Январь",
+        "February": "Февраль",
+        "March": "Март",
+        "April": "Апрель",
+        "May": "Май",
+        "June": "Июнь",
+        "July": "Июль",
+        "August": "Август",
+        "September": "Сентябрь",
+        "October": "Октябрь",
+        "November": "Ноябрь",
+        "December": "Декабрь"
       },
-      "restore": "Restore this version",
+      "restore": "Восстановить эту версию",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Текущая версия приложения изменена"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Выбор файла диска",
+      "modal": {
+        "files": "Файлы",
+        "confirm": "Подтвердить",
+        "cancel": "Отмена",
+        "no_file": "Нет файла"
+      }
     }
   },
   "page": {
