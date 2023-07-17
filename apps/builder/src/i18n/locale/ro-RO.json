@@ -1220,9 +1220,9 @@
           "onCellSelect": "Selectați o celulă",
           "delete": "Ștergere",
           "replay": "Răspuns",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Începe încărcarea",
+          "uploadSuccessfully": "Încărcat cu succes",
+          "uploadFailed": "Încărcarea a eșuat"
         },
         "image_list": {
           "title": "Imagini",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Scrie textul aici"
+        },
+        "drive_builder": {
+          "button_text": "Selectare"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Utilizare în aplicația publică",
           "illa_drive_folder": "Dosar ILLA Drive",
           "generate_signed_url": "Generează adresa semnată",
-          "expired_time": "Timp expirat",
-          "time": "Ora",
+          "expired_time": "Tip expirat",
+          "time": "Timp expirat",
           "turn_on_hotlink": "Activați protecția prin hotlink",
           "button_text": "Text buton",
           "selection_type": "Tipul de selecţie",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Numar fisier minim",
           "max_file_num": "Nr. max. fișier",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Duplicare nume fișier",
+          "fileData": "Date fișier",
+          "downloadZIP": "Descarcă ca ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Pentru a seta dimensiunea maximă permisă a fișierului",
           "min_file_num": "Pentru a seta numărul minim de fișiere care pot fi selectate",
           "max_file_num": "Pentru a seta numărul maxim de fișiere care pot fi selectate",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Pentru a seta cum să se gestioneze duplicat nume de fișiere. În cazul în care le păstrați pe amândouă, un șir aleatoriu va fi adăugat la numele fișierului încărcat.",
+          "fileData": "Setați datele fișierului folosind o matrice de obiect, formatul obiectului este {\"fileName\":\"name\", \"FileID\":\"}. Puteți utiliza componenta selector de fișiere Drive pentru a selecta fișiere și seta această valoare direct prin {{filePciker1.value}}.",
+          "downloadZIP": "Pentru a seta dacă se descarcă fișierele ca un singur ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Niciodată",
+            "never": "Persistent",
             "customer": "Personalizat"
           },
           "single_file": "Fişier unic",
-          "multiple_files": "Fișiere multiple"
-        },
-        "": {
+          "multiple_files": "Fișiere multiple",
+          "anonymous_modal": {
+            "title": "Permiteți utilizatorilor publici să acceseze ILLA Drive?",
+            "desc": "Când este activată, numai dosarul de acces al aplicațiilor publice al acestei aplicații poate fi accesat. Atunci când o APP este setată ca publică, toți utilizatorii pot accesa dosarul.",
+            "cancelBtn": "Anulează",
+            "submitBtn": "Porniți"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Înlocuiește",
+            "keepboth": "Păstrați ambele"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Prezentare",
         "selects": "Selectați intrările",
-        "drive": "ILLA Drive"
+        "drive": "Unitate ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Adăugat {{operationTargetName}}",
+        "Deleted": "Eliminat {{operationTargetName}}",
+        "Updated": "Actualizat {{operationTargetName}}",
+        "Moved": "Mutat {{operationTargetName}}",
+        "Reseted": "Resetat {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Salvează ca istoric",
+      "history": "Istoric",
+      "more": "Mai",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
+        "current": "Actuală",
         "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "January": "Ianuarie",
+        "February": "Februarie",
+        "March": "Martie",
+        "April": "aprilie",
+        "May": "Mai",
+        "June": "Iunie",
+        "July": "Iulie",
+        "August": "august",
+        "September": "Septembrie",
+        "October": "Octombrie",
+        "November": "Noiembrie",
+        "December": "Decembrie"
       },
-      "restore": "Restore this version",
+      "restore": "Restaurează această versiune",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Versiunea curentă a aplicației s-a schimbat"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Selector fișier unitate",
+      "modal": {
+        "files": "Fișiere",
+        "confirm": "Confirmare",
+        "cancel": "Anulează",
+        "no_file": "Nici un fişier"
+      }
     }
   },
   "page": {
