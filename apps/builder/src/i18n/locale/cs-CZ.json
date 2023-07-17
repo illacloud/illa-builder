@@ -1220,9 +1220,9 @@
           "onCellSelect": "Vybrat buňku",
           "delete": "Vymazat",
           "replay": "Odpověď",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Začít nahrávat",
+          "uploadSuccessfully": "Úspěšně nahráno",
+          "uploadFailed": "Nepodařilo se nahrát"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Zde napište text"
+        },
+        "drive_builder": {
+          "button_text": "Vybrat"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Použít ve veřejné aplikaci",
           "illa_drive_folder": "Složka ILLA Drive",
           "generate_signed_url": "Generovat podepsanou URL",
-          "expired_time": "Čas vypršení platnosti",
-          "time": "Čas (časy)",
+          "expired_time": "Vypršející typ",
+          "time": "Čas vypršení platnosti",
           "turn_on_hotlink": "Zapnout ochranu hotlink",
           "button_text": "Text tlačítka",
           "selection_type": "Typ výběru",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Min číslo souboru",
           "max_file_num": "Maximální počet souborů",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Duplikace názvu souboru",
+          "fileData": "Data souboru",
+          "downloadZIP": "Stáhnout jako ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Možnost nastavení maximální povolené velikosti souboru",
           "min_file_num": "Pro nastavení minimálního počtu povolených souborů",
           "max_file_num": "Možnost nastavit maximální počet souborů k výběru",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Chcete-li nastavit, jak nakládat s duplicitními názvy souborů. V případě zachování obojího, bude k nahranému názvu souboru přidán náhodný řetězec.",
+          "fileData": "Nastavte data souboru pomocí pole objektu, formát objektu je {\"fileName\":\"jméno\", \"FileID\":\"ID souboru\"}. Můžete použít komponentu pro výběr souborů z Drive pro výběr souborů a nastavení této hodnoty přímo přes {{filePciker1.value}}.",
+          "downloadZIP": "Chcete-li nastavit, zda stáhnout soubory jako jednu ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nikdy",
+            "never": "Persistent",
             "customer": "Vlastní"
           },
           "single_file": "Jeden soubor",
-          "multiple_files": "Více souborů"
-        },
-        "": {
+          "multiple_files": "Více souborů",
+          "anonymous_modal": {
+            "title": "Povolit veřejným uživatelům přístup k ILLA Drive?",
+            "desc": "Pokud je zapnuto, přístup ke složce této aplikace je přístupný pouze pro veřejné aplikace. Když je APP nastaven jako veřejný, všichni uživatelé mají přístup ke složce.",
+            "cancelBtn": "Zrušit",
+            "submitBtn": "Zapnout"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Nahradit",
+            "keepboth": "Zachovat obojí"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Zobrazení",
         "selects": "Vybrat vstupy",
-        "drive": "ILLA Drive"
+        "drive": "ILLA disk"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Přidáno {{operationTargetName}}",
+        "Deleted": "Smazáno {{operationTargetName}}",
+        "Updated": "Aktualizováno {{operationTargetName}}",
+        "Moved": "Přesunuto {{operationTargetName}}",
+        "Reseted": "Resetováno {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Uložit jako historii",
+      "history": "Historie",
+      "more": "Více",
       "save_keyboard": {
-        "cmds": "CMD+S",
-        "ctrls": "Ctrl+S"
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl + S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "Aktuální",
+        "manual": "Ruční",
+        "January": "Leden",
+        "February": "únor",
+        "March": "Březen",
+        "April": "duben",
+        "May": "Květen",
+        "June": "Červen",
+        "July": "červenec",
+        "August": "Srpen",
+        "September": "Září",
+        "October": "Říjen",
+        "November": "Listopad",
+        "December": "prosinec"
       },
-      "restore": "Restore this version",
+      "restore": "Obnovit tuto verzi",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "Aktuální verze aplikace se změnila"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Výběr souboru disku",
+      "modal": {
+        "files": "Soubory",
+        "confirm": "Potvrdit",
+        "cancel": "Zrušit",
+        "no_file": "Žádný soubor"
+      }
     }
   },
   "page": {
