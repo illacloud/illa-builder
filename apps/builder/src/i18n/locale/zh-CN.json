@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "在此输入文本"
+        },
+        "drive_builder": {
+          "button_text": "选择文件"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "在公开项目中使用",
           "illa_drive_folder": "ILLA Drive文件夹",
           "generate_signed_url": "生成签名URL",
-          "expired_time": "过期时间",
-          "time": "时间(s)",
+          "expired_time": "过期类型",
+          "time": "过期时间(s)",
           "turn_on_hotlink": "开启防盗链",
           "button_text": "按钮文案",
           "selection_type": "选择类型",
@@ -1707,8 +1710,9 @@
           "max_size": "最大大小",
           "min_file_num": "最小文件数量",
           "max_file_num": "最大文件大小",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "文件名称重复",
+          "fileData": "文件数据",
+          "downloadZIP": "下载为ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "设置允许选择的最大文件大小",
           "min_file_num": "设置允许选择的最少文件数量",
           "max_file_num": "设置允许选择的最大文件数量",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "设置如何处理重复的文件名。 如果同时保留两者，上传的文件名中将添加一个随机字符串。",
+          "fileData": "使用对象数组设置文件数据，对象的格式为{\"fileName\":\"名称\",\"FileID\":\"ID\"}。 您可以使用ILLA Drive文件选择器组件选择文件并直接通过 {{filePciker1.value}} 设置该值。",
+          "downloadZIP": "设置是否允许将文件下载为一个ZIP"
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "永不",
+            "never": "永久有效",
             "customer": "自定义"
           },
           "single_file": "单个文件",
-          "multiple_files": "多个文件"
-        },
-        "": {
+          "multiple_files": "多个文件",
+          "anonymous_modal": {
+            "title": "允许公开用户访问ILLA Drive？",
+            "desc": "开启后，仅这个项目的Public apps access文件夹可以访问。当项目被设置为公开是，所有用户都可以访问这个文件夹。",
+            "cancelBtn": "取消",
+            "submitBtn": "开启"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "替换",
+            "keepboth": "保留两者"
           }
         }
       },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "增加 {{operationTargetName}}",
+        "Deleted": "删除 {{operationTargetName}}",
+        "Updated": "更新 {{operationTargetName}}",
+        "Moved": "移动 {{operationTargetName}}",
+        "Reseted": "重置 {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "保存为历史记录",
+      "history": "历史记录",
+      "more": "更多",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
-        "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "current": "当前",
+        "manual": "手动保存",
+        "January": "1月",
+        "February": "2月",
+        "March": "3月",
+        "April": "4月",
+        "May": "5月",
+        "June": "6月",
+        "July": "7月",
+        "August": "8月",
+        "September": "9月",
+        "October": "10月",
+        "November": "11月",
+        "December": "12月"
       },
-      "restore": "Restore this version",
+      "restore": "恢复到该版本",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "当前应用版本已发生变更"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Drive文件选择器",
+      "modal": {
+        "files": "文件",
+        "confirm": "确认",
+        "cancel": "取消",
+        "no_file": "没有文件"
+      }
     }
   },
   "page": {
