@@ -19,7 +19,9 @@ export const SnapShotList: FC<SnapShotListProps> = (props) => {
   const { className, ...rest } = props
   const snapshotList = useSelector(getCurrentAppSnapshotList)
   const hasMore = useSelector(getSnapshotListHasMore)
-  const [selectedID, setSelectedID] = useState<string>()
+  const [selectedID, setSelectedID] = useState<string>(
+    snapshotList[0].snapshotID,
+  )
 
   return (
     <div css={snapShotListWrapperStyle} className={className} {...rest}>
