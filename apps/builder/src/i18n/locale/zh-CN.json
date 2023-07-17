@@ -1220,9 +1220,9 @@
           "onCellSelect": "选中单元格",
           "delete": "删除",
           "replay": "答复",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "开始上传",
+          "uploadSuccessfully": "上传成功",
+          "uploadFailed": "上传失败"
         },
         "image_list": {
           "title": "图片",
@@ -2389,7 +2389,8 @@
         "September": "9月",
         "October": "10月",
         "November": "11月",
-        "December": "12月"
+        "December": "12月",
+        "final_node": "没有更多历史记录"
       },
       "restore": "恢复到该版本",
       "message": {
