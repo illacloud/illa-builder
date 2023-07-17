@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Změna řádku",
           "onCellSelect": "Vybrat buňku",
           "delete": "Vymazat",
-          "replay": "Odpověď"
+          "replay": "Odpověď",
+          "startUploading": "Start uploading",
+          "uploadSuccessfully": "Uploaded successfully",
+          "uploadFailed": "Failed to upload"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1703,7 +1706,9 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min číslo souboru",
-          "max_file_num": "Maximální počet souborů"
+          "max_file_num": "Maximální počet souborů",
+          "file_name_duplicatio": "File name duplication",
+          "fileData": "File data"
         }
       },
       "setter_tooltip": {
@@ -1950,7 +1955,8 @@
           "min_size": "Možnost nastavení minimální povolené velikosti souboru",
           "max_size": "Možnost nastavení maximální povolené velikosti souboru",
           "min_file_num": "Pro nastavení minimálního počtu povolených souborů",
-          "max_file_num": "Možnost nastavit maximální počet souborů k výběru"
+          "max_file_num": "Možnost nastavit maximální počet souborů k výběru",
+          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
         }
       },
       "setter_option": {
@@ -2043,6 +2049,12 @@
           },
           "single_file": "Jeden soubor",
           "multiple_files": "Více souborů"
+        },
+        "": {
+          "file_name_duplicatio": {
+            "replace": "Replace",
+            "keepboth": "Keep both"
+          }
         }
       },
       "setter_placeholder": {
@@ -2182,7 +2194,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Zobrazení",
-        "selects": "Vybrat vstupy"
+        "selects": "Vybrat vstupy",
+        "drive": "ILLA Drive"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2349,42 @@
     },
     "general": {
       "length_limit": "Aktuální vstupní obsah je příliš dlouhý, přestali jsme automaticky počítat data, stále můžete vkládat, to neovlivní vaše použití."
+    },
+    "history": {
+      "operation": {
+        "Added": "Added {{operationTargetName}}",
+        "Deleted": "Deleted {{operationTargetName}}",
+        "Updated": "Updated {{operationTargetName}}",
+        "Moved": "Moved {{operationTargetName}}",
+        "Reseted": "Reseted {{operationTargetName}}"
+      },
+      "save": "Save as history",
+      "history": "History",
+      "more": "More",
+      "save_keyboard": {
+        "cmds": "CMD+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Current",
+        "manual": "Manual",
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December"
+      },
+      "restore": "Restore this version",
+      "message": {
+        "version_change": "The current app version has changed"
+      }
     }
   },
   "exit_preview": "Ukončit náhled",
