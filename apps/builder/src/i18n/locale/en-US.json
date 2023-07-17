@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Type text here"
+        },
+        "drive_builder": {
+          "button_text": "Select"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Use in public app",
           "illa_drive_folder": "ILLA Drive folder",
           "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time",
-          "time": "Time(s)",
+          "expired_time": "Expired type",
+          "time": "Expired time(s)",
           "turn_on_hotlink": "Turn on hotlink protect",
           "button_text": "Button text",
           "selection_type": "Selection type",
@@ -1708,7 +1711,8 @@
           "min_file_num": "Min file num",
           "max_file_num": "Max file num",
           "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "fileData": "File data",
+          "downloadZIP": "Download as a ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "To set the allowed maximum file size",
           "min_file_num": "To set the minimum number of files allowed to be selected",
           "max_file_num": "To set the maximum number of files allowed to be selected",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded.",
+          "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. You can use the Drive file picker component to select files and set this value directly through {{filePciker1.value}}.",
+          "downloadZIP": "To set whether to download the files as one ZIP. "
         }
       },
       "setter_option": {
@@ -2044,13 +2050,17 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never",
+            "never": "Persistent",
             "customer": "Custom"
           },
           "single_file": "Single file",
-          "multiple_files": "Multiple files"
-        },
-        "": {
+          "multiple_files": "Multiple files",
+          "anonymous_modal": {
+            "title": "Allow  public users to access ILLA Drive?",
+            "desc": "When turned on, only the Public apps access folder of this app can be accessed. When an APP is set as public, all users can access the folder.",
+            "cancelBtn": "Cancel",
+            "submitBtn": "Turn on"
+          },
           "file_name_duplicatio": {
             "replace": "Replace",
             "keepboth": "Keep both"
@@ -2362,7 +2372,7 @@
       "history": "History",
       "more": "More",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Drive file picker",
+      "modal": {
+        "files": "Files",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "no_file": "No file"
+      }
     }
   },
   "page": {
