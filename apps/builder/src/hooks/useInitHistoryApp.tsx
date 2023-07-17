@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { updateCurrentAppInfo } from "@/hooks/useInitApp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { IllaMode } from "@/redux/config/configState"
@@ -25,8 +24,6 @@ export const useInitHistoryApp = (mode: IllaMode = "history") => {
     uid: teamInfo?.uid ?? "",
     teamID: teamInfo?.id ?? "",
   }
-
-  useDestroyApp()
 
   const handleCurrentApp = useCallback(
     (data: CurrentAppResp) => {
