@@ -1220,9 +1220,9 @@
           "onCellSelect": "Seleccione una celda",
           "delete": "Eliminar",
           "replay": "Responder",
-          "startUploading": "Start uploading",
-          "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "startUploading": "Empezar a subir",
+          "uploadSuccessfully": "Subido con éxito",
+          "uploadFailed": "Error al subir"
         },
         "image_list": {
           "title": "Imágenes",
@@ -1294,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Escribe el texto aquí"
+        },
+        "drive_builder": {
+          "button_text": "Seleccionar"
         }
       },
       "setter_group": {
@@ -1696,8 +1699,8 @@
           "allow_public_use": "Usar en aplicación pública",
           "illa_drive_folder": "Carpeta de unidad ILLA",
           "generate_signed_url": "Generar URL firmada",
-          "expired_time": "Tiempo vencido",
-          "time": "Hora(s)",
+          "expired_time": "Tipo caducado",
+          "time": "Caducó la(s) vece(s)",
           "turn_on_hotlink": "Activar protección de hotlink",
           "button_text": "Texto del botón",
           "selection_type": "Tipo de selección",
@@ -1707,8 +1710,9 @@
           "max_size": "Max size",
           "min_file_num": "Mínimo número de archivo",
           "max_file_num": "Número máximo de archivo",
-          "file_name_duplicatio": "File name duplication",
-          "fileData": "File data"
+          "file_name_duplicatio": "Duplicación de nombre de archivo",
+          "fileData": "Datos de archivo",
+          "downloadZIP": "Descargar como ZIP"
         }
       },
       "setter_tooltip": {
@@ -1956,7 +1960,9 @@
           "max_size": "Para establecer el tamaño máximo de archivo permitido",
           "min_file_num": "Para establecer el número mínimo de archivos permitidos para ser seleccionados",
           "max_file_num": "Para establecer el número máximo de archivos permitidos para ser seleccionados",
-          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded later."
+          "file_name_duplicatio": "Para configurar cómo manejar nombres de archivo duplicados. En el caso de mantener ambos, se añadirá una cadena aleatoria al nombre del archivo subido.",
+          "fileData": "Establece los datos de archivo usando una matriz de objetos, el formato del objeto es {\"fileName\":\"el nombre\", \"FileID\":\"ID\"}. Puede utilizar el componente selector de archivos de Drive para seleccionar archivos y establecer este valor directamente a través de {{filePciker1.value}}.",
+          "downloadZIP": "Para establecer si descargar o no los archivos como un ZIP. "
         }
       },
       "setter_option": {
@@ -2044,16 +2050,20 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nunca",
+            "never": "Persistent",
             "customer": "Personalizado"
           },
           "single_file": "Archivo único",
-          "multiple_files": "Varios archivos"
-        },
-        "": {
+          "multiple_files": "Varios archivos",
+          "anonymous_modal": {
+            "title": "¿Permitir a los usuarios públicos acceder a ILLA Drive?",
+            "desc": "Cuando está activado, sólo se puede acceder a la carpeta de aplicaciones públicas. Cuando una APP se establece como pública, todos los usuarios pueden acceder a la carpeta.",
+            "cancelBtn": "Cancelar",
+            "submitBtn": "Encender"
+          },
           "file_name_duplicatio": {
-            "replace": "Replace",
-            "keepboth": "Keep both"
+            "replace": "Reemplazar",
+            "keepboth": "Mantener ambos"
           }
         }
       },
@@ -2195,7 +2205,7 @@
         "navigation": "Navigation",
         "presentation": "Presentación",
         "selects": "Seleccionar entradas",
-        "drive": "ILLA Drive"
+        "drive": "Unidad ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2352,38 +2362,38 @@
     },
     "history": {
       "operation": {
-        "Added": "Added {{operationTargetName}}",
-        "Deleted": "Deleted {{operationTargetName}}",
-        "Updated": "Updated {{operationTargetName}}",
-        "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Added": "Añadido {{operationTargetName}}",
+        "Deleted": "Eliminado {{operationTargetName}}",
+        "Updated": "Actualizado {{operationTargetName}}",
+        "Moved": "Mover {{operationTargetName}}",
+        "Reseted": "Reiniciado {{operationTargetName}}"
       },
-      "save": "Save as history",
-      "history": "History",
-      "more": "More",
+      "save": "Guardar como historial",
+      "history": "Historial",
+      "more": "Más",
       "save_keyboard": {
-        "cmds": "CMD+S",
+        "cmds": "Cmd+S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
-        "current": "Current",
+        "current": "Actual",
         "manual": "Manual",
-        "January": "January",
-        "February": "February",
-        "March": "March",
-        "April": "April",
-        "May": "May",
-        "June": "June",
-        "July": "July",
-        "August": "August",
-        "September": "September",
-        "October": "October",
-        "November": "November",
-        "December": "December"
+        "January": "Enero",
+        "February": "Febrero",
+        "March": "Marzo",
+        "April": "Abril",
+        "May": "Mayo",
+        "June": "Junio",
+        "July": "Julio",
+        "August": "Agosto",
+        "September": "Septiembre",
+        "October": "Octubre",
+        "November": "Noviembre",
+        "December": "Diciembre"
       },
-      "restore": "Restore this version",
+      "restore": "Restaurar esta versión",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "La versión actual de la aplicación ha cambiado"
       }
     }
   },
@@ -2784,6 +2794,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Selector de archivos de unidad",
+      "modal": {
+        "files": "Archivos",
+        "confirm": "Confirmar",
+        "cancel": "Cancelar",
+        "no_file": "Ningún archivo"
+      }
     }
   },
   "page": {
