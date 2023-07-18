@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Duplicación de nombre de archivo",
           "fileData": "Datos de archivo",
           "downloadZIP": "Descargar como ZIP"
-        }
+        },
+        "download_from_drive": "Descargar de ILLA Drive",
+        "save_to_drive": "Guardar en ILLA Drive"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -2123,8 +2125,10 @@
           "min_files": "Por favor, seleccione al menos archivos {{min}}",
           "max_files": "Por favor, seleccione como máximo archivos {{max}}"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Subido con éxito",
+        "uploadfail": "Error al subir",
+        "noStorage": "Error al subir debido a que no hay suficiente almacenamiento.",
+        "noTraffic": "No se pudo descargar debido a que no hay suficiente tráfico."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Selector de archivos de unidad",
       "modal": {
         "files": "Archivos",
-        "confirm": "Confirmar",
+        "confirm": "Confirmar ( archivos{{fileNum}})",
         "cancel": "Cancelar",
         "no_file": "Ningún archivo"
       }
