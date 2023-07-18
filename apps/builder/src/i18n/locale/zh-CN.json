@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "文件名称重复",
           "fileData": "文件数据",
           "downloadZIP": "下载为ZIP"
-        }
+        },
+        "download_from_drive": "从ILLA Drive下载",
+        "save_to_drive": "保存到ILLA Drive"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -2124,7 +2126,9 @@
           "max_files": "请最多选择{{max}}个文件"
         },
         "uploadsuc": "上传成功",
-        "uploadfail": "上传失败"
+        "uploadfail": "上传失败",
+        "noStorage": "存储空间不足，上传失败",
+        "noTraffic": "流量不足，下载失败"
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Drive文件选择器",
       "modal": {
         "files": "文件",
-        "confirm": "确认",
+        "confirm": "确认({{fileNum}}个文件)",
         "cancel": "取消",
         "no_file": "没有文件"
       }
