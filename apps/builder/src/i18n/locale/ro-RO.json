@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Duplicare nume fișier",
           "fileData": "Date fișier",
           "downloadZIP": "Descarcă ca ZIP"
-        }
+        },
+        "download_from_drive": "Descarcă de pe ILLA Drive",
+        "save_to_drive": "Salvează în unitatea ILLA"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -2123,8 +2125,10 @@
           "min_files": "Vă rugăm să selectaţi cel puţin {{min}} fişiere",
           "max_files": "Vă rugăm să selectaţi cel mult {{max}} fişiere"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Încărcat cu succes",
+        "uploadfail": "Încărcarea a eșuat",
+        "noStorage": "Încărcarea a eșuat din cauza stocării insuficiente.",
+        "noTraffic": "Descărcarea a eșuat din cauza traficului insuficient."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Selector fișier unitate",
       "modal": {
         "files": "Fișiere",
-        "confirm": "Confirmare",
+        "confirm": "Confirmă ({{fileNum}} fișiere)",
         "cancel": "Anulează",
         "no_file": "Nici un fişier"
       }
