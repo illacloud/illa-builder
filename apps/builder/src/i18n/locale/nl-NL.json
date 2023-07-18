@@ -2122,7 +2122,9 @@
           "max_size": "Selecteer een bestand met een grootte kleiner dan {{max}}",
           "min_files": "Selecteer ten minste {{min}} bestanden",
           "max_files": "Selecteer maximaal {{max}} bestanden"
-        }
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload"
       },
       "setter_description": {
         "code": {
