@@ -2122,7 +2122,9 @@
           "max_size": "Vyberte soubor o velikosti menší než {{max}}",
           "min_files": "Vyberte alespoň {{min}} soubory",
           "max_files": "Vyberte prosím nanejvýš {{max}} soubory"
-        }
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload"
       },
       "setter_description": {
         "code": {
