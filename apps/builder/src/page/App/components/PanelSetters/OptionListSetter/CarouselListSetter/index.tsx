@@ -41,7 +41,7 @@ const CarouselListSetter: FC<CarouselListSetterProps> = (props) => {
   }, [attrName, executionResult, widgetDisplayName])
 
   const allViewsKeys = useMemo(() => {
-    return allViews.map((view) => view?.value || "")
+    return allViews.map((view) => view?.id || "")
   }, [allViews])
 
   const handleAddOption = useCallback(() => {
