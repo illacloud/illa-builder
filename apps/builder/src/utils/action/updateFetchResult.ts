@@ -1,7 +1,6 @@
 import { Transformer } from "@/redux/currentApp/action/actionState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
-import { actionDisplayNameMapFetchResult } from "./runAction"
 import { runTransformer } from "./runActionTransformer"
 
 export const updateFetchResultDisplayName = (
@@ -10,7 +9,6 @@ export const updateFetchResultDisplayName = (
   transformer: Transformer,
 ) => {
   let transltedData = runTransformer(transformer, rawData?.data ?? "")
-  actionDisplayNameMapFetchResult[displayName] = transltedData
   store.dispatch(
     executionActions.updateExecutionByDisplayNameReducer({
       displayName: displayName,

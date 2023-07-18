@@ -37,8 +37,6 @@ import { runAllEventHandler } from "./runActionEventHandler"
 import { transResponse } from "./transResponse"
 import { updateFetchResultDisplayName } from "./updateFetchResult"
 
-export const actionDisplayNameMapFetchResult: Record<string, any> = {}
-
 const message = createMessage()
 
 const checkCanSendRequest = (
