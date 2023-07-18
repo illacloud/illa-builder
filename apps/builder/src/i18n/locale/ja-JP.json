@@ -2122,7 +2122,9 @@
           "max_size": "{{max}}より小さいサイズのファイルを選択してください",
           "min_files": "少なくとも {{min}} ファイルを選択してください",
           "max_files": "最大 {{max}} ファイルを選択してください"
-        }
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload"
       },
       "setter_description": {
         "code": {
