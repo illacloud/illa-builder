@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Дублювання імені файлу",
           "fileData": "Дані файлу",
           "downloadZIP": "Завантажити ZIP"
-        }
+        },
+        "download_from_drive": "Завантажити з ILLA-диска",
+        "save_to_drive": "Зберегти на диск"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -2123,8 +2125,10 @@
           "min_files": "Please select at least {{min}} files",
           "max_files": "Please select at most {{max}} files"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Завантажено успішно",
+        "uploadfail": "Не завантажено",
+        "noStorage": "Не вдалося завантажити, через недостатньо пам’яті.",
+        "noTraffic": "Не вдалося завантажити через недостатню кількість трафіку."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Вибір файлу диску",
       "modal": {
         "files": "Файли",
-        "confirm": "Підтвердити",
+        "confirm": "Підтвердження ({{fileNum}} файлів)",
         "cancel": "Скасувати",
         "no_file": "Немає файлу"
       }
