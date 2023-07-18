@@ -2122,7 +2122,9 @@
           "max_size": "Valitse tiedosto, jonka koko on pienempi kuin {{max}}",
           "min_files": "Please select at least {{min}} files",
           "max_files": "Please select at most {{max}} files"
-        }
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload"
       },
       "setter_description": {
         "code": {
