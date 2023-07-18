@@ -522,7 +522,9 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                 "displayName",
                 `list-child-${index}-${currentItem.displayName}`,
               )
-              set(currentItem, "props.disabled", disabled || false)
+              if (disabled != undefined) {
+                set(currentItem, "props.disabled", disabled)
+              }
             }
             return currentItem
           })
