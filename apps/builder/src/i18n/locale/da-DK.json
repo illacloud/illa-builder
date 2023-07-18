@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Fil navn duplikering",
           "fileData": "Fil data",
           "downloadZIP": "Download som et postnummer"
-        }
+        },
+        "download_from_drive": "Download fra ILLA drev",
+        "save_to_drive": "Gem til ILLA drev"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -2123,8 +2125,10 @@
           "min_files": "Vælg mindst {{min}} filer",
           "max_files": "Vælg højst {{max}} filer"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Uploadet succesfuldt",
+        "uploadfail": "Upload mislykkedes",
+        "noStorage": "Mislykkedes at uploade på grund af ikke nok lager.",
+        "noTraffic": "Download mislykkedes på grund af ikke nok trafik."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Drev filvælger",
       "modal": {
         "files": "Filer",
-        "confirm": "Bekræft",
+        "confirm": "Bekræft({{fileNum}} filer)",
         "cancel": "Annuller",
         "no_file": "Ingen fil"
       }
