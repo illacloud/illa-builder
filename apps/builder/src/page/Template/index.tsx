@@ -6,6 +6,7 @@ import { Button, useMessage } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
+import { Iframe } from "@/components/Iframe"
 import { getTemplateConfig } from "@/config/template"
 import { TemplateName } from "@/config/template/interface"
 import {
@@ -114,7 +115,7 @@ const Template: FC = () => {
         </div>
         <div />
       </div>
-      <iframe css={frameStyle} src={example} />
+      <Iframe css={frameStyle} src={example} />
     </div>
   )
 }

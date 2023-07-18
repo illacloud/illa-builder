@@ -95,6 +95,10 @@ export const getIsILLAGuideMode = (state: RootState) => {
   return state.config.mode === "template-edit"
 }
 
+export const getIsILLAHistoryMode = (state: RootState) => {
+  return state.config.mode === "history"
+}
+
 export const getIsILLAPreviewMode = (state: RootState) => {
   return state.config.mode === "preview"
 }

@@ -21,6 +21,12 @@ export const cloudRouter: RoutesObjectPro[] = [
     element: lazyLoad(lazy(() => import("@/page/Dashboard"))),
     children: publicDashboardChildrenRouter,
   },
+  {
+    path: "/:teamIdentifier/appHistory/:appId",
+    element: lazyLoad(lazy(() => import("@/page/History"))),
+    needLogin: true,
+    errorElement: lazyLoad(lazy(() => import("@/page/status/404"))),
+  },
   ...publicTeamChildrenRouter,
   ...publicRouterConfig,
 ]

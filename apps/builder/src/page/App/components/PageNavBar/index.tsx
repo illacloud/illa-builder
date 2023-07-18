@@ -60,6 +60,7 @@ import {
   forkCurrentApp,
   updateWaterMarkConfig,
 } from "@/services/apps"
+import { takeSnapShot } from "@/services/history"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
@@ -265,6 +266,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }
 
+  const handleOpenHistory = useCallback(() => {
+    dispatch(configActions.updateIllaMode("history"))
+  }, [dispatch])
+
+  const handleSaveCurrentAppVersion = useCallback(() => {
+    if (appId) {
+      takeSnapShot(appId)
+    }
+  }, [appId])
+
   const handleWaterMarkChange = useCallback(
     async (value: boolean, event: MouseEvent) => {
       if (appId) {
@@ -357,26 +368,43 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                       onClick={handleDuplicateApp}
                     />
                     {isCloudVersion && (
-                      <DropListItem
-                        key="configWaterMark"
-                        value="configWaterMark"
-                        title={
-                          <span css={upgradeStyle}>
-                            {t("billing.advanced.feature")}
-                            {canUseBillingFeature ? (
-                              <Switch
-                                checked={!waterMark}
-                                onChange={handleWaterMarkChange}
-                              />
-                            ) : (
-                              <Tag colorScheme="techPurple">
-                                <UpgradeIcon /> {t("billing.homepage.upgrade")}
-                              </Tag>
-                            )}
-                          </span>
-                        }
-                        onClick={handleUpgradeModal}
-                      />
+                      <>
+                        <DropListItem
+                          key="history"
+                          value="history"
+                          title={t("editor.history.history")}
+                          onClick={handleOpenHistory}
+                        />
+                        {canUseBillingFeature && (
+                          <DropListItem
+                            key="saveHistory"
+                            value="saveHistory"
+                            title={t("editor.history.save")}
+                            onClick={handleSaveCurrentAppVersion}
+                          />
+                        )}
+                        <DropListItem
+                          key="configWaterMark"
+                          value="configWaterMark"
+                          title={
+                            <span css={upgradeStyle}>
+                              {t("billing.advanced.feature")}
+                              {canUseBillingFeature ? (
+                                <Switch
+                                  checked={!waterMark}
+                                  onChange={handleWaterMarkChange}
+                                />
+                              ) : (
+                                <Tag colorScheme="techPurple">
+                                  <UpgradeIcon />{" "}
+                                  {t("billing.homepage.upgrade")}
+                                </Tag>
+                              )}
+                            </span>
+                          }
+                          onClick={handleUpgradeModal}
+                        />
+                      </>
                     )}
                   </DropList>
                 }
