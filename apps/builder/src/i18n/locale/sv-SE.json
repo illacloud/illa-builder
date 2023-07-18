@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Filnamn duplicering",
           "fileData": "Fil data",
           "downloadZIP": "Ladda ner som ZIP"
-        }
+        },
+        "download_from_drive": "Ladda ner från ILLA Drive",
+        "save_to_drive": "Spara till ILLA Drive"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -2123,8 +2125,10 @@
           "min_files": "Välj minst {{min}} filer",
           "max_files": "Välj som mest {{max}} filer"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Uppladdningen lyckades",
+        "uploadfail": "Det gick inte att ladda upp",
+        "noStorage": "Det gick inte att ladda upp på grund av otillräckligt med lagringsutrymme.",
+        "noTraffic": "Det gick inte att ladda ner på grund av inte tillräckligt med trafik."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Kör filväljare",
       "modal": {
         "files": "Filer",
-        "confirm": "Bekräfta",
+        "confirm": "Bekräfta({{fileNum}} filer)",
         "cancel": "Avbryt",
         "no_file": "Ingen fil"
       }
