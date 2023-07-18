@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Duplisering av filnavnet",
           "fileData": "Fil data",
           "downloadZIP": "Last ned som ZIP"
-        }
+        },
+        "download_from_drive": "Last ned fra ILLA-stasjon",
+        "save_to_drive": "Lagre til ILLA-stasjon"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -2123,8 +2125,10 @@
           "min_files": "Velg minst {{min}} filer",
           "max_files": "Velg maksimalt {{max}} filer"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Opplasting var vellykket",
+        "uploadfail": "Kan ikke laste opp",
+        "noStorage": "Kan ikke laste opp på grunn av ikke tilstrekkelig lagring.",
+        "noTraffic": "Kan ikke laste ned på grunn av ikke tilstrekkelig trafikk."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Drive fil velger",
       "modal": {
         "files": "Filer",
-        "confirm": "Bekreft",
+        "confirm": "Bekreftelses({{fileNum}} filer)",
         "cancel": "Avbryt",
         "no_file": "Ingen fil"
       }
