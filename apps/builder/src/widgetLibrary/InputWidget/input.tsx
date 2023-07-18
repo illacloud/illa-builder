@@ -20,9 +20,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
       placeholder,
       disabled,
       readOnly,
-      prefixIcon,
       prefixText,
-      suffixIcon,
       suffixText,
       showCharacterCount,
       colorScheme,
@@ -45,9 +43,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
             placeholder={placeholder}
             disabled={disabled}
             readOnly={readOnly}
-            prefix={prefixIcon}
             addBefore={prefixText}
-            suffix={suffixIcon}
             addAfter={suffixText}
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
@@ -70,7 +66,6 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
             placeholder={placeholder}
             disabled={disabled}
             readOnly={readOnly}
-            prefix={prefixIcon}
             addBefore={prefixText}
             addAfter={suffixText}
             onFocus={handleOnFocus}
@@ -92,7 +87,6 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
             placeholder={placeholder}
             disabled={disabled}
             readOnly={readOnly}
-            prefix={prefixIcon}
             addBefore={prefixText}
             addAfter={suffixText}
             onFocus={handleOnFocus}

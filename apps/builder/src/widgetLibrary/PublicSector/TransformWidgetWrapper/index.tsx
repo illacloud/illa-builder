@@ -54,6 +54,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       () => displayNameMapProps[displayName] ?? {},
       [displayName, displayNameMapProps],
     )
+
     const dispatch = useDispatch()
 
     const containerListMapChildName = useSelector(
@@ -75,11 +76,14 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           break
         }
       }
-      if (!currentListDisplayName) return realProps?.disabled || false
+      if (!currentListDisplayName) return realProps?.disabled
       const listWidgetProps = displayNameMapProps[currentListDisplayName]
-      if (Object.hasOwn(listWidgetProps, "disabled"))
+      if (
+        Object.hasOwn(listWidgetProps, "disabled") &&
+        listWidgetProps.disabled != undefined
+      )
         return listWidgetProps.disabled
-      return realProps?.disabled || false
+      return realProps?.disabled
     }, [
       containerListMapChildName,
       displayName,
