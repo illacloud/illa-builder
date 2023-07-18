@@ -239,6 +239,9 @@ importers:
       events:
         specifier: ^3.3.0
         version: 3.3.0
+      fflate:
+        specifier: ^0.8.0
+        version: 0.8.0
       fnv-plus:
         specifier: ^1.3.1
         version: 1.3.1
@@ -322,7 +325,7 @@ importers:
         version: 2.11.2(react@18.2.0)
       react-redux:
         specifier: ^8.1.1
-        version: 8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+        version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       react-rnd:
         specifier: ^10.3.7
         version: 10.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -356,6 +359,9 @@ importers:
       remark-gfm:
         specifier: ^3.0.1
         version: 3.0.1
+      streamsaver:
+        specifier: ^2.0.6
+        version: 2.0.6
       stylis:
         specifier: ^4.1.3
         version: 4.1.3
@@ -438,6 +444,9 @@ importers:
       '@types/redux-logger':
         specifier: ^3.0.9
         version: 3.0.9
+      '@types/streamsaver':
+        specifier: ^2.0.1
+        version: 2.0.1
       '@types/stylis':
         specifier: ^4.0.2
         version: 4.0.2
@@ -467,7 +476,7 @@ importers:
         version: 5.9.0(rollup@3.26.0)
       vite-plugin-checker:
         specifier: ^0.6.1
-        version: 0.6.1(vite@4.4.2)
+        version: 0.6.1(eslint@8.33.0)(typescript@5.0.4)(vite@4.4.2)
       vite-plugin-svgr:
         specifier: ^2.1.0
         version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
@@ -4002,7 +4011,7 @@ packages:
     dependencies:
       immer: 9.0.21
       react: 18.2.0
-      react-redux: 8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      react-redux: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       redux: 4.2.1
       redux-thunk: 2.4.2(redux@4.2.1)
       reselect: 4.1.8
@@ -4741,7 +4750,6 @@ packages:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
     dependencies:
       '@types/react': 18.0.27
-    dev: true
 
   /@types/react-pdf@6.2.0:
     resolution: {integrity: sha512-OSCYmrfaJvpXkM5V4seUMAhUDOAOqbGQf9kwv14INyTf7AjDs2ukfkkQrLWRQ8OjWrDklbXYWh5l7pT7l0N76g==}
@@ -4798,6 +4806,10 @@ packages:
 
   /@types/semver@7.3.13:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
+    dev: true
+
+  /@types/streamsaver@2.0.1:
+    resolution: {integrity: sha512-I49NtT8w6syBI3Zg3ixCyygTHoTVMY0z2TMRcTgccdIsVd2MwlKk7ITLHLsJtgchUHcOd7QEARG9h0ifcA6l2Q==}
     dev: true
 
   /@types/stylis@4.0.2:
@@ -7284,6 +7296,10 @@ packages:
     dependencies:
       reusify: 1.0.4
     dev: true
+
+  /fflate@0.8.0:
+    resolution: {integrity: sha512-FAdS4qMuFjsJj6XHbBaZeXOgaypXp8iw/Tpyuq/w3XA41jjLHT8NPA+n7czH/DDhdncq0nAyDZmPeWXh2qmdIg==}
+    dev: false
 
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -10260,7 +10276,7 @@ packages:
       react-fast-compare: 3.2.0
     dev: false
 
-  /react-redux@8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
+  /react-redux@8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
     resolution: {integrity: sha512-5W0QaKtEhj+3bC0Nj0NkqkhIv8gLADH/2kYFMTHxCVqQILiWzLv6MaLuV5wJU3BQEdHKzTfcvPN0WMS6SC1oyA==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -10284,6 +10300,7 @@ packages:
       '@babel/runtime': 7.22.5
       '@types/hoist-non-react-statics': 3.3.1
       '@types/react': 18.2.14
+      '@types/react-dom': 18.0.10
       '@types/use-sync-external-store': 0.0.3
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
@@ -11138,6 +11155,10 @@ packages:
       mixme: 0.5.5
     dev: true
 
+  /streamsaver@2.0.6:
+    resolution: {integrity: sha512-LK4e7TfCV8HzuM0PKXuVUfKyCB1FtT9L0EGxsFk5Up8njj0bXK8pJM9+Wq2Nya7/jslmCQwRK39LFm55h7NBTw==}
+    dev: false
+
   /string-argv@0.3.1:
     resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}
     engines: {node: '>=0.6.19'}
@@ -11949,7 +11970,7 @@ packages:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  /vite-plugin-checker@0.6.1(vite@4.4.2):
+  /vite-plugin-checker@0.6.1(eslint@8.33.0)(typescript@5.0.4)(vite@4.4.2):
     resolution: {integrity: sha512-4fAiu3W/IwRJuJkkUZlWbLunSzsvijDf0eDN6g/MGh6BUK4SMclOTGbLJCPvdAcMOQvVmm8JyJeYLYd4//8CkA==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -11985,6 +12006,7 @@ packages:
       chalk: 4.1.2
       chokidar: 3.5.3
       commander: 8.3.0
+      eslint: 8.33.0
       fast-glob: 3.2.12
       fs-extra: 11.1.0
       lodash.debounce: 4.0.8
@@ -11993,6 +12015,7 @@ packages:
       semver: 7.5.4
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.1
+      typescript: 5.0.4
       vite: 4.4.2(@types/node@18.14.5)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0

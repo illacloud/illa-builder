@@ -24,9 +24,15 @@ export const ReplyTo: FC<{
       </div>
       <div css={replyContent}>
         <span style={{ fontWeight: 500 }}>{senderName}:&nbsp;</span>
-        {messageType === "audio" && <span>{t('editor.inspect.widget.reply_audio')}</span>}
-        {messageType === "image" && <span>{t('editor.inspect.widget.reply_image')}</span>}
-        {messageType === "video" && <span>{t('editor.inspect.widget.reply_video')}</span>}
+        {messageType === "audio" && (
+          <span>{t("editor.inspect.widget.reply_audio")}</span>
+        )}
+        {messageType === "image" && (
+          <span>{t("editor.inspect.widget.reply_image")}</span>
+        )}
+        {messageType === "video" && (
+          <span>{t("editor.inspect.widget.reply_video")}</span>
+        )}
         {messageType === "text" && <span>{message}</span>}
       </div>
     </div>

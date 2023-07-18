@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useBeforeUnload, useParams } from "react-router-dom"
 import { TriggerProvider, WarningCircleIcon } from "@illa-design/react"
-import { Connection } from "@/api/ws"
+import { Connection, fixedWsURL } from "@/api/ws"
 import {
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
@@ -41,6 +41,7 @@ import { setupComponentsListeners } from "@/redux/currentApp/editor/components/c
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchAppBinaryWsUrl, fetchAppTextWsUrl } from "@/services/public"
 import { startAppListening } from "@/store"
 import {
   track,
@@ -93,11 +94,24 @@ export const Editor: FC = () => {
     }
   }
   useEffect(() => {
-    if (currentUser != null && currentUser.userId != "") {
-      Connection.enterRoom("app", appId ?? "")
+    const abortController = new AbortController()
+    if (currentUser != null && currentUser.userId != "" && appId) {
+      Promise.all([
+        fetchAppTextWsUrl(appId, abortController.signal),
+        fetchAppBinaryWsUrl(appId, abortController.signal),
+      ])
+        .then((res) => {
+          Connection.enterAppRoom(
+            fixedWsURL(res[0].data.wsURL),
+            fixedWsURL(res[1].data.wsURL),
+            appId as string,
+          )
+        })
+        .catch(() => {})
       window.addEventListener("beforeunload", handleLeaveRoom)
     }
     return () => {
+      abortController.abort()
       handleLeaveRoom()
       dispatch(
         collaboratorsActions.setInRoomUsers({

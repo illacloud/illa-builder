@@ -9,7 +9,7 @@ import {
   getCurrentMemberList,
   getCurrentTeamInfo,
 } from "@/redux/team/teamSelector"
-import { getBuilderDesc } from "@/services/public"
+import { fetchBuilderDesc } from "@/services/public"
 import {
   changeTeamMembersRole,
   fetchInviteLink,
@@ -65,7 +65,7 @@ export const Member: FC<MemberProps> = () => {
   )
 
   const getBuilderInfo = useCallback(async () => {
-    const res = await getBuilderDesc()
+    const res = await fetchBuilderDesc()
     if (res.data) {
       const { appNum, resourceNum } = res.data
       setHasAppOrResource(appNum > 0 || resourceNum > 0)
