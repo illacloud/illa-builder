@@ -12,5 +12,3 @@ export interface DynamicSwitchProps extends BaseSetter, PanelLabelProps {
   value?: string | boolean
   expectedType: VALIDATION_TYPES
 }
-
-export interface DriveWithStatusSwitchSetterProps extends BaseSwitchProps {}

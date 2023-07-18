@@ -10,7 +10,7 @@ import {
 import { FileListProps } from "./interface"
 import { fileNameStyle, iconPublicStyle, listItemContainerStyle } from "./style"
 
-export const FolderList: FC<FileListProps> = (props) => {
+export const FileList: FC<FileListProps> = (props) => {
   const {
     listData,
     totalPath,
@@ -38,7 +38,7 @@ export const FolderList: FC<FileListProps> = (props) => {
       e.currentTarget.scrollHeight - e.currentTarget.scrollTop ===
       FOLDER_LIST_CONTAINER_HEIGHT
     ) {
-      getFileList(++currentPageIndexRef.current, totalPath, search)
+      getFileList(++currentPageIndexRef.current, totalPath, search?.current)
     }
   }
   return (

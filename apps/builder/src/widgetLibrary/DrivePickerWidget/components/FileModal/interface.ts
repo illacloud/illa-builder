@@ -1,3 +1,4 @@
+import { MutableRefObject } from "react"
 import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@/services/drive"
 
 interface ObjectInfo {
@@ -16,7 +17,7 @@ export interface FilesModalProps {
 export interface FileListProps {
   listData: IILLAFileInfo[]
   totalPath: string
-  search?: string
+  search?: MutableRefObject<string>
   selectItems: FileToPanel[]
   getFileList: (currentPage: number, totalPath: string, search?: string) => void
   updatePath: (changedPath: string) => void

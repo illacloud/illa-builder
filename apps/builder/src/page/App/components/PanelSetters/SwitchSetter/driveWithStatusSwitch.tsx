@@ -10,11 +10,9 @@ import {
   fetchOpenAnonymousPermission,
 } from "@/services/drive"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { DriveWithStatusSwitchSetterProps } from "./interface"
+import { BaseSwitchProps } from "./interface"
 
-const DriveWithStatusSwitchSetter: FC<DriveWithStatusSwitchSetterProps> = (
-  props,
-) => {
+const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
   const { value, attrName, handleUpdateDsl, widgetType } = props
   const anonymousPermission = useRef<boolean>(true)
   const modal = useModal()
@@ -74,7 +72,6 @@ const DriveWithStatusSwitchSetter: FC<DriveWithStatusSwitchSetterProps> = (
       try {
         const res = await fetchAnonymousPermission()
         anonymousPermission.current = res.data?.anonymous
-        // handleUpdateDsl(attrName, anonymousPermission.current)
       } catch (e) {}
     }
     request()
@@ -91,5 +88,5 @@ const DriveWithStatusSwitchSetter: FC<DriveWithStatusSwitchSetterProps> = (
   )
 }
 
-DriveWithStatusSwitchSetter.displayName = "BaseSwitchSetter"
+DriveWithStatusSwitchSetter.displayName = "DriveWithStatusSwitchSetter"
 export default DriveWithStatusSwitchSetter

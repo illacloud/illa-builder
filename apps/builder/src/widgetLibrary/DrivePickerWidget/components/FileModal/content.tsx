@@ -5,6 +5,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react"
 import { useTranslation } from "react-i18next"
@@ -20,7 +21,7 @@ import {
 } from "./constants"
 import { EmptyState } from "./empty"
 import { FileToPanel } from "./interface"
-import { FolderList } from "./list"
+import { FileList } from "./list"
 import { LoadingState } from "./loadingState"
 import {
   applyInnerFileListContainerStyle,
@@ -47,7 +48,7 @@ export const FilesModalContent: FC = () => {
   const { t } = useTranslation()
 
   const [isConfirmLoading, setConfirmLoading] = useState(false)
-  const [search, setSearch] = useState("")
+  const searchRef = useRef("")
   const [selectItems, setSelectItems] = useState<FileToPanel[]>([])
   const [disabled, setDisabled] = useState(true)
   const [loading, setLoading] = useState(true)
@@ -129,12 +130,6 @@ export const FilesModalContent: FC = () => {
     setModalVisible(false)
   }, [setModalVisible])
 
-  const debounceHandleOnSearch = useMemo(() => {
-    return debounce((value: string) => {
-      setSearch(value)
-    }, 500)
-  }, [])
-
   const handleClickOk = useCallback(async () => {
     if (!validateFileNum()) {
       return
@@ -156,9 +151,15 @@ export const FilesModalContent: FC = () => {
     [getFileList],
   )
 
+  const debounceHandleOnSearch = useMemo(() => {
+    return debounce((value: string) => {
+      getListDate(1, totalPath, value)
+    }, 500)
+  }, [getListDate, totalPath])
+
   useEffect(() => {
-    modalVisible && getListDate(1, totalPath, search)
-  }, [getListDate, modalVisible, search, totalPath])
+    modalVisible && getListDate(1, totalPath)
+  }, [getListDate, modalVisible, totalPath])
 
   useEffect(() => {
     modalVisible && setSelectItems([])
@@ -173,13 +174,13 @@ export const FilesModalContent: FC = () => {
       <div css={fileListContainerStyle}>
         <div css={applyInnerFileListContainerStyle(loading)}>
           {fileList.length > 0 ? (
-            <FolderList
+            <FileList
               onChange={handleChange}
               listData={fileList}
               key={totalPath}
               totalPath={totalPath}
               getFileList={getListDate}
-              search={search}
+              search={searchRef}
               updatePath={updatePath}
               selectItems={selectItems}
             />
