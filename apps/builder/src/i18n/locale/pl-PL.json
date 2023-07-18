@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Powielanie nazwy pliku",
           "fileData": "Dane pliku",
           "downloadZIP": "Pobierz jako ZIP"
-        }
+        },
+        "download_from_drive": "Pobierz z Dysku ILLA",
+        "save_to_drive": "Zapisz na dysku ILLA"
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -2123,8 +2125,10 @@
           "min_files": "Wybierz co najmniej pliki {{min}}",
           "max_files": "Proszę wybrać co najwyżej plik {{max}}"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Przesłano pomyślnie",
+        "uploadfail": "Nie udało się przesłać",
+        "noStorage": "Nie udało się przesłać z powodu niewystarczającej ilości pamięci.",
+        "noTraffic": "Nie udało się pobrać z powodu niewystarczającej ilości ruchu."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Selektor plików dysku",
       "modal": {
         "files": "Pliki",
-        "confirm": "Potwierdź",
+        "confirm": "Potwierdź (pliki{{fileNum}})",
         "cancel": "Anuluj",
         "no_file": "Brak pliku"
       }
