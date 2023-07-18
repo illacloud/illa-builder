@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Bestandsnaam duplicatie",
           "fileData": "Bestand gegevens",
           "downloadZIP": "Downloaden als ZIP"
-        }
+        },
+        "download_from_drive": "Downloaden van ILLA Drive",
+        "save_to_drive": "Opslaan op ILLA Drive"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -2123,8 +2125,10 @@
           "min_files": "Selecteer ten minste {{min}} bestanden",
           "max_files": "Selecteer maximaal {{max}} bestanden"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Succesvol geüpload",
+        "uploadfail": "Uploaden mislukt",
+        "noStorage": "Uploaden mislukt omdat er niet genoeg opslagruimte is.",
+        "noTraffic": "Downloaden mislukt omdat er niet genoeg verkeer is."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Schijf bestand kiezer",
       "modal": {
         "files": "Bestanden",
-        "confirm": "Bevestigen",
+        "confirm": "Bevestiging{{fileNum}} bestanden)",
         "cancel": "annuleren",
         "no_file": "Geen bestand"
       }
