@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Tiedoston nimen kaksoiskappale",
           "fileData": "Tiedoston tiedot",
           "downloadZIP": "Lataa ZIP:nä"
-        }
+        },
+        "download_from_drive": "Lataa ILLA Drivesta",
+        "save_to_drive": "Tallenna ILLA Drivelle"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -2123,8 +2125,10 @@
           "min_files": "Please select at least {{min}} files",
           "max_files": "Please select at most {{max}} files"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Ladattu onnistuneesti",
+        "uploadfail": "Lataaminen epäonnistui",
+        "noStorage": "Lataaminen epäonnistui, koska tallennustilaa ei ole riittävä.",
+        "noTraffic": "Lataaminen epäonnistui, koska liikennettä ei ole riittävästi."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Asema tiedostonvalitsin",
       "modal": {
         "files": "Tiedostot",
-        "confirm": "Vahvista",
+        "confirm": "Vahvista ({{fileNum}} tiedostoa)",
         "cancel": "Peruuta",
         "no_file": "Ei tiedostoa"
       }
