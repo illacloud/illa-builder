@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Duplikace názvu souboru",
           "fileData": "Data souboru",
           "downloadZIP": "Stáhnout jako ZIP"
-        }
+        },
+        "download_from_drive": "Stáhnout z ILLA Drive",
+        "save_to_drive": "Uložit do ILLA disku"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2123,8 +2125,10 @@
           "min_files": "Vyberte alespoň {{min}} soubory",
           "max_files": "Vyberte prosím nanejvýš {{max}} soubory"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Úspěšně nahráno",
+        "uploadfail": "Nepodařilo se nahrát",
+        "noStorage": "Nepodařilo se nahrát z důvodu nedostatku úložiště.",
+        "noTraffic": "Nepodařilo se stáhnout z důvodu nedostatečného provozu."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Výběr souboru disku",
       "modal": {
         "files": "Soubory",
-        "confirm": "Potvrdit",
+        "confirm": "Potvrdit (soubory{{fileNum}})",
         "cancel": "Zrušit",
         "no_file": "Žádný soubor"
       }
