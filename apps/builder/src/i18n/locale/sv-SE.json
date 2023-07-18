@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Ändra rad",
           "onCellSelect": "Välj en cell",
           "delete": "Radera",
-          "replay": "Svara"
+          "replay": "Svara",
+          "startUploading": "Börja ladda upp",
+          "uploadSuccessfully": "Uppladdningen lyckades",
+          "uploadFailed": "Det gick inte att ladda upp"
         },
         "image_list": {
           "title": "Bilder",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Skriv text här"
+        },
+        "drive_builder": {
+          "button_text": "Välj"
         }
       },
       "setter_group": {
@@ -1693,8 +1699,8 @@
           "allow_public_use": "Använd i publik app",
           "illa_drive_folder": "ILLA Drive-mapp",
           "generate_signed_url": "Generera signerad URL",
-          "expired_time": "Förfallen tid",
-          "time": "Tid(er)",
+          "expired_time": "Förfallen typ",
+          "time": "Förfallen tid(er)",
           "turn_on_hotlink": "Skydda mot hotlink",
           "button_text": "Knappens text",
           "selection_type": "Typ av val",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Minsta antal filer",
-          "max_file_num": "Max filnum"
-        }
+          "max_file_num": "Max filnum",
+          "file_name_duplicatio": "Filnamn duplicering",
+          "fileData": "Fil data",
+          "downloadZIP": "Ladda ner som ZIP"
+        },
+        "download_from_drive": "Ladda ner från ILLA Drive",
+        "save_to_drive": "Spara till ILLA Drive"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1950,7 +1961,10 @@
           "min_size": "För att ställa in minsta tillåtna filstorlek",
           "max_size": "För att ställa in den tillåtna maximala filstorleken",
           "min_file_num": "För att ställa in det minsta antalet filer som får väljas",
-          "max_file_num": "För att ställa in maximalt antal filer som tillåts att väljas"
+          "max_file_num": "För att ställa in maximalt antal filer som tillåts att väljas",
+          "file_name_duplicatio": "För att ställa in hur du hanterar dubbla filnamn. Vid behåll kommer en slumpmässig sträng att läggas till filnamnet som laddats upp.",
+          "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. (Automatic Copy) Du kan använda komponenten Drive filväljare för att välja filer och ställa in detta värde direkt via {{filePciker1.value}}.",
+          "downloadZIP": "För att ställa in om du vill ladda ner filerna som en ZIP. "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Aldrig",
+            "never": "Persistent",
             "customer": "Anpassad"
           },
           "single_file": "En fil",
-          "multiple_files": "Flera filer"
+          "multiple_files": "Flera filer",
+          "anonymous_modal": {
+            "title": "Tillåt offentliga användare att komma åt ILLA Drive?",
+            "desc": "När den är aktiverad kan endast åtkomstmappen för den här appen öppnas. När en APP är inställd som offentlig kan alla användare komma åt mappen.",
+            "cancelBtn": "Avbryt",
+            "submitBtn": "Slå på"
+          },
+          "file_name_duplicatio": {
+            "replace": "Ersätt",
+            "keepboth": "Behåll båda"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "Välj en fil med en storlek mindre än {{max}}",
           "min_files": "Välj minst {{min}} filer",
           "max_files": "Välj som mest {{max}} filer"
-        }
+        },
+        "uploadsuc": "Uppladdningen lyckades",
+        "uploadfail": "Det gick inte att ladda upp",
+        "noStorage": "Det gick inte att ladda upp på grund av otillräckligt med lagringsutrymme.",
+        "noTraffic": "Det gick inte att ladda ner på grund av inte tillräckligt med trafik."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Presentation",
-        "selects": "Välj indata"
+        "selects": "Välj indata",
+        "drive": "ILLA enhet"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "Det aktuella indatainnehållet är för långt, vi har slutat automatiskt beräkna data, du kan fortfarande mata in, detta kommer inte att påverka din användning."
+    },
+    "history": {
+      "operation": {
+        "Added": "Lade till {{operationTargetName}}",
+        "Deleted": "Raderad {{operationTargetName}}",
+        "Updated": "Uppdaterad {{operationTargetName}}",
+        "Moved": "Flyttad {{operationTargetName}}",
+        "Reseted": "Återställt {{operationTargetName}}"
+      },
+      "save": "Spara som historik",
+      "history": "Historik",
+      "more": "Mer",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Nuvarande",
+        "manual": "Manuell",
+        "January": "Januari",
+        "February": "Februari",
+        "March": "Mars",
+        "April": "april",
+        "May": "Maj",
+        "June": "Juni",
+        "July": "Juli",
+        "August": "Augusti",
+        "September": "september",
+        "October": "Oktober",
+        "November": "november",
+        "December": "december",
+        "final_node": "Ingen mer historik"
+      },
+      "restore": "Återställ denna version",
+      "message": {
+        "version_change": "Den aktuella appversionen har ändrats"
+      }
     }
   },
   "exit_preview": "Avsluta förhandsgranskning",
@@ -2735,6 +2801,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Kör filväljare",
+      "modal": {
+        "files": "Filer",
+        "confirm": "Bekräfta({{fileNum}} filer)",
+        "cancel": "Avbryt",
+        "no_file": "Ingen fil"
+      }
     }
   },
   "page": {

@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Змінити вибір рядка",
           "onCellSelect": "Обрати клітинку",
           "delete": "Видалити",
-          "replay": "Відповідь"
+          "replay": "Відповідь",
+          "startUploading": "Почати вивантаження",
+          "uploadSuccessfully": "Завантажено успішно",
+          "uploadFailed": "Не завантажено"
         },
         "image_list": {
           "title": "Малюнки",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Введіть текст тут"
+        },
+        "drive_builder": {
+          "button_text": "Вибрати"
         }
       },
       "setter_group": {
@@ -1693,8 +1699,8 @@
           "allow_public_use": "Використовувати в публічному додатку",
           "illa_drive_folder": "Тека ILLA Drive",
           "generate_signed_url": "Згенерувати підписану URL-адресу",
-          "expired_time": "Час прострочений",
-          "time": "Час(и)",
+          "expired_time": "Застарілий тип",
+          "time": "Минув час (с)",
           "turn_on_hotlink": "Увімкнути захист гарячих посилань",
           "button_text": "Текст кнопки",
           "selection_type": "Тип виділення",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Мін. кількість файлів",
-          "max_file_num": "Максимальна кількість файлів"
-        }
+          "max_file_num": "Максимальна кількість файлів",
+          "file_name_duplicatio": "Дублювання імені файлу",
+          "fileData": "Дані файлу",
+          "downloadZIP": "Завантажити ZIP"
+        },
+        "download_from_drive": "Завантажити з ILLA-диска",
+        "save_to_drive": "Зберегти на диск"
       },
       "setter_tooltip": {
         "action": "Ваші дії до компонентів тригерують запити, керуючі компоненти, або викликайте дані у ваших ресурсах. Декілька дій асингу буде виконано паралельно.",
@@ -1950,7 +1961,10 @@
           "min_size": "Встановити дозволений мінімальний розмір файлу",
           "max_size": "Встановити максимальний розмір файлу",
           "min_file_num": "Для встановлення мінімальної кількості файлів, дозволених для вибору",
-          "max_file_num": "Щоб встановити максимальну кількість дозволених файлів"
+          "max_file_num": "Щоб встановити максимальну кількість дозволених файлів",
+          "file_name_duplicatio": "Щоб встановити як обробляти дублікати імен файлів. У випадку збереження обох буде додано випадковий рядок, що завантажиться в ім'я файлу.",
+          "fileData": "Встановіть дані щодо файлу, використовуючи масив об'єктів, формат об'єкта - {\"fileName\":\"ім'я\", \"FileID\"}. Ви можете використовувати компонент вибору файлів диску для вибору файлів і встановити це значення безпосередньо через {{filePciker1.value}}.",
+          "downloadZIP": "Щоб вибрати, чи завантажувати файли як один ZIP. "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Ніколи",
+            "never": "Persistent",
             "customer": "Користувацька"
           },
           "single_file": "Один файл",
-          "multiple_files": "Кілька файлів"
+          "multiple_files": "Кілька файлів",
+          "anonymous_modal": {
+            "title": "Дозволити публічним користувачам доступ до ILLA Диска?",
+            "desc": "При ввімкненні можна отримати доступ тільки до теки доступу громадських додатків. Коли APP встановлено як загальнодоступ, всі користувачі можуть отримати доступ до теки.",
+            "cancelBtn": "Скасувати",
+            "submitBtn": "Увімкнути"
+          },
+          "file_name_duplicatio": {
+            "replace": "Заміняти",
+            "keepboth": "Залишити обидва"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "Please select a file with a size smaller than {{max}}",
           "min_files": "Please select at least {{min}} files",
           "max_files": "Please select at most {{max}} files"
-        }
+        },
+        "uploadsuc": "Завантажено успішно",
+        "uploadfail": "Не завантажено",
+        "noStorage": "Не вдалося завантажити, через недостатньо пам’яті.",
+        "noTraffic": "Не вдалося завантажити через недостатню кількість трафіку."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Презентація",
-        "selects": "Виберіть входи"
+        "selects": "Виберіть входи",
+        "drive": "Диск ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "Поточний вхідний вміст задовгий, ми припинили обчислювати дані, ви все ще можете продовжувати введення, це не вплине на ваше використання."
+    },
+    "history": {
+      "operation": {
+        "Added": "Додано {{operationTargetName}}",
+        "Deleted": "Видалено {{operationTargetName}}",
+        "Updated": "Оновлено {{operationTargetName}}",
+        "Moved": "Переміщено {{operationTargetName}}",
+        "Reseted": "Скинуто {{operationTargetName}}"
+      },
+      "save": "Зберегти як історію",
+      "history": "Історія",
+      "more": "Більше",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Поточна версія",
+        "manual": "Вручну",
+        "January": "Січень",
+        "February": "Лютий",
+        "March": "Березень",
+        "April": "Квітень",
+        "May": "Травень",
+        "June": "Червень",
+        "July": "Липень",
+        "August": "Серпень",
+        "September": "Вересні",
+        "October": "Жовтень",
+        "November": "Листопад",
+        "December": "Грудень",
+        "final_node": "Більше немає історії"
+      },
+      "restore": "Відновити цю версію",
+      "message": {
+        "version_change": "Поточна версія програми змінилася"
+      }
     }
   },
   "exit_preview": "Вийти з режиму перегляду",
@@ -2735,6 +2801,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Вибір файлу диску",
+      "modal": {
+        "files": "Файли",
+        "confirm": "Підтвердження ({{fileNum}} файлів)",
+        "cancel": "Скасувати",
+        "no_file": "Немає файлу"
+      }
     }
   },
   "page": {
