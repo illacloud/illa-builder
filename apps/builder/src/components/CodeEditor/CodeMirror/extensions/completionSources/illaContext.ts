@@ -15,6 +15,7 @@ import {
   removeWidgetOrActionMethods,
 } from "@/utils/executionTreeHelper/utils"
 import { isFunction, isObject } from "@/utils/typeHelper"
+import { ILLAContextDesc } from "./ILLAContextDesc"
 
 const formatUtils = (data: unknown) => {
   if (isObject(data)) {
@@ -64,6 +65,7 @@ const formatEvaluate = (data: any) => {
 export function getDataInfo(data: Record<string, unknown>, path: string) {
   let currentData: Record<string, unknown> = data
   let offset: number = 0
+  let descInfos: Record<string, any> = {}
   for (let i = 0; i < path.length; i++) {
     switch (path[i]) {
       case ".":
@@ -75,6 +77,7 @@ export function getDataInfo(data: Record<string, unknown>, path: string) {
           if (!currentData || !isObject(currentData)) {
             return null
           }
+          descInfos = ILLAContextDesc[currentPath] as Record<string, unknown>
         }
         offset = i + 1
         if (path[i] === "." && Array.isArray(currentData)) {
@@ -88,6 +91,7 @@ export function getDataInfo(data: Record<string, unknown>, path: string) {
   }
   return {
     currentData,
+    descInfos,
     offset,
     prefix: path.slice(offset),
   }
@@ -134,12 +138,16 @@ export const buildIllaContextCompletionSource = (
     if (!dataInfo) {
       return null
     }
-    const { currentData, offset, prefix } = dataInfo
+
+    const { currentData, offset, prefix, descInfos } = dataInfo
+
     const keys = Object.keys(currentData).filter((key) =>
       key.startsWith(prefix),
     )
+
     const options = keys.map((key) => {
       const dataType = getDataType(currentData[key])
+      const currentKeyDesc = descInfos?.[key]
       const result: Completion = {
         type: dataType,
         label: key,
@@ -152,7 +160,9 @@ export const buildIllaContextCompletionSource = (
           dom.innerHTML = `<div class="completionInfoCardTitle">
         <span class="cardTitle">${key}</span>
       </div>
-      <p class="completionInfoType">${dataType}</p>
+      <p class="completionInfoType">${
+        currentKeyDesc ? currentKeyDesc.usage : dataType
+      }</p>
       <p class="completionInfoEvaluatesTitle">Evaluates to</p>
 ${getDataEvaluatesToDom(currentData[key], dataType)}`
           return dom

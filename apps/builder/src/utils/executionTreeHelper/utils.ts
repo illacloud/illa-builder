@@ -108,6 +108,7 @@ export const removeWidgetOrActionMethods = (
 ) => {
   return Object.keys(result).reduce(
     (acc: Record<string, unknown>, key: string) => {
+      if (key === "utils") return acc
       const componentOrAction = result[key]
       if (
         isObject(componentOrAction) &&

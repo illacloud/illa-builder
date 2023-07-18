@@ -96,7 +96,6 @@ export const illaCodeMirrorTooltipStyle = css`
           .cm-completionIcon-Number::after {
             content: url(${NumberIcon});
           }
-          ,
           .cm-completionIcon-String::after {
             content: url(${StringIcon});
           }
@@ -180,6 +179,7 @@ export const illaCodeMirrorTooltipStyle = css`
           color: ${getColor("grayBlue", "02")};
           margin: 0;
           line-height: 20px;
+          word-break: break-all;
         }
         .completionInfoEvaluatesTitle {
           font-size: 12px;
