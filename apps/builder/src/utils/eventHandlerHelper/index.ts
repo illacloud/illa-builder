@@ -14,7 +14,7 @@ import {
   setRouter,
   showNotification,
 } from "./utils/commonUtils"
-import { downloadFromILLADrive } from "./utils/driveUtils"
+import { downloadFromILLADrive, saveToILLADrive } from "./utils/driveUtils"
 import { setInGlobalData, setValueGlobalData } from "./utils/globalDataUtils"
 import { clearLocalStorage, setValueLocalStorage } from "./utils/localStorage"
 
@@ -30,6 +30,7 @@ export enum EVENT_ACTION_TYPE {
   DATA_SOURCE = "datasource",
   SCRIPT = "script",
   DOWNLOAD_FROM_ILLA_DRIVE = "downloadFromILLADrive",
+  SAVE_TO_ILLA_DRIVE = "saveToILLADrive",
 }
 const message = createMessage()
 
@@ -378,6 +379,32 @@ export const transformEvents = (
           downloadFromILLADrive({
             downloadInfo,
             asZip,
+          })
+        },
+        enabled,
+      }
+    }
+
+    case EVENT_ACTION_TYPE.SAVE_TO_ILLA_DRIVE: {
+      const {
+        fileName,
+        fileData,
+        fileType,
+        allowAnonymous,
+        replace,
+        folder,
+        enabled,
+      } = event
+
+      return {
+        script: () => {
+          saveToILLADrive({
+            fileData,
+            fileName,
+            fileType,
+            allowAnonymous,
+            replace,
+            folder,
           })
         },
         enabled,

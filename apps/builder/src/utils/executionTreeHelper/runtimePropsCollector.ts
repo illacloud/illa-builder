@@ -18,7 +18,10 @@ import {
   setRouter,
   showNotification,
 } from "../eventHandlerHelper/utils/commonUtils"
-import { downloadFromILLADrive } from "../eventHandlerHelper/utils/driveUtils"
+import {
+  downloadFromILLADrive,
+  saveToILLADrive,
+} from "../eventHandlerHelper/utils/driveUtils"
 
 const THIRD_PARTY_PACKAGES = {
   _,
@@ -51,6 +54,7 @@ class ILLAEditorRuntimePropsCollector {
         setRouter,
         downloadFile,
         downloadFromILLADrive,
+        saveToILLADrive,
       },
     }
   }

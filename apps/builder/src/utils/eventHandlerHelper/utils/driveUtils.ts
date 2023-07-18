@@ -1,8 +1,21 @@
 import { Zip, ZipPassThrough } from "fflate"
 import { createWriteStream } from "streamsaver"
 import { createMessage } from "@illa-design/react"
-import { fetchDownloadURLByTinyURL } from "@/services/drive-keep"
+import { ERROR_FLAG } from "@/api/errorFlag"
+import i18n from "@/i18n/config"
+import {
+  UPLOAD_FILE_STATUS,
+  fetchDownloadURLByTinyURL,
+} from "@/services/drive-keep"
+import {
+  getUploadToDriveSingedURL,
+  updateFilesToDrive,
+  updateFilesToDriveStatus,
+} from "@/utils/drive/upload/getSingedURL"
+import { getContentTypeByFileExtension, getFileName } from "@/utils/file"
 import { isILLAAPiError } from "@/utils/typeHelper"
+import { isBase64Simple } from "@/utils/url/base64"
+import { dataURLtoFile } from "@/widgetLibrary/UploadWidget/util"
 
 const message = createMessage()
 
@@ -15,6 +28,7 @@ interface IDownloadFromILLADriveParams {
   downloadInfo: IDriveDownloadInfo[]
   asZip?: boolean
 }
+
 export const downloadFromILLADrive = async (
   params: IDownloadFromILLADriveParams,
 ) => {
@@ -75,9 +89,11 @@ export const downloadFromILLADrive = async (
         }
       } catch (e) {
         if (isILLAAPiError(e)) {
-          if (e.data.errorMessage === "ERROR_FLAG_OUT_OF_USAGE_TRAFFIC") {
+          if (
+            e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_TRAFFIC
+          ) {
             message.error({
-              content: "流量不足，下载失败", // TODO: i18n
+              content: i18n.t("editor.inspect.setter_message.noTraffic"),
             })
             return Promise.reject(e)
           }
@@ -90,6 +106,94 @@ export const downloadFromILLADrive = async (
   if (asZip) {
     promise.then(() => {
       zip.end()
+    })
+  }
+}
+
+export enum FILE_TYPE {
+  AUTO = "auto",
+  TEXT = "text",
+  JPEG = "jpeg",
+  PNG = "png",
+  SVG = "svg",
+  JSON = "json",
+  CSV = "csv",
+  TSV = "tsv",
+  XLSX = "xlsx",
+}
+
+interface ISaveToILLADriveParams {
+  fileName: string
+  fileData: string
+  fileType: FILE_TYPE
+  folder?: string
+  allowAnonymous?: boolean
+  replace?: boolean
+}
+
+export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
+  const {
+    fileName,
+    fileData,
+    fileType = "auto",
+    folder = "",
+    allowAnonymous = false,
+    replace = false,
+  } = params
+  const isBase64 = isBase64Simple(fileData)
+  if (typeof fileName !== "string" || fileData == undefined || !isBase64) return
+
+  const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
+  const contentType = getContentTypeByFileExtension(
+    fileDownloadName.split(".")[1],
+  )
+
+  let tmpData = fileData
+  if (!isBase64) {
+    tmpData = `data:${contentType};base64,${fileData}`
+  }
+
+  try {
+    const needUploadFile = dataURLtoFile(tmpData, fileDownloadName)
+    const uploadURLResponse = await getUploadToDriveSingedURL(
+      allowAnonymous,
+      folder,
+      {
+        fileName: fileDownloadName,
+        size: needUploadFile.size,
+        contentType: needUploadFile.type,
+        replace,
+      },
+    )
+    const uploadResult = await updateFilesToDrive(
+      uploadURLResponse.url,
+      needUploadFile,
+    )
+    if (uploadResult === UPLOAD_FILE_STATUS.COMPLETE) {
+      message.success({
+        content: i18n.t("editor.inspect.setter_message.uploadsuc"),
+      })
+    } else {
+      message.error({
+        content: i18n.t("editor.inspect.setter_message.uploadfail"),
+      })
+    }
+    await updateFilesToDriveStatus(
+      allowAnonymous,
+      uploadURLResponse.fileID,
+      uploadResult,
+    )
+  } catch (e) {
+    if (isILLAAPiError(e)) {
+      if (e.data.errorMessage === ERROR_FLAG.ERROR_FLAG_OUT_OF_USAGE_VOLUME) {
+        message.error({
+          content: i18n.t("editor.inspect.setter_message.noStorage"),
+        })
+        return
+      }
+    }
+    message.error({
+      content: i18n.t("editor.inspect.setter_message.uploadfail"),
     })
   }
 }

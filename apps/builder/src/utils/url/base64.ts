@@ -14,6 +14,7 @@ function isValidBase64(src: string) {
 }
 
 export const isBase64 = (v: string, mimeRequired?: boolean) => {
+  if (typeof v !== "string") return false
   const value = v.split(",")
   const prefix = value.length > 1 ? value[0] : ""
   const suffix = value.length > 1 ? value[1] : value[0]
@@ -27,4 +28,13 @@ export const isBase64 = (v: string, mimeRequired?: boolean) => {
     return mimeRegex.test(prefix + ",")
   }
   return true
+}
+
+export const isBase64Simple = (str: string) => {
+  if (typeof str !== "string") return
+  if (str.indexOf("data:") != -1 && str.indexOf("base64") != -1) {
+    return true
+  } else {
+    return false
+  }
 }

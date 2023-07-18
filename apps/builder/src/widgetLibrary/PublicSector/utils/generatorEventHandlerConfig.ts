@@ -63,11 +63,11 @@ export const generatorEventHandlerConfig = (
             value: "setRouter",
           },
           {
-            label: "Save to ILLA Drive", //  todo: i18n
+            label: i18n.t("editor.inspect.setter_label.save_to_drive"),
             value: "saveToILLADrive",
           },
           {
-            label: "Download from ILLA Drive", // todo: i18n,
+            label: i18n.t("editor.inspect.setter_label.download_from_drive"),
             value: "downloadFromILLADrive",
           },
           {
@@ -700,7 +700,6 @@ export const generatorEventHandlerConfig = (
         bindAttrName: ["actionType"],
         shown: (type) => type === "downloadFile" || type === "saveToILLADrive",
       },
-
       {
         id: `${baseWidgetName}-interaction-event-handler-fileData`,
         labelName: i18n.t(
@@ -713,7 +712,19 @@ export const generatorEventHandlerConfig = (
         setterType: "INPUT_SETTER",
         attrName: "fileData",
         bindAttrName: ["actionType"],
-        shown: (type) => type === "downloadFile" || type === "saveToILLADrive",
+        shown: (type) => type === "downloadFile",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-download-from-illa-drive-file-data`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.file_download.file_data",
+        ),
+        labelDesc: i18n.t("editor.inspect.setter_tips.file_download.file_data"),
+        placeholder: `{{filePicker1.value}}`,
+        setterType: "INPUT_SETTER",
+        attrName: "fileData",
+        bindAttrName: ["actionType"],
+        shown: (type) => type === "saveToILLADrive",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-fileType`,
@@ -769,20 +780,55 @@ export const generatorEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-allow-anonymous-use`,
-        labelName: "Allow anonymous use", // TODO: i18n
-        labelDesc: i18n.t("editor.inspect.setter_tips.file_download.file_data"),
+        labelName: i18n.t(
+          "editor.inspect.setter_label.drive_builder.allow_public_use",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.drive_builder.allow_public_use",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "allowAnonymous",
         bindAttrName: ["actionType"],
         useCustomLayout: true,
         openDynamic: true,
-        shown: (type) => type === "downloadFromILLADrive",
+        shown: (type) =>
+          type === "downloadFromILLADrive" || type === "saveToILLADrive",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-folder-path`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.drive_builder.illa_drive_folder",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.drive_builder.illa_drive_folder",
+        ),
+        setterType: "INPUT_SETTER",
+        attrName: "folder",
+        placeholder: "folder/folder",
+        bindAttrName: ["actionType", "allowAnonymous"],
+        shown: (type, allowAnonymous) =>
+          type === "saveToILLADrive" && !allowAnonymous,
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-duplication`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.drive_builder.file_name_duplicatio",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.drive_builder.file_name_duplicatio",
+        ),
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        attrName: "duplicationHandler",
+        bindAttrName: ["actionType"],
+        useCustomLayout: true,
+        openDynamic: true,
+        shown: (type) => type === "saveToILLADrive",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-download-info-with-drive`,
-        labelName: "Download URL", // TODO: i18n
-        labelDesc: i18n.t("editor.inspect.setter_tips.file_download.file_data"),
-        placeholder: `{{["fileURL1"]}}`,
+        labelName: i18n.t("editor.inspect.setter_label.drive_builder.fileData"),
+        labelDesc: i18n.t("editor.inspect.setter_tips.drive_builder.fileData"),
+        placeholder: `{{filePicker1.value}}`,
         setterType: "INPUT_SETTER",
         attrName: "downloadInfo",
         bindAttrName: ["actionType"],
@@ -790,8 +836,12 @@ export const generatorEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-as-zip-with-download`,
-        labelName: "Download as a ZIP", // TODO: i18n
-        labelDesc: i18n.t("editor.inspect.setter_tips.file_download.file_data"),
+        labelName: i18n.t(
+          "editor.inspect.setter_label.drive_builder.downloadZIP",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.drive_builder.downloadZIP",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "asZip",
         bindAttrName: ["actionType"],
