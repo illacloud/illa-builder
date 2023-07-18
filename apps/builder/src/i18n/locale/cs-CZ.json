@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Změna řádku",
           "onCellSelect": "Vybrat buňku",
           "delete": "Vymazat",
-          "replay": "Odpověď"
+          "replay": "Odpověď",
+          "startUploading": "Začít nahrávat",
+          "uploadSuccessfully": "Úspěšně nahráno",
+          "uploadFailed": "Nepodařilo se nahrát"
         },
         "image_list": {
           "title": "Obrázky",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Zde napište text"
+        },
+        "drive_builder": {
+          "button_text": "Vybrat"
         }
       },
       "setter_group": {
@@ -1693,8 +1699,8 @@
           "allow_public_use": "Použít ve veřejné aplikaci",
           "illa_drive_folder": "Složka ILLA Drive",
           "generate_signed_url": "Generovat podepsanou URL",
-          "expired_time": "Čas vypršení platnosti",
-          "time": "Čas (časy)",
+          "expired_time": "Vypršející typ",
+          "time": "Čas vypršení platnosti",
           "turn_on_hotlink": "Zapnout ochranu hotlink",
           "button_text": "Text tlačítka",
           "selection_type": "Typ výběru",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min číslo souboru",
-          "max_file_num": "Maximální počet souborů"
-        }
+          "max_file_num": "Maximální počet souborů",
+          "file_name_duplicatio": "Duplikace názvu souboru",
+          "fileData": "Data souboru",
+          "downloadZIP": "Stáhnout jako ZIP"
+        },
+        "download_from_drive": "Stáhnout z ILLA Drive",
+        "save_to_drive": "Uložit do ILLA disku"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1950,7 +1961,10 @@
           "min_size": "Možnost nastavení minimální povolené velikosti souboru",
           "max_size": "Možnost nastavení maximální povolené velikosti souboru",
           "min_file_num": "Pro nastavení minimálního počtu povolených souborů",
-          "max_file_num": "Možnost nastavit maximální počet souborů k výběru"
+          "max_file_num": "Možnost nastavit maximální počet souborů k výběru",
+          "file_name_duplicatio": "Chcete-li nastavit, jak nakládat s duplicitními názvy souborů. V případě zachování obojího, bude k nahranému názvu souboru přidán náhodný řetězec.",
+          "fileData": "Nastavte data souboru pomocí pole objektu, formát objektu je {\"fileName\":\"jméno\", \"FileID\":\"ID souboru\"}. Můžete použít komponentu pro výběr souborů z Drive pro výběr souborů a nastavení této hodnoty přímo přes {{filePciker1.value}}.",
+          "downloadZIP": "Chcete-li nastavit, zda stáhnout soubory jako jednu ZIP. "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nikdy",
+            "never": "Persistent",
             "customer": "Vlastní"
           },
           "single_file": "Jeden soubor",
-          "multiple_files": "Více souborů"
+          "multiple_files": "Více souborů",
+          "anonymous_modal": {
+            "title": "Povolit veřejným uživatelům přístup k ILLA Drive?",
+            "desc": "Pokud je zapnuto, přístup ke složce této aplikace je přístupný pouze pro veřejné aplikace. Když je APP nastaven jako veřejný, všichni uživatelé mají přístup ke složce.",
+            "cancelBtn": "Zrušit",
+            "submitBtn": "Zapnout"
+          },
+          "file_name_duplicatio": {
+            "replace": "Nahradit",
+            "keepboth": "Zachovat obojí"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "Vyberte soubor o velikosti menší než {{max}}",
           "min_files": "Vyberte alespoň {{min}} soubory",
           "max_files": "Vyberte prosím nanejvýš {{max}} soubory"
-        }
+        },
+        "uploadsuc": "Úspěšně nahráno",
+        "uploadfail": "Nepodařilo se nahrát",
+        "noStorage": "Nepodařilo se nahrát z důvodu nedostatku úložiště.",
+        "noTraffic": "Nepodařilo se stáhnout z důvodu nedostatečného provozu."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Zobrazení",
-        "selects": "Vybrat vstupy"
+        "selects": "Vybrat vstupy",
+        "drive": "ILLA disk"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "Aktuální vstupní obsah je příliš dlouhý, přestali jsme automaticky počítat data, stále můžete vkládat, to neovlivní vaše použití."
+    },
+    "history": {
+      "operation": {
+        "Added": "Přidáno {{operationTargetName}}",
+        "Deleted": "Smazáno {{operationTargetName}}",
+        "Updated": "Aktualizováno {{operationTargetName}}",
+        "Moved": "Přesunuto {{operationTargetName}}",
+        "Reseted": "Resetováno {{operationTargetName}}"
+      },
+      "save": "Uložit jako historii",
+      "history": "Historie",
+      "more": "Více",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl + S"
+      },
+      "history_list": {
+        "current": "Aktuální",
+        "manual": "Ruční",
+        "January": "Leden",
+        "February": "únor",
+        "March": "Březen",
+        "April": "duben",
+        "May": "Květen",
+        "June": "Červen",
+        "July": "červenec",
+        "August": "Srpen",
+        "September": "Září",
+        "October": "Říjen",
+        "November": "Listopad",
+        "December": "prosinec",
+        "final_node": "Žádná historie"
+      },
+      "restore": "Obnovit tuto verzi",
+      "message": {
+        "version_change": "Aktuální verze aplikace se změnila"
+      }
     }
   },
   "exit_preview": "Ukončit náhled",
@@ -2735,6 +2801,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Výběr souboru disku",
+      "modal": {
+        "files": "Soubory",
+        "confirm": "Potvrdit (soubory{{fileNum}})",
+        "cancel": "Zrušit",
+        "no_file": "Žádný soubor"
+      }
     }
   },
   "page": {

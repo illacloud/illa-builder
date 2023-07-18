@@ -48,7 +48,7 @@ export const SettingNavBar: FC = () => {
         css={navBarTabStyle}
         onClick={() => navigate(`/${teamIdentifier}/dashboard/members`)}
       >
-        {t("members")}
+        {t("user_management.page.member")}
       </span>
       {canEditApp && (
         <span

@@ -1,9 +1,15 @@
 import { toPath } from "lodash"
-import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import {
+  FC,
+  HTMLAttributes,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react"
 import { useSelector } from "react-redux"
 import Slider from "react-slick"
-import "slick-carousel/slick/slick-theme.css"
-import "slick-carousel/slick/slick.css"
 import { Image } from "@illa-design/react"
 import { ReactComponent as NextIcon } from "@/assets/carousel/next-shadow.svg"
 import { ReactComponent as PreviousIcon } from "@/assets/carousel/prev-shadow.svg"
@@ -19,13 +25,17 @@ import {
 import { formatData } from "@/widgetLibrary/CarouselWidget/utils"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { CarouselProps, CarouselWidgetProps } from "./interface"
+import "./slick-carousel/slick-theme.css"
+import "./slick-carousel/slick.css"
 
-const PrevArrow = () => {
-  return <PreviousIcon />
+const PrevArrow: FC<HTMLAttributes<SVGSVGElement>> = (props) => {
+  const { className, style, onClick } = props
+  return <PreviousIcon className={className} style={style} onClick={onClick} />
 }
 
-const NextArrow = () => {
-  return <NextIcon />
+const NextArrow: FC<HTMLAttributes<SVGSVGElement>> = (props) => {
+  const { className, style, onClick } = props
+  return <NextIcon className={className} style={style} onClick={onClick} />
 }
 
 export const Carousel = forwardRef<Slider, CarouselProps>((props, ref) => {

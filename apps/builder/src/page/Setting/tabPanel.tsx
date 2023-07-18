@@ -10,7 +10,6 @@ import {
   preIconStyle,
   tabPreTextStyle,
   tabPrefixStyle,
-  tabSuffixStyle,
 } from "@/page/Setting/style"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 
@@ -51,14 +50,7 @@ export const SettingTabNavBar: FC = () => {
     </div>
   )
 
-  const suffixTabs = (
-    <div css={css(tabPrefixStyle, tabSuffixStyle)} key="tab-suffix">
-      <div css={backAreaStyle}>
-        <PreviousIcon css={preIconStyle} />
-        <span css={tabPreTextStyle}>{t("back")}</span>
-      </div>
-    </div>
-  )
+  const suffixTabs = <div css={css(tabPrefixStyle)} />
 
   return (
     <>
@@ -84,7 +76,7 @@ export const SettingTabNavBar: FC = () => {
         }}
       >
         {TabItems.map((item) => (
-          <TabPane title={item.title} key={item.key}></TabPane>
+          <TabPane title={item.title} key={item.key} />
         ))}
       </Tabs>
       <SettingLayout>
