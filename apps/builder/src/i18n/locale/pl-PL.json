@@ -2122,7 +2122,9 @@
           "max_size": "Wybierz plik o rozmiarze mniejszym niż {{max}}",
           "min_files": "Wybierz co najmniej pliki {{min}}",
           "max_files": "Proszę wybrać co najwyżej plik {{max}}"
-        }
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload"
       },
       "setter_description": {
         "code": {
