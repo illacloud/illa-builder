@@ -2122,7 +2122,9 @@
           "max_size": "请选择大小不超过{{max}}的文件",
           "min_files": "请至少选择{{min}}个文件",
           "max_files": "请最多选择{{max}}个文件"
-        }
+        },
+        "uploadsuc": "上传成功",
+        "uploadfail": "上传失败"
       },
       "setter_description": {
         "code": {
