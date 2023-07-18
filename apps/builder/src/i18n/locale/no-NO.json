@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Velg endring av rad",
           "onCellSelect": "Velg en celle",
           "delete": "Slett",
-          "replay": "Svar"
+          "replay": "Svar",
+          "startUploading": "Start opplasting",
+          "uploadSuccessfully": "Opplasting var vellykket",
+          "uploadFailed": "Kan ikke laste opp"
         },
         "image_list": {
           "title": "Bilder",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Skriv tekst her"
+        },
+        "drive_builder": {
+          "button_text": "Velg"
         }
       },
       "setter_group": {
@@ -1693,8 +1699,8 @@
           "allow_public_use": "Bruk i offentlig app",
           "illa_drive_folder": "ILLA-stasjon mappe",
           "generate_signed_url": "Generer signert URL",
-          "expired_time": "Utløpt tid",
-          "time": "Tid(er)",
+          "expired_time": "Utløpt type",
+          "time": "Utløpt tid(er)",
           "turn_on_hotlink": "Slå på hotlink beskytter",
           "button_text": "Tekst knapp",
           "selection_type": "Type utvalg",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Minimum fil num",
-          "max_file_num": "Maks fil num"
-        }
+          "max_file_num": "Maks fil num",
+          "file_name_duplicatio": "Duplisering av filnavnet",
+          "fileData": "Fil data",
+          "downloadZIP": "Last ned som ZIP"
+        },
+        "download_from_drive": "Last ned fra ILLA-stasjon",
+        "save_to_drive": "Lagre til ILLA-stasjon"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1950,7 +1961,10 @@
           "min_size": "For å angi minste filstørrelse",
           "max_size": "For å angi maksimal filstørrelse",
           "min_file_num": "For å angi minimum antall filer som kan velges",
-          "max_file_num": "For å angi maksimalt antall filer som kan velges"
+          "max_file_num": "For å angi maksimalt antall filer som kan velges",
+          "file_name_duplicatio": "For å håndtere dupliserte filnavn. Ved behold begge, blir en tilfeldig streng lagt til i filnavnet lastet opp.",
+          "fileData": "Sett fildataene ved hjelp av et objekt array, formatet på objektet er {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Du kan bruke Drive filvelgeren for å velge filer og sette denne verdien direkte gjennom {{filePciker1.value}}.",
+          "downloadZIP": "Angir om filene skal lastes ned som en ZIP. "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Aldri",
+            "never": "Persistent",
             "customer": "Egendefinert"
           },
           "single_file": "Enkel fil",
-          "multiple_files": "Flere filer"
+          "multiple_files": "Flere filer",
+          "anonymous_modal": {
+            "title": "Tillat offentlige brukere å få tilgang til ILLA-stasjonen?",
+            "desc": "Når den er slått på, er bare den offentlige appens tilgangsmappe å åpne den. Når en APP er satt som offentlig, har alle brukere tilgang til mappen.",
+            "cancelBtn": "Avbryt",
+            "submitBtn": "Slå på"
+          },
+          "file_name_duplicatio": {
+            "replace": "Erstatt",
+            "keepboth": "Behold begge"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "Velg en fil med en størrelse mindre enn {{max}}",
           "min_files": "Velg minst {{min}} filer",
           "max_files": "Velg maksimalt {{max}} filer"
-        }
+        },
+        "uploadsuc": "Opplasting var vellykket",
+        "uploadfail": "Kan ikke laste opp",
+        "noStorage": "Kan ikke laste opp på grunn av ikke tilstrekkelig lagring.",
+        "noTraffic": "Kan ikke laste ned på grunn av ikke tilstrekkelig trafikk."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Presentasjon",
-        "selects": "Velg inndata"
+        "selects": "Velg inndata",
+        "drive": "ILLA-stasjon"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "Nåværende inndata-innhold er for langt, vi har stoppet å beregne data automatisk, du kan fortsette å input, dette påvirker ikke din bruk."
+    },
+    "history": {
+      "operation": {
+        "Added": "Lagt til {{operationTargetName}}",
+        "Deleted": "Slettet {{operationTargetName}}",
+        "Updated": "Oppdatert {{operationTargetName}}",
+        "Moved": "Flyttet {{operationTargetName}}",
+        "Reseted": "Reseted {{operationTargetName}}"
+      },
+      "save": "Lagre som historikk",
+      "history": "Historikk",
+      "more": "Mer",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Nåværende",
+        "manual": "Manuell",
+        "January": "Januar",
+        "February": "Februar",
+        "March": "Mars",
+        "April": "april",
+        "May": "Mai",
+        "June": "Juni",
+        "July": "Juli",
+        "August": "august",
+        "September": "september",
+        "October": "oktober",
+        "November": "november",
+        "December": "Desember",
+        "final_node": "Ingen flere historie"
+      },
+      "restore": "Gjenopprett denne versjonen",
+      "message": {
+        "version_change": "Gjeldende app-versjon er endret"
+      }
     }
   },
   "exit_preview": "Avslutt forhåndsvisning",
@@ -2735,6 +2801,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Drive fil velger",
+      "modal": {
+        "files": "Filer",
+        "confirm": "Bekreftelses({{fileNum}} filer)",
+        "cancel": "Avbryt",
+        "no_file": "Ingen fil"
+      }
     }
   },
   "page": {
