@@ -24,7 +24,9 @@ import {
 } from "../eventHandlerHelper/utils/driveUtils"
 
 const THIRD_PARTY_PACKAGES = {
-  _,
+  _: {
+    ..._,
+  },
   uuid: {
     NIL,
     parse,

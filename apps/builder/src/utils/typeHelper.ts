@@ -23,7 +23,10 @@ export const isObject = (value: unknown): value is Record<string, unknown> => {
 }
 
 export const isFunction = (value: unknown): boolean => {
-  return Object.prototype.toString.call(value) === "[object Function]"
+  return (
+    Object.prototype.toString.call(value) === "[object Function]" ||
+    Object.prototype.toString.call(value) === "[object AsyncFunction]"
+  )
 }
 
 export const getType = (value: unknown) => {
