@@ -99,6 +99,14 @@ export const WrappedTextarea = forwardRef<
         h: "auto",
       }
     }
+    if (dynamicHeight === "fixed") {
+      return {
+        maxH: showValidationMessage
+          ? `calc(100% - ${limitLinePosition + VALIDATE_MESSAGE_HEIGHT})px`
+          : `calc(100% - ${limitLinePosition})px`,
+        h: "auto",
+      }
+    }
     return {
       minH: showValidationMessage
         ? `calc(100% - ${VALIDATE_MESSAGE_HEIGHT})px`
