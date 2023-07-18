@@ -322,7 +322,7 @@ importers:
         version: 2.11.2(react@18.2.0)
       react-redux:
         specifier: ^8.1.1
-        version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+        version: 8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       react-rnd:
         specifier: ^10.3.7
         version: 10.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -356,9 +356,6 @@ importers:
       remark-gfm:
         specifier: ^3.0.1
         version: 3.0.1
-      slick-carousel:
-        specifier: ^1.8.1
-        version: 1.8.1(jquery@3.7.0)
       stylis:
         specifier: ^4.1.3
         version: 4.1.3
@@ -470,7 +467,7 @@ importers:
         version: 5.9.0(rollup@3.26.0)
       vite-plugin-checker:
         specifier: ^0.6.1
-        version: 0.6.1(eslint@8.33.0)(typescript@5.0.4)(vite@4.4.2)
+        version: 0.6.1(vite@4.4.2)
       vite-plugin-svgr:
         specifier: ^2.1.0
         version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
@@ -4005,7 +4002,7 @@ packages:
     dependencies:
       immer: 9.0.21
       react: 18.2.0
-      react-redux: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      react-redux: 8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       redux: 4.2.1
       redux-thunk: 2.4.2(redux@4.2.1)
       reselect: 4.1.8
@@ -4744,6 +4741,7 @@ packages:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
     dependencies:
       '@types/react': 18.0.27
+    dev: true
 
   /@types/react-pdf@6.2.0:
     resolution: {integrity: sha512-OSCYmrfaJvpXkM5V4seUMAhUDOAOqbGQf9kwv14INyTf7AjDs2ukfkkQrLWRQ8OjWrDklbXYWh5l7pT7l0N76g==}
@@ -8236,10 +8234,6 @@ packages:
       supports-color: 8.1.1
     dev: false
 
-  /jquery@3.7.0:
-    resolution: {integrity: sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==}
-    dev: false
-
   /js-cookie@2.2.1:
     resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==}
     dev: false
@@ -10266,7 +10260,7 @@ packages:
       react-fast-compare: 3.2.0
     dev: false
 
-  /react-redux@8.1.1(@types/react-dom@18.0.10)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
+  /react-redux@8.1.1(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
     resolution: {integrity: sha512-5W0QaKtEhj+3bC0Nj0NkqkhIv8gLADH/2kYFMTHxCVqQILiWzLv6MaLuV5wJU3BQEdHKzTfcvPN0WMS6SC1oyA==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -10290,7 +10284,6 @@ packages:
       '@babel/runtime': 7.22.5
       '@types/hoist-non-react-statics': 3.3.1
       '@types/react': 18.2.14
-      '@types/react-dom': 18.0.10
       '@types/use-sync-external-store': 0.0.3
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
@@ -11005,14 +10998,6 @@ packages:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 4.0.0
     dev: true
-
-  /slick-carousel@1.8.1(jquery@3.7.0):
-    resolution: {integrity: sha512-XB9Ftrf2EEKfzoQXt3Nitrt/IPbT+f1fgqBdoxO3W/+JYvtEOW6EgxnWfr9GH6nmULv7Y2tPmEX3koxThVmebA==}
-    peerDependencies:
-      jquery: '>=1.8.0'
-    dependencies:
-      jquery: 3.7.0
-    dev: false
 
   /smartwrap@2.0.2:
     resolution: {integrity: sha512-vCsKNQxb7PnCNd2wY1WClWifAc2lwqsG8OaswpJkVJsvMGcnEntdTCDajZCkk93Ay1U3t/9puJmb525Rg5MZBA==}
@@ -11964,7 +11949,7 @@ packages:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  /vite-plugin-checker@0.6.1(eslint@8.33.0)(typescript@5.0.4)(vite@4.4.2):
+  /vite-plugin-checker@0.6.1(vite@4.4.2):
     resolution: {integrity: sha512-4fAiu3W/IwRJuJkkUZlWbLunSzsvijDf0eDN6g/MGh6BUK4SMclOTGbLJCPvdAcMOQvVmm8JyJeYLYd4//8CkA==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -12000,7 +11985,6 @@ packages:
       chalk: 4.1.2
       chokidar: 3.5.3
       commander: 8.3.0
-      eslint: 8.33.0
       fast-glob: 3.2.12
       fs-extra: 11.1.0
       lodash.debounce: 4.0.8
@@ -12009,7 +11993,6 @@ packages:
       semver: 7.5.4
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.1
-      typescript: 5.0.4
       vite: 4.4.2(@types/node@18.14.5)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
