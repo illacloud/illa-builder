@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Duplication du nom du fichier",
           "fileData": "Données du fichier",
           "downloadZIP": "Télécharger en tant que ZIP"
-        }
+        },
+        "download_from_drive": "Télécharger depuis le lecteur ILLA",
+        "save_to_drive": "Enregistrer sur ILLA Drive"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -2123,8 +2125,10 @@
           "min_files": "Veuillez sélectionner au moins des fichiers {{min}}",
           "max_files": "Veuillez sélectionner au plus des fichiers {{max}}"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Téléchargé avec succès",
+        "uploadfail": "Échec du téléchargement",
+        "noStorage": "Échec du téléversement en raison d'un espace de stockage insuffisant.",
+        "noTraffic": "Échec du téléchargement en raison du trafic insuffisant."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Sélecteur de fichier du lecteur",
       "modal": {
         "files": "Fichiers",
-        "confirm": "Valider",
+        "confirm": "Confirmer( Fichiers{{fileNum}})",
         "cancel": "Abandonner",
         "no_file": "Aucun fichier"
       }
