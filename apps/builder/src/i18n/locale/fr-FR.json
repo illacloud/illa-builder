@@ -2600,7 +2600,8 @@
         "fail": "Échec de l'inscription",
         "fail_sent": "Impossible d'envoyer le code de vérification",
         "success": "Inscription réussie",
-        "verification_code": "Code de vérification envoyé"
+        "verification_code": "Code de vérification envoyé",
+        "not_allow_register": "Cette équipe a désactivé l'inscription. Veuillez contacter le propriétaire de l'équipe. "
       },
       "title": "S'inscrire",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "En attente"
     },
     "settings": {
-      "allow_editors_invite": "Autoriser les éditeurs et les utilisateurs à gérer les membres"
+      "allow_editors_invite": "Autoriser les éditeurs et les utilisateurs à gérer les membres",
+      "allow_register": "Permettre aux utilisateurs de s'inscrire par lien"
     }
   },
   "copy_failed": "Échec de la copie",
