@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Cambiar selección de fila",
           "onCellSelect": "Seleccione una celda",
           "delete": "Eliminar",
-          "replay": "Responder"
+          "replay": "Responder",
+          "startUploading": "Empezar a subir",
+          "uploadSuccessfully": "Subido con éxito",
+          "uploadFailed": "Error al subir"
         },
         "image_list": {
           "title": "Imágenes",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Escribe el texto aquí"
+        },
+        "drive_builder": {
+          "button_text": "Seleccionar"
         }
       },
       "setter_group": {
@@ -1693,8 +1699,8 @@
           "allow_public_use": "Usar en aplicación pública",
           "illa_drive_folder": "Carpeta de unidad ILLA",
           "generate_signed_url": "Generar URL firmada",
-          "expired_time": "Tiempo vencido",
-          "time": "Hora(s)",
+          "expired_time": "Tipo caducado",
+          "time": "Caducó la(s) vece(s)",
           "turn_on_hotlink": "Activar protección de hotlink",
           "button_text": "Texto del botón",
           "selection_type": "Tipo de selección",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Mínimo número de archivo",
-          "max_file_num": "Número máximo de archivo"
-        }
+          "max_file_num": "Número máximo de archivo",
+          "file_name_duplicatio": "Duplicación de nombre de archivo",
+          "fileData": "Datos de archivo",
+          "downloadZIP": "Descargar como ZIP"
+        },
+        "download_from_drive": "Descargar de ILLA Drive",
+        "save_to_drive": "Guardar en ILLA Drive"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -1950,7 +1961,10 @@
           "min_size": "Para establecer el tamaño mínimo de archivo permitido",
           "max_size": "Para establecer el tamaño máximo de archivo permitido",
           "min_file_num": "Para establecer el número mínimo de archivos permitidos para ser seleccionados",
-          "max_file_num": "Para establecer el número máximo de archivos permitidos para ser seleccionados"
+          "max_file_num": "Para establecer el número máximo de archivos permitidos para ser seleccionados",
+          "file_name_duplicatio": "Para configurar cómo manejar nombres de archivo duplicados. En el caso de mantener ambos, se añadirá una cadena aleatoria al nombre del archivo subido.",
+          "fileData": "Establece los datos de archivo usando una matriz de objetos, el formato del objeto es {\"fileName\":\"el nombre\", \"FileID\":\"ID\"}. Puede utilizar el componente selector de archivos de Drive para seleccionar archivos y establecer este valor directamente a través de {{filePciker1.value}}.",
+          "downloadZIP": "Para establecer si descargar o no los archivos como un ZIP. "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nunca",
+            "never": "Persistent",
             "customer": "Personalizado"
           },
           "single_file": "Archivo único",
-          "multiple_files": "Varios archivos"
+          "multiple_files": "Varios archivos",
+          "anonymous_modal": {
+            "title": "¿Permitir a los usuarios públicos acceder a ILLA Drive?",
+            "desc": "Cuando está activado, sólo se puede acceder a la carpeta de aplicaciones públicas. Cuando una APP se establece como pública, todos los usuarios pueden acceder a la carpeta.",
+            "cancelBtn": "Cancelar",
+            "submitBtn": "Encender"
+          },
+          "file_name_duplicatio": {
+            "replace": "Reemplazar",
+            "keepboth": "Mantener ambos"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "Por favor, seleccione un archivo con un tamaño menor que {{max}}",
           "min_files": "Por favor, seleccione al menos archivos {{min}}",
           "max_files": "Por favor, seleccione como máximo archivos {{max}}"
-        }
+        },
+        "uploadsuc": "Subido con éxito",
+        "uploadfail": "Error al subir",
+        "noStorage": "Error al subir debido a que no hay suficiente almacenamiento.",
+        "noTraffic": "No se pudo descargar debido a que no hay suficiente tráfico."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Presentación",
-        "selects": "Seleccionar entradas"
+        "selects": "Seleccionar entradas",
+        "drive": "Unidad ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "El contenido de entrada actual es demasiado largo, hemos dejado de calcular automáticamente los datos, puede seguir entrando, esto no afectará su uso."
+    },
+    "history": {
+      "operation": {
+        "Added": "Añadido {{operationTargetName}}",
+        "Deleted": "Eliminado {{operationTargetName}}",
+        "Updated": "Actualizado {{operationTargetName}}",
+        "Moved": "Mover {{operationTargetName}}",
+        "Reseted": "Reiniciado {{operationTargetName}}"
+      },
+      "save": "Guardar como historial",
+      "history": "Historial",
+      "more": "Más",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Actual",
+        "manual": "Manual",
+        "January": "Enero",
+        "February": "Febrero",
+        "March": "Marzo",
+        "April": "Abril",
+        "May": "Mayo",
+        "June": "Junio",
+        "July": "Julio",
+        "August": "Agosto",
+        "September": "Septiembre",
+        "October": "Octubre",
+        "November": "Noviembre",
+        "December": "Diciembre",
+        "final_node": "No hay más historial"
+      },
+      "restore": "Restaurar esta versión",
+      "message": {
+        "version_change": "La versión actual de la aplicación ha cambiado"
+      }
     }
   },
   "exit_preview": "Salir de vista previa",
@@ -2534,7 +2600,8 @@
         "fail": "Error al registrarse",
         "fail_sent": "Error al enviar el código de verificación",
         "success": "Registrado correctamente",
-        "verification_code": "Código de verificación enviado"
+        "verification_code": "Código de verificación enviado",
+        "not_allow_register": "Este equipo ha sido deshabilitado. Por favor, contacta con el propietario del equipo. "
       },
       "title": "Regístrate",
       "agreement": {
@@ -2735,6 +2802,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Selector de archivos de unidad",
+      "modal": {
+        "files": "Archivos",
+        "confirm": "Confirmar ( archivos{{fileNum}})",
+        "cancel": "Cancelar",
+        "no_file": "Ningún archivo"
+      }
     }
   },
   "page": {
@@ -2989,7 +3065,8 @@
       "pending": "Pendiente"
     },
     "settings": {
-      "allow_editors_invite": "Permitir a los editores y espectadores administrar miembros"
+      "allow_editors_invite": "Permitir a los editores y espectadores administrar miembros",
+      "allow_register": "Permitir a los usuarios registrarse a través del enlace"
     }
   },
   "copy_failed": "Error al copiar",

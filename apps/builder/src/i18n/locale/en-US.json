@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Row select change",
           "onCellSelect": "Select a cell",
           "delete": "Delete",
-          "replay": "Reply"
+          "replay": "Reply",
+          "startUploading": "Start uploading",
+          "uploadSuccessfully": "Uploaded successfully",
+          "uploadFailed": "Failed to upload"
         },
         "image_list": {
           "title": "Images",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Type text here"
+        },
+        "drive_builder": {
+          "button_text": "Select"
         }
       },
       "setter_group": {
@@ -1504,7 +1510,7 @@
         "show_dot": "Show dots at the bottom",
         "hidden_images": "Hidden images",
         "file_type": "File types",
-        "selection_types": "Selection types",
+        "selection_types": "Selection type",
         "append_newly_files": "Append newly selected files",
         "file_list": "File list",
         "parse_value": "Parse Value",
@@ -1693,8 +1699,8 @@
           "allow_public_use": "Use in public app",
           "illa_drive_folder": "ILLA Drive folder",
           "generate_signed_url": "Generate signed URL",
-          "expired_time": "Expired time",
-          "time": "Time(s)",
+          "expired_time": "Expired type",
+          "time": "Expired time(s)",
           "turn_on_hotlink": "Turn on hotlink protect",
           "button_text": "Button text",
           "selection_type": "Selection type",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min file num",
-          "max_file_num": "Max file num"
-        }
+          "max_file_num": "Max file num",
+          "file_name_duplicatio": "File name duplication",
+          "fileData": "File data",
+          "downloadZIP": "Download as a ZIP"
+        },
+        "download_from_drive": "Download from ILLA Drive",
+        "save_to_drive": "Save to ILLA Drive"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1950,7 +1961,10 @@
           "min_size": "To set the allowed minimum file size",
           "max_size": "To set the allowed maximum file size",
           "min_file_num": "To set the minimum number of files allowed to be selected",
-          "max_file_num": "To set the maximum number of files allowed to be selected"
+          "max_file_num": "To set the maximum number of files allowed to be selected",
+          "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded.",
+          "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. You can use the Drive file picker component to select files and set this value directly through {{filePciker1.value}}.",
+          "downloadZIP": "To set whether to download the files as one ZIP. "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Never",
+            "never": "Persistent",
             "customer": "Custom"
           },
           "single_file": "Single file",
-          "multiple_files": "Multiple files"
+          "multiple_files": "Multiple files",
+          "anonymous_modal": {
+            "title": "Allow  public users to access ILLA Drive?",
+            "desc": "When turned on, only the Public apps access folder of this app can be accessed. When an APP is set as public, all users can access the folder.",
+            "cancelBtn": "Cancel",
+            "submitBtn": "Turn on"
+          },
+          "file_name_duplicatio": {
+            "replace": "Replace",
+            "keepboth": "Keep both"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "Please select a file with a size smaller than {{max}}",
           "min_files": "Please select at least {{min}} files",
           "max_files": "Please select at most {{max}} files"
-        }
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload",
+        "noStorage": "Failed to upload because of not enough storage.",
+        "noTraffic": "Failed to download because of not enough traffic."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Presentation",
-        "selects": "Select inputs"
+        "selects": "Select inputs",
+        "drive": "ILLA Drive"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "The current input content is too long, we have stopped automatically calculating data, you can still continue to input, this will not affect your use."
+    },
+    "history": {
+      "operation": {
+        "Added": "Added {{operationTargetName}}",
+        "Deleted": "Deleted {{operationTargetName}}",
+        "Updated": "Updated {{operationTargetName}}",
+        "Moved": "Moved {{operationTargetName}}",
+        "Reseted": "Reseted {{operationTargetName}}"
+      },
+      "save": "Save as history",
+      "history": "History",
+      "more": "More",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Current",
+        "manual": "Manual",
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December",
+        "final_node": "No more history"
+      },
+      "restore": "Restore this version",
+      "message": {
+        "version_change": "The current app version has changed"
+      }
     }
   },
   "exit_preview": "Exit Preview",
@@ -2534,7 +2600,8 @@
         "fail": "Failed to sign up",
         "fail_sent": "Failed to send verification code",
         "success": "Signed up successfully",
-        "verification_code": "Verification code sent"
+        "verification_code": "Verification code sent",
+        "not_allow_register": "This team has disabled register. Please contact the team owner. "
       },
       "title": "Sign up",
       "agreement": {
@@ -2735,6 +2802,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Drive file picker",
+      "modal": {
+        "files": "Files",
+        "confirm": "Confirm({{fileNum}} files)",
+        "cancel": "Cancel",
+        "no_file": "No file"
+      }
     }
   },
   "page": {
@@ -2989,7 +3065,8 @@
       "pending": "Pending"
     },
     "settings": {
-      "allow_editors_invite": "Allow editors and viewers to manage members"
+      "allow_editors_invite": "Allow editors and viewers to manage members",
+      "allow_register": "Allow users to register via link"
     }
   },
   "copy_failed": "Failed to copy",

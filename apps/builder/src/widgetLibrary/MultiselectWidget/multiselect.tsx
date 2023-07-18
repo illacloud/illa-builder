@@ -63,7 +63,7 @@ export const WrappedMultiselect: FC<WrappedMultiselectProps> = (props) => {
       allowClear={showClear}
       multiple
       options={options}
-      value={value ?? []}
+      value={typeof value === "object" ? [JSON.stringify(value)] : value ?? []}
       placeholder={placeholder}
       disabled={disabled}
       loading={loading}

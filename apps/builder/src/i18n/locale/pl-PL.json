@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Wybór wiersza zmiany",
           "onCellSelect": "Wybierz komórkę",
           "delete": "Usuń",
-          "replay": "Odpowiedz"
+          "replay": "Odpowiedz",
+          "startUploading": "Rozpocznij przesyłanie",
+          "uploadSuccessfully": "Przesłano pomyślnie",
+          "uploadFailed": "Nie udało się przesłać"
         },
         "image_list": {
           "title": "Obrazy",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Wpisz tekst tutaj"
+        },
+        "drive_builder": {
+          "button_text": "Wybierz"
         }
       },
       "setter_group": {
@@ -1693,8 +1699,8 @@
           "allow_public_use": "Używaj w publicznej aplikacji",
           "illa_drive_folder": "Folder ILLA Drive",
           "generate_signed_url": "Generuj podpisany adres URL",
-          "expired_time": "Czas wygaśnięcia",
-          "time": "Czas(y)",
+          "expired_time": "Typ wygasł",
+          "time": "Czas (czasy) wygaśnięcia",
           "turn_on_hotlink": "Włącz ochronę hotlink",
           "button_text": "Tekst przycisku",
           "selection_type": "Typ wyboru",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min. plik num",
-          "max_file_num": "Maksymalna ilość pliku num"
-        }
+          "max_file_num": "Maksymalna ilość pliku num",
+          "file_name_duplicatio": "Powielanie nazwy pliku",
+          "fileData": "Dane pliku",
+          "downloadZIP": "Pobierz jako ZIP"
+        },
+        "download_from_drive": "Pobierz z Dysku ILLA",
+        "save_to_drive": "Zapisz na dysku ILLA"
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1950,7 +1961,10 @@
           "min_size": "Aby ustawić dozwolony minimalny rozmiar pliku",
           "max_size": "Aby ustawić dozwolony maksymalny rozmiar pliku",
           "min_file_num": "Aby ustawić minimalną liczbę plików dozwolonych do wybrania",
-          "max_file_num": "Aby ustawić maksymalną liczbę plików dozwolonych do wybrania"
+          "max_file_num": "Aby ustawić maksymalną liczbę plików dozwolonych do wybrania",
+          "file_name_duplicatio": "Aby ustawić sposób obsługi duplikatów plików. W przypadku zachowania obu stron zostanie dodany losowy ciąg znaków do nazwy pliku.",
+          "fileData": "Ustaw dane pliku za pomocą tablicy obiektów, format obiektu to {\"fileName\":\"name\", \"FileID\":\"the ID\"}. Możesz użyć komponentu do wybierania plików na dysku i ustawić tę wartość bezpośrednio przez {{filePciker1.value}}.",
+          "downloadZIP": "Aby ustawić czy pobierać pliki jako jeden ZIP. "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nigdy",
+            "never": "Persistent",
             "customer": "Własny"
           },
           "single_file": "Pojedynczy plik",
-          "multiple_files": "Wiele plików"
+          "multiple_files": "Wiele plików",
+          "anonymous_modal": {
+            "title": "Zezwolić publicznym użytkownikom na dostęp do Dysku ILLIA?",
+            "desc": "Po włączeniu tylko publiczny folder dostępu do tej aplikacji może być dostępny. Gdy aplikacja jest ustawiona jako publiczna, wszyscy użytkownicy mogą uzyskać dostęp do folderu.",
+            "cancelBtn": "Anuluj",
+            "submitBtn": "Włącz"
+          },
+          "file_name_duplicatio": {
+            "replace": "Zamień",
+            "keepboth": "Zachowaj oba"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "Wybierz plik o rozmiarze mniejszym niż {{max}}",
           "min_files": "Wybierz co najmniej pliki {{min}}",
           "max_files": "Proszę wybrać co najwyżej plik {{max}}"
-        }
+        },
+        "uploadsuc": "Przesłano pomyślnie",
+        "uploadfail": "Nie udało się przesłać",
+        "noStorage": "Nie udało się przesłać z powodu niewystarczającej ilości pamięci.",
+        "noTraffic": "Nie udało się pobrać z powodu niewystarczającej ilości ruchu."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Prezentacja",
-        "selects": "Wybierz wejścia"
+        "selects": "Wybierz wejścia",
+        "drive": "Dysk ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "Bieżąca zawartość wejściowa jest zbyt długa, wstrzymaliśmy automatyczne obliczanie danych, nadal możesz wprowadzać dane, nie będzie to miało wpływu na twoje użycie."
+    },
+    "history": {
+      "operation": {
+        "Added": "Dodano {{operationTargetName}}",
+        "Deleted": "Usunięto {{operationTargetName}}",
+        "Updated": "Zaktualizowano {{operationTargetName}}",
+        "Moved": "Przeniesiono {{operationTargetName}}",
+        "Reseted": "Przesłano {{operationTargetName}}"
+      },
+      "save": "Zapisz jako historię",
+      "history": "Historia",
+      "more": "Więcej",
+      "save_keyboard": {
+        "cmds": "Cmd + S",
+        "ctrls": "Ctrl + S"
+      },
+      "history_list": {
+        "current": "Bieżący",
+        "manual": "Ręcznie",
+        "January": "Styczeń",
+        "February": "Luty",
+        "March": "Marzec",
+        "April": "Kwiecień",
+        "May": "Maj",
+        "June": "Czerwiec",
+        "July": "Lipiec",
+        "August": "Sierpień",
+        "September": "Wrzesień",
+        "October": "Październik",
+        "November": "Listopad",
+        "December": "Grudzień",
+        "final_node": "Nie ma więcej historii"
+      },
+      "restore": "Przywróć tę wersję",
+      "message": {
+        "version_change": "Aktualna wersja aplikacji została zmieniona"
+      }
     }
   },
   "exit_preview": "Wyjdź z podglądu",
@@ -2534,7 +2600,8 @@
         "fail": "Nie udało się zarejestrować",
         "fail_sent": "Nie udało się wysłać kodu weryfikacyjnego",
         "success": "Zarejestrowano pomyślnie",
-        "verification_code": "Kod weryfikacyjny wysłany"
+        "verification_code": "Kod weryfikacyjny wysłany",
+        "not_allow_register": "Ten zespół wyłączył rejestrację. Skontaktuj się z właścicielem zespołu. "
       },
       "title": "Zarejestruj",
       "agreement": {
@@ -2735,6 +2802,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Selektor plików dysku",
+      "modal": {
+        "files": "Pliki",
+        "confirm": "Potwierdź (pliki{{fileNum}})",
+        "cancel": "Anuluj",
+        "no_file": "Brak pliku"
+      }
     }
   },
   "page": {
@@ -2989,7 +3065,8 @@
       "pending": "Oczekujące"
     },
     "settings": {
-      "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami"
+      "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami",
+      "allow_register": "Zezwalaj użytkownikom na rejestrację za pomocą linku"
     }
   },
   "copy_failed": "Nie udało się skopiować",

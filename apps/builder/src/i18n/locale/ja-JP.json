@@ -1219,7 +1219,10 @@
           "rowSelectChange": "行の選択変更",
           "onCellSelect": "セルを選択",
           "delete": "削除",
-          "replay": "返信"
+          "replay": "返信",
+          "startUploading": "アップロードを開始",
+          "uploadSuccessfully": "正常にアップロードしました",
+          "uploadFailed": "アップロードに失敗しました"
         },
         "image_list": {
           "title": "イメージ",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "ここにテキストを入力"
+        },
+        "drive_builder": {
+          "button_text": "選択"
         }
       },
       "setter_group": {
@@ -1693,8 +1699,8 @@
           "allow_public_use": "パブリックアプリで使用",
           "illa_drive_folder": "ILLA Driveフォルダ",
           "generate_signed_url": "署名済みURLを生成",
-          "expired_time": "期限切れ時間",
-          "time": "回数",
+          "expired_time": "期限切れのタイプ",
+          "time": "期限切れ時間",
           "turn_on_hotlink": "ホットリンク保護をオンにする",
           "button_text": "ボタンのテキスト",
           "selection_type": "選択タイプ",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "最小ファイル num",
-          "max_file_num": "最大ファイル num"
-        }
+          "max_file_num": "最大ファイル num",
+          "file_name_duplicatio": "ファイル名の重複",
+          "fileData": "ファイルデータ",
+          "downloadZIP": "ZIP形式でダウンロード"
+        },
+        "download_from_drive": "ILLA Driveからダウンロード",
+        "save_to_drive": "ILLA ドライブに保存"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1950,7 +1961,10 @@
           "min_size": "許可されている最小ファイルサイズを設定する",
           "max_size": "許可された最大ファイルサイズを設定する",
           "min_file_num": "選択できるファイルの最小数を設定する",
-          "max_file_num": "選択できるファイルの最大数を設定する"
+          "max_file_num": "選択できるファイルの最大数を設定する",
+          "file_name_duplicatio": "重複したファイル名を扱う方法を設定します。両方を保持する場合、アップロードされたファイル名にランダムな文字列が追加されます。",
+          "fileData": "オブジェクト配列を使用してファイルデータを設定し、オブジェクトのフォーマットは {\"fileName\":\"name\", \"FileID\":\"ID\"}です。 ドライブファイルピッカーコンポーネントを使用してファイルを選択し、 {{filePciker1.value}} を介してこの値を直接設定することができます。",
+          "downloadZIP": "ファイルを1つのZIPとしてダウンロードするかどうかを設定する。 "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "一切なし",
+            "never": "Persistent",
             "customer": "カスタム"
           },
           "single_file": "単一のファイル",
-          "multiple_files": "複数のファイル"
+          "multiple_files": "複数のファイル",
+          "anonymous_modal": {
+            "title": "一般ユーザーがILLAドライブにアクセスできるようにしますか?",
+            "desc": "オンにすると、このアプリの公開アプリのアクセスフォルダのみにアクセスできます。 APPがパブリックに設定されている場合、すべてのユーザーがフォルダにアクセスできます。",
+            "cancelBtn": "キャンセル",
+            "submitBtn": "オンにする"
+          },
+          "file_name_duplicatio": {
+            "replace": "置換",
+            "keepboth": "両方を保持"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "{{max}}より小さいサイズのファイルを選択してください",
           "min_files": "少なくとも {{min}} ファイルを選択してください",
           "max_files": "最大 {{max}} ファイルを選択してください"
-        }
+        },
+        "uploadsuc": "正常にアップロードしました",
+        "uploadfail": "アップロードに失敗しました",
+        "noStorage": "ストレージが不足しているため、アップロードに失敗しました。",
+        "noTraffic": "十分なトラフィックがないため、ダウンロードできませんでした。"
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "入力クラス コンポーネント",
         "navigation": "ナビゲーション",
         "presentation": "クラス コンポーネントの表示",
-        "selects": "クラスコンポーネントを選択"
+        "selects": "クラスコンポーネントを選択",
+        "drive": "ILLAドライブ"
       },
       "tab_title": "コンポーネント"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "現在の入力内容が長すぎます。自動的にデータを計算するのを停止しました。引き続き入力することができます。これはあなたの使用に影響しません。"
+    },
+    "history": {
+      "operation": {
+        "Added": "{{operationTargetName}} を追加しました",
+        "Deleted": "{{operationTargetName}} を削除しました",
+        "Updated": "{{operationTargetName}} を更新しました",
+        "Moved": "{{operationTargetName}} が移動しました",
+        "Reseted": "リセット済み {{operationTargetName}}"
+      },
+      "save": "履歴として保存",
+      "history": "沿革",
+      "more": "もっと見る",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "現在",
+        "manual": "マニュアル",
+        "January": "1月",
+        "February": "2月",
+        "March": "3月",
+        "April": "4月",
+        "May": "5月",
+        "June": "6月",
+        "July": "7月",
+        "August": "8月",
+        "September": "9月",
+        "October": "10月",
+        "November": "11月",
+        "December": "12月",
+        "final_node": "履歴はありません"
+      },
+      "restore": "このバージョンを復元",
+      "message": {
+        "version_change": "現在のアプリのバージョンが変更されました"
+      }
     }
   },
   "exit_preview": "プレビューを終了",
@@ -2534,7 +2600,8 @@
         "fail": "登録に失敗しました",
         "fail_sent": "確認コードを送信できませんでした",
         "success": "登録完了",
-        "verification_code": "確認コードが送信されました"
+        "verification_code": "確認コードが送信されました",
+        "not_allow_register": "このチームは登録が無効になっています。チームのオーナーにお問い合わせください。 "
       },
       "title": "登録",
       "agreement": {
@@ -2735,6 +2802,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "ドライブファイルピッカー",
+      "modal": {
+        "files": "ファイル",
+        "confirm": "確認 ({{fileNum}} ファイル)",
+        "cancel": "キャンセル",
+        "no_file": "ファイルがありません"
+      }
     }
   },
   "page": {
@@ -2989,7 +3065,8 @@
       "pending": "処理待ち"
     },
     "settings": {
-      "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします"
+      "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします",
+      "allow_register": "ユーザーがリンク経由で登録できるようにする"
     }
   },
   "copy_failed": "コピーに失敗しました",

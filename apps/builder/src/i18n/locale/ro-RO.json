@@ -1219,7 +1219,10 @@
           "rowSelectChange": "Rând selectare modificare",
           "onCellSelect": "Selectați o celulă",
           "delete": "Ștergere",
-          "replay": "Răspuns"
+          "replay": "Răspuns",
+          "startUploading": "Începe încărcarea",
+          "uploadSuccessfully": "Încărcat cu succes",
+          "uploadFailed": "Încărcarea a eșuat"
         },
         "image_list": {
           "title": "Imagini",
@@ -1291,6 +1294,9 @@
         },
         "rich_text": {
           "default_text": "Scrie textul aici"
+        },
+        "drive_builder": {
+          "button_text": "Selectare"
         }
       },
       "setter_group": {
@@ -1693,8 +1699,8 @@
           "allow_public_use": "Utilizare în aplicația publică",
           "illa_drive_folder": "Dosar ILLA Drive",
           "generate_signed_url": "Generează adresa semnată",
-          "expired_time": "Timp expirat",
-          "time": "Ora",
+          "expired_time": "Tip expirat",
+          "time": "Timp expirat",
           "turn_on_hotlink": "Activați protecția prin hotlink",
           "button_text": "Text buton",
           "selection_type": "Tipul de selecţie",
@@ -1703,8 +1709,13 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Numar fisier minim",
-          "max_file_num": "Nr. max. fișier"
-        }
+          "max_file_num": "Nr. max. fișier",
+          "file_name_duplicatio": "Duplicare nume fișier",
+          "fileData": "Date fișier",
+          "downloadZIP": "Descarcă ca ZIP"
+        },
+        "download_from_drive": "Descarcă de pe ILLA Drive",
+        "save_to_drive": "Salvează în unitatea ILLA"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1950,7 +1961,10 @@
           "min_size": "Pentru a seta dimensiunea minimă permisă a fișierului",
           "max_size": "Pentru a seta dimensiunea maximă permisă a fișierului",
           "min_file_num": "Pentru a seta numărul minim de fișiere care pot fi selectate",
-          "max_file_num": "Pentru a seta numărul maxim de fișiere care pot fi selectate"
+          "max_file_num": "Pentru a seta numărul maxim de fișiere care pot fi selectate",
+          "file_name_duplicatio": "Pentru a seta cum să se gestioneze duplicat nume de fișiere. În cazul în care le păstrați pe amândouă, un șir aleatoriu va fi adăugat la numele fișierului încărcat.",
+          "fileData": "Setați datele fișierului folosind o matrice de obiect, formatul obiectului este {\"fileName\":\"name\", \"FileID\":\"}. Puteți utiliza componenta selector de fișiere Drive pentru a selecta fișiere și seta această valoare direct prin {{filePciker1.value}}.",
+          "downloadZIP": "Pentru a seta dacă se descarcă fișierele ca un singur ZIP. "
         }
       },
       "setter_option": {
@@ -2038,11 +2052,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Niciodată",
+            "never": "Persistent",
             "customer": "Personalizat"
           },
           "single_file": "Fişier unic",
-          "multiple_files": "Fișiere multiple"
+          "multiple_files": "Fișiere multiple",
+          "anonymous_modal": {
+            "title": "Permiteți utilizatorilor publici să acceseze ILLA Drive?",
+            "desc": "Când este activată, numai dosarul de acces al aplicațiilor publice al acestei aplicații poate fi accesat. Atunci când o APP este setată ca publică, toți utilizatorii pot accesa dosarul.",
+            "cancelBtn": "Anulează",
+            "submitBtn": "Porniți"
+          },
+          "file_name_duplicatio": {
+            "replace": "Înlocuiește",
+            "keepboth": "Păstrați ambele"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2124,11 @@
           "max_size": "Vă rugăm să selectaţi un fişier cu o dimensiune mai mică decât {{max}}",
           "min_files": "Vă rugăm să selectaţi cel puţin {{min}} fişiere",
           "max_files": "Vă rugăm să selectaţi cel mult {{max}} fişiere"
-        }
+        },
+        "uploadsuc": "Încărcat cu succes",
+        "uploadfail": "Încărcarea a eșuat",
+        "noStorage": "Încărcarea a eșuat din cauza stocării insuficiente.",
+        "noTraffic": "Descărcarea a eșuat din cauza traficului insuficient."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2210,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Prezentare",
-        "selects": "Selectați intrările"
+        "selects": "Selectați intrările",
+        "drive": "Unitate ILLA"
       },
       "tab_title": "Insert"
     },
@@ -2336,6 +2365,43 @@
     },
     "general": {
       "length_limit": "Conținutul curent de intrare este prea lung, am oprit calcularea automată a datelor, puteți continua să intrați, acest lucru nu va afecta utilizarea."
+    },
+    "history": {
+      "operation": {
+        "Added": "Adăugat {{operationTargetName}}",
+        "Deleted": "Eliminat {{operationTargetName}}",
+        "Updated": "Actualizat {{operationTargetName}}",
+        "Moved": "Mutat {{operationTargetName}}",
+        "Reseted": "Resetat {{operationTargetName}}"
+      },
+      "save": "Salvează ca istoric",
+      "history": "Istoric",
+      "more": "Mai",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Actuală",
+        "manual": "Manual",
+        "January": "Ianuarie",
+        "February": "Februarie",
+        "March": "Martie",
+        "April": "aprilie",
+        "May": "Mai",
+        "June": "Iunie",
+        "July": "Iulie",
+        "August": "august",
+        "September": "Septembrie",
+        "October": "Octombrie",
+        "November": "Noiembrie",
+        "December": "Decembrie",
+        "final_node": "Nu mai există istoric"
+      },
+      "restore": "Restaurează această versiune",
+      "message": {
+        "version_change": "Versiunea curentă a aplicației s-a schimbat"
+      }
     }
   },
   "exit_preview": "Ieșiți din previzualizare",
@@ -2534,7 +2600,8 @@
         "fail": "Înregistrare nereușită",
         "fail_sent": "Trimiterea codului de verificare a eșuat",
         "success": "Înregistrare reușită",
-        "verification_code": "Cod de verificare trimis"
+        "verification_code": "Cod de verificare trimis",
+        "not_allow_register": "This team has disabled register. Please contact the team owner. "
       },
       "title": "Înscrie-te",
       "agreement": {
@@ -2735,6 +2802,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Selector fișier unitate",
+      "modal": {
+        "files": "Fișiere",
+        "confirm": "Confirmă ({{fileNum}} fișiere)",
+        "cancel": "Anulează",
+        "no_file": "Nici un fişier"
+      }
     }
   },
   "page": {
@@ -2989,7 +3065,8 @@
       "pending": "In asteptare"
     },
     "settings": {
-      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii"
+      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii",
+      "allow_register": "Allow users to register via link"
     }
   },
   "copy_failed": "Copierea a eșuat",
