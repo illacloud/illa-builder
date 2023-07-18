@@ -2122,7 +2122,9 @@
           "max_size": "Velg en fil med en størrelse mindre enn {{max}}",
           "min_files": "Velg minst {{min}} filer",
           "max_files": "Velg maksimalt {{max}} filer"
-        }
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload"
       },
       "setter_description": {
         "code": {
