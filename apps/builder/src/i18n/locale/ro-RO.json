@@ -2122,7 +2122,9 @@
           "max_size": "Vă rugăm să selectaţi un fişier cu o dimensiune mai mică decât {{max}}",
           "min_files": "Vă rugăm să selectaţi cel puţin {{min}} fişiere",
           "max_files": "Vă rugăm să selectaţi cel mult {{max}} fişiere"
-        }
+        },
+        "uploadsuc": "Uploaded successfully",
+        "uploadfail": "Failed to upload"
       },
       "setter_description": {
         "code": {
