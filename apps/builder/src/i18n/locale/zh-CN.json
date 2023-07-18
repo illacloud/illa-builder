@@ -2600,7 +2600,8 @@
         "fail": "注册失败",
         "fail_sent": "发送验证码失败",
         "success": "注册成功",
-        "verification_code": "验证码已发送"
+        "verification_code": "验证码已发送",
+        "not_allow_register": "这个团队禁用了注册。请联系团队Owner"
       },
       "title": "注册",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "等待处理"
     },
     "settings": {
-      "allow_editors_invite": "允许编辑者和浏览者管理成员"
+      "allow_editors_invite": "允许编辑者和浏览者管理成员",
+      "allow_register": "允许用户通过链接注册"
     }
   },
   "copy_failed": "复制失败",
