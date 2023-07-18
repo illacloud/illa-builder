@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "File name duplication",
           "fileData": "File data",
           "downloadZIP": "Download as a ZIP"
-        }
+        },
+        "download_from_drive": "Download from ILLA Drive",
+        "save_to_drive": "Save to ILLA Drive"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -2124,7 +2126,9 @@
           "max_files": "Please select at most {{max}} files"
         },
         "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadfail": "Failed to upload",
+        "noStorage": "Failed to upload because of not enough storage.",
+        "noTraffic": "Failed to download because of not enough traffic."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Drive file picker",
       "modal": {
         "files": "Files",
-        "confirm": "Confirm",
+        "confirm": "Confirm({{fileNum}} files)",
         "cancel": "Cancel",
         "no_file": "No file"
       }
