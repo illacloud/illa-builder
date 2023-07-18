@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "Dateiname Duplikation",
           "fileData": "Datei-Daten",
           "downloadZIP": "Als ZIP herunterladen"
-        }
+        },
+        "download_from_drive": "Von ILLA Drive herunterladen",
+        "save_to_drive": "In ILLA Laufwerk speichern"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -2123,8 +2125,10 @@
           "min_files": "Bitte wählen Sie mindestens {{min}} Dateien",
           "max_files": "Bitte wählen Sie maximal {{max}} Dateien"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "Upload erfolgreich",
+        "uploadfail": "Upload fehlgeschlagen",
+        "noStorage": "Hochladen fehlgeschlagen, da nicht genügend Speicher vorhanden ist.",
+        "noTraffic": "Download fehlgeschlagen, da nicht genug Traffic vorhanden ist."
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "Laufwerk-Dateiauswahl",
       "modal": {
         "files": "Dateien",
-        "confirm": "Bestätigen",
+        "confirm": "Bestätigen ({{fileNum}} Dateien)",
         "cancel": "Abbrechen",
         "no_file": "Keine Datei"
       }
