@@ -2600,7 +2600,8 @@
         "fail": "등록 실패",
         "fail_sent": "인증 코드를 보내지 못했습니다.",
         "success": "등록 성공",
-        "verification_code": "인증 코드 전송됨"
+        "verification_code": "인증 코드 전송됨",
+        "not_allow_register": "This team has disabled register. Please contact the team owner. "
       },
       "title": "등록하다",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "보류 중"
     },
     "settings": {
-      "allow_editors_invite": "편집자와 뷰어가 회원을 관리하도록 허용합니다"
+      "allow_editors_invite": "편집자와 뷰어가 회원을 관리하도록 허용합니다",
+      "allow_register": "Allow users to register via link"
     }
   },
   "copy_failed": "복사 실패",

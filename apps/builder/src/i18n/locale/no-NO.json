@@ -2600,7 +2600,8 @@
         "fail": "Kunne ikke registrere deg",
         "fail_sent": "Klarte ikke å sende bekreftelseskoden",
         "success": "Registrering vellykket",
-        "verification_code": "Bekreftelseskode er sendt"
+        "verification_code": "Bekreftelseskode er sendt",
+        "not_allow_register": "This team has disabled register. Please contact the team owner. "
       },
       "title": "Registrer deg",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "Ventende"
     },
     "settings": {
-      "allow_editors_invite": "Tillat redaktører og seere å administrere medlemmer"
+      "allow_editors_invite": "Tillat redaktører og seere å administrere medlemmer",
+      "allow_register": "Allow users to register via link"
     }
   },
   "copy_failed": "Kunne ikke kopiere",
