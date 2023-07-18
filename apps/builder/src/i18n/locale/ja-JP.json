@@ -1713,7 +1713,9 @@
           "file_name_duplicatio": "ファイル名の重複",
           "fileData": "ファイルデータ",
           "downloadZIP": "ZIP形式でダウンロード"
-        }
+        },
+        "download_from_drive": "ILLA Driveからダウンロード",
+        "save_to_drive": "ILLA ドライブに保存"
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -2123,8 +2125,10 @@
           "min_files": "少なくとも {{min}} ファイルを選択してください",
           "max_files": "最大 {{max}} ファイルを選択してください"
         },
-        "uploadsuc": "Uploaded successfully",
-        "uploadfail": "Failed to upload"
+        "uploadsuc": "正常にアップロードしました",
+        "uploadfail": "アップロードに失敗しました",
+        "noStorage": "ストレージが不足しているため、アップロードに失敗しました。",
+        "noTraffic": "十分なトラフィックがないため、ダウンロードできませんでした。"
       },
       "setter_description": {
         "code": {
@@ -2802,7 +2806,7 @@
       "name": "ドライブファイルピッカー",
       "modal": {
         "files": "ファイル",
-        "confirm": "確認する",
+        "confirm": "確認 ({{fileNum}} ファイル)",
         "cancel": "キャンセル",
         "no_file": "ファイルがありません"
       }
