@@ -1718,7 +1718,8 @@
         "save_to_drive": "Salvează în unitatea ILLA",
         "menu": {
           "logo": "Logo",
-          "title": "Title"
+          "title": "Titlu",
+          "only_show_icon": "Arată doar pictograma"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Tabelul nu poate fi pus într-o listă"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Setați sigla dvs. cu un URL",
+          "title": "Setați aici un titlu, cum ar fi numele companiei",
+          "only_show_icon": "CĂTRE ascunderea etichetei şi arată doar pictograma"
         }
       },
       "setter_option": {
