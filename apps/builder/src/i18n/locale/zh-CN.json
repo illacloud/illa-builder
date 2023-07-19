@@ -1718,7 +1718,8 @@
         "save_to_drive": "保存到ILLA Drive",
         "menu": {
           "logo": "Logo",
-          "title": "标题"
+          "title": "标题",
+          "only_show_icon": "只展示icon"
         }
       },
       "setter_tooltip": {
@@ -1975,7 +1976,8 @@
         },
         "menu": {
           "logo": "使用URL设置您的logo",
-          "title": "在此设置标题，如公司名称"
+          "title": "在此设置标题，如公司名称",
+          "only_show_icon": "隐藏菜单的文案，只显示icon"
         }
       },
       "setter_option": {
