@@ -2403,7 +2403,17 @@
       },
       "restore": "恢复到该版本",
       "message": {
-        "version_change": "当前应用版本已发生变更"
+        "version_change": "当前应用版本已发生变更",
+        "suc": {
+          "save": "当前版本已成功保存为历史记录",
+          "restore": "恢复成功",
+          "preview": "历史记录加载成功"
+        },
+        "fail": {
+          "save": "保存失败",
+          "restore": "恢复失败",
+          "preview": "历史记录加载失败"
+        }
       }
     }
   },

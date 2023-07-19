@@ -1967,7 +1967,7 @@
           "downloadZIP": "Aby ustawić czy pobierać pliki jako jeden ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Tabela nie może być umieszczona na liście"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "Przywróć tę wersję",
       "message": {
-        "version_change": "Aktualna wersja aplikacji została zmieniona"
+        "version_change": "Aktualna wersja aplikacji została zmieniona",
+        "suc": {
+          "save": "Bieżąca wersja została pomyślnie zapisana jako historia rekordu",
+          "restore": "Przywrócono pomyślnie",
+          "preview": "Wpis historii został pomyślnie załadowany."
+        },
+        "fail": {
+          "save": "Nie udało się zapisać",
+          "restore": "Nie udało się przywrócić",
+          "preview": "Nie udało się załadować rekordu historii."
+        }
       }
     }
   },

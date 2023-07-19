@@ -1967,7 +1967,7 @@
           "downloadZIP": "Um festzulegen, ob die Dateien als ein ZIP heruntergeladen werden sollen. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Tabelle kann nicht in eine Liste gesetzt werden"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "Diese Version wiederherstellen",
       "message": {
-        "version_change": "Die aktuelle App-Version hat sich geändert"
+        "version_change": "Die aktuelle App-Version hat sich geändert",
+        "suc": {
+          "save": "Aktuelle Version ist erfolgreich als History-Eintrag gespeichert",
+          "restore": "Erfolgreich wiederhergestellt",
+          "preview": "Der History-Eintrag wurde erfolgreich geladen."
+        },
+        "fail": {
+          "save": "Speichern fehlgeschlagen",
+          "restore": "Wiederherstellung fehlgeschlagen",
+          "preview": "Fehler beim Laden des Verlaufsdatums."
+        }
       }
     }
   },

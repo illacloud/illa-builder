@@ -267,14 +267,23 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }
 
   const handleOpenHistory = useCallback(() => {
-    dispatch(configActions.updateIllaMode("history"))
-  }, [dispatch])
+    navigate(`/${teamIdentifier}/appHistory/${appId}`)
+  }, [navigate, teamIdentifier, appId])
 
-  const handleSaveCurrentAppVersion = useCallback(() => {
+  const handleSaveCurrentAppVersion = useCallback(async () => {
     if (appId) {
-      takeSnapShot(appId)
+      try {
+        await takeSnapShot(appId)
+        message.success({ content: t("editor.history.message.suc.save") })
+      } catch (error) {
+        if (isILLAAPiError(error)) {
+          message.error({ content: t("editor.history.message.fail.save") })
+        } else {
+          message.error({ content: t("network_error") })
+        }
+      }
     }
-  }, [appId])
+  }, [appId, message, t])
 
   const handleWaterMarkChange = useCallback(
     async (value: boolean, event: MouseEvent) => {

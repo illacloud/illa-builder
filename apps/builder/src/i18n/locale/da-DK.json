@@ -1967,7 +1967,7 @@
           "downloadZIP": "For at angive, om filerne skal downloades som en ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Tabel kan ikke indsættes i en liste"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "Gendan denne version",
       "message": {
-        "version_change": "Den aktuelle app-version er ændret"
+        "version_change": "Den aktuelle app-version er ændret",
+        "suc": {
+          "save": "Nuværende version er gemt som historik post",
+          "restore": "Genoprettet succesfuldt",
+          "preview": "Historik posten er indlæst."
+        },
+        "fail": {
+          "save": "Kunne ikke gemme",
+          "restore": "Kunne ikke gendanne",
+          "preview": "Kunne ikke indlæse historikjournalen."
+        }
       }
     }
   },

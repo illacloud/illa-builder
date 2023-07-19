@@ -1967,7 +1967,7 @@
           "downloadZIP": "ファイルを1つのZIPとしてダウンロードするかどうかを設定する。 "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "テーブルをリストに入れることはできません"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "このバージョンを復元",
       "message": {
-        "version_change": "現在のアプリのバージョンが変更されました"
+        "version_change": "現在のアプリのバージョンが変更されました",
+        "suc": {
+          "save": "現在のバージョンは正常に履歴レコードとして保存されました",
+          "restore": "復元に成功しました",
+          "preview": "履歴レコードが正常に読み込まれました。"
+        },
+        "fail": {
+          "save": "保存に失敗しました",
+          "restore": "復元に失敗しました",
+          "preview": "履歴レコードの読み込みに失敗しました。"
+        }
       }
     }
   },
