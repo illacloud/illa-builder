@@ -1715,7 +1715,11 @@
           "downloadZIP": "Скачать как ZIP"
         },
         "download_from_drive": "Скачать из ILLA Drive",
-        "save_to_drive": "Сохранить в ILLA Drive"
+        "save_to_drive": "Сохранить в ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Ваши действия для компонентов триггерные запросы, контрольные компоненты или вызов данных в ваших ресурсах. Несколько асинхронных действий будут выполняться параллельно.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Таблица не может быть помещена в список"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
