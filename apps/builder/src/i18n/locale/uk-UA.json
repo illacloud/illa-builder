@@ -1717,8 +1717,9 @@
         "download_from_drive": "Завантажити з ILLA-диска",
         "save_to_drive": "Зберегти на диск",
         "menu": {
-          "logo": "Logo",
-          "title": "Title"
+          "logo": "Логотип",
+          "title": "Найменування",
+          "only_show_icon": "Показувати тільки піктограми"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Таблиця не може бути вкладена в список"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Встановіть свій логотип з URL",
+          "title": "Встановити таку назву, як назва компанії тут",
+          "only_show_icon": "ДО прихований ярлик і лише значок"
         }
       },
       "setter_option": {
