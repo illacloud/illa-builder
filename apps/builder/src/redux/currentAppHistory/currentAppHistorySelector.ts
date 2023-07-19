@@ -4,6 +4,10 @@ export const getCurrentAppSnapshotList = (state: RootState) => {
   return state.currentAppHistory.snapshotList
 }
 
+export const getSnapshotListCurrentPage = (state: RootState) => {
+  return state.currentAppHistory.currentPage
+}
+
 export const getSnapshotListHasMore = (state: RootState) => {
   return state.currentAppHistory.hasMore
 }

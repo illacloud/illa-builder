@@ -11,7 +11,7 @@ import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppSta
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchSnapShot, fetchSnapShotList } from "@/services/history"
 
-const INITIAL_PAGE = 0
+const INITIAL_PAGE = 1
 
 export const useInitHistoryApp = (mode: IllaMode = "preview") => {
   const { appId } = useParams()
@@ -75,9 +75,10 @@ export const useInitHistoryApp = (mode: IllaMode = "preview") => {
             const { data } = response
             const currentSnapshotID = data.snapshotList[0].snapshotID
             dispatch(
-              currentAppHistoryActions.updateCurrentAppHistoryReducer({
+              currentAppHistoryActions.initCurrentAppHistoryReducer({
                 ...data,
-                hasMore: data.totalPages - 1 !== INITIAL_PAGE,
+                hasMore: data.totalPages !== INITIAL_PAGE,
+                currentPage: INITIAL_PAGE,
                 currentSnapshotID,
               }),
             )

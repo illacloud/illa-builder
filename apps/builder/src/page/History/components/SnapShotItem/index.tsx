@@ -10,6 +10,7 @@ import {
   Snapshot,
 } from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot } from "@/services/history"
+import { formatDate } from "@/utils/dayjs"
 import {
   applyTimeStyle,
   avatarStyle,
@@ -87,7 +88,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
         ) : (
           <>
             <div css={applyTimeStyle(selected)} onClick={handleClickItem}>
-              {snapshot.createdAt}
+              {formatDate(snapshot.createdAt)}
             </div>
             <div css={contentStyle}>
               {snapshot.modifyHistory.map((modify) => {

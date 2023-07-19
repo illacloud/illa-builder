@@ -32,7 +32,7 @@ export const SnapShotList: FC<SnapShotListProps> = (props) => {
             <SnapShotItem
               key={snapshot.snapshotID}
               snapshot={snapshot}
-              last={snapshotList.length - 1 === index}
+              last={!hasMore && snapshotList.length - 1 === index}
               selected={currentSnapshotID === snapshot.snapshotID}
             />
           )

@@ -37,6 +37,7 @@ export interface SnapshotList {
 
 export interface CurrentSnapshotList extends SnapshotList {
   hasMore: boolean
+  currentPage: number
 }
 
 export interface CurrentAppHistory extends CurrentSnapshotList {
@@ -46,5 +47,6 @@ export interface CurrentAppHistory extends CurrentSnapshotList {
 export const CurrentAppHistoryInitialState: CurrentAppHistory = {
   snapshotList: [],
   totalPages: 0,
+  currentPage: 0,
   hasMore: false,
 }
