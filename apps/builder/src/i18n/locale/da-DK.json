@@ -1715,7 +1715,11 @@
           "downloadZIP": "Download som et postnummer"
         },
         "download_from_drive": "Download fra ILLA drev",
-        "save_to_drive": "Gem til ILLA drev"
+        "save_to_drive": "Gem til ILLA drev",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Tabel kan ikke indsættes i en liste"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
