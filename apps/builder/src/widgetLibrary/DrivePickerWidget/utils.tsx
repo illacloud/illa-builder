@@ -14,18 +14,17 @@ import { ReactComponent as AnonymousIcon } from "@/assets/drive/anonymous.svg"
 import { ReactComponent as FolderIcon } from "@/assets/drive/folder.svg"
 import { ReactComponent as ZipIcon } from "@/assets/drive/zip.svg"
 import { GCS_OBJECT_TYPE } from "@/services/drive"
-import { ROOT_PATH } from "./constants"
 
 export const getCurrentPath = (limitPath: string, totalPath?: string) => {
-  let curTotalPath = totalPath ?? limitPath
+  const curTotalPath = totalPath ?? limitPath
   const limitPathArr = limitPath.split("/")
   const limitRoot = limitPathArr[limitPathArr.length - 1]
-  return `${limitRoot}${curTotalPath.replace(limitPath, "")}`
+  return removeSuffixPath(`${limitRoot}${curTotalPath.replace(limitPath, "")}`)
 }
 
-export const removeSuffixPath = (path: string | undefined): string => {
+export const removeSuffixPath = (path: string): string => {
   const regex = /^\/?(.*?)\/?$/
-  return path?.match(regex)?.[1] ?? ROOT_PATH
+  return path?.match(regex)?.[1] || path
 }
 
 const IMAGE_FILE_TYPE_RULES = ["image/"]
@@ -130,25 +129,25 @@ export const getFileIconByILLAFileType = (
   iconStyle?: SerializedStyles,
 ) => {
   switch (type) {
-    case "image":
+    case ILLA_DRIVE_OBJECT_TYPE.IMAGE:
       return <FilePictureIcon css={iconStyle} />
-    case "video":
+    case ILLA_DRIVE_OBJECT_TYPE.VIDEO:
       return <FileVideoIcon css={iconStyle} />
-    case "audio":
+    case ILLA_DRIVE_OBJECT_TYPE.AUDIO:
       return <FileMusicIcon css={iconStyle} />
-    case "pdf":
+    case ILLA_DRIVE_OBJECT_TYPE.PDF:
       return <FilePdfIcon css={iconStyle} />
-    case "word":
+    case ILLA_DRIVE_OBJECT_TYPE.WORD:
       return <FileWordIcon css={iconStyle} />
-    case "excel":
+    case ILLA_DRIVE_OBJECT_TYPE.EXCEL:
       return <FileExcelIcon css={iconStyle} />
-    case "ppt":
+    case ILLA_DRIVE_OBJECT_TYPE.PPT:
       return <FilePPTIcon css={iconStyle} />
-    case "folder":
+    case ILLA_DRIVE_OBJECT_TYPE.FOLDER:
       return <FolderIcon css={iconStyle} />
-    case "zip":
+    case ILLA_DRIVE_OBJECT_TYPE.ZIP:
       return <ZipIcon css={iconStyle} />
-    case "anonymousFolder":
+    case ILLA_DRIVE_OBJECT_TYPE.ANONYMOUS_FOLDER:
       return <AnonymousIcon css={iconStyle} />
     default:
       return <FileDefaultIcon css={iconStyle} />

@@ -54,6 +54,7 @@ export const DrivePickerWidget: FC<DrivePickerWidgetProps> = (props) => {
     maxFileNum,
     sizeType = "kb",
     allowAnonymousUse,
+    colorScheme = "blue",
     handleUpdateMultiExecutionResult,
     triggerEventHandler,
   } = props
@@ -91,6 +92,7 @@ export const DrivePickerWidget: FC<DrivePickerWidgetProps> = (props) => {
       maxSize={maxSize}
       sizeType={sizeType}
       allowAnonymousUse={allowAnonymousUse}
+      colorScheme={colorScheme}
     >
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <WrappedDrivePicker {...props} />

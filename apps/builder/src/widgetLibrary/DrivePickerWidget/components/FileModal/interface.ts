@@ -19,6 +19,7 @@ export interface FileListProps {
   totalPath: string
   search?: MutableRefObject<string>
   selectItems: FileToPanel[]
+  colorScheme: string
   getFileList: (currentPage: number, totalPath: string, search?: string) => void
   updatePath: (changedPath: string) => void
   onChange: (flag: boolean, item: FileToPanel) => void

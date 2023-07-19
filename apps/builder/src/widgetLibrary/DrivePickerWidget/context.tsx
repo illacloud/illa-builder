@@ -1,11 +1,4 @@
-import {
-  FC,
-  ReactNode,
-  createContext,
-  useCallback,
-  useEffect,
-  useState,
-} from "react"
+import { FC, ReactNode, createContext, useCallback, useState } from "react"
 import { useSelector } from "react-redux"
 import {
   HTTP_REQUEST_PUBLIC_BASE_URL,
@@ -25,6 +18,7 @@ import { FileToPanel } from "./components/FileModal/interface"
 import { PAGESIZE, ROOT_PATH } from "./constants"
 import { usePath } from "./hooks/usePath"
 import { SelectItemValue } from "./interface"
+import { removeSuffixPath } from "./utils"
 
 interface Injected {
   modalVisible: boolean
@@ -36,6 +30,7 @@ interface Injected {
   maxSize?: number
   minFileNum?: number
   maxFileNum?: number
+  colorScheme: string
   updatePath: (changedPath: string) => void
   submitSelect: (selectIds: FileToPanel[]) => Promise<unknown>
   setModalVisible: (visible: boolean) => void
@@ -44,6 +39,7 @@ interface Injected {
     totalPath: string,
     search?: string,
   ) => Promise<unknown>
+  handleCloseModal: () => void
 }
 
 export const DrivePickerContext = createContext<Injected>({} as Injected)
@@ -60,6 +56,7 @@ interface Props {
   maxSize?: number
   minFileNum?: number
   maxFileNum?: number
+  colorScheme: string
   handleUpdateResult: (
     value: SelectItemValue[],
     files: Partial<FileToPanel>[],
@@ -78,12 +75,13 @@ export const DrivePickerProvider: FC<Props> = (props) => {
     maxSize,
     minFileNum,
     maxFileNum,
+    colorScheme,
     sizeType,
     handleUpdateResult,
   } = props
 
   const { currentPath, updatePath, totalPath } = usePath(
-    path,
+    removeSuffixPath(path),
     allowAnonymousUse,
   )
   const [fileList, setFileList] = useState<IILLAFileInfo[]>([])
@@ -94,8 +92,7 @@ export const DrivePickerProvider: FC<Props> = (props) => {
     (items: FileToPanel[]) => {
       return new Promise(async (resolve, reject) => {
         if (appInfo.config.public && !appInfo.deployed && !allowAnonymousUse) {
-          reject()
-          return
+          return reject()
         }
         const selectIds = items.map((item) => item.id)
         const requestParams = {
@@ -156,7 +153,7 @@ export const DrivePickerProvider: FC<Props> = (props) => {
       }
       try {
         const requestParams = {
-          path: `/${totalPath}`,
+          path: `/${totalPath || ROOT_PATH}`,
           page: currentPage,
           limit: PAGESIZE,
           type: DRIVE_FILE_TYPE.MIX,
@@ -175,13 +172,11 @@ export const DrivePickerProvider: FC<Props> = (props) => {
     [allowAnonymousUse, appInfo],
   )
 
-  // reset state
-  useEffect(() => {
-    if (!modalVisible) {
-      updatePath(path)
-      setFileList([])
-    }
-  }, [path, updatePath, modalVisible])
+  const handleCloseModal = useCallback(() => {
+    setModalVisible(false)
+    updatePath(path)
+    setFileList([])
+  }, [path, updatePath])
 
   const value = {
     modalVisible,
@@ -193,10 +188,12 @@ export const DrivePickerProvider: FC<Props> = (props) => {
     minFileNum,
     maxFileNum,
     sizeType,
+    colorScheme,
     updatePath,
     submitSelect,
     setModalVisible,
     getFileList,
+    handleCloseModal,
   }
 
   return (

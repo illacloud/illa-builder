@@ -9,15 +9,16 @@ export const usePath = (
   path: string,
   allowAnonymousUse: boolean | undefined,
 ) => {
-  const [totalPath, setTotalPath] = useState<string>(removeSuffixPath(path))
+  const [totalPath, setTotalPath] = useState<string>(path || ROOT_PATH)
   const [currentPath, setCurrentPath] = useState<string>(
     getCurrentPath(totalPath),
   )
 
   const updatePath = useCallback(
     (changedPath: string) => {
-      setTotalPath(removeSuffixPath(changedPath))
-      setCurrentPath(getCurrentPath(path, changedPath))
+      const curChangePath = removeSuffixPath(changedPath)
+      setTotalPath(curChangePath)
+      setCurrentPath(getCurrentPath(path, curChangePath))
     },
     [path],
   )
@@ -27,8 +28,8 @@ export const usePath = (
       setTotalPath(ROOT_PATH)
       setCurrentPath(ROOT_PATH)
     } else {
-      setTotalPath(removeSuffixPath(path))
-      setCurrentPath(removeSuffixPath(path))
+      setTotalPath(path || ROOT_PATH)
+      setCurrentPath(path || ROOT_PATH)
     }
   }, [allowAnonymousUse, path])
 

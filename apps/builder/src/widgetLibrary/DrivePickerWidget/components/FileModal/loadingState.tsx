@@ -2,10 +2,10 @@ import { FC } from "react"
 import { Spin } from "@illa-design/react"
 import { loadingContainerStyle } from "./style"
 
-export const LoadingState: FC = () => {
+export const LoadingState: FC<{ colorScheme: string }> = ({ colorScheme }) => {
   return (
     <div css={loadingContainerStyle}>
-      <Spin />
+      <Spin colorScheme={colorScheme} />
     </div>
   )
 }

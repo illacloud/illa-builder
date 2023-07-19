@@ -1,7 +1,7 @@
 import VirtualList from "rc-virtual-list"
 import { FC, MouseEvent, useCallback, useRef } from "react"
 import { Checkbox } from "@illa-design/react"
-import { IILLAFileInfo } from "@/services/drive"
+import { GCS_OBJECT_TYPE, IILLAFileInfo } from "@/services/drive"
 import { getFileIconByContentType } from "@/widgetLibrary/DrivePickerWidget/utils"
 import {
   FOLDER_LIST_CONTAINER_HEIGHT,
@@ -16,6 +16,7 @@ export const FileList: FC<FileListProps> = (props) => {
     totalPath,
     search,
     selectItems,
+    colorScheme,
     onChange,
     getFileList,
     updatePath,
@@ -24,7 +25,10 @@ export const FileList: FC<FileListProps> = (props) => {
   const handleClickItem = useCallback(
     (e: MouseEvent<HTMLLabelElement>, item: IILLAFileInfo) => {
       e.stopPropagation()
-      if (item.type === "folder" || item.type === "anonymousFolder") {
+      if (
+        item.type === GCS_OBJECT_TYPE.FOLDER ||
+        item.type === GCS_OBJECT_TYPE.ANONYMOUS_FOLDER
+      ) {
         updatePath(`${totalPath}/${item.name}`)
       }
     },
@@ -56,6 +60,7 @@ export const FileList: FC<FileListProps> = (props) => {
             onClick={(e) => handleClickItem(e, item)}
           >
             <Checkbox
+            colorScheme={colorScheme}
               disabled={
                 item.type === "folder" || item.type === "anonymousFolder"
               }

@@ -9,7 +9,7 @@ import {
   useState,
 } from "react"
 import { useTranslation } from "react-i18next"
-import { Button, Search, useMessage } from "@illa-design/react"
+import { Button, CloseIcon, Search, useMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { DrivePickerContext } from "@/widgetLibrary/DrivePickerWidget/context"
 import { FileBreadCrumb } from "../Breadcrumb"
@@ -24,6 +24,7 @@ import { FileToPanel } from "./interface"
 import { FileList } from "./list"
 import { LoadingState } from "./loadingState"
 import {
+  ModalTitleStyle,
   applyInnerFileListContainerStyle,
   fileListContainerStyle,
   footerContainerStyle,
@@ -40,10 +41,11 @@ export const FilesModalContent: FC = () => {
     minFileNum,
     maxFileNum,
     sizeType,
+    colorScheme,
     getFileList,
     updatePath,
     submitSelect,
-    setModalVisible,
+    handleCloseModal,
   } = useContext(DrivePickerContext)
   const { t } = useTranslation()
 
@@ -127,8 +129,9 @@ export const FilesModalContent: FC = () => {
   )
 
   const handleClickClose = useCallback(() => {
-    setModalVisible(false)
-  }, [setModalVisible])
+    handleCloseModal()
+    setSelectItems([])
+  }, [handleCloseModal])
 
   const handleClickOk = useCallback(async () => {
     if (!validateFileNum()) {
@@ -161,15 +164,21 @@ export const FilesModalContent: FC = () => {
     modalVisible && getListDate(1, totalPath)
   }, [getListDate, modalVisible, totalPath])
 
-  useEffect(() => {
-    modalVisible && setSelectItems([])
-  }, [modalVisible, totalPath])
-
   return (
     <>
+      <div css={ModalTitleStyle}>
+        <span>{t("widget.drive_picker.modal.files")}</span>
+        <span onClick={handleClickClose} style={{ cursor: "pointer" }}>
+          <CloseIcon />
+        </span>
+      </div>
       <div css={headerContainerStyle}>
         <FileBreadCrumb />
-        <Search placeholder="search" onChange={debounceHandleOnSearch} />
+        <Search
+          colorScheme={colorScheme}
+          placeholder="search"
+          onChange={debounceHandleOnSearch}
+        />
       </div>
       <div css={fileListContainerStyle}>
         <div css={applyInnerFileListContainerStyle(loading)}>
@@ -183,12 +192,13 @@ export const FilesModalContent: FC = () => {
               search={searchRef}
               updatePath={updatePath}
               selectItems={selectItems}
+              colorScheme={colorScheme}
             />
           ) : (
             !loading && <EmptyState />
           )}
         </div>
-        {loading && <LoadingState />}
+        {loading && <LoadingState colorScheme={colorScheme} />}
       </div>
       <div css={footerContainerStyle}>
         <Button minW="78px" onClick={handleClickClose} colorScheme="grayBlue">
@@ -197,7 +207,7 @@ export const FilesModalContent: FC = () => {
         <Button
           minW="200px"
           disabled={disabled}
-          colorScheme="blue"
+          colorScheme={colorScheme}
           onClick={handleClickOk}
           loading={isConfirmLoading}
         >

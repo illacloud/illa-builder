@@ -8,7 +8,7 @@ import {
 export const headerContainerStyle = css`
   display: flex;
   gap: 16px;
-  padding-bottom: 8px;
+  padding: 8px 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -88,13 +88,13 @@ export const iconPublicStyle = css`
   flex: none;
 `
 
-export const ModalStyle = css`
-  & > div:first-of-type {
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 32px 8px;
-    div {
-      font-size: 24px !important;
-    }
+export const ModalTitleStyle = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 8px 8px;
+  & > span:first-of-type {
+    font-weight: 600;
+    font-size: 24px;
   }
 `
