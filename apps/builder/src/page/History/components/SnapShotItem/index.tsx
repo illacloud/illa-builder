@@ -125,6 +125,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
             <div css={contentStyle}>
               {snapshot.modifyHistory.slice(-2).map((modify) => {
                 const desc = getOperationDesc(modify)
+                if (!desc) return null
                 return (
                   <div key={modify.modifiedAt} css={modifyContentStyle}>
                     <div css={editorInfoStyle}>
