@@ -1717,8 +1717,9 @@
         "download_from_drive": "Ladda ner från ILLA Drive",
         "save_to_drive": "Spara till ILLA Drive",
         "menu": {
-          "logo": "Logo",
-          "title": "Title"
+          "logo": "Logotyp",
+          "title": "Titel",
+          "only_show_icon": "Visa bara ikon"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Tabellen kan inte läggas i en lista"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Ange din logotyp med en URL",
+          "title": "Ange en titel som företagsnamn här",
+          "only_show_icon": "Att gömma etiketten och bara visa ikonen"
         }
       },
       "setter_option": {
