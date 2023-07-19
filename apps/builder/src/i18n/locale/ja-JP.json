@@ -1715,7 +1715,11 @@
           "downloadZIP": "ZIP形式でダウンロード"
         },
         "download_from_drive": "ILLA Driveからダウンロード",
-        "save_to_drive": "ILLA ドライブに保存"
+        "save_to_drive": "ILLA ドライブに保存",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "テーブルをリストに入れることはできません"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
