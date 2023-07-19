@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
+  initCurrentAppHistoryReducer,
   updateCurrentAppHistoryReducer,
   updateCurrentSnapshotIDReducer,
 } from "@/redux/currentAppHistory/currentAppHistoryReducer"
@@ -9,6 +10,7 @@ const currentAppHistorySlice = createSlice({
   name: "currentAppHistory",
   initialState: CurrentAppHistoryInitialState,
   reducers: {
+    initCurrentAppHistoryReducer,
     updateCurrentAppHistoryReducer,
     updateCurrentSnapshotIDReducer,
   },

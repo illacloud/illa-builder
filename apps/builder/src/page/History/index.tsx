@@ -1,4 +1,5 @@
-import { FC } from "react"
+import { Unsubscribe } from "@reduxjs/toolkit"
+import { FC, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Loading, TriggerProvider } from "@illa-design/react"
 import { useInitHistoryApp } from "@/hooks/useInitHistoryApp"
@@ -17,7 +18,12 @@ import {
   rightPanelStyle,
 } from "@/page/App/style"
 import { SnapShotList } from "@/page/History/components/SnapShotList"
+import { setupConfigListeners } from "@/redux/config/configListener"
+import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
+import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { startAppListening } from "@/store"
 
 export const History: FC = () => {
   const teamInfo = useSelector(getCurrentTeamInfo)
@@ -34,6 +40,16 @@ export const History: FC = () => {
       throw new Error("You don't have permission to edit this app")
     }
   }
+
+  useEffect(() => {
+    const subscriptions: Unsubscribe[] = [
+      setupExecutionListeners(startAppListening),
+      setupComponentsListeners(startAppListening),
+      setupActionListeners(startAppListening),
+      setupConfigListeners(startAppListening),
+    ]
+    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
+  }, [])
 
   // init app
   const { loadingState, contentLoading } = useInitHistoryApp()

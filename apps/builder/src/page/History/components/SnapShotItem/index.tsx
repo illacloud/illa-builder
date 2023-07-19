@@ -1,10 +1,18 @@
 import { FC, useCallback, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
+import { useParams } from "react-router-dom"
 import { Button } from "@illa-design/react"
+import { Signal } from "@/api/ws/ILLA_PROTO"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
-import { Snapshot } from "@/redux/currentAppHistory/currentAppHistoryState"
+import {
+  ModifyHistory,
+  Snapshot,
+  SnapshotTriggerMode,
+} from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot } from "@/services/history"
+import { formatDate } from "@/utils/dayjs"
 import {
   applyTimeStyle,
   avatarStyle,
@@ -28,8 +36,25 @@ interface SnapShotListProps {
 }
 export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const dispatch = useDispatch()
+  const { appId } = useParams()
+  const { t } = useTranslation()
   const { snapshot, selected, last } = props
   const [loading, setLoading] = useState(false)
+
+  const getOperationDesc = (history: ModifyHistory) => {
+    const { operation, operationTargetName } = history
+
+    switch (operation) {
+      case Signal.MOVE_STATE:
+        return t("editor.history.operation.Moved", { operationTargetName })
+      case Signal.DELETE_STATE:
+        return t("editor.history.operation.Deleted", { operationTargetName })
+      case Signal.CREATE_STATE:
+        return t("editor.history.operation.Created", { operationTargetName })
+      case Signal.UPDATE_STATE:
+        return t("editor.history.operation.Updated", { operationTargetName })
+    }
+  }
 
   const handleClickItem = useCallback(() => {
     dispatch(
@@ -40,15 +65,16 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   }, [dispatch, snapshot.snapshotID])
 
   const handleRecoverSnapShot = useCallback(async () => {
+    if (!appId) return
     setLoading(true)
     try {
-      await recoverSnapShot(snapshot.appID, snapshot.snapshotID)
+      await recoverSnapShot(appId, snapshot.snapshotID)
     } catch (e) {
       console.log("recoverSnapShot error", e)
     } finally {
       setLoading(false)
     }
-  }, [snapshot.appID, snapshot.snapshotID])
+  }, [appId, snapshot.snapshotID])
 
   return (
     <div css={timelineStyle}>
@@ -61,15 +87,18 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
       <div css={textStyle}>
         {snapshot.targetVersion === 0 ? (
           <div css={applyTimeStyle(selected)} onClick={handleClickItem}>
-            {"current version"}
+            {t("editor.history.history_list.current")}
           </div>
         ) : (
           <>
             <div css={applyTimeStyle(selected)} onClick={handleClickItem}>
-              {snapshot.createdAt}
+              {formatDate(snapshot.createdAt)}
+              {snapshot.snapshotTriggerMode === SnapshotTriggerMode.MANUAL &&
+                `(${t("editor.history.history_list.manual")})`}
             </div>
             <div css={contentStyle}>
-              {snapshot.modifyHistory.map((modify) => {
+              {snapshot.modifyHistory.slice(-2).map((modify) => {
+                const desc = getOperationDesc(modify)
                 return (
                   <div key={modify.modifiedAt} css={modifyContentStyle}>
                     <div css={editorInfoStyle}>
@@ -82,9 +111,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
                       />
                       <div css={nameStyle}>{modify.modifiedBy.nickname}</div>
                     </div>
-                    <div css={descStyle}>
-                      {"Edited pkpaicSFM25KW1DZDqzxSRAds Data Source"}
-                    </div>
+                    <div css={descStyle}>{desc}</div>
                   </div>
                 )
               })}
