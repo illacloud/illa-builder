@@ -17,7 +17,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tips.input.type"),
         attrName: "type",
         expectedType: VALIDATION_TYPES.STRING,
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         options: [
           {
             label: i18n.t("editor.inspect.setter_option.input.input"),
