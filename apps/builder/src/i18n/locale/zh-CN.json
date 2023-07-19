@@ -1715,7 +1715,11 @@
           "downloadZIP": "下载为ZIP"
         },
         "download_from_drive": "从ILLA Drive下载",
-        "save_to_drive": "保存到ILLA Drive"
+        "save_to_drive": "保存到ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "标题"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Table不能被放入List"
+        },
+        "menu": {
+          "logo": "使用URL设置您的logo",
+          "title": "在此设置标题，如公司名称"
         }
       },
       "setter_option": {
