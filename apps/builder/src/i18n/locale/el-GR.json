@@ -1715,7 +1715,11 @@
           "downloadZIP": "Λήψη ως ZIP"
         },
         "download_from_drive": "Λήψη από το δίσκο ILLA",
-        "save_to_drive": "Αποθήκευση στο δίσκο ILLA"
+        "save_to_drive": "Αποθήκευση στο δίσκο ILLA",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Ο πίνακας δεν μπορεί να μπει σε λίστα"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
