@@ -1718,7 +1718,8 @@
         "save_to_drive": "Salva su ILLA Drive",
         "menu": {
           "logo": "Logo",
-          "title": "Title"
+          "title": "Titolo",
+          "only_show_icon": "Mostra solo l'icona"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "La tabella non può essere inserita in una lista"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Imposta il tuo logo con un URL",
+          "title": "Imposta qui un titolo come il nome dell'azienda",
+          "only_show_icon": "Per nascondere l'etichetta e mostrare solo l'icona"
         }
       },
       "setter_option": {
