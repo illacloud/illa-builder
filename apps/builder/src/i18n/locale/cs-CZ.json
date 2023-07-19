@@ -1967,7 +1967,7 @@
           "downloadZIP": "Chcete-li nastavit, zda stáhnout soubory jako jednu ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Tabulka nemůže být zařazena do seznamu"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "Obnovit tuto verzi",
       "message": {
-        "version_change": "Aktuální verze aplikace se změnila"
+        "version_change": "Aktuální verze aplikace se změnila",
+        "suc": {
+          "save": "Aktuální verze je úspěšně uložena jako záznam historie",
+          "restore": "Úspěšně obnoveno",
+          "preview": "Záznam historie byl úspěšně načten."
+        },
+        "fail": {
+          "save": "Uložení se nezdařilo",
+          "restore": "Obnovení se nezdařilo",
+          "preview": "Nepodařilo se načíst záznam historie."
+        }
       }
     }
   },

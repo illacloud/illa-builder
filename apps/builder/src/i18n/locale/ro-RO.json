@@ -1967,7 +1967,7 @@
           "downloadZIP": "Pentru a seta dacă se descarcă fișierele ca un singur ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Tabelul nu poate fi pus într-o listă"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "Restaurează această versiune",
       "message": {
-        "version_change": "Versiunea curentă a aplicației s-a schimbat"
+        "version_change": "Versiunea curentă a aplicației s-a schimbat",
+        "suc": {
+          "save": "Versiunea curentă a fost salvată cu succes ca istoric de înregistrare",
+          "restore": "Restaurat cu succes",
+          "preview": "Istoricul a fost încărcat cu succes."
+        },
+        "fail": {
+          "save": "Salvarea nu a reușit",
+          "restore": "Restaurare eșuată",
+          "preview": "Nu s-a putut încărca istoricul înregistrării."
+        }
       }
     }
   },
@@ -2604,7 +2614,7 @@
         "fail_sent": "Trimiterea codului de verificare a eșuat",
         "success": "Înregistrare reușită",
         "verification_code": "Cod de verificare trimis",
-        "not_allow_register": "This team has disabled register. Please contact the team owner. "
+        "not_allow_register": "Această echipă a dezactivat înregistrarea. Vă rugăm să contactaţi proprietarul echipei. "
       },
       "title": "Înscrie-te",
       "agreement": {
@@ -3069,7 +3079,7 @@
     },
     "settings": {
       "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii",
-      "allow_register": "Allow users to register via link"
+      "allow_register": "Permite utilizatorilor să se înregistreze prin link"
     }
   },
   "copy_failed": "Copierea a eșuat",

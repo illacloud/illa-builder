@@ -1967,7 +1967,7 @@
           "downloadZIP": "Pour définir s'il faut télécharger les fichiers en un seul ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "La table ne peut pas être mise dans une liste"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "Restaurer cette version",
       "message": {
-        "version_change": "La version actuelle de l'application a changé"
+        "version_change": "La version actuelle de l'application a changé",
+        "suc": {
+          "save": "La version actuelle est enregistrée avec succès en tant qu'historique",
+          "restore": "Restauré avec succès",
+          "preview": "L'historique a été chargé avec succès."
+        },
+        "fail": {
+          "save": "Échec de l'enregistrement",
+          "restore": "Échec de la restauration",
+          "preview": "Impossible de charger l'enregistrement de l'historique."
+        }
       }
     }
   },
