@@ -1715,7 +1715,11 @@
           "downloadZIP": "Als ZIP herunterladen"
         },
         "download_from_drive": "Von ILLA Drive herunterladen",
-        "save_to_drive": "In ILLA Laufwerk speichern"
+        "save_to_drive": "In ILLA Laufwerk speichern",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Tabelle kann nicht in eine Liste gesetzt werden"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
