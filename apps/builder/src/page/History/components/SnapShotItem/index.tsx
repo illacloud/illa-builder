@@ -91,7 +91,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
               {formatDate(snapshot.createdAt)}
             </div>
             <div css={contentStyle}>
-              {snapshot.modifyHistory.map((modify) => {
+              {snapshot.modifyHistory.slice(-2).map((modify) => {
                 const desc = getOperationDesc(modify)
                 return (
                   <div key={modify.modifiedAt} css={modifyContentStyle}>
