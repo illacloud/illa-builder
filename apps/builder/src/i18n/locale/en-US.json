@@ -1718,7 +1718,8 @@
         "save_to_drive": "Save to ILLA Drive",
         "menu": {
           "logo": "Logo",
-          "title": "Title"
+          "title": "Title",
+          "only_show_icon": "Only show icon"
         }
       },
       "setter_tooltip": {
@@ -1975,7 +1976,8 @@
         },
         "menu": {
           "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "title": "Set a title such as company name here",
+          "only_show_icon": "TO hidden the label and only show icon"
         }
       },
       "setter_option": {
