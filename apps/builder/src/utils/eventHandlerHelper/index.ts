@@ -15,7 +15,7 @@ import {
   showNotification,
 } from "./utils/commonUtils"
 import { downloadFromILLADrive, saveToILLADrive } from "./utils/driveUtils"
-import { setInGlobalData, setValueGlobalData } from "./utils/globalDataUtils"
+import { setGlobalDataIn, setGlobalDataValue } from "./utils/globalDataUtils"
 import { clearLocalStorage, setValueLocalStorage } from "./utils/localStorage"
 
 export enum EVENT_ACTION_TYPE {
@@ -94,7 +94,7 @@ export const transformEvents = (
 
           return {
             script: () => {
-              setInGlobalData(params)
+              setGlobalDataIn(params)
             },
             enabled,
           }
@@ -104,7 +104,7 @@ export const transformEvents = (
 
           return {
             script: () => {
-              setValueGlobalData(params)
+              setGlobalDataValue(params)
             },
             enabled,
           }

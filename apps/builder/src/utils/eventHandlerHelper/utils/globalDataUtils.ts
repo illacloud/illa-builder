@@ -1,7 +1,7 @@
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
 
-export const setInGlobalData = (params: {
+export const setGlobalDataIn = (params: {
   key: string
   path: string
   value: unknown
@@ -11,7 +11,7 @@ export const setInGlobalData = (params: {
   store.dispatch(executionActions.setInGlobalStateInExecutionReducer(params))
 }
 
-export const setValueGlobalData = (params: { key: string; value: unknown }) => {
+export const setGlobalDataValue = (params: { key: string; value: unknown }) => {
   const { key } = params
   if (typeof key !== "string") return
   store.dispatch(executionActions.setGlobalStateInExecutionReducer(params))

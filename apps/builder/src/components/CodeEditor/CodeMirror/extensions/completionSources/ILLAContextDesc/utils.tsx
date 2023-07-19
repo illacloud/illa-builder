@@ -32,4 +32,12 @@ export const ILLA_UTILS_DESC: Record<string, IILLAUtilsDesc> = {
     desc: "",
     usage: `utils.saveToILLADrive({fileName:string,fileData:string,fileType?:string="auto",folder?:string="",allowAnonymous?:boolean = false,replace?:boolean = false})`,
   },
+  setGlobalDataIn: {
+    desc: "",
+    usage: `utils.setGlobalDataIn({key:string,path:string,value:any})`,
+  },
+  setGlobalDataValue: {
+    desc: "",
+    usage: `utils.setGlobalDataValue({key:string,value:any})`,
+  },
 }
