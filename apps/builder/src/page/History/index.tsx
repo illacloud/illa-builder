@@ -17,6 +17,7 @@ import {
   middlePanelStyle,
   rightPanelStyle,
 } from "@/page/App/style"
+import { HistoryNavBar } from "@/page/History/components/HistoryNavBar"
 import { SnapShotList } from "@/page/History/components/SnapShotList"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
@@ -61,22 +62,25 @@ export const History: FC = () => {
           <Loading colorScheme="techPurple" />
         </div>
       ) : (
-        <div css={contentStyle}>
-          <div css={middlePanelStyle}>
-            {contentLoading ? (
-              <div css={loadingStyle}>
-                <Loading colorScheme="techPurple" />
-              </div>
-            ) : (
-              <TriggerProvider renderInBody zIndex={10}>
-                <CanvasPanel css={centerPanelStyle} />
-              </TriggerProvider>
-            )}
+        <>
+          <HistoryNavBar />
+          <div css={contentStyle}>
+            <div css={middlePanelStyle}>
+              {contentLoading ? (
+                <div css={loadingStyle}>
+                  <Loading colorScheme="techPurple" />
+                </div>
+              ) : (
+                <TriggerProvider renderInBody zIndex={10}>
+                  <CanvasPanel css={centerPanelStyle} />
+                </TriggerProvider>
+              )}
+            </div>
+            <TriggerProvider renderInBody zIndex={10}>
+              <SnapShotList css={rightPanelStyle} />
+            </TriggerProvider>
           </div>
-          <TriggerProvider renderInBody zIndex={10}>
-            <SnapShotList css={rightPanelStyle} />
-          </TriggerProvider>
-        </div>
+        </>
       )}
     </div>
   )

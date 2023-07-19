@@ -267,8 +267,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }
 
   const handleOpenHistory = useCallback(() => {
-    dispatch(configActions.updateIllaMode("history"))
-  }, [dispatch])
+    navigate(`/${teamIdentifier}/appHistory/${appId}`)
+  }, [navigate, teamIdentifier, appId])
 
   const handleSaveCurrentAppVersion = useCallback(() => {
     if (appId) {

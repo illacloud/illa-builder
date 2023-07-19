@@ -39,6 +39,7 @@ export const textStyle = css`
   gap: 16px;
   padding-bottom: 24px;
   display: flex;
+  flex-grow: 1;
 `
 
 export const timelineStyle = css`
@@ -46,6 +47,12 @@ export const timelineStyle = css`
   align-items: stretch;
   gap: 8px;
   display: flex;
+`
+
+export const itemHeaderStyle = css`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `
 
 export const applyTimeStyle = (selected?: boolean) => {
@@ -59,6 +66,12 @@ export const applyTimeStyle = (selected?: boolean) => {
     cursor: pointer;
   `
 }
+
+export const manualStyle = css`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+`
 export const contentStyle = css`
   flex-direction: column;
   justify-content: start;

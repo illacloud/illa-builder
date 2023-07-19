@@ -2,14 +2,11 @@ import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { Button } from "@illa-design/react"
+import { Loading } from "@illa-design/react"
 import {
-  badgeDotStyle,
-  ellipse49Style,
-  leftWrapperStyle,
-  textStyle,
-  timelineStyle,
-} from "@/page/History/components/SnapShotItem/style"
+  actionTextStyle,
+  actionWrapperStyle,
+} from "@/page/History/components/ActionArea/style"
 import { getSnapshotListCurrentPage } from "@/redux/currentAppHistory/currentAppHistorySelector"
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
 import { fetchSnapShotList } from "@/services/history"
@@ -46,17 +43,16 @@ export const ActionArea: FC = () => {
   }, [appId, currentPage, dispatch])
 
   return (
-    <div css={timelineStyle}>
-      <div css={leftWrapperStyle}>
-        <div css={badgeDotStyle}>
-          <div css={ellipse49Style} />
+    <div>
+      {loading ? (
+        <div css={actionWrapperStyle}>
+          <Loading colorScheme="techPurple" />
         </div>
-      </div>
-      <div css={textStyle}>
-        <Button loading={loading} onClick={fetchMore}>
+      ) : (
+        <div css={actionTextStyle} onClick={fetchMore}>
           {t("editor.history.more")}
-        </Button>
-      </div>
+        </div>
+      )}
     </div>
   )
 }

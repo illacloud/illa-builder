@@ -2,7 +2,7 @@ import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
-import { Button } from "@illa-design/react"
+import { Button, Tag } from "@illa-design/react"
 import { Signal } from "@/api/ws/ILLA_PROTO"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
@@ -13,6 +13,7 @@ import {
 } from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot } from "@/services/history"
 import { formatDate } from "@/utils/dayjs"
+import { ReactComponent as SaveIcon } from "./assets/save.svg"
 import {
   applyTimeStyle,
   avatarStyle,
@@ -21,8 +22,10 @@ import {
   descStyle,
   editorInfoStyle,
   ellipse49Style,
+  itemHeaderStyle,
   leftWrapperStyle,
   lineStyle,
+  manualStyle,
   modifyContentStyle,
   nameStyle,
   textStyle,
@@ -91,10 +94,18 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
           </div>
         ) : (
           <>
-            <div css={applyTimeStyle(selected)} onClick={handleClickItem}>
-              {formatDate(snapshot.createdAt)}
-              {snapshot.snapshotTriggerMode === SnapshotTriggerMode.MANUAL &&
-                `(${t("editor.history.history_list.manual")})`}
+            <div css={itemHeaderStyle}>
+              <div css={applyTimeStyle(selected)} onClick={handleClickItem}>
+                {formatDate(snapshot.createdAt)}
+              </div>
+              {snapshot.snapshotTriggerMode === SnapshotTriggerMode.MANUAL && (
+                <Tag>
+                  <div css={manualStyle}>
+                    <SaveIcon />
+                    {t("editor.history.history_list.manual")}
+                  </div>
+                </Tag>
+              )}
             </div>
             <div css={contentStyle}>
               {snapshot.modifyHistory.slice(-2).map((modify) => {
