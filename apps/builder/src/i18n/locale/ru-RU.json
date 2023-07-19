@@ -1717,8 +1717,9 @@
         "download_from_drive": "Скачать из ILLA Drive",
         "save_to_drive": "Сохранить в ILLA Drive",
         "menu": {
-          "logo": "Logo",
-          "title": "Title"
+          "logo": "Логотип",
+          "title": "Заголовок",
+          "only_show_icon": "Показывать только иконку"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Таблица не может быть помещена в список"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Установите логотип с URL-адресом",
+          "title": "Укажите название компании, например, название компании",
+          "only_show_icon": "ДО скрыл ярлык и показать только значок"
         }
       },
       "setter_option": {
