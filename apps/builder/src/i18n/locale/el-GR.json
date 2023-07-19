@@ -1717,8 +1717,9 @@
         "download_from_drive": "Λήψη από το δίσκο ILLA",
         "save_to_drive": "Αποθήκευση στο δίσκο ILLA",
         "menu": {
-          "logo": "Logo",
-          "title": "Title"
+          "logo": "Λογότυπο",
+          "title": "Τίτλος",
+          "only_show_icon": "Εμφάνιση μόνο εικονιδίου"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Ο πίνακας δεν μπορεί να μπει σε λίστα"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Ορίστε το λογότυπό σας με μια διεύθυνση URL",
+          "title": "Ορίστε έναν τίτλο όπως το όνομα της εταιρείας εδώ",
+          "only_show_icon": "Κρυφό την ετικέτα και εμφάνιση μόνο εικονιδίου"
         }
       },
       "setter_option": {
