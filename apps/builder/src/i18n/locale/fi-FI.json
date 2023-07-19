@@ -1718,7 +1718,8 @@
         "save_to_drive": "Tallenna ILLA Drivelle",
         "menu": {
           "logo": "Logo",
-          "title": "Title"
+          "title": "Otsikko",
+          "only_show_icon": "Näytä vain kuvake"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Taulua ei voi lisätä luetteloon"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Aseta logosi URL-osoitteen avulla",
+          "title": "Aseta otsikko, kuten yrityksen nimi tähän",
+          "only_show_icon": "Piilotettu otsikko ja näytä vain kuvake"
         }
       },
       "setter_option": {
