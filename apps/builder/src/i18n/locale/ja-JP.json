@@ -1717,8 +1717,9 @@
         "download_from_drive": "ILLA Driveからダウンロード",
         "save_to_drive": "ILLA ドライブに保存",
         "menu": {
-          "logo": "Logo",
-          "title": "Title"
+          "logo": "ロゴ",
+          "title": "タイトル",
+          "only_show_icon": "アイコンのみ表示"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "テーブルをリストに入れることはできません"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "URLでロゴを設定",
+          "title": "会社名などのタイトルをここに設定",
+          "only_show_icon": "ラベルを非表示にしてアイコンのみ表示"
         }
       },
       "setter_option": {
