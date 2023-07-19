@@ -3,8 +3,8 @@ import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
+import SearchSelectSetter from "./searchSelect"
 
 const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
@@ -49,7 +49,7 @@ const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   )
 
   return (
-    <BaseSelectSetter
+    <SearchSelectSetter
       {...props}
       attrName={_finalAttrPath}
       handleUpdateDsl={handleUpdateDSLInner}
