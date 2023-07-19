@@ -22,6 +22,10 @@ import {
   downloadFromILLADrive,
   saveToILLADrive,
 } from "../eventHandlerHelper/utils/driveUtils"
+import {
+  setGlobalDataIn,
+  setGlobalDataValue,
+} from "../eventHandlerHelper/utils/globalDataUtils"
 
 const THIRD_PARTY_PACKAGES = {
   _: {
@@ -57,6 +61,8 @@ class ILLAEditorRuntimePropsCollector {
         downloadFile,
         downloadFromILLADrive,
         saveToILLADrive,
+        setGlobalDataIn,
+        setGlobalDataValue,
       },
     }
   }
@@ -94,8 +100,9 @@ class ILLAEditorRuntimePropsCollector {
     const rootState = store.getState()
     const executionResult = getExecutionResult(rootState)
 
-    const formatedExecutionResult = Object.values(executionResult).reduce(
-      (acc, prev) => {
+    const formatedExecutionResult = Object.keys(executionResult).reduce(
+      (acc, prevKey) => {
+        const prev = executionResult[prevKey]
         if (!prev) {
           return acc
         }
@@ -112,7 +119,7 @@ class ILLAEditorRuntimePropsCollector {
         }
         return {
           ...acc,
-          [prev.displayName]: prev,
+          [prevKey]: prev,
         }
       },
       {} as Record<string, any>,
@@ -125,11 +132,14 @@ class ILLAEditorRuntimePropsCollector {
     const executionResult = getExecutionResultToCurrentPageCodeMirror(
       rootState,
     ) as Record<string, any>
-    const formatedExecutionResult = Object.values(executionResult).reduce(
-      (acc, prev) => {
+    const formatedExecutionResult = Object.keys(executionResult).reduce(
+      (acc, prevKey) => {
+        const prev = executionResult[prevKey]
+
         if (!prev) {
           return acc
         }
+
         if (
           (Object.hasOwn && Object.hasOwn(prev, "actionType")) ||
           Object.prototype.hasOwnProperty.call(prev, "actionType")
@@ -146,7 +156,7 @@ class ILLAEditorRuntimePropsCollector {
         }
         return {
           ...acc,
-          [prev.displayName]: prev,
+          [prevKey]: prev,
         }
       },
       {} as Record<string, any>,
