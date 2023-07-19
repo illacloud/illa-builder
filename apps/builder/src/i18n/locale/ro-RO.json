@@ -1715,7 +1715,11 @@
           "downloadZIP": "Descarcă ca ZIP"
         },
         "download_from_drive": "Descarcă de pe ILLA Drive",
-        "save_to_drive": "Salvează în unitatea ILLA"
+        "save_to_drive": "Salvează în unitatea ILLA",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Tabelul nu poate fi pus într-o listă"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
