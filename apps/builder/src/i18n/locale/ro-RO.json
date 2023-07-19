@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Pentru a seta cum să se gestioneze duplicat nume de fișiere. În cazul în care le păstrați pe amândouă, un șir aleatoriu va fi adăugat la numele fișierului încărcat.",
           "fileData": "Setați datele fișierului folosind o matrice de obiect, formatul obiectului este {\"fileName\":\"name\", \"FileID\":\"}. Puteți utiliza componenta selector de fișiere Drive pentru a selecta fișiere și seta această valoare direct prin {{filePciker1.value}}.",
           "downloadZIP": "Pentru a seta dacă se descarcă fișierele ca un singur ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {

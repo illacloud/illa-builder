@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "For å håndtere dupliserte filnavn. Ved behold begge, blir en tilfeldig streng lagt til i filnavnet lastet opp.",
           "fileData": "Sett fildataene ved hjelp av et objekt array, formatet på objektet er {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Du kan bruke Drive filvelgeren for å velge filer og sette denne verdien direkte gjennom {{filePciker1.value}}.",
           "downloadZIP": "Angir om filene skal lastes ned som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {

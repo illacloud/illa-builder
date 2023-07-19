@@ -63,7 +63,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
 
     const isDraggingInGlobal = useSelector(getIsDragging)
 
-    const listContainerDisabled = useMemo(() => {
+    const listContainerDisplayName = useMemo(() => {
       const listWidgetDisplayNames = Object.keys(containerListMapChildName)
       let currentListDisplayName = ""
       for (let i = 0; i < listWidgetDisplayNames.length; i++) {
@@ -76,20 +76,20 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           break
         }
       }
-      if (!currentListDisplayName) return realProps?.disabled
+      return currentListDisplayName
+    }, [containerListMapChildName, displayName])
+
+    const listContainerDisabled = useMemo(() => {
+      const currentListDisplayName = listContainerDisplayName
       const listWidgetProps = displayNameMapProps[currentListDisplayName]
       if (
-        Object.hasOwn(listWidgetProps, "disabled") &&
+        isObject(listWidgetProps) &&
+        listWidgetProps.hasOwnProperty("disabled") &&
         listWidgetProps.disabled != undefined
       )
         return listWidgetProps.disabled
       return realProps?.disabled
-    }, [
-      containerListMapChildName,
-      displayName,
-      displayNameMapProps,
-      realProps?.disabled,
-    ])
+    }, [displayNameMapProps, listContainerDisplayName, realProps?.disabled])
 
     const updateComponentRuntimeProps = useCallback(
       (runtimeProp: unknown) => {
@@ -280,6 +280,15 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
                 dynamicString,
                 finalContext,
               )
+              if (listContainerDisplayName) {
+                set(
+                  needRunEvents,
+                  realPath,
+                  Array.isArray(calcValue) ? calcValue[0] : calcValue,
+                )
+              } else {
+                set(needRunEvents, realPath, calcValue)
+              }
               set(needRunEvents, realPath, calcValue)
             }
           } catch (e) {
@@ -290,7 +299,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           runEventHandler(scriptObj, finalContext)
         })
       },
-      [getRunEvents],
+      [getRunEvents, listContainerDisplayName],
     )
 
     const triggerMappedEventHandler = useCallback(
@@ -319,8 +328,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
                 dynamicString,
                 finalContext,
               )
-
               let valueToSet = calcValue
+
+              if (listContainerDisplayName) {
+                valueToSet = Array.isArray(calcValue) ? calcValue[0] : calcValue
+              }
+
               if (Array.isArray(calcValue) && isNumber(index)) {
                 if (
                   !isFunction(isMapped) ||
@@ -339,7 +352,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           runEventHandler(scriptObj, finalContext)
         })
       },
-      [getRunEvents],
+      [getRunEvents, listContainerDisplayName],
     )
 
     const widgetConfig = widgetBuilder(widgetType)

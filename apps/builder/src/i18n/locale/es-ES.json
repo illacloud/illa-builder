@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Para configurar cómo manejar nombres de archivo duplicados. En el caso de mantener ambos, se añadirá una cadena aleatoria al nombre del archivo subido.",
           "fileData": "Establece los datos de archivo usando una matriz de objetos, el formato del objeto es {\"fileName\":\"el nombre\", \"FileID\":\"ID\"}. Puede utilizar el componente selector de archivos de Drive para seleccionar archivos y establecer este valor directamente a través de {{filePciker1.value}}.",
           "downloadZIP": "Para establecer si descargar o no los archivos como un ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {

@@ -83,7 +83,10 @@ export default defineConfig(({ command, mode }) => {
       "import.meta.env.ILLA_MIXPANEL_API_KEY": JSON.stringify(
         env.ILLA_MIXPANEL_API_KEY,
       ),
-      global: "window"
+      "import.meta.env.VITE_API_BASE_URL": JSON.stringify(
+        env.VITE_API_BASE_URL,
+      ),
+      "import.meta.env.VITE_CLOUD_URL": JSON.stringify(env.VITE_CLOUD_URL),
     },
     build: {
       sourcemap: true,
@@ -123,6 +126,9 @@ export default defineConfig(({ command, mode }) => {
     server: {
       port: 3000,
       https: true,
+    },
+    preview: {
+      port: 4173,
     },
   }
 })
