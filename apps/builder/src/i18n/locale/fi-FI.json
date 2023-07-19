@@ -1967,7 +1967,7 @@
           "downloadZIP": "Määrittää, ladataako tiedostot yhdeksi ZIP:ksi. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Taulua ei voi lisätä luetteloon"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "Palauta tämä versio",
       "message": {
-        "version_change": "Sovelluksen nykyinen versio on muuttunut"
+        "version_change": "Sovelluksen nykyinen versio on muuttunut",
+        "suc": {
+          "save": "Nykyinen versio on onnistuneesti tallennettu historian tietueeksi",
+          "restore": "Palautus onnistui",
+          "preview": "Historiatietue on ladattu onnistuneesti."
+        },
+        "fail": {
+          "save": "Tallennus epäonnistui",
+          "restore": "Palautus epäonnistui",
+          "preview": "Historiatietueen lataus epäonnistui. @ info"
+        }
       }
     }
   },
