@@ -1715,7 +1715,11 @@
           "downloadZIP": "Download as a ZIP"
         },
         "download_from_drive": "Download from ILLA Drive",
-        "save_to_drive": "Save to ILLA Drive"
+        "save_to_drive": "Save to ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Table can't be put in a list"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
