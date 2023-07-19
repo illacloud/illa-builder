@@ -1967,7 +1967,7 @@
           "downloadZIP": "Angir om filene skal lastes ned som en ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Tabellen kan ikke angis i en liste"
         }
       },
       "setter_option": {
@@ -2403,7 +2403,17 @@
       },
       "restore": "Gjenopprett denne versjonen",
       "message": {
-        "version_change": "Gjeldende app-versjon er endret"
+        "version_change": "Gjeldende app-versjon er endret",
+        "suc": {
+          "save": "Denne versjonen ble lagret som Historikkpost",
+          "restore": "Gjenopprettet",
+          "preview": "Historikkoppføringen er lastet inn."
+        },
+        "fail": {
+          "save": "Kunne ikke lagre",
+          "restore": "Gjenoppretting mislyktes",
+          "preview": "Kan ikke laste inn historikkoppføringen."
+        }
       }
     }
   },
@@ -2604,7 +2614,7 @@
         "fail_sent": "Klarte ikke å sende bekreftelseskoden",
         "success": "Registrering vellykket",
         "verification_code": "Bekreftelseskode er sendt",
-        "not_allow_register": "This team has disabled register. Please contact the team owner. "
+        "not_allow_register": "Dette teamet har deaktivert registrering. Vennligst kontakt teameieren. "
       },
       "title": "Registrer deg",
       "agreement": {
@@ -3069,7 +3079,7 @@
     },
     "settings": {
       "allow_editors_invite": "Tillat redaktører og seere å administrere medlemmer",
-      "allow_register": "Allow users to register via link"
+      "allow_register": "Tillat brukere å registrere seg via lenke"
     }
   },
   "copy_failed": "Kunne ikke kopiere",
