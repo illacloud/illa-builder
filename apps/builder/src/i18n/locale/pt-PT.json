@@ -1717,8 +1717,9 @@
         "download_from_drive": "Baixar do ILLA Drive",
         "save_to_drive": "Salvar no disco ILLA",
         "menu": {
-          "logo": "Logo",
-          "title": "Title"
+          "logo": "Logotipo",
+          "title": "Título",
+          "only_show_icon": "Mostrar apenas ícone"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "A tabela não pode ser inserida em uma lista"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Defina o seu logotipo com uma URL",
+          "title": "Defina um título como o nome da empresa aqui",
+          "only_show_icon": "Ocultar o rótulo e mostrar apenas o ícone"
         }
       },
       "setter_option": {
