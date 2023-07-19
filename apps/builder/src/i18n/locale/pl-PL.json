@@ -1715,7 +1715,11 @@
           "downloadZIP": "Pobierz jako ZIP"
         },
         "download_from_drive": "Pobierz z Dysku ILLA",
-        "save_to_drive": "Zapisz na dysku ILLA"
+        "save_to_drive": "Zapisz na dysku ILLA",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Tabela nie może być umieszczona na liście"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
