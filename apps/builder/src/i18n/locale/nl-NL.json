@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Om in te stellen hoe dubbele bestandsnamen moeten worden behandeld. In het geval van bewaar beide, wordt een willekeurige tekenreeks toegevoegd aan de bestandsnaam geüpload.",
           "fileData": "Stel de bestandsgegevens in met behulp van een object array, het formaat van het object is {\"fileName\":\"name\", \"FileID\":\"the ID\"}. U kunt de Drive bestandskiezer component gebruiken om bestanden te selecteren en deze waarde rechtstreeks via {{filePciker1.value}} in te stellen.",
           "downloadZIP": "Om de bestanden als één ZIP te downloaden. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {

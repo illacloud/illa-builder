@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. You can use the Drive file picker component to select files and set this value directly through {{filePciker1.value}}.",
           "downloadZIP": "To set whether to download the files as one ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {

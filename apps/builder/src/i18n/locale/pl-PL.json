@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Aby ustawić sposób obsługi duplikatów plików. W przypadku zachowania obu stron zostanie dodany losowy ciąg znaków do nazwy pliku.",
           "fileData": "Ustaw dane pliku za pomocą tablicy obiektów, format obiektu to {\"fileName\":\"name\", \"FileID\":\"the ID\"}. Możesz użyć komponentu do wybierania plików na dysku i ustawić tę wartość bezpośrednio przez {{filePciker1.value}}.",
           "downloadZIP": "Aby ustawić czy pobierać pliki jako jeden ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
