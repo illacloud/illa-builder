@@ -1715,7 +1715,11 @@
           "downloadZIP": "Descargar como ZIP"
         },
         "download_from_drive": "Descargar de ILLA Drive",
-        "save_to_drive": "Guardar en ILLA Drive"
+        "save_to_drive": "Guardar en ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "La tabla no se puede poner en una lista"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
