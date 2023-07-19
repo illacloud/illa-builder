@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "For at indstille hvordan man håndterer duplikerede filnavne. I tilfælde af at beholde begge vil en tilfældig streng blive tilføjet til filnavnet uploadet.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"name\", \"FileID\":\"ID\"}. Du kan bruge Kør filvælgerkomponenten til at vælge filer og indstille denne værdi direkte via {{filePciker1.value}}.",
           "downloadZIP": "For at angive, om filerne skal downloades som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
