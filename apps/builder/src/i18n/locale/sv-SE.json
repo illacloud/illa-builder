@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "För att ställa in hur du hanterar dubbla filnamn. Vid behåll kommer en slumpmässig sträng att läggas till filnamnet som laddats upp.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. (Automatic Copy) Du kan använda komponenten Drive filväljare för att välja filer och ställa in detta värde direkt via {{filePciker1.value}}.",
           "downloadZIP": "För att ställa in om du vill ladda ner filerna som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
