@@ -1718,7 +1718,8 @@
         "save_to_drive": "Gem til ILLA drev",
         "menu": {
           "logo": "Logo",
-          "title": "Title"
+          "title": "Titel",
+          "only_show_icon": "Vis kun ikon"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Tabel kan ikke indsættes i en liste"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Sæt dit logo med en URL",
+          "title": "Angiv en titel såsom firmanavn her",
+          "only_show_icon": "Til skjult etiket og kun vis ikon"
         }
       },
       "setter_option": {
