@@ -29,7 +29,7 @@ export const usePath = (
       setCurrentPath(ROOT_PATH)
     } else {
       setTotalPath(path || ROOT_PATH)
-      setCurrentPath(path || ROOT_PATH)
+      setCurrentPath(getCurrentPath(path || ROOT_PATH))
     }
   }, [allowAnonymousUse, path])
 

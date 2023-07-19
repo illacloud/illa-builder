@@ -11,6 +11,18 @@ export const DRIVE_PICKER_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
+        id: `${baseWidgetName}-label-text`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.drive_builder.button_text",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tips.drive_builder.button_text",
+        ),
+        attrName: "text",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+      },
+      {
         id: `${baseWidgetName}-label-allowAnonymousUse`,
         labelName: i18n.t(
           "editor.inspect.setter_label.drive_builder.allow_public_use",
@@ -89,18 +101,6 @@ export const DRIVE_PICKER_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-      {
-        id: `${baseWidgetName}-label-text`,
-        labelName: i18n.t(
-          "editor.inspect.setter_label.drive_builder.button_text",
-        ),
-        labelDesc: i18n.t(
-          "editor.inspect.setter_tips.drive_builder.button_text",
-        ),
-        attrName: "text",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: `${baseWidgetName}-validation-fileSize`,
