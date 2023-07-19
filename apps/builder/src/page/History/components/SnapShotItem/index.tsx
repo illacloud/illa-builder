@@ -1,6 +1,7 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
+import { useParams } from "react-router-dom"
 import { Button } from "@illa-design/react"
 import { Signal } from "@/api/ws/ILLA_PROTO"
 import { Avatar } from "@/illa-public-component/Avatar"
@@ -34,6 +35,7 @@ interface SnapShotListProps {
 }
 export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const dispatch = useDispatch()
+  const { appId } = useParams()
   const { t } = useTranslation()
   const { snapshot, selected, last } = props
   const [loading, setLoading] = useState(false)
@@ -62,15 +64,16 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   }, [dispatch, snapshot.snapshotID])
 
   const handleRecoverSnapShot = useCallback(async () => {
+    if (!appId) return
     setLoading(true)
     try {
-      await recoverSnapShot(snapshot.appID, snapshot.snapshotID)
+      await recoverSnapShot(appId, snapshot.snapshotID)
     } catch (e) {
       console.log("recoverSnapShot error", e)
     } finally {
       setLoading(false)
     }
-  }, [snapshot.appID, snapshot.snapshotID])
+  }, [appId, snapshot.snapshotID])
 
   return (
     <div css={timelineStyle}>
