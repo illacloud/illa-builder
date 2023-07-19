@@ -1715,7 +1715,11 @@
           "downloadZIP": "Lataa ZIP:nä"
         },
         "download_from_drive": "Lataa ILLA Drivesta",
-        "save_to_drive": "Tallenna ILLA Drivelle"
+        "save_to_drive": "Tallenna ILLA Drivelle",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Taulua ei voi lisätä luetteloon"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
