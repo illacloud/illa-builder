@@ -1718,7 +1718,8 @@
         "save_to_drive": "Zapisz na dysku ILLA",
         "menu": {
           "logo": "Logo",
-          "title": "Title"
+          "title": "Rozporządzenie Rady (EWG) nr 2658/87 z dnia 23 lipca 1987 r. w sprawie nomenklatury taryfowej i statystycznej oraz w sprawie Wspólnej Taryfy Celnej (Dz.U. L 256 z 7.9.1987, s. 1).",
+          "only_show_icon": "Pokaż tylko ikonę"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Tabela nie może być umieszczona na liście"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Ustaw swoje logo z URL",
+          "title": "Ustaw tutaj tytuł, taki jak nazwa firmy",
+          "only_show_icon": "TO ukryj etykietę i tylko pokaż ikonę"
         }
       },
       "setter_option": {
