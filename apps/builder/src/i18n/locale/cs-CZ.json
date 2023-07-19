@@ -1715,7 +1715,11 @@
           "downloadZIP": "Stáhnout jako ZIP"
         },
         "download_from_drive": "Stáhnout z ILLA Drive",
-        "save_to_drive": "Uložit do ILLA disku"
+        "save_to_drive": "Uložit do ILLA disku",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1968,6 +1972,10 @@
         },
         "list": {
           "table_disallowed": "Tabulka nemůže být zařazena do seznamu"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here"
         }
       },
       "setter_option": {
