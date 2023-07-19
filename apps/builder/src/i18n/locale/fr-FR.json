@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Pour définir comment gérer les noms de fichiers dupliqués. Dans le cas de conserver les deux, une chaîne aléatoire sera ajoutée au nom du fichier téléchargé.",
           "fileData": "Définit les données du fichier en utilisant un tableau d'objet, le format de l'objet est {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Vous pouvez utiliser le composant Lecteur de fichiers pour sélectionner des fichiers et définir cette valeur directement via {{filePciker1.value}}.",
           "downloadZIP": "Pour définir s'il faut télécharger les fichiers en un seul ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
@@ -2600,7 +2603,8 @@
         "fail": "Échec de l'inscription",
         "fail_sent": "Impossible d'envoyer le code de vérification",
         "success": "Inscription réussie",
-        "verification_code": "Code de vérification envoyé"
+        "verification_code": "Code de vérification envoyé",
+        "not_allow_register": "Cette équipe a désactivé l'inscription. Veuillez contacter le propriétaire de l'équipe. "
       },
       "title": "S'inscrire",
       "agreement": {
@@ -3064,7 +3068,8 @@
       "pending": "En attente"
     },
     "settings": {
-      "allow_editors_invite": "Autoriser les éditeurs et les utilisateurs à gérer les membres"
+      "allow_editors_invite": "Autoriser les éditeurs et les utilisateurs à gérer les membres",
+      "allow_register": "Permettre aux utilisateurs de s'inscrire par lien"
     }
   },
   "copy_failed": "Échec de la copie",

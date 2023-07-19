@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "For at indstille hvordan man håndterer duplikerede filnavne. I tilfælde af at beholde begge vil en tilfældig streng blive tilføjet til filnavnet uploadet.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"name\", \"FileID\":\"ID\"}. Du kan bruge Kør filvælgerkomponenten til at vælge filer og indstille denne værdi direkte via {{filePciker1.value}}.",
           "downloadZIP": "For at angive, om filerne skal downloades som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
@@ -2600,7 +2603,8 @@
         "fail": "Kunne ikke tilmelde dig",
         "fail_sent": "Mislykkedes at sende bekræftelseskode",
         "success": "Tilmelding lykkedes",
-        "verification_code": "Bekræftelseskode sendt"
+        "verification_code": "Bekræftelseskode sendt",
+        "not_allow_register": "Dette team har deaktiveret register. Kontakt venligst teamejeren. "
       },
       "title": "Tilmeld dig",
       "agreement": {
@@ -3064,7 +3068,8 @@
       "pending": "Afventer"
     },
     "settings": {
-      "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer"
+      "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer",
+      "allow_register": "Tillad brugere at registrere via link"
     }
   },
   "copy_failed": "Kopiering mislykkedes",

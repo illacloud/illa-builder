@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Per impostare come gestire i nomi dei file duplicati. Nel caso di mantenere entrambi, verrà aggiunta una stringa casuale al nome del file caricato.",
           "fileData": "Imposta i dati del file usando un array di oggetti, il formato dell'oggetto è {\"fileName\":\"il nome\", \"FileID\":\"l'ID\"}. È possibile utilizzare il componente di selezione file Drive per selezionare i file e impostare questo valore direttamente tramite {{filePciker1.value}}.",
           "downloadZIP": "Per impostare se scaricare i file come un unico ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
@@ -2600,7 +2603,8 @@
         "fail": "Registrazione non riuscita",
         "fail_sent": "Impossibile inviare il codice di verifica",
         "success": "Registrato con successo",
-        "verification_code": "Codice di verifica inviato"
+        "verification_code": "Codice di verifica inviato",
+        "not_allow_register": "Questo team ha disabilitato la registrazione. Contatta il proprietario del team. "
       },
       "title": "Registrati",
       "agreement": {
@@ -3064,7 +3068,8 @@
       "pending": "In Attesa"
     },
     "settings": {
-      "allow_editors_invite": "Consenti agli editori e agli spettatori di gestire i membri"
+      "allow_editors_invite": "Consenti agli editori e agli spettatori di gestire i membri",
+      "allow_register": "Consenti agli utenti di registrarsi tramite link"
     }
   },
   "copy_failed": "Impossibile copiare",

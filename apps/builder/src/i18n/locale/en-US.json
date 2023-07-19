@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. You can use the Drive file picker component to select files and set this value directly through {{filePciker1.value}}.",
           "downloadZIP": "To set whether to download the files as one ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
@@ -2600,7 +2603,8 @@
         "fail": "Failed to sign up",
         "fail_sent": "Failed to send verification code",
         "success": "Signed up successfully",
-        "verification_code": "Verification code sent"
+        "verification_code": "Verification code sent",
+        "not_allow_register": "This team has disabled register. Please contact the team owner. "
       },
       "title": "Sign up",
       "agreement": {
@@ -3064,7 +3068,8 @@
       "pending": "Pending"
     },
     "settings": {
-      "allow_editors_invite": "Allow editors and viewers to manage members"
+      "allow_editors_invite": "Allow editors and viewers to manage members",
+      "allow_register": "Allow users to register via link"
     }
   },
   "copy_failed": "Failed to copy",

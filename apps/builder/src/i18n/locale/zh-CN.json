@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "设置如何处理重复的文件名。 如果同时保留两者，上传的文件名中将添加一个随机字符串。",
           "fileData": "使用对象数组设置文件数据，对象的格式为{\"fileName\":\"名称\",\"FileID\":\"ID\"}。 您可以使用ILLA Drive文件选择器组件选择文件并直接通过 {{filePciker1.value}} 设置该值。",
           "downloadZIP": "设置是否允许将文件下载为一个ZIP"
+        },
+        "list": {
+          "table_disallowed": "Table不能被放入List"
         }
       },
       "setter_option": {
@@ -2600,7 +2603,8 @@
         "fail": "注册失败",
         "fail_sent": "发送验证码失败",
         "success": "注册成功",
-        "verification_code": "验证码已发送"
+        "verification_code": "验证码已发送",
+        "not_allow_register": "这个团队禁用了注册。请联系团队Owner"
       },
       "title": "注册",
       "agreement": {
@@ -3064,7 +3068,8 @@
       "pending": "等待处理"
     },
     "settings": {
-      "allow_editors_invite": "允许编辑者和浏览者管理成员"
+      "allow_editors_invite": "允许编辑者和浏览者管理成员",
+      "allow_register": "允许用户通过链接注册"
     }
   },
   "copy_failed": "复制失败",

@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Chcete-li nastavit, jak nakládat s duplicitními názvy souborů. V případě zachování obojího, bude k nahranému názvu souboru přidán náhodný řetězec.",
           "fileData": "Nastavte data souboru pomocí pole objektu, formát objektu je {\"fileName\":\"jméno\", \"FileID\":\"ID souboru\"}. Můžete použít komponentu pro výběr souborů z Drive pro výběr souborů a nastavení této hodnoty přímo přes {{filePciker1.value}}.",
           "downloadZIP": "Chcete-li nastavit, zda stáhnout soubory jako jednu ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
@@ -2600,7 +2603,8 @@
         "fail": "Registrace se nezdařila",
         "fail_sent": "Nepodařilo se odeslat ověřovací kód",
         "success": "Úspěšně zaregistrováno",
-        "verification_code": "Ověřovací kód byl odeslán"
+        "verification_code": "Ověřovací kód byl odeslán",
+        "not_allow_register": "Tento tým má zakázaný registr. Kontaktujte prosím vlastníka týmu. "
       },
       "title": "Zaregistrovat se",
       "agreement": {
@@ -3064,7 +3068,8 @@
       "pending": "Nevyřízeno"
     },
     "settings": {
-      "allow_editors_invite": "Povolit editorům a divákům spravovat členy"
+      "allow_editors_invite": "Povolit editorům a divákům spravovat členy",
+      "allow_register": "Povolit uživatelům registraci prostřednictvím odkazu"
     }
   },
   "copy_failed": "Kopírování se nezdařilo",

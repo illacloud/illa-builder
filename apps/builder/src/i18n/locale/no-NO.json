@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "For å håndtere dupliserte filnavn. Ved behold begge, blir en tilfeldig streng lagt til i filnavnet lastet opp.",
           "fileData": "Sett fildataene ved hjelp av et objekt array, formatet på objektet er {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Du kan bruke Drive filvelgeren for å velge filer og sette denne verdien direkte gjennom {{filePciker1.value}}.",
           "downloadZIP": "Angir om filene skal lastes ned som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
@@ -2600,7 +2603,8 @@
         "fail": "Kunne ikke registrere deg",
         "fail_sent": "Klarte ikke å sende bekreftelseskoden",
         "success": "Registrering vellykket",
-        "verification_code": "Bekreftelseskode er sendt"
+        "verification_code": "Bekreftelseskode er sendt",
+        "not_allow_register": "This team has disabled register. Please contact the team owner. "
       },
       "title": "Registrer deg",
       "agreement": {
@@ -3064,7 +3068,8 @@
       "pending": "Ventende"
     },
     "settings": {
-      "allow_editors_invite": "Tillat redaktører og seere å administrere medlemmer"
+      "allow_editors_invite": "Tillat redaktører og seere å administrere medlemmer",
+      "allow_register": "Allow users to register via link"
     }
   },
   "copy_failed": "Kunne ikke kopiere",
