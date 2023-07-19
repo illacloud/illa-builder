@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Määrittää, miten käsitellä kaksoiskappaleita tiedostonimiä. Jos kyseessä on säilytys molemmat, tiedoston nimi lisätään satunnainen merkkijono.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Voit käyttää Drive-tiedostovalitsimen komponenttia tiedostojen valintaan ja asettaa tämän arvon suoraan {{filePciker1.value}} kautta.",
           "downloadZIP": "Määrittää, ladataako tiedostot yhdeksi ZIP:ksi. "
+        },
+        "list": {
+          "table_disallowed": "Taulua ei voi lisätä luetteloon"
         }
       },
       "setter_option": {
@@ -2400,7 +2403,17 @@
       },
       "restore": "Palauta tämä versio",
       "message": {
-        "version_change": "Sovelluksen nykyinen versio on muuttunut"
+        "version_change": "Sovelluksen nykyinen versio on muuttunut",
+        "suc": {
+          "save": "Nykyinen versio on onnistuneesti tallennettu historian tietueeksi",
+          "restore": "Palautus onnistui",
+          "preview": "Historiatietue on ladattu onnistuneesti."
+        },
+        "fail": {
+          "save": "Tallennus epäonnistui",
+          "restore": "Palautus epäonnistui",
+          "preview": "Historiatietueen lataus epäonnistui. @ info"
+        }
       }
     }
   },

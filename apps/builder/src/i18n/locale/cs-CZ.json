@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Chcete-li nastavit, jak nakládat s duplicitními názvy souborů. V případě zachování obojího, bude k nahranému názvu souboru přidán náhodný řetězec.",
           "fileData": "Nastavte data souboru pomocí pole objektu, formát objektu je {\"fileName\":\"jméno\", \"FileID\":\"ID souboru\"}. Můžete použít komponentu pro výběr souborů z Drive pro výběr souborů a nastavení této hodnoty přímo přes {{filePciker1.value}}.",
           "downloadZIP": "Chcete-li nastavit, zda stáhnout soubory jako jednu ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Tabulka nemůže být zařazena do seznamu"
         }
       },
       "setter_option": {
@@ -2400,7 +2403,17 @@
       },
       "restore": "Obnovit tuto verzi",
       "message": {
-        "version_change": "Aktuální verze aplikace se změnila"
+        "version_change": "Aktuální verze aplikace se změnila",
+        "suc": {
+          "save": "Aktuální verze je úspěšně uložena jako záznam historie",
+          "restore": "Úspěšně obnoveno",
+          "preview": "Záznam historie byl úspěšně načten."
+        },
+        "fail": {
+          "save": "Uložení se nezdařilo",
+          "restore": "Obnovení se nezdařilo",
+          "preview": "Nepodařilo se načíst záznam historie."
+        }
       }
     }
   },

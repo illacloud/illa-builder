@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Para configurar cómo manejar nombres de archivo duplicados. En el caso de mantener ambos, se añadirá una cadena aleatoria al nombre del archivo subido.",
           "fileData": "Establece los datos de archivo usando una matriz de objetos, el formato del objeto es {\"fileName\":\"el nombre\", \"FileID\":\"ID\"}. Puede utilizar el componente selector de archivos de Drive para seleccionar archivos y establecer este valor directamente a través de {{filePciker1.value}}.",
           "downloadZIP": "Para establecer si descargar o no los archivos como un ZIP. "
+        },
+        "list": {
+          "table_disallowed": "La tabla no se puede poner en una lista"
         }
       },
       "setter_option": {
@@ -2400,7 +2403,17 @@
       },
       "restore": "Restaurar esta versión",
       "message": {
-        "version_change": "La versión actual de la aplicación ha cambiado"
+        "version_change": "La versión actual de la aplicación ha cambiado",
+        "suc": {
+          "save": "La versión actual se ha guardado correctamente como un registro de historial",
+          "restore": "Restaurado con éxito",
+          "preview": "El registro del historial se ha cargado correctamente."
+        },
+        "fail": {
+          "save": "Error al guardar",
+          "restore": "Error al restaurar",
+          "preview": "Error al cargar el registro del historial."
+        }
       }
     }
   },

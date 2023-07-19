@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "For at indstille hvordan man håndterer duplikerede filnavne. I tilfælde af at beholde begge vil en tilfældig streng blive tilføjet til filnavnet uploadet.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"name\", \"FileID\":\"ID\"}. Du kan bruge Kør filvælgerkomponenten til at vælge filer og indstille denne værdi direkte via {{filePciker1.value}}.",
           "downloadZIP": "For at angive, om filerne skal downloades som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Tabel kan ikke indsættes i en liste"
         }
       },
       "setter_option": {
@@ -2400,7 +2403,17 @@
       },
       "restore": "Gendan denne version",
       "message": {
-        "version_change": "Den aktuelle app-version er ændret"
+        "version_change": "Den aktuelle app-version er ændret",
+        "suc": {
+          "save": "Nuværende version er gemt som historik post",
+          "restore": "Genoprettet succesfuldt",
+          "preview": "Historik posten er indlæst."
+        },
+        "fail": {
+          "save": "Kunne ikke gemme",
+          "restore": "Kunne ikke gendanne",
+          "preview": "Kunne ikke indlæse historikjournalen."
+        }
       }
     }
   },

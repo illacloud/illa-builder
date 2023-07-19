@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Um festzulegen, wie mit doppelten Dateinamen umgegangen werden soll. Wenn beides beibehalten wird, wird dem Dateinamen eine zufällige Zeichenkette hinzugefügt.",
           "fileData": "Legen Sie die Dateidaten unter Verwendung eines Arrays fest, das Format des Objekts ist {\"fileName\":\"The name\", \"FileID\":\"The ID\"}. Sie können die Laufwerk-Datei-Picker-Komponente verwenden, um Dateien auszuwählen und diesen Wert direkt über {{filePciker1.value}} zu setzen.",
           "downloadZIP": "Um festzulegen, ob die Dateien als ein ZIP heruntergeladen werden sollen. "
+        },
+        "list": {
+          "table_disallowed": "Tabelle kann nicht in eine Liste gesetzt werden"
         }
       },
       "setter_option": {
@@ -2400,7 +2403,17 @@
       },
       "restore": "Diese Version wiederherstellen",
       "message": {
-        "version_change": "Die aktuelle App-Version hat sich geändert"
+        "version_change": "Die aktuelle App-Version hat sich geändert",
+        "suc": {
+          "save": "Aktuelle Version ist erfolgreich als History-Eintrag gespeichert",
+          "restore": "Erfolgreich wiederhergestellt",
+          "preview": "Der History-Eintrag wurde erfolgreich geladen."
+        },
+        "fail": {
+          "save": "Speichern fehlgeschlagen",
+          "restore": "Wiederherstellung fehlgeschlagen",
+          "preview": "Fehler beim Laden des Verlaufsdatums."
+        }
       }
     }
   },

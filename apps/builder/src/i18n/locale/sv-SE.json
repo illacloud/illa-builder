@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "För att ställa in hur du hanterar dubbla filnamn. Vid behåll kommer en slumpmässig sträng att läggas till filnamnet som laddats upp.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. (Automatic Copy) Du kan använda komponenten Drive filväljare för att välja filer och ställa in detta värde direkt via {{filePciker1.value}}.",
           "downloadZIP": "För att ställa in om du vill ladda ner filerna som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Tabellen kan inte läggas i en lista"
         }
       },
       "setter_option": {
@@ -2400,7 +2403,17 @@
       },
       "restore": "Återställ denna version",
       "message": {
-        "version_change": "Den aktuella appversionen har ändrats"
+        "version_change": "Den aktuella appversionen har ändrats",
+        "suc": {
+          "save": "Nuvarande version har sparats som en historikpost",
+          "restore": "Återställning lyckades",
+          "preview": "Historikposten har laddats framgångsrikt."
+        },
+        "fail": {
+          "save": "Det gick inte att spara",
+          "restore": "Det gick inte att återställa",
+          "preview": "Det gick inte att läsa in historikposten."
+        }
       }
     }
   },
@@ -2601,7 +2614,7 @@
         "fail_sent": "Det gick inte att skicka verifieringskoden",
         "success": "Registreringen lyckades",
         "verification_code": "Verifikationskod skickad",
-        "not_allow_register": "This team has disabled register. Please contact the team owner. "
+        "not_allow_register": "Detta team har inaktiverat register. Kontakta teamets ägare. "
       },
       "title": "Registrera dig",
       "agreement": {
@@ -3066,7 +3079,7 @@
     },
     "settings": {
       "allow_editors_invite": "Tillåt redaktörer och tittare att hantera medlemmar",
-      "allow_register": "Allow users to register via link"
+      "allow_register": "Tillåt användare att registrera sig via länk"
     }
   },
   "copy_failed": "Det gick inte att kopiera",
