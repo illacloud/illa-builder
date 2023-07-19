@@ -2600,7 +2600,8 @@
         "fail": "Error al registrarse",
         "fail_sent": "Error al enviar el código de verificación",
         "success": "Registrado correctamente",
-        "verification_code": "Código de verificación enviado"
+        "verification_code": "Código de verificación enviado",
+        "not_allow_register": "Este equipo ha sido deshabilitado. Por favor, contacta con el propietario del equipo. "
       },
       "title": "Regístrate",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "Pendiente"
     },
     "settings": {
-      "allow_editors_invite": "Permitir a los editores y espectadores administrar miembros"
+      "allow_editors_invite": "Permitir a los editores y espectadores administrar miembros",
+      "allow_register": "Permitir a los usuarios registrarse a través del enlace"
     }
   },
   "copy_failed": "Error al copiar",

@@ -2600,7 +2600,8 @@
         "fail": "Falha ao se inscrever",
         "fail_sent": "Falha ao enviar código de verificação",
         "success": "Cadastrado com sucesso",
-        "verification_code": "Código de verificação enviado"
+        "verification_code": "Código de verificação enviado",
+        "not_allow_register": "Esta equipe desativou o registro. Entre em contato com o proprietário da equipe. "
       },
       "title": "Criar conta",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "PENDENTE"
     },
     "settings": {
-      "allow_editors_invite": "Permitir que editores e espectadores gerenciem membros"
+      "allow_editors_invite": "Permitir que editores e espectadores gerenciem membros",
+      "allow_register": "Permitir que os usuários se registrem via link"
     }
   },
   "copy_failed": "Falha ao copiar",

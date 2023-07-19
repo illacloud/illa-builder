@@ -2600,7 +2600,8 @@
         "fail": "Nie udało się zarejestrować",
         "fail_sent": "Nie udało się wysłać kodu weryfikacyjnego",
         "success": "Zarejestrowano pomyślnie",
-        "verification_code": "Kod weryfikacyjny wysłany"
+        "verification_code": "Kod weryfikacyjny wysłany",
+        "not_allow_register": "Ten zespół wyłączył rejestrację. Skontaktuj się z właścicielem zespołu. "
       },
       "title": "Zarejestruj",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "Oczekujące"
     },
     "settings": {
-      "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami"
+      "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami",
+      "allow_register": "Zezwalaj użytkownikom na rejestrację za pomocą linku"
     }
   },
   "copy_failed": "Nie udało się skopiować",

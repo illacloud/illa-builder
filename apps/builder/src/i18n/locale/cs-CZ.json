@@ -2600,7 +2600,8 @@
         "fail": "Registrace se nezdařila",
         "fail_sent": "Nepodařilo se odeslat ověřovací kód",
         "success": "Úspěšně zaregistrováno",
-        "verification_code": "Ověřovací kód byl odeslán"
+        "verification_code": "Ověřovací kód byl odeslán",
+        "not_allow_register": "Tento tým má zakázaný registr. Kontaktujte prosím vlastníka týmu. "
       },
       "title": "Zaregistrovat se",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "Nevyřízeno"
     },
     "settings": {
-      "allow_editors_invite": "Povolit editorům a divákům spravovat členy"
+      "allow_editors_invite": "Povolit editorům a divákům spravovat členy",
+      "allow_register": "Povolit uživatelům registraci prostřednictvím odkazu"
     }
   },
   "copy_failed": "Kopírování se nezdařilo",

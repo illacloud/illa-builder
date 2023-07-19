@@ -2600,7 +2600,8 @@
         "fail": "Kunne ikke tilmelde dig",
         "fail_sent": "Mislykkedes at sende bekræftelseskode",
         "success": "Tilmelding lykkedes",
-        "verification_code": "Bekræftelseskode sendt"
+        "verification_code": "Bekræftelseskode sendt",
+        "not_allow_register": "Dette team har deaktiveret register. Kontakt venligst teamejeren. "
       },
       "title": "Tilmeld dig",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "Afventer"
     },
     "settings": {
-      "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer"
+      "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer",
+      "allow_register": "Tillad brugere at registrere via link"
     }
   },
   "copy_failed": "Kopiering mislykkedes",

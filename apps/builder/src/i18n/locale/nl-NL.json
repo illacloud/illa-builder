@@ -2600,7 +2600,8 @@
         "fail": "Registratie mislukt",
         "fail_sent": "Verificatiecode versturen mislukt",
         "success": "Succesvol geregistreerd",
-        "verification_code": "Verificatiecode verzonden"
+        "verification_code": "Verificatiecode verzonden",
+        "not_allow_register": "Dit team heeft zich ingeschreven. Neem contact op met de eigenaar van het team. "
       },
       "title": "Registreer nu",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "Lopende"
     },
     "settings": {
-      "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren"
+      "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren",
+      "allow_register": "Sta gebruikers toe om te registreren via link"
     }
   },
   "copy_failed": "Kopiëren mislukt",

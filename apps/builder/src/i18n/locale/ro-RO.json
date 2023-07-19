@@ -2600,7 +2600,8 @@
         "fail": "Înregistrare nereușită",
         "fail_sent": "Trimiterea codului de verificare a eșuat",
         "success": "Înregistrare reușită",
-        "verification_code": "Cod de verificare trimis"
+        "verification_code": "Cod de verificare trimis",
+        "not_allow_register": "This team has disabled register. Please contact the team owner. "
       },
       "title": "Înscrie-te",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "In asteptare"
     },
     "settings": {
-      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii"
+      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii",
+      "allow_register": "Allow users to register via link"
     }
   },
   "copy_failed": "Copierea a eșuat",

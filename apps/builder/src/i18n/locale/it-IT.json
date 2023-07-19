@@ -2600,7 +2600,8 @@
         "fail": "Registrazione non riuscita",
         "fail_sent": "Impossibile inviare il codice di verifica",
         "success": "Registrato con successo",
-        "verification_code": "Codice di verifica inviato"
+        "verification_code": "Codice di verifica inviato",
+        "not_allow_register": "Questo team ha disabilitato la registrazione. Contatta il proprietario del team. "
       },
       "title": "Registrati",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "In Attesa"
     },
     "settings": {
-      "allow_editors_invite": "Consenti agli editori e agli spettatori di gestire i membri"
+      "allow_editors_invite": "Consenti agli editori e agli spettatori di gestire i membri",
+      "allow_register": "Consenti agli utenti di registrarsi tramite link"
     }
   },
   "copy_failed": "Impossibile copiare",

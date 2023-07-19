@@ -2600,7 +2600,8 @@
         "fail": "Rekisteröityminen epäonnistui",
         "fail_sent": "Vahvistuskoodin lähettäminen epäonnistui",
         "success": "Rekisteröityminen onnistui",
-        "verification_code": "Vahvistuskoodi lähetetty"
+        "verification_code": "Vahvistuskoodi lähetetty",
+        "not_allow_register": "Tämä tiimi on poistettu käytöstä. Ota yhteyttä tiimin omistajaan. "
       },
       "title": "Rekisteröidy nyt",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "Odottaa"
     },
     "settings": {
-      "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä"
+      "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä",
+      "allow_register": "Salli käyttäjien rekisteröityä linkin kautta"
     }
   },
   "copy_failed": "Kopiointi epäonnistui",

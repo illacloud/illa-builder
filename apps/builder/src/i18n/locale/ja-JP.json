@@ -2600,7 +2600,8 @@
         "fail": "登録に失敗しました",
         "fail_sent": "確認コードを送信できませんでした",
         "success": "登録完了",
-        "verification_code": "確認コードが送信されました"
+        "verification_code": "確認コードが送信されました",
+        "not_allow_register": "このチームは登録が無効になっています。チームのオーナーにお問い合わせください。 "
       },
       "title": "登録",
       "agreement": {
@@ -3064,7 +3065,8 @@
       "pending": "処理待ち"
     },
     "settings": {
-      "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします"
+      "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします",
+      "allow_register": "ユーザーがリンク経由で登録できるようにする"
     }
   },
   "copy_failed": "コピーに失敗しました",
