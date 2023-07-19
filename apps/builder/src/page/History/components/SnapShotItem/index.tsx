@@ -1,9 +1,14 @@
 import { FC, useCallback, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { Button } from "@illa-design/react"
+import { Signal } from "@/api/ws/ILLA_PROTO"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
-import { Snapshot } from "@/redux/currentAppHistory/currentAppHistoryState"
+import {
+  ModifyHistory,
+  Snapshot,
+} from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot } from "@/services/history"
 import {
   applyTimeStyle,
@@ -28,8 +33,24 @@ interface SnapShotListProps {
 }
 export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const { snapshot, selected, last } = props
   const [loading, setLoading] = useState(false)
+
+  const getOperationDesc = (history: ModifyHistory) => {
+    const { operation, operationTargetName } = history
+
+    switch (operation) {
+      case Signal.MOVE_STATE:
+        return t("editor.history.operation.Moved", { operationTargetName })
+      case Signal.DELETE_STATE:
+        return t("editor.history.operation.Deleted", { operationTargetName })
+      case Signal.CREATE_STATE:
+        return t("editor.history.operation.Created", { operationTargetName })
+      case Signal.UPDATE_STATE:
+        return t("editor.history.operation.Updated", { operationTargetName })
+    }
+  }
 
   const handleClickItem = useCallback(() => {
     dispatch(
@@ -61,7 +82,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
       <div css={textStyle}>
         {snapshot.targetVersion === 0 ? (
           <div css={applyTimeStyle(selected)} onClick={handleClickItem}>
-            {"current version"}
+            {t("editor.history.history_list.current")}
           </div>
         ) : (
           <>
@@ -70,6 +91,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
             </div>
             <div css={contentStyle}>
               {snapshot.modifyHistory.map((modify) => {
+                const desc = getOperationDesc(modify)
                 return (
                   <div key={modify.modifiedAt} css={modifyContentStyle}>
                     <div css={editorInfoStyle}>
@@ -82,9 +104,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
                       />
                       <div css={nameStyle}>{modify.modifiedBy.nickname}</div>
                     </div>
-                    <div css={descStyle}>
-                      {"Edited pkpaicSFM25KW1DZDqzxSRAds Data Source"}
-                    </div>
+                    <div css={descStyle}>{desc}</div>
                   </div>
                 )
               })}
