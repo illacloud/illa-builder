@@ -1965,6 +1965,9 @@
           "file_name_duplicatio": "Pour définir comment gérer les noms de fichiers dupliqués. Dans le cas de conserver les deux, une chaîne aléatoire sera ajoutée au nom du fichier téléchargé.",
           "fileData": "Définit les données du fichier en utilisant un tableau d'objet, le format de l'objet est {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Vous pouvez utiliser le composant Lecteur de fichiers pour sélectionner des fichiers et définir cette valeur directement via {{filePciker1.value}}.",
           "downloadZIP": "Pour définir s'il faut télécharger les fichiers en un seul ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
         }
       },
       "setter_option": {
