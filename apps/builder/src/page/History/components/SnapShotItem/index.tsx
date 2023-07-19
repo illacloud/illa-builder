@@ -9,6 +9,7 @@ import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHi
 import {
   ModifyHistory,
   Snapshot,
+  SnapshotTriggerMode,
 } from "@/redux/currentAppHistory/currentAppHistoryState"
 import { recoverSnapShot } from "@/services/history"
 import { formatDate } from "@/utils/dayjs"
@@ -92,6 +93,8 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
           <>
             <div css={applyTimeStyle(selected)} onClick={handleClickItem}>
               {formatDate(snapshot.createdAt)}
+              {snapshot.snapshotTriggerMode === SnapshotTriggerMode.MANUAL &&
+                `(${t("editor.history.history_list.manual")})`}
             </div>
             <div css={contentStyle}>
               {snapshot.modifyHistory.slice(-2).map((modify) => {
