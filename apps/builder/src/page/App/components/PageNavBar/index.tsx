@@ -76,6 +76,16 @@ import {
   viewControlStyle,
 } from "./style"
 
+const UpgradeTag: FC = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Tag colorScheme="techPurple">
+      <UpgradeIcon /> {t("billing.homepage.upgrade")}
+    </Tag>
+  )
+}
+
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
@@ -267,8 +277,18 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   }
 
   const handleOpenHistory = useCallback(() => {
-    navigate(`/${teamIdentifier}/appHistory/${appId}`)
-  }, [navigate, teamIdentifier, appId])
+    if (!canUseBillingFeature) {
+      handleUpgradeModalVisible(true, "upgrade")
+    } else {
+      navigate(`/${teamIdentifier}/appHistory/${appId}`)
+    }
+  }, [
+    navigate,
+    teamIdentifier,
+    appId,
+    canUseBillingFeature,
+    handleUpgradeModalVisible,
+  ])
 
   const handleSaveCurrentAppVersion = useCallback(async () => {
     if (appId) {
@@ -296,7 +316,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [appId, dispatch],
   )
 
-  const handleUpgradeModal = useCallback(() => {
+  const checkUpgrade = useCallback(() => {
     if (!canUseBillingFeature) {
       handleUpgradeModalVisible(true, "upgrade")
     }
@@ -381,7 +401,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                         <DropListItem
                           key="history"
                           value="history"
-                          title={t("editor.history.history")}
+                          title={
+                            <span css={upgradeStyle}>
+                              {t("editor.history.history")}
+                              {!canUseBillingFeature && <UpgradeTag />}
+                            </span>
+                          }
                           onClick={handleOpenHistory}
                         />
                         {canUseBillingFeature && (
@@ -404,14 +429,11 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                                   onChange={handleWaterMarkChange}
                                 />
                               ) : (
-                                <Tag colorScheme="techPurple">
-                                  <UpgradeIcon />{" "}
-                                  {t("billing.homepage.upgrade")}
-                                </Tag>
+                                <UpgradeTag />
                               )}
                             </span>
                           }
-                          onClick={handleUpgradeModal}
+                          onClick={checkUpgrade}
                         />
                       </>
                     )}
