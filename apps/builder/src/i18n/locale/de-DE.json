@@ -1718,7 +1718,8 @@
         "save_to_drive": "In ILLA Laufwerk speichern",
         "menu": {
           "logo": "Logo",
-          "title": "Title"
+          "title": "Titel",
+          "only_show_icon": "Nur Symbol anzeigen"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Tabelle kann nicht in eine Liste gesetzt werden"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Logo mit URL festlegen",
+          "title": "Legen Sie hier einen Titel wie den Firmennamen fest",
+          "only_show_icon": "BIS die Bezeichnung verstecken und nur Symbol anzeigen"
         }
       },
       "setter_option": {
