@@ -24,6 +24,15 @@ const authAxios = Axios.create({
   },
 })
 
+const wsAxios = Axios.create({
+  baseURL: HTTP_REQUEST_PUBLIC_BASE_URL.replace("api", "ws"),
+  timeout: 10000,
+  headers: {
+    "Content-Encoding": "gzip",
+    "Content-Type": "application/json",
+  },
+})
+
 const actionRuntimeAxios = Axios.create({
   baseURL: HTTP_REQUEST_PUBLIC_BASE_URL,
   timeout: 600000,
@@ -45,4 +54,6 @@ actionRuntimeAxios.interceptors.request.use(authInterceptor)
 authAxios.interceptors.request.use(addToPendingPoolInterceptor)
 authAxios.interceptors.response.use(removeFromPendingPoolInterceptor)
 
-export { basicAxios, actionRuntimeAxios, authAxios }
+wsAxios.interceptors.request.use(authInterceptor)
+
+export { basicAxios, actionRuntimeAxios, authAxios, wsAxios }

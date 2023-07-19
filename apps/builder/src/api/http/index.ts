@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import { getCurrentPageTeamIdentifier, getTeamID } from "@/utils/team"
 import { ERROR_FLAG } from "../errorFlag"
-import { actionRuntimeAxios, authAxios, basicAxios } from "./base"
+import { actionRuntimeAxios, authAxios, basicAxios, wsAxios } from "./base"
 import {
   ACTION_REQUEST_PREFIX,
   BUILDER_REQUEST_PREFIX,
@@ -63,6 +63,27 @@ export const actionBasicRequest = async <
   try {
     return await actionRuntimeAxios.request({
       ...requestConfig,
+    })
+  } catch (e) {
+    if (axios.isAxiosError(e) && e.response) {
+      throw e.response
+    }
+    throw e
+  }
+}
+
+export const appWSRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+): Promise<AxiosResponse<ResponseData, RequestData>> => {
+  try {
+    const teamId = getTeamID()
+    const finalURL = `/teams/${teamId}` + requestConfig.url
+    return await wsAxios.request({
+      ...requestConfig,
+      url: finalURL,
     })
   } catch (e) {
     if (axios.isAxiosError(e) && e.response) {

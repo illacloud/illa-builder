@@ -11,7 +11,7 @@ import {
   Snapshot,
   SnapshotTriggerMode,
 } from "@/redux/currentAppHistory/currentAppHistoryState"
-import { recoverSnapShot } from "@/services/history"
+import { recoverSnapShot, recoverSnapShotWS } from "@/services/history"
 import { formatDate } from "@/utils/dayjs"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { ReactComponent as SaveIcon } from "./assets/save.svg"
@@ -74,6 +74,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
     setLoading(true)
     try {
       await recoverSnapShot(snapshot.appID, snapshot.snapshotID)
+      await recoverSnapShotWS(snapshot.appID)
       message.success({ content: t("editor.history.message.suc.restore") })
       navigate(`/${teamIdentifier}/app/${snapshot.appID}`)
     } catch (error) {
