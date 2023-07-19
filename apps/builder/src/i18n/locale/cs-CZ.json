@@ -1718,7 +1718,8 @@
         "save_to_drive": "Uložit do ILLA disku",
         "menu": {
           "logo": "Logo",
-          "title": "Title"
+          "title": "Hlava 1 – Celkem",
+          "only_show_icon": "Zobrazit pouze ikonu"
         }
       },
       "setter_tooltip": {
@@ -1974,8 +1975,9 @@
           "table_disallowed": "Tabulka nemůže být zařazena do seznamu"
         },
         "menu": {
-          "logo": "Set your logo with a URL",
-          "title": "Set a title such as company name here"
+          "logo": "Nastavte logo pomocí URL",
+          "title": "Zde nastavte název společnosti, jako je název společnosti",
+          "only_show_icon": "Ukázat štítek a zobrazit pouze ikonu"
         }
       },
       "setter_option": {
