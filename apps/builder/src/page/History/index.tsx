@@ -23,10 +23,12 @@ import { HistoryNavBar } from "@/page/History/components/HistoryNavBar"
 import { SnapShotList } from "@/page/History/components/SnapShotList"
 import { setupConfigListeners } from "@/redux/config/configListener"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getCurrentAppSnapshotID } from "@/redux/currentAppHistory/currentAppHistorySelector"
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
+import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchSnapShot } from "@/services/history"
 import { startAppListening } from "@/store"
@@ -40,14 +42,12 @@ export const History: FC = () => {
   const teamInfo = useSelector(getCurrentTeamInfo)
   const currentSnapshotID = useSelector(getCurrentAppSnapshotID)
   const currentUserRole = teamInfo?.myRole
-  const { uid, teamID } = {
-    uid: teamInfo?.uid ?? "",
-    teamID: teamInfo?.id ?? "",
-  }
+  const uid = teamInfo?.uid ?? ""
+  const teamID = teamInfo?.id ?? ""
 
   const [contentLoading, setContentLoading] = useState(false)
-
   const preSnapshotID = useRef<string>()
+
   // check if user can manage the app
   if (currentUserRole) {
     const canEditApp = canManage(
@@ -106,6 +106,7 @@ export const History: FC = () => {
     }
     return () => {
       controller.abort()
+      dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
     }
   }, [t, dispatch, message, appId, currentSnapshotID, teamID, uid])
 
