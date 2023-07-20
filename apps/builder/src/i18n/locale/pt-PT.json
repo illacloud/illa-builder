@@ -1222,7 +1222,8 @@
           "replay": "Responder",
           "startUploading": "Iniciar upload",
           "uploadSuccessfully": "Carregado com sucesso",
-          "uploadFailed": "Falha ao fazer upload"
+          "uploadFailed": "Falha ao fazer upload",
+          "onMenuSelect": "Selecione o item"
         },
         "image_list": {
           "title": "Imagens",

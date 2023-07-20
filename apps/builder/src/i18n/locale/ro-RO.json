@@ -1222,7 +1222,8 @@
           "replay": "Răspuns",
           "startUploading": "Începe încărcarea",
           "uploadSuccessfully": "Încărcat cu succes",
-          "uploadFailed": "Încărcarea a eșuat"
+          "uploadFailed": "Încărcarea a eșuat",
+          "onMenuSelect": "Selectare element"
         },
         "image_list": {
           "title": "Imagini",

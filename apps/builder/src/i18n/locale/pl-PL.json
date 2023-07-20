@@ -1222,7 +1222,8 @@
           "replay": "Odpowiedz",
           "startUploading": "Rozpocznij przesyłanie",
           "uploadSuccessfully": "Przesłano pomyślnie",
-          "uploadFailed": "Nie udało się przesłać"
+          "uploadFailed": "Nie udało się przesłać",
+          "onMenuSelect": "Wybierz element"
         },
         "image_list": {
           "title": "Obrazy",
