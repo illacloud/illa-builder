@@ -278,6 +278,9 @@ importers:
       qs:
         specifier: ^6.11.0
         version: 6.11.0
+      rc-virtual-list:
+        specifier: ^3.4.2
+        version: 3.4.13(react-dom@18.2.0)(react@18.2.0)
       re-resizable:
         specifier: ^6.9.9
         version: 6.9.9(react-dom@18.2.0)(react@18.2.0)

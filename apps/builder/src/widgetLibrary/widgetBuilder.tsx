@@ -71,6 +71,11 @@ import {
   DIVIDER_WIDGET_CONFIG,
 } from "@/widgetLibrary/DividerWidget"
 import {
+  DRIVE_PICKER_EVENT_HANDLER_CONFIG,
+  DRIVE_PICKER_PANEL_CONFIG,
+  DRIVE_PICKER_WIDGET_CONFIG,
+} from "@/widgetLibrary/DrivePickerWidget"
+import {
   EDITABLE_EVENT_HANDLER_CONFIG,
   EDITABLE_TEXT_PANEL_CONFIG,
   EDITABLE_TEXT_WIDGET_CONFIG,
@@ -564,12 +569,20 @@ export const WidgetConfigMap: Record<
   },
 }
 
-if (isCloudVersion && import.meta.env.ILLA_GOOGLE_MAP_KEY) {
-  WidgetConfigMap["MAP_WIDGET"] = {
-    config: MAP_WIDGET_CONFIG,
-    panelConfig: MAP_PANEL_CONFIG,
-    eventHandlerConfig: MAP_EVENT_HANDLER_CONFIG,
-    widget: lazy(() => import("@/widgetLibrary/MapBoxWidget/map")),
+if (isCloudVersion) {
+  WidgetConfigMap["DRIVE_PICKER_WIDGET"] = {
+    config: DRIVE_PICKER_WIDGET_CONFIG,
+    panelConfig: DRIVE_PICKER_PANEL_CONFIG,
+    eventHandlerConfig: DRIVE_PICKER_EVENT_HANDLER_CONFIG,
+    widget: lazy(() => import("@/widgetLibrary/DrivePickerWidget/drivePicker")),
+  }
+  if (import.meta.env.ILLA_GOOGLE_MAP_KEY) {
+    WidgetConfigMap["MAP_WIDGET"] = {
+      config: MAP_WIDGET_CONFIG,
+      panelConfig: MAP_PANEL_CONFIG,
+      eventHandlerConfig: MAP_EVENT_HANDLER_CONFIG,
+      widget: lazy(() => import("@/widgetLibrary/MapBoxWidget/map")),
+    }
   }
 }
 
