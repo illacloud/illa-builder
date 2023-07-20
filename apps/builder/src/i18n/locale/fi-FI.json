@@ -1223,7 +1223,8 @@
           "startUploading": "Aloita lataaminen",
           "uploadSuccessfully": "Ladattu onnistuneesti",
           "uploadFailed": "Lataaminen epäonnistui",
-          "onMenuSelect": "Valitse kohde"
+          "onMenuSelect": "Valitse kohde",
+          "on_menu_select": "Valitse valikon kohta"
         },
         "image_list": {
           "title": "Kuvat",
