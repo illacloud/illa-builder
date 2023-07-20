@@ -99,6 +99,7 @@ export const Member: FC<MemberProps> = () => {
 
   return (
     <MemberList
+      blockRegister={teamInfo?.permission.blockRegister}
       isCloudVersion={isCloudVersion}
       loading={false}
       userListData={members}
