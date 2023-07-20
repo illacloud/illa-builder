@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 import { CHART_PRESET_COLOR } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
-import BaseSelectSetter from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import {
   getCanvas,
   searchDsl,
@@ -13,6 +12,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { RootState } from "@/store"
 import { formatDataAsObject } from "@/utils/formatData"
 import { isObject } from "@/utils/typeHelper"
+import SearchSelectSetter from "../SelectSetter/searchSelect"
 
 const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (props) => {
   const { widgetDisplayName, attrName, value, handleUpdateMultiAttrDSL } = props
@@ -107,7 +107,7 @@ const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (props) => {
   )
 
   return (
-    <BaseSelectSetter
+    <SearchSelectSetter
       {...props}
       options={selectedOptions}
       handleUpdateDsl={handleUpdateDsl}

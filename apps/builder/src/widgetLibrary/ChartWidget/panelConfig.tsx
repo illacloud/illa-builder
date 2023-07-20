@@ -132,7 +132,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
             ),
             isSetterSingleRow: true,
             attrName: "aggregationMethod",
-            setterType: "BASE_SELECT_SETTER",
+            setterType: "SEARCH_SELECT_SETTER",
             options: aggregationMethodOptions,
           },
           {
@@ -140,7 +140,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.chart_type"),
             isSetterSingleRow: true,
             attrName: "type",
-            setterType: "BASE_SELECT_SETTER",
+            setterType: "SEARCH_SELECT_SETTER",
             options: datasetsTypeOption,
           },
           {
@@ -182,7 +182,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
             ),
             isSetterSingleRow: true,
             attrName: "aggregationMethod",
-            setterType: "BASE_SELECT_SETTER",
+            setterType: "SEARCH_SELECT_SETTER",
             options: aggregationMethodOptions,
           },
           {

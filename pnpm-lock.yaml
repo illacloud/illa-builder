@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -198,11 +202,11 @@ importers:
         specifier: ^1.1.0
         version: 1.1.1(react-dom@18.2.0)(react@18.2.0)
       '@uiw/react-color-sketch':
-        specifier: ^1.1.0
-        version: 1.1.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^1.3.3
+        version: 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
       '@uiw/react-color-swatch':
-        specifier: ^1.1.0
-        version: 1.1.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^1.3.3
+        version: 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
       acorn:
         specifier: ^8.7.1
         version: 8.8.2
@@ -239,12 +243,15 @@ importers:
       events:
         specifier: ^3.3.0
         version: 3.3.0
+      fflate:
+        specifier: ^0.8.0
+        version: 0.8.0
       fnv-plus:
         specifier: ^1.3.1
         version: 1.3.1
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       i18next:
         specifier: ^22.4.9
         version: 22.4.9
@@ -278,6 +285,9 @@ importers:
       qs:
         specifier: ^6.11.0
         version: 6.11.0
+      rc-virtual-list:
+        specifier: ^3.4.2
+        version: 3.4.13(react-dom@18.2.0)(react@18.2.0)
       re-resizable:
         specifier: ^6.9.9
         version: 6.9.9(react-dom@18.2.0)(react@18.2.0)
@@ -356,9 +366,9 @@ importers:
       remark-gfm:
         specifier: ^3.0.1
         version: 3.0.1
-      slick-carousel:
-        specifier: ^1.8.1
-        version: 1.8.1(jquery@3.7.0)
+      streamsaver:
+        specifier: ^2.0.6
+        version: 2.0.6
       stylis:
         specifier: ^4.1.3
         version: 4.1.3
@@ -441,6 +451,9 @@ importers:
       '@types/redux-logger':
         specifier: ^3.0.9
         version: 3.0.9
+      '@types/streamsaver':
+        specifier: ^2.0.1
+        version: 2.0.1
       '@types/stylis':
         specifier: ^4.0.2
         version: 4.0.2
@@ -3886,6 +3899,53 @@ packages:
       - supports-color
     dev: true
 
+  /@motionone/animation@10.15.1:
+    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}
+    dependencies:
+      '@motionone/easing': 10.15.1
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      tslib: 2.5.0
+    dev: false
+
+  /@motionone/dom@10.13.1:
+    resolution: {integrity: sha512-zjfX+AGMIt/fIqd/SL1Lj93S6AiJsEA3oc5M9VkUr+Gz+juRmYN1vfvZd6MvEkSqEjwPQgcjN7rGZHrDB9APfQ==}
+    dependencies:
+      '@motionone/animation': 10.15.1
+      '@motionone/generators': 10.15.1
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      hey-listen: 1.0.8
+      tslib: 2.5.0
+    dev: false
+
+  /@motionone/easing@10.15.1:
+    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
+    dependencies:
+      '@motionone/utils': 10.15.1
+      tslib: 2.5.0
+    dev: false
+
+  /@motionone/generators@10.15.1:
+    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==}
+    dependencies:
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
+      tslib: 2.5.0
+    dev: false
+
+  /@motionone/types@10.15.1:
+    resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==}
+    dev: false
+
+  /@motionone/utils@10.15.1:
+    resolution: {integrity: sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==}
+    dependencies:
+      '@motionone/types': 10.15.1
+      hey-listen: 1.0.8
+      tslib: 2.5.0
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -4802,6 +4862,10 @@ packages:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
     dev: true
 
+  /@types/streamsaver@2.0.1:
+    resolution: {integrity: sha512-I49NtT8w6syBI3Zg3ixCyygTHoTVMY0z2TMRcTgccdIsVd2MwlKk7ITLHLsJtgchUHcOd7QEARG9h0ifcA6l2Q==}
+    dev: true
+
   /@types/stylis@4.0.2:
     resolution: {integrity: sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==}
     dev: true
@@ -5013,6 +5077,14 @@ packages:
     resolution: {integrity: sha512-lLuNBe6r1/hXzQi04YOnaOWJFgpbJgEuL+CYOfd03EBwo0r1aKVGlmhu6xhDATooKRx3CRWM+SgImy9Iebj/Tg==}
     dev: false
 
+  /@uiw/color-convert@1.3.3(@babel/runtime@7.22.6):
+    resolution: {integrity: sha512-lCnDyNnHEYY1flsjSBkTodrEUG/YemWrzSwr7r7h8ZZdjk0RRMdIwbgMerOEODYQDh8vtoaorbJncshJ2Z2CSQ==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
+    dev: false
+
   /@uiw/react-codemirror@4.20.2(@babel/runtime@7.22.6)(@codemirror/autocomplete@6.4.0)(@codemirror/language@6.5.0)(@codemirror/lint@6.1.0)(@codemirror/search@6.2.3)(@codemirror/state@6.2.0)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.8.1)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Rf6i9HgtNnYAVRBb1gfWlhiiOBrEPuIfHLn87cV9XPpjP+YtqZoP6VMMlMq4XFTbZ/E1GIxnSUgJMQToTth0iw==}
     peerDependencies:
@@ -5049,6 +5121,20 @@ packages:
       '@babel/runtime': 7.19.4
       '@uiw/color-convert': 1.1.1
       '@uiw/react-drag-event-interactive': 1.1.1(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-color-alpha@1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-GmK/Dyj5TlLzt5Epcwry+9K4BPsqyPPhV09rsKKyiVa+/4XHRQRj97fjJ0GHgae6+71BPoIC9ulAR/VnmK3lrg==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
+      '@uiw/color-convert': 1.3.3(@babel/runtime@7.22.6)
+      '@uiw/react-drag-event-interactive': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5155,6 +5241,20 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /@uiw/react-color-editable-input-rgba@1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-FtbBLAQHHaNHM0ksagi6wCYV9rNjVI66cVHmzfMFtUm7XlXROSD5WTZsNJShY7o5yYcwWPTxACnKe7IXCdK4Eg==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
+      '@uiw/color-convert': 1.3.3(@babel/runtime@7.22.6)
+      '@uiw/react-color-editable-input': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@uiw/react-color-editable-input@1.1.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-kixmKXuynsBmAY0v62jblEsNAIb+fNj+g7GdIlb+LZAiDTNLzw51TcW2bP5T/prxorZUHBjmmAIiT6QP3aeTlA==}
     peerDependencies:
@@ -5162,6 +5262,18 @@ packages:
       react-dom: '>=16.9.0'
     dependencies:
       '@babel/runtime': 7.19.4
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-color-editable-input@1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-n7RrVxpIDBueqCfwpx1zaKTqdk5DWTKWNii1NErM7VlLa2PSA2zZrdMeB8JkhwQAgCPKvEfv2f67tO5wkY/uTg==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5192,6 +5304,20 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /@uiw/react-color-hue@1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-TywdH89nxRG3pVmUTOzyEzg6nI0EI8VSA6Vh0Uh+gGZZQjgDM1ptCa7V5KyeKEfWCvaeo3RBAHPijFOKQrHqow==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
+      '@uiw/color-convert': 1.3.3(@babel/runtime@7.22.6)
+      '@uiw/react-color-alpha': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@uiw/react-color-material@1.1.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-XMGIn82ywsOUFKXeWGF1l2H8ErXfrp1v9QcmA1z7yKtmaVSqQkHzvx5gI5o6R5xW9iCzIqBqdfYwuwgSRxYtLA==}
     peerDependencies:
@@ -5215,6 +5341,20 @@ packages:
       '@babel/runtime': 7.19.4
       '@uiw/color-convert': 1.1.1
       '@uiw/react-drag-event-interactive': 1.1.1(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-color-saturation@1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-gQNPaYgGbvE0Hq4pJjUNOfYuYFSV9QSWwPC23l9R/0WKdHci3ObHk8rycAkg9C6muV1ttBicqt9zqDVSwRHPrw==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
+      '@uiw/color-convert': 1.3.3(@babel/runtime@7.22.6)
+      '@uiw/react-drag-event-interactive': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5250,6 +5390,25 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /@uiw/react-color-sketch@1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-CEGiYs22KRN66YrHxJZNe1xqS7RQF0XUiP8nYnvHwOxtycoPssgyX8KN8rpjFtBcHA+Y4hkN2i7cq9ApL6Vrsg==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
+      '@uiw/color-convert': 1.3.3(@babel/runtime@7.22.6)
+      '@uiw/react-color-alpha': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/react-color-editable-input': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/react-color-editable-input-rgba': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/react-color-hue': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/react-color-saturation': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/react-color-swatch': 1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@uiw/react-color-slider@1.1.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-QLeRNvtJjie2K20wvu6di3sAeDeuYUwShxLbQEnpvgqInN4AdzxxveM2Tm4RtlSyCoKupi0HH0Xb8SlLlmtW7Q==}
     peerDependencies:
@@ -5271,6 +5430,19 @@ packages:
     dependencies:
       '@babel/runtime': 7.19.4
       '@uiw/color-convert': 1.1.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-color-swatch@1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-4RPHZO4mNmCLhbGoeCltauuGJSrSu15aR9mmUxa4gn8VdlnlxmWCG+Kq0jRQAN/pgvWuHbItYVR6a96TAq1UPA==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
+      '@uiw/color-convert': 1.3.3(@babel/runtime@7.22.6)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5324,6 +5496,18 @@ packages:
       react-dom: '>=16.9.0'
     dependencies:
       '@babel/runtime': 7.19.4
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@uiw/react-drag-event-interactive@1.3.3(@babel/runtime@7.22.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-dHHr19i4sa21bTFAd5xufsSYGCDqLBttIRmfQSzIpI18NtjmxKVCGyPL0ysxinWBjFomTUczszY4+fTOXnq1jQ==}
+    peerDependencies:
+      '@babel/runtime': '>=7.19.0'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@babel/runtime': 7.22.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -7287,6 +7471,10 @@ packages:
       reusify: 1.0.4
     dev: true
 
+  /fflate@0.8.0:
+    resolution: {integrity: sha512-FAdS4qMuFjsJj6XHbBaZeXOgaypXp8iw/Tpyuq/w3XA41jjLHT8NPA+n7czH/DDhdncq0nAyDZmPeWXh2qmdIg==}
+    dev: false
+
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -7383,6 +7571,30 @@ packages:
       tslib: 2.5.0
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /framer-motion@7.6.12(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Xm1jPB91v6vIr9b+V3q6c96sPzU1jWdvN+Mv4CvIAY23ZIezGNIWxWNGIWj1We0CZ8SSOQkttz8921M10TQjXg==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@motionone/dom': 10.13.1
+      framesync: 6.1.2
+      hey-listen: 1.0.8
+      popmotion: 11.0.5
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      style-value-types: 5.1.2
+      tslib: 2.4.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /framesync@6.1.2:
+    resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==}
+    dependencies:
+      tslib: 2.4.0
     dev: false
 
   /framework-utils@1.1.0:
@@ -7751,6 +7963,10 @@ packages:
       hast-util-parse-selector: 3.1.1
       property-information: 6.2.0
       space-separated-tokens: 2.0.2
+    dev: false
+
+  /hey-listen@1.0.8:
+    resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
     dev: false
 
   /hoist-non-react-statics@3.3.2:
@@ -8234,10 +8450,6 @@ packages:
       '@types/node': 18.14.5
       merge-stream: 2.0.0
       supports-color: 8.1.1
-    dev: false
-
-  /jquery@3.7.0:
-    resolution: {integrity: sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==}
     dev: false
 
   /js-cookie@2.2.1:
@@ -9772,6 +9984,15 @@ packages:
       find-up: 4.1.0
     dev: true
 
+  /popmotion@11.0.5:
+    resolution: {integrity: sha512-la8gPM1WYeFznb/JqF4GiTkRRPZsfaj2+kCxqQgr2MJylMmIKUwBfWW8Wa5fml/8gmtlD5yI01MP1QCZPWmppA==}
+    dependencies:
+      framesync: 6.1.2
+      hey-listen: 1.0.8
+      style-value-types: 5.1.2
+      tslib: 2.4.0
+    dev: false
+
   /postcss-modules-extract-imports@3.0.0(postcss@8.4.24):
     resolution: {integrity: sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==}
     engines: {node: ^10 || ^12 || >= 14}
@@ -11006,14 +11227,6 @@ packages:
       is-fullwidth-code-point: 4.0.0
     dev: true
 
-  /slick-carousel@1.8.1(jquery@3.7.0):
-    resolution: {integrity: sha512-XB9Ftrf2EEKfzoQXt3Nitrt/IPbT+f1fgqBdoxO3W/+JYvtEOW6EgxnWfr9GH6nmULv7Y2tPmEX3koxThVmebA==}
-    peerDependencies:
-      jquery: '>=1.8.0'
-    dependencies:
-      jquery: 3.7.0
-    dev: false
-
   /smartwrap@2.0.2:
     resolution: {integrity: sha512-vCsKNQxb7PnCNd2wY1WClWifAc2lwqsG8OaswpJkVJsvMGcnEntdTCDajZCkk93Ay1U3t/9puJmb525Rg5MZBA==}
     engines: {node: '>=6'}
@@ -11152,6 +11365,10 @@ packages:
     dependencies:
       mixme: 0.5.5
     dev: true
+
+  /streamsaver@2.0.6:
+    resolution: {integrity: sha512-LK4e7TfCV8HzuM0PKXuVUfKyCB1FtT9L0EGxsFk5Up8njj0bXK8pJM9+Wq2Nya7/jslmCQwRK39LFm55h7NBTw==}
+    dev: false
 
   /string-argv@0.3.1:
     resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}
@@ -11302,6 +11519,13 @@ packages:
     resolution: {integrity: sha512-HFpbb5gr2ypci7Qw+IOhnP2zOU7e77b+rzM+wTzXzfi1PrtBCX0E7Pk4wL4iTLnhzZ+JgEGAhX81ebTg/aYjQw==}
     dependencies:
       inline-style-parser: 0.1.1
+
+  /style-value-types@5.1.2:
+    resolution: {integrity: sha512-Vs9fNreYF9j6W2VvuDTP7kepALi7sk0xtk2Tu8Yxi9UoajJdEVpNpCov0HsLTqXvNGKX+Uv09pkozVITi1jf3Q==}
+    dependencies:
+      hey-listen: 1.0.8
+      tslib: 2.4.0
+    dev: false
 
   /stylis@4.1.3:
     resolution: {integrity: sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==}
@@ -11559,6 +11783,10 @@ packages:
 
   /tslib@2.3.1:
     resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
+    dev: false
+
+  /tslib@2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: false
 
   /tslib@2.5.0:

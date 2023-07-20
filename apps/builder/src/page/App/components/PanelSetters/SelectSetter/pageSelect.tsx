@@ -1,8 +1,8 @@
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { getPageExecutionResultArray } from "@/redux/currentApp/executionTree/executionSelector"
-import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
+import SearchSelectSetter from "./searchSelect"
 
 const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
   const { value } = props
@@ -28,7 +28,7 @@ const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [finalOptions, value])
 
   return (
-    <BaseSelectSetter
+    <SearchSelectSetter
       {...props}
       value={finalValue as string}
       options={finalOptions}

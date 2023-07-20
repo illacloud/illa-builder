@@ -46,7 +46,10 @@ import {
   getSelectedComponentDisplayNames,
   isShowDot,
 } from "@/redux/config/configSelector"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getContainerListDisplayNameMappedChildrenNodeDisplayName,
+  searchDSLByDisplayName,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getCurrentPageDisplayName,
@@ -85,6 +88,10 @@ const RenderComponentCanvasContainer: FC<
     minHeight,
     handleUpdateHeight,
   } = props
+
+  const containerListMapChildName = useSelector(
+    getContainerListDisplayNameMappedChildrenNodeDisplayName,
+  )
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null)
   const firstDragRef = useRef(true)
@@ -157,6 +164,22 @@ const RenderComponentCanvasContainer: FC<
         }
 
         if (!dropResult || !dropResult.shape) {
+          return {
+            isDropOnCanvas: false,
+          }
+        }
+
+        const hasTable = draggedComponents.some(
+          (components) => components.widgetType === "TABLE_WIDGET",
+        )
+        const isListChildrenCanvas = Object.values(
+          containerListMapChildName,
+        ).some((childDisplayNames) => childDisplayNames.includes(displayName))
+
+        if (hasTable && isListChildrenCanvas) {
+          messageHandler.error({
+            content: t("editor.inspect.setter_tips.list.table_disallowed"),
+          })
           return {
             isDropOnCanvas: false,
           }
@@ -268,7 +291,14 @@ const RenderComponentCanvasContainer: FC<
         }
       },
     }),
-    [isEditMode, unitWidth, fixedBounds, scrollContainerScrollTop],
+    [
+      isEditMode,
+      unitWidth,
+      fixedBounds,
+      scrollContainerScrollTop,
+      displayName,
+      containerListMapChildName,
+    ],
   )
 
   const autoScrollTimeID = useRef<number>(0)
@@ -503,12 +533,16 @@ const RenderComponentCanvasContainer: FC<
             data-column-number={columnNumber}
             data-unit-width={unitWidth}
           >
-            <DragShadowPreview
-              unitW={unitWidth}
-              parentDisplayName={displayName}
-              columns={columnNumber}
-            />
-            <MousePreview unitW={unitWidth} displayName={displayName} />
+            {isEditMode && (
+              <DragShadowPreview
+                unitW={unitWidth}
+                parentDisplayName={displayName}
+                columns={columnNumber}
+              />
+            )}
+            {isEditMode && (
+              <MousePreview unitW={unitWidth} displayName={displayName} />
+            )}
             {currentLayoutInfo?.childrenNode?.length > 0 ? (
               currentLayoutInfo?.childrenNode?.map((childName) => {
                 return (
@@ -524,7 +558,7 @@ const RenderComponentCanvasContainer: FC<
             ) : isRootCanvas ? null : (
               <ContainerEmptyState isInner />
             )}
-            {collectedProps.isOver && (
+            {collectedProps.isOver && isEditMode && (
               <DragPreview
                 containerLeft={fixedBounds.left}
                 containerTop={fixedBounds.top}
@@ -540,7 +574,7 @@ const RenderComponentCanvasContainer: FC<
                 canvasNodeDisplayName={displayName}
               />
             )}
-            {!isDraggingGlobal && (
+            {!isDraggingGlobal && !isLikeProductMode && (
               <MultiSelectedScaleSquare
                 unitW={unitWidth}
                 containerDisplayName={displayName}

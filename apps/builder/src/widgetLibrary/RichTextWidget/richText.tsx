@@ -1,4 +1,5 @@
 import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
+import { v4 } from "uuid"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import {
   BaseRichTextProps,
@@ -15,11 +16,18 @@ import { useInitConfig } from "@/widgetLibrary/RichTextWidget/useInitConfig"
 const WrappedRichText = forwardRef<ICustomRef, BaseRichTextProps>(
   (props, ref) => {
     const { defaultText, handleOnChange, handleMdValue } = props
-    useInitConfig(defaultText ?? "", handleOnChange, handleMdValue, ref)
+    const uniqueId = useRef(v4())
+    useInitConfig(
+      defaultText ?? "",
+      handleOnChange,
+      handleMdValue,
+      ref,
+      uniqueId.current,
+    )
     return (
       <div css={editorContainerStyle}>
         <div
-          id="editor-container"
+          id={uniqueId.current}
           onMouseMoveCapture={(e) => e.stopPropagation()}
           css={editorStyle}
         />

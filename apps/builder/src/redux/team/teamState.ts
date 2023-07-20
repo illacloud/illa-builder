@@ -21,6 +21,7 @@ export interface MemberInfo {
 }
 
 export interface TeamMemberPermission {
+  blockRegister: boolean
   inviteLinkEnabled: boolean
   allowViewerInvite: boolean
   allowEditorInvite: boolean

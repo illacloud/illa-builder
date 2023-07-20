@@ -3,7 +3,10 @@ import { FC, useCallback, useMemo, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { ReactComponent as OpenWindowIcon } from "@/assets/public/openWindow.svg"
 import { ILLACodeMirrorCore } from "@/components/CodeEditor/CodeMirror/core"
-import { IExpressionShape } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import {
+  CODE_TYPE,
+  IExpressionShape,
+} from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { githubLightScheme } from "@/components/CodeEditor/CodeMirror/theme"
 import { ModalCodeMirror } from "@/components/CodeEditor/ModalCodeMirror"
 import { CodeEditorProps } from "@/components/CodeEditor/interface"
@@ -21,6 +24,10 @@ import { LIMIT_MEMORY, estimateMemoryUsage } from "@/utils/calculateMemoryUsage"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getStringSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import { isDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
+import {
+  removeIgnoredKeys,
+  removeWidgetOrActionMethods,
+} from "@/utils/executionTreeHelper/utils"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const getResultType = (result: unknown) => {
@@ -99,7 +106,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     readOnly,
     extensions,
     expectValueType,
-    codeType,
+    codeType = CODE_TYPE.EXPRESSION,
     minWidth,
     minHeight,
     canShowCompleteInfo,
@@ -119,18 +126,25 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const popupContainerRef = useRef<HTMLDivElement>(null)
   const innerCanExpand = canExpand && !readOnly && editable
 
-  const calcContext = useSelector<RootState, Record<string, unknown>>(
+  const tmpCalcContext = useSelector<RootState, Record<string, unknown>>(
     (rootState) => {
       return scopeOfAutoComplete === "global"
         ? getExecutionResultToGlobalCodeMirror(rootState)
         : getExecutionResultToCurrentPageCodeMirror(rootState)
     },
   )
+  const calcContext = useMemo(() => {
+    if (codeType === CODE_TYPE.FUNCTION) {
+      return removeIgnoredKeys(tmpCalcContext)
+    } else {
+      return removeIgnoredKeys(removeWidgetOrActionMethods(tmpCalcContext))
+    }
+  }, [codeType, tmpCalcContext])
 
   const stringSnippets = useMemo(() => {
+    const result: IExpressionShape[] = []
     const realInput = wrappedCodeFunc ? wrappedCodeFunc(value) : value
     const dynamicStrings = getStringSnippets(realInput)
-    const result: IExpressionShape[] = []
     const errors: string[] = []
     const calcResultArray: unknown[] = []
     const calcResultMap: Map<string, number[]> = new Map()
@@ -277,6 +291,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           onBlur={onBlur}
           onFocus={onFocus}
           scopeOfAutoComplete={scopeOfAutoComplete}
+          codeType={codeType}
         />
       )}
     </div>

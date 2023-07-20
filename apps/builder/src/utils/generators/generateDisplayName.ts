@@ -12,7 +12,7 @@ export const REMOVE_DISPLAY_NAME = "removeDisplayName"
 export const UPDATE_DISPLAY_NAME = "updateDisplayName"
 export const GENERATE_OR_UPDATE_DISPLAYNAME = "generateOrUpdateDisplayName"
 
-export const PLACEHOLDER_DISPLAYNAME = ["document"]
+export const PLACEHOLDER_DISPLAYNAME = ["document", "utils"]
 
 export class DisplayNameGenerator {
   static displayNameList = new Set<string>(PLACEHOLDER_DISPLAYNAME)
@@ -59,7 +59,7 @@ export class DisplayNameGenerator {
     componentNode: ComponentNode,
     actionList: ActionItem<ActionContent>[],
   ) {
-    this.displayNameList.clear()
+    this.displayNameList = new Set<string>(PLACEHOLDER_DISPLAYNAME)
     actionList.forEach((action) => {
       this.displayNameList.add(action.displayName)
     })

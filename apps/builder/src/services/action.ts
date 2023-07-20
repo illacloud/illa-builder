@@ -45,6 +45,7 @@ export const fetchActionRunResult = (
   actionId: string,
   data: IActionRunResultRequestData,
   isPublic: boolean,
+  abortSignal?: AbortSignal,
 ) => {
   let url: string
   let options: { needTeamIdentifier?: boolean; needTeamID?: boolean } = {}
@@ -56,7 +57,7 @@ export const fetchActionRunResult = (
     options.needTeamID = true
   }
   return actionRequest<IActionRunResultResponseData>(
-    { url, method: "POST", data },
+    { url, method: "POST", data, signal: abortSignal },
     options,
   )
 }
