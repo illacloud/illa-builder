@@ -1223,7 +1223,8 @@
           "startUploading": "Start opplasting",
           "uploadSuccessfully": "Opplasting var vellykket",
           "uploadFailed": "Kan ikke laste opp",
-          "onMenuSelect": "Velg element"
+          "onMenuSelect": "Velg element",
+          "on_menu_select": "Velg menypunkt"
         },
         "image_list": {
           "title": "Bilder",
