@@ -2316,7 +2316,7 @@
           },
           "title": {
             "tutorial": "Vejledning",
-            "templates": "Skabeloner"
+            "templates": "Guide"
           },
           "onboarding_app": {
             "name": "Onboarding app",
@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Instrumentbræt",
             "form": "Undersøgelse",
-            "list": "Admin panel"
+            "list": "Admin panel",
+            "table_guide": "Tabel guide",
+            "custom_login": "Tilpasset login",
+            "run_script": "Kør Script",
+            "calendar_guide": "Kalender guide",
+            "chat_guide": "Chat guide"
           },
           "templates_description": {
             "table": "Brug tabeller til at oprette dashboards.",
             "form": "Brug formular- og inputkomponenter til at oprette formular-apps.",
-            "list": "Brug en listekomponent til at vise og håndtere information"
+            "list": "Brug en listekomponent til at vise og håndtere information",
+            "table_guide": "De funktioner, der understøttes af tabel og hvordan du bruger dem",
+            "custom_login": "For at begrænse kun brugere i din database kan få adgang til dine offentlige apps",
+            "run_script": "Fleksibel hændelseshåndtering med Kør Script",
+            "calendar_guide": "Håndtering af begivenheder og begivenheder med kalenderkomponenten"
           },
           "modal": {
             "title": "Gaffel og implementering",
@@ -2385,7 +2394,8 @@
         "Deleted": "Slettede {{operationTargetName}}",
         "Updated": "Opdateret {{operationTargetName}}",
         "Moved": "Flyttet {{operationTargetName}}",
-        "Reseted": "Nulstillede {{operationTargetName}}"
+        "Reseted": "Nulstillede {{operationTargetName}}",
+        "Restored": "Genoprettet fra {{versionName}}"
       },
       "save": "Gem som historik",
       "history": "Historik",

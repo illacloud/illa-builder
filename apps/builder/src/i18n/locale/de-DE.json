@@ -2316,7 +2316,7 @@
           },
           "title": {
             "tutorial": "Tutorial",
-            "templates": "Vorlagen"
+            "templates": "Anleitung"
           },
           "onboarding_app": {
             "name": "Onboarding-App",
@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Dashboard",
             "form": "Umfrage",
-            "list": "Admin-Panel"
+            "list": "Admin-Panel",
+            "table_guide": "Tabellenführer",
+            "custom_login": "Eigener Login",
+            "run_script": "Skript ausführen",
+            "calendar_guide": "Kalenderanleitung",
+            "chat_guide": "Chat-Anleitung"
           },
           "templates_description": {
             "table": "Tabellen zum Erstellen von Dashboards verwenden.",
             "form": "Verwenden Sie Formular- und Eingabekomponenten, um Formular-Apps zu erstellen.",
-            "list": "Eine Listenkomponente zum Anzeigen und Verwalten von Informationen verwenden"
+            "list": "Eine Listenkomponente zum Anzeigen und Verwalten von Informationen verwenden",
+            "table_guide": "Die von Tabelle unterstützten Funktionen und wie sie verwendet werden",
+            "custom_login": "Nur Benutzer in Ihrer Datenbank können auf öffentliche Apps zugreifen",
+            "run_script": "Flexible Event-Handhabung mit Run Script",
+            "calendar_guide": "Termine verwalten und Termine mit Kalenderkomponente anzeigen"
           },
           "modal": {
             "title": "Fork und Deploy",
@@ -2385,7 +2394,8 @@
         "Deleted": "Gelöschte {{operationTargetName}}",
         "Updated": "{{operationTargetName}} aktualisiert",
         "Moved": "{{operationTargetName}} verschoben",
-        "Reseted": "{{operationTargetName}} zurückgesetzt"
+        "Reseted": "{{operationTargetName}} zurückgesetzt",
+        "Restored": "Wiederhergestellt von {{versionName}}"
       },
       "save": "Als Verlauf speichern",
       "history": "Verlauf",

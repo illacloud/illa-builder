@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Panou",
             "form": "Sondaj",
-            "list": "Panou de administrare"
+            "list": "Panou de administrare",
+            "table_guide": "Ghid de tabel",
+            "custom_login": "Autentificare personalizată",
+            "run_script": "Rulează Script",
+            "calendar_guide": "Ghid calendar",
+            "chat_guide": "Ghid de chat"
           },
           "templates_description": {
             "table": "Utilizați tabele pentru a crea tablouri de bord.",
             "form": "Folosiți componente de intrare și formular pentru a crea aplicații de formular.",
-            "list": "Utilizați o componentă de listă pentru a afișa și gestiona informațiile"
+            "list": "Utilizați o componentă de listă pentru a afișa și gestiona informațiile",
+            "table_guide": "Caracteristicile suportate de tabel și modul de utilizare a acestora",
+            "custom_login": "Limitarea doar a utilizatorilor din baza de date poate accesa aplicațiile publice",
+            "run_script": "Gestionare flexibilă a evenimentelor cu Rulare Script",
+            "calendar_guide": "Gestionarea evenimentelor și vizualizarea evenimentelor cu componenta Calendar"
           },
           "modal": {
             "title": "Furcă și implementare",
@@ -2385,7 +2394,8 @@
         "Deleted": "Eliminat {{operationTargetName}}",
         "Updated": "Actualizat {{operationTargetName}}",
         "Moved": "Mutat {{operationTargetName}}",
-        "Reseted": "Resetat {{operationTargetName}}"
+        "Reseted": "Resetat {{operationTargetName}}",
+        "Restored": "Restaurat de la {{versionName}}"
       },
       "save": "Salvează ca istoric",
       "history": "Istoric",

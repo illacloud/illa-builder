@@ -78,6 +78,11 @@ const UserRegister: FC = () => {
               email: t("user.sign_up.error_message.email.registered"),
             })
             break
+          case ERROR_FLAG.ERROR_FLAG_REGISTER_BLOCKED:
+            message.error({
+              content: t("user.sign_up.tips.not_allow_register"),
+            })
+            break
           default:
             message.error({
               content: t("user.sign_up.tips.fail"),

@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Painel",
             "form": "Questionário",
-            "list": "Painel de administração"
+            "list": "Painel de administração",
+            "table_guide": "Guia de tabela",
+            "custom_login": "Login personalizado",
+            "run_script": "Executar Script",
+            "calendar_guide": "Guia de calendário",
+            "chat_guide": "Guia de chat"
           },
           "templates_description": {
             "table": "Usar tabelas para criar dashboards.",
             "form": "Use os componentes de formulário e de entrada para criar aplicativos.",
-            "list": "Use um componente de lista para exibir e gerenciar as informações"
+            "list": "Use um componente de lista para exibir e gerenciar as informações",
+            "table_guide": "Os recursos suportados pela Tabela e como usá-los",
+            "custom_login": "Para restringir apenas usuários na sua base de dados pode acessar seus aplicativos públicos",
+            "run_script": "Manipulação de eventos flexível com o Script Run",
+            "calendar_guide": "Gerenciando eventos e visualizando eventos com o componente Agenda"
           },
           "modal": {
             "title": "Fork e deploy",
@@ -2385,7 +2394,8 @@
         "Deleted": "{{operationTargetName}} Excluído",
         "Updated": "Updated {{operationTargetName}}",
         "Moved": "Mover em {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Reseted": "Reseted {{operationTargetName}}",
+        "Restored": "Restaurado do {{versionName}}"
       },
       "save": "Salvar como histórico",
       "history": "Histórico",

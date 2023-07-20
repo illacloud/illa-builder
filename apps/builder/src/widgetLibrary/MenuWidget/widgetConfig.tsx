@@ -58,8 +58,17 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   version: 0,
   defaults: {
     items,
-    selectedValues: ["subMenu1"],
+    optionConfigureMode: "static",
+    dataSources: "{{[]}}",
+    selectedValues: "{{[]}}",
     mode: "horizontal",
     horizontalAlign: "flex-start",
+    colorScheme: "blue",
+    bgColor: "transparent",
+    hoverColorScheme: "grayBlue",
+    menuTitle: "ILLA",
+    menuLogo:
+      "https://cloud-api.illacloud.com/drive/f/0f3ef4da-7741-45f8-b054-57458c244214",
+    onlyShowIcon: false,
   },
 }

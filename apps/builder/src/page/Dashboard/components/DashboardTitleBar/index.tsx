@@ -53,9 +53,8 @@ const SettingTrigger: FC<PageLoadingProps> = (props) => {
     try {
       await fetchLogout()
       ILLABuilderStorage.clearLocalStorage()
-      navigate("/login", {
-        replace: true,
-      })
+      // clear redux
+      window.location.href = "/login"
     } catch (e) {
       message.error({
         content: t("logout_failed"),

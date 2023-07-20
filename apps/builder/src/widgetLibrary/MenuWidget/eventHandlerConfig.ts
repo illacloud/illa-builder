@@ -12,3 +12,15 @@ export const MENU_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
   ],
   methods: [],
 }
+
+export const MAIN_MENU_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
+  events: [
+    {
+      label: i18n.t(
+        "editor.inspect.setter_content.widget_action_type_name.on_menu_select",
+      ),
+      value: "onMenuSelect",
+    },
+  ],
+  methods: [],
+}

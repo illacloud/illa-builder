@@ -2316,7 +2316,7 @@
           },
           "title": {
             "tutorial": "チュートリアル",
-            "templates": "テンプレート"
+            "templates": "ガイド"
           },
           "onboarding_app": {
             "name": "初心者ガイド",
@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "ダッシュボード",
             "form": "アンケート",
-            "list": "管理パネル"
+            "list": "管理パネル",
+            "table_guide": "テーブルガイド",
+            "custom_login": "カスタムログイン",
+            "run_script": "スクリプトの実行",
+            "calendar_guide": "カレンダーガイド",
+            "chat_guide": "チャットガイド"
           },
           "templates_description": {
             "table": "テーブルを使用してダッシュボードを作成します。",
             "form": "フォームおよび入力コンポーネントを使用して、アプリを作成します",
-            "list": "リスト コンポーネントを使用した情報の表示と管理"
+            "list": "リスト コンポーネントを使用した情報の表示と管理",
+            "table_guide": "テーブルでサポートされている機能とそれらの使用方法",
+            "custom_login": "データベース内のユーザーのみが公開アプリにアクセスできるように制限します",
+            "run_script": "実行スクリプトによる柔軟なイベント処理",
+            "calendar_guide": "カレンダーコンポーネントでイベントを管理したり、イベントを表示したりします"
           },
           "modal": {
             "title": "フォーク & デプロイ",
@@ -2385,7 +2394,8 @@
         "Deleted": "{{operationTargetName}} を削除しました",
         "Updated": "{{operationTargetName}} を更新しました",
         "Moved": "{{operationTargetName}} が移動しました",
-        "Reseted": "リセット済み {{operationTargetName}}"
+        "Reseted": "リセット済み {{operationTargetName}}",
+        "Restored": "{{versionName}} から復元しました"
       },
       "save": "履歴として保存",
       "history": "沿革",

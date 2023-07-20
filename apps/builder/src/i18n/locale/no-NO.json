@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Kontrollpanel",
             "form": "Undersøkelse",
-            "list": "Panel for admin"
+            "list": "Panel for admin",
+            "table_guide": "Tabell guide",
+            "custom_login": "Tilpasset innlogging",
+            "run_script": "Kjør skript",
+            "calendar_guide": "Kalender guide",
+            "chat_guide": "Chat guide"
           },
           "templates_description": {
             "table": "Bruk tabellene for å lage dashbord.",
             "form": "Bruk skjema- og inngangskomponenter for å lage skjemaapper.",
-            "list": "Bruk en listekomponent for å vise og administrere informasjon"
+            "list": "Bruk en listekomponent for å vise og administrere informasjon",
+            "table_guide": "Funksjonene som støttes av tabellen og hvordan de skal brukes",
+            "custom_login": "For å begrense bare brukere i databasen har tilgang til dine offentlige apper",
+            "run_script": "Fleksibel hendelsesbehandling med Run Script",
+            "calendar_guide": "Administrere hendelser og vise hendelser med kalender-komponent"
           },
           "modal": {
             "title": "Fork og distribuere",
@@ -2385,7 +2394,8 @@
         "Deleted": "Slettet {{operationTargetName}}",
         "Updated": "Oppdatert {{operationTargetName}}",
         "Moved": "Flyttet {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Reseted": "Reseted {{operationTargetName}}",
+        "Restored": "Gjenopprettet fra {{versionName}}"
       },
       "save": "Lagre som historikk",
       "history": "Historikk",

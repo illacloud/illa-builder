@@ -43,6 +43,7 @@ export const fetchRemoveTeam = () => {
 interface IInviteLinkStatusRequest {
   inviteLinkEnabled: boolean
 }
+
 export const fetchUpdateInviteLinkStatus = (data: IInviteLinkStatusRequest) => {
   return authCloudRequest(
     {
@@ -60,6 +61,7 @@ interface IUpdateTeamPermissionConfigRequest {
   allowEditorManageTeamMember: boolean
   allowViewerManageTeamMember: boolean
 }
+
 export const fetchUpdateTeamPermissionConfig = (
   data: IUpdateTeamPermissionConfigRequest,
 ) => {
@@ -106,6 +108,7 @@ interface IInviteByEmailRequest {
   userRole: USER_ROLE
   hosts?: string
 }
+
 export const fetchInviteByEmail = (data: IInviteByEmailRequest) => {
   return authCloudRequest<inviteByEmailResponse>(
     {
@@ -188,13 +191,14 @@ export const setInviteLinkEnabled = async (inviteLinkEnabled: boolean) => {
   await fetchUpdateInviteLinkStatus({ inviteLinkEnabled })
   const teamInfo = getCurrentTeamInfo(store.getState())
   const teamIdentifier = teamInfo?.identifier
-  updateTeamsInfo(teamIdentifier)
+  await updateTeamsInfo(teamIdentifier)
   return inviteLinkEnabled
 }
 
 export const updateTeamPermissionConfig = async (
   allowEditorManageTeamMember: boolean,
   allowViewerManageTeamMember: boolean,
+  blockRegister: boolean,
 ) => {
   const teamInfo = getCurrentTeamInfo(store.getState())
   const teamIdentifier = teamInfo?.identifier
@@ -202,9 +206,10 @@ export const updateTeamPermissionConfig = async (
   const requestData = {
     allowEditorManageTeamMember,
     allowViewerManageTeamMember,
+    blockRegister,
   }
   await fetchUpdateTeamPermissionConfig(requestData)
-  updateTeamsInfo(teamIdentifier)
+  await updateTeamsInfo(teamIdentifier)
   return allowEditorManageTeamMember && allowViewerManageTeamMember
 }
 
@@ -215,7 +220,7 @@ export const inviteByEmail = async (email: string, userRole: USER_ROLE) => {
     hosts: !isCloudVersion ? window.location.origin : undefined,
   }
   const response = await fetchInviteByEmail(requestData)
-  updateMembers()
+  await updateMembers()
   return response.data
 }
 
@@ -232,6 +237,6 @@ export const changeTeamMembersRole = async (
 
 export const removeTeamMembers = async (teamMemberID: string) => {
   await fetchRemoveTeamMember(teamMemberID)
-  updateMembers()
+  await updateMembers()
   return true
 }

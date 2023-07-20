@@ -2316,7 +2316,7 @@
           },
           "title": {
             "tutorial": "Tutorial",
-            "templates": "Templates"
+            "templates": "Guide"
           },
           "onboarding_app": {
             "name": "Onboarding app",
@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Dashboard",
             "form": "Survey",
-            "list": "Admin panel"
+            "list": "Admin panel",
+            "table_guide": "Table guide",
+            "custom_login": "Custom login",
+            "run_script": "Run Script",
+            "calendar_guide": "Calendar guide",
+            "chat_guide": "Chat guide"
           },
           "templates_description": {
             "table": "Use tables to create dashboards.",
             "form": "Use form and input components to create form apps.",
-            "list": "Use a list component to display and manage information"
+            "list": "Use a list component to display and manage information",
+            "table_guide": "The features supported by Table and how to use them",
+            "custom_login": "To restrict only users in your database can access your public apps",
+            "run_script": "Flexible event handling with Run Script",
+            "calendar_guide": "Managing events and viewing events with Calendar component"
           },
           "modal": {
             "title": "Fork and deploy",
@@ -2385,7 +2394,8 @@
         "Deleted": "Deleted {{operationTargetName}}",
         "Updated": "Updated {{operationTargetName}}",
         "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Reseted": "Reseted {{operationTargetName}}",
+        "Restored": "Restored from {{versionName}}"
       },
       "save": "Save as history",
       "history": "History",

@@ -9,4 +9,5 @@ export const colorSchemes = [
   "blue",
   "cyan",
   "purple",
+  "transparent",
 ]

@@ -1,37 +1,81 @@
 import { toPath } from "lodash"
-import { FC, useCallback } from "react"
-import { Menu, SubMenuProps } from "@illa-design/react"
+import { FC, useCallback, useMemo } from "react"
+import { Image, Menu, MenuItemProps, SubMenuProps } from "@illa-design/react"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
+import {
+  applyMenuBrandContainerStyle,
+  applyMenuTitleStyle,
+  applyMenuWidgetContainerStyle,
+} from "@/widgetLibrary/MenuWidget/style"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
 export const WrappedMenu: FC<WrappedMenuProps> = (props) => {
   const {
-    mode,
+    menuTitle,
+    menuLogo,
+    bgColor,
+    colorScheme,
+    hoverColorScheme,
+    mode = "horizontal",
     horizontalAlign,
     selectedValues,
     items,
     onClickSubMenu,
     onClickMenuItem,
+    onMenuSelect,
   } = props
 
+  const menuBrandContainer = useMemo(() => {
+    if (!menuTitle && !menuLogo) {
+      return <></>
+    } else {
+      return (
+        <div css={applyMenuBrandContainerStyle(mode)}>
+          {menuLogo && (
+            <Image
+              src={menuLogo}
+              width="unset"
+              height={mode === "horizontal" ? "24px" : "32px"}
+              objectFit="scale-down"
+            />
+          )}
+          {menuTitle && <div css={applyMenuTitleStyle(mode)}>{menuTitle}</div>}
+        </div>
+      )
+    }
+  }, [menuLogo, menuTitle, mode])
+
   return (
-    <Menu
-      w="100%"
-      mode={mode}
-      selectedValues={selectedValues}
-      onClickSubMenu={onClickSubMenu}
-      horizontalAlign={horizontalAlign}
-      onClickMenuItem={onClickMenuItem}
-      items={items}
-    />
+    <div css={applyMenuWidgetContainerStyle(mode)}>
+      {menuBrandContainer}
+      <Menu
+        flexGrow="1"
+        w="100%"
+        colorScheme={colorScheme}
+        hoverColorScheme={hoverColorScheme}
+        bgColor={bgColor}
+        mode={mode}
+        selectedValues={selectedValues}
+        onClickSubMenu={onClickSubMenu}
+        horizontalAlign={horizontalAlign}
+        onClickMenuItem={onClickMenuItem}
+        items={items}
+        onMenuSelect={onMenuSelect}
+      />
+    </div>
   )
 }
 
-export const MenuWidget: FC<MenuWidgetProps> = (props) => {
+export const StaticMenuWidget: FC<MenuWidgetProps> = (props) => {
   const {
+    menuTitle,
+    menuLogo,
+    bgColor,
+    colorScheme,
     mode,
     selectedValues,
+    hoverColorScheme,
     horizontalAlign,
     items,
     displayName,
@@ -39,17 +83,8 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     updateComponentHeight,
     triggerEventHandler,
   } = props
-
   const handleOnClickMenuItem = useCallback(
     (value: string, valuePath: string[]) => {
-      handleUpdateMultiExecutionResult([
-        {
-          displayName,
-          value: {
-            selectedValues: [value],
-          },
-        },
-      ])
       if (valuePath.length === 1) {
         const index = items?.findIndex((i) => i.value === value) ?? 0
         const pathArray = ["items", `${index}`, "events"]
@@ -85,7 +120,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
         }
       }
     },
-    [displayName, handleUpdateMultiExecutionResult, items, triggerEventHandler],
+    [items, triggerEventHandler],
   )
 
   const handleClickSubMenu = useCallback(
@@ -107,16 +142,142 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
       <WrappedMenu
-        selectedValues={selectedValues}
+        menuTitle={menuTitle}
+        menuLogo={menuLogo}
+        selectedValues={
+          Array.isArray(selectedValues)
+            ? selectedValues
+            : [JSON.stringify(selectedValues)]
+        }
+        colorScheme={colorScheme}
+        hoverColorScheme={hoverColorScheme}
+        bgColor={bgColor}
         mode={mode}
         horizontalAlign={horizontalAlign}
         onClickMenuItem={handleOnClickMenuItem}
         onClickSubMenu={handleClickSubMenu}
         items={items}
+        onMenuSelect={(value, valuePath, selectedValues) => {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedValues: selectedValues,
+              },
+            },
+          ])
+          triggerEventHandler("onMenuSelect")
+        }}
       />
     </AutoHeightContainer>
   )
 }
 
+export const DynamicMenuWidget: FC<MenuWidgetProps> = (props) => {
+  const {
+    menuTitle,
+    menuLogo,
+    bgColor,
+    colorScheme,
+    mode,
+    selectedValues,
+    hoverColorScheme,
+    horizontalAlign,
+    updateComponentHeight,
+    mappedOption,
+    triggerEventHandler,
+    displayName,
+    handleUpdateMultiExecutionResult,
+  } = props
+
+  const items: MenuItemProps[] = useMemo(() => {
+    let items = []
+
+    const total = mappedOption?.values?.length ?? 0
+
+    if (mappedOption && total !== 0) {
+      for (let i = 0; i < total; i++) {
+        if (mappedOption.groupLabels?.[i]) {
+          let parent = items.find(
+            (v) => v.label === mappedOption.groupLabels?.[i],
+          ) as SubMenuProps
+
+          if (!parent) {
+            parent = {
+              label:
+                typeof mappedOption.groupLabels?.[i] === "string"
+                  ? mappedOption.groupLabels?.[i]
+                  : JSON.stringify(mappedOption.groupLabels?.[i]),
+              value:
+                typeof mappedOption.groupLabels?.[i] === "string"
+                  ? mappedOption.groupLabels?.[i]
+                  : JSON.stringify(mappedOption.groupLabels?.[i]),
+              subItems: [],
+            } as SubMenuProps
+            items.push(parent)
+          }
+          parent.subItems!!.push({
+            disabled: mappedOption.disables?.[i],
+            hidden: mappedOption.hidden?.[i],
+            label: mappedOption.labels?.[i],
+            value: mappedOption.values?.[i],
+          } as MenuItemProps)
+        } else {
+          items.push({
+            disabled: mappedOption.disables?.[i],
+            hidden: mappedOption.hidden?.[i],
+            label: mappedOption.labels?.[i],
+            value: mappedOption.values?.[i],
+          } as SubMenuProps)
+        }
+      }
+    }
+    return items
+  }, [mappedOption])
+
+  return (
+    <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
+      <WrappedMenu
+        menuTitle={menuTitle}
+        menuLogo={menuLogo}
+        selectedValues={
+          Array.isArray(selectedValues)
+            ? selectedValues
+            : [JSON.stringify(selectedValues)]
+        }
+        colorScheme={colorScheme}
+        hoverColorScheme={hoverColorScheme}
+        bgColor={bgColor}
+        items={items}
+        mode={mode}
+        horizontalAlign={horizontalAlign}
+        onMenuSelect={(value, valuePath, selectedValues) => {
+          handleUpdateMultiExecutionResult([
+            {
+              displayName,
+              value: {
+                selectedValues: selectedValues,
+              },
+            },
+          ])
+          triggerEventHandler("onMenuSelect")
+        }}
+      />
+    </AutoHeightContainer>
+  )
+}
+
+export const MenuWidget: FC<MenuWidgetProps> = (props) => {
+  const { optionConfigureMode } = props
+
+  if (optionConfigureMode === "static") {
+    return <StaticMenuWidget {...props} />
+  } else {
+    return <DynamicMenuWidget {...props} />
+  }
+}
+
+StaticMenuWidget.displayName = "StaticMenuWidget"
+DynamicMenuWidget.displayName = "DynamicMenuWidget"
 WrappedMenu.displayName = "WrappedMenu"
 export default MenuWidget
