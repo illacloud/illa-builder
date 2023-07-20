@@ -15,7 +15,9 @@ import {
   getSnapshotListHasMore,
 } from "@/redux/currentAppHistory/currentAppHistorySelector"
 
-interface SnapShotListProps extends HTMLAttributes<HTMLDivElement> {}
+interface SnapShotListProps extends HTMLAttributes<HTMLDivElement> {
+  onChangeCurrentID: (snapshotID: string) => void
+}
 
 const validOperations = [
   Signal.CREATE_STATE,
@@ -26,7 +28,7 @@ const validOperations = [
 ]
 
 export const SnapShotList: FC<SnapShotListProps> = (props) => {
-  const { className, ...rest } = props
+  const { className, onChangeCurrentID, ...rest } = props
   const snapshotList = useSelector(getCurrentAppSnapshotList)
   const hasMore = useSelector(getSnapshotListHasMore)
   const currentSnapshotID = useSelector(getCurrentAppSnapshotID)
@@ -58,6 +60,7 @@ export const SnapShotList: FC<SnapShotListProps> = (props) => {
               snapshot={snapshot}
               last={!hasMore && filteredSnapshotList.length - 1 === index}
               selected={currentSnapshotID === snapshot.snapshotID}
+              onChangeCurrentID={onChangeCurrentID}
             />
           )
         })}
