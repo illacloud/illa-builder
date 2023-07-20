@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { CSSProperties, FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -11,7 +11,12 @@ import { getSnapshotListCurrentPage } from "@/redux/currentAppHistory/currentApp
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
 import { fetchSnapShotList } from "@/services/history"
 
-export const ActionArea: FC = () => {
+interface ActionAreaProps {
+  style?: CSSProperties
+  resetVirtualList: () => void
+}
+export const ActionArea: FC<ActionAreaProps> = (props) => {
+  const { style, resetVirtualList } = props
   const { appId } = useParams()
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -34,16 +39,17 @@ export const ActionArea: FC = () => {
           hasMore: data.totalPages !== page,
         }),
       )
+      resetVirtualList()
     } catch (error) {
       // Handle error
       console.error(error)
     } finally {
       setLoading(false)
     }
-  }, [appId, currentPage, dispatch])
+  }, [appId, currentPage, resetVirtualList, dispatch])
 
   return (
-    <div>
+    <div style={style}>
       {loading ? (
         <div css={actionWrapperStyle}>
           <Loading colorScheme="techPurple" />

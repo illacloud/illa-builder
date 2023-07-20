@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { CSSProperties, FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
 import { Button, Tag, useMessage } from "@illa-design/react"
@@ -32,6 +32,7 @@ import {
 } from "./style"
 
 interface SnapShotListProps {
+  style?: CSSProperties
   snapshot: Snapshot
   selected?: boolean
   last: boolean
@@ -57,7 +58,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const message = useMessage()
   const { teamIdentifier } = useParams()
   const { t } = useTranslation()
-  const { snapshot, selected, last, onChangeCurrentID } = props
+  const { snapshot, selected, last, style, onChangeCurrentID } = props
   const [loading, setLoading] = useState(false)
 
   const getDescFromBroadcast = useCallback(
@@ -142,7 +143,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   }, [onChangeCurrentID, snapshot.snapshotID])
 
   return (
-    <div css={timelineStyle}>
+    <div css={timelineStyle} style={style}>
       <div css={leftWrapperStyle}>
         <div css={badgeDotStyle}>
           <div css={ellipse49Style} />
@@ -169,35 +170,37 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
                 </Tag>
               )}
             </div>
-            <div css={contentStyle}>
-              {snapshot.modifyHistory.map((modify) => {
-                const desc = getOperationDesc(modify)
-                return (
-                  <div key={modify.modifiedAt} css={modifyContentStyle}>
-                    <div css={editorInfoStyle}>
-                      <Avatar
-                        key={modify.modifiedBy.userID}
-                        css={avatarStyle}
-                        avatarUrl={modify.modifiedBy.avatar}
-                        name={modify.modifiedBy.nickname}
-                        id={modify.modifiedBy.userID}
-                      />
-                      <div css={nameStyle}>{modify.modifiedBy.nickname}</div>
+            {snapshot.modifyHistory.length > 0 && (
+              <div css={contentStyle}>
+                {snapshot.modifyHistory.map((modify) => {
+                  const desc = getOperationDesc(modify)
+                  return (
+                    <div key={modify.modifiedAt} css={modifyContentStyle}>
+                      <div css={editorInfoStyle}>
+                        <Avatar
+                          key={modify.modifiedBy.userID}
+                          css={avatarStyle}
+                          avatarUrl={modify.modifiedBy.avatar}
+                          name={modify.modifiedBy.nickname}
+                          id={modify.modifiedBy.userID}
+                        />
+                        <div css={nameStyle}>{modify.modifiedBy.nickname}</div>
+                      </div>
+                      <div css={descStyle}>{desc}</div>
                     </div>
-                    <div css={descStyle}>{desc}</div>
-                  </div>
-                )
-              })}
-              {selected && (
-                <Button
-                  colorScheme="blackAlpha"
-                  loading={loading}
-                  onClick={handleRecoverSnapShot}
-                >
-                  {"Restore this version"}
-                </Button>
-              )}
-            </div>
+                  )
+                })}
+              </div>
+            )}
+            {selected && (
+              <Button
+                colorScheme="blackAlpha"
+                loading={loading}
+                onClick={handleRecoverSnapShot}
+              >
+                {"Restore this version"}
+              </Button>
+            )}
           </>
         )}
       </div>

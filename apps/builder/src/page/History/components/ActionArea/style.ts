@@ -1,13 +1,14 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
+export const ACTION_AREA_HEIGHT = 38
 export const actionWrapperStyle = css`
   padding: 8px 0;
-  min-height: 38px;
+  height: ${ACTION_AREA_HEIGHT}px;
 `
 
 export const actionTextStyle = css`
-  min-height: 38px;
+  height: ${ACTION_AREA_HEIGHT}px;
   padding: 8px;
   color: ${getColor("techPurple", "01")};
   font-size: 14px;

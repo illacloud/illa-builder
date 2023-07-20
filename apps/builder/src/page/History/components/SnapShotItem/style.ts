@@ -32,12 +32,24 @@ export const lineStyle = css`
   background: ${getColor("grayBlue", "08")};
 `
 
+export const HISTORY_HEADER_HEIGHT = 24
+export const HISTORY_PADDING = 24
+export const HISTORY_ITEM_HEIGHT = 48
+export const HISTORY_ITEM_GAP = 16
+
+export const itemHeaderStyle = css`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: ${HISTORY_HEADER_HEIGHT}px;
+`
+
 export const textStyle = css`
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  gap: 16px;
-  padding-bottom: 24px;
+  gap: ${HISTORY_ITEM_GAP}px;
+  padding-bottom: ${HISTORY_PADDING}px;
   display: flex;
   flex-grow: 1;
 `
@@ -49,12 +61,6 @@ export const timelineStyle = css`
   display: flex;
 `
 
-export const itemHeaderStyle = css`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`
-
 export const applyTimeStyle = (selected?: boolean) => {
   return css`
     color: ${selected
@@ -64,6 +70,7 @@ export const applyTimeStyle = (selected?: boolean) => {
     font-weight: 500;
     line-height: 24px;
     cursor: pointer;
+    height: ${HISTORY_HEADER_HEIGHT}px;
   `
 }
 
@@ -76,7 +83,7 @@ export const contentStyle = css`
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  gap: 16px;
+  gap: ${HISTORY_ITEM_GAP}px;
   flex: 1;
   display: flex;
 `
@@ -88,6 +95,7 @@ export const modifyContentStyle = css`
   gap: 8px;
   flex: 1;
   display: flex;
+  height: ${HISTORY_ITEM_HEIGHT}px;
 `
 
 export const editorInfoStyle = css`
@@ -103,7 +111,6 @@ export const avatarStyle = css`
   border-radius: 50%;
 `
 export const nameStyle = css`
-  //color: var(--illa-grayblue-02, #1D2129);
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   font-weight: 500;

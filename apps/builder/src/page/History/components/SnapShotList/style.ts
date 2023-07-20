@@ -14,6 +14,5 @@ export const headerContainerStyle = css`
 export const contentContainerStyle = css`
   padding: 24px 16px 64px;
   margin-bottom: 24px;
-  overflow: scroll;
   height: 100%;
 `
