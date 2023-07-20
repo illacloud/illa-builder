@@ -98,7 +98,12 @@ export const StaticMenuWidget: FC<MenuWidgetProps> = (props) => {
         )
       } else if (valuePath.length === 2) {
         const sub = items?.findIndex((i) => i.value === valuePath[0])
-        if (sub && items && "subItems" in items[sub]) {
+        if (
+          sub != undefined &&
+          sub !== -1 &&
+          items &&
+          "subItems" in items[sub]
+        ) {
           const subIndex = (items[sub] as SubMenuProps).subItems?.findIndex(
             (i) => i.value === valuePath[1],
           )
@@ -125,16 +130,18 @@ export const StaticMenuWidget: FC<MenuWidgetProps> = (props) => {
 
   const handleClickSubMenu = useCallback(
     (value: string) => {
-      const index = items?.findIndex((i) => i.value === value) ?? 0
-      const paths = ["items", `${index}`, "events"]
-      triggerEventHandler(
-        "clickMenuItem",
-        convertPathToString(paths),
-        undefined,
-        (path) => {
-          return convertPathToString(toPath(path).slice(3))
-        },
-      )
+      const index = items?.findIndex((i) => i.value === value)
+      if (index != undefined && index !== -1) {
+        const paths = ["items", `${index}`, "events"]
+        triggerEventHandler(
+          "clickMenuItem",
+          convertPathToString(paths),
+          undefined,
+          (path) => {
+            return convertPathToString(toPath(path).slice(3))
+          },
+        )
+      }
     },
     [items, triggerEventHandler],
   )
