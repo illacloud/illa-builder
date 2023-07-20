@@ -1222,7 +1222,8 @@
           "replay": "Odpověď",
           "startUploading": "Začít nahrávat",
           "uploadSuccessfully": "Úspěšně nahráno",
-          "uploadFailed": "Nepodařilo se nahrát"
+          "uploadFailed": "Nepodařilo se nahrát",
+          "onMenuSelect": "Vybrat položku"
         },
         "image_list": {
           "title": "Obrázky",
