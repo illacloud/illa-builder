@@ -48,7 +48,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const [loading, setLoading] = useState(false)
 
   const getOperationDesc = (history: ModifyHistory) => {
-    const { operation, operationTargetName } = history
+    const { operation, operationTargetName, modifiedAt } = history
 
     switch (operation) {
       case Signal.CREATE_STATE:
@@ -59,6 +59,10 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
         return t("editor.history.operation.Updated", { operationTargetName })
       case Signal.MOVE_STATE:
         return t("editor.history.operation.Moved", { operationTargetName })
+      case Signal.RECOVER_APP_SNAPSHOT:
+        return t("editor.history.operation.Restored", {
+          versionName: formatDate(modifiedAt),
+        })
     }
   }
 
