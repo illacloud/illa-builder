@@ -1222,7 +1222,8 @@
           "replay": "Vastaa",
           "startUploading": "Aloita lataaminen",
           "uploadSuccessfully": "Ladattu onnistuneesti",
-          "uploadFailed": "Lataaminen epäonnistui"
+          "uploadFailed": "Lataaminen epäonnistui",
+          "onMenuSelect": "Valitse kohde"
         },
         "image_list": {
           "title": "Kuvat",
