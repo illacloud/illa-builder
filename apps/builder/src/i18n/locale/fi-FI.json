@@ -3604,7 +3604,8 @@
         "upgrade": "Päivitä",
         "insufficient_license_title": "Riittämättömät lisenssit",
         "insufficient_license_description": "Kutsuaksesi lisää editoreita, lisää lisenssejä ensin. Kaikki tiimisi jäsenet voivat käyttää ILLA Cloud Plus -ominaisuuksia. Kunkin jäsenen asema riippuu kunkin ominaisuuden erityisestä saatavuudesta. ",
-        "insufficient_license_button": "Lisää lisenssejä"
+        "insufficient_license_button": "Lisää lisenssejä",
+        "pricing": "editor/mo, vuosittain($20/editor, kuukausittain)"
       },
       "expired": {
         "owner": "Tilauksesi on vanhentunut. Jatkaaksesi käyttämistä, uusiudu se.",
