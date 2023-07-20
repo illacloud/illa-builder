@@ -533,12 +533,16 @@ const RenderComponentCanvasContainer: FC<
             data-column-number={columnNumber}
             data-unit-width={unitWidth}
           >
-            <DragShadowPreview
-              unitW={unitWidth}
-              parentDisplayName={displayName}
-              columns={columnNumber}
-            />
-            <MousePreview unitW={unitWidth} displayName={displayName} />
+            {isEditMode && (
+              <DragShadowPreview
+                unitW={unitWidth}
+                parentDisplayName={displayName}
+                columns={columnNumber}
+              />
+            )}
+            {isEditMode && (
+              <MousePreview unitW={unitWidth} displayName={displayName} />
+            )}
             {currentLayoutInfo?.childrenNode?.length > 0 ? (
               currentLayoutInfo?.childrenNode?.map((childName) => {
                 return (
@@ -554,7 +558,7 @@ const RenderComponentCanvasContainer: FC<
             ) : isRootCanvas ? null : (
               <ContainerEmptyState isInner />
             )}
-            {collectedProps.isOver && (
+            {collectedProps.isOver && isEditMode && (
               <DragPreview
                 containerLeft={fixedBounds.left}
                 containerTop={fixedBounds.top}
@@ -570,7 +574,7 @@ const RenderComponentCanvasContainer: FC<
                 canvasNodeDisplayName={displayName}
               />
             )}
-            {!isDraggingGlobal && (
+            {!isDraggingGlobal && !isLikeProductMode && (
               <MultiSelectedScaleSquare
                 unitW={unitWidth}
                 containerDisplayName={displayName}
