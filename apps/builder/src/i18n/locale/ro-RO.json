@@ -2423,7 +2423,8 @@
         "October": "Octombrie",
         "November": "Noiembrie",
         "December": "Decembrie",
-        "final_node": "Nu mai există istoric"
+        "final_node": "Nu mai există istoric",
+        "label": "Doar vizualizare"
       },
       "restore": "Restaurează această versiune",
       "message": {
