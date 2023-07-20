@@ -224,7 +224,9 @@ export const Editor: FC = () => {
             <div css={modalStyle} onMouseDown={handleMouseDownOnModal}>
               <motion.div css={messageWrapperStyle} animate={controls}>
                 <WarningCircleIcon css={waringIconStyle} />
-                {t("not_online_tips")}
+                {wsStatus === ILLA_WEBSOCKET_STATUS.LOCKING
+                  ? t("editor.history.message.version_change")
+                  : t("not_online_tips")}
               </motion.div>
             </div>
           )}

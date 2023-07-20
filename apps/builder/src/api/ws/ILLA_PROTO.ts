@@ -145,6 +145,10 @@ export enum Signal {
    * @generated from protobuf enum value: SIGNAL_MOVE_CURSOR = 13;
    */
   MOVE_CURSOR = 13,
+  /**
+   * @generated from protobuf enum value: SIGNAL_RECOVER_APP_SNAPSHOT = 16;
+   */
+  RECOVER_APP_SNAPSHOT = 16,
 }
 /**
  * @generated from protobuf enum tutorial.Target
@@ -211,6 +215,7 @@ export enum Target {
    */
   CURSOR = 9,
 }
+
 // @generated message type with reflection information, may provide speed optimized methods
 class MovingMessageBin$Type extends MessageType<MovingMessageBin> {
   constructor() {
