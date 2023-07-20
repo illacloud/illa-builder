@@ -1715,7 +1715,12 @@
           "downloadZIP": "Lataa ZIP:nä"
         },
         "download_from_drive": "Lataa ILLA Drivesta",
-        "save_to_drive": "Tallenna ILLA Drivelle"
+        "save_to_drive": "Tallenna ILLA Drivelle",
+        "menu": {
+          "logo": "Logo",
+          "title": "Otsikko",
+          "only_show_icon": "Näytä vain kuvake"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Määrittää, miten käsitellä kaksoiskappaleita tiedostonimiä. Jos kyseessä on säilytys molemmat, tiedoston nimi lisätään satunnainen merkkijono.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Voit käyttää Drive-tiedostovalitsimen komponenttia tiedostojen valintaan ja asettaa tämän arvon suoraan {{filePciker1.value}} kautta.",
           "downloadZIP": "Määrittää, ladataako tiedostot yhdeksi ZIP:ksi. "
+        },
+        "list": {
+          "table_disallowed": "Taulua ei voi lisätä luetteloon"
+        },
+        "menu": {
+          "logo": "Aseta logosi URL-osoitteen avulla",
+          "title": "Aseta otsikko, kuten yrityksen nimi tähän",
+          "only_show_icon": "Piilotettu otsikko ja näytä vain kuvake"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Palauta tämä versio",
       "message": {
-        "version_change": "Sovelluksen nykyinen versio on muuttunut"
+        "version_change": "Sovelluksen nykyinen versio on muuttunut",
+        "suc": {
+          "save": "Nykyinen versio on onnistuneesti tallennettu historian tietueeksi",
+          "restore": "Palautus onnistui",
+          "preview": "Historiatietue on ladattu onnistuneesti."
+        },
+        "fail": {
+          "save": "Tallennus epäonnistui",
+          "restore": "Palautus epäonnistui",
+          "preview": "Historiatietueen lataus epäonnistui. @ info"
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Rekisteröityminen epäonnistui",
         "fail_sent": "Vahvistuskoodin lähettäminen epäonnistui",
         "success": "Rekisteröityminen onnistui",
-        "verification_code": "Vahvistuskoodi lähetetty"
+        "verification_code": "Vahvistuskoodi lähetetty",
+        "not_allow_register": "Tämä tiimi on poistettu käytöstä. Ota yhteyttä tiimin omistajaan. "
       },
       "title": "Rekisteröidy nyt",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "Odottaa"
     },
     "settings": {
-      "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä"
+      "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä",
+      "allow_register": "Salli käyttäjien rekisteröityä linkin kautta"
     }
   },
   "copy_failed": "Kopiointi epäonnistui",

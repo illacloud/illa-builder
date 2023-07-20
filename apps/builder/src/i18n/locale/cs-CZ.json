@@ -1715,7 +1715,12 @@
           "downloadZIP": "Stáhnout jako ZIP"
         },
         "download_from_drive": "Stáhnout z ILLA Drive",
-        "save_to_drive": "Uložit do ILLA disku"
+        "save_to_drive": "Uložit do ILLA disku",
+        "menu": {
+          "logo": "Logo",
+          "title": "Hlava 1 – Celkem",
+          "only_show_icon": "Zobrazit pouze ikonu"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Chcete-li nastavit, jak nakládat s duplicitními názvy souborů. V případě zachování obojího, bude k nahranému názvu souboru přidán náhodný řetězec.",
           "fileData": "Nastavte data souboru pomocí pole objektu, formát objektu je {\"fileName\":\"jméno\", \"FileID\":\"ID souboru\"}. Můžete použít komponentu pro výběr souborů z Drive pro výběr souborů a nastavení této hodnoty přímo přes {{filePciker1.value}}.",
           "downloadZIP": "Chcete-li nastavit, zda stáhnout soubory jako jednu ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Tabulka nemůže být zařazena do seznamu"
+        },
+        "menu": {
+          "logo": "Nastavte logo pomocí URL",
+          "title": "Zde nastavte název společnosti, jako je název společnosti",
+          "only_show_icon": "Ukázat štítek a zobrazit pouze ikonu"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Obnovit tuto verzi",
       "message": {
-        "version_change": "Aktuální verze aplikace se změnila"
+        "version_change": "Aktuální verze aplikace se změnila",
+        "suc": {
+          "save": "Aktuální verze je úspěšně uložena jako záznam historie",
+          "restore": "Úspěšně obnoveno",
+          "preview": "Záznam historie byl úspěšně načten."
+        },
+        "fail": {
+          "save": "Uložení se nezdařilo",
+          "restore": "Obnovení se nezdařilo",
+          "preview": "Nepodařilo se načíst záznam historie."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Registrace se nezdařila",
         "fail_sent": "Nepodařilo se odeslat ověřovací kód",
         "success": "Úspěšně zaregistrováno",
-        "verification_code": "Ověřovací kód byl odeslán"
+        "verification_code": "Ověřovací kód byl odeslán",
+        "not_allow_register": "Tento tým má zakázaný registr. Kontaktujte prosím vlastníka týmu. "
       },
       "title": "Zaregistrovat se",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "Nevyřízeno"
     },
     "settings": {
-      "allow_editors_invite": "Povolit editorům a divákům spravovat členy"
+      "allow_editors_invite": "Povolit editorům a divákům spravovat členy",
+      "allow_register": "Povolit uživatelům registraci prostřednictvím odkazu"
     }
   },
   "copy_failed": "Kopírování se nezdařilo",

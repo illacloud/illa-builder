@@ -1715,7 +1715,12 @@
           "downloadZIP": "Scarica come ZIP"
         },
         "download_from_drive": "Scarica da ILLA Drive",
-        "save_to_drive": "Salva su ILLA Drive"
+        "save_to_drive": "Salva su ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titolo",
+          "only_show_icon": "Mostra solo l'icona"
+        }
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Per impostare come gestire i nomi dei file duplicati. Nel caso di mantenere entrambi, verrà aggiunta una stringa casuale al nome del file caricato.",
           "fileData": "Imposta i dati del file usando un array di oggetti, il formato dell'oggetto è {\"fileName\":\"il nome\", \"FileID\":\"l'ID\"}. È possibile utilizzare il componente di selezione file Drive per selezionare i file e impostare questo valore direttamente tramite {{filePciker1.value}}.",
           "downloadZIP": "Per impostare se scaricare i file come un unico ZIP. "
+        },
+        "list": {
+          "table_disallowed": "La tabella non può essere inserita in una lista"
+        },
+        "menu": {
+          "logo": "Imposta il tuo logo con un URL",
+          "title": "Imposta qui un titolo come il nome dell'azienda",
+          "only_show_icon": "Per nascondere l'etichetta e mostrare solo l'icona"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Ripristina questa versione",
       "message": {
-        "version_change": "La versione corrente dell'app è cambiata"
+        "version_change": "La versione corrente dell'app è cambiata",
+        "suc": {
+          "save": "La versione corrente è stata salvata con successo come record di cronologia",
+          "restore": "Ripristinato con successo",
+          "preview": "La cronologia è stata caricata con successo."
+        },
+        "fail": {
+          "save": "Salvataggio non riuscito",
+          "restore": "Ripristino fallito",
+          "preview": "Impossibile caricare il record di cronologia."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Registrazione non riuscita",
         "fail_sent": "Impossibile inviare il codice di verifica",
         "success": "Registrato con successo",
-        "verification_code": "Codice di verifica inviato"
+        "verification_code": "Codice di verifica inviato",
+        "not_allow_register": "Questo team ha disabilitato la registrazione. Contatta il proprietario del team. "
       },
       "title": "Registrati",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "In Attesa"
     },
     "settings": {
-      "allow_editors_invite": "Consenti agli editori e agli spettatori di gestire i membri"
+      "allow_editors_invite": "Consenti agli editori e agli spettatori di gestire i membri",
+      "allow_register": "Consenti agli utenti di registrarsi tramite link"
     }
   },
   "copy_failed": "Impossibile copiare",

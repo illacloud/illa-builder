@@ -1715,7 +1715,12 @@
           "downloadZIP": "Télécharger en tant que ZIP"
         },
         "download_from_drive": "Télécharger depuis le lecteur ILLA",
-        "save_to_drive": "Enregistrer sur ILLA Drive"
+        "save_to_drive": "Enregistrer sur ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titre de la page",
+          "only_show_icon": "Afficher uniquement l'icône"
+        }
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Pour définir comment gérer les noms de fichiers dupliqués. Dans le cas de conserver les deux, une chaîne aléatoire sera ajoutée au nom du fichier téléchargé.",
           "fileData": "Définit les données du fichier en utilisant un tableau d'objet, le format de l'objet est {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. Vous pouvez utiliser le composant Lecteur de fichiers pour sélectionner des fichiers et définir cette valeur directement via {{filePciker1.value}}.",
           "downloadZIP": "Pour définir s'il faut télécharger les fichiers en un seul ZIP. "
+        },
+        "list": {
+          "table_disallowed": "La table ne peut pas être mise dans une liste"
+        },
+        "menu": {
+          "logo": "Définissez votre logo avec une URL",
+          "title": "Définir un titre comme le nom de la société ici",
+          "only_show_icon": "À masquer le libellé et ne montrer que l'icône"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Restaurer cette version",
       "message": {
-        "version_change": "La version actuelle de l'application a changé"
+        "version_change": "La version actuelle de l'application a changé",
+        "suc": {
+          "save": "La version actuelle est enregistrée avec succès en tant qu'historique",
+          "restore": "Restauré avec succès",
+          "preview": "L'historique a été chargé avec succès."
+        },
+        "fail": {
+          "save": "Échec de l'enregistrement",
+          "restore": "Échec de la restauration",
+          "preview": "Impossible de charger l'enregistrement de l'historique."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Échec de l'inscription",
         "fail_sent": "Impossible d'envoyer le code de vérification",
         "success": "Inscription réussie",
-        "verification_code": "Code de vérification envoyé"
+        "verification_code": "Code de vérification envoyé",
+        "not_allow_register": "Cette équipe a désactivé l'inscription. Veuillez contacter le propriétaire de l'équipe. "
       },
       "title": "S'inscrire",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "En attente"
     },
     "settings": {
-      "allow_editors_invite": "Autoriser les éditeurs et les utilisateurs à gérer les membres"
+      "allow_editors_invite": "Autoriser les éditeurs et les utilisateurs à gérer les membres",
+      "allow_register": "Permettre aux utilisateurs de s'inscrire par lien"
     }
   },
   "copy_failed": "Échec de la copie",

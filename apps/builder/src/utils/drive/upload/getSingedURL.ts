@@ -10,7 +10,7 @@ import {
   fetchUpdateFileStatus,
   fetchUploadFilesStatusAnonymous,
   fetchUploadFilesToAnonymous,
-} from "@/services/drive-keep"
+} from "@/services/drive"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
 export enum GET_SINGED_URL_ERROR_CODE {

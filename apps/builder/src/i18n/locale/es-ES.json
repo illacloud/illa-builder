@@ -1715,7 +1715,12 @@
           "downloadZIP": "Descargar como ZIP"
         },
         "download_from_drive": "Descargar de ILLA Drive",
-        "save_to_drive": "Guardar en ILLA Drive"
+        "save_to_drive": "Guardar en ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Título",
+          "only_show_icon": "Mostrar sólo icono"
+        }
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Para configurar cómo manejar nombres de archivo duplicados. En el caso de mantener ambos, se añadirá una cadena aleatoria al nombre del archivo subido.",
           "fileData": "Establece los datos de archivo usando una matriz de objetos, el formato del objeto es {\"fileName\":\"el nombre\", \"FileID\":\"ID\"}. Puede utilizar el componente selector de archivos de Drive para seleccionar archivos y establecer este valor directamente a través de {{filePciker1.value}}.",
           "downloadZIP": "Para establecer si descargar o no los archivos como un ZIP. "
+        },
+        "list": {
+          "table_disallowed": "La tabla no se puede poner en una lista"
+        },
+        "menu": {
+          "logo": "Establece tu logotipo con una URL",
+          "title": "Establecer aquí un título como el nombre de la empresa",
+          "only_show_icon": "Para ocultar la etiqueta y sólo mostrar el icono"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Restaurar esta versión",
       "message": {
-        "version_change": "La versión actual de la aplicación ha cambiado"
+        "version_change": "La versión actual de la aplicación ha cambiado",
+        "suc": {
+          "save": "La versión actual se ha guardado correctamente como un registro de historial",
+          "restore": "Restaurado con éxito",
+          "preview": "El registro del historial se ha cargado correctamente."
+        },
+        "fail": {
+          "save": "Error al guardar",
+          "restore": "Error al restaurar",
+          "preview": "Error al cargar el registro del historial."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Error al registrarse",
         "fail_sent": "Error al enviar el código de verificación",
         "success": "Registrado correctamente",
-        "verification_code": "Código de verificación enviado"
+        "verification_code": "Código de verificación enviado",
+        "not_allow_register": "Este equipo ha sido deshabilitado. Por favor, contacta con el propietario del equipo. "
       },
       "title": "Regístrate",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "Pendiente"
     },
     "settings": {
-      "allow_editors_invite": "Permitir a los editores y espectadores administrar miembros"
+      "allow_editors_invite": "Permitir a los editores y espectadores administrar miembros",
+      "allow_register": "Permitir a los usuarios registrarse a través del enlace"
     }
   },
   "copy_failed": "Error al copiar",

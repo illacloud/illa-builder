@@ -1715,7 +1715,12 @@
           "downloadZIP": "Download som et postnummer"
         },
         "download_from_drive": "Download fra ILLA drev",
-        "save_to_drive": "Gem til ILLA drev"
+        "save_to_drive": "Gem til ILLA drev",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titel",
+          "only_show_icon": "Vis kun ikon"
+        }
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "For at indstille hvordan man håndterer duplikerede filnavne. I tilfælde af at beholde begge vil en tilfældig streng blive tilføjet til filnavnet uploadet.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"name\", \"FileID\":\"ID\"}. Du kan bruge Kør filvælgerkomponenten til at vælge filer og indstille denne værdi direkte via {{filePciker1.value}}.",
           "downloadZIP": "For at angive, om filerne skal downloades som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Tabel kan ikke indsættes i en liste"
+        },
+        "menu": {
+          "logo": "Sæt dit logo med en URL",
+          "title": "Angiv en titel såsom firmanavn her",
+          "only_show_icon": "Til skjult etiket og kun vis ikon"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Gendan denne version",
       "message": {
-        "version_change": "Den aktuelle app-version er ændret"
+        "version_change": "Den aktuelle app-version er ændret",
+        "suc": {
+          "save": "Nuværende version er gemt som historik post",
+          "restore": "Genoprettet succesfuldt",
+          "preview": "Historik posten er indlæst."
+        },
+        "fail": {
+          "save": "Kunne ikke gemme",
+          "restore": "Kunne ikke gendanne",
+          "preview": "Kunne ikke indlæse historikjournalen."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Kunne ikke tilmelde dig",
         "fail_sent": "Mislykkedes at sende bekræftelseskode",
         "success": "Tilmelding lykkedes",
-        "verification_code": "Bekræftelseskode sendt"
+        "verification_code": "Bekræftelseskode sendt",
+        "not_allow_register": "Dette team har deaktiveret register. Kontakt venligst teamejeren. "
       },
       "title": "Tilmeld dig",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "Afventer"
     },
     "settings": {
-      "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer"
+      "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer",
+      "allow_register": "Tillad brugere at registrere via link"
     }
   },
   "copy_failed": "Kopiering mislykkedes",

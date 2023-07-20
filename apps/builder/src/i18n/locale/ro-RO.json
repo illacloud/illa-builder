@@ -1715,7 +1715,12 @@
           "downloadZIP": "Descarcă ca ZIP"
         },
         "download_from_drive": "Descarcă de pe ILLA Drive",
-        "save_to_drive": "Salvează în unitatea ILLA"
+        "save_to_drive": "Salvează în unitatea ILLA",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titlu",
+          "only_show_icon": "Arată doar pictograma"
+        }
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Pentru a seta cum să se gestioneze duplicat nume de fișiere. În cazul în care le păstrați pe amândouă, un șir aleatoriu va fi adăugat la numele fișierului încărcat.",
           "fileData": "Setați datele fișierului folosind o matrice de obiect, formatul obiectului este {\"fileName\":\"name\", \"FileID\":\"}. Puteți utiliza componenta selector de fișiere Drive pentru a selecta fișiere și seta această valoare direct prin {{filePciker1.value}}.",
           "downloadZIP": "Pentru a seta dacă se descarcă fișierele ca un singur ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Tabelul nu poate fi pus într-o listă"
+        },
+        "menu": {
+          "logo": "Setați sigla dvs. cu un URL",
+          "title": "Setați aici un titlu, cum ar fi numele companiei",
+          "only_show_icon": "CĂTRE ascunderea etichetei şi arată doar pictograma"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Restaurează această versiune",
       "message": {
-        "version_change": "Versiunea curentă a aplicației s-a schimbat"
+        "version_change": "Versiunea curentă a aplicației s-a schimbat",
+        "suc": {
+          "save": "Versiunea curentă a fost salvată cu succes ca istoric de înregistrare",
+          "restore": "Restaurat cu succes",
+          "preview": "Istoricul a fost încărcat cu succes."
+        },
+        "fail": {
+          "save": "Salvarea nu a reușit",
+          "restore": "Restaurare eșuată",
+          "preview": "Nu s-a putut încărca istoricul înregistrării."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Înregistrare nereușită",
         "fail_sent": "Trimiterea codului de verificare a eșuat",
         "success": "Înregistrare reușită",
-        "verification_code": "Cod de verificare trimis"
+        "verification_code": "Cod de verificare trimis",
+        "not_allow_register": "Această echipă a dezactivat înregistrarea. Vă rugăm să contactaţi proprietarul echipei. "
       },
       "title": "Înscrie-te",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "In asteptare"
     },
     "settings": {
-      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii"
+      "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii",
+      "allow_register": "Permite utilizatorilor să se înregistreze prin link"
     }
   },
   "copy_failed": "Copierea a eșuat",

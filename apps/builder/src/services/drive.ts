@@ -1,5 +1,5 @@
 import { stringify } from "qs"
-import { driveRequest, publicDriveRequest } from "../api/http"
+import { driveRequest, publicDriveRequest } from "@/api/http"
 
 export enum UPLOAD_FILE_DUPLICATION_HANDLER {
   COVER = "cover",
@@ -10,6 +10,7 @@ export enum UPLOAD_FILE_DUPLICATION_HANDLER {
 export enum GCS_OBJECT_TYPE {
   FOLDER = "folder",
   FILE = "file",
+  ANONYMOUS_FOLDER = "anonymousFolder",
 }
 
 interface IFetchUploadFilesToAnonymousFolderRequest {
@@ -144,18 +145,14 @@ export const fetchDownloadURLByTinyURL = async (
     method: "GET",
   })
 }
-
-export enum DRIVE_FILE_TYPE {
-  MIX = 1,
-  FOLDER = 2,
-  FILE = 3,
+export enum FILE_UPLOAD_STATUS {
+  COMPLETE = "complete",
+  FAILED = "failed",
+  PAUSED = "paused",
+  CANCELED = "canceled",
 }
 
-export enum SORTED_TYPE {
-  ascend = "asc",
-  descend = "desc",
-}
-
+// -------------------
 export interface IILLAFileInfo {
   id: string
   name: string
@@ -168,13 +165,15 @@ export interface IILLAFileInfo {
   owner: string
 }
 
-export interface IFetchFileListResponseData {
-  path: string
-  currentFolderID: string
-  files: IILLAFileInfo[]
-  total: number
-  pageSize: number
-  pageIndex: number
+export enum DRIVE_FILE_TYPE {
+  MIX = 1,
+  FOLDER = 2,
+  FILE = 3,
+}
+
+export enum SORTED_TYPE {
+  ascend = "asc",
+  descend = "desc",
 }
 
 export interface IFetchFileListRequestData {
@@ -215,10 +214,121 @@ export const fetchFileList = async (
     },
   )
 }
+export const fetchAnonymousFileList = async (
+  appID: string,
+  requestData: IFetchFileListRequestData = {
+    path: "/root",
+    type: DRIVE_FILE_TYPE.MIX,
+  },
+  abortSignal?: AbortSignal,
+) => {
+  const qs = stringify(requestData)
+  return await driveRequest<IFetchFileListResponseData>(
+    {
+      url: `/apps/${appID}/files?${qs}`,
+      method: "GET",
+      signal: abortSignal,
+    },
+    {
+      needTeamIdentifier: true,
+    },
+  )
+}
 
-export enum FILE_UPLOAD_STATUS {
-  COMPLETE = "complete",
-  FAILED = "failed",
-  PAUSED = "paused",
-  CANCELED = "canceled",
+export enum EXPIRATION_TYPE {
+  "PERSISTENT" = "persistent",
+  "CUSTOM" = "custom",
+}
+
+interface IFetchGenerateTinyURLRequestData {
+  ids: string[]
+  expirationType: EXPIRATION_TYPE
+  expiry?: string
+  hotlinkProtection: boolean
+}
+
+interface IFetchGenerateTinyURLResponseData {
+  tinyURL: string
+  expirationType: EXPIRATION_TYPE
+  expiry?: string
+  hotlinkProtection: boolean
+  createdAt: string
+  createdBy: string
+  cdn: boolean
+}
+
+export type IFetchGenerateBatchTinyURLResponse =
+  IFetchGenerateTinyURLResponseData & { fileID: string }
+export const fetchBatchGenerateTinyUrl = async (
+  data: IFetchGenerateTinyURLRequestData,
+  abortSignal?: AbortSignal,
+) => {
+  return await driveRequest<IFetchGenerateBatchTinyURLResponse[]>(
+    {
+      url: "/links/batch",
+      method: "POST",
+      data,
+      signal: abortSignal,
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const fetchBatchAnonymousGenerateTinyUrl = async (
+  appID: string,
+  data: IFetchGenerateTinyURLRequestData,
+  abortSignal?: AbortSignal,
+) => {
+  return await driveRequest<IFetchGenerateBatchTinyURLResponse[]>(
+    {
+      url: `/apps/${appID}/links/batch`,
+      method: "POST",
+      data,
+      signal: abortSignal,
+    },
+    {
+      needTeamIdentifier: true,
+    },
+  )
+}
+
+export interface IFetchAnonymousPermissionResponseData {
+  anonymous: boolean
+}
+export const fetchAnonymousPermission = async () => {
+  return await driveRequest<IFetchAnonymousPermissionResponseData>(
+    {
+      url: `/setting/anonymous`,
+      method: "GET",
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const fetchOpenAnonymousPermission = async () => {
+  return await driveRequest(
+    {
+      url: `/setting/anonymous`,
+      method: "POST",
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const fetchCloseAnonymousPermission = async () => {
+  return await driveRequest(
+    {
+      url: `/setting/anonymous`,
+      method: "DELETE",
+    },
+    {
+      needTeamID: true,
+    },
+  )
 }

@@ -1715,7 +1715,12 @@
           "downloadZIP": "Als ZIP herunterladen"
         },
         "download_from_drive": "Von ILLA Drive herunterladen",
-        "save_to_drive": "In ILLA Laufwerk speichern"
+        "save_to_drive": "In ILLA Laufwerk speichern",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titel",
+          "only_show_icon": "Nur Symbol anzeigen"
+        }
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Um festzulegen, wie mit doppelten Dateinamen umgegangen werden soll. Wenn beides beibehalten wird, wird dem Dateinamen eine zufällige Zeichenkette hinzugefügt.",
           "fileData": "Legen Sie die Dateidaten unter Verwendung eines Arrays fest, das Format des Objekts ist {\"fileName\":\"The name\", \"FileID\":\"The ID\"}. Sie können die Laufwerk-Datei-Picker-Komponente verwenden, um Dateien auszuwählen und diesen Wert direkt über {{filePciker1.value}} zu setzen.",
           "downloadZIP": "Um festzulegen, ob die Dateien als ein ZIP heruntergeladen werden sollen. "
+        },
+        "list": {
+          "table_disallowed": "Tabelle kann nicht in eine Liste gesetzt werden"
+        },
+        "menu": {
+          "logo": "Logo mit URL festlegen",
+          "title": "Legen Sie hier einen Titel wie den Firmennamen fest",
+          "only_show_icon": "BIS die Bezeichnung verstecken und nur Symbol anzeigen"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Diese Version wiederherstellen",
       "message": {
-        "version_change": "Die aktuelle App-Version hat sich geändert"
+        "version_change": "Die aktuelle App-Version hat sich geändert",
+        "suc": {
+          "save": "Aktuelle Version ist erfolgreich als History-Eintrag gespeichert",
+          "restore": "Erfolgreich wiederhergestellt",
+          "preview": "Der History-Eintrag wurde erfolgreich geladen."
+        },
+        "fail": {
+          "save": "Speichern fehlgeschlagen",
+          "restore": "Wiederherstellung fehlgeschlagen",
+          "preview": "Fehler beim Laden des Verlaufsdatums."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Anmeldung fehlgeschlagen",
         "fail_sent": "Fehler beim Senden des Bestätigungscodes",
         "success": "Erfolgreich angemeldet",
-        "verification_code": "Bestätigungscode gesendet"
+        "verification_code": "Bestätigungscode gesendet",
+        "not_allow_register": "Dieses Team hat die Registrierung deaktiviert. Bitte kontaktieren Sie den Team-Eigentümer. "
       },
       "title": "Registrieren",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "Ausstehend"
     },
     "settings": {
-      "allow_editors_invite": "Redakteure und Betrachter die Verwaltung von Mitgliedern erlauben"
+      "allow_editors_invite": "Redakteure und Betrachter die Verwaltung von Mitgliedern erlauben",
+      "allow_register": "Benutzern erlauben, sich über Link zu registrieren"
     }
   },
   "copy_failed": "Fehler beim Kopieren",

@@ -1715,7 +1715,12 @@
           "downloadZIP": "Download as a ZIP"
         },
         "download_from_drive": "Download from ILLA Drive",
-        "save_to_drive": "Save to ILLA Drive"
+        "save_to_drive": "Save to ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title",
+          "only_show_icon": "Only show icon"
+        }
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "To set how to handle duplicate filenames. In the case of keep both, a random string will be added to the file name uploaded.",
           "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"the name\", \"FileID\":\"the ID\"}. You can use the Drive file picker component to select files and set this value directly through {{filePciker1.value}}.",
           "downloadZIP": "To set whether to download the files as one ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Table can't be put in a list"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here",
+          "only_show_icon": "TO hidden the label and only show icon"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Restore this version",
       "message": {
-        "version_change": "The current app version has changed"
+        "version_change": "The current app version has changed",
+        "suc": {
+          "save": "Current version is successfully saved as a history record",
+          "restore": "Successfully restored",
+          "preview": "The history record is successfully loaded."
+        },
+        "fail": {
+          "save": "Failed to save",
+          "restore": "Failed to restore",
+          "preview": "Failed to load the history record."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "등록 실패",
         "fail_sent": "인증 코드를 보내지 못했습니다.",
         "success": "등록 성공",
-        "verification_code": "인증 코드 전송됨"
+        "verification_code": "인증 코드 전송됨",
+        "not_allow_register": "This team has disabled register. Please contact the team owner. "
       },
       "title": "등록하다",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "보류 중"
     },
     "settings": {
-      "allow_editors_invite": "편집자와 뷰어가 회원을 관리하도록 허용합니다"
+      "allow_editors_invite": "편집자와 뷰어가 회원을 관리하도록 허용합니다",
+      "allow_register": "Allow users to register via link"
     }
   },
   "copy_failed": "복사 실패",

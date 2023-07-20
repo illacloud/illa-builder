@@ -1715,7 +1715,12 @@
           "downloadZIP": "Baixar como um ZIP"
         },
         "download_from_drive": "Baixar do ILLA Drive",
-        "save_to_drive": "Salvar no disco ILLA"
+        "save_to_drive": "Salvar no disco ILLA",
+        "menu": {
+          "logo": "Logotipo",
+          "title": "Título",
+          "only_show_icon": "Mostrar apenas ícone"
+        }
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Para definir como lidar com nomes de arquivos duplicados. No caso de manter ambos, uma seqüência aleatória será adicionada ao nome do arquivo carregado.",
           "fileData": "Definir os dados usando um array de objeto, o formato do objeto é {\"fileName\":\"nome\", \"FileID\":\"the ID\"}. Você pode usar o componente de selecionador de arquivos Drive para selecionar arquivos e definir esse valor diretamente através do {{filePciker1.value}}.",
           "downloadZIP": "Para definir se deve baixar os arquivos como um ZIP. "
+        },
+        "list": {
+          "table_disallowed": "A tabela não pode ser inserida em uma lista"
+        },
+        "menu": {
+          "logo": "Defina o seu logotipo com uma URL",
+          "title": "Defina um título como o nome da empresa aqui",
+          "only_show_icon": "Ocultar o rótulo e mostrar apenas o ícone"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Restaurar esta versão",
       "message": {
-        "version_change": "A versão atual do aplicativo foi alterada"
+        "version_change": "A versão atual do aplicativo foi alterada",
+        "suc": {
+          "save": "A versão atual é salva com sucesso como um registro de histórico",
+          "restore": "Restaurado com sucesso",
+          "preview": "O registro do histórico foi carregado com sucesso."
+        },
+        "fail": {
+          "save": "Falha ao salvar",
+          "restore": "Falha ao restaurar",
+          "preview": "Não foi possível carregar o registro do histórico."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Falha ao se inscrever",
         "fail_sent": "Falha ao enviar código de verificação",
         "success": "Cadastrado com sucesso",
-        "verification_code": "Código de verificação enviado"
+        "verification_code": "Código de verificação enviado",
+        "not_allow_register": "Esta equipe desativou o registro. Entre em contato com o proprietário da equipe. "
       },
       "title": "Criar conta",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "PENDENTE"
     },
     "settings": {
-      "allow_editors_invite": "Permitir que editores e espectadores gerenciem membros"
+      "allow_editors_invite": "Permitir que editores e espectadores gerenciem membros",
+      "allow_register": "Permitir que os usuários se registrem via link"
     }
   },
   "copy_failed": "Falha ao copiar",

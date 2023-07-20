@@ -1715,7 +1715,12 @@
           "downloadZIP": "Pobierz jako ZIP"
         },
         "download_from_drive": "Pobierz z Dysku ILLA",
-        "save_to_drive": "Zapisz na dysku ILLA"
+        "save_to_drive": "Zapisz na dysku ILLA",
+        "menu": {
+          "logo": "Logo",
+          "title": "Rozporządzenie Rady (EWG) nr 2658/87 z dnia 23 lipca 1987 r. w sprawie nomenklatury taryfowej i statystycznej oraz w sprawie Wspólnej Taryfy Celnej (Dz.U. L 256 z 7.9.1987, s. 1).",
+          "only_show_icon": "Pokaż tylko ikonę"
+        }
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Aby ustawić sposób obsługi duplikatów plików. W przypadku zachowania obu stron zostanie dodany losowy ciąg znaków do nazwy pliku.",
           "fileData": "Ustaw dane pliku za pomocą tablicy obiektów, format obiektu to {\"fileName\":\"name\", \"FileID\":\"the ID\"}. Możesz użyć komponentu do wybierania plików na dysku i ustawić tę wartość bezpośrednio przez {{filePciker1.value}}.",
           "downloadZIP": "Aby ustawić czy pobierać pliki jako jeden ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Tabela nie może być umieszczona na liście"
+        },
+        "menu": {
+          "logo": "Ustaw swoje logo z URL",
+          "title": "Ustaw tutaj tytuł, taki jak nazwa firmy",
+          "only_show_icon": "TO ukryj etykietę i tylko pokaż ikonę"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Przywróć tę wersję",
       "message": {
-        "version_change": "Aktualna wersja aplikacji została zmieniona"
+        "version_change": "Aktualna wersja aplikacji została zmieniona",
+        "suc": {
+          "save": "Bieżąca wersja została pomyślnie zapisana jako historia rekordu",
+          "restore": "Przywrócono pomyślnie",
+          "preview": "Wpis historii został pomyślnie załadowany."
+        },
+        "fail": {
+          "save": "Nie udało się zapisać",
+          "restore": "Nie udało się przywrócić",
+          "preview": "Nie udało się załadować rekordu historii."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Nie udało się zarejestrować",
         "fail_sent": "Nie udało się wysłać kodu weryfikacyjnego",
         "success": "Zarejestrowano pomyślnie",
-        "verification_code": "Kod weryfikacyjny wysłany"
+        "verification_code": "Kod weryfikacyjny wysłany",
+        "not_allow_register": "Ten zespół wyłączył rejestrację. Skontaktuj się z właścicielem zespołu. "
       },
       "title": "Zarejestruj",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "Oczekujące"
     },
     "settings": {
-      "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami"
+      "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami",
+      "allow_register": "Zezwalaj użytkownikom na rejestrację za pomocą linku"
     }
   },
   "copy_failed": "Nie udało się skopiować",

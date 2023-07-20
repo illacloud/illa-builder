@@ -1715,7 +1715,12 @@
           "downloadZIP": "Downloaden als ZIP"
         },
         "download_from_drive": "Downloaden van ILLA Drive",
-        "save_to_drive": "Opslaan op ILLA Drive"
+        "save_to_drive": "Opslaan op ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Aanspreektitel",
+          "only_show_icon": "Alleen pictogram weergeven"
+        }
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1965,6 +1970,14 @@
           "file_name_duplicatio": "Om in te stellen hoe dubbele bestandsnamen moeten worden behandeld. In het geval van bewaar beide, wordt een willekeurige tekenreeks toegevoegd aan de bestandsnaam geüpload.",
           "fileData": "Stel de bestandsgegevens in met behulp van een object array, het formaat van het object is {\"fileName\":\"name\", \"FileID\":\"the ID\"}. U kunt de Drive bestandskiezer component gebruiken om bestanden te selecteren en deze waarde rechtstreeks via {{filePciker1.value}} in te stellen.",
           "downloadZIP": "Om de bestanden als één ZIP te downloaden. "
+        },
+        "list": {
+          "table_disallowed": "Tabel kan niet in een lijst geplaatst worden"
+        },
+        "menu": {
+          "logo": "Stel uw logo in met een URL",
+          "title": "Stel hier een titel in zoals bedrijfsnaam",
+          "only_show_icon": "Verbergen van het label en alleen pictogram tonen"
         }
       },
       "setter_option": {
@@ -2400,7 +2413,17 @@
       },
       "restore": "Herstel deze versie",
       "message": {
-        "version_change": "De huidige app versie is gewijzigd"
+        "version_change": "De huidige app versie is gewijzigd",
+        "suc": {
+          "save": "Huidige versie is succesvol opgeslagen als geschiedenisrecord",
+          "restore": "Succesvol hersteld",
+          "preview": "Het geschiedenisrecord is met succes geladen."
+        },
+        "fail": {
+          "save": "Opslaan mislukt",
+          "restore": "Herstellen mislukt",
+          "preview": "Kon geschiedenis record niet laden."
+        }
       }
     }
   },
@@ -2600,7 +2623,8 @@
         "fail": "Registratie mislukt",
         "fail_sent": "Verificatiecode versturen mislukt",
         "success": "Succesvol geregistreerd",
-        "verification_code": "Verificatiecode verzonden"
+        "verification_code": "Verificatiecode verzonden",
+        "not_allow_register": "Dit team heeft zich ingeschreven. Neem contact op met de eigenaar van het team. "
       },
       "title": "Registreer nu",
       "agreement": {
@@ -3064,7 +3088,8 @@
       "pending": "Lopende"
     },
     "settings": {
-      "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren"
+      "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren",
+      "allow_register": "Sta gebruikers toe om te registreren via link"
     }
   },
   "copy_failed": "Kopiëren mislukt",
