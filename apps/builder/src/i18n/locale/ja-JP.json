@@ -2423,7 +2423,8 @@
         "October": "10月",
         "November": "11月",
         "December": "12月",
-        "final_node": "履歴はありません"
+        "final_node": "履歴はありません",
+        "label": "表示のみ"
       },
       "restore": "このバージョンを復元",
       "message": {

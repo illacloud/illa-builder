@@ -2423,7 +2423,8 @@
         "October": "Říjen",
         "November": "Listopad",
         "December": "prosinec",
-        "final_node": "Žádná historie"
+        "final_node": "Žádná historie",
+        "label": "Pouze zobrazit"
       },
       "restore": "Obnovit tuto verzi",
       "message": {
