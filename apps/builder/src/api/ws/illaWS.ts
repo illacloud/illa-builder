@@ -220,6 +220,15 @@ export class ILLAWebsocket {
             }
           }
         }
+      } else if (callback.errorCode === 14) {
+        // signal for recover app snapshot
+        store.dispatch(
+          configActions.updateWSStatusReducer({
+            context: this.context,
+            wsStatus: ILLA_WEBSOCKET_STATUS.LOCKING,
+          }),
+        )
+        this.reconnect()
       }
     })
   }

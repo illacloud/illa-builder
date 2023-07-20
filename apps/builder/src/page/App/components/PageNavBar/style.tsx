@@ -102,3 +102,9 @@ export const upgradeStyle = css`
   ${rowCenter};
   gap: 8px;
 `
+
+export const spaceBetweenStyle = css`
+  ${rowCenter};
+  justify-content: space-between;
+  gap: 8px;
+`
