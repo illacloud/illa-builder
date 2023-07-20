@@ -1223,7 +1223,8 @@
           "startUploading": "Rozpocznij przesyłanie",
           "uploadSuccessfully": "Przesłano pomyślnie",
           "uploadFailed": "Nie udało się przesłać",
-          "onMenuSelect": "Wybierz element"
+          "onMenuSelect": "Wybierz element",
+          "on_menu_select": "Wybierz pozycję menu"
         },
         "image_list": {
           "title": "Obrazy",
