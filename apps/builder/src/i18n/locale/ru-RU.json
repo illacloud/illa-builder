@@ -1223,7 +1223,8 @@
           "startUploading": "Начать загрузку",
           "uploadSuccessfully": "Загружено успешно",
           "uploadFailed": "Не удалось загрузить",
-          "onMenuSelect": "Выберите элемент"
+          "onMenuSelect": "Выберите элемент",
+          "on_menu_select": "Выберите пункт меню"
         },
         "image_list": {
           "title": "Изображения",
