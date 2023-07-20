@@ -16,11 +16,16 @@ export const usePath = (
 
   const updatePath = useCallback(
     (changedPath: string) => {
-      const curChangePath = removeSuffixPath(changedPath)
-      setTotalPath(curChangePath)
-      setCurrentPath(getCurrentPath(path, curChangePath))
+      if (allowAnonymousUse) {
+        setTotalPath(ROOT_PATH)
+        setCurrentPath(ROOT_PATH)
+      } else {
+        const curChangePath = removeSuffixPath(changedPath)
+        setTotalPath(curChangePath)
+        setCurrentPath(getCurrentPath(path, curChangePath))
+      }
     },
-    [path],
+    [allowAnonymousUse, path],
   )
 
   useEffect(() => {
