@@ -4,6 +4,9 @@ const SetterTypeMapSetter = {
   INPUT_SETTER: lazy(
     () => import("@/page/App/components/PanelSetters/InputSetter/baseInput"),
   ),
+  SCRIPT_INPUT_SETTER: lazy(
+    () => import("@/page/App/components/PanelSetters/InputSetter/scriptInput"),
+  ),
   ICON_SETTER: lazy(
     () => import("@/page/App/components/PanelSetters/IconSetter/IconSelector"),
   ),

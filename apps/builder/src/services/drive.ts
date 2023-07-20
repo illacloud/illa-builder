@@ -40,11 +40,10 @@ export const fetchUploadFilesToAnonymous = async (
       data: {
         ...requestData,
         resumable: true,
-        folderID: "",
       },
     },
     {
-      needTeamID: true,
+      needTeamIdentifier: true,
     },
   )
 }
@@ -69,7 +68,7 @@ export const fetchUploadFilesStatusAnonymous = async (
       },
     },
     {
-      needTeamID: true,
+      needTeamIdentifier: true,
     },
   )
 }
@@ -79,6 +78,7 @@ interface IFetchGetUploadFileURLRequest {
   type: GCS_OBJECT_TYPE
   contentType: string
   size: number
+  folderID: string
   duplicationHandler: UPLOAD_FILE_DUPLICATION_HANDLER
 }
 
@@ -101,7 +101,6 @@ export const fetchGetUploadFileURL = async (
       data: {
         ...requestData,
         resumable: true,
-        folderID: "",
       },
     },
     {
@@ -114,13 +113,18 @@ export const fetchUpdateFileStatus = async (
   fileID: string,
   status: UPLOAD_FILE_STATUS,
 ) => {
-  return await driveRequest({
-    url: `/files/${fileID}/status`,
-    method: "POST",
-    data: {
-      status,
+  return await driveRequest(
+    {
+      url: `/files/${fileID}/status`,
+      method: "PUT",
+      data: {
+        status,
+      },
     },
-  })
+    {
+      needTeamID: true,
+    },
+  )
 }
 
 interface IFetchDownloadURLByTinyURL {
@@ -137,9 +141,15 @@ export const fetchDownloadURLByTinyURL = async (
   fileID: string,
 ) => {
   return await publicDriveRequest<IFetchDownloadURLByTinyURL>({
-    url: `${tinyURL}/${fileID}`,
+    url: `/${tinyURL}/${fileID}`,
     method: "GET",
   })
+}
+export enum FILE_UPLOAD_STATUS {
+  COMPLETE = "complete",
+  FAILED = "failed",
+  PAUSED = "paused",
+  CANCELED = "canceled",
 }
 
 // -------------------

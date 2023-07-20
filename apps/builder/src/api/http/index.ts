@@ -203,7 +203,7 @@ export const publicDriveRequest = async <
     options,
   )
 
-  return await notNeedAuthCloudRequest<ResponseData, RequestData>({
+  return await notNeedAuthRequest<ResponseData, RequestData>({
     ...requestConfig,
     url: finalURL,
   })

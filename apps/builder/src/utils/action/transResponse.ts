@@ -104,6 +104,7 @@ const transLikeRestApiResponse = (response: AxiosResponse) => {
     }
     return transMaybeFileResponse(header, raw)
   }
+  return resData
 }
 
 export const transResponse = (
@@ -147,5 +148,8 @@ export const transResponse = (
     return {
       data: response.data.Rows,
     }
+  }
+  return {
+    data: response,
   }
 }

@@ -75,3 +75,43 @@ export const substituteDynamicBindingWithValues = (
       return smartSubstituteDynamicValues(dynamicString, stringSnippets, values)
   }
 }
+
+const ASYNC_SCRIPT_CODE_INPUT_START_MARKS = "{{(async function (){"
+const SYNC_SCRIPT_CODE_INPUT_START_MARKS = "{{(function (){"
+const SCRIPT_CODE_INPUT_END_MARKS = "})()}}"
+
+export const realInputValueWithScript = (
+  attrValue: string | undefined,
+  needAsync: boolean = false,
+) => {
+  if (attrValue === "" || attrValue == undefined) return ""
+  const startMarks = needAsync
+    ? ASYNC_SCRIPT_CODE_INPUT_START_MARKS
+    : SYNC_SCRIPT_CODE_INPUT_START_MARKS
+  return attrValue.startsWith(startMarks)
+    ? attrValue.substring(
+        startMarks.length,
+        attrValue.length - SCRIPT_CODE_INPUT_END_MARKS.length,
+      )
+    : attrValue
+}
+
+export const wrapperScriptCode = (
+  attrValue: string | undefined,
+  needAsync: boolean = false,
+) => {
+  const startMarks = needAsync
+    ? ASYNC_SCRIPT_CODE_INPUT_START_MARKS
+    : SYNC_SCRIPT_CODE_INPUT_START_MARKS
+
+  return `${startMarks}${attrValue}${SCRIPT_CODE_INPUT_END_MARKS}`
+}
+
+export const isWrapperCode = (attrValue: string | undefined) => {
+  if (attrValue === "" || attrValue == undefined) return false
+  return (
+    (attrValue.startsWith(ASYNC_SCRIPT_CODE_INPUT_START_MARKS) ||
+      attrValue.startsWith(SYNC_SCRIPT_CODE_INPUT_START_MARKS)) &&
+    attrValue.endsWith(SCRIPT_CODE_INPUT_END_MARKS)
+  )
+}

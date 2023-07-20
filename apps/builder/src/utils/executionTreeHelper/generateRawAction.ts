@@ -3,8 +3,7 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
-import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
-import { isObject } from "@/utils/typeHelper"
+import { getNewWidgetPropsByUpdateSlice } from "../componentNode"
 import { VALIDATION_TYPES } from "../validationFactory"
 
 interface RawAction {
@@ -12,36 +11,6 @@ interface RawAction {
 
   $type: "ACTION"
   $dynamicAttrPaths: string[]
-}
-
-export const generateDynamicAttrPaths = (
-  rawObj: Record<string, any>,
-  dynamicAttrPaths: string[],
-  parentAttr: string = "",
-) => {
-  for (let key in rawObj) {
-    const value = rawObj[key]
-    if (Array.isArray(value)) {
-      value.forEach((item, index) => {
-        generateDynamicAttrPaths(
-          item,
-          dynamicAttrPaths,
-          parentAttr ? `${parentAttr}.${key}.${index}` : `${key}.${index}`,
-        )
-      })
-    }
-    if (isObject(value)) {
-      generateDynamicAttrPaths(
-        value,
-        dynamicAttrPaths,
-        parentAttr ? `${parentAttr}.${key}` : `${key}`,
-      )
-    }
-    if (hasDynamicStringSnippet(value)) {
-      const attrPath = parentAttr ? parentAttr + "." + key : key
-      dynamicAttrPaths.push(attrPath)
-    }
-  }
 }
 
 export const generateActionValidatePaths = () => {
@@ -54,7 +23,6 @@ export const generateActionValidatePaths = () => {
 export const generateRawAction = (
   action: ActionItem<ActionContent>,
 ): RawAction => {
-  let $dynamicAttrPaths: string[] = []
   const {
     content,
     transformer,
@@ -83,8 +51,11 @@ export const generateRawAction = (
     modifiedAction.transformer = transformer
     modifiedAction.$validationPaths = generateActionValidatePaths()
   }
-  generateDynamicAttrPaths(modifiedAction, $dynamicAttrPaths)
-  modifiedAction.$dynamicAttrPaths = $dynamicAttrPaths
+
+  const newProps = getNewWidgetPropsByUpdateSlice(modifiedAction, {})
+  modifiedAction.$dynamicAttrPaths = [
+    ...((newProps?.$dynamicAttrPaths ?? []) as string[]),
+  ]
 
   return modifiedAction
 }

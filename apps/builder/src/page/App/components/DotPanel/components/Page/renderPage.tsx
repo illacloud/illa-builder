@@ -363,6 +363,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
       } else {
         return runActionWithExecutionResult(
           action as IExecutionActions,
+          true,
           abortController.signal,
         )
       }

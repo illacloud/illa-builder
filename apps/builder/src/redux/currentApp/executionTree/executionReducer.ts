@@ -226,7 +226,11 @@ export const setInGlobalStateInExecutionReducer: CaseReducer<
     has(targetState, action.payload.path)
   ) {
     set(targetState, action.payload.path, action.payload.value)
-    set(targetRootState, action.payload.path, action.payload.value)
+    set(
+      targetRootState as Record<string, any>,
+      action.payload.path,
+      action.payload.value,
+    )
   }
 }
 
