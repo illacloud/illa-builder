@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Nástěnka",
             "form": "Anketa",
-            "list": "Panel administrace"
+            "list": "Panel administrace",
+            "table_guide": "Průvodce tabulkou",
+            "custom_login": "Vlastní přihlášení",
+            "run_script": "Spustit skript",
+            "calendar_guide": "Průvodce kalendářem",
+            "chat_guide": "Průvodce chatem"
           },
           "templates_description": {
             "table": "Pro vytvoření řídicích panelů použijte tabulky.",
             "form": "Použijte formuláře a vstupní komponenty k vytvoření aplikací.",
-            "list": "Použít komponentu seznamu k zobrazení a správě informací"
+            "list": "Použít komponentu seznamu k zobrazení a správě informací",
+            "table_guide": "Funkce podporované tabulkou a jak je používat",
+            "custom_login": "Chcete-li omezit pouze uživatele ve vaší databázi, můžete přistupovat k vašim veřejným aplikacím",
+            "run_script": "Pružné zacházení s událostmi pomocí Run skriptu",
+            "calendar_guide": "Správa událostí a prohlížení událostí s komponentou kalendáře"
           },
           "modal": {
             "title": "Rozštěpení a nasazení",
@@ -2385,7 +2394,8 @@
         "Deleted": "Smazáno {{operationTargetName}}",
         "Updated": "Aktualizováno {{operationTargetName}}",
         "Moved": "Přesunuto {{operationTargetName}}",
-        "Reseted": "Resetováno {{operationTargetName}}"
+        "Reseted": "Resetováno {{operationTargetName}}",
+        "Restored": "Obnoveno z {{versionName}}"
       },
       "save": "Uložit jako historii",
       "history": "Historie",
