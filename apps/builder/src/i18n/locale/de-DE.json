@@ -1223,7 +1223,8 @@
           "startUploading": "Hochladen starten",
           "uploadSuccessfully": "Upload erfolgreich",
           "uploadFailed": "Upload fehlgeschlagen",
-          "onMenuSelect": "Element auswählen"
+          "onMenuSelect": "Element auswählen",
+          "on_menu_select": "Menüpunkt auswählen"
         },
         "image_list": {
           "title": "Bilder",
