@@ -16,13 +16,13 @@ export const searchForefatherSectionNodeDisplayName = (
   const rootState = store.getState()
   const widgetsLayoutInfo = getExecutionWidgetLayoutInfo(rootState)
   const currentLayoutInfo = widgetsLayoutInfo[currentDisplayName]
-  if (currentLayoutInfo.widgetType !== "SECTION_NODE") {
+  if (currentLayoutInfo && currentLayoutInfo.widgetType !== "SECTION_NODE") {
     if (currentLayoutInfo.parentNode === "root") {
       return null
     }
     return searchForefatherSectionNodeDisplayName(currentLayoutInfo.parentNode)
   } else {
-    return currentLayoutInfo.displayName
+    return currentLayoutInfo ? currentLayoutInfo.displayName : null
   }
 }
 
