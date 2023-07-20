@@ -60,9 +60,10 @@ export const FileList: FC<FileListProps> = (props) => {
             onClick={(e) => handleClickItem(e, item)}
           >
             <Checkbox
-            colorScheme={colorScheme}
+              colorScheme={colorScheme}
               disabled={
-                item.type === "folder" || item.type === "anonymousFolder"
+                item.type === GCS_OBJECT_TYPE.FOLDER ||
+                item.type === GCS_OBJECT_TYPE.ANONYMOUS_FOLDER
               }
               key={item.id}
               onChange={(v) => onChange(v, item)}
