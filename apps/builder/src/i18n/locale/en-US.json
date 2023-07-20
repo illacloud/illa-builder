@@ -1719,8 +1719,7 @@
         "menu": {
           "logo": "Logo",
           "title": "Title",
-          "only_show_icon": "Only show icon",
-          "groupLabels": "Group labels"
+          "only_show_icon": "Only show icon"
         }
       },
       "setter_tooltip": {
@@ -2317,7 +2316,7 @@
           },
           "title": {
             "tutorial": "Tutorial",
-            "templates": "Templates"
+            "templates": "Guide"
           },
           "onboarding_app": {
             "name": "Onboarding app",
