@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Titlu",
-          "only_show_icon": "Arată doar pictograma"
-        }
+          "only_show_icon": "Arată doar pictograma",
+          "groupLabels": "Etichete grup"
+        },
+        "hover_bg_color": "Fundal Hover"
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
