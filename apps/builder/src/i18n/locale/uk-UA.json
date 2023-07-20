@@ -1223,7 +1223,8 @@
           "startUploading": "Почати вивантаження",
           "uploadSuccessfully": "Завантажено успішно",
           "uploadFailed": "Не завантажено",
-          "onMenuSelect": "Виберіть елемент"
+          "onMenuSelect": "Виберіть елемент",
+          "on_menu_select": "Виберіть пункт меню"
         },
         "image_list": {
           "title": "Малюнки",
