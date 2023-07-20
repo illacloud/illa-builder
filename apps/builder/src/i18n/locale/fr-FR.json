@@ -1222,7 +1222,8 @@
           "replay": "Répondre",
           "startUploading": "Commencer à télécharger",
           "uploadSuccessfully": "Téléchargé avec succès",
-          "uploadFailed": "Échec du téléchargement"
+          "uploadFailed": "Échec du téléchargement",
+          "onMenuSelect": "Sélectionner un élément"
         },
         "image_list": {
           "title": "Images",
