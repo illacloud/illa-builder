@@ -3604,7 +3604,8 @@
         "upgrade": "Upgrade",
         "insufficient_license_title": "Insufficient licenses",
         "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
-        "insufficient_license_button": "Add licenses"
+        "insufficient_license_button": "Add licenses",
+        "pricing": "editor/mo, yearly($20/editor, monthly)"
       },
       "expired": {
         "owner": "Your subscription has expired. To continue using, please renew it.",
