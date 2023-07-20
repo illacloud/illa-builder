@@ -2,7 +2,6 @@ import { FC, useCallback, useContext, useMemo } from "react"
 import { Breadcrumb, BreadcrumbItem } from "@illa-design/react"
 import { ROOT_PATH } from "@/widgetLibrary/DrivePickerWidget/constants"
 import { DrivePickerContext } from "@/widgetLibrary/DrivePickerWidget/context"
-import { spanBreadcrumbItemStyle } from "./style"
 
 export const FileBreadCrumb: FC = () => {
   const { currentPath, totalPath, updatePath } = useContext(DrivePickerContext)
@@ -12,9 +11,7 @@ export const FileBreadCrumb: FC = () => {
       if (last) {
         return
       }
-      return () => {
-        updatePath(path)
-      }
+      updatePath(path)
     },
     [updatePath],
   )
@@ -23,7 +20,8 @@ export const FileBreadCrumb: FC = () => {
     if (!currentPath) {
       return [
         {
-          title: <span css={spanBreadcrumbItemStyle(true)}>{ROOT_PATH}</span>,
+          path: ROOT_PATH,
+          title: ROOT_PATH,
           last: true,
         },
       ]
@@ -35,23 +33,21 @@ export const FileBreadCrumb: FC = () => {
       const path = `${limitPath}${breadcrumbPath}`
       const isLast = index === array.length - 1
       return {
-        title: (
-          <span
-            css={spanBreadcrumbItemStyle(isLast)}
-            onClick={handleClickBreadcrumb(path, isLast)}
-          >
-            {item}
-          </span>
-        ),
+        path,
+        title: item,
         last: isLast,
       }
     })
-  }, [currentPath, totalPath, handleClickBreadcrumb])
+  }, [currentPath, totalPath])
 
   return (
-    <Breadcrumb flexWrap="wrap">
+    <Breadcrumb
+      flexWrap="wrap"
+      onClickPath={handleClickBreadcrumb}
+      blockRouterChange
+    >
       {breadList.map((item, index) => (
-        <BreadcrumbItem last={item.last ?? false} key={index}>
+        <BreadcrumbItem last={item.last ?? false} key={index} href={item.path}>
           {item.title}
         </BreadcrumbItem>
       ))}
