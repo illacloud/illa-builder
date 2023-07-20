@@ -3604,7 +3604,8 @@
         "upgrade": "Vylepšit",
         "insufficient_license_title": "Nedostatek licencí",
         "insufficient_license_description": "Chcete-li pozvat více editorů, zvyšte prosím nejprve licenci. Všichni členové vašeho týmu mohou používat funkce ILLA Cloud Plus. Konkrétní přístup ke každému prvku závisí na úloze každého člena. ",
-        "insufficient_license_button": "Přidat licence"
+        "insufficient_license_button": "Přidat licence",
+        "pricing": "editor/mo, ročně(20/editor, měsíčně)"
       },
       "expired": {
         "owner": "Vaše předplatné vypršelo. Chcete-li pokračovat v používání, obnovte jej prosím.",
