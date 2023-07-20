@@ -1222,7 +1222,8 @@
           "replay": "Ответ",
           "startUploading": "Начать загрузку",
           "uploadSuccessfully": "Загружено успешно",
-          "uploadFailed": "Не удалось загрузить"
+          "uploadFailed": "Не удалось загрузить",
+          "onMenuSelect": "Выберите элемент"
         },
         "image_list": {
           "title": "Изображения",
