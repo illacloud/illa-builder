@@ -1719,7 +1719,8 @@
         "menu": {
           "logo": "Logo",
           "title": "Title",
-          "only_show_icon": "Only show icon"
+          "only_show_icon": "Only show icon",
+          "groupLabels": "Group labels"
         }
       },
       "setter_tooltip": {
