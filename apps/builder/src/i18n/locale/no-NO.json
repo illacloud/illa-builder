@@ -1222,7 +1222,8 @@
           "replay": "Svar",
           "startUploading": "Start opplasting",
           "uploadSuccessfully": "Opplasting var vellykket",
-          "uploadFailed": "Kan ikke laste opp"
+          "uploadFailed": "Kan ikke laste opp",
+          "onMenuSelect": "Velg element"
         },
         "image_list": {
           "title": "Bilder",
