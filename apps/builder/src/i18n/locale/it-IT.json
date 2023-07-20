@@ -1223,7 +1223,8 @@
           "startUploading": "Inizia a caricare",
           "uploadSuccessfully": "Caricato con successo",
           "uploadFailed": "Impossibile caricare",
-          "onMenuSelect": "Seleziona elemento"
+          "onMenuSelect": "Seleziona elemento",
+          "on_menu_select": "Seleziona voce di menu"
         },
         "image_list": {
           "title": "Immagini",
