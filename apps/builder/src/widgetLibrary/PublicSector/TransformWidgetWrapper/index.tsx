@@ -289,12 +289,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
               } else {
                 set(needRunEvents, realPath, calcValue)
               }
-              set(needRunEvents, realPath, calcValue)
             }
           } catch (e) {
             console.log(e)
           }
         })
+
         needRunEvents.forEach((scriptObj: any) => {
           runEventHandler(scriptObj, finalContext)
         })
