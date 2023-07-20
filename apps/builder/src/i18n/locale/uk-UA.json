@@ -1222,7 +1222,8 @@
           "replay": "Відповідь",
           "startUploading": "Почати вивантаження",
           "uploadSuccessfully": "Завантажено успішно",
-          "uploadFailed": "Не завантажено"
+          "uploadFailed": "Не завантажено",
+          "onMenuSelect": "Виберіть елемент"
         },
         "image_list": {
           "title": "Малюнки",
