@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Tittel",
-          "only_show_icon": "Vis kun ikon"
-        }
+          "only_show_icon": "Vis kun ikon",
+          "groupLabels": "Lag gruppe-etiketter"
+        },
+        "hover_bg_color": "Svevende bakgrunn"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
