@@ -90,7 +90,7 @@ export const DrivePickerProvider: FC<Props> = (props) => {
 
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
-    updatePath(path)
+    updatePath(path || ROOT_PATH)
     setFileList([])
   }, [path, updatePath])
 
