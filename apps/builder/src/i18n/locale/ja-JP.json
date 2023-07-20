@@ -1223,7 +1223,8 @@
           "startUploading": "アップロードを開始",
           "uploadSuccessfully": "正常にアップロードしました",
           "uploadFailed": "アップロードに失敗しました",
-          "onMenuSelect": "アイテムを選択"
+          "onMenuSelect": "アイテムを選択",
+          "on_menu_select": "メニュー項目を選択"
         },
         "image_list": {
           "title": "イメージ",
