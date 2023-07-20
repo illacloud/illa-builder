@@ -98,7 +98,12 @@ export const StaticMenuWidget: FC<MenuWidgetProps> = (props) => {
         )
       } else if (valuePath.length === 2) {
         const sub = items?.findIndex((i) => i.value === valuePath[0])
-        if (sub && items && "subItems" in items[sub]) {
+        if (
+          sub != undefined &&
+          sub !== -1 &&
+          items &&
+          "subItems" in items[sub]
+        ) {
           const subIndex = (items[sub] as SubMenuProps).subItems?.findIndex(
             (i) => i.value === valuePath[1],
           )
@@ -125,16 +130,18 @@ export const StaticMenuWidget: FC<MenuWidgetProps> = (props) => {
 
   const handleClickSubMenu = useCallback(
     (value: string) => {
-      const index = items?.findIndex((i) => i.value === value) ?? 0
-      const paths = ["items", `${index}`, "events"]
-      triggerEventHandler(
-        "clickMenuItem",
-        convertPathToString(paths),
-        undefined,
-        (path) => {
-          return convertPathToString(toPath(path).slice(3))
-        },
-      )
+      const index = items?.findIndex((i) => i.value === value)
+      if (index != undefined && index !== -1) {
+        const paths = ["items", `${index}`, "events"]
+        triggerEventHandler(
+          "clickMenuItem",
+          convertPathToString(paths),
+          undefined,
+          (path) => {
+            return convertPathToString(toPath(path).slice(3))
+          },
+        )
+      }
     },
     [items, triggerEventHandler],
   )
@@ -190,50 +197,47 @@ export const DynamicMenuWidget: FC<MenuWidgetProps> = (props) => {
     handleUpdateMultiExecutionResult,
   } = props
 
-  const items: MenuItemProps[] = useMemo(() => {
-    let items = []
+  const total = mappedOption?.values?.length ?? 0
 
-    const total = mappedOption?.values?.length ?? 0
+  const items: MenuItemProps[] = []
 
-    if (mappedOption && total !== 0) {
-      for (let i = 0; i < total; i++) {
-        if (mappedOption.groupLabels?.[i]) {
-          let parent = items.find(
-            (v) => v.label === mappedOption.groupLabels?.[i],
-          ) as SubMenuProps
+  if (mappedOption && total !== 0) {
+    for (let i = 0; i < total; i++) {
+      if (mappedOption.groupLabels?.[i]) {
+        let parent = items.find(
+          (v) => v.label === mappedOption.groupLabels?.[i],
+        ) as SubMenuProps
 
-          if (!parent) {
-            parent = {
-              label:
-                typeof mappedOption.groupLabels?.[i] === "string"
-                  ? mappedOption.groupLabels?.[i]
-                  : JSON.stringify(mappedOption.groupLabels?.[i]),
-              value:
-                typeof mappedOption.groupLabels?.[i] === "string"
-                  ? mappedOption.groupLabels?.[i]
-                  : JSON.stringify(mappedOption.groupLabels?.[i]),
-              subItems: [],
-            } as SubMenuProps
-            items.push(parent)
-          }
-          parent.subItems!!.push({
-            disabled: mappedOption.disables?.[i],
-            hidden: mappedOption.hidden?.[i],
-            label: mappedOption.labels?.[i],
-            value: mappedOption.values?.[i],
-          } as MenuItemProps)
-        } else {
-          items.push({
-            disabled: mappedOption.disables?.[i],
-            hidden: mappedOption.hidden?.[i],
-            label: mappedOption.labels?.[i],
-            value: mappedOption.values?.[i],
-          } as SubMenuProps)
+        if (!parent) {
+          parent = {
+            label:
+              typeof mappedOption.groupLabels?.[i] === "string"
+                ? mappedOption.groupLabels?.[i]
+                : JSON.stringify(mappedOption.groupLabels?.[i]),
+            value:
+              typeof mappedOption.groupLabels?.[i] === "string"
+                ? mappedOption.groupLabels?.[i]
+                : JSON.stringify(mappedOption.groupLabels?.[i]),
+            subItems: [],
+          } as SubMenuProps
+          items.push(parent)
         }
+        parent.subItems!!.push({
+          disabled: mappedOption.disables?.[i],
+          hidden: mappedOption.hidden?.[i],
+          label: mappedOption.labels?.[i],
+          value: mappedOption.values?.[i],
+        } as MenuItemProps)
+      } else {
+        items.push({
+          disabled: mappedOption.disables?.[i],
+          hidden: mappedOption.hidden?.[i],
+          label: mappedOption.labels?.[i],
+          value: mappedOption.values?.[i],
+        } as SubMenuProps)
       }
     }
-    return items
-  }, [mappedOption])
+  }
 
   return (
     <AutoHeightContainer updateComponentHeight={updateComponentHeight}>
