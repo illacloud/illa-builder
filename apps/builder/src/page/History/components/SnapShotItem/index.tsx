@@ -53,7 +53,7 @@ const getOperationKeyFromBroadcast = (type: string, payload: any) => {
     return "editor.history.operation.Reseted"
   }
   // Supplementary rules
-  if (type === "components/setGlobalStateReducer") {
+  if (reduxAction === "setGlobalStateReducer") {
     if (payload?.oldKey) {
       return "editor.history.operation.Updated"
     }
