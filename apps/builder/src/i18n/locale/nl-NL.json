@@ -3604,7 +3604,8 @@
         "upgrade": "Upgraden",
         "insufficient_license_title": "Onvoldoende licenties",
         "insufficient_license_description": "Om meer tekstverwerkers uit te nodigen, moet je eerst de licenties verhogen. Alle leden van je team kunnen de functies voor ILLA Cloud Plus gebruiken. De specifieke toegang tot elke functie is afhankelijk van de rol van elk lid. ",
-        "insufficient_license_button": "Licenties toevoegen"
+        "insufficient_license_button": "Licenties toevoegen",
+        "pricing": "editor/mo, jaarlijks ($20/editor, maandelijks)"
       },
       "expired": {
         "owner": "Uw abonnement is verlopen. Vernieuw uw abonnement om door te gaan met gebruiken.",
