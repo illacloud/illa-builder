@@ -522,7 +522,9 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
                 "displayName",
                 `list-child-${index}-${currentItem.displayName}`,
               )
-              set(currentItem, "props.disabled", disabled || false)
+              if (disabled != undefined) {
+                set(currentItem, "props.disabled", disabled)
+              }
             }
             return currentItem
           })
@@ -534,7 +536,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
             const validationPaths = rawWidget.$validationPaths
             if (isObject(validationPaths)) {
               Object.keys(validationPaths).forEach((path) => {
-                const validationType = validationPaths[path]
+                const validationType = validationPaths[path] as VALIDATION_TYPES
                 const validationFunc = validationFactory[validationType]
                 const currentValue = get(item, `props.${path}`, "")
                 const res = validationFunc?.(currentValue, "")

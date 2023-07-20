@@ -70,13 +70,13 @@ export const generateComponentNodeByWidgetInfo = (
   } else {
     props = cloneDeep(defaults)
   }
-  if (isObject(props) && Object.hasOwn(props, "formDataKey")) {
+  if (isObject(props) && props.hasOwnProperty("formDataKey")) {
     props.formDataKey = `{{${displayName}.displayName}}`
   }
 
   if (
     isObject(props) &&
-    Object.hasOwn(props, "events") &&
+    props.hasOwnProperty("events") &&
     Array.isArray(props.events)
   ) {
     props.events = props.events.map((event) => {
@@ -222,7 +222,7 @@ export const newGenerateComponentNode = (
 
   if (
     isObject(props) &&
-    Object.hasOwn(props, "events") &&
+    props.hasOwnProperty("events") &&
     Array.isArray(props.events)
   ) {
     props.events = props.events.map((event) => {

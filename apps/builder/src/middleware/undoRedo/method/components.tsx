@@ -24,7 +24,7 @@ export const componentsSnapShot = (
           displayNames: action.payload.map(
             (item: ComponentNode) => item.displayName,
           ),
-          source: "undoRedo", // TODO: 待更新
+          source: "undoRedo",
         },
         from: action.from,
       }
@@ -66,7 +66,7 @@ export const componentsSnapShot = (
         type: "components/deleteComponentNodeReducer",
         payload: {
           displayNames: [action.payload.modalComponentNode.displayName],
-          source: "undoRedo", // TODO: 待更新
+          source: "undoRedo",
         },
         from: action.from,
       }

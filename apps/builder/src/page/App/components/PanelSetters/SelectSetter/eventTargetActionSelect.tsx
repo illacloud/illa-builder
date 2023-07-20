@@ -3,8 +3,8 @@ import { useSelector } from "react-redux"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
-import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
+import SearchSelectSetter from "./searchSelect"
 
 const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
   const actionList = useSelector(getActionList)
@@ -28,7 +28,7 @@ const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
     return []
   }, [actionList, selectedAction?.displayName, selectedContext.widgetOrAction])
 
-  return <BaseSelectSetter {...props} options={actionOptions} />
+  return <SearchSelectSetter {...props} options={actionOptions} />
 }
 
 EventTargetActionSelect.displayName = "EventTargetActionSelect"

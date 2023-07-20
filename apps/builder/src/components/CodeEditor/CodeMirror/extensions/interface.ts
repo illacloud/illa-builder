@@ -1,6 +1,7 @@
 export enum CODE_TYPE {
   "EXPRESSION" = "EXPRESSION",
   "FUNCTION" = "FUNCTION",
+  "NO_METHOD_FUNCTION" = "NO_METHOD_FUNCTION",
 }
 
 export enum CODE_LANG {

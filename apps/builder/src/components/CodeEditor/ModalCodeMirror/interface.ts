@@ -12,6 +12,7 @@ export interface ModalBodyContent {
   onFocus?: CodeEditorProps["onFocus"]
   onBlur?: CodeEditorProps["onBlur"]
   value: string
+  codeType?: CodeEditorProps["codeType"]
 }
 
 export interface FooterContentProps {

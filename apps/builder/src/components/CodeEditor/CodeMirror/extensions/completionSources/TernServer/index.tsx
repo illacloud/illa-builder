@@ -69,7 +69,8 @@ export const ternSeverCompletionSource = (
 ): ((
   context: CompletionContext,
 ) => CompletionResult | Promise<CompletionResult | null> | null) => {
-  const isFunction = codeType === CODE_TYPE.FUNCTION
+  const isFunction =
+    codeType === CODE_TYPE.FUNCTION || codeType === CODE_TYPE.NO_METHOD_FUNCTION
   return (context: CompletionContext) => {
     const isCursorInDynamicFlag = checkCursorInDynamicFlag(context, isFunction)
     if (!isCursorInDynamicFlag) {

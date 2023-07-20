@@ -1222,7 +1222,8 @@
           "replay": "Svar",
           "startUploading": "Start opplasting",
           "uploadSuccessfully": "Opplasting var vellykket",
-          "uploadFailed": "Kan ikke laste opp"
+          "uploadFailed": "Kan ikke laste opp",
+          "onMenuSelect": "Velg element"
         },
         "image_list": {
           "title": "Bilder",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Last ned som ZIP"
         },
         "download_from_drive": "Last ned fra ILLA-stasjon",
-        "save_to_drive": "Lagre til ILLA-stasjon"
+        "save_to_drive": "Lagre til ILLA-stasjon",
+        "menu": {
+          "logo": "Logo",
+          "title": "Tittel",
+          "only_show_icon": "Vis kun ikon",
+          "groupLabels": "Lag gruppe-etiketter"
+        },
+        "hover_bg_color": "Svevende bakgrunn"
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "Tabellen kan ikke angis i en liste"
+        },
+        "menu": {
+          "logo": "Sett din logo med URL",
+          "title": "Angi en tittel som firmanavn her",
+          "only_show_icon": "TO hidden the label og kun vis ikon"
         }
       },
       "setter_option": {
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Kontrollpanel",
             "form": "Undersøkelse",
-            "list": "Panel for admin"
+            "list": "Panel for admin",
+            "table_guide": "Tabell guide",
+            "custom_login": "Tilpasset innlogging",
+            "run_script": "Kjør skript",
+            "calendar_guide": "Kalender guide",
+            "chat_guide": "Chat guide"
           },
           "templates_description": {
             "table": "Bruk tabellene for å lage dashbord.",
             "form": "Bruk skjema- og inngangskomponenter for å lage skjemaapper.",
-            "list": "Bruk en listekomponent for å vise og administrere informasjon"
+            "list": "Bruk en listekomponent for å vise og administrere informasjon",
+            "table_guide": "Funksjonene som støttes av tabellen og hvordan de skal brukes",
+            "custom_login": "For å begrense bare brukere i databasen har tilgang til dine offentlige apper",
+            "run_script": "Fleksibel hendelsesbehandling med Run Script",
+            "calendar_guide": "Administrere hendelser og vise hendelser med kalender-komponent"
           },
           "modal": {
             "title": "Fork og distribuere",
@@ -2375,7 +2397,8 @@
         "Deleted": "Slettet {{operationTargetName}}",
         "Updated": "Oppdatert {{operationTargetName}}",
         "Moved": "Flyttet {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Reseted": "Reseted {{operationTargetName}}",
+        "Restored": "Gjenopprettet fra {{versionName}}"
       },
       "save": "Lagre som historikk",
       "history": "Historikk",

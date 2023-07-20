@@ -1222,7 +1222,8 @@
           "replay": "Svara",
           "startUploading": "Börja ladda upp",
           "uploadSuccessfully": "Uppladdningen lyckades",
-          "uploadFailed": "Det gick inte att ladda upp"
+          "uploadFailed": "Det gick inte att ladda upp",
+          "onMenuSelect": "Välj objekt"
         },
         "image_list": {
           "title": "Bilder",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Ladda ner som ZIP"
         },
         "download_from_drive": "Ladda ner från ILLA Drive",
-        "save_to_drive": "Spara till ILLA Drive"
+        "save_to_drive": "Spara till ILLA Drive",
+        "menu": {
+          "logo": "Logotyp",
+          "title": "Titel",
+          "only_show_icon": "Visa bara ikon",
+          "groupLabels": "Grupp etiketter"
+        },
+        "hover_bg_color": "Hover bakgrund"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "Tabellen kan inte läggas i en lista"
+        },
+        "menu": {
+          "logo": "Ange din logotyp med en URL",
+          "title": "Ange en titel som företagsnamn här",
+          "only_show_icon": "Att gömma etiketten och bara visa ikonen"
         }
       },
       "setter_option": {
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Instrumentpanel",
             "form": "Enkät",
-            "list": "Admin panel"
+            "list": "Admin panel",
+            "table_guide": "Tabell guide",
+            "custom_login": "Anpassad inloggning",
+            "run_script": "Kör skript",
+            "calendar_guide": "Kalender guide",
+            "chat_guide": "Chatt guide"
           },
           "templates_description": {
             "table": "Använd tabeller för att skapa instrumentpaneler.",
             "form": "Använd form- och inmatningskomponenter för att skapa formulärappar.",
-            "list": "Använd en listkomponent för att visa och hantera information"
+            "list": "Använd en listkomponent för att visa och hantera information",
+            "table_guide": "Funktionerna som stöds av tabellen och hur man använder dem",
+            "custom_login": "För att begränsa endast användare i din databas kan du komma åt dina offentliga appar",
+            "run_script": "Flexibel händelsehantering med Run Script",
+            "calendar_guide": "Hantera händelser och visa händelser med kalenderkomponenten"
           },
           "modal": {
             "title": "Gaffla och distribuera",
@@ -2375,7 +2397,8 @@
         "Deleted": "Raderad {{operationTargetName}}",
         "Updated": "Uppdaterad {{operationTargetName}}",
         "Moved": "Flyttad {{operationTargetName}}",
-        "Reseted": "Återställt {{operationTargetName}}"
+        "Reseted": "Återställt {{operationTargetName}}",
+        "Restored": "Återställd från {{versionName}}"
       },
       "save": "Spara som historik",
       "history": "Historik",

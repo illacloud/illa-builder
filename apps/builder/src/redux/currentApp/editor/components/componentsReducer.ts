@@ -807,5 +807,9 @@ export const deleteGlobalStateByKeyReducer: CaseReducer<
   if (!state || !state.props) return
   const { key } = action.payload
   const originGlobalData = state.props?.globalData || {}
-  if (Object.hasOwn(originGlobalData, key)) delete originGlobalData[key]
+  if (
+    (Object.hasOwn && Object.hasOwn(originGlobalData, key)) ||
+    Object.prototype.hasOwnProperty.call(originGlobalData, key)
+  )
+    delete originGlobalData[key]
 }

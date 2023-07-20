@@ -1222,7 +1222,8 @@
           "replay": "Répondre",
           "startUploading": "Commencer à télécharger",
           "uploadSuccessfully": "Téléchargé avec succès",
-          "uploadFailed": "Échec du téléchargement"
+          "uploadFailed": "Échec du téléchargement",
+          "onMenuSelect": "Sélectionner un élément"
         },
         "image_list": {
           "title": "Images",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Télécharger en tant que ZIP"
         },
         "download_from_drive": "Télécharger depuis le lecteur ILLA",
-        "save_to_drive": "Enregistrer sur ILLA Drive"
+        "save_to_drive": "Enregistrer sur ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titre de la page",
+          "only_show_icon": "Afficher uniquement l'icône",
+          "groupLabels": "Étiquettes de groupe"
+        },
+        "hover_bg_color": "Arrière-plan du survol"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "La table ne peut pas être mise dans une liste"
+        },
+        "menu": {
+          "logo": "Définissez votre logo avec une URL",
+          "title": "Définir un titre comme le nom de la société ici",
+          "only_show_icon": "À masquer le libellé et ne montrer que l'icône"
         }
       },
       "setter_option": {
@@ -2306,7 +2319,7 @@
           },
           "title": {
             "tutorial": "Tutoriel",
-            "templates": "Modèles"
+            "templates": "Tutoriel"
           },
           "onboarding_app": {
             "name": "Application d'intégration",
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Tableau de bord",
             "form": "Enquête",
-            "list": "Panneau d'administration"
+            "list": "Panneau d'administration",
+            "table_guide": "Guide de table",
+            "custom_login": "Connexion personnalisée",
+            "run_script": "Exécuter le script",
+            "calendar_guide": "Guide du calendrier",
+            "chat_guide": "Guide du chat"
           },
           "templates_description": {
             "table": "Utiliser des tables pour créer des tableaux de bord.",
             "form": "Utilisez les composants de formulaire et de saisie pour créer des applications de formulaire.",
-            "list": "Utiliser un composant de liste pour afficher et gérer les informations"
+            "list": "Utiliser un composant de liste pour afficher et gérer les informations",
+            "table_guide": "Les fonctionnalités supportées par Table et comment les utiliser",
+            "custom_login": "Pour restreindre seulement les utilisateurs de votre base de données peuvent accéder à vos applications publiques",
+            "run_script": "Gestion des événements souple avec le script d'exécution",
+            "calendar_guide": "Gestion des événements et visualisation des événements avec le composant Calendrier"
           },
           "modal": {
             "title": "Fourche et déploiement",
@@ -2375,7 +2397,8 @@
         "Deleted": "Deleted {{operationTargetName}}",
         "Updated": "Mise à jour {{operationTargetName}}",
         "Moved": "A déplacé {{operationTargetName}}",
-        "Reseted": "Remise à zéro {{operationTargetName}}"
+        "Reseted": "Remise à zéro {{operationTargetName}}",
+        "Restored": "Restauré à partir de {{versionName}}"
       },
       "save": "Enregistrer comme historique",
       "history": "Historique",

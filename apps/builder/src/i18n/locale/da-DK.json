@@ -1222,7 +1222,8 @@
           "replay": "Svar",
           "startUploading": "Start upload",
           "uploadSuccessfully": "Uploadet succesfuldt",
-          "uploadFailed": "Upload mislykkedes"
+          "uploadFailed": "Upload mislykkedes",
+          "onMenuSelect": "Vælg element"
         },
         "image_list": {
           "title": "Billeder",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Download som et postnummer"
         },
         "download_from_drive": "Download fra ILLA drev",
-        "save_to_drive": "Gem til ILLA drev"
+        "save_to_drive": "Gem til ILLA drev",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titel",
+          "only_show_icon": "Vis kun ikon",
+          "groupLabels": "Gruppér etiketter"
+        },
+        "hover_bg_color": "Hover baggrund"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "Tabel kan ikke indsættes i en liste"
+        },
+        "menu": {
+          "logo": "Sæt dit logo med en URL",
+          "title": "Angiv en titel såsom firmanavn her",
+          "only_show_icon": "Til skjult etiket og kun vis ikon"
         }
       },
       "setter_option": {
@@ -2306,7 +2319,7 @@
           },
           "title": {
             "tutorial": "Vejledning",
-            "templates": "Skabeloner"
+            "templates": "Guide"
           },
           "onboarding_app": {
             "name": "Onboarding app",
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Instrumentbræt",
             "form": "Undersøgelse",
-            "list": "Admin panel"
+            "list": "Admin panel",
+            "table_guide": "Tabel guide",
+            "custom_login": "Tilpasset login",
+            "run_script": "Kør Script",
+            "calendar_guide": "Kalender guide",
+            "chat_guide": "Chat guide"
           },
           "templates_description": {
             "table": "Brug tabeller til at oprette dashboards.",
             "form": "Brug formular- og inputkomponenter til at oprette formular-apps.",
-            "list": "Brug en listekomponent til at vise og håndtere information"
+            "list": "Brug en listekomponent til at vise og håndtere information",
+            "table_guide": "De funktioner, der understøttes af tabel og hvordan du bruger dem",
+            "custom_login": "For at begrænse kun brugere i din database kan få adgang til dine offentlige apps",
+            "run_script": "Fleksibel hændelseshåndtering med Kør Script",
+            "calendar_guide": "Håndtering af begivenheder og begivenheder med kalenderkomponenten"
           },
           "modal": {
             "title": "Gaffel og implementering",
@@ -2375,7 +2397,8 @@
         "Deleted": "Slettede {{operationTargetName}}",
         "Updated": "Opdateret {{operationTargetName}}",
         "Moved": "Flyttet {{operationTargetName}}",
-        "Reseted": "Nulstillede {{operationTargetName}}"
+        "Reseted": "Nulstillede {{operationTargetName}}",
+        "Restored": "Genoprettet fra {{versionName}}"
       },
       "save": "Gem som historik",
       "history": "Historik",

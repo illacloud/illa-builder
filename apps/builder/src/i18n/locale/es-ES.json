@@ -1222,7 +1222,8 @@
           "replay": "Responder",
           "startUploading": "Empezar a subir",
           "uploadSuccessfully": "Subido con éxito",
-          "uploadFailed": "Error al subir"
+          "uploadFailed": "Error al subir",
+          "onMenuSelect": "Seleccionar elemento"
         },
         "image_list": {
           "title": "Imágenes",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Descargar como ZIP"
         },
         "download_from_drive": "Descargar de ILLA Drive",
-        "save_to_drive": "Guardar en ILLA Drive"
+        "save_to_drive": "Guardar en ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Título",
+          "only_show_icon": "Mostrar sólo icono",
+          "groupLabels": "Etiquetas de grupo"
+        },
+        "hover_bg_color": "Fondo de Hover"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "La tabla no se puede poner en una lista"
+        },
+        "menu": {
+          "logo": "Establece tu logotipo con una URL",
+          "title": "Establecer aquí un título como el nombre de la empresa",
+          "only_show_icon": "Para ocultar la etiqueta y sólo mostrar el icono"
         }
       },
       "setter_option": {
@@ -2306,7 +2319,7 @@
           },
           "title": {
             "tutorial": "Tutorial",
-            "templates": "Plantillas"
+            "templates": "Guía"
           },
           "onboarding_app": {
             "name": "Aplicación de embarque",
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Tablero",
             "form": "Encuesta",
-            "list": "Panel de administración"
+            "list": "Panel de administración",
+            "table_guide": "Guía de tabla",
+            "custom_login": "Usuario personalizado",
+            "run_script": "Ejecutar Script",
+            "calendar_guide": "Guía del calendario",
+            "chat_guide": "Guía de chat"
           },
           "templates_description": {
             "table": "Utilice tablas para crear paneles.",
             "form": "Utilice los componentes de formulario y entrada para crear aplicaciones de formulario.",
-            "list": "Utilice un componente de lista para mostrar y administrar información"
+            "list": "Utilice un componente de lista para mostrar y administrar información",
+            "table_guide": "Las características soportadas por la tabla y cómo usarlas",
+            "custom_login": "Para restringir sólo los usuarios de tu base de datos pueden acceder a tus aplicaciones públicas",
+            "run_script": "Gestión flexible de eventos con Ejecutar Script",
+            "calendar_guide": "Gestionar eventos y ver eventos con el componente Calendar"
           },
           "modal": {
             "title": "Bifurcar y desplegar",
@@ -2375,7 +2397,8 @@
         "Deleted": "Eliminado {{operationTargetName}}",
         "Updated": "Actualizado {{operationTargetName}}",
         "Moved": "Mover {{operationTargetName}}",
-        "Reseted": "Reiniciado {{operationTargetName}}"
+        "Reseted": "Reiniciado {{operationTargetName}}",
+        "Restored": "Restaurado de {{versionName}}"
       },
       "save": "Guardar como historial",
       "history": "Historial",

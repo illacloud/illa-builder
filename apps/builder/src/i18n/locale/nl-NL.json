@@ -1222,7 +1222,8 @@
           "replay": "Beantwoorden",
           "startUploading": "Uploaden starten",
           "uploadSuccessfully": "Succesvol geüpload",
-          "uploadFailed": "Uploaden mislukt"
+          "uploadFailed": "Uploaden mislukt",
+          "onMenuSelect": "Selecteer een item"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Downloaden als ZIP"
         },
         "download_from_drive": "Downloaden van ILLA Drive",
-        "save_to_drive": "Opslaan op ILLA Drive"
+        "save_to_drive": "Opslaan op ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Aanspreektitel",
+          "only_show_icon": "Alleen pictogram weergeven",
+          "groupLabels": "Groep labels"
+        },
+        "hover_bg_color": "Muisover achtergrond"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "Tabel kan niet in een lijst geplaatst worden"
+        },
+        "menu": {
+          "logo": "Stel uw logo in met een URL",
+          "title": "Stel hier een titel in zoals bedrijfsnaam",
+          "only_show_icon": "Verbergen van het label en alleen pictogram tonen"
         }
       },
       "setter_option": {
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Dashboard",
             "form": "Vragenlijst",
-            "list": "Beheerder paneel"
+            "list": "Beheerder paneel",
+            "table_guide": "Tabel gids",
+            "custom_login": "Aangepaste login",
+            "run_script": "Script uitvoeren",
+            "calendar_guide": "Kalender gids",
+            "chat_guide": "Chat gids"
           },
           "templates_description": {
             "table": "Gebruik tabellen om dashboards te maken.",
             "form": "Gebruik formulier- en invoercomponenten om formulierapps te maken.",
-            "list": "Gebruik een lijstcomponent om informatie weer te geven en te beheren"
+            "list": "Gebruik een lijstcomponent om informatie weer te geven en te beheren",
+            "table_guide": "De functies ondersteund door de tabel en hoe ze te gebruiken",
+            "custom_login": "Om alleen gebruikers in uw database te beperken heeft u toegang tot uw openbare apps",
+            "run_script": "Flexibele afhandeling met Script Uitvoeren",
+            "calendar_guide": "Beheer events en kijkgebeurtenissen met het Agenda-component"
           },
           "modal": {
             "title": "Fork en implementatie",
@@ -2375,7 +2397,8 @@
         "Deleted": "Verwijderd {{operationTargetName}}",
         "Updated": "Bijgewerkt {{operationTargetName}}",
         "Moved": "Verplaatst {{operationTargetName}}",
-        "Reseted": "{{operationTargetName}} gereset"
+        "Reseted": "{{operationTargetName}} gereset",
+        "Restored": "Hersteld van {{versionName}}"
       },
       "save": "Opslaan als geschiedenis",
       "history": "Geschiedenis",

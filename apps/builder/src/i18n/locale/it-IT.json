@@ -1222,7 +1222,8 @@
           "replay": "Rispondi",
           "startUploading": "Inizia a caricare",
           "uploadSuccessfully": "Caricato con successo",
-          "uploadFailed": "Impossibile caricare"
+          "uploadFailed": "Impossibile caricare",
+          "onMenuSelect": "Seleziona elemento"
         },
         "image_list": {
           "title": "Immagini",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Scarica come ZIP"
         },
         "download_from_drive": "Scarica da ILLA Drive",
-        "save_to_drive": "Salva su ILLA Drive"
+        "save_to_drive": "Salva su ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titolo",
+          "only_show_icon": "Mostra solo l'icona",
+          "groupLabels": "Etichette di gruppo"
+        },
+        "hover_bg_color": "Sfondo del mouse"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "La tabella non può essere inserita in una lista"
+        },
+        "menu": {
+          "logo": "Imposta il tuo logo con un URL",
+          "title": "Imposta qui un titolo come il nome dell'azienda",
+          "only_show_icon": "Per nascondere l'etichetta e mostrare solo l'icona"
         }
       },
       "setter_option": {
@@ -2306,7 +2319,7 @@
           },
           "title": {
             "tutorial": "Tutorial",
-            "templates": "Modelli"
+            "templates": "Guida"
           },
           "onboarding_app": {
             "name": "Onboarding app",
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Dashboard",
             "form": "Sondaggio",
-            "list": "Pannello amministratore"
+            "list": "Pannello amministratore",
+            "table_guide": "Guida alla tabella",
+            "custom_login": "Accesso personalizzato",
+            "run_script": "Esegui Script",
+            "calendar_guide": "Guida al calendario",
+            "chat_guide": "Guida alla chat"
           },
           "templates_description": {
             "table": "Usa le tabelle per creare dashboards.",
             "form": "Usa i componenti di form e input per creare le app del modulo.",
-            "list": "Usa un componente lista per visualizzare e gestire le informazioni"
+            "list": "Usa un componente lista per visualizzare e gestire le informazioni",
+            "table_guide": "Le caratteristiche supportate dalla tabella e come utilizzarle",
+            "custom_login": "Per limitare solo gli utenti nel tuo database puoi accedere alle tue app pubbliche",
+            "run_script": "Gestione flessibile degli eventi con Esegui script",
+            "calendar_guide": "Gestione degli eventi e visualizzazione degli eventi con componente Calendario"
           },
           "modal": {
             "title": "Fork e deploy",
@@ -2375,7 +2397,8 @@
         "Deleted": "Eliminato {{operationTargetName}}",
         "Updated": "Aggiornato {{operationTargetName}}",
         "Moved": "Spostato {{operationTargetName}}",
-        "Reseted": "Ripristinato {{operationTargetName}}"
+        "Reseted": "Ripristinato {{operationTargetName}}",
+        "Restored": "Ripristinato da {{versionName}}"
       },
       "save": "Salva come cronologia",
       "history": "Storico",

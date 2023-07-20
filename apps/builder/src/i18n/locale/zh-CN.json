@@ -1222,7 +1222,8 @@
           "replay": "答复",
           "startUploading": "开始上传",
           "uploadSuccessfully": "上传成功",
-          "uploadFailed": "上传失败"
+          "uploadFailed": "上传失败",
+          "onMenuSelect": "选中菜单项"
         },
         "image_list": {
           "title": "图片",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "下载为ZIP"
         },
         "download_from_drive": "从ILLA Drive下载",
-        "save_to_drive": "保存到ILLA Drive"
+        "save_to_drive": "保存到ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "标题",
+          "only_show_icon": "只展示icon",
+          "groupLabels": "群组标签"
+        },
+        "hover_bg_color": "悬停背景"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "Table不能被放入List"
+        },
+        "menu": {
+          "logo": "使用URL设置您的logo",
+          "title": "在此设置标题，如公司名称",
+          "only_show_icon": "隐藏菜单的文案，只显示icon"
         }
       },
       "setter_option": {
@@ -2306,7 +2319,7 @@
           },
           "title": {
             "tutorial": "教程",
-            "templates": "模板"
+            "templates": "使用教程"
           },
           "onboarding_app": {
             "name": "新手引导",
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "仪表板",
             "form": "调查问卷",
-            "list": "管理面板"
+            "list": "管理面板",
+            "table_guide": "表格使用教程",
+            "custom_login": "自定义登录",
+            "run_script": "运行Script",
+            "calendar_guide": "日历使用教程",
+            "chat_guide": "对话组件教程"
           },
           "templates_description": {
             "table": "使用表格和其他组件创建仪表板。",
             "form": "使用表单和输入组件创建表单，例如满意度调查、预售表单等",
-            "list": "使用列表组件显示和管理信息"
+            "list": "使用列表组件显示和管理信息",
+            "table_guide": "表格支持的功能和使用方法",
+            "custom_login": "限制只有您数据库里的用户可以访问您的公开项目",
+            "run_script": "使用Script灵活处理事件",
+            "calendar_guide": "使用日历组件做事项管理和查看"
           },
           "modal": {
             "title": "复制并部署",
@@ -2375,7 +2397,8 @@
         "Deleted": "删除 {{operationTargetName}}",
         "Updated": "更新 {{operationTargetName}}",
         "Moved": "移动 {{operationTargetName}}",
-        "Reseted": "重置 {{operationTargetName}}"
+        "Reseted": "重置 {{operationTargetName}}",
+        "Restored": "恢复到{{versionName}}"
       },
       "save": "保存为历史记录",
       "history": "历史记录",
@@ -3688,8 +3711,8 @@
   },
   "new_deploy": {
     "title": {
-      "private_app": "公开项目",
-      "public_app": "私密项目"
+      "private_app": "私密项目",
+      "public_app": "公开项目"
     },
     "desc": {
       "private_app": "仅团队成员可以访问",

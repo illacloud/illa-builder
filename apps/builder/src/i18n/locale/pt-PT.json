@@ -1222,7 +1222,8 @@
           "replay": "Responder",
           "startUploading": "Iniciar upload",
           "uploadSuccessfully": "Carregado com sucesso",
-          "uploadFailed": "Falha ao fazer upload"
+          "uploadFailed": "Falha ao fazer upload",
+          "onMenuSelect": "Selecione o item"
         },
         "image_list": {
           "title": "Imagens",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Baixar como um ZIP"
         },
         "download_from_drive": "Baixar do ILLA Drive",
-        "save_to_drive": "Salvar no disco ILLA"
+        "save_to_drive": "Salvar no disco ILLA",
+        "menu": {
+          "logo": "Logotipo",
+          "title": "Título",
+          "only_show_icon": "Mostrar apenas ícone",
+          "groupLabels": "Rótulos do grupo"
+        },
+        "hover_bg_color": "Fundo Hover"
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "A tabela não pode ser inserida em uma lista"
+        },
+        "menu": {
+          "logo": "Defina o seu logotipo com uma URL",
+          "title": "Defina um título como o nome da empresa aqui",
+          "only_show_icon": "Ocultar o rótulo e mostrar apenas o ícone"
         }
       },
       "setter_option": {
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Painel",
             "form": "Questionário",
-            "list": "Painel de administração"
+            "list": "Painel de administração",
+            "table_guide": "Guia de tabela",
+            "custom_login": "Login personalizado",
+            "run_script": "Executar Script",
+            "calendar_guide": "Guia de calendário",
+            "chat_guide": "Guia de chat"
           },
           "templates_description": {
             "table": "Usar tabelas para criar dashboards.",
             "form": "Use os componentes de formulário e de entrada para criar aplicativos.",
-            "list": "Use um componente de lista para exibir e gerenciar as informações"
+            "list": "Use um componente de lista para exibir e gerenciar as informações",
+            "table_guide": "Os recursos suportados pela Tabela e como usá-los",
+            "custom_login": "Para restringir apenas usuários na sua base de dados pode acessar seus aplicativos públicos",
+            "run_script": "Manipulação de eventos flexível com o Script Run",
+            "calendar_guide": "Gerenciando eventos e visualizando eventos com o componente Agenda"
           },
           "modal": {
             "title": "Fork e deploy",
@@ -2375,7 +2397,8 @@
         "Deleted": "{{operationTargetName}} Excluído",
         "Updated": "Updated {{operationTargetName}}",
         "Moved": "Mover em {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Reseted": "Reseted {{operationTargetName}}",
+        "Restored": "Restaurado do {{versionName}}"
       },
       "save": "Salvar como histórico",
       "history": "Histórico",

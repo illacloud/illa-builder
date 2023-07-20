@@ -1,11 +1,11 @@
-import { cloudRequest } from "@/api/http"
+import { authCloudRequest } from "@/api/http"
 import {
   CurrentUser,
   UserInfoResponse,
 } from "@/redux/currentUser/currentUserState"
 
 export const fetchChangeNickname = (nickname: string) => {
-  return cloudRequest<UserInfoResponse>({
+  return authCloudRequest<UserInfoResponse>({
     url: "/users/nickname",
     method: "PATCH",
     data: {
@@ -15,7 +15,7 @@ export const fetchChangeNickname = (nickname: string) => {
 }
 
 export const fetchChangeLanguage = (language: string) => {
-  return cloudRequest<CurrentUser>({
+  return authCloudRequest<CurrentUser>({
     url: "/users/language",
     method: "PATCH",
     data: {
@@ -28,7 +28,7 @@ export const fetchChangePassword = (
   currentPassword: string,
   newPassword: string,
 ) => {
-  return cloudRequest({
+  return authCloudRequest({
     url: "/users/password",
     method: "PATCH",
     data: {

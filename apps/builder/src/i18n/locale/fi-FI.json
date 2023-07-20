@@ -1222,7 +1222,8 @@
           "replay": "Vastaa",
           "startUploading": "Aloita lataaminen",
           "uploadSuccessfully": "Ladattu onnistuneesti",
-          "uploadFailed": "Lataaminen epäonnistui"
+          "uploadFailed": "Lataaminen epäonnistui",
+          "onMenuSelect": "Valitse kohde"
         },
         "image_list": {
           "title": "Kuvat",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Lataa ZIP:nä"
         },
         "download_from_drive": "Lataa ILLA Drivesta",
-        "save_to_drive": "Tallenna ILLA Drivelle"
+        "save_to_drive": "Tallenna ILLA Drivelle",
+        "menu": {
+          "logo": "Logo",
+          "title": "Otsikko",
+          "only_show_icon": "Näytä vain kuvake",
+          "groupLabels": "Ryhmän tunnisteet"
+        },
+        "hover_bg_color": "Paina tausta"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "Taulua ei voi lisätä luetteloon"
+        },
+        "menu": {
+          "logo": "Aseta logosi URL-osoitteen avulla",
+          "title": "Aseta otsikko, kuten yrityksen nimi tähän",
+          "only_show_icon": "Piilotettu otsikko ja näytä vain kuvake"
         }
       },
       "setter_option": {
@@ -2306,7 +2319,7 @@
           },
           "title": {
             "tutorial": "Opastus",
-            "templates": "Mallit"
+            "templates": "Opas"
           },
           "onboarding_app": {
             "name": "Perehdytyksen sovellus",
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Hallintapaneeli",
             "form": "Kysely",
-            "list": "Ylläpito paneeli"
+            "list": "Ylläpito paneeli",
+            "table_guide": "Taulukon opas",
+            "custom_login": "Mukautettu kirjautuminen",
+            "run_script": "Suorita Skripti",
+            "calendar_guide": "Kalenterin opas",
+            "chat_guide": "Keskustelun opas"
           },
           "templates_description": {
             "table": "Käytä taulukoita luodaksesi dashboards.",
             "form": "Käytä lomakkeen ja syötteen komponentteja lomakkeen sovellusten luomiseen.",
-            "list": "Käytä listan komponenttia tietojen näyttämiseen ja hallintaan"
+            "list": "Käytä listan komponenttia tietojen näyttämiseen ja hallintaan",
+            "table_guide": "Taulukossa tuetut ominaisuudet ja miten niitä käytetään",
+            "custom_login": "Vain tietokannan käyttäjien rajoittaminen voi käyttää julkisia sovelluksia",
+            "run_script": "Joustava tapahtumakäsittely Run Script -toiminnolla",
+            "calendar_guide": "Tapahtumien hallinta ja tapahtumien katselu Kalenterin komponentti"
           },
           "modal": {
             "title": "Haarukka ja käyttöönotto",
@@ -2375,7 +2397,8 @@
         "Deleted": "Poistettu {{operationTargetName}}",
         "Updated": "Päivitetty {{operationTargetName}}",
         "Moved": "Siirretty {{operationTargetName}}",
-        "Reseted": "Palautettu {{operationTargetName}}"
+        "Reseted": "Palautettu {{operationTargetName}}",
+        "Restored": "Restored from {{versionName}}"
       },
       "save": "Tallenna historiana",
       "history": "Historia",

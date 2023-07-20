@@ -1222,7 +1222,8 @@
           "replay": "Reply",
           "startUploading": "Start uploading",
           "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "uploadFailed": "Failed to upload",
+          "onMenuSelect": "Select item"
         },
         "image_list": {
           "title": "Images",
@@ -1715,7 +1716,14 @@
           "downloadZIP": "Download as a ZIP"
         },
         "download_from_drive": "Download from ILLA Drive",
-        "save_to_drive": "Save to ILLA Drive"
+        "save_to_drive": "Save to ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Title",
+          "only_show_icon": "Only show icon",
+          "groupLabels": "Group labels"
+        },
+        "hover_bg_color": "Hover background"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -1968,6 +1976,11 @@
         },
         "list": {
           "table_disallowed": "Table can't be put in a list"
+        },
+        "menu": {
+          "logo": "Set your logo with a URL",
+          "title": "Set a title such as company name here",
+          "only_show_icon": "TO hidden the label and only show icon"
         }
       },
       "setter_option": {
@@ -2306,7 +2319,7 @@
           },
           "title": {
             "tutorial": "Tutorial",
-            "templates": "Templates"
+            "templates": "Guide"
           },
           "onboarding_app": {
             "name": "Onboarding app",
@@ -2320,12 +2333,21 @@
           "templates_name": {
             "table": "Dashboard",
             "form": "Survey",
-            "list": "Admin panel"
+            "list": "Admin panel",
+            "table_guide": "Table guide",
+            "custom_login": "Custom login",
+            "run_script": "Run Script",
+            "calendar_guide": "Calendar guide",
+            "chat_guide": "Chat guide"
           },
           "templates_description": {
             "table": "Use tables to create dashboards.",
             "form": "Use form and input components to create form apps.",
-            "list": "Use a list component to display and manage information"
+            "list": "Use a list component to display and manage information",
+            "table_guide": "The features supported by Table and how to use them",
+            "custom_login": "To restrict only users in your database can access your public apps",
+            "run_script": "Flexible event handling with Run Script",
+            "calendar_guide": "Managing events and viewing events with Calendar component"
           },
           "modal": {
             "title": "Fork and deploy",
@@ -2375,7 +2397,8 @@
         "Deleted": "Deleted {{operationTargetName}}",
         "Updated": "Updated {{operationTargetName}}",
         "Moved": "Moved {{operationTargetName}}",
-        "Reseted": "Reseted {{operationTargetName}}"
+        "Reseted": "Reseted {{operationTargetName}}",
+        "Restored": "Restored from {{versionName}}"
       },
       "save": "Save as history",
       "history": "History",
