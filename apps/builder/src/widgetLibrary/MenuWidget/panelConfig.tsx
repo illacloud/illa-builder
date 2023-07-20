@@ -196,16 +196,6 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: `${baseWidgetName}-layout-onlyShowIcon`,
-        labelName: i18n.t("editor.inspect.setter_label.menu.only_show_icon"),
-        labelDesc: i18n.t("editor.inspect.setter_tips.menu.only_show_icon"),
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        attrName: "onlyShowIcon",
-        useCustomLayout: true,
-        openDynamic: true,
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-      {
         id: `${baseWidgetName}-layout-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),

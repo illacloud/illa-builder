@@ -69,6 +69,5 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
     menuTitle: "ILLA",
     menuLogo:
       "https://cloud-api.illacloud.com/drive/f/0f3ef4da-7741-45f8-b054-57458c244214",
-    onlyShowIcon: false,
   },
 }
