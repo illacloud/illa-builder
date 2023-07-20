@@ -88,6 +88,12 @@ export const DrivePickerProvider: FC<Props> = (props) => {
   const [modalVisible, setModalVisible] = useState(false)
   const appInfo = useSelector(getAppInfo)
 
+  const handleCloseModal = useCallback(() => {
+    setModalVisible(false)
+    updatePath(path)
+    setFileList([])
+  }, [path, updatePath])
+
   const submitSelect = useCallback(
     (items: FileToPanel[]) => {
       return new Promise(async (resolve, reject) => {
@@ -132,7 +138,7 @@ export const DrivePickerProvider: FC<Props> = (props) => {
             type,
           }))
           await handleUpdateResult(value, files)
-          setModalVisible(false)
+          handleCloseModal()
           resolve(true)
         } catch (e) {
           reject(e)
@@ -141,9 +147,12 @@ export const DrivePickerProvider: FC<Props> = (props) => {
     },
     [
       allowAnonymousUse,
-      appInfo,
+      appInfo.appId,
+      appInfo.config.public,
+      appInfo.deployed,
       expirationType,
       expiredTime,
+      handleCloseModal,
       handleUpdateResult,
       useHotlink,
     ],
@@ -174,12 +183,6 @@ export const DrivePickerProvider: FC<Props> = (props) => {
     },
     [allowAnonymousUse, appInfo],
   )
-
-  const handleCloseModal = useCallback(() => {
-    setModalVisible(false)
-    updatePath(path)
-    setFileList([])
-  }, [path, updatePath])
 
   const value = {
     modalVisible,
