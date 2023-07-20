@@ -10,7 +10,6 @@ import {
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
-import { isObject } from "@/utils/typeHelper"
 
 export const getRawTree = createSelector(
   [
@@ -164,30 +163,6 @@ export const getCurrentPageDisplayName = createSelector(
     return pageSortedKey[currentPageIndex] as string
   },
 )
-
-export const removeIgnoredKeys = (result: Record<string, unknown>) => {
-  return Object.keys(result).reduce(
-    (acc: Record<string, unknown>, key: string) => {
-      const componentOrAction = result[key]
-      if (isObject(componentOrAction)) {
-        const updatedComponentOrAction = Object.keys(componentOrAction).reduce(
-          (obj: Record<string, unknown>, innerKey: string) => {
-            if (!innerKey.startsWith("$")) {
-              obj[innerKey] = componentOrAction[innerKey]
-            }
-            return obj
-          },
-          {},
-        )
-        acc[key] = updatedComponentOrAction
-      } else {
-        acc[key] = componentOrAction
-      }
-      return acc
-    },
-    {},
-  )
-}
 
 export const getExecutionResultToGlobalCodeMirror = createSelector(
   [getExecutionResult],

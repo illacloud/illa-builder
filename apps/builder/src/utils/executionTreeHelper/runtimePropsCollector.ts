@@ -8,7 +8,6 @@ import {
   getExecutionResult,
   getExecutionResultToCurrentPageCodeMirror,
   getExecutionResultToGlobalCodeMirror,
-  removeIgnoredKeys,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import store from "@/store"
 import { runActionWithExecutionResult } from "../action/runAction"
@@ -168,8 +167,7 @@ class ILLAEditorRuntimePropsCollector {
   public getGlobalCalcContextWithLimit(otherContext?: Record<string, unknown>) {
     const rootState = store.getState()
     const executionResult = getExecutionResultToGlobalCodeMirror(rootState)
-    const removeIgnoredKeysResult = removeIgnoredKeys(executionResult)
-    return merge({}, this._runtimeProps, removeIgnoredKeysResult, otherContext)
+    return merge({}, this._runtimeProps, executionResult, otherContext)
   }
 }
 
