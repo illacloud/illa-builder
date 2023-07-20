@@ -1715,7 +1715,12 @@
           "downloadZIP": "Stáhnout jako ZIP"
         },
         "download_from_drive": "Stáhnout z ILLA Drive",
-        "save_to_drive": "Uložit do ILLA disku"
+        "save_to_drive": "Uložit do ILLA disku",
+        "menu": {
+          "logo": "Logo",
+          "title": "Hlava 1 – Celkem",
+          "only_show_icon": "Zobrazit pouze ikonu"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1968,6 +1973,11 @@
         },
         "list": {
           "table_disallowed": "Tabulka nemůže být zařazena do seznamu"
+        },
+        "menu": {
+          "logo": "Nastavte logo pomocí URL",
+          "title": "Zde nastavte název společnosti, jako je název společnosti",
+          "only_show_icon": "Ukázat štítek a zobrazit pouze ikonu"
         }
       },
       "setter_option": {

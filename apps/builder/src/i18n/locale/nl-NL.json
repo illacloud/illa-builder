@@ -1715,7 +1715,12 @@
           "downloadZIP": "Downloaden als ZIP"
         },
         "download_from_drive": "Downloaden van ILLA Drive",
-        "save_to_drive": "Opslaan op ILLA Drive"
+        "save_to_drive": "Opslaan op ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Aanspreektitel",
+          "only_show_icon": "Alleen pictogram weergeven"
+        }
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1968,6 +1973,11 @@
         },
         "list": {
           "table_disallowed": "Tabel kan niet in een lijst geplaatst worden"
+        },
+        "menu": {
+          "logo": "Stel uw logo in met een URL",
+          "title": "Stel hier een titel in zoals bedrijfsnaam",
+          "only_show_icon": "Verbergen van het label en alleen pictogram tonen"
         }
       },
       "setter_option": {
