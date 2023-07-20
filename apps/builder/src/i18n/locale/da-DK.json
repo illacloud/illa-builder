@@ -1223,7 +1223,8 @@
           "startUploading": "Start upload",
           "uploadSuccessfully": "Uploadet succesfuldt",
           "uploadFailed": "Upload mislykkedes",
-          "onMenuSelect": "Vælg element"
+          "onMenuSelect": "Vælg element",
+          "on_menu_select": "Vælg menupunkt"
         },
         "image_list": {
           "title": "Billeder",
