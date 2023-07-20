@@ -37,8 +37,6 @@ import { runAllEventHandler } from "./runActionEventHandler"
 import { runTransformer } from "./runActionTransformer"
 import { transResponse } from "./transResponse"
 
-export const actionDisplayNameMapFetchResult: Record<string, any> = {}
-
 const message = createMessage()
 
 const checkCanSendRequest = (
@@ -174,7 +172,6 @@ export const runActionWithExecutionResult = async (
       illaInnerTransformedResponse.data ?? "",
     )
 
-    actionDisplayNameMapFetchResult[displayName] = userTransformedData
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,

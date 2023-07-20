@@ -46,7 +46,10 @@ import {
   getSelectedComponentDisplayNames,
   isShowDot,
 } from "@/redux/config/configSelector"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getContainerListDisplayNameMappedChildrenNodeDisplayName,
+  searchDSLByDisplayName,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   getCurrentPageDisplayName,
@@ -85,6 +88,10 @@ const RenderComponentCanvasContainer: FC<
     minHeight,
     handleUpdateHeight,
   } = props
+
+  const containerListMapChildName = useSelector(
+    getContainerListDisplayNameMappedChildrenNodeDisplayName,
+  )
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null)
   const firstDragRef = useRef(true)
@@ -157,6 +164,22 @@ const RenderComponentCanvasContainer: FC<
         }
 
         if (!dropResult || !dropResult.shape) {
+          return {
+            isDropOnCanvas: false,
+          }
+        }
+
+        const hasTable = draggedComponents.some(
+          (components) => components.widgetType === "TABLE_WIDGET",
+        )
+        const isListChildrenCanvas = Object.values(
+          containerListMapChildName,
+        ).some((childDisplayNames) => childDisplayNames.includes(displayName))
+
+        if (hasTable && isListChildrenCanvas) {
+          messageHandler.error({
+            content: t("editor.inspect.setter_tips.list.table_disallowed"),
+          })
           return {
             isDropOnCanvas: false,
           }
@@ -268,7 +291,14 @@ const RenderComponentCanvasContainer: FC<
         }
       },
     }),
-    [isEditMode, unitWidth, fixedBounds, scrollContainerScrollTop],
+    [
+      isEditMode,
+      unitWidth,
+      fixedBounds,
+      scrollContainerScrollTop,
+      displayName,
+      containerListMapChildName,
+    ],
   )
 
   const autoScrollTimeID = useRef<number>(0)

@@ -23,7 +23,7 @@ export const generatorEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-event`,
         labelName: i18n.t("editor.inspect.setter_label.event"),
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         attrName: "eventType",
         options: events,
       },
@@ -95,7 +95,7 @@ export const generatorEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-actionMethod`,
         labelName: i18n.t("editor.inspect.setter_label.method"),
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         attrName: "widgetMethod",
         bindAttrName: ["queryID"],
         shown: (type) => type === "datasource",
@@ -438,7 +438,7 @@ export const generatorEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-state-method`,
         labelName: i18n.t("editor.inspect.setter_label.method"),
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         attrName: "globalStateMethod",
         bindAttrName: ["stateDisplayName"],
         shown: (stateDisplayName) => !!stateDisplayName,
@@ -476,7 +476,7 @@ export const generatorEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-storage-method`,
         labelName: i18n.t("editor.inspect.setter_label.method"),
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         attrName: "localStorageMethod",
         bindAttrName: ["actionType"],
         shown: (type) => type === "setLocalStorage",
@@ -621,7 +621,7 @@ export const generatorEventHandlerConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-notification-type`,
         labelName: i18n.t("editor.inspect.setter_label.type"),
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         attrName: "notificationType",
         bindAttrName: ["actionType"],
         shown: (type) => type === "showNotification",
@@ -731,7 +731,7 @@ export const generatorEventHandlerConfig = (
         labelName: i18n.t(
           "editor.inspect.setter_label.file_download.file_type",
         ),
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "fileType",
         bindAttrName: ["actionType"],

@@ -8,7 +8,7 @@ export const formatDataAsObject = (data: Record<string, any>[]) => {
     if (!Array.isArray(Object.keys(d))) return
     Object.keys(d).forEach((key) => {
       const value = d[key]
-      if (!Object.hasOwn(result, key)) {
+      if (!result.hasOwnProperty(key)) {
         result[key] = []
       }
       result[key].push(value)

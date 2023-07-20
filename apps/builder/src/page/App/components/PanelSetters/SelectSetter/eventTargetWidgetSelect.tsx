@@ -5,8 +5,8 @@ import {
   getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
+import SearchSelectSetter from "./searchSelect"
 
 const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
   const { widgetDisplayName, value, widgetOrAction } = props
@@ -79,7 +79,7 @@ const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     widgetOrAction === "WIDGET" ? widgetFinalValue : actionFinalValue
 
   return (
-    <BaseSelectSetter
+    <SearchSelectSetter
       {...props}
       value={finalValue as string}
       options={finalOptions}
