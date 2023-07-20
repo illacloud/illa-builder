@@ -3708,8 +3708,8 @@
   },
   "new_deploy": {
     "title": {
-      "private_app": "公开项目",
-      "public_app": "私密项目"
+      "private_app": "私密项目",
+      "public_app": "公开项目"
     },
     "desc": {
       "private_app": "仅团队成员可以访问",
