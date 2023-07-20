@@ -3604,7 +3604,8 @@
         "upgrade": "升级",
         "insufficient_license_title": "许可证不足",
         "insufficient_license_description": "若要邀请更多编辑用户，请先增加许可证。您团队的所有成员都可以使用ILLA Cloud的功能。 每个功能是否可访问，取决于每个成员的角色设置。",
-        "insufficient_license_button": "添加许可证"
+        "insufficient_license_button": "添加许可证",
+        "pricing": "编辑者/月，年付(月付$20/编辑者)"
       },
       "expired": {
         "owner": "您的订阅已过期。要继续使用，请更新它。",
