@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Title",
-          "only_show_icon": "Only show icon"
-        }
+          "only_show_icon": "Only show icon",
+          "groupLabels": "Group labels"
+        },
+        "hover_bg_color": "Hover background"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",

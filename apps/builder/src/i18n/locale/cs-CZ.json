@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Hlava 1 – Celkem",
-          "only_show_icon": "Zobrazit pouze ikonu"
-        }
+          "only_show_icon": "Zobrazit pouze ikonu",
+          "groupLabels": "Skupinové štítky"
+        },
+        "hover_bg_color": "Pozadí při přechodu"
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",

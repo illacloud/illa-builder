@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Title",
-          "only_show_icon": "Only show icon"
-        }
+          "only_show_icon": "Only show icon",
+          "groupLabels": "Group labels"
+        },
+        "hover_bg_color": "Hover background"
       },
       "setter_tooltip": {
         "action": "구성 요소에 대한 작업은 쿼리, 구성 요소 조작 또는 리소스의 데이터 호출과 같은 작업을 트리거합니다. 여러 비동기 작업이 병렬로 실행됩니다.",

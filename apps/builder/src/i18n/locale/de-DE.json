@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Titel",
-          "only_show_icon": "Nur Symbol anzeigen"
-        }
+          "only_show_icon": "Nur Symbol anzeigen",
+          "groupLabels": "Gruppenbezeichnungen"
+        },
+        "hover_bg_color": "Hover-Hintergrund"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",

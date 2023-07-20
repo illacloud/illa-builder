@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logotipo",
           "title": "Título",
-          "only_show_icon": "Mostrar apenas ícone"
-        }
+          "only_show_icon": "Mostrar apenas ícone",
+          "groupLabels": "Rótulos do grupo"
+        },
+        "hover_bg_color": "Fundo Hover"
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",

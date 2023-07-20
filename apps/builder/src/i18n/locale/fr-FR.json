@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Titre de la page",
-          "only_show_icon": "Afficher uniquement l'icône"
-        }
+          "only_show_icon": "Afficher uniquement l'icône",
+          "groupLabels": "Étiquettes de groupe"
+        },
+        "hover_bg_color": "Arrière-plan du survol"
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
