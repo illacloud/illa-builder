@@ -2423,7 +2423,8 @@
         "October": "oktober",
         "November": "november",
         "December": "Desember",
-        "final_node": "Ingen flere historie"
+        "final_node": "Ingen flere historie",
+        "label": "Vis bare"
       },
       "restore": "Gjenopprett denne versjonen",
       "message": {
