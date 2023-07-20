@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logotyp",
           "title": "Titel",
-          "only_show_icon": "Visa bara ikon"
-        }
+          "only_show_icon": "Visa bara ikon",
+          "groupLabels": "Grupp etiketter"
+        },
+        "hover_bg_color": "Hover bakgrund"
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",

@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "标题",
-          "only_show_icon": "只展示icon"
-        }
+          "only_show_icon": "只展示icon",
+          "groupLabels": "群组标签"
+        },
+        "hover_bg_color": "悬停背景"
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",

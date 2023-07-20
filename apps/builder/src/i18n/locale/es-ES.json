@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Título",
-          "only_show_icon": "Mostrar sólo icono"
-        }
+          "only_show_icon": "Mostrar sólo icono",
+          "groupLabels": "Etiquetas de grupo"
+        },
+        "hover_bg_color": "Fondo de Hover"
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",

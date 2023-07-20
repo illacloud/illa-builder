@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Otsikko",
-          "only_show_icon": "Näytä vain kuvake"
-        }
+          "only_show_icon": "Näytä vain kuvake",
+          "groupLabels": "Ryhmän tunnisteet"
+        },
+        "hover_bg_color": "Paina tausta"
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",

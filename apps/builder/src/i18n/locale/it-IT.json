@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Titolo",
-          "only_show_icon": "Mostra solo l'icona"
-        }
+          "only_show_icon": "Mostra solo l'icona",
+          "groupLabels": "Etichette di gruppo"
+        },
+        "hover_bg_color": "Sfondo del mouse"
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
