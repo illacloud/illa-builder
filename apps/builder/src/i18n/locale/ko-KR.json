@@ -1222,7 +1222,8 @@
           "replay": "Reply",
           "startUploading": "Start uploading",
           "uploadSuccessfully": "Uploaded successfully",
-          "uploadFailed": "Failed to upload"
+          "uploadFailed": "Failed to upload",
+          "onMenuSelect": "Select item"
         },
         "image_list": {
           "title": "이미지",

@@ -1222,7 +1222,8 @@
           "replay": "Απάντηση",
           "startUploading": "Εκκίνηση μεταφόρτωσης",
           "uploadSuccessfully": "Επιτυχής μεταφόρτωση",
-          "uploadFailed": "Αποτυχία μεταφόρτωσης"
+          "uploadFailed": "Αποτυχία μεταφόρτωσης",
+          "onMenuSelect": "Επιλογή αντικειμένου"
         },
         "image_list": {
           "title": "Εικόνες",

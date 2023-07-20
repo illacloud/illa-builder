@@ -1222,7 +1222,8 @@
           "replay": "Beantwoorden",
           "startUploading": "Uploaden starten",
           "uploadSuccessfully": "Succesvol geüpload",
-          "uploadFailed": "Uploaden mislukt"
+          "uploadFailed": "Uploaden mislukt",
+          "onMenuSelect": "Selecteer een item"
         },
         "image_list": {
           "title": "Afbeeldingen",
