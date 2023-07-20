@@ -64,6 +64,7 @@ import { takeSnapShot } from "@/services/history"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isMAC } from "@/utils/userAgent"
 import {
   descriptionStyle,
   informationStyle,
@@ -72,6 +73,7 @@ import {
   rightContentStyle,
   rowCenter,
   saveFailedTipStyle,
+  spaceBetweenStyle,
   upgradeStyle,
   viewControlStyle,
 } from "./style"
@@ -290,7 +292,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     handleUpgradeModalVisible,
   ])
 
-  const handleSaveCurrentAppVersion = useCallback(async () => {
+  const handleSaveToHistory = useCallback(async () => {
     if (appId) {
       try {
         await takeSnapShot(appId)
@@ -413,8 +415,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                           <DropListItem
                             key="saveHistory"
                             value="saveHistory"
-                            title={t("editor.history.save")}
-                            onClick={handleSaveCurrentAppVersion}
+                            title={
+                              <div css={spaceBetweenStyle}>
+                                <span>{t("editor.history.save")}</span>
+                                {isMAC()
+                                  ? t("editor.history.save_keyboard.cmds")
+                                  : t("editor.history.save_keyboard.ctrls")}
+                              </div>
+                            }
+                            onClick={handleSaveToHistory}
                           />
                         )}
                         <DropListItem

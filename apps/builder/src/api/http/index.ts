@@ -1,10 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import { getCurrentPageTeamIdentifier, getTeamID } from "@/utils/team"
 import { ERROR_FLAG } from "../errorFlag"
-import { actionRuntimeAxios, authAxios, basicAxios, wsAxios } from "./base"
+import { actionRuntimeAxios, authAxios, basicAxios } from "./base"
 import {
   ACTION_REQUEST_PREFIX,
   BUILDER_REQUEST_PREFIX,
+  BUILDER_WS_REQUEST_PREFIX,
   CLOUD_REQUEST_PREFIX,
 } from "./constant"
 
@@ -72,27 +73,6 @@ export const actionBasicRequest = async <
   }
 }
 
-export const appWSRequest = async <
-  ResponseData = unknown,
-  RequestData = unknown,
->(
-  requestConfig: AxiosRequestConfig<RequestData>,
-): Promise<AxiosResponse<ResponseData, RequestData>> => {
-  try {
-    const teamId = getTeamID()
-    const finalURL = `/teams/${teamId}` + requestConfig.url
-    return await wsAxios.request({
-      ...requestConfig,
-      url: finalURL,
-    })
-  } catch (e) {
-    if (axios.isAxiosError(e) && e.response) {
-      throw e.response
-    }
-    throw e
-  }
-}
-
 interface RequestHandlerOptions {
   needTeamID?: boolean
   needTeamIdentifier?: boolean
@@ -124,6 +104,25 @@ export const builderRequest = async <
   const finalURL = getURLWithPrefix(
     requestConfig.url,
     BUILDER_REQUEST_PREFIX,
+    options,
+  )
+
+  return await basicRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const builderWSRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(
+    requestConfig.url,
+    BUILDER_WS_REQUEST_PREFIX,
     options,
   )
 

@@ -1,4 +1,4 @@
-import { appWSRequest, builderRequest } from "@/api/http"
+import { builderRequest, builderWSRequest } from "@/api/http"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { SnapshotList } from "@/redux/currentAppHistory/currentAppHistoryState"
 
@@ -50,7 +50,7 @@ export const recoverSnapShot = (appID: string, snapshotID: string) => {
   )
 }
 export const recoverSnapShotWS = (appID: string) => {
-  return appWSRequest({
+  return builderWSRequest({
     url: `/apps/${appID}/recoverSnapshot`,
     method: "POST",
   })

@@ -51,14 +51,14 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
     const { operation, operationTargetName } = history
 
     switch (operation) {
-      case Signal.MOVE_STATE:
-        return t("editor.history.operation.Moved", { operationTargetName })
-      case Signal.DELETE_STATE:
-        return t("editor.history.operation.Deleted", { operationTargetName })
       case Signal.CREATE_STATE:
         return t("editor.history.operation.Created", { operationTargetName })
+      case Signal.DELETE_STATE:
+        return t("editor.history.operation.Deleted", { operationTargetName })
       case Signal.UPDATE_STATE:
         return t("editor.history.operation.Updated", { operationTargetName })
+      case Signal.MOVE_STATE:
+        return t("editor.history.operation.Moved", { operationTargetName })
     }
   }
 
@@ -124,9 +124,8 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
               )}
             </div>
             <div css={contentStyle}>
-              {snapshot.modifyHistory.slice(-2).map((modify) => {
+              {snapshot.modifyHistory.map((modify) => {
                 const desc = getOperationDesc(modify)
-                if (!desc) return null
                 return (
                   <div key={modify.modifiedAt} css={modifyContentStyle}>
                     <div css={editorInfoStyle}>

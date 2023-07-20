@@ -1,6 +1,7 @@
-import { FC, HTMLAttributes } from "react"
+import { FC, HTMLAttributes, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Divider } from "@illa-design/react"
+import { Signal } from "@/api/ws/ILLA_PROTO"
 import { ActionArea } from "@/page/History/components/ActionArea"
 import { SnapShotItem } from "@/page/History/components/SnapShotItem"
 import {
@@ -16,23 +17,45 @@ import {
 
 interface SnapShotListProps extends HTMLAttributes<HTMLDivElement> {}
 
+const validOperations = [
+  Signal.CREATE_STATE,
+  Signal.DELETE_STATE,
+  Signal.UPDATE_STATE,
+  Signal.MOVE_STATE,
+]
+
 export const SnapShotList: FC<SnapShotListProps> = (props) => {
   const { className, ...rest } = props
   const snapshotList = useSelector(getCurrentAppSnapshotList)
   const hasMore = useSelector(getSnapshotListHasMore)
   const currentSnapshotID = useSelector(getCurrentAppSnapshotID)
 
+  const filteredSnapshotList = useMemo(() => {
+    return snapshotList.map((snapshot) => {
+      const modifyHistory = snapshot.modifyHistory
+        .filter((history) => {
+          return validOperations.includes(history.operation)
+        })
+        .slice(-2)
+
+      return {
+        ...snapshot,
+        modifyHistory,
+      }
+    })
+  }, [snapshotList])
+
   return (
     <div css={snapShotListWrapperStyle} className={className} {...rest}>
       <div css={headerContainerStyle}>Version History</div>
       <Divider />
       <div css={contentContainerStyle}>
-        {snapshotList.map((snapshot, index) => {
+        {filteredSnapshotList.map((snapshot, index) => {
           return (
             <SnapShotItem
               key={snapshot.snapshotID}
               snapshot={snapshot}
-              last={!hasMore && snapshotList.length - 1 === index}
+              last={!hasMore && filteredSnapshotList.length - 1 === index}
               selected={currentSnapshotID === snapshot.snapshotID}
             />
           )

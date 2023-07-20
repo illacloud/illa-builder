@@ -6,5 +6,6 @@ export const HTTP_REQUEST_PUBLIC_BASE_URL = isCloudVersion
     `${location.origin}`
 
 export const BUILDER_REQUEST_PREFIX = "/builder/api/v1"
+export const BUILDER_WS_REQUEST_PREFIX = "/builder-ws/api/v1"
 export const CLOUD_REQUEST_PREFIX = "/supervisor/api/v1"
 export const ACTION_REQUEST_PREFIX = "/action/api/v1"
