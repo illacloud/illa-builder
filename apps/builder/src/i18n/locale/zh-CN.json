@@ -1223,7 +1223,8 @@
           "startUploading": "开始上传",
           "uploadSuccessfully": "上传成功",
           "uploadFailed": "上传失败",
-          "onMenuSelect": "选中菜单项"
+          "onMenuSelect": "选中菜单项",
+          "on_menu_select": "选择菜单项"
         },
         "image_list": {
           "title": "图片",
