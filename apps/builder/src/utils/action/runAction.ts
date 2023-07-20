@@ -34,8 +34,8 @@ import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHe
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { fetchS3ClientResult } from "./fetchS3ClientResult"
 import { runAllEventHandler } from "./runActionEventHandler"
+import { runTransformer } from "./runActionTransformer"
 import { transResponse } from "./transResponse"
-import { updateFetchResultDisplayName } from "./updateFetchResult"
 
 const message = createMessage()
 
@@ -64,6 +64,7 @@ const fetchActionResult = async (
   appId: string,
   actionId: string,
   actionContent: ActionContent,
+  abortSignal?: AbortSignal,
 ) => {
   const canSendRequest = checkCanSendRequest(actionType, actionContent)
   if (!canSendRequest) {
@@ -76,45 +77,12 @@ const fetchActionResult = async (
     displayName,
     content: actionContent,
   }
-  return await fetchActionRunResult(appId, actionId, requestBody, isPublic)
-}
-
-const successHandler = (
-  actionType: ActionType,
-  displayName: string,
-  response: unknown,
-  successEvent: any[],
-  transformer: any,
-  isClientS3: boolean,
-) => {
-  const transedResponse = transResponse(actionType, response, isClientS3)
-  updateFetchResultDisplayName(displayName, transedResponse, transformer)
-  const realSuccessEvent: any[] = successEvent || []
-  runAllEventHandler(realSuccessEvent)
-}
-
-const failureHandler = (
-  displayName: string,
-  failedEvent: any[],
-  res?: AxiosResponse<ILLAApiError>,
-) => {
-  let runResult = {
-    error: true,
-    message: res?.data?.errorMessage || "An unknown error",
-  }
-
-  const realSuccessEvent: any[] = failedEvent || []
-  runAllEventHandler(realSuccessEvent)
-  store.dispatch(
-    executionActions.updateExecutionByDisplayNameReducer({
-      displayName: displayName,
-      value: {
-        data: undefined,
-        runResult: runResult,
-        isRunning: false,
-        endTime: new Date().getTime(),
-      },
-    }),
+  return await fetchActionRunResult(
+    appId,
+    actionId,
+    requestBody,
+    isPublic,
+    abortSignal,
   )
 }
 
@@ -125,6 +93,8 @@ export interface IExecutionActions extends ActionItem<ActionContent> {
 
 export const runActionWithExecutionResult = async (
   action: IExecutionActions,
+  needRunEventHandler: boolean = true,
+  abortSignal?: AbortSignal,
 ) => {
   const { displayName } = action as ActionItem<
     MysqlLikeAction | RestApiAction<BodyContent>
@@ -179,6 +149,7 @@ export const runActionWithExecutionResult = async (
       appId,
       currentActionId,
       actionContent,
+      abortSignal,
     )) as AxiosResponse<
       IActionRunResultResponseData<Record<string, any>[]>,
       unknown
@@ -191,22 +162,51 @@ export const runActionWithExecutionResult = async (
     if (isClientS3) {
       response = await fetchS3ClientResult(response.data.Rows, actionContent)
     }
-    successHandler(
+    const illaInnerTransformedResponse = transResponse(
       actionType,
-      displayName,
       response,
-      successEvent,
-      transformer,
       isClientS3,
     )
-    return Promise.resolve(true)
+    let userTransformedData = runTransformer(
+      transformer,
+      illaInnerTransformedResponse.data ?? "",
+    )
+
+    store.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: displayName,
+        value: {
+          data: userTransformedData,
+          runResult: undefined,
+          isRunning: false,
+          endTime: new Date().getTime(),
+        },
+      }),
+    )
+    if (needRunEventHandler) runAllEventHandler(successEvent)
+    return Promise.resolve(userTransformedData)
   } catch (e) {
-    if (isILLAAPiError(e)) {
-      failureHandler(displayName, failedEvent, e)
-      return Promise.reject(false)
+    let runResult = {
+      error: true,
+      message: "An unknown error",
     }
-    failureHandler(displayName, failedEvent)
-    return Promise.reject(false)
+    if (isILLAAPiError(e)) {
+      runResult.message = e.data?.errorMessage || "An unknown error"
+    }
+    store.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: displayName,
+        value: {
+          data: undefined,
+          runResult: runResult,
+          isRunning: false,
+          endTime: new Date().getTime(),
+        },
+      }),
+    )
+    if (needRunEventHandler) runAllEventHandler(failedEvent)
+
+    return Promise.reject(runResult)
   }
 }
 
@@ -218,22 +218,31 @@ export const runOriginAction = async (action: ActionItem<ActionContent>) => {
   return await runActionWithExecutionResult(realAction)
 }
 
-export const runActionWithDelay = (action: IExecutionActions) => {
+export const runActionWithDelay = (
+  action: IExecutionActions,
+  abortSignal?: AbortSignal,
+) => {
   const { config } = action
   if (!config || !config.advancedConfig) {
-    runActionWithExecutionResult(action)
+    runActionWithExecutionResult(action, true, abortSignal)
     return
   }
   const { advancedConfig } = config
   const { delayWhenLoaded } = advancedConfig
   return new Promise((resolve, reject) => {
     const timeoutID = window.setTimeout(async () => {
-      const result = await runActionWithExecutionResult(action)
       window.clearTimeout(timeoutID)
-      if (result) {
-        resolve(result)
-      } else {
-        reject(result)
+
+      try {
+        const result = await runActionWithExecutionResult(
+          action,
+          true,
+          abortSignal,
+        )
+        return resolve(result)
+      } catch (e) {
+        console.log("e", e)
+        return reject(e)
       }
     }, delayWhenLoaded as unknown as number)
   })

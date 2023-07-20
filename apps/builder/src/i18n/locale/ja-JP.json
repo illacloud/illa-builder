@@ -1715,7 +1715,12 @@
           "downloadZIP": "ZIP形式でダウンロード"
         },
         "download_from_drive": "ILLA Driveからダウンロード",
-        "save_to_drive": "ILLA ドライブに保存"
+        "save_to_drive": "ILLA ドライブに保存",
+        "menu": {
+          "logo": "ロゴ",
+          "title": "タイトル",
+          "only_show_icon": "アイコンのみ表示"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1967,7 +1972,12 @@
           "downloadZIP": "ファイルを1つのZIPとしてダウンロードするかどうかを設定する。 "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "テーブルをリストに入れることはできません"
+        },
+        "menu": {
+          "logo": "URLでロゴを設定",
+          "title": "会社名などのタイトルをここに設定",
+          "only_show_icon": "ラベルを非表示にしてアイコンのみ表示"
         }
       },
       "setter_option": {
@@ -2403,7 +2413,17 @@
       },
       "restore": "このバージョンを復元",
       "message": {
-        "version_change": "現在のアプリのバージョンが変更されました"
+        "version_change": "現在のアプリのバージョンが変更されました",
+        "suc": {
+          "save": "現在のバージョンは正常に履歴レコードとして保存されました",
+          "restore": "復元に成功しました",
+          "preview": "履歴レコードが正常に読み込まれました。"
+        },
+        "fail": {
+          "save": "保存に失敗しました",
+          "restore": "復元に失敗しました",
+          "preview": "履歴レコードの読み込みに失敗しました。"
+        }
       }
     }
   },

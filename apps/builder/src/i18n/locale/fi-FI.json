@@ -1715,7 +1715,12 @@
           "downloadZIP": "Lataa ZIP:nä"
         },
         "download_from_drive": "Lataa ILLA Drivesta",
-        "save_to_drive": "Tallenna ILLA Drivelle"
+        "save_to_drive": "Tallenna ILLA Drivelle",
+        "menu": {
+          "logo": "Logo",
+          "title": "Otsikko",
+          "only_show_icon": "Näytä vain kuvake"
+        }
       },
       "setter_tooltip": {
         "action": "Tekemäsi komponentit käynnistävät kyselyt, ohjaavat komponentteja tai soittavat resurssejesi tietoihin. Useita async toimintoja suoritetaan samanaikaisesti.",
@@ -1967,7 +1972,12 @@
           "downloadZIP": "Määrittää, ladataako tiedostot yhdeksi ZIP:ksi. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Taulua ei voi lisätä luetteloon"
+        },
+        "menu": {
+          "logo": "Aseta logosi URL-osoitteen avulla",
+          "title": "Aseta otsikko, kuten yrityksen nimi tähän",
+          "only_show_icon": "Piilotettu otsikko ja näytä vain kuvake"
         }
       },
       "setter_option": {
@@ -2403,7 +2413,17 @@
       },
       "restore": "Palauta tämä versio",
       "message": {
-        "version_change": "Sovelluksen nykyinen versio on muuttunut"
+        "version_change": "Sovelluksen nykyinen versio on muuttunut",
+        "suc": {
+          "save": "Nykyinen versio on onnistuneesti tallennettu historian tietueeksi",
+          "restore": "Palautus onnistui",
+          "preview": "Historiatietue on ladattu onnistuneesti."
+        },
+        "fail": {
+          "save": "Tallennus epäonnistui",
+          "restore": "Palautus epäonnistui",
+          "preview": "Historiatietueen lataus epäonnistui. @ info"
+        }
       }
     }
   },

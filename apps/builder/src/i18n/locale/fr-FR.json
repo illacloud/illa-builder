@@ -1715,7 +1715,12 @@
           "downloadZIP": "Télécharger en tant que ZIP"
         },
         "download_from_drive": "Télécharger depuis le lecteur ILLA",
-        "save_to_drive": "Enregistrer sur ILLA Drive"
+        "save_to_drive": "Enregistrer sur ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titre de la page",
+          "only_show_icon": "Afficher uniquement l'icône"
+        }
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1967,7 +1972,12 @@
           "downloadZIP": "Pour définir s'il faut télécharger les fichiers en un seul ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "La table ne peut pas être mise dans une liste"
+        },
+        "menu": {
+          "logo": "Définissez votre logo avec une URL",
+          "title": "Définir un titre comme le nom de la société ici",
+          "only_show_icon": "À masquer le libellé et ne montrer que l'icône"
         }
       },
       "setter_option": {
@@ -2403,7 +2413,17 @@
       },
       "restore": "Restaurer cette version",
       "message": {
-        "version_change": "La version actuelle de l'application a changé"
+        "version_change": "La version actuelle de l'application a changé",
+        "suc": {
+          "save": "La version actuelle est enregistrée avec succès en tant qu'historique",
+          "restore": "Restauré avec succès",
+          "preview": "L'historique a été chargé avec succès."
+        },
+        "fail": {
+          "save": "Échec de l'enregistrement",
+          "restore": "Échec de la restauration",
+          "preview": "Impossible de charger l'enregistrement de l'historique."
+        }
       }
     }
   },

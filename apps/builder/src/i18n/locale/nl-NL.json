@@ -1715,7 +1715,12 @@
           "downloadZIP": "Downloaden als ZIP"
         },
         "download_from_drive": "Downloaden van ILLA Drive",
-        "save_to_drive": "Opslaan op ILLA Drive"
+        "save_to_drive": "Opslaan op ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Aanspreektitel",
+          "only_show_icon": "Alleen pictogram weergeven"
+        }
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1967,7 +1972,12 @@
           "downloadZIP": "Om de bestanden als één ZIP te downloaden. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Tabel kan niet in een lijst geplaatst worden"
+        },
+        "menu": {
+          "logo": "Stel uw logo in met een URL",
+          "title": "Stel hier een titel in zoals bedrijfsnaam",
+          "only_show_icon": "Verbergen van het label en alleen pictogram tonen"
         }
       },
       "setter_option": {
@@ -2403,7 +2413,17 @@
       },
       "restore": "Herstel deze versie",
       "message": {
-        "version_change": "De huidige app versie is gewijzigd"
+        "version_change": "De huidige app versie is gewijzigd",
+        "suc": {
+          "save": "Huidige versie is succesvol opgeslagen als geschiedenisrecord",
+          "restore": "Succesvol hersteld",
+          "preview": "Het geschiedenisrecord is met succes geladen."
+        },
+        "fail": {
+          "save": "Opslaan mislukt",
+          "restore": "Herstellen mislukt",
+          "preview": "Kon geschiedenis record niet laden."
+        }
       }
     }
   },

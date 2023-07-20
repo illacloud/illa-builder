@@ -1715,7 +1715,12 @@
           "downloadZIP": "Download som et postnummer"
         },
         "download_from_drive": "Download fra ILLA drev",
-        "save_to_drive": "Gem til ILLA drev"
+        "save_to_drive": "Gem til ILLA drev",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titel",
+          "only_show_icon": "Vis kun ikon"
+        }
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1967,7 +1972,12 @@
           "downloadZIP": "For at angive, om filerne skal downloades som en ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "Tabel kan ikke indsættes i en liste"
+        },
+        "menu": {
+          "logo": "Sæt dit logo med en URL",
+          "title": "Angiv en titel såsom firmanavn her",
+          "only_show_icon": "Til skjult etiket og kun vis ikon"
         }
       },
       "setter_option": {
@@ -2403,7 +2413,17 @@
       },
       "restore": "Gendan denne version",
       "message": {
-        "version_change": "Den aktuelle app-version er ændret"
+        "version_change": "Den aktuelle app-version er ændret",
+        "suc": {
+          "save": "Nuværende version er gemt som historik post",
+          "restore": "Genoprettet succesfuldt",
+          "preview": "Historik posten er indlæst."
+        },
+        "fail": {
+          "save": "Kunne ikke gemme",
+          "restore": "Kunne ikke gendanne",
+          "preview": "Kunne ikke indlæse historikjournalen."
+        }
       }
     }
   },

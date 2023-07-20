@@ -1715,7 +1715,12 @@
           "downloadZIP": "Baixar como um ZIP"
         },
         "download_from_drive": "Baixar do ILLA Drive",
-        "save_to_drive": "Salvar no disco ILLA"
+        "save_to_drive": "Salvar no disco ILLA",
+        "menu": {
+          "logo": "Logotipo",
+          "title": "Título",
+          "only_show_icon": "Mostrar apenas ícone"
+        }
       },
       "setter_tooltip": {
         "action": "Suas ações para componentes desencadear consultas, componentes de controle ou chamar os dados em seus recursos. Múltiplas ações async serão executadas em paralelo.",
@@ -1967,7 +1972,12 @@
           "downloadZIP": "Para definir se deve baixar os arquivos como um ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "A tabela não pode ser inserida em uma lista"
+        },
+        "menu": {
+          "logo": "Defina o seu logotipo com uma URL",
+          "title": "Defina um título como o nome da empresa aqui",
+          "only_show_icon": "Ocultar o rótulo e mostrar apenas o ícone"
         }
       },
       "setter_option": {
@@ -2403,7 +2413,17 @@
       },
       "restore": "Restaurar esta versão",
       "message": {
-        "version_change": "A versão atual do aplicativo foi alterada"
+        "version_change": "A versão atual do aplicativo foi alterada",
+        "suc": {
+          "save": "A versão atual é salva com sucesso como um registro de histórico",
+          "restore": "Restaurado com sucesso",
+          "preview": "O registro do histórico foi carregado com sucesso."
+        },
+        "fail": {
+          "save": "Falha ao salvar",
+          "restore": "Falha ao restaurar",
+          "preview": "Não foi possível carregar o registro do histórico."
+        }
       }
     }
   },

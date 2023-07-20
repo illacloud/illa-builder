@@ -1715,7 +1715,12 @@
           "downloadZIP": "Descargar como ZIP"
         },
         "download_from_drive": "Descargar de ILLA Drive",
-        "save_to_drive": "Guardar en ILLA Drive"
+        "save_to_drive": "Guardar en ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Título",
+          "only_show_icon": "Mostrar sólo icono"
+        }
       },
       "setter_tooltip": {
         "action": "Las acciones a los componentes desencadenan consultas, componentes de control, o llaman a los datos en sus recursos. Múltiples acciones asíncronas se ejecutarán en paralelo.",
@@ -1967,7 +1972,12 @@
           "downloadZIP": "Para establecer si descargar o no los archivos como un ZIP. "
         },
         "list": {
-          "table_disallowed": "Table can't be put in a list"
+          "table_disallowed": "La tabla no se puede poner en una lista"
+        },
+        "menu": {
+          "logo": "Establece tu logotipo con una URL",
+          "title": "Establecer aquí un título como el nombre de la empresa",
+          "only_show_icon": "Para ocultar la etiqueta y sólo mostrar el icono"
         }
       },
       "setter_option": {
@@ -2403,7 +2413,17 @@
       },
       "restore": "Restaurar esta versión",
       "message": {
-        "version_change": "La versión actual de la aplicación ha cambiado"
+        "version_change": "La versión actual de la aplicación ha cambiado",
+        "suc": {
+          "save": "La versión actual se ha guardado correctamente como un registro de historial",
+          "restore": "Restaurado con éxito",
+          "preview": "El registro del historial se ha cargado correctamente."
+        },
+        "fail": {
+          "save": "Error al guardar",
+          "restore": "Error al restaurar",
+          "preview": "Error al cargar el registro del historial."
+        }
       }
     }
   },
