@@ -1223,7 +1223,8 @@
           "startUploading": "Uploaden starten",
           "uploadSuccessfully": "Succesvol geüpload",
           "uploadFailed": "Uploaden mislukt",
-          "onMenuSelect": "Selecteer een item"
+          "onMenuSelect": "Selecteer een item",
+          "on_menu_select": "Selecteer menu-item"
         },
         "image_list": {
           "title": "Afbeeldingen",
