@@ -50,10 +50,15 @@ export const recoverSnapShot = (appID: string, snapshotID: string) => {
   )
 }
 export const recoverSnapShotWS = (appID: string) => {
-  return builderWSRequest({
-    url: `/apps/${appID}/recoverSnapshot`,
-    method: "POST",
-  })
+  return builderWSRequest(
+    {
+      url: `/apps/${appID}/recoverSnapshot`,
+      method: "POST",
+    },
+    {
+      needTeamID: true,
+    },
+  )
 }
 
 // Take snapshot for current App
