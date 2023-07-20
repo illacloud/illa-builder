@@ -1222,7 +1222,8 @@
           "replay": "Svara",
           "startUploading": "Börja ladda upp",
           "uploadSuccessfully": "Uppladdningen lyckades",
-          "uploadFailed": "Det gick inte att ladda upp"
+          "uploadFailed": "Det gick inte att ladda upp",
+          "onMenuSelect": "Välj objekt"
         },
         "image_list": {
           "title": "Bilder",
