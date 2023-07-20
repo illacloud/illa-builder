@@ -3604,7 +3604,8 @@
         "upgrade": "Ulepsz",
         "insufficient_license_title": "Niewystarczająca ilość licencji",
         "insufficient_license_description": "Aby zaprosić więcej edytorów, najpierw zwiększ licencje. Wszyscy członkowie twojego zespołu mogą korzystać z funkcji ILLA Cloud Plus. Określony dostęp do każdej funkcji zależy od roli każdego z członków. ",
-        "insufficient_license_button": "Dodaj licencje"
+        "insufficient_license_button": "Dodaj licencje",
+        "pricing": "edytor/mies. rocznie($20/edytor, miesięcznie)"
       },
       "expired": {
         "owner": "Twoja subskrypcja wygasła. Aby kontynuować korzystanie z niej, proszę ją odnowić.",
