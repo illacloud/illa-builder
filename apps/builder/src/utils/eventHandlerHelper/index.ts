@@ -424,13 +424,6 @@ export const transformEvents = (
       }
     }
   }
-  if (actionType === "script") {
-    const { script, enabled } = event
-    return {
-      script: wrapperScriptCode(script, true),
-      enabled,
-    }
-  }
   return {
     script: `{{}}`,
     enabled: "{{false}}",

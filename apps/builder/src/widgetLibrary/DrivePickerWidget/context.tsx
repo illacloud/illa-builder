@@ -115,7 +115,10 @@ export const DrivePickerProvider: FC<Props> = (props) => {
           Array.isArray(res.data) &&
             res.data.forEach((item) => {
               let prefix =
-              location.protocol + HTTP_REQUEST_PUBLIC_BASE_URL + PUBLIC_DRIVE_REQUEST_PREFIX + "/"
+                location.protocol +
+                HTTP_REQUEST_PUBLIC_BASE_URL +
+                PUBLIC_DRIVE_REQUEST_PREFIX +
+                "/"
               value.push({
                 fileURL: prefix + item.tinyURL,
                 tinyURL: item.tinyURL,

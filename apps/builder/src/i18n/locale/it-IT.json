@@ -1715,7 +1715,12 @@
           "downloadZIP": "Scarica come ZIP"
         },
         "download_from_drive": "Scarica da ILLA Drive",
-        "save_to_drive": "Salva su ILLA Drive"
+        "save_to_drive": "Salva su ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titolo",
+          "only_show_icon": "Mostra solo l'icona"
+        }
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1968,6 +1973,11 @@
         },
         "list": {
           "table_disallowed": "La tabella non può essere inserita in una lista"
+        },
+        "menu": {
+          "logo": "Imposta il tuo logo con un URL",
+          "title": "Imposta qui un titolo come il nome dell'azienda",
+          "only_show_icon": "Per nascondere l'etichetta e mostrare solo l'icona"
         }
       },
       "setter_option": {

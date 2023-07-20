@@ -1715,7 +1715,12 @@
           "downloadZIP": "Last ned som ZIP"
         },
         "download_from_drive": "Last ned fra ILLA-stasjon",
-        "save_to_drive": "Lagre til ILLA-stasjon"
+        "save_to_drive": "Lagre til ILLA-stasjon",
+        "menu": {
+          "logo": "Logo",
+          "title": "Tittel",
+          "only_show_icon": "Vis kun ikon"
+        }
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1968,6 +1973,11 @@
         },
         "list": {
           "table_disallowed": "Tabellen kan ikke angis i en liste"
+        },
+        "menu": {
+          "logo": "Sett din logo med URL",
+          "title": "Angi en tittel som firmanavn her",
+          "only_show_icon": "TO hidden the label og kun vis ikon"
         }
       },
       "setter_option": {

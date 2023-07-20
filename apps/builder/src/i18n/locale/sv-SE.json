@@ -1715,7 +1715,12 @@
           "downloadZIP": "Ladda ner som ZIP"
         },
         "download_from_drive": "Ladda ner från ILLA Drive",
-        "save_to_drive": "Spara till ILLA Drive"
+        "save_to_drive": "Spara till ILLA Drive",
+        "menu": {
+          "logo": "Logotyp",
+          "title": "Titel",
+          "only_show_icon": "Visa bara ikon"
+        }
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1968,6 +1973,11 @@
         },
         "list": {
           "table_disallowed": "Tabellen kan inte läggas i en lista"
+        },
+        "menu": {
+          "logo": "Ange din logotyp med en URL",
+          "title": "Ange en titel som företagsnamn här",
+          "only_show_icon": "Att gömma etiketten och bara visa ikonen"
         }
       },
       "setter_option": {
