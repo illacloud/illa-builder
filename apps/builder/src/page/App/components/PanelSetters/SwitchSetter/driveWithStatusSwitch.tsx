@@ -13,7 +13,13 @@ import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseSwitchProps } from "./interface"
 
 const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
-  const { value, attrName, handleUpdateDsl, widgetType } = props
+  const {
+    value,
+    attrName,
+    handleUpdateDsl,
+    widgetType,
+    handleUpdateMultiAttrDSL,
+  } = props
   const anonymousPermission = useRef<boolean>(true)
   const modal = useModal()
   const { t } = useTranslation()
@@ -38,7 +44,13 @@ const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
             try {
               await fetchOpenAnonymousPermission()
               anonymousPermission.current = true
-              handleUpdateDsl(attrName, _v)
+              const updateSlice: Record<string, unknown> = {
+                [attrName]: _v,
+              }
+              if (_v) {
+                updateSlice.ILLADriveFolder = ""
+              }
+              handleUpdateMultiAttrDSL?.(updateSlice)
             } catch (e) {}
           },
         })
@@ -49,10 +61,16 @@ const DriveWithStatusSwitchSetter: FC<BaseSwitchProps> = (props) => {
           handleUpdateDsl(attrName, _v)
         } catch (e) {}
       } else {
-        handleUpdateDsl(attrName, _v)
+        const updateSlice: Record<string, unknown> = {
+          [attrName]: _v,
+        }
+        if (_v) {
+          updateSlice.ILLADriveFolder = ""
+        }
+        handleUpdateMultiAttrDSL?.(updateSlice)
       }
     },
-    [attrName, handleUpdateDsl, modal, t],
+    [attrName, handleUpdateDsl, handleUpdateMultiAttrDSL, modal, t],
   )
   const debounceHandleOnSwitch = useMemo(() => {
     return debounce(async (_v: boolean) => {
