@@ -22,6 +22,7 @@ const validOperations = [
   Signal.DELETE_STATE,
   Signal.UPDATE_STATE,
   Signal.MOVE_STATE,
+  Signal.RECOVER_APP_SNAPSHOT,
 ]
 
 export const SnapShotList: FC<SnapShotListProps> = (props) => {
@@ -36,7 +37,7 @@ export const SnapShotList: FC<SnapShotListProps> = (props) => {
         .filter((history) => {
           return validOperations.includes(history.operation)
         })
-        .slice(-2)
+        .slice(0, 2)
 
       return {
         ...snapshot,

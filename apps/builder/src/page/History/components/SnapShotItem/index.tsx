@@ -38,6 +38,31 @@ interface SnapShotListProps {
   selected?: boolean
   last: boolean
 }
+
+const getOperationKeyFromBroadcast = (type: string, payload: any) => {
+  const typeList = type.split("/")
+  const reduxAction = typeList[1] || ""
+  // Basic rules
+  if (reduxAction.startsWith("add")) {
+    return "editor.history.operation.Added"
+  } else if (reduxAction.startsWith("delete")) {
+    return "editor.history.operation.Deleted"
+  } else if (reduxAction.startsWith("update")) {
+    return "editor.history.operation.Updated"
+  } else if (reduxAction.startsWith("reset")) {
+    return "editor.history.operation.Reseted"
+  }
+  // Supplementary rules
+  if (type === "components/setGlobalStateReducer") {
+    if (payload?.oldKey) {
+      return "editor.history.operation.Updated"
+    }
+    return "editor.history.operation.Added"
+  }
+
+  return "editor.history.operation.Updated"
+}
+
 export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const dispatch = useDispatch()
   const message = useMessage()
@@ -48,15 +73,25 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const [loading, setLoading] = useState(false)
 
   const getOperationDesc = (history: ModifyHistory) => {
-    const { operation, operationTargetName, modifiedAt } = history
+    const {
+      operation,
+      operationTargetName,
+      modifiedAt,
+      operationBroadcastType,
+      operationBroadcastPayload,
+    } = history
 
     switch (operation) {
+      case Signal.UPDATE_STATE:
+        const operationKey = getOperationKeyFromBroadcast(
+          operationBroadcastType,
+          operationBroadcastPayload,
+        )
+        return t(operationKey, { operationTargetName })
       case Signal.CREATE_STATE:
         return t("editor.history.operation.Created", { operationTargetName })
       case Signal.DELETE_STATE:
         return t("editor.history.operation.Deleted", { operationTargetName })
-      case Signal.UPDATE_STATE:
-        return t("editor.history.operation.Updated", { operationTargetName })
       case Signal.MOVE_STATE:
         return t("editor.history.operation.Moved", { operationTargetName })
       case Signal.RECOVER_APP_SNAPSHOT:

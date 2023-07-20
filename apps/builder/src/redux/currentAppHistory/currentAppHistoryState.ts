@@ -16,6 +16,8 @@ export interface ModifyHistory {
   operation: Signal
   operationTarget: Target
   operationTargetName: string
+  operationBroadcastType: string
+  operationBroadcastPayload: Record<any, any>
   modifiedBy: UserInfo
   modifiedAt: string
 }
