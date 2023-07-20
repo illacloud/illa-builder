@@ -26,8 +26,8 @@ export const HistoryNavBar: FC = () => {
   }, [navigate, teamIdentifier])
 
   const exitHistory = useCallback(() => {
-    navigate(`/${teamIdentifier}/app/${appId}`)
-  }, [navigate, teamIdentifier, appId])
+    window.location.href = `/${teamIdentifier}/app/${appId}`
+  }, [teamIdentifier, appId])
 
   return (
     <div css={navBarStyle}>

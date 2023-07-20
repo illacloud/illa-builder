@@ -1,8 +1,10 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
-import { FC, useEffect } from "react"
-import { useSelector } from "react-redux"
-import { Loading, TriggerProvider } from "@illa-design/react"
-import { useInitHistoryApp } from "@/hooks/useInitHistoryApp"
+import { FC, useCallback, useEffect, useRef, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
+import { Loading, TriggerProvider, useMessage } from "@illa-design/react"
+import { updateCurrentAppInfo } from "@/hooks/useInitApp"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
@@ -23,13 +25,29 @@ import { setupConfigListeners } from "@/redux/config/configListener"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import { getCurrentAppSnapshotID } from "@/redux/currentAppHistory/currentAppHistorySelector"
+import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchSnapShot } from "@/services/history"
 import { startAppListening } from "@/store"
 
 export const History: FC = () => {
-  const teamInfo = useSelector(getCurrentTeamInfo)
-  const currentUserRole = teamInfo?.myRole
+  const dispatch = useDispatch()
+  const message = useMessage()
+  const { appId } = useParams()
+  const { t } = useTranslation()
 
+  const teamInfo = useSelector(getCurrentTeamInfo)
+  const currentSnapshotID = useSelector(getCurrentAppSnapshotID)
+  const currentUserRole = teamInfo?.myRole
+  const { uid, teamID } = {
+    uid: teamInfo?.uid ?? "",
+    teamID: teamInfo?.id ?? "",
+  }
+
+  const [contentLoading, setContentLoading] = useState(false)
+
+  const preSnapshotID = useRef<string>()
   // check if user can manage the app
   if (currentUserRole) {
     const canEditApp = canManage(
@@ -52,36 +70,67 @@ export const History: FC = () => {
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
-  // init app
-  const { loadingState, contentLoading } = useInitHistoryApp()
+  const onChangeCurrentID = useCallback(
+    (snapshotID: string) => {
+      preSnapshotID.current = currentSnapshotID
+      dispatch(
+        currentAppHistoryActions.updateCurrentSnapshotIDReducer(snapshotID),
+      )
+    },
+    [currentSnapshotID, dispatch],
+  )
+
+  useEffect(() => {
+    const controller = new AbortController()
+    if (currentSnapshotID && appId) {
+      setContentLoading(true)
+      fetchSnapShot(appId, currentSnapshotID, controller.signal)
+        .then((res) => {
+          preSnapshotID.current = currentSnapshotID
+          updateCurrentAppInfo(res.data, "preview", appId, teamID, uid)
+        })
+        .catch(() => {
+          message.error({
+            content: t("editor.history.message.fail.preview"),
+          })
+          preSnapshotID.current &&
+            dispatch(
+              currentAppHistoryActions.updateCurrentSnapshotIDReducer(
+                preSnapshotID.current,
+              ),
+            )
+        })
+        .finally(() => {
+          setContentLoading(false)
+        })
+    }
+    return () => {
+      controller.abort()
+    }
+  }, [t, dispatch, message, appId, currentSnapshotID, teamID, uid])
 
   return (
     <div css={editorContainerStyle}>
-      {loadingState ? (
-        <div css={loadingStyle}>
-          <Loading colorScheme="techPurple" />
-        </div>
-      ) : (
-        <>
-          <HistoryNavBar />
-          <div css={contentStyle}>
-            <div css={middlePanelStyle}>
-              {contentLoading ? (
-                <div css={loadingStyle}>
-                  <Loading colorScheme="techPurple" />
-                </div>
-              ) : (
-                <TriggerProvider renderInBody zIndex={10}>
-                  <CanvasPanel css={centerPanelStyle} />
-                </TriggerProvider>
-              )}
+      <HistoryNavBar />
+      <div css={contentStyle}>
+        <div css={middlePanelStyle}>
+          {contentLoading ? (
+            <div css={loadingStyle}>
+              <Loading colorScheme="techPurple" />
             </div>
+          ) : (
             <TriggerProvider renderInBody zIndex={10}>
-              <SnapShotList css={rightPanelStyle} />
+              <CanvasPanel css={centerPanelStyle} />
             </TriggerProvider>
-          </div>
-        </>
-      )}
+          )}
+        </div>
+        <TriggerProvider renderInBody zIndex={10}>
+          <SnapShotList
+            onChangeCurrentID={onChangeCurrentID}
+            css={rightPanelStyle}
+          />
+        </TriggerProvider>
+      </div>
     </div>
   )
 }

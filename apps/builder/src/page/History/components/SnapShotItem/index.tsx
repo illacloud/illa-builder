@@ -1,11 +1,9 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Button, Tag, useMessage } from "@illa-design/react"
 import { Signal } from "@/api/ws/ILLA_PROTO"
 import { Avatar } from "@/illa-public-component/Avatar"
-import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
 import {
   ModifyHistory,
   Snapshot,
@@ -37,6 +35,7 @@ interface SnapShotListProps {
   snapshot: Snapshot
   selected?: boolean
   last: boolean
+  onChangeCurrentID: (snapshotID: string) => void
 }
 
 const getKeyFromBroadcast = (type: string) => {
@@ -55,78 +54,70 @@ const getKeyFromBroadcast = (type: string) => {
 }
 
 export const SnapShotItem: FC<SnapShotListProps> = (props) => {
-  const dispatch = useDispatch()
   const message = useMessage()
-  const navigate = useNavigate()
   const { teamIdentifier } = useParams()
   const { t } = useTranslation()
-  const { snapshot, selected, last } = props
+  const { snapshot, selected, last, onChangeCurrentID } = props
   const [loading, setLoading] = useState(false)
 
-  const getDescFromBroadcast = (
-    type: string,
-    payload: any,
-    operationTargetName: string,
-  ) => {
-    const typeList = type.split("/")
-    const reduxAction = typeList[1] || ""
-    // Supplementary rules
-    if (reduxAction === "setGlobalStateReducer") {
-      if (payload?.oldKey) {
-        return t("editor.history.operation.Updated", {
+  const getDescFromBroadcast = useCallback(
+    (type: string, payload: any, operationTargetName: string) => {
+      const typeList = type.split("/")
+      const reduxAction = typeList[1] || ""
+      // Supplementary rules
+      if (reduxAction === "setGlobalStateReducer") {
+        if (payload?.oldKey) {
+          return t("editor.history.operation.Updated", {
+            operationTargetName: "globalData",
+          })
+        }
+        return t("editor.history.operation.Added", {
           operationTargetName: "globalData",
         })
       }
       return t("editor.history.operation.Added", {
-        operationTargetName: "globalData",
+        operationTargetName,
       })
-    }
-    return t("editor.history.operation.Added", {
-      operationTargetName,
-    })
-  }
+    },
+    [t],
+  )
 
-  const getOperationDesc = (history: ModifyHistory) => {
-    const {
-      operation,
-      operationTargetName,
-      modifiedAt,
-      operationBroadcastType,
-      operationBroadcastPayload,
-    } = history
+  const getOperationDesc = useCallback(
+    (history: ModifyHistory) => {
+      const {
+        operation,
+        operationTargetName,
+        modifiedAt,
+        operationBroadcastType,
+        operationBroadcastPayload,
+      } = history
 
-    switch (operation) {
-      case Signal.UPDATE_STATE:
-        const operationKey = getKeyFromBroadcast(operationBroadcastType)
-        if (operationKey) {
-          return t(operationKey, { operationTargetName })
-        } else {
-          return getDescFromBroadcast(
-            operationBroadcastType,
-            operationBroadcastPayload,
-            operationTargetName,
-          )
-        }
-      case Signal.CREATE_STATE:
-        return t("editor.history.operation.Created", { operationTargetName })
-      case Signal.DELETE_STATE:
-        return t("editor.history.operation.Deleted", { operationTargetName })
-      case Signal.MOVE_STATE:
-        return t("editor.history.operation.Moved", { operationTargetName })
-      case Signal.RECOVER_APP_SNAPSHOT:
-        return t("editor.history.operation.Restored", {
-          versionName: formatDate(modifiedAt),
-        })
-    }
-  }
-
-  const handleClickItem = useCallback(() => {
-    dispatch(
-      currentAppHistoryActions.updateCurrentSnapshotIDReducer(
-        snapshot.snapshotID,
-      ),
-    )
-  }, [dispatch, snapshot.snapshotID])
+      switch (operation) {
+        case Signal.UPDATE_STATE:
+          const operationKey = getKeyFromBroadcast(operationBroadcastType)
+          if (operationKey) {
+            return t(operationKey, { operationTargetName })
+          } else {
+            return getDescFromBroadcast(
+              operationBroadcastType,
+              operationBroadcastPayload,
+              operationTargetName,
+            )
+          }
+        case Signal.CREATE_STATE:
+          return t("editor.history.operation.Created", { operationTargetName })
+        case Signal.DELETE_STATE:
+          return t("editor.history.operation.Deleted", { operationTargetName })
+        case Signal.MOVE_STATE:
+          return t("editor.history.operation.Moved", { operationTargetName })
+        case Signal.RECOVER_APP_SNAPSHOT:
+          return t("editor.history.operation.Restored", {
+            versionName: formatDate(modifiedAt),
+          })
+      }
+    },
+    [t, getDescFromBroadcast],
+  )
 
   const handleRecoverSnapShot = useCallback(async () => {
     setLoading(true)
@@ -134,7 +125,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
       await recoverSnapShot(snapshot.appID, snapshot.snapshotID)
       await recoverSnapShotWS(snapshot.appID)
       message.success({ content: t("editor.history.message.suc.restore") })
-      navigate(`/${teamIdentifier}/app/${snapshot.appID}`)
+      window.location.href = `/${teamIdentifier}/app/${snapshot.appID}`
     } catch (error) {
       if (isILLAAPiError(error)) {
         message.error({ content: t("editor.history.message.fail.restore") })
@@ -144,14 +135,11 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
     } finally {
       setLoading(false)
     }
-  }, [
-    snapshot.appID,
-    snapshot.snapshotID,
-    teamIdentifier,
-    message,
-    navigate,
-    t,
-  ])
+  }, [snapshot.appID, snapshot.snapshotID, teamIdentifier, message, t])
+
+  const handleClickItem = useCallback(() => {
+    onChangeCurrentID(snapshot.snapshotID)
+  }, [onChangeCurrentID, snapshot.snapshotID])
 
   return (
     <div css={timelineStyle}>
