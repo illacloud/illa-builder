@@ -39,7 +39,7 @@ interface SnapShotListProps {
   last: boolean
 }
 
-const getOperationKeyFromBroadcast = (type: string, payload: any) => {
+const getKeyFromBroadcast = (type: string) => {
   const typeList = type.split("/")
   const reduxAction = typeList[1] || ""
   // Basic rules
@@ -52,15 +52,6 @@ const getOperationKeyFromBroadcast = (type: string, payload: any) => {
   } else if (reduxAction.startsWith("reset")) {
     return "editor.history.operation.Reseted"
   }
-  // Supplementary rules
-  if (reduxAction === "setGlobalStateReducer") {
-    if (payload?.oldKey) {
-      return "editor.history.operation.Updated"
-    }
-    return "editor.history.operation.Added"
-  }
-
-  return "editor.history.operation.Updated"
 }
 
 export const SnapShotItem: FC<SnapShotListProps> = (props) => {
@@ -71,6 +62,29 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
   const { t } = useTranslation()
   const { snapshot, selected, last } = props
   const [loading, setLoading] = useState(false)
+
+  const getDescFromBroadcast = (
+    type: string,
+    payload: any,
+    operationTargetName: string,
+  ) => {
+    const typeList = type.split("/")
+    const reduxAction = typeList[1] || ""
+    // Supplementary rules
+    if (reduxAction === "setGlobalStateReducer") {
+      if (payload?.oldKey) {
+        return t("editor.history.operation.Updated", {
+          operationTargetName: "globalData",
+        })
+      }
+      return t("editor.history.operation.Added", {
+        operationTargetName: "globalData",
+      })
+    }
+    return t("editor.history.operation.Added", {
+      operationTargetName,
+    })
+  }
 
   const getOperationDesc = (history: ModifyHistory) => {
     const {
@@ -83,11 +97,16 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
 
     switch (operation) {
       case Signal.UPDATE_STATE:
-        const operationKey = getOperationKeyFromBroadcast(
-          operationBroadcastType,
-          operationBroadcastPayload,
-        )
-        return t(operationKey, { operationTargetName })
+        const operationKey = getKeyFromBroadcast(operationBroadcastType)
+        if (operationKey) {
+          return t(operationKey, { operationTargetName })
+        } else {
+          return getDescFromBroadcast(
+            operationBroadcastType,
+            operationBroadcastPayload,
+            operationTargetName,
+          )
+        }
       case Signal.CREATE_STATE:
         return t("editor.history.operation.Created", { operationTargetName })
       case Signal.DELETE_STATE:
