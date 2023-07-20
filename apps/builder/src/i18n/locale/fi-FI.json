@@ -2423,7 +2423,8 @@
         "October": "Lokakuu",
         "November": "Marraskuu",
         "December": "Joulukuu",
-        "final_node": "Ei enää historiaa"
+        "final_node": "Ei enää historiaa",
+        "label": "Näytä vain"
       },
       "restore": "Palauta tämä versio",
       "message": {
