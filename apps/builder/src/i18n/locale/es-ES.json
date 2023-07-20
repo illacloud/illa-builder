@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Tablero",
             "form": "Encuesta",
-            "list": "Panel de administración"
+            "list": "Panel de administración",
+            "table_guide": "Guía de tabla",
+            "custom_login": "Usuario personalizado",
+            "run_script": "Ejecutar Script",
+            "calendar_guide": "Guía del calendario",
+            "chat_guide": "Guía de chat"
           },
           "templates_description": {
             "table": "Utilice tablas para crear paneles.",
             "form": "Utilice los componentes de formulario y entrada para crear aplicaciones de formulario.",
-            "list": "Utilice un componente de lista para mostrar y administrar información"
+            "list": "Utilice un componente de lista para mostrar y administrar información",
+            "table_guide": "Las características soportadas por la tabla y cómo usarlas",
+            "custom_login": "Para restringir sólo los usuarios de tu base de datos pueden acceder a tus aplicaciones públicas",
+            "run_script": "Gestión flexible de eventos con Ejecutar Script",
+            "calendar_guide": "Gestionar eventos y ver eventos con el componente Calendar"
           },
           "modal": {
             "title": "Bifurcar y desplegar",
@@ -2385,7 +2394,8 @@
         "Deleted": "Eliminado {{operationTargetName}}",
         "Updated": "Actualizado {{operationTargetName}}",
         "Moved": "Mover {{operationTargetName}}",
-        "Reseted": "Reiniciado {{operationTargetName}}"
+        "Reseted": "Reiniciado {{operationTargetName}}",
+        "Restored": "Restaurado de {{versionName}}"
       },
       "save": "Guardar como historial",
       "history": "Historial",

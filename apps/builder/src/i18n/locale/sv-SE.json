@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Instrumentpanel",
             "form": "Enkät",
-            "list": "Admin panel"
+            "list": "Admin panel",
+            "table_guide": "Tabell guide",
+            "custom_login": "Anpassad inloggning",
+            "run_script": "Kör skript",
+            "calendar_guide": "Kalender guide",
+            "chat_guide": "Chatt guide"
           },
           "templates_description": {
             "table": "Använd tabeller för att skapa instrumentpaneler.",
             "form": "Använd form- och inmatningskomponenter för att skapa formulärappar.",
-            "list": "Använd en listkomponent för att visa och hantera information"
+            "list": "Använd en listkomponent för att visa och hantera information",
+            "table_guide": "Funktionerna som stöds av tabellen och hur man använder dem",
+            "custom_login": "För att begränsa endast användare i din databas kan du komma åt dina offentliga appar",
+            "run_script": "Flexibel händelsehantering med Run Script",
+            "calendar_guide": "Hantera händelser och visa händelser med kalenderkomponenten"
           },
           "modal": {
             "title": "Gaffla och distribuera",
@@ -2385,7 +2394,8 @@
         "Deleted": "Raderad {{operationTargetName}}",
         "Updated": "Uppdaterad {{operationTargetName}}",
         "Moved": "Flyttad {{operationTargetName}}",
-        "Reseted": "Återställt {{operationTargetName}}"
+        "Reseted": "Återställt {{operationTargetName}}",
+        "Restored": "Återställd från {{versionName}}"
       },
       "save": "Spara som historik",
       "history": "Historik",

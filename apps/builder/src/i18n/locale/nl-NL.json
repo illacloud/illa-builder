@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Dashboard",
             "form": "Vragenlijst",
-            "list": "Beheerder paneel"
+            "list": "Beheerder paneel",
+            "table_guide": "Tabel gids",
+            "custom_login": "Aangepaste login",
+            "run_script": "Script uitvoeren",
+            "calendar_guide": "Kalender gids",
+            "chat_guide": "Chat gids"
           },
           "templates_description": {
             "table": "Gebruik tabellen om dashboards te maken.",
             "form": "Gebruik formulier- en invoercomponenten om formulierapps te maken.",
-            "list": "Gebruik een lijstcomponent om informatie weer te geven en te beheren"
+            "list": "Gebruik een lijstcomponent om informatie weer te geven en te beheren",
+            "table_guide": "De functies ondersteund door de tabel en hoe ze te gebruiken",
+            "custom_login": "Om alleen gebruikers in uw database te beperken heeft u toegang tot uw openbare apps",
+            "run_script": "Flexibele afhandeling met Script Uitvoeren",
+            "calendar_guide": "Beheer events en kijkgebeurtenissen met het Agenda-component"
           },
           "modal": {
             "title": "Fork en implementatie",
@@ -2385,7 +2394,8 @@
         "Deleted": "Verwijderd {{operationTargetName}}",
         "Updated": "Bijgewerkt {{operationTargetName}}",
         "Moved": "Verplaatst {{operationTargetName}}",
-        "Reseted": "{{operationTargetName}} gereset"
+        "Reseted": "{{operationTargetName}} gereset",
+        "Restored": "Hersteld van {{versionName}}"
       },
       "save": "Opslaan als geschiedenis",
       "history": "Geschiedenis",

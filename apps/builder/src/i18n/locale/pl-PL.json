@@ -2330,12 +2330,21 @@
           "templates_name": {
             "table": "Pulpit",
             "form": "Ankieta",
-            "list": "Panel administracyjny"
+            "list": "Panel administracyjny",
+            "table_guide": "Przewodnik tabeli",
+            "custom_login": "Niestandardowy login",
+            "run_script": "Uruchom skrypt",
+            "calendar_guide": "Poradnik kalendarza",
+            "chat_guide": "Poradnik czatu"
           },
           "templates_description": {
             "table": "Użyj tabel do tworzenia tablic rozdzielczych.",
             "form": "Użyj formularzy i elementów wejściowych do tworzenia aplikacji formularza.",
-            "list": "Użyj komponentu listy do wyświetlania i zarządzania informacjami"
+            "list": "Użyj komponentu listy do wyświetlania i zarządzania informacjami",
+            "table_guide": "Funkcje obsługiwane przez tabelę i jak je używać",
+            "custom_login": "Aby ograniczyć tylko użytkownicy w bazie danych mogą uzyskać dostęp do publicznych aplikacji",
+            "run_script": "Elastyczna obsługa zdarzeń z uruchomieniem skryptu",
+            "calendar_guide": "Zarządzanie wydarzeniami i przeglądanie wydarzeń za pomocą komponentu Kalendarz"
           },
           "modal": {
             "title": "Fork i rozmieszczenie",
@@ -2385,7 +2394,8 @@
         "Deleted": "Usunięto {{operationTargetName}}",
         "Updated": "Zaktualizowano {{operationTargetName}}",
         "Moved": "Przeniesiono {{operationTargetName}}",
-        "Reseted": "Przesłano {{operationTargetName}}"
+        "Reseted": "Przesłano {{operationTargetName}}",
+        "Restored": "Przywrócono z {{versionName}}"
       },
       "save": "Zapisz jako historię",
       "history": "Historia",
