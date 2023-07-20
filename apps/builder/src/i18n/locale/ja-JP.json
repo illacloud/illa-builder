@@ -1222,7 +1222,8 @@
           "replay": "返信",
           "startUploading": "アップロードを開始",
           "uploadSuccessfully": "正常にアップロードしました",
-          "uploadFailed": "アップロードに失敗しました"
+          "uploadFailed": "アップロードに失敗しました",
+          "onMenuSelect": "アイテムを選択"
         },
         "image_list": {
           "title": "イメージ",
