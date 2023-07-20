@@ -3604,7 +3604,8 @@
         "upgrade": "Opgradér",
         "insufficient_license_title": "Utilstrækkelige licenser",
         "insufficient_license_description": "For at invitere flere redaktører, skal du øge licenserne først. Alle medlemmer af dit team kan bruge funktionerne til ILLA Cloud Plus. Den specifikke adgang til hver enkelt funktion afhænger af det enkelte medlems rolle. ",
-        "insufficient_license_button": "Tilføj licenser"
+        "insufficient_license_button": "Tilføj licenser",
+        "pricing": "editor/mo, år($20/editor, månedligt)"
       },
       "expired": {
         "owner": "Dit abonnement er udløbet. Forny det venligst for at fortsætte med at bruge.",
