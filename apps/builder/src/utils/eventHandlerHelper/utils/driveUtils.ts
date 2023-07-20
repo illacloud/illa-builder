@@ -140,8 +140,13 @@ export const saveToILLADrive = async (params: ISaveToILLADriveParams) => {
     allowAnonymous = false,
     replace = false,
   } = params
+  if (
+    typeof fileName !== "string" ||
+    fileData == undefined ||
+    typeof fileData !== "string"
+  )
+    return
   const isBase64 = isBase64Simple(fileData)
-  if (typeof fileName !== "string" || fileData == undefined || !isBase64) return
 
   const fileDownloadName = getFileName((fileName ?? "").trim(), fileType)
   const contentType = getContentTypeByFileExtension(
