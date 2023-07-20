@@ -1223,7 +1223,8 @@
           "startUploading": "Začít nahrávat",
           "uploadSuccessfully": "Úspěšně nahráno",
           "uploadFailed": "Nepodařilo se nahrát",
-          "onMenuSelect": "Vybrat položku"
+          "onMenuSelect": "Vybrat položku",
+          "on_menu_select": "Vyberte položku nabídky"
         },
         "image_list": {
           "title": "Obrázky",
