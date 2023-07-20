@@ -3604,7 +3604,8 @@
         "upgrade": "アップグレードする",
         "insufficient_license_title": "ライセンスが足りません",
         "insufficient_license_description": "より多くのエディタを招待するには、まずライセンスを増やしてください。チームのすべてのメンバーは、ILLA Cloud Plusの機能を使用できます。 各機能への特定のアクセスは、各メンバーの役割によって異なります。 ",
-        "insufficient_license_button": "ライセンスを追加"
+        "insufficient_license_button": "ライセンスを追加",
+        "pricing": "editor/mo, yearly($20/editor, monthly)"
       },
       "expired": {
         "owner": "サブスクリプションの有効期限が切れています。引き続き使用するには、サブスクリプションを更新してください。",
