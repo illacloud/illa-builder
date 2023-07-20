@@ -1,7 +1,5 @@
 import { css } from "@emotion/react"
 
-// import { getColor } from "@illa-design/react"
-
 export const snapShotListWrapperStyle = css`
   overflow: hidden;
 `
