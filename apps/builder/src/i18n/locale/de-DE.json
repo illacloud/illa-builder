@@ -1222,7 +1222,8 @@
           "replay": "Antwort",
           "startUploading": "Hochladen starten",
           "uploadSuccessfully": "Upload erfolgreich",
-          "uploadFailed": "Upload fehlgeschlagen"
+          "uploadFailed": "Upload fehlgeschlagen",
+          "onMenuSelect": "Element auswählen"
         },
         "image_list": {
           "title": "Bilder",
