@@ -5,6 +5,7 @@ import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import {
   ActionContent,
   ActionItem,
@@ -102,15 +103,26 @@ export const runActionWithExecutionResult = async (
   const realAction = action
   const { content, $actionId, $resourceId, actionType, transformer } =
     realAction
-  if (!content) return Promise.reject(false)
+  const originActionList = getActionList(store.getState())
+  const originAction = originActionList.find(
+    (item) => item.displayName === displayName,
+  )
+  if (!content || !originAction) return Promise.reject(false)
   const rootState = store.getState()
   const appId = getAppId(rootState)
   const isGuideMode = getIsILLAGuideMode(rootState)
   const {
-    successEvent = [],
-    failedEvent = [],
+    successEvent: _successEvent = [],
+    failedEvent: _failedEvent = [],
     ...restContent
   } = content as ActionContent & Events
+
+  const {
+    successEvent: originSuccessEvent = [],
+    failedEvent: originFailedEvent = [],
+    $dynamicAttrPaths = [],
+  } = originAction.content as ActionContent &
+    Events & { $dynamicAttrPaths: string[] }
   const actionContent = transformDataFormat(
     actionType as ActionType,
     restContent,
@@ -183,7 +195,9 @@ export const runActionWithExecutionResult = async (
         },
       }),
     )
-    if (needRunEventHandler) runAllEventHandler(successEvent)
+    if (needRunEventHandler) {
+      runAllEventHandler(originSuccessEvent, $dynamicAttrPaths)
+    }
     return Promise.resolve(userTransformedData)
   } catch (e) {
     let runResult = {
@@ -204,7 +218,8 @@ export const runActionWithExecutionResult = async (
         },
       }),
     )
-    if (needRunEventHandler) runAllEventHandler(failedEvent)
+    if (needRunEventHandler)
+      runAllEventHandler(originFailedEvent, $dynamicAttrPaths)
 
     return Promise.reject(runResult)
   }

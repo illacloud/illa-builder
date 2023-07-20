@@ -434,6 +434,7 @@ export const runEventHandler = (
   scriptObj: any,
   globalData: Record<string, any>,
 ) => {
+  console.log("scriptObj", scriptObj)
   const eventObj = transformEvents(scriptObj, globalData)
   if (!eventObj) return
   const { script, enabled } = eventObj
