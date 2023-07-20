@@ -18,12 +18,15 @@ export enum Types {
   UNKNOWN = "UNKNOWN",
 }
 
-export const isObject = (value: unknown): boolean => {
+export const isObject = (value: unknown): value is Record<string, unknown> => {
   return Object.prototype.toString.call(value) === "[object Object]"
 }
 
 export const isFunction = (value: unknown): boolean => {
-  return Object.prototype.toString.call(value) === "[object Function]"
+  return (
+    Object.prototype.toString.call(value) === "[object Function]" ||
+    Object.prototype.toString.call(value) === "[object AsyncFunction]"
+  )
 }
 
 export const getType = (value: unknown) => {

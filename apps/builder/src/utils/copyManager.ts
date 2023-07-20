@@ -124,13 +124,6 @@ export class CopyManager {
         }
         break
       case "canvas":
-        if (
-          this.currentCopyComponentNodes?.some(
-            (node) => node.type === "MODAL_WIDGET",
-          )
-        ) {
-          return
-        }
         if (this.currentCopyComponentNodes != null) {
           const clickPosition = FocusManager.getClickPosition()
           if (clickPosition) {
@@ -157,6 +150,17 @@ export class CopyManager {
 
                     const originCopyComponents =
                       this.currentCopyComponentNodes.map((node) => {
+                        if (node.type === "MODAL_WIDGET") {
+                          const targetNodeParentNode = searchDSLByDisplayName(
+                            node.parentNode!,
+                          )
+                          return this.copyComponent(
+                            node,
+                            targetNodeParentNode!,
+                            node.x,
+                            node.y,
+                          )
+                        }
                         return this.copyComponent(
                           node,
                           targetParentNode,
@@ -203,6 +207,17 @@ export class CopyManager {
 
                   const originCopyComponents =
                     this.currentCopyComponentNodes.map((node) => {
+                      if (node.type === "MODAL_WIDGET") {
+                        const targetNodeParentNode = searchDSLByDisplayName(
+                          node.parentNode!,
+                        )
+                        return this.copyComponent(
+                          node,
+                          targetNodeParentNode!,
+                          node.x,
+                          node.y,
+                        )
+                      }
                       return this.copyComponent(
                         node,
                         containerNode,
@@ -241,6 +256,17 @@ export class CopyManager {
 
                   const originCopyComponents =
                     this.currentCopyComponentNodes.map((node) => {
+                      if (node.type === "MODAL_WIDGET") {
+                        const targetNodeParentNode = searchDSLByDisplayName(
+                          node.parentNode!,
+                        )
+                        return this.copyComponent(
+                          node,
+                          targetNodeParentNode!,
+                          node.x,
+                          node.y,
+                        )
+                      }
                       return this.copyComponent(
                         node,
                         targetParentNode,

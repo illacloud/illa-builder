@@ -49,11 +49,13 @@ export const ButtonContentWrapperStyle = css`
 `
 
 export const colorContentStyle = css`
-  width: 60px;
+  width: 66px;
   margin-left: 17px;
   margin-right: 3px;
   text-align: left;
   font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   align-self: center;
   line-height: 24px;

@@ -1219,7 +1219,11 @@
           "rowSelectChange": "Zeilenauswahl ändern",
           "onCellSelect": "Zelle auswählen",
           "delete": "Löschen",
-          "replay": "Antwort"
+          "replay": "Antwort",
+          "startUploading": "Hochladen starten",
+          "uploadSuccessfully": "Upload erfolgreich",
+          "uploadFailed": "Upload fehlgeschlagen",
+          "onMenuSelect": "Element auswählen"
         },
         "image_list": {
           "title": "Bilder",
@@ -1291,6 +1295,9 @@
         },
         "rich_text": {
           "default_text": "Text hier eingeben"
+        },
+        "drive_builder": {
+          "button_text": "Auswählen"
         }
       },
       "setter_group": {
@@ -1693,8 +1700,8 @@
           "allow_public_use": "In öffentlicher App verwenden",
           "illa_drive_folder": "ILLA Drive Ordner",
           "generate_signed_url": "Signierte URL generieren",
-          "expired_time": "Abgelaufene Zeit",
-          "time": "Zeit(e)",
+          "expired_time": "Abgelaufener Typ",
+          "time": "Abgelaufene Zeit(e)",
           "turn_on_hotlink": "Hotlink-Schutz einschalten",
           "button_text": "Schaltflächentext",
           "selection_type": "Auswahltyp",
@@ -1703,8 +1710,20 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min. Datei num",
-          "max_file_num": "Maximale Datei-num"
-        }
+          "max_file_num": "Maximale Datei-num",
+          "file_name_duplicatio": "Dateiname Duplikation",
+          "fileData": "Datei-Daten",
+          "downloadZIP": "Als ZIP herunterladen"
+        },
+        "download_from_drive": "Von ILLA Drive herunterladen",
+        "save_to_drive": "In ILLA Laufwerk speichern",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titel",
+          "only_show_icon": "Nur Symbol anzeigen",
+          "groupLabels": "Gruppenbezeichnungen"
+        },
+        "hover_bg_color": "Hover-Hintergrund"
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1950,7 +1969,18 @@
           "min_size": "Um die minimale Dateigröße zu setzen",
           "max_size": "Maximale Dateigröße festlegen",
           "min_file_num": "Um die minimale Anzahl an Dateien zu setzen, die ausgewählt werden dürfen",
-          "max_file_num": "Um die maximale Anzahl an Dateien zu setzen, die ausgewählt werden dürfen"
+          "max_file_num": "Um die maximale Anzahl an Dateien zu setzen, die ausgewählt werden dürfen",
+          "file_name_duplicatio": "Um festzulegen, wie mit doppelten Dateinamen umgegangen werden soll. Wenn beides beibehalten wird, wird dem Dateinamen eine zufällige Zeichenkette hinzugefügt.",
+          "fileData": "Legen Sie die Dateidaten unter Verwendung eines Arrays fest, das Format des Objekts ist {\"fileName\":\"The name\", \"FileID\":\"The ID\"}. Sie können die Laufwerk-Datei-Picker-Komponente verwenden, um Dateien auszuwählen und diesen Wert direkt über {{filePciker1.value}} zu setzen.",
+          "downloadZIP": "Um festzulegen, ob die Dateien als ein ZIP heruntergeladen werden sollen. "
+        },
+        "list": {
+          "table_disallowed": "Tabelle kann nicht in eine Liste gesetzt werden"
+        },
+        "menu": {
+          "logo": "Logo mit URL festlegen",
+          "title": "Legen Sie hier einen Titel wie den Firmennamen fest",
+          "only_show_icon": "BIS die Bezeichnung verstecken und nur Symbol anzeigen"
         }
       },
       "setter_option": {
@@ -2038,11 +2068,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nie",
+            "never": "Persistent",
             "customer": "Eigene"
           },
           "single_file": "Einzelne Datei",
-          "multiple_files": "Mehrere Dateien"
+          "multiple_files": "Mehrere Dateien",
+          "anonymous_modal": {
+            "title": "öffentlichen Benutzern den Zugriff auf das ILLA Laufwerk erlauben?",
+            "desc": "Wenn aktiviert, kann nur auf den öffentlichen App-Zugriffsordner dieser App zugegriffen werden. Wenn eine APP als öffentlich eingestellt wird, können alle Benutzer auf den Ordner zugreifen.",
+            "cancelBtn": "Abbrechen",
+            "submitBtn": "Einschalten"
+          },
+          "file_name_duplicatio": {
+            "replace": "Ersetzen",
+            "keepboth": "Beides behalten"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2140,11 @@
           "max_size": "Bitte wählen Sie eine Datei mit einer Größe kleiner als {{max}}",
           "min_files": "Bitte wählen Sie mindestens {{min}} Dateien",
           "max_files": "Bitte wählen Sie maximal {{max}} Dateien"
-        }
+        },
+        "uploadsuc": "Upload erfolgreich",
+        "uploadfail": "Upload fehlgeschlagen",
+        "noStorage": "Hochladen fehlgeschlagen, da nicht genügend Speicher vorhanden ist.",
+        "noTraffic": "Download fehlgeschlagen, da nicht genug Traffic vorhanden ist."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2226,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Präsentation",
-        "selects": "Eingaben auswählen"
+        "selects": "Eingaben auswählen",
+        "drive": "ILLA-Laufwerk"
       },
       "tab_title": "Insert"
     },
@@ -2274,7 +2319,7 @@
           },
           "title": {
             "tutorial": "Tutorial",
-            "templates": "Vorlagen"
+            "templates": "Anleitung"
           },
           "onboarding_app": {
             "name": "Onboarding-App",
@@ -2288,12 +2333,21 @@
           "templates_name": {
             "table": "Dashboard",
             "form": "Umfrage",
-            "list": "Admin-Panel"
+            "list": "Admin-Panel",
+            "table_guide": "Tabellenführer",
+            "custom_login": "Eigener Login",
+            "run_script": "Skript ausführen",
+            "calendar_guide": "Kalenderanleitung",
+            "chat_guide": "Chat-Anleitung"
           },
           "templates_description": {
             "table": "Tabellen zum Erstellen von Dashboards verwenden.",
             "form": "Verwenden Sie Formular- und Eingabekomponenten, um Formular-Apps zu erstellen.",
-            "list": "Eine Listenkomponente zum Anzeigen und Verwalten von Informationen verwenden"
+            "list": "Eine Listenkomponente zum Anzeigen und Verwalten von Informationen verwenden",
+            "table_guide": "Die von Tabelle unterstützten Funktionen und wie sie verwendet werden",
+            "custom_login": "Nur Benutzer in Ihrer Datenbank können auf öffentliche Apps zugreifen",
+            "run_script": "Flexible Event-Handhabung mit Run Script",
+            "calendar_guide": "Termine verwalten und Termine mit Kalenderkomponente anzeigen"
           },
           "modal": {
             "title": "Fork und Deploy",
@@ -2336,6 +2390,54 @@
     },
     "general": {
       "length_limit": "Der aktuelle Input Inhalt ist zu lang, wir haben die automatische Berechnung der Daten gestoppt. Sie können weiterhin eingeben, dies wird Ihre Verwendung nicht beeinflussen."
+    },
+    "history": {
+      "operation": {
+        "Added": "{{operationTargetName}} hinzugefügt",
+        "Deleted": "Gelöschte {{operationTargetName}}",
+        "Updated": "{{operationTargetName}} aktualisiert",
+        "Moved": "{{operationTargetName}} verschoben",
+        "Reseted": "{{operationTargetName}} zurückgesetzt",
+        "Restored": "Wiederhergestellt von {{versionName}}"
+      },
+      "save": "Als Verlauf speichern",
+      "history": "Verlauf",
+      "more": "Mehr",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Strg+S"
+      },
+      "history_list": {
+        "current": "Aktuell",
+        "manual": "Manuell",
+        "January": "Januar",
+        "February": "Februar",
+        "March": "Marsch",
+        "April": "Ascherz",
+        "May": "Mai",
+        "June": "Juni",
+        "July": "Juli",
+        "August": "Luciano",
+        "September": "September",
+        "October": "Oktober",
+        "November": "November",
+        "December": "Dezember",
+        "final_node": "Keine weiteren Chroniken"
+      },
+      "restore": "Diese Version wiederherstellen",
+      "message": {
+        "version_change": "Die aktuelle App-Version hat sich geändert",
+        "suc": {
+          "save": "Aktuelle Version ist erfolgreich als History-Eintrag gespeichert",
+          "restore": "Erfolgreich wiederhergestellt",
+          "preview": "Der History-Eintrag wurde erfolgreich geladen."
+        },
+        "fail": {
+          "save": "Speichern fehlgeschlagen",
+          "restore": "Wiederherstellung fehlgeschlagen",
+          "preview": "Fehler beim Laden des Verlaufsdatums."
+        }
+      }
     }
   },
   "exit_preview": "Vorschau beenden",
@@ -2534,7 +2636,8 @@
         "fail": "Anmeldung fehlgeschlagen",
         "fail_sent": "Fehler beim Senden des Bestätigungscodes",
         "success": "Erfolgreich angemeldet",
-        "verification_code": "Bestätigungscode gesendet"
+        "verification_code": "Bestätigungscode gesendet",
+        "not_allow_register": "Dieses Team hat die Registrierung deaktiviert. Bitte kontaktieren Sie den Team-Eigentümer. "
       },
       "title": "Registrieren",
       "agreement": {
@@ -2735,6 +2838,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Laufwerk-Dateiauswahl",
+      "modal": {
+        "files": "Dateien",
+        "confirm": "Bestätigen ({{fileNum}} Dateien)",
+        "cancel": "Abbrechen",
+        "no_file": "Keine Datei"
+      }
     }
   },
   "page": {
@@ -2989,7 +3101,8 @@
       "pending": "Ausstehend"
     },
     "settings": {
-      "allow_editors_invite": "Redakteure und Betrachter die Verwaltung von Mitgliedern erlauben"
+      "allow_editors_invite": "Redakteure und Betrachter die Verwaltung von Mitgliedern erlauben",
+      "allow_register": "Benutzern erlauben, sich über Link zu registrieren"
     }
   },
   "copy_failed": "Fehler beim Kopieren",

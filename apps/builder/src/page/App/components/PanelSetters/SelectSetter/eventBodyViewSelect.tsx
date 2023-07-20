@@ -8,8 +8,8 @@ import {
 import { PageNode } from "@/redux/currentApp/editor/components/componentsState"
 import { RootState } from "@/store"
 import { convertPathToString } from "@/utils/executionTreeHelper/utils"
-import BaseSelectSetter from "./baseSelect"
 import { BaseSelectSetterProps } from "./interface"
+import SearchSelectSetter from "./searchSelect"
 
 const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
   const { attrName, value, componentNode, widgetOrAction, panelConfig } = props
@@ -62,7 +62,7 @@ const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [finalOptions, value])
 
   return (
-    <BaseSelectSetter
+    <SearchSelectSetter
       {...props}
       value={finalValue as string}
       options={finalOptions}

@@ -1,7 +1,7 @@
 import Sketch from "@uiw/react-color-sketch"
 import { SwatchPresetColor } from "@uiw/react-color-swatch"
 import { FC, useMemo } from "react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor } from "@illa-design/react"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { ColorPickerProps } from "./interface"
 
@@ -12,7 +12,7 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
     return colorSchemes.map((color) => {
       return {
         title: color,
-        color: globalColor(`--${illaPrefix}-${color}-03`),
+        color: getColor(color, "03"),
       } as SwatchPresetColor
     })
   }, [])
@@ -20,14 +20,14 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
   const colorMap = useMemo(() => {
     const m = new Map<string, string>()
     colorSchemes.forEach((color) => {
-      m.set(globalColor(`--${illaPrefix}-${color}-03`), color)
+      m.set(getColor(color, "03"), color)
     })
     return m
   }, [])
 
   let c = selectedColor
   if (colorSchemes.includes(selectedColor)) {
-    c = globalColor(`--${illaPrefix}-${selectedColor}-03`)
+    c = getColor(selectedColor, "03")
   }
 
   return (

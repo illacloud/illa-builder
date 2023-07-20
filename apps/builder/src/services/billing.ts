@@ -1,4 +1,4 @@
-import { cloudRequest } from "@/api/http"
+import { authCloudRequest } from "@/api/http"
 import {
   SUBSCRIBE_PLAN,
   SUBSCRIPTION_CYCLE,
@@ -48,7 +48,7 @@ interface SubscribeResponse {
 }
 
 export const getPortalURL = async (returningURL: string) => {
-  const { data } = await cloudRequest<PortalURLResponse>(
+  const { data } = await authCloudRequest<PortalURLResponse>(
     {
       url: `/billing/getPortalURL`,
       method: "POST",
@@ -60,7 +60,7 @@ export const getPortalURL = async (returningURL: string) => {
 }
 
 export const getTeamSubscription = async () => {
-  const { data } = await cloudRequest<TeamSubscription>(
+  const { data } = await authCloudRequest<TeamSubscription>(
     {
       url: `/billing`,
       method: "GET",
@@ -76,7 +76,7 @@ export const purchase = async (requestData: {
   successRedirect: string // Success redirect URL
   cancelRedirect: string // Cancel redirect URL
 }) => {
-  return await cloudRequest<SubscribeResponse>(
+  return await authCloudRequest<SubscribeResponse>(
     {
       url: `/billing/purchase`,
       method: "POST",
@@ -93,7 +93,7 @@ export const subscribe = async (requestData: {
   successRedirect: string // Success redirect URL
   cancelRedirect: string // Cancel redirect URL
 }) => {
-  return await cloudRequest<SubscribeResponse>(
+  return await authCloudRequest<SubscribeResponse>(
     {
       url: `/billing/subscribe`,
       method: "POST",
@@ -108,7 +108,7 @@ export const modifySubscribe = async (requestData: {
   quantity: number // License quantity
   cycle: SUBSCRIPTION_CYCLE
 }) => {
-  return await cloudRequest(
+  return await authCloudRequest(
     {
       url: `/billing/subscribe`,
       method: "PATCH",
@@ -119,7 +119,7 @@ export const modifySubscribe = async (requestData: {
 }
 
 export const cancelSubscribe = async (plan: SUBSCRIBE_PLAN) => {
-  return await cloudRequest(
+  return await authCloudRequest(
     {
       url: `/billing/subscribe`,
       method: "DELETE",

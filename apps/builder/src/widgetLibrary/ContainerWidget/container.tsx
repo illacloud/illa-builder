@@ -37,12 +37,24 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     triggerEventHandler("click")
   }, [triggerEventHandler])
 
+  const enableAutoHeight = useMemo(() => {
+    switch (dynamicHeight) {
+      case "auto":
+        return true
+      case "limited":
+        return true
+      case "fixed":
+      default:
+        return false
+    }
+  }, [dynamicHeight])
+
   const handleUpdateHeight = useCallback(
     (height: number) => {
-      if (!updateComponentHeight) return
+      if (!updateComponentHeight || !enableAutoHeight) return
       updateComponentHeight(height + 2)
     },
-    [updateComponentHeight],
+    [enableAutoHeight, updateComponentHeight],
   )
 
   const handleUpdateOriginalDSLAttrs = useCallback(
@@ -159,18 +171,6 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     viewList,
     currentIndex,
   ])
-
-  const enableAutoHeight = useMemo(() => {
-    switch (dynamicHeight) {
-      case "auto":
-        return true
-      case "limited":
-        return true
-      case "fixed":
-      default:
-        return false
-    }
-  }, [dynamicHeight])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

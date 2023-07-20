@@ -18,6 +18,7 @@ export const useInitConfig = (
   handleOnChange: (value: unknown) => void,
   handleMdValue: (value: unknown) => void,
   ref: ForwardedRef<ICustomRef>,
+  id: string,
 ) => {
   const editorRef = useRef<EditorJS | null>(null)
 
@@ -30,7 +31,7 @@ export const useInitConfig = (
   useEffect(() => {
     if (!editorRef.current) {
       const editorInstance = new EditorJS({
-        holder: "editor-container",
+        holder: id,
         placeholder: defaultText,
         tools: {
           header: {
@@ -96,7 +97,7 @@ export const useInitConfig = (
         editorRef.current = null
       }
     }
-  }, [defaultText])
+  }, [defaultText, id])
 
   useEffect(() => {
     if (editorRef.current) {

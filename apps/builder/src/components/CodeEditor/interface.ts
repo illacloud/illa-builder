@@ -5,7 +5,12 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 export interface CodeEditorProps
   extends Omit<
     ILLACodeMirrorProps,
-    "hasError" | "resultType" | "result" | "executionResult" | "expressions"
+    | "hasError"
+    | "resultType"
+    | "result"
+    | "executionResult"
+    | "expressions"
+    | "canShowResultRealtime"
   > {
   expectValueType?: VALIDATION_TYPES
   wrappedCodeFunc?: (value: string) => string

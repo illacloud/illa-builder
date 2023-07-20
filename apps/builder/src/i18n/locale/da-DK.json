@@ -1219,7 +1219,11 @@
           "rowSelectChange": "Ændring af række",
           "onCellSelect": "Vælg en celle",
           "delete": "Slet",
-          "replay": "Svar"
+          "replay": "Svar",
+          "startUploading": "Start upload",
+          "uploadSuccessfully": "Uploadet succesfuldt",
+          "uploadFailed": "Upload mislykkedes",
+          "onMenuSelect": "Vælg element"
         },
         "image_list": {
           "title": "Billeder",
@@ -1291,6 +1295,9 @@
         },
         "rich_text": {
           "default_text": "Skriv tekst her"
+        },
+        "drive_builder": {
+          "button_text": "Vælg"
         }
       },
       "setter_group": {
@@ -1693,8 +1700,8 @@
           "allow_public_use": "Brug i offentlig app",
           "illa_drive_folder": "ILLA drev mappe",
           "generate_signed_url": "Generer signeret URL",
-          "expired_time": "Udløbet tid",
-          "time": "Tid(er)",
+          "expired_time": "Udløbet type",
+          "time": "Udløbet tid(er)",
           "turn_on_hotlink": "Slå hotlink-beskyttelse til",
           "button_text": "Knap tekst",
           "selection_type": "Markering type",
@@ -1703,8 +1710,20 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min. fil num",
-          "max_file_num": "Maks. fil num"
-        }
+          "max_file_num": "Maks. fil num",
+          "file_name_duplicatio": "Fil navn duplikering",
+          "fileData": "Fil data",
+          "downloadZIP": "Download som et postnummer"
+        },
+        "download_from_drive": "Download fra ILLA drev",
+        "save_to_drive": "Gem til ILLA drev",
+        "menu": {
+          "logo": "Logo",
+          "title": "Titel",
+          "only_show_icon": "Vis kun ikon",
+          "groupLabels": "Gruppér etiketter"
+        },
+        "hover_bg_color": "Hover baggrund"
       },
       "setter_tooltip": {
         "action": "Dine handlinger til komponenter udløser forespørgsler, styrer komponenter eller kalder data i dine ressourcer. Flere async handlinger vil blive udført parallelt.",
@@ -1950,7 +1969,18 @@
           "min_size": "For at indstille den tilladte minimumsfilstørrelse",
           "max_size": "For at indstille den tilladte maksimale filstørrelse",
           "min_file_num": "For at indstille det mindste antal filer der må vælges",
-          "max_file_num": "For at indstille det maksimale antal filer der må vælges"
+          "max_file_num": "For at indstille det maksimale antal filer der må vælges",
+          "file_name_duplicatio": "For at indstille hvordan man håndterer duplikerede filnavne. I tilfælde af at beholde begge vil en tilfældig streng blive tilføjet til filnavnet uploadet.",
+          "fileData": "Set the file data using an object array, the format of the object is {\"fileName\":\"name\", \"FileID\":\"ID\"}. Du kan bruge Kør filvælgerkomponenten til at vælge filer og indstille denne værdi direkte via {{filePciker1.value}}.",
+          "downloadZIP": "For at angive, om filerne skal downloades som en ZIP. "
+        },
+        "list": {
+          "table_disallowed": "Tabel kan ikke indsættes i en liste"
+        },
+        "menu": {
+          "logo": "Sæt dit logo med en URL",
+          "title": "Angiv en titel såsom firmanavn her",
+          "only_show_icon": "Til skjult etiket og kun vis ikon"
         }
       },
       "setter_option": {
@@ -2038,11 +2068,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Aldrig",
+            "never": "Persistent",
             "customer": "Tilpasset"
           },
           "single_file": "Enkelt fil",
-          "multiple_files": "Flere filer"
+          "multiple_files": "Flere filer",
+          "anonymous_modal": {
+            "title": "Tillad offentlige brugere at få adgang til ILLA Drive?",
+            "desc": "Når det er slået til, kan kun denne apps offentlige apps-adgangsmappe tilgås. Når en APP er indstillet som offentlig, kan alle brugere få adgang til mappen.",
+            "cancelBtn": "Annuller",
+            "submitBtn": "Slå til"
+          },
+          "file_name_duplicatio": {
+            "replace": "Erstat",
+            "keepboth": "Behold begge"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2140,11 @@
           "max_size": "Vælg en fil med en størrelse mindre end {{max}}",
           "min_files": "Vælg mindst {{min}} filer",
           "max_files": "Vælg højst {{max}} filer"
-        }
+        },
+        "uploadsuc": "Uploadet succesfuldt",
+        "uploadfail": "Upload mislykkedes",
+        "noStorage": "Mislykkedes at uploade på grund af ikke nok lager.",
+        "noTraffic": "Download mislykkedes på grund af ikke nok trafik."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2226,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Præsentation",
-        "selects": "Vælg input"
+        "selects": "Vælg input",
+        "drive": "ILLA Drev"
       },
       "tab_title": "Insert"
     },
@@ -2274,7 +2319,7 @@
           },
           "title": {
             "tutorial": "Vejledning",
-            "templates": "Skabeloner"
+            "templates": "Guide"
           },
           "onboarding_app": {
             "name": "Onboarding app",
@@ -2288,12 +2333,21 @@
           "templates_name": {
             "table": "Instrumentbræt",
             "form": "Undersøgelse",
-            "list": "Admin panel"
+            "list": "Admin panel",
+            "table_guide": "Tabel guide",
+            "custom_login": "Tilpasset login",
+            "run_script": "Kør Script",
+            "calendar_guide": "Kalender guide",
+            "chat_guide": "Chat guide"
           },
           "templates_description": {
             "table": "Brug tabeller til at oprette dashboards.",
             "form": "Brug formular- og inputkomponenter til at oprette formular-apps.",
-            "list": "Brug en listekomponent til at vise og håndtere information"
+            "list": "Brug en listekomponent til at vise og håndtere information",
+            "table_guide": "De funktioner, der understøttes af tabel og hvordan du bruger dem",
+            "custom_login": "For at begrænse kun brugere i din database kan få adgang til dine offentlige apps",
+            "run_script": "Fleksibel hændelseshåndtering med Kør Script",
+            "calendar_guide": "Håndtering af begivenheder og begivenheder med kalenderkomponenten"
           },
           "modal": {
             "title": "Gaffel og implementering",
@@ -2336,6 +2390,54 @@
     },
     "general": {
       "length_limit": "Det aktuelle inputindhold er for langt, vi er stoppet automatisk beregning af data, du kan stadig fortsætte med at input, dette vil ikke påvirke din brug."
+    },
+    "history": {
+      "operation": {
+        "Added": "Tilføjet {{operationTargetName}}",
+        "Deleted": "Slettede {{operationTargetName}}",
+        "Updated": "Opdateret {{operationTargetName}}",
+        "Moved": "Flyttet {{operationTargetName}}",
+        "Reseted": "Nulstillede {{operationTargetName}}",
+        "Restored": "Genoprettet fra {{versionName}}"
+      },
+      "save": "Gem som historik",
+      "history": "Historik",
+      "more": "Mere",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "Ctrl+S"
+      },
+      "history_list": {
+        "current": "Aktuel",
+        "manual": "Manuelt",
+        "January": "Januar",
+        "February": "Februar",
+        "March": "Marts",
+        "April": "April",
+        "May": "Maj",
+        "June": "Juni",
+        "July": "Juli",
+        "August": "August",
+        "September": "September",
+        "October": "Oktober",
+        "November": "November",
+        "December": "December",
+        "final_node": "Ikke mere historik"
+      },
+      "restore": "Gendan denne version",
+      "message": {
+        "version_change": "Den aktuelle app-version er ændret",
+        "suc": {
+          "save": "Nuværende version er gemt som historik post",
+          "restore": "Genoprettet succesfuldt",
+          "preview": "Historik posten er indlæst."
+        },
+        "fail": {
+          "save": "Kunne ikke gemme",
+          "restore": "Kunne ikke gendanne",
+          "preview": "Kunne ikke indlæse historikjournalen."
+        }
+      }
     }
   },
   "exit_preview": "Afslut Forhåndsvisning",
@@ -2534,7 +2636,8 @@
         "fail": "Kunne ikke tilmelde dig",
         "fail_sent": "Mislykkedes at sende bekræftelseskode",
         "success": "Tilmelding lykkedes",
-        "verification_code": "Bekræftelseskode sendt"
+        "verification_code": "Bekræftelseskode sendt",
+        "not_allow_register": "Dette team har deaktiveret register. Kontakt venligst teamejeren. "
       },
       "title": "Tilmeld dig",
       "agreement": {
@@ -2735,6 +2838,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Drev filvælger",
+      "modal": {
+        "files": "Filer",
+        "confirm": "Bekræft({{fileNum}} filer)",
+        "cancel": "Annuller",
+        "no_file": "Ingen fil"
+      }
     }
   },
   "page": {
@@ -2989,7 +3101,8 @@
       "pending": "Afventer"
     },
     "settings": {
-      "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer"
+      "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer",
+      "allow_register": "Tillad brugere at registrere via link"
     }
   },
   "copy_failed": "Kopiering mislykkedes",

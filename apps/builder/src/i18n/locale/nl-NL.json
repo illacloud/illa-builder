@@ -1219,7 +1219,11 @@
           "rowSelectChange": "Rij selecteer verandering",
           "onCellSelect": "Selecteer een cel",
           "delete": "Verwijderen",
-          "replay": "Beantwoorden"
+          "replay": "Beantwoorden",
+          "startUploading": "Uploaden starten",
+          "uploadSuccessfully": "Succesvol geüpload",
+          "uploadFailed": "Uploaden mislukt",
+          "onMenuSelect": "Selecteer een item"
         },
         "image_list": {
           "title": "Afbeeldingen",
@@ -1291,6 +1295,9 @@
         },
         "rich_text": {
           "default_text": "Typ de tekst hier"
+        },
+        "drive_builder": {
+          "button_text": "Selecteren"
         }
       },
       "setter_group": {
@@ -1693,8 +1700,8 @@
           "allow_public_use": "Gebruik in openbare app",
           "illa_drive_folder": "ILLA Drive map",
           "generate_signed_url": "Genereer ondertekende URL",
-          "expired_time": "Verlopen tijd",
-          "time": "Tijd(en)",
+          "expired_time": "Verlopen type",
+          "time": "Verlopen tijden",
           "turn_on_hotlink": "Hotlink-beveiliging inschakelen",
           "button_text": "Knop tekst",
           "selection_type": "Type selectie",
@@ -1703,8 +1710,20 @@
           "min_size": "Min size",
           "max_size": "Max size",
           "min_file_num": "Min. aantal bestanden",
-          "max_file_num": "Max bestand nr"
-        }
+          "max_file_num": "Max bestand nr",
+          "file_name_duplicatio": "Bestandsnaam duplicatie",
+          "fileData": "Bestand gegevens",
+          "downloadZIP": "Downloaden als ZIP"
+        },
+        "download_from_drive": "Downloaden van ILLA Drive",
+        "save_to_drive": "Opslaan op ILLA Drive",
+        "menu": {
+          "logo": "Logo",
+          "title": "Aanspreektitel",
+          "only_show_icon": "Alleen pictogram weergeven",
+          "groupLabels": "Groep labels"
+        },
+        "hover_bg_color": "Muisover achtergrond"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1950,7 +1969,18 @@
           "min_size": "Om de minimale bestandsgrootte in te stellen",
           "max_size": "Om de maximale bestandsgrootte in te stellen",
           "min_file_num": "Om het minimum aantal bestanden dat mag worden geselecteerd in te stellen",
-          "max_file_num": "Om het maximale aantal bestanden dat mag worden geselecteerd in te stellen"
+          "max_file_num": "Om het maximale aantal bestanden dat mag worden geselecteerd in te stellen",
+          "file_name_duplicatio": "Om in te stellen hoe dubbele bestandsnamen moeten worden behandeld. In het geval van bewaar beide, wordt een willekeurige tekenreeks toegevoegd aan de bestandsnaam geüpload.",
+          "fileData": "Stel de bestandsgegevens in met behulp van een object array, het formaat van het object is {\"fileName\":\"name\", \"FileID\":\"the ID\"}. U kunt de Drive bestandskiezer component gebruiken om bestanden te selecteren en deze waarde rechtstreeks via {{filePciker1.value}} in te stellen.",
+          "downloadZIP": "Om de bestanden als één ZIP te downloaden. "
+        },
+        "list": {
+          "table_disallowed": "Tabel kan niet in een lijst geplaatst worden"
+        },
+        "menu": {
+          "logo": "Stel uw logo in met een URL",
+          "title": "Stel hier een titel in zoals bedrijfsnaam",
+          "only_show_icon": "Verbergen van het label en alleen pictogram tonen"
         }
       },
       "setter_option": {
@@ -2038,11 +2068,21 @@
         },
         "drive_builder": {
           "expired_time": {
-            "never": "Nooit",
+            "never": "Persistent",
             "customer": "Aangepaste"
           },
           "single_file": "Enkel bestand",
-          "multiple_files": "Meerdere bestanden"
+          "multiple_files": "Meerdere bestanden",
+          "anonymous_modal": {
+            "title": "Openbare gebruikers toegang geven tot de ILLA Drive?",
+            "desc": "Wanneer ingeschakeld kunnen alleen de openbare apps toegang tot deze app krijgen. Wanneer een APP is ingesteld als openbaar hebben alle gebruikers toegang tot de map.",
+            "cancelBtn": "annuleren",
+            "submitBtn": "Inschakelen"
+          },
+          "file_name_duplicatio": {
+            "replace": "Vervangen",
+            "keepboth": "Houd beide"
+          }
         }
       },
       "setter_placeholder": {
@@ -2100,7 +2140,11 @@
           "max_size": "Selecteer een bestand met een grootte kleiner dan {{max}}",
           "min_files": "Selecteer ten minste {{min}} bestanden",
           "max_files": "Selecteer maximaal {{max}} bestanden"
-        }
+        },
+        "uploadsuc": "Succesvol geüpload",
+        "uploadfail": "Uploaden mislukt",
+        "noStorage": "Uploaden mislukt omdat er niet genoeg opslagruimte is.",
+        "noTraffic": "Downloaden mislukt omdat er niet genoeg verkeer is."
       },
       "setter_description": {
         "code": {
@@ -2182,7 +2226,8 @@
         "inputs": "Inputs",
         "navigation": "Navigation",
         "presentation": "Presentatie",
-        "selects": "Selecteer invoer"
+        "selects": "Selecteer invoer",
+        "drive": "ILLA Aandrijving"
       },
       "tab_title": "Insert"
     },
@@ -2288,12 +2333,21 @@
           "templates_name": {
             "table": "Dashboard",
             "form": "Vragenlijst",
-            "list": "Beheerder paneel"
+            "list": "Beheerder paneel",
+            "table_guide": "Tabel gids",
+            "custom_login": "Aangepaste login",
+            "run_script": "Script uitvoeren",
+            "calendar_guide": "Kalender gids",
+            "chat_guide": "Chat gids"
           },
           "templates_description": {
             "table": "Gebruik tabellen om dashboards te maken.",
             "form": "Gebruik formulier- en invoercomponenten om formulierapps te maken.",
-            "list": "Gebruik een lijstcomponent om informatie weer te geven en te beheren"
+            "list": "Gebruik een lijstcomponent om informatie weer te geven en te beheren",
+            "table_guide": "De functies ondersteund door de tabel en hoe ze te gebruiken",
+            "custom_login": "Om alleen gebruikers in uw database te beperken heeft u toegang tot uw openbare apps",
+            "run_script": "Flexibele afhandeling met Script Uitvoeren",
+            "calendar_guide": "Beheer events en kijkgebeurtenissen met het Agenda-component"
           },
           "modal": {
             "title": "Fork en implementatie",
@@ -2336,6 +2390,54 @@
     },
     "general": {
       "length_limit": "De huidige invoerinhoud is te lang, we hebben gestopt met het automatisch berekenen van gegevens, u kunt nog steeds invoer invoeren, dit heeft geen invloed op uw gebruik."
+    },
+    "history": {
+      "operation": {
+        "Added": "Toegevoegd {{operationTargetName}}",
+        "Deleted": "Verwijderd {{operationTargetName}}",
+        "Updated": "Bijgewerkt {{operationTargetName}}",
+        "Moved": "Verplaatst {{operationTargetName}}",
+        "Reseted": "{{operationTargetName}} gereset",
+        "Restored": "Hersteld van {{versionName}}"
+      },
+      "save": "Opslaan als geschiedenis",
+      "history": "Geschiedenis",
+      "more": "Meer",
+      "save_keyboard": {
+        "cmds": "Cmd+S",
+        "ctrls": "CTRL"
+      },
+      "history_list": {
+        "current": "Stroom",
+        "manual": "Handleiding",
+        "January": "januari",
+        "February": "februari",
+        "March": "maart",
+        "April": "april",
+        "May": "mei",
+        "June": "juni",
+        "July": "juli",
+        "August": "augustus",
+        "September": "september",
+        "October": "oktober",
+        "November": "november",
+        "December": "december",
+        "final_node": "Geen geschiedenis meer"
+      },
+      "restore": "Herstel deze versie",
+      "message": {
+        "version_change": "De huidige app versie is gewijzigd",
+        "suc": {
+          "save": "Huidige versie is succesvol opgeslagen als geschiedenisrecord",
+          "restore": "Succesvol hersteld",
+          "preview": "Het geschiedenisrecord is met succes geladen."
+        },
+        "fail": {
+          "save": "Opslaan mislukt",
+          "restore": "Herstellen mislukt",
+          "preview": "Kon geschiedenis record niet laden."
+        }
+      }
     }
   },
   "exit_preview": "Voorvertoning afsluiten",
@@ -2534,7 +2636,8 @@
         "fail": "Registratie mislukt",
         "fail_sent": "Verificatiecode versturen mislukt",
         "success": "Succesvol geregistreerd",
-        "verification_code": "Verificatiecode verzonden"
+        "verification_code": "Verificatiecode verzonden",
+        "not_allow_register": "Dit team heeft zich ingeschreven. Neem contact op met de eigenaar van het team. "
       },
       "title": "Registreer nu",
       "agreement": {
@@ -2735,6 +2838,15 @@
     },
     "jsonEditor": {
       "name": "JSON Editor"
+    },
+    "drive_picker": {
+      "name": "Schijf bestand kiezer",
+      "modal": {
+        "files": "Bestanden",
+        "confirm": "Bevestiging{{fileNum}} bestanden)",
+        "cancel": "annuleren",
+        "no_file": "Geen bestand"
+      }
     }
   },
   "page": {
@@ -2989,7 +3101,8 @@
       "pending": "Lopende"
     },
     "settings": {
-      "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren"
+      "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren",
+      "allow_register": "Sta gebruikers toe om te registreren via link"
     }
   },
   "copy_failed": "Kopiëren mislukt",

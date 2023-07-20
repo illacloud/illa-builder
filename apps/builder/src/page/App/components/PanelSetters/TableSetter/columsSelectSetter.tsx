@@ -1,10 +1,10 @@
 import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
-import BaseSelectSetter from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import SearchSelectSetter from "../SelectSetter/searchSelect"
 import { ColumnsSelectSetterProps, SelectOptions } from "./interface"
 
 const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
@@ -55,7 +55,7 @@ const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
   )
 
   return (
-    <BaseSelectSetter
+    <SearchSelectSetter
       {...otherProps}
       isSetterSingleRow={isSetterSingleRow}
       options={options}

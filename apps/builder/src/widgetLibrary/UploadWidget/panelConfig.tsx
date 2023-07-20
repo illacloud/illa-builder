@@ -14,7 +14,7 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-basic-type`,
         labelName: i18n.t("editor.inspect.setter_label.type"),
         attrName: "type",
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         options: [
           {
             label: i18n.t(
@@ -53,7 +53,7 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.selection_types"),
         attrName: "selectionType",
         isSetterSingleRow: true,
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "SEARCH_SELECT_SETTER",
         options: [
           {
             label: i18n.t(

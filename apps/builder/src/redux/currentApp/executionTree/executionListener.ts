@@ -21,9 +21,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import { actionDisplayNameMapFetchResult } from "@/utils/action/runAction"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
-import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import { cursorActions } from "../cursor/cursorSlice"
 import { ComponentNode } from "../editor/components/componentsState"
 import {
@@ -32,13 +30,6 @@ import {
 } from "./executionState"
 
 export let executionTree: ExecutionTreeFactory | undefined
-
-const mergeActionResult = (rawTree: RawTreeShape) => {
-  Object.keys(actionDisplayNameMapFetchResult).forEach((key) => {
-    if (!rawTree[key]) return
-    rawTree[key].data = actionDisplayNameMapFetchResult[key] || {}
-  })
-}
 
 export const destroyExecutionTree = () => {
   if (executionTree) {
@@ -91,7 +82,6 @@ async function handleStartExecution(
   const rootState = listenerApi.getState()
   const rawTree = getRawTree(rootState)
   if (!rawTree) return
-  mergeActionResult(rawTree)
   const oldExecutionTree = getExecutionResult(rootState)
   if (!executionTree) {
     executionTree = new ExecutionTreeFactory()

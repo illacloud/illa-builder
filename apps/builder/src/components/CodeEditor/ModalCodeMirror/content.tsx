@@ -21,6 +21,7 @@ export const ModalContent: FC<ModalBodyContent> = (props) => {
     placeholder,
     wrappedCodeFunc,
     scopeOfAutoComplete,
+    codeType,
   } = props
 
   const [ref, rect] = useMeasure()
@@ -52,6 +53,7 @@ export const ModalContent: FC<ModalBodyContent> = (props) => {
           canExpand={false}
           wrappedCodeFunc={wrappedCodeFunc}
           scopeOfAutoComplete={scopeOfAutoComplete}
+          codeType={codeType}
         />
       </div>
     </div>
