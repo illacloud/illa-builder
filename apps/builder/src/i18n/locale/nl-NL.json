@@ -1720,8 +1720,10 @@
         "menu": {
           "logo": "Logo",
           "title": "Aanspreektitel",
-          "only_show_icon": "Alleen pictogram weergeven"
-        }
+          "only_show_icon": "Alleen pictogram weergeven",
+          "groupLabels": "Groep labels"
+        },
+        "hover_bg_color": "Muisover achtergrond"
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
