@@ -2407,7 +2407,7 @@
       "history": "历史记录",
       "more": "更多",
       "save_keyboard": {
-        "cmds": "Cmd+S",
+        "cmds": "⌘ S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
