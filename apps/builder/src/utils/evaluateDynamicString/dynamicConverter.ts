@@ -67,7 +67,6 @@ export const getDynamicValue = (
   dynamicString: string,
   dataTree: Record<string, any>,
   evaluationType: EVALUATION_TYPE,
-  isTriggerBased: boolean = false,
 ) => {
   const { jsSnippets, stringSnippets } = getSnippets(dynamicString)
   const calcContext = merge(
@@ -78,7 +77,7 @@ export const getDynamicValue = (
   if (stringSnippets.length) {
     const values = jsSnippets.map((jsSnippet, index) => {
       if (jsSnippet) {
-        return evalScript(jsSnippet, calcContext, isTriggerBased)
+        return evalScript(jsSnippet, calcContext)
       } else {
         return stringSnippets[index]
       }
