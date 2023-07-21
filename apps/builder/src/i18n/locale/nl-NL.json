@@ -2407,7 +2407,7 @@
       "history": "Geschiedenis",
       "more": "Meer",
       "save_keyboard": {
-        "cmds": "Cmd+S",
+        "cmds": "⌘ S",
         "ctrls": "CTRL"
       },
       "history_list": {
