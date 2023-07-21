@@ -88,11 +88,11 @@ export const formatDate = (dateString: string) => {
   const date = dayjs(dateString)
   const now = dayjs()
 
-  if (date.format("YYYYMMDD") !== now.format("YYYYMMDD")) {
+  if (date.format("YYYYMMDD") === now.format("YYYYMMDD")) {
     return date.format("hh:mm A")
   } else if (date.year() === now.year()) {
-    return date.format("MMMM DD, hh:mm A")
+    return date.format("MMMM DD, h:mm A")
   } else {
-    return date.format("MMMM DD, YYYY hh:mm A")
+    return date.format("YYYY MMM DD, h:mm A")
   }
 }
