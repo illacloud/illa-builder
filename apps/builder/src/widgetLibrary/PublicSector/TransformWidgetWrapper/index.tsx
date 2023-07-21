@@ -31,6 +31,7 @@ import { isObject } from "@/utils/typeHelper"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import ErrorBoundary from "../../../components/ErrorBoundary"
 import { MIN_HEIGHT } from "./config"
 
 export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
@@ -372,55 +373,63 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       ? borderWidth + "px"
       : borderWidth?.toString()
 
-    return hidden ? null : (
-      <div
-        css={applyWrapperStylesStyle(
-          borderColor,
-          _borderWidth,
-          _radius,
-          backgroundColor,
-          shadow,
-          widgetType,
+    return (
+      <ErrorBoundary>
+        {hidden ? null : (
+          <div
+            css={applyWrapperStylesStyle(
+              borderColor,
+              _borderWidth,
+              _radius,
+              backgroundColor,
+              shadow,
+              widgetType,
+            )}
+          >
+            <Suspense
+              fallback={
+                <Skeleton
+                  animation
+                  text={false}
+                  image={{
+                    shape: "square",
+                    w: "100%",
+                    h: "100%",
+                    mr: "0 !important",
+                  }}
+                  h="100%"
+                  w="100%"
+                />
+              }
+            >
+              <Component
+                {...realProps}
+                h={layoutInfo.h}
+                columnNumber={columnNumber}
+                handleUpdateOriginalDSLMultiAttr={
+                  handleUpdateOriginalDSLMultiAttr
+                }
+                handleUpdateOriginalDSLOtherMultiAttr={
+                  handleUpdateOriginalDSLOtherMultiAttr
+                }
+                handleUpdateDsl={handleUpdateDsl}
+                updateComponentHeight={updateComponentHeight}
+                handleUpdateMultiExecutionResult={
+                  handleUpdateMultiExecutionResult
+                }
+                displayName={displayName}
+                childrenNode={originComponentNode.childrenNode}
+                componentNode={originComponentNode}
+                disabled={listContainerDisabled}
+                triggerEventHandler={triggerEventHandler}
+                triggerMappedEventHandler={triggerMappedEventHandler}
+                updateComponentRuntimeProps={updateComponentRuntimeProps}
+                deleteComponentRuntimeProps={deleteComponentRuntimeProps}
+              />
+            </Suspense>
+          </div>
         )}
-      >
-        <Suspense
-          fallback={
-            <Skeleton
-              animation
-              text={false}
-              image={{
-                shape: "square",
-                w: "100%",
-                h: "100%",
-                mr: "0 !important",
-              }}
-              h="100%"
-              w="100%"
-            />
-          }
-        >
-          <Component
-            {...realProps}
-            h={layoutInfo.h}
-            columnNumber={columnNumber}
-            handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
-            handleUpdateOriginalDSLOtherMultiAttr={
-              handleUpdateOriginalDSLOtherMultiAttr
-            }
-            handleUpdateDsl={handleUpdateDsl}
-            updateComponentHeight={updateComponentHeight}
-            handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
-            displayName={displayName}
-            childrenNode={originComponentNode.childrenNode}
-            componentNode={originComponentNode}
-            disabled={listContainerDisabled}
-            triggerEventHandler={triggerEventHandler}
-            triggerMappedEventHandler={triggerMappedEventHandler}
-            updateComponentRuntimeProps={updateComponentRuntimeProps}
-            deleteComponentRuntimeProps={deleteComponentRuntimeProps}
-          />
-        </Suspense>
-      </div>
+      </ErrorBoundary>
     )
   },
 )
