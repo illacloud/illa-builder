@@ -2339,7 +2339,8 @@
             "custom_login": "Connexion personnalisée",
             "run_script": "Exécuter le script",
             "calendar_guide": "Guide du calendrier",
-            "chat_guide": "Guide du chat"
+            "chat_guide": "Guide du chat",
+            "custom_login_with_sc": "Connexion personnalisée avec script"
           },
           "templates_description": {
             "table": "Utiliser des tables pour créer des tableaux de bord.",
@@ -2348,7 +2349,8 @@
             "table_guide": "Les fonctionnalités supportées par Table et comment les utiliser",
             "custom_login": "Pour restreindre seulement les utilisateurs de votre base de données peuvent accéder à vos applications publiques",
             "run_script": "Gestion des événements souple avec le script d'exécution",
-            "calendar_guide": "Gestion des événements et visualisation des événements avec le composant Calendrier"
+            "calendar_guide": "Gestion des événements et visualisation des événements avec le composant Calendrier",
+            "custom_login_with_sc": "Utiliser le script pour restreindre uniquement les utilisateurs dans votre base de données peut accéder à vos applications"
           },
           "modal": {
             "title": "Fourche et déploiement",
@@ -2405,7 +2407,7 @@
       "history": "Historique",
       "more": "En savoir plus",
       "save_keyboard": {
-        "cmds": "Cmd+S",
+        "cmds": "⌘ S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3405,7 +3407,7 @@
     "subscription_general": {
       "plan": {
         "free": "Gratuit",
-        "plus": "Plus"
+        "plus": "Premium"
       },
       "sub_cycle": {
         "yearly": "Annuel",
@@ -3516,16 +3518,16 @@
         "add_license": "Vous allez ajouter {{changeNum}} licences. Une fois confirmé, nous déduirons immédiatement le paiement des nouvelles licences pour ce cycle de facturation. <0>En savoir plus</0>",
         "remove_license": "Vous allez supprimer {{changeNum}} licences. Une fois confirmées, les modifications prendront effet dans le prochain cycle de facturation. <0>En savoir plus</0>",
         "add_traffic": "Vous allez ajouter {{changeNum}}Go de trafic. Une fois confirmé, nous déduirons immédiatement le coût du trafic supplémentaire. <0>En savoir plus</0>",
-        "subscribe_storage": "Vous allez vous abonner à ILLA Cloud Plus. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. <0>En savoir plus</0>",
+        "subscribe_storage": "Vous allez vous abonner à ILLA Cloud Premium. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. <0>En savoir plus</0>",
         "subscribe_license": "Vous allez vous abonner à ILLA Drive. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. <0>En savoir plus</0>",
         "update_plan_increase_license": "Vous allez ajouter {{changeNum}} licences et mettre à jour votre période d'abonnement. <0>En savoir plus</0>",
         "update_plan_remove_license": "Vous allez supprimer {{changeNum}} licences et mettre à jour votre période d'abonnement. <0>En savoir plus</0>",
         "update_plan_increase_storage": "Vous allez ajouter {{changeNum}} Go de stockage et mettre à jour votre période d'abonnement. <0>En savoir plus</0>",
         "update_plan_remove_storage": "Vous allez supprimer {{changeNum}} Go de stockage et mettre à jour votre période d'abonnement. <0>En savoir plus</0>",
-        "unsubscribe_license": "Vous allez vous désabonner ILLA Cloud Plus. Après annulation, à partir du prochain cycle de facturation, les fonctionnalités Plus ne seront plus accessibles. <0>En savoir plus</0>",
+        "unsubscribe_license": "Vous allez vous désabonner ILLA Cloud Premium. Après annulation, à partir du prochain cycle de facturation, les fonctionnalités Premium ne seront plus accessibles. <0>En savoir plus</0>",
         "unsubscribe_storage": "Vous allez vous désabonner du stockage ILLA Drive. Après annulation, à partir du prochain cycle de facturation, la capacité de stockage sera restaurée à 100Mo. <0>En savoir plus</0>",
-        "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel ILLA Cloud Plus. <0>En savoir plus</0>",
-        "subscribe_license_yearly": "Vous allez vous abonner à ILLA Cloud Plus chaque année. <0>En savoir plus</0>",
+        "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel ILLA Cloud Premium. <0>En savoir plus</0>",
+        "subscribe_license_yearly": "Vous allez vous abonner à l'abonnement annuel ILLA Cloud Premium. <0>En savoir plus</0>",
         "subscribe_storage_monthly": "Vous allez ajouter {{changeNum}}Go de stockage. Une fois confirmé, nous déduirons immédiatement le coût du stockage. <0>En savoir plus</0>",
         "subscribe_storage_yearly": "Vous allez ajouter {{changeNum}}Go de stockage. Une fois confirmé, nous déduirons immédiatement le coût du stockage. <0>En savoir plus</0>"
       },
@@ -3538,7 +3540,7 @@
         "add_traffic": "Après déduction réussie, votre trafic augmentera en temps réel. Une fois le trafic utilisé, les frais ne peuvent pas être remboursés. Le trafic inutilisé peut être remboursé en unités de Go. Par exemple, si vous achetez 10 Go de trafic et que vous utilisez 4,5 Go, vous pouvez demander un remboursement de 5 Go. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "subscribe_storage_yearly": "Vous allez vous abonner à l'abonnement annuel au stockage ILLA Drive. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend de la capacité de stockage que vous avez souscrit en Go. Par exemple, si vous commencez votre premier abonnement le 25 février 2023 avec des frais d'abonnement annuels de 9 $. par Go, et vous avez un total de 3 Go, nous déduirons 29 $. le 25 février 2023. Si vous ajoutez 2 Go le 25 mars 2023, nous déduirons d'abord le paiement restant de 11 mois le 25 mars 2023. Puis, d'ici le 25 février 2024, nous déduirons le paiement pour 5 Go, ce qui est (2+3)*9,9$ = 49$. . Si vous souhaitez réduire le stockage ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "subscribe_storage_monthly": "Vous allez vous abonner à l'abonnement mensuel au stockage ILLA Drive. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend de la capacité de stockage que vous avez souscrit en Go. Par exemple, si vous commencez votre premier abonnement le 25 février 2023, avec des frais d'abonnement mensuels de 0 $. 9 par Go, et vous avez un total de 3 Go, nous déduirons 2 $. 7 le 25 février 2023. Si vous ajoutez 2 licences supplémentaires le 21 mars 2023, nous déduirons d'abord le paiement restant de 5 jours le 21 mars 2023. Ensuite, d'ici le 25 mars 2023, nous déduirons le paiement de 5 licences, soit (2+3)*0 $. 9=4,95 $. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
-        "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel d'ILLA Cloud Plus. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend du nombre de licences que vous avez. Par exemple, si vous commencez votre premier abonnement le 25 février 2023, avec des frais d'abonnement mensuels de 12 $ par licence, et vous avez un total de 3 licences, nous déduirons 36 $ le 25 février 2023. Si vous ajoutez 2 licences supplémentaires le 21 mars 2023, nous déduirons d'abord le paiement restant de 5 jours le 21 mars 2023. Puis, d'ici le 25 mars 2023, nous déduirons le paiement de 5 licences, soit (2+3)*$12=$60. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
+        "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel de ILLA Cloud Premium. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend du nombre de licences que vous avez. Par exemple, si vous commencez votre premier abonnement le 25 février 2023, avec des frais d'abonnement mensuels de 12 $ par licence, et vous avez un total de 3 licences, nous déduirons 36 $ le 25 février 2023. Si vous ajoutez 2 licences supplémentaires le 21 mars 2023, nous déduirons d'abord le paiement restant de 5 jours le 21 mars 2023. Puis, d'ici le 25 mars 2023, nous déduirons le paiement de 5 licences, soit (2+3)*$12=$60. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_remove_license": "Les frais seront automatiquement déduits en fonction du nombre de licences mis à jour et du prix du nouveau cycle de facturation à partir de la prochaine période. Si le nombre d'utilisateurs ayant des autorisations d'édition dépasse le nombre de licences au début du prochain cycle de facturation, tous les utilisateurs, sauf le propriétaire, seront désactivés jusqu'à ce que vous supprimiez des membres ou augmentiez le nombre de licences dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_increase_storage": "Les frais seront automatiquement déduits en fonction de la mise à jour du stockage et du prix du nouveau cycle de facturation à partir de la prochaine période. Cette fois-ci, nous déduirons le paiement pour l'augmentation du stockage selon le cycle de facturation en cours. Règles de calcul en utilisant un abonnement de stockage mensuel comme exemple : Examinons un scénario où vous vous êtes initialement abonné à 5 Go à partir du 14 mars, et le cycle de facturation s'étend du 14e de ce mois au 13e du mois prochain. Le 10 mai, vous décidez d'ajouter 1 Go. À ce moment-là, il restait 4 jours jusqu'à la fin du cycle courant le 13 mai (ce qui totalise 30 jours entre le 14 avril et le 13 mai). Pour calculer le paiement rajusté, nous déduirons le coût de 1 GB, qui s'élève à environ 0 $. 9, proportionné à la durée de 4 jours dans le cycle de 30 jours. Par conséquent, la déduction est estimée à 1 licence * 0,99 $ / 30 jours * 4 jours, ce qui signifie environ 0,132 $. À partir du prochain cycle de facturation, tous les frais de stockage seront consolidés et payés ensemble. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_remove_storage": "Les frais seront automatiquement déduits en fonction de la mise à jour du stockage et du prix du nouveau cycle de facturation à partir de la prochaine période. Si la capacité de stockage occupée par vos fichiers dépasse la capacité de stockage souscrite au début du prochain cycle de facturation, Tous les fichiers seront désactivés jusqu'à ce que vous supprimiez des fichiers ou augmentiez la capacité de stockage dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>"
@@ -3596,8 +3598,8 @@
         "got_it": "Compris"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Mettre à niveau vers Plus",
-        "this_feature_is_avai": "Cette fonctionnalité est uniquement disponible pour les utilisateurs Plus. Pour l'utiliser, veuillez passer à la version Plus. En mettant à niveau vers Plus, vous aurez également accès aux fonctionnalités suivantes. ",
+        "upgrade_to_plus": "Passer à la version Premium",
+        "this_feature_is_avai": "Cette fonctionnalité est uniquement disponible pour les utilisateurs Premium. Pour l'utiliser, veuillez passer à la version Plus. En passant à Premium, vous aurez également accès aux fonctionnalités suivantes. ",
         "add_unlimited_viewer": "Ajoutez un nombre illimité de spectateurs gratuitement",
         "publish_public_appli": "Publier des applications publiques",
         "ai_sql_generation": "Génération de l'IA SQL",
