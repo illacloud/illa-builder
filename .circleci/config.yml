@@ -3,8 +3,8 @@ jobs:
   build:
     working_directory: ~/project
     machine:
-      image: ubuntu-2004:202101-01
-    resource_class: 2xlarge
+      image: ubuntu-2004:202010-01
+    resource_class: xlarge
     steps:
       - checkout
       - run:
