@@ -42,9 +42,9 @@ jobs:
           name: Build application Docker image
           command: |
             sudo apt-get install curl
-            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
-            sudo apt-get install gcc g++ make
-            sudo apt-get install -y nodejs
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+            nvm install 18.12.1
+            nvm use 18.12.1
             node -v
             npm -v
             npm install -g pnpm@8.3.1
