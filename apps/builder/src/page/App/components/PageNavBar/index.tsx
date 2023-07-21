@@ -68,6 +68,7 @@ import { isMAC } from "@/utils/userAgent"
 import {
   descriptionStyle,
   informationStyle,
+  keyTextStyle,
   logoCursorStyle,
   navBarStyle,
   rightContentStyle,
@@ -418,9 +419,11 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                             title={
                               <div css={spaceBetweenStyle}>
                                 <span>{t("editor.history.save")}</span>
-                                {isMAC()
-                                  ? t("editor.history.save_keyboard.cmds")
-                                  : t("editor.history.save_keyboard.ctrls")}
+                                <span css={keyTextStyle}>
+                                  {isMAC()
+                                    ? t("editor.history.save_keyboard.cmds")
+                                    : t("editor.history.save_keyboard.ctrls")}
+                                </span>
                               </div>
                             }
                             onClick={handleSaveToHistory}
