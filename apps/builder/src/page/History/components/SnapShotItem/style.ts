@@ -22,6 +22,12 @@ export const ellipse49Style = css`
   border-radius: 50%;
 `
 
+const textEllipsisStyle = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
+
 export const lineStyle = css`
   position: absolute;
   transform: translateX(-50%);
@@ -40,6 +46,7 @@ export const textStyle = css`
   padding-bottom: 24px;
   display: flex;
   flex-grow: 1;
+  width: 263px;
 `
 
 export const timelineStyle = css`
@@ -77,7 +84,6 @@ export const contentStyle = css`
   justify-content: start;
   align-items: start;
   gap: 16px;
-  flex: 1;
   display: flex;
 `
 
@@ -86,7 +92,6 @@ export const modifyContentStyle = css`
   justify-content: center;
   align-items: start;
   gap: 8px;
-  flex: 1;
   display: flex;
 `
 
@@ -101,14 +106,18 @@ export const avatarStyle = css`
   width: 24px;
   height: 24px;
   border-radius: 50%;
+  flex-shrink: 0;
 `
+
 export const nameStyle = css`
-  //color: var(--illa-grayblue-02, #1D2129);
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
+  max-width: 230px;
+  ${textEllipsisStyle};
 `
+
 export const descStyle = css`
   color: ${getColor("grayBlue", "03")};
   font-size: 12px;

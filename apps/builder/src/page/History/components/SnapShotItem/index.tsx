@@ -169,35 +169,37 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
                 </Tag>
               )}
             </div>
-            <div css={contentStyle}>
-              {snapshot.modifyHistory.map((modify) => {
-                const desc = getOperationDesc(modify)
-                return (
-                  <div key={modify.modifiedAt} css={modifyContentStyle}>
-                    <div css={editorInfoStyle}>
-                      <Avatar
-                        key={modify.modifiedBy.userID}
-                        css={avatarStyle}
-                        avatarUrl={modify.modifiedBy.avatar}
-                        name={modify.modifiedBy.nickname}
-                        id={modify.modifiedBy.userID}
-                      />
-                      <div css={nameStyle}>{modify.modifiedBy.nickname}</div>
+            {snapshot.modifyHistory.length > 0 && (
+              <div css={contentStyle}>
+                {snapshot.modifyHistory.map((modify) => {
+                  const desc = getOperationDesc(modify)
+                  return (
+                    <div key={modify.modifiedAt} css={modifyContentStyle}>
+                      <div css={editorInfoStyle}>
+                        <Avatar
+                          key={modify.modifiedBy.userID}
+                          css={avatarStyle}
+                          avatarUrl={modify.modifiedBy.avatar}
+                          name={modify.modifiedBy.nickname}
+                          id={modify.modifiedBy.userID}
+                        />
+                        <div css={nameStyle}>{modify.modifiedBy.nickname}</div>
+                      </div>
+                      <div css={descStyle}>{desc}</div>
                     </div>
-                    <div css={descStyle}>{desc}</div>
-                  </div>
-                )
-              })}
-              {selected && (
-                <Button
-                  colorScheme="blackAlpha"
-                  loading={loading}
-                  onClick={handleRecoverSnapShot}
-                >
-                  {"Restore this version"}
-                </Button>
-              )}
-            </div>
+                  )
+                })}
+              </div>
+            )}
+            {selected && (
+              <Button
+                colorScheme="blackAlpha"
+                loading={loading}
+                onClick={handleRecoverSnapShot}
+              >
+                {"Restore this version"}
+              </Button>
+            )}
           </>
         )}
       </div>
