@@ -2423,7 +2423,8 @@
         "October": "Octobre",
         "November": "Novembre",
         "December": "Décembre",
-        "final_node": "Plus d'historique"
+        "final_node": "Plus d'historique",
+        "label": "Voir seulement"
       },
       "restore": "Restaurer cette version",
       "message": {

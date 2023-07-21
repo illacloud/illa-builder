@@ -146,6 +146,14 @@ export enum Signal {
    */
   MOVE_CURSOR = 13,
   /**
+   * @generated from protobuf enum value: SIGNAL_FORCE_REFRESH= 14;
+   */
+  FORCE_REFRESH = 14,
+  /**
+   * @generated from protobuf enum value: SIGNAL_TAKE_APP_SNAPSHOT = 15;
+   */
+  TAKE_APP_SNAPSHOT = 14,
+  /**
    * @generated from protobuf enum value: SIGNAL_RECOVER_APP_SNAPSHOT = 16;
    */
   RECOVER_APP_SNAPSHOT = 16,
@@ -214,6 +222,12 @@ export enum Target {
    * @generated from protobuf enum value: TARGET_CURSOR = 9;
    */
   CURSOR = 9,
+  /**
+   * only for broadcast
+   *
+   * @generated from protobuf enum value: TARGET_WINDOW = 10;
+   */
+  WINDOW = 10,
 }
 
 // @generated message type with reflection information, may provide speed optimized methods

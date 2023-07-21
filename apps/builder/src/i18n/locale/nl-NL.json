@@ -2423,7 +2423,8 @@
         "October": "oktober",
         "November": "november",
         "December": "december",
-        "final_node": "Geen geschiedenis meer"
+        "final_node": "Geen geschiedenis meer",
+        "label": "Alleen bekijken"
       },
       "restore": "Herstel deze versie",
       "message": {

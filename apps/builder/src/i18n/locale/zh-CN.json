@@ -2423,7 +2423,8 @@
         "October": "10月",
         "November": "11月",
         "December": "12月",
-        "final_node": "没有更多历史记录"
+        "final_node": "没有更多历史记录",
+        "label": "只读"
       },
       "restore": "恢复到该版本",
       "message": {

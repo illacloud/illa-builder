@@ -37,7 +37,7 @@ export const HistoryNavBar: FC = () => {
           <div css={nameStyle}>{appInfo.appName}</div>
         </div>
       </div>
-      <span css={navDescStyle}>{t("View Only")}</span>
+      <span css={navDescStyle}>{t("editor.history.history_list.label")}</span>
       <Button
         minW="200px"
         colorScheme="techPurple"
