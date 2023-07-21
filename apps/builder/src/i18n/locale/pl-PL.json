@@ -2339,7 +2339,8 @@
             "custom_login": "Niestandardowy login",
             "run_script": "Uruchom skrypt",
             "calendar_guide": "Poradnik kalendarza",
-            "chat_guide": "Poradnik czatu"
+            "chat_guide": "Poradnik czatu",
+            "custom_login_with_sc": "Niestandardowe logowanie za pomocą skryptu"
           },
           "templates_description": {
             "table": "Użyj tabel do tworzenia tablic rozdzielczych.",
@@ -2348,7 +2349,8 @@
             "table_guide": "Funkcje obsługiwane przez tabelę i jak je używać",
             "custom_login": "Aby ograniczyć tylko użytkownicy w bazie danych mogą uzyskać dostęp do publicznych aplikacji",
             "run_script": "Elastyczna obsługa zdarzeń z uruchomieniem skryptu",
-            "calendar_guide": "Zarządzanie wydarzeniami i przeglądanie wydarzeń za pomocą komponentu Kalendarz"
+            "calendar_guide": "Zarządzanie wydarzeniami i przeglądanie wydarzeń za pomocą komponentu Kalendarz",
+            "custom_login_with_sc": "Użyj skryptu, aby ograniczyć dostęp do aplikacji tylko użytkowników w bazie danych"
           },
           "modal": {
             "title": "Fork i rozmieszczenie",
@@ -2405,7 +2407,7 @@
       "history": "Historia",
       "more": "Więcej",
       "save_keyboard": {
-        "cmds": "Cmd + S",
+        "cmds": "⌘ S",
         "ctrls": "Ctrl + S"
       },
       "history_list": {
@@ -2423,7 +2425,8 @@
         "October": "Październik",
         "November": "Listopad",
         "December": "Grudzień",
-        "final_node": "Nie ma więcej historii"
+        "final_node": "Nie ma więcej historii",
+        "label": "Tylko podgląd"
       },
       "restore": "Przywróć tę wersję",
       "message": {
@@ -3404,7 +3407,7 @@
     "subscription_general": {
       "plan": {
         "free": "Darmowe",
-        "plus": "+ +"
+        "plus": "Premia"
       },
       "sub_cycle": {
         "yearly": "Rocznie",
@@ -3515,16 +3518,16 @@
         "add_license": "Zamierzasz dodać {{changeNum}} licencji. Po potwierdzeniu, natychmiast odliczymy płatność za nowe licencje za ten cykl rozliczeniowy. <0>Dowiedz się więcej</0>",
         "remove_license": "Zamierzasz usunąć {{changeNum}} licencji. Po potwierdzeniu, zmiany zaczną obowiązywać w następnym cyklu rozliczeniowym. <0>Dowiedz się więcej</0>",
         "add_traffic": "Dodasz {{changeNum}}GB ruchu. Po potwierdzeniu, natychmiast odliczymy koszt dodatkowego ruchu. <0>Dowiedz się więcej</0>",
-        "subscribe_storage": "Będziesz subskrybować ILLA Cloud Plus. Automatycznie odliczymy opłaty z Twojego konta na początku każdego cyklu płatności. <0>Dowiedz się więcej</0>",
+        "subscribe_storage": "Zamierzasz subskrybować ILLA Cloud Premium. Automatycznie odliczymy opłaty z Twojego konta na początku każdego cyklu płatności. <0>Dowiedz się więcej</0>",
         "subscribe_license": "Zamierzasz subskrybować dysk ILLA. Automatycznie odliczymy opłaty z Twojego konta na początku każdego cyklu płatności. <0>Dowiedz się więcej</0>",
         "update_plan_increase_license": "Masz zamiar dodać {{changeNum}} licencji i zaktualizować okres subskrypcji. <0>Dowiedz się więcej</0>",
         "update_plan_remove_license": "Zamierzasz usunąć {{changeNum}} licencji i zaktualizować okres subskrypcji. <0>Dowiedz się więcej</0>",
         "update_plan_increase_storage": "Dodasz {{changeNum}} GB przestrzeni dyskowej i zaktualizujesz okres subskrypcji. <0>Dowiedz się więcej</0>",
         "update_plan_remove_storage": "Zamierzasz usunąć {{changeNum}} GB przestrzeni dyskowej i zaktualizować okres subskrypcji. <0>Dowiedz się więcej</0>",
-        "unsubscribe_license": "Zamierzasz zrezygnować z subskrypcji ILLA Cloud Plus. Po anulowaniu, począwszy od następnego cyklu rozliczeniowego, funkcje Plus nie będą już dostępne. <0>Dowiedz się więcej</0>",
+        "unsubscribe_license": "Zamierzasz zrezygnować z subskrypcji ILLA Cloud Premium. Po anulowaniu, począwszy od następnego cyklu rozliczeniowego, funkcje Premium nie będą już dostępne. <0>Dowiedz się więcej</0>",
         "unsubscribe_storage": "Zamierzasz zrezygnować z subskrypcji pamięci dyskowej ILLA. Po anulowaniu, począwszy od następnego cyklu rozliczeniowego, pojemność magazynowa zostanie przywrócona do 100MB. <0>Dowiedz się więcej</0>",
-        "subscribe_license_monthly": "Zamierzasz subskrybować miesięczną subskrypcję ILLA Cloud Plus. <0>Dowiedz się więcej</0>",
-        "subscribe_license_yearly": "Zamierzasz subskrybować roczną subskrypcję ILLA Cloud Plus. <0>Dowiedz się więcej</0>",
+        "subscribe_license_monthly": "Zamierzasz subskrybować miesięczną subskrypcję ILLA Cloud Premium. <0>Dowiedz się więcej</0>",
+        "subscribe_license_yearly": "Zamierzasz subskrybować roczną subskrypcję ILLA Cloud Premium. <0>Dowiedz się więcej</0>",
         "subscribe_storage_monthly": "Dodasz {{changeNum}}GB pamięci. Po potwierdzeniu, natychmiast odliczymy koszt pamięci. <0>Dowiedz się więcej</0>",
         "subscribe_storage_yearly": "Dodasz {{changeNum}}GB pamięci. Po potwierdzeniu, natychmiast odliczymy koszt pamięci. <0>Dowiedz się więcej</0>"
       },
@@ -3537,7 +3540,7 @@
         "add_traffic": "Po pomyślnym odliczeniu, Twój ruch będzie wzrastał w czasie rzeczywistym. Po wykorzystaniu ruchu opłaty nie mogą zostać zwrócone. Niewykorzystany ruch może zostać zwrócony w jednostkach GB. Na przykład, jeśli kupujesz 10GB ruchu i korzystasz z 4,5GB, możesz złożyć wniosek o zwrot 5GB. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
         "subscribe_storage_yearly": "Zamierzasz subskrybować roczną subskrypcję magazynu ILLA Drive. Automatycznie odliczymy opłaty z Twojego konta na początku każdego cyklu płatności. Rzeczywista kwota odliczona zależy od ilości pojemności magazynowej subskrybowanej w GB. Na przykład, jeśli rozpoczniesz swoją pierwszą subskrypcję 25 lutego 2023 r. z roczną prowizją abonamentową w wysokości 9 dolarów. za GB, a masz w sumie 3 GB, odliczymy 29 dolarów. 25 lutego 2023 r. Jeśli dodasz 2 GB w dniu 25 marca 2023 r., najpierw odliczymy pozostałe 11 miesięcy w dniu 25 marca 2023 r. Następnie, do 25 lutego 2024 r., odejmiemy płatność za 5 GB, która wynosi (2+3)*9,9 USD =49 USD. . Jeśli chcesz zmniejszyć pamięć lub wprowadzić inne zmiany w subskrypcji, zaktualizuj ją przed rozpoczęciem następnego okresu. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
         "subscribe_storage_monthly": "Zamierzasz subskrybować miesięczną subskrypcję magazynu ILLA Drive. Automatycznie odliczymy opłaty z Twojego konta na początku każdego cyklu płatności. Rzeczywista kwota odliczona zależy od ilości pojemności magazynowej subskrybowanej w GB. Na przykład, jeśli rozpoczniesz swoją pierwszą subskrypcję 25 lutego 2023 r. z miesięczną opłatą abonamentową w wysokości 0 USD. 9 za GB, a masz łącznie 3 GB, odliczymy 2 USD. 7 w dniu 25 lutego 2023 r. Jeśli dodasz jeszcze 2 licencje w dniu 21 marca 2023 r., najpierw odliczymy pozostałe 5 dni płatności w dniu 21 marca 2023 r. Następnie do 25 marca 2023 r. odliczymy opłatę za 5 licencji, czyli (2+3)*$0. 9=4,95 USD. Jeśli chcesz zmniejszyć licencje lub wprowadzić inne zmiany w subskrypcji, zaktualizuj ją przed rozpoczęciem następnego okresu. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
-        "subscribe_license_monthly": "Zamierzasz subskrybować miesięczną subskrypcję ILLA Cloud Plus. Automatycznie odliczymy opłaty z Twojego konta na początku każdego cyklu płatności. Rzeczywista kwota odliczona zależy od liczby licencji, które posiadasz. Na przykład, jeśli rozpoczniesz swoją pierwszą subskrypcję 25 lutego 2023 r. z miesięczną opłatą abonamentową w wysokości 12 USD za licencję, a masz w sumie 3 licencje, odliczymy 36 dolarów 25 lutego 2023 roku. Jeśli dodasz jeszcze 2 licencje w dniu 21 marca 2023 r., najpierw odliczymy pozostałe 5 dni płatności w dniu 21 marca 2023 r. Następnie do 25 marca 2023 r. odliczymy płatność za 5 licencji, czyli (2+3)*$12=$60. Jeśli chcesz zmniejszyć licencje lub wprowadzić inne zmiany w subskrypcji, zaktualizuj je przed rozpoczęciem następnego okresu. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
+        "subscribe_license_monthly": "Zamierzasz subskrybować miesięczną subskrypcję ILLA Cloud Premium. Automatycznie odliczymy opłaty z Twojego konta na początku każdego cyklu płatności. Rzeczywista kwota odliczona zależy od liczby licencji, które posiadasz. Na przykład, jeśli rozpoczniesz swoją pierwszą subskrypcję 25 lutego 2023 r. z miesięczną opłatą abonamentową w wysokości 12 USD za licencję, a masz w sumie 3 licencje, odliczymy 36 dolarów 25 lutego 2023 roku. Jeśli dodasz jeszcze 2 licencje w dniu 21 marca 2023 r., najpierw odliczymy pozostałe 5 dni płatności w dniu 21 marca 2023 r. Następnie do 25 marca 2023 r. odliczymy płatność za 5 licencji, czyli (2+3)*$12=$60. Jeśli chcesz zmniejszyć licencje lub wprowadzić inne zmiany w subskrypcji, zaktualizuj je przed rozpoczęciem następnego okresu. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
         "update_plan_remove_license": "Opłaty będą automatycznie odliczane w oparciu o zaktualizowaną liczbę licencji i cenę nowego cyklu rozliczeniowego od następnego okresu. Jeśli liczba użytkowników z uprawnieniami do edycji przekracza liczbę licencji na początku następnego cyklu rozliczeniowego, wszyscy użytkownicy z wyjątkiem właściciela zostaną wyłączeni do czasu usunięcia członków lub zwiększenia liczby licencji z dostępnego zakresu. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
         "update_plan_increase_storage": "Opłaty będą automatycznie odliczane w oparciu o zaktualizowaną pamięć i cenę nowego cyklu rozliczeniowego od następnego okresu. Tym razem odliczymy płatność za zwiększony magazyn zgodnie z bieżącym cyklem rozliczeniowym. Reguły obliczeniowe przy użyciu miesięcznej subskrypcji magazynu jako przykładu: Rozważmy scenariusz, w którym początkowo subskrybowałeś 5 GB począwszy od 14 marca, a cykl rozliczeniowy obejmuje okres od 14 dnia bieżącego miesiąca do 13 dnia następnego miesiąca. 10 maja zdecydujesz się dodać 1 GB. W tym momencie pozostało 4 dni do końca bieżącego cyklu 13 maja (łącznie 30 dni od 14 kwietnia do 13 maja). Aby obliczyć skorygowaną płatność, odliczymy koszt 1 GB, który wynosi około 0 USD. 9, proporcjonalnie do czasu trwania 4 dni w ciągu 30-dniowego cyklu. W związku z tym odliczenie jest szacowane na 1 licencję * 0,99 USD / 30 dni * 4 dni, co daje około 0,132 USD. Począwszy od następnego cyklu rozliczeniowego, wszystkie opłaty za przechowywanie zostaną skonsolidowane i zapłacone razem. Jeśli chcesz zmniejszyć licencje lub wprowadzić inne zmiany w subskrypcji, zaktualizuj je przed rozpoczęciem następnego okresu. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
         "update_plan_remove_storage": "Opłaty będą automatycznie odliczane w oparciu o zaktualizowaną pamięć i cenę nowego cyklu rozliczeniowego od następnego okresu. Jeśli pojemność magazynowa zajmowana przez twoje pliki przekracza pojemność subskrybowanego magazynu na początku następnego cyklu rozliczeniowego, wszystkie pliki zostaną wyłączone, aż usuniesz pliki lub zwiększ pojemność pamięci w dostępnym zakresie. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>"
@@ -3595,8 +3598,8 @@
         "got_it": "Zrozumiałe"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Uaktualnij do wersji Plus",
-        "this_feature_is_avai": "Ta funkcja jest dostępna tylko dla użytkowników Plus. Aby z niej korzystać, uaktualnij do Plus. Ulepszając do Plus, będziesz miał również dostęp do następujących funkcji. ",
+        "upgrade_to_plus": "Uaktualnij do Premium",
+        "this_feature_is_avai": "Ta funkcja jest dostępna tylko dla użytkowników Premium. Aby z niej korzystać, uaktualnij do Plus. Ulepszając do Premium, będziesz miał również dostęp do następujących funkcji. ",
         "add_unlimited_viewer": "Dodaj nieograniczoną liczbę członków przeglądarki za DARMO",
         "publish_public_appli": "Opublikuj aplikacje publiczne",
         "ai_sql_generation": "Generowanie AI SQL",

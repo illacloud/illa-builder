@@ -1,5 +1,7 @@
 import { lazy } from "react"
 import { redirect } from "react-router-dom"
+import { FullPageLoading } from "@/components/FullPageLoading"
+import { historyLoader } from "@/router/loader/historyLoader"
 import { cloudUrl } from "../constant"
 import { RoutesObjectPro } from "../interface"
 import { lazyLoad } from "../utils/lazyLoad"
@@ -20,6 +22,16 @@ export const cloudRouter: RoutesObjectPro[] = [
     path: "/:teamIdentifier/dashboard",
     element: lazyLoad(lazy(() => import("@/page/Dashboard"))),
     children: publicDashboardChildrenRouter,
+  },
+  {
+    path: "/:teamIdentifier/appHistory/:appId",
+    element: lazyLoad(
+      lazy(() => import("@/page/History")),
+      <FullPageLoading />,
+    ),
+    needLogin: true,
+    loader: historyLoader,
+    errorElement: lazyLoad(lazy(() => import("@/page/status/404"))),
   },
   ...publicTeamChildrenRouter,
   ...publicRouterConfig,

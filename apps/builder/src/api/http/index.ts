@@ -5,6 +5,7 @@ import { actionRuntimeAxios, needAuthAxios, notNeedAuthAxios } from "./base"
 import {
   ACTION_REQUEST_PREFIX,
   BUILDER_REQUEST_PREFIX,
+  BUILDER_WS_REQUEST_PREFIX,
   CLOUD_REQUEST_PREFIX,
   DRIVE_REQUEST_PREFIX,
   PUBLIC_DRIVE_REQUEST_PREFIX,
@@ -143,6 +144,25 @@ export const builderRequest = async <
   const finalURL = getURLWithPrefix(
     requestConfig.url,
     BUILDER_REQUEST_PREFIX,
+    options,
+  )
+
+  return await needAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const builderWSRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(
+    requestConfig.url,
+    BUILDER_WS_REQUEST_PREFIX,
     options,
   )
 

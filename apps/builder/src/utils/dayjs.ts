@@ -3,6 +3,7 @@ import dayjs from "dayjs"
 import advancedFormat from "dayjs/plugin/advancedFormat"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import isBetween from "dayjs/plugin/isBetween"
+import isToday from "dayjs/plugin/isToday"
 import localeData from "dayjs/plugin/localeData"
 import LocalizedFormat from "dayjs/plugin/localizedFormat"
 import QuarterOfYear from "dayjs/plugin/quarterOfYear"
@@ -13,6 +14,7 @@ import weekOfYear from "dayjs/plugin/weekOfYear"
 import weekYear from "dayjs/plugin/weekYear"
 import i18n, { formatLanguage } from "@/i18n/config"
 
+dayjs.extend(isToday)
 dayjs.extend(isBetween)
 dayjs.extend(LocalizedFormat)
 dayjs.extend(relativeTime)
@@ -80,4 +82,17 @@ export const fromNow = (date: string) => {
     )
   }
   return dayjs(date).fromNow()
+}
+
+export const formatDate = (dateString: string) => {
+  const date = dayjs(dateString)
+  const now = dayjs()
+
+  if (date.format("YYYYMMDD") === now.format("YYYYMMDD")) {
+    return date.format("hh:mm A")
+  } else if (date.year() === now.year()) {
+    return date.format("MMMM DD, h:mm A")
+  } else {
+    return date.format("YYYY MMM DD, h:mm A")
+  }
 }

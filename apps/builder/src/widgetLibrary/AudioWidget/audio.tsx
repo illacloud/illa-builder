@@ -1,6 +1,5 @@
 import { isBoolean } from "lodash"
 import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
-import { useTranslation } from "react-i18next"
 import ReactPlayer from "react-player"
 import { Loading, isNumber, isString } from "@illa-design/react"
 import {
@@ -28,13 +27,8 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
       onEnded,
       onPlaybackRateChange,
     } = props
-    const { t } = useTranslation()
     const [loading, setLoading] = useState(true)
     const [_error, setError] = useState(false)
-
-    if (url === "") {
-      return <div css={loadingStyle}>{t("widget.audio.no_audio")}</div>
-    }
 
     return (
       <>
@@ -54,7 +48,8 @@ export const WrappedAudio = forwardRef<ReactPlayer, WrappedAudioProps>(
           ref={ref}
           width="100%"
           height="100%"
-          url={url}
+          // show unavailable link state for audio empty state
+          url={url || " "}
           volume={volume}
           muted={muted}
           controls={controls}
