@@ -20,6 +20,7 @@ export interface ModifyHistory {
   operationBroadcastPayload: Record<any, any>
   modifiedBy: UserInfo
   modifiedAt: string
+  operationTargetModifiedAt: string
 }
 
 export interface Snapshot {
