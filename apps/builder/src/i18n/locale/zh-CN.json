@@ -2401,7 +2401,7 @@
         "Updated": "更新 {{operationTargetName}}",
         "Moved": "移动 {{operationTargetName}}",
         "Reseted": "重置 {{operationTargetName}}",
-        "Restored": "恢复到{{versionName}}"
+        "Restored": "恢复到 {{versionName}}"
       },
       "save": "保存为历史记录",
       "history": "历史记录",
