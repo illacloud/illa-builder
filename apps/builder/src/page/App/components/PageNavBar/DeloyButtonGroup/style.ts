@@ -17,6 +17,11 @@ export const deployConfigButtonStyle = css`
 export const deployMenuStyle = css`
   padding: 8px 0;
 `
+
+export const deployButtonStyle = css`
+  display: flex;
+`
+
 export const deployLabelStyle = css`
   font-weight: 500;
   line-height: 22px;
