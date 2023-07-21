@@ -32,12 +32,6 @@ const textEllipsisStyle = css`
   white-space: nowrap;
 `
 
-const textEllipsisStyle = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`
-
 export const lineStyle = css`
   position: absolute;
   transform: translateX(-50%);
