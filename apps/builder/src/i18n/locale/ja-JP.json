@@ -2407,7 +2407,7 @@
       "history": "沿革",
       "more": "もっと見る",
       "save_keyboard": {
-        "cmds": "Cmd+S",
+        "cmds": "⌘ S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
