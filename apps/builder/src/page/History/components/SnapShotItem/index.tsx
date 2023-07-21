@@ -197,7 +197,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
                 loading={loading}
                 onClick={handleRecoverSnapShot}
               >
-                {"Restore this version"}
+                {t("editor.history.restore")}
               </Button>
             )}
           </>
