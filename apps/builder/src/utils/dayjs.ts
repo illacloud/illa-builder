@@ -91,7 +91,7 @@ export const formatDate = (dateString: string) => {
   if (date.format("YYYYMMDD") !== now.format("YYYYMMDD")) {
     return date.format("hh:mm A")
   } else if (date.year() === now.year()) {
-    return date.format("MMMM DD hh:mm")
+    return date.format("MMMM DD, hh:mm")
   } else {
     return date.format("MMMM DD, YYYY hh:mm A")
   }

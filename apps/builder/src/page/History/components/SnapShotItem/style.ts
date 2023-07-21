@@ -15,12 +15,16 @@ export const badgeDotStyle = css`
   position: relative;
 `
 
-export const ellipse49Style = css`
-  width: 6px;
-  height: 6px;
-  background-color: ${getColor("techPurple", "01")};
-  border-radius: 50%;
-`
+export const applyDotStyle = (selected?: boolean) => {
+  return css`
+    width: 6px;
+    height: 6px;
+    background-color: ${selected
+      ? getColor("techPurple", "01")
+      : getColor("grayBlue", "02")};
+    border-radius: 50%;
+  `
+}
 
 const textEllipsisStyle = css`
   overflow: hidden;
@@ -78,6 +82,10 @@ export const manualStyle = css`
   display: flex;
   gap: 4px;
   align-items: center;
+  color: ${getColor("grayBlue", "04")};
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
 `
 export const contentStyle = css`
   flex-direction: column;

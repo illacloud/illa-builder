@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
-import { Button, Tag, useMessage } from "@illa-design/react"
+import { Button, useMessage } from "@illa-design/react"
 import { Signal } from "@/api/ws/ILLA_PROTO"
 import { Avatar } from "@/illa-public-component/Avatar"
 import {
@@ -14,13 +14,13 @@ import { formatDate } from "@/utils/dayjs"
 import { isILLAAPiError } from "@/utils/typeHelper"
 import { ReactComponent as SaveIcon } from "./assets/save.svg"
 import {
+  applyDotStyle,
   applyTimeStyle,
   avatarStyle,
   badgeDotStyle,
   contentStyle,
   descStyle,
   editorInfoStyle,
-  ellipse49Style,
   itemHeaderStyle,
   leftWrapperStyle,
   lineStyle,
@@ -145,7 +145,7 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
     <div css={timelineStyle}>
       <div css={leftWrapperStyle}>
         <div css={badgeDotStyle}>
-          <div css={ellipse49Style} />
+          <div css={applyDotStyle(selected)} />
         </div>
         {!last && <div css={lineStyle} />}
       </div>
@@ -161,12 +161,10 @@ export const SnapShotItem: FC<SnapShotListProps> = (props) => {
                 {formatDate(snapshot.createdAt)}
               </div>
               {snapshot.snapshotTriggerMode === SnapshotTriggerMode.MANUAL && (
-                <Tag>
-                  <div css={manualStyle}>
-                    <SaveIcon />
-                    {t("editor.history.history_list.manual")}
-                  </div>
-                </Tag>
+                <div css={manualStyle}>
+                  <SaveIcon />
+                  {t("editor.history.history_list.manual")}
+                </div>
               )}
             </div>
             {snapshot.modifyHistory.length > 0 && (
