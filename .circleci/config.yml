@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/project
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2004:202101-01
     resource_class: 2xlarge
     steps:
       - checkout
