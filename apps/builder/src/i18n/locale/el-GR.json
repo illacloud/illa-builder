@@ -2407,7 +2407,7 @@
       "history": "Ιστορικό",
       "more": "Περισσότερα",
       "save_keyboard": {
-        "cmds": "Cmd+S",
+        "cmds": "⌘ S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
