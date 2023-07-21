@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/project
     machine:
       image: ubuntu-2004:202010-01
-    resource_class: large
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -41,7 +41,16 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=illa-builder-frontend -f Dockerfile -t illa-builder-frontend --build-arg BUILDER_ENV=${ILLA_APP_ENV} --build-arg MIXPANEL_API_KEY=$ILLA_MIXPANEL_API_KEY --build-arg GOOGLE_MAP_KEY=$ILLA_GOOGLE_MAP_KEY --build-arg SENTRY_AUTH_TOKEN=$ILLA_SENTRY_AUTH_TOKEN .
+            apt-get install curl
+            curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
+            node -v
+            npm -v
+            npm install -g pnpm@8.3.1
+            whereis pnpm
+            whereis node
+            pnpm install
+            pnpm build-cloud
+            docker build --cache-from=illa-builder-frontend -f Dockerfile -t illa-builder-frontend .
       - run:
           name: Save Docker image layer cache
           command: |
