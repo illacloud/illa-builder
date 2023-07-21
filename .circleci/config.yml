@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/project
     machine:
       image: ubuntu-2004:202010-01
-    resource_class: xlarge
+    resource_class: 2xlarge
     steps:
       - checkout
       - run:
