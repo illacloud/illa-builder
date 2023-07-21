@@ -37,6 +37,11 @@ export const rightContentStyle = css`
   gap: 29px;
 `
 
+export const buttonGroupStyle = css`
+  display: flex;
+  overflow-x: auto;
+`
+
 export const informationStyle = css`
   margin-left: 24px;
   display: flex;
