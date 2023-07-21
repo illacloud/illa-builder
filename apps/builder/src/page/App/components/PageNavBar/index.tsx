@@ -60,20 +60,34 @@ import {
   forkCurrentApp,
   updateWaterMarkConfig,
 } from "@/services/apps"
+import { takeSnapShot } from "@/services/history"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isMAC } from "@/utils/userAgent"
 import {
   descriptionStyle,
   informationStyle,
+  keyTextStyle,
   logoCursorStyle,
   navBarStyle,
   rightContentStyle,
   rowCenter,
   saveFailedTipStyle,
+  spaceBetweenStyle,
   upgradeStyle,
   viewControlStyle,
 } from "./style"
+
+const UpgradeTag: FC = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Tag colorScheme="techPurple">
+      <UpgradeIcon /> {t("billing.homepage.upgrade")}
+    </Tag>
+  )
+}
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
@@ -265,6 +279,35 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     }
   }
 
+  const handleOpenHistory = useCallback(() => {
+    if (!canUseBillingFeature) {
+      handleUpgradeModalVisible(true, "upgrade")
+    } else {
+      navigate(`/${teamIdentifier}/appHistory/${appId}`)
+    }
+  }, [
+    navigate,
+    teamIdentifier,
+    appId,
+    canUseBillingFeature,
+    handleUpgradeModalVisible,
+  ])
+
+  const handleSaveToHistory = useCallback(async () => {
+    if (appId) {
+      try {
+        await takeSnapShot(appId)
+        message.success({ content: t("editor.history.message.suc.save") })
+      } catch (error) {
+        if (isILLAAPiError(error)) {
+          message.error({ content: t("editor.history.message.fail.save") })
+        } else {
+          message.error({ content: t("network_error") })
+        }
+      }
+    }
+  }, [appId, message, t])
+
   const handleWaterMarkChange = useCallback(
     async (value: boolean, event: MouseEvent) => {
       if (appId) {
@@ -276,7 +319,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [appId, dispatch],
   )
 
-  const handleUpgradeModal = useCallback(() => {
+  const checkUpgrade = useCallback(() => {
     if (!canUseBillingFeature) {
       handleUpgradeModalVisible(true, "upgrade")
     }
@@ -357,26 +400,54 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                       onClick={handleDuplicateApp}
                     />
                     {isCloudVersion && (
-                      <DropListItem
-                        key="configWaterMark"
-                        value="configWaterMark"
-                        title={
-                          <span css={upgradeStyle}>
-                            {t("billing.advanced.feature")}
-                            {canUseBillingFeature ? (
-                              <Switch
-                                checked={!waterMark}
-                                onChange={handleWaterMarkChange}
-                              />
-                            ) : (
-                              <Tag colorScheme="techPurple">
-                                <UpgradeIcon /> {t("billing.homepage.upgrade")}
-                              </Tag>
-                            )}
-                          </span>
-                        }
-                        onClick={handleUpgradeModal}
-                      />
+                      <>
+                        <DropListItem
+                          key="history"
+                          value="history"
+                          title={
+                            <span css={upgradeStyle}>
+                              {t("editor.history.history")}
+                              {!canUseBillingFeature && <UpgradeTag />}
+                            </span>
+                          }
+                          onClick={handleOpenHistory}
+                        />
+                        {canUseBillingFeature && (
+                          <DropListItem
+                            key="saveHistory"
+                            value="saveHistory"
+                            title={
+                              <div css={spaceBetweenStyle}>
+                                <span>{t("editor.history.save")}</span>
+                                <span css={keyTextStyle}>
+                                  {isMAC()
+                                    ? t("editor.history.save_keyboard.cmds")
+                                    : t("editor.history.save_keyboard.ctrls")}
+                                </span>
+                              </div>
+                            }
+                            onClick={handleSaveToHistory}
+                          />
+                        )}
+                        <DropListItem
+                          key="configWaterMark"
+                          value="configWaterMark"
+                          title={
+                            <span css={upgradeStyle}>
+                              {t("billing.advanced.feature")}
+                              {canUseBillingFeature ? (
+                                <Switch
+                                  checked={!waterMark}
+                                  onChange={handleWaterMarkChange}
+                                />
+                              ) : (
+                                <UpgradeTag />
+                              )}
+                            </span>
+                          }
+                          onClick={checkUpgrade}
+                        />
+                      </>
                     )}
                   </DropList>
                 }
