@@ -41,7 +41,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            apt-get install curl
+            sudo apt-get install curl
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
             node -v
             npm -v
