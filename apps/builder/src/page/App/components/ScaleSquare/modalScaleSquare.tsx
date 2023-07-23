@@ -19,6 +19,7 @@ import WrapperContainer from "./components/WrapperContainer"
 import { MOVE_BAR_HEIGHT } from "./constant/moveBar"
 import { DEFAULT_MIN_COLUMN } from "./constant/widget"
 import { ScaleSquareProps } from "./interface"
+import { modalstopPropagationContainerStyle } from "./style"
 import { useGetRealShapeAndPosition } from "./utils/getRealShapeAndPosition"
 import { useScaleStateSelector } from "./utils/useScaleStateSelector"
 
@@ -115,35 +116,40 @@ export const ModalScaleSquare: FC<ScaleSquareProps> = (props) => {
       onResizeStart={handleResizeStart}
       onResizeStop={handleOnResizeStop}
     >
-      <DragContainer
-        displayName={displayName}
-        parentNodeDisplayName={parentNodeDisplayName}
-        canDrag={canDrag}
-        columnNumber={columnNumber}
-        unitWidth={unitW}
+      <div
+        css={modalstopPropagationContainerStyle}
+        onClick={(e) => e.stopPropagation()}
       >
-        <WrapperContainer
+        <DragContainer
           displayName={displayName}
           parentNodeDisplayName={parentNodeDisplayName}
-          widgetHeight={height}
-          widgetWidth={width}
-          widgetType={widgetType}
-          widgetTop={MOVE_BAR_HEIGHT}
+          canDrag={canDrag}
           columnNumber={columnNumber}
+          unitWidth={unitW}
         >
-          <TransformWidgetWrapper
+          <WrapperContainer
             displayName={displayName}
-            widgetType={widgetType}
             parentNodeDisplayName={parentNodeDisplayName}
+            widgetHeight={height}
+            widgetWidth={width}
+            widgetType={widgetType}
+            widgetTop={MOVE_BAR_HEIGHT}
+            columnNumber={columnNumber}
+          >
+            <TransformWidgetWrapper
+              displayName={displayName}
+              widgetType={widgetType}
+              parentNodeDisplayName={parentNodeDisplayName}
+            />
+          </WrapperContainer>
+        </DragContainer>
+        {isEditMode && selectedComponents?.length === 1 && isSelected && (
+          <AutoHeightWithLimitedContainer
+            containerHeight={width}
+            displayName={displayName}
           />
-        </WrapperContainer>
-      </DragContainer>
-      {isEditMode && selectedComponents?.length === 1 && isSelected && (
-        <AutoHeightWithLimitedContainer
-          containerHeight={width}
-          displayName={displayName}
-        />
-      )}
+        )}
+      </div>
     </Resizable>
   )
 }
