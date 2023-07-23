@@ -9,7 +9,7 @@ export const fixedChartComponent = (component: ComponentNode) => {
 }
 
 const fixedMenuComponent = (component: ComponentNode) => {
-  if (component.version === 0) {
+  if (component.version === 0 || component.version == undefined) {
     return {
       ...component,
       version: 1,
@@ -45,19 +45,22 @@ export const fixedComponentsToNewComponents = (
   componentsTree: ComponentNode,
 ) => {
   const newComponentsTree = cloneDeep(componentsTree)
-  newComponentsTree.childrenNode =
-    newComponentsTree.childrenNode?.map((component) => {
-      switch (component.type) {
-        case "CHART": {
-          return fixedChartComponent(component)
+  if (Array.isArray(newComponentsTree.childrenNode)) {
+    newComponentsTree.childrenNode =
+      newComponentsTree.childrenNode?.map((component) => {
+        switch (component.type) {
+          case "CHART": {
+            return fixedChartComponent(component)
+          }
+          case "MENU_WIDGET": {
+            return fixedMenuComponent(component)
+          }
+          default: {
+            return fixedComponentsToNewComponents(component)
+          }
         }
-        case "MENU_WIDGET": {
-          return fixedMenuComponent(component)
-        }
-        default: {
-          return fixedComponentsToNewComponents(component)
-        }
-      }
-    }) || []
+      }) || []
+  }
+
   return newComponentsTree
 }
