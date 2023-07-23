@@ -1,4 +1,3 @@
-import { formatDataAsArray, formatDataAsObject } from "@/utils/formatData"
 import { getSnippets, getStringSnippets } from "./dynamicConverter"
 
 export const QUOTED_DYNAMIC_STRING_REGEX = /["']({{[\s\S]*?}})["']/g
@@ -35,65 +34,6 @@ export const filterBindingSegmentsAndRemoveQuotes = (
     }
   })
   return { dynamicString: dynamicStringStrippedQuotes, stringSnippets, values }
-}
-
-export const createGlobalData = (
-  dataTree: Record<string, any>,
-  context?: Record<string, any>,
-) => {
-  const GLOBAL_DATA: Record<string, any> = {}
-  GLOBAL_DATA.THIS_CONTEXT = {}
-  if (context) {
-    GLOBAL_DATA.THIS_CONTEXT = context
-  }
-  Object.keys(dataTree).forEach((datum) => {
-    GLOBAL_DATA[datum] = dataTree[datum]
-  })
-  GLOBAL_DATA.formatDataAsObject = formatDataAsObject
-  GLOBAL_DATA.formatDataAsArray = formatDataAsArray
-
-  return GLOBAL_DATA
-}
-
-const globalVarNames = new Set<PropertyKey>([
-  "window",
-  "globalThis",
-  "self",
-  "global",
-])
-
-function isDomElement(obj: any): boolean {
-  return obj instanceof Element || obj instanceof HTMLCollection
-}
-
-function getPropertyFromNativeWindow(prop: PropertyKey) {
-  const ret = Reflect.get(window, prop)
-  if (typeof ret === "function" && !ret.prototype) {
-    return ret.bind(window)
-  }
-  // get DOM element by id, serializing may cause error
-  if (isDomElement(ret)) {
-    return undefined
-  }
-  return ret
-}
-
-export function createMockWindow(base?: object) {
-  const win: any = new Proxy(Object.assign({}, base), {
-    has() {
-      return true
-    },
-    get(target, p) {
-      if (p in target) {
-        return Reflect.get(target, p)
-      }
-      if (globalVarNames.has(p)) {
-        return win
-      }
-      return getPropertyFromNativeWindow(p)
-    },
-  })
-  return win
 }
 
 export const stringToJS = (string: string): string => {
@@ -154,38 +94,8 @@ export const getWidgetOrActionDynamicAttrPaths = (
 }
 
 export const wrapFunctionCode = (code: string) => {
-  return `
-    (function (){
+  return `(function (){
       ${code}
     })
   `
-}
-
-export const isChildPropertyPath = (
-  parentPropertyPath: string,
-  childPropertyPath: string,
-): boolean => {
-  return (
-    parentPropertyPath === childPropertyPath ||
-    childPropertyPath.startsWith(`${parentPropertyPath}.`) ||
-    childPropertyPath.startsWith(`${parentPropertyPath}[`)
-  )
-}
-
-export const getPropertyPath = (fullPropertyPath: string) => {
-  return fullPropertyPath.substring(fullPropertyPath.indexOf(".") + 1)
-}
-
-export const isPathADynamicBinding = (
-  entity: Record<string, any>,
-  path: string,
-): boolean => {
-  if (
-    entity &&
-    entity.$dynamicAttrPaths &&
-    Array.isArray(entity.$dynamicAttrPaths)
-  ) {
-    return entity.$dynamicAttrPaths.includes(path)
-  }
-  return false
 }
