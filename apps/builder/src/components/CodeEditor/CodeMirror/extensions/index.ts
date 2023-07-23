@@ -43,6 +43,7 @@ import {
   ICodeMirrorOptions,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { isObject } from "@/utils/typeHelper"
+import { ILLAEditorRuntimePropsCollectorInstance } from "../../../../utils/executionTreeHelper/runtimePropsCollector"
 
 export const basicExtension: Extension = [
   history(),
@@ -115,13 +116,13 @@ const buildCompletionSources = (
   lang: CODE_LANG,
   canShowCompleteInfo: boolean,
   sqlScheme: Record<string, unknown>,
-  scopeOfAutoComplete: "global" | "page",
+  executedResult: Record<string, unknown>,
 ) => {
   const ternSource = ternSeverCompletionSource(canShowCompleteInfo, codeType)
   const illaSources = buildIllaContextCompletionSource(
     canShowCompleteInfo,
     codeType,
-    scopeOfAutoComplete,
+    executedResult,
   )
   const completionSources = [ternSource, illaSources]
 
@@ -166,14 +167,14 @@ const getAutoCompletionExtension = (
   lang: CODE_LANG,
   canShowCompleteInfo: boolean,
   sqlScheme: Record<string, unknown>,
-  scopeOfAutoComplete: "global" | "page",
+  executedResult: Record<string, unknown>,
 ) => {
   const completionSources = buildCompletionSources(
     codeType,
     lang,
     canShowCompleteInfo,
     sqlScheme,
-    scopeOfAutoComplete,
+    executedResult,
   )
   return [
     autocompletion({
@@ -196,6 +197,11 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
     scopeOfAutoComplete = "global",
   } = options
 
+  const executedResult =
+    scopeOfAutoComplete === "global"
+      ? ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContextWithLimit()
+      : ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext()
+
   const autocompletionExtension = useMemo(
     () =>
       getAutoCompletionExtension(
@@ -203,9 +209,9 @@ export const useBasicSetup = (options: ICodeMirrorOptions) => {
         lang,
         canShowCompleteInfo,
         sqlScheme,
-        scopeOfAutoComplete,
+        executedResult,
       ),
-    [canShowCompleteInfo, codeType, lang, scopeOfAutoComplete, sqlScheme],
+    [canShowCompleteInfo, codeType, executedResult, lang, sqlScheme],
   )
 
   const showLinNUmberExtension = useMemo(

@@ -100,9 +100,7 @@ export const runActionWithExecutionResult = async (
   const { displayName } = action as ActionItem<
     MysqlLikeAction | RestApiAction<BodyContent>
   >
-  const realAction = action
-  const { content, $actionId, $resourceId, actionType, transformer } =
-    realAction
+  const { content, $actionId, $resourceId, actionType, transformer } = action
   const originActionList = getActionList(store.getState())
   const originAction = originActionList.find(
     (item) => item.displayName === displayName,
@@ -183,7 +181,6 @@ export const runActionWithExecutionResult = async (
       transformer,
       illaInnerTransformedResponse.data ?? "",
     )
-
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,
