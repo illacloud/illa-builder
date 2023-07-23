@@ -1,10 +1,21 @@
-import { FC, ReactNode, useCallback, useEffect, useState } from "react"
+import {
+  FC,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 import { Key } from "ts-key-enum"
 import { createModal, useMessage } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
   getIsILLAEditMode,
@@ -22,11 +33,14 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { takeSnapShot } from "@/services/history"
 import store from "@/store"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import IllaUndoRedoManager from "@/utils/undoRedo/undo"
 import { isMAC } from "@/utils/userAgent"
 
@@ -35,6 +49,8 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useTranslation()
   const message = useMessage()
 
+  const { appId } = useParams()
+
   const isEditMode = useSelector(getIsILLAEditMode)
   const currentSelectedComponent = useSelector(getSelectedComponentDisplayNames)
   const currentSelectedComponentNode = useSelector(getSelectedComponentNode)
@@ -42,10 +58,27 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const canvasRootNode = useSelector(getCanvas)
   const executionResult = useSelector(getExecutionResult)
   const showShadows = useSelector(isShowDot)
+  const teamInfo = useSelector(getCurrentTeamInfo)
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
   // shortcut
   const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
     useState<boolean>(false)
+  const [saveLoading, setSaveLoading] = useState<boolean>(false)
+
+  const canUseBillingFeature = useMemo(
+    () =>
+      canUseUpgradeFeature(
+        teamInfo?.myRole,
+        teamInfo?.totalTeamLicense?.teamLicensePurchased,
+        teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+      ),
+    [
+      teamInfo?.myRole,
+      teamInfo?.totalTeamLicense?.teamLicensePurchased,
+      teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+    ],
+  )
 
   const showDeleteDialog = (
     displayName: string[],
@@ -299,14 +332,40 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [dispatch, showShadows])
 
+  const handleSaveToHistory = useCallback(async () => {
+    if (!canUseBillingFeature) {
+      handleUpgradeModalVisible(true, "upgrade")
+    } else if (appId) {
+      if (saveLoading) return
+      setSaveLoading(true)
+      try {
+        await takeSnapShot(appId)
+        message.success({ content: t("editor.history.message.suc.save") })
+      } catch (error) {
+        if (isILLAAPiError(error)) {
+          message.error({ content: t("editor.history.message.fail.save") })
+        } else {
+          message.error({ content: t("network_error") })
+        }
+      } finally {
+        setSaveLoading(false)
+      }
+    }
+  }, [
+    canUseBillingFeature,
+    handleUpgradeModalVisible,
+    saveLoading,
+    appId,
+    message,
+    t,
+  ])
+
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}+s`,
     (keyboardEvent) => {
       if (keyboardEvent.repeat) return
 
-      message.success({
-        content: t("dont_need_save"),
-      })
+      handleSaveToHistory()
     },
     {
       enableOnFormTags: true,
@@ -314,6 +373,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
       preventDefault: true,
       enabled: isEditMode,
     },
+    [handleSaveToHistory],
   )
 
   useHotkeys(

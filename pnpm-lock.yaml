@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -500,8 +496,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -530,8 +526,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -936,8 +932,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1071,8 +1067,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1230,8 +1226,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1257,8 +1253,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1297,8 +1293,8 @@ importers:
         specifier: workspace:*
         version: link:../trigger
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1334,8 +1330,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1837,8 +1833,8 @@ importers:
         specifier: workspace:*
         version: link:../trigger
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1912,8 +1908,8 @@ importers:
         specifier: ^1.11.7
         version: 1.11.7
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2200,8 +2196,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2263,8 +2259,8 @@ importers:
         specifier: workspace:*
         version: link:../theme
       framer-motion:
-        specifier: ^10.12.18
-        version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -7555,24 +7551,6 @@ packages:
       is-callable: 1.2.7
     dev: true
 
-  /framer-motion@10.12.18(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-cfhiUpPbj+0eEWKjuD+5cz5cMqH71xOtMxGiS/cSGfHn2OlHIEAqFnFyzEMENw5PxWR9bMVhatzzpD6lexmHZQ==}
-    peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      tslib: 2.5.0
-    optionalDependencies:
-      '@emotion/is-prop-valid': 0.8.8
-    dev: false
-
   /framer-motion@7.6.12(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Xm1jPB91v6vIr9b+V3q6c96sPzU1jWdvN+Mv4CvIAY23ZIezGNIWxWNGIWj1We0CZ8SSOQkttz8921M10TQjXg==}
     peerDependencies:
@@ -12620,3 +12598,7 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
