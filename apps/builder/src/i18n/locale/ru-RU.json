@@ -1931,7 +1931,7 @@
           "total_row_count": "Количество строк, используемых для подсчета номера страницы.",
           "next_cursor": "Идентификатор, используемый для определения следующей начальной точки набора данных, для того, чтобы разбивать и получать данные в пакетах",
           "has_next_page": "Логическое значение для указания наличия другой страницы данных. Это поможет нам лучше контролировать поиск данных в страницах запросов и оптимизировать производительность запросов",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Массив объекта, заключенного в {{ }}. Например, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\":\"value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. Поддерживаем этот фильтр: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "Режим фильтра. AND или OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Разрешать ли пользователям выбирать ячейку",
