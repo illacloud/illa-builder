@@ -1931,7 +1931,7 @@
           "total_row_count": "Le nombre de lignes utilisées pour compter le numéro de page.",
           "next_cursor": "Un identifiant utilisé pour localiser le point de départ suivant d'un ensemble de données, afin de paginer et récupérer des données en lots",
           "has_next_page": "Un booléen utilisé pour indiquer s'il y a une autre page de données disponible. Cela peut nous aider à mieux contrôler la récupération des données dans les requêtes paginées et à optimiser les performances des requêtes",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Un tableau d'objet entouré par {{ }}. Par exemple, {{ [{\"**id**\":\"nom de la colonne à filtrer\", \"**valeur**\":\"la valeur à correspondre\", \"**filterFn**\":\"contains, equals, ...\"}] }}. Nous supportons ces filterFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"vide\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "Le mode filtre. ET OU OU.",
           "currency_code": "USD",
           "whether_allow_users_": "Permettre aux utilisateurs de sélectionner une cellule",
