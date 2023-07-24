@@ -1931,7 +1931,7 @@
           "total_row_count": "Het aantal rijen gebruikt om het paginanummer te tellen.",
           "next_cursor": "Een id die gebruikt wordt om het volgende startpunt van een reeks gegevens te vinden, om gegevens in batches te versturen en op te halen",
           "has_next_page": "Een boolean gebruikt om aan te geven of er een andere pagina met gegevens beschikbaar is. Het kan ons helpen om het ophalen van gegevens beter te controleren in gepagineerde query's en het optimaliseren van de queryprestaties",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Een reeks objecten omgeven in {{ }}. Bijvoorbeeld, {{ [{\"**id**\":\"name van de kolom om te filteren\", \"**value**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}. Wij ondersteunen deze filterFn: \"equalTo\", \"notEqualTo\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"voor\", \"na\". ",
           "filter_mode": "De filtermodus. AND of OOR.",
           "currency_code": "USD",
           "whether_allow_users_": "Of gebruikers een cel mogen selecteren",
