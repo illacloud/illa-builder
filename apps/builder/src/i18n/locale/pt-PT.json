@@ -1931,7 +1931,7 @@
           "total_row_count": "O número de linhas usadas para contar o número da página.",
           "next_cursor": "Um identificador usado para localizar o próximo ponto de partida de um conjunto de dados, a fim de paginar e recuperar dados em lotes",
           "has_next_page": "Um booleano usado para indicar se há outra página de dados disponíveis. Ele pode nos ajudar a controlar melhor a recuperação de dados em consultas paginadas e otimizar o desempenho das consultas",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Um array de objeto colocado em {{ }}. Por exemplo, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. Nós suportamos estes filtros: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "O modo de filtro. E ou OR.",
           "currency_code": "R$",
           "whether_allow_users_": "Permitir que os usuários selecionem uma célula",
