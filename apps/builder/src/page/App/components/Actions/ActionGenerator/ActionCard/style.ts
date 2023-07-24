@@ -53,6 +53,8 @@ export const applyAgentCardStyle = (isDraft: boolean) => {
     width: 184px;
     height: 54px;
     border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
     ${hoverStyle};
   `
 }
