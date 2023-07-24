@@ -1931,7 +1931,7 @@
           "total_row_count": "Antalet rader som används för att räkna sidnumret.",
           "next_cursor": "En identifierare som används för att hitta nästa startpunkt för en uppsättning data, för att paginera och hämta data i batcher",
           "has_next_page": "En boolesk som används för att ange om det finns en annan sida av data tillgänglig. Det kan hjälpa oss att bättre kontrollera datainsamling i sidnumrerade frågor och optimera frågeprestanda",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "En array av objekt inneslutna i {{ }}. Till exempel, {{ [{\"**id**\":\"namn på kolumnen till filter\", \"**värde**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. Vi stöder dessa filterFn: \"equalTo\", \"notEqualTo\", \"innehåller\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"före\", \"efter\". ",
           "filter_mode": "Filterläget. OCH eller OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Om tillåta användare att välja en cell",
