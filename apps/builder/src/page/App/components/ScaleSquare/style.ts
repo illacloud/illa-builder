@@ -344,3 +344,8 @@ export const applyXDirectionDashedLineStyle = (
     ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
     : "none"};
 `
+
+export const modalstopPropagationContainerStyle = css`
+  width: 100%;
+  height: 100%;
+`
