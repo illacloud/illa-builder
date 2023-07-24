@@ -22,8 +22,8 @@ import {
   viewControlStyle,
 } from "@/page/App/components/PageNavBar/style"
 import { editorContainerStyle } from "@/page/App/style"
+import { Page404 } from "@/page/Status/404"
 import { forkIconStyle, forkTextStyle, frameStyle } from "@/page/Template/style"
-import { Page404 } from "@/page/status/404"
 import { configActions } from "@/redux/config/configSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { fetchResources } from "@/services/resource"

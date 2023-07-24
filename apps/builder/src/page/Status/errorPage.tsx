@@ -1,6 +1,6 @@
 import { FC } from "react"
-import { ErrorPageProps } from "@/page/status/interface"
-import { errorPageStyle } from "@/page/status/style"
+import { ErrorPageProps } from "@/page/Status/interface"
+import { errorPageStyle } from "@/page/Status/style"
 
 export const ErrorPage: FC<ErrorPageProps> = (props) => {
   const { title, des, img, children } = props

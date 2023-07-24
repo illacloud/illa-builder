@@ -14,7 +14,7 @@ export const publicTeamChildrenRouter: RoutesObjectPro[] = [
     path: "/:teamIdentifier/app/:appId",
     element: lazyLoad(lazy(() => import("@/page/App"))),
     needLogin: true,
-    errorElement: lazyLoad(lazy(() => import("@/page/status/404"))),
+    errorElement: lazyLoad(lazy(() => import("@/page/Status/404"))),
   },
   {
     path: "/:teamIdentifier/deploy/app/:appId/:pageName?/:viewPath?",
@@ -23,7 +23,7 @@ export const publicTeamChildrenRouter: RoutesObjectPro[] = [
       <FullPageLoading />,
     ),
     accessByMobile: true,
-    errorElement: lazyLoad(lazy(() => import("@/page/status/404"))),
+    errorElement: lazyLoad(lazy(() => import("@/page/Status/404"))),
     loader: deployLoader,
     shouldRevalidate: (args) => {
       const { currentParams, nextParams } = args
@@ -33,13 +33,13 @@ export const publicTeamChildrenRouter: RoutesObjectPro[] = [
   {
     path: "/:teamIdentifier/template/:templateName",
     element: lazyLoad(lazy(() => import("@/page/Template"))),
-    errorElement: lazyLoad(lazy(() => import("@/page/status/404"))),
+    errorElement: lazyLoad(lazy(() => import("@/page/Status/404"))),
     needLogin: true,
   },
   {
     path: "/:teamIdentifier/guide",
     element: lazyLoad(lazy(() => import("@/page/Template/GuideApp"))),
-    errorElement: lazyLoad(lazy(() => import("@/page/status/404"))),
+    errorElement: lazyLoad(lazy(() => import("@/page/Status/404"))),
     needLogin: true,
   },
 ]
@@ -61,17 +61,17 @@ export const publicRouterConfig: RoutesObjectPro[] = [
   },
   {
     path: "/403",
-    element: lazyLoad(lazy(() => import("@/page/status/403"))),
+    element: lazyLoad(lazy(() => import("@/page/Status/403"))),
     accessByMobile: true,
   },
   {
     path: "/500",
-    element: lazyLoad(lazy(() => import("@/page/status/500"))),
+    element: lazyLoad(lazy(() => import("@/page/Status/500"))),
     accessByMobile: true,
   },
   {
     path: "/*",
-    element: lazyLoad(lazy(() => import("@/page/status/404"))),
+    element: lazyLoad(lazy(() => import("@/page/Status/404"))),
     accessByMobile: true,
   },
 ]

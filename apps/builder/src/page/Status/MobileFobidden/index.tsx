@@ -10,7 +10,7 @@ import {
   contentWrapperStyle,
   iconWrapperStyle,
   wrapperStyle,
-} from "@/page/status/MobileFobidden/style"
+} from "@/page/Status/MobileFobidden/style"
 import { track } from "@/utils/mixpanelHelper"
 
 export const MobileForbidden: FC = () => {
