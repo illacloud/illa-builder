@@ -1931,7 +1931,7 @@
           "total_row_count": "Liczba wierszy używanych do liczenia numeru strony.",
           "next_cursor": "Identyfikator używany do zlokalizowania następnego punktu początkowego zbioru danych w celu stronicowania i pobierania danych w partiach",
           "has_next_page": "Wartość logiczna wskazująca, czy dostępna jest inna strona danych. Może pomóc nam lepiej kontrolować pobieranie danych w paginated queries i zoptymalizować wydajność zapytania",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Tablica obiektów zamknięta w {{ }}. Na przykład, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }. Wspieramy ten filtryFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"not LessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"fore\", \"po\". ",
           "filter_mode": "Tryb filtrowania. ORAZ lub OR.",
           "currency_code": "W okresie objętym dochodzeniem przeglądowym przywóz z ChRL wzrósł o 7 %.",
           "whether_allow_users_": "Czy pozwala użytkownikom wybrać komórkę",
