@@ -102,6 +102,7 @@ export type ActionType =
   | "appwrite"
   | "upstash"
   | "airtable"
+  | "agent"
 
 export type ActionTriggerMode = "manually" | "automate"
 
