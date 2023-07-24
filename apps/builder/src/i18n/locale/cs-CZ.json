@@ -1931,7 +1931,7 @@
           "total_row_count": "Počet řádků použitých pro počítání čísla stránky.",
           "next_cursor": "Identifikátor používaný k nalezení dalšího výchozího bodu souboru dat, aby bylo možné získat údaje o stránce a získat je v dávkách.",
           "has_next_page": "Boolean používaný k označování, zda existuje jiná dostupná stránka údajů. To nám může pomoci lépe kontrolovat načítání dat v očíslovaných dotazech a optimalizovat výkon dotazu",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Pole objektu uzavřené v {{ }}. Například {{ [{\"**id**\":\"name of the column to filter\", \"**value**\":\"The value to match\", \"**filterFn**\":\"obsahuje, rovná, ...\"}] }}. Podporujeme tento filtrFn: \"equalTo\", \"notEqualTo\", \"obsahuje\", \"neobsahuje\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"prázdný\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "Režim filtru. A nebo OR.",
           "currency_code": "V tabulce v příloze I nařízení (EU) č. 36/2012 se v řádku týkajícím se subjektu „Ecocert Erőmű Kft.“ nahrazuje tímto:",
           "whether_allow_users_": "Určuje, zda povolit uživatelům vybrat buňku",
