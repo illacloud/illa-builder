@@ -1931,7 +1931,7 @@
           "total_row_count": "Sivujen numeron laskemiseen käytettyjen rivien määrä.",
           "next_cursor": "Tunniste jota käytetään tietoryhmän seuraavan lähtökohdan löytämiseen, jotta tietoja voidaan hemmottelea ja hakea erissä",
           "has_next_page": "Totuusarvo, jota käytetään osoittamaan, onko saatavilla toinen sivu tietoja. Se voi auttaa meitä hallitsemaan paremmin tietojen hakua paginated kyselyt ja optimoida kyselyn suorituskykyä",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Joukko esinettä on liitetty {{ }}. Esimerkiksi {{ [{\"**id**\":\"suodattavan sarakkeen nimi\", \"**value**\":\"arvo vastaa arvoa\", \"**filterFn**\":\"sisältää, yhtälöt, ...\"}] }}. Tuemme suodatinFn: \"equalTo\", \"notEqualTo\", \"sisältää\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before \"after\". ",
           "filter_mode": "Suodatintila. JA tai OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Salli käyttäjien valita solu",
