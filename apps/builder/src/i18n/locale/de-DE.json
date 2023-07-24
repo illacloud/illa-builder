@@ -1931,7 +1931,7 @@
           "total_row_count": "Die Anzahl der Zeilen, die zur Zählung der Seitenzahl verwendet werden.",
           "next_cursor": "Ein Bezeichner zum Auffinden des nächsten Startpunkts einer Datenmenge, um Daten in Batches zu paginieren und abzurufen",
           "has_next_page": "Eine boolesche Angabe, um anzugeben, ob eine andere Datenseite zur Verfügung steht. Es kann uns helfen, das Abrufen von Daten in paginierten Abfragen besser zu steuern und die Abfrageleistung zu optimieren",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Ein Array von Objekten, das in {{ }}eingeschlossen ist. Zum Beispiel {{ [{\"**id**\":\"Name der zu filternden Spalte\", \"**value**\":\"The value to match\", \"**filterFn**\":\"Enthält, Gleiche, ...\"}] }}. Wir unterstützen diese FilterFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"leer\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "Der Filtermodus. AND oder OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Ob es Benutzern erlaubt eine Zelle auszuwählen",
