@@ -1543,7 +1543,8 @@
           "thousand_separator": "Zobrazit tisícovku oddělovače",
           "trend_color": "Povolit barvu trendu",
           "prefix_text": "Text prefixu",
-          "suffix_text": "Přípona"
+          "suffix_text": "Přípona",
+          "title": "Hlava 1 – Celkem"
         },
         "mute": "Ztlumit",
         "collapse": {
@@ -1728,10 +1729,10 @@
         "jsonSchemaForm": {
           "JSONSchema": "JSONSchema",
           "UISchema": "UISchema",
-          "default_form_data": "Default form data",
-          "hidden_submit_button": "Hidden submit button",
-          "submit_button_full_w": "Submit button full width",
-          "submit_button_text": "Submit button text"
+          "default_form_data": "Výchozí data formuláře",
+          "hidden_submit_button": "Skryté tlačítko pro odeslání",
+          "submit_button_full_w": "Odeslat tlačítko na celou šířku",
+          "submit_button_text": "Odeslat text tlačítka"
         }
       },
       "setter_tooltip": {
@@ -1990,6 +1991,9 @@
           "logo": "Nastavte logo pomocí URL",
           "title": "Zde nastavte název společnosti, jako je název společnosti",
           "only_show_icon": "Ukázat štítek a zobrazit pouze ikonu"
+        },
+        "statistics": {
+          "title": "Nastavit název pro zobrazení"
         }
       },
       "setter_option": {
@@ -2123,12 +2127,12 @@
           "currency_code": "Kód měny definovaný v [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         },
         "jsonSchemaForm": {
-          "JSONSchema": "JSON Schema for the form - see the schema prop for react-jsonschema-form.\n\nExample\n{{action1.data }}\n\nLearn more about how to write the JSON schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
-          "UISchema": "UI Schema for the form - see the uiSchema prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExample\n{{ action1.data }}",
-          "default_form_data": "Default Form data - see the formData prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExample\r\n{{ action1.data }}",
-          "hidden_submit_button": "Set whether to hide the submit button",
-          "submit_button_full_w": "Set whether the submit button is full width.",
-          "submit_button_text": "Set the text of the submit button"
+          "JSONSchema": "JSON schéma pro formulář.\n\nPříklad\n{{action1.data }}\n\nDalší informace o tom, jak napsat schéma JSON [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Schéma UI formuláře - viz uiSchema prop pro [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nPříklad\n{{ action1.data }}",
+          "default_form_data": "Výchozí data formulářů - viz Prop formulářů pro [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nPříklad\r\n{{ action1.data }}",
+          "hidden_submit_button": "Nastavte, zda skrýt tlačítko Odeslání",
+          "submit_button_full_w": "Nastavte, zda je tlačítko Odeslání celé šířky.",
+          "submit_button_text": "Nastavte text tlačítka Odeslání"
         }
       },
       "setter_tootip": {
@@ -2869,7 +2873,7 @@
       }
     },
     "jsonSchemaForm": {
-      "name": "JSON Schema Form"
+      "name": "Formulář schématu JSON"
     }
   },
   "page": {
