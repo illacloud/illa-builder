@@ -111,6 +111,11 @@ import {
   JSON_EDITOR_WIDGET_CONFIG,
 } from "@/widgetLibrary/JsonEditorWidget"
 import {
+  JSON_SCHEMA_FORM_EVENT_HANDLER_CONFIG,
+  JSON_SCHEMA_FORM_PANEL_CONFIG,
+  JSON_SCHEMA_FORM_WIDGET_CONFIG,
+} from "@/widgetLibrary/JsonSchemaFormWidget"
+import {
   LIST_EVENT_HANDLER_CONFIG,
   LIST_PANEL_CONFIG,
   LIST_WIDGET_CONFIG,
@@ -322,6 +327,14 @@ export const WidgetConfigMap: Record<
     config: RICH_TEXT_WIDGET_CONFIG,
     panelConfig: RICH_TEXT_PANEL_CONFIG,
     eventHandlerConfig: RICH_TEXT_EVENT_HANDLER_CONFIG,
+  },
+  JSON_SCHEMA_FORM_WIDGET: {
+    widget: lazy(
+      () => import("@/widgetLibrary/JsonSchemaFormWidget/jsonSchemaForm"),
+    ),
+    config: JSON_SCHEMA_FORM_WIDGET_CONFIG,
+    panelConfig: JSON_SCHEMA_FORM_PANEL_CONFIG,
+    eventHandlerConfig: JSON_SCHEMA_FORM_EVENT_HANDLER_CONFIG,
   },
   // select inputs
   SWITCH_WIDGET: {
