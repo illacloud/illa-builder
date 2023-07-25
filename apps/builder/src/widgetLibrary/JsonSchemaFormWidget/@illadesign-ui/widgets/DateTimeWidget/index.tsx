@@ -11,7 +11,7 @@ import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-u
 export default function DateTimeWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: WidgetProps<T, S, F>) {
   const {
     id,

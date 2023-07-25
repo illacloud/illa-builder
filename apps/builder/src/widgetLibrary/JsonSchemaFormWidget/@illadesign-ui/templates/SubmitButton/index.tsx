@@ -10,7 +10,7 @@ import { Button } from "@illa-design/react"
 export default function SubmitButton<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: SubmitButtonProps<T, S, F>) {
   const { uiSchema } = props
   const { formContext } = props.registry

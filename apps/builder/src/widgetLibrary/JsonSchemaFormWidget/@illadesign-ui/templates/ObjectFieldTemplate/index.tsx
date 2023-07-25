@@ -18,7 +18,7 @@ import { Col, Row } from "@illa-design/react"
 export default function ObjectFieldTemplate<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: ObjectFieldTemplateProps<T, S, F>) {
   const {
     description,

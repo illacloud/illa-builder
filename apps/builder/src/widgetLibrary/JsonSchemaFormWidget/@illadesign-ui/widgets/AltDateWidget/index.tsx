@@ -25,7 +25,7 @@ const rangeOptions = (start: number, stop: number) => {
 function DateElement<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: WidgetProps<T, S, F>) {
   const { SelectWidget } = props.registry.widgets
   const value = props.value ? props.value : undefined
@@ -61,7 +61,7 @@ const readyForChange = (state: AltDateStateType) => {
 function AltDateWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: WidgetProps<T, S, F>) {
   const {
     autofocus,
@@ -115,8 +115,8 @@ function AltDateWidget<
   const dateElementProps = () => {
     const { year, month, day, hour, minute, second } = state
 
-    const data: { type: string; range: any; value?: number }[] = [
-      { type: "year", range: options.yearsRange, value: year },
+    const data: { type: string; range: number[]; value?: number }[] = [
+      { type: "year", range: options.yearsRange as number[], value: year },
       { type: "month", range: [1, 12], value: month },
       { type: "day", range: [1, 31], value: day },
     ]
@@ -135,7 +135,7 @@ function AltDateWidget<
   return (
     <div>
       <div css={dateContainerStyle}>
-        {dateElementProps().map((elemProps: any, i) => {
+        {dateElementProps().map((elemProps, i) => {
           const elemId = id + "_" + elemProps.type
           return (
             <div key={elemId} css={elementStyle}>
@@ -151,7 +151,11 @@ function AltDateWidget<
                 readonly={readonly}
                 registry={registry}
                 select={handleChange}
-                value={elemProps.value < 0 ? "" : elemProps.value}
+                value={
+                  !elemProps || !elemProps.value || elemProps.value < 0
+                    ? ""
+                    : elemProps.value
+                }
               />
             </div>
           )

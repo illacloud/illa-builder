@@ -17,7 +17,7 @@ import { iconButtonStyle } from "./style"
 export function IconButton<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: IconButtonProps<T, S, F>) {
   const { icon, ...otherProps } = props
   return (
@@ -30,7 +30,7 @@ export function IconButton<
 export function AddButton<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >({ registry, ...props }: IconButtonProps<T, S, F>) {
   const { formContext } = registry
   return (
@@ -46,7 +46,7 @@ export function AddButton<
 export function CopyButton<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: IconButtonProps<T, S, F>) {
   const {
     registry: { formContext },
@@ -64,7 +64,7 @@ export function CopyButton<
 export function MoveDownButton<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: IconButtonProps<T, S, F>) {
   const {
     registry: { formContext },
@@ -82,7 +82,7 @@ export function MoveDownButton<
 export function MoveUpButton<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: IconButtonProps<T, S, F>) {
   const {
     registry: { formContext },
@@ -100,7 +100,7 @@ export function MoveUpButton<
 export function RemoveButton<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: IconButtonProps<T, S, F>) {
   return (
     <Button

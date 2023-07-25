@@ -9,7 +9,7 @@ import _AltDateWidget from "../AltDateWidget"
 function AltDateTimeWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: WidgetProps<T, S, F>) {
   const { AltDateWidget } = props.registry.widgets
   return <AltDateWidget {...props} showTime />

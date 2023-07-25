@@ -13,7 +13,7 @@ import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-u
 export default function RangeWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >({
   value,
   readonly,

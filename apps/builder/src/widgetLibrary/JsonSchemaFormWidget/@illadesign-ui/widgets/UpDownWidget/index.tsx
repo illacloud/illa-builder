@@ -12,7 +12,7 @@ import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-u
 export default function UpDownWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: WidgetProps<T, S, F>) {
   const {
     id,
@@ -29,11 +29,10 @@ export default function UpDownWidget<
   } = props
 
   const _onChange = (value: undefined | number) => onChange(value)
-  const _onBlur = ({ target: { value } }: FocusEvent<HTMLInputElement | any>) =>
+  const _onBlur = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
     onBlur(id, value)
-  const _onFocus = ({
-    target: { value },
-  }: FocusEvent<HTMLInputElement | any>) => onFocus(id, value)
+  const _onFocus = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
+    onFocus(id, value)
 
   return (
     <LabelWrapper required={required} label={label}>

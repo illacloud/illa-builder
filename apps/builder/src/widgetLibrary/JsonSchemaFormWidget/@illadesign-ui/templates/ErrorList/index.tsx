@@ -11,7 +11,7 @@ import { errorDetailStyle } from "./style"
 export default function ErrorList<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >({ errors, registry }: ErrorListProps<T, S, F>) {
   const { translateString } = registry
   return (

@@ -9,15 +9,15 @@ import { descriptionStyle } from "./style"
 export default function DescriptionField<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: DescriptionFieldProps<T, S, F>) {
   const { id, description } = props
   if (!description) {
     return null
   }
   return (
-    <span id={id} css={descriptionStyle}>
+    <div id={id} css={descriptionStyle}>
       {description}
-    </span>
+    </div>
   )
 }

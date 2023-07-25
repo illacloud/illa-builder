@@ -13,7 +13,7 @@ import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-u
 export default function CheckboxesWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: WidgetProps<T, S, F>) {
   const {
     id,
@@ -30,11 +30,9 @@ export default function CheckboxesWidget<
     formContext,
   } = props
   const { enumOptions, enumDisabled, emptyValue } = options
-  const _onBlur = ({ target: { value } }: FocusEvent<HTMLInputElement | any>) =>
+  const _onBlur = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
     onBlur(id, enumOptionsValueForIndex<S>(value, enumOptions, emptyValue))
-  const _onFocus = ({
-    target: { value },
-  }: FocusEvent<HTMLInputElement | any>) =>
+  const _onFocus = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
     onFocus(id, enumOptionsValueForIndex<S>(value, enumOptions, emptyValue))
 
   const row = options ? options.inline : false

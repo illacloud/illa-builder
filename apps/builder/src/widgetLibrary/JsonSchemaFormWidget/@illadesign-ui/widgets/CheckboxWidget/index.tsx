@@ -8,14 +8,13 @@ import {
   getTemplate,
   schemaRequiresTrueValue,
 } from "@rjsf/utils"
-import { FocusEvent } from "react"
 import { Checkbox } from "@illa-design/react"
 import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-ui/labelWrapper"
 
 export default function CheckboxWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: WidgetProps<T, S, F>) {
   const {
     id,
@@ -23,8 +22,6 @@ export default function CheckboxWidget<
     disabled,
     readonly,
     onChange,
-    onBlur,
-    onFocus,
     label,
     hideLabel,
     registry,
@@ -44,11 +41,6 @@ export default function CheckboxWidget<
   const description = options.description || schema.description
 
   const _onChange = (value: boolean) => onChange(value)
-  const _onBlur = ({ target: { value } }: FocusEvent<HTMLInputElement | any>) =>
-    onBlur(id, value)
-  const _onFocus = ({
-    target: { value },
-  }: FocusEvent<HTMLInputElement | any>) => onFocus(id, value)
 
   return (
     <>
@@ -59,8 +51,6 @@ export default function CheckboxWidget<
           disabled={disabled || readonly}
           checked={value ?? false}
           onChange={_onChange}
-          onBlur={_onBlur}
-          onFocus={_onFocus}
           aria-describedby={ariaDescribedByIds<T>(id)}
         />
       </LabelWrapper>

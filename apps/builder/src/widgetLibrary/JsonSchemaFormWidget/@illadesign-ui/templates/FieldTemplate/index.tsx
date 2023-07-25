@@ -12,7 +12,7 @@ import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-u
 export default function FieldTemplate<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: FieldTemplateProps<T, S, F>) {
   const {
     id,

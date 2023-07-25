@@ -25,7 +25,7 @@ import WrapIfAdditionalTemplate from "./WrapIfAdditionalTemplate"
 export function generateTemplates<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(): Partial<TemplatesType<T, S, F>> {
   return {
     ArrayFieldItemTemplate,

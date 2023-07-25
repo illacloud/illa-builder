@@ -13,7 +13,7 @@ import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-u
 export default function RadioWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >({
   id,
   options,
@@ -29,7 +29,7 @@ export default function RadioWidget<
 }: WidgetProps<T, S, F>) {
   const { enumOptions, enumDisabled, emptyValue } = options
 
-  const _onChange = (value: any) => {
+  const _onChange = (value: unknown) => {
     onChange(value)
   }
   const _onBlur = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>

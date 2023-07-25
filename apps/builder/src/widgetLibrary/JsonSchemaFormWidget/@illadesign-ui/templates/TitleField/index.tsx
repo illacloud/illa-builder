@@ -10,7 +10,7 @@ import { titleFieldStyle } from "./style"
 export default function TitleField<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >({ id, title }: TitleFieldProps<T, S, F>) {
   return (
     <div id={id} css={titleFieldStyle}>

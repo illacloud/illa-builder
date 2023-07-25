@@ -14,7 +14,7 @@ import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-u
 export default function BaseInputTemplate<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: BaseInputTemplateProps<T, S, F>) {
   const {
     id,
@@ -86,7 +86,7 @@ export default function BaseInputTemplate<
                     ? ([schema.default] as string[])
                     : [],
                 )
-                .map((example: any) => {
+                .map((example: string) => {
                   return <option key={example} value={example} />
                 })}
             </datalist>

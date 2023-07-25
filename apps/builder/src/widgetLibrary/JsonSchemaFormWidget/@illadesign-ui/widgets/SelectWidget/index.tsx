@@ -14,7 +14,7 @@ import { LabelWrapper } from "@/widgetLibrary/JsonSchemaFormWidget/@illadesign-u
 export default function SelectWidget<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
-  F extends FormContextType = any,
+  F extends FormContextType = FormContextType,
 >(props: WidgetProps<T, S, F>) {
   const {
     id,
@@ -34,8 +34,16 @@ export default function SelectWidget<
   } = props
   const { enumOptions, enumDisabled, emptyValue } = options
 
-  const _onChange = (value: any) => {
-    return onChange(enumOptionsValueForIndex<S>(value, enumOptions, emptyValue))
+  const _onChange = (value: unknown) => {
+    if (
+      typeof value === "string" ||
+      value === "number" ||
+      Array.isArray(value)
+    ) {
+      onChange(
+        enumOptionsValueForIndex<S>(value ?? "", enumOptions, emptyValue),
+      )
+    }
   }
 
   const _onBlur = () =>
@@ -44,7 +52,7 @@ export default function SelectWidget<
   const _onFocus = () =>
     onFocus(id, enumOptionsValueForIndex<S>(value, enumOptions, emptyValue))
 
-  const _valueLabelMap: any = {}
+  const _valueLabelMap: Record<number, unknown> = {}
   const displayEnumOptions: SelectOptionObject[] = Array.isArray(enumOptions)
     ? enumOptions.map((option: EnumOptionsType<S>, index: number) => {
         const { value, label } = option
@@ -64,7 +72,7 @@ export default function SelectWidget<
     enumOptions,
     isMultiple,
   )
-  const formValue: any = isMultiple
+  const formValue: string | string[] = isMultiple
     ? ((selectedIndex as string[]) || []).map((v: string) => {
         return `${v || ""}`
       })
