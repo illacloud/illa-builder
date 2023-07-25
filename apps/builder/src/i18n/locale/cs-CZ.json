@@ -1724,7 +1724,15 @@
           "only_show_icon": "Zobrazit pouze ikonu",
           "groupLabels": "Skupinové štítky"
         },
-        "hover_bg_color": "Pozadí při přechodu"
+        "hover_bg_color": "Pozadí při přechodu",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Default form data",
+          "hidden_submit_button": "Hidden submit button",
+          "submit_button_full_w": "Submit button full width",
+          "submit_button_text": "Submit button text"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -2113,6 +2121,14 @@
         },
         "table": {
           "currency_code": "Kód měny definovaný v [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON Schema for the form - see the schema prop for react-jsonschema-form.\n\nExample\n{{action1.data }}\n\nLearn more about how to write the JSON schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "UI Schema for the form - see the uiSchema prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExample\n{{ action1.data }}",
+          "default_form_data": "Default Form data - see the formData prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExample\r\n{{ action1.data }}",
+          "hidden_submit_button": "Set whether to hide the submit button",
+          "submit_button_full_w": "Set whether the submit button is full width.",
+          "submit_button_text": "Set the text of the submit button"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2867,9 @@
         "cancel": "Zrušit",
         "no_file": "Žádný soubor"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "JSON Schema Form"
     }
   },
   "page": {
