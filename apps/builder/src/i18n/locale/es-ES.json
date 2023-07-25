@@ -1543,7 +1543,8 @@
           "thousand_separator": "Mostrar mil separadores",
           "trend_color": "Activar color de tendencia",
           "prefix_text": "Texto de prefijo",
-          "suffix_text": "Texto sufijo"
+          "suffix_text": "Texto sufijo",
+          "title": "Título"
         },
         "mute": "Silenciar",
         "collapse": {
@@ -1728,10 +1729,10 @@
         "jsonSchemaForm": {
           "JSONSchema": "JSONSchema",
           "UISchema": "UISchema",
-          "default_form_data": "Default form data",
-          "hidden_submit_button": "Hidden submit button",
-          "submit_button_full_w": "Submit button full width",
-          "submit_button_text": "Submit button text"
+          "default_form_data": "Datos de formulario por defecto",
+          "hidden_submit_button": "Botón de envío oculto",
+          "submit_button_full_w": "Ancho completo del botón de envío",
+          "submit_button_text": "Texto del botón de enviar"
         }
       },
       "setter_tooltip": {
@@ -1990,6 +1991,9 @@
           "logo": "Establece tu logotipo con una URL",
           "title": "Establecer aquí un título como el nombre de la empresa",
           "only_show_icon": "Para ocultar la etiqueta y sólo mostrar el icono"
+        },
+        "statistics": {
+          "title": "Establecer el título a mostrar"
         }
       },
       "setter_option": {
@@ -2123,12 +2127,12 @@
           "currency_code": "El código de moneda definido en [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         },
         "jsonSchemaForm": {
-          "JSONSchema": "JSON Schema for the form - see the schema prop for react-jsonschema-form.\n\nExample\n{{action1.data }}\n\nLearn more about how to write the JSON schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
-          "UISchema": "UI Schema for the form - see the uiSchema prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExample\n{{ action1.data }}",
-          "default_form_data": "Default Form data - see the formData prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExample\r\n{{ action1.data }}",
-          "hidden_submit_button": "Set whether to hide the submit button",
-          "submit_button_full_w": "Set whether the submit button is full width.",
-          "submit_button_text": "Set the text of the submit button"
+          "JSONSchema": "Esquema JSON para el formulario.\n\nEjemplo\n{{action1.data }}\n\nAprenda más sobre cómo escribir el esquema JSON [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Esquema de interfaz de usuario para el formulario - vea el soporte de uiSchema para el [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nEjemplo\n{{ action1.data }}",
+          "default_form_data": "Datos de formulario predeterminados - vea el prop formData para el [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nEjemplo\r\n{{ action1.data }}",
+          "hidden_submit_button": "Establecer si ocultar el botón de enviar",
+          "submit_button_full_w": "Ajuste si el botón enviar es ancho o no.",
+          "submit_button_text": "Establecer el texto del botón de enviar"
         }
       },
       "setter_tootip": {
@@ -2869,7 +2873,7 @@
       }
     },
     "jsonSchemaForm": {
-      "name": "JSON Schema Form"
+      "name": "Formulario de esquema JSON"
     }
   },
   "page": {
