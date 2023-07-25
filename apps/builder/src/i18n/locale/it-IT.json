@@ -1543,7 +1543,8 @@
           "thousand_separator": "Mostra migliaia di separatori",
           "trend_color": "Abilita colore tendenza",
           "prefix_text": "Prefisso testo",
-          "suffix_text": "Suffisso testo"
+          "suffix_text": "Suffisso testo",
+          "title": "Titolo"
         },
         "mute": "Silenzia",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "Mostra solo l'icona",
           "groupLabels": "Etichette di gruppo"
         },
-        "hover_bg_color": "Sfondo del mouse"
+        "hover_bg_color": "Sfondo del mouse",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Dati del modulo predefinito",
+          "hidden_submit_button": "Pulsante di invio nascosto",
+          "submit_button_full_w": "Invia la larghezza totale del pulsante",
+          "submit_button_text": "Invia testo pulsante"
+        }
       },
       "setter_tooltip": {
         "action": "Le tue azioni per i componenti attivano interrogazioni, controllano i componenti o chiamano i dati nelle tue risorse. Più azioni di asincronizzazione saranno eseguite in parallelo.",
@@ -1982,6 +1991,9 @@
           "logo": "Imposta il tuo logo con un URL",
           "title": "Imposta qui un titolo come il nome dell'azienda",
           "only_show_icon": "Per nascondere l'etichetta e mostrare solo l'icona"
+        },
+        "statistics": {
+          "title": "Imposta il titolo da visualizzare"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "Il codice valuta definito in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON Schema for the form.\n\nEsempio\n{{action1.data }}\n\nScopri di più su come scrivere il JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Schema dell'interfaccia utente per il form - vedi il prop uiSchema per l' [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nEsempio\n{{ action1.data }}",
+          "default_form_data": "Dati dei moduli predefiniti - vedi il prop formData per [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nEsempio\r\n{{ action1.data }}",
+          "hidden_submit_button": "Imposta se nascondere il pulsante Invia",
+          "submit_button_full_w": "Imposta se il pulsante Invia è a piena larghezza.",
+          "submit_button_text": "Imposta il testo del pulsante Invia"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "Annulla",
         "no_file": "Nessun file"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Modulo Schema JSON"
     }
   },
   "page": {

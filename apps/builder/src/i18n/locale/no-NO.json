@@ -1543,7 +1543,8 @@
           "thousand_separator": "Vis tusenskilletegn",
           "trend_color": "Aktiver trendfarge",
           "prefix_text": "Prefiks tekst",
-          "suffix_text": "Suffiks tekst"
+          "suffix_text": "Suffiks tekst",
+          "title": "Tittel"
         },
         "mute": "Demp",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "Vis kun ikon",
           "groupLabels": "Lag gruppe-etiketter"
         },
-        "hover_bg_color": "Svevende bakgrunn"
+        "hover_bg_color": "Svevende bakgrunn",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Standard formulardata",
+          "hidden_submit_button": "Skjult sendingsknapp",
+          "submit_button_full_w": "Send knapp full bredde",
+          "submit_button_text": "Send knappetekst"
+        }
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1982,6 +1991,9 @@
           "logo": "Sett din logo med URL",
           "title": "Angi en tittel som firmanavn her",
           "only_show_icon": "TO hidden the label og kun vis ikon"
+        },
+        "statistics": {
+          "title": "Sett tittel som skal vises"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "Valutakoden definert i [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON skjema for skjemaet.\n\nEksempel\n{{action1.data }}\n\nLær mer om hvordan du skriver JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "UI skjema for skjemaet - se uiema prop for [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\neksempel\n{{ action1.data }}",
+          "default_form_data": "Standard skjemadata - se formData prop for [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nEksempel\r\n{{ action1.data }}",
+          "hidden_submit_button": "Angi om du vil skjule sendingsknappen",
+          "submit_button_full_w": "Angi om «Send inn»-knappen er full bredde.",
+          "submit_button_text": "Angi teksten til «Send inn»-knappen"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "Avbryt",
         "no_file": "Ingen fil"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "JSON skjema skjema"
     }
   },
   "page": {

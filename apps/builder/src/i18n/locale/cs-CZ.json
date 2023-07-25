@@ -1543,7 +1543,8 @@
           "thousand_separator": "Zobrazit tisícovku oddělovače",
           "trend_color": "Povolit barvu trendu",
           "prefix_text": "Text prefixu",
-          "suffix_text": "Přípona"
+          "suffix_text": "Přípona",
+          "title": "Hlava 1 – Celkem"
         },
         "mute": "Ztlumit",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "Zobrazit pouze ikonu",
           "groupLabels": "Skupinové štítky"
         },
-        "hover_bg_color": "Pozadí při přechodu"
+        "hover_bg_color": "Pozadí při přechodu",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Výchozí data formuláře",
+          "hidden_submit_button": "Skryté tlačítko pro odeslání",
+          "submit_button_full_w": "Odeslat tlačítko na celou šířku",
+          "submit_button_text": "Odeslat text tlačítka"
+        }
       },
       "setter_tooltip": {
         "action": "Vaše akce pro komponenty spouštějí dotazy, ovládají komponenty nebo volají data ve vašich zdrojích. Více asynchronních akcí bude provedeno souběžně.",
@@ -1982,6 +1991,9 @@
           "logo": "Nastavte logo pomocí URL",
           "title": "Zde nastavte název společnosti, jako je název společnosti",
           "only_show_icon": "Ukázat štítek a zobrazit pouze ikonu"
+        },
+        "statistics": {
+          "title": "Nastavit název pro zobrazení"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "Kód měny definovaný v [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON schéma pro formulář.\n\nPříklad\n{{action1.data }}\n\nDalší informace o tom, jak napsat schéma JSON [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Schéma UI formuláře - viz uiSchema prop pro [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nPříklad\n{{ action1.data }}",
+          "default_form_data": "Výchozí data formulářů - viz Prop formulářů pro [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nPříklad\r\n{{ action1.data }}",
+          "hidden_submit_button": "Nastavte, zda skrýt tlačítko Odeslání",
+          "submit_button_full_w": "Nastavte, zda je tlačítko Odeslání celé šířky.",
+          "submit_button_text": "Nastavte text tlačítka Odeslání"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "Zrušit",
         "no_file": "Žádný soubor"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Formulář schématu JSON"
     }
   },
   "page": {

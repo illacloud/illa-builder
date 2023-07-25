@@ -1543,7 +1543,8 @@
           "thousand_separator": "显示千位分隔符",
           "trend_color": "使用趋势色",
           "prefix_text": "前缀文字",
-          "suffix_text": "后缀文字"
+          "suffix_text": "后缀文字",
+          "title": "标题"
         },
         "mute": "静音",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "只展示icon",
           "groupLabels": "群组标签"
         },
-        "hover_bg_color": "悬停背景"
+        "hover_bg_color": "悬停背景",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "默认表单数据",
+          "default_form_data": "隐藏提交按钮",
+          "hidden_submit_button": "隐藏提交按钮",
+          "submit_button_full_w": "提交按钮全宽",
+          "submit_button_text": "提交按钮文案"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1982,6 +1991,9 @@
           "logo": "使用URL设置您的logo",
           "title": "在此设置标题，如公司名称",
           "only_show_icon": "隐藏菜单的文案，只显示icon"
+        },
+        "statistics": {
+          "title": "设置数值的标题"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "货币代码定义[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "表单的JSON Schema. \n\n示例\n{{action1.data }}\n\n了解如何写JSON Schema: [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "表单的UI Schema。查看 [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)了解uiSchema的属性。\n\n示例\n{{action1.data }}",
+          "default_form_data": "表单的默认数据。查看 [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)了解formData属性。\n\n示例\n{{action1.data }}",
+          "hidden_submit_button": "设置是否隐藏提交按钮",
+          "submit_button_full_w": "设置提交按钮是否全宽",
+          "submit_button_text": "甚至提交按钮的文案"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "取消",
         "no_file": "没有文件"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "动态表单"
     }
   },
   "page": {

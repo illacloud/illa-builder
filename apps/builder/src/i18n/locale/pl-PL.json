@@ -1543,7 +1543,8 @@
           "thousand_separator": "Pokaż separator tysięcy",
           "trend_color": "Włącz kolor trendu",
           "prefix_text": "Tekst prefiksu",
-          "suffix_text": "Tekst sufiksu"
+          "suffix_text": "Tekst sufiksu",
+          "title": "Rozporządzenie Rady (EWG) nr 2658/87 z dnia 23 lipca 1987 r. w sprawie nomenklatury taryfowej i statystycznej oraz w sprawie Wspólnej Taryfy Celnej (Dz.U. L 256 z 7.9.1987, s. 1)."
         },
         "mute": "Wycisz",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "Pokaż tylko ikonę",
           "groupLabels": "Etykiety grupowe"
         },
-        "hover_bg_color": "Tło Hover"
+        "hover_bg_color": "Tło Hover",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Domyślne dane formularza",
+          "hidden_submit_button": "Ukryty przycisk przesyłania",
+          "submit_button_full_w": "Prześlij pełny rozmiar przycisku",
+          "submit_button_text": "Prześlij tekst przycisku"
+        }
       },
       "setter_tooltip": {
         "action": "Twoje działania do komponentów wyzwalają zapytania, sterują komponentami lub wywołują dane w zasobach. Wiele akcji asynchronicznych będzie wykonywanych równolegle.",
@@ -1982,6 +1991,9 @@
           "logo": "Ustaw swoje logo z URL",
           "title": "Ustaw tutaj tytuł, taki jak nazwa firmy",
           "only_show_icon": "TO ukryj etykietę i tylko pokaż ikonę"
+        },
+        "statistics": {
+          "title": "Ustaw tytuł do wyświetlenia"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "Kod waluty zdefiniowany w [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "Schemat JSON dla formularza.\n\nPrzykład\n{{action1.data }}\n\nDowiedz się więcej o tym, jak napisać schemat JSON [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Schemat UI dla formularza - zobacz rekord uiSchema dla [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nPrzykład\n{{ action1.data }}",
+          "default_form_data": "Domyślne dane formularza - zobacz formularz Prop [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nPrzykład\r\n{{ action1.data }}",
+          "hidden_submit_button": "Ustaw czy ukryć przycisk wysyłania",
+          "submit_button_full_w": "Ustaw czy przycisk przesyłania ma pełną szerokość.",
+          "submit_button_text": "Ustaw tekst przycisku przesyłania"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "Anuluj",
         "no_file": "Brak pliku"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Formularz schematu JSON"
     }
   },
   "page": {

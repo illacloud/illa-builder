@@ -1543,7 +1543,8 @@
           "thousand_separator": "Arată separatorul de mii",
           "trend_color": "Activează culoarea tendinței",
           "prefix_text": "Prefix text",
-          "suffix_text": "Text în completare"
+          "suffix_text": "Text în completare",
+          "title": "Titlu"
         },
         "mute": "Amuțit",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "Arată doar pictograma",
           "groupLabels": "Etichete grup"
         },
-        "hover_bg_color": "Fundal Hover"
+        "hover_bg_color": "Fundal Hover",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Date implicite din formular",
+          "hidden_submit_button": "Buton de adăugare ascuns",
+          "submit_button_full_w": "Trimite buton lățime completă",
+          "submit_button_text": "Trimiteți textul butonului"
+        }
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1982,6 +1991,9 @@
           "logo": "Setați sigla dvs. cu un URL",
           "title": "Setați aici un titlu, cum ar fi numele companiei",
           "only_show_icon": "CĂTRE ascunderea etichetei şi arată doar pictograma"
+        },
+        "statistics": {
+          "title": "Setați titlul de afișat"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "Codul monedei definit în [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "Schema JSON pentru formular.\n\nExemplu\n{{action1.data }}\n\nAflați mai multe despre cum să scrieți schema JSON [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Schema UI pentru formular - vezi uiSchema prop pentru [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExemplu\n{{ action1.data }}",
+          "default_form_data": "Date implicite din formular - vezi formData prop pentru [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExemplu\r\n{{ action1.data }}",
+          "hidden_submit_button": "Setați dacă să ascundeți butonul de trimitere",
+          "submit_button_full_w": "Setaţi dacă butonul de adăugare are are lăţimea completă.",
+          "submit_button_text": "Setaţi textul butonului de trimitere"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "Anulează",
         "no_file": "Nici un fişier"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Formular JSON Schema"
     }
   },
   "page": {

@@ -1543,7 +1543,8 @@
           "thousand_separator": "桁区切りを表示",
           "trend_color": "トレンドカラー",
           "prefix_text": "プレフィックス",
-          "suffix_text": "サフィックス"
+          "suffix_text": "サフィックス",
+          "title": "タイトル"
         },
         "mute": "ミュート",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "アイコンのみ表示",
           "groupLabels": "グループラベル"
         },
-        "hover_bg_color": "ホバーの背景"
+        "hover_bg_color": "ホバーの背景",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "デフォルトのフォームデータ",
+          "hidden_submit_button": "送信ボタンを非表示",
+          "submit_button_full_w": "送信ボタンの幅全幅",
+          "submit_button_text": "送信ボタンのテキスト"
+        }
       },
       "setter_tooltip": {
         "action": "コンポーネントに対するアクションは、クエリ、コンポーネントの操作、リソース内のデータの呼び出しなどのアクションをトリガーします。複数の非同期操作が並行して実行されます。",
@@ -1982,6 +1991,9 @@
           "logo": "URLでロゴを設定",
           "title": "会社名などのタイトルをここに設定",
           "only_show_icon": "ラベルを非表示にしてアイコンのみ表示"
+        },
+        "statistics": {
+          "title": "表示するタイトルを設定します"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "The currency code defined in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON Schema for the form.\n\nExample\n{{action1.data }}\n\nLearn more about how to write the JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "フォームの UI スキーマ - [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) のuiSchema prop を参照してください。\n\n\n{{ action1.data }}",
+          "default_form_data": "デフォルトのフォームデータ - [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form) のformData prop を参照してください。\r\n\r\n\r\n{{ action1.data }}",
+          "hidden_submit_button": "送信ボタンを非表示にするかどうかを設定します",
+          "submit_button_full_w": "format@@0 ボタンが最大幅であるかどうかを設定します。",
+          "submit_button_text": "送信ボタンのテキストを設定します"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "キャンセル",
         "no_file": "ファイルがありません"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "JSON スキーマフォーム"
     }
   },
   "page": {

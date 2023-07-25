@@ -1543,7 +1543,8 @@
           "thousand_separator": "Εμφάνιση διαχωριστικού χιλιάδων",
           "trend_color": "Ενεργοποίηση χρώματος τάσης",
           "prefix_text": "Πρόθεμα κειμένου",
-          "suffix_text": "Κείμενο επιθέματος"
+          "suffix_text": "Κείμενο επιθέματος",
+          "title": "Τίτλος"
         },
         "mute": "Σίγαση",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "Εμφάνιση μόνο εικονιδίου",
           "groupLabels": "Ομαδικές ετικέτες"
         },
-        "hover_bg_color": "Hover φόντο"
+        "hover_bg_color": "Hover φόντο",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Προεπιλεγμένα δεδομένα φόρμας",
+          "hidden_submit_button": "Πλήκτρο κρυφής υποβολής",
+          "submit_button_full_w": "Πλήρες πλάτος κουμπιού υποβολής",
+          "submit_button_text": "Υποβολή κειμένου κουμπιού"
+        }
       },
       "setter_tooltip": {
         "action": "Οι ενέργειές σας στα στοιχεία ενεργοποιούν ερωτήματα, ελέγχουν τα στοιχεία ή καλούν τα δεδομένα στους πόρους σας. Πολλαπλές ενέργειες async θα εκτελεστούν παράλληλα.",
@@ -1982,6 +1991,9 @@
           "logo": "Ορίστε το λογότυπό σας με μια διεύθυνση URL",
           "title": "Ορίστε έναν τίτλο όπως το όνομα της εταιρείας εδώ",
           "only_show_icon": "Κρυφό την ετικέτα και εμφάνιση μόνο εικονιδίου"
+        },
+        "statistics": {
+          "title": "Ορίστε τον τίτλο για εμφάνιση"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "Ο κωδικός νομίσματος ορίζεται στο [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON Schema για τη φόρμα.\n\nΠαράδειγμα\n{{action1.data }}\n\nΜάθετε περισσότερα για το πώς να γράψετε το JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Σχήμα UI για τη φόρμα - δείτε το uiSchema prop για το [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nΠαράδειγμα\n{{ action1.data }}",
+          "default_form_data": "Προεπιλεγμένα δεδομένα φόρμας - δείτε το formData prop για το [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nΠαράδειγμα\r\n{{ action1.data }}",
+          "hidden_submit_button": "Ορίστε αν θα γίνει απόκρυψη του κουμπιού υποβολής",
+          "submit_button_full_w": "Ορίστε αν το κουμπί υποβολή είναι πλήρες πλάτος.",
+          "submit_button_text": "Ορίστε το κείμενο του κουμπιού υποβολή"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "Ακύρωση",
         "no_file": "Κανένα αρχείο"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Μορφή JSON Schema"
     }
   },
   "page": {

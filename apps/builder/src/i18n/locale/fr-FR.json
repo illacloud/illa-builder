@@ -1543,7 +1543,8 @@
           "thousand_separator": "Afficher le séparateur de mille",
           "trend_color": "Activer la couleur de tendance",
           "prefix_text": "Texte du préfixe",
-          "suffix_text": "Suffixe de texte"
+          "suffix_text": "Suffixe de texte",
+          "title": "Titre de la page"
         },
         "mute": "Couper le son",
         "collapse": {
@@ -1724,7 +1725,15 @@
           "only_show_icon": "Afficher uniquement l'icône",
           "groupLabels": "Étiquettes de groupe"
         },
-        "hover_bg_color": "Arrière-plan du survol"
+        "hover_bg_color": "Arrière-plan du survol",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Données de formulaire par défaut",
+          "hidden_submit_button": "Bouton d'envoi masqué",
+          "submit_button_full_w": "Soumettre le bouton en pleine largeur",
+          "submit_button_text": "Texte du bouton de soumission"
+        }
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1982,6 +1991,9 @@
           "logo": "Définissez votre logo avec une URL",
           "title": "Définir un titre comme le nom de la société ici",
           "only_show_icon": "À masquer le libellé et ne montrer que l'icône"
+        },
+        "statistics": {
+          "title": "Définir le titre à afficher"
         }
       },
       "setter_option": {
@@ -2113,6 +2125,14 @@
         },
         "table": {
           "currency_code": "Le code de la devise défini dans [ISO 4217](https://fr.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "Schéma JSON pour le formulaire.\n\nExemple\n{{action1.data }}\n\nEn savoir plus sur la façon d'écrire le Schéma JSON [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Schéma d'interface pour le formulaire - voir la prop uiSchema pour l' [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExemple\n{{ action1.data }}",
+          "default_form_data": "Données de formulaire par défaut - voir la prop formData pour la [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExemple\r\n{{ action1.data }}",
+          "hidden_submit_button": "Définir si le bouton d'envoi doit être masqué",
+          "submit_button_full_w": "Définit si le bouton d'envoi est en pleine largeur.",
+          "submit_button_text": "Définir le texte du bouton Soumettre"
         }
       },
       "setter_tootip": {
@@ -2851,6 +2871,9 @@
         "cancel": "Abandonner",
         "no_file": "Aucun fichier"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Forme de Schéma JSON"
     }
   },
   "page": {
