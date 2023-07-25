@@ -1,14 +1,11 @@
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
 import { Button, Input, PreviousIcon, RadioGroup } from "@illa-design/react"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
 import { AgentListItem } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/AgentListItem"
-import { getAllResources } from "@/redux/resource/resourceSelector"
-import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 import { track } from "@/utils/mixpanelHelper"
 import { ActionResourceSelectorProps } from "./interface"
 import { containerStyle, footerStyle } from "./style"
@@ -43,10 +40,6 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
   const [agentType, setAgentType] = useState("team")
   const [loading, setLoading] = useState(false)
 
-  const resourceList = useSelector(getAllResources).filter(
-    (r) => r.resourceType == getResourceTypeFromActionType(actionType),
-  )
-
   const agentOptions = useMemo(() => {
     return [
       {
@@ -62,13 +55,14 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
 
   const handleClickCreateAction = useCallback(
     (selectedResourceId: string) => {
+      if (loading) return
       handleCreateAction(
         selectedResourceId,
         () => onCreateAction?.(actionType, selectedResourceId),
         setLoading,
       )
     },
-    [actionType, handleCreateAction, onCreateAction],
+    [loading, actionType, handleCreateAction, onCreateAction],
   )
 
   useEffect(() => {
@@ -97,7 +91,13 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
       <Input w="100%" mg="16px 0" />
       <div>
         {data.map((item) => {
-          return <AgentListItem item={item} />
+          return (
+            <AgentListItem
+              key={item.id}
+              item={item}
+              onClickCreateAction={handleClickCreateAction}
+            />
+          )
         })}
       </div>
       <div css={footerStyle}>

@@ -15,6 +15,7 @@ import { ReactComponent as StarOutlineIcon } from "./assets/star-outline.svg"
 
 interface AgentListItemProps {
   item: AgentItem
+  onClickCreateAction: (id: string) => void
 }
 export const AgentListItem: FC<AgentListItemProps> = (props) => {
   const { item } = props
