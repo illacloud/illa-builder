@@ -8,6 +8,18 @@ export const containerStyle = css`
   padding: 8px 24px;
 `
 
+export const infoContainerStyle = css`
+  display: flex;
+  align-items: center;
+  gap: 40px;
+`
+
+export const coverStyle = css`
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+`
+
 export const contentStyle = css`
   display: flex;
   flex-direction: column;
@@ -41,4 +53,9 @@ export const descStyle = css`
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
+  width: 400px;
+`
+
+export const resourceItemSelectedStyle = css`
+  background: ${getColor("techPurple", "07")};
 `

@@ -6,6 +6,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
 import { AgentListItem } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/AgentListItem"
+import { MarketListItem } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/MarketListItem"
 import { track } from "@/utils/mixpanelHelper"
 import { ActionResourceSelectorProps } from "./interface"
 import { containerStyle, footerStyle } from "./style"
@@ -33,6 +34,7 @@ const data: AgentItem[] = [
     forkCount: 10,
   },
 ]
+
 export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
   const { actionType, onBack, onCreateAction, handleCreateAction } = props
 
@@ -88,9 +90,18 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
         colorScheme="grayBlue"
         onChange={setAgentType}
       />
-      <Input w="100%" mg="16px 0" />
+      <Input w="100%" pd="16px 24px" colorScheme="techPurple" />
       <div>
         {data.map((item) => {
+          if (agentType === "market") {
+            return (
+              <MarketListItem
+                key={item.id}
+                item={item}
+                onClickCreateAction={handleClickCreateAction}
+              />
+            )
+          }
           return (
             <AgentListItem
               key={item.id}

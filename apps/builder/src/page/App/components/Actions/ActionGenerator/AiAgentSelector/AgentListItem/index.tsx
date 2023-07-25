@@ -6,12 +6,9 @@ import {
   contentStyle,
   coverStyle,
   descStyle,
-  infoContainerStyle,
+  leftContentStyle,
   nameStyle,
-} from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/AgentListItem/style"
-import { ReactComponent as EmojiSmileIcon } from "./assets/emoji-smile.svg"
-import { ReactComponent as RunOutlineIcon } from "./assets/run-outline.svg"
-import { ReactComponent as StarOutlineIcon } from "./assets/star-outline.svg"
+} from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/MarketListItem/style"
 
 interface AgentListItemProps {
   item: AgentItem
@@ -22,28 +19,14 @@ export const AgentListItem: FC<AgentListItemProps> = (props) => {
 
   return (
     <div css={containerStyle}>
-      <div css={infoContainerStyle}>
+      <div css={leftContentStyle}>
         <img css={coverStyle} src={item.cover} alt="cover" />
         <div css={contentStyle}>
           <div css={nameStyle}>{item.name}</div>
           <div css={descStyle}>{item.description}</div>
-          <div>
-            <EmojiSmileIcon />
-            <span>{item.teamName}</span>
-          </div>
-        </div>
-        <div>
-          <div>
-            <StarOutlineIcon />
-            {item.starCount}
-          </div>
-          <div>
-            <RunOutlineIcon />
-            {item.runCount}
-          </div>
         </div>
       </div>
-      <Button>Fork {item.forkCount}</Button>
+      <Button colorScheme="grayBlue">Select</Button>
     </div>
   )
 }
