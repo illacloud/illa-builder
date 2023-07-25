@@ -1931,7 +1931,7 @@
           "total_row_count": "Sivujen numeron laskemiseen käytettyjen rivien määrä.",
           "next_cursor": "Tunniste jota käytetään tietoryhmän seuraavan lähtökohdan löytämiseen, jotta tietoja voidaan hemmottelea ja hakea erissä",
           "has_next_page": "Totuusarvo, jota käytetään osoittamaan, onko saatavilla toinen sivu tietoja. Se voi auttaa meitä hallitsemaan paremmin tietojen hakua paginated kyselyt ja optimoida kyselyn suorituskykyä",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Joukko esinettä on liitetty {{ }}. Esimerkiksi {{ [{\"**id**\":\"suodattavan sarakkeen nimi\", \"**value**\":\"arvo vastaa arvoa\", \"**filterFn**\":\"sisältää, yhtälöt, ...\"}] }}. Tuemme suodatinFn: \"equalTo\", \"notEqualTo\", \"sisältää\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before \"after\". ",
           "filter_mode": "Suodatintila. JA tai OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Salli käyttäjien valita solu",
@@ -3407,7 +3407,7 @@
     "subscription_general": {
       "plan": {
         "free": "Ilmainen",
-        "plus": "Premium"
+        "plus": "Plus"
       },
       "sub_cycle": {
         "yearly": "Vuosittain",
@@ -3518,16 +3518,16 @@
         "add_license": "Sinä aiot lisätä {{changeNum}} lisenssiä. Kun se on vahvistettu, me välittömästi vähennämme tämän laskutusjakson uusien lisenssien maksun. <0>Lue lisää</0>",
         "remove_license": "Olet poistamassa {{changeNum}} lisenssiä. Kun muutokset on vahvistettu, ne tulevat voimaan seuraavan laskutusjakson aikana. <0>Lue lisää</0>",
         "add_traffic": "Olet menossa lisäämään {{changeNum}}Gt:n liikennettä. Kun se on vahvistettu, vähennämme lisäliikenteen kustannukset välittömästi. <0>Lue lisää</0>",
-        "subscribe_storage": "Olet menossa tilaamaan ILLA Cloud Premium. Vähennämme automaattisesti maksut tililtäsi jokaisen maksujakson alussa. <0>Lue lisää</0>",
+        "subscribe_storage": "Olet menossa liittymään ILLA Cloud Plus -palveluun. Vähennämme automaattisesti maksut tililtäsi jokaisen maksujakson alussa. <0>Lue lisää</0>",
         "subscribe_license": "Olet menossa tilaamaan ILLA Drive. Vähennämme automaattisesti maksut tililtäsi jokaisen maksujakson alussa. <0>Lue lisää</0>",
         "update_plan_increase_license": "Aiot lisätä {{changeNum}} lisenssiä ja päivittää tilauskautesi. <0>Lue lisää</0>",
         "update_plan_remove_license": "Olet poistamassa {{changeNum}} lisenssiä ja päivittämässä tilausaikaasi. <0>Lue lisää</0>",
         "update_plan_increase_storage": "Aiot lisätä {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
         "update_plan_remove_storage": "Aiot poistaa {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
-        "unsubscribe_license": "Lopetat ILLA Cloud Premiumin tilauksen. Peruutuksen jälkeen seuraavasta laskutusjaksosta alkaen Premium-ominaisuudet eivät ole enää käytettävissä. <0>Lue lisää</0>",
+        "unsubscribe_license": "Lopetat ILLA Cloud Plus -palvelun tilauksen. Peruutuksen jälkeen seuraavasta laskutusjaksosta alkaen Plus-ominaisuudet eivät ole enää käytettävissä. <0>Lue lisää</0>",
         "unsubscribe_storage": "Olet menossa lopettamaan ILLA Drive -tallennustilan tilauksen. Peruutuksen jälkeen seuraavan laskutussyklin jälkeen tallennuskapasiteetti palautetaan 100MB. <0>Lue lisää</0>",
-        "subscribe_license_monthly": "Olet menossa tilaamaan ILLA Cloud Premium kuukausitilauksen. <0>Lue lisää</0>",
-        "subscribe_license_yearly": "Olet menossa tilaamaan ILLA Cloud Premium -palvelun vuosittain. <0>Lue lisää</0>",
+        "subscribe_license_monthly": "Olet menossa tilaamaan ILLA Cloud Plus kuukausittaisen tilauksen. <0>Lue lisää</0>",
+        "subscribe_license_yearly": "Olet menossa tilaamaan ILLA Cloud Plus vuosittaisen tilauksen. <0>Lue lisää</0>",
         "subscribe_storage_monthly": "Olet menossa lisäämään {{changeNum}}Gt tallennustilaa. Kun se on vahvistettu, vähennämme tallennustilan kustannukset välittömästi. <0>Lue lisää</0>",
         "subscribe_storage_yearly": "Olet menossa lisäämään {{changeNum}}Gt tallennustilaa. Kun se on vahvistettu, vähennämme tallennustilan kustannukset välittömästi. <0>Lue lisää</0>"
       },
@@ -3540,7 +3540,7 @@
         "add_traffic": "Onnistuneen vähennyksen jälkeen liikennemäärä kasvaa reaaliajassa. Kun liikenne on käytetty, maksuja ei voi palauttaa. Käyttämätön liikenne voidaan palauttaa BB:n yksiköissä. Jos esimerkiksi ostat 10 Gt liikennettä ja käytät 4,5 Gt, voit hakea palautusta 5GB. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
         "subscribe_storage_yearly": "Olet menossa tilaamaan ILLA Drive -tallennustilan vuosittaisen tilauksen. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka paljon tallennuskapasiteettia olet tilannut GB. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, jonka vuotuinen tilausmaksu on $ 9. per GB, ja sinulla on yhteensä 3 Gt, me vähentää $ 29. helmikuuta 25, 2023. Jos lisäät 2 gigatavua 25. maaliskuuta 2023, vähennämme ensin jäljellä olevat 11 kuukauden maksut 25. maaliskuuta 2023. Sitten viimeistään 25 helmikuu 2024 vähennetään maksu 5 Gt, joka on (2+3)*$9.9 = $49. . Jos haluat vähentää tallennustilaa tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
         "subscribe_storage_monthly": "Olet menossa tilaamaan kuukausittain tilauksen ILLA Drive -tallennustilan. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka paljon tallennuskapasiteettia olet tilannut GB. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, kuukausimaksu on $ 0. 9 Gt per Gt, ja sinulla on yhteensä 3 Gt, me vähentää $ 2. 7 päivänä helmikuuta 25, 2023. Jos lisäät vielä 2 lisenssiä 21. maaliskuuta 2023, vähennämme ensin jäljellä olevan 5 päivän maksun 21. maaliskuuta 2023. Sitten, 25. maaliskuuta 2023, me vähentää maksun 5 lisenssit, joka on (2+3)*$ 0. 9 = 4,95 dollaria. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
-        "subscribe_license_monthly": "Olet menossa tilaamaan kuukausittain tilauksen ILLA Cloud Premium. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka monta lisenssiä sinulla on. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, kuukausittainen tilausmaksu on $ 12 per lisenssi, ja sinulla on yhteensä 3 lisenssejä, me vähentää 36 dollaria helmikuun 25, 2023. Jos lisäät vielä 2 lisenssiä 21. maaliskuuta 2023, vähennämme ensin jäljellä olevan 5 päivän maksun 21. maaliskuuta 2023. Sitten 25. maaliskuuta 2023 mennessä me vähentää maksun 5 lisenssit, joka on (2+3)*$ 12 = $ 60. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "subscribe_license_monthly": "Olet menossa tilaamaan kuukausittaisen ILLA Cloud Plus -jäsenyyden. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka monta lisenssiä sinulla on. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, kuukausittainen tilausmaksu on $ 12 per lisenssi, ja sinulla on yhteensä 3 lisenssejä, me vähentää 36 dollaria helmikuun 25, 2023. Jos lisäät vielä 2 lisenssiä 21. maaliskuuta 2023, vähennämme ensin jäljellä olevan 5 päivän maksun 21. maaliskuuta 2023. Sitten 25. maaliskuuta 2023 mennessä me vähentää maksun 5 lisenssit, joka on (2+3)*$ 12 = $ 60. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
         "update_plan_remove_license": "Maksut vähennetään automaattisesti seuraavan kauden voimassa olevan lisenssien määrän ja uuden laskutussyklin hinnoittelun perusteella. Jos niiden käyttäjien määrä, joilla on muokkausoikeuksia, ylittää lisenssien määrän seuraavan laskutusjakson alussa, kaikki käyttäjät paitsi omistaja poistetaan käytöstä, kunnes poistat jäseniä tai lisäät lisenssien määrää käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
         "update_plan_increase_storage": "Maksut vähennetään automaattisesti seuraavan kauden ajan tasalle saatetun varastoinnin ja uuden laskutusjakson hinnoittelun perusteella. Tällä kertaa me vähennämme korotetun varastoinnin maksun nykyisen laskutussyklin mukaisesti. Laskentasäännöt käyttäen kuukausittaista tallennustilausta esimerkkinä: Katsotaanpa skenaario, jossa tilaat aluksi 5 GB alkaen maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 GB. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 GB, joka on noin $ 0. 9, suhteutettuna 4 päivän kestoon 30 päivän syklin aikana. Siksi vähennys on arvioitu 1 lisenssi * 0,99 dollaria / 30 päivää * 4 päivää, jolloin noin 0,132 dollaria. Seuraavasta laskutusjaksosta alkaen kaikki tallennusmaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
         "update_plan_remove_storage": "Maksut vähennetään automaattisesti seuraavan kauden ajan tasalle saatetun varastoinnin ja uuden laskutusjakson hinnoittelun perusteella. Jos tiedostojen varaama tallennuskapasiteetti ylittää tilatun tallennuskapasiteetin seuraavan laskutusjakson alkaessa, se on suurempi kuin tilattu tallennuskapasiteetti, kaikki tiedostot poistetaan käytöstä, kunnes poistat tiedostoja tai lisäät tallennustilaa käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>"
@@ -3598,8 +3598,8 @@
         "got_it": "Asia ymmärretty"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Päivitä Premiumiin",
-        "this_feature_is_avai": "Tämä ominaisuus on saatavilla vain Premium-käyttäjille. Käyttääksesi sitä, ole hyvä ja päivitä versioon Plus. Päivittämällä Premiumiin sinulla on myös pääsy seuraaviin ominaisuuksiin. ",
+        "upgrade_to_plus": "Päivitä Plus -versioon",
+        "this_feature_is_avai": "Tämä ominaisuus on käytettävissä vain Plus-käyttäjille. Käyttääksesi sitä, päivitä versioon Plus. Päivittämällä Plukseen sinulla on myös pääsy seuraaviin ominaisuuksiin. ",
         "add_unlimited_viewer": "Lisää rajoittamaton katsojan jäseniä ILMAISEKSI",
         "publish_public_appli": "Julkaise julkiset sovellukset",
         "ai_sql_generation": "AI SQL Generation",
@@ -3609,7 +3609,7 @@
         "insufficient_license_title": "Riittämättömät lisenssit",
         "insufficient_license_description": "Kutsuaksesi lisää editoreita, lisää lisenssejä ensin. Kaikki tiimisi jäsenet voivat käyttää ILLA Cloud Plus -ominaisuuksia. Kunkin jäsenen asema riippuu kunkin ominaisuuden erityisestä saatavuudesta. ",
         "insufficient_license_button": "Lisää lisenssejä",
-        "pricing": "editor/mo, vuosittain($20/editor, kuukausittain)"
+        "pricing": "/editor/kuukausi, vuosittain"
       },
       "expired": {
         "owner": "Tilauksesi on vanhentunut. Jatkaaksesi käyttämistä, uusiudu se.",
