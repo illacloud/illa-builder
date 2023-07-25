@@ -1931,7 +1931,7 @@
           "total_row_count": "Počet řádků použitých pro počítání čísla stránky.",
           "next_cursor": "Identifikátor používaný k nalezení dalšího výchozího bodu souboru dat, aby bylo možné získat údaje o stránce a získat je v dávkách.",
           "has_next_page": "Boolean používaný k označování, zda existuje jiná dostupná stránka údajů. To nám může pomoci lépe kontrolovat načítání dat v očíslovaných dotazech a optimalizovat výkon dotazu",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Pole objektu uzavřené v {{ }}. Například {{ [{\"**id**\":\"name of the column to filter\", \"**value**\":\"The value to match\", \"**filterFn**\":\"obsahuje, rovná, ...\"}] }}. Podporujeme tento filtrFn: \"equalTo\", \"notEqualTo\", \"obsahuje\", \"neobsahuje\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"prázdný\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "Režim filtru. A nebo OR.",
           "currency_code": "V tabulce v příloze I nařízení (EU) č. 36/2012 se v řádku týkajícím se subjektu „Ecocert Erőmű Kft.“ nahrazuje tímto:",
           "whether_allow_users_": "Určuje, zda povolit uživatelům vybrat buňku",
@@ -3407,7 +3407,7 @@
     "subscription_general": {
       "plan": {
         "free": "Zdarma",
-        "plus": "Prémie"
+        "plus": "Plus"
       },
       "sub_cycle": {
         "yearly": "Roční",
@@ -3518,16 +3518,16 @@
         "add_license": "Chystáte se přidat {{changeNum}} licencí. Jakmile bude potvrzeno, okamžitě si odečteme platbu za nové licence pro tento fakturační cyklus. <0>Další informace</0>",
         "remove_license": "Chystáte se odebrat {{changeNum}} licencí. Jakmile bude potvrzeno, změny se projeví v dalším fakturačním cyklu. <0>Více informací</0>",
         "add_traffic": "Chystáte se přidat provoz {{changeNum}}GB. Jakmile bude potvrzeno, okamžitě odečteme náklady na další provoz. <0>Další informace</0>",
-        "subscribe_storage": "Chystáte se přihlásit k programu ILLA Cloud Premium. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. <0>Další informace</0>",
+        "subscribe_storage": "Přihlásíte se k odběru ILLA Cloud Plus. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. <0>Další informace</0>",
         "subscribe_license": "Přihlásíte se k odběru ILLA Drive. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. <0>Další informace</0>",
         "update_plan_increase_license": "Chystáte se přidat {{changeNum}} licencí a aktualizovat dobu předplatného. <0>Více informací</0>",
         "update_plan_remove_license": "Chystáte se odstranit {{changeNum}} licencí a aktualizovat dobu předplatného. <0>Více informací</0>",
         "update_plan_increase_storage": "Chystáte se přidat {{changeNum}} GB úložiště a aktualizovat dobu předplatného. <0>Více informací</0>",
         "update_plan_remove_storage": "Chystáte se odstranit úložiště {{changeNum}} GB a aktualizovat období předplatného. <0>Více informací</0>",
-        "unsubscribe_license": "Chystáte se odhlásit službu ILLA Cloud Premium. Po zrušení, počínaje dalším fakturačním cyklem, nebudou dostupné prémiové funkce. <0>Více informací</0>",
+        "unsubscribe_license": "Chystáte se odhlásit ILLA Cloud Plus. Po zrušení, počínaje dalším fakturačním cyklem, funkce Plus již nebudou dostupné. <0>Další informace</0>",
         "unsubscribe_storage": "Chystáte se odhlásit úložiště ILLA Drive. Po zrušení, počínaje dalším fakturačním cyklem, bude kapacita úložiště obnovena na 100MB. <0>Další informace</0>",
-        "subscribe_license_monthly": "Přihlásíte se k předplatnému verzi ILLA Cloud Premium. <0>Více informací</0>",
-        "subscribe_license_yearly": "Přihlásíte se k ročnímu předplatnému ILLA Cloud Premium. <0>Více informací</0>",
+        "subscribe_license_monthly": "Přihlásíte se k odběru měsíčního předplatného ILLA Cloud Plus. <0>Více informací</0>",
+        "subscribe_license_yearly": "Přihlásíte se k ročnímu předplatnému ILLA Cloud Plus. <0>Více informací</0>",
         "subscribe_storage_monthly": "Chystáte se přidat {{changeNum}}GB úložiště. Jakmile bude potvrzeno, okamžitě odečteme náklady na úložiště. <0>Další informace</0>",
         "subscribe_storage_yearly": "Chystáte se přidat {{changeNum}}GB úložiště. Jakmile bude potvrzeno, okamžitě odečteme náklady na úložiště. <0>Další informace</0>"
       },
@@ -3540,7 +3540,7 @@
         "add_traffic": "Po úspěšném odečtení se vaše doprava zvýší v reálném čase. Jakmile je provoz použit, poplatky nelze vrátit. Nevyužitý provoz může být vrácen v jednotkách GB. Například, pokud si zakoupíte 10GB dopravy a použijete 4.5GB, můžete požádat o vrácení 5GB. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "subscribe_storage_yearly": "Přihlásíte se k ročnímu odběru úložiště ILLA Drive. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. Skutečná odečtená částka závisí na tom, kolik skladovací kapacity jste se přihlásili v GB. Například, pokud zahajujete první předplatné 25. února 2023 s ročním předplatným 9 dolarů. za GB, a máte celkem 3 GB, odečítáme 29 dolarů. dne 25. února 2023. Přidáte-li 25. března 2023 2 GB, budeme nejdříve 25. března 2023 odečíst zbývajících 11 měsíců. Pak do 25. února 2024 odečteme platbu za 5 GB, což je (2+3)*9,9 $49 =49. . Pokud chcete snížit úložiště nebo provést další změny v předplatném, prosím aktualizujte je před začátkem následujícího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "subscribe_storage_monthly": "Přihlásíte se k měsíčnímu odběru úložiště ILLA Drive. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. Skutečná odečtená částka závisí na tom, kolik skladovací kapacity jste se přihlásili v GB. Například, pokud začnete s prvním odběrem 25. února 2023, s měsíčním předplatným ve výši 0 dolarů. 9 za GB, a máte celkem 3 GB, odečítáme 2 USD. 7. února 25, 2023. Přidáte-li 21. března 2023 další dvě licence, nejprve dne 21. března 2023 odečteme zbývajících 5 dní. Pak do 25. března 2023 odečteme platbu za 5 licencí, což je (2+3)*$0. 9=$4.95. Pokud chcete snížit licence nebo provést jiné změny v předplatném, prosím aktualizujte je před začátkem následujícího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
-        "subscribe_license_monthly": "Přihlásíte se k měsíčnímu upisování služby ILLA Cloud Premium. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. Skutečná odečtená částka závisí na počtu licencí, které máte. Například, pokud zahajujete první předplatné 25. února 2023 s měsíčním předplatným 12 USD za licenci, a máte celkem 3 licence, k 25. únoru 2023 si odečteme 36 dolarů. Přidáte-li 21. března 2023 další dvě licence, nejprve dne 21. března 2023 odečteme zbývajících 5 dní. Pak do 25. března 2023 odečítáme platbu za 5 licencí, což je (2+3)*$12 =$60. Pokud chcete snížit licence nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
+        "subscribe_license_monthly": "Přihlásíte se k měsíčnímu odběru ILLA Cloud Plus. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. Skutečná odečtená částka závisí na počtu licencí, které máte. Například, pokud zahajujete první předplatné 25. února 2023 s měsíčním předplatným 12 USD za licenci, a máte celkem 3 licence, k 25. únoru 2023 si odečteme 36 dolarů. Přidáte-li 21. března 2023 další dvě licence, nejprve dne 21. března 2023 odečteme zbývajících 5 dní. Pak do 25. března 2023 odečítáme platbu za 5 licencí, což je (2+3)*$12 =$60. Pokud chcete snížit licence nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "update_plan_remove_license": "Poplatky budou automaticky odečteny na základě aktualizovaného počtu licencí a ceny nového fakturačního cyklu od příštího období. Pokud počet uživatelů s oprávněním k úpravám překročí počet licencí na začátku příštího fakturačního cyklu, všichni uživatelé kromě vlastníka budou zakázáni, dokud neodstraníte členy nebo nezvyšujete počet licencí v dostupném rozsahu. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "update_plan_increase_storage": "Poplatky budou automaticky odečteny na základě aktualizovaného ukládání a ceny nového fakturačního cyklu od příštího období. Tentokrát odečteme platbu za zvýšené ukládání podle současného fakturačního cyklu. Pravidla výpočtu s použitím měsíčního předplatného úložiště jako příkladu: zvažme scénář, kdy jste od 14. března původně upsali 5 GB, a zúčtovací cyklus sahá od 14. dne tohoto měsíce do 13. dne příštího měsíce. 10. května se rozhodnete přidat 1 GB. V tomto okamžiku ke třináctému květnu zbývaly čtyři dny do konce aktuálního cyklu (což je celkem 30 dnů od 14. dubna do 13. května). Pro výpočet upravené platby odečteme náklady ve výši 1 GB, která činí přibližně 0 dolarů. 9 úměrně délce 4 dnů během 30denního cyklu. Proto je odpočet odhadován jako 1 licenci * $0.99 / 30 dní * 4 dny, což znamená přibližně 0,132 $. Od příštího fakturačního cyklu budou všechny poplatky za skladování konsolidovány a zaplaceny společně. Pokud chcete snížit licence nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "update_plan_remove_storage": "Poplatky budou automaticky odečteny na základě aktualizovaného ukládání a ceny nového fakturačního cyklu od příštího období. Pokud skladovací kapacita využívaná vašimi soubory překročí odebíranou skladovací kapacitu na začátku příštího fakturačního cyklu, všechny soubory budou zakázány, dokud neodstraníte soubory nebo nezvýšíte kapacitu úložiště v dostupném rozsahu. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>"
@@ -3598,8 +3598,8 @@
         "got_it": "Rozumím"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgradujte na Premium",
-        "this_feature_is_avai": "Tato funkce je dostupná pouze pro prémiové uživatele. Chcete-li ji využít, upgradujte na Plus. Po upgradu na Premium budete mít také přístup k následujícím funkcím. ",
+        "upgrade_to_plus": "Upgradovat na Plus",
+        "this_feature_is_avai": "Tato funkce je dostupná pouze pro uživatele Plus. Chcete-li ji použít, upgradujte na Plus. Aktualizací na Plus budete mít také přístup k následujícím funkcím. ",
         "add_unlimited_viewer": "Přidat neomezený počet členů diváku ZDARMA",
         "publish_public_appli": "Publikovat veřejné aplikace",
         "ai_sql_generation": "Generování AI SQL",
@@ -3609,7 +3609,7 @@
         "insufficient_license_title": "Nedostatek licencí",
         "insufficient_license_description": "Chcete-li pozvat více editorů, zvyšte prosím nejprve licenci. Všichni členové vašeho týmu mohou používat funkce ILLA Cloud Plus. Konkrétní přístup ke každému prvku závisí na úloze každého člena. ",
         "insufficient_license_button": "Přidat licence",
-        "pricing": "editor/mo, ročně(20/editor, měsíčně)"
+        "pricing": "/editor/měsíc, ročně"
       },
       "expired": {
         "owner": "Vaše předplatné vypršelo. Chcete-li pokračovat v používání, obnovte jej prosím.",
