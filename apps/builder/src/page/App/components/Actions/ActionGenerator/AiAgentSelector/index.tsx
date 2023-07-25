@@ -1,79 +1,82 @@
-import { FC, Suspense, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  AddIcon,
-  Button,
-  ButtonGroup,
-  List,
-  PreviousIcon,
-} from "@illa-design/react"
+import { Button, Input, PreviousIcon, RadioGroup } from "@illa-design/react"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
-import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
+import { AgentListItem } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/AgentListItem"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
-import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
 import { ActionResourceSelectorProps } from "./interface"
-import {
-  applyResourceItemStyle,
-  containerStyle,
-  footerStyle,
-  resourceItemTimeStyle,
-  resourceItemTitleStyle,
-} from "./style"
+import { containerStyle, footerStyle } from "./style"
 
-export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
-  props,
-) => {
-  const {
-    actionType,
-    onBack,
-    onCreateAction,
-    onCreateResource,
-    handleCreateAction,
-  } = props
+export interface AgentItem {
+  id: string
+  name: string
+  description: string
+  cover: string
+  teamName: string
+  starCount: number
+  runCount: number
+  forkCount: number
+}
+
+const data: AgentItem[] = [
+  {
+    id: "1",
+    name: "agent1",
+    description: "agent1 description",
+    cover: "https://via.placeholder.com/150",
+    teamName: "team1",
+    starCount: 4,
+    runCount: 100,
+    forkCount: 10,
+  },
+]
+export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
+  const { actionType, onBack, onCreateAction, handleCreateAction } = props
 
   const { t } = useTranslation()
-
-  const resourceList = useSelector(getAllResources)
-    .filter((r) => r.resourceType == getResourceTypeFromActionType(actionType))
-    .sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    )
-
-  const [selectedResourceId, setSelectedResourceId] = useState<string>(
-    resourceList[0]?.resourceId,
-  )
-
+  const [agentType, setAgentType] = useState("team")
   const [loading, setLoading] = useState(false)
 
-  const handleClickCreateAction = useCallback(() => {
-    handleCreateAction(
-      selectedResourceId,
-      () => onCreateAction?.(actionType, selectedResourceId),
-      setLoading,
-    )
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
+  const resourceList = useSelector(getAllResources).filter(
+    (r) => r.resourceType == getResourceTypeFromActionType(actionType),
+  )
+
+  const agentOptions = useMemo(() => {
+    return [
       {
-        element: "resource_list_create_action",
-        parameter1: actionType,
+        label: t("Team AI Agent"),
+        value: "team",
       },
-    )
-  }, [actionType, handleCreateAction, onCreateAction, selectedResourceId])
+      {
+        label: t("Agent market"),
+        value: "market",
+      },
+    ]
+  }, [t])
+
+  const handleClickCreateAction = useCallback(
+    (selectedResourceId: string) => {
+      handleCreateAction(
+        selectedResourceId,
+        () => onCreateAction?.(actionType, selectedResourceId),
+        setLoading,
+      )
+    },
+    [actionType, handleCreateAction, onCreateAction],
+  )
 
   useEffect(() => {
     track(
       ILLA_MIXPANEL_EVENT_TYPE.SHOW,
       ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
       {
-        element: "resource_list_show",
+        element: "agent_list_show",
         parameter1: actionType,
       },
     )
@@ -81,33 +84,22 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
 
   return (
     <div css={containerStyle}>
-      <List
-        bordered={false}
-        height={550}
-        data={resourceList}
-        renderKey={(data) => {
-          return data.resourceId
-        }}
-        renderRaw
-        render={(r) => {
-          return (
-            <div
-              css={applyResourceItemStyle(r.resourceId === selectedResourceId)}
-              onClick={() => {
-                setSelectedResourceId(r.resourceId)
-              }}
-            >
-              <Suspense>
-                {getIconFromActionType(r.resourceType, "24px")}
-              </Suspense>
-              <span css={resourceItemTitleStyle}>{r.resourceName}</span>
-              <span css={resourceItemTimeStyle}>
-                {t("created_at") + " " + fromNow(r.createdAt)}
-              </span>
-            </div>
-          )
-        }}
+      <RadioGroup
+        type="button"
+        w="287px"
+        mg="0 auto"
+        options={agentOptions}
+        value={agentType}
+        forceEqualWidth={true}
+        colorScheme="grayBlue"
+        onChange={setAgentType}
       />
+      <Input w="100%" mg="16px 0" />
+      <div>
+        {data.map((item) => {
+          return <AgentListItem item={item} />
+        })}
+      </div>
       <div css={footerStyle}>
         <Button
           leftIcon={<PreviousIcon />}
@@ -119,36 +111,9 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
         >
           {t("back")}
         </Button>
-        <ButtonGroup spacing="8px">
-          <Button
-            leftIcon={<AddIcon />}
-            colorScheme="gray"
-            onClick={() => {
-              track(
-                ILLA_MIXPANEL_EVENT_TYPE.CLICK,
-                ILLA_MIXPANEL_BUILDER_PAGE_NAME.EDITOR,
-                {
-                  element: "resource_list_new",
-                  parameter1: actionType,
-                },
-              )
-              onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
-            }}
-          >
-            {t("editor.action.action_list.action_generator.btns.new_resource")}
-          </Button>
-          <Button
-            colorScheme="techPurple"
-            onClick={handleClickCreateAction}
-            loading={loading}
-            disabled={resourceList.length <= 0}
-          >
-            {t("editor.action.action_list.action_generator.btns.create_action")}
-          </Button>
-        </ButtonGroup>
       </div>
     </div>
   )
 }
 
-ActionResourceSelector.displayName = "ActionResourceSelector"
+AiAgentSelector.displayName = "AiAgentSelector"

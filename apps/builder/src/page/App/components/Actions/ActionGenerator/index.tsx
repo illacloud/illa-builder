@@ -7,6 +7,7 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/
 import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
+import { AiAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -73,13 +74,16 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     : null
 
   useEffect(() => {
-    if (
-      currentStep === "createAction" &&
-      allResource.filter((value) => {
-        return value.resourceType === currentActionType
-      }).length === 0
-    ) {
-      setCurrentStep("createResource")
+    if (currentStep === "createAction") {
+      if (currentActionType === "agent") {
+        return
+      } else if (
+        allResource.filter((value) => {
+          return value.resourceType === currentActionType
+        }).length === 0
+      ) {
+        setCurrentStep("createResource")
+      }
     }
   }, [currentStep, currentActionType, allResource])
 
@@ -258,15 +262,24 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         {currentStep === "select" && (
           <ActionTypeSelector onSelect={handleActionTypeSelect} />
         )}
-        {currentStep === "createAction" && currentActionType && (
-          <ActionResourceSelector
-            actionType={currentActionType}
-            onBack={handleBack}
-            handleCreateAction={handleDirectCreateAction}
-            onCreateResource={handleCreateResource}
-            onCreateAction={handleCreateAction}
-          />
-        )}
+        {currentStep === "createAction" &&
+          currentActionType &&
+          (currentActionType === "agent" ? (
+            <AiAgentSelector
+              actionType={currentActionType}
+              onBack={handleBack}
+              handleCreateAction={handleDirectCreateAction}
+              onCreateAction={handleCreateAction}
+            />
+          ) : (
+            <ActionResourceSelector
+              actionType={currentActionType}
+              onBack={handleBack}
+              handleCreateAction={handleDirectCreateAction}
+              onCreateResource={handleCreateResource}
+              onCreateAction={handleCreateAction}
+            />
+          ))}
         {currentStep === "createResource" && transformResource && (
           <ActionResourceCreator
             resourceType={transformResource}
