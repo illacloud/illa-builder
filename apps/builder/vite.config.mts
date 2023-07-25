@@ -13,6 +13,7 @@ import pkg from "./package.json"
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "")
+  const useHttps = env.VITE_USE_HTTPS === "true"
   const BASIC_PLUGIN = [
     mdx(),
     react({
@@ -31,12 +32,11 @@ export default defineConfig(({ command, mode }) => {
     visualizer(),
   ]
 
-  const DEVELOPMENT_PLUGIN = [basicSsl()]
   const plugin = BASIC_PLUGIN
   const version = pkg.version
 
-  if (command === "serve") {
-    plugin.push(...DEVELOPMENT_PLUGIN)
+  if (command === "serve" && useHttps) {
+    plugin.push(basicSsl())
   } else {
     if (env.VITE_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
       plugin.push(
@@ -125,7 +125,7 @@ export default defineConfig(({ command, mode }) => {
     },
     server: {
       port: 3000,
-      https: true,
+      https: useHttps,
     },
     preview: {
       port: 4173,

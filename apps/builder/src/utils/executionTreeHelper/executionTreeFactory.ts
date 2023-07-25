@@ -340,11 +340,7 @@ export class ExecutionTreeFactory {
     return currentExecutionTree
   }
 
-  updateTree(
-    rawTree: RawTreeShape,
-    isDeleteAction?: boolean,
-    isUpdateActionReduxAction?: boolean,
-  ) {
+  updateTree(rawTree: RawTreeShape, isDeleteAction?: boolean) {
     const currentRawTree = cloneDeep(rawTree)
     try {
       this.dependenciesState = this.generateDependenciesMap(currentRawTree)
@@ -391,10 +387,6 @@ export class ExecutionTreeFactory {
       currentExecution,
       path,
       -1,
-      {
-        isUpdateActionReduxAction: !!isUpdateActionReduxAction,
-        isDeleteAction: !!isDeleteAction,
-      },
     )
     this.mergeErrorTree(errorTree, [...updatePaths, ...path], isDeleteAction)
     this.mergeDebugDataTree(
@@ -626,7 +618,6 @@ export class ExecutionTreeFactory {
     oldRawTree: RawTreeShape,
     sortedEvalOrder: string[],
     point: number = -1,
-    reduxActionType?: Record<string, boolean>,
   ) {
     const oldLocalRawTree = cloneDeep(oldRawTree)
     const errorTree: ExecutionState["error"] = {}
@@ -677,8 +668,7 @@ export class ExecutionTreeFactory {
             }
             if (
               widgetOrAction.actionType !== "transformer" &&
-              widgetOrAction.triggerMode === "automate" &&
-              !reduxActionType?.isUpdateActionReduxAction
+              widgetOrAction.triggerMode === "automate"
             ) {
               const { $actionId } = widgetOrAction
 
@@ -686,7 +676,6 @@ export class ExecutionTreeFactory {
               if (runningActionID) {
                 window.clearTimeout(runningActionID)
               }
-
               const deleteID = window.setTimeout(() => {
                 runActionWithExecutionResult(
                   widgetOrAction as IExecutionActions,

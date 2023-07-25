@@ -11,6 +11,7 @@ import {
 } from "@illa-design/react"
 import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import {
+  deployButtonStyle,
   deployConfigButtonStyle,
   deployConfigDescStyle,
   deployLabelStyle,
@@ -55,7 +56,7 @@ export const DeployButtonGroup: FC<DeployButtonGroupProps> = (props) => {
   }
 
   return (
-    <div>
+    <div css={deployButtonStyle}>
       <Button
         loading={loading}
         colorScheme="techPurple"

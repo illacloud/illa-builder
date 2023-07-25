@@ -66,6 +66,7 @@ import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import { isMAC } from "@/utils/userAgent"
 import {
+  buttonGroupStyle,
   descriptionStyle,
   informationStyle,
   keyTextStyle,
@@ -377,7 +378,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           </>
         )}
         {isEditMode ? (
-          <div>
+          <div css={buttonGroupStyle}>
             {!isGuideMode && (
               <Dropdown
                 position="bottom-end"

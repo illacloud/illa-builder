@@ -29,6 +29,7 @@ import {
   removeWidgetOrActionMethods,
 } from "@/utils/executionTreeHelper/utils"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { fixedValue } from "./utils"
 
 const getResultType = (result: unknown) => {
   if (Array.isArray(result)) {
@@ -244,7 +245,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         className={className}
         showLineNumbers={showLineNumbers}
         placeholder={placeholder}
-        value={value}
+        value={fixedValue(value)}
         onChange={debounceHandleChange}
         lang={lang}
         expressions={stringSnippets}
@@ -283,7 +284,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         <ModalCodeMirror
           title={modalTitle}
           onClose={handleCloseExpandModal}
-          value={value}
+          value={fixedValue(value)}
           onChange={onChange}
           expectValueType={expectValueType}
           lang={lang}

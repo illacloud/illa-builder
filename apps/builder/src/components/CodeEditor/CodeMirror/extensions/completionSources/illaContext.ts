@@ -9,7 +9,6 @@ import {
   checkCursorInDynamicFlag,
 } from "@/components/CodeEditor/CodeMirror/extensions/completionSources/TernServer"
 import { CODE_TYPE } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import {
   removeIgnoredKeys,
   removeWidgetOrActionMethods,
@@ -100,17 +99,13 @@ export function getDataInfo(data: Record<string, unknown>, path: string) {
 export const buildIllaContextCompletionSource = (
   canShowCompleteInfo: boolean,
   codeType: CODE_TYPE,
-  scopeOfAutoComplete: "global" | "page",
+  executionResult: Record<string, unknown>,
 ): ((
   context: CompletionContext,
 ) => CompletionResult | Promise<CompletionResult | null> | null) => {
   const isFunction =
     codeType === CODE_TYPE.FUNCTION || codeType === CODE_TYPE.NO_METHOD_FUNCTION
-  const firstCalcContext =
-    scopeOfAutoComplete === "global"
-      ? ILLAEditorRuntimePropsCollectorInstance.getGlobalCalcContextWithLimit()
-      : ILLAEditorRuntimePropsCollectorInstance.getCurrentPageCalcContext()
-  let executionResult = firstCalcContext
+
   if (codeType === CODE_TYPE.FUNCTION) {
     executionResult = removeIgnoredKeys(executionResult)
   } else {
@@ -134,13 +129,13 @@ export const buildIllaContextCompletionSource = (
     ) {
       return null
     }
+
     const dataInfo = getDataInfo(executionResult, validString.text)
     if (!dataInfo) {
       return null
     }
 
     const { currentData, offset, prefix, descInfos } = dataInfo
-
     const keys = Object.keys(currentData).filter((key) =>
       key.startsWith(prefix),
     )

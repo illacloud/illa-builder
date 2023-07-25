@@ -14,6 +14,7 @@ import { TransformWidgetWrapperWithJsonProps } from "@/widgetLibrary/PublicSecto
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import ErrorBoundary from "../../../components/ErrorBoundary"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -219,55 +220,63 @@ export const TransformWidgetWrapperWithJson: FC<TransformWidgetWrapperWithJsonPr
       ? borderWidth + "px"
       : borderWidth?.toString()
 
-    return hidden ? null : (
-      <div
-        css={applyWrapperStylesStyle(
-          borderColor,
-          _borderWidth,
-          _radius,
-          backgroundColor,
-          shadow,
-          type,
+    return (
+      <ErrorBoundary>
+        {hidden ? null : (
+          <div
+            css={applyWrapperStylesStyle(
+              borderColor,
+              _borderWidth,
+              _radius,
+              backgroundColor,
+              shadow,
+              type,
+            )}
+          >
+            <Suspense
+              fallback={
+                <Skeleton
+                  animation
+                  text={false}
+                  image={{
+                    shape: "square",
+                    w: "100%",
+                    h: "100%",
+                    mr: "0 !important",
+                  }}
+                  h="100%"
+                  w="100%"
+                />
+              }
+            >
+              <Component
+                {...realProps}
+                w={w}
+                h={h}
+                unitW={unitW}
+                unitH={UNIT_HEIGHT}
+                updateComponentRuntimeProps={updateComponentRuntimeProps}
+                deleteComponentRuntimeProps={deleteComponentRuntimeProps}
+                handleUpdateOriginalDSLMultiAttr={
+                  handleUpdateOriginalDSLMultiAttr
+                }
+                handleUpdateOriginalDSLOtherMultiAttr={
+                  handleUpdateOriginalDSLOtherMultiAttr
+                }
+                handleUpdateDsl={handleUpdateDsl}
+                handleUpdateMultiExecutionResult={
+                  handleUpdateMultiExecutionResult
+                }
+                displayName={displayName}
+                childrenNode={childrenNode}
+                componentNode={componentNode}
+                triggerEventHandler={triggerEventHandler}
+                triggerMappedEventHandler={triggerMappedEventHandler}
+              />
+            </Suspense>
+          </div>
         )}
-      >
-        <Suspense
-          fallback={
-            <Skeleton
-              animation
-              text={false}
-              image={{
-                shape: "square",
-                w: "100%",
-                h: "100%",
-                mr: "0 !important",
-              }}
-              h="100%"
-              w="100%"
-            />
-          }
-        >
-          <Component
-            {...realProps}
-            w={w}
-            h={h}
-            unitW={unitW}
-            unitH={UNIT_HEIGHT}
-            updateComponentRuntimeProps={updateComponentRuntimeProps}
-            deleteComponentRuntimeProps={deleteComponentRuntimeProps}
-            handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
-            handleUpdateOriginalDSLOtherMultiAttr={
-              handleUpdateOriginalDSLOtherMultiAttr
-            }
-            handleUpdateDsl={handleUpdateDsl}
-            handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
-            displayName={displayName}
-            childrenNode={childrenNode}
-            componentNode={componentNode}
-            triggerEventHandler={triggerEventHandler}
-            triggerMappedEventHandler={triggerMappedEventHandler}
-          />
-        </Suspense>
-      </div>
+      </ErrorBoundary>
     )
   })
 
