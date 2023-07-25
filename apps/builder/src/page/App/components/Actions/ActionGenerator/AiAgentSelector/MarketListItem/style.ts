@@ -58,6 +58,23 @@ export const descStyle = css`
   width: 400px;
 `
 
-export const resourceItemSelectedStyle = css`
-  background: ${getColor("techPurple", "07")};
+export const actionCountStyle = css`
+  display: flex;
+  align-items: center;
+  color: ${getColor("grayBlue", "02")};
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+`
+
+export const labelStyle = css`
+  display: flex;
+  align-items: center;
+`
+
+export const teamNameStyle = css`
+  color: ${getColor("grayBlue", "03")};
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
 `

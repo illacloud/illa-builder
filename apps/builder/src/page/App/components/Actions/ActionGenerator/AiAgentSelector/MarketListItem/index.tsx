@@ -5,13 +5,16 @@ import { AgentItem } from "@/page/App/components/Actions/ActionGenerator/AiAgent
 import { ReactComponent as EmojiSmileIcon } from "./assets/emoji-smile.svg"
 import { ReactComponent as RunOutlineIcon } from "./assets/run-outline.svg"
 import {
+  actionCountStyle,
   containerStyle,
   contentStyle,
   coverStyle,
   descStyle,
   infoContainerStyle,
+  labelStyle,
   leftContentStyle,
   nameStyle,
+  teamNameStyle,
 } from "./style"
 
 interface MarketListItemItemProps {
@@ -30,13 +33,13 @@ export const MarketListItem: FC<MarketListItemItemProps> = (props) => {
           <div css={contentStyle}>
             <div css={nameStyle}>{item.name}</div>
             <div css={descStyle}>{item.description}</div>
-            <div>
+            <div css={labelStyle}>
               <EmojiSmileIcon />
-              <span css={descStyle}>{item.teamName}</span>
+              <span css={teamNameStyle}>{item.teamName}</span>
             </div>
           </div>
         </div>
-        <div>
+        <div css={actionCountStyle}>
           <RunOutlineIcon />
           {item.runCount}
         </div>
