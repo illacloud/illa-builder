@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { FOOTER_MIN_HEIGHT } from "../../../constant/canvas"
+import { FOOTER_MIN_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const applyFooterSectionWrapperStyle = (
   height: string,

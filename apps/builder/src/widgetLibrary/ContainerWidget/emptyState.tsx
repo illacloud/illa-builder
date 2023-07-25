@@ -1,10 +1,10 @@
 import { FC, useEffect } from "react"
 import { useTranslation } from "react-i18next"
+import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   applyEmptyStateWrapperStyle,
   emptyStateStyle,
 } from "@/widgetLibrary/ContainerWidget/style"
-import { UNIT_HEIGHT } from "../../page/App/components/DotPanel/constant/canvas"
 
 export const ContainerEmptyState: FC<{
   isInner?: boolean
