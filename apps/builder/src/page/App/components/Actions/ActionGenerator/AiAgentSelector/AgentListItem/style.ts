@@ -1,38 +1,21 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
+export const TEAM_AGENT_ITEM_HEIGHT = 78
 export const containerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 24px;
-`
-
-export const contentStyle = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 4px;
-`
-
-export const leftContentStyle = css`
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-`
-
-export const nameStyle = css`
-  color: ${getColor("grayBlue", "02")};
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22px;
+  height: ${TEAM_AGENT_ITEM_HEIGHT}px;
 `
 
 export const ellipsisStyle = css`
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 `
 
 export const descStyle = css`
@@ -41,4 +24,6 @@ export const descStyle = css`
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
+  width: 400px;
+  height: 36px;
 `

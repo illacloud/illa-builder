@@ -30,6 +30,7 @@ import { INIT_ACTION_ADVANCED_CONFIG } from "../AdvancedPanel/constant"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 
+export const ACTION_MODAL_WIDTH = 1080
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
   const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
@@ -248,7 +249,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   return (
     <Modal
-      w="1080px"
+      w={`${ACTION_MODAL_WIDTH}px`}
       visible={visible}
       footer={false}
       closable

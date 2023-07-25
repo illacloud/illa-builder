@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { CSSProperties, FC } from "react"
 import { Button } from "@illa-design/react"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { AgentItem } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector"
@@ -15,6 +15,7 @@ import {
 } from "./style"
 
 interface MarketListItemItemProps {
+  style?: CSSProperties
   item: AgentItem
   onClickCreateAction: (id: string) => void
 }

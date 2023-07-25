@@ -1,11 +1,13 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
+export const MARKET_AGENT_ITEM_HEIGHT = 84
 export const containerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 24px;
+  height: ${MARKET_AGENT_ITEM_HEIGHT}px;
 `
 
 export const infoContainerStyle = css`
