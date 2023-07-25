@@ -1543,7 +1543,8 @@
           "thousand_separator": "Vis tusind separator",
           "trend_color": "Aktiver trendfarve",
           "prefix_text": "Præfiks tekst",
-          "suffix_text": "Suffiks tekst"
+          "suffix_text": "Suffiks tekst",
+          "title": "Titel"
         },
         "mute": "Lydløs",
         "collapse": {
@@ -1728,10 +1729,10 @@
         "jsonSchemaForm": {
           "JSONSchema": "JSONSchema",
           "UISchema": "UISchema",
-          "default_form_data": "Default form data",
-          "hidden_submit_button": "Hidden submit button",
-          "submit_button_full_w": "Submit button full width",
-          "submit_button_text": "Submit button text"
+          "default_form_data": "Standard formulardata",
+          "hidden_submit_button": "Skjult send knap",
+          "submit_button_full_w": "Indsend knap fuld bredde",
+          "submit_button_text": "Indsend knap tekst"
         }
       },
       "setter_tooltip": {
@@ -1990,6 +1991,9 @@
           "logo": "Sæt dit logo med en URL",
           "title": "Angiv en titel såsom firmanavn her",
           "only_show_icon": "Til skjult etiket og kun vis ikon"
+        },
+        "statistics": {
+          "title": "Indstil titlen der skal vises"
         }
       },
       "setter_option": {
@@ -2123,12 +2127,12 @@
           "currency_code": "Valutakoden defineret i [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
         },
         "jsonSchemaForm": {
-          "JSONSchema": "JSON Schema for the form - see the schema prop for react-jsonschema-form.\n\nExample\n{{action1.data }}\n\nLearn more about how to write the JSON schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
-          "UISchema": "UI Schema for the form - see the uiSchema prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExample\n{{ action1.data }}",
-          "default_form_data": "Default Form data - see the formData prop for the [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExample\r\n{{ action1.data }}",
-          "hidden_submit_button": "Set whether to hide the submit button",
-          "submit_button_full_w": "Set whether the submit button is full width.",
-          "submit_button_text": "Set the text of the submit button"
+          "JSONSchema": "JSON Schema til formularen.\n\nEksempel\n{{action1.data }}\n\nFå mere at vide om, hvordan du skriver JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "UI Schema til formularen - se uiSchema prop til [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nEksempel\n{{ action1.data }}",
+          "default_form_data": "Standard formulardata - se formData prop for [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nEksempel\r\n{{ action1.data }}",
+          "hidden_submit_button": "Angiv, om knappen Send skal skjules",
+          "submit_button_full_w": "Angiv, om send-knappen er fuld bredde.",
+          "submit_button_text": "Indstil teksten på knappen Indsend"
         }
       },
       "setter_tootip": {
@@ -2869,7 +2873,7 @@
       }
     },
     "jsonSchemaForm": {
-      "name": "JSON Schema Form"
+      "name": "JSON Skema Form"
     }
   },
   "page": {
