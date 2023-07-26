@@ -32,7 +32,7 @@
       "cancel": "Avbryt",
       "delete": "Radera",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "Detta kommer att bryta apparna och frågebibliotekets frågor som använder denna resurs",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Radera",
       "delete_title": "Är du säker?",
       "error_button": "Försök igen",
