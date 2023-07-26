@@ -1,9 +1,8 @@
 import { CSSProperties, FC } from "react"
-import { Button } from "@illa-design/react"
+import { Button, PlayOutlineIcon } from "@illa-design/react"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { AgentItem } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector"
 import { ReactComponent as EmojiSmileIcon } from "./assets/emoji-smile.svg"
-import { ReactComponent as RunOutlineIcon } from "./assets/run-outline.svg"
 import {
   actionCountStyle,
   containerStyle,
@@ -40,7 +39,7 @@ export const MarketListItem: FC<MarketListItemItemProps> = (props) => {
           </div>
         </div>
         <div css={actionCountStyle}>
-          <RunOutlineIcon />
+          <PlayOutlineIcon />
           {item.runCount}
         </div>
       </div>

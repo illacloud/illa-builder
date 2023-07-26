@@ -1,7 +1,7 @@
 import { FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button, PenIcon, Space, Tag, VideoPlayIcon } from "@illa-design/react"
+import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
 import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
 import { TeamAiAgent } from "@/page/Dashboard/DashboardAiAgent/contentBody"
 import {
@@ -90,7 +90,7 @@ export const TeamAgentCard: FC<AppCardProps> = (props) => {
             className="dashboardAgentRunButton"
             variant="text"
             colorScheme="grayBlue"
-            leftIcon={<VideoPlayIcon size="16px" />}
+            leftIcon={<PlayFillIcon />}
             onClick={toRunAgent}
           >
             {t("run")}
