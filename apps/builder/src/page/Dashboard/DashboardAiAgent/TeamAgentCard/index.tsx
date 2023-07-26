@@ -2,6 +2,7 @@ import { FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, PenIcon, Space, Tag, VideoPlayIcon } from "@illa-design/react"
+import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
 import { TeamAiAgent } from "@/page/Dashboard/DashboardAiAgent/contentBody"
 import {
   agentIconStyle,
@@ -25,10 +26,6 @@ export const TeamAgentCard: FC<AppCardProps> = (props) => {
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
-  // const stopPropagation = (e: MouseEvent) => {
-  //   e.stopPropagation()
-  // }
-
   const toRunAgent = useCallback(() => {
     navigate(`/${teamIdentifier}/ai-agent/${agentInfo.aiAgentID}/run`)
   }, [navigate, teamIdentifier, agentInfo.aiAgentID])
@@ -48,12 +45,11 @@ export const TeamAgentCard: FC<AppCardProps> = (props) => {
           <img css={agentIconStyle} src={agentInfo.config.icon} alt="" />
           <span css={nameStyle}>{agentInfo.name}</span>
         </div>
-        {/*<AppCardActionItem*/}
-        {/*  appId={appInfo.appId}*/}
-        {/*  canEditApp={canEditApp}*/}
-        {/*  isDeploy={appInfo.mainlineVersion !== 0}*/}
-        {/*  onClick={stopPropagation}*/}
-        {/*/>*/}
+        <TeamAgentCardActionItem
+          aiAgentID={agentInfo.aiAgentID}
+          aiAgentName={agentInfo.name}
+          canEdit={canEdit}
+        />
       </div>
       <div>
         <div css={descriptionStyle}>

@@ -65,7 +65,7 @@ const listData: ListData = {
       ],
     },
     {
-      aiAgentID: "ILAex4p1C7U2",
+      aiAgentID: "ILAex4p1C7U1",
       name: "Test AI Agent",
       model: 1, // LLM model ID: 1, gpt-3.5-turbo. 2, gpt-3.5-turbo-16k. 3, gpt-4, for more info please see: [AI Agent Model List](#ai-agent-model-list)
       type: 1, // 1, chat. 2, text-generate.
