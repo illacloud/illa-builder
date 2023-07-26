@@ -32,7 +32,7 @@
       "cancel": "Скасувати",
       "delete": "Видалити",
       "delete_cancel_text": "Скасувати",
-      "delete_content": "Це порушить запити додатків і запитів до бібліотеки, що використовують цей ресурс",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Видалити",
       "delete_title": "Ви впевнені?",
       "error_button": "Повторити спробу",
