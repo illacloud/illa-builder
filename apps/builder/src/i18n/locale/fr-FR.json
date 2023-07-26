@@ -32,7 +32,7 @@
       "cancel": "Abandonner",
       "delete": "Supprimez",
       "delete_cancel_text": "Abandonner",
-      "delete_content": "Cela cassera les requêtes des applications et de la bibliothèque de requêtes qui utilisent cette ressource",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Supprimez",
       "delete_title": "Êtes-vous sûr(e) ?",
       "error_button": "Réessayer",
