@@ -2,6 +2,7 @@ import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch } from "react-redux"
 import { Skeleton } from "@illa-design/react"
+import ErrorBoundary from "@/components/ErrorBoundary"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -14,7 +15,6 @@ import { TransformWidgetWrapperWithJsonProps } from "@/widgetLibrary/PublicSecto
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import ErrorBoundary from "../../../components/ErrorBoundary"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
