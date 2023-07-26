@@ -32,7 +32,7 @@
       "cancel": "annuleren",
       "delete": "Verwijderen",
       "delete_cancel_text": "annuleren",
-      "delete_content": "Dit zal Apps en Query Bibliotheek vragen die deze bron gebruiken breken",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Verwijderen",
       "delete_title": "Weet je het zeker?",
       "error_button": "Opnieuw",
