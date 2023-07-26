@@ -44,7 +44,7 @@ const fixedMenuComponent = (component: ComponentNode) => {
 export const fixedComponentsToNewComponents = (
   componentsTree: ComponentNode,
 ) => {
-  const newComponentsTree = cloneDeep(componentsTree)
+  const newComponentsTree = cloneDeep(componentsTree) ?? {}
   if (Array.isArray(newComponentsTree.childrenNode)) {
     newComponentsTree.childrenNode =
       newComponentsTree.childrenNode?.map((component) => {

@@ -23,7 +23,7 @@ function runUsersCode(code: string) {
   const finalCode = `with(this){
     return (function() {
       'use strict';
-      return ${code};
+      return (${code});
     }).call(this);
   }`
   return new Function(finalCode)

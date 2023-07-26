@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { LEFT_MIN_WIDTH } from "../../../constant/canvas"
+import { LEFT_MIN_WIDTH } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const applyLeftSectionWrapperStyle = (
   width: string,
