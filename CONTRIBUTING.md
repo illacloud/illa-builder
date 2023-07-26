@@ -1,6 +1,6 @@
 # How to Contribute
 
-Illa-builder is one of Illa’s open source projects that is  under very active development. We’re still working out the kinks to make contributing to this project as easy and transparent as possible, but we’re not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
+Illa-builder is one of Illa’s open source projects that is under very active development. We’re still working out the kinks to make contributing to this project as easy and transparent as possible, but we’re not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
 
 ## Open Development
 
@@ -18,23 +18,73 @@ The core team is monitoring for pull requests. We will review your pull request 
 
 **Before submitting a pull request**, please make sure the following is done:
 
-1. Fork the repository and create your branch from develop.
+1. Fork the repository and create your branch from `beta`.
 2. Run `git submodule init && git submodule update` in the repository root.
-3. Run pnpm in the repository root.
+3. Run `pnpm install` in the repository root.
 4. If you’ve fixed a bug or added code that should be tested!
-5. Format your code with prettier (pnpm prettier).
+5. Format your code with prettier (pnpm format).
 6. Make sure your code lints (pnpm lint).
 
 ## Contribution Prerequisites
 
-- You have Node installed at LTS and pnpm
+- You have Node installed at LTS and pnpm@8.x(https://pnpm.io/installation)
 - You are familiar with Git.
+- You have illa-builder-backend running on your local machine.
 
 ## Development Workflow
 
-After cloning Illa-builder, run pnpm to fetch its dependencies. Then, you can run several commands:
+After cloning Illa-builder, run `pnpm install`to fetch its dependencies.After this,you need input the following to `apps/builder/.env.development.local`
 
-- `pnpm build-cloud` creates a production version with Illa-builder.
+```
+VITE_API_BASE_URL=localhost:9999  # this is your backend address,if not has this line, it will use the default backend address,location.origin
+VITE_INSTANCE_ID=SELF_HOST_CLOUD
+ILLA_APP_VERSION=0.0.0
+ILLA_APP_ENV=development
+VITE_USE_HTTPS=false
+```
+
+Then, you can run several commands:
+
+- `pnpm build-self` creates a production version with Illa-builder.
 - `pnpm lint` checks the code style.
 - `pnpm format` format your code with prettier
-- `pnpm dev`  preview in real time while coding
+- `pnpm dev` preview in real time while coding
+
+If you need to run the production version, you need input the following to `apps/builder/env.self`
+
+```
+VITE_API_BASE_URL=localhost:9999  # this is your backend address,if not has this line, it will use the default backend address,location.origin
+VITE_INSTANCE_ID=SELF_HOST_CLOUD
+ILLA_APP_VERSION=0.0.0
+ILLA_APP_ENV=production
+```
+
+## If not have illa-builder-backend
+
+
+### If you have docker
+
+#### If you have rust
+
+You can install [illa](https://github.com/illacloud/illa).illa is a CLI tool for hosting ILLA Builder at local. And then you can run `illa deploy -S -p 9345`,this means you will deploy illa-builder-backend at port 9345. And then you can modify your `.env.development.local` like this:
+
+```
+VITE_API_BASE_URL=localhost:9345
+VITE_INSTANCE_ID=SELF_HOST_CLOUD
+ILLA_APP_VERSION=0.0.0
+ILLA_APP_ENV=development
+VITE_USE_HTTPS=false
+```
+
+
+#### If you not have rust
+
+You can use Docker pull image:`docker pull illa-soft/illa-builder:latest`,and then you can run `docker run -d -p 9345:2022 illasoft/illa-builder:latest`,this means you will deploy illa-builder-backend at port 9345. And then you can modify your `.env.development.local`
+
+
+
+
+### If you are go developer
+
+
+you can build [illa-builder-backend](https://github.com/illacloud/builder-backend)
