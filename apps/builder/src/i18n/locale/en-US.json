@@ -32,7 +32,7 @@
       "cancel": "Cancel",
       "delete": "Delete",
       "delete_cancel_text": "Cancel",
-      "delete_content": "This will break Apps and Query Library queries that use this resource",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Delete",
       "delete_title": "Are you sure?",
       "error_button": "Retry",
