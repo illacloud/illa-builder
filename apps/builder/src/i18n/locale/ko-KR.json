@@ -32,7 +32,7 @@
       "cancel": "취소",
       "delete": "삭제",
       "delete_cancel_text": "취소",
-      "delete_content": "제거하면 이 리소스를 사용하는 애플리케이션 및 쿼리 라이브러리 쿼리가 중단됩니다.",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "삭제",
       "delete_title": "확인하다",
       "error_button": "다시 해 보다",
