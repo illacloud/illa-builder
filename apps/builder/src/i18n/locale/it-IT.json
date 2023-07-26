@@ -32,7 +32,7 @@
       "cancel": "Annulla",
       "delete": "Elimina",
       "delete_cancel_text": "Annulla",
-      "delete_content": "Questo interromperà le query di App e Libreria Query che utilizzano questa risorsa",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Elimina",
       "delete_title": "Sei sicuro?",
       "error_button": "Riprova",
