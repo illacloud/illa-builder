@@ -37,7 +37,10 @@
       "delete_title": "¿Estás seguro?",
       "error_button": "Reintentar",
       "error_description": "Hay un problema con su operación.",
-      "error_title": "Error"
+      "error_title": "Error",
+      "marketplace": "Marketplace",
+      "run": "Run",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Crear nuevo",
@@ -51,6 +54,28 @@
       "save_success": "Guardado correctamente",
       "test_fail": "Error al probar",
       "test_success": "Prueba exitosa"
+    },
+    "list-type": {
+      "team": "Team's",
+      "marketplace": "Agent market"
+    },
+    "sort-type": {
+      "popular": "Most popular",
+      "recent": "Recently updated",
+      "star": "Starred"
+    },
+    "search": "Search",
+    "no-result": "No result here. Please refresh or change your search terms.",
+    "message": {
+      "next-page-error": "Failed to load next page. Please try again.",
+      "create-failed": "Failed to create agent. Please try again.",
+      "sort-failed": "Failed to change the filter type. Please try again.",
+      "detail-load-failed": "Failed to retrieve details, please try again.",
+      "fork-failed": "Failed to fork, please try again.",
+      "create-suc": "Failed to create, please try again.",
+      "fork-suc": "Successfully forked.",
+      "delete-failed": "Faild to delete. Please try again. ",
+      "delete-suc": "Successfully deleted. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Cuenta de servicio"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Select"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Seleccionar páginas"
+            },
+            "ai-agent": {
+              "value": "Value"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Registros",
             "record": "Grabar",
             "record_ids": "ID de registro"
+          },
+          "ai-agent": {
+            "model": "Model",
+            "variable": "Variable",
+            "input": "Input",
+            "max-token": "Max token"
           }
         },
         "menu": {
@@ -2462,6 +2509,53 @@
           "preview": "Error al cargar el registro del historial."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Name",
+        "desc": "Description",
+        "mode": "Mode",
+        "prompt": "Prompt",
+        "variable": "Variable"
+      },
+      "placeholder": {
+        "logo": "Upload",
+        "name": "Give a name to the agent",
+        "desc": "Provide a brief description of what this agent is intended to be used for.",
+        "prompt": "Enter / to select a variable",
+        "variable": {
+          "key": "Variable name",
+          "value": "Value"
+        }
+      },
+      "tips": {
+        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
+        "not-start": "Complete the Agent configure and click Start to run",
+        "not-start-run": "Please click the Start button on the left."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Text generation"
+        }
+      },
+      "new": "New",
+      "save": "Save",
+      "start": "Start",
+      "restart": "Restart",
+      "contribute": "Contribute to marketplace",
+      "button": {
+        "send": "Send",
+        "generating": "Generating"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "run": "Run"
+      },
+      "message": {
+        "click-start": "Click the Start button to trigger."
+      }
     }
   },
   "exit_preview": "Salir de vista previa",
@@ -3749,15 +3843,52 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Invitar a editar",
-      "invite_to_use": "Invitar a usar"
+      "invite_to_use": "Invitar a usar",
+      "share-with-team": "Share with team",
+      "contribute": "Contribute"
     },
     "desc": {
-      "undeploy": "La aplicación no ha sido desplegada. El acceso público y el acceso al visor pueden encontrarse errores. "
+      "undeploy": "La aplicación no ha sido desplegada. El acceso público y el acceso al visor pueden encontrarse errores. ",
+      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
     },
     "tips": {
       "admin": "El miembro que puede administrar a todos los miembros excepto al propietario, editar APPs, y ver APPs",
       "editor": "El miembro que puede administrar el editor y los espectadores, editar APPs, y ver APPs",
       "viewer": "El miembro que puede administrar a los espectadores y ver APP)"
+    },
+    "label": {
+      "contribute": "Contribute to marketplace",
+      "social-media": "Share on"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp"
+      },
+      "social-mediak": {
+        "hackernews": "Hacker News"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
+        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      },
+      "social-mediak": {
+        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
+      },
+      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     }
+  },
+  "ai-agents": "AI Agents",
+  "marketplace": {
+    "star": "Star {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }
