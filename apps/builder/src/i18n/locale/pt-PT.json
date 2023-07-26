@@ -32,7 +32,7 @@
       "cancel": "cancelar",
       "delete": "excluir",
       "delete_cancel_text": "cancelar",
-      "delete_content": "Isto quebrará as consultas de Apps e da Biblioteca de Consulta que usam este recurso",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "excluir",
       "delete_title": "Você tem certeza?",
       "error_button": "Repetir",

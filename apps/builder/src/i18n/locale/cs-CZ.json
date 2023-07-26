@@ -32,7 +32,7 @@
       "cancel": "Zrušit",
       "delete": "Vymazat",
       "delete_cancel_text": "Zrušit",
-      "delete_content": "Toto rozbije aplikace a knihovny dotazů, které používají tento zdroj",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Vymazat",
       "delete_title": "Jste si jisti?",
       "error_button": "Opakovat",

@@ -32,7 +32,7 @@
       "cancel": "Отмена",
       "delete": "Удалить",
       "delete_cancel_text": "Отмена",
-      "delete_content": "Это нарушит запросы к библиотеке приложений и запросов, которые используют этот ресурс",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Удалить",
       "delete_title": "Вы уверены?",
       "error_button": "Повторить",

@@ -32,7 +32,7 @@
       "cancel": "Abbrechen",
       "delete": "Löschen",
       "delete_cancel_text": "Abbrechen",
-      "delete_content": "Dadurch werden Apps und Abfragebibliotheksabfragen unterbrochen, die diese Ressource verwenden",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Löschen",
       "delete_title": "Bist du sicher?",
       "error_button": "Wiederholen",

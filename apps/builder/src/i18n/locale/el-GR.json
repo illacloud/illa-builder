@@ -32,7 +32,7 @@
       "cancel": "Ακύρωση",
       "delete": "Διαγραφή",
       "delete_cancel_text": "Ακύρωση",
-      "delete_content": "Αυτό θα διαλείψει ερωτήματα της Βιβλιοθήκης Εφαρμογών και Ερωτημάτων που χρησιμοποιούν αυτόν τον πόρο",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Διαγραφή",
       "delete_title": "Είσαι σίγουρος?",
       "error_button": "Επανάληψη",

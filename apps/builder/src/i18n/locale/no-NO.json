@@ -32,7 +32,7 @@
       "cancel": "Avbryt",
       "delete": "Slett",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "Dette vil bryte app- og spørringsbibliotekets spørringer som bruker denne ressursen",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Slett",
       "delete_title": "Er du sikker?",
       "error_button": "Prøv igjen",

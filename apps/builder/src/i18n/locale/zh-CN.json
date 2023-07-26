@@ -32,7 +32,7 @@
       "cancel": "取消",
       "delete": "删除",
       "delete_cancel_text": "取消",
-      "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
+      "delete_content": "删除后将无法通过任何方式访问和恢复，请确认",
       "delete_ok_text": "删除",
       "delete_title": "确认",
       "error_button": "重试",

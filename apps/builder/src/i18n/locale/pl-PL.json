@@ -32,7 +32,7 @@
       "cancel": "Anuluj",
       "delete": "Usuń",
       "delete_cancel_text": "Anuluj",
-      "delete_content": "Spowoduje to przerwanie zapytań do aplikacji i biblioteki zapytań które używają tego zasobu",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Usuń",
       "delete_title": "Jesteś pewien?",
       "error_button": "Ponów próbę",

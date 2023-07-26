@@ -32,7 +32,7 @@
       "cancel": "Annuller",
       "delete": "Slet",
       "delete_cancel_text": "Annuller",
-      "delete_content": "Dette vil ødelægge Apps og Forespørgselsbibliotek forespørgsler der bruger denne ressource",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Slet",
       "delete_title": "Er du sikker?",
       "error_button": "Forsøg igen",
