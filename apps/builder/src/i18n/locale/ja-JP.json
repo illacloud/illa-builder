@@ -32,7 +32,7 @@
       "cancel": "キャンセル",
       "delete": "消去",
       "delete_cancel_text": "キャンセル",
-      "delete_content": "削除すると、このリソースを使用するアプリケーションとクエリ ライブラリ クエリが破損します",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "消去",
       "delete_title": "確認",
       "error_button": "リトライ",
