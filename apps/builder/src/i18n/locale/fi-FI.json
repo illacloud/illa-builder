@@ -32,7 +32,7 @@
       "cancel": "Peruuta",
       "delete": "Poista",
       "delete_cancel_text": "Peruuta",
-      "delete_content": "Tämä rikkoo Apps and Query Library -kyselyt, jotka käyttävät tätä resurssia",
+      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
       "delete_ok_text": "Poista",
       "delete_title": "Oletko varma?",
       "error_button": "Yritä Uudelleen",
