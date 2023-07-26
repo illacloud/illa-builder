@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
 import { Input, RadioGroup } from "@illa-design/react"
@@ -101,7 +101,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [agentType, setAgentType] = useState(searchParams.get("list") || "team")
-  const [list, setList] = useState(listData.aiAgentList)
+  const [list, setList] = useState<TeamAiAgent[]>()
   const agentOptions = useMemo(() => {
     return [
       {
@@ -115,10 +115,18 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
     ]
   }, [t])
 
+  const getAgentList = () => {
+    setList(listData.aiAgentList)
+  }
+
   const handleAgentTypeChange = (newType: string) => {
     setAgentType(newType)
     setSearchParams({ list: newType })
   }
+
+  useEffect(() => {
+    getAgentList()
+  }, [])
 
   return (
     <div css={contentContainerStyle}>
@@ -135,7 +143,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
         />
       </div>
       <div css={listContainerStyle}>
-        {list.map((item) => {
+        {list?.map((item) => {
           return (
             <TeamAgentCard
               key={item.aiAgentID}

@@ -25,9 +25,9 @@ export const TeamAgentCard: FC<AppCardProps> = (props) => {
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
-  const stopPropagation = (e: MouseEvent) => {
-    e.stopPropagation()
-  }
+  // const stopPropagation = (e: MouseEvent) => {
+  //   e.stopPropagation()
+  // }
 
   const toRunAgent = useCallback(() => {
     navigate(`/${teamIdentifier}/ai-agent/${agentInfo.aiAgentID}/run`)
