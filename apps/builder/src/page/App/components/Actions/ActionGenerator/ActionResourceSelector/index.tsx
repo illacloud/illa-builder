@@ -85,9 +85,12 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
         bordered={false}
         height={550}
         data={resourceList}
+        split={false}
+        itemHeight={48}
         renderKey={(data) => {
           return data.resourceId
         }}
+        h="550px"
         renderRaw
         render={(r) => {
           return (
