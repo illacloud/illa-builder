@@ -126,6 +126,11 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
       hidden: isCloudVersion,
     },
     {
+      key: "ai-agent",
+      title: t("user_management.page.ai-agent"),
+      hidden: !isCloudVersion,
+    },
+    {
       key: "tutorial",
       title: t("editor.tutorial.panel.tutorial.tab.title"),
       hidden: !canEditApp,
@@ -187,6 +192,9 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
             break
           case "members":
             navigate(`./members`)
+            break
+          case "ai-agent":
+            navigate(`./ai-agent`)
             break
           case "tutorial":
             navigate(`./tutorial`)
