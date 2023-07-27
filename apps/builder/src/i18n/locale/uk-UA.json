@@ -32,14 +32,14 @@
       "cancel": "Скасувати",
       "delete": "Видалити",
       "delete_cancel_text": "Скасувати",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Після видалення, доступ до даних або відновлення через будь-які засоби. Будь ласка, підтвердіть.",
       "delete_ok_text": "Видалити",
       "delete_title": "Ви впевнені?",
       "error_button": "Повторити спробу",
       "error_description": "Виникла проблема з вашою операцією.",
       "error_title": "Помилка",
-      "marketplace": "Marketplace",
-      "run": "Run",
+      "marketplace": "Магазин",
+      "run": "Ран",
       "fork": "Fork"
     },
     "resource": {
@@ -56,26 +56,26 @@
       "test_success": "Перевірка пройшла успішно"
     },
     "list-type": {
-      "team": "Team's",
-      "marketplace": "Agent market"
+      "team": "Команди",
+      "marketplace": "Агентський ринок"
     },
     "sort-type": {
-      "popular": "Most popular",
-      "recent": "Recently updated",
-      "star": "Starred"
+      "popular": "Найпопулярніші",
+      "recent": "Нещодавно оновлені",
+      "star": "Із зірочкою"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "Пошук",
+    "no-result": "Тут немає результату. Будь ласка, оновіть або змініть умови пошуку.",
     "message": {
-      "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
-      "sort-failed": "Failed to change the filter type. Please try again.",
-      "detail-load-failed": "Failed to retrieve details, please try again.",
-      "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
-      "fork-suc": "Successfully forked.",
-      "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "next-page-error": "Не вдалося завантажити наступну сторінку. Будь ласка, спробуйте ще раз.",
+      "create-failed": "Не вдалося створити агента. Будь ласка, спробуйте ще раз.",
+      "sort-failed": "Не вдалося змінити тип фільтра. Будь ласка, спробуйте ще раз.",
+      "detail-load-failed": "Не вдалося отримати деталі, будь ласка, спробуйте ще раз.",
+      "fork-failed": "Не вдалося форкувати, будь ласка, спробуйте ще раз.",
+      "create-suc": "Не вдалося створити, будь ласка, спробуйте ще раз.",
+      "fork-suc": "Успішно форжили.",
+      "delete-failed": "Не вдалося видалити. Будь ласка, спробуйте ще раз. ",
+      "delete-suc": "Успішно видалено. "
     }
   },
   "dayjs": {
@@ -421,7 +421,7 @@
         },
         "button": {
           "marketplace": {
-            "select": "Select"
+            "select": "Вибрати"
           }
         }
       },
@@ -517,7 +517,7 @@
               "select_pages": "Вибрати сторінки"
             },
             "ai-agent": {
-              "value": "Value"
+              "value": "Цінність"
             }
           },
           "option": {
@@ -597,7 +597,7 @@
             "ai-agent": {
               "model": {
                 "gpt-3": {
-                  "5-turbo": "gpt-3.5-turbo"
+                  "5-turbo": "gpt-3.5-турбо"
                 },
                 "gpt-4": "gpt-4"
               }
@@ -675,10 +675,10 @@
             "record_ids": "ID запису"
           },
           "ai-agent": {
-            "model": "Model",
-            "variable": "Variable",
+            "model": "Модель",
+            "variable": "Змінна",
             "input": "Input",
-            "max-token": "Max token"
+            "max-token": "Максимальний токен"
           }
         },
         "menu": {
@@ -2512,49 +2512,63 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
-        "name": "Name",
-        "desc": "Description",
-        "mode": "Mode",
+        "logo": "Логотип",
+        "name": "Ім'я",
+        "desc": "Опис",
+        "mode": "Режим",
         "prompt": "Prompt",
-        "variable": "Variable"
+        "variable": "Змінна",
+        "welcome": "Привітальне повідомлення",
+        "model": "Модель",
+        "temperature": "Температура",
+        "max-token": "Максимальний токен"
       },
       "placeholder": {
-        "logo": "Upload",
-        "name": "Give a name to the agent",
-        "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "logo": "Вивантажити",
+        "name": "Вкажіть ім'я агенту",
+        "desc": "Надати короткий опис того, для якого цей агент повинен бути використаний.",
+        "prompt": "Введіть / щоб вибрати змінну",
         "variable": {
-          "key": "Variable name",
-          "value": "Value"
-        }
+          "key": "Назва змінної",
+          "value": "Цінність"
+        },
+        "welcome": "Написати привітальне повідомлення, яке відображається коли користувачі починають використовувати агента.",
+        "temperature": "Значення від 0 до 1. Чим менше значення, тим краще ефект може бути",
+        "max-token": "Використовується для обмеження максимальної кількості маркерів, що споживаються при кожному запуску"
       },
       "tips": {
-        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
-        "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "mode": "У режимі чату кожен повідомлення, яке відправляє, включає в себе історію розмови в якості частини запиту, що може призвести до кращих результатів, але використовує більше токенів; у режимі тексту, кожне повідомлення, що надсилає, не включає в себе історію розмов, що може призвести до менш оптимальних результатів порівняно з режимом чату, але підвищує токени.",
+        "not-start": "Завершіть налаштування Agent і натисніть кнопку Запустити, щоб запустити",
+        "not-start-run": "Будь ласка, натисніть кнопку «Почати ліворуч»."
       },
       "option": {
         "mode": {
-          "chat": "Chat",
-          "text": "Text generation"
+          "chat": "Чат",
+          "text": "Генерація тексту"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-турбо"
+          },
+          "gpt-4": "gpt-4"
         }
       },
-      "new": "New",
-      "save": "Save",
-      "start": "Start",
-      "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "new": "Новий",
+      "save": "Зберегти",
+      "start": "Старт",
+      "restart": "Перезапустити",
+      "contribute": "Внести вклад на ринок",
       "button": {
-        "send": "Send",
-        "generating": "Generating"
+        "send": "Відправити",
+        "generating": "Генерація"
       },
       "tab": {
         "prompt": "Prompt",
-        "run": "Run"
+        "chat": "Чат",
+        "text": "Створити текст"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Натисніть «Запустити», щоб увімкнути тригер."
       }
     }
   },
@@ -3844,12 +3858,12 @@
     "title": {
       "invite_to_edit": "Запросити до редагування",
       "invite_to_use": "Запросити",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Поділитися з командою",
+      "contribute": "Зробити свій внесок"
     },
     "desc": {
       "undeploy": "Додаток не розгорнуто. Доступ до публічного доступу і глядача можуть стикатися з помилками. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "contribute": "Після участі в Ринку, всі користувачі можуть бігати, зірочкою та поширювати вашого співробітника. Коли користувачі з інших команд запускають цього співробітника, вони не споживатимуть ваші ресурси."
     },
     "tips": {
       "admin": "Учасник, який може керувати усіма учасниками, крім власника, редагувати APP та переглядати APP",
@@ -3857,38 +3871,34 @@
       "viewer": "Учасник, який може керувати членами перегляду та переглядати APP"
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
+      "contribute": "Внести вклад на ринок",
+      "social-media": "Поділитися на"
     },
     "options": {
       "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
+        "twitter": "Твіттер",
+        "reddit": "Реддіт",
         "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp"
-      },
-      "social-mediak": {
-        "hackernews": "Hacker News"
+        "facebook": "Фейсбук",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Хакерські новини"
       }
     },
     "default-text": {
       "social-media": {
         "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
-        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+        "reddit": "Погляньте на цей чарівний агент ШІ [{{promptName}}]",
+        "linkedin": "Увага, всі ентузіасти та професіонали, які прагнуть підвищити свою продуктивність! Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!",
+        "facebook": "Увага, всі ентузіасти та професіонали, які прагнуть підвищити свою продуктивність! Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!",
+        "whatsapp": "Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!",
+        "hackernews": "Спростіть свій Workload з [{{promptName}}] - Agent: AI Agent який отримає завдання Done"
       },
-      "social-mediak": {
-        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      "contribute": "Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!"
     }
   },
-  "ai-agents": "AI Agents",
+  "ai-agents": "Агенти ШІ",
   "marketplace": {
-    "star": "Star {{operationNum}}",
+    "star": "Зірка {{operationNum}}",
     "fork": "Fork {{operationNum}}"
   }
 }
