@@ -1,6 +1,7 @@
+import { CUSTOM_LOGIN_DATA } from "@/config/template/CustomLogin"
 import { FORM_DATA } from "@/config/template/Form"
 import { LIST_DATA } from "@/config/template/List"
-import { TABLE_DATA } from "@/config/template/Table"
+import { TABLE_GUIDE_DATA } from "@/config/template/TableGuide"
 import FormIcon from "@/config/template/icon/form.svg"
 import ListIcon from "@/config/template/icon/list.svg"
 import TableIcon from "@/config/template/icon/table.svg"
@@ -19,13 +20,20 @@ export const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
   const resourceIdList = currentApp.actions.map((action) => action.resourceId)
 
   // get resources form resourceIdList, and generate filter
-  const resources = currentResources
-    .filter((resource) => resourceIdList.includes(resource.resourceId))
-    .map(({ resourceName, resourceType, content }) => ({
+  const filterResources = currentResources.filter((resource) =>
+    resourceIdList.includes(resource.resourceId),
+  )
+  const filterResourcesIdList = filterResources.map(
+    (resource) => resource.resourceId,
+  )
+
+  const resources = filterResources.map(
+    ({ resourceName, resourceType, content }) => ({
       resourceName,
       resourceType,
       content,
-    })) as TemplateResources
+    }),
+  ) as TemplateResources
 
   // Add the resourceIndex attribute to actions
   const actions = currentApp.actions.map(
@@ -38,7 +46,9 @@ export const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
       content,
       config,
     }) => {
-      const resourceIndex = resourceIdList.indexOf(resourceId)
+      const resourceIndex = resourceId
+        ? filterResourcesIdList.indexOf(resourceId)
+        : -1
       return {
         resourceId,
         displayName,
@@ -62,12 +72,6 @@ export const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
 }
 
 export const templateConfig = {
-  Table: {
-    nameKey: "editor.tutorial.panel.tutorial.templates_name.table",
-    config: formatAppDataToConfig(TABLE_DATA),
-    example:
-      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7QW",
-  },
   Form: {
     nameKey: "editor.tutorial.panel.tutorial.templates_name.form",
     config: formatAppDataToConfig(FORM_DATA),
@@ -80,14 +84,33 @@ export const templateConfig = {
     example:
       "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7QU",
   },
+  TableGuide: {
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.table_guide",
+    config: formatAppDataToConfig(TABLE_GUIDE_DATA),
+    example:
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7Ga",
+  },
+  CustomLogin: {
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.custom_login",
+    config: formatAppDataToConfig(CUSTOM_LOGIN_DATA),
+    example:
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7FD",
+  },
+  CustomLoginWithSC: {
+    nameKey:
+      "editor.tutorial.panel.tutorial.templates_name.custom_login_with_sc",
+    config: formatAppDataToConfig(CUSTOM_LOGIN_DATA),
+    example:
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7FD",
+  },
 }
 
 export const Templates: TemplateSetting[] = [
   {
-    type: "Table",
-    nameKey: "editor.tutorial.panel.tutorial.templates_name.table",
-    descKey: "editor.tutorial.panel.tutorial.templates_description.table",
-    appId: "ILAex4p1C7QW",
+    type: "TableGuide",
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.table_guide",
+    descKey: "editor.tutorial.panel.tutorial.templates_description.table_guide",
+    appId: "ILAex4p1C7Ga",
     icon: TableIcon,
   },
   {
@@ -101,6 +124,23 @@ export const Templates: TemplateSetting[] = [
     type: "List",
     nameKey: "editor.tutorial.panel.tutorial.templates_name.list",
     descKey: "editor.tutorial.panel.tutorial.templates_description.list",
+    appId: "ILAex4p1C7QU",
+    icon: ListIcon,
+  },
+  {
+    type: "CustomLogin",
+    nameKey: "editor.tutorial.panel.tutorial.templates_name.custom_login",
+    descKey:
+      "editor.tutorial.panel.tutorial.templates_description.custom_login",
+    appId: "ILAex4p1C7FD",
+    icon: ListIcon,
+  },
+  {
+    type: "CustomLoginWithSC",
+    nameKey:
+      "editor.tutorial.panel.tutorial.templates_name.custom_login_with_sc",
+    descKey:
+      "editor.tutorial.panel.tutorial.templates_description.custom_login_with_sc",
     appId: "ILAex4p1C7QU",
     icon: ListIcon,
   },

@@ -70,11 +70,12 @@ export const forkTemplateApp = async (
       return resource ? resource.resourceId : createResource(data)
     }),
   )
+
   const appId = await createApp(appName, appConfig)
   if (resourceList.length) {
     await Promise.all(
       actions.map((data) => {
-        const { resourceIndex, ...actionData } = data
+        const { resourceIndex, resourceId: _, ...actionData } = data
         const resourceId = resourceList[resourceIndex] || ""
         return createAction(appId, {
           ...actionData,
