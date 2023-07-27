@@ -1,4 +1,4 @@
-import { ReactComponent as IconsWidgetIcon } from "@/assets/widgetCover/icon.svg"
+import { ReactComponent as JsonSchemaFormWidgetIcon } from "@/assets/widgetCover/jsonSchemaForm.svg"
 import i18n from "@/i18n/config"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 
@@ -6,11 +6,11 @@ export const JSON_SCHEMA_FORM_WIDGET_CONFIG: WidgetConfig = {
   type: "JSON_SCHEMA_FORM_WIDGET",
   displayName: "jsonSchemaForm",
   widgetName: i18n.t("widget.jsonSchemaForm.name"),
-  icon: <IconsWidgetIcon />,
+  icon: <JsonSchemaFormWidgetIcon />,
   keywords: ["jsonSchemaForm", "动态表单"],
   sessionType: "INPUTS",
-  w: 20,
-  h: 30,
+  w: 16,
+  h: 40,
   version: 0,
   defaults: {
     hidden: false,
@@ -94,5 +94,10 @@ export const JSON_SCHEMA_FORM_WIDGET_CONFIG: WidgetConfig = {
       }}}`,
     dynamicHeight: "fixed",
     themeColor: "blue",
+    borderColor: "#ffffffff",
+    radius: "4px",
+    borderWidth: "1px",
+    shadow: "small",
+    disabled: false,
   },
 }

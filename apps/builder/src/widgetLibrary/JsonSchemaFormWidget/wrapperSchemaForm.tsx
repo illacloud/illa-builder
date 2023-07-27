@@ -15,6 +15,7 @@ export const WrapperSchemaForm = forwardRef<FormRef, WrapperSchemaFormProps>(
       submitButtonFullWidth,
       submitButtonText,
       hiddenSubmitButton,
+      disabled,
       handleOnChange,
       handleOnSubmit,
     },
@@ -29,6 +30,7 @@ export const WrapperSchemaForm = forwardRef<FormRef, WrapperSchemaFormProps>(
     return (
       <Form
         ref={ref}
+        disabled={disabled}
         css={formGlobalStyle}
         formContext={{
           themeColor,
