@@ -19,6 +19,7 @@ export const JSON_SCHEMA_FORM_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_placeholder.jsonSchemaForm.JSONSchema",
         ),
         attrName: "JSONSchema",
+        isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.OBJECT,
         setterType: "INPUT_SETTER",
       },
@@ -31,6 +32,7 @@ export const JSON_SCHEMA_FORM_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_placeholder.jsonSchemaForm.UISchema",
         ),
         attrName: "UISchema",
+        isSetterSingleRow: true,
         expectedType: VALIDATION_TYPES.OBJECT,
         setterType: "INPUT_SETTER",
       },
@@ -75,6 +77,19 @@ export const JSON_SCHEMA_FORM_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
+        id: `${baseWidgetName}-layout-submitButtonText`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.jsonSchemaForm.submit_button_text",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_placeholder.jsonSchemaForm.submit_button_text",
+        ),
+        setterType: "INPUT_SETTER",
+        attrName: "submitButtonText",
+        isSetterSingleRow: true,
+        expectedType: VALIDATION_TYPES.STRING,
+      },
+      {
         id: `${baseWidgetName}-layout-hiddenSubmitButton`,
         labelName: i18n.t(
           "editor.inspect.setter_label.jsonSchemaForm.hidden_submit_button",
@@ -103,19 +118,6 @@ export const JSON_SCHEMA_FORM_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-      {
-        id: `${baseWidgetName}-layout-submitButtonText`,
-        labelName: i18n.t(
-          "editor.inspect.setter_label.jsonSchemaForm.submit_button_text",
-        ),
-        labelDesc: i18n.t(
-          "editor.inspect.setter_placeholder.jsonSchemaForm.submit_button_text",
-        ),
-        setterType: "INPUT_SETTER",
-        attrName: "submitButtonText",
-        isSetterSingleRow: true,
-        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: `${baseWidgetName}-layout-height`,
