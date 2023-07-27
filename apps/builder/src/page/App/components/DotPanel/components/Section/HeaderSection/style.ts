@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { HEADER_MIN_HEIGHT } from "../../../constant/canvas"
+import { HEADER_MIN_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const applyHeaderSectionWrapperStyle = (
   height: string,

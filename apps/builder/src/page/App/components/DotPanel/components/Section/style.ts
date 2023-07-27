@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { RESIZE_BAR_HEIGHT } from "../../constant/canvas"
+import { RESIZE_BAR_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const disabledHorizontalBarWrapperStyle = css`
   height: 100%;

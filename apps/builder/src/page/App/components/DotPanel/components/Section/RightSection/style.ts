@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { RIGHT_MIN_WIDTH } from "../../../constant/canvas"
+import { RIGHT_MIN_WIDTH } from "@/page/App/components/DotPanel/constant/canvas"
 
 export const applyRightSectionWrapperStyle = (
   width: string,

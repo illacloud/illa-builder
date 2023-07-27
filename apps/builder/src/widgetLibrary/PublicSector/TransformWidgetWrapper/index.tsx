@@ -2,6 +2,7 @@ import { cloneDeep, get, isFunction, isNumber, set, toPath } from "lodash"
 import { FC, Suspense, memo, useCallback, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Skeleton } from "@illa-design/react"
+import ErrorBoundary from "@/components/ErrorBoundary"
 import { UNIT_HEIGHT } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   WIDGET_PADDING,
@@ -31,7 +32,6 @@ import { isObject } from "@/utils/typeHelper"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import ErrorBoundary from "../../../components/ErrorBoundary"
 import { MIN_HEIGHT } from "./config"
 
 export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
