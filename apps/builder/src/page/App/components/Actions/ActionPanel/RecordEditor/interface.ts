@@ -10,6 +10,7 @@ export interface RecordEditorProps {
   records: Params[] | null
   onAdd: (name?: string) => void
   customRender?: (record: Params, index: number) => ReactNode
+  withoutCodeMirror?: boolean
   onDelete: (index: number, record: Params, name?: string) => void
   onChangeKey: (
     index: number,
@@ -23,5 +24,5 @@ export interface RecordEditorProps {
     value: string,
     name?: string,
   ) => void
-  valueInputType?: VALIDATION_TYPES | "any"
+  valueInputType?: VALIDATION_TYPES
 }

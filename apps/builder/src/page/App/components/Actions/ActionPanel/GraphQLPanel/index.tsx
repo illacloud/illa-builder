@@ -124,7 +124,7 @@ const GraphQLPanel: FC = () => {
           onDelete={handleOnDeleteKeyValue}
           onChangeKey={handleOnChangeKeyOrValue}
           onChangeValue={handleOnChangeKeyOrValue}
-          valueInputType="any"
+          valueInputType={VALIDATION_TYPES.ANY}
         />
         <RecordEditor
           key="headers"

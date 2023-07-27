@@ -34,7 +34,7 @@ export const recordKeyStyle = css`
   flex-grow: 1;
   width: 0;
   height: auto;
-  .cm-editor {
+  .ͼ1.cm-editor {
     border-radius: 8px 0 0 8px;
   }
 `
@@ -44,7 +44,7 @@ export const recordValueStyle = css`
   flex-grow: 1;
   width: 0;
   height: auto;
-  .cm-editor {
+  .ͼ1.cm-editor {
     border-radius: 0;
   }
 `

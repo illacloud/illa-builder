@@ -5,4 +5,5 @@ export const agentLoader: LoaderFunction = async (args) => {
   if (!agentId) {
     return redirect("/404")
   }
+  return null
 }

@@ -4,6 +4,7 @@ import {
   AddIcon,
   Button,
   DeleteIcon,
+  Input,
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
@@ -31,6 +32,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
     onSubLabelClick,
     onDelete,
     onAdd,
+    withoutCodeMirror,
     onChangeKey,
     onChangeValue,
     valueInputType,
@@ -41,7 +43,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const valueExpectedType = useMemo(
     () =>
       valueInputType
-        ? valueInputType === "any"
+        ? valueInputType === VALIDATION_TYPES.ANY
           ? undefined
           : valueInputType
         : VALIDATION_TYPES.STRING,
@@ -57,6 +59,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
               <div css={recordStyle} key={index}>
                 {customRender(record, index)}
                 <Button
+                  type="button"
                   ml="-1px"
                   minW="32px"
                   variant="outline"
@@ -72,31 +75,60 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
           }
           return (
             <div css={recordStyle} key={index}>
-              <CodeEditor
-                wrapperCss={recordKeyStyle}
-                height="32px"
-                value={record.key}
-                lang={CODE_LANG.JAVASCRIPT}
-                placeholder="key"
-                expectValueType={VALIDATION_TYPES.STRING}
-                onChange={(value) => {
-                  onChangeKey(index, value, record.value, name)
-                }}
-                singleLine
-              />
-              <CodeEditor
-                height="32px"
-                wrapperCss={recordValueStyle}
-                lang={CODE_LANG.JAVASCRIPT}
-                placeholder="value"
-                value={record.value}
-                expectValueType={valueExpectedType}
-                singleLine
-                onChange={(value) => {
-                  onChangeValue(index, record.key, value, name)
-                }}
-              />
+              {withoutCodeMirror ? (
+                <Input
+                  colorScheme={"techPurple"}
+                  _css={recordKeyStyle}
+                  height="32px"
+                  value={record.key}
+                  bdRadius="8px 0 0 8px"
+                  placeholder="key"
+                  onChange={(value) => {
+                    onChangeKey(index, value, record.value, name)
+                  }}
+                />
+              ) : (
+                <CodeEditor
+                  wrapperCss={recordKeyStyle}
+                  height="32px"
+                  value={record.key}
+                  lang={CODE_LANG.JAVASCRIPT}
+                  placeholder="key"
+                  expectValueType={VALIDATION_TYPES.STRING}
+                  onChange={(value) => {
+                    onChangeKey(index, value, record.value, name)
+                  }}
+                  singleLine
+                />
+              )}
+              {withoutCodeMirror ? (
+                <Input
+                  colorScheme={"techPurple"}
+                  height="32px"
+                  bdRadius="0"
+                  _css={recordValueStyle}
+                  placeholder="value"
+                  value={record.value}
+                  onChange={(value) => {
+                    onChangeValue(index, record.key, value, name)
+                  }}
+                />
+              ) : (
+                <CodeEditor
+                  height="32px"
+                  wrapperCss={recordValueStyle}
+                  lang={CODE_LANG.JAVASCRIPT}
+                  placeholder="value"
+                  value={record.value}
+                  expectValueType={valueExpectedType}
+                  singleLine
+                  onChange={(value) => {
+                    onChangeValue(index, record.key, value, name)
+                  }}
+                />
+              )}
               <Button
+                type="button"
                 ml="-1px"
                 minW="32px"
                 variant="outline"
@@ -120,6 +152,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
     onDelete,
     records,
     valueExpectedType,
+    withoutCodeMirror,
   ])
 
   return (
@@ -138,6 +171,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
         {recordList}
         <span>
           <Button
+            type="button"
             mb="8px"
             pd="1px 8px"
             colorScheme="techPurple"
