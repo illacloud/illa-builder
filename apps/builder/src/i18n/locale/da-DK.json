@@ -32,14 +32,14 @@
       "cancel": "Annuller",
       "delete": "Slet",
       "delete_cancel_text": "Annuller",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Efter sletning, vil det ikke være muligt at få adgang til eller gendanne data på nogen måde. Bekræft venligst.",
       "delete_ok_text": "Slet",
       "delete_title": "Er du sikker?",
       "error_button": "Forsøg igen",
       "error_description": "Der er et problem med din drift.",
       "error_title": "Fejl",
-      "marketplace": "Marketplace",
-      "run": "Run",
+      "marketplace": "Markedsplads",
+      "run": "Kør",
       "fork": "Fork"
     },
     "resource": {
@@ -57,25 +57,25 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agent market"
+      "marketplace": "Agentens marked"
     },
     "sort-type": {
-      "popular": "Most popular",
-      "recent": "Recently updated",
-      "star": "Starred"
+      "popular": "Mest populære",
+      "recent": "Nyligt opdateret",
+      "star": "Stjernemarkerede"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "Søg",
+    "no-result": "Intet resultat her. Opdater eller ændr venligst dine søgeord.",
     "message": {
-      "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
-      "sort-failed": "Failed to change the filter type. Please try again.",
-      "detail-load-failed": "Failed to retrieve details, please try again.",
-      "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
-      "fork-suc": "Successfully forked.",
-      "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "next-page-error": "Næste side kunne ikke indlæses. Prøv igen.",
+      "create-failed": "Mislykkedes at oprette agent. Prøv venligst igen.",
+      "sort-failed": "Kunne ikke ændre filtertypen. Prøv igen.",
+      "detail-load-failed": "Kunne ikke hente detaljer. Prøv venligst igen.",
+      "fork-failed": "Mislykkedes at gaffel, prøv igen.",
+      "create-suc": "Kunne ikke oprettes. Prøv venligst igen.",
+      "fork-suc": "Gafler med succes.",
+      "delete-failed": "Kunne ikke slette. Prøv igen. ",
+      "delete-suc": "Slettet succesfuldt. "
     }
   },
   "dayjs": {
@@ -421,7 +421,7 @@
         },
         "button": {
           "marketplace": {
-            "select": "Select"
+            "select": "Vælg"
           }
         }
       },
@@ -517,7 +517,7 @@
               "select_pages": "Vælg sider"
             },
             "ai-agent": {
-              "value": "Value"
+              "value": "Værdi"
             }
           },
           "option": {
@@ -597,7 +597,7 @@
             "ai-agent": {
               "model": {
                 "gpt-3": {
-                  "5-turbo": "gpt-3.5-turbo"
+                  "5-turbo": "gpt-3,5-turbo"
                 },
                 "gpt-4": "gpt-4"
               }
@@ -676,9 +676,9 @@
           },
           "ai-agent": {
             "model": "Model",
-            "variable": "Variable",
+            "variable": "Variabel",
             "input": "Input",
-            "max-token": "Max token"
+            "max-token": "Maks. token"
           }
         },
         "menu": {
@@ -2513,48 +2513,62 @@
     "ai-agent": {
       "label": {
         "logo": "Logo",
-        "name": "Name",
-        "desc": "Description",
-        "mode": "Mode",
+        "name": "Navn",
+        "desc": "Varebeskrivelse",
+        "mode": "Tilstand",
         "prompt": "Prompt",
-        "variable": "Variable"
+        "variable": "Variabel",
+        "welcome": "Velkomst besked",
+        "model": "Model",
+        "temperature": "Temperatur",
+        "max-token": "Maks. token"
       },
       "placeholder": {
         "logo": "Upload",
-        "name": "Give a name to the agent",
-        "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "name": "Giv et navn til agenten",
+        "desc": "Giv en kort beskrivelse af, hvad denne agent er beregnet til at blive brugt til.",
+        "prompt": "Indtast / for at vælge en variabel",
         "variable": {
-          "key": "Variable name",
-          "value": "Value"
-        }
+          "key": "Variabel navn",
+          "value": "Værdi"
+        },
+        "welcome": "Giv en velkomstbesked, der vises, når brugerne begynder at bruge agent.",
+        "temperature": "En værdi mellem 0 og 1. Jo mindre værdien, jo bedre kan effekten være",
+        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb"
       },
       "tips": {
-        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
-        "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "mode": "I chattilstand indeholder hver sendt besked samtalehistorikken som en del af anmodningen, hvilket kan resultere i bedre resultater, men forbruger mere tokens; i teksttilstand, hver sendt besked indeholder ikke samtaleoversigten hvilket kan resultere i mindre optimale resultater i forhold til chat-tilstand, men konserves tokens.",
+        "not-start": "Færdiggør Agentens konfiguration og klik på Start for at køre",
+        "not-start-run": "Klik på Start-knappen til venstre."
       },
       "option": {
         "mode": {
           "chat": "Chat",
-          "text": "Text generation"
+          "text": "Tekst generation"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3,5-turbo"
+          },
+          "gpt-4": "gpt-4"
         }
       },
-      "new": "New",
-      "save": "Save",
+      "new": "Ny",
+      "save": "Gem",
       "start": "Start",
-      "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "restart": "Genstart",
+      "contribute": "Bidrag til markedspladsen",
       "button": {
         "send": "Send",
-        "generating": "Generating"
+        "generating": "Genererer"
       },
       "tab": {
         "prompt": "Prompt",
-        "run": "Run"
+        "chat": "Chat",
+        "text": "Generer tekst"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Klik på knappen Start for at udløse."
       }
     }
   },
@@ -3844,12 +3858,12 @@
     "title": {
       "invite_to_edit": "Inviter til at redigere",
       "invite_to_use": "Inviter til brug",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Del med teamet",
+      "contribute": "Bidrag"
     },
     "desc": {
       "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "contribute": "Efter at have bidraget til markedspladsen, kan alle brugere køre, stjerne, og gaffel din agent. Når brugere fra andre teams kører denne Agent, vil det ikke forbruge dine ressourcer."
     },
     "tips": {
       "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
@@ -3857,8 +3871,8 @@
       "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
+      "contribute": "Bidrag til markedspladsen",
+      "social-media": "Del på"
     },
     "options": {
       "social-media": {
@@ -3866,29 +3880,25 @@
         "reddit": "Reddit",
         "linkedin": "LinkedIn",
         "facebook": "Facebook",
-        "whatsapp": "WhatsApp"
-      },
-      "social-mediak": {
-        "hackernews": "Hacker News"
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nyheder"
       }
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
-        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+        "twitter": "Hej der! Jeg har lige opdaget denne fantastiske AI Agent. Du er måske også interesseret i at prøve det! Tjek det ud! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProduktivityBoost",
+        "reddit": "Tjek denne fantastiske AI Agent [{{promptName}}]",
+        "linkedin": "Opmærksomhed alle AI entusiaster og fagfolk ønsker at øge deres produktivitet! Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
+        "facebook": "Opmærksomhed alle AI entusiaster og fagfolk ønsker at øge deres produktivitet! Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
+        "whatsapp": "Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
+        "hackernews": "Forenkle din arbejdsbyrde med [{{promptName}}] - AI Agent, der Får det færdige job"
       },
-      "social-mediak": {
-        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      "contribute": "Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!"
     }
   },
-  "ai-agents": "AI Agents",
+  "ai-agents": "AI Agenter",
   "marketplace": {
-    "star": "Star {{operationNum}}",
+    "star": "Stjerne {{operationNum}}",
     "fork": "Fork {{operationNum}}"
   }
 }
