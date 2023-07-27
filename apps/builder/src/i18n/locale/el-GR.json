@@ -32,14 +32,14 @@
       "cancel": "Ακύρωση",
       "delete": "Διαγραφή",
       "delete_cancel_text": "Ακύρωση",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Μετά τη διαγραφή, δεν θα είναι δυνατή η πρόσβαση ή η ανάκτηση των δεδομένων με οποιοδήποτε μέσο. Παρακαλώ επιβεβαιώστε.",
       "delete_ok_text": "Διαγραφή",
       "delete_title": "Είσαι σίγουρος?",
       "error_button": "Επανάληψη",
       "error_description": "Υπάρχει ένα πρόβλημα με τη λειτουργία σας.",
       "error_title": "Σφάλμα",
-      "marketplace": "Marketplace",
-      "run": "Run",
+      "marketplace": "Αγορά",
+      "run": "Εκτέλεση",
       "fork": "Fork"
     },
     "resource": {
@@ -56,26 +56,26 @@
       "test_success": "Επιτυχής δοκιμή"
     },
     "list-type": {
-      "team": "Team's",
-      "marketplace": "Agent market"
+      "team": "Ομάδα",
+      "marketplace": "Αγορά πράκτορα"
     },
     "sort-type": {
-      "popular": "Most popular",
-      "recent": "Recently updated",
-      "star": "Starred"
+      "popular": "Πιο δημοφιλή",
+      "recent": "Πρόσφατα ενημερώθηκαν",
+      "star": "Αγαπημένα"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "Αναζήτηση",
+    "no-result": "Κανένα αποτέλεσμα εδώ. Παρακαλώ ανανεώστε ή αλλάξτε τους όρους αναζήτησης.",
     "message": {
-      "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
-      "sort-failed": "Failed to change the filter type. Please try again.",
-      "detail-load-failed": "Failed to retrieve details, please try again.",
-      "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
-      "fork-suc": "Successfully forked.",
-      "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "next-page-error": "Απέτυχε η φόρτωση της επόμενης σελίδας. Παρακαλώ προσπαθήστε ξανά.",
+      "create-failed": "Απέτυχε η δημιουργία πράκτορα. Παρακαλώ προσπαθήστε ξανά.",
+      "sort-failed": "Απέτυχε η αλλαγή του τύπου φίλτρου. Παρακαλώ προσπαθήστε ξανά.",
+      "detail-load-failed": "Απέτυχε η ανάκτηση λεπτομερειών, παρακαλώ προσπαθήστε ξανά.",
+      "fork-failed": "Απέτυχε το πιρούνι, παρακαλώ προσπαθήστε ξανά.",
+      "create-suc": "Απέτυχε η δημιουργία, παρακαλώ προσπαθήστε ξανά.",
+      "fork-suc": "Επιτυχής διακλάδωση.",
+      "delete-failed": "Αποτυχία διαγραφής. Παρακαλώ δοκιμάστε ξανά. ",
+      "delete-suc": "Διαγράφηκε με επιτυχία. "
     }
   },
   "dayjs": {
@@ -421,7 +421,7 @@
         },
         "button": {
           "marketplace": {
-            "select": "Select"
+            "select": "Επιλογή"
           }
         }
       },
@@ -517,7 +517,7 @@
               "select_pages": "Επιλογή σελίδων"
             },
             "ai-agent": {
-              "value": "Value"
+              "value": "Τιμή"
             }
           },
           "option": {
@@ -675,10 +675,10 @@
             "record_ids": "Αναγνωριστικά Εγγραφής"
           },
           "ai-agent": {
-            "model": "Model",
-            "variable": "Variable",
+            "model": "Μοντέλο",
+            "variable": "Μεταβλητή",
             "input": "Input",
-            "max-token": "Max token"
+            "max-token": "Μέγιστο διακριτικό"
           }
         },
         "menu": {
@@ -2512,49 +2512,63 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
-        "name": "Name",
-        "desc": "Description",
-        "mode": "Mode",
+        "logo": "Λογότυπο",
+        "name": "Όνομα",
+        "desc": "Περιγραφή",
+        "mode": "Λειτουργία",
         "prompt": "Prompt",
-        "variable": "Variable"
+        "variable": "Μεταβλητή",
+        "welcome": "Μήνυμα καλωσορίσματος",
+        "model": "Μοντέλο",
+        "temperature": "Θερμοκρασία",
+        "max-token": "Μέγιστο διακριτικό"
       },
       "placeholder": {
-        "logo": "Upload",
-        "name": "Give a name to the agent",
-        "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "logo": "Ανέβασμα",
+        "name": "Δώστε ένα όνομα στον πράκτορα",
+        "desc": "Δώστε μια σύντομη περιγραφή του τι προορίζεται να χρησιμοποιηθεί αυτός ο πράκτορας.",
+        "prompt": "Εισάγετε / για να επιλέξετε μια μεταβλητή",
         "variable": {
-          "key": "Variable name",
-          "value": "Value"
-        }
+          "key": "Όνομα μεταβλητής",
+          "value": "Τιμή"
+        },
+        "welcome": "Παρέχετε ένα μήνυμα καλωσορίσματος που εμφανίζεται όταν οι χρήστες αρχίζουν να χρησιμοποιούν τον πράκτορα.",
+        "temperature": "Μια τιμή μεταξύ 0 και 1. Όσο μικρότερη είναι η τιμή, τόσο καλύτερη μπορεί να είναι η επίδραση",
+        "max-token": "Χρησιμοποιείται για τον περιορισμό του μέγιστου αριθμού μαρκών που καταναλώνονται σε ένα μόνο τρέξιμο"
       },
       "tips": {
-        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
-        "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "mode": "Στη λειτουργία συνομιλίας, κάθε μήνυμα που αποστέλλεται περιλαμβάνει το ιστορικό συνομιλίας ως μέρος του αιτήματος, το οποίο μπορεί να οδηγήσει σε καλύτερα αποτελέσματα, αλλά καταναλώνει περισσότερα νομίσματα. στη λειτουργία κειμένου, κάθε μήνυμα που αποστέλλεται δεν περιλαμβάνει το ιστορικό συνομιλίας, η οποία μπορεί να οδηγήσει σε λιγότερο βέλτιστα αποτελέσματα σε σύγκριση με τη λειτουργία συνομιλίας, αλλά διατηρεί μάρκες.",
+        "not-start": "Ολοκληρώστε τις ρυθμίσεις του Agent και κάντε κλικ στην επιλογή Έναρξη για εκτέλεση",
+        "not-start-run": "Παρακαλώ κάντε κλικ στο κουμπί Έναρξη στα αριστερά."
       },
       "option": {
         "mode": {
-          "chat": "Chat",
-          "text": "Text generation"
+          "chat": "Συνομιλία",
+          "text": "Δημιουργία κειμένου"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
         }
       },
-      "new": "New",
-      "save": "Save",
-      "start": "Start",
-      "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "new": "Νέο",
+      "save": "Αποθήκευση",
+      "start": "Έναρξη",
+      "restart": "Επανεκκίνηση",
+      "contribute": "Συνεισφέρετε στην αγορά",
       "button": {
-        "send": "Send",
-        "generating": "Generating"
+        "send": "Αποστολή",
+        "generating": "Δημιουργία"
       },
       "tab": {
         "prompt": "Prompt",
-        "run": "Run"
+        "chat": "Συνομιλία",
+        "text": "Δημιουργία κειμένου"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Κάντε κλικ στο κουμπί Έναρξη για να ενεργοποιήσετε."
       }
     }
   },
@@ -3844,12 +3858,12 @@
     "title": {
       "invite_to_edit": "Πρόσκληση για επεξεργασία",
       "invite_to_use": "Πρόσκληση για χρήση",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Μοιραστείτε με την ομάδα",
+      "contribute": "Συνεισφέρετε"
     },
     "desc": {
       "undeploy": "Η εφαρμογή δεν έχει αναπτυχθεί. Η πρόσβαση του κοινού και η πρόσβαση του θεατή μπορεί να αντιμετωπίσει σφάλματα. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "contribute": "Αφού συνεισφέρουν στο Marketplace, όλοι οι χρήστες μπορούν να τρέξουν, να αστερίσουν και να διεισδύσουν τον Agent σας. Όταν οι χρήστες από άλλες ομάδες τρέχουν αυτόν τον Agent, δεν θα καταναλώνουν τους πόρους σας."
     },
     "tips": {
       "admin": "Το μέλος που μπορεί να διαχειριστεί όλα τα μέλη εκτός από ιδιοκτήτη, επεξεργαστείτε APP και δείτε APP",
@@ -3857,8 +3871,8 @@
       "viewer": "Το μέλος που μπορεί να διαχειριστεί τα μέλη του θεατή και να προβάλει APPs"
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
+      "contribute": "Συνεισφέρετε στην αγορά",
+      "social-media": "Κοινοποίηση στο"
     },
     "options": {
       "social-media": {
@@ -3866,27 +3880,23 @@
         "reddit": "Reddit",
         "linkedin": "LinkedIn",
         "facebook": "Facebook",
-        "whatsapp": "WhatsApp"
-      },
-      "social-mediak": {
-        "hackernews": "Hacker News"
+        "whatsapp": "WhatsApp",
+        "hackernews": "Ειδήσεις Hacker"
       }
     },
     "default-text": {
       "social-media": {
         "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
-        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+        "reddit": "Δείτε αυτό το καταπληκτικό AI Agent [{{promptName}}]",
+        "linkedin": "Προσοχή σε όλους τους λάτρεις της τεχνητής νοημοσύνης και τους επαγγελματίες που επιθυμούν να αυξήσουν την παραγωγικότητά τους! Ήρθα σε μια πλατφόρμα AI Agent που προσφέρει λύσεις αιχμής για την απλοποίηση σύνθετων εργασιών και την ενσωμάτωση με τα εσωτερικά εργαλεία σας. Εγώ προσωπικά δοκίμασα [{{promptName}}] και εκτοξεύθηκα από τις δυνατότητές της. Είναι ένα παιχνίδι-changer για όποιον θέλει να μείνει μπροστά από την καμπύλη. Ελέγξτε το για τον εαυτό σας στο {{promptLink}} και ενημερώστε με τι σκέφτεστε!",
+        "facebook": "Προσοχή σε όλους τους λάτρεις της τεχνητής νοημοσύνης και τους επαγγελματίες που επιθυμούν να αυξήσουν την παραγωγικότητά τους! Ήρθα σε μια πλατφόρμα AI Agent που προσφέρει λύσεις αιχμής για την απλοποίηση σύνθετων εργασιών και την ενσωμάτωση με τα εσωτερικά εργαλεία σας. Εγώ προσωπικά δοκίμασα [{{promptName}}] και εκτοξεύθηκα από τις δυνατότητές της. Είναι ένα παιχνίδι-changer για όποιον θέλει να μείνει μπροστά από την καμπύλη. Ελέγξτε το για τον εαυτό σας στο {{promptLink}} και ενημερώστε με τι σκέφτεστε!",
+        "whatsapp": "Ήρθα σε μια πλατφόρμα AI Agent που προσφέρει λύσεις αιχμής για την απλοποίηση σύνθετων εργασιών και την ενσωμάτωση με τα εσωτερικά εργαλεία σας. Εγώ προσωπικά δοκίμασα [{{promptName}}] και εκτοξεύθηκα από τις δυνατότητές της. Είναι ένα παιχνίδι-changer για όποιον θέλει να μείνει μπροστά από την καμπύλη. Ελέγξτε το για τον εαυτό σας στο {{promptLink}} και ενημερώστε με τι σκέφτεστε!",
+        "hackernews": "Απλοποιήστε το φόρτο εργασίας σας με [{{promptName}}] - Ο πράκτορας τεχνητής νοημοσύνης που παίρνει την εργασία Έγινε"
       },
-      "social-mediak": {
-        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      "contribute": "Ήρθα σε μια πλατφόρμα AI Agent που προσφέρει λύσεις αιχμής για την απλοποίηση σύνθετων εργασιών και την ενσωμάτωση με τα εσωτερικά εργαλεία σας. Εγώ προσωπικά δοκίμασα [{{promptName}}] και εκτοξεύθηκα από τις δυνατότητές της. Είναι ένα παιχνίδι-changer για όποιον θέλει να μείνει μπροστά από την καμπύλη. Ελέγξτε το για τον εαυτό σας στο {{promptLink}} και ενημερώστε με τι σκέφτεστε!"
     }
   },
-  "ai-agents": "AI Agents",
+  "ai-agents": "Πράκτορες Τεχνητής Νοημοσύνης",
   "marketplace": {
     "star": "Star {{operationNum}}",
     "fork": "Fork {{operationNum}}"
