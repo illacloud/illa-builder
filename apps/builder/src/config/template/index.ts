@@ -1,4 +1,5 @@
 import { CUSTOM_LOGIN_DATA } from "@/config/template/CustomLogin"
+import { CUSTOM_LOGIN_WITH_SC_DATA } from "@/config/template/CustomLoginWithSC"
 import { FORM_DATA } from "@/config/template/Form"
 import { LIST_DATA } from "@/config/template/List"
 import { TABLE_GUIDE_DATA } from "@/config/template/TableGuide"
@@ -99,9 +100,9 @@ export const templateConfig = {
   CustomLoginWithSC: {
     nameKey:
       "editor.tutorial.panel.tutorial.templates_name.custom_login_with_sc",
-    config: formatAppDataToConfig(CUSTOM_LOGIN_DATA),
+    config: formatAppDataToConfig(CUSTOM_LOGIN_WITH_SC_DATA),
     example:
-      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7FD",
+      "https://builder.illacloud.com/illacloud_demo/deploy/app/ILAex4p1C7Eh",
   },
 }
 
@@ -141,7 +142,7 @@ export const Templates: TemplateSetting[] = [
       "editor.tutorial.panel.tutorial.templates_name.custom_login_with_sc",
     descKey:
       "editor.tutorial.panel.tutorial.templates_description.custom_login_with_sc",
-    appId: "ILAex4p1C7QU",
+    appId: "ILAex4p1C7Eh",
     icon: ListIcon,
   },
 ]
