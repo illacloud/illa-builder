@@ -32,14 +32,14 @@
       "cancel": "Peruuta",
       "delete": "Poista",
       "delete_cancel_text": "Peruuta",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Poistamisen jälkeen tietoja ei ole mahdollista käyttää tai palauttaa millään tavalla. Ole hyvä ja vahvista.",
       "delete_ok_text": "Poista",
       "delete_title": "Oletko varma?",
       "error_button": "Yritä Uudelleen",
       "error_description": "Sinun toiminnassasi on ongelma.",
       "error_title": "Virhe",
-      "marketplace": "Marketplace",
-      "run": "Run",
+      "marketplace": "Kauppapaikka",
+      "run": "Suorita",
       "fork": "Fork"
     },
     "resource": {
@@ -56,26 +56,26 @@
       "test_success": "Testi onnistui"
     },
     "list-type": {
-      "team": "Team's",
-      "marketplace": "Agent market"
+      "team": "Joukkue",
+      "marketplace": "Agentin markkinat"
     },
     "sort-type": {
-      "popular": "Most popular",
-      "recent": "Recently updated",
-      "star": "Starred"
+      "popular": "Suosituin",
+      "recent": "Äskettäin päivitetty",
+      "star": "Tähdelliset"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "Etsi",
+    "no-result": "Ei tuloksia. Ole hyvä ja päivitä tai vaihda hakuehtoja.",
     "message": {
-      "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
-      "sort-failed": "Failed to change the filter type. Please try again.",
-      "detail-load-failed": "Failed to retrieve details, please try again.",
-      "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
-      "fork-suc": "Successfully forked.",
-      "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "next-page-error": "Seuraavan sivun lataaminen epäonnistui. Yritä uudelleen.",
+      "create-failed": "Agentin luonti epäonnistui. Yritä uudelleen.",
+      "sort-failed": "Suodattimen tyyppiä ei voitu muuttaa. Yritä uudelleen.",
+      "detail-load-failed": "Tietojen noutaminen epäonnistui, yritä uudelleen.",
+      "fork-failed": "Ei voitu forkata, yritä uudelleen.",
+      "create-suc": "Ei voitu luoda, yritä uudelleen.",
+      "fork-suc": "Onnistuneesti väärennetty.",
+      "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
+      "delete-suc": "Poistettu onnistuneesti. "
     }
   },
   "dayjs": {
@@ -421,7 +421,7 @@
         },
         "button": {
           "marketplace": {
-            "select": "Select"
+            "select": "Valitse"
           }
         }
       },
@@ -517,7 +517,7 @@
               "select_pages": "Valitse sivut"
             },
             "ai-agent": {
-              "value": "Value"
+              "value": "Arvo"
             }
           },
           "option": {
@@ -675,10 +675,10 @@
             "record_ids": "Tallenna Tunnukset"
           },
           "ai-agent": {
-            "model": "Model",
-            "variable": "Variable",
+            "model": "Malli",
+            "variable": "Muuttuja",
             "input": "Input",
-            "max-token": "Max token"
+            "max-token": "Max tunnus"
           }
         },
         "menu": {
@@ -2513,48 +2513,62 @@
     "ai-agent": {
       "label": {
         "logo": "Logo",
-        "name": "Name",
-        "desc": "Description",
-        "mode": "Mode",
+        "name": "Nimi",
+        "desc": "Kuvaus",
+        "mode": "Tila",
         "prompt": "Prompt",
-        "variable": "Variable"
+        "variable": "Muuttuja",
+        "welcome": "Tervetuloa viesti",
+        "model": "Malli",
+        "temperature": "Lämpötila",
+        "max-token": "Max tunnus"
       },
       "placeholder": {
-        "logo": "Upload",
-        "name": "Give a name to the agent",
-        "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "logo": "Lähetä",
+        "name": "Anna nimi agentille",
+        "desc": "Anna lyhyt kuvaus siitä, mihin tämä agentti on tarkoitettu käytettäväksi.",
+        "prompt": "Syötä / valitse muuttuja",
         "variable": {
-          "key": "Variable name",
-          "value": "Value"
-        }
+          "key": "Muuttujan nimi",
+          "value": "Arvo"
+        },
+        "welcome": "Anna tervetuliaisviesti näytettäessä, kun käyttäjät alkavat käyttää agenttia.",
+        "temperature": "Arvo välillä 0 ja 1. Mitä pienempi arvo, sitä parempi vaikutus voi olla",
+        "max-token": "Käytetään rajoittamaan yhdellä kerralla kulutettujen rahakkeiden enimmäismäärää"
       },
       "tips": {
-        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
-        "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "mode": "Chat-tilassa jokainen lähetetty viesti sisältää keskustelun historian osana pyyntöä, joka voi johtaa parempiin tuloksiin mutta kuluttaa enemmän kuponkia; tekstitilassa, jokainen lähetetty viesti ei sisällä keskustelun historiaa, joka voi johtaa vähemmän optimaalisia tuloksia verrattuna chat-tilaan, mutta säilyttää rahakkeet.",
+        "not-start": "Suorita Agentin asetus ja käynnistä napsauttamalla Käynnistä",
+        "not-start-run": "Klikkaa vasemmalla olevaa Käynnistä-painiketta."
       },
       "option": {
         "mode": {
-          "chat": "Chat",
-          "text": "Text generation"
+          "chat": "Keskustelu",
+          "text": "Tekstin luonti"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
         }
       },
-      "new": "New",
-      "save": "Save",
-      "start": "Start",
-      "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "new": "Uusi",
+      "save": "Tallenna",
+      "start": "Aloita",
+      "restart": "Käynnistä Uudelleen",
+      "contribute": "Osallistu markkinapaikkaan",
       "button": {
-        "send": "Send",
-        "generating": "Generating"
+        "send": "Lähetä",
+        "generating": "Luodaan"
       },
       "tab": {
         "prompt": "Prompt",
-        "run": "Run"
+        "chat": "Keskustelu",
+        "text": "Luo teksti"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Napsauta Käynnistä painiketta käynnistääksesi."
       }
     }
   },
@@ -3844,12 +3858,12 @@
     "title": {
       "invite_to_edit": "Kutsu muokattavaksi",
       "invite_to_use": "Kutsu käyttämään",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Jaa tiimin kanssa",
+      "contribute": "Osallistu"
     },
     "desc": {
       "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "contribute": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja."
     },
     "tips": {
       "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
@@ -3857,8 +3871,8 @@
       "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
+      "contribute": "Osallistu markkinapaikkaan",
+      "social-media": "Jaa päällä"
     },
     "options": {
       "social-media": {
@@ -3866,29 +3880,25 @@
         "reddit": "Reddit",
         "linkedin": "LinkedIn",
         "facebook": "Facebook",
-        "whatsapp": "WhatsApp"
-      },
-      "social-mediak": {
-        "hackernews": "Hacker News"
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hakkerit Uutiset"
       }
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
-        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
+        "twitter": "Hei siellä! Löysin juuri tämän hämmästyttävän tekoälyn agentin. Sinua saattaa kiinnostaa myös kokeilla sitä! Tarkista tämä! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Tutustu tähän hämmästyttävään tekoälyn Agent [{{promptName}}]",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
-      },
-      "social-mediak": {
-        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
+        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "hackernews": "Yksinkertaista työtaakkaa [{{promptName}}] - tekoälyn agentti, joka saa tehtävän valmiiksi."
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     }
   },
   "ai-agents": "AI Agents",
   "marketplace": {
-    "star": "Star {{operationNum}}",
+    "star": "Tähti {{operationNum}}",
     "fork": "Fork {{operationNum}}"
   }
 }
