@@ -32,14 +32,14 @@
       "cancel": "annuleren",
       "delete": "Verwijderen",
       "delete_cancel_text": "annuleren",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Na verwijdering is het niet mogelijk om de gegevens op alle manieren te gebruiken of te herstellen. Gelieve te bevestigen.",
       "delete_ok_text": "Verwijderen",
       "delete_title": "Weet je het zeker?",
       "error_button": "Opnieuw",
       "error_description": "Er is een probleem met uw operatie.",
       "error_title": "Foutmelding",
-      "marketplace": "Marketplace",
-      "run": "Run",
+      "marketplace": "Marktplaats",
+      "run": "Uitvoeren",
       "fork": "Fork"
     },
     "resource": {
@@ -57,25 +57,25 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agent market"
+      "marketplace": "Agent markt"
     },
     "sort-type": {
-      "popular": "Most popular",
-      "recent": "Recently updated",
-      "star": "Starred"
+      "popular": "Meest populair",
+      "recent": "Onlangs bijgewerkt",
+      "star": "Sterren"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "Zoeken",
+    "no-result": "Geen resultaten gevonden. Gelieve uw zoektermen te vernieuwen of te wijzigen.",
     "message": {
-      "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
-      "sort-failed": "Failed to change the filter type. Please try again.",
-      "detail-load-failed": "Failed to retrieve details, please try again.",
-      "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
-      "fork-suc": "Successfully forked.",
-      "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "next-page-error": "Fout bij laden van de volgende pagina. Probeer het opnieuw.",
+      "create-failed": "Kan agent niet maken. Probeer het opnieuw.",
+      "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
+      "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
+      "fork-failed": "Fork mislukt, probeer het opnieuw.",
+      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
+      "fork-suc": "Succesvol opgeforkt.",
+      "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
+      "delete-suc": "Succesvol verwijderd. "
     }
   },
   "dayjs": {
@@ -421,7 +421,7 @@
         },
         "button": {
           "marketplace": {
-            "select": "Select"
+            "select": "Selecteren"
           }
         }
       },
@@ -517,7 +517,7 @@
               "select_pages": "Pagina's selecteren"
             },
             "ai-agent": {
-              "value": "Value"
+              "value": "Waarde"
             }
           },
           "option": {
@@ -676,7 +676,7 @@
           },
           "ai-agent": {
             "model": "Model",
-            "variable": "Variable",
+            "variable": "Variabele",
             "input": "Input",
             "max-token": "Max token"
           }
@@ -2513,48 +2513,62 @@
     "ai-agent": {
       "label": {
         "logo": "Logo",
-        "name": "Name",
-        "desc": "Description",
-        "mode": "Mode",
+        "name": "naam",
+        "desc": "Beschrijving",
+        "mode": "Modus",
         "prompt": "Prompt",
-        "variable": "Variable"
+        "variable": "Variabele",
+        "welcome": "Welkom bericht",
+        "model": "Model",
+        "temperature": "Temperatuur",
+        "max-token": "Max token"
       },
       "placeholder": {
-        "logo": "Upload",
-        "name": "Give a name to the agent",
-        "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "logo": "Uploaden",
+        "name": "Geef een naam aan de agent",
+        "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
+        "prompt": "Enter / om een variabele te selecteren",
         "variable": {
-          "key": "Variable name",
-          "value": "Value"
-        }
+          "key": "Naam variabele",
+          "value": "Waarde"
+        },
+        "welcome": "Geef een welkomstbericht weer wanneer gebruikers de medewerker gebruiken.",
+        "temperature": "Een waarde tussen 0 en 1. Hoe kleiner de waarde, hoe beter het effect kan zijn",
+        "max-token": "Gebruikt om het maximum aantal gebruikte tokens dat in een enkele uitvoering wordt verbruikt te beperken"
       },
       "tips": {
-        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
-        "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "mode": "In de chatmodus bevat elk verzonden bericht de gespreksgeschiedenis als onderdeel van het verzoek, wat kan leiden tot betere resultaten, maar meer tokens verbruikt; in tekstmodus, elk verzonden bericht bevat geen gespreksgeschiedenis dit kan resulteren in minder optimale resultaten vergeleken met de chatmodus maar houdt tokens in de kaart.",
+        "not-start": "Voltooi de agent configureren en klik op Start om uit te voeren",
+        "not-start-run": "Klik op de Start knop aan de linkerkant."
       },
       "option": {
         "mode": {
-          "chat": "Chat",
-          "text": "Text generation"
+          "chat": "Chatten",
+          "text": "Tekst genereren"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
         }
       },
-      "new": "New",
-      "save": "Save",
-      "start": "Start",
-      "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "new": "Nieuw",
+      "save": "Opslaan",
+      "start": "Beginnen",
+      "restart": "Herstarten",
+      "contribute": "Draag bij aan de marktplaats",
       "button": {
-        "send": "Send",
-        "generating": "Generating"
+        "send": "Verzenden",
+        "generating": "Genereren"
       },
       "tab": {
         "prompt": "Prompt",
-        "run": "Run"
+        "chat": "Chatten",
+        "text": "Genereer tekst"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Klik op de Start knop om te starten."
       }
     }
   },
@@ -3844,12 +3858,12 @@
     "title": {
       "invite_to_edit": "Uitnodigen om te bewerken",
       "invite_to_use": "Uitnodigen om te gebruiken",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Deel met team",
+      "contribute": "Meedoen"
     },
     "desc": {
       "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "contribute": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
     },
     "tips": {
       "admin": "Het lid dat alle leden behalve de Eigenaar kan beheren, APP's kan bewerken en APP's kan bekijken",
@@ -3857,8 +3871,8 @@
       "viewer": "Het lid dat de APP's kan beheren en bekijken"
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
+      "contribute": "Draag bij aan de marktplaats",
+      "social-media": "Delen op"
     },
     "options": {
       "social-media": {
@@ -3866,29 +3880,25 @@
         "reddit": "Reddit",
         "linkedin": "LinkedIn",
         "facebook": "Facebook",
-        "whatsapp": "WhatsApp"
-      },
-      "social-mediak": {
-        "hackernews": "Hacker News"
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nieuws"
       }
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
-        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+        "twitter": "Hey daar! Ik heb net dit geweldige AI-agent ontdekt. Misschien ben je geïnteresseerd in het ook proberen te proberen! Bekijk het! {{promptName}}:{{promptLink}} #AIwriting #Snelbeheer #ProductivityBoost",
+        "reddit": "Bekijk deze geweldige AI Agent [{{promptName}}]",
+        "linkedin": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "facebook": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "whatsapp": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "hackernews": "Vereenvoudig je werkdruk met [{{promptName}}] - De AI Agent die de Job Gereed krijgt"
       },
-      "social-mediak": {
-        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
     }
   },
-  "ai-agents": "AI Agents",
+  "ai-agents": "AI agenten",
   "marketplace": {
-    "star": "Star {{operationNum}}",
+    "star": "Ster {{operationNum}}",
     "fork": "Fork {{operationNum}}"
   }
 }
