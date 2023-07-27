@@ -1,14 +1,14 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
-export const team_agent_card_width = 384
+export const agent_card_width = 384
 export const team_agent_card_height = 196
 export const cardStyle = css`
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 24px;
-  width: ${team_agent_card_width}px;
+  width: ${agent_card_width}px;
   height: ${team_agent_card_height}px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};

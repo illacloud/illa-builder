@@ -15,14 +15,14 @@ import {
   titleInfoStyle,
 } from "./style"
 
-interface AppCardProps {
+interface TeamAgentCardProps {
   agentInfo: TeamAiAgent
   canEdit: boolean
 }
 
-export const TeamAgentCard: FC<AppCardProps> = (props) => {
+export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   const { t } = useTranslation()
-  const { agentInfo, canEdit, ...rest } = props
+  const { agentInfo, canEdit } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
@@ -39,7 +39,7 @@ export const TeamAgentCard: FC<AppCardProps> = (props) => {
   )
 
   return (
-    <div css={cardStyle} onClick={toRunAgent} {...rest}>
+    <div css={cardStyle} onClick={toRunAgent}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <img css={agentIconStyle} src={agentInfo.config.icon} alt="" />
