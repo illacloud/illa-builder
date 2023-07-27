@@ -20,7 +20,7 @@ import {
   nameStyle,
   titleInfoStyle,
 } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/style"
-import { MarketAiAgent } from "@/page/Dashboard/DashboardAiAgent/contentBody"
+import { MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
 
 interface MarketAgentCardProps {
   agentInfo: MarketAiAgent

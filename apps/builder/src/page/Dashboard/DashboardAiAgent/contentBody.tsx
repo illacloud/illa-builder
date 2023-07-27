@@ -9,45 +9,7 @@ import {
   listContainerStyle,
   listFilterContainerStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
-
-interface User {
-  userID: string
-  nickname: string
-  avatar: string
-  email: string
-  editedAt: string
-}
-
-interface Config {
-  icon: string
-  description: string
-}
-
-export interface TeamAiAgent {
-  aiAgentID: string
-  name: string
-  model: number
-  type: number
-  publish_to_marketplace: boolean
-  config: Config
-  createdAt: string
-  createdBy: string
-  editedBy: User[]
-}
-
-export interface MarketAiAgent {
-  aiAgentID: string
-  name: string
-  config: Config
-  teamInfo: {
-    id: string
-    name: string
-    icon: string
-  }
-  starCount: number
-  runCount: number
-  forkCount: number
-}
+import { MarketAiAgent, TeamAiAgent } from "@/redux/aiAgent/aiAgentState"
 
 interface ListData {
   aiAgentList: TeamAiAgent[]

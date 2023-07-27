@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
 import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
-import { TeamAiAgent } from "@/page/Dashboard/DashboardAiAgent/contentBody"
+import { TeamAiAgent } from "@/redux/aiAgent/aiAgentState"
 import {
   agentIconStyle,
   appActionButtonStyle,
