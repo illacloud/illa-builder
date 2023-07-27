@@ -5,6 +5,8 @@ import { LIST_DATA } from "@/config/template/List"
 import { TABLE_GUIDE_DATA } from "@/config/template/TableGuide"
 import FormIcon from "@/config/template/icon/form.svg"
 import ListIcon from "@/config/template/icon/list.svg"
+import LoginIcon from "@/config/template/icon/login.svg"
+import LoginWithSCIcon from "@/config/template/icon/login_with_script.svg"
 import TableIcon from "@/config/template/icon/table.svg"
 import {
   TemplateActions,
@@ -134,7 +136,7 @@ export const Templates: TemplateSetting[] = [
     descKey:
       "editor.tutorial.panel.tutorial.templates_description.custom_login",
     appId: "ILAex4p1C7FD",
-    icon: ListIcon,
+    icon: LoginIcon,
   },
   {
     type: "CustomLoginWithSC",
@@ -143,7 +145,7 @@ export const Templates: TemplateSetting[] = [
     descKey:
       "editor.tutorial.panel.tutorial.templates_description.custom_login_with_sc",
     appId: "ILAex4p1C7Eh",
-    icon: ListIcon,
+    icon: LoginWithSCIcon,
   },
 ]
 
