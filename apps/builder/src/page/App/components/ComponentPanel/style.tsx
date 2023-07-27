@@ -78,7 +78,7 @@ export const nameStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   text-overflow: ellipsis;
   box-sizing: border-box;
-  padding: 4px 8px 0 8px;
+  padding: 4px 4px 0 4px;
   overflow: hidden;
   text-align: center;
   line-height: 14px;
