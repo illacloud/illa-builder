@@ -32,14 +32,14 @@
       "cancel": "Zrušit",
       "delete": "Vymazat",
       "delete_cancel_text": "Zrušit",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Po smazání nebude možné přistupovat k datům nebo je obnovovat jakýmkoliv způsobem. Potvrďte prosím.",
       "delete_ok_text": "Vymazat",
       "delete_title": "Jste si jisti?",
       "error_button": "Opakovat",
       "error_description": "Vyskytl se problém s vaší operací.",
       "error_title": "Chyba",
-      "marketplace": "Marketplace",
-      "run": "Run",
+      "marketplace": "Tržiště",
+      "run": "Spustit",
       "fork": "Fork"
     },
     "resource": {
@@ -56,26 +56,26 @@
       "test_success": "Test byl úspěšný"
     },
     "list-type": {
-      "team": "Team's",
-      "marketplace": "Agent market"
+      "team": "Týmový",
+      "marketplace": "Agent trh"
     },
     "sort-type": {
-      "popular": "Most popular",
-      "recent": "Recently updated",
-      "star": "Starred"
+      "popular": "Nejoblíbenější",
+      "recent": "Nedávno aktualizované",
+      "star": "Oblíbené"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "Hledat",
+    "no-result": "Žádný výsledek. Aktualizujte nebo změňte hledané výrazy.",
     "message": {
-      "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
-      "sort-failed": "Failed to change the filter type. Please try again.",
-      "detail-load-failed": "Failed to retrieve details, please try again.",
-      "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
-      "fork-suc": "Successfully forked.",
-      "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "next-page-error": "Nepodařilo se načíst další stránku. Zkuste to prosím znovu.",
+      "create-failed": "Nepodařilo se vytvořit agenta. Zkuste to prosím znovu.",
+      "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
+      "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
+      "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
+      "create-suc": "Nepodařilo se vytvořit, zkuste to prosím znovu.",
+      "fork-suc": "Rozštěpeno úspěšně.",
+      "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
+      "delete-suc": "Úspěšně smazáno. "
     }
   },
   "dayjs": {
@@ -421,7 +421,7 @@
         },
         "button": {
           "marketplace": {
-            "select": "Select"
+            "select": "Vybrat"
           }
         }
       },
@@ -517,7 +517,7 @@
               "select_pages": "Vybrat stránky"
             },
             "ai-agent": {
-              "value": "Value"
+              "value": "Hodnota"
             }
           },
           "option": {
@@ -597,7 +597,7 @@
             "ai-agent": {
               "model": {
                 "gpt-3": {
-                  "5-turbo": "gpt-3.5-turbo"
+                  "5-turbo": "gpt-3,5-turbo"
                 },
                 "gpt-4": "gpt-4"
               }
@@ -675,10 +675,10 @@
             "record_ids": "ID záznamu"
           },
           "ai-agent": {
-            "model": "Model",
-            "variable": "Variable",
+            "model": "Vzor",
+            "variable": "Proměnná",
             "input": "Input",
-            "max-token": "Max token"
+            "max-token": "Maximální token"
           }
         },
         "menu": {
@@ -2513,48 +2513,62 @@
     "ai-agent": {
       "label": {
         "logo": "Logo",
-        "name": "Name",
-        "desc": "Description",
-        "mode": "Mode",
+        "name": "Název",
+        "desc": "L 343, 22.12.2009, s. 1).",
+        "mode": "Režim",
         "prompt": "Prompt",
-        "variable": "Variable"
+        "variable": "Proměnná",
+        "welcome": "Uvítací zpráva",
+        "model": "Vzor",
+        "temperature": "Teplota",
+        "max-token": "Maximální token"
       },
       "placeholder": {
-        "logo": "Upload",
-        "name": "Give a name to the agent",
-        "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "logo": "Nahrát",
+        "name": "Dejte jméno agentovi",
+        "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
+        "prompt": "Zadejte / vyberte proměnnou",
         "variable": {
-          "key": "Variable name",
-          "value": "Value"
-        }
+          "key": "Název proměnné",
+          "value": "Hodnota"
+        },
+        "welcome": "Poskytněte uvítací zprávu zobrazenou když uživatelé začnou používat agenta.",
+        "temperature": "Hodnota mezi 0 a 1. Čím menší hodnota, tím lepší může být efekt",
+        "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě"
       },
       "tips": {
-        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
-        "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "mode": "V režimu chatu obsahuje každá odeslaná zpráva jako součást žádosti historii konverzace, která může vést k lepším výsledkům, ale spotřebovává více tokenů; v textovém režimu každá odeslaná zpráva nezahrnuje historii konverzace, což může vést k méně optimálním výsledkům ve srovnání s chatem, ale zachovává tokeny.",
+        "not-start": "Dokončete konfiguraci agenta a klepněte na tlačítko Start pro spuštění",
+        "not-start-run": "Klikněte prosím na tlačítko Start na levé straně."
       },
       "option": {
         "mode": {
           "chat": "Chat",
-          "text": "Text generation"
+          "text": "Generování textu"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3,5-turbo"
+          },
+          "gpt-4": "gpt-4"
         }
       },
-      "new": "New",
-      "save": "Save",
-      "start": "Start",
-      "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "new": "Nové",
+      "save": "Uložit",
+      "start": "Začít",
+      "restart": "Restartovat",
+      "contribute": "Přispějte na tržišti",
       "button": {
-        "send": "Send",
-        "generating": "Generating"
+        "send": "Poslat",
+        "generating": "Generování"
       },
       "tab": {
         "prompt": "Prompt",
-        "run": "Run"
+        "chat": "Chat",
+        "text": "Generovat text"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Klikněte na tlačítko Start pro spuštění."
       }
     }
   },
@@ -3844,12 +3858,12 @@
     "title": {
       "invite_to_edit": "Pozvat k úpravě",
       "invite_to_use": "Pozvat k použití",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Sdílet s týmem",
+      "contribute": "Přispějte"
     },
     "desc": {
       "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "contribute": "Po přispění do obchodu Marketplace mohou běžet, hvězda a rozštěpit vašeho agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat."
     },
     "tips": {
       "admin": "Člen, který může spravovat všechny členy kromě vlastníka, upravit APP a zobrazit APP",
@@ -3857,8 +3871,8 @@
       "viewer": "Člen, který může spravovat členy diváku a prohlížet APP"
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
+      "contribute": "Přispějte na tržišti",
+      "social-media": "Sdílet na"
     },
     "options": {
       "social-media": {
@@ -3866,29 +3880,25 @@
         "reddit": "Reddit",
         "linkedin": "LinkedIn",
         "facebook": "Facebook",
-        "whatsapp": "WhatsApp"
-      },
-      "social-mediak": {
-        "hackernews": "Hacker News"
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker novinky"
       }
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
-        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+        "twitter": "Ahoj! Právě jsem objevil tohoto úžasného agenta AI. Mohlo by vás zajímat o pokus i to! Podívejte se na to! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Podívejte se na tento úžasný AI agenta [{{promptName}}]",
+        "linkedin": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
+        "facebook": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
+        "whatsapp": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
+        "hackernews": "Zjednodušit pracovní zatížení pomocí [{{promptName}}] - AI agenta, který práci dokončil"
       },
-      "social-mediak": {
-        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      "contribute": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!"
     }
   },
-  "ai-agents": "AI Agents",
+  "ai-agents": "AI agenti",
   "marketplace": {
-    "star": "Star {{operationNum}}",
+    "star": "Hvězda {{operationNum}}",
     "fork": "Fork {{operationNum}}"
   }
 }
