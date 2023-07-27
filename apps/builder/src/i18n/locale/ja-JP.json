@@ -32,14 +32,14 @@
       "cancel": "キャンセル",
       "delete": "消去",
       "delete_cancel_text": "キャンセル",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "削除後、いかなる手段でもデータにアクセスまたは復元することはできません。確認してください。",
       "delete_ok_text": "消去",
       "delete_title": "確認",
       "error_button": "リトライ",
       "error_description": "間違ったリクエスト",
       "error_title": "間違い",
-      "marketplace": "Marketplace",
-      "run": "Run",
+      "marketplace": "市場",
+      "run": "実行",
       "fork": "Fork"
     },
     "resource": {
@@ -56,26 +56,26 @@
       "test_success": "テスト成功"
     },
     "list-type": {
-      "team": "Team's",
-      "marketplace": "Agent market"
+      "team": "チーム",
+      "marketplace": "エージェント市場"
     },
     "sort-type": {
-      "popular": "Most popular",
-      "recent": "Recently updated",
-      "star": "Starred"
+      "popular": "最も人気",
+      "recent": "最近更新",
+      "star": "スター付き"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "検索",
+    "no-result": "結果はありません。検索語を更新または変更してください。",
     "message": {
-      "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
-      "sort-failed": "Failed to change the filter type. Please try again.",
-      "detail-load-failed": "Failed to retrieve details, please try again.",
-      "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
-      "fork-suc": "Successfully forked.",
-      "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "next-page-error": "次のページの読み込みに失敗しました。もう一度やり直してください。",
+      "create-failed": "エージェントの作成に失敗しました。もう一度やり直してください。",
+      "sort-failed": "フィルタの種類を変更できませんでした。もう一度やり直してください。",
+      "detail-load-failed": "詳細の取得に失敗しました。もう一度やり直してください。",
+      "fork-failed": "フォークに失敗しました。もう一度やり直してください。",
+      "create-suc": "作成に失敗しました。もう一度やり直してください。",
+      "fork-suc": "フォークしました。",
+      "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
+      "delete-suc": "正常に削除しました。 "
     }
   },
   "dayjs": {
@@ -421,7 +421,7 @@
         },
         "button": {
           "marketplace": {
-            "select": "Select"
+            "select": "選択"
           }
         }
       },
@@ -517,7 +517,7 @@
               "select_pages": "ページを選択"
             },
             "ai-agent": {
-              "value": "Value"
+              "value": "値"
             }
           },
           "option": {
@@ -675,10 +675,10 @@
             "record_ids": "Record IDs"
           },
           "ai-agent": {
-            "model": "Model",
-            "variable": "Variable",
+            "model": "モデル",
+            "variable": "変数",
             "input": "Input",
-            "max-token": "Max token"
+            "max-token": "最大トークン"
           }
         },
         "menu": {
@@ -2512,49 +2512,63 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
-        "name": "Name",
-        "desc": "Description",
-        "mode": "Mode",
+        "logo": "ロゴ",
+        "name": "名前",
+        "desc": "説明",
+        "mode": "モード",
         "prompt": "Prompt",
-        "variable": "Variable"
+        "variable": "変数",
+        "welcome": "ウェルカムメッセージ",
+        "model": "モデル",
+        "temperature": "温度",
+        "max-token": "最大トークン"
       },
       "placeholder": {
-        "logo": "Upload",
-        "name": "Give a name to the agent",
-        "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "logo": "アップロード",
+        "name": "エージェントに名前を付けてください",
+        "desc": "このエージェントが何に使用されるかを簡単に説明します。",
+        "prompt": "変数を入力 / 選択します",
         "variable": {
-          "key": "Variable name",
-          "value": "Value"
-        }
+          "key": "変数名",
+          "value": "値"
+        },
+        "welcome": "ユーザーがエージェントの使用を開始したときに表示されるウェルカムメッセージを入力します。",
+        "temperature": "0 から 1 の間の値。値が小さいほど効果が良くなります。",
+        "max-token": "単一のランで消費されるトークンの最大数を制限するために使用されます。"
       },
       "tips": {
-        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
-        "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "mode": "チャットモードでは、送信された各メッセージには、リクエストの一部としての会話履歴が含まれており、結果が良くなりますが、トークンが多く消費されます。 テキストモードでは、送信された各メッセージには会話履歴が含まれません。 チャットモードに比べて最適な結果は少なくなり、トークンは保存されます。",
+        "not-start": "エージェントの構成を完了し、format@@0をクリックして実行します",
+        "not-start-run": "左のスタートボタンをクリックしてください。"
       },
       "option": {
         "mode": {
-          "chat": "Chat",
-          "text": "Text generation"
+          "chat": "チャット",
+          "text": "テキストの生成"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
         }
       },
-      "new": "New",
-      "save": "Save",
-      "start": "Start",
-      "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "new": "新規作成",
+      "save": "保存",
+      "start": "開始",
+      "restart": "再起動",
+      "contribute": "マーケットプレイスに貢献する",
       "button": {
-        "send": "Send",
-        "generating": "Generating"
+        "send": "送信",
+        "generating": "生成中"
       },
       "tab": {
         "prompt": "Prompt",
-        "run": "Run"
+        "chat": "チャット",
+        "text": "テキストを生成"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "開始ボタンをクリックしてトリガーします。"
       }
     }
   },
@@ -3844,12 +3858,12 @@
     "title": {
       "invite_to_edit": "編集に招待",
       "invite_to_use": "招待する",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "チームと共有",
+      "contribute": "貢献"
     },
     "desc": {
       "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "contribute": "Marketplaceに貢献すると、すべてのユーザーがエージェントを実行、スター、フォークできます。 他のチームのユーザーがこのエージェントを運営すると、あなたのリソースは消費されません。"
     },
     "tips": {
       "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
@@ -3857,8 +3871,8 @@
       "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
+      "contribute": "マーケットプレイスに貢献する",
+      "social-media": "共有先："
     },
     "options": {
       "social-media": {
@@ -3866,29 +3880,25 @@
         "reddit": "Reddit",
         "linkedin": "LinkedIn",
         "facebook": "Facebook",
-        "whatsapp": "WhatsApp"
-      },
-      "social-mediak": {
-        "hackernews": "Hacker News"
+        "whatsapp": "WhatsApp",
+        "hackernews": "ハッカーニュース"
       }
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
-        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
+        "twitter": "こんにちは！この素晴らしいAIエージェントを見つけました。 ぜひ試してみてください！ {{promptName}}:{{promptLink}} #AIwriting #ProductivityBoost",
+        "reddit": "この AI エージェント [{{promptName}} ] をチェックしてください。",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
-      },
-      "social-mediak": {
-        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
+        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "hackernews": "[{{promptName}}] で作業負荷を簡素化する - 作業を完了させるAIエージェント"
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     }
   },
-  "ai-agents": "AI Agents",
+  "ai-agents": "AIエージェント",
   "marketplace": {
-    "star": "Star {{operationNum}}",
+    "star": "スター {{operationNum}}",
     "fork": "Fork {{operationNum}}"
   }
 }
