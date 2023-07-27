@@ -39,8 +39,6 @@ export const JsonSchemaFormWidget: FC<JsonSchemaFormWidgetProps> = (props) => {
     return new Promise((resolve, reject) => {
       const result = formRef.current?.validateForm()
       if (result) {
-        const formState = formRef.current?.state || {}
-        formRef.current?.setState({ ...formState, errors: [], errorSchema: {} })
         resolve(true)
       } else {
         reject(formRef.current?.state.errors)
@@ -73,9 +71,6 @@ export const JsonSchemaFormWidget: FC<JsonSchemaFormWidgetProps> = (props) => {
       },
       clearValue: () => {
         formRef.current?.reset()
-      },
-      validate: () => {
-        return handleValidate()
       },
     })
 

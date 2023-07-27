@@ -10,5 +10,5 @@ export const JSON_SCHEMA_FORM_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       value: "submit",
     },
   ],
-  methods: ["submit", "setValue", "clearValue", "validate"],
+  methods: ["submit", "setValue", "clearValue"],
 }
