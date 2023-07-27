@@ -10,18 +10,9 @@ import {
   listFilterContainerStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
 import { MarketAiAgent, TeamAiAgent } from "@/redux/aiAgent/aiAgentState"
+import { MarketAgentListData, TeamAgentListData } from "@/services/agent"
 
-interface ListData {
-  aiAgentList: TeamAiAgent[]
-  totalPages: number
-}
-
-interface MarketListData {
-  aiAgentList: MarketAiAgent[]
-  totalPages: number
-}
-
-const listData: ListData = {
+const listData: TeamAgentListData = {
   aiAgentList: [
     {
       aiAgentID: "ILAex4p1C7U2",
@@ -70,10 +61,10 @@ const listData: ListData = {
       ],
     },
   ],
-  totalPages: 12,
+  totalAIAgentCount: 12,
 }
 
-const marketListData: MarketListData = {
+const marketListData: MarketAgentListData = {
   aiAgentList: [
     {
       aiAgentID: "ILAex4p1C7U2",
@@ -111,6 +102,7 @@ const marketListData: MarketListData = {
     },
   ],
   totalPages: 12,
+  totalAIAgentCount: 122,
 }
 
 export interface AgentContentBodyProps {

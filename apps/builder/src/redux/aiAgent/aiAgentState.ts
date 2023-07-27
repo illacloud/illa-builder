@@ -30,6 +30,23 @@ export interface ChatMessage {
   sender: ChatSender
 }
 
+export interface AgentVariable {
+  name: string
+  defaultValue: string
+}
+
+export interface AgentModelConfig {
+  temperature: number
+}
+
+export interface AgentModelPayload {
+  variables: AgentVariable[]
+  maxToken: number
+  welcomeMessage: string
+  prompts: string[]
+  modelConfig: AgentModelConfig
+}
+
 export enum AI_Agent_Type {
   chat = 1,
   text_generate = 2,
