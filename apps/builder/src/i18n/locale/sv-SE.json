@@ -32,14 +32,14 @@
       "cancel": "Avbryt",
       "delete": "Radera",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Efter radering, kommer det inte att vara möjligt att komma åt eller återställa data på något sätt. Bekräfta.",
       "delete_ok_text": "Radera",
       "delete_title": "Är du säker?",
       "error_button": "Försök igen",
       "error_description": "Det finns ett problem med din operation.",
       "error_title": "Fel",
-      "marketplace": "Marketplace",
-      "run": "Run",
+      "marketplace": "Marknadsplats",
+      "run": "Kör",
       "fork": "Fork"
     },
     "resource": {
@@ -56,26 +56,26 @@
       "test_success": "Testet lyckades"
     },
     "list-type": {
-      "team": "Team's",
-      "marketplace": "Agent market"
+      "team": "Lagets",
+      "marketplace": "Agentkommando"
     },
     "sort-type": {
-      "popular": "Most popular",
-      "recent": "Recently updated",
-      "star": "Starred"
+      "popular": "Mest populära",
+      "recent": "Nyligen uppdaterade",
+      "star": "Stjärnmärkta"
     },
-    "search": "Search",
-    "no-result": "No result here. Please refresh or change your search terms.",
+    "search": "Sök",
+    "no-result": "Inga resultat här. Uppdatera eller ändra dina söktermer.",
     "message": {
-      "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
-      "sort-failed": "Failed to change the filter type. Please try again.",
-      "detail-load-failed": "Failed to retrieve details, please try again.",
-      "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
-      "fork-suc": "Successfully forked.",
-      "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "next-page-error": "Det gick inte att ladda nästa sida. Försök igen.",
+      "create-failed": "Det gick inte att skapa agent. Försök igen.",
+      "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
+      "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
+      "fork-failed": "Det gick inte att fork, försök igen.",
+      "create-suc": "Det gick inte att skapa, försök igen.",
+      "fork-suc": "Framgångsrikt forked.",
+      "delete-failed": "Misslyckades att ta bort. Försök igen. ",
+      "delete-suc": "Raderades framgångsrikt. "
     }
   },
   "dayjs": {
@@ -421,7 +421,7 @@
         },
         "button": {
           "marketplace": {
-            "select": "Select"
+            "select": "Välj"
           }
         }
       },
@@ -517,7 +517,7 @@
               "select_pages": "Välj sidor"
             },
             "ai-agent": {
-              "value": "Value"
+              "value": "Värde"
             }
           },
           "option": {
@@ -675,8 +675,8 @@
             "record_ids": "Spela in ID"
           },
           "ai-agent": {
-            "model": "Model",
-            "variable": "Variable",
+            "model": "Modell",
+            "variable": "Variabel",
             "input": "Input",
             "max-token": "Max token"
           }
@@ -2512,49 +2512,63 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
-        "name": "Name",
-        "desc": "Description",
-        "mode": "Mode",
+        "logo": "Logotyp",
+        "name": "Namn",
+        "desc": "Beskrivning",
+        "mode": "Läge",
         "prompt": "Prompt",
-        "variable": "Variable"
+        "variable": "Variabel",
+        "welcome": "Välkommen meddelande",
+        "model": "Modell",
+        "temperature": "Temperatur",
+        "max-token": "Max token"
       },
       "placeholder": {
-        "logo": "Upload",
-        "name": "Give a name to the agent",
-        "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "logo": "Ladda upp",
+        "name": "Ge ett namn till agenten",
+        "desc": "Ge en kort beskrivning av vad denna agent är avsedd att användas till.",
+        "prompt": "Ange / för att välja en variabel",
         "variable": {
-          "key": "Variable name",
-          "value": "Value"
-        }
+          "key": "Variabelt namn",
+          "value": "Värde"
+        },
+        "welcome": "Ange ett välkomstmeddelande som visas när användare börjar använda agenten.",
+        "temperature": "Ett värde mellan 0 och 1. Ju mindre värdet är, desto bättre effekt kan",
+        "max-token": "Används för att begränsa det maximala antalet polletter som konsumeras i en enda körning"
       },
       "tips": {
-        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
-        "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "mode": "I chattläget inkluderar varje meddelande konversationshistoriken som en del av begäran, vilket kan resultera i bättre resultat men förbrukar fler tokens; i textläge, varje meddelande som skickas innehåller inte konversationshistorik, vilket kan resultera i mindre optimala resultat jämfört med chattläge men sparar polletter.",
+        "not-start": "Slutför agentkonfigurationen och klicka på Start för att köra",
+        "not-start-run": "Klicka på Start -knappen till vänster."
       },
       "option": {
         "mode": {
-          "chat": "Chat",
-          "text": "Text generation"
+          "chat": "Chatt",
+          "text": "Generering av text"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
         }
       },
-      "new": "New",
-      "save": "Save",
-      "start": "Start",
-      "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "new": "Ny",
+      "save": "Spara",
+      "start": "Starta",
+      "restart": "Starta om",
+      "contribute": "Bidra till marknadsplatsen",
       "button": {
-        "send": "Send",
-        "generating": "Generating"
+        "send": "Skicka",
+        "generating": "Genererar"
       },
       "tab": {
         "prompt": "Prompt",
-        "run": "Run"
+        "chat": "Chatt",
+        "text": "Generera text"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Klicka på Start -knappen för att utlösa."
       }
     }
   },
@@ -3844,12 +3858,12 @@
     "title": {
       "invite_to_edit": "Bjud in att redigera",
       "invite_to_use": "Bjud in att använda",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Dela med team",
+      "contribute": "Bidra"
     },
     "desc": {
       "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "contribute": "Efter att ha bidragit till marknaden kan alla användare köra, stjärna och gaffel din Jobbevakning. När användare från andra team kör denna agent, kommer det inte att konsumera dina resurser."
     },
     "tips": {
       "admin": "Medlemmen som kan hantera alla medlemmar utom ägare, redigera APP och visa APP",
@@ -3857,8 +3871,8 @@
       "viewer": "Medlemmen som kan hantera tittarmedlemmar och visa APP:er"
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
+      "contribute": "Bidra till marknadsplatsen",
+      "social-media": "Dela på"
     },
     "options": {
       "social-media": {
@@ -3866,29 +3880,25 @@
         "reddit": "Reddit",
         "linkedin": "LinkedIn",
         "facebook": "Facebook",
-        "whatsapp": "WhatsApp"
-      },
-      "social-mediak": {
-        "hackernews": "Hacker News"
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hackernyheter"
       }
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
-        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
-        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
-        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+        "twitter": "Hej där! Jag upptäckte just denna fantastiska AI-agent. Du kanske är intresserad av att prova också! Kolla in det! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProduktivitetÖka",
+        "reddit": "Kolla in denna fantastiska AI-agent [{{promptName}}]",
+        "linkedin": "Uppmärksamhet alla AI-entusiaster och proffs som vill öka sin produktivitet! Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "facebook": "Uppmärksamhet alla AI-entusiaster och proffs som vill öka sin produktivitet! Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "whatsapp": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "hackernews": "Förenkla din arbetsbelastning med [{{promptName}}] - AI-agenten som får jobbet klart"
       },
-      "social-mediak": {
-        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
-      },
-      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+      "contribute": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!"
     }
   },
-  "ai-agents": "AI Agents",
+  "ai-agents": "AI agenter",
   "marketplace": {
-    "star": "Star {{operationNum}}",
+    "star": "Stjärna {{operationNum}}",
     "fork": "Fork {{operationNum}}"
   }
 }
