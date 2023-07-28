@@ -3021,7 +3021,10 @@
       "name": "Formulář schématu JSON"
     },
     "page": {
-      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. "
+      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. ",
+      "tips": {
+        "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
+      }
     }
   },
   "page": {
