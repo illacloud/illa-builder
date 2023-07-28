@@ -2286,7 +2286,8 @@
         "views": "Zobrazení",
         "width": "Width",
         "height": "Výška",
-        "columns": "Sloupce"
+        "columns": "Sloupce",
+        "set_as_default_subpage": "Nastavit jako výchozí podstránku"
       },
       "model_tips": {
         "cancel_button": "Zrušit",
