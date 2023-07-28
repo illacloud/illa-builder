@@ -2043,7 +2043,7 @@
           "title": "Задать заголовок для отображения"
         },
         "page": {
-          "default_view": "When users enter an error path, we will automatically redirect to the default path. When there is no default path, we will treat the first path in the list as the default path"
+          "default_view": "Когда пользователи вводят путь к ошибке, мы автоматически перенаправим на путь по умолчанию. Когда нет пути по умолчанию, мы будем рассматривать первый путь в списке как путь по умолчанию"
         }
       },
       "setter_option": {
@@ -3792,6 +3792,10 @@
         "title": "Изменить план?",
         "button_cancel": "Отмена",
         "button_confirm": "Подтвердить"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 предназначен для команды Premium. ",
+        "string2": "Чтобы использовать его, пожалуйста, обновите до Премиум. После перехода на Премиум, вы также получите доступ к следующим функциям. "
       }
     },
     "homepage": {
