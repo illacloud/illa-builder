@@ -2286,7 +2286,8 @@
         "views": "Visningar",
         "width": "Width",
         "height": "Höjd",
-        "columns": "Kolumner"
+        "columns": "Kolumner",
+        "set_as_default_subpage": "Ange som standard undersida"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
