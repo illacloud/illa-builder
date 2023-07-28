@@ -3024,6 +3024,9 @@
       "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. ",
       "tips": {
         "blank_view": "This module has no child pages. Please add them first through the Page panel on the right."
+      },
+      "label": {
+        "rename_url": "Edit path"
       }
     }
   },
