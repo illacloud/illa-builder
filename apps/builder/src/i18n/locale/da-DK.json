@@ -3024,6 +3024,9 @@
       "path_duplicated": "Stien er duplikeret. Brug venligst en unik sti for at undgå fejl. ",
       "tips": {
         "blank_view": "Dette modul har ingen undersider. Tilføj dem først gennem sidepanelet til højre."
+      },
+      "label": {
+        "rename_url": "Rediger sti"
       }
     }
   },
