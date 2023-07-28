@@ -32,12 +32,15 @@
       "cancel": "Anulează",
       "delete": "Ștergere",
       "delete_cancel_text": "Anulează",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "După ștergere, nu va fi posibil să accesați sau să recuperați datele prin orice mijloace. Vă rugăm să confirmați.",
       "delete_ok_text": "Ștergere",
       "delete_title": "Ești sigur?",
       "error_button": "Reîncercați",
       "error_description": "Există o problemă cu operația dvs.",
-      "error_title": "Eroare"
+      "error_title": "Eroare",
+      "marketplace": "Piață",
+      "run": "Rulează",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Creare nou",
@@ -51,6 +54,28 @@
       "save_success": "Salvare reușită",
       "test_fail": "Nu a reușit să testeze",
       "test_success": "Test cu succes"
+    },
+    "list-type": {
+      "team": "Echipa",
+      "marketplace": "Piața agenților"
+    },
+    "sort-type": {
+      "popular": "Cele mai populare",
+      "recent": "Actualizat recent",
+      "star": "Marcate"
+    },
+    "search": "Caută",
+    "no-result": "Niciun rezultat aici. Reîmprospătați sau schimbați termenii de căutare.",
+    "message": {
+      "next-page-error": "Încărcarea paginii următoare a eșuat. Te rugăm să încerci din nou.",
+      "create-failed": "Eroare la crearea agentului. Vă rugăm să încercaţi din nou.",
+      "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
+      "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
+      "fork-failed": "Esuare fork, te rugam incearca din nou.",
+      "create-suc": "Creare esuata, te rugam incearca din nou.",
+      "fork-suc": "Facturat cu succes.",
+      "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
+      "delete-suc": "Eliminat cu succes. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Cont de serviciu"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Selectare"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Selecteaza pagini"
+            },
+            "ai-agent": {
+              "value": "Valoare"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3,5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Înregistrări",
             "record": "Înregistrare",
             "record_ids": "ID inregistrare"
+          },
+          "ai-agent": {
+            "model": "Model",
+            "variable": "Variabilă",
+            "input": "Input",
+            "max-token": "Token-ul maxim"
           }
         },
         "menu": {
@@ -2462,6 +2509,67 @@
           "preview": "Nu s-a putut încărca istoricul înregistrării."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Nume",
+        "desc": "Descriere",
+        "mode": "Mod",
+        "prompt": "Prompt",
+        "variable": "Variabilă",
+        "welcome": "Mesaj de întâmpinare",
+        "model": "Model",
+        "temperature": "Temperatură",
+        "max-token": "Token-ul maxim"
+      },
+      "placeholder": {
+        "logo": "Incarca",
+        "name": "Dă un nume agentului",
+        "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
+        "prompt": "Introduceți / pentru a selecta o variabilă",
+        "variable": {
+          "key": "Denumire variabilă",
+          "value": "Valoare"
+        },
+        "welcome": "Furnizaţi un mesaj de bun venit afişat atunci când utilizatorii încep să folosească agentul. (Automatic Translation)",
+        "temperature": "O valoare între 0 și 1. Cu cât valoarea este mai mică, cu atât efectul poate fi mai bun",
+        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare"
+      },
+      "tips": {
+        "mode": "În modul chat, fiecare mesaj trimis include istoricul conversațiilor ca parte a cererii, ceea ce poate duce la rezultate mai bune, dar consumă mai multe tokeni; în modul text, fiecare mesaj trimis nu include istoricul conversaţiilor, care poate avea rezultate mai puțin optime în comparație cu modul de chat dar care conservă tokenurile.",
+        "not-start": "Completează configurația agentului și apasă Start pentru a rula",
+        "not-start-run": "Vă rugăm să faceţi clic pe butonul de pornire din stânga."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Generare text"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3,5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nou",
+      "save": "Salvează",
+      "start": "Pornire",
+      "restart": "Repornire",
+      "contribute": "Contribuie la piata",
+      "button": {
+        "send": "Trimite",
+        "generating": "Generare"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Genereaza text"
+      },
+      "message": {
+        "click-start": "Faceți clic pe butonul de pornire pentru a declanșa."
+      }
     }
   },
   "exit_preview": "Ieșiți din previzualizare",
@@ -3749,15 +3857,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Invită să editezi",
-      "invite_to_use": "Invită să utilizezi"
+      "invite_to_use": "Invită să utilizezi",
+      "share-with-team": "Partajează cu echipa",
+      "contribute": "Contribuie"
     },
     "desc": {
-      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
+      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. ",
+      "contribute": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
     },
     "tips": {
       "admin": "Membrul care poate gestiona toţi membrii cu excepţia Owner, editează APP-urile şi vizualizează APP-urile",
       "editor": "Membrul care poate gestiona membrii editorului şi vizualizatorului, editează APP-urile şi vizualizează APP-urile",
       "viewer": "Membrul care poate gestiona utilizatorii şi vizualiza APP-urile"
+    },
+    "label": {
+      "contribute": "Contribuie la piata",
+      "social-media": "Distribuie pe"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Știri hacker"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Salut! Tocmai am descoperit acest uimitor Agent AI. Ai putea fi interesat să îi dai o încercare! Verifică-l! {{promptName}}:{{promptLink}} #AIwrite #PromptManagement #ProductivityBoost",
+        "reddit": "Uită-te la acest uimitor Agent AI [{{promptName}}]",
+        "linkedin": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "facebook": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "whatsapp": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
+      },
+      "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
     }
+  },
+  "ai-agents": "Agenți AI",
+  "marketplace": {
+    "star": "Star {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

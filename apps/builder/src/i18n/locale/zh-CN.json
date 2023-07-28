@@ -37,7 +37,10 @@
       "delete_title": "确认",
       "error_button": "重试",
       "error_description": "请求错误",
-      "error_title": "错误"
+      "error_title": "错误",
+      "marketplace": "Marketplace",
+      "run": "运行",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "创建资源",
@@ -51,6 +54,28 @@
       "save_success": "保存成功",
       "test_fail": "测试失败",
       "test_success": "测试成功"
+    },
+    "list-type": {
+      "team": "团队Agent",
+      "marketplace": "Agent库"
+    },
+    "sort-type": {
+      "popular": "最受欢迎",
+      "recent": "最近更新",
+      "star": "Starred"
+    },
+    "search": "Search",
+    "no-result": "没有结果，请刷新或更新您的搜索词。",
+    "message": {
+      "next-page-error": "下一页加载失败，请重试",
+      "create-failed": "Agent创建失败，请重试",
+      "sort-failed": "筛选类型过滤失败，请重试",
+      "detail-load-failed": "详细信息查询失败，请重试",
+      "fork-failed": "Fork失败，请重试",
+      "create-suc": "创建失败，请重试",
+      "fork-suc": "Fork成功",
+      "delete-failed": "删除失败，请重试",
+      "delete-suc": "删除成功"
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "服务账户"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "选择"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "选择页面"
+            },
+            "ai-agent": {
+              "value": "值"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Records",
             "record": "Record",
             "record_ids": "Record IDs"
+          },
+          "ai-agent": {
+            "model": "模型",
+            "variable": "变量",
+            "input": "输入",
+            "max-token": "最大Token"
           }
         },
         "menu": {
@@ -2462,6 +2509,67 @@
           "preview": "历史记录加载失败"
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "图标",
+        "name": "名称",
+        "desc": "描述",
+        "mode": "模式",
+        "prompt": "Prompt",
+        "variable": "参数",
+        "welcome": "初始消息",
+        "model": "Model",
+        "temperature": "Temperature",
+        "max-token": "Max token"
+      },
+      "placeholder": {
+        "logo": "上传",
+        "name": "为Agent命名",
+        "desc": "简要描述该Agent的用途。",
+        "prompt": "输入 / 选择变量",
+        "variable": {
+          "key": "变量名",
+          "value": "值"
+        },
+        "welcome": "提供一个初始消息，在用户开始使用这个agent时展示",
+        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
+        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
+      },
+      "tips": {
+        "mode": "在聊天模式下，发送的每条消息时都会带上对话历史记录一起请求，这可以使结果更优，但会消耗更多的Token； 在文本模式下，发送的每条消息不包含对话历史记录，与聊天模式相比，这个模式的结果可能不够好，但可以节省Token。",
+        "not-start": "完成Agent配置并点击开始运行",
+        "not-start-run": "请点击左侧的开始按钮。"
+      },
+      "option": {
+        "mode": {
+          "chat": "对话",
+          "text": "文本生成"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "新增",
+      "save": "保存",
+      "start": "开始",
+      "restart": "重新开始",
+      "contribute": "贡献到Marketplace",
+      "button": {
+        "send": "发送",
+        "generating": "正在生成"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "对话",
+        "text": "生成文本"
+      },
+      "message": {
+        "click-start": "点击开始按钮触发运行"
+      }
     }
   },
   "exit_preview": "退出预览",
@@ -3749,15 +3857,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "邀请进行编辑",
-      "invite_to_use": "邀请使用"
+      "invite_to_use": "邀请使用",
+      "share-with-team": "和团队共享",
+      "contribute": "贡献"
     },
     "desc": {
-      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
+      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 ",
+      "contribute": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
     },
     "tips": {
       "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
       "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
       "viewer": "可以管理浏览者、查看APP"
+    },
+    "label": {
+      "contribute": "贡献到Marketplace",
+      "social-media": "分享到"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
+        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
+      },
+      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     }
+  },
+  "ai-agents": "AI Agents",
+  "marketplace": {
+    "star": "Star {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }
