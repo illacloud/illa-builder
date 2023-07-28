@@ -2236,7 +2236,7 @@
         "add": "Додати",
         "body": "Тіло",
         "default_view": "Вигляд за замовчуванням",
-        "edit_view": "Edit path",
+        "edit_view": "Редагувати шлях",
         "footer": "Нижній колонтитул",
         "header": "Заголовок рядка стану",
         "key": "Ключ",
@@ -2245,7 +2245,7 @@
         "right_panel": "Права панель",
         "set_as_homepage": "Встановити як домашню сторінку",
         "show_fold_icon": "Показати складну іконку",
-        "view_path": "Path",
+        "view_path": "Шлях",
         "views": "Перегляди",
         "width": "Width",
         "height": "Висота",
@@ -2264,7 +2264,7 @@
       "tab_title": "Сторінка",
       "tooltips": {
         "show_fold_icon": "Показувати кнопку згортання або розширення панелі",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Щоб налаштувати доступ до цієї сторінки, потрібно буде налаштувати шлях. Наприклад, якщо ви зміните шлях на **newPath**', і додайте його як підсторінку головної сторінки. Потім ця сторінка доступна через цю URL-адресу: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Ширина сторінки у відсотках від ширини браузера."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "Форма схеми JSON"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Шлях дублюється. Будь ласка, використайте унікальний шлях, щоб уникнути помилок. "
     }
   },
   "page": {
