@@ -1782,14 +1782,14 @@
           "submit_button_text": "Prześlij tekst przycisku"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Kierunek",
+          "y-axis_value": "Wartość osi Y",
+          "stack_grouped_data": "Zgrupowane dane",
+          "x-axis_type": "Typ osi X",
+          "format": "Formatowanie",
+          "legend_position": "Pozycja Legendy",
+          "grid_line": "Linia siatki",
+          "y-axis_type": "Typ osi Y"
         }
       },
       "setter_tooltip": {
@@ -2056,9 +2056,14 @@
           "default_view": "Gdy użytkownicy wprowadzą ścieżkę błędu, automatycznie przekierowamy do domyślnej ścieżki. Gdy nie ma domyślnej ścieżki, traktujemy pierwszą ścieżkę na liście jako domyślną ścieżkę"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis",
-          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups."
+          "direction": "Ustaw kierunek wykresu. ",
+          "y-axis_value": "Ustaw wartość osi Y",
+          "stack_grouped_data": "Wartości z różnych grup o tej samej wartości osi X będą ułożone na wykresie. Złożone wykresy mogą być wykorzystane do porównania ogólnego rozmiaru różnych kategorii lub grup, jak również względne rozmiary poszczególnych podkategorii lub podgrup.",
+          "x-axis_type": "Ustawianie typu wykresu może poprawić czytelność danych.",
+          "format": "Prawidłowy ciąg formatu daty. Zobacz [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Aby ustawić pozycję legalną. ",
+          "grid_line": "Aby ustawić kolor linii siatki. ",
+          "y-axis_type": "Ustawianie typu wykresu może poprawić czytelność danych."
         }
       },
       "setter_option": {
@@ -2164,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
+            "Doughnut": "Orzeszki ziemne",
             "Radar": "Radar"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Poziomy",
+            "vertical": "Pionowo"
+          },
+          "x-axis_type": {
+            "Default": "Domyślny",
+            "Date": "Data"
           }
         }
       },
