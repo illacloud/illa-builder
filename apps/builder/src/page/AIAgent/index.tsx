@@ -34,7 +34,7 @@ import {
 } from "@/page/AIAgent/style"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import {
-  AI_AGENT_MODAL,
+  AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   AgentRaw,
 } from "@/redux/aiAgent/aiAgentState"
@@ -217,9 +217,9 @@ export const AIAgent: FC = () => {
                 </AIAgentBlock>
                 <AIAgentBlock title={"Modal"}>
                   <Controller
-                    name="modal"
+                    name="model"
                     control={control}
-                    defaultValue={agent.modal}
+                    defaultValue={agent.model}
                     shouldUnregister={false}
                     render={({ field }) => (
                       <Select
@@ -233,7 +233,7 @@ export const AIAgent: FC = () => {
                                 <span css={labelTextStyle}>GPT-3.5</span>
                               </div>
                             ),
-                            value: AI_AGENT_MODAL.GPT_3_5_TURBO,
+                            value: AI_AGENT_MODEL.GPT_3_5_TURBO,
                           },
                           {
                             label: (
@@ -242,7 +242,7 @@ export const AIAgent: FC = () => {
                                 <span css={labelTextStyle}>GPT-3.5-16k</span>
                               </div>
                             ),
-                            value: AI_AGENT_MODAL.GPT_3_5_TURBO_16K,
+                            value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
                           },
                           {
                             label: (
@@ -251,7 +251,7 @@ export const AIAgent: FC = () => {
                                 <span css={labelTextStyle}>GPT-4</span>
                               </div>
                             ),
-                            value: AI_AGENT_MODAL.GPT_4,
+                            value: AI_AGENT_MODEL.GPT_4,
                           },
                         ]}
                       />
@@ -260,8 +260,8 @@ export const AIAgent: FC = () => {
                 </AIAgentBlock>
                 <AIAgentBlock title={"Max Token"}>
                   <Controller
-                    name={"modalConfig.maxTokens"}
-                    defaultValue={agent.modalConfig.maxTokens}
+                    name={"modelConfig.maxTokens"}
+                    defaultValue={agent.modelConfig.maxTokens}
                     control={control}
                     shouldUnregister={false}
                     render={({ field }) => (
@@ -277,8 +277,8 @@ export const AIAgent: FC = () => {
                 </AIAgentBlock>
                 <AIAgentBlock title={"Temperature"}>
                   <Controller
-                    name="modalConfig.temperature"
-                    defaultValue={agent.modalConfig.temperature}
+                    name="modelConfig.temperature"
+                    defaultValue={agent.modelConfig.temperature}
                     control={control}
                     shouldUnregister={false}
                     render={({ field }) => (

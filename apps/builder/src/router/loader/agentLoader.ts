@@ -10,7 +10,6 @@ export const agentLoader: LoaderFunction = async (args) => {
     })
   } else {
     const initial = async () => AgentRawInitial
-
     return defer({
       agent: initial(),
     })

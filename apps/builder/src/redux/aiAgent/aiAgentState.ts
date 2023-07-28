@@ -3,10 +3,10 @@ import { Params } from "@/redux/resource/restapiResource"
 export interface AgentRaw {
   name: string
   agentType: AI_AGENT_TYPE
-  modal: AI_AGENT_MODAL
+  model: AI_AGENT_MODEL
   variable: Params[]
   prompt: string
-  modalConfig: AgentAdvanceConfig
+  modelConfig: AgentAdvanceConfig
   icon: string
   description: string
 }
@@ -58,7 +58,7 @@ export enum AI_AGENT_TYPE {
   TEXT_GENERATION = 2,
 }
 
-export enum AI_AGENT_MODAL {
+export enum AI_AGENT_MODEL {
   GPT_3_5_TURBO = 1,
   GPT_3_5_TURBO_16K = 2,
   GPT_4 = 3,
@@ -90,10 +90,10 @@ export interface MarketAiAgent {
 export const AgentRawInitial: AgentRaw = {
   name: "",
   agentType: AI_AGENT_TYPE.CHAT,
-  modal: AI_AGENT_MODAL.GPT_3_5_TURBO,
+  model: AI_AGENT_MODEL.GPT_3_5_TURBO,
   variable: [{ key: "", value: "" }],
   prompt: "",
-  modalConfig: {
+  modelConfig: {
     temperature: 1,
     maxTokens: 2048,
   },
