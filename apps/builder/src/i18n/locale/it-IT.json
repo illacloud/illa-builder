@@ -3021,7 +3021,10 @@
       "name": "Modulo Schema JSON"
     },
     "page": {
-      "path_duplicated": "Il percorso è duplicato. Si prega di utilizzare un percorso univoco per evitare errori. "
+      "path_duplicated": "Il percorso è duplicato. Si prega di utilizzare un percorso univoco per evitare errori. ",
+      "tips": {
+        "blank_view": "Questo modulo non ha pagine figlie. Si prega di aggiungerle prima attraverso il pannello Pagina a destra."
+      }
     }
   },
   "page": {
