@@ -2286,7 +2286,8 @@
         "views": "見る",
         "width": "幅",
         "height": "高い",
-        "columns": "コラム"
+        "columns": "コラム",
+        "set_as_default_subpage": "既定のサブページとして設定"
       },
       "model_tips": {
         "cancel_button": "キャンセル",
