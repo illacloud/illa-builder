@@ -2286,7 +2286,8 @@
         "views": "Vizualizări",
         "width": "Width",
         "height": "Înălțime",
-        "columns": "Coloane"
+        "columns": "Coloane",
+        "set_as_default_subpage": "Setează ca subpagină implicită"
       },
       "model_tips": {
         "cancel_button": "Anulează",
