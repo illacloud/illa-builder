@@ -1782,14 +1782,14 @@
           "submit_button_text": "Υποβολή κειμένου κουμπιού"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Κατεύθυνση",
+          "y-axis_value": "Τιμή άξονα Y",
+          "stack_grouped_data": "Ομαδοποιημένα δεδομένα στοίβας",
+          "x-axis_type": "Τύπος άξονα Χ",
+          "format": "Μορφή",
+          "legend_position": "Θέση υπομνήματος",
+          "grid_line": "Γραμμή πλέγματος",
+          "y-axis_type": "Τύπος άξονα Y"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "Όταν οι χρήστες εισάγουν μια διαδρομή σφάλματος, θα ανακατευθύνουμε αυτόματα στην προεπιλεγμένη διαδρομή. Όταν δεν υπάρχει προεπιλεγμένη διαδρομή, θα αντιμετωπίσουμε την πρώτη διαδρομή στη λίστα ως προεπιλεγμένη διαδρομή"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "Ορισμός κατεύθυνσης γραφήματος. ",
+          "y-axis_value": "Ορισμός της τιμής του άξονα Y",
+          "stack_grouped_data": "Τιμές από διαφορετικές ομάδες με την ίδια τιμή άξονα Χ θα στοιβάζονται σε ένα stacked γράφημα. Τα στοιβαγμένα διαγράμματα μπορούν να χρησιμοποιηθούν για να συγκρίνουν το συνολικό μέγεθος των διαφόρων κατηγοριών ή ομάδων, καθώς και τα σχετικά μεγέθη των επιμέρους υποκατηγοριών ή υποομάδων.",
+          "x-axis_type": "Ρύθμιση του τύπου του χάρτη μπορεί να ενισχύσει την αναγνωσιμότητα των δεδομένων.",
+          "format": "Μια έγκυρη συμβολοσειρά μορφής ημερομηνίας. Δείτε το [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Για να ορίσετε τη θέση του ποδιού. ",
+          "grid_line": "Για να ορίσετε το χρώμα της γραμμής κανάβου. ",
+          "y-axis_type": "Ρύθμιση του τύπου του χάρτη μπορεί να ενισχύσει την αναγνωσιμότητα των δεδομένων."
         }
       },
       "setter_option": {
@@ -2163,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
-            "Radar": "Radar"
+            "Doughnut": "Ντόνατ",
+            "Radar": "Ραντάρ"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Οριζόντια",
+            "vertical": "Κατακόρυφα"
+          },
+          "x-axis_type": {
+            "Default": "Προεπιλογή",
+            "Date": "Ημερομηνία"
           }
         }
       },
