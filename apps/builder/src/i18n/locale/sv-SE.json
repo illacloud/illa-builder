@@ -2236,7 +2236,7 @@
         "add": "Lägg till",
         "body": "Kropp",
         "default_view": "Förvald vy",
-        "edit_view": "Edit path",
+        "edit_view": "Redigera sökväg",
         "footer": "Sidfot",
         "header": "Rubrik",
         "key": "Nyckel",
@@ -2245,7 +2245,7 @@
         "right_panel": "Höger panel",
         "set_as_homepage": "Ange som hemsida",
         "show_fold_icon": "Visa vik-ikon",
-        "view_path": "Path",
+        "view_path": "Sökväg",
         "views": "Visningar",
         "width": "Width",
         "height": "Höjd",
@@ -2264,7 +2264,7 @@
       "tab_title": "Sida",
       "tooltips": {
         "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "För att konfigurera åtkomst till den här sidan måste du justera sökvägen. Till exempel, om du ändrar sökvägen till '**newPath**' och lägger till den som en undersida på hemsidan. Den här sidan kan sedan nås via följande URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "Formulär för JSON Schema"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Sökvägen är duplicerad. Använd en unik sökväg för att undvika fel. "
     }
   },
   "page": {
