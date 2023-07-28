@@ -2286,7 +2286,8 @@
         "views": "Näkymät",
         "width": "Width",
         "height": "Korkeus",
-        "columns": "Sarakkeet"
+        "columns": "Sarakkeet",
+        "set_as_default_subpage": "Aseta oletukseksi alasivuksi"
       },
       "model_tips": {
         "cancel_button": "Peruuta",
