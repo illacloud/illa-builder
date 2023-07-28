@@ -1782,14 +1782,14 @@
           "submit_button_text": "Texto del botón de enviar"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Dirección",
+          "y-axis_value": "Valor del eje Y",
+          "stack_grouped_data": "Pila de datos agrupados",
+          "x-axis_type": "Tipo de eje X",
+          "format": "Formatear",
+          "legend_position": "Posición de la leyenda",
+          "grid_line": "Rejilla",
+          "y-axis_type": "Tipo eje Y"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "Cuando los usuarios ingresan una ruta de error, redirigiremos automáticamente a la ruta por defecto. Cuando no hay una ruta por defecto, trataremos la primera ruta de la lista como la ruta por defecto"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "Establecer la dirección del gráfico. ",
+          "y-axis_value": "Establecer el valor del eje Y",
+          "stack_grouped_data": "Los valores de diferentes grupos con el mismo valor del eje X se acumularán en un gráfico apilado. Las cartas apiladas se pueden utilizar para comparar el tamaño total de diferentes categorías o grupos, así como los tamaños relativos de subcategorías o subgrupos individuales.",
+          "x-axis_type": "Configurar el tipo de gráfico puede mejorar la legibilidad de datos.",
+          "format": "Una cadena de formato de fecha válida. Vea [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Establecer la posición de legal. ",
+          "grid_line": "Para establecer el color de la línea de cuadrícula. ",
+          "y-axis_type": "Configurar el tipo de gráfico puede mejorar la legibilidad de datos."
         }
       },
       "setter_option": {
@@ -2163,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
+            "Doughnut": "Castaña",
             "Radar": "Radar"
           },
           "direction": {
             "horizontal": "Horizontal",
             "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Por defecto",
+            "Date": "Fecha"
           }
         }
       },
