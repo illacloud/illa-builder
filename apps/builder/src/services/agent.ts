@@ -1,5 +1,5 @@
-import { builderRequest } from "@/api/http"
-import { Agent, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
+import { builderRequest, directRequest } from "@/api/http"
+import { Agent, AgentRaw, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
 
 export interface TeamAgentListData {
   aiAgentList: Agent[]
@@ -61,18 +61,34 @@ export interface MarketAgentListData {
   pageIndex: 1
 }
 
-export const forkAIAgentToTeam = (AIAgentID: string, teamID: string) => {
-  return builderRequest<TeamAgentListData>({
-    url: `/AIAgent/${AIAgentID}/forkTo/teams/${teamID}`,
+export interface ForkAgentResponse {
+  aiAgentID: string
+}
+
+export const forkAIAgentToTeam = (aiAgentID: string, teamID: string) => {
+  return directRequest<ForkAgentResponse>({
+    url: `/AIAgent/${aiAgentID}/forkTo/teams/${teamID}`,
     method: "POST",
   })
 }
 
-export const takeSnapShot = (AIAgentID: string) => {
-  return builderRequest(
+export const fetchAgentDetail = (aiAgentID: string) => {
+  return builderRequest<AgentRaw>(
     {
-      url: `/AIAgent/${AIAgentID}`,
-      method: "DELETE",
+      url: `/AIAgent/${aiAgentID}`,
+      method: "GET",
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const fetchAgentRunDetail = (aiAgentID: string) => {
+  return builderRequest<Agent>(
+    {
+      url: `/AIAgent/${aiAgentID}`,
+      method: "GET",
     },
     {
       needTeamID: true,

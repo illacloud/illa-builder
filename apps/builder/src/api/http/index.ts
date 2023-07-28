@@ -153,6 +153,21 @@ export const builderRequest = async <
   })
 }
 
+export const directRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(requestConfig.url, "", options)
+
+  return await needAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
 export const builderWSRequest = async <
   ResponseData = unknown,
   RequestData = unknown,

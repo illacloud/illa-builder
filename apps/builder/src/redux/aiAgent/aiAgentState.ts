@@ -86,3 +86,17 @@ export interface MarketAiAgent {
   aiAgent: Agent
   marketplace: MarketplaceInfo
 }
+
+export const AgentRawInitial: AgentRaw = {
+  name: "",
+  agentType: AI_AGENT_TYPE.CHAT,
+  modal: AI_AGENT_MODAL.GPT_3_5_TURBO,
+  variable: [{ key: "", value: "" }],
+  prompt: "",
+  modalConfig: {
+    temperature: 1,
+    maxTokens: 2048,
+  },
+  icon: "",
+  description: "",
+}

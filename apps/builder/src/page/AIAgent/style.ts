@@ -75,10 +75,6 @@ export const uploadContainerStyle = css`
   align-items: center;
 `
 
-export const uploadInputStyle = css`
-  display: none;
-`
-
 export const uploadContentContainerStyle = css`
   color: ${getColor("grayBlue", "04")};
   display: inline-flex;

@@ -304,8 +304,8 @@ importers:
         specifier: ^16.0.1
         version: 16.0.1
       react-easy-crop:
-        specifier: ^4.7.1
-        version: 4.7.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.0.0
+        version: 5.0.0(react-dom@18.2.0)(react@18.2.0)
       react-helmet-async:
         specifier: ^1.3.0
         version: 1.3.0(react-dom@18.2.0)(react@18.2.0)
@@ -10288,8 +10288,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-easy-crop@4.7.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-F9EmLo90yWCR18voJki9upZF2GVsmPKQmu8vtTnUDFwb/PHblvMCKy/KUbu6/cniRmvPS2kiDjCUmMpAoDeJcw==}
+  /react-easy-crop@5.0.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-ppYg3E0jxpDW+HdgLa65lCykZSsGMuusBuKD3HeTMs/Aod4xiWyAH5jZn5iHlllLUV2c0PPT6FznvdNeLhO2wA==}
     peerDependencies:
       react: '>=16.4.0'
       react-dom: '>=16.4.0'
