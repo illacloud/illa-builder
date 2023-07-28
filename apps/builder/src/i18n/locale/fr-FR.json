@@ -2286,7 +2286,8 @@
         "views": "Vues",
         "width": "Width",
         "height": "Hauteur",
-        "columns": "Colonnes"
+        "columns": "Colonnes",
+        "set_as_default_subpage": "Définir comme sous-page par défaut"
       },
       "model_tips": {
         "cancel_button": "Abandonner",
