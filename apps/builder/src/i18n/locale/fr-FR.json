@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modélisation",
             "variable": "Variable",
-            "input": "Input",
+            "input": "Envoyer du contenu",
             "max-token": "Token max"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Bouton d'envoi masqué",
           "submit_button_full_w": "Soumettre le bouton en pleine largeur",
           "submit_button_text": "Texte du bouton de soumission"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -2044,6 +2054,10 @@
         },
         "page": {
           "default_view": "Lorsque les utilisateurs saisissent un chemin d'erreur, nous redirigerons automatiquement vers le chemin par défaut. S'il n'y a pas de chemin par défaut, nous traiterons le premier chemin de la liste comme chemin par défaut"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis"
         }
       },
       "setter_option": {
@@ -2145,6 +2159,16 @@
           "file_name_duplicatio": {
             "replace": "Remplacer",
             "keepboth": "Garder les deux"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
           }
         }
       },
