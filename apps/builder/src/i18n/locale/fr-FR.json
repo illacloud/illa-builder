@@ -1782,14 +1782,14 @@
           "submit_button_text": "Texte du bouton de soumission"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Orientation",
+          "y-axis_value": "Valeur de l'axe Y",
+          "stack_grouped_data": "Empiler les données groupées",
+          "x-axis_type": "Type d'axe X",
+          "format": "Formater",
+          "legend_position": "Position de la légende",
+          "grid_line": "Ligne de grille",
+          "y-axis_type": "Type d'axe Y"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "Lorsque les utilisateurs saisissent un chemin d'erreur, nous redirigerons automatiquement vers le chemin par défaut. S'il n'y a pas de chemin par défaut, nous traiterons le premier chemin de la liste comme chemin par défaut"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "Définissez la direction du graphique. ",
+          "y-axis_value": "Définir la valeur de l'axe Y",
+          "stack_grouped_data": "Les valeurs de différents groupes avec la même valeur d'axe X seront empilées dans un graphique empilé. Les graphiques empilés peuvent être utilisés pour comparer la taille globale de différentes catégories ou groupes, ainsi que la taille relative des sous-catégories ou sous-groupes individuels.",
+          "x-axis_type": "Définir le type de graphique peut améliorer la lisibilité des données.",
+          "format": "Une chaîne de format de date valide. Voir [dayJS](https://day.js.org/docs/fr/parse/string-format).",
+          "legend_position": "Fixer la position de la légende. ",
+          "grid_line": "Définir la couleur de la ligne de la grille. ",
+          "y-axis_type": "Définir le type de graphique peut améliorer la lisibilité des données."
         }
       },
       "setter_option": {
@@ -2163,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
+            "Doughnut": "Noisette",
             "Radar": "Radar"
           },
           "direction": {
             "horizontal": "Horizontal",
             "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Par défaut",
+            "Date": "Date"
           }
         }
       },
