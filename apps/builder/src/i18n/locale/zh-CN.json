@@ -3792,6 +3792,10 @@
         "title": "变更方案？",
         "button_cancel": "取消",
         "button_confirm": "确认"
+      },
+      "ai-agent": {
+        "string1": "GPT-4是为Premium团队提供的选项。",
+        "string2": "请升级到Premium以使用它。通过升级到Premium，您还将获得以下权益。"
       }
     },
     "homepage": {
