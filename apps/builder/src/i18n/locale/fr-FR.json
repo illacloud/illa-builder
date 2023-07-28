@@ -3024,6 +3024,9 @@
       "path_duplicated": "Le chemin est dupliqué. Veuillez utiliser un chemin unique pour éviter les erreurs. ",
       "tips": {
         "blank_view": "Ce module n'a pas de pages enfants. Veuillez d'abord les ajouter via le panneau de page à droite."
+      },
+      "label": {
+        "rename_url": "Modifier le chemin d'accès"
       }
     }
   },
