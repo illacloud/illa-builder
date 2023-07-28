@@ -1782,14 +1782,14 @@
           "submit_button_text": "Надіслати текст кнопки"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Напрямок",
+          "y-axis_value": "Значення осі Y",
+          "stack_grouped_data": "Згруповані стеки",
+          "x-axis_type": "Тип осі X",
+          "format": "Форматувати",
+          "legend_position": "Положення легенди",
+          "grid_line": "Лінія сітки",
+          "y-axis_type": "Y-вісь"
         }
       },
       "setter_tooltip": {
@@ -2056,9 +2056,14 @@
           "default_view": "Коли користувачі введуть шлях до помилки, ми автоматично перенаправлятимемо шлях за замовчуванням. Якщо немає стандартного шляху, ми будемо розглядати перший шлях у списку як шлях за замовчуванням"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis",
-          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups."
+          "direction": "Встановіть напрямок графіка. ",
+          "y-axis_value": "Встановити значення осі Y",
+          "stack_grouped_data": "Значення з різних груп зі значенням змінної x буде складене у складному графіку. Тимчасові діаграми можна використовувати для порівняння загального розміру різних категорій або груп, так само як і відносні розміри окремих підкатегорій або підгруп.",
+          "x-axis_type": "Установка типу діаграми може підвищити читабельність даних.",
+          "format": "Дійсний формат дати. Дивіться [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Щоб встановити позицію легенди. ",
+          "grid_line": "Для встановлення кольору лінії сітки. ",
+          "y-axis_type": "Установка типу діаграми може підвищити читабельність даних."
         }
       },
       "setter_option": {
@@ -2164,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
-            "Radar": "Radar"
+            "Doughnut": "Пончик",
+            "Radar": "Радар"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Горизонтально",
+            "vertical": "Вертикально"
+          },
+          "x-axis_type": {
+            "Default": "Типово",
+            "Date": "Дата"
           }
         }
       },
