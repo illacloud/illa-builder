@@ -2236,7 +2236,7 @@
         "add": "新築",
         "body": "本体",
         "default_view": "デフォルトビュー",
-        "edit_view": "ビューを編集",
+        "edit_view": "Edit path",
         "footer": "フッター",
         "header": "ヘッダ",
         "key": "キー値",
@@ -2245,7 +2245,7 @@
         "right_panel": "右パネル",
         "set_as_homepage": "ホームページとして設定",
         "show_fold_icon": "折りたたみボタンを表示",
-        "view_path": "ビューパス",
+        "view_path": "Path",
         "views": "見る",
         "width": "幅",
         "height": "高い",
@@ -2264,7 +2264,7 @@
       "tab_title": "ページ",
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
-        "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "ブラウザーの幅に対するページの幅のパーセンテージ。"
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "JSON スキーマフォーム"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
