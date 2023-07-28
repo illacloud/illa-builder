@@ -2236,7 +2236,7 @@
         "add": "Toevoegen",
         "body": "Lichaam",
         "default_view": "Standaard weergave",
-        "edit_view": "Weergave bewerken",
+        "edit_view": "Edit path",
         "footer": "Voettekst",
         "header": "Koptekst",
         "key": "Sleutel",
@@ -2245,7 +2245,7 @@
         "right_panel": "Rechter paneel",
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
-        "view_path": "View pad",
+        "view_path": "Path",
         "views": "Weergaven",
         "width": "Width",
         "height": "Højde",
@@ -2264,7 +2264,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
-        "view_path": "Een string na example.com/app/page/ voor toegang tot deze weergave",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "JSON Schema formulier"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
