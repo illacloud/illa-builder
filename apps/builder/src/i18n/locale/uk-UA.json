@@ -2286,7 +2286,8 @@
         "views": "Перегляди",
         "width": "Width",
         "height": "Висота",
-        "columns": "Стовпці"
+        "columns": "Стовпці",
+        "set_as_default_subpage": "Встановити як підсторінку за замовчуванням"
       },
       "model_tips": {
         "cancel_button": "Скасувати",
