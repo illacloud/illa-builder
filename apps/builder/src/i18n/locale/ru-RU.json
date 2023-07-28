@@ -1782,14 +1782,14 @@
           "submit_button_text": "Отправить текст кнопки"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Направление",
+          "y-axis_value": "Значение оси Y",
+          "stack_grouped_data": "Данные сгруппированы в стеке",
+          "x-axis_type": "Тип оси X",
+          "format": "Формат",
+          "legend_position": "Расположение легенды",
+          "grid_line": "Линия сетки",
+          "y-axis_type": "Тип оси Y"
         }
       },
       "setter_tooltip": {
@@ -2056,9 +2056,14 @@
           "default_view": "Когда пользователи вводят путь к ошибке, мы автоматически перенаправим на путь по умолчанию. Когда нет пути по умолчанию, мы будем рассматривать первый путь в списке как путь по умолчанию"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis",
-          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups."
+          "direction": "Установить направление графика. ",
+          "y-axis_value": "Задать значение оси Y",
+          "stack_grouped_data": "Значения различных групп с одинаковым значением оси X будут укладываться в штабелерную диаграмму. Сложные диаграммы могут использоваться для сравнения общего размера разных категорий или групп, а также относительные размеры отдельных подкатегорий или подгрупп.",
+          "x-axis_type": "Настройка типа диаграммы может повысить читабельность данных.",
+          "format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Устанавливать местоположение законного. ",
+          "grid_line": "Установить цвет линии сетки. ",
+          "y-axis_type": "Настройка типа диаграммы может повысить читабельность данных."
         }
       },
       "setter_option": {
@@ -2164,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
-            "Radar": "Radar"
+            "Doughnut": "Ореховый",
+            "Radar": "Радар"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Горизонтально",
+            "vertical": "Вертикальный"
+          },
+          "x-axis_type": {
+            "Default": "По умолчанию",
+            "Date": "Дата"
           }
         }
       },
