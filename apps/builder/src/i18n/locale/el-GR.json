@@ -2286,7 +2286,8 @@
         "views": "Προβολές",
         "width": "Width",
         "height": "Ύψος",
-        "columns": "Στήλες"
+        "columns": "Στήλες",
+        "set_as_default_subpage": "Ορισμός ως προεπιλεγμένη υποσελίδα"
       },
       "model_tips": {
         "cancel_button": "Ακύρωση",
