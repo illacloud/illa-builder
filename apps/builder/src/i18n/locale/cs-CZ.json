@@ -2236,7 +2236,7 @@
         "add": "Přidat",
         "body": "Tělo",
         "default_view": "Výchozí zobrazení",
-        "edit_view": "Edit path",
+        "edit_view": "Upravit cestu",
         "footer": "Zápatí",
         "header": "Záhlaví",
         "key": "Klíč",
@@ -2245,7 +2245,7 @@
         "right_panel": "Pravý panel",
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
-        "view_path": "Path",
+        "view_path": "Cesta",
         "views": "Zobrazení",
         "width": "Width",
         "height": "Výška",
@@ -2264,7 +2264,7 @@
       "tab_title": "Stránka",
       "tooltips": {
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit cestu. Například, pokud změníš cestu na '**newPath**', a přidej ji jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "Formulář schématu JSON"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. "
     }
   },
   "page": {
