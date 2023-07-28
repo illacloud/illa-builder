@@ -1782,14 +1782,14 @@
           "submit_button_text": "Odeslat text tlačítka"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Směr",
+          "y-axis_value": "Hodnota osy Y",
+          "stack_grouped_data": "Seskupená data zásobníku",
+          "x-axis_type": "Typ osy X",
+          "format": "Formát",
+          "legend_position": "Pozice legendy",
+          "grid_line": "Mřížka",
+          "y-axis_type": "Typ osy Y"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "Když uživatelé zadají chybovou cestu, automaticky přesměrujeme na výchozí cestu. Pokud neexistuje výchozí cesta, budeme považovat první cestu v seznamu za výchozí cestu"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "Nastavte směr grafu. ",
+          "y-axis_value": "Nastavte hodnotu osy Y.",
+          "stack_grouped_data": "Hodnoty z různých skupin se stejnou hodnotou osy X budou seskupeny do seskupeného grafu. Pro porovnání celkové velikosti různých kategorií nebo skupin lze použít stacionární grafy. stejně jako relativní velikost jednotlivých podkategorií nebo podskupin.",
+          "x-axis_type": "Nastavení typu grafu může zlepšit čitelnost dat.",
+          "format": "Platný formát data. Viz [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Možnost nastavení legentu. ",
+          "grid_line": "Pro nastavení barvy mřížky. ",
+          "y-axis_type": "Nastavení typu grafu může zlepšit čitelnost dat."
         }
       },
       "setter_option": {
@@ -2163,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
+            "Doughnut": "Koberec",
             "Radar": "Radar"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Horizontální",
+            "vertical": "Vertikální"
+          },
+          "x-axis_type": {
+            "Default": "Výchozí",
+            "Date": "Datum:"
           }
         }
       },
