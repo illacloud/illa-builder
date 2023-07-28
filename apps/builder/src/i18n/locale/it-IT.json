@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Imposta il titolo da visualizzare"
+        },
+        "page": {
+          "default_view": "Quando gli utenti inseriscono un percorso di errore, reindirizzeremo automaticamente al percorso predefinito. Quando non c'è un percorso predefinito, tratteremo il primo percorso nella lista come il percorso predefinito"
         }
       },
       "setter_option": {
