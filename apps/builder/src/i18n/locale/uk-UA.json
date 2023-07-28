@@ -2043,7 +2043,7 @@
           "title": "Встановити заголовок для відображення"
         },
         "page": {
-          "default_view": "When users enter an error path, we will automatically redirect to the default path. When there is no default path, we will treat the first path in the list as the default path"
+          "default_view": "Коли користувачі введуть шлях до помилки, ми автоматично перенаправлятимемо шлях за замовчуванням. Якщо немає стандартного шляху, ми будемо розглядати перший шлях у списку як шлях за замовчуванням"
         }
       },
       "setter_option": {
@@ -3792,6 +3792,10 @@
         "title": "Змінити план?",
         "button_cancel": "Скасувати",
         "button_confirm": "Підтвердити"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 - для преміум-команди. ",
+        "string2": "Щоб використовувати його, будь ласка, оновіть Premium-версію. Купуючи Premium, ви також матимете доступ до наступних функцій. "
       }
     },
     "homepage": {
