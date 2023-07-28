@@ -3792,6 +3792,10 @@
         "title": "Endre plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekreft"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 er for Premium-team. ",
+        "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
       }
     },
     "homepage": {
