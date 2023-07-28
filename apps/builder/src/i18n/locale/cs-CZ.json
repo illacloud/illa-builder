@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Nastavit název pro zobrazení"
+        },
+        "page": {
+          "default_view": "Když uživatelé zadají chybovou cestu, automaticky přesměrujeme na výchozí cestu. Pokud neexistuje výchozí cesta, budeme považovat první cestu v seznamu za výchozí cestu"
         }
       },
       "setter_option": {
