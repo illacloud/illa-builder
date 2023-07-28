@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Модель",
             "variable": "Змінна",
-            "input": "Input",
+            "input": "Надіслати вміст",
             "max-token": "Максимальний токен"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Прихована кнопка Відправити",
           "submit_button_full_w": "Кнопка \"Залишити\" всю ширину",
           "submit_button_text": "Надіслати текст кнопки"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -2044,6 +2054,11 @@
         },
         "page": {
           "default_view": "Коли користувачі введуть шлях до помилки, ми автоматично перенаправлятимемо шлях за замовчуванням. Якщо немає стандартного шляху, ми будемо розглядати перший шлях у списку як шлях за замовчуванням"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis",
+          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups."
         }
       },
       "setter_option": {
@@ -2145,6 +2160,16 @@
           "file_name_duplicatio": {
             "replace": "Заміняти",
             "keepboth": "Залишити обидва"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
           }
         }
       },
