@@ -3021,7 +3021,10 @@
       "name": "JSON Schema formulier"
     },
     "page": {
-      "path_duplicated": "Het pad wordt gedupliceerd. Gebruik een uniek pad om fouten te voorkomen. "
+      "path_duplicated": "Het pad wordt gedupliceerd. Gebruik een uniek pad om fouten te voorkomen. ",
+      "tips": {
+        "blank_view": "Deze module heeft geen onderliggende pagina's. Voeg ze eerst toe via het pagina paneel aan de rechterkant."
+      }
     }
   },
   "page": {
