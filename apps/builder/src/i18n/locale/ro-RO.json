@@ -3024,6 +3024,9 @@
       "path_duplicated": "Calea este duplicată. Vă rugăm să folosiți o cale unică pentru a evita erorile. ",
       "tips": {
         "blank_view": "Acest modul nu are pagini copii. Vă rugăm să le adăugaţi mai întâi prin panoul de pagină din dreapta."
+      },
+      "label": {
+        "rename_url": "Editare cale"
       }
     }
   },
