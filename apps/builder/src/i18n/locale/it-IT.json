@@ -32,12 +32,15 @@
       "cancel": "Annulla",
       "delete": "Elimina",
       "delete_cancel_text": "Annulla",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Dopo la cancellazione, non sarà possibile accedere o recuperare i dati attraverso qualsiasi mezzo. Si prega di confermare.",
       "delete_ok_text": "Elimina",
       "delete_title": "Sei sicuro?",
       "error_button": "Riprova",
       "error_description": "C'è un problema con la tua operazione.",
-      "error_title": "Errore"
+      "error_title": "Errore",
+      "marketplace": "Marketplace",
+      "run": "Esegui",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Crea Nuovo",
@@ -51,6 +54,28 @@
       "save_success": "Salvataggio completato",
       "test_fail": "Test non riuscito",
       "test_success": "Test con successo"
+    },
+    "list-type": {
+      "team": "Team",
+      "marketplace": "Mercato dell'agente"
+    },
+    "sort-type": {
+      "popular": "Più popolari",
+      "recent": "Aggiornato di recente",
+      "star": "Preferiti"
+    },
+    "search": "Cerca",
+    "no-result": "Nessun risultato qui. Si prega di aggiornare o modificare i termini di ricerca.",
+    "message": {
+      "next-page-error": "Impossibile caricare la pagina successiva. Per favore riprova.",
+      "create-failed": "Creazione dell'agente non riuscita. Riprova.",
+      "sort-failed": "Modifica del tipo di filtro non riuscita. Riprova.",
+      "detail-load-failed": "Impossibile recuperare i dettagli, per favore riprova.",
+      "fork-failed": "Impossibile effettuare il fork, riprova.",
+      "create-suc": "Creazione non riuscita, riprova.",
+      "fork-suc": "Forked con successo.",
+      "delete-failed": "Eliminazione non riuscita. Riprova. ",
+      "delete-suc": "Eliminato con successo. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Account Servizio"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Seleziona"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Seleziona pagine"
+            },
+            "ai-agent": {
+              "value": "Valore"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3,5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Record",
             "record": "Registra",
             "record_ids": "Id Record"
+          },
+          "ai-agent": {
+            "model": "Modello",
+            "variable": "Variabile",
+            "input": "Input",
+            "max-token": "Max token"
           }
         },
         "menu": {
@@ -2462,6 +2509,67 @@
           "preview": "Impossibile caricare il record di cronologia."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Nome",
+        "desc": "Descrizione",
+        "mode": "Modalità",
+        "prompt": "Prompt",
+        "variable": "Variabile",
+        "welcome": "Messaggio di benvenuto",
+        "model": "Modello",
+        "temperature": "Temperatura",
+        "max-token": "Max token"
+      },
+      "placeholder": {
+        "logo": "Carica",
+        "name": "Dare un nome all'agente",
+        "desc": "Fornire una breve descrizione di cosa si intende utilizzare questo agente.",
+        "prompt": "Inserisci / per selezionare una variabile",
+        "variable": {
+          "key": "Nome della variabile",
+          "value": "Valore"
+        },
+        "welcome": "Fornire un messaggio di benvenuto visualizzato quando gli utenti iniziano a usare l'agente.",
+        "temperature": "Un valore compreso tra 0 e 1. Più piccolo è il valore, migliore può essere l'effetto",
+        "max-token": "Usato per limitare il numero massimo di token consumati in una singola esecuzione"
+      },
+      "tips": {
+        "mode": "In modalità chat, ogni messaggio inviato include la cronologia delle conversazioni come parte della richiesta, che può portare a risultati migliori, ma consuma più gettoni; in modalità testo, ogni messaggio inviato non include la cronologia delle conversazioni, che può portare a risultati meno ottimali rispetto alla modalità di chat, ma conserva i gettoni.",
+        "not-start": "Completare la configurazione dell'agente e fare clic su Avvia per eseguire",
+        "not-start-run": "Fare clic sul pulsante Start sulla sinistra."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Generazione testo"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3,5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nuovo",
+      "save": "Salva",
+      "start": "Inizia",
+      "restart": "Riavvia",
+      "contribute": "Contribuisci al mercato",
+      "button": {
+        "send": "Invia",
+        "generating": "Generazione"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Genera testo"
+      },
+      "message": {
+        "click-start": "Fare clic sul pulsante Start per attivare."
+      }
     }
   },
   "exit_preview": "Esci Dall'Anteprima",
@@ -3749,15 +3857,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Invita a modificare",
-      "invite_to_use": "Invita da usare"
+      "invite_to_use": "Invita da usare",
+      "share-with-team": "Condividi con il team",
+      "contribute": "Contribuisci"
     },
     "desc": {
-      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
+      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. ",
+      "contribute": "Dopo aver contribuito al Marketplace, tutti gli utenti possono eseguire, stella e fork il tuo Agente. Quando gli utenti di altri team eseguono questo Agente, non consumerà le tue risorse."
     },
     "tips": {
       "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
       "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
       "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
+    },
+    "label": {
+      "contribute": "Contribuisci al mercato",
+      "social-media": "Condividi su"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Ehi lì! Ho appena scoperto questo fantastico agente AI. Potresti essere interessato a dargli anche una prova! Dai un'occhiata! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Dai un'occhiata a questo fantastico agente AI [{{promptName}}]",
+        "linkedin": "Attenzione tutti gli appassionati di AI e i professionisti che cercano di aumentare la loro produttività! Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
+        "facebook": "Attenzione tutti gli appassionati di AI e i professionisti che cercano di aumentare la loro produttività! Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
+        "whatsapp": "Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
+        "hackernews": "Semplifica il tuo carico di lavoro con [{{promptName}}] - L'agente AI che ottiene il lavoro fatto"
+      },
+      "contribute": "Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!"
     }
+  },
+  "ai-agents": "Agenti AI",
+  "marketplace": {
+    "star": "Stella {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }
