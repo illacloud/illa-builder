@@ -3792,6 +3792,10 @@
         "title": "Skift abonnement?",
         "button_cancel": "Annuller",
         "button_confirm": "Bekræft"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 er for Premium-teamet. ",
+        "string2": "For at bruge den, skal du opgradere til Premium. Ved at opgradere til Premium, vil du også have adgang til følgende funktioner. "
       }
     },
     "homepage": {
