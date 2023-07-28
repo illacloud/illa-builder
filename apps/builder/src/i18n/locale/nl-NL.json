@@ -2286,7 +2286,8 @@
         "views": "Weergaven",
         "width": "Width",
         "height": "Højde",
-        "columns": "Kolommen"
+        "columns": "Kolommen",
+        "set_as_default_subpage": "Als standaard subpagina instellen"
       },
       "model_tips": {
         "cancel_button": "annuleren",
