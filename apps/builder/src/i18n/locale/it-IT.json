@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modello",
             "variable": "Variabile",
-            "input": "Input",
+            "input": "Invia contenuto",
             "max-token": "Max token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Pulsante di invio nascosto",
           "submit_button_full_w": "Invia la larghezza totale del pulsante",
           "submit_button_text": "Invia testo pulsante"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -2044,6 +2054,10 @@
         },
         "page": {
           "default_view": "Quando gli utenti inseriscono un percorso di errore, reindirizzeremo automaticamente al percorso predefinito. Quando non c'è un percorso predefinito, tratteremo il primo percorso nella lista come il percorso predefinito"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis"
         }
       },
       "setter_option": {
@@ -2145,6 +2159,16 @@
           "file_name_duplicatio": {
             "replace": "Sostituisci",
             "keepboth": "Mantieni entrambi"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
           }
         }
       },
