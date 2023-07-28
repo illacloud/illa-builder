@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Sett tittel som skal vises"
+        },
+        "page": {
+          "default_view": "Når brukere skriver inn en feilsti, vil vi automatisk omdirigere til standardstien. Når det ikke er noen standardbane, behandler vi den første stien i listen som standard sti"
         }
       },
       "setter_option": {
