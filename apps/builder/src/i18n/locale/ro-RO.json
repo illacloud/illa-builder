@@ -2236,7 +2236,7 @@
         "add": "Adăugare",
         "body": "Corp",
         "default_view": "Vizualizare implicită",
-        "edit_view": "Edit path",
+        "edit_view": "Editare cale",
         "footer": "Subsol",
         "header": "Antet",
         "key": "Cheie",
@@ -2245,7 +2245,7 @@
         "right_panel": "Panoul din dreapta",
         "set_as_homepage": "Setează ca website",
         "show_fold_icon": "Afișare pictogramă pli",
-        "view_path": "Path",
+        "view_path": "Cale",
         "views": "Vizualizări",
         "width": "Width",
         "height": "Înălțime",
@@ -2264,7 +2264,7 @@
       "tab_title": "Pagină",
       "tooltips": {
         "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Pentru a configura accesul la această pagină, va trebui să ajustați calea. De exemplu, dacă schimbați calea către '**newPath**', și adăugați-o ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "Formular JSON Schema"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Calea este duplicată. Vă rugăm să folosiți o cale unică pentru a evita erorile. "
     }
   },
   "page": {
