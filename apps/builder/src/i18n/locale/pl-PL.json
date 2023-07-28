@@ -2236,7 +2236,7 @@
         "add": "Dodaj",
         "body": "Ciało",
         "default_view": "Widok domyślny",
-        "edit_view": "Edit path",
+        "edit_view": "Edytuj ścieżkę",
         "footer": "Stopka",
         "header": "Nagłówek",
         "key": "Klucz",
@@ -2245,7 +2245,7 @@
         "right_panel": "Prawy panel",
         "set_as_homepage": "Ustaw jako stronę główną",
         "show_fold_icon": "Pokaż ikonę złożenia",
-        "view_path": "Path",
+        "view_path": "Ścieżka",
         "views": "Widoki",
         "width": "Width",
         "height": "Wysokość",
@@ -2264,7 +2264,7 @@
       "tab_title": "Strona",
       "tooltips": {
         "show_fold_icon": "Pokaż przycisk do zwinięcia lub rozwinięcia panelu",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Aby skonfigurować dostęp do tej strony, musisz dostosować ścieżkę. Na przykład, jeśli zmienisz ścieżkę na '**nowa ścieżka**' i dodaj ją jako podstronę strony głównej. Ta strona może być dostępna za pomocą następującego URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Szerokość strony wyrażona jako procent szerokości przeglądarki."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "Formularz schematu JSON"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Ścieżka jest zduplikowana. Użyj unikalnej ścieżki, aby uniknąć błędów. "
     }
   },
   "page": {
