@@ -2286,7 +2286,8 @@
         "views": "Widoki",
         "width": "Width",
         "height": "Wysokość",
-        "columns": "Kwota, którą należy zgłosić w kolumnie 060 tego wiersza: pierwotne odliczenie, art. 36 ust. 1 lit. b) CRR."
+        "columns": "Kwota, którą należy zgłosić w kolumnie 060 tego wiersza: pierwotne odliczenie, art. 36 ust. 1 lit. b) CRR.",
+        "set_as_default_subpage": "Ustaw jako domyślną podstronę"
       },
       "model_tips": {
         "cancel_button": "Anuluj",
