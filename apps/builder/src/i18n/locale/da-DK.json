@@ -2236,7 +2236,7 @@
         "add": "Tilføj",
         "body": "Krop",
         "default_view": "Standard visning",
-        "edit_view": "Rediger visning",
+        "edit_view": "Edit path",
         "footer": "Sidefod",
         "header": "Overskrift",
         "key": "Nøgle",
@@ -2245,7 +2245,7 @@
         "right_panel": "Højre panel",
         "set_as_homepage": "Sæt som startside",
         "show_fold_icon": "Vis faldsikon",
-        "view_path": "Vis sti",
+        "view_path": "Path",
         "views": "Visninger",
         "width": "Width",
         "height": "Højde",
@@ -2264,7 +2264,7 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knap til at skjule eller udvide panelet",
-        "view_path": "En streng efter eksempel.com/app/side/ for at få adgang til denne visning",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden af siden som en procentdel af browserens bredde."
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "JSON Skema Form"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
