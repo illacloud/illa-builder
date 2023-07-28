@@ -2236,7 +2236,7 @@
         "add": "Lägg till",
         "body": "Kropp",
         "default_view": "Förvald vy",
-        "edit_view": "Redigera vy",
+        "edit_view": "Edit path",
         "footer": "Sidfot",
         "header": "Rubrik",
         "key": "Nyckel",
@@ -2245,7 +2245,7 @@
         "right_panel": "Höger panel",
         "set_as_homepage": "Ange som hemsida",
         "show_fold_icon": "Visa vik-ikon",
-        "view_path": "Visa sökväg",
+        "view_path": "Path",
         "views": "Visningar",
         "width": "Width",
         "height": "Höjd",
@@ -2264,7 +2264,7 @@
       "tab_title": "Sida",
       "tooltips": {
         "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
-        "view_path": "En sträng efter example.com/app/page/ för att komma åt denna vy",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "Formulär för JSON Schema"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
