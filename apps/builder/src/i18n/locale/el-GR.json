@@ -2236,7 +2236,7 @@
         "add": "Προσθήκη",
         "body": "Σώμα",
         "default_view": "Προεπιλεγμένη προβολή",
-        "edit_view": "Επεξεργασία προβολής",
+        "edit_view": "Edit path",
         "footer": "Υποσέλιδο",
         "header": "Κεφαλίδα",
         "key": "Κλειδί",
@@ -2245,7 +2245,7 @@
         "right_panel": "Δεξιός πίνακας",
         "set_as_homepage": "Ορισμός ως αρχική σελίδα",
         "show_fold_icon": "Εμφάνιση εικονιδίου διπλώματος",
-        "view_path": "Προβολή διαδρομής",
+        "view_path": "Path",
         "views": "Προβολές",
         "width": "Width",
         "height": "Ύψος",
@@ -2264,7 +2264,7 @@
       "tab_title": "Σελίδα",
       "tooltips": {
         "show_fold_icon": "Εμφάνιση ενός κουμπιού για σύμπτυξη ή επέκταση του πίνακα",
-        "view_path": "Μια συμβολοσειρά μετά το example.com/app/page/ για πρόσβαση σε αυτήν την προβολή",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Το πλάτος της σελίδας ως ποσοστό του πλάτους του περιηγητή."
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "Μορφή JSON Schema"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
