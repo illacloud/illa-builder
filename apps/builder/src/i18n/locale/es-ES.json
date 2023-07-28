@@ -3024,6 +3024,9 @@
       "path_duplicated": "La ruta está duplicada. Utilice una ruta única para evitar errores. ",
       "tips": {
         "blank_view": "Este módulo no tiene páginas hijas. Por favor, añádelas primero a través del panel de página a la derecha."
+      },
+      "label": {
+        "rename_url": "Editar ruta"
       }
     }
   },
