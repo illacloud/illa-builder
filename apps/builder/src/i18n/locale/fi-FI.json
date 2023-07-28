@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Aseta näytettävä otsikko"
+        },
+        "page": {
+          "default_view": "Kun käyttäjät syöttävät virheen polun, ohjaamme automaattisesti uudelleen oletuspolulle. Kun oletus polkua ei ole, me kohtelemme listan ensimmäistä polkua oletuspoluksi"
         }
       },
       "setter_option": {
