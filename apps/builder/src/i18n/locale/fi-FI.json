@@ -3024,6 +3024,9 @@
       "path_duplicated": "Polku on kopioitu. Ole hyvä ja käytä ainutlaatuista polkua välttääksesi virheitä. ",
       "tips": {
         "blank_view": "Tällä moduulilla ei ole alisivuja. Ole hyvä ja lisää ne ensin oikealla olevasta sivupaneelista."
+      },
+      "label": {
+        "rename_url": "Muokkaa polkua"
       }
     }
   },
