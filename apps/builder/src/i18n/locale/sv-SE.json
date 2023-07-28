@@ -2043,7 +2043,7 @@
           "title": "Ange titel att visa"
         },
         "page": {
-          "default_view": "When users enter an error path, we will automatically redirect to the default path. When there is no default path, we will treat the first path in the list as the default path"
+          "default_view": "När användare anger en felsökväg, kommer vi automatiskt att omdirigera till standardsökvägen. När det inte finns någon standardväg, kommer vi att behandla den första sökvägen i listan som standardsökvägen"
         }
       },
       "setter_option": {
@@ -3792,6 +3792,10 @@
         "title": "Ändra plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekräfta"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 är för Premium-teamet. ",
+        "string2": "För att använda det, vänligen uppgradera till Premium. Genom att uppgradera till Premium, kommer du också att ha tillgång till följande funktioner. "
       }
     },
     "homepage": {
