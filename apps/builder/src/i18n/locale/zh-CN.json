@@ -1782,14 +1782,14 @@
           "submit_button_text": "提交按钮文案"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "方向",
+          "y-axis_value": "纵坐标值",
+          "stack_grouped_data": "堆栈数据",
+          "x-axis_type": "X轴类型",
+          "format": "格式",
+          "legend_position": "图例位置",
+          "grid_line": "网格线",
+          "y-axis_type": "Y轴类型"
         }
       },
       "setter_tooltip": {
@@ -2056,9 +2056,14 @@
           "default_view": "当用户输错路径时，我们会自动重定向到默认路径。当没有默认路径，我们会将列表里第一个路径视作默认路径。"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis",
-          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups."
+          "direction": "设置图表方向 ",
+          "y-axis_value": "设置Y轴的值",
+          "stack_grouped_data": "具有相同X轴值的不同组别的值将被堆叠在堆叠图表中。 可使用堆积图来比较不同类别或组的总体大小。",
+          "x-axis_type": "设置图表类型以提高数据可读性。",
+          "format": "一个符合规范的时间格式，请参考 [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "legend_position": "设置图例的位置",
+          "grid_line": "设置网格线的颜色",
+          "y-axis_type": "设置图表类型以提高数据可读性。"
         }
       },
       "setter_option": {
@@ -2164,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
-            "Radar": "Radar"
+            "Doughnut": "环状图",
+            "Radar": "雷达图"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "横向",
+            "vertical": "纵向"
+          },
+          "x-axis_type": {
+            "Default": "默认",
+            "Date": "日期"
           }
         }
       },
