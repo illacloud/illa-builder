@@ -3021,7 +3021,10 @@
       "name": "JSON-Schema-Formular"
     },
     "page": {
-      "path_duplicated": "Der Pfad wurde dupliziert. Bitte verwenden Sie einen eindeutigen Pfad, um Fehler zu vermeiden. "
+      "path_duplicated": "Der Pfad wurde dupliziert. Bitte verwenden Sie einen eindeutigen Pfad, um Fehler zu vermeiden. ",
+      "tips": {
+        "blank_view": "Dieses Modul hat keine Unterseiten. Bitte fügen Sie diese zuerst durch das Seitenfenster auf der rechten Seite."
+      }
     }
   },
   "page": {
