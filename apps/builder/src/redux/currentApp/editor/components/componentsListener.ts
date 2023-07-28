@@ -418,6 +418,40 @@ const handlerUpdateViewportSizeEffect = (
   listenApi.dispatch(cursorActions.resetCursorReducer())
 }
 
+const updateSubPagePathEffect = (
+  action: ReturnType<typeof componentsActions.updateSubPagePathReducer>,
+  listenApi: AppListenerEffectAPI,
+) => {
+  const { pageName, subPagePath, oldSubPagePath } = action.payload
+  const oldExecutionResult = getExecutionResult(listenApi.getState())
+  const rootNode = oldExecutionResult.root
+  if (rootNode.currentSubPagePath === oldSubPagePath) {
+    listenApi.dispatch(
+      executionActions.updateCurrentPagePathReducer({
+        pageDisplayName: pageName,
+        subPagePath,
+      }),
+    )
+  }
+}
+
+const handleDeleteSubPageViewNodeEffect = (
+  action: ReturnType<typeof componentsActions.deleteSubPageViewNodeReducer>,
+  listenApi: AppListenerEffectAPI,
+) => {
+  const { pageName, subPagePath } = action.payload
+  const oldExecutionResult = getExecutionResult(listenApi.getState())
+  const rootNode = oldExecutionResult.root
+  if (rootNode.currentSubPagePath === subPagePath) {
+    listenApi.dispatch(
+      executionActions.updateCurrentPagePathReducer({
+        pageDisplayName: pageName,
+        subPagePath: undefined,
+      }),
+    )
+  }
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -462,6 +496,14 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateViewportSizeReducer,
       effect: handlerUpdateViewportSizeEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.updateSubPagePathReducer,
+      effect: updateSubPagePathEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.deleteSubPageViewNodeReducer,
+      effect: handleDeleteSubPageViewNodeEffect,
     }),
   ]
 

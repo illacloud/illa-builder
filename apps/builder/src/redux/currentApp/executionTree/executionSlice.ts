@@ -15,6 +15,7 @@ import {
   setResizingNodeIDsReducer,
   setWidgetLayoutInfoReducer,
   startExecutionReducer,
+  updateCurrentPagePathReducer,
   updateExecutionByDisplayNameReducer,
   updateExecutionByMultiDisplayNameReducer,
   updateModalDisplayReducer,
@@ -47,6 +48,7 @@ const executionSlice = createSlice({
     updateWidgetLayoutInfoWhenChangeDisplayNameReducer,
     setDraggingNodeIDsReducer,
     setResizingNodeIDsReducer,
+    updateCurrentPagePathReducer,
   },
 })
 

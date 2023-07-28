@@ -113,7 +113,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
 
   if (!sectionNodeProps) return null
 
-  const componentNode = sectionNode.childrenNode.find(
+  const componentNode = sectionNode.childrenNode?.find(
     (node) => node.displayName === currentViewDisplayName,
   )
 

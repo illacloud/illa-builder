@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { ReduceIcon, Trigger } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -9,20 +9,24 @@ import { deleteIconStyle, itemWrapperStyle } from "./style"
 
 export const Item: FC<ItemProps> = (props) => {
   const {
-    name,
-    otherKeys,
-    isSelected,
+    otherPaths,
     index,
-    handleChangSectionView,
     handleDeleteSectionView,
     path,
     handleUpdateItem,
     attrPath,
   } = props
   const [modalVisible, setModalVisible] = useState(false)
-  const isDuplicationKey = useMemo(() => {
-    return otherKeys.some((viewKey) => viewKey == name)
-  }, [otherKeys, name])
+  const isDuplicationPath = useMemo(() => {
+    return otherPaths.some((viewKey) => viewKey == path)
+  }, [otherPaths, path])
+
+  const handleUpdatePath = useCallback(
+    (value: string) => {
+      handleUpdateItem(`${attrPath}.path`, value)
+    },
+    [attrPath, handleUpdateItem],
+  )
   return (
     <Trigger
       withoutPadding
@@ -33,10 +37,8 @@ export const Item: FC<ItemProps> = (props) => {
           onCloseModal={() => {
             setModalVisible(false)
           }}
-          name={name}
           path={path}
-          handleUpdateItem={handleUpdateItem}
-          attrPath={attrPath}
+          handleUpdateItem={handleUpdatePath}
         />
       }
       trigger="click"
@@ -54,11 +56,8 @@ export const Item: FC<ItemProps> = (props) => {
     >
       <div css={itemWrapperStyle}>
         <LabelNameAndDragIcon
-          name={name}
-          isDuplicationKey={isDuplicationKey}
-          isSelected={isSelected}
-          index={index}
-          handleChangSectionView={handleChangSectionView}
+          name={path}
+          isDuplicationKey={isDuplicationPath}
         />
         <ReduceIcon
           css={deleteIconStyle}

@@ -6,6 +6,7 @@ import {
   DependenciesState,
   ErrorShape,
   ExecutionState,
+  UpdateCurrentPagePathPayload,
   UpdateExecutionByDisplayNamePayload,
   UpdateWidgetLayoutInfoPayload,
   executionInitialState,
@@ -273,4 +274,70 @@ export const setResizingNodeIDsReducer: CaseReducer<
   PayloadAction<string[]>
 > = (state, action) => {
   state.resizingComponentIDs = action.payload
+}
+
+export const updateCurrentPagePathReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<UpdateCurrentPagePathPayload>
+> = (state, action) => {
+  const { pageDisplayName, subPagePath } = action.payload
+  const rootNode = state.result.root
+  if (!rootNode) return
+  const pageSortedKey = rootNode.$childrenNode
+  if (!Array.isArray(pageSortedKey)) return
+  const currentIndex = pageSortedKey.findIndex(
+    (pageName) => pageName === pageDisplayName,
+  )
+  if (currentIndex === -1) return
+  const currentPageNode = state.result[pageDisplayName]
+  const pageChildrenNodeDisplayName: string[] = currentPageNode.$childrenNode
+  rootNode.currentSubPagePath = subPagePath
+  rootNode.currentPageIndex = currentIndex
+  if (subPagePath) {
+    pageChildrenNodeDisplayName.forEach((sectionDisplayName) => {
+      const sectionNode = state.result[sectionDisplayName]
+      if (!sectionNode) return
+      if (sectionNode.$widgetType === "MODAL_SECTION_NODE") return
+      const sectionViewConfig = sectionNode.sectionViewConfigs.find(
+        (config: Record<string, string>) => config.path === subPagePath,
+      )
+      let sectionIndex = sectionNode.viewSortedKey.findIndex(
+        (viewDisplayName: string) =>
+          viewDisplayName === sectionViewConfig?.viewDisplayName,
+      )
+      if (sectionIndex === -1) {
+        const defaultViewPath = sectionNode.defaultViewKey
+        const defaultSectionViewConfig = sectionNode.sectionViewConfigs.find(
+          (config: Record<string, string>) => config.path === defaultViewPath,
+        )
+        sectionIndex = sectionNode.viewSortedKey.findIndex(
+          (viewDisplayName: string) =>
+            viewDisplayName === defaultSectionViewConfig?.viewDisplayName,
+        )
+        if (sectionIndex === -1) {
+          sectionIndex = 0
+        }
+      }
+      sectionNode.currentViewIndex = sectionIndex
+    })
+  } else {
+    pageChildrenNodeDisplayName.forEach((sectionDisplayName) => {
+      const sectionNode = state.result[sectionDisplayName]
+      if (!sectionNode) return
+      if (sectionNode.$widgetType === "MODAL_SECTION_NODE") return
+      let sectionIndex = 0
+      const defaultViewPath = sectionNode.defaultViewKey
+      const defaultSectionViewConfig = sectionNode.sectionViewConfigs.find(
+        (config: Record<string, string>) => config.path === defaultViewPath,
+      )
+      sectionIndex = sectionNode.viewSortedKey.findIndex(
+        (viewDisplayName: string) =>
+          viewDisplayName === defaultSectionViewConfig?.viewDisplayName,
+      )
+      if (sectionIndex === -1) {
+        sectionIndex = 0
+      }
+      sectionNode.currentViewIndex = sectionIndex
+    })
+  }
 }

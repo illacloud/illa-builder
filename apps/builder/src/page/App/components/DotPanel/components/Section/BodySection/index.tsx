@@ -34,7 +34,7 @@ export const RenderBodySection: FC<RenderSectionProps> = (props) => {
 
   if (!sectionNodeProps) return null
 
-  const componentNode = sectionNode.childrenNode.find(
+  const componentNode = sectionNode.childrenNode?.find(
     (node) => node.displayName === currentViewDisplayName,
   )
   return (

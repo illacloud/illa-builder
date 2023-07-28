@@ -411,5 +411,102 @@ export const componentsSnapShot = (
       }
       break
     }
+    case "deleteSubPageViewNodeReducer": {
+      const newAction = {
+        type: "components/addSubPageReducer",
+        payload: {
+          pageName: action.payload.pageName,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "addSubPageReducer": {
+      const { pageName } = action.payload
+      const pageNode = searchDSLByDisplayName(pageName, _nextRootState)
+      const bodySectionNode = pageNode?.childrenNode.find(
+        (node) => node.showName === "bodySection",
+      )
+      if (!bodySectionNode) break
+      const viewConfigs = bodySectionNode.props!.sectionViewConfigs
+      const lastViewConfig = viewConfigs[viewConfigs.length - 1]
+      if (!lastViewConfig) break
+      const newAction = {
+        type: "components/deleteSubPageViewNodeReducer",
+        payload: {
+          pageName: action.payload.pageName,
+          subPagePath: lastViewConfig.path,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "updateSubPagePathReducer": {
+      const { pageName, subPagePath, oldSubPagePath } = action.payload
+      const newAction = {
+        type: "components/updateSubPagePathReducer",
+        payload: {
+          pageName: pageName,
+          subPagePath: oldSubPagePath,
+          oldSubPagePath: subPagePath,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
+    case "updateDefaultSubPagePathReducer": {
+      const { pageName } = action.payload
+      const pageNode = searchDSLByDisplayName(pageName, _prevRootState)
+      const oldBodySectionNode = pageNode?.childrenNode.find(
+        (node) => node.showName === "bodySection",
+      )
+      if (!oldBodySectionNode) break
+      const defaultViewKey = oldBodySectionNode.props!.defaultViewKey
+      const newAction = {
+        type: "components/updateDefaultSubPagePathReducer",
+        payload: {
+          pageName: pageName,
+          subPagePath: defaultViewKey,
+        },
+        from: action.from,
+      }
+      if (action.from === REDUX_ACTION_FROM.UNDO) {
+        IllaUndoRedoManager.pushToRedoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      } else {
+        IllaUndoRedoManager.pushToUndoStack([
+          JSON.parse(JSON.stringify(newAction)),
+        ])
+      }
+      break
+    }
   }
 }
