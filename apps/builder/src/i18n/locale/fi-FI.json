@@ -1782,14 +1782,14 @@
           "submit_button_text": "Lähetä painikkeen teksti"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Suunta",
+          "y-axis_value": "Y-akselin arvo",
+          "stack_grouped_data": "Pino ryhmitelty tiedot",
+          "x-axis_type": "X-akselin tyyppi",
+          "format": "Muoto",
+          "legend_position": "Selitteen sijainti",
+          "grid_line": "Ruudukon rivi",
+          "y-axis_type": "Y-akselin tyyppi"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "Kun käyttäjät syöttävät virheen polun, ohjaamme automaattisesti uudelleen oletuspolulle. Kun oletus polkua ei ole, me kohtelemme listan ensimmäistä polkua oletuspoluksi"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "Aseta kaavion suunta. ",
+          "y-axis_value": "Aseta Y-akselin arvo",
+          "stack_grouped_data": "Arvot eri ryhmistä, joilla on sama X-akselin arvo, pinottu kaavio. Pinotut kaaviot voidaan käyttää vertailemaan eri ryhmien tai ryhmien kokoa, sekä yksittäisten alaluokkien tai alaryhmien suhteelliset koot.",
+          "x-axis_type": "Karttatyypin määrittäminen voi parantaa tietojen luettavuutta.",
+          "format": "Voimassa oleva päivämäärän muoto merkkijono. Ks. [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Voit asettaa aseman legentti. ",
+          "grid_line": "Jos haluat asettaa rivin värin. ",
+          "y-axis_type": "Karttatyypin määrittäminen voi parantaa tietojen luettavuutta."
         }
       },
       "setter_option": {
@@ -2164,11 +2170,15 @@
         "chart": {
           "chart-type": {
             "Doughnut": "Doughnut",
-            "Radar": "Radar"
+            "Radar": "Tutka"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Vaakasuora",
+            "vertical": "Pystysuora"
+          },
+          "x-axis_type": {
+            "Default": "Oletus",
+            "Date": "Päivämäärä"
           }
         }
       },
