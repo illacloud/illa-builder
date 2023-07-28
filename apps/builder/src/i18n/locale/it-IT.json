@@ -2236,7 +2236,7 @@
         "add": "Aggiungi",
         "body": "Corpo",
         "default_view": "Vista predefinita",
-        "edit_view": "Modifica vista",
+        "edit_view": "Edit path",
         "footer": "Footer",
         "header": "Intestazione",
         "key": "Chiave",
@@ -2245,7 +2245,7 @@
         "right_panel": "Pannello destro",
         "set_as_homepage": "Imposta come homepage",
         "show_fold_icon": "Mostra icona piega",
-        "view_path": "Visualizza percorso",
+        "view_path": "Path",
         "views": "Viste",
         "width": "Width",
         "height": "Altezza",
@@ -2264,7 +2264,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Mostra un pulsante per comprimere o espandere il pannello",
-        "view_path": "Una stringa dopo example.com/app/page/ per accedere a questa vista",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La larghezza della pagina come percentuale della larghezza del browser."
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "Modulo Schema JSON"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
