@@ -1782,14 +1782,14 @@
           "submit_button_text": "Text der Schaltfläche senden"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
+          "direction": "Richtung",
+          "y-axis_value": "Y-Achsen-Wert",
+          "stack_grouped_data": "Gruppierte Daten",
+          "x-axis_type": "X-Achsen-Typ",
           "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "legend_position": "Legendenposition",
+          "grid_line": "Rasterlinie",
+          "y-axis_type": "Y-Achsen-Typ"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "Wenn Benutzer einen Fehlerpfad eingeben, werden wir automatisch auf den Standardpfad umleiten. Wenn es keinen Standardpfad gibt, werden wir den ersten Pfad in der Liste als Standardpfad behandeln"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "Setze die Richtung des Diagramms. ",
+          "y-axis_value": "Setze den Wert der Y-Achse",
+          "stack_grouped_data": "Werte aus verschiedenen Gruppen mit dem gleichen X-Achsen-Wert werden in einem Stapeldiagramm gestapelt. Gestapelte Diagramme können zum Vergleich der Gesamtgröße verschiedener Kategorien oder Gruppen verwendet werden sowie die relativen Größen einzelner Unterkategorien oder Untergruppen.",
+          "x-axis_type": "Die Einstellung des Diagrammtyps kann die Datenlesbarkeit verbessern.",
+          "format": "Ein gültiger Datumsformat-String. Siehe [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Um die Position des legenten zu setzen. ",
+          "grid_line": "Um die Farbe der Rasterlinie einzustellen. ",
+          "y-axis_type": "Die Einstellung des Diagrammtyps kann die Datenlesbarkeit verbessern."
         }
       },
       "setter_option": {
@@ -2168,7 +2174,11 @@
           },
           "direction": {
             "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Datum"
           }
         }
       },
