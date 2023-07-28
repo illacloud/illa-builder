@@ -2236,7 +2236,7 @@
         "add": "Lisää",
         "body": "Runko",
         "default_view": "Oletus näkymä",
-        "edit_view": "Muokkaa näkymää",
+        "edit_view": "Edit path",
         "footer": "Alatunniste",
         "header": "Otsikko",
         "key": "Avain",
@@ -2245,7 +2245,7 @@
         "right_panel": "Oikea paneeli",
         "set_as_homepage": "Aseta etusivuksi",
         "show_fold_icon": "Näytä kertakuvake",
-        "view_path": "Näytä polku",
+        "view_path": "Path",
         "views": "Näkymät",
         "width": "Width",
         "height": "Korkeus",
@@ -2264,7 +2264,7 @@
       "tab_title": "Sivu",
       "tooltips": {
         "show_fold_icon": "Näytä painike tiivistääksesi tai laajentaaksesi paneelia",
-        "view_path": "Merkkijono esimerkki.com/app/page/ päästäksesi tähän näkymään",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Sivujen leveys prosentteina selaimen leveydestä. @ action: button"
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "JSON Schema Form"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
