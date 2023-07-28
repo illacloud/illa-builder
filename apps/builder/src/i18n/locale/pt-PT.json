@@ -1782,14 +1782,14 @@
           "submit_button_text": "Enviar texto do botão"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Direção",
+          "y-axis_value": "Valor do eixo Y",
+          "stack_grouped_data": "Pilha de dados agrupados",
+          "x-axis_type": "Tipo Eixo-X",
+          "format": "Formato",
+          "legend_position": "Posição da legenda",
+          "grid_line": "Linha de grade",
+          "y-axis_type": "Tipo Eixo-Y"
         }
       },
       "setter_tooltip": {
@@ -2056,9 +2056,14 @@
           "default_view": "Quando os usuários informam um caminho de erro, vamos automaticamente redirecionar para o caminho padrão. Quando não há um caminho padrão, trataremos o primeiro caminho da lista como o caminho padrão"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis",
-          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups."
+          "direction": "Define a direção do gráfico. ",
+          "y-axis_value": "Definir o valor do eixo Y",
+          "stack_grouped_data": "Os valores de diferentes grupos com o mesmo valor de eixo X serão empilhados em uma tabela empilhada. Gráficos empilhados podem ser usados para comparar o tamanho geral de diferentes categorias ou grupos, bem como os tamanhos relativos de subcategorias individuais ou subgrupos.",
+          "x-axis_type": "Definir o tipo de gráfico pode melhorar a legibilidade de dados.",
+          "format": "Uma string de formato de data válida. Veja [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Para definir a posição da legente. ",
+          "grid_line": "Para definir a cor da linha da grade. ",
+          "y-axis_type": "Definir o tipo de gráfico pode melhorar a legibilidade de dados."
         }
       },
       "setter_option": {
@@ -2164,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
+            "Doughnut": "Rosquinha",
             "Radar": "Radar"
           },
           "direction": {
             "horizontal": "Horizontal",
             "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Padrão",
+            "Date": "Encontro"
           }
         }
       },
