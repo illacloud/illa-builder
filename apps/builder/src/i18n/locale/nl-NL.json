@@ -3792,6 +3792,10 @@
         "title": "Abonnement wijzigen?",
         "button_cancel": "annuleren",
         "button_confirm": "Bevestigen"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 is voor Premium team. ",
+        "string2": "Upgrade naar Premium om het te gebruiken. Je hebt ook toegang tot de volgende functies. "
       }
     },
     "homepage": {
