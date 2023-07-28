@@ -3024,6 +3024,9 @@
       "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. ",
       "tips": {
         "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
+      },
+      "label": {
+        "rename_url": "Upravit cestu"
       }
     }
   },
