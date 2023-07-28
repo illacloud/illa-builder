@@ -2286,7 +2286,8 @@
         "views": "Просмотров",
         "width": "Width",
         "height": "Высота",
-        "columns": "Столбцы"
+        "columns": "Столбцы",
+        "set_as_default_subpage": "Установить как подстраницу по умолчанию"
       },
       "model_tips": {
         "cancel_button": "Отмена",
