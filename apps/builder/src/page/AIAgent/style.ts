@@ -64,6 +64,8 @@ export const labelTextStyle = css`
 `
 
 export const uploadContainerStyle = css`
+  cursor: pointer;
+  background: ${getColor("grayBlue", "09")};
   width: 100px;
   height: 100px;
   border-radius: 4px;
@@ -75,4 +77,20 @@ export const uploadContainerStyle = css`
 
 export const uploadInputStyle = css`
   display: none;
+`
+
+export const uploadContentContainerStyle = css`
+  color: ${getColor("grayBlue", "04")};
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const uploadTextStyle = css`
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
 `

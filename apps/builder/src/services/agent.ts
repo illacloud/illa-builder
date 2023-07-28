@@ -1,8 +1,8 @@
 import { builderRequest } from "@/api/http"
-import { MarketAiAgent, TeamAiAgent } from "@/redux/aiAgent/aiAgentState"
+import { Agent, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
 
 export interface TeamAgentListData {
-  aiAgentList: TeamAiAgent[]
+  aiAgentList: Agent[]
   totalAIAgentCount: number
 }
 
@@ -49,10 +49,16 @@ export const fetchTeamAgentByKeywords = (
   )
 }
 
+export interface AgentProduct {
+  aiAgent: Agent
+  marketplace: MarketplaceInfo
+}
+
 export interface MarketAgentListData {
-  aiAgentList: MarketAiAgent[]
-  totalAIAgentCount: number
-  totalPages: number
+  products: AgentProduct[]
+  total: number
+  pageSize: number
+  pageIndex: 1
 }
 
 export const forkAIAgentToTeam = (AIAgentID: string, teamID: string) => {

@@ -4,6 +4,7 @@ import {
   Button,
   Input,
   InputNumber,
+  PlusIcon,
   RadioGroup,
   ResetIcon,
   Select,
@@ -25,14 +26,20 @@ import {
   leftPanelTitleTextStyle,
   rightPanelContainerStyle,
   uploadContainerStyle,
+  uploadContentContainerStyle,
   uploadInputStyle,
+  uploadTextStyle,
 } from "@/page/AIAgent/style"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
+import {
+  AI_AGENT_MODAL,
+  AI_AGENT_TYPE,
+  AgentRaw,
+} from "@/redux/aiAgent/aiAgentState"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const AIAgent: FC = () => {
-  const { control, handleSubmit } = useForm<Agent>({
+  const { control, handleSubmit } = useForm<AgentRaw>({
     mode: "onSubmit",
   })
 
@@ -76,6 +83,10 @@ export const AIAgent: FC = () => {
                         e.target.value = ""
                       }}
                     />
+                    <div css={uploadContentContainerStyle}>
+                      <PlusIcon c={getColor("grayBlue", "03")} />
+                      <div css={uploadTextStyle}>Upload</div>
+                    </div>
                   </div>
                 )}
               />
@@ -102,24 +113,24 @@ export const AIAgent: FC = () => {
             </AIAgentBlock>
             <AIAgentBlock title={"Mode"}>
               <Controller
-                name="mode"
+                name="agentType"
                 control={control}
+                defaultValue={AI_AGENT_TYPE.CHAT}
                 shouldUnregister={false}
                 render={({ field }) => (
                   <RadioGroup
                     {...field}
                     colorScheme={"techPurple"}
-                    defaultValue="chat"
                     w="100%"
                     type="button"
                     forceEqualWidth={true}
                     options={[
                       {
-                        value: "chat",
+                        value: AI_AGENT_TYPE.CHAT,
                         label: "Chat",
                       },
                       {
-                        value: "text-generation",
+                        value: AI_AGENT_TYPE.TEXT_GENERATION,
                         label: "Text Generation",
                       },
                     ]}
@@ -197,7 +208,7 @@ export const AIAgent: FC = () => {
                 name="modal"
                 control={control}
                 shouldUnregister={false}
-                defaultValue={"gpt-3.5-16k"}
+                defaultValue={1}
                 render={({ field }) => (
                   <Select
                     {...field}
@@ -210,7 +221,7 @@ export const AIAgent: FC = () => {
                             <span css={labelTextStyle}>GPT-3.5</span>
                           </div>
                         ),
-                        value: "gpt-3.5",
+                        value: AI_AGENT_MODAL.GPT_3_5_TURBO,
                       },
                       {
                         label: (
@@ -219,7 +230,7 @@ export const AIAgent: FC = () => {
                             <span css={labelTextStyle}>GPT-3.5-16k</span>
                           </div>
                         ),
-                        value: "gpt-3.5-16k",
+                        value: AI_AGENT_MODAL.GPT_3_5_TURBO_16K,
                       },
                       {
                         label: (
@@ -228,7 +239,7 @@ export const AIAgent: FC = () => {
                             <span css={labelTextStyle}>GPT-4</span>
                           </div>
                         ),
-                        value: "gpt-4",
+                        value: AI_AGENT_MODAL.GPT_4,
                       },
                     ]}
                   />
@@ -237,7 +248,7 @@ export const AIAgent: FC = () => {
             </AIAgentBlock>
             <AIAgentBlock title={"Max Token"}>
               <Controller
-                name="maxToken"
+                name={"modalConfig.maxTokens"}
                 defaultValue={4096}
                 control={control}
                 shouldUnregister={false}
@@ -254,7 +265,7 @@ export const AIAgent: FC = () => {
             </AIAgentBlock>
             <AIAgentBlock title={"Temperature"}>
               <Controller
-                name="temperature"
+                name="modalConfig.temperature"
                 defaultValue={0.5}
                 control={control}
                 shouldUnregister={false}

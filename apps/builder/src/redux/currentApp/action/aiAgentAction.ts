@@ -1,6 +1,6 @@
-import { AgentVariable } from "@/redux/aiAgent/aiAgentState"
+import { Params } from "@/redux/resource/restapiResource"
 
 export interface AiAgentAction {
-  maxToken: number
-  variables: AgentVariable[]
+  maxTokens: number
+  variables: Params[]
 }

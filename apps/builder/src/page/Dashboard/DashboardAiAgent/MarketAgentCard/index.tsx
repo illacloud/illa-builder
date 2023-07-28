@@ -33,20 +33,20 @@ export const MarketAgentCard: FC<MarketAgentCardProps> = (props) => {
   const navigate = useNavigate()
 
   const toRunAgent = useCallback(() => {
-    navigate(`/${teamIdentifier}/ai-agent/${agentInfo.aiAgentID}/run`)
-  }, [navigate, teamIdentifier, agentInfo.aiAgentID])
+    navigate(`/${teamIdentifier}/ai-agent/${agentInfo.aiAgent.aiAgentID}/run`)
+  }, [navigate, teamIdentifier, agentInfo.aiAgent.aiAgentID])
 
   return (
     <div css={cardStyle} onClick={toRunAgent}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
-          <img css={agentIconStyle} src={agentInfo.config.icon} alt="" />
-          <span css={nameStyle}>{agentInfo.name}</span>
+          <img css={agentIconStyle} src={agentInfo.aiAgent.icon} alt="" />
+          <span css={nameStyle}>{agentInfo.aiAgent.name}</span>
         </div>
       </div>
       <div>
         <div css={descriptionStyle}>
-          {agentInfo.config.description ||
+          {agentInfo.aiAgent.description ||
             t("new_dashboard.desc.no_description")}
         </div>
       </div>
@@ -55,24 +55,26 @@ export const MarketAgentCard: FC<MarketAgentCardProps> = (props) => {
         <div css={teamInfoStyle}>
           <Avatar
             css={teamAvatarStyle}
-            avatarUrl={agentInfo.teamInfo?.icon}
-            name={agentInfo.teamInfo?.name}
-            id={agentInfo.teamInfo?.id}
+            avatarUrl={agentInfo.marketplace.contributorTeam.icon}
+            name={agentInfo.marketplace.contributorTeam.name}
+            id={agentInfo.marketplace.contributorTeam.teamID}
           />
-          <span css={teamNameStyle}>{agentInfo.teamInfo?.name}</span>
+          <span css={teamNameStyle}>
+            {agentInfo.marketplace.contributorTeam.name}
+          </span>
         </div>
         <div css={actionContainerStyle}>
           <div css={actionCountStyle}>
             <ForkIcon />
-            <span>{agentInfo.forkCount}</span>
+            <span>{agentInfo.marketplace.numForks}</span>
           </div>
           <div css={actionCountStyle}>
             <StarOutlineIcon size="16px" />
-            {agentInfo.starCount}
+            {agentInfo.marketplace.numStars}
           </div>
           <div css={actionCountStyle}>
             <PlayOutlineIcon size="16px" />
-            {agentInfo.runCount}
+            {agentInfo.marketplace.numRuns}
           </div>
         </div>
       </div>

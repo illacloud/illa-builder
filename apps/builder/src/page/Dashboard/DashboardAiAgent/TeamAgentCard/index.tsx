@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
 import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
-import { TeamAiAgent } from "@/redux/aiAgent/aiAgentState"
+import { Agent } from "@/redux/aiAgent/aiAgentState"
 import {
   agentIconStyle,
   appActionButtonStyle,
@@ -16,7 +16,7 @@ import {
 } from "./style"
 
 interface TeamAgentCardProps {
-  agentInfo: TeamAiAgent
+  agentInfo: Agent
   canEdit: boolean
 }
 
@@ -42,7 +42,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
     <div css={cardStyle} onClick={toRunAgent}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
-          <img css={agentIconStyle} src={agentInfo.config.icon} alt="" />
+          <img css={agentIconStyle} src={agentInfo.icon} alt="" />
           <span css={nameStyle}>{agentInfo.name}</span>
         </div>
         <TeamAgentCardActionItem
@@ -53,14 +53,13 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
       </div>
       <div>
         <div css={descriptionStyle}>
-          {agentInfo.config.description ||
-            t("new_dashboard.desc.no_description")}
+          {agentInfo.description || t("new_dashboard.desc.no_description")}
         </div>
       </div>
 
       <div css={footerStyle}>
         <Tag
-          hidden={!agentInfo.publish_to_marketplace}
+          hidden={!agentInfo.publishedToMarketplace}
           colorScheme="techPurple"
           size="small"
         >
