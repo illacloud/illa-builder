@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Den anzuzeigenden Titel festlegen"
+        },
+        "page": {
+          "default_view": "Wenn Benutzer einen Fehlerpfad eingeben, werden wir automatisch auf den Standardpfad umleiten. Wenn es keinen Standardpfad gibt, werden wir den ersten Pfad in der Liste als Standardpfad behandeln"
         }
       },
       "setter_option": {
