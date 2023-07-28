@@ -2236,7 +2236,7 @@
         "add": "Ajouter",
         "body": "Corps",
         "default_view": "Vue par défaut",
-        "edit_view": "Edit path",
+        "edit_view": "Modifier le chemin d'accès",
         "footer": "Pied de page",
         "header": "En-tête",
         "key": "Clés",
@@ -2245,7 +2245,7 @@
         "right_panel": "Panneau droit",
         "set_as_homepage": "Définir comme page d'accueil",
         "show_fold_icon": "Afficher l'icône du pli",
-        "view_path": "Path",
+        "view_path": "Chemin d'accès",
         "views": "Vues",
         "width": "Width",
         "height": "Hauteur",
@@ -2264,7 +2264,7 @@
       "tab_title": "Page",
       "tooltips": {
         "show_fold_icon": "Afficher un bouton pour réduire ou agrandir le panneau",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Pour configurer l'accès à cette page, vous devrez ajuster le chemin. Par exemple, si vous changez le chemin d'accès en '**newPath**', et que vous l'ajoutez en tant que sous-page de la page d'accueil. Cette page est alors accessible via l'URL suivante : cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La largeur de la page en pourcentage de la largeur du navigateur."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "Forme de Schéma JSON"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Le chemin est dupliqué. Veuillez utiliser un chemin unique pour éviter les erreurs. "
     }
   },
   "page": {
