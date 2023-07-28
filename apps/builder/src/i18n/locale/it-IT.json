@@ -2286,7 +2286,8 @@
         "views": "Viste",
         "width": "Width",
         "height": "Altezza",
-        "columns": "Colonne"
+        "columns": "Colonne",
+        "set_as_default_subpage": "Imposta come sotto-pagina predefinita"
       },
       "model_tips": {
         "cancel_button": "Annulla",
