@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Malli",
             "variable": "Muuttuja",
-            "input": "Input",
+            "input": "Lähetä sisältöä",
             "max-token": "Max tunnus"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Piilotettu lähetyspainike",
           "submit_button_full_w": "Lähetä painike koko leveys",
           "submit_button_text": "Lähetä painikkeen teksti"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -2044,6 +2054,10 @@
         },
         "page": {
           "default_view": "Kun käyttäjät syöttävät virheen polun, ohjaamme automaattisesti uudelleen oletuspolulle. Kun oletus polkua ei ole, me kohtelemme listan ensimmäistä polkua oletuspoluksi"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis"
         }
       },
       "setter_option": {
@@ -2145,6 +2159,16 @@
           "file_name_duplicatio": {
             "replace": "Korvaa",
             "keepboth": "Pidä molemmat"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
           }
         }
       },
