@@ -3024,6 +3024,9 @@
       "path_duplicated": "Sökvägen är duplicerad. Använd en unik sökväg för att undvika fel. ",
       "tips": {
         "blank_view": "Modulen har inga underordnade sidor. Lägg till dem först via Sidpanelen till höger."
+      },
+      "label": {
+        "rename_url": "Redigera sökväg"
       }
     }
   },
