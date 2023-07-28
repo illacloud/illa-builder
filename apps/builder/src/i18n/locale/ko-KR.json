@@ -2286,7 +2286,8 @@
         "views": "보다",
         "width": "너비",
         "height": "높은",
-        "columns": "열"
+        "columns": "열",
+        "set_as_default_subpage": "Set as default subpage"
       },
       "model_tips": {
         "cancel_button": "취소",
