@@ -3021,7 +3021,10 @@
       "name": "动态表单"
     },
     "page": {
-      "path_duplicated": "路径重复，请使用唯一路径以避免错误"
+      "path_duplicated": "路径重复，请使用唯一路径以避免错误",
+      "tips": {
+        "blank_view": "该模块无子页面，请先通过右侧Page面板添加"
+      }
     }
   },
   "page": {
