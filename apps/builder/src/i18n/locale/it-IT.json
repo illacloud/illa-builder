@@ -3792,6 +3792,10 @@
         "title": "Cambiare il piano?",
         "button_cancel": "Annulla",
         "button_confirm": "Conferma"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 è per il team Premium. ",
+        "string2": "Per usarlo, aggiorna a Premium. Aggiornando a Premium, avrai anche accesso alle seguenti funzionalità. "
       }
     },
     "homepage": {
