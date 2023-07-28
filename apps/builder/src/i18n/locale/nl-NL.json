@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Stel de titel in voor weergave"
+        },
+        "page": {
+          "default_view": "Wanneer gebruikers een foutpad invoeren, wordt automatisch doorverwezen naar het standaard pad. Wanneer er geen standaard pad is, zullen we het eerste pad in de lijst behandelen als het standaardpad"
         }
       },
       "setter_option": {
