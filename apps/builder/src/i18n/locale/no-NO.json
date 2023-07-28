@@ -3024,6 +3024,9 @@
       "path_duplicated": "Stien er duplisert. Bruk en unik bane for å unngå feil. ",
       "tips": {
         "blank_view": "Denne modulen har ingen undersider. Legg dem først gjennom side-panelet til høyre."
+      },
+      "label": {
+        "rename_url": "Endre sti"
       }
     }
   },
