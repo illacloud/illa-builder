@@ -32,12 +32,15 @@
       "cancel": "Zrušit",
       "delete": "Vymazat",
       "delete_cancel_text": "Zrušit",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Po smazání nebude možné přistupovat k datům nebo je obnovovat jakýmkoliv způsobem. Potvrďte prosím.",
       "delete_ok_text": "Vymazat",
       "delete_title": "Jste si jisti?",
       "error_button": "Opakovat",
       "error_description": "Vyskytl se problém s vaší operací.",
-      "error_title": "Chyba"
+      "error_title": "Chyba",
+      "marketplace": "Tržiště",
+      "run": "Spustit",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Vytvořit nový",
@@ -51,6 +54,28 @@
       "save_success": "Úspěšně uloženo",
       "test_fail": "Test se nezdařil",
       "test_success": "Test byl úspěšný"
+    },
+    "list-type": {
+      "team": "Týmový",
+      "marketplace": "Agent trh"
+    },
+    "sort-type": {
+      "popular": "Nejoblíbenější",
+      "recent": "Nedávno aktualizované",
+      "star": "Oblíbené"
+    },
+    "search": "Hledat",
+    "no-result": "Žádný výsledek. Aktualizujte nebo změňte hledané výrazy.",
+    "message": {
+      "next-page-error": "Nepodařilo se načíst další stránku. Zkuste to prosím znovu.",
+      "create-failed": "Nepodařilo se vytvořit agenta. Zkuste to prosím znovu.",
+      "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
+      "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
+      "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
+      "create-suc": "Nepodařilo se vytvořit, zkuste to prosím znovu.",
+      "fork-suc": "Rozštěpeno úspěšně.",
+      "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
+      "delete-suc": "Úspěšně smazáno. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Účet služby"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Vybrat"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Vybrat stránky"
+            },
+            "ai-agent": {
+              "value": "Hodnota"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3,5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Záznamy",
             "record": "Nahrávat",
             "record_ids": "ID záznamu"
+          },
+          "ai-agent": {
+            "model": "Vzor",
+            "variable": "Proměnná",
+            "input": "Odeslat obsah",
+            "max-token": "Maximální token"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "Skryté tlačítko pro odeslání",
           "submit_button_full_w": "Odeslat tlačítko na celou šířku",
           "submit_button_text": "Odeslat text tlačítka"
+        },
+        "chart": {
+          "direction": "Směr",
+          "y-axis_value": "Hodnota osy Y",
+          "stack_grouped_data": "Seskupená data zásobníku",
+          "x-axis_type": "Typ osy X",
+          "format": "Formát",
+          "legend_position": "Pozice legendy",
+          "grid_line": "Mřížka",
+          "y-axis_type": "Typ osy Y"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "Nastavit název pro zobrazení"
+        },
+        "page": {
+          "default_view": "Když uživatelé zadají chybovou cestu, automaticky přesměrujeme na výchozí cestu. Pokud neexistuje výchozí cesta, budeme považovat první cestu v seznamu za výchozí cestu"
+        },
+        "chart": {
+          "direction": "Nastavte směr grafu. ",
+          "y-axis_value": "Nastavte hodnotu osy Y.",
+          "stack_grouped_data": "Hodnoty z různých skupin se stejnou hodnotou osy X budou seskupeny do seskupeného grafu. Pro porovnání celkové velikosti různých kategorií nebo skupin lze použít stacionární grafy. stejně jako relativní velikost jednotlivých podkategorií nebo podskupin.",
+          "x-axis_type": "Nastavení typu grafu může zlepšit čitelnost dat.",
+          "format": "Platný formát data. Viz [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Možnost nastavení legentu. ",
+          "grid_line": "Pro nastavení barvy mřížky. ",
+          "y-axis_type": "Nastavení typu grafu může zlepšit čitelnost dat."
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "Nahradit",
             "keepboth": "Zachovat obojí"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Koberec",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontální",
+            "vertical": "Vertikální"
+          },
+          "x-axis_type": {
+            "Default": "Výchozí",
+            "Date": "Datum:"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "Přidat",
         "body": "Tělo",
         "default_view": "Výchozí zobrazení",
-        "edit_view": "Upravit zobrazení",
+        "edit_view": "Upravit cestu",
         "footer": "Zápatí",
         "header": "Záhlaví",
         "key": "Klíč",
@@ -2198,11 +2282,12 @@
         "right_panel": "Pravý panel",
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
-        "view_path": "Zobrazit cestu",
+        "view_path": "Cesta",
         "views": "Zobrazení",
         "width": "Width",
         "height": "Výška",
-        "columns": "Sloupce"
+        "columns": "Sloupce",
+        "set_as_default_subpage": "Nastavit jako výchozí podstránku"
       },
       "model_tips": {
         "cancel_button": "Zrušit",
@@ -2217,7 +2302,7 @@
       "tab_title": "Stránka",
       "tooltips": {
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
-        "view_path": "Řetězec za příkladem./app/page/ pro přístup k tomuto zobrazení",
+        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit cestu. Například, pokud změníš cestu na '**newPath**', a přidej ji jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
       }
     },
@@ -2461,6 +2546,67 @@
           "restore": "Obnovení se nezdařilo",
           "preview": "Nepodařilo se načíst záznam historie."
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Název",
+        "desc": "L 343, 22.12.2009, s. 1).",
+        "mode": "Režim",
+        "prompt": "Prompt",
+        "variable": "Proměnná",
+        "welcome": "Uvítací zpráva",
+        "model": "Vzor",
+        "temperature": "Teplota",
+        "max-token": "Maximální token"
+      },
+      "placeholder": {
+        "logo": "Nahrát",
+        "name": "Dejte jméno agentovi",
+        "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
+        "prompt": "Zadejte / vyberte proměnnou",
+        "variable": {
+          "key": "Název proměnné",
+          "value": "Hodnota"
+        },
+        "welcome": "Poskytněte uvítací zprávu zobrazenou když uživatelé začnou používat agenta.",
+        "temperature": "Hodnota mezi 0 a 1. Čím menší hodnota, tím lepší může být efekt",
+        "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě"
+      },
+      "tips": {
+        "mode": "V režimu chatu obsahuje každá odeslaná zpráva jako součást žádosti historii konverzace, která může vést k lepším výsledkům, ale spotřebovává více tokenů; v textovém režimu každá odeslaná zpráva nezahrnuje historii konverzace, což může vést k méně optimálním výsledkům ve srovnání s chatem, ale zachovává tokeny.",
+        "not-start": "Dokončete konfiguraci agenta a klepněte na tlačítko Start pro spuštění",
+        "not-start-run": "Klikněte prosím na tlačítko Start na levé straně."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Generování textu"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3,5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nové",
+      "save": "Uložit",
+      "start": "Začít",
+      "restart": "Restartovat",
+      "contribute": "Přispějte na tržišti",
+      "button": {
+        "send": "Poslat",
+        "generating": "Generování"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Generovat text"
+      },
+      "message": {
+        "click-start": "Klikněte na tlačítko Start pro spuštění."
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Formulář schématu JSON"
+    },
+    "page": {
+      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. ",
+      "tips": {
+        "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
+      },
+      "label": {
+        "rename_url": "Upravit cestu"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "Změnit plán?",
         "button_cancel": "Zrušit",
         "button_confirm": "Potvrdit"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 je pro prémiový tým. ",
+        "string2": "Chcete-li jej použít, proveďte upgrade na Premium. Proveďte upgrade na Premium, budete mít také přístup k následujícím funkcím. "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Pozvat k úpravě",
-      "invite_to_use": "Pozvat k použití"
+      "invite_to_use": "Pozvat k použití",
+      "share-with-team": "Sdílet s týmem",
+      "contribute": "Přispějte"
     },
     "desc": {
-      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
+      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. ",
+      "contribute": "Po přispění do obchodu Marketplace mohou běžet, hvězda a rozštěpit vašeho agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat."
     },
     "tips": {
       "admin": "Člen, který může spravovat všechny členy kromě vlastníka, upravit APP a zobrazit APP",
       "editor": "Člen, který může spravovat členy editorů a diváků, upravit APP a zobrazit APP",
       "viewer": "Člen, který může spravovat členy diváku a prohlížet APP"
+    },
+    "label": {
+      "contribute": "Přispějte na tržišti",
+      "social-media": "Sdílet na"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker novinky"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Ahoj! Právě jsem objevil tohoto úžasného agenta AI. Mohlo by vás zajímat o pokus i to! Podívejte se na to! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Podívejte se na tento úžasný AI agenta [{{promptName}}]",
+        "linkedin": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
+        "facebook": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
+        "whatsapp": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
+        "hackernews": "Zjednodušit pracovní zatížení pomocí [{{promptName}}] - AI agenta, který práci dokončil"
+      },
+      "contribute": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!"
     }
+  },
+  "ai-agents": "AI agenti",
+  "marketplace": {
+    "star": "Hvězda {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

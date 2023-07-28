@@ -32,12 +32,15 @@
       "cancel": "Avbryt",
       "delete": "Radera",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Efter radering, kommer det inte att vara möjligt att komma åt eller återställa data på något sätt. Bekräfta.",
       "delete_ok_text": "Radera",
       "delete_title": "Är du säker?",
       "error_button": "Försök igen",
       "error_description": "Det finns ett problem med din operation.",
-      "error_title": "Fel"
+      "error_title": "Fel",
+      "marketplace": "Marknadsplats",
+      "run": "Kör",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Skapa ny",
@@ -51,6 +54,28 @@
       "save_success": "Sparades framgångsrikt",
       "test_fail": "Det gick inte att testa",
       "test_success": "Testet lyckades"
+    },
+    "list-type": {
+      "team": "Lagets",
+      "marketplace": "Agentkommando"
+    },
+    "sort-type": {
+      "popular": "Mest populära",
+      "recent": "Nyligen uppdaterade",
+      "star": "Stjärnmärkta"
+    },
+    "search": "Sök",
+    "no-result": "Inga resultat här. Uppdatera eller ändra dina söktermer.",
+    "message": {
+      "next-page-error": "Det gick inte att ladda nästa sida. Försök igen.",
+      "create-failed": "Det gick inte att skapa agent. Försök igen.",
+      "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
+      "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
+      "fork-failed": "Det gick inte att fork, försök igen.",
+      "create-suc": "Det gick inte att skapa, försök igen.",
+      "fork-suc": "Framgångsrikt forked.",
+      "delete-failed": "Misslyckades att ta bort. Försök igen. ",
+      "delete-suc": "Raderades framgångsrikt. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Tjänstens konto"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Välj"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Välj sidor"
+            },
+            "ai-agent": {
+              "value": "Värde"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Poster",
             "record": "Spela in",
             "record_ids": "Spela in ID"
+          },
+          "ai-agent": {
+            "model": "Modell",
+            "variable": "Variabel",
+            "input": "Skicka innehåll",
+            "max-token": "Max token"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "Dold inlämningsknapp",
           "submit_button_full_w": "Skicka knappen full bredd",
           "submit_button_text": "Skicka knapptext"
+        },
+        "chart": {
+          "direction": "Riktning",
+          "y-axis_value": "Y-axel värde",
+          "stack_grouped_data": "Stapla grupperad data",
+          "x-axis_type": "Typ av X-axel",
+          "format": "Formatera",
+          "legend_position": "Legend position",
+          "grid_line": "Rutnätslinje",
+          "y-axis_type": "Y-axel typ"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "Ange titel att visa"
+        },
+        "page": {
+          "default_view": "När användare anger en felsökväg, kommer vi automatiskt att omdirigera till standardsökvägen. När det inte finns någon standardväg, kommer vi att behandla den första sökvägen i listan som standardsökvägen"
+        },
+        "chart": {
+          "direction": "Ange riktningen för sjökortet. ",
+          "y-axis_value": "Ange värdet på Y-axeln",
+          "stack_grouped_data": "Värden från olika grupper med samma X-axelvärde kommer att staplas i ett staplat diagram. Staplade diagram kan användas för att jämföra den totala storleken på olika kategorier eller grupper, samt de relativa storlekarna för enskilda underkategorier eller undergrupper.",
+          "x-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten.",
+          "format": "Ett giltigt datumformat. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Att ställa in positionen för legent. ",
+          "grid_line": "För att ställa in färgen på rutnät linje. ",
+          "y-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten."
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "Ersätt",
             "keepboth": "Behåll båda"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Munk",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horisontell",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Datum"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "Lägg till",
         "body": "Kropp",
         "default_view": "Förvald vy",
-        "edit_view": "Redigera vy",
+        "edit_view": "Redigera sökväg",
         "footer": "Sidfot",
         "header": "Rubrik",
         "key": "Nyckel",
@@ -2198,11 +2282,12 @@
         "right_panel": "Höger panel",
         "set_as_homepage": "Ange som hemsida",
         "show_fold_icon": "Visa vik-ikon",
-        "view_path": "Visa sökväg",
+        "view_path": "Sökväg",
         "views": "Visningar",
         "width": "Width",
         "height": "Höjd",
-        "columns": "Kolumner"
+        "columns": "Kolumner",
+        "set_as_default_subpage": "Ange som standard undersida"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
@@ -2217,7 +2302,7 @@
       "tab_title": "Sida",
       "tooltips": {
         "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
-        "view_path": "En sträng efter example.com/app/page/ för att komma åt denna vy",
+        "view_path": "För att konfigurera åtkomst till den här sidan måste du justera sökvägen. Till exempel, om du ändrar sökvägen till '**newPath**' och lägger till den som en undersida på hemsidan. Den här sidan kan sedan nås via följande URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
       }
     },
@@ -2461,6 +2546,67 @@
           "restore": "Det gick inte att återställa",
           "preview": "Det gick inte att läsa in historikposten."
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logotyp",
+        "name": "Namn",
+        "desc": "Beskrivning",
+        "mode": "Läge",
+        "prompt": "Prompt",
+        "variable": "Variabel",
+        "welcome": "Välkommen meddelande",
+        "model": "Modell",
+        "temperature": "Temperatur",
+        "max-token": "Max token"
+      },
+      "placeholder": {
+        "logo": "Ladda upp",
+        "name": "Ge ett namn till agenten",
+        "desc": "Ge en kort beskrivning av vad denna agent är avsedd att användas till.",
+        "prompt": "Ange / för att välja en variabel",
+        "variable": {
+          "key": "Variabelt namn",
+          "value": "Värde"
+        },
+        "welcome": "Ange ett välkomstmeddelande som visas när användare börjar använda agenten.",
+        "temperature": "Ett värde mellan 0 och 1. Ju mindre värdet är, desto bättre effekt kan",
+        "max-token": "Används för att begränsa det maximala antalet polletter som konsumeras i en enda körning"
+      },
+      "tips": {
+        "mode": "I chattläget inkluderar varje meddelande konversationshistoriken som en del av begäran, vilket kan resultera i bättre resultat men förbrukar fler tokens; i textläge, varje meddelande som skickas innehåller inte konversationshistorik, vilket kan resultera i mindre optimala resultat jämfört med chattläge men sparar polletter.",
+        "not-start": "Slutför agentkonfigurationen och klicka på Start för att köra",
+        "not-start-run": "Klicka på Start -knappen till vänster."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chatt",
+          "text": "Generering av text"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Ny",
+      "save": "Spara",
+      "start": "Starta",
+      "restart": "Starta om",
+      "contribute": "Bidra till marknadsplatsen",
+      "button": {
+        "send": "Skicka",
+        "generating": "Genererar"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chatt",
+        "text": "Generera text"
+      },
+      "message": {
+        "click-start": "Klicka på Start -knappen för att utlösa."
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Formulär för JSON Schema"
+    },
+    "page": {
+      "path_duplicated": "Sökvägen är duplicerad. Använd en unik sökväg för att undvika fel. ",
+      "tips": {
+        "blank_view": "Modulen har inga underordnade sidor. Lägg till dem först via Sidpanelen till höger."
+      },
+      "label": {
+        "rename_url": "Redigera sökväg"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "Ändra plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekräfta"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 är för Premium-teamet. ",
+        "string2": "För att använda det, vänligen uppgradera till Premium. Genom att uppgradera till Premium, kommer du också att ha tillgång till följande funktioner. "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Bjud in att redigera",
-      "invite_to_use": "Bjud in att använda"
+      "invite_to_use": "Bjud in att använda",
+      "share-with-team": "Dela med team",
+      "contribute": "Bidra"
     },
     "desc": {
-      "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. "
+      "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. ",
+      "contribute": "Efter att ha bidragit till marknaden kan alla användare köra, stjärna och gaffel din Jobbevakning. När användare från andra team kör denna agent, kommer det inte att konsumera dina resurser."
     },
     "tips": {
       "admin": "Medlemmen som kan hantera alla medlemmar utom ägare, redigera APP och visa APP",
       "editor": "Medlemmen som kan hantera redigerings- och tittarmedlemmar, redigera APP:er och visa APP:er",
       "viewer": "Medlemmen som kan hantera tittarmedlemmar och visa APP:er"
+    },
+    "label": {
+      "contribute": "Bidra till marknadsplatsen",
+      "social-media": "Dela på"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hackernyheter"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hej där! Jag upptäckte just denna fantastiska AI-agent. Du kanske är intresserad av att prova också! Kolla in det! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProduktivitetÖka",
+        "reddit": "Kolla in denna fantastiska AI-agent [{{promptName}}]",
+        "linkedin": "Uppmärksamhet alla AI-entusiaster och proffs som vill öka sin produktivitet! Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "facebook": "Uppmärksamhet alla AI-entusiaster och proffs som vill öka sin produktivitet! Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "whatsapp": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "hackernews": "Förenkla din arbetsbelastning med [{{promptName}}] - AI-agenten som får jobbet klart"
+      },
+      "contribute": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!"
     }
+  },
+  "ai-agents": "AI agenter",
+  "marketplace": {
+    "star": "Stjärna {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

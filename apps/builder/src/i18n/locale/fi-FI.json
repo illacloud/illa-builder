@@ -32,12 +32,15 @@
       "cancel": "Peruuta",
       "delete": "Poista",
       "delete_cancel_text": "Peruuta",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Poistamisen jälkeen tietoja ei ole mahdollista käyttää tai palauttaa millään tavalla. Ole hyvä ja vahvista.",
       "delete_ok_text": "Poista",
       "delete_title": "Oletko varma?",
       "error_button": "Yritä Uudelleen",
       "error_description": "Sinun toiminnassasi on ongelma.",
-      "error_title": "Virhe"
+      "error_title": "Virhe",
+      "marketplace": "Kauppapaikka",
+      "run": "Suorita",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Luo Uusi",
@@ -51,6 +54,28 @@
       "save_success": "Tallennus onnistui",
       "test_fail": "Testaus epäonnistui",
       "test_success": "Testi onnistui"
+    },
+    "list-type": {
+      "team": "Joukkue",
+      "marketplace": "Agentin markkinat"
+    },
+    "sort-type": {
+      "popular": "Suosituin",
+      "recent": "Äskettäin päivitetty",
+      "star": "Tähdelliset"
+    },
+    "search": "Etsi",
+    "no-result": "Ei tuloksia. Ole hyvä ja päivitä tai vaihda hakuehtoja.",
+    "message": {
+      "next-page-error": "Seuraavan sivun lataaminen epäonnistui. Yritä uudelleen.",
+      "create-failed": "Agentin luonti epäonnistui. Yritä uudelleen.",
+      "sort-failed": "Suodattimen tyyppiä ei voitu muuttaa. Yritä uudelleen.",
+      "detail-load-failed": "Tietojen noutaminen epäonnistui, yritä uudelleen.",
+      "fork-failed": "Ei voitu forkata, yritä uudelleen.",
+      "create-suc": "Ei voitu luoda, yritä uudelleen.",
+      "fork-suc": "Onnistuneesti väärennetty.",
+      "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
+      "delete-suc": "Poistettu onnistuneesti. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Palvelun Tili"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Valitse"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Valitse sivut"
+            },
+            "ai-agent": {
+              "value": "Arvo"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Tietueet",
             "record": "Nauhoita",
             "record_ids": "Tallenna Tunnukset"
+          },
+          "ai-agent": {
+            "model": "Malli",
+            "variable": "Muuttuja",
+            "input": "Lähetä sisältöä",
+            "max-token": "Max tunnus"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "Piilotettu lähetyspainike",
           "submit_button_full_w": "Lähetä painike koko leveys",
           "submit_button_text": "Lähetä painikkeen teksti"
+        },
+        "chart": {
+          "direction": "Suunta",
+          "y-axis_value": "Y-akselin arvo",
+          "stack_grouped_data": "Pino ryhmitelty tiedot",
+          "x-axis_type": "X-akselin tyyppi",
+          "format": "Muoto",
+          "legend_position": "Selitteen sijainti",
+          "grid_line": "Ruudukon rivi",
+          "y-axis_type": "Y-akselin tyyppi"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "Aseta näytettävä otsikko"
+        },
+        "page": {
+          "default_view": "Kun käyttäjät syöttävät virheen polun, ohjaamme automaattisesti uudelleen oletuspolulle. Kun oletus polkua ei ole, me kohtelemme listan ensimmäistä polkua oletuspoluksi"
+        },
+        "chart": {
+          "direction": "Aseta kaavion suunta. ",
+          "y-axis_value": "Aseta Y-akselin arvo",
+          "stack_grouped_data": "Arvot eri ryhmistä, joilla on sama X-akselin arvo, pinottu kaavio. Pinotut kaaviot voidaan käyttää vertailemaan eri ryhmien tai ryhmien kokoa, sekä yksittäisten alaluokkien tai alaryhmien suhteelliset koot.",
+          "x-axis_type": "Karttatyypin määrittäminen voi parantaa tietojen luettavuutta.",
+          "format": "Voimassa oleva päivämäärän muoto merkkijono. Ks. [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Voit asettaa aseman legentti. ",
+          "grid_line": "Jos haluat asettaa rivin värin. ",
+          "y-axis_type": "Karttatyypin määrittäminen voi parantaa tietojen luettavuutta."
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "Korvaa",
             "keepboth": "Pidä molemmat"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Tutka"
+          },
+          "direction": {
+            "horizontal": "Vaakasuora",
+            "vertical": "Pystysuora"
+          },
+          "x-axis_type": {
+            "Default": "Oletus",
+            "Date": "Päivämäärä"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "Lisää",
         "body": "Runko",
         "default_view": "Oletus näkymä",
-        "edit_view": "Muokkaa näkymää",
+        "edit_view": "Muokkaa polkua",
         "footer": "Alatunniste",
         "header": "Otsikko",
         "key": "Avain",
@@ -2198,11 +2282,12 @@
         "right_panel": "Oikea paneeli",
         "set_as_homepage": "Aseta etusivuksi",
         "show_fold_icon": "Näytä kertakuvake",
-        "view_path": "Näytä polku",
+        "view_path": "Polku",
         "views": "Näkymät",
         "width": "Width",
         "height": "Korkeus",
-        "columns": "Sarakkeet"
+        "columns": "Sarakkeet",
+        "set_as_default_subpage": "Aseta oletukseksi alasivuksi"
       },
       "model_tips": {
         "cancel_button": "Peruuta",
@@ -2217,7 +2302,7 @@
       "tab_title": "Sivu",
       "tooltips": {
         "show_fold_icon": "Näytä painike tiivistääksesi tai laajentaaksesi paneelia",
-        "view_path": "Merkkijono esimerkki.com/app/page/ päästäksesi tähän näkymään",
+        "view_path": "Määrittääksesi pääsyn tälle sivulle, sinun täytyy säätää polkua. Jos esimerkiksi muutat polun poluksi '**newPath**', ja lisäät sen kotisivun alasivuksi. Tämän jälkeen tälle sivulle pääsee seuraavan URL-osoitteen kautta: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Sivujen leveys prosentteina selaimen leveydestä. @ action: button"
       }
     },
@@ -2461,6 +2546,67 @@
           "restore": "Palautus epäonnistui",
           "preview": "Historiatietueen lataus epäonnistui. @ info"
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Nimi",
+        "desc": "Kuvaus",
+        "mode": "Tila",
+        "prompt": "Prompt",
+        "variable": "Muuttuja",
+        "welcome": "Tervetuloa viesti",
+        "model": "Malli",
+        "temperature": "Lämpötila",
+        "max-token": "Max tunnus"
+      },
+      "placeholder": {
+        "logo": "Lähetä",
+        "name": "Anna nimi agentille",
+        "desc": "Anna lyhyt kuvaus siitä, mihin tämä agentti on tarkoitettu käytettäväksi.",
+        "prompt": "Syötä / valitse muuttuja",
+        "variable": {
+          "key": "Muuttujan nimi",
+          "value": "Arvo"
+        },
+        "welcome": "Anna tervetuliaisviesti näytettäessä, kun käyttäjät alkavat käyttää agenttia.",
+        "temperature": "Arvo välillä 0 ja 1. Mitä pienempi arvo, sitä parempi vaikutus voi olla",
+        "max-token": "Käytetään rajoittamaan yhdellä kerralla kulutettujen rahakkeiden enimmäismäärää"
+      },
+      "tips": {
+        "mode": "Chat-tilassa jokainen lähetetty viesti sisältää keskustelun historian osana pyyntöä, joka voi johtaa parempiin tuloksiin mutta kuluttaa enemmän kuponkia; tekstitilassa, jokainen lähetetty viesti ei sisällä keskustelun historiaa, joka voi johtaa vähemmän optimaalisia tuloksia verrattuna chat-tilaan, mutta säilyttää rahakkeet.",
+        "not-start": "Suorita Agentin asetus ja käynnistä napsauttamalla Käynnistä",
+        "not-start-run": "Klikkaa vasemmalla olevaa Käynnistä-painiketta."
+      },
+      "option": {
+        "mode": {
+          "chat": "Keskustelu",
+          "text": "Tekstin luonti"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Uusi",
+      "save": "Tallenna",
+      "start": "Aloita",
+      "restart": "Käynnistä Uudelleen",
+      "contribute": "Osallistu markkinapaikkaan",
+      "button": {
+        "send": "Lähetä",
+        "generating": "Luodaan"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Keskustelu",
+        "text": "Luo teksti"
+      },
+      "message": {
+        "click-start": "Napsauta Käynnistä painiketta käynnistääksesi."
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON Schema Form"
+    },
+    "page": {
+      "path_duplicated": "Polku on kopioitu. Ole hyvä ja käytä ainutlaatuista polkua välttääksesi virheitä. ",
+      "tips": {
+        "blank_view": "Tällä moduulilla ei ole alisivuja. Ole hyvä ja lisää ne ensin oikealla olevasta sivupaneelista."
+      },
+      "label": {
+        "rename_url": "Muokkaa polkua"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "Vaihda suunnitelma?",
         "button_cancel": "Peruuta",
         "button_confirm": "Vahvista"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 on Premium-tiimille. ",
+        "string2": "Jos haluat käyttää sitä, päivitä Premiumiin. Päivittämällä Premiumiin sinulla on myös pääsy seuraaviin ominaisuuksiin. "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Kutsu muokattavaksi",
-      "invite_to_use": "Kutsu käyttämään"
+      "invite_to_use": "Kutsu käyttämään",
+      "share-with-team": "Jaa tiimin kanssa",
+      "contribute": "Osallistu"
     },
     "desc": {
-      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. "
+      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. ",
+      "contribute": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja."
     },
     "tips": {
       "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
       "editor": "Jäsen, joka voi hallita editoria ja katsojan jäseniä, muokata APP:eja ja tarkastella APP:eja",
       "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
+    },
+    "label": {
+      "contribute": "Osallistu markkinapaikkaan",
+      "social-media": "Jaa päällä"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hakkerit Uutiset"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hei siellä! Löysin juuri tämän hämmästyttävän tekoälyn agentin. Sinua saattaa kiinnostaa myös kokeilla sitä! Tarkista tämä! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Tutustu tähän hämmästyttävään tekoälyn Agent [{{promptName}}]",
+        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "hackernews": "Yksinkertaista työtaakkaa [{{promptName}}] - tekoälyn agentti, joka saa tehtävän valmiiksi."
+      },
+      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     }
+  },
+  "ai-agents": "AI Agents",
+  "marketplace": {
+    "star": "Tähti {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

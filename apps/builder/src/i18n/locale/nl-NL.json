@@ -32,12 +32,15 @@
       "cancel": "annuleren",
       "delete": "Verwijderen",
       "delete_cancel_text": "annuleren",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Na verwijdering is het niet mogelijk om de gegevens op alle manieren te gebruiken of te herstellen. Gelieve te bevestigen.",
       "delete_ok_text": "Verwijderen",
       "delete_title": "Weet je het zeker?",
       "error_button": "Opnieuw",
       "error_description": "Er is een probleem met uw operatie.",
-      "error_title": "Foutmelding"
+      "error_title": "Foutmelding",
+      "marketplace": "Marktplaats",
+      "run": "Uitvoeren",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Nieuwe aanmaken",
@@ -51,6 +54,28 @@
       "save_success": "Succesvol opgeslagen",
       "test_fail": "Test mislukt",
       "test_success": "Test succesvol"
+    },
+    "list-type": {
+      "team": "Team's",
+      "marketplace": "Agent markt"
+    },
+    "sort-type": {
+      "popular": "Meest populair",
+      "recent": "Onlangs bijgewerkt",
+      "star": "Sterren"
+    },
+    "search": "Zoeken",
+    "no-result": "Geen resultaten gevonden. Gelieve uw zoektermen te vernieuwen of te wijzigen.",
+    "message": {
+      "next-page-error": "Fout bij laden van de volgende pagina. Probeer het opnieuw.",
+      "create-failed": "Kan agent niet maken. Probeer het opnieuw.",
+      "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
+      "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
+      "fork-failed": "Fork mislukt, probeer het opnieuw.",
+      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
+      "fork-suc": "Succesvol opgeforkt.",
+      "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
+      "delete-suc": "Succesvol verwijderd. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Service Account"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Selecteren"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Pagina's selecteren"
+            },
+            "ai-agent": {
+              "value": "Waarde"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Records",
             "record": "Opnemen",
             "record_ids": "ID's opnemen"
+          },
+          "ai-agent": {
+            "model": "Model",
+            "variable": "Variabele",
+            "input": "Inhoud verzenden",
+            "max-token": "Max token"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "Verborgen verzendknop",
           "submit_button_full_w": "Volledige breedte indieningsknop",
           "submit_button_text": "Tekst inzenderknop"
+        },
+        "chart": {
+          "direction": "Richting",
+          "y-axis_value": "Y-as waarde",
+          "stack_grouped_data": "Stack gegroepeerde gegevens",
+          "x-axis_type": "X-as type",
+          "format": "Formatteren",
+          "legend_position": "Legende positie",
+          "grid_line": "Raster lijn",
+          "y-axis_type": "Y-as type"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "Stel de titel in voor weergave"
+        },
+        "page": {
+          "default_view": "Wanneer gebruikers een foutpad invoeren, wordt automatisch doorverwezen naar het standaard pad. Wanneer er geen standaard pad is, zullen we het eerste pad in de lijst behandelen als het standaardpad"
+        },
+        "chart": {
+          "direction": "Stel de richting van de grafiek in. ",
+          "y-axis_value": "Stel de waarde van de Y-as in",
+          "stack_grouped_data": "Waarden van verschillende groepen met dezelfde X-as waarde worden opgestapeld in een gestapelde grafiek. Gestapelde grafieken kunnen worden gebruikt om de totale grootte van verschillende categorieën of groepen te vergelijken. evenals de relatieve grootte van individuele subcategorieën of subgroepen.",
+          "x-axis_type": "Het instellen van het grafiektype kan de leesbaarheid van gegevens verbeteren.",
+          "format": "Een geldige datumnotatie string. Zie [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Om de positie van de legende in te stellen. ",
+          "grid_line": "Om de kleur van de rasterlijn in te stellen. ",
+          "y-axis_type": "Het instellen van het grafiektype kan de leesbaarheid van gegevens verbeteren."
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "Vervangen",
             "keepboth": "Houd beide"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Donut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontaal",
+            "vertical": "Verticaal"
+          },
+          "x-axis_type": {
+            "Default": "Standaard",
+            "Date": "Datum:"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "Toevoegen",
         "body": "Lichaam",
         "default_view": "Standaard weergave",
-        "edit_view": "Weergave bewerken",
+        "edit_view": "Pad bewerken",
         "footer": "Voettekst",
         "header": "Koptekst",
         "key": "Sleutel",
@@ -2198,11 +2282,12 @@
         "right_panel": "Rechter paneel",
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
-        "view_path": "View pad",
+        "view_path": "Pad",
         "views": "Weergaven",
         "width": "Width",
         "height": "Højde",
-        "columns": "Kolommen"
+        "columns": "Kolommen",
+        "set_as_default_subpage": "Als standaard subpagina instellen"
       },
       "model_tips": {
         "cancel_button": "annuleren",
@@ -2217,7 +2302,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
-        "view_path": "Een string na example.com/app/page/ voor toegang tot deze weergave",
+        "view_path": "Om toegang tot deze pagina te configureren, moet u het pad aanpassen. Bijvoorbeeld, als je het pad veranderd naar '**newPath**', en voeg het toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
       }
     },
@@ -2461,6 +2546,67 @@
           "restore": "Herstellen mislukt",
           "preview": "Kon geschiedenis record niet laden."
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "naam",
+        "desc": "Beschrijving",
+        "mode": "Modus",
+        "prompt": "Prompt",
+        "variable": "Variabele",
+        "welcome": "Welkom bericht",
+        "model": "Model",
+        "temperature": "Temperatuur",
+        "max-token": "Max token"
+      },
+      "placeholder": {
+        "logo": "Uploaden",
+        "name": "Geef een naam aan de agent",
+        "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
+        "prompt": "Enter / om een variabele te selecteren",
+        "variable": {
+          "key": "Naam variabele",
+          "value": "Waarde"
+        },
+        "welcome": "Geef een welkomstbericht weer wanneer gebruikers de medewerker gebruiken.",
+        "temperature": "Een waarde tussen 0 en 1. Hoe kleiner de waarde, hoe beter het effect kan zijn",
+        "max-token": "Gebruikt om het maximum aantal gebruikte tokens dat in een enkele uitvoering wordt verbruikt te beperken"
+      },
+      "tips": {
+        "mode": "In de chatmodus bevat elk verzonden bericht de gespreksgeschiedenis als onderdeel van het verzoek, wat kan leiden tot betere resultaten, maar meer tokens verbruikt; in tekstmodus, elk verzonden bericht bevat geen gespreksgeschiedenis dit kan resulteren in minder optimale resultaten vergeleken met de chatmodus maar houdt tokens in de kaart.",
+        "not-start": "Voltooi de agent configureren en klik op Start om uit te voeren",
+        "not-start-run": "Klik op de Start knop aan de linkerkant."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chatten",
+          "text": "Tekst genereren"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nieuw",
+      "save": "Opslaan",
+      "start": "Beginnen",
+      "restart": "Herstarten",
+      "contribute": "Draag bij aan de marktplaats",
+      "button": {
+        "send": "Verzenden",
+        "generating": "Genereren"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chatten",
+        "text": "Genereer tekst"
+      },
+      "message": {
+        "click-start": "Klik op de Start knop om te starten."
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON Schema formulier"
+    },
+    "page": {
+      "path_duplicated": "Het pad wordt gedupliceerd. Gebruik een uniek pad om fouten te voorkomen. ",
+      "tips": {
+        "blank_view": "Deze module heeft geen onderliggende pagina's. Voeg ze eerst toe via het pagina paneel aan de rechterkant."
+      },
+      "label": {
+        "rename_url": "Pad bewerken"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "Abonnement wijzigen?",
         "button_cancel": "annuleren",
         "button_confirm": "Bevestigen"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 is voor Premium team. ",
+        "string2": "Upgrade naar Premium om het te gebruiken. Je hebt ook toegang tot de volgende functies. "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Uitnodigen om te bewerken",
-      "invite_to_use": "Uitnodigen om te gebruiken"
+      "invite_to_use": "Uitnodigen om te gebruiken",
+      "share-with-team": "Deel met team",
+      "contribute": "Meedoen"
     },
     "desc": {
-      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
+      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. ",
+      "contribute": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
     },
     "tips": {
       "admin": "Het lid dat alle leden behalve de Eigenaar kan beheren, APP's kan bewerken en APP's kan bekijken",
       "editor": "Het lid dat de APP's kan beheren en bekijken",
       "viewer": "Het lid dat de APP's kan beheren en bekijken"
+    },
+    "label": {
+      "contribute": "Draag bij aan de marktplaats",
+      "social-media": "Delen op"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nieuws"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hey daar! Ik heb net dit geweldige AI-agent ontdekt. Misschien ben je geïnteresseerd in het ook proberen te proberen! Bekijk het! {{promptName}}:{{promptLink}} #AIwriting #Snelbeheer #ProductivityBoost",
+        "reddit": "Bekijk deze geweldige AI Agent [{{promptName}}]",
+        "linkedin": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "facebook": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "whatsapp": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "hackernews": "Vereenvoudig je werkdruk met [{{promptName}}] - De AI Agent die de Job Gereed krijgt"
+      },
+      "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
     }
+  },
+  "ai-agents": "AI agenten",
+  "marketplace": {
+    "star": "Ster {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

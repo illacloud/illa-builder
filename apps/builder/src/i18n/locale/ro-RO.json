@@ -32,12 +32,15 @@
       "cancel": "Anulează",
       "delete": "Ștergere",
       "delete_cancel_text": "Anulează",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "După ștergere, nu va fi posibil să accesați sau să recuperați datele prin orice mijloace. Vă rugăm să confirmați.",
       "delete_ok_text": "Ștergere",
       "delete_title": "Ești sigur?",
       "error_button": "Reîncercați",
       "error_description": "Există o problemă cu operația dvs.",
-      "error_title": "Eroare"
+      "error_title": "Eroare",
+      "marketplace": "Piață",
+      "run": "Rulează",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Creare nou",
@@ -51,6 +54,28 @@
       "save_success": "Salvare reușită",
       "test_fail": "Nu a reușit să testeze",
       "test_success": "Test cu succes"
+    },
+    "list-type": {
+      "team": "Echipa",
+      "marketplace": "Piața agenților"
+    },
+    "sort-type": {
+      "popular": "Cele mai populare",
+      "recent": "Actualizat recent",
+      "star": "Marcate"
+    },
+    "search": "Caută",
+    "no-result": "Niciun rezultat aici. Reîmprospătați sau schimbați termenii de căutare.",
+    "message": {
+      "next-page-error": "Încărcarea paginii următoare a eșuat. Te rugăm să încerci din nou.",
+      "create-failed": "Eroare la crearea agentului. Vă rugăm să încercaţi din nou.",
+      "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
+      "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
+      "fork-failed": "Esuare fork, te rugam incearca din nou.",
+      "create-suc": "Creare esuata, te rugam incearca din nou.",
+      "fork-suc": "Facturat cu succes.",
+      "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
+      "delete-suc": "Eliminat cu succes. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Cont de serviciu"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Selectare"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Selecteaza pagini"
+            },
+            "ai-agent": {
+              "value": "Valoare"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3,5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Înregistrări",
             "record": "Înregistrare",
             "record_ids": "ID inregistrare"
+          },
+          "ai-agent": {
+            "model": "Model",
+            "variable": "Variabilă",
+            "input": "Trimite conținut",
+            "max-token": "Token-ul maxim"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "Buton de adăugare ascuns",
           "submit_button_full_w": "Trimite buton lățime completă",
           "submit_button_text": "Trimiteți textul butonului"
+        },
+        "chart": {
+          "direction": "Direcție",
+          "y-axis_value": "Valoarea axei Y",
+          "stack_grouped_data": "Date grupate stack",
+          "x-axis_type": "Tipul axei X",
+          "format": "Format",
+          "legend_position": "Poziție legendă",
+          "grid_line": "Linie grilă",
+          "y-axis_type": "Tipul axei Y"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "Setați titlul de afișat"
+        },
+        "page": {
+          "default_view": "Când utilizatorii introduc o traiectorie de eroare, vom redirecționa automat către calea implicită. Când nu există o cale implicită, vom trata prima cale din listă ca pe o cale implicită"
+        },
+        "chart": {
+          "direction": "Setați direcția graficului. ",
+          "y-axis_value": "Setează valoarea axei Y",
+          "stack_grouped_data": "Valorile din diferite grupuri cu aceeași valoare a axei X vor fi stivuite într-un grafic stacked. Graficele suprapuse pot fi folosite pentru a compara dimensiunea generală a diferitelor categorii sau grupuri, precum și dimensiunile relative ale subcategoriilor sau subgrupurilor individuale.",
+          "x-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor.",
+          "format": "Un șir de format de dată valid. Vezi [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Pentru a seta poziția legendei. ",
+          "grid_line": "Pentru a seta culoarea liniei grilei. ",
+          "y-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor."
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "Înlocuiește",
             "keepboth": "Păstrați ambele"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Gogoașă",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Orizontal",
+            "vertical": "Verticală"
+          },
+          "x-axis_type": {
+            "Default": "Implicit",
+            "Date": "Data"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "Adăugare",
         "body": "Corp",
         "default_view": "Vizualizare implicită",
-        "edit_view": "Editare vizualizare",
+        "edit_view": "Editare cale",
         "footer": "Subsol",
         "header": "Antet",
         "key": "Cheie",
@@ -2198,11 +2282,12 @@
         "right_panel": "Panoul din dreapta",
         "set_as_homepage": "Setează ca website",
         "show_fold_icon": "Afișare pictogramă pli",
-        "view_path": "Vizualizare cale",
+        "view_path": "Cale",
         "views": "Vizualizări",
         "width": "Width",
         "height": "Înălțime",
-        "columns": "Coloane"
+        "columns": "Coloane",
+        "set_as_default_subpage": "Setează ca subpagină implicită"
       },
       "model_tips": {
         "cancel_button": "Anulează",
@@ -2217,7 +2302,7 @@
       "tab_title": "Pagină",
       "tooltips": {
         "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
-        "view_path": "Un șir după exemplu.ro/app/page/ pentru a accesa această vizualizare",
+        "view_path": "Pentru a configura accesul la această pagină, va trebui să ajustați calea. De exemplu, dacă schimbați calea către '**newPath**', și adăugați-o ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
       }
     },
@@ -2461,6 +2546,67 @@
           "restore": "Restaurare eșuată",
           "preview": "Nu s-a putut încărca istoricul înregistrării."
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Nume",
+        "desc": "Descriere",
+        "mode": "Mod",
+        "prompt": "Prompt",
+        "variable": "Variabilă",
+        "welcome": "Mesaj de întâmpinare",
+        "model": "Model",
+        "temperature": "Temperatură",
+        "max-token": "Token-ul maxim"
+      },
+      "placeholder": {
+        "logo": "Incarca",
+        "name": "Dă un nume agentului",
+        "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
+        "prompt": "Introduceți / pentru a selecta o variabilă",
+        "variable": {
+          "key": "Denumire variabilă",
+          "value": "Valoare"
+        },
+        "welcome": "Furnizaţi un mesaj de bun venit afişat atunci când utilizatorii încep să folosească agentul. (Automatic Translation)",
+        "temperature": "O valoare între 0 și 1. Cu cât valoarea este mai mică, cu atât efectul poate fi mai bun",
+        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare"
+      },
+      "tips": {
+        "mode": "În modul chat, fiecare mesaj trimis include istoricul conversațiilor ca parte a cererii, ceea ce poate duce la rezultate mai bune, dar consumă mai multe tokeni; în modul text, fiecare mesaj trimis nu include istoricul conversaţiilor, care poate avea rezultate mai puțin optime în comparație cu modul de chat dar care conservă tokenurile.",
+        "not-start": "Completează configurația agentului și apasă Start pentru a rula",
+        "not-start-run": "Vă rugăm să faceţi clic pe butonul de pornire din stânga."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Generare text"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3,5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nou",
+      "save": "Salvează",
+      "start": "Pornire",
+      "restart": "Repornire",
+      "contribute": "Contribuie la piata",
+      "button": {
+        "send": "Trimite",
+        "generating": "Generare"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Genereaza text"
+      },
+      "message": {
+        "click-start": "Faceți clic pe butonul de pornire pentru a declanșa."
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Formular JSON Schema"
+    },
+    "page": {
+      "path_duplicated": "Calea este duplicată. Vă rugăm să folosiți o cale unică pentru a evita erorile. ",
+      "tips": {
+        "blank_view": "Acest modul nu are pagini copii. Vă rugăm să le adăugaţi mai întâi prin panoul de pagină din dreapta."
+      },
+      "label": {
+        "rename_url": "Editare cale"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "Schimbați planul?",
         "button_cancel": "Anulează",
         "button_confirm": "Confirmare"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 este pentru echipa Premium. ",
+        "string2": "Pentru a o folosi, vă rugăm să faceţi upgrade la Premium. Prin upgrade la Premium, veţi avea de asemenea acces la următoarele caracteristici. "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Invită să editezi",
-      "invite_to_use": "Invită să utilizezi"
+      "invite_to_use": "Invită să utilizezi",
+      "share-with-team": "Partajează cu echipa",
+      "contribute": "Contribuie"
     },
     "desc": {
-      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
+      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. ",
+      "contribute": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
     },
     "tips": {
       "admin": "Membrul care poate gestiona toţi membrii cu excepţia Owner, editează APP-urile şi vizualizează APP-urile",
       "editor": "Membrul care poate gestiona membrii editorului şi vizualizatorului, editează APP-urile şi vizualizează APP-urile",
       "viewer": "Membrul care poate gestiona utilizatorii şi vizualiza APP-urile"
+    },
+    "label": {
+      "contribute": "Contribuie la piata",
+      "social-media": "Distribuie pe"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Știri hacker"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Salut! Tocmai am descoperit acest uimitor Agent AI. Ai putea fi interesat să îi dai o încercare! Verifică-l! {{promptName}}:{{promptLink}} #AIwrite #PromptManagement #ProductivityBoost",
+        "reddit": "Uită-te la acest uimitor Agent AI [{{promptName}}]",
+        "linkedin": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "facebook": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "whatsapp": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
+      },
+      "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
     }
+  },
+  "ai-agents": "Agenți AI",
+  "marketplace": {
+    "star": "Star {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

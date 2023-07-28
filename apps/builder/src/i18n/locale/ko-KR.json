@@ -37,7 +37,10 @@
       "delete_title": "확인하다",
       "error_button": "다시 해 보다",
       "error_description": "잘못된 요청",
-      "error_title": "실수"
+      "error_title": "실수",
+      "marketplace": "Marketplace",
+      "run": "Run",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "리소스 만들기",
@@ -51,6 +54,28 @@
       "save_success": "성공적으로 저장되었습니다",
       "test_fail": "테스트 실패",
       "test_success": "성공적으로 테스트"
+    },
+    "list-type": {
+      "team": "Team's",
+      "marketplace": "Agent market"
+    },
+    "sort-type": {
+      "popular": "Most popular",
+      "recent": "Recently updated",
+      "star": "Starred"
+    },
+    "search": "Search",
+    "no-result": "No result here. Please refresh or change your search terms.",
+    "message": {
+      "next-page-error": "Failed to load next page. Please try again.",
+      "create-failed": "Failed to create agent. Please try again.",
+      "sort-failed": "Failed to change the filter type. Please try again.",
+      "detail-load-failed": "Failed to retrieve details, please try again.",
+      "fork-failed": "Failed to fork, please try again.",
+      "create-suc": "Failed to create, please try again.",
+      "fork-suc": "Successfully forked.",
+      "delete-failed": "Faild to delete. Please try again. ",
+      "delete-suc": "Successfully deleted. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "서비스 계정"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Select"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "페이지 선택"
+            },
+            "ai-agent": {
+              "value": "Value"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Records",
             "record": "Record",
             "record_ids": "Record IDs"
+          },
+          "ai-agent": {
+            "model": "Model",
+            "variable": "Variable",
+            "input": "Send content",
+            "max-token": "Max token"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "Hidden submit button",
           "submit_button_full_w": "Submit button full width",
           "submit_button_text": "Submit button text"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "Set the title to display"
+        },
+        "page": {
+          "default_view": "When users enter an error path, we will automatically redirect to the default path. When there is no default path, we will treat the first path in the list as the default path"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis",
+          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups.",
+          "x-axis_type": "Setting the chart type can enhance data readability.",
+          "format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "To set the position of legent. ",
+          "grid_line": "To set the color of grid line. ",
+          "y-axis_type": "Setting the chart type can enhance data readability."
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "Replace",
             "keepboth": "Keep both"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Default",
+            "Date": "Date"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "새 빌드",
         "body": "본체",
         "default_view": "기본 보기",
-        "edit_view": "보기 편집",
+        "edit_view": "Edit path",
         "footer": "보행인",
         "header": "헤더",
         "key": "핵심 가치",
@@ -2198,11 +2282,12 @@
         "right_panel": "오른쪽 패널",
         "set_as_homepage": "시작 페이지로 설정",
         "show_fold_icon": "축소 버튼 표시",
-        "view_path": "경로 보기",
+        "view_path": "Path",
         "views": "보다",
         "width": "너비",
         "height": "높은",
-        "columns": "열"
+        "columns": "열",
+        "set_as_default_subpage": "Set as default subpage"
       },
       "model_tips": {
         "cancel_button": "취소",
@@ -2217,7 +2302,7 @@
       "tab_title": "페이지",
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
-        "view_path": "이 보기에 액세스하기 위한 문자열 철자 example.com/app/page/",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "브라우저 너비의 백분율로 나타낸 페이지 너비입니다."
       }
     },
@@ -2360,7 +2445,7 @@
             "run_script": "Run Script",
             "calendar_guide": "Calendar guide",
             "chat_guide": "Chat guide",
-            "custom_login_with_sc": "Custom login with Script"
+            "custom_login_with_sc": "Script login"
           },
           "templates_description": {
             "table": "테이블 및 기타 구성 요소를 사용하여 대시보드를 만듭니다.",
@@ -2461,6 +2546,67 @@
           "restore": "Failed to restore",
           "preview": "Failed to load the history record."
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Name",
+        "desc": "Description",
+        "mode": "Mode",
+        "prompt": "Prompt",
+        "variable": "Variable",
+        "welcome": "Welcome message",
+        "model": "Model",
+        "temperature": "Temperature",
+        "max-token": "Max token"
+      },
+      "placeholder": {
+        "logo": "Upload",
+        "name": "Give a name to the agent",
+        "desc": "Provide a brief description of what this agent is intended to be used for.",
+        "prompt": "Enter / to select a variable",
+        "variable": {
+          "key": "Variable name",
+          "value": "Value"
+        },
+        "welcome": "Provide a welcome message displayed when users start use the agent.",
+        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
+        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
+      },
+      "tips": {
+        "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
+        "not-start": "Complete the Agent configure and click Start to run",
+        "not-start-run": "Please click the Start button on the left."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Text generation"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "New",
+      "save": "Save",
+      "start": "Start",
+      "restart": "Restart",
+      "contribute": "Contribute to marketplace",
+      "button": {
+        "send": "Send",
+        "generating": "Generating"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Generate text"
+      },
+      "message": {
+        "click-start": "Click the Start button to trigger."
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON Schema Form"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. ",
+      "tips": {
+        "blank_view": "This module has no child pages. Please add them first through the Page panel on the right."
+      },
+      "label": {
+        "rename_url": "Edit path"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "Change plan?",
         "button_cancel": "Cancel",
         "button_confirm": "Confirm"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 is for Premium team. ",
+        "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use"
+      "invite_to_use": "Invite to use",
+      "share-with-team": "Share with team",
+      "contribute": "Contribute"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
+      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. ",
+      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
     },
     "tips": {
       "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
       "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
       "viewer": "The member who can manage viewer members and view APPs"
+    },
+    "label": {
+      "contribute": "Contribute to marketplace",
+      "social-media": "Share on"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
+        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
+      },
+      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     }
+  },
+  "ai-agents": "AI Agents",
+  "marketplace": {
+    "star": "Star {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }
