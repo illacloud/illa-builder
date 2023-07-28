@@ -1782,14 +1782,14 @@
           "submit_button_text": "Skicka knapptext"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
+          "direction": "Riktning",
+          "y-axis_value": "Y-axel värde",
+          "stack_grouped_data": "Stapla grupperad data",
+          "x-axis_type": "Typ av X-axel",
+          "format": "Formatera",
           "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "grid_line": "Rutnätslinje",
+          "y-axis_type": "Y-axel typ"
         }
       },
       "setter_tooltip": {
@@ -2056,9 +2056,14 @@
           "default_view": "När användare anger en felsökväg, kommer vi automatiskt att omdirigera till standardsökvägen. När det inte finns någon standardväg, kommer vi att behandla den första sökvägen i listan som standardsökvägen"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis",
-          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups."
+          "direction": "Ange riktningen för sjökortet. ",
+          "y-axis_value": "Ange värdet på Y-axeln",
+          "stack_grouped_data": "Värden från olika grupper med samma X-axelvärde kommer att staplas i ett staplat diagram. Staplade diagram kan användas för att jämföra den totala storleken på olika kategorier eller grupper, samt de relativa storlekarna för enskilda underkategorier eller undergrupper.",
+          "x-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten.",
+          "format": "Ett giltigt datumformat. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Att ställa in positionen för legent. ",
+          "grid_line": "För att ställa in färgen på rutnät linje. ",
+          "y-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten."
         }
       },
       "setter_option": {
@@ -2164,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
+            "Doughnut": "Munk",
             "Radar": "Radar"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Horisontell",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Datum"
           }
         }
       },
