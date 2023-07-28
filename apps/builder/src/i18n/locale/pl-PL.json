@@ -2043,7 +2043,7 @@
           "title": "Ustaw tytuł do wyświetlenia"
         },
         "page": {
-          "default_view": "When users enter an error path, we will automatically redirect to the default path. When there is no default path, we will treat the first path in the list as the default path"
+          "default_view": "Gdy użytkownicy wprowadzą ścieżkę błędu, automatycznie przekierowamy do domyślnej ścieżki. Gdy nie ma domyślnej ścieżki, traktujemy pierwszą ścieżkę na liście jako domyślną ścieżkę"
         }
       },
       "setter_option": {
@@ -3792,6 +3792,10 @@
         "title": "Zmienić plan?",
         "button_cancel": "Anuluj",
         "button_confirm": "Potwierdź"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 jest dla zespołu Premium. ",
+        "string2": "Aby go użyć, uaktualnij do wersji Premium. Uaktualniając do wersji Premium, będziesz miał również dostęp do następujących funkcji. "
       }
     },
     "homepage": {
