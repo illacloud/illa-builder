@@ -3024,6 +3024,9 @@
       "path_duplicated": "Ścieżka jest zduplikowana. Użyj unikalnej ścieżki, aby uniknąć błędów. ",
       "tips": {
         "blank_view": "Ten moduł nie ma stron podrzędnych. Dodaj je najpierw przez panel strony po prawej stronie."
+      },
+      "label": {
+        "rename_url": "Edytuj ścieżkę"
       }
     }
   },
