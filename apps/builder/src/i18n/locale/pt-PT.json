@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Defina o título para exibição"
+        },
+        "page": {
+          "default_view": "When users enter an error path, we will automatically redirect to the default path. When there is no default path, we will treat the first path in the list as the default path"
         }
       },
       "setter_option": {
