@@ -2286,7 +2286,8 @@
         "views": "Aufrufe",
         "width": "Width",
         "height": "Höhe",
-        "columns": "Spalten"
+        "columns": "Spalten",
+        "set_as_default_subpage": "Als Standard-Unterseite festlegen"
       },
       "model_tips": {
         "cancel_button": "Abbrechen",
