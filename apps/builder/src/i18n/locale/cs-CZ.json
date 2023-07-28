@@ -2236,7 +2236,7 @@
         "add": "Přidat",
         "body": "Tělo",
         "default_view": "Výchozí zobrazení",
-        "edit_view": "Upravit zobrazení",
+        "edit_view": "Edit path",
         "footer": "Zápatí",
         "header": "Záhlaví",
         "key": "Klíč",
@@ -2245,7 +2245,7 @@
         "right_panel": "Pravý panel",
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
-        "view_path": "Zobrazit cestu",
+        "view_path": "Path",
         "views": "Zobrazení",
         "width": "Width",
         "height": "Výška",
@@ -2264,7 +2264,7 @@
       "tab_title": "Stránka",
       "tooltips": {
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
-        "view_path": "Řetězec za příkladem./app/page/ pro přístup k tomuto zobrazení",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "Formulář schématu JSON"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
