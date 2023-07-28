@@ -1782,14 +1782,14 @@
           "submit_button_text": "送信ボタンのテキスト"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "方向",
+          "y-axis_value": "Y軸の値",
+          "stack_grouped_data": "スタックグループデータ",
+          "x-axis_type": "X軸タイプ",
+          "format": "書式",
+          "legend_position": "凡例の位置",
+          "grid_line": "グリッド線",
+          "y-axis_type": "Y軸タイプ"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "ユーザがエラーパスを入力すると、自動的にデフォルトのパスにリダイレクトされます。 デフォルトのパスがない場合、リストの最初のパスをデフォルトのパスとして扱います。"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "グラフの方向を設定します。 ",
+          "y-axis_value": "Y軸の値を設定",
+          "stack_grouped_data": "同じX軸値を持つ異なるグループの値は積み上げられたチャートに積み上げられます。 積み上げグラフは、異なるカテゴリまたはグループの全体的なサイズを比較するために使用できます。 個々のサブカテゴリまたはサブグループの相対的な大きさだけでなく、",
+          "x-axis_type": "チャートの種類を設定すると、データの可読性が向上します。",
+          "format": "有効な日付フォーマット文字列。 [dayJS](https://day.js.org/docs/en/parse/string-format)を参照してください。",
+          "legend_position": "凡例の位置を設定します。 ",
+          "grid_line": "グリッド線の色を設定します。 ",
+          "y-axis_type": "チャートの種類を設定すると、データの可読性が向上します。"
         }
       },
       "setter_option": {
@@ -2163,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
-            "Radar": "Radar"
+            "Doughnut": "ドーナツ型",
+            "Radar": "レーダー"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "水平方向",
+            "vertical": "垂直方向"
+          },
+          "x-axis_type": {
+            "Default": "デフォルト",
+            "Date": "日付"
           }
         }
       },
