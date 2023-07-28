@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modell",
             "variable": "Variabel",
-            "input": "Input",
+            "input": "Send innhold",
             "max-token": "Maks token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Skjult sendingsknapp",
           "submit_button_full_w": "Send knapp full bredde",
           "submit_button_text": "Send knappetekst"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -2044,6 +2054,11 @@
         },
         "page": {
           "default_view": "Når brukere skriver inn en feilsti, vil vi automatisk omdirigere til standardstien. Når det ikke er noen standardbane, behandler vi den første stien i listen som standard sti"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis",
+          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups."
         }
       },
       "setter_option": {
@@ -2145,6 +2160,16 @@
           "file_name_duplicatio": {
             "replace": "Erstatt",
             "keepboth": "Behold begge"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
           }
         }
       },
