@@ -2286,7 +2286,8 @@
         "views": "视图",
         "width": "宽度",
         "height": "高度",
-        "columns": "列数"
+        "columns": "列数",
+        "set_as_default_subpage": "设置为默认子页面"
       },
       "model_tips": {
         "cancel_button": "取消",
