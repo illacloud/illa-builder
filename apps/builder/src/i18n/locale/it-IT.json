@@ -2236,7 +2236,7 @@
         "add": "Aggiungi",
         "body": "Corpo",
         "default_view": "Vista predefinita",
-        "edit_view": "Edit path",
+        "edit_view": "Modifica percorso",
         "footer": "Footer",
         "header": "Intestazione",
         "key": "Chiave",
@@ -2245,7 +2245,7 @@
         "right_panel": "Pannello destro",
         "set_as_homepage": "Imposta come homepage",
         "show_fold_icon": "Mostra icona piega",
-        "view_path": "Path",
+        "view_path": "Percorso",
         "views": "Viste",
         "width": "Width",
         "height": "Altezza",
@@ -2264,7 +2264,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Mostra un pulsante per comprimere o espandere il pannello",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Per configurare l'accesso a questa pagina, è necessario regolare il percorso. Per esempio, se si cambia il percorso per '**newPath**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La larghezza della pagina come percentuale della larghezza del browser."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "Modulo Schema JSON"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Il percorso è duplicato. Si prega di utilizzare un percorso univoco per evitare errori. "
     }
   },
   "page": {
