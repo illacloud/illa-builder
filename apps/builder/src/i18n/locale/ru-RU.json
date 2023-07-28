@@ -2236,7 +2236,7 @@
         "add": "Добавить",
         "body": "Тело",
         "default_view": "Вид по умолчанию",
-        "edit_view": "Изменить вид",
+        "edit_view": "Edit path",
         "footer": "Колонтитул",
         "header": "Заголовок",
         "key": "Спецификация",
@@ -2245,7 +2245,7 @@
         "right_panel": "Правая панель",
         "set_as_homepage": "Сделать домашней страницей",
         "show_fold_icon": "Показать значок складки",
-        "view_path": "Показать путь",
+        "view_path": "Path",
         "views": "Просмотров",
         "width": "Width",
         "height": "Высота",
@@ -2264,7 +2264,7 @@
       "tab_title": "Страница",
       "tooltips": {
         "show_fold_icon": "Показать кнопку, чтобы свернуть или развернуть панель",
-        "view_path": "Строка после example.com/app/page/ для доступа к этому виду",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Ширина страницы в процентах от ширины браузера."
       }
     },
@@ -2982,6 +2982,9 @@
     },
     "jsonSchemaForm": {
       "name": "Форма схемы JSON"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
     }
   },
   "page": {
