@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Model",
             "variable": "Variabilă",
-            "input": "Input",
+            "input": "Trimite conținut",
             "max-token": "Token-ul maxim"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Buton de adăugare ascuns",
           "submit_button_full_w": "Trimite buton lățime completă",
           "submit_button_text": "Trimiteți textul butonului"
+        },
+        "chart": {
+          "direction": "Direcție",
+          "y-axis_value": "Valoarea axei Y",
+          "stack_grouped_data": "Date grupate stack",
+          "x-axis_type": "Tipul axei X",
+          "format": "Format",
+          "legend_position": "Poziție legendă",
+          "grid_line": "Linie grilă",
+          "y-axis_type": "Tipul axei Y"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Setați titlul de afișat"
+        },
+        "page": {
+          "default_view": "Când utilizatorii introduc o traiectorie de eroare, vom redirecționa automat către calea implicită. Când nu există o cale implicită, vom trata prima cale din listă ca pe o cale implicită"
+        },
+        "chart": {
+          "direction": "Setați direcția graficului. ",
+          "y-axis_value": "Setează valoarea axei Y",
+          "stack_grouped_data": "Valorile din diferite grupuri cu aceeași valoare a axei X vor fi stivuite într-un grafic stacked. Graficele suprapuse pot fi folosite pentru a compara dimensiunea generală a diferitelor categorii sau grupuri, precum și dimensiunile relative ale subcategoriilor sau subgrupurilor individuale.",
+          "x-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor.",
+          "format": "Un șir de format de dată valid. Vezi [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Pentru a seta poziția legendei. ",
+          "grid_line": "Pentru a seta culoarea liniei grilei. ",
+          "y-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Înlocuiește",
             "keepboth": "Păstrați ambele"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Gogoașă",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Orizontal",
+            "vertical": "Verticală"
+          },
+          "x-axis_type": {
+            "Default": "Implicit",
+            "Date": "Data"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Adăugare",
         "body": "Corp",
         "default_view": "Vizualizare implicită",
-        "edit_view": "Editare vizualizare",
+        "edit_view": "Editare cale",
         "footer": "Subsol",
         "header": "Antet",
         "key": "Cheie",
@@ -2245,11 +2282,12 @@
         "right_panel": "Panoul din dreapta",
         "set_as_homepage": "Setează ca website",
         "show_fold_icon": "Afișare pictogramă pli",
-        "view_path": "Vizualizare cale",
+        "view_path": "Cale",
         "views": "Vizualizări",
         "width": "Width",
         "height": "Înălțime",
-        "columns": "Coloane"
+        "columns": "Coloane",
+        "set_as_default_subpage": "Setează ca subpagină implicită"
       },
       "model_tips": {
         "cancel_button": "Anulează",
@@ -2264,7 +2302,7 @@
       "tab_title": "Pagină",
       "tooltips": {
         "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
-        "view_path": "Un șir după exemplu.ro/app/page/ pentru a accesa această vizualizare",
+        "view_path": "Pentru a configura accesul la această pagină, va trebui să ajustați calea. De exemplu, dacă schimbați calea către '**newPath**', și adăugați-o ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Formular JSON Schema"
+    },
+    "page": {
+      "path_duplicated": "Calea este duplicată. Vă rugăm să folosiți o cale unică pentru a evita erorile. ",
+      "tips": {
+        "blank_view": "Acest modul nu are pagini copii. Vă rugăm să le adăugaţi mai întâi prin panoul de pagină din dreapta."
+      },
+      "label": {
+        "rename_url": "Editare cale"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Schimbați planul?",
         "button_cancel": "Anulează",
         "button_confirm": "Confirmare"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 este pentru echipa Premium. ",
+        "string2": "Pentru a o folosi, vă rugăm să faceţi upgrade la Premium. Prin upgrade la Premium, veţi avea de asemenea acces la următoarele caracteristici. "
       }
     },
     "homepage": {

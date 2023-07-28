@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Malli",
             "variable": "Muuttuja",
-            "input": "Input",
+            "input": "Lähetä sisältöä",
             "max-token": "Max tunnus"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Piilotettu lähetyspainike",
           "submit_button_full_w": "Lähetä painike koko leveys",
           "submit_button_text": "Lähetä painikkeen teksti"
+        },
+        "chart": {
+          "direction": "Suunta",
+          "y-axis_value": "Y-akselin arvo",
+          "stack_grouped_data": "Pino ryhmitelty tiedot",
+          "x-axis_type": "X-akselin tyyppi",
+          "format": "Muoto",
+          "legend_position": "Selitteen sijainti",
+          "grid_line": "Ruudukon rivi",
+          "y-axis_type": "Y-akselin tyyppi"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Aseta näytettävä otsikko"
+        },
+        "page": {
+          "default_view": "Kun käyttäjät syöttävät virheen polun, ohjaamme automaattisesti uudelleen oletuspolulle. Kun oletus polkua ei ole, me kohtelemme listan ensimmäistä polkua oletuspoluksi"
+        },
+        "chart": {
+          "direction": "Aseta kaavion suunta. ",
+          "y-axis_value": "Aseta Y-akselin arvo",
+          "stack_grouped_data": "Arvot eri ryhmistä, joilla on sama X-akselin arvo, pinottu kaavio. Pinotut kaaviot voidaan käyttää vertailemaan eri ryhmien tai ryhmien kokoa, sekä yksittäisten alaluokkien tai alaryhmien suhteelliset koot.",
+          "x-axis_type": "Karttatyypin määrittäminen voi parantaa tietojen luettavuutta.",
+          "format": "Voimassa oleva päivämäärän muoto merkkijono. Ks. [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Voit asettaa aseman legentti. ",
+          "grid_line": "Jos haluat asettaa rivin värin. ",
+          "y-axis_type": "Karttatyypin määrittäminen voi parantaa tietojen luettavuutta."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Korvaa",
             "keepboth": "Pidä molemmat"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Tutka"
+          },
+          "direction": {
+            "horizontal": "Vaakasuora",
+            "vertical": "Pystysuora"
+          },
+          "x-axis_type": {
+            "Default": "Oletus",
+            "Date": "Päivämäärä"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Lisää",
         "body": "Runko",
         "default_view": "Oletus näkymä",
-        "edit_view": "Muokkaa näkymää",
+        "edit_view": "Muokkaa polkua",
         "footer": "Alatunniste",
         "header": "Otsikko",
         "key": "Avain",
@@ -2245,11 +2282,12 @@
         "right_panel": "Oikea paneeli",
         "set_as_homepage": "Aseta etusivuksi",
         "show_fold_icon": "Näytä kertakuvake",
-        "view_path": "Näytä polku",
+        "view_path": "Polku",
         "views": "Näkymät",
         "width": "Width",
         "height": "Korkeus",
-        "columns": "Sarakkeet"
+        "columns": "Sarakkeet",
+        "set_as_default_subpage": "Aseta oletukseksi alasivuksi"
       },
       "model_tips": {
         "cancel_button": "Peruuta",
@@ -2264,7 +2302,7 @@
       "tab_title": "Sivu",
       "tooltips": {
         "show_fold_icon": "Näytä painike tiivistääksesi tai laajentaaksesi paneelia",
-        "view_path": "Merkkijono esimerkki.com/app/page/ päästäksesi tähän näkymään",
+        "view_path": "Määrittääksesi pääsyn tälle sivulle, sinun täytyy säätää polkua. Jos esimerkiksi muutat polun poluksi '**newPath**', ja lisäät sen kotisivun alasivuksi. Tämän jälkeen tälle sivulle pääsee seuraavan URL-osoitteen kautta: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Sivujen leveys prosentteina selaimen leveydestä. @ action: button"
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON Schema Form"
+    },
+    "page": {
+      "path_duplicated": "Polku on kopioitu. Ole hyvä ja käytä ainutlaatuista polkua välttääksesi virheitä. ",
+      "tips": {
+        "blank_view": "Tällä moduulilla ei ole alisivuja. Ole hyvä ja lisää ne ensin oikealla olevasta sivupaneelista."
+      },
+      "label": {
+        "rename_url": "Muokkaa polkua"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Vaihda suunnitelma?",
         "button_cancel": "Peruuta",
         "button_confirm": "Vahvista"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 on Premium-tiimille. ",
+        "string2": "Jos haluat käyttää sitä, päivitä Premiumiin. Päivittämällä Premiumiin sinulla on myös pääsy seuraaviin ominaisuuksiin. "
       }
     },
     "homepage": {

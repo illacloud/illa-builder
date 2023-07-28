@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modelo",
             "variable": "Variável",
-            "input": "Input",
+            "input": "Enviar conteúdo",
             "max-token": "Max token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Botão de envio oculto",
           "submit_button_full_w": "Largura completa do botão Enviar",
           "submit_button_text": "Enviar texto do botão"
+        },
+        "chart": {
+          "direction": "Direção",
+          "y-axis_value": "Valor do eixo Y",
+          "stack_grouped_data": "Pilha de dados agrupados",
+          "x-axis_type": "Tipo Eixo-X",
+          "format": "Formato",
+          "legend_position": "Posição da legenda",
+          "grid_line": "Linha de grade",
+          "y-axis_type": "Tipo Eixo-Y"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Defina o título para exibição"
+        },
+        "page": {
+          "default_view": "Quando os usuários informam um caminho de erro, vamos automaticamente redirecionar para o caminho padrão. Quando não há um caminho padrão, trataremos o primeiro caminho da lista como o caminho padrão"
+        },
+        "chart": {
+          "direction": "Define a direção do gráfico. ",
+          "y-axis_value": "Definir o valor do eixo Y",
+          "stack_grouped_data": "Os valores de diferentes grupos com o mesmo valor de eixo X serão empilhados em uma tabela empilhada. Gráficos empilhados podem ser usados para comparar o tamanho geral de diferentes categorias ou grupos, bem como os tamanhos relativos de subcategorias individuais ou subgrupos.",
+          "x-axis_type": "Definir o tipo de gráfico pode melhorar a legibilidade de dados.",
+          "format": "Uma string de formato de data válida. Veja [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Para definir a posição da legente. ",
+          "grid_line": "Para definir a cor da linha da grade. ",
+          "y-axis_type": "Definir o tipo de gráfico pode melhorar a legibilidade de dados."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Substituir",
             "keepboth": "Manter ambos"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Rosquinha",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Padrão",
+            "Date": "Encontro"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Adicionar",
         "body": "Conteúdo",
         "default_view": "Visualização padrão",
-        "edit_view": "Editar visualização",
+        "edit_view": "Editar caminho",
         "footer": "Rodapé",
         "header": "Cabeçalho",
         "key": "Chave",
@@ -2245,11 +2282,12 @@
         "right_panel": "Painel direito",
         "set_as_homepage": "Definir como página inicial",
         "show_fold_icon": "Mostrar ícone da dobra",
-        "view_path": "Ver caminho",
+        "view_path": "Caminho",
         "views": "Visualizações",
         "width": "Width",
         "height": "Altura",
-        "columns": "Colunas"
+        "columns": "Colunas",
+        "set_as_default_subpage": "Definir como subpágina padrão"
       },
       "model_tips": {
         "cancel_button": "cancelar",
@@ -2264,7 +2302,7 @@
       "tab_title": "Página",
       "tooltips": {
         "show_fold_icon": "Mostrar um botão para recolher ou expandir o painel",
-        "view_path": "Uma frase após exemplo.com/app/page/ para acessar esta visualização",
+        "view_path": "Para configurar o acesso a esta página, é necessário ajustar o caminho. Por exemplo, se você alterar o caminho para '**newPath**', e adicioná-lo como uma subpágina da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "A largura da página como porcentagem da largura do navegador."
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Formulário JSON de esquema"
+    },
+    "page": {
+      "path_duplicated": "O caminho está duplicado. Por favor, use um caminho único para evitar erros. ",
+      "tips": {
+        "blank_view": "Este módulo não tem páginas filhas. Por favor adicione-as primeiro através do painel de Página à direita."
+      },
+      "label": {
+        "rename_url": "Editar caminho"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Alterar plano?",
         "button_cancel": "cancelar",
         "button_confirm": "Confirmar"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 é para a equipe Premium. ",
+        "string2": "Para usá-lo, por favor, atualize para o Premium. Ao atualizar para o Premium, você também terá acesso aos seguintes recursos. "
       }
     },
     "homepage": {
