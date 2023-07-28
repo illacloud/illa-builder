@@ -3021,7 +3021,10 @@
       "name": "Formulário JSON de esquema"
     },
     "page": {
-      "path_duplicated": "O caminho está duplicado. Por favor, use um caminho único para evitar erros. "
+      "path_duplicated": "O caminho está duplicado. Por favor, use um caminho único para evitar erros. ",
+      "tips": {
+        "blank_view": "Este módulo não tem páginas filhas. Por favor adicione-as primeiro através do painel de Página à direita."
+      }
     }
   },
   "page": {
