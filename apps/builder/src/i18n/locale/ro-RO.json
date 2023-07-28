@@ -1782,14 +1782,14 @@
           "submit_button_text": "Trimiteți textul butonului"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
+          "direction": "Direcție",
+          "y-axis_value": "Valoarea axei Y",
+          "stack_grouped_data": "Date grupate stack",
+          "x-axis_type": "Tipul axei X",
           "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "legend_position": "Poziție legendă",
+          "grid_line": "Linie grilă",
+          "y-axis_type": "Tipul axei Y"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "Când utilizatorii introduc o traiectorie de eroare, vom redirecționa automat către calea implicită. Când nu există o cale implicită, vom trata prima cale din listă ca pe o cale implicită"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "Setați direcția graficului. ",
+          "y-axis_value": "Setează valoarea axei Y",
+          "stack_grouped_data": "Valorile din diferite grupuri cu aceeași valoare a axei X vor fi stivuite într-un grafic stacked. Graficele suprapuse pot fi folosite pentru a compara dimensiunea generală a diferitelor categorii sau grupuri, precum și dimensiunile relative ale subcategoriilor sau subgrupurilor individuale.",
+          "x-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor.",
+          "format": "Un șir de format de dată valid. Vezi [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Pentru a seta poziția legendei. ",
+          "grid_line": "Pentru a seta culoarea liniei grilei. ",
+          "y-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor."
         }
       },
       "setter_option": {
@@ -2163,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
+            "Doughnut": "Gogoașă",
             "Radar": "Radar"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Orizontal",
+            "vertical": "Verticală"
+          },
+          "x-axis_type": {
+            "Default": "Implicit",
+            "Date": "Data"
           }
         }
       },
