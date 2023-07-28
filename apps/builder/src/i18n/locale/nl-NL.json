@@ -1782,14 +1782,14 @@
           "submit_button_text": "Tekst inzenderknop"
         },
         "chart": {
-          "direction": "Direction",
-          "y-axis_value": "Y-axis value",
-          "stack_grouped_data": "Stack grouped data",
-          "x-axis_type": "X-axis type",
-          "format": "Format",
-          "legend_position": "Legend position",
-          "grid_line": "Grid line",
-          "y-axis_type": "Y-axis type"
+          "direction": "Richting",
+          "y-axis_value": "Y-as waarde",
+          "stack_grouped_data": "Stack gegroepeerde gegevens",
+          "x-axis_type": "X-as type",
+          "format": "Formatteren",
+          "legend_position": "Legende positie",
+          "grid_line": "Raster lijn",
+          "y-axis_type": "Y-as type"
         }
       },
       "setter_tooltip": {
@@ -2056,8 +2056,14 @@
           "default_view": "Wanneer gebruikers een foutpad invoeren, wordt automatisch doorverwezen naar het standaard pad. Wanneer er geen standaard pad is, zullen we het eerste pad in de lijst behandelen als het standaardpad"
         },
         "chart": {
-          "direction": "Set the chart direction. ",
-          "y-axis_value": "Set the value of Y-axis"
+          "direction": "Stel de richting van de grafiek in. ",
+          "y-axis_value": "Stel de waarde van de Y-as in",
+          "stack_grouped_data": "Waarden van verschillende groepen met dezelfde X-as waarde worden opgestapeld in een gestapelde grafiek. Gestapelde grafieken kunnen worden gebruikt om de totale grootte van verschillende categorieën of groepen te vergelijken. evenals de relatieve grootte van individuele subcategorieën of subgroepen.",
+          "x-axis_type": "Het instellen van het grafiektype kan de leesbaarheid van gegevens verbeteren.",
+          "format": "Een geldige datumnotatie string. Zie [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Om de positie van de legende in te stellen. ",
+          "grid_line": "Om de kleur van de rasterlijn in te stellen. ",
+          "y-axis_type": "Het instellen van het grafiektype kan de leesbaarheid van gegevens verbeteren."
         }
       },
       "setter_option": {
@@ -2163,12 +2169,16 @@
         },
         "chart": {
           "chart-type": {
-            "Doughnut": "Doughnut",
+            "Doughnut": "Donut",
             "Radar": "Radar"
           },
           "direction": {
-            "horizontal": "Horizontal",
-            "vertical": "Vertical"
+            "horizontal": "Horizontaal",
+            "vertical": "Verticaal"
+          },
+          "x-axis_type": {
+            "Default": "Standaard",
+            "Date": "Datum:"
           }
         }
       },
