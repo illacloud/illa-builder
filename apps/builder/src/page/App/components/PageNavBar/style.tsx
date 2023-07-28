@@ -9,6 +9,7 @@ export const navBarStyle = css`
   justify-content: space-between;
   border-bottom: 1px solid ${getColor("grayBlue", "08")};
   padding: 6px 16px;
+  overflow: auto;
 `
 
 export const rowCenter = css`
@@ -38,8 +39,11 @@ export const rightContentStyle = css`
 `
 
 export const buttonGroupStyle = css`
-  display: flex;
-  overflow-x: auto;
+  display: inline-flex;
+`
+
+export const badgeStyle = css`
+  z-index: 3;
 `
 
 export const informationStyle = css`

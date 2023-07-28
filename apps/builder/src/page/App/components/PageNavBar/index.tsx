@@ -66,6 +66,7 @@ import { trackInEditor } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import { isMAC } from "@/utils/userAgent"
 import {
+  badgeStyle,
   buttonGroupStyle,
   descriptionStyle,
   informationStyle,
@@ -460,8 +461,11 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Dropdown>
             )}
-            <ButtonGroup spacing="8px">
-              <Badge count={debuggerData && Object.keys(debuggerData).length}>
+            <ButtonGroup _css={buttonGroupStyle} spacing="8px">
+              <Badge
+                _css={badgeStyle}
+                count={debuggerData && Object.keys(debuggerData).length}
+              >
                 <Button
                   colorScheme="white"
                   size="medium"
