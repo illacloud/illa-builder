@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "モデル",
             "variable": "変数",
-            "input": "Input",
+            "input": "コンテンツを送信",
             "max-token": "最大トークン"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "送信ボタンを非表示",
           "submit_button_full_w": "送信ボタンの幅全幅",
           "submit_button_text": "送信ボタンのテキスト"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -2044,6 +2054,10 @@
         },
         "page": {
           "default_view": "ユーザがエラーパスを入力すると、自動的にデフォルトのパスにリダイレクトされます。 デフォルトのパスがない場合、リストの最初のパスをデフォルトのパスとして扱います。"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis"
         }
       },
       "setter_option": {
@@ -2145,6 +2159,16 @@
           "file_name_duplicatio": {
             "replace": "置換",
             "keepboth": "両方を保持"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
           }
         }
       },
