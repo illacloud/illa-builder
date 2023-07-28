@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Μοντέλο",
             "variable": "Μεταβλητή",
-            "input": "Input",
+            "input": "Αποστολή περιεχομένου",
             "max-token": "Μέγιστο διακριτικό"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Πλήκτρο κρυφής υποβολής",
           "submit_button_full_w": "Πλήρες πλάτος κουμπιού υποβολής",
           "submit_button_text": "Υποβολή κειμένου κουμπιού"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -2044,6 +2054,10 @@
         },
         "page": {
           "default_view": "Όταν οι χρήστες εισάγουν μια διαδρομή σφάλματος, θα ανακατευθύνουμε αυτόματα στην προεπιλεγμένη διαδρομή. Όταν δεν υπάρχει προεπιλεγμένη διαδρομή, θα αντιμετωπίσουμε την πρώτη διαδρομή στη λίστα ως προεπιλεγμένη διαδρομή"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis"
         }
       },
       "setter_option": {
@@ -2145,6 +2159,16 @@
           "file_name_duplicatio": {
             "replace": "Αντικατάσταση",
             "keepboth": "Κρατήστε και τα δύο"
+          }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
           }
         }
       },
