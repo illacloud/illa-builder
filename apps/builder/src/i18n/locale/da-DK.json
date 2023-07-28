@@ -2236,7 +2236,7 @@
         "add": "Tilføj",
         "body": "Krop",
         "default_view": "Standard visning",
-        "edit_view": "Edit path",
+        "edit_view": "Rediger sti",
         "footer": "Sidefod",
         "header": "Overskrift",
         "key": "Nøgle",
@@ -2245,7 +2245,7 @@
         "right_panel": "Højre panel",
         "set_as_homepage": "Sæt som startside",
         "show_fold_icon": "Vis faldsikon",
-        "view_path": "Path",
+        "view_path": "Sti",
         "views": "Visninger",
         "width": "Width",
         "height": "Højde",
@@ -2264,7 +2264,7 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knap til at skjule eller udvide panelet",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "For at konfigurere adgang til denne side, skal du justere stien. For eksempel, hvis du ændrer stien til '**newPath**', og tilføje det som en underside af hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden af siden som en procentdel af browserens bredde."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "JSON Skema Form"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Stien er duplikeret. Brug venligst en unik sti for at undgå fejl. "
     }
   },
   "page": {
