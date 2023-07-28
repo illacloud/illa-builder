@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Définir le titre à afficher"
+        },
+        "page": {
+          "default_view": "Lorsque les utilisateurs saisissent un chemin d'erreur, nous redirigerons automatiquement vers le chemin par défaut. S'il n'y a pas de chemin par défaut, nous traiterons le premier chemin de la liste comme chemin par défaut"
         }
       },
       "setter_option": {
