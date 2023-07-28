@@ -2236,7 +2236,7 @@
         "add": "新築",
         "body": "本体",
         "default_view": "デフォルトビュー",
-        "edit_view": "Edit path",
+        "edit_view": "パスを編集",
         "footer": "フッター",
         "header": "ヘッダ",
         "key": "キー値",
@@ -2245,7 +2245,7 @@
         "right_panel": "右パネル",
         "set_as_homepage": "ホームページとして設定",
         "show_fold_icon": "折りたたみボタンを表示",
-        "view_path": "Path",
+        "view_path": "パス",
         "views": "見る",
         "width": "幅",
         "height": "高い",
@@ -2264,7 +2264,7 @@
       "tab_title": "ページ",
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "このページへのアクセスを設定するには、パスを調整してください。 例えば、パスを「**newPath**」に変更し、ホームページのサブページとして追加する場合。 このページには以下のURLからアクセスできます: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath** 。",
         "auto_canvas_width": "ブラウザーの幅に対するページの幅のパーセンテージ。"
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "JSON スキーマフォーム"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "パスが重複しています。エラーを避けるためにユニークなパスを使用してください。 "
     }
   },
   "page": {
