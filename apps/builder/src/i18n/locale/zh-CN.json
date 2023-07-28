@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "设置数值的标题"
+        },
+        "page": {
+          "default_view": "当用户输错路径时，我们会自动重定向到默认路径。当没有默认路径，我们会将列表里第一个路径视作默认路径。"
         }
       },
       "setter_option": {
@@ -2519,9 +2522,9 @@
         "prompt": "Prompt",
         "variable": "参数",
         "welcome": "初始消息",
-        "model": "Model",
+        "model": "模型",
         "temperature": "Temperature",
-        "max-token": "Max token"
+        "max-token": "最大Token"
       },
       "placeholder": {
         "logo": "上传",
@@ -2533,8 +2536,8 @@
           "value": "值"
         },
         "welcome": "提供一个初始消息，在用户开始使用这个agent时展示",
-        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
-        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
+        "temperature": "0到1之间的值，值越小结果约优",
+        "max-token": "用于限制单次运行的最大数量限制"
       },
       "tips": {
         "mode": "在聊天模式下，发送的每条消息时都会带上对话历史记录一起请求，这可以使结果更优，但会消耗更多的Token； 在文本模式下，发送的每条消息不包含对话历史记录，与聊天模式相比，这个模式的结果可能不够好，但可以节省Token。",
