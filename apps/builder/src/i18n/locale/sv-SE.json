@@ -3021,7 +3021,10 @@
       "name": "Formulär för JSON Schema"
     },
     "page": {
-      "path_duplicated": "Sökvägen är duplicerad. Använd en unik sökväg för att undvika fel. "
+      "path_duplicated": "Sökvägen är duplicerad. Använd en unik sökväg för att undvika fel. ",
+      "tips": {
+        "blank_view": "Modulen har inga underordnade sidor. Lägg till dem först via Sidpanelen till höger."
+      }
     }
   },
   "page": {
