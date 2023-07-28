@@ -2236,7 +2236,7 @@
         "add": "Toevoegen",
         "body": "Lichaam",
         "default_view": "Standaard weergave",
-        "edit_view": "Edit path",
+        "edit_view": "Pad bewerken",
         "footer": "Voettekst",
         "header": "Koptekst",
         "key": "Sleutel",
@@ -2245,7 +2245,7 @@
         "right_panel": "Rechter paneel",
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
-        "view_path": "Path",
+        "view_path": "Pad",
         "views": "Weergaven",
         "width": "Width",
         "height": "Højde",
@@ -2264,7 +2264,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Om toegang tot deze pagina te configureren, moet u het pad aanpassen. Bijvoorbeeld, als je het pad veranderd naar '**newPath**', en voeg het toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "JSON Schema formulier"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "Het pad wordt gedupliceerd. Gebruik een uniek pad om fouten te voorkomen. "
     }
   },
   "page": {
