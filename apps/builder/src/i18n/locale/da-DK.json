@@ -2041,6 +2041,9 @@
         },
         "statistics": {
           "title": "Indstil titlen der skal vises"
+        },
+        "page": {
+          "default_view": "Når brugerne indtaster en fejl sti, vil vi automatisk omdirigere til standardstien. Når der ikke er nogen standardsti, vil vi behandle den første sti på listen som standardstien"
         }
       },
       "setter_option": {
