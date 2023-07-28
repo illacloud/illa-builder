@@ -2236,7 +2236,7 @@
         "add": "Añadir",
         "body": "Cuerpo",
         "default_view": "Vista por defecto",
-        "edit_view": "Edit path",
+        "edit_view": "Editar ruta",
         "footer": "Pie",
         "header": "Cabecera",
         "key": "Clave",
@@ -2245,7 +2245,7 @@
         "right_panel": "Panel derecho",
         "set_as_homepage": "Establecer como página de inicio",
         "show_fold_icon": "Mostrar icono plegable",
-        "view_path": "Path",
+        "view_path": "Ruta",
         "views": "Vistas",
         "width": "Width",
         "height": "Altura",
@@ -2264,7 +2264,7 @@
       "tab_title": "Pgina",
       "tooltips": {
         "show_fold_icon": "Mostrar un botón para contraer o expandir el panel",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Para configurar el acceso a esta página, tendrás que ajustar la ruta. Por ejemplo, si cambias la ruta a '**newPath**', y la agregas como una subpágina de la página de inicio. Esta página puede accederse a través de la siguiente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "El ancho de la página como porcentaje del ancho del navegador."
       }
     },
@@ -2984,7 +2984,7 @@
       "name": "Formulario de esquema JSON"
     },
     "page": {
-      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. "
+      "path_duplicated": "La ruta está duplicada. Utilice una ruta única para evitar errores. "
     }
   },
   "page": {
