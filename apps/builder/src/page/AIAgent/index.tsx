@@ -16,14 +16,18 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
+import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { FullPageLoading } from "@/components/FullPageLoading"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
 import { AIAgentBlock } from "@/page/AIAgent/components/AIAgentBlock"
+import AILoading from "@/page/AIAgent/components/AILoading"
 import { PreviewChat } from "@/page/AIAgent/components/PreviewChat"
 import {
   aiAgentContainerStyle,
   buttonContainerStyle,
+  descContainerStyle,
+  descTextStyle,
   labelStyle,
   labelTextStyle,
   leftPanelContainerStyle,
@@ -42,9 +46,17 @@ import {
   Agent,
   AgentRaw,
   AgentRawInitial,
+  ChatMessage,
 } from "@/redux/aiAgent/aiAgentState"
-import { createAgent, fetchAgentDetail, putAgentDetail } from "@/services/agent"
+import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import {
+  createAgent,
+  fetchAgentDetail,
+  generateDescription,
+  putAgentDetail,
+} from "@/services/agent"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { ChatContext } from "./components/ChatContext"
 
 export const AIAgent: FC = () => {
   const { agentId } = useParams()
@@ -53,10 +65,16 @@ export const AIAgent: FC = () => {
     mode: "onSubmit",
   })
 
+  const message = useMessage()
+  // page state
   const [pageLoading, setPageLoading] = useState(false)
   const [currentAgent, setCurrentAgent] = useState<Agent>(AgentRawInitial)
   const [saveLoading, setSavingLoading] = useState(false)
-  const message = useMessage()
+  const [generateDescLoading, setGenerateDescLoading] = useState(false)
+  // data state
+  const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
+  const [receiving, setReceiving] = useState(false)
+  const [messages, setMessages] = useState<ChatMessage[]>([])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -81,7 +99,7 @@ export const AIAgent: FC = () => {
   }, [agentId, message])
 
   return (
-    <>
+    <ChatContext.Provider value={{ inRoomUsers, receiving }}>
       {pageLoading && <FullPageLoading />}
       {!pageLoading && (
         <div css={aiAgentContainerStyle}>
@@ -100,7 +118,7 @@ export const AIAgent: FC = () => {
                   setCurrentAgent(newAgent.data)
                 }
               } catch (e) {
-                if (axios.isAxiosError(e) && e.response) {
+                if (axios.isAxiosError(e)) {
                   message.error({
                     content: "save error",
                   })
@@ -164,21 +182,53 @@ export const AIAgent: FC = () => {
                     )}
                   />
                 </AIAgentBlock>
-                <AIAgentBlock title={"Description"}>
-                  <Controller
-                    name="description"
-                    control={control}
-                    defaultValue={currentAgent.description}
-                    shouldUnregister={false}
-                    render={({ field }) => (
+                <Controller
+                  name="description"
+                  control={control}
+                  defaultValue={currentAgent.description}
+                  shouldUnregister={false}
+                  render={({ field }) => (
+                    <AIAgentBlock
+                      title={"Description"}
+                      tips={"6666"}
+                      subTitle={
+                        <div
+                          css={descContainerStyle}
+                          onClick={async () => {
+                            setGenerateDescLoading(true)
+                            try {
+                              const desc = await generateDescription(
+                                field.value,
+                              )
+                              field.onChange(desc.data.payload)
+                            } catch (e) {
+                              if (axios.isAxiosError(e)) {
+                                message.error({
+                                  content: "generate error",
+                                })
+                              }
+                            } finally {
+                              setGenerateDescLoading(false)
+                            }
+                          }}
+                        >
+                          {generateDescLoading ? (
+                            <AILoading spin={true} size="12px" />
+                          ) : (
+                            <AIIcon />
+                          )}
+                          <div css={descTextStyle}>AI generate</div>
+                        </div>
+                      }
+                    >
                       <TextArea
                         {...field}
                         minH="64px"
                         colorScheme={"techPurple"}
                       />
-                    )}
-                  />
-                </AIAgentBlock>
+                    </AIAgentBlock>
+                  )}
+                />
                 <AIAgentBlock title={"Mode"}>
                   <Controller
                     name="agentType"
@@ -365,11 +415,17 @@ export const AIAgent: FC = () => {
             </div>
           </form>
           <div css={rightPanelContainerStyle}>
-            <PreviewChat />
+            <PreviewChat
+              messages={messages}
+              onSendMessage={(message) => {
+                setReceiving(true)
+                setMessages([...messages, message])
+              }}
+            />
           </div>
         </div>
       )}
-    </>
+    </ChatContext.Provider>
   )
 }
 

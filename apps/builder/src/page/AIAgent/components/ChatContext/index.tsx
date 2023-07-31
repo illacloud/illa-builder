@@ -3,6 +3,7 @@ import { ChatContextProps } from "@/page/AIAgent/components/ChatContext/interfac
 
 export const ChatContext = createContext<ChatContextProps>({
   inRoomUsers: [],
+  receiving: false,
 })
 
 ChatContext.displayName = "ChatContext"

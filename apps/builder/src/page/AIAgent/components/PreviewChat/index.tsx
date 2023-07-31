@@ -1,8 +1,8 @@
-import { FC, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
+import { v4 } from "uuid"
 import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
 import AIAgentMessage from "@/page/AIAgent/components/AIAgentMessage"
-import { ChatContext } from "@/page/AIAgent/components/ChatContext"
 import { PreviewChatProps } from "@/page/AIAgent/components/PreviewChat/interface"
 import {
   chatContainerStyle,
@@ -14,16 +14,17 @@ import {
 } from "@/page/AIAgent/components/PreviewChat/style"
 import UserMessage from "@/page/AIAgent/components/UserMessage"
 import { ChatMessage, SenderType } from "@/redux/aiAgent/aiAgentState"
-import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
-export const PreviewChat: FC<PreviewChatProps> = () => {
-  const currentUserInfo = useSelector(getCurrentUser)
-  const [messageList, setMessageList] = useState<ChatMessage[]>([])
-  const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
+export const PreviewChat: FC<PreviewChatProps> = (props) => {
+  const { messages, onSendMessage } = props
 
-  const messages = useMemo(() => {
-    return messageList.map((message) => {
+  const currentUserInfo = useSelector(getCurrentUser)
+
+  const [textAreaVal, setTextAreaVal] = useState("")
+
+  const messagesList = useMemo(() => {
+    return messages.map((message) => {
       if (
         message.sender.senderType === SenderType.User &&
         message.sender.senderID === currentUserInfo.userId
@@ -32,32 +33,59 @@ export const PreviewChat: FC<PreviewChatProps> = () => {
       }
       return <AIAgentMessage key={message.threadID} message={message} />
     })
-  }, [currentUserInfo.userId, messageList])
+  }, [currentUserInfo.userId, messages])
+
+  const sendAndClearMessage = useCallback(() => {
+    if (textAreaVal !== "") {
+      onSendMessage({
+        threadID: v4(),
+        message: textAreaVal,
+        sender: {
+          senderID: currentUserInfo.userId,
+          senderType: SenderType.User,
+        },
+      } as ChatMessage)
+      setTextAreaVal("")
+    }
+  }, [currentUserInfo.userId, onSendMessage, textAreaVal])
 
   return (
-    <ChatContext.Provider
-      value={{
-        inRoomUsers,
-      }}
-    >
-      <div css={previewChatContainerStyle}>
-        <div css={previewTitleContainerStyle}>
-          <div css={previewTitleTextStyle}>Preview Window</div>
-          <Button ml="8px" colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
-            Share
-          </Button>
-          <Button ml="8px" colorScheme="grayBlue" leftIcon={<ContributeIcon />}>
-            Contribute to marketplace
-          </Button>
-        </div>
-        <div css={chatContainerStyle}>{messages}</div>
-        <div css={inputTextContainerStyle}>
-          <textarea css={inputStyle} placeholder="Input Something" />
-          <Button alignSelf="end" mt="16px" colorScheme="techPurple">
-            Send
-          </Button>
-        </div>
+    <div css={previewChatContainerStyle}>
+      <div css={previewTitleContainerStyle}>
+        <div css={previewTitleTextStyle}>Preview Window</div>
+        <Button ml="8px" colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
+          Share
+        </Button>
+        <Button ml="8px" colorScheme="grayBlue" leftIcon={<ContributeIcon />}>
+          Contribute to marketplace
+        </Button>
       </div>
-    </ChatContext.Provider>
+      <div css={chatContainerStyle}>{messagesList}</div>
+      <div css={inputTextContainerStyle}>
+        <textarea
+          value={textAreaVal}
+          css={inputStyle}
+          placeholder="Input Something"
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              sendAndClearMessage()
+            }
+          }}
+          onChange={(event) => {
+            setTextAreaVal(event.target.value)
+          }}
+        />
+        <Button
+          alignSelf="end"
+          mt="16px"
+          colorScheme="techPurple"
+          onClick={() => {
+            sendAndClearMessage()
+          }}
+        >
+          Send
+        </Button>
+      </div>
+    </div>
   )
 }

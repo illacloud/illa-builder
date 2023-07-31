@@ -47,8 +47,6 @@ export interface ChatSender {
 
 export interface ChatMessage {
   threadID: string
-  prompt: string
-  variable: Params[]
   message: string
   sender: ChatSender
 }

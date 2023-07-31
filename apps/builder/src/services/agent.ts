@@ -110,3 +110,19 @@ export const createAgent = (agentRaw: AgentRaw) => {
     },
   )
 }
+
+// send raw without variables
+export const generateDescription = (prompt: string) => {
+  return builderRequest<{ payload: string }, { prompt: string }>(
+    {
+      url: `/AIAgent/generatePromptDescription`,
+      method: "POST",
+      data: {
+        prompt: prompt,
+      },
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
