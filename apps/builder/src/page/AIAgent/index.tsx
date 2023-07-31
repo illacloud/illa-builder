@@ -260,12 +260,12 @@ export const AIAgent: FC = () => {
                           },
                         ])
                       }}
-                      onChangeKey={(index, key, value) => {
+                      onChangeKey={(index, key) => {
                         const newVariables = [...field.value]
-                        newVariables[index].key = value
+                        newVariables[index].key = key
                         field.onChange(newVariables)
                       }}
-                      onChangeValue={(index, key, value) => {
+                      onChangeValue={(index, _, value) => {
                         const newVariables = [...field.value]
                         newVariables[index].value = value
                         field.onChange(newVariables)

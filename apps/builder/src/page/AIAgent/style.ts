@@ -10,17 +10,16 @@ export const aiAgentContainerStyle = css`
 
 export const leftPanelContainerStyle = css`
   height: 100%;
-  width: 100%;
+  width: 528px;
   display: flex;
   flex-direction: column;
+  min-width: 528px;
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
 `
 
 export const leftPanelContentContainerStyle = css`
   display: flex;
   width: 100%;
-  flex-grow: 1;
-  flex-shrink: 1;
   overflow-y: auto;
   flex-direction: column;
 `
