@@ -21,7 +21,8 @@ interface IAPPPublicStatus {
 }
 export const fetchAPPPublicStatus = async (
   appID: string,
-  signal: AbortSignal,
+  teamIdentifier?: string,
+  signal?: AbortSignal,
 ) => {
   return builderRequest<IAPPPublicStatus>(
     {
@@ -31,6 +32,7 @@ export const fetchAPPPublicStatus = async (
     },
     {
       needTeamIdentifier: true,
+      teamIdentifier,
     },
   )
 }
@@ -38,7 +40,8 @@ export const fetchAPPPublicStatus = async (
 export const fetchPubicAppInitData = (
   appID: string,
   versionID: string,
-  signal: AbortSignal,
+  teamIdentifier?: string,
+  signal?: AbortSignal,
 ) => {
   return builderRequest<CurrentAppResp>(
     {
@@ -48,6 +51,7 @@ export const fetchPubicAppInitData = (
     },
     {
       needTeamIdentifier: true,
+      teamIdentifier,
     },
   )
 }
@@ -55,7 +59,8 @@ export const fetchPubicAppInitData = (
 export const fetchPrivateAppInitData = async (
   appID: string,
   versionID: string,
-  signal: AbortSignal,
+  teamIdentifier?: string,
+  signal?: AbortSignal,
 ) => {
   return await builderRequest<CurrentAppResp>(
     {
@@ -65,6 +70,7 @@ export const fetchPrivateAppInitData = async (
     },
     {
       needTeamID: true,
+      teamIdentifier,
     },
   )
 }
