@@ -68,7 +68,7 @@
     "no-result": "Niciun rezultat aici. Reîmprospătați sau schimbați termenii de căutare.",
     "message": {
       "next-page-error": "Încărcarea paginii următoare a eșuat. Te rugăm să încerci din nou.",
-      "create-failed": "Eroare la crearea agentului. Vă rugăm să încercaţi din nou.",
+      "create-failed": "Agentul de salvare a eșuat. Te rugăm să încerci din nou.",
       "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
       "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
       "fork-failed": "Esuare fork, te rugam incearca din nou.",
@@ -2606,7 +2606,8 @@
         "text": "Genereaza text"
       },
       "message": {
-        "click-start": "Faceți clic pe butonul de pornire pentru a declanșa."
+        "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
+        "insufficient_token": "Token insuficient"
       }
     }
   },
