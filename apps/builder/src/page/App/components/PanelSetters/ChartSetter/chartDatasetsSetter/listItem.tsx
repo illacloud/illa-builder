@@ -100,6 +100,19 @@ export const CHART_COLOR_TYPE_CONFIG = {
   ],
 }
 
+export const CHART__BASE_COLOR_TYPE_CONFIG = CHART_COLOR_TYPE_CONFIG[
+  "illa-preset"
+].concat([
+  "#5343D0",
+  "#C24499",
+  "#09A9AE",
+  "#009A29",
+  "#104AE4",
+  "#E5700E",
+  "#E2A214",
+  "#0B0C0F",
+])
+
 export const CHART_PRESET_COLOR = CHART_COLOR_TYPE_CONFIG["illa-preset"]
 export const CHART_COLOR_TYPE_CONFIG_KEYS = Object.keys(CHART_COLOR_TYPE_CONFIG)
 
