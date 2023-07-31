@@ -68,7 +68,7 @@
     "no-result": "Intet resultat her. Opdater eller ændr venligst dine søgeord.",
     "message": {
       "next-page-error": "Næste side kunne ikke indlæses. Prøv igen.",
-      "create-failed": "Mislykkedes at oprette agent. Prøv venligst igen.",
+      "create-failed": "Agenten kunne ikke gemmes. Prøv venligst igen.",
       "sort-failed": "Kunne ikke ændre filtertypen. Prøv igen.",
       "detail-load-failed": "Kunne ikke hente detaljer. Prøv venligst igen.",
       "fork-failed": "Mislykkedes at gaffel, prøv igen.",
@@ -2606,7 +2606,8 @@
         "text": "Generer tekst"
       },
       "message": {
-        "click-start": "Klik på knappen Start for at udløse."
+        "click-start": "Klik på knappen Start for at udløse.",
+        "insufficient_token": "Utilstrækkelig token"
       }
     }
   },
