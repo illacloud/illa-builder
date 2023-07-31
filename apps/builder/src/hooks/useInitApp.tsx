@@ -75,7 +75,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       setErrorState(false)
       setLoadingState(true)
       Promise.all([
-        fetchPrivateAppInitData(appId, versionId, controller.signal),
+        fetchPrivateAppInitData(appId, versionId, teamID, controller.signal),
         fetchResources(controller.signal),
       ])
         .then((res) => {
@@ -94,7 +94,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       controller.abort()
       dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
     }
-  }, [appId, dispatch, handleCurrentApp, isOnline, versionId])
+  }, [appId, dispatch, handleCurrentApp, isOnline, teamID, versionId])
 
   return { loadingState, errorState }
 }
