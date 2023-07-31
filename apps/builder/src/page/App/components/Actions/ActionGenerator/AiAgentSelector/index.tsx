@@ -11,34 +11,13 @@ import { AgentListItem } from "@/page/App/components/Actions/ActionGenerator/AiA
 import { TEAM_AGENT_ITEM_HEIGHT } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/AgentListItem/style"
 import { MarketListItem } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/MarketListItem"
 import { MARKET_AGENT_ITEM_HEIGHT } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/MarketListItem/style"
+import { Agent, MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
 import { track } from "@/utils/mixpanelHelper"
 import { ActionResourceSelectorProps } from "./interface"
 import { containerStyle, footerStyle } from "./style"
 
-export interface AgentItem {
-  id: string
-  name: string
-  description: string
-  cover: string
-  teamName: string
-  starCount: number
-  runCount: number
-  forkCount: number
-}
-
-const data: AgentItem[] = [
-  {
-    id: "1",
-    name: "agent1",
-    description:
-      "For high-quality text generation, such as articles, summaries, and translations, use the completion-messages API with user input. Text generation relies on the model parameters and prompt templates set in Dify Prompt Engineering.",
-    cover: "https://via.placeholder.com/150",
-    teamName: "team1",
-    starCount: 4,
-    runCount: 100,
-    forkCount: 10,
-  },
-]
+const data: Agent[] = []
+const marketData: MarketAiAgent[] = []
 
 export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
   const { actionType, onBack, onCreateAction, handleCreateAction } = props
@@ -96,38 +75,47 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
         onChange={setAgentType}
       />
       <Input w="100%" pd="16px 24px" colorScheme="techPurple" />
-      <FixedSizeList
-        height={420}
-        width={ACTION_MODAL_WIDTH}
-        itemCount={data.length}
-        itemSize={
-          agentType === "market"
-            ? MARKET_AGENT_ITEM_HEIGHT
-            : TEAM_AGENT_ITEM_HEIGHT
-        }
-      >
-        {({ index, style }) => {
-          const item = data[index]
-          if (agentType === "market") {
+      {agentType === "market" ? (
+        <FixedSizeList
+          height={420}
+          width={ACTION_MODAL_WIDTH}
+          itemCount={marketData.length}
+          itemSize={MARKET_AGENT_ITEM_HEIGHT}
+        >
+          {({ index, style }) => {
+            const item = marketData[index]
+
             return (
               <MarketListItem
-                key={item.id}
+                key={item.aiAgent.aiAgentID}
                 item={item}
                 onClickCreateAction={handleClickCreateAction}
                 style={style}
               />
             )
-          }
-          return (
-            <AgentListItem
-              key={item.id}
-              item={item}
-              onClickCreateAction={handleClickCreateAction}
-              style={style}
-            />
-          )
-        }}
-      </FixedSizeList>
+          }}
+        </FixedSizeList>
+      ) : (
+        <FixedSizeList
+          height={420}
+          width={ACTION_MODAL_WIDTH}
+          itemCount={data.length}
+          itemSize={TEAM_AGENT_ITEM_HEIGHT}
+        >
+          {({ index, style }) => {
+            const item = data[index]
+            return (
+              <AgentListItem
+                key={item.aiAgentID}
+                item={item}
+                onClickCreateAction={handleClickCreateAction}
+                style={style}
+              />
+            )
+          }}
+        </FixedSizeList>
+      )}
+
       <div css={footerStyle}>
         <Button
           leftIcon={<PreviousIcon />}

@@ -1,7 +1,7 @@
 import { CSSProperties, FC } from "react"
 import { Button, PlayOutlineIcon } from "@illa-design/react"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
-import { AgentItem } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector"
+import { MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
 import { ReactComponent as EmojiSmileIcon } from "./assets/emoji-smile.svg"
 import {
   actionCountStyle,
@@ -18,7 +18,7 @@ import {
 
 interface MarketListItemItemProps {
   style?: CSSProperties
-  item: AgentItem
+  item: MarketAiAgent
   onClickCreateAction: (id: string) => void
 }
 export const MarketListItem: FC<MarketListItemItemProps> = (props) => {
@@ -28,23 +28,25 @@ export const MarketListItem: FC<MarketListItemItemProps> = (props) => {
     <div css={containerStyle}>
       <div css={infoContainerStyle}>
         <div css={leftContentStyle}>
-          <img css={coverStyle} src={item.cover} alt="cover" />
+          <img css={coverStyle} src={item.aiAgent.icon} alt="cover" />
           <div css={contentStyle}>
-            <div css={nameStyle}>{item.name}</div>
-            <div css={descStyle}>{item.description}</div>
+            <div css={nameStyle}>{item.aiAgent.name}</div>
+            <div css={descStyle}>{item.aiAgent.description}</div>
             <div css={labelStyle}>
               <EmojiSmileIcon />
-              <span css={teamNameStyle}>{item.teamName}</span>
+              <span css={teamNameStyle}>
+                {item.marketplace.contributorTeam.name}
+              </span>
             </div>
           </div>
         </div>
         <div css={actionCountStyle}>
           <PlayOutlineIcon />
-          {item.runCount}
+          {item.marketplace.numRuns}
         </div>
       </div>
       <Button colorScheme="grayBlue" leftIcon={<ForkIcon />}>
-        Fork {item.forkCount}
+        Fork {item.marketplace.numForks}
       </Button>
     </div>
   )
