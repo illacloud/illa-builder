@@ -73,7 +73,7 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
     currentViewIndex,
   )
 
-  const componentNode = sectionNode.childrenNode.find(
+  const componentNode = sectionNode.childrenNode?.find(
     (node) => node.displayName === currentViewDisplayName,
   )
 

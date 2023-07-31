@@ -28,11 +28,8 @@ export interface BodyProps {
 }
 
 export interface ItemProps extends Omit<SectionViewShape, "id" | "key"> {
-  name: string
-  otherKeys: string[]
-  isSelected: boolean
+  otherPaths: string[]
   index: number
-  handleChangSectionView: (index: number) => void
   handleDeleteSectionView: (index: number) => void
   handleUpdateItem: (path: string, value: string) => void
   attrPath: string
@@ -41,15 +38,10 @@ export interface ItemProps extends Omit<SectionViewShape, "id" | "key"> {
 export interface LabelNameAndDragIconProps {
   name: string
   isDuplicationKey: boolean
-  isSelected: boolean
-  index: number
-  handleChangSectionView: (index: number) => void
 }
 
 export interface ModalProps {
   onCloseModal: () => void
-  name: string
   path: string
-  handleUpdateItem: (path: string, value: string) => void
-  attrPath: string
+  handleUpdateItem: (value: string) => void
 }

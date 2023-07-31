@@ -77,7 +77,7 @@ export const RenderLeftSection: FC<RenderLeftSectionProps> = (props) => {
   const [isResizeActive, setIsResizeActive] = useState(false)
   const [presetWidth, setPresetWidth] = useState(0)
 
-  const componentNode = sectionNode.childrenNode.find(
+  const componentNode = sectionNode.childrenNode?.find(
     (node) => node.displayName === currentViewDisplayName,
   )
 

@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modelo",
             "variable": "Variable",
-            "input": "Input",
+            "input": "Enviar contenido",
             "max-token": "Token máximo"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Botón de envío oculto",
           "submit_button_full_w": "Ancho completo del botón de envío",
           "submit_button_text": "Texto del botón de enviar"
+        },
+        "chart": {
+          "direction": "Dirección",
+          "y-axis_value": "Valor del eje Y",
+          "stack_grouped_data": "Pila de datos agrupados",
+          "x-axis_type": "Tipo de eje X",
+          "format": "Formatear",
+          "legend_position": "Posición de la leyenda",
+          "grid_line": "Rejilla",
+          "y-axis_type": "Tipo eje Y"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Establecer el título a mostrar"
+        },
+        "page": {
+          "default_view": "Cuando los usuarios ingresan una ruta de error, redirigiremos automáticamente a la ruta por defecto. Cuando no hay una ruta por defecto, trataremos la primera ruta de la lista como la ruta por defecto"
+        },
+        "chart": {
+          "direction": "Establecer la dirección del gráfico. ",
+          "y-axis_value": "Establecer el valor del eje Y",
+          "stack_grouped_data": "Los valores de diferentes grupos con el mismo valor del eje X se acumularán en un gráfico apilado. Las cartas apiladas se pueden utilizar para comparar el tamaño total de diferentes categorías o grupos, así como los tamaños relativos de subcategorías o subgrupos individuales.",
+          "x-axis_type": "Configurar el tipo de gráfico puede mejorar la legibilidad de datos.",
+          "format": "Una cadena de formato de fecha válida. Vea [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Establecer la posición de legal. ",
+          "grid_line": "Para establecer el color de la línea de cuadrícula. ",
+          "y-axis_type": "Configurar el tipo de gráfico puede mejorar la legibilidad de datos."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Reemplazar",
             "keepboth": "Mantener ambos"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Castaña",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Por defecto",
+            "Date": "Fecha"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Añadir",
         "body": "Cuerpo",
         "default_view": "Vista por defecto",
-        "edit_view": "Editar vista",
+        "edit_view": "Editar ruta",
         "footer": "Pie",
         "header": "Cabecera",
         "key": "Clave",
@@ -2245,11 +2282,12 @@
         "right_panel": "Panel derecho",
         "set_as_homepage": "Establecer como página de inicio",
         "show_fold_icon": "Mostrar icono plegable",
-        "view_path": "Ver ruta",
+        "view_path": "Ruta",
         "views": "Vistas",
         "width": "Width",
         "height": "Altura",
-        "columns": "Columnas"
+        "columns": "Columnas",
+        "set_as_default_subpage": "Establecer como subpágina por defecto"
       },
       "model_tips": {
         "cancel_button": "Cancelar",
@@ -2264,7 +2302,7 @@
       "tab_title": "Pgina",
       "tooltips": {
         "show_fold_icon": "Mostrar un botón para contraer o expandir el panel",
-        "view_path": "Una cadena después de ejemplo.com/app/page/ para acceder a esta vista",
+        "view_path": "Para configurar el acceso a esta página, tendrás que ajustar la ruta. Por ejemplo, si cambias la ruta a '**newPath**', y la agregas como una subpágina de la página de inicio. Esta página puede accederse a través de la siguiente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "El ancho de la página como porcentaje del ancho del navegador."
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Formulario de esquema JSON"
+    },
+    "page": {
+      "path_duplicated": "La ruta está duplicada. Utilice una ruta única para evitar errores. ",
+      "tips": {
+        "blank_view": "Este módulo no tiene páginas hijas. Por favor, añádelas primero a través del panel de página a la derecha."
+      },
+      "label": {
+        "rename_url": "Editar ruta"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "¿Cambiar plan?",
         "button_cancel": "Cancelar",
         "button_confirm": "Confirmar"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 es para el equipo Premium. ",
+        "string2": "Para usarlo, actualice a Premium. Al actualizar a Premium, también tendrá acceso a las siguientes características. "
       }
     },
     "homepage": {

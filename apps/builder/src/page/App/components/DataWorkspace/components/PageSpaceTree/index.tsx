@@ -1,63 +1,31 @@
 import { FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Dropdown, PlusIcon } from "@illa-design/react"
-import { ReactComponent as HomepageIcon } from "@/assets/dataWorkspace/homepage.svg"
+import { PlusIcon } from "@illa-design/react"
 import { PanelBar } from "@/components/PanelBar"
 import { customIconHotpotStyle } from "@/components/PanelBar/style"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { ActionMenu } from "@/page/App/components/PagePanel/Components/PanelHeader/actionMenu"
+import { getPageDisplayNameMapViewDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { RootComponentNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { FocusManager } from "@/utils/focusManager"
 import { generatePageConfig } from "@/utils/generators/generatePageOrSectionConfig"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { PageItemProps } from "./interface"
-import {
-  homePageIconHotSpot,
-  homePageIconStyle,
-  pageItemWrapperStyle,
-  pageNameStyle,
-} from "./style"
-
-export const PageItem: FC<PageItemProps> = (props) => {
-  const {
-    isHomePage = false,
-    isSelected = false,
-    pageName,
-    index,
-    changeCurrentPageIndex,
-    allKeys,
-  } = props
-  return (
-    <Dropdown
-      position="bottom-start"
-      trigger="contextmenu"
-      dropList={<ActionMenu pageDisplayName={pageName} pageKeys={allKeys} />}
-    >
-      <div
-        css={pageItemWrapperStyle(isSelected)}
-        onClick={() => {
-          changeCurrentPageIndex(index)
-        }}
-      >
-        <span css={pageNameStyle}>{pageName}</span>
-        <div css={homePageIconHotSpot}>
-          {isHomePage && <HomepageIcon css={homePageIconStyle} />}
-        </div>
-      </div>
-    </Dropdown>
-  )
-}
+import PageItem from "./components/PageItem"
 
 export const PageSpaceTree: FC = () => {
   const { t } = useTranslation()
   const rootNodeProps = useSelector(
     getRootNodeExecutionResult,
   ) as RootComponentNodeProps
-  const { pageSortedKey, currentPageIndex, homepageDisplayName } = rootNodeProps
+  const {
+    currentPageIndex,
+    homepageDisplayName,
+    pageSortedKey = [],
+    currentSubPagePath,
+  } = rootNodeProps
+  const currentPageDisplayName = pageSortedKey[currentPageIndex]
   const dispatch = useDispatch()
 
   const handleClickAddButton = useCallback(
@@ -72,20 +40,8 @@ export const PageSpaceTree: FC = () => {
     [dispatch],
   )
 
-  const changeCurrentPage = useCallback(
-    (index: number) => {
-      if (index === currentPageIndex) return
-      dispatch(
-        executionActions.updateExecutionByDisplayNameReducer({
-          displayName: "root",
-          value: {
-            currentPageIndex: index,
-          },
-        }),
-      )
-    },
-    [currentPageIndex, dispatch],
-  )
+  const testResult = useSelector(getPageDisplayNameMapViewDisplayName)
+
   return (
     <PanelBar
       title={t("editor.data_work_space.pages_title")}
@@ -99,24 +55,22 @@ export const PageSpaceTree: FC = () => {
         FocusManager.switchFocus("data_page")
       }}
     >
-      {Array.isArray(pageSortedKey) &&
-        pageSortedKey.map((key: string, index: number) => {
-          const isSelected = currentPageIndex === index
-          const isHomePage = homepageDisplayName
-            ? homepageDisplayName === key
-            : index === 0
-          return (
-            <PageItem
-              isSelected={isSelected}
-              isHomePage={isHomePage}
-              index={index}
-              pageName={key}
-              key={key}
-              changeCurrentPageIndex={changeCurrentPage}
-              allKeys={pageSortedKey}
-            />
-          )
-        })}
+      {Object.keys(testResult).map((key, index) => {
+        const isHomePage = homepageDisplayName
+          ? homepageDisplayName === key
+          : index === 0
+        return (
+          <PageItem
+            isHomePage={isHomePage}
+            pageName={key}
+            key={key}
+            level={1}
+            subPagePaths={testResult[key]}
+            currentPagePath={currentPageDisplayName}
+            currentSubPagePath={currentSubPagePath}
+          />
+        )
+      })}
     </PanelBar>
   )
 }

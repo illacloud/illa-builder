@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Wzór",
             "variable": "Zmienna",
-            "input": "Input",
+            "input": "Wyślij zawartość",
             "max-token": "Maksymalny token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Ukryty przycisk przesyłania",
           "submit_button_full_w": "Prześlij pełny rozmiar przycisku",
           "submit_button_text": "Prześlij tekst przycisku"
+        },
+        "chart": {
+          "direction": "Kierunek",
+          "y-axis_value": "Wartość osi Y",
+          "stack_grouped_data": "Zgrupowane dane",
+          "x-axis_type": "Typ osi X",
+          "format": "Formatowanie",
+          "legend_position": "Pozycja Legendy",
+          "grid_line": "Linia siatki",
+          "y-axis_type": "Typ osi Y"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Ustaw tytuł do wyświetlenia"
+        },
+        "page": {
+          "default_view": "Gdy użytkownicy wprowadzą ścieżkę błędu, automatycznie przekierowamy do domyślnej ścieżki. Gdy nie ma domyślnej ścieżki, traktujemy pierwszą ścieżkę na liście jako domyślną ścieżkę"
+        },
+        "chart": {
+          "direction": "Ustaw kierunek wykresu. ",
+          "y-axis_value": "Ustaw wartość osi Y",
+          "stack_grouped_data": "Wartości z różnych grup o tej samej wartości osi X będą ułożone na wykresie. Złożone wykresy mogą być wykorzystane do porównania ogólnego rozmiaru różnych kategorii lub grup, jak również względne rozmiary poszczególnych podkategorii lub podgrup.",
+          "x-axis_type": "Ustawianie typu wykresu może poprawić czytelność danych.",
+          "format": "Prawidłowy ciąg formatu daty. Zobacz [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Aby ustawić pozycję legalną. ",
+          "grid_line": "Aby ustawić kolor linii siatki. ",
+          "y-axis_type": "Ustawianie typu wykresu może poprawić czytelność danych."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Zamień",
             "keepboth": "Zachowaj oba"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Orzeszki ziemne",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Poziomy",
+            "vertical": "Pionowo"
+          },
+          "x-axis_type": {
+            "Default": "Domyślny",
+            "Date": "Data"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Dodaj",
         "body": "Ciało",
         "default_view": "Widok domyślny",
-        "edit_view": "Edytuj widok",
+        "edit_view": "Edytuj ścieżkę",
         "footer": "Stopka",
         "header": "Nagłówek",
         "key": "Klucz",
@@ -2245,11 +2282,12 @@
         "right_panel": "Prawy panel",
         "set_as_homepage": "Ustaw jako stronę główną",
         "show_fold_icon": "Pokaż ikonę złożenia",
-        "view_path": "Pokaż ścieżkę",
+        "view_path": "Ścieżka",
         "views": "Widoki",
         "width": "Width",
         "height": "Wysokość",
-        "columns": "Kwota, którą należy zgłosić w kolumnie 060 tego wiersza: pierwotne odliczenie, art. 36 ust. 1 lit. b) CRR."
+        "columns": "Kwota, którą należy zgłosić w kolumnie 060 tego wiersza: pierwotne odliczenie, art. 36 ust. 1 lit. b) CRR.",
+        "set_as_default_subpage": "Ustaw jako domyślną podstronę"
       },
       "model_tips": {
         "cancel_button": "Anuluj",
@@ -2264,7 +2302,7 @@
       "tab_title": "Strona",
       "tooltips": {
         "show_fold_icon": "Pokaż przycisk do zwinięcia lub rozwinięcia panelu",
-        "view_path": "Ciąg znaków po przykład.com/app/page/ aby uzyskać dostęp do tego widoku",
+        "view_path": "Aby skonfigurować dostęp do tej strony, musisz dostosować ścieżkę. Na przykład, jeśli zmienisz ścieżkę na '**nowa ścieżka**' i dodaj ją jako podstronę strony głównej. Ta strona może być dostępna za pomocą następującego URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Szerokość strony wyrażona jako procent szerokości przeglądarki."
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Formularz schematu JSON"
+    },
+    "page": {
+      "path_duplicated": "Ścieżka jest zduplikowana. Użyj unikalnej ścieżki, aby uniknąć błędów. ",
+      "tips": {
+        "blank_view": "Ten moduł nie ma stron podrzędnych. Dodaj je najpierw przez panel strony po prawej stronie."
+      },
+      "label": {
+        "rename_url": "Edytuj ścieżkę"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Zmienić plan?",
         "button_cancel": "Anuluj",
         "button_confirm": "Potwierdź"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 jest dla zespołu Premium. ",
+        "string2": "Aby go użyć, uaktualnij do wersji Premium. Uaktualniając do wersji Premium, będziesz miał również dostęp do następujących funkcji. "
       }
     },
     "homepage": {

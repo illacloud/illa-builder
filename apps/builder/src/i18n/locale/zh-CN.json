@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "模型",
             "variable": "变量",
-            "input": "输入",
+            "input": "发送内容",
             "max-token": "最大Token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "隐藏提交按钮",
           "submit_button_full_w": "提交按钮全宽",
           "submit_button_text": "提交按钮文案"
+        },
+        "chart": {
+          "direction": "方向",
+          "y-axis_value": "纵坐标值",
+          "stack_grouped_data": "堆栈数据",
+          "x-axis_type": "X轴类型",
+          "format": "格式",
+          "legend_position": "图例位置",
+          "grid_line": "网格线",
+          "y-axis_type": "Y轴类型"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "设置数值的标题"
+        },
+        "page": {
+          "default_view": "当用户输错路径时，我们会自动重定向到默认路径。当没有默认路径，我们会将列表里第一个路径视作默认路径。"
+        },
+        "chart": {
+          "direction": "设置图表方向 ",
+          "y-axis_value": "设置Y轴的值",
+          "stack_grouped_data": "具有相同X轴值的不同组别的值将被堆叠在堆叠图表中。 可使用堆积图来比较不同类别或组的总体大小。",
+          "x-axis_type": "设置图表类型以提高数据可读性。",
+          "format": "一个符合规范的时间格式，请参考 [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "legend_position": "设置图例的位置",
+          "grid_line": "设置网格线的颜色",
+          "y-axis_type": "设置图表类型以提高数据可读性。"
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "替换",
             "keepboth": "保留两者"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "环状图",
+            "Radar": "雷达图"
+          },
+          "direction": {
+            "horizontal": "横向",
+            "vertical": "纵向"
+          },
+          "x-axis_type": {
+            "Default": "默认",
+            "Date": "日期"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "新建",
         "body": "主体",
         "default_view": "默认视图",
-        "edit_view": "编辑视图",
+        "edit_view": "编辑路径",
         "footer": "页脚",
         "header": "页头",
         "key": "键值",
@@ -2245,11 +2282,12 @@
         "right_panel": "右侧面板",
         "set_as_homepage": "设置为主页",
         "show_fold_icon": "显示折叠按钮",
-        "view_path": "视图路径",
+        "view_path": "路径",
         "views": "视图",
         "width": "宽度",
         "height": "高度",
-        "columns": "列数"
+        "columns": "列数",
+        "set_as_default_subpage": "设置为默认子页面"
       },
       "model_tips": {
         "cancel_button": "取消",
@@ -2264,7 +2302,7 @@
       "tab_title": "页面",
       "tooltips": {
         "show_fold_icon": "显示一个按钮，用于收起或展开面板",
-        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图",
+        "view_path": "要配置访问该页面的链接，您需要调整路径。 例如，如果您将路径更改为“**newPath**”，并将其添加为主页的子页面。 然后可以通过以下 URL 访问此页面：cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**。",
         "auto_canvas_width": "页面宽度占浏览器宽度的百分比。"
       }
     },
@@ -2519,9 +2557,9 @@
         "prompt": "Prompt",
         "variable": "参数",
         "welcome": "初始消息",
-        "model": "Model",
+        "model": "模型",
         "temperature": "Temperature",
-        "max-token": "Max token"
+        "max-token": "最大Token"
       },
       "placeholder": {
         "logo": "上传",
@@ -2533,8 +2571,8 @@
           "value": "值"
         },
         "welcome": "提供一个初始消息，在用户开始使用这个agent时展示",
-        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
-        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
+        "temperature": "0到1之间的值，值越小结果约优",
+        "max-token": "用于限制单次运行的最大数量限制"
       },
       "tips": {
         "mode": "在聊天模式下，发送的每条消息时都会带上对话历史记录一起请求，这可以使结果更优，但会消耗更多的Token； 在文本模式下，发送的每条消息不包含对话历史记录，与聊天模式相比，这个模式的结果可能不够好，但可以节省Token。",
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "动态表单"
+    },
+    "page": {
+      "path_duplicated": "路径重复，请使用唯一路径以避免错误",
+      "tips": {
+        "blank_view": "该模块无子页面，请先通过右侧Page面板添加"
+      },
+      "label": {
+        "rename_url": "编辑路径"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "变更方案？",
         "button_cancel": "取消",
         "button_confirm": "确认"
+      },
+      "ai-agent": {
+        "string1": "GPT-4是为Premium团队提供的选项。",
+        "string2": "请升级到Premium以使用它。通过升级到Premium，您还将获得以下权益。"
       }
     },
     "homepage": {

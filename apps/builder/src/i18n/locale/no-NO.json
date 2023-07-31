@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modell",
             "variable": "Variabel",
-            "input": "Input",
+            "input": "Send innhold",
             "max-token": "Maks token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Skjult sendingsknapp",
           "submit_button_full_w": "Send knapp full bredde",
           "submit_button_text": "Send knappetekst"
+        },
+        "chart": {
+          "direction": "Retning",
+          "y-axis_value": "Y-akse verdi",
+          "stack_grouped_data": "Stabel grupperte data",
+          "x-axis_type": "X-akse- type",
+          "format": "Formatér",
+          "legend_position": "Plassering av forklaring",
+          "grid_line": "Rutenettlinje",
+          "y-axis_type": "Y-akse type"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Sett tittel som skal vises"
+        },
+        "page": {
+          "default_view": "Når brukere skriver inn en feilsti, vil vi automatisk omdirigere til standardstien. Når det ikke er noen standardbane, behandler vi den første stien i listen som standard sti"
+        },
+        "chart": {
+          "direction": "Angi kartretning ",
+          "y-axis_value": "Sett verdien til Y-aksen",
+          "stack_grouped_data": "Verdier fra ulike grupper med samme X-akse verdi vil bli stablet i et stablet diagram. Stakkede diagrammer kan brukes til å sammenligne samlet størrelse på forskjellige kategorier eller grupper. så vel som den relative størrelsen på individuelle undergrupper eller undergrupper.",
+          "x-axis_type": "Å angi diagramtypen kan forbedre lesbarheten til data.",
+          "format": "Et gyldig datoformat streng. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Setter du en legentes stilling. ",
+          "grid_line": "For å angi fargen på rutenettlinjen. ",
+          "y-axis_type": "Å angi diagramtypen kan forbedre lesbarheten til data."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Erstatt",
             "keepboth": "Behold begge"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnøtt",
+            "Radar": "Rader"
+          },
+          "direction": {
+            "horizontal": "Horisontal",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Dato"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Legg til",
         "body": "Innhold",
         "default_view": "Standard visning",
-        "edit_view": "Rediger visning",
+        "edit_view": "Endre sti",
         "footer": "Bunntekst",
         "header": "Topptekst",
         "key": "Nøkkel",
@@ -2245,11 +2282,12 @@
         "right_panel": "Høyre panel",
         "set_as_homepage": "Bruk som startside",
         "show_fold_icon": "Vis foldeikon",
-        "view_path": "Vis sti",
+        "view_path": "Sti",
         "views": "Visninger",
         "width": "Width",
         "height": "Høyde",
-        "columns": "Kolonner"
+        "columns": "Kolonner",
+        "set_as_default_subpage": "Sett som standard underside"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
@@ -2264,7 +2302,7 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knapp for å skjule eller utvide panelet",
-        "view_path": "En streng etter eksempel.no/app/page/ for å få tilgang til denne visningen",
+        "view_path": "For å konfigurere tilgang til denne siden, må du justere veien. Hvis du for eksempel endrer stien til '**newPath**', og legger den til som en underside for hjemmesiden. Denne siden kan da nås via følgende URL: overskytende .illakloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på siden som prosentandel av nettleserbredden."
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON skjema skjema"
+    },
+    "page": {
+      "path_duplicated": "Stien er duplisert. Bruk en unik bane for å unngå feil. ",
+      "tips": {
+        "blank_view": "Denne modulen har ingen undersider. Legg dem først gjennom side-panelet til høyre."
+      },
+      "label": {
+        "rename_url": "Endre sti"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Endre plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekreft"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 er for Premium-team. ",
+        "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
       }
     },
     "homepage": {

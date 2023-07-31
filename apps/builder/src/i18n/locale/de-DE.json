@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modell",
             "variable": "Variable",
-            "input": "Input",
+            "input": "Inhalt senden",
             "max-token": "Max. Token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Versteckter Senden-Button",
           "submit_button_full_w": "Vollbreite der Schaltfläche senden",
           "submit_button_text": "Text der Schaltfläche senden"
+        },
+        "chart": {
+          "direction": "Richtung",
+          "y-axis_value": "Y-Achsen-Wert",
+          "stack_grouped_data": "Gruppierte Daten",
+          "x-axis_type": "X-Achsen-Typ",
+          "format": "Format",
+          "legend_position": "Legendenposition",
+          "grid_line": "Rasterlinie",
+          "y-axis_type": "Y-Achsen-Typ"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Den anzuzeigenden Titel festlegen"
+        },
+        "page": {
+          "default_view": "Wenn Benutzer einen Fehlerpfad eingeben, werden wir automatisch auf den Standardpfad umleiten. Wenn es keinen Standardpfad gibt, werden wir den ersten Pfad in der Liste als Standardpfad behandeln"
+        },
+        "chart": {
+          "direction": "Setze die Richtung des Diagramms. ",
+          "y-axis_value": "Setze den Wert der Y-Achse",
+          "stack_grouped_data": "Werte aus verschiedenen Gruppen mit dem gleichen X-Achsen-Wert werden in einem Stapeldiagramm gestapelt. Gestapelte Diagramme können zum Vergleich der Gesamtgröße verschiedener Kategorien oder Gruppen verwendet werden sowie die relativen Größen einzelner Unterkategorien oder Untergruppen.",
+          "x-axis_type": "Die Einstellung des Diagrammtyps kann die Datenlesbarkeit verbessern.",
+          "format": "Ein gültiger Datumsformat-String. Siehe [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Um die Position des legenten zu setzen. ",
+          "grid_line": "Um die Farbe der Rasterlinie einzustellen. ",
+          "y-axis_type": "Die Einstellung des Diagrammtyps kann die Datenlesbarkeit verbessern."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Ersetzen",
             "keepboth": "Beides behalten"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Datum"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Neu",
         "body": "Körper",
         "default_view": "Standardansicht",
-        "edit_view": "Ansicht bearbeiten",
+        "edit_view": "Pfad bearbeiten",
         "footer": "Fußzeile",
         "header": "Kopfzeile",
         "key": "Schlüssel",
@@ -2245,11 +2282,12 @@
         "right_panel": "Rechte Leiste",
         "set_as_homepage": "Als Startseite festlegen",
         "show_fold_icon": "Faltsymbol anzeigen",
-        "view_path": "Pfad anzeigen",
+        "view_path": "Pfad",
         "views": "Aufrufe",
         "width": "Width",
         "height": "Höhe",
-        "columns": "Spalten"
+        "columns": "Spalten",
+        "set_as_default_subpage": "Als Standard-Unterseite festlegen"
       },
       "model_tips": {
         "cancel_button": "Abbrechen",
@@ -2264,7 +2302,7 @@
       "tab_title": "Seite",
       "tooltips": {
         "show_fold_icon": "Schaltfläche zum Einklappen oder Vergrößern des Panels anzeigen",
-        "view_path": "Ein String hinter Beispiel.com/app/page/ um auf diese Ansicht zuzugreifen",
+        "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Pfad anpassen. Zum Beispiel, wenn Sie den Pfad zu '**newPath**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Die Seitenbreite als Prozentsatz der Browserbreite."
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON-Schema-Formular"
+    },
+    "page": {
+      "path_duplicated": "Der Pfad wurde dupliziert. Bitte verwenden Sie einen eindeutigen Pfad, um Fehler zu vermeiden. ",
+      "tips": {
+        "blank_view": "Dieses Modul hat keine Unterseiten. Bitte fügen Sie diese zuerst durch das Seitenfenster auf der rechten Seite."
+      },
+      "label": {
+        "rename_url": "Pfad bearbeiten"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Plan ändern?",
         "button_cancel": "Abbrechen",
         "button_confirm": "Bestätigen"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 ist für das Premium-Team. ",
+        "string2": "Um es zu verwenden, upgraden Sie bitte auf Premium. Durch ein Upgrade auf Premium, haben Sie auch Zugriff auf die folgenden Funktionen. "
       }
     },
     "homepage": {

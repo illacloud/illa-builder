@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Model",
             "variable": "Variable",
-            "input": "Input",
+            "input": "Send content",
             "max-token": "Max token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Hidden submit button",
           "submit_button_full_w": "Submit button full width",
           "submit_button_text": "Submit button text"
+        },
+        "chart": {
+          "direction": "Direction",
+          "y-axis_value": "Y-axis value",
+          "stack_grouped_data": "Stack grouped data",
+          "x-axis_type": "X-axis type",
+          "format": "Format",
+          "legend_position": "Legend position",
+          "grid_line": "Grid line",
+          "y-axis_type": "Y-axis type"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Set the title to display"
+        },
+        "page": {
+          "default_view": "When users enter an error path, we will automatically redirect to the default path. When there is no default path, we will treat the first path in the list as the default path"
+        },
+        "chart": {
+          "direction": "Set the chart direction. ",
+          "y-axis_value": "Set the value of Y-axis",
+          "stack_grouped_data": "Values from different groups with the same X-axis value will be stacked in a stacked chart. Stacked charts can be used to compare the overall size of different categories or groups, as well as the relative sizes of individual subcategories or subgroups.",
+          "x-axis_type": "Setting the chart type can enhance data readability.",
+          "format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "To set the position of legent. ",
+          "grid_line": "To set the color of grid line. ",
+          "y-axis_type": "Setting the chart type can enhance data readability."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Replace",
             "keepboth": "Keep both"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Default",
+            "Date": "Date"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Add",
         "body": "Body",
         "default_view": "Default view",
-        "edit_view": "Edit view",
+        "edit_view": "Edit path",
         "footer": "Footer",
         "header": "Header",
         "key": "Key",
@@ -2245,11 +2282,12 @@
         "right_panel": "Right panel",
         "set_as_homepage": "Set as homepage",
         "show_fold_icon": "Show fold icon",
-        "view_path": "View path",
+        "view_path": "Path",
         "views": "Views",
         "width": "Width",
         "height": "Height",
-        "columns": "Columns"
+        "columns": "Columns",
+        "set_as_default_subpage": "Set as default subpage"
       },
       "model_tips": {
         "cancel_button": "Cancel",
@@ -2264,7 +2302,7 @@
       "tab_title": "Page",
       "tooltips": {
         "show_fold_icon": "Show a button to collapse or expand the panel",
-        "view_path": "A string after example.com/app/page/ to access this view",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "The width of page as a percentage of the browser width."
       }
     },
@@ -2407,7 +2445,7 @@
             "run_script": "Run Script",
             "calendar_guide": "Calendar guide",
             "chat_guide": "Chat use case",
-            "custom_login_with_sc": "Custom login with Script"
+            "custom_login_with_sc": "Script login"
           },
           "templates_description": {
             "table": "Use tables to create dashboards.",
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON Schema Form"
+    },
+    "page": {
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. ",
+      "tips": {
+        "blank_view": "This module has no child pages. Please add them first through the Page panel on the right."
+      },
+      "label": {
+        "rename_url": "Edit path"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Change plan?",
         "button_cancel": "Cancel",
         "button_confirm": "Confirm"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 is for Premium team. ",
+        "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
       }
     },
     "homepage": {

@@ -553,3 +553,33 @@ export const getShowWidgetNameParentMap = createSelector(
 export const getOriginalGlobalData = createSelector([getCanvas], (rootNode) => {
   return (rootNode?.props?.globalData ?? {}) as Record<string, string>
 })
+
+export const getPageDisplayNameMapViewDisplayName = createSelector(
+  [getCanvas],
+  (rootNode) => {
+    if (!rootNode) return {}
+    const pageDisplayNameMapViewDisplayName: Record<string, Set<string>> = {}
+    const pageNodes = rootNode.childrenNode
+    pageNodes.forEach((pageNode) => {
+      pageDisplayNameMapViewDisplayName[pageNode.displayName] = new Set()
+      const sectionNodes = pageNode.childrenNode
+      sectionNodes.forEach((sectionNode) => {
+        const sectionConfigs = sectionNode.props?.sectionViewConfigs ?? []
+        sectionConfigs.forEach((sectionConfig: Record<string, string>) => {
+          pageDisplayNameMapViewDisplayName[pageNode.displayName].add(
+            sectionConfig.path,
+          )
+        })
+      })
+    })
+    return pageDisplayNameMapViewDisplayName
+  },
+)
+
+export const getCurrentPageSortedKeys = createSelector(
+  [getCanvas],
+  (rootNode) => {
+    if (!rootNode) return []
+    return rootNode.props?.pageSortedKey ?? []
+  },
+)

@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modell",
             "variable": "Variabel",
-            "input": "Input",
+            "input": "Skicka innehåll",
             "max-token": "Max token"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Dold inlämningsknapp",
           "submit_button_full_w": "Skicka knappen full bredd",
           "submit_button_text": "Skicka knapptext"
+        },
+        "chart": {
+          "direction": "Riktning",
+          "y-axis_value": "Y-axel värde",
+          "stack_grouped_data": "Stapla grupperad data",
+          "x-axis_type": "Typ av X-axel",
+          "format": "Formatera",
+          "legend_position": "Legend position",
+          "grid_line": "Rutnätslinje",
+          "y-axis_type": "Y-axel typ"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Ange titel att visa"
+        },
+        "page": {
+          "default_view": "När användare anger en felsökväg, kommer vi automatiskt att omdirigera till standardsökvägen. När det inte finns någon standardväg, kommer vi att behandla den första sökvägen i listan som standardsökvägen"
+        },
+        "chart": {
+          "direction": "Ange riktningen för sjökortet. ",
+          "y-axis_value": "Ange värdet på Y-axeln",
+          "stack_grouped_data": "Värden från olika grupper med samma X-axelvärde kommer att staplas i ett staplat diagram. Staplade diagram kan användas för att jämföra den totala storleken på olika kategorier eller grupper, samt de relativa storlekarna för enskilda underkategorier eller undergrupper.",
+          "x-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten.",
+          "format": "Ett giltigt datumformat. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Att ställa in positionen för legent. ",
+          "grid_line": "För att ställa in färgen på rutnät linje. ",
+          "y-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Ersätt",
             "keepboth": "Behåll båda"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Munk",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horisontell",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Datum"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Lägg till",
         "body": "Kropp",
         "default_view": "Förvald vy",
-        "edit_view": "Redigera vy",
+        "edit_view": "Redigera sökväg",
         "footer": "Sidfot",
         "header": "Rubrik",
         "key": "Nyckel",
@@ -2245,11 +2282,12 @@
         "right_panel": "Höger panel",
         "set_as_homepage": "Ange som hemsida",
         "show_fold_icon": "Visa vik-ikon",
-        "view_path": "Visa sökväg",
+        "view_path": "Sökväg",
         "views": "Visningar",
         "width": "Width",
         "height": "Höjd",
-        "columns": "Kolumner"
+        "columns": "Kolumner",
+        "set_as_default_subpage": "Ange som standard undersida"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
@@ -2264,7 +2302,7 @@
       "tab_title": "Sida",
       "tooltips": {
         "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
-        "view_path": "En sträng efter example.com/app/page/ för att komma åt denna vy",
+        "view_path": "För att konfigurera åtkomst till den här sidan måste du justera sökvägen. Till exempel, om du ändrar sökvägen till '**newPath**' och lägger till den som en undersida på hemsidan. Den här sidan kan sedan nås via följande URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Formulär för JSON Schema"
+    },
+    "page": {
+      "path_duplicated": "Sökvägen är duplicerad. Använd en unik sökväg för att undvika fel. ",
+      "tips": {
+        "blank_view": "Modulen har inga underordnade sidor. Lägg till dem först via Sidpanelen till höger."
+      },
+      "label": {
+        "rename_url": "Redigera sökväg"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Ändra plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekräfta"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 är för Premium-teamet. ",
+        "string2": "För att använda det, vänligen uppgradera till Premium. Genom att uppgradera till Premium, kommer du också att ha tillgång till följande funktioner. "
       }
     },
     "homepage": {

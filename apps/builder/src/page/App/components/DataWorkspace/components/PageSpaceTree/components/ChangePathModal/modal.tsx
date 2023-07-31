@@ -1,9 +1,9 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { CloseIcon, Input } from "@illa-design/react"
+import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
-import { PageLabel } from "../Label"
 import { ModalProps } from "./interface"
 import {
   modalHeaderCloseIconHotSpot,

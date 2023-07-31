@@ -677,7 +677,7 @@
           "ai-agent": {
             "model": "Modélisation",
             "variable": "Variable",
-            "input": "Input",
+            "input": "Envoyer du contenu",
             "max-token": "Token max"
           }
         },
@@ -1780,6 +1780,16 @@
           "hidden_submit_button": "Bouton d'envoi masqué",
           "submit_button_full_w": "Soumettre le bouton en pleine largeur",
           "submit_button_text": "Texte du bouton de soumission"
+        },
+        "chart": {
+          "direction": "Orientation",
+          "y-axis_value": "Valeur de l'axe Y",
+          "stack_grouped_data": "Empiler les données groupées",
+          "x-axis_type": "Type d'axe X",
+          "format": "Formater",
+          "legend_position": "Position de la légende",
+          "grid_line": "Ligne de grille",
+          "y-axis_type": "Type d'axe Y"
         }
       },
       "setter_tooltip": {
@@ -2041,6 +2051,19 @@
         },
         "statistics": {
           "title": "Définir le titre à afficher"
+        },
+        "page": {
+          "default_view": "Lorsque les utilisateurs saisissent un chemin d'erreur, nous redirigerons automatiquement vers le chemin par défaut. S'il n'y a pas de chemin par défaut, nous traiterons le premier chemin de la liste comme chemin par défaut"
+        },
+        "chart": {
+          "direction": "Définissez la direction du graphique. ",
+          "y-axis_value": "Définir la valeur de l'axe Y",
+          "stack_grouped_data": "Les valeurs de différents groupes avec la même valeur d'axe X seront empilées dans un graphique empilé. Les graphiques empilés peuvent être utilisés pour comparer la taille globale de différentes catégories ou groupes, ainsi que la taille relative des sous-catégories ou sous-groupes individuels.",
+          "x-axis_type": "Définir le type de graphique peut améliorer la lisibilité des données.",
+          "format": "Une chaîne de format de date valide. Voir [dayJS](https://day.js.org/docs/fr/parse/string-format).",
+          "legend_position": "Fixer la position de la légende. ",
+          "grid_line": "Définir la couleur de la ligne de la grille. ",
+          "y-axis_type": "Définir le type de graphique peut améliorer la lisibilité des données."
         }
       },
       "setter_option": {
@@ -2143,6 +2166,20 @@
             "replace": "Remplacer",
             "keepboth": "Garder les deux"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Noisette",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Par défaut",
+            "Date": "Date"
+          }
         }
       },
       "setter_placeholder": {
@@ -2236,7 +2273,7 @@
         "add": "Ajouter",
         "body": "Corps",
         "default_view": "Vue par défaut",
-        "edit_view": "Modifier la vue",
+        "edit_view": "Modifier le chemin d'accès",
         "footer": "Pied de page",
         "header": "En-tête",
         "key": "Clés",
@@ -2245,11 +2282,12 @@
         "right_panel": "Panneau droit",
         "set_as_homepage": "Définir comme page d'accueil",
         "show_fold_icon": "Afficher l'icône du pli",
-        "view_path": "Voir le chemin d'accès",
+        "view_path": "Chemin d'accès",
         "views": "Vues",
         "width": "Width",
         "height": "Hauteur",
-        "columns": "Colonnes"
+        "columns": "Colonnes",
+        "set_as_default_subpage": "Définir comme sous-page par défaut"
       },
       "model_tips": {
         "cancel_button": "Abandonner",
@@ -2264,7 +2302,7 @@
       "tab_title": "Page",
       "tooltips": {
         "show_fold_icon": "Afficher un bouton pour réduire ou agrandir le panneau",
-        "view_path": "Une chaîne après exemple.com/app/page/ pour accéder à cette vue",
+        "view_path": "Pour configurer l'accès à cette page, vous devrez ajuster le chemin. Par exemple, si vous changez le chemin d'accès en '**newPath**', et que vous l'ajoutez en tant que sous-page de la page d'accueil. Cette page est alors accessible via l'URL suivante : cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La largeur de la page en pourcentage de la largeur du navigateur."
       }
     },
@@ -2982,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Forme de Schéma JSON"
+    },
+    "page": {
+      "path_duplicated": "Le chemin est dupliqué. Veuillez utiliser un chemin unique pour éviter les erreurs. ",
+      "tips": {
+        "blank_view": "Ce module n'a pas de pages enfants. Veuillez d'abord les ajouter via le panneau de page à droite."
+      },
+      "label": {
+        "rename_url": "Modifier le chemin d'accès"
+      }
     }
   },
   "page": {
@@ -3786,6 +3833,10 @@
         "title": "Changer de plan ?",
         "button_cancel": "Abandonner",
         "button_confirm": "Valider"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 est destiné à l'équipe Premium. ",
+        "string2": "Pour l'utiliser, passez à la version Premium. En passant à la version Premium, vous aurez également accès aux fonctionnalités suivantes. "
       }
     },
     "homepage": {

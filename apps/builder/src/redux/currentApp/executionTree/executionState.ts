@@ -68,3 +68,8 @@ export interface BatchUpdateWidgetLayoutInfoPayload {
   displayName: string
   layoutInfo: Partial<LayoutInfo>
 }
+
+export interface UpdateCurrentPagePathPayload {
+  pageDisplayName: string
+  subPagePath?: string
+}
