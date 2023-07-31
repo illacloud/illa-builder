@@ -10,7 +10,7 @@ export const aiAgentContainerStyle = css`
 
 export const leftPanelContainerStyle = css`
   height: 100%;
-  min-width: 528px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
@@ -89,4 +89,9 @@ export const uploadTextStyle = css`
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
+`
+
+export const formContainerStyle = css`
+  flex-basis: 528px;
+  min-width: 528px;
 `

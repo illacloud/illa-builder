@@ -24,6 +24,7 @@ import { PreviewChat } from "@/page/AIAgent/components/PreviewChat"
 import {
   aiAgentContainerStyle,
   buttonContainerStyle,
+  formContainerStyle,
   labelStyle,
   labelTextStyle,
   leftPanelContainerStyle,
@@ -45,6 +46,7 @@ import {
 } from "@/redux/aiAgent/aiAgentState"
 import { createAgent, fetchAgentDetail, putAgentDetail } from "@/services/agent"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { CodeEditor } from "../../illa-public-component/CodeMirror"
 
 export const AIAgent: FC = () => {
   const { agentId } = useParams()
@@ -86,6 +88,7 @@ export const AIAgent: FC = () => {
       {!pageLoading && (
         <div css={aiAgentContainerStyle}>
           <form
+            css={formContainerStyle}
             onSubmit={handleSubmit(async (data) => {
               setSavingLoading(true)
               try {
@@ -213,10 +216,18 @@ export const AIAgent: FC = () => {
                     defaultValue={currentAgent.prompt}
                     shouldUnregister={false}
                     render={({ field }) => (
-                      <TextArea
+                      <CodeEditor
                         {...field}
-                        minH="200px"
-                        colorScheme={"techPurple"}
+                        minHeight="200px"
+                        completionOptions={[
+                          {
+                            key: "hahahahahahahahahahahahahahahahahahahahahahahahahahahaha",
+                            value:
+                              "hahahahahahahahahahahahahahahahahahahahahahahahahahahaha",
+                          },
+                          { key: "aaa", value: "hhahaha" },
+                          { key: "bbb", value: "hhahaha" },
+                        ]}
                       />
                     )}
                   />
