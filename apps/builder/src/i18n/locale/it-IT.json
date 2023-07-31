@@ -68,7 +68,7 @@
     "no-result": "Nessun risultato qui. Si prega di aggiornare o modificare i termini di ricerca.",
     "message": {
       "next-page-error": "Impossibile caricare la pagina successiva. Per favore riprova.",
-      "create-failed": "Creazione dell'agente non riuscita. Riprova.",
+      "create-failed": "Impossibile salvare l'agente. Riprova.",
       "sort-failed": "Modifica del tipo di filtro non riuscita. Riprova.",
       "detail-load-failed": "Impossibile recuperare i dettagli, per favore riprova.",
       "fork-failed": "Impossibile effettuare il fork, riprova.",
@@ -2606,7 +2606,8 @@
         "text": "Genera testo"
       },
       "message": {
-        "click-start": "Fare clic sul pulsante Start per attivare."
+        "click-start": "Fare clic sul pulsante Start per attivare.",
+        "insufficient_token": "Token insufficiente"
       }
     }
   },
