@@ -51,6 +51,7 @@ export const previewTitleTextStyle = css`
 
 export const inputTextContainerStyle = css`
   padding: 24px;
+  position: relative;
   display: flex;
   flex-direction: column;
   border-top: 1px solid ${getColor("grayBlue", "08")};
@@ -104,4 +105,35 @@ export const inputStyle = css`
   &[type="number"] {
     -moz-appearance: textfield;
   }
+`
+
+export const generatingContainerStyle = css`
+  position: absolute;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  background: ${getColor("white", "01")};
+  box-sizing: border-box;
+  border-radius: 16px;
+  border: 1px solid ${getColor("grayBlue", "08")};
+  padding: 7px 15px;
+`
+export const generatingTextStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+`
+
+export const generatingDividerStyle = css`
+  width: 1px;
+  height: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: ${getColor("grayBlue", "08")};
+`
+
+export const stopIconStyle = css`
+  cursor: pointer;
 `

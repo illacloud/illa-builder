@@ -1,6 +1,7 @@
 import { lazy } from "react"
 import { redirect } from "react-router-dom"
 import { FullPageLoading } from "@/components/FullPageLoading"
+import { agentLoader } from "@/router/loader/agentLoader"
 import { agentRunLoader } from "@/router/loader/agentRunLoader"
 import { getDashboardAppLoader } from "@/router/loader/dashBoardLoader"
 import { historyLoader } from "@/router/loader/historyLoader"
@@ -48,13 +49,20 @@ export const cloudRouter: RoutesObjectPro[] = [
   {
     path: "/:teamIdentifier/ai-agent/:agentId/run",
     needLogin: true,
-    element: lazyLoad(lazy(() => import("@/page/AIAgent/Run"))),
+    element: lazyLoad(
+      lazy(() => import("@/page/AIAgent/Run")),
+      <FullPageLoading />,
+    ),
     loader: agentRunLoader,
   },
   {
     path: "/:teamIdentifier/ai-agent/:agentId?",
     needLogin: true,
-    element: lazyLoad(lazy(() => import("@/page/AIAgent"))),
+    element: lazyLoad(
+      lazy(() => import("@/page/AIAgent")),
+      <FullPageLoading />,
+    ),
+    loader: agentLoader,
   },
   ...publicTeamChildrenRouter,
   ...publicRouterConfig,

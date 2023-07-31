@@ -1,26 +1,38 @@
+import { AnimatePresence, motion } from "framer-motion"
 import { FC, useCallback, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
 import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
+import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
 import AIAgentMessage from "@/page/AIAgent/components/AIAgentMessage"
 import { PreviewChatProps } from "@/page/AIAgent/components/PreviewChat/interface"
 import {
   blockInputContainerStyle,
   blockInputTextStyle,
   chatContainerStyle,
+  generatingContainerStyle,
+  generatingDividerStyle,
+  generatingTextStyle,
   inputStyle,
   inputTextContainerStyle,
   previewChatContainerStyle,
   previewTitleContainerStyle,
   previewTitleTextStyle,
+  stopIconStyle,
 } from "@/page/AIAgent/components/PreviewChat/style"
 import UserMessage from "@/page/AIAgent/components/UserMessage"
 import { ChatMessage, SenderType } from "@/redux/aiAgent/aiAgentState"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
-  const { messages, onSendMessage, blockSend, blockInput } = props
+  const {
+    messages,
+    onSendMessage,
+    isReceiving,
+    blockInput,
+    onCancelReceiving,
+  } = props
 
   const currentUserInfo = useSelector(getCurrentUser)
 
@@ -29,7 +41,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const messagesList = useMemo(() => {
     return messages.map((message) => {
       if (
-        message.sender.senderType === SenderType.User &&
+        message.sender.senderType === SenderType.USER &&
         message.sender.senderID === currentUserInfo.userId
       ) {
         return <UserMessage key={message.threadID} message={message} />
@@ -45,7 +57,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         message: textAreaVal,
         sender: {
           senderID: currentUserInfo.userId,
-          senderType: SenderType.User,
+          senderType: SenderType.USER,
         },
       } as ChatMessage)
       setTextAreaVal("")
@@ -70,7 +82,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           css={inputStyle}
           placeholder="Input Something"
           onKeyDown={(event) => {
-            if (blockSend || blockInput) {
+            if (isReceiving || blockInput) {
               return
             }
             if (event.key === "Enter") {
@@ -83,7 +95,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         />
         <Button
           alignSelf="end"
-          disabled={blockSend}
+          disabled={isReceiving}
           mt="16px"
           colorScheme="techPurple"
           onClick={() => {
@@ -92,6 +104,32 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         >
           Send
         </Button>
+        <AnimatePresence>
+          {isReceiving && (
+            <motion.div
+              css={generatingContainerStyle}
+              initial={{
+                y: 52,
+              }}
+              animate={{
+                y: 0,
+              }}
+              exit={{
+                y: 60,
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              <div css={generatingTextStyle}>Generating...</div>
+              <div css={generatingDividerStyle} />
+              <StopIcon
+                css={stopIconStyle}
+                onClick={() => {
+                  onCancelReceiving()
+                }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       {blockInput && (
         <div css={blockInputContainerStyle}>

@@ -4,7 +4,7 @@ export interface AgentRaw {
   name: string
   agentType: AI_AGENT_TYPE
   model: AI_AGENT_MODEL
-  variable: Params[]
+  variables: Params[]
   prompt: string
   modelConfig: AgentAdvanceConfig
   icon: string
@@ -36,8 +36,8 @@ export interface AgentAdvanceConfig {
 }
 
 export enum SenderType {
-  User = 1,
-  Agent = 2,
+  USER = 1,
+  AGENT = 2,
 }
 
 export interface ChatSender {
@@ -85,11 +85,11 @@ export interface MarketAiAgent {
   marketplace: MarketplaceInfo
 }
 
-export const AgentRawInitial: Agent = {
+export const AgentInitial: Agent = {
   name: "",
   agentType: AI_AGENT_TYPE.CHAT,
   model: AI_AGENT_MODEL.GPT_3_5_TURBO,
-  variable: [{ key: "", value: "" }],
+  variables: [{ key: "", value: "" }],
   prompt: "",
   modelConfig: {
     temperature: 1,

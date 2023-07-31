@@ -2,5 +2,4 @@ import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaborator
 
 export interface ChatContextProps {
   inRoomUsers: CollaboratorsInfo[]
-  receiving: boolean
 }

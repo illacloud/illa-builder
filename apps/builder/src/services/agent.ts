@@ -72,12 +72,11 @@ export const forkAIAgentToTeam = (aiAgentID: string, teamID: string) => {
   })
 }
 
-export const fetchAgentDetail = (aiAgentID: string, signal?: AbortSignal) => {
+export const fetchAgentDetail = (aiAgentID: string) => {
   return builderRequest<Agent>(
     {
       url: `/AIAgent/${aiAgentID}`,
       method: "GET",
-      signal,
     },
     {
       needTeamID: true,
