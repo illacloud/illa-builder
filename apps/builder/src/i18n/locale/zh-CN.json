@@ -68,7 +68,7 @@
     "no-result": "没有结果，请刷新或更新您的搜索词。",
     "message": {
       "next-page-error": "下一页加载失败，请重试",
-      "create-failed": "Agent创建失败，请重试",
+      "create-failed": "Agent保存失败，请重试",
       "sort-failed": "筛选类型过滤失败，请重试",
       "detail-load-failed": "详细信息查询失败，请重试",
       "fork-failed": "Fork失败，请重试",
@@ -2606,7 +2606,8 @@
         "text": "生成文本"
       },
       "message": {
-        "click-start": "点击开始按钮触发运行"
+        "click-start": "点击开始按钮触发运行",
+        "insufficient_token": "Token不足"
       }
     }
   },
