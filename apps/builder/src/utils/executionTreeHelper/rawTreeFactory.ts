@@ -1,4 +1,3 @@
-import { parse } from "qs"
 import { generateRawAction } from "@/utils/executionTreeHelper/generateRawAction"
 import { generateRawWidget } from "@/utils/executionTreeHelper/generateRawWidget"
 import {
@@ -7,6 +6,8 @@ import {
   RawTreeShape,
 } from "@/utils/executionTreeHelper/interface"
 import { CUSTOM_STORAGE_PREFIX } from "../storage"
+import { generateCurrentPageInfo, generatePageInfos } from "./generatePageInfo"
+import { generateUrlParams } from "./generateUrlParams"
 
 export const CURRENT_USER_INFO_ACCESS_LIST_KEY = [
   "userID",
@@ -31,10 +32,6 @@ export class RawTreeFactory {
       rawTree[key] = generateRawWidget(widgets[key])
     })
 
-    const href = window.location.href
-    const query = href.split("?")[1]
-    const queryArray = parse(query)
-
     const customStorage = localStorage[CUSTOM_STORAGE_PREFIX]
 
     const canShownUserInfo: CurrentUserInfoInTree = Object.keys(
@@ -54,11 +51,10 @@ export class RawTreeFactory {
     rawTree.builderInfo = builderInfo
     rawTree.currentUserInfo = canShownUserInfo
     rawTree.globalData = globalData
-    rawTree.urlParams = {
-      query: queryArray,
-      url: href,
-    }
+    rawTree.urlParams = generateUrlParams()
     rawTree.localStorage = customStorage ? JSON.parse(customStorage) : {}
+    rawTree.currentPageInfo = generateCurrentPageInfo()
+    rawTree.pageInfos = generatePageInfos(widgets)
     return rawTree
   }
 }
