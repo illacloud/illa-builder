@@ -2,9 +2,12 @@ import { FC, useCallback, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
+import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
 import AIAgentMessage from "@/page/AIAgent/components/AIAgentMessage"
 import { PreviewChatProps } from "@/page/AIAgent/components/PreviewChat/interface"
 import {
+  blockInputContainerStyle,
+  blockInputTextStyle,
   chatContainerStyle,
   inputStyle,
   inputTextContainerStyle,
@@ -17,7 +20,7 @@ import { ChatMessage, SenderType } from "@/redux/aiAgent/aiAgentState"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
-  const { messages, onSendMessage } = props
+  const { messages, onSendMessage, blockSend, blockInput } = props
 
   const currentUserInfo = useSelector(getCurrentUser)
 
@@ -67,6 +70,9 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           css={inputStyle}
           placeholder="Input Something"
           onKeyDown={(event) => {
+            if (blockSend || blockInput) {
+              return
+            }
             if (event.key === "Enter") {
               sendAndClearMessage()
             }
@@ -77,6 +83,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         />
         <Button
           alignSelf="end"
+          disabled={blockSend}
           mt="16px"
           colorScheme="techPurple"
           onClick={() => {
@@ -86,6 +93,14 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           Send
         </Button>
       </div>
+      {blockInput && (
+        <div css={blockInputContainerStyle}>
+          <AgentBlockInput />
+          <div css={blockInputTextStyle}>
+            Complete the Agent and click run in the left panel
+          </div>
+        </div>
+      )}
     </div>
   )
 }

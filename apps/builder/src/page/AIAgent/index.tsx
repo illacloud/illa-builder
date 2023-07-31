@@ -71,6 +71,8 @@ export const AIAgent: FC = () => {
   const [currentAgent, setCurrentAgent] = useState<Agent>(AgentRawInitial)
   const [saveLoading, setSavingLoading] = useState(false)
   const [generateDescLoading, setGenerateDescLoading] = useState(false)
+  const [firstStart, setFirstStart] = useState(false)
+  const [blockInput, setBlockInput] = useState(false)
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [receiving, setReceiving] = useState(false)
@@ -404,12 +406,20 @@ export const AIAgent: FC = () => {
                   Save
                 </Button>
                 <Button
+                  type="button"
                   flexGrow="1"
                   ml="8px"
                   colorScheme={getColor("grayBlue", "02")}
                   leftIcon={<ResetIcon />}
+                  onClick={() => {
+                    if (!firstStart) {
+                      setFirstStart(true)
+                    }
+                    // start login
+                    setBlockInput(false)
+                  }}
                 >
-                  Restart
+                  {firstStart ? "Start" : "Restart"}
                 </Button>
               </div>
             </div>
@@ -417,6 +427,8 @@ export const AIAgent: FC = () => {
           <div css={rightPanelContainerStyle}>
             <PreviewChat
               messages={messages}
+              blockSend={receiving}
+              blockInput={blockInput}
               onSendMessage={(message) => {
                 setReceiving(true)
                 setMessages([...messages, message])

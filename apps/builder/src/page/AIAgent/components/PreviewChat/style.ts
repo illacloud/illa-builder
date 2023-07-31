@@ -1,7 +1,30 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
+export const blockInputContainerStyle = css`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: ${getColor("white", "05")};
+  backdrop-filter: blur(5px);
+`
+
+export const blockInputTextStyle = css`
+  color: ${getColor("grayBlue", "04")};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 4px;
+  line-height: 22px;
+`
+
 export const previewChatContainerStyle = css`
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
