@@ -1,6 +1,7 @@
-import { FC } from "react"
+import axios from "axios"
+import { FC, useEffect, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { Await, useLoaderData } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import {
   Button,
   Image,
@@ -13,8 +14,10 @@ import {
   Slider,
   TextArea,
   getColor,
+  useMessage,
 } from "@illa-design/react"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
+import { FullPageLoading } from "@/components/FullPageLoading"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
 import { AIAgentBlock } from "@/page/AIAgent/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AIAgent/components/PreviewChat"
@@ -36,26 +39,75 @@ import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEd
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
+  Agent,
   AgentRaw,
+  AgentRawInitial,
 } from "@/redux/aiAgent/aiAgentState"
+import { createAgent, fetchAgentDetail, putAgentDetail } from "@/services/agent"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const AIAgent: FC = () => {
-  const data = useLoaderData() as {
-    agent: Promise<AgentRaw>
-  }
+  const { agentId } = useParams()
 
   const { control, handleSubmit } = useForm<AgentRaw>({
     mode: "onSubmit",
   })
 
+  const [pageLoading, setPageLoading] = useState(false)
+  const [currentAgent, setCurrentAgent] = useState<Agent>(AgentRawInitial)
+  const [saveLoading, setSavingLoading] = useState(false)
+  const message = useMessage()
+
+  useEffect(() => {
+    const controller = new AbortController()
+    if (agentId !== undefined) {
+      setPageLoading(true)
+      fetchAgentDetail(agentId, controller.signal)
+        .then((response) => {
+          setCurrentAgent(response.data)
+        })
+        .catch(() => {
+          message.error({
+            content: "Get Error",
+          })
+        })
+        .finally(() => {
+          setPageLoading(false)
+        })
+    }
+    return () => {
+      controller.abort()
+    }
+  }, [agentId, message])
+
   return (
-    <Await resolve={data.agent}>
-      {(agent: AgentRaw) => (
+    <>
+      {pageLoading && <FullPageLoading />}
+      {!pageLoading && (
         <div css={aiAgentContainerStyle}>
           <form
             onSubmit={handleSubmit(async (data) => {
-              console.log(data)
+              setSavingLoading(true)
+              try {
+                if (currentAgent.aiAgentID !== "") {
+                  const newAgent = await putAgentDetail(
+                    currentAgent.aiAgentID,
+                    data,
+                  )
+                  setCurrentAgent(newAgent.data)
+                } else {
+                  const newAgent = await createAgent(data)
+                  setCurrentAgent(newAgent.data)
+                }
+              } catch (e) {
+                if (axios.isAxiosError(e) && e.response) {
+                  message.error({
+                    content: "save error",
+                  })
+                }
+              } finally {
+                setSavingLoading(false)
+              }
             })}
           >
             <div css={leftPanelContainerStyle}>
@@ -67,7 +119,7 @@ export const AIAgent: FC = () => {
                   <Controller
                     name="icon"
                     control={control}
-                    defaultValue={agent.icon}
+                    defaultValue={currentAgent.icon}
                     shouldUnregister={false}
                     render={({ field }) => (
                       <AvatarUpload
@@ -104,7 +156,7 @@ export const AIAgent: FC = () => {
                 <AIAgentBlock title={"Name"}>
                   <Controller
                     name="name"
-                    defaultValue={agent.name}
+                    defaultValue={currentAgent.name}
                     control={control}
                     shouldUnregister={false}
                     render={({ field }) => (
@@ -116,7 +168,7 @@ export const AIAgent: FC = () => {
                   <Controller
                     name="description"
                     control={control}
-                    defaultValue={agent.description}
+                    defaultValue={currentAgent.description}
                     shouldUnregister={false}
                     render={({ field }) => (
                       <TextArea
@@ -132,7 +184,7 @@ export const AIAgent: FC = () => {
                     name="agentType"
                     control={control}
                     shouldUnregister={false}
-                    defaultValue={agent.agentType}
+                    defaultValue={currentAgent.agentType}
                     render={({ field }) => (
                       <RadioGroup
                         {...field}
@@ -158,7 +210,7 @@ export const AIAgent: FC = () => {
                   <Controller
                     name="prompt"
                     control={control}
-                    defaultValue={agent.prompt}
+                    defaultValue={currentAgent.prompt}
                     shouldUnregister={false}
                     render={({ field }) => (
                       <TextArea
@@ -173,7 +225,7 @@ export const AIAgent: FC = () => {
                   <Controller
                     name="variable"
                     control={control}
-                    defaultValue={agent.variable}
+                    defaultValue={currentAgent.variable}
                     shouldUnregister={false}
                     render={({ field }) => (
                       <RecordEditor
@@ -219,7 +271,7 @@ export const AIAgent: FC = () => {
                   <Controller
                     name="model"
                     control={control}
-                    defaultValue={agent.model}
+                    defaultValue={currentAgent.model}
                     shouldUnregister={false}
                     render={({ field }) => (
                       <Select
@@ -261,7 +313,7 @@ export const AIAgent: FC = () => {
                 <AIAgentBlock title={"Max Token"}>
                   <Controller
                     name={"modelConfig.maxTokens"}
-                    defaultValue={agent.modelConfig.maxTokens}
+                    defaultValue={currentAgent.modelConfig.maxTokens}
                     control={control}
                     shouldUnregister={false}
                     render={({ field }) => (
@@ -278,7 +330,7 @@ export const AIAgent: FC = () => {
                 <AIAgentBlock title={"Temperature"}>
                   <Controller
                     name="modelConfig.temperature"
-                    defaultValue={agent.modelConfig.temperature}
+                    defaultValue={currentAgent.modelConfig.temperature}
                     control={control}
                     shouldUnregister={false}
                     render={({ field }) => (
@@ -294,7 +346,11 @@ export const AIAgent: FC = () => {
                 </AIAgentBlock>
               </div>
               <div css={buttonContainerStyle}>
-                <Button flexGrow="1" colorScheme="grayBlue">
+                <Button
+                  flexGrow="1"
+                  colorScheme="grayBlue"
+                  loading={saveLoading}
+                >
                   Save
                 </Button>
                 <Button
@@ -313,7 +369,7 @@ export const AIAgent: FC = () => {
           </div>
         </div>
       )}
-    </Await>
+    </>
   )
 }
 

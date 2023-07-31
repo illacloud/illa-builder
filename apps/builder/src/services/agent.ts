@@ -72,11 +72,12 @@ export const forkAIAgentToTeam = (aiAgentID: string, teamID: string) => {
   })
 }
 
-export const fetchAgentDetail = (aiAgentID: string) => {
-  return builderRequest<AgentRaw>(
+export const fetchAgentDetail = (aiAgentID: string, signal?: AbortSignal) => {
+  return builderRequest<Agent>(
     {
       url: `/AIAgent/${aiAgentID}`,
       method: "GET",
+      signal,
     },
     {
       needTeamID: true,
@@ -84,11 +85,25 @@ export const fetchAgentDetail = (aiAgentID: string) => {
   )
 }
 
-export const fetchAgentRunDetail = (aiAgentID: string) => {
-  return builderRequest<Agent>(
+export const putAgentDetail = (aiAgentID: string, agentRaw: AgentRaw) => {
+  return builderRequest<Agent, AgentRaw>(
     {
       url: `/AIAgent/${aiAgentID}`,
-      method: "GET",
+      method: "PUT",
+      data: agentRaw,
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const createAgent = (agentRaw: AgentRaw) => {
+  return builderRequest<Agent, AgentRaw>(
+    {
+      url: `/AIAgent`,
+      method: "POST",
+      data: agentRaw,
     },
     {
       needTeamID: true,

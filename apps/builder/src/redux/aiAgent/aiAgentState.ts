@@ -87,7 +87,7 @@ export interface MarketAiAgent {
   marketplace: MarketplaceInfo
 }
 
-export const AgentRawInitial: AgentRaw = {
+export const AgentRawInitial: Agent = {
   name: "",
   agentType: AI_AGENT_TYPE.CHAT,
   model: AI_AGENT_MODEL.GPT_3_5_TURBO,
@@ -99,4 +99,12 @@ export const AgentRawInitial: AgentRaw = {
   },
   icon: "",
   description: "",
+  aiAgentID: "",
+  teamID: "",
+  publishedToMarketplace: false,
+  createdAt: "",
+  createdBy: "",
+  updatedBy: "",
+  updatedAt: "",
+  editedBy: [],
 }
