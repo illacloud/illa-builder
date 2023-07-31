@@ -32,12 +32,15 @@
       "cancel": "Annulla",
       "delete": "Elimina",
       "delete_cancel_text": "Annulla",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Dopo la cancellazione, non sarà possibile accedere o recuperare i dati attraverso qualsiasi mezzo. Si prega di confermare.",
       "delete_ok_text": "Elimina",
       "delete_title": "Sei sicuro?",
       "error_button": "Riprova",
       "error_description": "C'è un problema con la tua operazione.",
-      "error_title": "Errore"
+      "error_title": "Errore",
+      "marketplace": "Marketplace",
+      "run": "Esegui",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Crea Nuovo",
@@ -51,6 +54,28 @@
       "save_success": "Salvataggio completato",
       "test_fail": "Test non riuscito",
       "test_success": "Test con successo"
+    },
+    "list-type": {
+      "team": "Team",
+      "marketplace": "Mercato dell'agente"
+    },
+    "sort-type": {
+      "popular": "Più popolari",
+      "recent": "Aggiornato di recente",
+      "star": "Preferiti"
+    },
+    "search": "Cerca",
+    "no-result": "Nessun risultato qui. Si prega di aggiornare o modificare i termini di ricerca.",
+    "message": {
+      "next-page-error": "Impossibile caricare la pagina successiva. Per favore riprova.",
+      "create-failed": "Creazione dell'agente non riuscita. Riprova.",
+      "sort-failed": "Modifica del tipo di filtro non riuscita. Riprova.",
+      "detail-load-failed": "Impossibile recuperare i dettagli, per favore riprova.",
+      "fork-failed": "Impossibile effettuare il fork, riprova.",
+      "create-suc": "Creazione non riuscita, riprova.",
+      "fork-suc": "Forked con successo.",
+      "delete-failed": "Eliminazione non riuscita. Riprova. ",
+      "delete-suc": "Eliminato con successo. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Account Servizio"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Seleziona"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Seleziona pagine"
+            },
+            "ai-agent": {
+              "value": "Valore"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3,5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Record",
             "record": "Registra",
             "record_ids": "Id Record"
+          },
+          "ai-agent": {
+            "model": "Modello",
+            "variable": "Variabile",
+            "input": "Invia contenuto",
+            "max-token": "Max token"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "Pulsante di invio nascosto",
           "submit_button_full_w": "Invia la larghezza totale del pulsante",
           "submit_button_text": "Invia testo pulsante"
+        },
+        "chart": {
+          "direction": "Direzione",
+          "y-axis_value": "Valore asse Y",
+          "stack_grouped_data": "Dati raggruppati in pila",
+          "x-axis_type": "Tipo asse X",
+          "format": "Formato",
+          "legend_position": "Posizione della legenda",
+          "grid_line": "Riga griglia",
+          "y-axis_type": "Tipo di asse Y"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "Imposta il titolo da visualizzare"
+        },
+        "page": {
+          "default_view": "Quando gli utenti inseriscono un percorso di errore, reindirizzeremo automaticamente al percorso predefinito. Quando non c'è un percorso predefinito, tratteremo il primo percorso nella lista come il percorso predefinito"
+        },
+        "chart": {
+          "direction": "Imposta la direzione del grafico. ",
+          "y-axis_value": "Imposta il valore dell'asse Y",
+          "stack_grouped_data": "I valori di gruppi diversi con lo stesso valore dell'asse X saranno impilati in un grafico sovrapposto. I grafici impilati possono essere utilizzati per confrontare la dimensione complessiva di diverse categorie o gruppi, nonché le dimensioni relative delle singole sottocategorie o sottogruppi.",
+          "x-axis_type": "Impostare il tipo di grafico può migliorare la leggibilità dei dati.",
+          "format": "Una stringa di formato data valida. Vedi [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Per impostare la posizione del legent. ",
+          "grid_line": "Per impostare il colore della linea della griglia. ",
+          "y-axis_type": "Impostare il tipo di grafico può migliorare la leggibilità dei dati."
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "Sostituisci",
             "keepboth": "Mantieni entrambi"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Ciambella",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Orizzontale",
+            "vertical": "Verticale"
+          },
+          "x-axis_type": {
+            "Default": "Predefinito",
+            "Date": "Data"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "Aggiungi",
         "body": "Corpo",
         "default_view": "Vista predefinita",
-        "edit_view": "Modifica vista",
+        "edit_view": "Modifica percorso",
         "footer": "Footer",
         "header": "Intestazione",
         "key": "Chiave",
@@ -2198,11 +2282,12 @@
         "right_panel": "Pannello destro",
         "set_as_homepage": "Imposta come homepage",
         "show_fold_icon": "Mostra icona piega",
-        "view_path": "Visualizza percorso",
+        "view_path": "Percorso",
         "views": "Viste",
         "width": "Width",
         "height": "Altezza",
-        "columns": "Colonne"
+        "columns": "Colonne",
+        "set_as_default_subpage": "Imposta come sotto-pagina predefinita"
       },
       "model_tips": {
         "cancel_button": "Annulla",
@@ -2217,7 +2302,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Mostra un pulsante per comprimere o espandere il pannello",
-        "view_path": "Una stringa dopo example.com/app/page/ per accedere a questa vista",
+        "view_path": "Per configurare l'accesso a questa pagina, è necessario regolare il percorso. Per esempio, se si cambia il percorso per '**newPath**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La larghezza della pagina come percentuale della larghezza del browser."
       }
     },
@@ -2461,6 +2546,67 @@
           "restore": "Ripristino fallito",
           "preview": "Impossibile caricare il record di cronologia."
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Nome",
+        "desc": "Descrizione",
+        "mode": "Modalità",
+        "prompt": "Prompt",
+        "variable": "Variabile",
+        "welcome": "Messaggio di benvenuto",
+        "model": "Modello",
+        "temperature": "Temperatura",
+        "max-token": "Max token"
+      },
+      "placeholder": {
+        "logo": "Carica",
+        "name": "Dare un nome all'agente",
+        "desc": "Fornire una breve descrizione di cosa si intende utilizzare questo agente.",
+        "prompt": "Inserisci / per selezionare una variabile",
+        "variable": {
+          "key": "Nome della variabile",
+          "value": "Valore"
+        },
+        "welcome": "Fornire un messaggio di benvenuto visualizzato quando gli utenti iniziano a usare l'agente.",
+        "temperature": "Un valore compreso tra 0 e 1. Più piccolo è il valore, migliore può essere l'effetto",
+        "max-token": "Usato per limitare il numero massimo di token consumati in una singola esecuzione"
+      },
+      "tips": {
+        "mode": "In modalità chat, ogni messaggio inviato include la cronologia delle conversazioni come parte della richiesta, che può portare a risultati migliori, ma consuma più gettoni; in modalità testo, ogni messaggio inviato non include la cronologia delle conversazioni, che può portare a risultati meno ottimali rispetto alla modalità di chat, ma conserva i gettoni.",
+        "not-start": "Completare la configurazione dell'agente e fare clic su Avvia per eseguire",
+        "not-start-run": "Fare clic sul pulsante Start sulla sinistra."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Generazione testo"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3,5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nuovo",
+      "save": "Salva",
+      "start": "Inizia",
+      "restart": "Riavvia",
+      "contribute": "Contribuisci al mercato",
+      "button": {
+        "send": "Invia",
+        "generating": "Generazione"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Genera testo"
+      },
+      "message": {
+        "click-start": "Fare clic sul pulsante Start per attivare."
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "Modulo Schema JSON"
+    },
+    "page": {
+      "path_duplicated": "Il percorso è duplicato. Si prega di utilizzare un percorso univoco per evitare errori. ",
+      "tips": {
+        "blank_view": "Questo modulo non ha pagine figlie. Si prega di aggiungerle prima attraverso il pannello Pagina a destra."
+      },
+      "label": {
+        "rename_url": "Modifica percorso"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "Cambiare il piano?",
         "button_cancel": "Annulla",
         "button_confirm": "Conferma"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 è per il team Premium. ",
+        "string2": "Per usarlo, aggiorna a Premium. Aggiornando a Premium, avrai anche accesso alle seguenti funzionalità. "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Invita a modificare",
-      "invite_to_use": "Invita da usare"
+      "invite_to_use": "Invita da usare",
+      "share-with-team": "Condividi con il team",
+      "contribute": "Contribuisci"
     },
     "desc": {
-      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
+      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. ",
+      "contribute": "Dopo aver contribuito al Marketplace, tutti gli utenti possono eseguire, stella e fork il tuo Agente. Quando gli utenti di altri team eseguono questo Agente, non consumerà le tue risorse."
     },
     "tips": {
       "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
       "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
       "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
+    },
+    "label": {
+      "contribute": "Contribuisci al mercato",
+      "social-media": "Condividi su"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Ehi lì! Ho appena scoperto questo fantastico agente AI. Potresti essere interessato a dargli anche una prova! Dai un'occhiata! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Dai un'occhiata a questo fantastico agente AI [{{promptName}}]",
+        "linkedin": "Attenzione tutti gli appassionati di AI e i professionisti che cercano di aumentare la loro produttività! Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
+        "facebook": "Attenzione tutti gli appassionati di AI e i professionisti che cercano di aumentare la loro produttività! Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
+        "whatsapp": "Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
+        "hackernews": "Semplifica il tuo carico di lavoro con [{{promptName}}] - L'agente AI che ottiene il lavoro fatto"
+      },
+      "contribute": "Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!"
     }
+  },
+  "ai-agents": "Agenti AI",
+  "marketplace": {
+    "star": "Stella {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

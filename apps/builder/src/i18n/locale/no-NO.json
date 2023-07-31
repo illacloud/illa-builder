@@ -32,12 +32,15 @@
       "cancel": "Avbryt",
       "delete": "Slett",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "Etter sletting vil det ikke være mulig å få tilgang til eller gjenopprette dataene på noen måter. Vennligst bekreft.",
       "delete_ok_text": "Slett",
       "delete_title": "Er du sikker?",
       "error_button": "Prøv igjen",
       "error_description": "Det er et problem med operasjonen din.",
-      "error_title": "Feil"
+      "error_title": "Feil",
+      "marketplace": "Markedsplass",
+      "run": "Kjør",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Opprett ny",
@@ -51,6 +54,28 @@
       "save_success": "Lagring vellykket",
       "test_fail": "Kan ikke teste",
       "test_success": "Test vellykket"
+    },
+    "list-type": {
+      "team": "Teamet",
+      "marketplace": "Agent marked"
+    },
+    "sort-type": {
+      "popular": "Mest populære",
+      "recent": "Sist oppdatert",
+      "star": "Stjernemerket"
+    },
+    "search": "Søk",
+    "no-result": "Ingen resultater her. Oppdater eller endre søketermene dine.",
+    "message": {
+      "next-page-error": "Kunne ikke laste neste side. Vennligst prøv igjen.",
+      "create-failed": "Kunne ikke opprette agent. Prøv på nytt.",
+      "sort-failed": "Kan ikke endre filtertypen. Vennligst prøv på nytt.",
+      "detail-load-failed": "Kan ikke hente detaljer, prøv igjen.",
+      "fork-failed": "Skaffe, vennligst prøv igjen.",
+      "create-suc": "Kunne ikke opprette, vennligst prøv igjen.",
+      "fork-suc": "Kampanjen ble fullført.",
+      "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
+      "delete-suc": "Sletting vellykket. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Tjenestekonto (Automatic Translation)"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Velg"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Velg sider"
+            },
+            "ai-agent": {
+              "value": "Verdi"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Poster",
             "record": "Registrer",
             "record_ids": "Ta opp ID-er"
+          },
+          "ai-agent": {
+            "model": "Modell",
+            "variable": "Variabel",
+            "input": "Send innhold",
+            "max-token": "Maks token"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "Skjult sendingsknapp",
           "submit_button_full_w": "Send knapp full bredde",
           "submit_button_text": "Send knappetekst"
+        },
+        "chart": {
+          "direction": "Retning",
+          "y-axis_value": "Y-akse verdi",
+          "stack_grouped_data": "Stabel grupperte data",
+          "x-axis_type": "X-akse- type",
+          "format": "Formatér",
+          "legend_position": "Plassering av forklaring",
+          "grid_line": "Rutenettlinje",
+          "y-axis_type": "Y-akse type"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "Sett tittel som skal vises"
+        },
+        "page": {
+          "default_view": "Når brukere skriver inn en feilsti, vil vi automatisk omdirigere til standardstien. Når det ikke er noen standardbane, behandler vi den første stien i listen som standard sti"
+        },
+        "chart": {
+          "direction": "Angi kartretning ",
+          "y-axis_value": "Sett verdien til Y-aksen",
+          "stack_grouped_data": "Verdier fra ulike grupper med samme X-akse verdi vil bli stablet i et stablet diagram. Stakkede diagrammer kan brukes til å sammenligne samlet størrelse på forskjellige kategorier eller grupper. så vel som den relative størrelsen på individuelle undergrupper eller undergrupper.",
+          "x-axis_type": "Å angi diagramtypen kan forbedre lesbarheten til data.",
+          "format": "Et gyldig datoformat streng. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Setter du en legentes stilling. ",
+          "grid_line": "For å angi fargen på rutenettlinjen. ",
+          "y-axis_type": "Å angi diagramtypen kan forbedre lesbarheten til data."
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "Erstatt",
             "keepboth": "Behold begge"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnøtt",
+            "Radar": "Rader"
+          },
+          "direction": {
+            "horizontal": "Horisontal",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Dato"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "Legg til",
         "body": "Innhold",
         "default_view": "Standard visning",
-        "edit_view": "Rediger visning",
+        "edit_view": "Endre sti",
         "footer": "Bunntekst",
         "header": "Topptekst",
         "key": "Nøkkel",
@@ -2198,11 +2282,12 @@
         "right_panel": "Høyre panel",
         "set_as_homepage": "Bruk som startside",
         "show_fold_icon": "Vis foldeikon",
-        "view_path": "Vis sti",
+        "view_path": "Sti",
         "views": "Visninger",
         "width": "Width",
         "height": "Høyde",
-        "columns": "Kolonner"
+        "columns": "Kolonner",
+        "set_as_default_subpage": "Sett som standard underside"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
@@ -2217,7 +2302,7 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knapp for å skjule eller utvide panelet",
-        "view_path": "En streng etter eksempel.no/app/page/ for å få tilgang til denne visningen",
+        "view_path": "For å konfigurere tilgang til denne siden, må du justere veien. Hvis du for eksempel endrer stien til '**newPath**', og legger den til som en underside for hjemmesiden. Denne siden kan da nås via følgende URL: overskytende .illakloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på siden som prosentandel av nettleserbredden."
       }
     },
@@ -2461,6 +2546,67 @@
           "restore": "Gjenoppretting mislyktes",
           "preview": "Kan ikke laste inn historikkoppføringen."
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Navn",
+        "desc": "Beskrivelse",
+        "mode": "Modus",
+        "prompt": "Prompt",
+        "variable": "Variabel",
+        "welcome": "Velkommen melding",
+        "model": "Modell",
+        "temperature": "Temperatur",
+        "max-token": "Maks token"
+      },
+      "placeholder": {
+        "logo": "Last opp",
+        "name": "Gi et navn til agenten",
+        "desc": "Gi en kort beskrivelse av hva denne agenten skal brukes til.",
+        "prompt": "Skriv inn / for å velge en variabel",
+        "variable": {
+          "key": "Variabelens navn",
+          "value": "Verdi"
+        },
+        "welcome": "Gi en velkomstmelding som vises når brukere begynner å bruke agent.",
+        "temperature": "En verdi mellom 0 og 1. Jo mindre verdien er, desto bedre kan effekten være",
+        "max-token": "Brukes til å begrense maksimalt antall tokens brukt ved én kjøring"
+      },
+      "tips": {
+        "mode": "I chat-modus inkluderer hver melding som sendes samtalelogg som en del av forespørselen, og kan resultere i bedre resultater, men forbruker flere symboler; i tekstmodus, hver sendte melding inkluderer ikke samtalehistorikken, noe som kan resultere i mindre optimale utfall sammenlignet med chat-modus, men konserverer tokener.",
+        "not-start": "Fullfør Agent-konfigurasjonen, og klikk på Start å kjøre",
+        "not-start-run": "Trykk på Start knappen til venstre."
+      },
+      "option": {
+        "mode": {
+          "chat": "Samtale",
+          "text": "Generering av tekst"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Ny",
+      "save": "Lagre",
+      "start": "Begynn",
+      "restart": "Omstart",
+      "contribute": "Bidra til markedsplassen",
+      "button": {
+        "send": "Sende",
+        "generating": "Genererer"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Samtale",
+        "text": "Generere tekst"
+      },
+      "message": {
+        "click-start": "Klikk på Start knappen for å utløse."
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON skjema skjema"
+    },
+    "page": {
+      "path_duplicated": "Stien er duplisert. Bruk en unik bane for å unngå feil. ",
+      "tips": {
+        "blank_view": "Denne modulen har ingen undersider. Legg dem først gjennom side-panelet til høyre."
+      },
+      "label": {
+        "rename_url": "Endre sti"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "Endre plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekreft"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 er for Premium-team. ",
+        "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Inviter til å redigere",
-      "invite_to_use": "Inviter til bruk"
+      "invite_to_use": "Inviter til bruk",
+      "share-with-team": "Del med team",
+      "contribute": "Bidra"
     },
     "desc": {
-      "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
+      "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. ",
+      "contribute": "Etter at du har bidratt til markedsplassen, kan alle brukere kjøre, stjerne og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine."
     },
     "tips": {
       "admin": "Medlemmet som kan administrere alle medlemmer unntatt eier, redigere APP og vise APPer",
       "editor": "Medlemmet som kan behandle redigeringsprogram og vise medlemmer, redigere APPer og vise APPer",
       "viewer": "Medlemmet som kan administrere seermedlemmer og vise APPer"
+    },
+    "label": {
+      "contribute": "Bidra til markedsplassen",
+      "social-media": "Del på"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nyheter"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hei der! Jeg oppdaget nettopp denne fantastiske AI Agent. Du kan være interessert i å gi den en prøve også! Sjekk denne! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Sjekk ut denne fantastiske AI-agenten [{{promptName}}]",
+        "linkedin": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
+        "facebook": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
+        "whatsapp": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
+        "hackernews": "Forenkle arbeidsmengde med [{{promptName}}] - AI-agenten gjør jobben ferdig"
+      },
+      "contribute": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!"
     }
+  },
+  "ai-agents": "AI agenter",
+  "marketplace": {
+    "star": "Stjerne {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

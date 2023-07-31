@@ -32,12 +32,15 @@
       "cancel": "キャンセル",
       "delete": "消去",
       "delete_cancel_text": "キャンセル",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "削除後、いかなる手段でもデータにアクセスまたは復元することはできません。確認してください。",
       "delete_ok_text": "消去",
       "delete_title": "確認",
       "error_button": "リトライ",
       "error_description": "間違ったリクエスト",
-      "error_title": "間違い"
+      "error_title": "間違い",
+      "marketplace": "市場",
+      "run": "実行",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "リソースを作成する",
@@ -51,6 +54,28 @@
       "save_success": "正常に保存されました",
       "test_fail": "テストに失敗しました",
       "test_success": "テスト成功"
+    },
+    "list-type": {
+      "team": "チーム",
+      "marketplace": "エージェント市場"
+    },
+    "sort-type": {
+      "popular": "最も人気",
+      "recent": "最近更新",
+      "star": "スター付き"
+    },
+    "search": "検索",
+    "no-result": "結果はありません。検索語を更新または変更してください。",
+    "message": {
+      "next-page-error": "次のページの読み込みに失敗しました。もう一度やり直してください。",
+      "create-failed": "エージェントの作成に失敗しました。もう一度やり直してください。",
+      "sort-failed": "フィルタの種類を変更できませんでした。もう一度やり直してください。",
+      "detail-load-failed": "詳細の取得に失敗しました。もう一度やり直してください。",
+      "fork-failed": "フォークに失敗しました。もう一度やり直してください。",
+      "create-suc": "作成に失敗しました。もう一度やり直してください。",
+      "fork-suc": "フォークしました。",
+      "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
+      "delete-suc": "正常に削除しました。 "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "サービスアカウント"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "選択"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "ページを選択"
+            },
+            "ai-agent": {
+              "value": "値"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Records",
             "record": "Record",
             "record_ids": "Record IDs"
+          },
+          "ai-agent": {
+            "model": "モデル",
+            "variable": "変数",
+            "input": "コンテンツを送信",
+            "max-token": "最大トークン"
           }
         },
         "menu": {
@@ -1733,6 +1780,16 @@
           "hidden_submit_button": "送信ボタンを非表示",
           "submit_button_full_w": "送信ボタンの幅全幅",
           "submit_button_text": "送信ボタンのテキスト"
+        },
+        "chart": {
+          "direction": "方向",
+          "y-axis_value": "Y軸の値",
+          "stack_grouped_data": "スタックグループデータ",
+          "x-axis_type": "X軸タイプ",
+          "format": "書式",
+          "legend_position": "凡例の位置",
+          "grid_line": "グリッド線",
+          "y-axis_type": "Y軸タイプ"
         }
       },
       "setter_tooltip": {
@@ -1994,6 +2051,19 @@
         },
         "statistics": {
           "title": "表示するタイトルを設定します"
+        },
+        "page": {
+          "default_view": "ユーザがエラーパスを入力すると、自動的にデフォルトのパスにリダイレクトされます。 デフォルトのパスがない場合、リストの最初のパスをデフォルトのパスとして扱います。"
+        },
+        "chart": {
+          "direction": "グラフの方向を設定します。 ",
+          "y-axis_value": "Y軸の値を設定",
+          "stack_grouped_data": "同じX軸値を持つ異なるグループの値は積み上げられたチャートに積み上げられます。 積み上げグラフは、異なるカテゴリまたはグループの全体的なサイズを比較するために使用できます。 個々のサブカテゴリまたはサブグループの相対的な大きさだけでなく、",
+          "x-axis_type": "チャートの種類を設定すると、データの可読性が向上します。",
+          "format": "有効な日付フォーマット文字列。 [dayJS](https://day.js.org/docs/en/parse/string-format)を参照してください。",
+          "legend_position": "凡例の位置を設定します。 ",
+          "grid_line": "グリッド線の色を設定します。 ",
+          "y-axis_type": "チャートの種類を設定すると、データの可読性が向上します。"
         }
       },
       "setter_option": {
@@ -2096,6 +2166,20 @@
             "replace": "置換",
             "keepboth": "両方を保持"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "ドーナツ型",
+            "Radar": "レーダー"
+          },
+          "direction": {
+            "horizontal": "水平方向",
+            "vertical": "垂直方向"
+          },
+          "x-axis_type": {
+            "Default": "デフォルト",
+            "Date": "日付"
+          }
         }
       },
       "setter_placeholder": {
@@ -2189,7 +2273,7 @@
         "add": "新築",
         "body": "本体",
         "default_view": "デフォルトビュー",
-        "edit_view": "ビューを編集",
+        "edit_view": "パスを編集",
         "footer": "フッター",
         "header": "ヘッダ",
         "key": "キー値",
@@ -2198,11 +2282,12 @@
         "right_panel": "右パネル",
         "set_as_homepage": "ホームページとして設定",
         "show_fold_icon": "折りたたみボタンを表示",
-        "view_path": "ビューパス",
+        "view_path": "パス",
         "views": "見る",
         "width": "幅",
         "height": "高い",
-        "columns": "コラム"
+        "columns": "コラム",
+        "set_as_default_subpage": "既定のサブページとして設定"
       },
       "model_tips": {
         "cancel_button": "キャンセル",
@@ -2217,7 +2302,7 @@
       "tab_title": "ページ",
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
-        "view_path": "このビューにアクセスするための文字列スペル example.com/app/page/",
+        "view_path": "このページへのアクセスを設定するには、パスを調整してください。 例えば、パスを「**newPath**」に変更し、ホームページのサブページとして追加する場合。 このページには以下のURLからアクセスできます: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath** 。",
         "auto_canvas_width": "ブラウザーの幅に対するページの幅のパーセンテージ。"
       }
     },
@@ -2461,6 +2546,67 @@
           "restore": "復元に失敗しました",
           "preview": "履歴レコードの読み込みに失敗しました。"
         }
+      }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "ロゴ",
+        "name": "名前",
+        "desc": "説明",
+        "mode": "モード",
+        "prompt": "Prompt",
+        "variable": "変数",
+        "welcome": "ウェルカムメッセージ",
+        "model": "モデル",
+        "temperature": "温度",
+        "max-token": "最大トークン"
+      },
+      "placeholder": {
+        "logo": "アップロード",
+        "name": "エージェントに名前を付けてください",
+        "desc": "このエージェントが何に使用されるかを簡単に説明します。",
+        "prompt": "変数を入力 / 選択します",
+        "variable": {
+          "key": "変数名",
+          "value": "値"
+        },
+        "welcome": "ユーザーがエージェントの使用を開始したときに表示されるウェルカムメッセージを入力します。",
+        "temperature": "0 から 1 の間の値。値が小さいほど効果が良くなります。",
+        "max-token": "単一のランで消費されるトークンの最大数を制限するために使用されます。"
+      },
+      "tips": {
+        "mode": "チャットモードでは、送信された各メッセージには、リクエストの一部としての会話履歴が含まれており、結果が良くなりますが、トークンが多く消費されます。 テキストモードでは、送信された各メッセージには会話履歴が含まれません。 チャットモードに比べて最適な結果は少なくなり、トークンは保存されます。",
+        "not-start": "エージェントの構成を完了し、format@@0をクリックして実行します",
+        "not-start-run": "左のスタートボタンをクリックしてください。"
+      },
+      "option": {
+        "mode": {
+          "chat": "チャット",
+          "text": "テキストの生成"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "新規作成",
+      "save": "保存",
+      "start": "開始",
+      "restart": "再起動",
+      "contribute": "マーケットプレイスに貢献する",
+      "button": {
+        "send": "送信",
+        "generating": "生成中"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "チャット",
+        "text": "テキストを生成"
+      },
+      "message": {
+        "click-start": "開始ボタンをクリックしてトリガーします。"
       }
     }
   },
@@ -2874,6 +3020,15 @@
     },
     "jsonSchemaForm": {
       "name": "JSON スキーマフォーム"
+    },
+    "page": {
+      "path_duplicated": "パスが重複しています。エラーを避けるためにユニークなパスを使用してください。 ",
+      "tips": {
+        "blank_view": "このモジュールにはサブページがありません。右側のページパネルから先に追加してください。"
+      },
+      "label": {
+        "rename_url": "パスを編集"
+      }
     }
   },
   "page": {
@@ -3678,6 +3833,10 @@
         "title": "プランを変更しますか?",
         "button_cancel": "キャンセル",
         "button_confirm": "確認する"
+      },
+      "ai-agent": {
+        "string1": "GPT-4はプレミアムチーム用です。 ",
+        "string2": "使用するには、プレミアムにアップグレードしてください。プレミアムにアップグレードすると、次の機能も利用できます。 "
       }
     },
     "homepage": {
@@ -3749,15 +3908,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "編集に招待",
-      "invite_to_use": "招待する"
+      "invite_to_use": "招待する",
+      "share-with-team": "チームと共有",
+      "contribute": "貢献"
     },
     "desc": {
-      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
+      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 ",
+      "contribute": "Marketplaceに貢献すると、すべてのユーザーがエージェントを実行、スター、フォークできます。 他のチームのユーザーがこのエージェントを運営すると、あなたのリソースは消費されません。"
     },
     "tips": {
       "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
       "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
       "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+    },
+    "label": {
+      "contribute": "マーケットプレイスに貢献する",
+      "social-media": "共有先："
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "ハッカーニュース"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "こんにちは！この素晴らしいAIエージェントを見つけました。 ぜひ試してみてください！ {{promptName}}:{{promptLink}} #AIwriting #ProductivityBoost",
+        "reddit": "この AI エージェント [{{promptName}} ] をチェックしてください。",
+        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "hackernews": "[{{promptName}}] で作業負荷を簡素化する - 作業を完了させるAIエージェント"
+      },
+      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     }
+  },
+  "ai-agents": "AIエージェント",
+  "marketplace": {
+    "star": "スター {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }
