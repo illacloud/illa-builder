@@ -68,7 +68,7 @@
     "no-result": "Ingen resultater her. Oppdater eller endre søketermene dine.",
     "message": {
       "next-page-error": "Kunne ikke laste neste side. Vennligst prøv igjen.",
-      "create-failed": "Kunne ikke opprette agent. Prøv på nytt.",
+      "create-failed": "Kan ikke lagre agent. Prøv på nytt.",
       "sort-failed": "Kan ikke endre filtertypen. Vennligst prøv på nytt.",
       "detail-load-failed": "Kan ikke hente detaljer, prøv igjen.",
       "fork-failed": "Skaffe, vennligst prøv igjen.",
@@ -2606,7 +2606,8 @@
         "text": "Generere tekst"
       },
       "message": {
-        "click-start": "Klikk på Start knappen for å utløse."
+        "click-start": "Klikk på Start knappen for å utløse.",
+        "insufficient_token": "Utilstrekkelig token"
       }
     }
   },
