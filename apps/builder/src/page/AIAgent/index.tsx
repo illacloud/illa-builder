@@ -19,6 +19,7 @@ import {
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { FullPageLoading } from "@/components/FullPageLoading"
+import { CodeEditor } from "@/illa-public-component/CodeMirror"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
 import { AIAgentBlock } from "@/page/AIAgent/components/AIAgentBlock"
 import AILoading from "@/page/AIAgent/components/AILoading"
@@ -28,6 +29,7 @@ import {
   buttonContainerStyle,
   descContainerStyle,
   descTextStyle,
+  formContainerStyle,
   labelStyle,
   labelTextStyle,
   leftPanelContainerStyle,
@@ -106,6 +108,7 @@ export const AIAgent: FC = () => {
       {!pageLoading && (
         <div css={aiAgentContainerStyle}>
           <form
+            css={formContainerStyle}
             onSubmit={handleSubmit(async (data) => {
               setSavingLoading(true)
               try {
@@ -265,10 +268,18 @@ export const AIAgent: FC = () => {
                     defaultValue={currentAgent.prompt}
                     shouldUnregister={false}
                     render={({ field }) => (
-                      <TextArea
+                      <CodeEditor
                         {...field}
-                        minH="200px"
-                        colorScheme={"techPurple"}
+                        minHeight="200px"
+                        completionOptions={[
+                          {
+                            key: "hahahahahahahahahahahahahahahahahahahahahahahahahahahaha",
+                            value:
+                              "hahahahahahahahahahahahahahahahahahahahahahahahahahahaha",
+                          },
+                          { key: "aaa", value: "hhahaha" },
+                          { key: "bbb", value: "hhahaha" },
+                        ]}
                       />
                     )}
                   />

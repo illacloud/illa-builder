@@ -4,6 +4,7 @@ import { getColor } from "@illa-design/react"
 export const agentBlockStyle = css`
   margin-top: 8px;
   padding: 8px 24px;
+  width: 100%;
 `
 
 export const blockTextStyle = css`
