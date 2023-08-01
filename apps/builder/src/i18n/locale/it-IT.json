@@ -2609,6 +2609,9 @@
         "click-start": "Fare clic sul pulsante Start per attivare.",
         "insufficient_token": "Token insufficiente"
       }
+    },
+    "common": {
+      "required": "Richiesto"
     }
   },
   "exit_preview": "Esci Dall'Anteprima",
