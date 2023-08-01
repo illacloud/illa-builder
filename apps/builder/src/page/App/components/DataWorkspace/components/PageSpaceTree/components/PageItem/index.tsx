@@ -34,9 +34,11 @@ const PageItem: FC<PageItemProps> = (props) => {
     currentPagePath,
     currentSubPagePath,
   } = props
-  const isSelected = currentPagePath === pageName
+
+  const isSelected = !currentSubPagePath && currentPagePath === pageName
   const subPageIsSelected =
     currentPagePath === parentPageName && pageName === currentSubPagePath
+
   const dispatch = useDispatch()
   const [modalVisible, setModalVisible] = useState(false)
   const [currentPageName, setCurrentPageName] = useState(pageName)
