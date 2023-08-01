@@ -2609,6 +2609,9 @@
         "click-start": "開始ボタンをクリックしてトリガーします。",
         "insufficient_token": "トークンが足りません"
       }
+    },
+    "common": {
+      "required": "必須"
     }
   },
   "exit_preview": "プレビューを終了",
