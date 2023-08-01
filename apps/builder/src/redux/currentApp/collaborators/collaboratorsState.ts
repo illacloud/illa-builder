@@ -1,7 +1,10 @@
+import { SenderType } from "@/redux/aiAgent/aiAgentState"
+
 export interface CollaboratorsInfo {
   id: string
   nickname: string
   avatar: string
+  role: SenderType
 }
 
 export interface CollaboratorsState {

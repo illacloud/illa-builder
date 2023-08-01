@@ -8,17 +8,28 @@ import {
   senderNicknameStyle,
 } from "@/page/AIAgent/components/AIAgentMessage/style"
 import { ChatContext } from "@/page/AIAgent/components/ChatContext"
+import { SenderType } from "@/redux/aiAgent/aiAgentState"
 
 export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
   const { message } = props
   const chatContext = useContext(ChatContext)
-  const senderNickname = chatContext.inRoomUsers.find(
-    (user) => user.id == message.sender.senderID,
-  )?.nickname
+  const senderNickname =
+    message.sender.senderType === SenderType.ANONYMOUS_AGENT
+      ? chatContext.inRoomUsers.find(
+          (user) => user.role == SenderType.ANONYMOUS_AGENT,
+        )?.nickname
+      : chatContext.inRoomUsers.find(
+          (user) => user.id == message.sender.senderID,
+        )?.nickname
 
-  const senderAvatar = chatContext.inRoomUsers.find(
-    (user) => user.id == message.sender.senderID,
-  )?.avatar
+  const senderAvatar =
+    message.sender.senderType === SenderType.ANONYMOUS_AGENT
+      ? chatContext.inRoomUsers.find(
+          (user) => user.role == SenderType.ANONYMOUS_AGENT,
+        )?.avatar
+      : chatContext.inRoomUsers.find(
+          (user) => user.id == message.sender.senderID,
+        )?.avatar
 
   return (
     <div css={agentMessageContainer}>

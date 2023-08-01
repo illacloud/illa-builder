@@ -17,11 +17,27 @@ export const leftPanelContainerStyle = css`
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
 `
 
+export const leftPanelCoverContainer = css`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  overflow-y: hidden;
+`
+
 export const leftPanelContentContainerStyle = css`
   display: flex;
   width: 100%;
+  height: 100%;
   overflow-y: auto;
   flex-direction: column;
+`
+
+export const leftLoadingCoverStyle = css`
+  position: absolute;
+  background: ${getColor("white", "03")};
+  height: 100%;
+  width: 100%;
 `
 
 export const leftPanelTitleStyle = css`

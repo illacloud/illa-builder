@@ -84,7 +84,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   bdRadius="8px 0 0 8px"
                   placeholder="key"
                   onChange={(value) => {
-                    onChangeKey(index, value, record.value, name)
+                    onChangeKey(index, value.trim(), record.value, name)
                   }}
                 />
               ) : (
@@ -96,7 +96,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   placeholder="key"
                   expectValueType={VALIDATION_TYPES.STRING}
                   onChange={(value) => {
-                    onChangeKey(index, value, record.value, name)
+                    onChangeKey(index, value.trim(), record.value, name)
                   }}
                   singleLine
                 />
@@ -110,7 +110,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   placeholder="value"
                   value={record.value}
                   onChange={(value) => {
-                    onChangeValue(index, record.key, value, name)
+                    onChangeValue(index, record.key, value.trim(), name)
                   }}
                 />
               ) : (
@@ -123,7 +123,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   expectValueType={valueExpectedType}
                   singleLine
                   onChange={(value) => {
-                    onChangeValue(index, record.key, value, name)
+                    onChangeValue(index, record.key, value.trim(), name)
                   }}
                 />
               )}

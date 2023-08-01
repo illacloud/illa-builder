@@ -5,4 +5,5 @@ export interface AIAgentBlockProps {
   subTitle?: string | ReactNode
   children?: ReactNode
   tips?: string
+  required?: boolean
 }
