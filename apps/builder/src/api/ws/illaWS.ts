@@ -4,6 +4,7 @@ import {
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -16,7 +17,6 @@ import {
   UPDATE_DISPLAY_NAME,
 } from "@/utils/generators/generateDisplayName"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { Signal, Target } from "./ILLA_PROTO"
 
 const HEARTBEAT_PING_TIMEOUT = 2 * 1000
 const HEARTBEAT_PONG_TIMEOUT = 5 * 1000
@@ -101,8 +101,8 @@ export class ILLAWebsocket {
 
         this.send(
           getTextMessagePayload(
-            Signal.ENTER,
-            Target.NOTHING,
+            TextSignal.ENTER,
+            TextTarget.NOTHING,
             false,
             {
               type: "enter",

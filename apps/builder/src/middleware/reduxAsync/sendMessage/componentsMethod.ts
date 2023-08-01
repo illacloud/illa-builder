@@ -4,7 +4,7 @@ import {
   getTextMessagePayload,
   transformComponentReduxPayloadToWsPayload,
 } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/ILLA_PROTO"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import {
   UpdateComponentContainerPayload,
   UpdateComponentNodeLayoutInfoPayload,
@@ -48,8 +48,8 @@ export const componentsAsync = (
     case "addComponentReducer":
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.CREATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -68,8 +68,8 @@ export const componentsAsync = (
       if (!parentNode) return
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.CREATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -90,8 +90,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(allEffectComponentNodes)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -109,8 +109,8 @@ export const componentsAsync = (
         )
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.MOVE_STATE,
-          Target.COMPONENTS,
+          TextSignal.MOVE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -137,8 +137,8 @@ export const componentsAsync = (
       if (oldParentNodeDisplayName !== newParentNodeDisplayName) {
         Connection.getTextRoom("app", currentAppID)?.send(
           getTextMessagePayload(
-            Signal.MOVE_STATE,
-            Target.COMPONENTS,
+            TextSignal.MOVE_STATE,
+            TextTarget.COMPONENTS,
             true,
             action,
             teamID,
@@ -155,8 +155,8 @@ export const componentsAsync = (
       }
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -177,8 +177,8 @@ export const componentsAsync = (
       if (finalNode != null) {
         Connection.getTextRoom("app", currentAppID)?.send(
           getTextMessagePayload(
-            Signal.UPDATE_STATE,
-            Target.COMPONENTS,
+            TextSignal.UPDATE_STATE,
+            TextTarget.COMPONENTS,
             true,
             action,
             teamID,
@@ -212,8 +212,8 @@ export const componentsAsync = (
 
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -234,8 +234,8 @@ export const componentsAsync = (
         const wsPayload = transformComponentReduxPayloadToWsPayload(finalNodes)
         Connection.getTextRoom("app", currentAppID)?.send(
           getTextMessagePayload(
-            Signal.UPDATE_STATE,
-            Target.COMPONENTS,
+            TextSignal.UPDATE_STATE,
+            TextTarget.COMPONENTS,
             true,
             action,
             teamID,
@@ -249,8 +249,8 @@ export const componentsAsync = (
       const deletePayload: DeleteComponentNodePayload = payload
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.DELETE_STATE,
-          Target.COMPONENTS,
+          TextSignal.DELETE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -273,8 +273,8 @@ export const componentsAsync = (
       ])
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -301,8 +301,8 @@ export const componentsAsync = (
       if (!pageNode) break
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.DELETE_STATE,
-          Target.COMPONENTS,
+          TextSignal.DELETE_STATE,
+          TextTarget.COMPONENTS,
           true,
           null,
           teamID,
@@ -312,8 +312,8 @@ export const componentsAsync = (
       )
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.CREATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -337,8 +337,8 @@ export const componentsAsync = (
       if (!targetPageChildrenNode) return
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.DELETE_STATE,
-          Target.COMPONENTS,
+          TextSignal.DELETE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -349,8 +349,8 @@ export const componentsAsync = (
 
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           null,
           teamID,
@@ -374,8 +374,8 @@ export const componentsAsync = (
 
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           null,
           teamID,
@@ -385,8 +385,8 @@ export const componentsAsync = (
       )
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.CREATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -405,8 +405,8 @@ export const componentsAsync = (
 
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -423,8 +423,8 @@ export const componentsAsync = (
       const WSPagePayload = transformComponentReduxPayloadToWsPayload(rootNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -442,8 +442,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(rootNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           null,
           teamID,
@@ -453,8 +453,8 @@ export const componentsAsync = (
       )
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.CREATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -472,8 +472,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(rootNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           null,
           teamID,
@@ -483,8 +483,8 @@ export const componentsAsync = (
       )
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.DELETE_STATE,
-          Target.COMPONENTS,
+          TextSignal.DELETE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -513,8 +513,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(targetNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           null,
           teamID,
@@ -524,8 +524,8 @@ export const componentsAsync = (
       )
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.CREATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -546,8 +546,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(targetNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.DELETE_STATE,
-          Target.COMPONENTS,
+          TextSignal.DELETE_STATE,
+          TextTarget.COMPONENTS,
           true,
           null,
           teamID,
@@ -557,8 +557,8 @@ export const componentsAsync = (
       )
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -578,8 +578,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(targetNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -599,8 +599,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(targetNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -624,8 +624,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(targetNodes)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -649,8 +649,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(targetNodes)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           false,
           null,
           teamID,
@@ -671,8 +671,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(targetNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,
@@ -689,8 +689,8 @@ export const componentsAsync = (
         transformComponentReduxPayloadToWsPayload(rootNode)
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.COMPONENTS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.COMPONENTS,
           true,
           action,
           teamID,

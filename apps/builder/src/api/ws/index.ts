@@ -1,4 +1,5 @@
 import { ILLAWebsocket } from "@/api/ws/illaWS"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
@@ -38,8 +39,8 @@ export function transformComponentReduxPayloadToWsPayload(
 }
 
 export function getTextMessagePayload<T>(
-  signal: Signal,
-  target: Target,
+  signal: TextSignal,
+  target: TextTarget,
   broadcast: boolean,
   reduxBroadcast: Broadcast | null,
   teamID: string,
@@ -126,6 +127,11 @@ export class Connection {
     this.roomMap.set(`app/${appID}/binary`, binaryWs)
   }
 
+  static enterAgentRoom(wsURL: string) {
+    let ws = generateTextMessageWs(wsURL, ILLA_WEBSOCKET_CONTEXT.AI_AGENT)
+    this.roomMap.set("ai-agent/", ws)
+  }
+
   static getTextRoom(
     type: RoomType,
     roomId: string,
@@ -148,8 +154,8 @@ export class Connection {
     if (textWS != undefined) {
       textWS.send(
         getTextMessagePayload(
-          Signal.LEAVE,
-          Target.NOTHING,
+          TextSignal.LEAVE,
+          TextTarget.NOTHING,
           false,
           {
             type: "leave",

@@ -1,5 +1,5 @@
 import { Connection, getTextMessagePayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/ILLA_PROTO"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -22,8 +22,8 @@ export const updateSelectedComponentUsersHandler = (payload: string[]) => {
     getCurrentTeamInfo(store.getState()) ?? {}
   Connection.getTextRoom("app", currentAppID)?.send(
     getTextMessagePayload(
-      Signal.COOPERATE_ATTACH,
-      Target.COMPONENTS,
+      TextSignal.COOPERATE_ATTACH,
+      TextTarget.COMPONENTS,
       true,
       {
         type: "attachComponent",
@@ -42,8 +42,8 @@ export const clearComponentAttachedUsersHandler = (payload: string[]) => {
     getCurrentTeamInfo(store.getState()) ?? {}
   Connection.getTextRoom("app", currentAppID)?.send(
     getTextMessagePayload(
-      Signal.COOPERATE_DISATTACH,
-      Target.COMPONENTS,
+      TextSignal.COOPERATE_DISATTACH,
+      TextTarget.COMPONENTS,
       true,
       {
         type: "attachComponent",
