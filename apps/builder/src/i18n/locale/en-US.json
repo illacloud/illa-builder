@@ -2609,6 +2609,9 @@
         "click-start": "Click the Start button to trigger.",
         "insufficient_token": "Insufficient token"
       }
+    },
+    "common": {
+      "required": "Required"
     }
   },
   "exit_preview": "Exit Preview",
