@@ -2609,6 +2609,9 @@
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
         "insufficient_token": "Token insuficient"
       }
+    },
+    "common": {
+      "required": "Necesar"
     }
   },
   "exit_preview": "Ieșiți din previzualizare",
