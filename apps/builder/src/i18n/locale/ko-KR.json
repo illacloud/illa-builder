@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "비밀번호"
+      },
+      "subscribe_illa_news": {
+        "label": "ILLA의 이메일 뉴스레터 구독",
+        "tips": "구독 후 ILLA는 이메일을 통해 ILLA Cloud와 관련된 최신 기능, 이벤트, 업계 동향 및 기타 뉴스를 알려드립니다."
       }
     }
   },
