@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "Palavra-passe"
+      },
+      "subscribe_illa_news": {
+        "label": "Assine o boletim informativo do ILLA.",
+        "tips": "Após assinar, a ILLA irá informá-lo sobre os últimos recursos, eventos, tendências da indústria e outras notícias relacionadas à ILLA Cloud por e-mail."
       }
     }
   },
