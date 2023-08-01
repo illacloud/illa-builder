@@ -68,7 +68,7 @@
     "no-result": "Aucun résultat ici. Veuillez actualiser ou modifier les termes de votre recherche.",
     "message": {
       "next-page-error": "Impossible de charger la page suivante. Veuillez réessayer.",
-      "create-failed": "Impossible de créer l'agent. Veuillez réessayer.",
+      "create-failed": "Échec de l'enregistrement de l'agent. Veuillez réessayer.",
       "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
       "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
       "fork-failed": "Échec du fork, veuillez réessayer.",
@@ -2606,8 +2606,12 @@
         "text": "Générer du texte"
       },
       "message": {
-        "click-start": "Cliquez sur le bouton Démarrer pour déclencher."
+        "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
+        "insufficient_token": "Jeton insuffisant"
       }
+    },
+    "common": {
+      "required": "Requis"
     }
   },
   "exit_preview": "Quitter l'aperçu",
