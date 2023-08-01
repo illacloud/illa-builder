@@ -68,7 +68,7 @@
     "no-result": "Brak wyników tutaj. Odśwież lub zmień wyszukiwane frazy.",
     "message": {
       "next-page-error": "Nie udało się załadować następnej strony. Spróbuj ponownie.",
-      "create-failed": "Nie udało się utworzyć agenta. Spróbuj ponownie.",
+      "create-failed": "Nie udało się zapisać agenta. Spróbuj ponownie.",
       "sort-failed": "Zmiana typu filtra nie powiodła się. Spróbuj ponownie.",
       "detail-load-failed": "Nie udało się pobrać szczegółów, spróbuj ponownie.",
       "fork-failed": "Nie udało się forkować, spróbuj ponownie.",
@@ -2606,7 +2606,8 @@
         "text": "Generuj tekst"
       },
       "message": {
-        "click-start": "Kliknij przycisk Start, aby wyzwalać."
+        "click-start": "Kliknij przycisk Start, aby wyzwalać.",
+        "insufficient_token": "Niewystarczający token"
       }
     }
   },

@@ -68,7 +68,7 @@
     "no-result": "Não há resultados aqui. Por favor, atualize ou altere os termos da pesquisa.",
     "message": {
       "next-page-error": "Falha ao carregar a próxima página. Por favor, tente novamente.",
-      "create-failed": "Falha ao criar agente. Por favor, tente novamente.",
+      "create-failed": "Falha ao salvar o agente. Tente novamente",
       "sort-failed": "Não foi possível alterar o tipo de filtro. Tente novamente.",
       "detail-load-failed": "Falha ao recuperar detalhes, por favor tente novamente.",
       "fork-failed": "Falha ao fazer o fork, por favor, tente novamente.",
@@ -2606,7 +2606,8 @@
         "text": "Gerar texto"
       },
       "message": {
-        "click-start": "Clique no botão iniciar para disparar."
+        "click-start": "Clique no botão iniciar para disparar.",
+        "insufficient_token": "Token insuficiente"
       }
     }
   },

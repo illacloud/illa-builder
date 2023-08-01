@@ -68,7 +68,7 @@
     "no-result": "Inga resultat här. Uppdatera eller ändra dina söktermer.",
     "message": {
       "next-page-error": "Det gick inte att ladda nästa sida. Försök igen.",
-      "create-failed": "Det gick inte att skapa agent. Försök igen.",
+      "create-failed": "Det gick inte att spara agenten. Försök igen.",
       "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
       "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
       "fork-failed": "Det gick inte att fork, försök igen.",
@@ -2606,7 +2606,8 @@
         "text": "Generera text"
       },
       "message": {
-        "click-start": "Klicka på Start -knappen för att utlösa."
+        "click-start": "Klicka på Start -knappen för att utlösa.",
+        "insufficient_token": "Otillräcklig token"
       }
     }
   },

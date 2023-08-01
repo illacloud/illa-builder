@@ -68,7 +68,7 @@
     "no-result": "Geen resultaten gevonden. Gelieve uw zoektermen te vernieuwen of te wijzigen.",
     "message": {
       "next-page-error": "Fout bij laden van de volgende pagina. Probeer het opnieuw.",
-      "create-failed": "Kan agent niet maken. Probeer het opnieuw.",
+      "create-failed": "Kan agent niet opslaan. Probeer het opnieuw.",
       "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
       "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
       "fork-failed": "Fork mislukt, probeer het opnieuw.",
@@ -2606,7 +2606,8 @@
         "text": "Genereer tekst"
       },
       "message": {
-        "click-start": "Klik op de Start knop om te starten."
+        "click-start": "Klik op de Start knop om te starten.",
+        "insufficient_token": "Onvoldoende token"
       }
     }
   },

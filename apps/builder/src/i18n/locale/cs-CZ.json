@@ -68,7 +68,7 @@
     "no-result": "Žádný výsledek. Aktualizujte nebo změňte hledané výrazy.",
     "message": {
       "next-page-error": "Nepodařilo se načíst další stránku. Zkuste to prosím znovu.",
-      "create-failed": "Nepodařilo se vytvořit agenta. Zkuste to prosím znovu.",
+      "create-failed": "Nepodařilo se uložit agenta. Zkuste to prosím znovu.",
       "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
       "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
       "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
@@ -2606,7 +2606,8 @@
         "text": "Generovat text"
       },
       "message": {
-        "click-start": "Klikněte na tlačítko Start pro spuštění."
+        "click-start": "Klikněte na tlačítko Start pro spuštění.",
+        "insufficient_token": "Nedostatečný token"
       }
     }
   },

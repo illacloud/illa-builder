@@ -68,7 +68,7 @@
     "no-result": "No hay resultados aquí. Por favor, actualice o cambie sus términos de búsqueda.",
     "message": {
       "next-page-error": "Error al cargar la página siguiente. Por favor, inténtalo de nuevo.",
-      "create-failed": "Error al crear el agente. Por favor, inténtalo de nuevo.",
+      "create-failed": "Error al guardar el agente. Inténtelo de nuevo.",
       "sort-failed": "Error al cambiar el tipo de filtro. Por favor, inténtalo de nuevo.",
       "detail-load-failed": "Error al recuperar los detalles, inténtalo de nuevo.",
       "fork-failed": "Error al bifurcar, inténtelo de nuevo.",
@@ -2606,7 +2606,8 @@
         "text": "Generar texto"
       },
       "message": {
-        "click-start": "Haga clic en el botón Inicio para activar."
+        "click-start": "Haga clic en el botón Inicio para activar.",
+        "insufficient_token": "Token insuficiente"
       }
     }
   },

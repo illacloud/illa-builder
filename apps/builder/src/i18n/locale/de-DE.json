@@ -68,7 +68,7 @@
     "no-result": "Kein Ergebnis hier. Bitte aktualisieren oder ändern Sie Ihre Suchbegriffe.",
     "message": {
       "next-page-error": "Fehler beim Laden der nächsten Seite. Bitte versuchen Sie es erneut.",
-      "create-failed": "Fehler beim Erstellen des Agenten. Bitte versuchen Sie es erneut.",
+      "create-failed": "Fehler beim Speichern des Agenten. Bitte versuchen Sie es erneut.",
       "sort-failed": "Filtertyp konnte nicht geändert werden. Bitte versuchen Sie es erneut.",
       "detail-load-failed": "Fehler beim Abrufen der Details, bitte versuchen Sie es erneut.",
       "fork-failed": "Fehler beim Forken, bitte versuchen Sie es erneut.",
@@ -2606,7 +2606,8 @@
         "text": "Text generieren"
       },
       "message": {
-        "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche."
+        "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
+        "insufficient_token": "Unzureichendes Token"
       }
     }
   },
