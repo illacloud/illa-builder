@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "Salasana"
+      },
+      "subscribe_illa_news": {
+        "label": "Tilaa ILLA:n sähköpostiuutiskirje",
+        "tips": "Tilauksen jälkeen ILLA ilmoittaa sinulle uusimmista ominaisuuksista, tapahtumista, alan trendeistä ja muista ILLA Cloudiin liittyvistä uutisista sähköpostitse."
       }
     }
   },
