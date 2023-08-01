@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "Heslo"
+      },
+      "subscribe_illa_news": {
+        "label": "Přihlásit se k odběru emailového zpravodaje ILLY",
+        "tips": "Po předplatném vás ILLA bude informovat o nejnovějších funkcích, událostech, průmyslových trendech a dalších novinkách týkajících se ILLA Cloud prostřednictvím e-mailu."
       }
     }
   },
