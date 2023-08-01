@@ -93,6 +93,14 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
   }, [datasets, dateFormat, xAxis, xType])
 
   const options: ChartOptions = useMemo(() => {
+    const horizontalColor =
+      !typeWithNoAxis(chartType) && direction === "y"
+        ? gridLineColor
+        : undefined
+    const verticalColor =
+      !typeWithNoAxis(chartType) && direction === "x"
+        ? gridLineColor
+        : undefined
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -110,7 +118,8 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
             },
           },
           grid: {
-            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            color:
+              horizontalColor || globalColor(`--${illaPrefix}-grayBlue-09`),
             borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
             tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
           },
@@ -134,7 +143,7 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
             },
           },
           grid: {
-            color: gridLineColor || globalColor(`--${illaPrefix}-grayBlue-09`),
+            color: verticalColor || globalColor(`--${illaPrefix}-grayBlue-09`),
             borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
             tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
           },

@@ -186,6 +186,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
         {baseURLOpen && (
           <ControlledElement
             title={t("editor.action.resource.s3.label.base_url")}
+            isRequired
             defaultValue={content.baseURL}
             control={control}
             rules={[
