@@ -2609,6 +2609,9 @@
         "click-start": "Clique no botão iniciar para disparar.",
         "insufficient_token": "Token insuficiente"
       }
+    },
+    "common": {
+      "required": "Obrigatório"
     }
   },
   "exit_preview": "Sair da Pré-visualização",
