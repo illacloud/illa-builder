@@ -2609,6 +2609,9 @@
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
         "insufficient_token": "Nedostatečný token"
       }
+    },
+    "common": {
+      "required": "Požadováno"
     }
   },
   "exit_preview": "Ukončit náhled",
