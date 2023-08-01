@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "Contraseña"
+      },
+      "subscribe_illa_news": {
+        "label": "Suscríbete al boletín electrónico de ILLA",
+        "tips": "Después de suscribirse, ILLA le informará de las últimas características, eventos, tendencias del sector y otras noticias relacionadas con ILLA Cloud por correo electrónico."
       }
     }
   },
