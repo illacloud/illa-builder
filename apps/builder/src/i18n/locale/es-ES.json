@@ -2609,6 +2609,9 @@
         "click-start": "Haga clic en el botón Inicio para activar.",
         "insufficient_token": "Token insuficiente"
       }
+    },
+    "common": {
+      "required": "Requerido"
     }
   },
   "exit_preview": "Salir de vista previa",
