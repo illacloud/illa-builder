@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "Lösenord"
+      },
+      "subscribe_illa_news": {
+        "label": "Prenumerera på ILLA:s nyhetsbrev via e-post",
+        "tips": "Efter prenumerationen kommer ILLA att informera dig om de senaste funktionerna, händelserna, branschtrender och andra nyheter relaterade till ILLA Cloud via e-post."
       }
     }
   },
