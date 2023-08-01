@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "密码"
+      },
+      "subscribe_illa_news": {
+        "label": "订阅 ILLA 的最新资讯",
+        "tips": "订阅后，ILLA将通过电子邮件告知您与ILLA Cloud相关的最新功能、活动、行业趋势以及其他资讯。"
       }
     }
   },
