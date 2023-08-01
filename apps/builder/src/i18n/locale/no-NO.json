@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "Passord"
+      },
+      "subscribe_illa_news": {
+        "label": "Abonner på ILLAs nyhetsbrev",
+        "tips": "Etter å ha abonnert vil ILLA informere deg om de siste funksjonene, arrangementene, utviklingen i bransjen og andre nyheter knyttet til ILLA Cloud via e-post."
       }
     }
   },
