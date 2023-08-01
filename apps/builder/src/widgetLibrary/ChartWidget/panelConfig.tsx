@@ -92,7 +92,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "direction",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["chartType"],
-        shown: (value: ChartType) => !typeWithNoAxis(value),
+        shown: (chartType: ChartType) => !typeWithNoAxis(chartType),
         options: [
           {
             label: i18n.t(
@@ -220,7 +220,6 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.chart_type"),
             isSetterSingleRow: true,
             attrName: "type",
-            bindAttrName: ["chartType"],
             setterType: "SEARCH_SELECT_SETTER",
             options: datasetsTypeOption,
           },
@@ -303,7 +302,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
         isSetterSingleRow: true,
-        shown: (value) => !value,
+        shown: (labelHidden: boolean) => !labelHidden,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -338,6 +337,8 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-layout-x-axis`,
         labelName: i18n.t("editor.inspect.setter_label.x_axis_name"),
         attrName: "xAxisName",
+        bindAttrName: ["chartType"],
+        shown: (chartType: string) => !typeWithNoAxis(chartType),
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
@@ -401,8 +402,11 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.chart.format"),
         labelDesc: i18n.t("editor.inspect.setter_tips.chart.format"),
         attrName: "dateFormat",
-        bindAttrName: ["xType"],
-        shown: (v: string) => v === "time",
+        bindAttrName: ["xType", "chartType"],
+        shown: (xType: string, chartType: string) => {
+          if (typeWithNoAxis(chartType)) return false
+          return xType === "time"
+        },
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
@@ -410,6 +414,8 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-layout-y-axis`,
         labelName: i18n.t("editor.inspect.setter_label.y_axis_name"),
         attrName: "yAxisName",
+        bindAttrName: ["chartType"],
+        shown: (chartType: string) => !typeWithNoAxis(chartType),
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
