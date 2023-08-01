@@ -2609,6 +2609,9 @@
         "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
         "insufficient_token": "Unzureichendes Token"
       }
+    },
+    "common": {
+      "required": "Benötigt"
     }
   },
   "exit_preview": "Vorschau beenden",
