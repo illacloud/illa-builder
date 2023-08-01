@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "Parolă"
+      },
+      "subscribe_illa_news": {
+        "label": "Aboneaza-te la buletinul informativ prin email",
+        "tips": "După abonare, ILLA vă va informa prin e-mail despre cele mai recente caracteristici, evenimente, tendințe industriale și alte știri legate de ILLA Cloud."
       }
     }
   },
