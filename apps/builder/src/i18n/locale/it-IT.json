@@ -3369,6 +3369,10 @@
       },
       "password": {
         "title": "Password"
+      },
+      "subscribe_illa_news": {
+        "label": "Iscriviti alla newsletter di ILLA",
+        "tips": "Dopo l'iscrizione, ILLA vi informerà sulle ultime funzionalità, eventi, tendenze del settore e altre notizie relative a ILLA Cloud via e-mail."
       }
     }
   },
