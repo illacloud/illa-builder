@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
