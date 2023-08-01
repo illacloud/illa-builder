@@ -2609,6 +2609,9 @@
         "click-start": "点击开始按钮触发运行",
         "insufficient_token": "Token不足"
       }
+    },
+    "common": {
+      "required": "必填"
     }
   },
   "exit_preview": "退出预览",
