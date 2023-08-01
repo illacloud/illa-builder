@@ -2609,6 +2609,9 @@
         "click-start": "Klikk på Start knappen for å utløse.",
         "insufficient_token": "Utilstrekkelig token"
       }
+    },
+    "common": {
+      "required": "Påkrevd"
     }
   },
   "exit_preview": "Avslutt forhåndsvisning",
