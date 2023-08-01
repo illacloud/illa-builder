@@ -68,7 +68,7 @@
     "no-result": "No result here. Please refresh or change your search terms.",
     "message": {
       "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
+      "create-failed": "Failed to save agent. Please try again.",
       "sort-failed": "Failed to change the filter type. Please try again.",
       "detail-load-failed": "Failed to retrieve details, please try again.",
       "fork-failed": "Failed to fork, please try again.",
@@ -2606,8 +2606,12 @@
         "text": "Generate text"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Click the Start button to trigger.",
+        "insufficient_token": "Insufficient token"
       }
+    },
+    "common": {
+      "required": "Required"
     }
   },
   "exit_preview": "미리보기 종료",
