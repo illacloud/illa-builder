@@ -2609,6 +2609,9 @@
         "click-start": "Klik op de Start knop om te starten.",
         "insufficient_token": "Onvoldoende token"
       }
+    },
+    "common": {
+      "required": "vereist"
     }
   },
   "exit_preview": "Voorvertoning afsluiten",
