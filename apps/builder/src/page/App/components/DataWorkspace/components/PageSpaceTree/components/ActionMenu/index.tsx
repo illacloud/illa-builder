@@ -75,7 +75,7 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
   }, [openRenameModal])
 
   return (
-    <DropList w="184px">
+    <DropList minW="184px">
       <DropListItem
         value="setHomePage"
         title={
