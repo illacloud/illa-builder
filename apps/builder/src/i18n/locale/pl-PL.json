@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2609,6 +2612,9 @@
         "click-start": "Kliknij przycisk Start, aby wyzwalać.",
         "insufficient_token": "Niewystarczający token"
       }
+    },
+    "common": {
+      "required": "Wymagane"
     }
   },
   "exit_preview": "Wyjdź z podglądu",
@@ -3366,6 +3372,10 @@
       },
       "password": {
         "title": "Hasło"
+      },
+      "subscribe_illa_news": {
+        "label": "Zapisz się do newslettera ILLA",
+        "tips": "Po subskrypcji, ILLA poinformuje Cię o najnowszych funkcjach, wydarzeniach, trendach branżowych i innych wiadomościach związanych z chmurą ILLA za pośrednictwem poczty elektronicznej."
       }
     }
   },

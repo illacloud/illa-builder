@@ -68,7 +68,7 @@
     "no-result": "No result here. Please refresh or change your search terms.",
     "message": {
       "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to create agent. Please try again.",
+      "create-failed": "Failed to save agent. Please try again.",
       "sort-failed": "Failed to change the filter type. Please try again.",
       "detail-load-failed": "Failed to retrieve details, please try again.",
       "fork-failed": "Failed to fork, please try again.",
@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2606,8 +2609,12 @@
         "text": "Generate text"
       },
       "message": {
-        "click-start": "Click the Start button to trigger."
+        "click-start": "Click the Start button to trigger.",
+        "insufficient_token": "Insufficient token"
       }
+    },
+    "common": {
+      "required": "Required"
     }
   },
   "exit_preview": "미리보기 종료",
@@ -3024,7 +3031,7 @@
     "page": {
       "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. ",
       "tips": {
-        "blank_view": "This module has no child pages. Please add them first through the Page panel on the right."
+        "blank_view": "This module has no subpages. Please add them first through the Page panel on the right."
       },
       "label": {
         "rename_url": "Edit path"
@@ -3365,6 +3372,10 @@
       },
       "password": {
         "title": "비밀번호"
+      },
+      "subscribe_illa_news": {
+        "label": "ILLA의 이메일 뉴스레터 구독",
+        "tips": "구독 후 ILLA는 이메일을 통해 ILLA Cloud와 관련된 최신 기능, 이벤트, 업계 동향 및 기타 뉴스를 알려드립니다."
       }
     }
   },

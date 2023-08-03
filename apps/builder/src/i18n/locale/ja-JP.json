@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2609,6 +2612,9 @@
         "click-start": "開始ボタンをクリックしてトリガーします。",
         "insufficient_token": "トークンが足りません"
       }
+    },
+    "common": {
+      "required": "必須"
     }
   },
   "exit_preview": "プレビューを終了",
@@ -3366,6 +3372,10 @@
       },
       "password": {
         "title": "パスワード"
+      },
+      "subscribe_illa_news": {
+        "label": "ILLAのメールマガジンを購読する",
+        "tips": "加入後、ILLAでは最新の機能やイベント、業界動向などをメールでお知らせします。"
       }
     }
   },

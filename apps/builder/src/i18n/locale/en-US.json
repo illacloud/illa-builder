@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2609,6 +2612,9 @@
         "click-start": "Click the Start button to trigger.",
         "insufficient_token": "Insufficient token"
       }
+    },
+    "common": {
+      "required": "Required"
     }
   },
   "exit_preview": "Exit Preview",
@@ -3025,7 +3031,7 @@
     "page": {
       "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. ",
       "tips": {
-        "blank_view": "This module has no child pages. Please add them first through the Page panel on the right."
+        "blank_view": "This module has no subpages. Please add them first through the Page panel on the right."
       },
       "label": {
         "rename_url": "Edit path"
@@ -3366,6 +3372,10 @@
       },
       "password": {
         "title": "Password"
+      },
+      "subscribe_illa_news": {
+        "label": "Subscribe ILLA's email newsletter",
+        "tips": "After subscribing, ILLA will inform you of the latest features, events, industry trends, and other news related to ILLA Cloud via email."
       }
     }
   },

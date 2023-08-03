@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2609,6 +2612,9 @@
         "click-start": "Klicka på Start -knappen för att utlösa.",
         "insufficient_token": "Otillräcklig token"
       }
+    },
+    "common": {
+      "required": "Krävs"
     }
   },
   "exit_preview": "Avsluta förhandsgranskning",
@@ -3366,6 +3372,10 @@
       },
       "password": {
         "title": "Lösenord"
+      },
+      "subscribe_illa_news": {
+        "label": "Prenumerera på ILLA:s nyhetsbrev via e-post",
+        "tips": "Efter prenumerationen kommer ILLA att informera dig om de senaste funktionerna, händelserna, branschtrender och andra nyheter relaterade till ILLA Cloud via e-post."
       }
     }
   },

@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2609,6 +2612,9 @@
         "click-start": "Klik på knappen Start for at udløse.",
         "insufficient_token": "Utilstrækkelig token"
       }
+    },
+    "common": {
+      "required": "Påkrævet"
     }
   },
   "exit_preview": "Afslut Forhåndsvisning",
@@ -3366,6 +3372,10 @@
       },
       "password": {
         "title": "Adgangskode"
+      },
+      "subscribe_illa_news": {
+        "label": "Abonnér ILLA's nyhedsbrev",
+        "tips": "Efter tilmeldingen vil ILLA informere dig om de nyeste funktioner, begivenheder, tendenser i branchen og andre nyheder relateret til ILLA Cloud via e-mail."
       }
     }
   },

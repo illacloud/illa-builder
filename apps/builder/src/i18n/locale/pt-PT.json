@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2609,6 +2612,9 @@
         "click-start": "Clique no botão iniciar para disparar.",
         "insufficient_token": "Token insuficiente"
       }
+    },
+    "common": {
+      "required": "Obrigatório"
     }
   },
   "exit_preview": "Sair da Pré-visualização",
@@ -3366,6 +3372,10 @@
       },
       "password": {
         "title": "Palavra-passe"
+      },
+      "subscribe_illa_news": {
+        "label": "Assine o boletim informativo do ILLA.",
+        "tips": "Após assinar, a ILLA irá informá-lo sobre os últimos recursos, eventos, tendências da indústria e outras notícias relacionadas à ILLA Cloud por e-mail."
       }
     }
   },

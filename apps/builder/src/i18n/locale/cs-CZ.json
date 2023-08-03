@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2609,6 +2612,9 @@
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
         "insufficient_token": "Nedostatečný token"
       }
+    },
+    "common": {
+      "required": "Požadováno"
     }
   },
   "exit_preview": "Ukončit náhled",
@@ -3366,6 +3372,10 @@
       },
       "password": {
         "title": "Heslo"
+      },
+      "subscribe_illa_news": {
+        "label": "Přihlásit se k odběru emailového zpravodaje ILLY",
+        "tips": "Po předplatném vás ILLA bude informovat o nejnovějších funkcích, událostech, průmyslových trendech a dalších novinkách týkajících se ILLA Cloud prostřednictvím e-mailu."
       }
     }
   },

@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2609,6 +2612,9 @@
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
         "insufficient_token": "Token insuficient"
       }
+    },
+    "common": {
+      "required": "Necesar"
     }
   },
   "exit_preview": "Ieșiți din previzualizare",
@@ -3366,6 +3372,10 @@
       },
       "password": {
         "title": "Parolă"
+      },
+      "subscribe_illa_news": {
+        "label": "Aboneaza-te la buletinul informativ prin email",
+        "tips": "După abonare, ILLA vă va informa prin e-mail despre cele mai recente caracteristici, evenimente, tendințe industriale și alte știri legate de ILLA Cloud."
       }
     }
   },

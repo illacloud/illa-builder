@@ -68,7 +68,7 @@
     "no-result": "Ei tuloksia. Ole hyvä ja päivitä tai vaihda hakuehtoja.",
     "message": {
       "next-page-error": "Seuraavan sivun lataaminen epäonnistui. Yritä uudelleen.",
-      "create-failed": "Agentin luonti epäonnistui. Yritä uudelleen.",
+      "create-failed": "Agentin tallennus epäonnistui. Yritä uudelleen.",
       "sort-failed": "Suodattimen tyyppiä ei voitu muuttaa. Yritä uudelleen.",
       "detail-load-failed": "Tietojen noutaminen epäonnistui, yritä uudelleen.",
       "fork-failed": "Ei voitu forkata, yritä uudelleen.",
@@ -2266,6 +2266,9 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "No subpage"
       }
     },
     "page": {
@@ -2606,8 +2609,12 @@
         "text": "Luo teksti"
       },
       "message": {
-        "click-start": "Napsauta Käynnistä painiketta käynnistääksesi."
+        "click-start": "Napsauta Käynnistä painiketta käynnistääksesi.",
+        "insufficient_token": "Riittämätön tunnus"
       }
+    },
+    "common": {
+      "required": "Pakollinen"
     }
   },
   "exit_preview": "Poistu Esikatselusta",
@@ -3365,6 +3372,10 @@
       },
       "password": {
         "title": "Salasana"
+      },
+      "subscribe_illa_news": {
+        "label": "Tilaa ILLA:n sähköpostiuutiskirje",
+        "tips": "Tilauksen jälkeen ILLA ilmoittaa sinulle uusimmista ominaisuuksista, tapahtumista, alan trendeistä ja muista ILLA Cloudiin liittyvistä uutisista sähköpostitse."
       }
     }
   },
