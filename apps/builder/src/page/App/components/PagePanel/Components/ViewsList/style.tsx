@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const viewsListWrapperStyle = css`
   display: flex;
@@ -112,4 +112,14 @@ export const titleStyle = css`
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
+`
+
+export const viewListEmptyBody = css`
+  padding: 8px 16px;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${getColor("grayBlue", "04")};
 `

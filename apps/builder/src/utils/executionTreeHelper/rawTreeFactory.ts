@@ -6,6 +6,7 @@ import {
   RawTreeShape,
 } from "@/utils/executionTreeHelper/interface"
 import { CUSTOM_STORAGE_PREFIX } from "../storage"
+import { generateGlobalData } from "./generateGlobalData"
 import { generateCurrentPageInfo, generatePageInfos } from "./generatePageInfo"
 import { generateUrlParams } from "./generateUrlParams"
 
@@ -50,7 +51,7 @@ export class RawTreeFactory {
 
     rawTree.builderInfo = builderInfo
     rawTree.currentUserInfo = canShownUserInfo
-    rawTree.globalData = globalData
+    rawTree.globalData = generateGlobalData(globalData)
     rawTree.urlParams = generateUrlParams()
     rawTree.localStorage = customStorage ? JSON.parse(customStorage) : {}
     rawTree.currentPageInfo = generateCurrentPageInfo()

@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import RenderComponentCanvasContainer from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
+import { EmptyState } from "@/page/App/components/DotPanel/components/Page/emptyState"
 import { BASIC_CANVAS_PADDING } from "@/page/App/components/DotPanel/constant/canvas"
 import { getCurrentDisplayName } from "@/page/App/components/DotPanel/hooks/sectionUtils"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
@@ -40,13 +41,15 @@ export const RenderBodySection: FC<RenderSectionProps> = (props) => {
   return (
     <div css={bodySectionWrapperStyle}>
       <div css={containerWrapperStyle}>
-        {componentNode && (
+        {componentNode ? (
           <RenderComponentCanvasContainer
             displayName={componentNode.displayName}
             containerPadding={BASIC_CANVAS_PADDING}
             columnNumber={columnNumber}
             isRootCanvas
           />
+        ) : (
+          <EmptyState />
         )}
       </div>
     </div>
