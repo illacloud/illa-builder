@@ -87,9 +87,20 @@ export const AIAgent: FC = () => {
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const currentUserInfo = useSelector(getCurrentUser)
 
-  const { isSubmitting, isValid, isDirty } = useFormState({
+  const { isSubmitting, isValid, isDirty, dirtyFields } = useFormState({
     control,
   })
+
+  const blockInputDirty: boolean =
+    (dirtyFields.variables?.some((record) => {
+      return record.key || record.value
+    }) ??
+      false) ||
+    (dirtyFields.agentType ?? false) ||
+    (dirtyFields.modelConfig?.maxTokens ?? false) ||
+    (dirtyFields.modelConfig?.temperature ?? false) ||
+    (dirtyFields.model ?? false) ||
+    (dirtyFields.prompt ?? false)
 
   const message = useMessage()
   // page state
@@ -638,7 +649,7 @@ export const AIAgent: FC = () => {
                   mode={field.value}
                   messages={messages}
                   isReceiving={isReceiving}
-                  blockInput={!isRunning}
+                  blockInput={!isRunning || blockInputDirty}
                   onSendMessage={(message) => {
                     sendMessage({
                       threadID: message.threadID,
