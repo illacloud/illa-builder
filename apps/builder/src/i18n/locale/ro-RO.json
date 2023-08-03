@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Cele mai populare",
-      "recent": "Actualizat recent",
+      "recent": "Ultimele",
       "star": "Marcate"
     },
     "search": "Caută",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Nicio subpagină"
       }
     },
     "page": {
       "label_name": {
         "add": "Adăugare",
         "body": "Corp",
-        "default_view": "Vizualizare implicită",
-        "edit_view": "Editare cale",
+        "default_view": "Subpagina implicită",
+        "edit_view": "Editare subpagină",
         "footer": "Subsol",
         "header": "Antet",
         "key": "Cheie",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "Setează ca website",
         "show_fold_icon": "Afișare pictogramă pli",
         "view_path": "Cale",
-        "views": "Vizualizări",
+        "views": "Subpagini",
         "width": "Width",
         "height": "Înălțime",
         "columns": "Coloane",
