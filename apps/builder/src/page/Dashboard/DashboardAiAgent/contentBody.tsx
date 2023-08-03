@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
 import { Input, RadioGroup } from "@illa-design/react"
-import { MarketAgentCard } from "@/page/Dashboard/DashboardAiAgent/MarketAgentCard"
+import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
 import {
   contentContainerStyle,
