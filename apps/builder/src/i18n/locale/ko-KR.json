@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Most popular",
-      "recent": "Recently updated",
+      "recent": "Latest",
       "star": "Starred"
     },
     "search": "Search",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "No sub-page"
       }
     },
     "page": {
       "label_name": {
         "add": "새 빌드",
         "body": "본체",
-        "default_view": "기본 보기",
-        "edit_view": "Edit path",
+        "default_view": "Default sub-page",
+        "edit_view": "Edit sub-page",
         "footer": "보행인",
         "header": "헤더",
         "key": "핵심 가치",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "시작 페이지로 설정",
         "show_fold_icon": "축소 버튼 표시",
         "view_path": "Path",
-        "views": "보다",
+        "views": "Sub-pages",
         "width": "너비",
         "height": "높은",
         "columns": "열",
@@ -2305,7 +2305,7 @@
       "tab_title": "페이지",
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
-        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a sub-page of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "브라우저 너비의 백분율로 나타낸 페이지 너비입니다."
       }
     },
@@ -3031,7 +3031,7 @@
     "page": {
       "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. ",
       "tips": {
-        "blank_view": "This module has no subpages. Please add them first through the Page panel on the right."
+        "blank_view": "This module has no sub-pages. Please add them first through the Page panel on the right."
       },
       "label": {
         "rename_url": "Edit path"
