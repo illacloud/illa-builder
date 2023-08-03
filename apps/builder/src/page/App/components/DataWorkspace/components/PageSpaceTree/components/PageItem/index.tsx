@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { Dropdown, PlusIcon, Trigger, useMessage } from "@illa-design/react"
 import { ReactComponent as HomepageIcon } from "@/assets/dataWorkspace/homepage.svg"
 import { ReactComponent as WebsiteIcon } from "@/assets/dataWorkspace/website.svg"
+import { ReactComponent as SettingIcon } from "@/illa-public-component/MemberList/assets/icon/setting.svg"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -14,10 +15,10 @@ import { Modal } from "../ChangePathModal/modal"
 import { PageItemProps } from "./interface"
 import {
   actionAreaContainerStyle,
-  addSubpageIconHotSpotStyle,
   baseIconStyle,
   iconHotSpotContainerStyle,
   pageItemContainerStyle,
+  pageItemInnerContainerStyle,
   pageNameContainerStyle,
   pageNameStyle,
   parentPageNameStyle,
@@ -41,6 +42,7 @@ const PageItem: FC<PageItemProps> = (props) => {
 
   const dispatch = useDispatch()
   const [modalVisible, setModalVisible] = useState(false)
+  const [actionMenuVisible, setActionMenuVisible] = useState(false)
   const [currentPageName, setCurrentPageName] = useState(pageName)
   const message = useMessage()
   const { t } = useTranslation()
@@ -136,8 +138,9 @@ const PageItem: FC<PageItemProps> = (props) => {
       >
         <span>
           <Dropdown
-            position="bottom-start"
+            position="bottom-end"
             trigger="contextmenu"
+            popupVisible={actionMenuVisible}
             dropList={
               <ActionMenu
                 pageDisplayName={pageName}
@@ -146,6 +149,7 @@ const PageItem: FC<PageItemProps> = (props) => {
                 openRenameModal={handleOpenModal}
               />
             }
+            onVisibleChange={setActionMenuVisible}
           >
             <div
               css={pageItemContainerStyle(
@@ -154,28 +158,32 @@ const PageItem: FC<PageItemProps> = (props) => {
               )}
               onClick={handleClickChangePage}
             >
-              <div css={pageNameContainerStyle}>
-                {!parentPageName && <WebsiteIcon />}
-                {parentPageName && (
-                  <span css={parentPageNameStyle}>/{parentPageName}</span>
-                )}
-                <span css={pageNameStyle}>/{pageName}</span>
-              </div>
-              <div css={actionAreaContainerStyle}>
-                {isHomePage && (
-                  <div css={iconHotSpotContainerStyle}>
-                    <HomepageIcon css={baseIconStyle} />
-                  </div>
-                )}
-                {!parentPageName && (
-                  <div
-                    css={addSubpageIconHotSpotStyle}
-                    className="add-subpage-icon"
-                    onClick={addSubPage}
-                  >
+              <div css={pageItemInnerContainerStyle}>
+                <div css={pageNameContainerStyle}>
+                  {!parentPageName && <WebsiteIcon />}
+                  {parentPageName && (
+                    <span css={parentPageNameStyle}>/{parentPageName}</span>
+                  )}
+                  <span css={pageNameStyle}>/{pageName}</span>
+                </div>
+                <div css={actionAreaContainerStyle} className="icon-area">
+                  {isHomePage && (
+                    <div css={iconHotSpotContainerStyle}>
+                      <HomepageIcon css={baseIconStyle} />
+                    </div>
+                  )}
+                  <div css={iconHotSpotContainerStyle} onClick={addSubPage}>
                     <PlusIcon css={plusIconStyle} />
                   </div>
-                )}
+                  <div
+                    css={iconHotSpotContainerStyle}
+                    onClick={() => {
+                      setActionMenuVisible(true)
+                    }}
+                  >
+                    <SettingIcon css={plusIconStyle} />
+                  </div>
+                </div>
               </div>
             </div>
           </Dropdown>

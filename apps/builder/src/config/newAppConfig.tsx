@@ -28,13 +28,13 @@ export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   props: {
     currentViewIndex: 0,
     viewSortedKey: ["bodySection1-bodySectionContainer1"],
-    defaultViewKey: "path1",
+    defaultViewKey: "sub-page1",
     sectionViewConfigs: [
       {
         id: v4(),
         viewDisplayName: "bodySection1-bodySectionContainer1",
-        key: "path1",
-        path: "path1",
+        key: "sub-page1",
+        path: "sub-page1",
       },
     ],
   },
