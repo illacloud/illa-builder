@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Nejoblíbenější",
-      "recent": "Nedávno aktualizované",
+      "recent": "Nejnovější",
       "star": "Oblíbené"
     },
     "search": "Hledat",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Žádná podstránka"
       }
     },
     "page": {
       "label_name": {
         "add": "Přidat",
         "body": "Tělo",
-        "default_view": "Výchozí zobrazení",
-        "edit_view": "Upravit cestu",
+        "default_view": "Výchozí podstránka",
+        "edit_view": "Upravit podstránku",
         "footer": "Zápatí",
         "header": "Záhlaví",
         "key": "Klíč",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
         "view_path": "Cesta",
-        "views": "Zobrazení",
+        "views": "Podstránky",
         "width": "Width",
         "height": "Výška",
         "columns": "Sloupce",
