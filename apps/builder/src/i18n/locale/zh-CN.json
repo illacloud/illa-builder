@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "最受欢迎",
-      "recent": "最近更新",
+      "recent": "最新",
       "star": "Starred"
     },
     "search": "Search",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "新建",
         "body": "主体",
-        "default_view": "默认视图",
-        "edit_view": "编辑路径",
+        "default_view": "默认子页面",
+        "edit_view": "编辑子页面",
         "footer": "页脚",
         "header": "页头",
         "key": "键值",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "设置为主页",
         "show_fold_icon": "显示折叠按钮",
         "view_path": "路径",
-        "views": "视图",
+        "views": "子页面",
         "width": "宽度",
         "height": "高度",
         "columns": "列数",
