@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Mest populära",
-      "recent": "Nyligen uppdaterade",
+      "recent": "Senaste",
       "star": "Stjärnmärkta"
     },
     "search": "Sök",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Ingen undersida"
       }
     },
     "page": {
       "label_name": {
         "add": "Lägg till",
         "body": "Kropp",
-        "default_view": "Förvald vy",
-        "edit_view": "Redigera sökväg",
+        "default_view": "Förvald undersida",
+        "edit_view": "Redigera undersida",
         "footer": "Sidfot",
         "header": "Rubrik",
         "key": "Nyckel",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "Ange som hemsida",
         "show_fold_icon": "Visa vik-ikon",
         "view_path": "Sökväg",
-        "views": "Visningar",
+        "views": "Sidor",
         "width": "Width",
         "height": "Höjd",
         "columns": "Kolumner",
