@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Suosituin",
-      "recent": "Äskettäin päivitetty",
+      "recent": "Viimeisimmät",
       "star": "Tähdelliset"
     },
     "search": "Etsi",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "No sub-page"
       }
     },
     "page": {
       "label_name": {
         "add": "Lisää",
         "body": "Runko",
-        "default_view": "Oletus näkymä",
-        "edit_view": "Muokkaa polkua",
+        "default_view": "Default sub-page",
+        "edit_view": "Edit sub-page",
         "footer": "Alatunniste",
         "header": "Otsikko",
         "key": "Avain",
@@ -2285,8 +2285,8 @@
         "right_panel": "Oikea paneeli",
         "set_as_homepage": "Aseta etusivuksi",
         "show_fold_icon": "Näytä kertakuvake",
-        "view_path": "Polku",
-        "views": "Näkymät",
+        "view_path": "Path",
+        "views": "Sub-pages",
         "width": "Width",
         "height": "Korkeus",
         "columns": "Sarakkeet",
