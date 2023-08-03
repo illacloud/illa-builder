@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Najpopularniejsze",
-      "recent": "Ostatnio zaktualizowane",
+      "recent": "Najnowsze",
       "star": "Oznaczone gwiazdką"
     },
     "search": "Szukaj",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Brak podstrony"
       }
     },
     "page": {
       "label_name": {
         "add": "Dodaj",
         "body": "Ciało",
-        "default_view": "Widok domyślny",
-        "edit_view": "Edytuj ścieżkę",
+        "default_view": "Domyślna podstrona",
+        "edit_view": "Edytuj podstronę",
         "footer": "Stopka",
         "header": "Nagłówek",
         "key": "Klucz",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "Ustaw jako stronę główną",
         "show_fold_icon": "Pokaż ikonę złożenia",
         "view_path": "Ścieżka",
-        "views": "Widoki",
+        "views": "Podstrony",
         "width": "Width",
         "height": "Wysokość",
         "columns": "Kwota, którą należy zgłosić w kolumnie 060 tego wiersza: pierwotne odliczenie, art. 36 ust. 1 lit. b) CRR.",
