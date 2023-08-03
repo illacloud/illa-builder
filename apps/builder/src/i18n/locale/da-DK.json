@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Mest populære",
-      "recent": "Nyligt opdateret",
+      "recent": "Seneste",
       "star": "Stjernemarkerede"
     },
     "search": "Søg",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Ingen underside"
       }
     },
     "page": {
       "label_name": {
         "add": "Tilføj",
         "body": "Krop",
-        "default_view": "Standard visning",
-        "edit_view": "Rediger sti",
+        "default_view": "Standard underside",
+        "edit_view": "Rediger underside",
         "footer": "Sidefod",
         "header": "Overskrift",
         "key": "Nøgle",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "Sæt som startside",
         "show_fold_icon": "Vis faldsikon",
         "view_path": "Sti",
-        "views": "Visninger",
+        "views": "Undersider",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolonner",
