@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Più popolari",
-      "recent": "Aggiornato di recente",
+      "recent": "Ultimi",
       "star": "Preferiti"
     },
     "search": "Cerca",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Nessuna sotto-pagina"
       }
     },
     "page": {
       "label_name": {
         "add": "Aggiungi",
         "body": "Corpo",
-        "default_view": "Vista predefinita",
-        "edit_view": "Modifica percorso",
+        "default_view": "Sotto-pagina predefinita",
+        "edit_view": "Modifica sotto-pagina",
         "footer": "Footer",
         "header": "Intestazione",
         "key": "Chiave",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "Imposta come homepage",
         "show_fold_icon": "Mostra icona piega",
         "view_path": "Percorso",
-        "views": "Viste",
+        "views": "Sotto-pagine",
         "width": "Width",
         "height": "Altezza",
         "columns": "Colonne",
