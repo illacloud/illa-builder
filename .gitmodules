@@ -5,3 +5,6 @@
 [submodule "apps/builder/src/illa-public-component"]
 	path = apps/builder/src/illa-public-component
 	url = https://github.com/illacloud/illa-public-component.git
+[submodule "apps/builder/src/illa-public-market-component"]
+	path = apps/builder/src/illa-public-market-component
+	url = https://github.com/illacloud/illa-public-market-component.git
