@@ -1,4 +1,4 @@
-import { TextTarget } from "@/api/ws/textSignal"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export type RoomType = "dashboard" | "app" | "ai-agent"
@@ -21,6 +21,7 @@ export interface Callback<T> {
   // 0 success, not zero error
   errorCode: number
   target: TextTarget
+  signal: TextSignal
 }
 
 export interface ILLAWebSocketComponentPayload {

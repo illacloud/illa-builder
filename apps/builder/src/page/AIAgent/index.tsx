@@ -87,7 +87,7 @@ export const AIAgent: FC = () => {
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const currentUserInfo = useSelector(getCurrentUser)
 
-  const { isSubmitting, isValid } = useFormState({
+  const { isSubmitting, isValid, isDirty } = useFormState({
     control,
   })
 
@@ -119,6 +119,48 @@ export const AIAgent: FC = () => {
     [currentTeamInfo?.id, currentUserInfo.userId],
   )
 
+  const updateLocalIcon = useCallback(
+    (icon: string) => {
+      const updateRoomUsers = [...inRoomUsers]
+      let index = -1
+      if (getValues("aiAgentID") === "") {
+        index = inRoomUsers.findIndex(
+          (user) => user.role === SenderType.ANONYMOUS_AGENT,
+        )
+      } else {
+        index = inRoomUsers.findIndex(
+          (user) => user.id === getValues("aiAgentID"),
+        )
+      }
+      if (index != -1) {
+        updateRoomUsers[index].avatar = icon
+        setInRoomUsers(updateRoomUsers)
+      }
+    },
+    [getValues, inRoomUsers],
+  )
+
+  const updateLocalName = useCallback(
+    (name: string) => {
+      const updateRoomUsers = [...inRoomUsers]
+      let index = -1
+      if (getValues("aiAgentID") === "") {
+        index = inRoomUsers.findIndex(
+          (user) => user.role === SenderType.ANONYMOUS_AGENT,
+        )
+      } else {
+        index = inRoomUsers.findIndex(
+          (user) => user.id === getValues("aiAgentID"),
+        )
+      }
+      if (index != -1) {
+        updateRoomUsers[index].nickname = name
+        setInRoomUsers(updateRoomUsers)
+      }
+    },
+    [getValues, inRoomUsers],
+  )
+
   const connect = useCallback(
     async (aiAgentID: string) => {
       setIsConnecting(true)
@@ -138,35 +180,50 @@ export const AIAgent: FC = () => {
           }
           const dataList = message.split("\n")
           dataList.forEach((data: string) => {
-            let callback: Callback<ChatWsAppendResponse> = JSON.parse(data)
+            let callback: Callback<unknown> = JSON.parse(data)
+
             if (callback.target === TextTarget.ACTION) {
-              if (callback.errorCode === 0) {
-                const newMessageList = [...messages]
-                const index = newMessageList.findIndex((m) => {
-                  return m.threadID === callback.data.threadID
-                })
-                if (index === -1) {
-                  newMessageList.push({
-                    sender: callback.data.sender,
-                    message: callback.data.message,
-                    threadID: callback.data.threadID,
-                  } as ChatMessage)
-                } else {
-                  newMessageList[index].message =
-                    newMessageList[index].message + callback.data.message
-                }
-                setMessages(newMessageList)
-              } else if (callback.errorCode === 14) {
-                store.dispatch(
-                  configActions.updateWSStatusReducer({
-                    context: context,
-                    wsStatus: ILLA_WEBSOCKET_STATUS.LOCKING,
-                  }),
-                )
-                ws.reconnect()
-              } else if (callback.errorCode === 15) {
-                setIsReceiving(false)
+              let chatCallback: Callback<ChatWsAppendResponse> =
+                JSON.parse(data)
+              switch (chatCallback.errorCode) {
+                case 0:
+                  const newMessageList = [...messages]
+                  const index = newMessageList.findIndex((m) => {
+                    return m.threadID === chatCallback.data.threadID
+                  })
+                  if (index === -1) {
+                    newMessageList.push({
+                      sender: chatCallback.data.sender,
+                      message: chatCallback.data.message,
+                      threadID: chatCallback.data.threadID,
+                    } as ChatMessage)
+                  } else {
+                    newMessageList[index].message =
+                      newMessageList[index].message + chatCallback.data.message
+                  }
+                  setMessages(newMessageList)
+                  break
+                case 14:
+                  store.dispatch(
+                    configActions.updateWSStatusReducer({
+                      context: context,
+                      wsStatus: ILLA_WEBSOCKET_STATUS.LOCKING,
+                    }),
+                  )
+                  ws.reconnect()
+                  break
+                case 15:
+                  setIsReceiving(false)
               }
+            }
+            if (
+              callback.signal === TextSignal.ENTER &&
+              callback.broadcast.type == "enter/remote"
+            ) {
+              const { inRoomUsers } = JSON.parse(callback.broadcast.payload)
+              setInRoomUsers(inRoomUsers)
+              updateLocalIcon(getValues("icon"))
+              updateLocalName(getValues("name"))
             }
           })
         },
@@ -181,7 +238,7 @@ export const AIAgent: FC = () => {
         modelConfig: getValues("modelConfig"),
       } as ChatSendRequestPayload)
     },
-    [getValues, messages, sendMessage],
+    [getValues, messages, sendMessage, updateLocalIcon, updateLocalName],
   )
 
   const reconnect = useCallback(
@@ -198,23 +255,23 @@ export const AIAgent: FC = () => {
     <ChatContext.Provider value={{ inRoomUsers }}>
       <form
         onSubmit={handleSubmit(async (data) => {
+          // icon need to update to cdn then add to agent.
           try {
+            if (data.aiAgentID === "") {
+              await createAgent({
+                ...data,
+                icon: "",
+              })
+            }
             let updateIconURL = data.icon
             const iconURL = new URL(data.icon)
             if (iconURL.protocol !== "http:" && iconURL.protocol !== "https:") {
-              updateIconURL = await uploadAgentIcon(data.icon)
+              updateIconURL = await uploadAgentIcon(data.aiAgentID, data.icon)
             }
-            if (data.aiAgentID !== "") {
-              await putAgentDetail(data.aiAgentID, {
-                ...data,
-                icon: updateIconURL,
-              })
-            } else {
-              await createAgent({
-                ...data,
-                icon: updateIconURL,
-              })
-            }
+            await putAgentDetail(data.aiAgentID, {
+              ...data,
+              icon: updateIconURL,
+            })
           } catch (e) {
             if (axios.isAxiosError(e)) {
               message.error({
@@ -231,107 +288,64 @@ export const AIAgent: FC = () => {
                 🧬 Edit tool
               </div>
               <div css={leftPanelContentContainerStyle}>
-                <Controller
-                  name="aiAgentID"
-                  control={control}
-                  render={({ field: aiAgentIDField }) => (
-                    <>
-                      <AIAgentBlock title={"Icon"}>
-                        <Controller
-                          name="icon"
-                          control={control}
-                          shouldUnregister={false}
-                          render={({ field }) => (
-                            <AvatarUpload
-                              onOk={async (file) => {
-                                let reader = new FileReader()
-                                reader.onload = () => {
-                                  field.onChange(reader.result)
-                                  const updateRoomUsers = [...inRoomUsers]
-                                  let index = -1
-                                  if (aiAgentIDField.value === "") {
-                                    index = inRoomUsers.findIndex(
-                                      (user) =>
-                                        user.role ===
-                                        SenderType.ANONYMOUS_AGENT,
-                                    )
-                                  } else {
-                                    index = inRoomUsers.findIndex(
-                                      (user) =>
-                                        user.id === aiAgentIDField.value,
-                                    )
-                                  }
-                                  if (index != -1) {
-                                    updateRoomUsers[index].avatar =
-                                      reader.result as string
-                                    setInRoomUsers(updateRoomUsers)
-                                  }
-                                }
-                                reader.readAsDataURL(file)
-                                return true
-                              }}
-                            >
-                              {!field.value ? (
-                                <div>
-                                  <div css={uploadContainerStyle}>
-                                    <div css={uploadContentContainerStyle}>
-                                      <PlusIcon
-                                        c={getColor("grayBlue", "03")}
-                                      />
-                                      <div css={uploadTextStyle}>Upload</div>
-                                    </div>
-                                  </div>
-                                </div>
-                              ) : (
-                                <Image
-                                  src={field.value}
-                                  css={uploadContentContainerStyle}
-                                  width="100px"
-                                  height="100px"
-                                />
-                              )}
-                            </AvatarUpload>
-                          )}
-                        />
-                      </AIAgentBlock>
-                      <AIAgentBlock title={"Name"} required>
-                        <Controller
-                          name="name"
-                          control={control}
-                          rules={{
-                            required: true,
-                          }}
-                          shouldUnregister={false}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              colorScheme={"techPurple"}
-                              onChange={(value) => {
-                                field.onChange(value)
-                                const updateRoomUsers = [...inRoomUsers]
-                                let index = -1
-                                if (aiAgentIDField.value === "") {
-                                  index = inRoomUsers.findIndex(
-                                    (user) =>
-                                      user.role === SenderType.ANONYMOUS_AGENT,
-                                  )
-                                } else {
-                                  index = inRoomUsers.findIndex(
-                                    (user) => user.id === aiAgentIDField.value,
-                                  )
-                                }
-                                if (index != -1) {
-                                  updateRoomUsers[index].nickname = value
-                                  setInRoomUsers(updateRoomUsers)
-                                }
-                              }}
-                            />
-                          )}
-                        />
-                      </AIAgentBlock>
-                    </>
-                  )}
-                />
+                <AIAgentBlock title={"Icon"}>
+                  <Controller
+                    name="icon"
+                    control={control}
+                    shouldUnregister={false}
+                    render={({ field }) => (
+                      <AvatarUpload
+                        onOk={async (file) => {
+                          let reader = new FileReader()
+                          reader.onload = () => {
+                            field.onChange(reader.result)
+                            updateLocalIcon(reader.result as string)
+                          }
+                          reader.readAsDataURL(file)
+                          return true
+                        }}
+                      >
+                        {!field.value ? (
+                          <div>
+                            <div css={uploadContainerStyle}>
+                              <div css={uploadContentContainerStyle}>
+                                <PlusIcon c={getColor("grayBlue", "03")} />
+                                <div css={uploadTextStyle}>Upload</div>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <Image
+                            src={field.value}
+                            css={uploadContentContainerStyle}
+                            width="100px"
+                            height="100px"
+                          />
+                        )}
+                      </AvatarUpload>
+                    )}
+                  />
+                </AIAgentBlock>
+                <AIAgentBlock title={"Name"} required>
+                  <Controller
+                    name="name"
+                    control={control}
+                    rules={{
+                      required: true,
+                    }}
+                    shouldUnregister={false}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        colorScheme={"techPurple"}
+                        onChange={(value) => {
+                          field.onChange(value)
+                          updateLocalName(value)
+                        }}
+                      />
+                    )}
+                  />
+                </AIAgentBlock>
                 <Controller
                   name="description"
                   control={control}
@@ -585,7 +599,7 @@ export const AIAgent: FC = () => {
               <Button
                 flex="1"
                 colorScheme="grayBlue"
-                disabled={!isValid}
+                disabled={!isValid && !isDirty}
                 loading={isSubmitting}
               >
                 Save
