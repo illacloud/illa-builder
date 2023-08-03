@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Meest populair",
-      "recent": "Onlangs bijgewerkt",
+      "recent": "Nieuwste",
       "star": "Sterren"
     },
     "search": "Zoeken",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Geen subpagina"
       }
     },
     "page": {
       "label_name": {
         "add": "Toevoegen",
         "body": "Lichaam",
-        "default_view": "Standaard weergave",
-        "edit_view": "Pad bewerken",
+        "default_view": "Standaard subpagina",
+        "edit_view": "Subpagina bewerken",
         "footer": "Voettekst",
         "header": "Koptekst",
         "key": "Sleutel",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
         "view_path": "Pad",
-        "views": "Weergaven",
+        "views": "Subpagina's",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolommen",
