@@ -99,12 +99,15 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               css={generatingContainerStyle}
               initial={{
                 y: 0,
+                opacity: 0,
               }}
               animate={{
-                y: -20,
+                y: -16,
+                opacity: 1,
               }}
               exit={{
                 y: 0,
+                opacity: 0,
               }}
               transition={{ duration: 0.2 }}
             >
@@ -126,10 +129,11 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           css={inputStyle}
           placeholder="Input Something"
           onKeyDown={(event) => {
-            if (isReceiving || blockInput) {
-              return
-            }
-            if (event.key === "Enter") {
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault()
+              if (isReceiving || blockInput) {
+                return
+              }
               sendAndClearMessage()
             }
           }}
@@ -139,7 +143,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         />
         <Button
           alignSelf="end"
-          disabled={isReceiving}
+          disabled={isReceiving || blockInput}
           mt="16px"
           colorScheme="techPurple"
           onClick={() => {
@@ -149,7 +153,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           Send
         </Button>
       </div>
-      {false && (
+      {blockInput && (
         <div css={blockInputContainerStyle}>
           <AgentBlockInput />
           <div css={blockInputTextStyle}>

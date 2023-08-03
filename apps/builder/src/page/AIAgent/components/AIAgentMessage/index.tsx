@@ -1,14 +1,14 @@
-import { FC, useContext } from "react"
+import React, { FC, useContext } from "react"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { AIAgentMessageProps } from "@/page/AIAgent/components/AIAgentMessage/interface"
 import {
   agentMessageContainer,
+  senderAvatarStyle,
   senderContainerStyle,
-  senderMessageStyle,
   senderNicknameStyle,
 } from "@/page/AIAgent/components/AIAgentMessage/style"
-import { senderAvatarStyle } from "@/page/AIAgent/components/AIAgentMessage/style"
 import { ChatContext } from "@/page/AIAgent/components/ChatContext"
+import MarkdownMessage from "@/page/AIAgent/components/MarkdownMessage"
 import { SenderType } from "@/redux/aiAgent/aiAgentState"
 
 export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
@@ -42,7 +42,7 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
       />
       <div css={senderContainerStyle}>
         <div css={senderNicknameStyle}>{senderNickname}</div>
-        <div css={senderMessageStyle}>{message.message}</div>
+        <MarkdownMessage>{message.message}</MarkdownMessage>
       </div>
     </div>
   )

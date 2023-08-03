@@ -53,7 +53,6 @@ export const inputTextContainerStyle = css`
   padding: 24px;
   position: relative;
   display: flex;
-  z-index: 1;
   flex-direction: column;
   box-sizing: border-box;
   border-top: 1px solid ${getColor("grayBlue", "08")};
@@ -115,19 +114,22 @@ export const generatingContainerStyle = css`
   display: flex;
   justify-content: center;
   width: 100%;
+  pointer-events: none;
   left: 0;
+  top: -32px;
   position: absolute;
 `
 
 export const generatingContentContainerStyle = css`
   display: inline-flex;
+  pointer-events: auto;
   flex-direction: row;
   align-items: center;
   background: ${getColor("white", "01")};
   box-sizing: border-box;
   border-radius: 16px;
   border: 1px solid ${getColor("grayBlue", "08")};
-  padding: 7px 15px;
+  padding: 4px 15px;
 `
 export const generatingTextStyle = css`
   color: ${getColor("grayBlue", "02")};
