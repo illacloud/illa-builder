@@ -159,11 +159,11 @@ export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
   )
 }
 
-export const uploadAgentIcon = async (aiAgentID: string, base64: string) => {
+export const uploadAgentIcon = async (base64: string) => {
   const fileName = v4()
   const type = getFileExtensionFromBase64(base64)
   const address = await authCloudRequest<UploadResponse>({
-    url: `/AIAgent/:aiAgentID/icon/uploadAddress/fileName/${fileName}.${type}`,
+    url: `AIAgent/icon/uploadAddress/fileName/${fileName}.${type}`,
     method: "GET",
   })
   const file = base642Blob(base64)

@@ -12,6 +12,7 @@ import {
   blockInputTextStyle,
   chatContainerStyle,
   generatingContainerStyle,
+  generatingContentContainerStyle,
   generatingDividerStyle,
   generatingTextStyle,
   inputStyle,
@@ -22,12 +23,18 @@ import {
   stopIconStyle,
 } from "@/page/AIAgent/components/PreviewChat/style"
 import UserMessage from "@/page/AIAgent/components/UserMessage"
-import { ChatMessage, SenderType } from "@/redux/aiAgent/aiAgentState"
+import {
+  AI_AGENT_TYPE,
+  ChatMessage,
+  SenderType,
+} from "@/redux/aiAgent/aiAgentState"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {
-    messages,
+    agentType,
+    chatMessages,
+    generationMessage,
     onSendMessage,
     isReceiving,
     blockInput,
@@ -39,7 +46,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const [textAreaVal, setTextAreaVal] = useState("")
 
   const messagesList = useMemo(() => {
-    return messages.map((message) => {
+    return chatMessages.map((message) => {
       if (
         message.sender.senderType === SenderType.USER &&
         message.sender.senderID === currentUserInfo.userId
@@ -48,21 +55,28 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       }
       return <AIAgentMessage key={message.threadID} message={message} />
     })
-  }, [currentUserInfo.userId, messages])
+  }, [currentUserInfo.userId, chatMessages])
+
+  const generationBlock = useMemo(() => {
+    return <div>{JSON.stringify(generationMessage)}</div>
+  }, [generationMessage])
 
   const sendAndClearMessage = useCallback(() => {
     if (textAreaVal !== "") {
-      onSendMessage({
-        threadID: v4(),
-        message: textAreaVal,
-        sender: {
-          senderID: currentUserInfo.userId,
-          senderType: SenderType.USER,
-        },
-      } as ChatMessage)
+      onSendMessage(
+        {
+          threadID: v4(),
+          message: textAreaVal,
+          sender: {
+            senderID: currentUserInfo.userId,
+            senderType: SenderType.USER,
+          },
+        } as ChatMessage,
+        agentType,
+      )
       setTextAreaVal("")
     }
-  }, [currentUserInfo.userId, onSendMessage, textAreaVal])
+  }, [agentType, currentUserInfo.userId, onSendMessage, textAreaVal])
 
   return (
     <div css={previewChatContainerStyle}>
@@ -75,8 +89,38 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           Contribute to marketplace
         </Button>
       </div>
-      <div css={chatContainerStyle}>{messagesList}</div>
+      <div css={chatContainerStyle}>
+        {agentType === AI_AGENT_TYPE.CHAT ? messagesList : generationBlock}
+      </div>
       <div css={inputTextContainerStyle}>
+        <AnimatePresence>
+          {isReceiving && (
+            <motion.div
+              css={generatingContainerStyle}
+              initial={{
+                y: 0,
+              }}
+              animate={{
+                y: -20,
+              }}
+              exit={{
+                y: 0,
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              <div css={generatingContentContainerStyle}>
+                <div css={generatingTextStyle}>Generating...</div>
+                <div css={generatingDividerStyle} />
+                <StopIcon
+                  css={stopIconStyle}
+                  onClick={() => {
+                    onCancelReceiving()
+                  }}
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <textarea
           value={textAreaVal}
           css={inputStyle}
@@ -104,34 +148,8 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         >
           Send
         </Button>
-        <AnimatePresence>
-          {isReceiving && (
-            <motion.div
-              css={generatingContainerStyle}
-              initial={{
-                y: 52,
-              }}
-              animate={{
-                y: 0,
-              }}
-              exit={{
-                y: 60,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <div css={generatingTextStyle}>Generating...</div>
-              <div css={generatingDividerStyle} />
-              <StopIcon
-                css={stopIconStyle}
-                onClick={() => {
-                  onCancelReceiving()
-                }}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
-      {blockInput && (
+      {false && (
         <div css={blockInputContainerStyle}>
           <AgentBlockInput />
           <div css={blockInputTextStyle}>

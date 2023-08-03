@@ -1,5 +1,5 @@
 import { FC, useContext } from "react"
-import { Image } from "@illa-design/react"
+import { Avatar } from "@/illa-public-component/Avatar"
 import { AIAgentMessageProps } from "@/page/AIAgent/components/AIAgentMessage/interface"
 import {
   agentMessageContainer,
@@ -7,6 +7,7 @@ import {
   senderMessageStyle,
   senderNicknameStyle,
 } from "@/page/AIAgent/components/AIAgentMessage/style"
+import { senderAvatarStyle } from "@/page/AIAgent/components/AIAgentMessage/style"
 import { ChatContext } from "@/page/AIAgent/components/ChatContext"
 import { SenderType } from "@/redux/aiAgent/aiAgentState"
 
@@ -17,23 +18,28 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
     message.sender.senderType === SenderType.ANONYMOUS_AGENT
       ? chatContext.inRoomUsers.find(
           (user) => user.role == SenderType.ANONYMOUS_AGENT,
-        )?.nickname
+        )?.nickname ?? ""
       : chatContext.inRoomUsers.find(
           (user) => user.id == message.sender.senderID,
-        )?.nickname
+        )?.nickname ?? ""
 
   const senderAvatar =
     message.sender.senderType === SenderType.ANONYMOUS_AGENT
       ? chatContext.inRoomUsers.find(
           (user) => user.role == SenderType.ANONYMOUS_AGENT,
-        )?.avatar
+        )?.avatar ?? ""
       : chatContext.inRoomUsers.find(
           (user) => user.id == message.sender.senderID,
-        )?.avatar
+        )?.avatar ?? ""
 
   return (
     <div css={agentMessageContainer}>
-      <Image radius="8px" width="32px" height="32px" src={senderAvatar} />
+      <Avatar
+        css={senderAvatarStyle}
+        avatarUrl={senderAvatar}
+        name={senderNickname}
+        id={message.sender.senderID}
+      />
       <div css={senderContainerStyle}>
         <div css={senderNicknameStyle}>{senderNickname}</div>
         <div css={senderMessageStyle}>{message.message}</div>

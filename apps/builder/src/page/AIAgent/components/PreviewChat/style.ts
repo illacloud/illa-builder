@@ -53,12 +53,16 @@ export const inputTextContainerStyle = css`
   padding: 24px;
   position: relative;
   display: flex;
+  z-index: 1;
   flex-direction: column;
+  box-sizing: border-box;
   border-top: 1px solid ${getColor("grayBlue", "08")};
 `
 
 export const chatContainerStyle = css`
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
 `
 
@@ -108,7 +112,14 @@ export const inputStyle = css`
 `
 
 export const generatingContainerStyle = css`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  left: 0;
   position: absolute;
+`
+
+export const generatingContentContainerStyle = css`
   display: inline-flex;
   flex-direction: row;
   align-items: center;

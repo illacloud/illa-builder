@@ -1,5 +1,5 @@
 import axios from "axios"
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { useLoaderData } from "react-router-dom"
@@ -110,7 +110,10 @@ export const AIAgent: FC = () => {
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
-  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
+  const [generationMessage, setGenerationMessage] = useState<
+    ChatMessage | undefined
+  >(undefined)
 
   const sendMessage = useCallback(
     (payload: ChatSendRequestPayload, signal: TextSignal = TextSignal.RUN) => {
@@ -198,21 +201,42 @@ export const AIAgent: FC = () => {
                 JSON.parse(data)
               switch (chatCallback.errorCode) {
                 case 0:
-                  const newMessageList = [...messages]
-                  const index = newMessageList.findIndex((m) => {
-                    return m.threadID === chatCallback.data.threadID
-                  })
-                  if (index === -1) {
-                    newMessageList.push({
-                      sender: chatCallback.data.sender,
-                      message: chatCallback.data.message,
-                      threadID: chatCallback.data.threadID,
-                    } as ChatMessage)
+                  if (getValues("agentType") === AI_AGENT_TYPE.CHAT) {
+                    const newMessageList = [...chatMessages]
+                    const index = newMessageList.findIndex((m) => {
+                      return m.threadID === chatCallback.data.threadID
+                    })
+                    if (index === -1) {
+                      newMessageList.push({
+                        sender: chatCallback.data.sender,
+                        message: chatCallback.data.message,
+                        threadID: chatCallback.data.threadID,
+                      } as ChatMessage)
+                    } else {
+                      newMessageList[index].message =
+                        newMessageList[index].message +
+                        chatCallback.data.message
+                    }
+                    setChatMessages(newMessageList)
                   } else {
-                    newMessageList[index].message =
-                      newMessageList[index].message + chatCallback.data.message
+                    if (
+                      generationMessage &&
+                      generationMessage.threadID === chatCallback.data.threadID
+                    ) {
+                      const newMessage = {
+                        ...generationMessage,
+                      }
+                      newMessage.message =
+                        newMessage.message + chatCallback.data.message
+                      setGenerationMessage(newMessage)
+                    } else {
+                      setGenerationMessage({
+                        sender: chatCallback.data.sender,
+                        message: chatCallback.data.message,
+                        threadID: chatCallback.data.threadID,
+                      } as ChatMessage)
+                    }
                   }
-                  setMessages(newMessageList)
                   break
                 case 14:
                   store.dispatch(
@@ -249,18 +273,34 @@ export const AIAgent: FC = () => {
         modelConfig: getValues("modelConfig"),
       } as ChatSendRequestPayload)
     },
-    [getValues, messages, sendMessage, updateLocalIcon, updateLocalName],
+    [
+      chatMessages,
+      generationMessage,
+      getValues,
+      sendMessage,
+      updateLocalIcon,
+      updateLocalName,
+    ],
   )
+
+  useEffect(() => {
+    return () => {
+      Connection.leaveRoom("ai-agent", "")
+    }
+  }, [])
 
   const reconnect = useCallback(
     async (aiAgentID: string) => {
       Connection.leaveRoom("ai-agent", "")
       setIsRunning(false)
-      setMessages([])
+      setChatMessages([])
+      setGenerationMessage(undefined)
       await connect(aiAgentID)
     },
     [connect],
   )
+
+  useEffect(() => {})
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
@@ -268,21 +308,22 @@ export const AIAgent: FC = () => {
         onSubmit={handleSubmit(async (data) => {
           // icon need to update to cdn then add to agent.
           try {
-            if (data.aiAgentID === "") {
-              await createAgent({
-                ...data,
-                icon: "",
-              })
-            }
             let updateIconURL = data.icon
             const iconURL = new URL(data.icon)
             if (iconURL.protocol !== "http:" && iconURL.protocol !== "https:") {
-              updateIconURL = await uploadAgentIcon(data.aiAgentID, data.icon)
+              updateIconURL = await uploadAgentIcon(data.icon)
             }
-            await putAgentDetail(data.aiAgentID, {
-              ...data,
-              icon: updateIconURL,
-            })
+            if (data.aiAgentID === "") {
+              await createAgent({
+                ...data,
+                icon: updateIconURL,
+              })
+            } else {
+              await putAgentDetail(data.aiAgentID, {
+                ...data,
+                icon: updateIconURL,
+              })
+            }
           } catch (e) {
             if (axios.isAxiosError(e)) {
               message.error({
@@ -646,18 +687,26 @@ export const AIAgent: FC = () => {
             render={({ field }) => (
               <div css={rightPanelContainerStyle}>
                 <PreviewChat
-                  mode={field.value}
-                  messages={messages}
+                  agentType={field.value}
+                  chatMessages={chatMessages}
+                  generationMessage={generationMessage}
                   isReceiving={isReceiving}
                   blockInput={!isRunning || blockInputDirty}
-                  onSendMessage={(message) => {
+                  onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
                     sendMessage({
                       threadID: message.threadID,
                       prompt: message.message,
                       variables: [],
                       modelConfig: getValues("modelConfig"),
                     } as ChatSendRequestPayload)
-                    setMessages([...messages, message])
+                    switch (agentType) {
+                      case AI_AGENT_TYPE.CHAT:
+                        setChatMessages([...chatMessages, message])
+                        break
+                      case AI_AGENT_TYPE.TEXT_GENERATION:
+                        setGenerationMessage(undefined)
+                        break
+                    }
                   }}
                   onCancelReceiving={() => {
                     sendMessage(

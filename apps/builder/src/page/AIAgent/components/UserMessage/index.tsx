@@ -1,9 +1,10 @@
 import { FC } from "react"
 import { useSelector } from "react-redux"
-import { Image } from "@illa-design/react"
+import { Avatar } from "@/illa-public-component/Avatar"
 import { UserMessageProps } from "@/page/AIAgent/components/UserMessage/interface"
 import {
   agentMessageContainer,
+  senderAvatarStyle,
   senderContainerStyle,
   senderMessageStyle,
   senderNicknameStyle,
@@ -17,14 +18,14 @@ export const UserMessage: FC<UserMessageProps> = (props) => {
   return (
     <div css={agentMessageContainer}>
       <div css={senderContainerStyle}>
-        <div css={senderNicknameStyle}>{currentUserInfo.nickname}</div>
-        <div css={senderMessageStyle}>{message.message}</div>
+        <span css={senderNicknameStyle}>{currentUserInfo.nickname}</span>
+        <span css={senderMessageStyle}>{message.message}</span>
       </div>
-      <Image
-        radius="16px"
-        width="32px"
-        height="32px"
-        src={currentUserInfo.avatar}
+      <Avatar
+        css={senderAvatarStyle}
+        avatarUrl={currentUserInfo.avatar}
+        name={currentUserInfo.nickname}
+        id={currentUserInfo.userId}
       />
     </div>
   )
