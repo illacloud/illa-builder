@@ -54,6 +54,17 @@ export enum SenderType {
   ANONYMOUS_AGENT = 3,
 }
 
+export interface ChatWsAppendResponse {
+  sender: ChatSender
+  threadID: string
+  message: string
+  actionID: string
+}
+
+export interface ChatWsEndResponse {
+  actionID: string
+}
+
 export interface ChatSender {
   senderID: string
   senderType: SenderType
@@ -63,6 +74,13 @@ export interface ChatMessage {
   threadID: string
   message: string
   sender: ChatSender
+}
+
+export interface ChatSendRequestPayload {
+  threadID: string
+  prompt: string
+  variables: Params[]
+  modelConfig: AgentAdvanceConfig
 }
 
 export enum AI_AGENT_TYPE {

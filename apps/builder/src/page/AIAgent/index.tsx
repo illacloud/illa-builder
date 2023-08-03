@@ -1,7 +1,9 @@
 import axios from "axios"
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
+import { useSelector } from "react-redux"
 import { useLoaderData } from "react-router-dom"
+import { v4 } from "uuid"
 import {
   Button,
   Image,
@@ -16,6 +18,10 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
+import { Connection, getTextMessagePayload } from "@/api/ws"
+import { WSMessageListener } from "@/api/ws/illaWS"
+import { Callback, ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
@@ -47,15 +53,23 @@ import {
   AI_AGENT_TYPE,
   Agent,
   ChatMessage,
+  ChatSendRequestPayload,
+  ChatWsAppendResponse,
   SenderType,
   getModelLimitToken,
 } from "@/redux/aiAgent/aiAgentState"
+import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   createAgent,
   generateDescription,
+  getAIAgentAnonymousAddress,
+  getAIAgentWsAddress,
   putAgentDetail,
 } from "@/services/agent"
+import store from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ChatContext } from "./components/ChatContext"
 
@@ -64,10 +78,13 @@ export const AIAgent: FC = () => {
     agent: Agent
   }
 
-  const { control, handleSubmit } = useForm<Agent>({
+  const { control, handleSubmit, getValues } = useForm<Agent>({
     mode: "onSubmit",
     defaultValues: data.agent,
   })
+
+  const currentTeamInfo = useSelector(getCurrentTeamInfo)
+  const currentUserInfo = useSelector(getCurrentUser)
 
   const { isSubmitting, isValid } = useFormState({
     control,
@@ -77,11 +94,104 @@ export const AIAgent: FC = () => {
   // page state
   const [generateDescLoading, setGenerateDescLoading] = useState(false)
   const [isRunning, setIsRunning] = useState(false)
-  const [isConnecting, setIsConnection] = useState(false)
+  const [isConnecting, setIsConnecting] = useState(false)
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([])
+
+  const sendMessage = useCallback(
+    (payload: ChatSendRequestPayload, signal: TextSignal = TextSignal.RUN) => {
+      setIsReceiving(true)
+      Connection.getTextRoom("ai-agent", "")?.send(
+        getTextMessagePayload(
+          signal,
+          TextTarget.ACTION,
+          false,
+          null,
+          currentTeamInfo?.id ?? "",
+          currentUserInfo.userId,
+          [payload],
+        ),
+      )
+    },
+    [currentTeamInfo?.id, currentUserInfo.userId],
+  )
+
+  const connect = useCallback(
+    async (aiAgentID: string) => {
+      setIsConnecting(true)
+      let address = ""
+      if (aiAgentID === "") {
+        const response = await getAIAgentAnonymousAddress()
+        address = response.data.aiAgentConnectionAddress
+      } else {
+        const response = await getAIAgentWsAddress(aiAgentID)
+        address = response.data.aiAgentConnectionAddress
+      }
+      const messageListener = {
+        onMessage: (event, context, ws) => {
+          const message = event.data
+          if (typeof message !== "string") {
+            return
+          }
+          const dataList = message.split("\n")
+          dataList.forEach((data: string) => {
+            let callback: Callback<ChatWsAppendResponse> = JSON.parse(data)
+            if (callback.target === TextTarget.ACTION) {
+              if (callback.errorCode === 0) {
+                const newMessageList = [...messages]
+                const index = newMessageList.findIndex((m) => {
+                  return m.threadID === callback.data.threadID
+                })
+                if (index === -1) {
+                  newMessageList.push({
+                    sender: callback.data.sender,
+                    message: callback.data.message,
+                    threadID: callback.data.threadID,
+                  } as ChatMessage)
+                } else {
+                  newMessageList[index].message =
+                    newMessageList[index].message + callback.data.message
+                }
+                setMessages(newMessageList)
+              } else if (callback.errorCode === 14) {
+                store.dispatch(
+                  configActions.updateWSStatusReducer({
+                    context: context,
+                    wsStatus: ILLA_WEBSOCKET_STATUS.LOCKING,
+                  }),
+                )
+                ws.reconnect()
+              } else if (callback.errorCode === 15) {
+                setIsReceiving(false)
+              }
+            }
+          })
+        },
+      } as WSMessageListener
+      Connection.enterAgentRoom(address, messageListener)
+      setIsConnecting(false)
+      setIsRunning(true)
+      sendMessage({
+        threadID: v4(),
+        prompt: getValues("prompt"),
+        variables: getValues("variables"),
+        modelConfig: getValues("modelConfig"),
+      } as ChatSendRequestPayload)
+    },
+    [getValues, messages, sendMessage],
+  )
+
+  const reconnect = useCallback(
+    async (aiAgentID: string) => {
+      Connection.leaveRoom("ai-agent", "")
+      setIsRunning(false)
+      setMessages([])
+      await connect(aiAgentID)
+    },
+    [connect],
+  )
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
@@ -468,20 +578,28 @@ export const AIAgent: FC = () => {
               >
                 Save
               </Button>
-              <Button
-                type="button"
-                flex="1"
-                disabled={!isValid}
-                loading={isConnecting}
-                ml="8px"
-                colorScheme={getColor("grayBlue", "02")}
-                leftIcon={<ResetIcon />}
-                onClick={() => {
-                  setIsConnection(true)
-                }}
-              >
-                {!isRunning ? "Start" : "Restart"}
-              </Button>
+              <Controller
+                control={control}
+                name="aiAgentID"
+                render={({ field }) => (
+                  <Button
+                    type="button"
+                    flex="1"
+                    disabled={!isValid}
+                    loading={isConnecting}
+                    ml="8px"
+                    colorScheme={getColor("grayBlue", "02")}
+                    leftIcon={<ResetIcon />}
+                    onClick={async () => {
+                      isRunning
+                        ? await reconnect(field.value)
+                        : await connect(field.value)
+                    }}
+                  >
+                    {!isRunning ? "Start" : "Restart"}
+                  </Button>
+                )}
+              />
             </div>
           </div>
           <Controller
@@ -496,10 +614,19 @@ export const AIAgent: FC = () => {
                   isReceiving={isReceiving}
                   blockInput={!isRunning}
                   onSendMessage={(message) => {
-                    setIsReceiving(true)
+                    sendMessage({
+                      threadID: message.threadID,
+                      prompt: message.message,
+                      variables: [],
+                      modelConfig: getValues("modelConfig"),
+                    } as ChatSendRequestPayload)
                     setMessages([...messages, message])
                   }}
                   onCancelReceiving={() => {
+                    sendMessage(
+                      {} as ChatSendRequestPayload,
+                      TextSignal.STOP_RUN,
+                    )
                     setIsReceiving(false)
                   }}
                 />

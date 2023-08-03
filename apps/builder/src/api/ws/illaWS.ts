@@ -32,6 +32,78 @@ const pingMessage = JSON.stringify({
   broadcast: null,
 })
 
+export interface WSMessageListener {
+  onMessage: (
+    event: MessageEvent,
+    context: ILLA_WEBSOCKET_CONTEXT,
+    ws: ILLAWebsocket,
+  ) => void
+}
+
+export const ReduxMessageListener: WSMessageListener = {
+  onMessage: (
+    event: MessageEvent,
+    context: ILLA_WEBSOCKET_CONTEXT,
+    ws: ILLAWebsocket,
+  ) => {
+    const message = event.data
+    if (typeof message !== "string") {
+      return
+    }
+
+    const dataList = message.split("\n")
+    dataList.forEach((data: string) => {
+      let callback: Callback<unknown> = JSON.parse(data)
+      if (callback.errorCode === 0) {
+        if (callback.broadcast != null) {
+          let broadcast = callback.broadcast
+          let type = broadcast.type
+          let payload = broadcast.payload
+          switch (type) {
+            case `${ADD_DISPLAY_NAME}/remote`: {
+              ;(payload as string[]).forEach((name) => {
+                DisplayNameGenerator.displayNameList.add(name)
+              })
+              break
+            }
+            case `${REMOVE_DISPLAY_NAME}/remote`: {
+              ;(payload as string[]).forEach((name) => {
+                DisplayNameGenerator.displayNameList.delete(name)
+              })
+              break
+            }
+            case `${UPDATE_DISPLAY_NAME}/remote`: {
+              DisplayNameGenerator.displayNameList.delete(payload[0])
+              DisplayNameGenerator.displayNameList.add(payload[1])
+              break
+            }
+            case `${GENERATE_OR_UPDATE_DISPLAYNAME}/remote`: {
+              DisplayNameGenerator.displayNameList.add(payload)
+            }
+            default: {
+              try {
+                store.dispatch({
+                  type,
+                  payload,
+                })
+              } catch (ignore) {}
+            }
+          }
+        }
+      } else if (callback.errorCode === 14) {
+        // signal for recover app snapshot
+        store.dispatch(
+          configActions.updateWSStatusReducer({
+            context: context,
+            wsStatus: ILLA_WEBSOCKET_STATUS.LOCKING,
+          }),
+        )
+        ws.reconnect()
+      }
+    })
+  },
+}
+
 export class ILLAWebsocket {
   url: string
   ws: WebSocket | null = null
@@ -44,14 +116,14 @@ export class ILLAWebsocket {
   messageQueue: string[] = []
   status: ILLA_WEBSOCKET_STATUS = ILLA_WEBSOCKET_STATUS.INIT
   context: ILLA_WEBSOCKET_CONTEXT = ILLA_WEBSOCKET_CONTEXT.DASHBOARD
+  listeners: WSMessageListener[] = []
 
   constructor(url: string, context: ILLA_WEBSOCKET_CONTEXT) {
     this.url = url
     this.context = context
-    this.createWebsocket()
   }
 
-  private createWebsocket() {
+  public initWebsocket() {
     try {
       store.dispatch(
         configActions.updateWSStatusReducer({
@@ -65,6 +137,21 @@ export class ILLAWebsocket {
       this.reconnect()
       throw e
     }
+  }
+
+  public registerListener(listener: WSMessageListener) {
+    this.listeners.push(listener)
+  }
+
+  public unRegisterListener(listener: WSMessageListener) {
+    const index = this.listeners.findIndex((value) => value === listener)
+    if (index != -1) {
+      this.listeners.splice(index, 1)
+    }
+  }
+
+  public clearListener() {
+    this.listeners = []
   }
 
   private initEventHandle() {
@@ -125,13 +212,15 @@ export class ILLAWebsocket {
         }
       }
       this.ws.onmessage = (event) => {
-        this.onMessage(event)
+        this.listeners.forEach((listener) => {
+          listener.onMessage(event, this.context, this)
+        })
         this.heartCheck()
       }
     }
   }
 
-  private reconnect() {
+  public reconnect() {
     if (this.forbidReconnect) return
     if (this.isOnline) {
       store.dispatch(configActions.updateDevicesOnlineStatusReducer(false))
@@ -142,7 +231,7 @@ export class ILLAWebsocket {
     this.lockReconnect = true
     this.repeat++
     setTimeout(() => {
-      this.createWebsocket()
+      this.initWebsocket()
       this.lockReconnect = false
     }, RECONNECT_TIMEOUT)
   }
@@ -170,67 +259,12 @@ export class ILLAWebsocket {
     clearTimeout(this.pingTimeoutId)
     clearTimeout(this.pongTimeoutId)
   }
+
   public close() {
     this.forbidReconnect = true
+    this.clearListener()
     this.heartReset()
     this.ws?.close()
-  }
-  public onMessage(event: MessageEvent) {
-    const message = event.data
-    if (typeof message !== "string") {
-      return
-    }
-
-    const dataList = message.split("\n")
-    dataList.forEach((data: string) => {
-      let callback: Callback<unknown> = JSON.parse(data)
-      if (callback.errorCode === 0) {
-        if (callback.broadcast != null) {
-          let broadcast = callback.broadcast
-          let type = broadcast.type
-          let payload = broadcast.payload
-          switch (type) {
-            case `${ADD_DISPLAY_NAME}/remote`: {
-              ;(payload as string[]).forEach((name) => {
-                DisplayNameGenerator.displayNameList.add(name)
-              })
-              break
-            }
-            case `${REMOVE_DISPLAY_NAME}/remote`: {
-              ;(payload as string[]).forEach((name) => {
-                DisplayNameGenerator.displayNameList.delete(name)
-              })
-              break
-            }
-            case `${UPDATE_DISPLAY_NAME}/remote`: {
-              DisplayNameGenerator.displayNameList.delete(payload[0])
-              DisplayNameGenerator.displayNameList.add(payload[1])
-              break
-            }
-            case `${GENERATE_OR_UPDATE_DISPLAYNAME}/remote`: {
-              DisplayNameGenerator.displayNameList.add(payload)
-            }
-            default: {
-              try {
-                store.dispatch({
-                  type,
-                  payload,
-                })
-              } catch (ignore) {}
-            }
-          }
-        }
-      } else if (callback.errorCode === 14) {
-        // signal for recover app snapshot
-        store.dispatch(
-          configActions.updateWSStatusReducer({
-            context: this.context,
-            wsStatus: ILLA_WEBSOCKET_STATUS.LOCKING,
-          }),
-        )
-        this.reconnect()
-      }
-    })
   }
 
   public send(message: string) {

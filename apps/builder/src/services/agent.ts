@@ -125,3 +125,32 @@ export const generateDescription = (prompt: string) => {
     },
   )
 }
+
+export const getAIAgentWsAddress = (
+  aiAgentID: string,
+  signal?: AbortSignal,
+) => {
+  return builderRequest<{ aiAgentConnectionAddress: string }>(
+    {
+      url: `/AIAgent/${aiAgentID}/connectionAddress`,
+      method: "GET",
+      signal,
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
+export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
+  return builderRequest<{ aiAgentConnectionAddress: string }>(
+    {
+      url: `/AIAgent/AIAgentAnonymous/connectionAddress`,
+      method: "GET",
+      signal,
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
