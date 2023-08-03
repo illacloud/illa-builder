@@ -5,7 +5,7 @@ export const pageItemContainerStyle = (
   isSelected: boolean,
   level: number,
 ) => css`
-  padding: 4px ${level > 1 ? level * 16 + 8 : 16}px;
+  padding: 0px ${level > 1 ? level * 16 + 8 : 16}px;
   padding-right: 10px;
   background-color: ${isSelected
     ? getColor("techPurple", "07")
