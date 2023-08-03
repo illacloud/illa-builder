@@ -178,9 +178,7 @@
       "displayName": "check_token_expired",
       "actionType": "restapi",
       "content": {
-        "$dynamicAttrPaths": [
-          "successEvent[0].script"
-        ],
+        "$dynamicAttrPaths": ["successEvent[0].script"],
         "body": null,
         "bodyType": "none",
         "cookies": [
@@ -221,9 +219,7 @@
         "public": false,
         "advancedConfig": {
           "runtime": "pageLoading",
-          "pages": [
-            "homepage"
-          ],
+          "pages": ["homepage"],
           "delayWhenLoaded": "",
           "displayLoadingPage": true,
           "isPeriodically": true,
@@ -967,9 +963,7 @@
                   "viewDisplayName": "bodySection1-bodySectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "bodySection1-bodySectionContainer1"
-              ]
+              "viewSortedKey": ["bodySection1-bodySectionContainer1"]
             }
           },
           {
@@ -1072,10 +1066,7 @@
                             "y": 5,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "hidden": false,
                               "label": "username",
@@ -1101,10 +1092,7 @@
                             "y": 10,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "hidden": false,
                               "label": "email",
@@ -1130,10 +1118,7 @@
                             "y": 15,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "hidden": false,
                               "label": "firstName",
@@ -1159,10 +1144,7 @@
                             "y": 20,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "hidden": false,
                               "label": "lastName",
@@ -1216,9 +1198,7 @@
                             "y": 25,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "events[0].script"
-                              ],
+                              "$dynamicAttrPaths": ["events[0].script"],
                               "colorScheme": "orange",
                               "events": [
                                 {
@@ -1757,9 +1737,7 @@
                           "title": "MacBook Pro"
                         }
                       ],
-                      "selectedRowIndex": [
-                        5
-                      ]
+                      "selectedRowIndex": [5]
                     }
                   },
                   {
@@ -1963,9 +1941,7 @@
                   "viewDisplayName": "leftSection1-leftSectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "leftSection1-leftSectionContainer1"
-              ]
+              "viewSortedKey": ["leftSection1-leftSectionContainer1"]
             }
           }
         ],
@@ -2022,10 +1998,7 @@
         "token": ""
       },
       "homepageDisplayName": "login",
-      "pageSortedKey": [
-        "login",
-        "homepage"
-      ]
+      "pageSortedKey": ["login", "homepage"]
     }
   },
   "dependenciesState": {},

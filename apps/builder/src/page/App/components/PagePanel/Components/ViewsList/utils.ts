@@ -5,10 +5,10 @@ export let viewNameSet = new Set<string>()
 
 const generateDatasetName = (prefix: string) => {
   let i = 1
-  let ViewName = `path${i}`
+  let ViewName = `sub-page${i}`
   while (viewNameSet.has(`${prefix}-${ViewName}`)) {
     i++
-    ViewName = `path${i}`
+    ViewName = `sub-page${i}`
   }
   return ViewName
 }

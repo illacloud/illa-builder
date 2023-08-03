@@ -6,6 +6,7 @@ import {
   applyPanelBarHeaderStyle,
   applyPanelBarOpenedIconStyle,
   applyPanelBarTitleStyle,
+  customIconHotpotStyle,
   panelBarItemContainerAnimationVariants,
   panelBarItemContentStyle,
 } from "./style"
@@ -47,7 +48,9 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
           {customIcon ? (
             customIcon
           ) : (
-            <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState, size)} />
+            <div css={customIconHotpotStyle}>
+              <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState, size)} />
+            </div>
           )}
         </span>
       </div>

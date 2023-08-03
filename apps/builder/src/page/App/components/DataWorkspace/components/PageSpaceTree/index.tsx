@@ -13,6 +13,7 @@ import { FocusManager } from "@/utils/focusManager"
 import { generatePageConfig } from "@/utils/generators/generatePageOrSectionConfig"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import PageItem from "./components/PageItem"
+import { pageSpaceTreeStyle } from "./style"
 
 export const PageSpaceTree: FC = () => {
   const { t } = useTranslation()
@@ -55,22 +56,24 @@ export const PageSpaceTree: FC = () => {
         FocusManager.switchFocus("data_page")
       }}
     >
-      {Object.keys(testResult).map((key, index) => {
-        const isHomePage = homepageDisplayName
-          ? homepageDisplayName === key
-          : index === 0
-        return (
-          <PageItem
-            isHomePage={isHomePage}
-            pageName={key}
-            key={key}
-            level={1}
-            subPagePaths={testResult[key]}
-            currentPagePath={currentPageDisplayName}
-            currentSubPagePath={currentSubPagePath}
-          />
-        )
-      })}
+      <div css={pageSpaceTreeStyle}>
+        {Object.keys(testResult).map((key, index) => {
+          const isHomePage = homepageDisplayName
+            ? homepageDisplayName === key
+            : index === 0
+          return (
+            <PageItem
+              isHomePage={isHomePage}
+              pageName={key}
+              key={key}
+              level={1}
+              subPagePaths={testResult[key]}
+              currentPagePath={currentPageDisplayName}
+              currentSubPagePath={currentSubPagePath}
+            />
+          )
+        })}
+      </div>
     </PanelBar>
   )
 }

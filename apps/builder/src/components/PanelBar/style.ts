@@ -48,6 +48,7 @@ export const applyPanelBarHeaderStyle = (
     ${heightCss};
     ${borderCss};
     ${publicPaddingStyle};
+    padding-right: 10px;
   `
 }
 
@@ -137,8 +138,8 @@ export const panelBarItemContainerAnimationVariants: Variants = {
 
 export const customIconHotpotStyle = css`
   font-size: 12px;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;

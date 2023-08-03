@@ -28,9 +28,7 @@
       "displayName": "check_token_expired",
       "actionType": "restapi",
       "content": {
-        "$dynamicAttrPaths": [
-          "successEvent[0].enabled"
-        ],
+        "$dynamicAttrPaths": ["successEvent[0].enabled"],
         "body": null,
         "bodyType": "none",
         "cookies": [
@@ -73,9 +71,7 @@
         "public": false,
         "advancedConfig": {
           "runtime": "pageLoading",
-          "pages": [
-            "homepage"
-          ],
+          "pages": ["homepage"],
           "delayWhenLoaded": "",
           "displayLoadingPage": true,
           "isPeriodically": true,
@@ -396,10 +392,7 @@
                             "y": 2,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "loading",
-                                "disabled"
-                              ],
+                              "$dynamicAttrPaths": ["loading", "disabled"],
                               "colorScheme": "blackAlpha",
                               "disabled": "{{input1.value==\"\"|| input2.value==\"\"}}",
                               "events": [
@@ -1013,9 +1006,7 @@
                   "viewDisplayName": "bodySection1-bodySectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "bodySection1-bodySectionContainer1"
-              ]
+              "viewSortedKey": ["bodySection1-bodySectionContainer1"]
             }
           },
           {
@@ -1118,10 +1109,7 @@
                             "y": 5,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "hidden": false,
                               "label": "username",
@@ -1147,10 +1135,7 @@
                             "y": 10,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "hidden": false,
                               "label": "email",
@@ -1176,10 +1161,7 @@
                             "y": 15,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "hidden": false,
                               "label": "firstName",
@@ -1205,10 +1187,7 @@
                             "y": 20,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "hidden": false,
                               "label": "lastName",
@@ -1405,9 +1384,7 @@
                   "viewDisplayName": "bodySection2-bodySectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "bodySection2-bodySectionContainer1"
-              ]
+              "viewSortedKey": ["bodySection2-bodySectionContainer1"]
             }
           },
           {
@@ -1481,10 +1458,7 @@
         "token": ""
       },
       "homepageDisplayName": "login",
-      "pageSortedKey": [
-        "login",
-        "homepage"
-      ]
+      "pageSortedKey": ["login", "homepage"]
     }
   },
   "dependenciesState": {},

@@ -5,18 +5,15 @@ export const pageItemContainerStyle = (
   isSelected: boolean,
   level: number,
 ) => css`
-  display: flex;
   padding: 4px ${level > 1 ? level * 16 + 8 : 16}px;
-  align-items: center;
-  justify-content: space-between;
+  padding-right: 10px;
   background-color: ${isSelected
     ? getColor("techPurple", "07")
     : "transparent"};
   cursor: pointer;
-  height: 24px;
   :hover {
-    .add-subpage-icon {
-      display: flex;
+    .icon-area {
+      transform: translateX(0);
     }
   }
 `
@@ -51,6 +48,8 @@ export const actionAreaContainerStyle = css`
   flex: none;
   display: flex;
   align-items: center;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(48px);
 `
 
 export const iconHotSpotContainerStyle = css`
@@ -61,12 +60,15 @@ export const iconHotSpotContainerStyle = css`
   padding: 6px;
 `
 
-export const addSubpageIconHotSpotStyle = css`
-  ${iconHotSpotContainerStyle};
-  display: none;
-`
-
 export const plusIconStyle = css`
   ${baseIconStyle};
   color: ${getColor("grayBlue", "04")};
+`
+
+export const pageItemInnerContainerStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+  overflow: hidden;
 `

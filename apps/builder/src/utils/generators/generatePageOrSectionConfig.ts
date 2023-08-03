@@ -115,13 +115,13 @@ export const generateSectionConfig = (
     props: {
       currentViewIndex: 0,
       viewSortedKey: [childrenNode.displayName],
-      defaultViewKey: "path1",
+      defaultViewKey: "sub-page1",
       sectionViewConfigs: [
         {
           id: v4(),
           viewDisplayName: childrenNode.displayName,
-          key: "path1",
-          path: "path1",
+          key: "sub-page1",
+          path: "sub-page1",
         },
       ],
     },
