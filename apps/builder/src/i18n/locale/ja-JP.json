@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "最も人気",
-      "recent": "最近更新",
+      "recent": "最新",
       "star": "スター付き"
     },
     "search": "検索",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "サブページがありません"
       }
     },
     "page": {
       "label_name": {
         "add": "新築",
         "body": "本体",
-        "default_view": "デフォルトビュー",
-        "edit_view": "パスを編集",
+        "default_view": "デフォルトのサブページ",
+        "edit_view": "サブページを編集",
         "footer": "フッター",
         "header": "ヘッダ",
         "key": "キー値",
@@ -2286,7 +2286,7 @@
         "set_as_homepage": "ホームページとして設定",
         "show_fold_icon": "折りたたみボタンを表示",
         "view_path": "パス",
-        "views": "見る",
+        "views": "サブページ",
         "width": "幅",
         "height": "高い",
         "columns": "コラム",
