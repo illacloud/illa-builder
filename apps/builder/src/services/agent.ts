@@ -1,5 +1,9 @@
-import { builderRequest, directRequest } from "@/api/http"
+import { v4 } from "uuid"
+import { authCloudRequest, builderRequest, directRequest } from "@/api/http"
 import { Agent, AgentRaw, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
+import { UploadResponse } from "@/services/users"
+import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
+import { upload } from "@/utils/file/upload"
 
 export interface TeamAgentListData {
   aiAgentList: Agent[]
@@ -153,4 +157,15 @@ export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
       needTeamID: true,
     },
   )
+}
+
+export const uploadAgentIcon = async (base64: string) => {
+  const fileName = v4()
+  const type = getFileExtensionFromBase64(base64)
+  const address = await authCloudRequest<UploadResponse>({
+    url: `/users/avatar/uploadAddress/fileName/${fileName}.${type}`,
+    method: "GET",
+  })
+  const file = base642Blob(base64)
+  return await upload(address.data.uploadAddress, file)
 }

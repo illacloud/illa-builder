@@ -18,6 +18,10 @@ export const isValidBase64 = (str: string) => {
   }
 }
 
+export const getFileExtensionFromBase64 = (base64: string) => {
+  return base64.split(";")[0].split("/")[1]
+}
+
 export const downloadSingleFile = (
   contentType: string,
   fileName: string,
@@ -261,4 +265,9 @@ export const downloadFileFromURL = async (
     })
     return
   }
+}
+
+export const base642Blob = (base64: string) => {
+  let buffer = Buffer.from(base64, "base64")
+  return new Blob([buffer], { type: "application/octet-stream" })
 }

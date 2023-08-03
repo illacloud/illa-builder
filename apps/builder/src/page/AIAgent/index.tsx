@@ -68,6 +68,7 @@ import {
   getAIAgentAnonymousAddress,
   getAIAgentWsAddress,
   putAgentDetail,
+  uploadAgentIcon,
 } from "@/services/agent"
 import store from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -198,10 +199,21 @@ export const AIAgent: FC = () => {
       <form
         onSubmit={handleSubmit(async (data) => {
           try {
+            let updateIconURL = data.icon
+            const iconURL = new URL(data.icon)
+            if (iconURL.protocol !== "http:" && iconURL.protocol !== "https:") {
+              updateIconURL = await uploadAgentIcon(data.icon)
+            }
             if (data.aiAgentID !== "") {
-              await putAgentDetail(data.aiAgentID, data)
+              await putAgentDetail(data.aiAgentID, {
+                ...data,
+                icon: updateIconURL,
+              })
             } else {
-              await createAgent(data)
+              await createAgent({
+                ...data,
+                icon: updateIconURL,
+              })
             }
           } catch (e) {
             if (axios.isAxiosError(e)) {
