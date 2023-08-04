@@ -2053,7 +2053,7 @@
           "title": "Establecer el título a mostrar"
         },
         "page": {
-          "default_view": "Cuando los usuarios ingresan una ruta de error, redirigiremos automáticamente a la ruta por defecto. Cuando no hay una ruta por defecto, trataremos la primera ruta de la lista como la ruta por defecto"
+          "default_view": "Cuando los usuarios ingresan una URL de error, redirigiremos automáticamente a la subpágina predeterminada. Cuando no hay subpágina por defecto, trataremos la primera subpágina de la lista como la subpágina por defecto"
         },
         "chart": {
           "direction": "Establecer la dirección del gráfico. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Panel derecho",
         "set_as_homepage": "Establecer como página de inicio",
         "show_fold_icon": "Mostrar icono plegable",
-        "view_path": "Ruta",
+        "view_path": "Nombre",
         "views": "Subpáginas",
         "width": "Width",
         "height": "Altura",
@@ -2307,11 +2307,11 @@
       "tab_title": "Pgina",
       "tooltips": {
         "show_fold_icon": "Mostrar un botón para contraer o expandir el panel",
-        "view_path": "Para configurar el acceso a esta página, tendrás que ajustar la ruta. Por ejemplo, si cambias la ruta a '**newPath**', y la agregas como una subpágina de la página de inicio. Esta página puede accederse a través de la siguiente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Para configurar el acceso a esta página, tendrá que ajustar el nombre. Por ejemplo, si cambia el nombre a '**nueva página**', y añádelo como una subpágina de la página de inicio. Esta página puede accederse a través de la siguiente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "El ancho de la página como porcentaje del ancho del navegador."
       },
       "message": {
-        "new_path": "No se ha encontrado ninguna ruta coincidente. Se ha añadido una nueva ruta. "
+        "new_path": "No se ha encontrado sub-página. Se ha añadido una sub-página. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,12 @@
       "name": "Formulario de esquema JSON"
     },
     "page": {
-      "path_duplicated": "La ruta está duplicada. Utilice una ruta única para evitar errores. ",
+      "path_duplicated": "El nombre de la página está duplicado. Por favor, utilice un nombre único para evitar errores. ",
       "tips": {
         "blank_view": "Este módulo no tiene páginas hijas. Por favor, añádelas primero a través del panel de página a la derecha."
       },
       "label": {
-        "rename_url": "Editar ruta"
+        "rename_url": "Editar subpágina"
       }
     }
   },

@@ -2053,7 +2053,7 @@
           "title": "Ustaw tytuł do wyświetlenia"
         },
         "page": {
-          "default_view": "Gdy użytkownicy wprowadzą ścieżkę błędu, automatycznie przekierowamy do domyślnej ścieżki. Gdy nie ma domyślnej ścieżki, traktujemy pierwszą ścieżkę na liście jako domyślną ścieżkę"
+          "default_view": "Gdy użytkownicy wprowadzą adres URL błędu, automatycznie przekierowamy do domyślnej podstrony. Gdy nie ma domyślnej podstrony, potraktujemy pierwszą podstronę na liście jako domyślną podstronę"
         },
         "chart": {
           "direction": "Ustaw kierunek wykresu. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Prawy panel",
         "set_as_homepage": "Ustaw jako stronę główną",
         "show_fold_icon": "Pokaż ikonę złożenia",
-        "view_path": "Ścieżka",
+        "view_path": "Nazwisko",
         "views": "Podstrony",
         "width": "Width",
         "height": "Wysokość",
@@ -2307,11 +2307,11 @@
       "tab_title": "Strona",
       "tooltips": {
         "show_fold_icon": "Pokaż przycisk do zwinięcia lub rozwinięcia panelu",
-        "view_path": "Aby skonfigurować dostęp do tej strony, musisz dostosować ścieżkę. Na przykład, jeśli zmienisz ścieżkę na '**nowa ścieżka**' i dodaj ją jako podstronę strony głównej. Ta strona może być dostępna za pomocą następującego URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Aby skonfigurować dostęp do tej strony, musisz dostosować nazwę. Na przykład, jeśli zmienisz nazwę na '**newPage**' i dodaj ją jako podstronę strony głównej. Ta strona może być dostępna za pomocą następującego URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Szerokość strony wyrażona jako procent szerokości przeglądarki."
       },
       "message": {
-        "new_path": "Nie znaleziono pasującej ścieżki. Nowa ścieżka została dodana. "
+        "new_path": "Nie znaleziono pasującej podstrony. Nowa podstrona została dodana. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,12 @@
       "name": "Formularz schematu JSON"
     },
     "page": {
-      "path_duplicated": "Ścieżka jest zduplikowana. Użyj unikalnej ścieżki, aby uniknąć błędów. ",
+      "path_duplicated": "Nazwa strony jest zduplikowana. Proszę użyć unikalnej nazwy, aby uniknąć błędów. ",
       "tips": {
         "blank_view": "Ten moduł nie ma stron podrzędnych. Dodaj je najpierw przez panel strony po prawej stronie."
       },
       "label": {
-        "rename_url": "Edytuj ścieżkę"
+        "rename_url": "Edytuj podstronę"
       }
     }
   },

@@ -2053,7 +2053,7 @@
           "title": "Sett tittel som skal vises"
         },
         "page": {
-          "default_view": "Når brukere skriver inn en feilsti, vil vi automatisk omdirigere til standardstien. Når det ikke er noen standardbane, behandler vi den første stien i listen som standard sti"
+          "default_view": "Når brukere angir en feilURL, vil vi automatisk omdirigere til standard underside. Når det ikke er noen standard underside, vil vi behandle den første undersiden i listen som standard underside"
         },
         "chart": {
           "direction": "Angi kartretning ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Høyre panel",
         "set_as_homepage": "Bruk som startside",
         "show_fold_icon": "Vis foldeikon",
-        "view_path": "Sti",
+        "view_path": "Navn",
         "views": "Undersider",
         "width": "Width",
         "height": "Høyde",
@@ -2307,11 +2307,11 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knapp for å skjule eller utvide panelet",
-        "view_path": "For å konfigurere tilgang til denne siden, må du justere veien. Hvis du for eksempel endrer stien til '**newPath**', og legger den til som en underside for hjemmesiden. Denne siden kan da nås via følgende URL: overskytende .illakloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "For å konfigurere tilgang til denne siden, må du justere navnet. Hvis du for eksempel endrer navnet til '**newPage**', og legger det til som en underside for hovedsiden. Denne siden kan da nås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Bredden på siden som prosentandel av nettleserbredden."
       },
       "message": {
-        "new_path": "Fant ingen søkestreng. Ny sti er lagt til. "
+        "new_path": "Ingen samsvarende underside funnet. Ny underside er lagt til. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,12 @@
       "name": "JSON skjema skjema"
     },
     "page": {
-      "path_duplicated": "Stien er duplisert. Bruk en unik bane for å unngå feil. ",
+      "path_duplicated": "Sidenavnet er duplisert. Bruk et unikt navn for å unngå feil. ",
       "tips": {
         "blank_view": "Denne modulen har ingen undersider. Legg dem først gjennom side-panelet til høyre."
       },
       "label": {
-        "rename_url": "Endre sti"
+        "rename_url": "Rediger underside"
       }
     }
   },
