@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Höhe",
         "columns": "Spalten",
-        "set_as_default_subpage": "Als Standard-Unterseite festlegen"
+        "set_as_default_subpage": "Als Standard-Unterseite festlegen",
+        "delete-page": "Seite löschen",
+        "delete-sub-page": "Unterseite löschen"
       },
       "model_tips": {
         "cancel_button": "Abbrechen",
