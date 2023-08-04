@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Ύψος",
         "columns": "Στήλες",
-        "set_as_default_subpage": "Ορισμός ως προεπιλεγμένη υποσελίδα"
+        "set_as_default_subpage": "Ορισμός ως προεπιλεγμένη υποσελίδα",
+        "delete-page": "Διαγραφή σελίδας",
+        "delete-sub-page": "Διαγραφή υπο-σελίδας"
       },
       "model_tips": {
         "cancel_button": "Ακύρωση",
