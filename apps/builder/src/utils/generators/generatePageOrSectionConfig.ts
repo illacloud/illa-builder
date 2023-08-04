@@ -72,6 +72,7 @@ const generateSectionsChildrenMenuComponentNode = (
 export const generateSectionConfig = (
   parentNode: string,
   showName: SectionNodeType,
+  bodySubpaths: string[] = ["sub-page1"],
 ): SectionNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "SECTION_NODE",
@@ -98,6 +99,11 @@ export const generateSectionConfig = (
     childrenNode.childrenNode.push(menuNode)
   }
 
+  const defaultSubPath =
+    Array.isArray(bodySubpaths) && bodySubpaths.length > 0
+      ? bodySubpaths[0]
+      : "sub-page1"
+
   return {
     displayName: `${displayName}`,
     parentNode: parentNode,
@@ -115,13 +121,13 @@ export const generateSectionConfig = (
     props: {
       currentViewIndex: 0,
       viewSortedKey: [childrenNode.displayName],
-      defaultViewKey: "sub-page1",
+      defaultViewKey: defaultSubPath,
       sectionViewConfigs: [
         {
           id: v4(),
           viewDisplayName: childrenNode.displayName,
-          key: "sub-page1",
-          path: "sub-page1",
+          key: defaultSubPath,
+          path: defaultSubPath,
         },
       ],
     },
