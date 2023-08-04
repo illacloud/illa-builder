@@ -3039,7 +3039,8 @@
         "blank_view": "Tällä moduulilla ei ole alisivuja. Ole hyvä ja lisää ne ensin oikealla olevasta sivupaneelista."
       },
       "label": {
-        "rename_url": "Muokkaa alasivua"
+        "rename_url": "Muokkaa alasivua",
+        "rename_page_url": "Muokkaa sivua"
       }
     }
   },
