@@ -2290,7 +2290,9 @@
         "width": "幅",
         "height": "高い",
         "columns": "コラム",
-        "set_as_default_subpage": "既定のサブページとして設定"
+        "set_as_default_subpage": "既定のサブページとして設定",
+        "delete-page": "ページを削除",
+        "delete-sub-page": "サブページを削除"
       },
       "model_tips": {
         "cancel_button": "キャンセル",
