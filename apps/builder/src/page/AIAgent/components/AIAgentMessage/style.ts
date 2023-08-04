@@ -35,6 +35,7 @@ export const senderMessageStyle = css`
   background: ${getColor("grayBlue", "09")};
   overflow-x: hidden;
   word-break: break-word;
+  white-space: pre-wrap;
   padding: 8px 12px;
   margin-top: 4px;
   max-width: 100%;

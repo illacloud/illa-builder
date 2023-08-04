@@ -6,6 +6,7 @@ import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
 import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
 import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
 import AIAgentMessage from "@/page/AIAgent/components/AIAgentMessage"
+import { GenerationMessage } from "@/page/AIAgent/components/GenerationMessage"
 import { PreviewChatProps } from "@/page/AIAgent/components/PreviewChat/interface"
 import {
   blockInputContainerStyle,
@@ -57,10 +58,6 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     })
   }, [currentUserInfo.userId, chatMessages])
 
-  const generationBlock = useMemo(() => {
-    return <div>{JSON.stringify(generationMessage)}</div>
-  }, [generationMessage])
-
   const sendAndClearMessage = useCallback(() => {
     if (textAreaVal !== "") {
       onSendMessage(
@@ -77,6 +74,12 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       setTextAreaVal("")
     }
   }, [agentType, currentUserInfo.userId, onSendMessage, textAreaVal])
+
+  const generationBlock = useMemo(() => {
+    return (
+      generationMessage && <GenerationMessage message={generationMessage} />
+    )
+  }, [generationMessage])
 
   return (
     <div css={previewChatContainerStyle}>
@@ -99,12 +102,15 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               css={generatingContainerStyle}
               initial={{
                 y: 0,
+                opacity: 0,
               }}
               animate={{
-                y: -20,
+                y: -16,
+                opacity: 1,
               }}
               exit={{
                 y: 0,
+                opacity: 0,
               }}
               transition={{ duration: 0.2 }}
             >
@@ -126,10 +132,11 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           css={inputStyle}
           placeholder="Input Something"
           onKeyDown={(event) => {
-            if (isReceiving || blockInput) {
-              return
-            }
-            if (event.key === "Enter") {
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault()
+              if (isReceiving || blockInput) {
+                return
+              }
               sendAndClearMessage()
             }
           }}
@@ -139,7 +146,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         />
         <Button
           alignSelf="end"
-          disabled={isReceiving}
+          disabled={isReceiving || blockInput}
           mt="16px"
           colorScheme="techPurple"
           onClick={() => {
@@ -149,7 +156,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           Send
         </Button>
       </div>
-      {false && (
+      {blockInput && (
         <div css={blockInputContainerStyle}>
           <AgentBlockInput />
           <div css={blockInputTextStyle}>

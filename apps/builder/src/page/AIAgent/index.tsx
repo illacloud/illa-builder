@@ -92,10 +92,7 @@ export const AIAgent: FC = () => {
   })
 
   const blockInputDirty: boolean =
-    (dirtyFields.variables?.some((record) => {
-      return record.key || record.value
-    }) ??
-      false) ||
+    Boolean(dirtyFields.variables) ||
     (dirtyFields.agentType ?? false) ||
     (dirtyFields.modelConfig?.maxTokens ?? false) ||
     (dirtyFields.modelConfig?.temperature ?? false) ||
