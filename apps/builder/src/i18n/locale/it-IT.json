@@ -2053,7 +2053,7 @@
           "title": "Imposta il titolo da visualizzare"
         },
         "page": {
-          "default_view": "Quando gli utenti inseriscono un percorso di errore, reindirizzeremo automaticamente al percorso predefinito. Quando non c'è un percorso predefinito, tratteremo il primo percorso nella lista come il percorso predefinito"
+          "default_view": "Quando gli utenti inseriscono un URL di errore, reindirizzeremo automaticamente alla sotto-pagina predefinita. Quando non c'è nessuna sotto-pagina predefinita, tratteremo la prima sotto-pagina dell'elenco come la sotto-pagina predefinita"
         },
         "chart": {
           "direction": "Imposta la direzione del grafico. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Pannello destro",
         "set_as_homepage": "Imposta come homepage",
         "show_fold_icon": "Mostra icona piega",
-        "view_path": "Percorso",
+        "view_path": "Nome",
         "views": "Sotto-pagine",
         "width": "Width",
         "height": "Altezza",
@@ -2307,11 +2307,11 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Mostra un pulsante per comprimere o espandere il pannello",
-        "view_path": "Per configurare l'accesso a questa pagina, è necessario regolare il percorso. Per esempio, se si cambia il percorso per '**newPath**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Per configurare l'accesso a questa pagina, è necessario modificare il nome. Per esempio, se si cambia il nome in '**newPage**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "La larghezza della pagina come percentuale della larghezza del browser."
       },
       "message": {
-        "new_path": "Nessun tracciato corrispondente trovato. Nuovo tracciato è stato aggiunto. "
+        "new_path": "Nessuna sotto-pagina corrispondente trovata. È stata aggiunta una nuova sotto-pagina. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,12 @@
       "name": "Modulo Schema JSON"
     },
     "page": {
-      "path_duplicated": "Il percorso è duplicato. Si prega di utilizzare un percorso univoco per evitare errori. ",
+      "path_duplicated": "Il nome della pagina è duplicato. Si prega di utilizzare un nome univoco per evitare errori. ",
       "tips": {
         "blank_view": "Questo modulo non ha pagine figlie. Si prega di aggiungerle prima attraverso il pannello Pagina a destra."
       },
       "label": {
-        "rename_url": "Modifica percorso"
+        "rename_url": "Modifica sotto-pagina"
       }
     }
   },
