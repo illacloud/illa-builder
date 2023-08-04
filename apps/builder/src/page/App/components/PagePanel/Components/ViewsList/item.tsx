@@ -1,6 +1,8 @@
 import { FC, useCallback, useMemo, useState } from "react"
-import { ReduceIcon, Trigger } from "@illa-design/react"
+import { useTranslation } from "react-i18next"
+import { ReduceIcon, Trigger, useMessage } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { ItemProps } from "./interface"
 import { LabelNameAndDragIcon } from "./labelName"
@@ -15,18 +17,54 @@ export const Item: FC<ItemProps> = (props) => {
     path,
     handleUpdateItem,
     attrPath,
+    parentNodeDisplayName,
   } = props
   const [modalVisible, setModalVisible] = useState(false)
+  const message = useMessage()
+
   const isDuplicationPath = useMemo(() => {
     return otherPaths.some((viewKey) => viewKey == path)
   }, [otherPaths, path])
 
-  const handleUpdatePath = useCallback(
-    (value: string) => {
-      handleUpdateItem(`${attrPath}.path`, value)
-    },
-    [attrPath, handleUpdateItem],
-  )
+  const [currentPath, useCurrentPath] = useState(path)
+  const { t } = useTranslation()
+
+  const handleUpdatePath = useCallback(() => {
+    const sectionNode = searchDSLByDisplayName(parentNodeDisplayName)
+    if (!sectionNode) return
+    const pageNode = searchDSLByDisplayName(sectionNode.parentNode!)
+    if (!pageNode) return
+    let bodySectionPaths: string[] = []
+    if (sectionNode.showName !== "bodySection") {
+      const bodySectionNode = pageNode.childrenNode.find(
+        (node) => node.showName === "bodySection",
+      )
+      if (!bodySectionNode) return
+      bodySectionPaths =
+        bodySectionNode.props?.sectionViewConfigs.map(
+          (config: Record<string, string>) => config.path,
+        ) ?? []
+    }
+
+    if (
+      !bodySectionPaths.includes(currentPath) &&
+      sectionNode.showName !== "bodySection"
+    ) {
+      message.info({
+        content: t("editor.page.message.new_path"),
+      })
+    }
+
+    handleUpdateItem(`${attrPath}.path`, currentPath)
+  }, [
+    attrPath,
+    currentPath,
+    handleUpdateItem,
+    message,
+    parentNodeDisplayName,
+    t,
+  ])
+
   return (
     <Trigger
       withoutPadding
@@ -37,8 +75,8 @@ export const Item: FC<ItemProps> = (props) => {
           onCloseModal={() => {
             setModalVisible(false)
           }}
-          path={path}
-          handleUpdateItem={handleUpdatePath}
+          path={currentPath}
+          handleUpdateItem={useCurrentPath}
         />
       }
       trigger="click"
@@ -50,6 +88,8 @@ export const Item: FC<ItemProps> = (props) => {
           trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.SHOW, {
             element: "edit_view_show",
           })
+        } else {
+          handleUpdatePath()
         }
         setModalVisible(visible)
       }}

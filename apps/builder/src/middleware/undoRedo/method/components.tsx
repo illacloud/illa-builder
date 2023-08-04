@@ -248,6 +248,7 @@ export const componentsSnapShot = (
       }
       break
     }
+    case "addSectionViewConfigByConfigReducer":
     case "addSectionViewReducer": {
       const { parentNodeName } = action.payload
 
