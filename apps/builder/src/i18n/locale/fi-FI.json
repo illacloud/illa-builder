@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Korkeus",
         "columns": "Sarakkeet",
-        "set_as_default_subpage": "Aseta oletukseksi alasivuksi"
+        "set_as_default_subpage": "Aseta oletukseksi alasivuksi",
+        "delete-page": "Poista sivu",
+        "delete-sub-page": "Poista alasivu"
       },
       "model_tips": {
         "cancel_button": "Peruuta",
