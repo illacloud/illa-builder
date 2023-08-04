@@ -2307,6 +2307,9 @@
         "show_fold_icon": "显示一个按钮，用于收起或展开面板",
         "view_path": "要配置访问该页面的链接，您需要调整路径。 例如，如果您将路径更改为“**newPath**”，并将其添加为主页的子页面。 然后可以通过以下 URL 访问此页面：cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**。",
         "auto_canvas_width": "页面宽度占浏览器宽度的百分比。"
+      },
+      "message": {
+        "new_path": "为匹配到路径。已为您添加新路径。"
       }
     },
     "validate_message": {
