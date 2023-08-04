@@ -2307,6 +2307,9 @@
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
         "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a sub-page of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "브라우저 너비의 백분율로 나타낸 페이지 너비입니다."
+      },
+      "message": {
+        "new_path": "No matching path found. New path has been added. "
       }
     },
     "validate_message": {
