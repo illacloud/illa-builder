@@ -14,6 +14,7 @@ import {
 interface RequestHandlerOptions {
   needTeamID?: boolean
   needTeamIdentifier?: boolean
+  teamIdentifier?: string
 }
 
 const getURLWithPrefix = (
@@ -23,7 +24,9 @@ const getURLWithPrefix = (
 ) => {
   let finalURL = prefix + url
   if (options?.needTeamIdentifier) {
-    const teamIdentifier = getCurrentPageTeamIdentifier()
+    const teamIdentifier = options.teamIdentifier
+      ? options.teamIdentifier
+      : getCurrentPageTeamIdentifier()
     finalURL = `${prefix}/teams/byIdentifier/${teamIdentifier}` + url
   } else if (options?.needTeamID) {
     const teamId = getTeamID()

@@ -166,6 +166,12 @@ const SetterTypeMapSetter = {
         "@/page/App/components/PanelSetters/ChartSetter/chartKeysSelectSetter"
       ),
   ),
+  CHART_KEYS_DYNAMIC_SELECT_SETTER: lazy(
+    () =>
+      import(
+        "@/page/App/components/PanelSetters/ChartSetter/chartKeysDynamicSelectSetter"
+      ),
+  ),
   CHART_DATASETS_SETTER: lazy(
     () =>
       import(

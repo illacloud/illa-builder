@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Mest populære",
-      "recent": "Sist oppdatert",
+      "recent": "Siste",
       "star": "Stjernemerket"
     },
     "search": "Søk",
     "no-result": "Ingen resultater her. Oppdater eller endre søketermene dine.",
     "message": {
       "next-page-error": "Kunne ikke laste neste side. Vennligst prøv igjen.",
-      "create-failed": "Kunne ikke opprette agent. Prøv på nytt.",
+      "create-failed": "Kan ikke lagre agent. Prøv på nytt.",
       "sort-failed": "Kan ikke endre filtertypen. Vennligst prøv på nytt.",
       "detail-load-failed": "Kan ikke hente detaljer, prøv igjen.",
       "fork-failed": "Skaffe, vennligst prøv igjen.",
@@ -2266,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Ingen underside"
       }
     },
     "page": {
       "label_name": {
         "add": "Legg til",
         "body": "Innhold",
-        "default_view": "Standard visning",
-        "edit_view": "Endre sti",
+        "default_view": "Standard underside",
+        "edit_view": "Rediger underside",
         "footer": "Bunntekst",
         "header": "Topptekst",
         "key": "Nøkkel",
@@ -2283,11 +2286,13 @@
         "set_as_homepage": "Bruk som startside",
         "show_fold_icon": "Vis foldeikon",
         "view_path": "Sti",
-        "views": "Visninger",
+        "views": "Undersider",
         "width": "Width",
         "height": "Høyde",
         "columns": "Kolonner",
-        "set_as_default_subpage": "Sett som standard underside"
+        "set_as_default_subpage": "Sett som standard underside",
+        "delete-page": "Slett side",
+        "delete-sub-page": "Slett underside"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
@@ -2304,6 +2309,9 @@
         "show_fold_icon": "Vis en knapp for å skjule eller utvide panelet",
         "view_path": "For å konfigurere tilgang til denne siden, må du justere veien. Hvis du for eksempel endrer stien til '**newPath**', og legger den til som en underside for hjemmesiden. Denne siden kan da nås via følgende URL: overskytende .illakloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på siden som prosentandel av nettleserbredden."
+      },
+      "message": {
+        "new_path": "Fant ingen søkestreng. Ny sti er lagt til. "
       }
     },
     "validate_message": {
@@ -2606,8 +2614,12 @@
         "text": "Generere tekst"
       },
       "message": {
-        "click-start": "Klikk på Start knappen for å utløse."
+        "click-start": "Klikk på Start knappen for å utløse.",
+        "insufficient_token": "Utilstrekkelig token"
       }
+    },
+    "common": {
+      "required": "Påkrevd"
     }
   },
   "exit_preview": "Avslutt forhåndsvisning",
@@ -3365,6 +3377,10 @@
       },
       "password": {
         "title": "Passord"
+      },
+      "subscribe_illa_news": {
+        "label": "Abonner på ILLAs nyhetsbrev",
+        "tips": "Etter å ha abonnert vil ILLA informere deg om de siste funksjonene, arrangementene, utviklingen i bransjen og andre nyheter knyttet til ILLA Cloud via e-post."
       }
     }
   },

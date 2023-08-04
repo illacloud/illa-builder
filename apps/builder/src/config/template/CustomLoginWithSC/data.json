@@ -1,28 +1,44 @@
 {
   "appInfo": {
     "appId": "ILAex4p1C7Eh",
-    "uid": "00000000-0000-0000-0000-000000000000",
-    "teamID": "ILAfx4p1C7d0",
+    "uid": "2901b50f-2c71-4621-b834-718b1cf10d20",
+    "teamID": "ILAfx4p1C7en",
     "appName": "Custom login with Script",
-    "releaseVersion": 11,
-    "mainlineVersion": 12,
-    "deployed": false,
+    "releaseVersion": 20,
+    "mainlineVersion": 21,
+    "deployed": true,
     "config": {
       "public": true,
       "waterMark": true,
       "description": "Finished and to be released"
     },
-    "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-07-21T15:31:47.742911Z",
+    "updatedBy": "ILAfx4p1C7dT",
+    "updatedAt": "2023-07-31T10:52:19.264519Z",
     "appActivity": {
-      "modifier": "Mikiko",
-      "modifiedAt": "2023-07-21T15:31:47.742911Z"
-    }
+      "modifier": "Aruseito",
+      "modifiedAt": "2023-07-31T10:52:19.264519Z"
+    },
+    "editedBy": [
+      {
+        "userID": "ILAfx4p1C7dT",
+        "nickname": "Aruseito",
+        "email": "weichen@illasoft.com",
+        "avatar": "https://illa-cloud-storage.illacloud.com/user-8b6e4b15-2756-452b-bd36-e72b2ed0eda8/avatar/484b0dbc-d919-48e9-ad0e-d33776be935b.jpeg",
+        "editedAt": "2023-07-31T10:52:18.834817043Z"
+      },
+      {
+        "userID": "ILAfx4p1C7eb",
+        "nickname": "Mikiko",
+        "email": "liuwenzhuo@illasoft.com",
+        "avatar": "https://illa-cloud-storage.illacloud.com/user-3649ab59-2fa6-48a4-8ff4-5fd1aaf0e1fc/avatar/f54f4d86-7952-4a9b-b3f1-1024b4118667.jpeg",
+        "editedAt": "2023-07-31T10:43:58.746147696Z"
+      }
+    ]
   },
   "actions": [
     {
-      "actionId": "ILAcx4p1C7TO",
-      "uid": "5e83d74a-75d6-4538-a05b-c9d7dd4aebbe",
+      "actionId": "ILAcx4p1C7Tw",
+      "uid": "a578625d-6d27-44a9-880c-fc07c785e1f8",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAex4p1C7Qj",
       "displayName": "admin_access_data",
@@ -57,7 +73,7 @@
       },
       "triggerMode": "automate",
       "config": {
-        "public": false,
+        "public": true,
         "advancedConfig": {
           "runtime": "appLoaded",
           "pages": [],
@@ -69,12 +85,73 @@
       },
       "createdAt": "2023-07-21T06:37:24.236889Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-07-21T06:51:28.336586Z",
+      "updatedAt": "2023-07-31T10:39:46.710253Z",
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7TN",
-      "uid": "5ab1360b-012b-4e22-ac86-c72b303591d1",
+      "actionId": "ILAcx4p1C7Wj",
+      "uid": "0f5304f5-0162-435a-aa68-0fd37dc1983f",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAex4p1C7Qj",
+      "displayName": "check_token_expired",
+      "actionType": "restapi",
+      "content": {
+        "$dynamicAttrPaths": ["successEvent[0].script"],
+        "body": null,
+        "bodyType": "none",
+        "cookies": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "headers": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{globalData.token}}"
+          }
+        ],
+        "method": "GET",
+        "successEvent": [
+          {
+            "actionType": "script",
+            "eventType": "success",
+            "id": "events-c8083787-27d7-4541-bad1-0778ef1aef06",
+            "script": "{{(async function (){const token_request = check_token_expired.data;\nif(token_request!=\"not found!\") {\n  utils.setRouter({pagePath:\"login\",viewPath:\"View 1\"});\nutils.setGlobalDataValue({key:\"token\",value:\"\"});\n}})()}}"
+          }
+        ],
+        "url": "auth/RESOURCE",
+        "urlParams": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "pageLoading",
+          "pages": ["homepage"],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": true,
+          "isPeriodically": true,
+          "periodInterval": "{{1800}}"
+        }
+      },
+      "createdAt": "2023-07-20T13:30:46.418195Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-07-31T10:39:46.779242Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAcx4p1C7Wi",
+      "uid": "dc27c524-e3c7-416b-8070-28648a0acb90",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAex4p1C7Qj",
       "displayName": "login_api",
@@ -155,7 +232,7 @@
       },
       "triggerMode": "manually",
       "config": {
-        "public": false,
+        "public": true,
         "advancedConfig": {
           "runtime": "none",
           "pages": [],
@@ -167,68 +244,7 @@
       },
       "createdAt": "2023-07-20T13:30:46.418197Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-07-21T06:51:28.341347Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAcx4p1C7TM",
-      "uid": "2afce02d-a4df-47f2-9f58-dc9594c65346",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
-      "displayName": "check_token_expired",
-      "actionType": "restapi",
-      "content": {
-        "$dynamicAttrPaths": ["successEvent[0].script"],
-        "body": null,
-        "bodyType": "none",
-        "cookies": [
-          {
-            "key": "",
-            "value": ""
-          }
-        ],
-        "headers": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{globalData.token}}"
-          }
-        ],
-        "method": "GET",
-        "successEvent": [
-          {
-            "actionType": "script",
-            "eventType": "success",
-            "id": "events-c8083787-27d7-4541-bad1-0778ef1aef06",
-            "script": "{{(async function (){const token_request = check_token_expired.data;\nif(token_request!=\"not found!\") {\n  utils.setRouter({pagePath:\"login\",viewPath:\"View 1\"});\nutils.setGlobalDataValue({key:\"token\",value:\"\"});\n}})()}}"
-          }
-        ],
-        "url": "auth/RESOURCE",
-        "urlParams": [
-          {
-            "key": "",
-            "value": ""
-          }
-        ]
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "manually",
-      "config": {
-        "public": false,
-        "advancedConfig": {
-          "runtime": "pageLoading",
-          "pages": ["homepage"],
-          "delayWhenLoaded": "",
-          "displayLoadingPage": true,
-          "isPeriodically": true,
-          "periodInterval": "{{1800}}"
-        }
-      },
-      "createdAt": "2023-07-20T13:30:46.418195Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-07-21T06:51:28.349653Z",
+      "updatedAt": "2023-07-31T10:39:46.990007Z",
       "updatedBy": "ILAfx4p1C7eb"
     }
   ],
@@ -454,7 +470,7 @@
                                   "actionType": "script",
                                   "eventType": "click",
                                   "id": "events-8c49b157-16ec-45e7-9277-1326de6ac94f",
-                                  "script": "{{(async function (){const login_token = await login_api.trigger();\nif(login_token.token!=\"\"&&login_token.token!=undefined){\nutils.setGlobalDataValue({key:\"token\",value:login_token.token});\n  utils.showNotification({type:\"info\",title:\"Successfully login\",description:\"current user: \"+login_token.firstName+\" \"+login_token.lastName,duration:4500});\nutils.setRouter({pagePath:\"homepage\",viewPath:\"View 1\"});\n}else{\nutils.showNotification({type:\"info\",title:\"Failed to login\",description:\"\",duration:4500});\n};})()}}"
+                                  "script": "{{(async function (){const login_token = await login_api.trigger();\nif(login_token.token!=\"\"\u0026\u0026login_token.token!=undefined){\nutils.setGlobalDataValue({key:\"token\",value:login_token.token});\n  utils.showNotification({type:\"info\",title:\"Successfully login\",description:\"current user: \"+login_token.firstName+\" \"+login_token.lastName,duration:4500});\nutils.setRouter({pagePath:\"homepage\",viewPath:\"View 1\"});\n}else{\nutils.showNotification({type:\"info\",title:\"Failed to login\",description:\"\",duration:4500});\n};})()}}"
                                 }
                               ],
                               "hidden": false,
@@ -580,7 +596,7 @@
                       "hidden": false,
                       "horizontalAlign": "start",
                       "resizeDirection": "HORIZONTAL",
-                      "value": "#### Step 3\nAdd a event handler to the login to check if successfully login(in this case we use whether the token in the action response is not null to check it).  \n\nIf successfully login, 1. use the token to set globalData 2. show a notification 3. setRouter(which means change page) to homepage View 1\n\n```\nconst login_token = await login_api.trigger();\nif(login_token.token!=\"\"&&login_token.token!=undefined){\nutils.setGlobalDataValue({key:\"token\",value:login_token.token});\n  utils.showNotification({type:\"info\",title:\"Successfully login\",description:\"current user: \"+login_token.firstName+\" \"+login_token.lastName,duration:4500});\nutils.setRouter({pagePath:\"homepage\",viewPath:\"View 1\"});\n}else{\nutils.showNotification({type:\"info\",title:\"Failed to login\",description:\"\",duration:4500});\n};\n```\n",
+                      "value": "#### Step 3\nAdd a event handler to the login button to check if successfully login(in this case we use whether the token in the action response is not null to check it).  \n\nIf successfully login, 1. use the token to set globalData 2. show a notification 3. setRouter(which means change page) to homepage View 1\n\n```\nconst login_token = await login_api.trigger();\nif(login_token.token!=\"\"\u0026\u0026login_token.token!=undefined){\nutils.setGlobalDataValue({key:\"token\",value:login_token.token});\n  utils.showNotification({type:\"info\",title:\"Successfully login\",description:\"current user: \"+login_token.firstName+\" \"+login_token.lastName,duration:4500});\nutils.setRouter({pagePath:\"homepage\",viewPath:\"View 1\"});\n}else{\nutils.showNotification({type:\"info\",title:\"Failed to login\",description:\"\",duration:4500});\n};\n```\n",
                       "verticalAlign": "center"
                     }
                   },
@@ -742,7 +758,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/4a0bd80f-5d20-4635-b2de-34453eaf28f5",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/66faa9b6-f144-49df-92b4-822b86eba497",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -765,7 +781,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/9adca33f-adce-4122-907f-7a6b90940910",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/4fac3aff-1e17-422e-af90-f8947b9ab673",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -788,7 +804,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/aa08787a-1962-4bea-a8f7-ffcfec70b88b",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/051daf87-3857-4476-853c-25b3b42c4cdc",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -811,7 +827,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/ceb2ad17-cd6d-4869-88b3-0e38af4f4a39",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/b70f1ebb-2847-4aa8-a6d5-5e187ebd368d",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -834,7 +850,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/d17342cb-7b78-47fa-a57f-8a88d460ed50",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/bb4cac92-8b1f-46f6-bc4b-a57c155e64f1",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -857,7 +873,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/a0e154cf-663a-416a-99dc-1d2cba8b6bfe",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/3c51d04a-4494-4b2e-9215-36f846b4d857",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -880,7 +896,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/38e96640-0b2c-4d85-b6cc-67c591b610c3",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/a994f380-069e-4fa3-a0df-dc32778da7f6",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -903,7 +919,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/4aad57ed-5130-4109-9f42-56e851c59979",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/1bbb39e3-e37f-47b4-8851-d7657bf030f1",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -1317,7 +1333,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/b20b7f11-7879-4c52-93e8-376e3e7e15da",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/66e8892c-e005-4ae3-86e8-6ec18bdc794c",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -1520,6 +1536,7 @@
                       "columnNameIndices": {
                         "0": "id",
                         "1": "title",
+                        "10": "images",
                         "2": "description",
                         "3": "price",
                         "4": "discountPercentage",
@@ -1527,8 +1544,7 @@
                         "6": "stock",
                         "7": "brand",
                         "8": "category",
-                        "9": "thumbnail",
-                        "10": "images"
+                        "9": "thumbnail"
                       },
                       "columnVisibility": {
                         "brand": true,

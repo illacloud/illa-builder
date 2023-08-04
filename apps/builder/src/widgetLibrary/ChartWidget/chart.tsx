@@ -7,19 +7,23 @@ import {
   ChartDataset,
   Chart as ChartJS,
   ChartOptions,
+  DoughnutController,
+  Filler,
   Legend,
   LineController,
   LineElement,
   LinearScale,
   PieController,
   PointElement,
+  RadarController,
+  RadialLinearScale,
   ScatterController,
   Title,
   Tooltip,
 } from "chart.js"
 import { get, groupBy as groupByFunc } from "lodash"
 import { FC, useMemo, useRef } from "react"
-import { Pie, Chart as ReactChart } from "react-chartjs-2"
+import { Doughnut, Pie, Radar, Chart as ReactChart } from "react-chartjs-2"
 import { globalColor, illaPrefix } from "@illa-design/react"
 import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { formatDataAsObject } from "@/utils/formatData"
@@ -27,7 +31,13 @@ import {
   ChartWidgetProps,
   WrappedChartProps,
 } from "@/widgetLibrary/ChartWidget/interface"
-import { formatData } from "@/widgetLibrary/ChartWidget/utils"
+import {
+  formatData,
+  getDateFormatLabel,
+  typeWithDiffColor,
+  typeWithNoAxis,
+} from "@/widgetLibrary/ChartWidget/utils"
+import { chartContainerStyle } from "./style"
 
 ChartJS.register(
   /** Bar chart**/
@@ -42,31 +52,63 @@ ChartJS.register(
   ArcElement,
   /** Scatter chart**/
   ScatterController,
+  /** Doughnut **/
+  DoughnutController,
+  /** Radar **/
+  RadarController,
+  RadialLinearScale,
   /**Other**/
   Title,
   Tooltip,
   Legend,
   CategoryScale,
   LinearScale,
+  Filler,
 )
 
 export const Chart: FC<ChartWidgetProps> = (props) => {
-  const { datasets, xAxis, chartType, chartTitle, xAxisName, yAxisName } = props
-
+  const {
+    datasets,
+    xAxis,
+    chartType,
+    chartTitle,
+    xAxisName,
+    yAxisName,
+    direction,
+    isStack,
+    legendPosition,
+    gridLineColor,
+    xType,
+    dateFormat,
+  } = props
   const data = useMemo(() => {
+    let curXAis = xAxis
+    if (xType === "time") {
+      curXAis = xAxis.map((x) => getDateFormatLabel(x, dateFormat))
+    }
     return {
-      labels: xAxis,
+      labels: curXAis,
       datasets,
     }
-  }, [datasets, xAxis])
+  }, [datasets, dateFormat, xAxis, xType])
 
   const options: ChartOptions = useMemo(() => {
+    const horizontalColor =
+      !typeWithNoAxis(chartType) && direction === "y"
+        ? gridLineColor
+        : undefined
+    const verticalColor =
+      !typeWithNoAxis(chartType) && direction === "x"
+        ? gridLineColor
+        : undefined
     return {
       responsive: true,
       maintainAspectRatio: false,
+      indexAxis: !typeWithNoAxis(chartType) ? direction : undefined,
       scales: {
         x: {
-          display: chartType !== "pie",
+          display: !typeWithNoAxis(chartType),
+          stacked: !typeWithNoAxis(chartType) && isStack,
           title: {
             display: !!xAxisName,
             text: xAxisName,
@@ -76,7 +118,8 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
             },
           },
           grid: {
-            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            color:
+              horizontalColor || globalColor(`--${illaPrefix}-grayBlue-09`),
             borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
             tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
           },
@@ -89,7 +132,8 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
           },
         },
         y: {
-          display: chartType !== "pie",
+          display: !typeWithNoAxis(chartType),
+          stacked: !typeWithNoAxis(chartType) && isStack,
           title: {
             display: !!yAxisName,
             text: yAxisName,
@@ -99,7 +143,7 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
             },
           },
           grid: {
-            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            color: verticalColor || globalColor(`--${illaPrefix}-grayBlue-09`),
             borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
             tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
           },
@@ -122,14 +166,25 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
           },
         },
         legend: {
+          display: legendPosition !== "hidden",
           labels: {
             boxWidth: 20,
             boxHeight: 4,
           },
+          position: legendPosition !== "hidden" ? legendPosition : undefined,
         },
       },
     }
-  }, [chartTitle, chartType, xAxisName, yAxisName])
+  }, [
+    chartTitle,
+    chartType,
+    direction,
+    gridLineColor,
+    isStack,
+    legendPosition,
+    xAxisName,
+    yAxisName,
+  ])
 
   const chartRef = useRef()
 
@@ -140,25 +195,44 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
     return chartType
   }, [chartType])
 
-  if (finalType === "pie") {
-    return (
-      <Pie
-        datasetIdKey="id"
-        data={data as ChartData<"pie", number | null[], string>}
-        options={options as ChartOptions<"pie">}
-      />
-    )
+  switch (finalType) {
+    default:
+    case "bar":
+    case "line":
+      return (
+        <ReactChart
+          ref={chartRef}
+          type={finalType}
+          datasetIdKey="id"
+          data={data}
+          options={options}
+        />
+      )
+    case "radar":
+      return (
+        <Radar
+          datasetIdKey="id"
+          data={data as ChartData<"radar", number | null[], string>}
+          options={options as ChartOptions<"radar">}
+        />
+      )
+    case "doughnut":
+      return (
+        <Doughnut
+          datasetIdKey="id"
+          data={data as ChartData<"doughnut", number | null[], string>}
+          options={options as ChartOptions<"doughnut">}
+        />
+      )
+    case "pie":
+      return (
+        <Pie
+          datasetIdKey="id"
+          data={data as ChartData<"pie", number | null[], string>}
+          options={options as ChartOptions<"pie">}
+        />
+      )
   }
-
-  return (
-    <ReactChart
-      ref={chartRef}
-      type={finalType}
-      datasetIdKey="id"
-      data={data}
-      options={options}
-    />
-  )
 }
 
 export const ChartWidget: FC<WrappedChartProps> = (props) => {
@@ -173,6 +247,7 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
     xAxisName,
     yAxisName,
     datasets,
+    backgroundColor = "white",
   } = props
 
   const realDataSourceArray = useMemo(() => {
@@ -208,15 +283,18 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
         const { datasetValues, type, datasetName, color, aggregationMethod } =
           dataset
         let finalColor: string | string[] = color
-        if (groupBy || chartType === "pie") {
+        if (groupBy || typeWithDiffColor(chartType)) {
           finalColor = get(
             CHART_COLOR_TYPE_CONFIG,
             color,
             CHART_COLOR_TYPE_CONFIG["illa-preset"],
           )
         }
+        if (chartType === "radar") {
+          finalColor = `${finalColor}77`
+        }
         let data: number[] = []
-        if (!groupBy || chartType === "pie") {
+        if (!groupBy || typeWithNoAxis(chartType)) {
           const formatDataSources = groupByFunc(realDataSourceArray, xAxis)
           data = formatData(formatDataSources, datasetValues, aggregationMethod)
         } else {
@@ -256,17 +334,21 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
             }
           })
         }
-
-        return {
+        let finalVal = {
           label: datasetName,
           data: data,
           type,
           borderColor: finalColor,
           backgroundColor: finalColor,
+          fill: false,
         }
+        if (chartType === "radar") {
+          finalVal["fill"] = true
+        }
+        return finalVal
       })
       .flat()
-    if (chartType === "pie") {
+    if (typeWithNoAxis(chartType)) {
       return result.length > 0 ? [result[result.length - 1]] : []
     } else {
       return result
@@ -274,14 +356,17 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
   }, [chartType, datasets, groupBy, realDataSourceArray, realXAxis, xAxis])
 
   return (
-    <Chart
-      xAxis={realXAxis}
-      datasets={realDatasets}
-      chartType={chartType}
-      chartTitle={chartTitle}
-      xAxisName={xAxisName}
-      yAxisName={yAxisName}
-    />
+    <div css={chartContainerStyle(backgroundColor)}>
+      <Chart
+        {...props}
+        xAxis={realXAxis}
+        datasets={realDatasets}
+        chartType={chartType}
+        chartTitle={chartTitle}
+        xAxisName={xAxisName}
+        yAxisName={yAxisName}
+      />
+    </div>
   )
 }
 

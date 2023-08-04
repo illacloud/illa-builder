@@ -1,28 +1,149 @@
 {
   "appInfo": {
     "appId": "ILAex4p1C7FD",
-    "uid": "00000000-0000-0000-0000-000000000000",
-    "teamID": "ILAfx4p1C7d0",
+    "uid": "35e107b4-c067-46a8-86a6-cb849d8dc56d",
+    "teamID": "ILAfx4p1C7en",
     "appName": "Custom login for your app",
-    "releaseVersion": 5,
-    "mainlineVersion": 5,
-    "deployed": false,
+    "releaseVersion": 15,
+    "mainlineVersion": 16,
+    "deployed": true,
     "config": {
       "public": true,
       "waterMark": true,
       "description": "Finished and to be released"
     },
-    "updatedBy": "ILAfx4p1C7eb",
-    "updatedAt": "2023-07-21T07:37:46.820117Z",
+    "updatedBy": "ILAfx4p1C7dT",
+    "updatedAt": "2023-07-31T10:50:16.636335Z",
     "appActivity": {
-      "modifier": "Mikiko",
-      "modifiedAt": "2023-07-21T07:37:46.820117Z"
-    }
+      "modifier": "Aruseito",
+      "modifiedAt": "2023-07-31T10:50:16.636335Z"
+    },
+    "editedBy": [
+      {
+        "userID": "ILAfx4p1C7dT",
+        "nickname": "Aruseito",
+        "email": "weichen@illasoft.com",
+        "avatar": "https://illa-cloud-storage.illacloud.com/user-8b6e4b15-2756-452b-bd36-e72b2ed0eda8/avatar/484b0dbc-d919-48e9-ad0e-d33776be935b.jpeg",
+        "editedAt": "2023-07-31T10:50:16.625558918Z"
+      },
+      {
+        "userID": "ILAfx4p1C7eb",
+        "nickname": "Mikiko",
+        "email": "liuwenzhuo@illasoft.com",
+        "avatar": "https://illa-cloud-storage.illacloud.com/user-3649ab59-2fa6-48a4-8ff4-5fd1aaf0e1fc/avatar/f54f4d86-7952-4a9b-b3f1-1024b4118667.jpeg",
+        "editedAt": "2023-07-31T10:44:39.377461365Z"
+      },
+      {
+        "userID": "ILAfx4p1C7d2",
+        "nickname": "karminski-ace",
+        "email": "code.karminski@outlook.com",
+        "avatar": "https://illa-cloud-storage.illacloud.com/user-5d92707a-496b-4d17-8bf8-ec7de4eaf9e0/avatar/758aff9c-b8f6-4435-87aa-53b0a1363c10.png",
+        "editedAt": "2023-07-28T09:49:21.515670746Z"
+      }
+    ]
   },
   "actions": [
     {
-      "actionId": "ILAcx4p1C7TX",
-      "uid": "4cecab60-fe98-4f49-a5d4-84c3287efdec",
+      "actionId": "ILAcx4p1C7YG",
+      "uid": "ecd61c34-86ad-4337-b481-adb7e78da07d",
+      "teamID": "ILAfx4p1C7en",
+      "resourceId": "ILAex4p1C7Qj",
+      "displayName": "login_api",
+      "actionType": "restapi",
+      "content": {
+        "$dynamicAttrPaths": [
+          "successEvent[0].globalStateValue",
+          "successEvent[0].enabled",
+          "successEvent[1].enabled",
+          "successEvent[1].description",
+          "successEvent[2].enabled",
+          "successEvent[3].enabled"
+        ],
+        "body": {
+          "content": "{{JSON.stringify(form1.formData)}}",
+          "type": "json"
+        },
+        "bodyType": "raw",
+        "cookies": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "headers": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ],
+        "method": "POST",
+        "successEvent": [
+          {
+            "actionType": "setGlobalState",
+            "enabled": "{{login_api.data.token!=undefined\u0026\u0026login_api.data.token!=\"\"}}",
+            "eventType": "success",
+            "globalStateMethod": "setValue",
+            "globalStateValue": "{{login_api.data.token}}",
+            "id": "events-e84989ca-4a4d-47ba-91e7-92e7cb758277",
+            "stateDisplayName": "token"
+          },
+          {
+            "actionType": "showNotification",
+            "description": "{{\"current user: \"+login_api.data.firstName+\" \"+login_api.data.lastName}}",
+            "enabled": "{{login_api.data.token!=undefined\u0026\u0026login_api.data.token!=\"\"}}",
+            "eventType": "success",
+            "id": "events-5ce27c9f-6fed-4eb8-9fb9-96279228baa7",
+            "title": "Successfully login"
+          },
+          {
+            "actionType": "setRouter",
+            "enabled": "{{login_api.data.token!=undefined\u0026\u0026login_api.data.token!=\"\"}}",
+            "eventType": "success",
+            "id": "events-07782107-f555-45ac-878b-4438af3be8a5",
+            "pagePath": "homepage",
+            "viewPath": "View1"
+          },
+          {
+            "actionType": "showNotification",
+            "description": "Please try again",
+            "enabled": "{{login_api.data.token==undefined||login_api.data.token==\"\"}}",
+            "eventType": "success",
+            "id": "option-fb9c82f1-7372-40f6-991a-553a125b0b5e",
+            "title": "Login failed"
+          }
+        ],
+        "url": "auth/login",
+        "urlParams": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ]
+      },
+      "transformer": {
+        "enable": false,
+        "rawData": ""
+      },
+      "triggerMode": "manually",
+      "config": {
+        "public": true,
+        "advancedConfig": {
+          "runtime": "none",
+          "pages": [],
+          "delayWhenLoaded": "",
+          "displayLoadingPage": false,
+          "isPeriodically": false,
+          "periodInterval": ""
+        }
+      },
+      "createdAt": "2023-07-19T10:25:38.730333Z",
+      "createdBy": "ILAfx4p1C7eb",
+      "updatedAt": "2023-07-31T10:44:32.898559Z",
+      "updatedBy": "ILAfx4p1C7eb"
+    },
+    {
+      "actionId": "ILAcx4p1C7YC",
+      "uid": "b38282f0-e971-480f-9a2c-e44ba5ce666c",
       "teamID": "ILAfx4p1C7en",
       "resourceId": "ILAex4p1C7Qj",
       "displayName": "check_token_expired",
@@ -68,7 +189,7 @@
       },
       "triggerMode": "manually",
       "config": {
-        "public": false,
+        "public": true,
         "advancedConfig": {
           "runtime": "pageLoading",
           "pages": ["homepage"],
@@ -80,105 +201,7 @@
       },
       "createdAt": "2023-07-19T10:52:06.407781Z",
       "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-07-21T07:36:44.949401Z",
-      "updatedBy": "ILAfx4p1C7eb"
-    },
-    {
-      "actionId": "ILAcx4p1C7TW",
-      "uid": "44edfe40-2ad2-4762-9ad8-3ff108c1caef",
-      "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
-      "displayName": "login_api",
-      "actionType": "restapi",
-      "content": {
-        "$dynamicAttrPaths": [
-          "successEvent[0].globalStateValue",
-          "successEvent[0].enabled",
-          "successEvent[1].enabled",
-          "successEvent[1].description",
-          "successEvent[2].enabled",
-          "successEvent[3].enabled"
-        ],
-        "body": {
-          "content": "{{JSON.stringify(form1.formData)}}",
-          "type": "json"
-        },
-        "bodyType": "raw",
-        "cookies": [
-          {
-            "key": "",
-            "value": ""
-          }
-        ],
-        "headers": [
-          {
-            "key": "",
-            "value": ""
-          }
-        ],
-        "method": "POST",
-        "successEvent": [
-          {
-            "actionType": "setGlobalState",
-            "enabled": "{{login_api.data.token!=undefined&&login_api.data.token!=\"\"}}",
-            "eventType": "success",
-            "globalStateMethod": "setValue",
-            "globalStateValue": "{{login_api.data.token}}",
-            "id": "events-e84989ca-4a4d-47ba-91e7-92e7cb758277",
-            "stateDisplayName": "token"
-          },
-          {
-            "actionType": "showNotification",
-            "description": "{{\"current user: \"+login_api.data.firstName+\" \"+login_api.data.lastName}}",
-            "enabled": "{{login_api.data.token!=undefined&&login_api.data.token!=\"\"}}",
-            "eventType": "success",
-            "id": "events-5ce27c9f-6fed-4eb8-9fb9-96279228baa7",
-            "title": "Successfully login"
-          },
-          {
-            "actionType": "setRouter",
-            "enabled": "{{login_api.data.token!=undefined&&login_api.data.token!=\"\"}}",
-            "eventType": "success",
-            "id": "events-07782107-f555-45ac-878b-4438af3be8a5",
-            "pagePath": "homepage",
-            "viewPath": "View1"
-          },
-          {
-            "actionType": "showNotification",
-            "description": "Please try again",
-            "enabled": "{{login_api.data.token==undefined||login_api.data.token==\"\"}}",
-            "eventType": "success",
-            "id": "option-fb9c82f1-7372-40f6-991a-553a125b0b5e",
-            "title": "Login failed"
-          }
-        ],
-        "url": "auth/login",
-        "urlParams": [
-          {
-            "key": "",
-            "value": ""
-          }
-        ]
-      },
-      "transformer": {
-        "enable": false,
-        "rawData": ""
-      },
-      "triggerMode": "manually",
-      "config": {
-        "public": false,
-        "advancedConfig": {
-          "runtime": "none",
-          "pages": [],
-          "delayWhenLoaded": "",
-          "displayLoadingPage": false,
-          "isPeriodically": false,
-          "periodInterval": ""
-        }
-      },
-      "createdAt": "2023-07-19T10:25:38.730333Z",
-      "createdBy": "ILAfx4p1C7eb",
-      "updatedAt": "2023-07-21T07:36:44.952812Z",
+      "updatedAt": "2023-07-31T10:44:32.922911Z",
       "updatedBy": "ILAfx4p1C7eb"
     }
   ],
@@ -514,7 +537,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/4a0bd80f-5d20-4635-b2de-34453eaf28f5",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/66faa9b6-f144-49df-92b4-822b86eba497",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -565,7 +588,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/9adca33f-adce-4122-907f-7a6b90940910",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/4fac3aff-1e17-422e-af90-f8947b9ab673",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -622,7 +645,7 @@
                       "hidden": false,
                       "horizontalAlign": "start",
                       "resizeDirection": "HORIZONTAL",
-                      "value": "#### Step 4\nAdd event handlers to the login_api action to handle the following actions when successfully runs(in this case, we use {\\{login_api.data.token!=undefined&&login_api.data.token!=\"\"}} to check whether the login is successful)  \n1. use the token in the response data to set global data  \n2. use the first name and last name in the response data to set the notification  \n3. set router which means change the page to redirect to the homepage  ",
+                      "value": "#### Step 4\nAdd event handlers to the login_api action to handle the following actions when successfully runs(in this case, we use {\\{login_api.data.token!=undefined\u0026\u0026login_api.data.token!=\"\"}} to check whether the login is successful)  \n1. use the token in the response data to set global data  \n2. use the first name and last name in the response data to set the notification  \n3. set router which means change the page to redirect to the homepage  ",
                       "verticalAlign": "center"
                     }
                   },
@@ -784,7 +807,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/a0e154cf-663a-416a-99dc-1d2cba8b6bfe",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/3c51d04a-4494-4b2e-9215-36f846b4d857",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -807,7 +830,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/d17342cb-7b78-47fa-a57f-8a88d460ed50",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/bb4cac92-8b1f-46f6-bc4b-a57c155e64f1",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -830,7 +853,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/97c65b4d-db45-421f-a067-98c7a5c461f4",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/eb49752e-288a-4fe2-8252-adf401c8319a",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -853,7 +876,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/02bd058e-5f19-440d-9b33-9813778efc96",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/7d0cd257-24d3-4f20-8d20-17620e66e3d3",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -876,8 +899,8 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/e5e5c8dd-9dfb-4093-90a8-1c7d840b56f9",
-                      "objectFit": "cover",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/5b371922-94b4-4385-9b33-2b2bc1467c19",
+                      "objectFit": "scale-down",
                       "radius": "0px"
                     }
                   },
@@ -899,8 +922,8 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/e1538e0f-3338-4216-9a78-7016f39e7a73",
-                      "objectFit": "cover",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/9a0ecb28-4b67-47b4-b1f4-1903782de864",
+                      "objectFit": "scale-down",
                       "radius": "0px"
                     }
                   },
@@ -922,7 +945,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/8c23d013-0ef2-4868-a060-fcab5f2fff69",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/bf0c576d-df47-4778-ba6f-65653fe44b2c",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -945,7 +968,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/20172f56-6c3d-4e0d-8b51-df2df83c3498",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/38a89498-db32-4edf-8875-4ee3a894b3a9",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
@@ -968,7 +991,7 @@
                     "props": {
                       "$dynamicAttrPaths": [],
                       "hidden": false,
-                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/1e9f5d64-5f53-448c-b95e-1ae862d438ec",
+                      "imageSrc": "https://cloud-api.illacloud.com/drive/f/6acb8ecb-3807-43bb-b6e6-b80f6e064ca0",
                       "objectFit": "scale-down",
                       "radius": "0px"
                     }
