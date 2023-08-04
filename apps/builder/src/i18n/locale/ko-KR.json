@@ -32,7 +32,7 @@
       "cancel": "취소",
       "delete": "삭제",
       "delete_cancel_text": "취소",
-      "delete_content": "After deletion, it will not be possible to access or recover the data through any means. Please confirm.",
+      "delete_content": "제거하면 이 리소스를 사용하는 애플리케이션 및 쿼리 라이브러리 쿼리가 중단됩니다.",
       "delete_ok_text": "삭제",
       "delete_title": "확인하다",
       "error_button": "다시 해 보다",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Most popular",
-      "recent": "Latest",
+      "recent": "Recently updated",
       "star": "Starred"
     },
     "search": "Search",
     "no-result": "No result here. Please refresh or change your search terms.",
     "message": {
       "next-page-error": "Failed to load next page. Please try again.",
-      "create-failed": "Failed to save agent. Please try again.",
+      "create-failed": "Failed to create agent. Please try again.",
       "sort-failed": "Failed to change the filter type. Please try again.",
       "detail-load-failed": "Failed to retrieve details, please try again.",
       "fork-failed": "Failed to fork, please try again.",
@@ -2053,7 +2053,7 @@
           "title": "Set the title to display"
         },
         "page": {
-          "default_view": "When users enter an error URL, we will automatically redirect to the default sub-page. When there is no default sub-page, we will treat the first sub-page in the list as the default sub-page"
+          "default_view": "When users enter an error path, we will automatically redirect to the default path. When there is no default path, we will treat the first path in the list as the default path"
         },
         "chart": {
           "direction": "Set the chart direction. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "새 빌드",
         "body": "본체",
-        "default_view": "Default sub-page",
-        "edit_view": "Edit sub-page",
+        "default_view": "기본 보기",
+        "edit_view": "Edit path",
         "footer": "보행인",
         "header": "헤더",
         "key": "핵심 가치",
@@ -2285,12 +2285,12 @@
         "right_panel": "오른쪽 패널",
         "set_as_homepage": "시작 페이지로 설정",
         "show_fold_icon": "축소 버튼 표시",
-        "view_path": "Name",
-        "views": "Sub-pages",
+        "view_path": "Path",
+        "views": "보다",
         "width": "너비",
         "height": "높은",
         "columns": "열",
-        "set_as_default_subpage": "Set as default sub-page",
+        "set_as_default_subpage": "Set as default subpage",
         "delete-page": "Delete page",
         "delete-sub-page": "Delete sub-page"
       },
@@ -2307,7 +2307,7 @@
       "tab_title": "페이지",
       "tooltips": {
         "show_fold_icon": "패널을 접거나 펼치는 버튼을 표시합니다.",
-        "view_path": "To configure access to this page, you'll need to adjust the name. For instance, if you change the name to '**newPage**', and add it as a sub-page of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a subpage of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "브라우저 너비의 백분율로 나타낸 페이지 너비입니다."
       },
       "message": {
@@ -2453,7 +2453,7 @@
             "run_script": "Run Script",
             "calendar_guide": "Calendar guide",
             "chat_guide": "Chat guide",
-            "custom_login_with_sc": "Script login"
+            "custom_login_with_sc": "Custom login with Script"
           },
           "templates_description": {
             "table": "테이블 및 기타 구성 요소를 사용하여 대시보드를 만듭니다.",
@@ -3034,12 +3034,12 @@
       "name": "JSON Schema Form"
     },
     "page": {
-      "path_duplicated": "The page name is duplicated. Please use a unique name to avoid errors. ",
+      "path_duplicated": "The path is duplicated. Please use a unique path to avoid errors. ",
       "tips": {
-        "blank_view": "This module has no sub-pages. Please add them first through the Page panel on the right."
+        "blank_view": "This module has no child pages. Please add them first through the Page panel on the right."
       },
       "label": {
-        "rename_url": "Edit sub-page",
+        "rename_url": "Edit path",
         "rename_page_url": "Edit page"
       }
     }
