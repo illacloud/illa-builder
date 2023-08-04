@@ -41,7 +41,9 @@ export const PageSpaceTree: FC = () => {
     [dispatch],
   )
 
-  const testResult = useSelector(getPageDisplayNameMapViewDisplayName)
+  const pageDisplayNameMapSubPageDisplayName = useSelector(
+    getPageDisplayNameMapViewDisplayName,
+  )
 
   return (
     <PanelBar
@@ -57,7 +59,7 @@ export const PageSpaceTree: FC = () => {
       }}
     >
       <div css={pageSpaceTreeStyle}>
-        {Object.keys(testResult).map((key, index) => {
+        {Object.keys(pageDisplayNameMapSubPageDisplayName).map((key, index) => {
           const isHomePage = homepageDisplayName
             ? homepageDisplayName === key
             : index === 0
@@ -67,7 +69,7 @@ export const PageSpaceTree: FC = () => {
               pageName={key}
               key={key}
               level={1}
-              subPagePaths={testResult[key]}
+              subPagePaths={pageDisplayNameMapSubPageDisplayName[key]}
               currentPagePath={currentPageDisplayName}
               currentSubPagePath={currentSubPagePath}
             />
