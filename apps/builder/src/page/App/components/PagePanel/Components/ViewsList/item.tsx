@@ -30,6 +30,7 @@ export const Item: FC<ItemProps> = (props) => {
   const { t } = useTranslation()
 
   const handleUpdatePath = useCallback(() => {
+    if (currentPath === path) return
     const sectionNode = searchDSLByDisplayName(parentNodeDisplayName)
     if (!sectionNode) return
     const pageNode = searchDSLByDisplayName(sectionNode.parentNode!)
@@ -62,6 +63,7 @@ export const Item: FC<ItemProps> = (props) => {
     handleUpdateItem,
     message,
     parentNodeDisplayName,
+    path,
     t,
   ])
 
