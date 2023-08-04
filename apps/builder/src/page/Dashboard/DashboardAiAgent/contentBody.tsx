@@ -1,6 +1,6 @@
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { Input, RadioGroup } from "@illa-design/react"
 import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
@@ -31,6 +31,8 @@ export interface AgentContentBodyProps {
 export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   const { t } = useTranslation()
   const { canEdit } = props
+  const { teamIdentifier } = useParams()
+  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [agentType, setAgentType] = useState(searchParams.get("list") || "team")
@@ -48,6 +50,11 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
       },
     ]
   }, [t])
+
+  const toRunAgent = useCallback((aiAgentID: string) => {
+    navigate(`/${teamIdentifier}/ai-agent/${aiAgentID}/run`)
+  }, [navigate, teamIdentifier])
+
 
   const getAgentList = () => {
     setList(listData.aiAgentList)
@@ -85,6 +92,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
                   key={item.aiAgentID}
                   agentInfo={item}
                   canEdit={canEdit}
+                  onClick={toRunAgent}
                 />
               )
             })
@@ -93,6 +101,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
                 <MarketAgentCard
                   key={item.aiAgent.aiAgentID}
                   agentInfo={item}
+                  onClick={toRunAgent}
                 />
               )
             })}

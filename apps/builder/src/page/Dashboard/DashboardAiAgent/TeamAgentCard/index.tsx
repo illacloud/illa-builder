@@ -17,17 +17,18 @@ import {
 interface TeamAgentCardProps {
   agentInfo: Agent
   canEdit: boolean
+  onClick: (aiAgentID: string) => void
 }
 
 export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   const { t } = useTranslation()
-  const { agentInfo, canEdit } = props
+  const { agentInfo, canEdit, onClick } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
-  const toRunAgent = useCallback(() => {
-    navigate(`/${teamIdentifier}/ai-agent/${agentInfo.aiAgentID}/run`)
-  }, [navigate, teamIdentifier, agentInfo.aiAgentID])
+  const onCardClick = useCallback(() => {
+    onClick(agentInfo.aiAgentID)
+  }, [onClick, agentInfo.aiAgentID])
 
   const toEditAgent = useCallback(
     (e: MouseEvent) => {
@@ -38,7 +39,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   )
 
   return (
-    <div css={cardStyle} onClick={toRunAgent}>
+    <div css={cardStyle} onClick={onCardClick}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <img css={agentIconStyle} src={agentInfo.icon} alt="" />
@@ -89,7 +90,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
             variant="text"
             colorScheme="grayBlue"
             leftIcon={<PlayFillIcon />}
-            onClick={toRunAgent}
+            onClick={onCardClick}
           >
             {t("run")}
           </Button>
