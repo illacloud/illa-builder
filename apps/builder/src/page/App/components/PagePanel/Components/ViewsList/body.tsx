@@ -78,6 +78,7 @@ export const ListBody: FC<BodyProps> = (props) => {
             attrPath={`${index}`}
             handleDeleteSectionView={handleDeleteSectionView}
             handleUpdateItem={handleUpdateItem}
+            parentNodeDisplayName={parentNodeDisplayName}
           />
         )
       })}

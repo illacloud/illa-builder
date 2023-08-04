@@ -496,6 +496,7 @@ export const componentsAsync = (
       )
       break
     }
+    case "addSectionViewConfigByConfigReducer":
     case "addSectionViewReducer": {
       const { parentNodeName } = payload as AddSectionViewPayload
       const rootNode = getCanvas(nextRootState)

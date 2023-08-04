@@ -222,6 +222,11 @@ export interface AddSectionViewPayload {
   originChildrenNode?: ComponentNode[]
 }
 
+export interface AddSectionViewByConfigPayload extends AddSectionViewPayload {
+  sectionViewNode: ComponentNode
+  sectionViewConfig: SectionViewShape
+}
+
 export interface DeleteSectionViewPayload {
   viewDisplayName: string
   parentNodeName: string

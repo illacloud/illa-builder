@@ -1,6 +1,9 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep, set } from "lodash"
-import { generateNewViewItem } from "@/page/App/components/PagePanel/Components/ViewsList/utils"
+import { cloneDeep, difference, set } from "lodash"
+import {
+  generateNewViewItem,
+  generateNewViewItemFromBodySectionConfig,
+} from "@/page/App/components/PagePanel/Components/ViewsList/utils"
 import {
   BatchUpdateComponentNodeLayoutInfoPayload,
   LayoutInfo,
@@ -11,6 +14,7 @@ import {
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   AddModalComponentPayload,
+  AddSectionViewByConfigPayload,
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
   ComponentNode,
@@ -622,6 +626,31 @@ export const addPageNodeWithSortOrderReducer: CaseReducer<
   }
 }
 
+export const addSectionViewHelper = (
+  sectionViewNodeConfig: ComponentNode,
+  sectionViewConfig: SectionViewShape,
+  sectionNode: ComponentNode,
+  originChildrenNode?: ComponentNode[],
+) => {
+  if (originChildrenNode && Array.isArray(originChildrenNode)) {
+    let cloneDeepChildrenNode = JSON.parse(JSON.stringify(originChildrenNode))
+    cloneDeepChildrenNode = cloneDeepChildrenNode.map(
+      (node: ComponentNode) => ({
+        ...node,
+        parentNode: sectionViewNodeConfig.displayName,
+      }),
+    )
+    sectionViewNodeConfig.childrenNode = cloneDeepChildrenNode
+  }
+  if (Array.isArray(sectionNode.childrenNode)) {
+    sectionNode.childrenNode.push(sectionViewNodeConfig)
+  } else {
+    sectionNode.childrenNode = [sectionViewNodeConfig]
+  }
+  sectionNode.props!.viewSortedKey.push(sectionViewNodeConfig.displayName)
+  sectionNode.props!.sectionViewConfigs.push(sectionViewConfig)
+}
+
 export const addSectionViewReducer: CaseReducer<
   ComponentsState,
   PayloadAction<AddSectionViewPayload>
@@ -630,37 +659,61 @@ export const addSectionViewReducer: CaseReducer<
 
   const parentNode = searchDsl(state, parentNodeName)
   if (!parentNode || !parentNode.props) return
+  let bodySectionSubPaths: string[] = []
+  if (sectionName !== "bodySection") {
+    const pageNode = searchDsl(state, parentNode.parentNode)
+    if (!pageNode) return
+    const bodySectionNode = pageNode.childrenNode.find(
+      (node) => node.showName === "bodySection",
+    )
+    if (!bodySectionNode) return
+    bodySectionSubPaths =
+      bodySectionNode.props?.sectionViewConfigs.map(
+        (config: Record<string, string>) => config.path,
+      ) ?? []
+  }
+
   const config = generateSectionContainerConfig(
     parentNodeName,
     `${sectionName}Container`,
   )
-  const hasKeys = parentNode.props.sectionViewConfigs.map(
-    (item: SectionViewShape) => {
-      return `${parentNodeName}-${item.path}`
-    },
+  const hasPaths = parentNode.props.sectionViewConfigs.map(
+    (item: SectionViewShape) => item.path,
   )
-  const newSectionViewConfig = generateNewViewItem(
-    hasKeys,
+  const diffSubPaths = difference(bodySectionSubPaths, hasPaths)
+
+  const newSectionViewConfig = generateNewViewItemFromBodySectionConfig(
+    hasPaths,
     config.displayName,
     parentNodeName,
+    diffSubPaths,
   )
-  if (originChildrenNode && Array.isArray(originChildrenNode)) {
-    let cloneDeepChildrenNode = JSON.parse(JSON.stringify(originChildrenNode))
-    cloneDeepChildrenNode = cloneDeepChildrenNode.map(
-      (node: ComponentNode) => ({
-        ...node,
-        parentNode: config.displayName,
-      }),
-    )
-    config.childrenNode = cloneDeepChildrenNode
-  }
-  if (Array.isArray(parentNode.childrenNode)) {
-    parentNode.childrenNode.push(config)
-  } else {
-    parentNode.childrenNode = [config]
-  }
-  parentNode.props.viewSortedKey.push(config.displayName)
-  parentNode.props.sectionViewConfigs.push(newSectionViewConfig)
+  addSectionViewHelper(
+    config,
+    newSectionViewConfig,
+    parentNode,
+    originChildrenNode,
+  )
+}
+
+export const addSectionViewConfigByConfigReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<AddSectionViewByConfigPayload>
+> = (state, action) => {
+  const {
+    parentNodeName,
+    originChildrenNode,
+    sectionViewNode,
+    sectionViewConfig,
+  } = action.payload
+  const parentNode = searchDsl(state, parentNodeName)
+  if (!parentNode || !parentNode.props) return
+  addSectionViewHelper(
+    sectionViewNode,
+    sectionViewConfig,
+    parentNode,
+    originChildrenNode,
+  )
 }
 
 export const updateSectionViewPropsReducer: CaseReducer<

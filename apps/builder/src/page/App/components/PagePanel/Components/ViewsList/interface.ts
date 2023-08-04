@@ -33,6 +33,7 @@ export interface ItemProps extends Omit<SectionViewShape, "id" | "key"> {
   handleDeleteSectionView: (index: number) => void
   handleUpdateItem: (path: string, value: string) => void
   attrPath: string
+  parentNodeDisplayName: string
 }
 
 export interface LabelNameAndDragIconProps {
