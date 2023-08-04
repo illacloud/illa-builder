@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
         "view_path": "För att konfigurera åtkomst till den här sidan måste du justera sökvägen. Till exempel, om du ändrar sökvägen till '**newPath**' och lägger till den som en undersida på hemsidan. Den här sidan kan sedan nås via följande URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
+      },
+      "message": {
+        "new_path": "Ingen matchande sökväg hittad. Ny sökväg har lagts till. "
       }
     },
     "validate_message": {
