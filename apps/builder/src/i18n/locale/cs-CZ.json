@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Výška",
         "columns": "Sloupce",
-        "set_as_default_subpage": "Nastavit jako výchozí podstránku"
+        "set_as_default_subpage": "Nastavit jako výchozí podstránku",
+        "delete-page": "Odstranit stránku",
+        "delete-sub-page": "Odstranit podstránku"
       },
       "model_tips": {
         "cancel_button": "Zrušit",
