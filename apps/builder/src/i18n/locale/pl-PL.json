@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Pokaż przycisk do zwinięcia lub rozwinięcia panelu",
         "view_path": "Aby skonfigurować dostęp do tej strony, musisz dostosować ścieżkę. Na przykład, jeśli zmienisz ścieżkę na '**nowa ścieżka**' i dodaj ją jako podstronę strony głównej. Ta strona może być dostępna za pomocą następującego URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Szerokość strony wyrażona jako procent szerokości przeglądarki."
+      },
+      "message": {
+        "new_path": "Nie znaleziono pasującej ścieżki. Nowa ścieżka została dodana. "
       }
     },
     "validate_message": {
