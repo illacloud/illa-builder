@@ -2290,7 +2290,9 @@
         "width": "너비",
         "height": "높은",
         "columns": "열",
-        "set_as_default_subpage": "Set as default subpage"
+        "set_as_default_subpage": "Set as default sub-page",
+        "delete-page": "Delete page",
+        "delete-sub-page": "Delete sub-page"
       },
       "model_tips": {
         "cancel_button": "취소",
