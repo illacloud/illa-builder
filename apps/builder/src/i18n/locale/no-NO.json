@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Vis en knapp for å skjule eller utvide panelet",
         "view_path": "For å konfigurere tilgang til denne siden, må du justere veien. Hvis du for eksempel endrer stien til '**newPath**', og legger den til som en underside for hjemmesiden. Denne siden kan da nås via følgende URL: overskytende .illakloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på siden som prosentandel av nettleserbredden."
+      },
+      "message": {
+        "new_path": "Fant ingen søkestreng. Ny sti er lagt til. "
       }
     },
     "validate_message": {
