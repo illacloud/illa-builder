@@ -32,7 +32,7 @@
       "cancel": "Zrušit",
       "delete": "Vymazat",
       "delete_cancel_text": "Zrušit",
-      "delete_content": "Po smazání nebude možné přistupovat k datům nebo je obnovovat jakýmkoliv způsobem. Potvrďte prosím.",
+      "delete_content": "Toto rozbije aplikace a knihovny dotazů, které používají tento zdroj",
       "delete_ok_text": "Vymazat",
       "delete_title": "Jste si jisti?",
       "error_button": "Opakovat",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Nejoblíbenější",
-      "recent": "Nejnovější",
+      "recent": "Nedávno aktualizované",
       "star": "Oblíbené"
     },
     "search": "Hledat",
     "no-result": "Žádný výsledek. Aktualizujte nebo změňte hledané výrazy.",
     "message": {
       "next-page-error": "Nepodařilo se načíst další stránku. Zkuste to prosím znovu.",
-      "create-failed": "Nepodařilo se uložit agenta. Zkuste to prosím znovu.",
+      "create-failed": "Nepodařilo se vytvořit agenta. Zkuste to prosím znovu.",
       "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
       "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
       "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
@@ -2053,7 +2053,7 @@
           "title": "Nastavit název pro zobrazení"
         },
         "page": {
-          "default_view": "Když uživatelé zadají chybu URL, automaticky přesměrujeme na výchozí dílčí stránku. Pokud neexistuje žádná výchozí podstránka, budeme považovat první podstránku v seznamu za výchozí podstránku"
+          "default_view": "Když uživatelé zadají chybovou cestu, automaticky přesměrujeme na výchozí cestu. Pokud neexistuje výchozí cesta, budeme považovat první cestu v seznamu za výchozí cestu"
         },
         "chart": {
           "direction": "Nastavte směr grafu. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Přidat",
         "body": "Tělo",
-        "default_view": "Výchozí podstránka",
-        "edit_view": "Upravit podstránku",
+        "default_view": "Výchozí zobrazení",
+        "edit_view": "Upravit cestu",
         "footer": "Zápatí",
         "header": "Záhlaví",
         "key": "Klíč",
@@ -2285,8 +2285,8 @@
         "right_panel": "Pravý panel",
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
-        "view_path": "Název",
-        "views": "Podstránky",
+        "view_path": "Cesta",
+        "views": "Zobrazení",
         "width": "Width",
         "height": "Výška",
         "columns": "Sloupce",
@@ -2307,7 +2307,7 @@
       "tab_title": "Stránka",
       "tooltips": {
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
-        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit název. Například, pokud změníš název na '**newPage**', a přidej ho jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit cestu. Například, pokud změníš cestu na '**newPath**', a přidej ji jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
       },
       "message": {
@@ -3034,12 +3034,12 @@
       "name": "Formulář schématu JSON"
     },
     "page": {
-      "path_duplicated": "Název stránky je duplicitní. Použijte prosím unikátní název, abyste se vyhnuli chybám. ",
+      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. ",
       "tips": {
         "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
       },
       "label": {
-        "rename_url": "Upravit podstránku",
+        "rename_url": "Upravit cestu",
         "rename_page_url": "Upravit stránku"
       }
     }
