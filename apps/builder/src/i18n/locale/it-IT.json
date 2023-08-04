@@ -32,7 +32,7 @@
       "cancel": "Annulla",
       "delete": "Elimina",
       "delete_cancel_text": "Annulla",
-      "delete_content": "Dopo la cancellazione, non sarà possibile accedere o recuperare i dati attraverso qualsiasi mezzo. Si prega di confermare.",
+      "delete_content": "Questo interromperà le query di App e Libreria Query che utilizzano questa risorsa",
       "delete_ok_text": "Elimina",
       "delete_title": "Sei sicuro?",
       "error_button": "Riprova",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Più popolari",
-      "recent": "Ultimi",
+      "recent": "Aggiornato di recente",
       "star": "Preferiti"
     },
     "search": "Cerca",
     "no-result": "Nessun risultato qui. Si prega di aggiornare o modificare i termini di ricerca.",
     "message": {
       "next-page-error": "Impossibile caricare la pagina successiva. Per favore riprova.",
-      "create-failed": "Impossibile salvare l'agente. Riprova.",
+      "create-failed": "Creazione dell'agente non riuscita. Riprova.",
       "sort-failed": "Modifica del tipo di filtro non riuscita. Riprova.",
       "detail-load-failed": "Impossibile recuperare i dettagli, per favore riprova.",
       "fork-failed": "Impossibile effettuare il fork, riprova.",
@@ -2053,7 +2053,7 @@
           "title": "Imposta il titolo da visualizzare"
         },
         "page": {
-          "default_view": "Quando gli utenti inseriscono un URL di errore, reindirizzeremo automaticamente alla sotto-pagina predefinita. Quando non c'è nessuna sotto-pagina predefinita, tratteremo la prima sotto-pagina dell'elenco come la sotto-pagina predefinita"
+          "default_view": "Quando gli utenti inseriscono un percorso di errore, reindirizzeremo automaticamente al percorso predefinito. Quando non c'è un percorso predefinito, tratteremo il primo percorso nella lista come il percorso predefinito"
         },
         "chart": {
           "direction": "Imposta la direzione del grafico. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Aggiungi",
         "body": "Corpo",
-        "default_view": "Sotto-pagina predefinita",
-        "edit_view": "Modifica sotto-pagina",
+        "default_view": "Vista predefinita",
+        "edit_view": "Modifica percorso",
         "footer": "Footer",
         "header": "Intestazione",
         "key": "Chiave",
@@ -2285,8 +2285,8 @@
         "right_panel": "Pannello destro",
         "set_as_homepage": "Imposta come homepage",
         "show_fold_icon": "Mostra icona piega",
-        "view_path": "Nome",
-        "views": "Sotto-pagine",
+        "view_path": "Percorso",
+        "views": "Viste",
         "width": "Width",
         "height": "Altezza",
         "columns": "Colonne",
@@ -2307,7 +2307,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Mostra un pulsante per comprimere o espandere il pannello",
-        "view_path": "Per configurare l'accesso a questa pagina, è necessario modificare il nome. Per esempio, se si cambia il nome in '**newPage**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Per configurare l'accesso a questa pagina, è necessario regolare il percorso. Per esempio, se si cambia il percorso per '**newPath**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La larghezza della pagina come percentuale della larghezza del browser."
       },
       "message": {
@@ -3034,12 +3034,12 @@
       "name": "Modulo Schema JSON"
     },
     "page": {
-      "path_duplicated": "Il nome della pagina è duplicato. Si prega di utilizzare un nome univoco per evitare errori. ",
+      "path_duplicated": "Il percorso è duplicato. Si prega di utilizzare un percorso univoco per evitare errori. ",
       "tips": {
         "blank_view": "Questo modulo non ha pagine figlie. Si prega di aggiungerle prima attraverso il pannello Pagina a destra."
       },
       "label": {
-        "rename_url": "Modifica sotto-pagina",
+        "rename_url": "Modifica percorso",
         "rename_page_url": "Modifica pagina"
       }
     }
