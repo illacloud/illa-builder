@@ -2053,7 +2053,7 @@
           "title": "Indstil titlen der skal vises"
         },
         "page": {
-          "default_view": "Når brugerne indtaster en fejl sti, vil vi automatisk omdirigere til standardstien. Når der ikke er nogen standardsti, vil vi behandle den første sti på listen som standardstien"
+          "default_view": "Når brugere indtaster en fejl URL, vil vi automatisk omdirigere til standard undersiden. Når der ikke er nogen standard underside, vil vi behandle den første underside på listen som standard underside"
         },
         "chart": {
           "direction": "Indstil diagrammets retning. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Højre panel",
         "set_as_homepage": "Sæt som startside",
         "show_fold_icon": "Vis faldsikon",
-        "view_path": "Sti",
+        "view_path": "Navn",
         "views": "Undersider",
         "width": "Width",
         "height": "Højde",
@@ -2307,11 +2307,11 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knap til at skjule eller udvide panelet",
-        "view_path": "For at konfigurere adgang til denne side, skal du justere stien. For eksempel, hvis du ændrer stien til '**newPath**', og tilføje det som en underside af hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPath**.",
+        "view_path": "For at konfigurere adgang til denne side, skal du justere navnet. For eksempel, hvis du ændrer navnet til '**newPage**', og tilføje det som en underside på hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Bredden af siden som en procentdel af browserens bredde."
       },
       "message": {
-        "new_path": "Ingen matchende sti fundet. Ny sti er blevet tilføjet. "
+        "new_path": "Ingen matchende underside fundet. Ny underside er tilføjet. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,12 @@
       "name": "JSON Skema Form"
     },
     "page": {
-      "path_duplicated": "Stien er duplikeret. Brug venligst en unik sti for at undgå fejl. ",
+      "path_duplicated": "The page name is duplicated. Please use a unique name to avoid errors. (Automatic Copy) ",
       "tips": {
         "blank_view": "Dette modul har ingen undersider. Tilføj dem først gennem sidepanelet til højre."
       },
       "label": {
-        "rename_url": "Rediger sti"
+        "rename_url": "Rediger underside"
       }
     }
   },
