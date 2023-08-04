@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
         "view_path": "Pentru a configura accesul la această pagină, va trebui să ajustați calea. De exemplu, dacă schimbați calea către '**newPath**', și adăugați-o ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
+      },
+      "message": {
+        "new_path": "Nici o cale de potrivire găsită. A fost adăugată o nouă cale. "
       }
     },
     "validate_message": {
