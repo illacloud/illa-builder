@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { authCloudRequest, builderRequest, directRequest } from "@/api/http"
+import { authCloudRequest, agentRequest, directRequest } from "@/api/http"
 import { Agent, AgentRaw, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
 import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
@@ -20,9 +20,9 @@ export const fetchTeamAgentList = (
   sortBy: SortOptions = SortOptions.ID,
   signal?: AbortSignal,
 ) => {
-  return builderRequest<TeamAgentListData>(
+  return agentRequest<TeamAgentListData>(
     {
-      url: `/AIAgent/list/sortBy/${sortBy}`,
+      url: `/aiAgent/list/sortBy/${sortBy}`,
       method: "GET",
       signal,
     },
@@ -38,9 +38,9 @@ export const fetchTeamAgentByKeywords = (
   keywords: string,
   signal?: AbortSignal,
 ) => {
-  return builderRequest<TeamAgentListData>(
+  return agentRequest<TeamAgentListData>(
     {
-      url: `/AIAgent/list/sortBy/${sortBy}/like`,
+      url: `/aiAgent/list/sortBy/${sortBy}/like`,
       method: "GET",
       params: {
         keywords,
@@ -71,15 +71,15 @@ export interface ForkAgentResponse {
 
 export const forkAIAgentToTeam = (aiAgentID: string, teamID: string) => {
   return directRequest<ForkAgentResponse>({
-    url: `/AIAgent/${aiAgentID}/forkTo/teams/${teamID}`,
+    url: `/aiAgent/${aiAgentID}/forkTo/teams/${teamID}`,
     method: "POST",
   })
 }
 
 export const fetchAgentDetail = (aiAgentID: string) => {
-  return builderRequest<Agent>(
+  return agentRequest<Agent>(
     {
-      url: `/AIAgent/${aiAgentID}`,
+      url: `/aiAgent/${aiAgentID}`,
       method: "GET",
     },
     {
@@ -89,9 +89,9 @@ export const fetchAgentDetail = (aiAgentID: string) => {
 }
 
 export const putAgentDetail = (aiAgentID: string, agentRaw: AgentRaw) => {
-  return builderRequest<Agent, AgentRaw>(
+  return agentRequest<Agent, AgentRaw>(
     {
-      url: `/AIAgent/${aiAgentID}`,
+      url: `/aiAgent/${aiAgentID}`,
       method: "PUT",
       data: agentRaw,
     },
@@ -102,9 +102,9 @@ export const putAgentDetail = (aiAgentID: string, agentRaw: AgentRaw) => {
 }
 
 export const createAgent = (agentRaw: AgentRaw) => {
-  return builderRequest<Agent, AgentRaw>(
+  return agentRequest<Agent, AgentRaw>(
     {
-      url: `/AIAgent`,
+      url: `/aiAgent`,
       method: "POST",
       data: agentRaw,
     },
@@ -116,9 +116,9 @@ export const createAgent = (agentRaw: AgentRaw) => {
 
 // send raw without variables
 export const generateDescription = (prompt: string) => {
-  return builderRequest<{ payload: string }, { prompt: string }>(
+  return agentRequest<{ payload: string }, { prompt: string }>(
     {
-      url: `/AIAgent/generatePromptDescription`,
+      url: `/aiAgent/generatePromptDescription`,
       method: "POST",
       data: {
         prompt: prompt,
@@ -134,9 +134,9 @@ export const getAIAgentWsAddress = (
   aiAgentID: string,
   signal?: AbortSignal,
 ) => {
-  return builderRequest<{ aiAgentConnectionAddress: string }>(
+  return agentRequest<{ aiAgentConnectionAddress: string }>(
     {
-      url: `/AIAgent/${aiAgentID}/connectionAddress`,
+      url: `/aiAgent/${aiAgentID}/connectionAddress`,
       method: "GET",
       signal,
     },
@@ -147,9 +147,9 @@ export const getAIAgentWsAddress = (
 }
 
 export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
-  return builderRequest<{ aiAgentConnectionAddress: string }>(
+  return agentRequest<{ aiAgentConnectionAddress: string }>(
     {
-      url: `/AIAgent/AIAgentAnonymous/connectionAddress`,
+      url: `/aiAgent/AIAgentAnonymous/connectionAddress`,
       method: "GET",
       signal,
     },
@@ -163,7 +163,7 @@ export const uploadAgentIcon = async (base64: string) => {
   const fileName = v4()
   const type = getFileExtensionFromBase64(base64)
   const address = await authCloudRequest<UploadResponse>({
-    url: `AIAgent/icon/uploadAddress/fileName/${fileName}.${type}`,
+    url: `aiAgent/icon/uploadAddress/fileName/${fileName}.${type}`,
     method: "GET",
   })
   const file = base642Blob(base64)

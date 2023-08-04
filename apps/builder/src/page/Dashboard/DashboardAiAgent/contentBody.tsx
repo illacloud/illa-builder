@@ -11,7 +11,7 @@ import {
   listFilterContainerStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
 import { Agent, MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
-import { MarketAgentListData, TeamAgentListData } from "@/services/agent"
+import { fetchTeamAgentList, MarketAgentListData, SortOptions, TeamAgentListData } from "@/services/agent"
 import { FixedSizeGrid } from "react-window"
 import { agent_card_width, market_agent_card_height } from "@/illa-public-market-component/MarketAgentCard/style"
 import AutoSizer, { Size } from "react-virtualized-auto-sizer"
@@ -106,7 +106,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
 
   const [agentType, setAgentType] = useState(searchParams.get("list") || "team")
   const [list, setList] = useState<Agent[]>([])
-  const [marketList, setMarketList] = useState<MarketAiAgent[]>(init)
+  const [marketList, setMarketList] = useState<MarketAiAgent[]>([])
   const agentOptions = useMemo(() => {
     return [
       {
@@ -126,9 +126,13 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
 
 
   const getAgentList = () => {
-    setList(listData.aiAgentList)
-    // setMarketList(marketListData.products)
-    setMarketList(init)
+    fetchTeamAgentList(SortOptions.ID).then((res) => {
+      console.log(res)
+      setList(res.data.aiAgentList)
+    })
+
+    setMarketList(marketListData.products)
+    // setMarketList(init)
   }
 
   const handleAgentTypeChange = (newType: string) => {
