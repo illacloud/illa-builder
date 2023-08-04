@@ -13,13 +13,17 @@ import {
 } from "./style"
 
 export const Modal: FC<ModalProps> = (props) => {
-  const { onCloseModal, path, handleUpdateItem } = props
+  const { onCloseModal, path, handleUpdateItem, isParentPage } = props
   const { t } = useTranslation()
 
   return (
     <div css={modalWrapperStyle}>
       <div css={modalHeaderWrapper}>
-        <span css={titleStyle}>{t("editor.page.label_name.edit_view")}</span>
+        <span css={titleStyle}>
+          {isParentPage
+            ? t("widget.page.label.rename_page_url")
+            : t("editor.page.label_name.edit_view")}
+        </span>
         <div css={modalHeaderCloseIconHotSpot} onClick={onCloseModal}>
           <CloseIcon />
         </div>
@@ -32,7 +36,7 @@ export const Modal: FC<ModalProps> = (props) => {
         />
         <SetterPadding>
           <Input
-            w="200px"
+            w="160px"
             value={path}
             colorScheme="techPurple"
             onChange={handleUpdateItem}

@@ -87,7 +87,11 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
       />
       <DropListItem
         value="RenameURL"
-        title={t("widget.page.label.rename_url")}
+        title={
+          isParentPage
+            ? t("widget.page.label.rename_page_url")
+            : t("widget.page.label.rename_url")
+        }
         onClick={handleClickRename}
       />
       <DropListItem
