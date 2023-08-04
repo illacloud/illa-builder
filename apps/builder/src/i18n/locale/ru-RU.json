@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Высота",
         "columns": "Столбцы",
-        "set_as_default_subpage": "Установить как подстраницу по умолчанию"
+        "set_as_default_subpage": "Установить как подстраницу по умолчанию",
+        "delete-page": "Удалить страницу",
+        "delete-sub-page": "Удалить подстраницу"
       },
       "model_tips": {
         "cancel_button": "Отмена",
