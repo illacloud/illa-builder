@@ -6,6 +6,7 @@ import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
 import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
 import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
 import AIAgentMessage from "@/page/AIAgent/components/AIAgentMessage"
+import { GenerationMessage } from "@/page/AIAgent/components/GenerationMessage"
 import { PreviewChatProps } from "@/page/AIAgent/components/PreviewChat/interface"
 import {
   blockInputContainerStyle,
@@ -57,10 +58,6 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     })
   }, [currentUserInfo.userId, chatMessages])
 
-  const generationBlock = useMemo(() => {
-    return <div>{JSON.stringify(generationMessage)}</div>
-  }, [generationMessage])
-
   const sendAndClearMessage = useCallback(() => {
     if (textAreaVal !== "") {
       onSendMessage(
@@ -77,6 +74,12 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       setTextAreaVal("")
     }
   }, [agentType, currentUserInfo.userId, onSendMessage, textAreaVal])
+
+  const generationBlock = useMemo(() => {
+    return (
+      generationMessage && <GenerationMessage message={generationMessage} />
+    )
+  }, [generationMessage])
 
   return (
     <div css={previewChatContainerStyle}>
