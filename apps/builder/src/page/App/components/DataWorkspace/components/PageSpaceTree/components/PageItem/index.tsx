@@ -172,9 +172,6 @@ const PageItem: FC<PageItemProps> = (props) => {
                       <HomepageIcon css={baseIconStyle} />
                     </div>
                   )}
-                  <div css={iconHotSpotContainerStyle} onClick={addSubPage}>
-                    <PlusIcon css={plusIconStyle} />
-                  </div>
                   <div
                     css={iconHotSpotContainerStyle}
                     onClick={() => {
@@ -183,6 +180,11 @@ const PageItem: FC<PageItemProps> = (props) => {
                   >
                     <SettingIcon css={plusIconStyle} />
                   </div>
+                  {level === 1 && (
+                    <div css={iconHotSpotContainerStyle} onClick={addSubPage}>
+                      <PlusIcon css={plusIconStyle} />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
