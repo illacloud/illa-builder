@@ -32,7 +32,7 @@
       "cancel": "キャンセル",
       "delete": "消去",
       "delete_cancel_text": "キャンセル",
-      "delete_content": "削除後、いかなる手段でもデータにアクセスまたは復元することはできません。確認してください。",
+      "delete_content": "削除すると、このリソースを使用するアプリケーションとクエリ ライブラリ クエリが破損します",
       "delete_ok_text": "消去",
       "delete_title": "確認",
       "error_button": "リトライ",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "最も人気",
-      "recent": "最新",
+      "recent": "最近更新",
       "star": "スター付き"
     },
     "search": "検索",
     "no-result": "結果はありません。検索語を更新または変更してください。",
     "message": {
       "next-page-error": "次のページの読み込みに失敗しました。もう一度やり直してください。",
-      "create-failed": "エージェントの保存に失敗しました。もう一度やり直してください。",
+      "create-failed": "エージェントの作成に失敗しました。もう一度やり直してください。",
       "sort-failed": "フィルタの種類を変更できませんでした。もう一度やり直してください。",
       "detail-load-failed": "詳細の取得に失敗しました。もう一度やり直してください。",
       "fork-failed": "フォークに失敗しました。もう一度やり直してください。",
@@ -2053,7 +2053,7 @@
           "title": "表示するタイトルを設定します"
         },
         "page": {
-          "default_view": "ユーザがエラーURLを入力すると、自動的にデフォルトのサブページにリダイレクトされます。 デフォルトのサブページがない場合、リスト内の最初のサブページをデフォルトのサブページとして扱います。"
+          "default_view": "ユーザがエラーパスを入力すると、自動的にデフォルトのパスにリダイレクトされます。 デフォルトのパスがない場合、リストの最初のパスをデフォルトのパスとして扱います。"
         },
         "chart": {
           "direction": "グラフの方向を設定します。 ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "新築",
         "body": "本体",
-        "default_view": "デフォルトのサブページ",
-        "edit_view": "サブページを編集",
+        "default_view": "デフォルトビュー",
+        "edit_view": "パスを編集",
         "footer": "フッター",
         "header": "ヘッダ",
         "key": "キー値",
@@ -2285,8 +2285,8 @@
         "right_panel": "右パネル",
         "set_as_homepage": "ホームページとして設定",
         "show_fold_icon": "折りたたみボタンを表示",
-        "view_path": "名前",
-        "views": "サブページ",
+        "view_path": "パス",
+        "views": "見る",
         "width": "幅",
         "height": "高い",
         "columns": "コラム",
@@ -2307,7 +2307,7 @@
       "tab_title": "ページ",
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
-        "view_path": "このページへのアクセスを設定するには、名前を調整する必要があります。 例えば、名前を「**newPage**」に変更し、ホームページのサブページとして追加する場合。 このページには以下のURLからアクセスできます: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage** 。",
+        "view_path": "このページへのアクセスを設定するには、パスを調整してください。 例えば、パスを「**newPath**」に変更し、ホームページのサブページとして追加する場合。 このページには以下のURLからアクセスできます: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath** 。",
         "auto_canvas_width": "ブラウザーの幅に対するページの幅のパーセンテージ。"
       },
       "message": {
@@ -3034,12 +3034,12 @@
       "name": "JSON スキーマフォーム"
     },
     "page": {
-      "path_duplicated": "ページ名が重複しています。エラーを避けるために一意の名前を使用してください。 ",
+      "path_duplicated": "パスが重複しています。エラーを避けるためにユニークなパスを使用してください。 ",
       "tips": {
         "blank_view": "このモジュールにはサブページがありません。右側のページパネルから先に追加してください。"
       },
       "label": {
-        "rename_url": "サブページを編集",
+        "rename_url": "パスを編集",
         "rename_page_url": "ページを編集"
       }
     }
