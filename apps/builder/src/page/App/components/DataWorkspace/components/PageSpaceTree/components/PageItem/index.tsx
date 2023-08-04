@@ -118,6 +118,7 @@ const PageItem: FC<PageItemProps> = (props) => {
               setModalVisible(false)
             }}
             handleUpdateItem={setCurrentPageName}
+            isParentPage={level === 1}
           />
         }
         trigger="focus"

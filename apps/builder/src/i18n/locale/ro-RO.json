@@ -3039,7 +3039,8 @@
         "blank_view": "Acest modul nu are pagini copii. Vă rugăm să le adăugaţi mai întâi prin panoul de pagină din dreapta."
       },
       "label": {
-        "rename_url": "Editare subpagină"
+        "rename_url": "Editare subpagină",
+        "rename_page_url": "Editare pagină"
       }
     }
   },

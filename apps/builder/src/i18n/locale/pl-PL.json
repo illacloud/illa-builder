@@ -3039,7 +3039,8 @@
         "blank_view": "Ten moduł nie ma stron podrzędnych. Dodaj je najpierw przez panel strony po prawej stronie."
       },
       "label": {
-        "rename_url": "Edytuj podstronę"
+        "rename_url": "Edytuj podstronę",
+        "rename_page_url": "Edytuj stronę"
       }
     }
   },
