@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Show a button to collapse or expand the panel",
         "view_path": "To configure access to this page, you'll need to adjust the path. For instance, if you change the path to '**newPath**', and add it as a sub-page of the homepage. This page can then be accessed via the following URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "The width of page as a percentage of the browser width."
+      },
+      "message": {
+        "new_path": "No matching path found. New path has been added. "
       }
     },
     "validate_message": {
