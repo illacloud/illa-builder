@@ -32,7 +32,7 @@
       "cancel": "Peruuta",
       "delete": "Poista",
       "delete_cancel_text": "Peruuta",
-      "delete_content": "Poistamisen jälkeen tietoja ei ole mahdollista käyttää tai palauttaa millään tavalla. Ole hyvä ja vahvista.",
+      "delete_content": "Tämä rikkoo Apps and Query Library -kyselyt, jotka käyttävät tätä resurssia",
       "delete_ok_text": "Poista",
       "delete_title": "Oletko varma?",
       "error_button": "Yritä Uudelleen",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Suosituin",
-      "recent": "Viimeisimmät",
+      "recent": "Äskettäin päivitetty",
       "star": "Tähdelliset"
     },
     "search": "Etsi",
     "no-result": "Ei tuloksia. Ole hyvä ja päivitä tai vaihda hakuehtoja.",
     "message": {
       "next-page-error": "Seuraavan sivun lataaminen epäonnistui. Yritä uudelleen.",
-      "create-failed": "Agentin tallennus epäonnistui. Yritä uudelleen.",
+      "create-failed": "Agentin luonti epäonnistui. Yritä uudelleen.",
       "sort-failed": "Suodattimen tyyppiä ei voitu muuttaa. Yritä uudelleen.",
       "detail-load-failed": "Tietojen noutaminen epäonnistui, yritä uudelleen.",
       "fork-failed": "Ei voitu forkata, yritä uudelleen.",
@@ -2053,7 +2053,7 @@
           "title": "Aseta näytettävä otsikko"
         },
         "page": {
-          "default_view": "Kun käyttäjät syöttävät virheen URL-osoitteen, me automaattisesti uudelleenohjaamme oletusalasivulle. Kun oletus alasivua ei ole, käsittelemme listan ensimmäistä alasivua oletuksena alasivuksi"
+          "default_view": "Kun käyttäjät syöttävät virheen polun, ohjaamme automaattisesti uudelleen oletuspolulle. Kun oletus polkua ei ole, me kohtelemme listan ensimmäistä polkua oletuspoluksi"
         },
         "chart": {
           "direction": "Aseta kaavion suunta. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Lisää",
         "body": "Runko",
-        "default_view": "Oletus alasivu",
-        "edit_view": "Muokkaa alasivua",
+        "default_view": "Oletus näkymä",
+        "edit_view": "Muokkaa polkua",
         "footer": "Alatunniste",
         "header": "Otsikko",
         "key": "Avain",
@@ -2285,8 +2285,8 @@
         "right_panel": "Oikea paneeli",
         "set_as_homepage": "Aseta etusivuksi",
         "show_fold_icon": "Näytä kertakuvake",
-        "view_path": "Nimi",
-        "views": "Alisivut",
+        "view_path": "Polku",
+        "views": "Näkymät",
         "width": "Width",
         "height": "Korkeus",
         "columns": "Sarakkeet",
@@ -2307,7 +2307,7 @@
       "tab_title": "Sivu",
       "tooltips": {
         "show_fold_icon": "Näytä painike tiivistääksesi tai laajentaaksesi paneelia",
-        "view_path": "Määrittääksesi pääsyn tälle sivulle, sinun täytyy muuttaa nimeä. Jos esimerkiksi muutat nimen '**newPage**', ja lisäät sen kotisivun alasivuksi. Sivulle pääsee seuraavalla osoitteella: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Määrittääksesi pääsyn tälle sivulle, sinun täytyy säätää polkua. Jos esimerkiksi muutat polun poluksi '**newPath**', ja lisäät sen kotisivun alasivuksi. Tämän jälkeen tälle sivulle pääsee seuraavan URL-osoitteen kautta: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Sivujen leveys prosentteina selaimen leveydestä. @ action: button"
       },
       "message": {
@@ -3034,12 +3034,12 @@
       "name": "JSON Schema Form"
     },
     "page": {
-      "path_duplicated": "Sivun nimi on kopioitu. Ole hyvä ja käytä yksilöllistä nimeä välttääksesi virheitä. ",
+      "path_duplicated": "Polku on kopioitu. Ole hyvä ja käytä ainutlaatuista polkua välttääksesi virheitä. ",
       "tips": {
         "blank_view": "Tällä moduulilla ei ole alisivuja. Ole hyvä ja lisää ne ensin oikealla olevasta sivupaneelista."
       },
       "label": {
-        "rename_url": "Muokkaa alasivua",
+        "rename_url": "Muokkaa polkua",
         "rename_page_url": "Muokkaa sivua"
       }
     }
