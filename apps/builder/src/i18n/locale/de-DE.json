@@ -32,7 +32,7 @@
       "cancel": "Abbrechen",
       "delete": "Löschen",
       "delete_cancel_text": "Abbrechen",
-      "delete_content": "Nach dem Löschen wird es nicht möglich sein, auf die Daten zuzugreifen oder sie wiederherzustellen. Bitte bestätigen.",
+      "delete_content": "Dadurch werden Apps und Abfragebibliotheksabfragen unterbrochen, die diese Ressource verwenden",
       "delete_ok_text": "Löschen",
       "delete_title": "Bist du sicher?",
       "error_button": "Wiederholen",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Beliebteste",
-      "recent": "Neueste",
+      "recent": "Kürzlich aktualisiert",
       "star": "Markiert"
     },
     "search": "Suchen",
     "no-result": "Kein Ergebnis hier. Bitte aktualisieren oder ändern Sie Ihre Suchbegriffe.",
     "message": {
       "next-page-error": "Fehler beim Laden der nächsten Seite. Bitte versuchen Sie es erneut.",
-      "create-failed": "Fehler beim Speichern des Agenten. Bitte versuchen Sie es erneut.",
+      "create-failed": "Fehler beim Erstellen des Agenten. Bitte versuchen Sie es erneut.",
       "sort-failed": "Filtertyp konnte nicht geändert werden. Bitte versuchen Sie es erneut.",
       "detail-load-failed": "Fehler beim Abrufen der Details, bitte versuchen Sie es erneut.",
       "fork-failed": "Fehler beim Forken, bitte versuchen Sie es erneut.",
@@ -2053,7 +2053,7 @@
           "title": "Den anzuzeigenden Titel festlegen"
         },
         "page": {
-          "default_view": "Wenn Benutzer eine Fehleradresse eingeben, werden wir automatisch zur Standard-Unterseite weiterleiten. Wenn es keine Standard-Unterseite gibt, behandeln wir die erste Unterseite in der Liste als Standard-Unterseite"
+          "default_view": "Wenn Benutzer einen Fehlerpfad eingeben, werden wir automatisch auf den Standardpfad umleiten. Wenn es keinen Standardpfad gibt, werden wir den ersten Pfad in der Liste als Standardpfad behandeln"
         },
         "chart": {
           "direction": "Setze die Richtung des Diagramms. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Neu",
         "body": "Körper",
-        "default_view": "Standard-Unterseite",
-        "edit_view": "Unterseite bearbeiten",
+        "default_view": "Standardansicht",
+        "edit_view": "Pfad bearbeiten",
         "footer": "Fußzeile",
         "header": "Kopfzeile",
         "key": "Schlüssel",
@@ -2285,8 +2285,8 @@
         "right_panel": "Rechte Leiste",
         "set_as_homepage": "Als Startseite festlegen",
         "show_fold_icon": "Faltsymbol anzeigen",
-        "view_path": "Name",
-        "views": "Unterseiten",
+        "view_path": "Pfad",
+        "views": "Aufrufe",
         "width": "Width",
         "height": "Höhe",
         "columns": "Spalten",
@@ -2307,7 +2307,7 @@
       "tab_title": "Seite",
       "tooltips": {
         "show_fold_icon": "Schaltfläche zum Einklappen oder Vergrößern des Panels anzeigen",
-        "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Namen anpassen. Zum Beispiel, wenn Sie den Namen in '**newPage**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Pfad anpassen. Zum Beispiel, wenn Sie den Pfad zu '**newPath**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Die Seitenbreite als Prozentsatz der Browserbreite."
       },
       "message": {
@@ -3034,12 +3034,12 @@
       "name": "JSON-Schema-Formular"
     },
     "page": {
-      "path_duplicated": "Der Seitenname wurde dupliziert. Bitte verwenden Sie einen eindeutigen Namen, um Fehler zu vermeiden. ",
+      "path_duplicated": "Der Pfad wurde dupliziert. Bitte verwenden Sie einen eindeutigen Pfad, um Fehler zu vermeiden. ",
       "tips": {
         "blank_view": "Dieses Modul hat keine Unterseiten. Bitte fügen Sie diese zuerst durch das Seitenfenster auf der rechten Seite."
       },
       "label": {
-        "rename_url": "Unterseite bearbeiten",
+        "rename_url": "Pfad bearbeiten",
         "rename_page_url": "Seite bearbeiten"
       }
     }
