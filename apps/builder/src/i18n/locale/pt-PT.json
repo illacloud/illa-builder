@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Mostrar um botão para recolher ou expandir o painel",
         "view_path": "Para configurar o acesso a esta página, é necessário ajustar o caminho. Por exemplo, se você alterar o caminho para '**newPath**', e adicioná-lo como uma subpágina da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "A largura da página como porcentagem da largura do navegador."
+      },
+      "message": {
+        "new_path": "Nenhum caminho correspondente foi encontrado. Um novo caminho foi adicionado. "
       }
     },
     "validate_message": {
