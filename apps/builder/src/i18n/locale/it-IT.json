@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Mostra un pulsante per comprimere o espandere il pannello",
         "view_path": "Per configurare l'accesso a questa pagina, è necessario regolare il percorso. Per esempio, se si cambia il percorso per '**newPath**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La larghezza della pagina come percentuale della larghezza del browser."
+      },
+      "message": {
+        "new_path": "Nessun tracciato corrispondente trovato. Nuovo tracciato è stato aggiunto. "
       }
     },
     "validate_message": {
