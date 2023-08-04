@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Højde",
         "columns": "Kolommen",
-        "set_as_default_subpage": "Als standaard subpagina instellen"
+        "set_as_default_subpage": "Als standaard subpagina instellen",
+        "delete-page": "Pagina verwijderen",
+        "delete-sub-page": "Verwijder subpagina"
       },
       "model_tips": {
         "cancel_button": "annuleren",
