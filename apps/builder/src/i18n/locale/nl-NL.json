@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
         "view_path": "Om toegang tot deze pagina te configureren, moet u het pad aanpassen. Bijvoorbeeld, als je het pad veranderd naar '**newPath**', en voeg het toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
+      },
+      "message": {
+        "new_path": "Geen overeenstemmend pad gevonden. Nieuw pad is toegevoegd. "
       }
     },
     "validate_message": {
