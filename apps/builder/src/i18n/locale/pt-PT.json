@@ -32,7 +32,7 @@
       "cancel": "cancelar",
       "delete": "excluir",
       "delete_cancel_text": "cancelar",
-      "delete_content": "Após a exclusão, não será possível acessar ou recuperar os dados por qualquer meio. Por favor, confirme.",
+      "delete_content": "Isto quebrará as consultas de Apps e da Biblioteca de Consulta que usam este recurso",
       "delete_ok_text": "excluir",
       "delete_title": "Você tem certeza?",
       "error_button": "Repetir",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Mais popular",
-      "recent": "Últimos",
+      "recent": "Mais recentemente atualizados",
       "star": "Marcado"
     },
     "search": "Pesquisa",
     "no-result": "Não há resultados aqui. Por favor, atualize ou altere os termos da pesquisa.",
     "message": {
       "next-page-error": "Falha ao carregar a próxima página. Por favor, tente novamente.",
-      "create-failed": "Falha ao salvar o agente. Tente novamente",
+      "create-failed": "Falha ao criar agente. Por favor, tente novamente.",
       "sort-failed": "Não foi possível alterar o tipo de filtro. Tente novamente.",
       "detail-load-failed": "Falha ao recuperar detalhes, por favor tente novamente.",
       "fork-failed": "Falha ao fazer o fork, por favor, tente novamente.",
@@ -2053,7 +2053,7 @@
           "title": "Defina o título para exibição"
         },
         "page": {
-          "default_view": "Quando os usuários informam uma URL de erro, vamos automaticamente redirecionar para a sub-página padrão. Quando não há nenhuma sub-página padrão, trataremos a primeira sub-página da lista como a sub-página padrão"
+          "default_view": "Quando os usuários informam um caminho de erro, vamos automaticamente redirecionar para o caminho padrão. Quando não há um caminho padrão, trataremos o primeiro caminho da lista como o caminho padrão"
         },
         "chart": {
           "direction": "Define a direção do gráfico. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Adicionar",
         "body": "Conteúdo",
-        "default_view": "Subpágina padrão",
-        "edit_view": "Editar sub-página",
+        "default_view": "Visualização padrão",
+        "edit_view": "Editar caminho",
         "footer": "Rodapé",
         "header": "Cabeçalho",
         "key": "Chave",
@@ -2285,8 +2285,8 @@
         "right_panel": "Painel direito",
         "set_as_homepage": "Definir como página inicial",
         "show_fold_icon": "Mostrar ícone da dobra",
-        "view_path": "Nome:",
-        "views": "Subpáginas",
+        "view_path": "Caminho",
+        "views": "Visualizações",
         "width": "Width",
         "height": "Altura",
         "columns": "Colunas",
@@ -2307,7 +2307,7 @@
       "tab_title": "Página",
       "tooltips": {
         "show_fold_icon": "Mostrar um botão para recolher ou expandir o painel",
-        "view_path": "Para configurar o acesso a esta página, você precisará ajustar o nome. Por exemplo, se você alterar o nome para '**novaPágina**' e adicioná-lo como uma sub-página da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/sua/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Para configurar o acesso a esta página, é necessário ajustar o caminho. Por exemplo, se você alterar o caminho para '**newPath**', e adicioná-lo como uma subpágina da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "A largura da página como porcentagem da largura do navegador."
       },
       "message": {
@@ -3034,12 +3034,12 @@
       "name": "Formulário JSON de esquema"
     },
     "page": {
-      "path_duplicated": "O nome da página está duplicado. Por favor, use um nome exclusivo para evitar erros. ",
+      "path_duplicated": "O caminho está duplicado. Por favor, use um caminho único para evitar erros. ",
       "tips": {
         "blank_view": "Este módulo não tem páginas filhas. Por favor adicione-as primeiro através do painel de Página à direita."
       },
       "label": {
-        "rename_url": "Editar sub-página",
+        "rename_url": "Editar caminho",
         "rename_page_url": "Editar página"
       }
     }
