@@ -2053,7 +2053,7 @@
           "title": "Den anzuzeigenden Titel festlegen"
         },
         "page": {
-          "default_view": "Wenn Benutzer einen Fehlerpfad eingeben, werden wir automatisch auf den Standardpfad umleiten. Wenn es keinen Standardpfad gibt, werden wir den ersten Pfad in der Liste als Standardpfad behandeln"
+          "default_view": "Wenn Benutzer eine Fehleradresse eingeben, werden wir automatisch zur Standard-Unterseite weiterleiten. Wenn es keine Standard-Unterseite gibt, behandeln wir die erste Unterseite in der Liste als Standard-Unterseite"
         },
         "chart": {
           "direction": "Setze die Richtung des Diagramms. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Rechte Leiste",
         "set_as_homepage": "Als Startseite festlegen",
         "show_fold_icon": "Faltsymbol anzeigen",
-        "view_path": "Pfad",
+        "view_path": "Name",
         "views": "Unterseiten",
         "width": "Width",
         "height": "Höhe",
@@ -2307,11 +2307,11 @@
       "tab_title": "Seite",
       "tooltips": {
         "show_fold_icon": "Schaltfläche zum Einklappen oder Vergrößern des Panels anzeigen",
-        "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Pfad anpassen. Zum Beispiel, wenn Sie den Pfad zu '**newPath**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Namen anpassen. Zum Beispiel, wenn Sie den Namen in '**newPage**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Die Seitenbreite als Prozentsatz der Browserbreite."
       },
       "message": {
-        "new_path": "Kein passender Pfad gefunden. Neuer Pfad wurde hinzugefügt. "
+        "new_path": "Keine passende Unterseite gefunden. Neue Unterseite wurde hinzugefügt. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,12 @@
       "name": "JSON-Schema-Formular"
     },
     "page": {
-      "path_duplicated": "Der Pfad wurde dupliziert. Bitte verwenden Sie einen eindeutigen Pfad, um Fehler zu vermeiden. ",
+      "path_duplicated": "Der Seitenname wurde dupliziert. Bitte verwenden Sie einen eindeutigen Namen, um Fehler zu vermeiden. ",
       "tips": {
         "blank_view": "Dieses Modul hat keine Unterseiten. Bitte fügen Sie diese zuerst durch das Seitenfenster auf der rechten Seite."
       },
       "label": {
-        "rename_url": "Pfad bearbeiten"
+        "rename_url": "Unterseite bearbeiten"
       }
     }
   },
