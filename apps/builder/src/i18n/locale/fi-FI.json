@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No sub-page"
+        "blank_view": "Ei alasivua"
       }
     },
     "page": {
       "label_name": {
         "add": "Lisää",
         "body": "Runko",
-        "default_view": "Default sub-page",
-        "edit_view": "Edit sub-page",
+        "default_view": "Oletus alasivu",
+        "edit_view": "Muokkaa alasivua",
         "footer": "Alatunniste",
         "header": "Otsikko",
         "key": "Avain",
@@ -2285,8 +2285,8 @@
         "right_panel": "Oikea paneeli",
         "set_as_homepage": "Aseta etusivuksi",
         "show_fold_icon": "Näytä kertakuvake",
-        "view_path": "Path",
-        "views": "Sub-pages",
+        "view_path": "Polku",
+        "views": "Alisivut",
         "width": "Width",
         "height": "Korkeus",
         "columns": "Sarakkeet",
@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Näytä painike tiivistääksesi tai laajentaaksesi paneelia",
         "view_path": "Määrittääksesi pääsyn tälle sivulle, sinun täytyy säätää polkua. Jos esimerkiksi muutat polun poluksi '**newPath**', ja lisäät sen kotisivun alasivuksi. Tämän jälkeen tälle sivulle pääsee seuraavan URL-osoitteen kautta: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Sivujen leveys prosentteina selaimen leveydestä. @ action: button"
+      },
+      "message": {
+        "new_path": "Vastaavaa polkua ei löytynyt. Uusi polku on lisätty. "
       }
     },
     "validate_message": {
