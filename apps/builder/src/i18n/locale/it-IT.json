@@ -3039,7 +3039,8 @@
         "blank_view": "Questo modulo non ha pagine figlie. Si prega di aggiungerle prima attraverso il pannello Pagina a destra."
       },
       "label": {
-        "rename_url": "Modifica sotto-pagina"
+        "rename_url": "Modifica sotto-pagina",
+        "rename_page_url": "Modifica pagina"
       }
     }
   },
