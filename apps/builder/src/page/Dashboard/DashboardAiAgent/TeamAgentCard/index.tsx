@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useCallback } from "react"
+import { CSSProperties, FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
@@ -13,16 +13,18 @@ import {
   nameStyle,
   titleInfoStyle,
 } from "@/illa-public-market-component/MarketAgentCard/style"
+import { calculateStyle } from "@/illa-public-market-component/MarketAgentCard"
 
 interface TeamAgentCardProps {
   agentInfo: Agent
   canEdit: boolean
+  style?: CSSProperties
   onClick: (aiAgentID: string) => void
 }
 
 export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   const { t } = useTranslation()
-  const { agentInfo, canEdit, onClick } = props
+  const {style, agentInfo, canEdit, onClick } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
@@ -39,7 +41,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   )
 
   return (
-    <div css={cardStyle} onClick={onCardClick}>
+    <div css={cardStyle} style={calculateStyle(style)} onClick={onCardClick}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <img css={agentIconStyle} src={agentInfo.icon} alt="" />

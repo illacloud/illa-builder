@@ -63,3 +63,9 @@ export const listContainerStyle = css`
   overflow: auto;
   flex-grow: 1;
 `
+
+export const applyShowStyle = (show: boolean) => {
+  return show ? css`` : css`
+    display: none;
+  `
+}

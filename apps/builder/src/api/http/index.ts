@@ -3,7 +3,7 @@ import { getCurrentPageTeamIdentifier, getTeamID } from "@/utils/team"
 import { ERROR_FLAG } from "../errorFlag"
 import { actionRuntimeAxios, needAuthAxios, notNeedAuthAxios } from "./base"
 import {
-  ACTION_REQUEST_PREFIX,
+  ACTION_REQUEST_PREFIX, AGENT_REQUEST_PREFIX,
   BUILDER_REQUEST_PREFIX,
   BUILDER_WS_REQUEST_PREFIX,
   CLOUD_REQUEST_PREFIX,
@@ -144,6 +144,25 @@ export const builderRequest = async <
   const finalURL = getURLWithPrefix(
     requestConfig.url,
     BUILDER_REQUEST_PREFIX,
+    options,
+  )
+
+  return await needAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const agentRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(
+    requestConfig.url,
+    AGENT_REQUEST_PREFIX,
     options,
   )
 

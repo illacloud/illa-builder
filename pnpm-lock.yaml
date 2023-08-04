@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -351,6 +347,9 @@ importers:
       react-use-measure:
         specifier: ^2.1.1
         version: 2.1.1(react-dom@18.2.0)(react@18.2.0)
+      react-virtualized-auto-sizer:
+        specifier: ^1.0.20
+        version: 1.0.20(react-dom@18.2.0)(react@18.2.0)
       react-virtuoso:
         specifier: ^4.3.11
         version: 4.3.11(react-dom@18.2.0)(react@18.2.0)
@@ -10681,6 +10680,16 @@ packages:
       tslib: 2.5.0
     dev: false
 
+  /react-virtualized-auto-sizer@1.0.20(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-OdIyHwj4S4wyhbKHOKM1wLSj/UDXm839Z3Cvfg2a9j+He6yDa6i5p0qQvEiCnyQlGO/HyfSnigQwuxvYalaAXA==}
+    peerDependencies:
+      react: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0-rc
+      react-dom: ^15.3.0 || ^16.0.0-alpha || ^17.0.0 || ^18.0.0-rc
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /react-virtuoso@4.3.11(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-0YrCvQ5GsIKRcN34GxrzhSJGuMNI+hGxWci5cTVuPQ8QWTEsrKfCyqm7YNBMmV3pu7onG1YVUBo86CyCXdejXg==}
     engines: {node: '>=10'}
@@ -12625,3 +12634,7 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

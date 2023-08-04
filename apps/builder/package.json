@@ -105,6 +105,7 @@
     "react-slick": "^0.29.0",
     "react-use": "^17.4.0",
     "react-use-measure": "^2.1.1",
+    "react-virtualized-auto-sizer": "^1.0.20",
     "react-virtuoso": "^4.3.11",
     "react-window": "^1.8.9",
     "redux-logger": "^3.0.6",
