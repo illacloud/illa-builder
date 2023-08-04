@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
         "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit cestu. Například, pokud změníš cestu na '**newPath**', a přidej ji jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
+      },
+      "message": {
+        "new_path": "Nebyla nalezena žádná odpovídající cesta. Byla přidána nová cesta. "
       }
     },
     "validate_message": {
