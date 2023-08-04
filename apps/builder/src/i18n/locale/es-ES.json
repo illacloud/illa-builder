@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Mostrar un botón para contraer o expandir el panel",
         "view_path": "Para configurar el acceso a esta página, tendrás que ajustar la ruta. Por ejemplo, si cambias la ruta a '**newPath**', y la agregas como una subpágina de la página de inicio. Esta página puede accederse a través de la siguiente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "El ancho de la página como porcentaje del ancho del navegador."
+      },
+      "message": {
+        "new_path": "No se ha encontrado ninguna ruta coincidente. Se ha añadido una nueva ruta. "
       }
     },
     "validate_message": {
