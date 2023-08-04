@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Altura",
         "columns": "Columnas",
-        "set_as_default_subpage": "Establecer como subpágina por defecto"
+        "set_as_default_subpage": "Establecer como subpágina por defecto",
+        "delete-page": "Eliminar página",
+        "delete-sub-page": "Eliminar subpágina"
       },
       "model_tips": {
         "cancel_button": "Cancelar",
