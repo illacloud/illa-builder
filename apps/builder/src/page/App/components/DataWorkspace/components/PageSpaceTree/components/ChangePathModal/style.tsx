@@ -10,6 +10,7 @@ export const modalWrapperStyle = css`
   border-radius: 8px;
   overflow: hidden;
   position: relative;
+  padding-bottom: 8px;
 `
 
 export const modalHeaderWrapper = css`
@@ -17,7 +18,7 @@ export const modalHeaderWrapper = css`
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  width: 360px;
+  width: 240px;
 `
 
 export const modalHeaderCloseIconHotSpot = css`

@@ -9,6 +9,7 @@ import { ViewList } from "@/page/App/components/PagePanel/Components/ViewsList"
 import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
+import { VerticalLayout } from "@/page/App/components/PagePanel/Layout/verticalLayout"
 import {
   getCanvas,
   searchDsl,
@@ -126,7 +127,7 @@ export const PageBasic: FC = () => {
       <LeftAndRightLayout>
         <PageLabel
           labelName={t("editor.page.label_name.set_as_homepage")}
-          size="small"
+          size="big"
         />
         <SetterPadding>
           <Switch
@@ -145,7 +146,7 @@ export const PageBasic: FC = () => {
           <ViewList sectionName="bodySection" />
         </SetterPadding>
       </LeftAndRightLayout>
-      <LeftAndRightLayout>
+      <VerticalLayout>
         <PageLabel
           labelName={t("editor.page.label_name.default_view")}
           size="small"
@@ -159,7 +160,7 @@ export const PageBasic: FC = () => {
             colorScheme="techPurple"
           />
         </SetterPadding>
-      </LeftAndRightLayout>
+      </VerticalLayout>
       {hasLeft && (
         <>
           <PanelDivider />
@@ -174,7 +175,7 @@ export const PageBasic: FC = () => {
               <ViewList sectionName="leftSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <LeftAndRightLayout>
+          <VerticalLayout>
             <PageLabel
               labelName={t("editor.page.label_name.default_view")}
               size="small"
@@ -188,7 +189,7 @@ export const PageBasic: FC = () => {
                 colorScheme="techPurple"
               />
             </SetterPadding>
-          </LeftAndRightLayout>
+          </VerticalLayout>
         </>
       )}
       {hasRight && (
@@ -205,7 +206,7 @@ export const PageBasic: FC = () => {
               <ViewList sectionName="rightSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <LeftAndRightLayout>
+          <VerticalLayout>
             <PageLabel
               labelName={t("editor.page.label_name.default_view")}
               size="small"
@@ -219,7 +220,7 @@ export const PageBasic: FC = () => {
                 colorScheme="techPurple"
               />
             </SetterPadding>
-          </LeftAndRightLayout>
+          </VerticalLayout>
         </>
       )}
       {hasHeader && (
@@ -236,7 +237,7 @@ export const PageBasic: FC = () => {
               <ViewList sectionName="headerSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <LeftAndRightLayout>
+          <VerticalLayout>
             <PageLabel
               labelName={t("editor.page.label_name.default_view")}
               size="small"
@@ -250,7 +251,7 @@ export const PageBasic: FC = () => {
                 colorScheme="techPurple"
               />
             </SetterPadding>
-          </LeftAndRightLayout>
+          </VerticalLayout>
         </>
       )}
       {hasFooter && (
@@ -267,7 +268,7 @@ export const PageBasic: FC = () => {
               <ViewList sectionName="footerSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <LeftAndRightLayout>
+          <VerticalLayout>
             <PageLabel
               labelName={t("editor.page.label_name.default_view")}
               size="small"
@@ -281,7 +282,7 @@ export const PageBasic: FC = () => {
                 colorScheme="techPurple"
               />
             </SetterPadding>
-          </LeftAndRightLayout>
+          </VerticalLayout>
         </>
       )}
     </PanelBar>
