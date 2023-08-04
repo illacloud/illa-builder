@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Mest populære",
-      "recent": "Nyligt opdateret",
+      "recent": "Seneste",
       "star": "Stjernemarkerede"
     },
     "search": "Søg",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Ingen underside"
       }
     },
     "page": {
       "label_name": {
         "add": "Tilføj",
         "body": "Krop",
-        "default_view": "Standard visning",
-        "edit_view": "Rediger sti",
+        "default_view": "Standard underside",
+        "edit_view": "Rediger underside",
         "footer": "Sidefod",
         "header": "Overskrift",
         "key": "Nøgle",
@@ -2286,11 +2286,13 @@
         "set_as_homepage": "Sæt som startside",
         "show_fold_icon": "Vis faldsikon",
         "view_path": "Sti",
-        "views": "Visninger",
+        "views": "Undersider",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolonner",
-        "set_as_default_subpage": "Sæt som standard underside"
+        "set_as_default_subpage": "Sæt som standard underside",
+        "delete-page": "Slet side",
+        "delete-sub-page": "Slet underside"
       },
       "model_tips": {
         "cancel_button": "Annuller",
@@ -2307,6 +2309,9 @@
         "show_fold_icon": "Vis en knap til at skjule eller udvide panelet",
         "view_path": "For at konfigurere adgang til denne side, skal du justere stien. For eksempel, hvis du ændrer stien til '**newPath**', og tilføje det som en underside af hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden af siden som en procentdel af browserens bredde."
+      },
+      "message": {
+        "new_path": "Ingen matchende sti fundet. Ny sti er blevet tilføjet. "
       }
     },
     "validate_message": {

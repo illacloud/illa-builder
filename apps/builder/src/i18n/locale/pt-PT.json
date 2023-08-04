@@ -61,7 +61,7 @@
     },
     "sort-type": {
       "popular": "Mais popular",
-      "recent": "Mais recentemente atualizados",
+      "recent": "Últimos",
       "star": "Marcado"
     },
     "search": "Pesquisa",
@@ -2268,15 +2268,15 @@
         "reply_audio": "[Audio]"
       },
       "page": {
-        "blank_view": "No subpage"
+        "blank_view": "Nenhuma sub-página"
       }
     },
     "page": {
       "label_name": {
         "add": "Adicionar",
         "body": "Conteúdo",
-        "default_view": "Visualização padrão",
-        "edit_view": "Editar caminho",
+        "default_view": "Subpágina padrão",
+        "edit_view": "Editar sub-página",
         "footer": "Rodapé",
         "header": "Cabeçalho",
         "key": "Chave",
@@ -2286,11 +2286,13 @@
         "set_as_homepage": "Definir como página inicial",
         "show_fold_icon": "Mostrar ícone da dobra",
         "view_path": "Caminho",
-        "views": "Visualizações",
+        "views": "Subpáginas",
         "width": "Width",
         "height": "Altura",
         "columns": "Colunas",
-        "set_as_default_subpage": "Definir como subpágina padrão"
+        "set_as_default_subpage": "Definir como subpágina padrão",
+        "delete-page": "Excluir página",
+        "delete-sub-page": "Excluir sub-página"
       },
       "model_tips": {
         "cancel_button": "cancelar",
@@ -2307,6 +2309,9 @@
         "show_fold_icon": "Mostrar um botão para recolher ou expandir o painel",
         "view_path": "Para configurar o acesso a esta página, é necessário ajustar o caminho. Por exemplo, se você alterar o caminho para '**newPath**', e adicioná-lo como uma subpágina da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "A largura da página como porcentagem da largura do navegador."
+      },
+      "message": {
+        "new_path": "Nenhum caminho correspondente foi encontrado. Um novo caminho foi adicionado. "
       }
     },
     "validate_message": {
