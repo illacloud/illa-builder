@@ -1,8 +1,9 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
+import { agent_card_width } from "@/illa-public-market-component/MarketAgentCard/style"
 
-export const agent_card_width = 384
 export const team_agent_card_height = 196
+
 export const cardStyle = css`
   display: flex;
   flex-direction: column;
@@ -26,60 +27,10 @@ export const cardStyle = css`
     }
   }
 `
-
-export const headerStyle = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-`
-
-export const titleInfoStyle = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  overflow: hidden;
-`
-
-export const agentIconStyle = css`
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-`
-
 export const textEllipsisStyle = css`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-`
-
-export const nameStyle = css`
-  color: #1d2129;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22px;
-  width: 240px;
-  ${textEllipsisStyle};
-`
-
-export const descriptionStyle = css`
-  color: #787e85;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 20px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-`
-
-export const footerStyle = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
 `
 
 export const appActionButtonStyle = css`

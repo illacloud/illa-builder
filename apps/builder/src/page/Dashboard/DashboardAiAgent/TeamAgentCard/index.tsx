@@ -4,16 +4,15 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
 import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
 import { Agent } from "@/redux/aiAgent/aiAgentState"
+import { appActionButtonStyle, cardStyle } from "./style"
 import {
   agentIconStyle,
-  appActionButtonStyle,
-  cardStyle,
   descriptionStyle,
   footerStyle,
   headerStyle,
   nameStyle,
   titleInfoStyle,
-} from "./style"
+} from "@/illa-public-market-component/MarketAgentCard/style"
 
 interface TeamAgentCardProps {
   agentInfo: Agent
