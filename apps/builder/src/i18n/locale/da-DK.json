@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Højde",
         "columns": "Kolonner",
-        "set_as_default_subpage": "Sæt som standard underside"
+        "set_as_default_subpage": "Sæt som standard underside",
+        "delete-page": "Slet side",
+        "delete-sub-page": "Slet underside"
       },
       "model_tips": {
         "cancel_button": "Annuller",
