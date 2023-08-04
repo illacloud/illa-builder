@@ -2307,6 +2307,9 @@
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
         "view_path": "このページへのアクセスを設定するには、パスを調整してください。 例えば、パスを「**newPath**」に変更し、ホームページのサブページとして追加する場合。 このページには以下のURLからアクセスできます: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath** 。",
         "auto_canvas_width": "ブラウザーの幅に対するページの幅のパーセンテージ。"
+      },
+      "message": {
+        "new_path": "一致するパスが見つかりませんでした。新しいパスが追加されました。 "
       }
     },
     "validate_message": {
