@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Schaltfläche zum Einklappen oder Vergrößern des Panels anzeigen",
         "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Pfad anpassen. Zum Beispiel, wenn Sie den Pfad zu '**newPath**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Die Seitenbreite als Prozentsatz der Browserbreite."
+      },
+      "message": {
+        "new_path": "Kein passender Pfad gefunden. Neuer Pfad wurde hinzugefügt. "
       }
     },
     "validate_message": {
