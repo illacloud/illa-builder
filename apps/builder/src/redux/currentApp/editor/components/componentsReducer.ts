@@ -586,7 +586,24 @@ export const addTargetPageSectionReducer: CaseReducer<
     newOriginSectionNode.parentNode = targetPage.displayName
     targetPage.childrenNode.push(newOriginSectionNode)
   } else {
-    const config = generateSectionConfig(pageName, addedSectionName)
+    let bodySectionSubPaths: string[] = []
+    const bodySectionNode = targetPage.childrenNode.find(
+      (node) => node.showName === "bodySection",
+    )
+    if (bodySectionNode) {
+      bodySectionSubPaths =
+        bodySectionNode.props?.sectionViewConfigs.map(
+          (config: Record<string, string>) => config.path,
+        ) ?? []
+    }
+    if (bodySectionSubPaths.length === 0) {
+      bodySectionSubPaths = ["sub-page1"]
+    }
+    const config = generateSectionConfig(
+      pageName,
+      addedSectionName,
+      bodySectionSubPaths,
+    )
     if (!config) return state
     targetPage.childrenNode.push(config)
   }
