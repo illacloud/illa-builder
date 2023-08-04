@@ -3039,7 +3039,8 @@
         "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
       },
       "label": {
-        "rename_url": "Upravit podstránku"
+        "rename_url": "Upravit podstránku",
+        "rename_page_url": "Upravit stránku"
       }
     }
   },
