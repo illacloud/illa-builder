@@ -3039,7 +3039,8 @@
         "blank_view": "Este módulo no tiene páginas hijas. Por favor, añádelas primero a través del panel de página a la derecha."
       },
       "label": {
-        "rename_url": "Editar subpágina"
+        "rename_url": "Editar subpágina",
+        "rename_page_url": "Editar página"
       }
     }
   },
