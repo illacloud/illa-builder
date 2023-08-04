@@ -32,7 +32,7 @@
       "cancel": "Annuller",
       "delete": "Slet",
       "delete_cancel_text": "Annuller",
-      "delete_content": "Efter sletning, vil det ikke være muligt at få adgang til eller gendanne data på nogen måde. Bekræft venligst.",
+      "delete_content": "Dette vil ødelægge Apps og Forespørgselsbibliotek forespørgsler der bruger denne ressource",
       "delete_ok_text": "Slet",
       "delete_title": "Er du sikker?",
       "error_button": "Forsøg igen",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Mest populære",
-      "recent": "Seneste",
+      "recent": "Nyligt opdateret",
       "star": "Stjernemarkerede"
     },
     "search": "Søg",
     "no-result": "Intet resultat her. Opdater eller ændr venligst dine søgeord.",
     "message": {
       "next-page-error": "Næste side kunne ikke indlæses. Prøv igen.",
-      "create-failed": "Agenten kunne ikke gemmes. Prøv venligst igen.",
+      "create-failed": "Mislykkedes at oprette agent. Prøv venligst igen.",
       "sort-failed": "Kunne ikke ændre filtertypen. Prøv igen.",
       "detail-load-failed": "Kunne ikke hente detaljer. Prøv venligst igen.",
       "fork-failed": "Mislykkedes at gaffel, prøv igen.",
@@ -2053,7 +2053,7 @@
           "title": "Indstil titlen der skal vises"
         },
         "page": {
-          "default_view": "Når brugere indtaster en fejl URL, vil vi automatisk omdirigere til standard undersiden. Når der ikke er nogen standard underside, vil vi behandle den første underside på listen som standard underside"
+          "default_view": "Når brugerne indtaster en fejl sti, vil vi automatisk omdirigere til standardstien. Når der ikke er nogen standardsti, vil vi behandle den første sti på listen som standardstien"
         },
         "chart": {
           "direction": "Indstil diagrammets retning. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Tilføj",
         "body": "Krop",
-        "default_view": "Standard underside",
-        "edit_view": "Rediger underside",
+        "default_view": "Standard visning",
+        "edit_view": "Rediger sti",
         "footer": "Sidefod",
         "header": "Overskrift",
         "key": "Nøgle",
@@ -2285,8 +2285,8 @@
         "right_panel": "Højre panel",
         "set_as_homepage": "Sæt som startside",
         "show_fold_icon": "Vis faldsikon",
-        "view_path": "Navn",
-        "views": "Undersider",
+        "view_path": "Sti",
+        "views": "Visninger",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolonner",
@@ -2307,7 +2307,7 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knap til at skjule eller udvide panelet",
-        "view_path": "For at konfigurere adgang til denne side, skal du justere navnet. For eksempel, hvis du ændrer navnet til '**newPage**', og tilføje det som en underside på hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPage**.",
+        "view_path": "For at konfigurere adgang til denne side, skal du justere stien. For eksempel, hvis du ændrer stien til '**newPath**', og tilføje det som en underside af hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden af siden som en procentdel af browserens bredde."
       },
       "message": {
@@ -3034,12 +3034,12 @@
       "name": "JSON Skema Form"
     },
     "page": {
-      "path_duplicated": "The page name is duplicated. Please use a unique name to avoid errors. (Automatic Copy) ",
+      "path_duplicated": "Stien er duplikeret. Brug venligst en unik sti for at undgå fejl. ",
       "tips": {
         "blank_view": "Dette modul har ingen undersider. Tilføj dem først gennem sidepanelet til højre."
       },
       "label": {
-        "rename_url": "Rediger underside",
+        "rename_url": "Rediger sti",
         "rename_page_url": "Rediger side"
       }
     }
