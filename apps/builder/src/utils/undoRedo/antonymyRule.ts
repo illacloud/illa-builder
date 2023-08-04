@@ -116,6 +116,7 @@ export const reduxActionDependOnRestAPI = async (
         }
         break
       }
+      case "components/addSectionViewConfigByConfigReducer":
       case "components/addSectionViewReducer": {
         if (Array.isArray(action.payload.originChildrenNode)) {
           const newOriginNodeByChangeDisplayName =

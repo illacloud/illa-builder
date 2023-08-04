@@ -91,6 +91,7 @@ async function handleStartExecution(
     const isDeleteAction =
       action.type === "components/deleteComponentNodeReducer" ||
       action.type === "action/removeActionItemReducer"
+
     const executionResult = executionTree.updateTree(rawTree, isDeleteAction)
     asyncExecutionDataToRedux(executionResult, oldExecutionTree, listenerApi)
   }
@@ -444,11 +445,16 @@ export function setupExecutionListeners(
         componentsActions.updateTargetPageLayoutReducer,
         componentsActions.deletePageNodeReducer,
         componentsActions.addSectionViewReducer,
+        componentsActions.addSectionViewConfigByConfigReducer,
         componentsActions.deleteSectionViewReducer,
         componentsActions.updateSectionViewPropsReducer,
         componentsActions.addModalComponentReducer,
         componentsActions.setGlobalStateReducer,
         componentsActions.deleteGlobalStateByKeyReducer,
+        componentsActions.deleteSubPageViewNodeReducer,
+        componentsActions.updateDefaultSubPagePathReducer,
+        componentsActions.updateSubPagePathReducer,
+        componentsActions.addSubPageReducer,
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
@@ -466,6 +472,7 @@ export function setupExecutionListeners(
         executionActions.setInGlobalStateInExecutionReducer,
         executionActions.setLocalStorageInExecutionReducer,
         executionActions.clearLocalStorageInExecutionReducer,
+        executionActions.updateCurrentPagePathReducer,
       ),
       effect: handleStartExecutionOnCanvas,
     }),
@@ -485,6 +492,7 @@ export function setupExecutionListeners(
         componentsActions.addPageNodeWithSortOrderReducer,
         componentsActions.deletePageNodeReducer,
         componentsActions.addSectionViewReducer,
+        componentsActions.addSectionViewConfigByConfigReducer,
         componentsActions.deleteSectionViewReducer,
         componentsActions.addModalComponentReducer,
         componentsActions.batchUpdateComponentLayoutInfoWhenReflowReducer,

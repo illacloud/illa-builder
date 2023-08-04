@@ -47,6 +47,7 @@ export interface RootComponentNodeProps {
   viewportWidth?: number
   viewportHeight?: number
   viewportSizeType?: ViewportSizeType
+  currentSubPagePath?: string
 }
 
 export interface RootComponentNode extends ComponentNode {
@@ -173,7 +174,14 @@ export interface UpdateComponentReflowPayload {
 
 export interface UpdateTargetPageLayoutPayload {
   pageName: string
-  layout: "default" | "presetA" | "presetB" | "presetC" | "presetD" | "presetE"
+  layout:
+    | "default"
+    | "presetA"
+    | "presetB"
+    | "presetC"
+    | "presetD"
+    | "presetE"
+    | "Custom"
   originPageNode?: ComponentNode
 }
 
@@ -214,6 +222,11 @@ export interface AddSectionViewPayload {
   originChildrenNode?: ComponentNode[]
 }
 
+export interface AddSectionViewByConfigPayload extends AddSectionViewPayload {
+  sectionViewNode: ComponentNode
+  sectionViewConfig: SectionViewShape
+}
+
 export interface DeleteSectionViewPayload {
   viewDisplayName: string
   parentNodeName: string
@@ -244,4 +257,9 @@ export interface SetGlobalStatePayload {
 
 export interface DeleteGlobalStatePayload {
   key: string
+}
+
+export interface DeleteSubPageViewNodePayload {
+  pageName: string
+  subPagePath: string
 }

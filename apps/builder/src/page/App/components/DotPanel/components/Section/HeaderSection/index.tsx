@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import RenderComponentCanvasContainer from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
+import { EmptyState } from "@/page/App/components/DotPanel/components/Page/emptyState"
 import {
   BASIC_CANVAS_PADDING,
   BODY_MIN_HEIGHT,
@@ -113,7 +114,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
 
   if (!sectionNodeProps) return null
 
-  const componentNode = sectionNode.childrenNode.find(
+  const componentNode = sectionNode.childrenNode?.find(
     (node) => node.displayName === currentViewDisplayName,
   )
 
@@ -149,7 +150,7 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
           />
         )}
       <div css={containerWrapperStyle}>
-        {componentNode && (
+        {componentNode ? (
           <RenderComponentCanvasContainer
             displayName={componentNode.displayName}
             containerPadding={BASIC_CANVAS_PADDING}
@@ -160,6 +161,8 @@ export const RenderHeaderSection: FC<RenderHeaderSectionProps> = (props) => {
             canResizeCanvas
             minHeight={HEADER_MIN_HEIGHT}
           />
+        ) : (
+          <EmptyState />
         )}
       </div>
       {isEditMode && <div css={resizeVerticalBarWrapperStyle} />}

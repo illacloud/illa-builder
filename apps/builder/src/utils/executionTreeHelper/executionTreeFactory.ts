@@ -419,6 +419,11 @@ export class ExecutionTreeFactory {
       const subPaths = cloneDeep(d.path)
       let current = ""
       const originalPathLength = subPaths.length
+      if (subPaths.includes("pageInfos")) {
+        updatePaths.push("pageInfos")
+        continue
+      }
+
       while (subPaths.length > 1) {
         current = convertPathToString(subPaths)
         updatePaths.push(current)
@@ -435,6 +440,13 @@ export class ExecutionTreeFactory {
       }
       if (originalPathLength === 1 && d.kind === "D") {
         updatePaths.push(`${subPaths[0]}`)
+      }
+      if (originalPathLength === 1 && d.kind === "E") {
+        updatePaths.push(`${subPaths[0]}`)
+      }
+      if (d.kind === "A") {
+        const { index } = d
+        updatePaths.push(`${convertPathToString([...subPaths, index])}`)
       }
     }
     const hasPath = new Set<string>()

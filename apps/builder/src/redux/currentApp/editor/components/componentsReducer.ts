@@ -1,6 +1,9 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep, set } from "lodash"
-import { generateNewViewItem } from "@/page/App/components/PagePanel/Components/ViewsList/utils"
+import { cloneDeep, difference, set } from "lodash"
+import {
+  generateNewViewItem,
+  generateNewViewItemFromBodySectionConfig,
+} from "@/page/App/components/PagePanel/Components/ViewsList/utils"
 import {
   BatchUpdateComponentNodeLayoutInfoPayload,
   LayoutInfo,
@@ -11,6 +14,7 @@ import {
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   AddModalComponentPayload,
+  AddSectionViewByConfigPayload,
   AddSectionViewPayload,
   AddTargetPageSectionPayload,
   ComponentNode,
@@ -20,6 +24,7 @@ import {
   DeleteGlobalStatePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
+  DeleteSubPageViewNodePayload,
   DeleteTargetPageSectionPayload,
   ModalSectionNode,
   RootComponentNode,
@@ -410,21 +415,26 @@ export const updateTargetPageLayoutReducer: CaseReducer<
 > = (state, action) => {
   if (!state) return state
   const { pageName, layout, originPageNode } = action.payload
-  const config = layoutValueMapGenerateConfig[layout]
   let targetPageNodeIndex = state.childrenNode.findIndex(
     (node) => node.displayName === pageName,
   )
-  if (targetPageNodeIndex === -1) return state
-  const targetPageNode = state.childrenNode[targetPageNodeIndex]
-  if (!targetPageNode) return state
-  const needRemoveDisplayName = removeDisplayNames(targetPageNode)
-  const pageConfig = config(targetPageNode.displayName)
-  DisplayNameGenerator.removeDisplayNameMulti(needRemoveDisplayName)
-  state.childrenNode.splice(
-    targetPageNodeIndex,
-    1,
-    originPageNode ?? pageConfig,
-  )
+  if (layout !== "Custom") {
+    const config = layoutValueMapGenerateConfig[layout]
+
+    if (targetPageNodeIndex === -1) return state
+    const targetPageNode = state.childrenNode[targetPageNodeIndex]
+    if (!targetPageNode) return state
+    const needRemoveDisplayName = removeDisplayNames(targetPageNode)
+    const pageConfig = config(targetPageNode.displayName)
+    DisplayNameGenerator.removeDisplayNameMulti(needRemoveDisplayName)
+    state.childrenNode.splice(
+      targetPageNodeIndex,
+      1,
+      originPageNode ?? pageConfig,
+    )
+  } else {
+    state.childrenNode.splice(targetPageNodeIndex, 1, originPageNode!)
+  }
 }
 
 export const updateTargetPagePropsReducer: CaseReducer<
@@ -576,7 +586,24 @@ export const addTargetPageSectionReducer: CaseReducer<
     newOriginSectionNode.parentNode = targetPage.displayName
     targetPage.childrenNode.push(newOriginSectionNode)
   } else {
-    const config = generateSectionConfig(pageName, addedSectionName)
+    let bodySectionSubPaths: string[] = []
+    const bodySectionNode = targetPage.childrenNode.find(
+      (node) => node.showName === "bodySection",
+    )
+    if (bodySectionNode) {
+      bodySectionSubPaths =
+        bodySectionNode.props?.sectionViewConfigs.map(
+          (config: Record<string, string>) => config.path,
+        ) ?? []
+    }
+    if (bodySectionSubPaths.length === 0) {
+      bodySectionSubPaths = ["sub-page1"]
+    }
+    const config = generateSectionConfig(
+      pageName,
+      addedSectionName,
+      bodySectionSubPaths,
+    )
     if (!config) return state
     targetPage.childrenNode.push(config)
   }
@@ -616,6 +643,31 @@ export const addPageNodeWithSortOrderReducer: CaseReducer<
   }
 }
 
+export const addSectionViewHelper = (
+  sectionViewNodeConfig: ComponentNode,
+  sectionViewConfig: SectionViewShape,
+  sectionNode: ComponentNode,
+  originChildrenNode?: ComponentNode[],
+) => {
+  if (originChildrenNode && Array.isArray(originChildrenNode)) {
+    let cloneDeepChildrenNode = JSON.parse(JSON.stringify(originChildrenNode))
+    cloneDeepChildrenNode = cloneDeepChildrenNode.map(
+      (node: ComponentNode) => ({
+        ...node,
+        parentNode: sectionViewNodeConfig.displayName,
+      }),
+    )
+    sectionViewNodeConfig.childrenNode = cloneDeepChildrenNode
+  }
+  if (Array.isArray(sectionNode.childrenNode)) {
+    sectionNode.childrenNode.push(sectionViewNodeConfig)
+  } else {
+    sectionNode.childrenNode = [sectionViewNodeConfig]
+  }
+  sectionNode.props!.viewSortedKey.push(sectionViewNodeConfig.displayName)
+  sectionNode.props!.sectionViewConfigs.push(sectionViewConfig)
+}
+
 export const addSectionViewReducer: CaseReducer<
   ComponentsState,
   PayloadAction<AddSectionViewPayload>
@@ -624,33 +676,61 @@ export const addSectionViewReducer: CaseReducer<
 
   const parentNode = searchDsl(state, parentNodeName)
   if (!parentNode || !parentNode.props) return
+  let bodySectionSubPaths: string[] = []
+  if (sectionName !== "bodySection") {
+    const pageNode = searchDsl(state, parentNode.parentNode)
+    if (!pageNode) return
+    const bodySectionNode = pageNode.childrenNode.find(
+      (node) => node.showName === "bodySection",
+    )
+    if (!bodySectionNode) return
+    bodySectionSubPaths =
+      bodySectionNode.props?.sectionViewConfigs.map(
+        (config: Record<string, string>) => config.path,
+      ) ?? []
+  }
+
   const config = generateSectionContainerConfig(
     parentNodeName,
     `${sectionName}Container`,
   )
-  const hasKeys = parentNode.props.sectionViewConfigs.map(
-    (item: SectionViewShape) => {
-      return `${parentNodeName}-${item.key}`
-    },
+  const hasPaths = parentNode.props.sectionViewConfigs.map(
+    (item: SectionViewShape) => item.path,
   )
-  const newSectionViewConfig = generateNewViewItem(
-    hasKeys,
+  const diffSubPaths = difference(bodySectionSubPaths, hasPaths)
+
+  const newSectionViewConfig = generateNewViewItemFromBodySectionConfig(
+    hasPaths,
     config.displayName,
     parentNodeName,
+    diffSubPaths,
   )
-  if (originChildrenNode && Array.isArray(originChildrenNode)) {
-    let cloneDeepChildrenNode = JSON.parse(JSON.stringify(originChildrenNode))
-    cloneDeepChildrenNode = cloneDeepChildrenNode.map(
-      (node: ComponentNode) => ({
-        ...node,
-        parentNode: config.displayName,
-      }),
-    )
-    config.childrenNode = cloneDeepChildrenNode
-  }
-  parentNode.childrenNode.push(config)
-  parentNode.props.viewSortedKey.push(config.displayName)
-  parentNode.props.sectionViewConfigs.push(newSectionViewConfig)
+  addSectionViewHelper(
+    config,
+    newSectionViewConfig,
+    parentNode,
+    originChildrenNode,
+  )
+}
+
+export const addSectionViewConfigByConfigReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<AddSectionViewByConfigPayload>
+> = (state, action) => {
+  const {
+    parentNodeName,
+    originChildrenNode,
+    sectionViewNode,
+    sectionViewConfig,
+  } = action.payload
+  const parentNode = searchDsl(state, parentNodeName)
+  if (!parentNode || !parentNode.props) return
+  addSectionViewHelper(
+    sectionViewNode,
+    sectionViewConfig,
+    parentNode,
+    originChildrenNode,
+  )
 }
 
 export const updateSectionViewPropsReducer: CaseReducer<
@@ -812,4 +892,144 @@ export const deleteGlobalStateByKeyReducer: CaseReducer<
     Object.prototype.hasOwnProperty.call(originGlobalData, key)
   )
     delete originGlobalData[key]
+}
+
+export const getNeedChangeViewDisplayNames = (
+  rootNode: ComponentNode,
+  pageName: string,
+  subPagePath: string,
+) => {
+  const pageNode = searchDsl(rootNode, pageName)
+  if (!pageNode) return []
+  const sectionNodes = pageNode.childrenNode.filter(
+    (node) => node.type !== "MODAL_SECTION_NODE",
+  )
+  let needDeleteDisplayNames: string[] = []
+  sectionNodes.forEach((sectionNode) => {
+    const sectionViewConfigs = sectionNode.props?.sectionViewConfigs ?? []
+    const targetSectionViewConfig = sectionViewConfigs.filter(
+      (config: Record<string, string>) => config.path === subPagePath,
+    )
+    const currentNeedDeleteDisplayNames = targetSectionViewConfig.map(
+      (config: Record<string, string>) => config.viewDisplayName,
+    )
+    needDeleteDisplayNames.push(...currentNeedDeleteDisplayNames)
+  })
+  return needDeleteDisplayNames
+}
+
+export const deleteSubPageViewNodeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeleteSubPageViewNodePayload>
+> = (state, action) => {
+  const { pageName, subPagePath } = action.payload
+  if (!state) return
+  const needDeleteDisplayNames = getNeedChangeViewDisplayNames(
+    state,
+    pageName,
+    subPagePath,
+  )
+  needDeleteDisplayNames.forEach((displayName) => {
+    const targetComponentNode = searchDsl(state, displayName)
+    if (!targetComponentNode) return
+    const parentNode = searchDsl(state, targetComponentNode.parentNode)
+    if (!parentNode) return
+    parentNode.childrenNode = parentNode.childrenNode.filter(
+      (node) => node.displayName !== displayName,
+    )
+    parentNode.props!.viewSortedKey = parentNode.props?.viewSortedKey.filter(
+      (key: string) => key !== displayName,
+    )
+    parentNode.props!.sectionViewConfigs =
+      parentNode.props?.sectionViewConfigs.filter(
+        (config: Record<string, string>) =>
+          config.viewDisplayName !== displayName,
+      )
+  })
+}
+
+export const updateSubPagePathReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<{
+    pageName: string
+    subPagePath: string
+    oldSubPagePath: string
+  }>
+> = (state, action) => {
+  const { pageName, subPagePath, oldSubPagePath } = action.payload
+  const pageNode = searchDsl(state, pageName)
+  if (!pageNode) return
+  const sectionNodes = pageNode.childrenNode.filter(
+    (node) => node.type !== "MODAL_SECTION_NODE",
+  )
+  sectionNodes.forEach((sectionNode) => {
+    sectionNode.props?.sectionViewConfigs.forEach(
+      (config: Record<string, string>) => {
+        if (config.path === oldSubPagePath) {
+          config.path = subPagePath
+        }
+      },
+    )
+  })
+}
+
+export const updateDefaultSubPagePathReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<{
+    pageName: string
+    subPagePath: string
+  }>
+> = (state, action) => {
+  const { pageName, subPagePath } = action.payload
+  const pageNode = searchDsl(state, pageName)
+  if (!pageNode) return
+  const sectionNodes = pageNode.childrenNode.filter(
+    (node) => node.type !== "MODAL_SECTION_NODE",
+  )
+  sectionNodes.forEach((sectionNode) => {
+    sectionNode.props!.defaultViewKey = subPagePath
+  })
+}
+
+const addSubpageReducerHelper = (
+  pageNode: ComponentNode,
+  sectionName: string,
+) => {
+  const sectionNode = pageNode.childrenNode.find((node) => {
+    return node.showName === sectionName
+  })
+  if (!sectionNode) {
+    return
+  }
+  const config = generateSectionContainerConfig(
+    sectionNode.displayName,
+    `${sectionName}Container`,
+  )
+  const hasKeys = sectionNode.props!.sectionViewConfigs.map(
+    (item: SectionViewShape) => {
+      return `${sectionNode.displayName}-${item.path}`
+    },
+  )
+  const newSectionViewConfig = generateNewViewItem(
+    hasKeys,
+    config.displayName,
+    sectionNode.displayName,
+  )
+  if (Array.isArray(sectionNode.childrenNode)) {
+    sectionNode.childrenNode.push(config)
+  } else {
+    sectionNode.childrenNode = [config]
+  }
+  sectionNode.props!.viewSortedKey.push(config.displayName)
+  sectionNode.props!.sectionViewConfigs.push(newSectionViewConfig)
+}
+
+export const addSubPageReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<{ pageName: string }>
+> = (state, action) => {
+  if (!state) return
+  const pageNode = searchDsl(state, action.payload.pageName)
+  if (!pageNode) return
+  addSubpageReducerHelper(pageNode, "bodySection")
 }
