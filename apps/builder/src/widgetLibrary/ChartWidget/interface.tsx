@@ -18,6 +18,13 @@ export interface ChartWidgetProps {
   yAxisName: string
   chartType: ChartType
   datasets: ChartDataset[]
+  direction: "x" | "y"
+  isStack?: boolean
+  legendPosition?: "top" | "bottom" | "left" | "right" | "hidden"
+  gridLineColor?: string
+  backgroundColor?: string
+  xType?: "default" | "time"
+  dateFormat?: string
 }
 
 export enum CHART_DATASET_AGGREGATION_METHOD {
