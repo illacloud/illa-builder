@@ -251,14 +251,37 @@ export const getLocalStorageExecutionResult = createSelector(
   },
 )
 
+export const getPageInfosExecutionResult = createSelector(
+  getExecutionResult,
+  (result) => {
+    return get(result, "pageInfos", {})
+  },
+)
+
+export const getCurrentPageInfoExecutionResult = createSelector(
+  getExecutionResult,
+  (result) => {
+    return get(result, "currentPageInfo", {})
+  },
+)
+
 export const getGlobalInfoExecutionResult = createSelector(
   [
     getCurrentUserInfoExecutionResult,
     getBuilderInfoExecutionResult,
     getURLParamsExecutionResult,
     getLocalStorageExecutionResult,
+    getPageInfosExecutionResult,
+    getCurrentPageInfoExecutionResult,
   ],
-  (currentUserInfo, builderInfo, urlParams, localStorage) => {
+  (
+    currentUserInfo,
+    builderInfo,
+    urlParams,
+    localStorage,
+    pageInfos,
+    currentPageInfo,
+  ) => {
     const globalInfo: Record<string, any>[] = [
       {
         ...currentUserInfo,
@@ -275,6 +298,14 @@ export const getGlobalInfoExecutionResult = createSelector(
       {
         ...localStorage,
         displayName: "localStorage",
+      },
+      {
+        ...pageInfos,
+        displayName: "pageInfos",
+      },
+      {
+        ...currentPageInfo,
+        displayName: "currentPageInfo",
       },
     ]
     return globalInfo

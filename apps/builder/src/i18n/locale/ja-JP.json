@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "最も人気",
-      "recent": "最近更新",
+      "recent": "最新",
       "star": "スター付き"
     },
     "search": "検索",
     "no-result": "結果はありません。検索語を更新または変更してください。",
     "message": {
       "next-page-error": "次のページの読み込みに失敗しました。もう一度やり直してください。",
-      "create-failed": "エージェントの作成に失敗しました。もう一度やり直してください。",
+      "create-failed": "エージェントの保存に失敗しました。もう一度やり直してください。",
       "sort-failed": "フィルタの種類を変更できませんでした。もう一度やり直してください。",
       "detail-load-failed": "詳細の取得に失敗しました。もう一度やり直してください。",
       "fork-failed": "フォークに失敗しました。もう一度やり直してください。",
@@ -2053,7 +2053,7 @@
           "title": "表示するタイトルを設定します"
         },
         "page": {
-          "default_view": "ユーザがエラーパスを入力すると、自動的にデフォルトのパスにリダイレクトされます。 デフォルトのパスがない場合、リストの最初のパスをデフォルトのパスとして扱います。"
+          "default_view": "ユーザがエラーURLを入力すると、自動的にデフォルトのサブページにリダイレクトされます。 デフォルトのサブページがない場合、リスト内の最初のサブページをデフォルトのサブページとして扱います。"
         },
         "chart": {
           "direction": "グラフの方向を設定します。 ",
@@ -2266,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "サブページがありません"
       }
     },
     "page": {
       "label_name": {
         "add": "新築",
         "body": "本体",
-        "default_view": "デフォルトビュー",
-        "edit_view": "パスを編集",
+        "default_view": "デフォルトのサブページ",
+        "edit_view": "サブページを編集",
         "footer": "フッター",
         "header": "ヘッダ",
         "key": "キー値",
@@ -2282,12 +2285,14 @@
         "right_panel": "右パネル",
         "set_as_homepage": "ホームページとして設定",
         "show_fold_icon": "折りたたみボタンを表示",
-        "view_path": "パス",
-        "views": "見る",
+        "view_path": "名前",
+        "views": "サブページ",
         "width": "幅",
         "height": "高い",
         "columns": "コラム",
-        "set_as_default_subpage": "既定のサブページとして設定"
+        "set_as_default_subpage": "既定のサブページとして設定",
+        "delete-page": "ページを削除",
+        "delete-sub-page": "サブページを削除"
       },
       "model_tips": {
         "cancel_button": "キャンセル",
@@ -2302,8 +2307,11 @@
       "tab_title": "ページ",
       "tooltips": {
         "show_fold_icon": "パネルを折りたたんだり展開したりするためのボタンを表示します",
-        "view_path": "このページへのアクセスを設定するには、パスを調整してください。 例えば、パスを「**newPath**」に変更し、ホームページのサブページとして追加する場合。 このページには以下のURLからアクセスできます: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath** 。",
+        "view_path": "このページへのアクセスを設定するには、名前を調整する必要があります。 例えば、名前を「**newPage**」に変更し、ホームページのサブページとして追加する場合。 このページには以下のURLからアクセスできます: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage** 。",
         "auto_canvas_width": "ブラウザーの幅に対するページの幅のパーセンテージ。"
+      },
+      "message": {
+        "new_path": "一致するサブページが見つかりませんでした。新しいサブページが追加されました。 "
       }
     },
     "validate_message": {
@@ -2606,8 +2614,12 @@
         "text": "テキストを生成"
       },
       "message": {
-        "click-start": "開始ボタンをクリックしてトリガーします。"
+        "click-start": "開始ボタンをクリックしてトリガーします。",
+        "insufficient_token": "トークンが足りません"
       }
+    },
+    "common": {
+      "required": "必須"
     }
   },
   "exit_preview": "プレビューを終了",
@@ -3022,12 +3034,12 @@
       "name": "JSON スキーマフォーム"
     },
     "page": {
-      "path_duplicated": "パスが重複しています。エラーを避けるためにユニークなパスを使用してください。 ",
+      "path_duplicated": "ページ名が重複しています。エラーを避けるために一意の名前を使用してください。 ",
       "tips": {
         "blank_view": "このモジュールにはサブページがありません。右側のページパネルから先に追加してください。"
       },
       "label": {
-        "rename_url": "パスを編集"
+        "rename_url": "サブページを編集"
       }
     }
   },
@@ -3365,6 +3377,10 @@
       },
       "password": {
         "title": "パスワード"
+      },
+      "subscribe_illa_news": {
+        "label": "ILLAのメールマガジンを購読する",
+        "tips": "加入後、ILLAでは最新の機能やイベント、業界動向などをメールでお知らせします。"
       }
     }
   },

@@ -3,8 +3,10 @@ import { get } from "lodash"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { ReactComponent as BarChartIcon } from "@/assets/chart/bar-chart.svg"
+import { ReactComponent as DoughnutIcon } from "@/assets/chart/doughnut-chart.svg"
 import { ReactComponent as LineChartIcon } from "@/assets/chart/line-chart.svg"
 import { ReactComponent as PieChartIcon } from "@/assets/chart/pie-chart.svg"
+import { ReactComponent as RadarIcon } from "@/assets/chart/radar-chart.svg"
 import { ReactComponent as ScatterPlotIcon } from "@/assets/chart/scatter-plot.svg"
 import i18n from "@/i18n/config"
 import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
@@ -66,6 +68,28 @@ const typeOptions = [
       </div>
     ),
     value: "pie",
+  },
+  {
+    label: (
+      <div css={chatOptionContainerStyle}>
+        <DoughnutIcon css={chartTypeIconCss} />
+        <span css={chartTypeStringCss}>
+          {i18n.t("editor.inspect.setter_option.chart.chart-type.Doughnut")}
+        </span>
+      </div>
+    ),
+    value: "doughnut",
+  },
+  {
+    label: (
+      <div css={chatOptionContainerStyle}>
+        <RadarIcon css={chartTypeIconCss} />
+        <span css={chartTypeStringCss}>
+          {i18n.t("editor.inspect.setter_option.chart.chart-type.Radar")}
+        </span>
+      </div>
+    ),
+    value: "radar",
   },
 ]
 

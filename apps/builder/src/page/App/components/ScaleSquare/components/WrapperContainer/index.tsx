@@ -22,6 +22,7 @@ import {
   getExecutionError,
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
+  getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { getCurrentUserId } from "@/redux/currentUser/currentUserSelector"
 import { isContainerType } from "@/utils/componentChecker"
@@ -70,6 +71,7 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
   const dispatch = useDispatch()
   const displayNameMapDepth = useSelector(getComponentDisplayNameMapDepth)
   const selectedComponents = useSelector(getSelectedComponentDisplayNames)
+  const isResizing = useSelector(getIsResizing)
   const isEditMode = useSelector(getIsILLAEditMode)
   const errors = useSelector(getExecutionError)
 
@@ -95,6 +97,7 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
 
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
+      if (isResizing) return
       if (!isContainerType(widgetType)) {
         FocusManager.switchFocus("canvas", {
           displayName: displayName,
@@ -167,6 +170,7 @@ const WrapperContainer: FC<WrapperContainerProps> = (props) => {
       displayName,
       displayNameMapDepth,
       isEditMode,
+      isResizing,
       selectedComponents,
       widgetExecutionLayoutInfo,
       widgetType,

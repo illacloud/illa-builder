@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Mest populære",
-      "recent": "Nyligt opdateret",
+      "recent": "Seneste",
       "star": "Stjernemarkerede"
     },
     "search": "Søg",
     "no-result": "Intet resultat her. Opdater eller ændr venligst dine søgeord.",
     "message": {
       "next-page-error": "Næste side kunne ikke indlæses. Prøv igen.",
-      "create-failed": "Mislykkedes at oprette agent. Prøv venligst igen.",
+      "create-failed": "Agenten kunne ikke gemmes. Prøv venligst igen.",
       "sort-failed": "Kunne ikke ændre filtertypen. Prøv igen.",
       "detail-load-failed": "Kunne ikke hente detaljer. Prøv venligst igen.",
       "fork-failed": "Mislykkedes at gaffel, prøv igen.",
@@ -2053,7 +2053,7 @@
           "title": "Indstil titlen der skal vises"
         },
         "page": {
-          "default_view": "Når brugerne indtaster en fejl sti, vil vi automatisk omdirigere til standardstien. Når der ikke er nogen standardsti, vil vi behandle den første sti på listen som standardstien"
+          "default_view": "Når brugere indtaster en fejl URL, vil vi automatisk omdirigere til standard undersiden. Når der ikke er nogen standard underside, vil vi behandle den første underside på listen som standard underside"
         },
         "chart": {
           "direction": "Indstil diagrammets retning. ",
@@ -2266,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Ingen underside"
       }
     },
     "page": {
       "label_name": {
         "add": "Tilføj",
         "body": "Krop",
-        "default_view": "Standard visning",
-        "edit_view": "Rediger sti",
+        "default_view": "Standard underside",
+        "edit_view": "Rediger underside",
         "footer": "Sidefod",
         "header": "Overskrift",
         "key": "Nøgle",
@@ -2282,12 +2285,14 @@
         "right_panel": "Højre panel",
         "set_as_homepage": "Sæt som startside",
         "show_fold_icon": "Vis faldsikon",
-        "view_path": "Sti",
-        "views": "Visninger",
+        "view_path": "Navn",
+        "views": "Undersider",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolonner",
-        "set_as_default_subpage": "Sæt som standard underside"
+        "set_as_default_subpage": "Sæt som standard underside",
+        "delete-page": "Slet side",
+        "delete-sub-page": "Slet underside"
       },
       "model_tips": {
         "cancel_button": "Annuller",
@@ -2302,8 +2307,11 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knap til at skjule eller udvide panelet",
-        "view_path": "For at konfigurere adgang til denne side, skal du justere stien. For eksempel, hvis du ændrer stien til '**newPath**', og tilføje det som en underside af hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPath**.",
+        "view_path": "For at konfigurere adgang til denne side, skal du justere navnet. For eksempel, hvis du ændrer navnet til '**newPage**', og tilføje det som en underside på hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Bredden af siden som en procentdel af browserens bredde."
+      },
+      "message": {
+        "new_path": "Ingen matchende underside fundet. Ny underside er tilføjet. "
       }
     },
     "validate_message": {
@@ -2606,8 +2614,12 @@
         "text": "Generer tekst"
       },
       "message": {
-        "click-start": "Klik på knappen Start for at udløse."
+        "click-start": "Klik på knappen Start for at udløse.",
+        "insufficient_token": "Utilstrækkelig token"
       }
+    },
+    "common": {
+      "required": "Påkrævet"
     }
   },
   "exit_preview": "Afslut Forhåndsvisning",
@@ -3022,12 +3034,12 @@
       "name": "JSON Skema Form"
     },
     "page": {
-      "path_duplicated": "Stien er duplikeret. Brug venligst en unik sti for at undgå fejl. ",
+      "path_duplicated": "The page name is duplicated. Please use a unique name to avoid errors. (Automatic Copy) ",
       "tips": {
         "blank_view": "Dette modul har ingen undersider. Tilføj dem først gennem sidepanelet til højre."
       },
       "label": {
-        "rename_url": "Rediger sti"
+        "rename_url": "Rediger underside"
       }
     }
   },
@@ -3365,6 +3377,10 @@
       },
       "password": {
         "title": "Adgangskode"
+      },
+      "subscribe_illa_news": {
+        "label": "Abonnér ILLA's nyhedsbrev",
+        "tips": "Efter tilmeldingen vil ILLA informere dig om de nyeste funktioner, begivenheder, tendenser i branchen og andre nyheder relateret til ILLA Cloud via e-mail."
       }
     }
   },

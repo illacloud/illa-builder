@@ -9,6 +9,7 @@ import { ViewList } from "@/page/App/components/PagePanel/Components/ViewsList"
 import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
 import { LeftAndRightLayout } from "@/page/App/components/PagePanel/Layout/leftAndRight"
 import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadding"
+import { VerticalLayout } from "@/page/App/components/PagePanel/Layout/verticalLayout"
 import {
   getCanvas,
   searchDsl,
@@ -21,6 +22,7 @@ import {
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { placePaddingStyle } from "./style"
 
 export const PageBasic: FC = () => {
   const { t } = useTranslation()
@@ -126,7 +128,7 @@ export const PageBasic: FC = () => {
       <LeftAndRightLayout>
         <PageLabel
           labelName={t("editor.page.label_name.set_as_homepage")}
-          size="small"
+          size="big"
         />
         <SetterPadding>
           <Switch
@@ -138,19 +140,22 @@ export const PageBasic: FC = () => {
         </SetterPadding>
       </LeftAndRightLayout>
       <LeftAndRightLayout>
-        <PageLabel labelName={t("editor.page.label_name.body")} size="big" />
-      </LeftAndRightLayout>
-      <LeftAndRightLayout>
         <SetterPadding>
+          <div css={placePaddingStyle}>
+            <PageLabel
+              labelName={t("editor.page.label_name.body")}
+              size="big"
+            />
+          </div>
           <ViewList sectionName="bodySection" />
         </SetterPadding>
       </LeftAndRightLayout>
-      <LeftAndRightLayout>
-        <PageLabel
-          labelName={t("editor.page.label_name.default_view")}
-          size="small"
-        />
-        <SetterPadding>
+      <SetterPadding>
+        <VerticalLayout>
+          <PageLabel
+            labelName={t("editor.page.label_name.default_view")}
+            size="small"
+          />
           <Input
             value={targetDefaultViewValue("bodySection")}
             onChange={(value) => {
@@ -158,28 +163,29 @@ export const PageBasic: FC = () => {
             }}
             colorScheme="techPurple"
           />
-        </SetterPadding>
-      </LeftAndRightLayout>
+        </VerticalLayout>
+      </SetterPadding>
+
       {hasLeft && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.left_panel")}
-              size="big"
-            />
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
             <SetterPadding>
+              <div css={placePaddingStyle}>
+                <PageLabel
+                  labelName={t("editor.page.label_name.left_panel")}
+                  size="big"
+                />
+              </div>
               <ViewList sectionName="leftSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.default_view")}
-              size="small"
-            />
-            <SetterPadding>
+          <SetterPadding>
+            <VerticalLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.default_view")}
+                size="small"
+              />
               <Input
                 value={targetDefaultViewValue("leftSection")}
                 onChange={(value) => {
@@ -187,30 +193,30 @@ export const PageBasic: FC = () => {
                 }}
                 colorScheme="techPurple"
               />
-            </SetterPadding>
-          </LeftAndRightLayout>
+            </VerticalLayout>
+          </SetterPadding>
         </>
       )}
       {hasRight && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.right_panel")}
-              size="big"
-            />
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
             <SetterPadding>
+              <div css={placePaddingStyle}>
+                <PageLabel
+                  labelName={t("editor.page.label_name.right_panel")}
+                  size="big"
+                />
+              </div>
               <ViewList sectionName="rightSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.default_view")}
-              size="small"
-            />
-            <SetterPadding>
+          <SetterPadding>
+            <VerticalLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.default_view")}
+                size="small"
+              />
               <Input
                 value={targetDefaultViewValue("rightSection")}
                 onChange={(value) => {
@@ -218,30 +224,30 @@ export const PageBasic: FC = () => {
                 }}
                 colorScheme="techPurple"
               />
-            </SetterPadding>
-          </LeftAndRightLayout>
+            </VerticalLayout>
+          </SetterPadding>
         </>
       )}
       {hasHeader && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.header")}
-              size="big"
-            />
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
             <SetterPadding>
+              <div css={placePaddingStyle}>
+                <PageLabel
+                  labelName={t("editor.page.label_name.header")}
+                  size="big"
+                />
+              </div>
               <ViewList sectionName="headerSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.default_view")}
-              size="small"
-            />
-            <SetterPadding>
+          <SetterPadding>
+            <VerticalLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.default_view")}
+                size="small"
+              />
               <Input
                 value={targetDefaultViewValue("headerSection")}
                 onChange={(value) => {
@@ -249,30 +255,30 @@ export const PageBasic: FC = () => {
                 }}
                 colorScheme="techPurple"
               />
-            </SetterPadding>
-          </LeftAndRightLayout>
+            </VerticalLayout>
+          </SetterPadding>
         </>
       )}
       {hasFooter && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.footer")}
-              size="big"
-            />
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
             <SetterPadding>
+              <div css={placePaddingStyle}>
+                <PageLabel
+                  labelName={t("editor.page.label_name.footer")}
+                  size="big"
+                />
+              </div>
               <ViewList sectionName="footerSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.default_view")}
-              size="small"
-            />
-            <SetterPadding>
+          <SetterPadding>
+            <VerticalLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.default_view")}
+                size="small"
+              />
               <Input
                 value={targetDefaultViewValue("footerSection")}
                 onChange={(value) => {
@@ -280,8 +286,8 @@ export const PageBasic: FC = () => {
                 }}
                 colorScheme="techPurple"
               />
-            </SetterPadding>
-          </LeftAndRightLayout>
+            </VerticalLayout>
+          </SetterPadding>
         </>
       )}
     </PanelBar>

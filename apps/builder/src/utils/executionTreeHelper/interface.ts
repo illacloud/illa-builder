@@ -24,11 +24,12 @@ export interface RawTreeShape {
 type ActionSeedShape = ActionItem<ActionContent>[]
 
 export interface WidgetShape {
-  [key: string]: string
+  [key: string]: any
   $type: "WIDGET"
   $widgetType: string
+  $childrenNode: string[]
 }
-interface WidgetSeedShape {
+export interface WidgetSeedShape {
   [key: string]: WidgetShape
 }
 

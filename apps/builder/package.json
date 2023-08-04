@@ -81,7 +81,6 @@
     "overlap-area": "^1.1.0",
     "papaparse": "^5.4.1",
     "pdfjs-dist": "2.16.105",
-    "protoc": "1.0.4",
     "qs": "^6.11.0",
     "rc-virtual-list": "^3.4.2",
     "re-resizable": "^6.9.9",
@@ -150,6 +149,7 @@
     "@vitejs/plugin-basic-ssl": "^1.0.1",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "cross-env": "^7.0.3",
+    "protoc": "1.0.4",
     "rollup-plugin-visualizer": "^5.9.0",
     "vite-plugin-checker": "^0.6.1",
     "vite-plugin-svgr": "^2.1.0"

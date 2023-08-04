@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import { NextIcon } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import RenderComponentCanvasContainer from "@/page/App/components/DotPanel/components/Canvas/renderComponentCanvasContainer"
+import { EmptyState } from "@/page/App/components/DotPanel/components/Page/emptyState"
 import { BASIC_CANVAS_PADDING } from "@/page/App/components/DotPanel/constant/canvas"
 import {
   BODY_MIN_WIDTH,
@@ -73,7 +74,7 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
     currentViewIndex,
   )
 
-  const componentNode = sectionNode.childrenNode.find(
+  const componentNode = sectionNode.childrenNode?.find(
     (node) => node.displayName === currentViewDisplayName,
   )
 
@@ -234,13 +235,15 @@ export const RenderRightSection: FC<RenderRightSectionProps> = (props) => {
         <div
           css={[containerWrapperStyle, applyNoBottomPaddingStyle(showFoldIcon)]}
         >
-          {componentNode && animationComplete && (
+          {componentNode && animationComplete ? (
             <RenderComponentCanvasContainer
               displayName={componentNode.displayName}
               containerPadding={BASIC_CANVAS_PADDING}
               columnNumber={columnNumber}
               isRootCanvas
             />
+          ) : (
+            <EmptyState />
           )}
           {showFoldIcon && (
             <div css={applySideBarWrapperStyle("right")}>

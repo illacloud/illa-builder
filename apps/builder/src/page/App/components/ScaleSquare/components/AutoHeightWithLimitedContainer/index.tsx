@@ -15,6 +15,7 @@ import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
 } from "@/redux/currentApp/executionTree/executionSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 
 export const DEFAULT_MAX_HEIGHT = 80
 export const DEFAULT_MIN_GAP = 8
@@ -73,12 +74,14 @@ export const AutoHeightWithLimitedContainer: FC<
   const resizeStartCallback: ResizeStartCallback = useCallback(() => {
     setResizeMinHeight(true)
     dispatch(configActions.updateShowDot(true))
-  }, [dispatch])
+    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+  }, [dispatch, displayName])
 
   const resizeMaxHeightStartCallback: ResizeStartCallback = useCallback(() => {
     setResizeMaxHeight(true)
     dispatch(configActions.updateShowDot(true))
-  }, [dispatch])
+    dispatch(executionActions.setResizingNodeIDsReducer([displayName]))
+  }, [dispatch, displayName])
 
   const resizeMaxHeightCallback: ResizeCallback = useCallback(
     (event, direction, elementRef, delta) => {
@@ -99,6 +102,9 @@ export const AutoHeightWithLimitedContainer: FC<
         }),
       )
       dispatch(configActions.updateShowDot(false))
+      window.setTimeout(() => {
+        dispatch(executionActions.setResizingNodeIDsReducer([]))
+      }, 16)
     },
     [containerHeight, dispatch, displayName, dynamicMaxHeight],
   )
@@ -126,6 +132,9 @@ export const AutoHeightWithLimitedContainer: FC<
         }
       }, 30)
       dispatch(configActions.updateShowDot(false))
+      window.setTimeout(() => {
+        dispatch(executionActions.setResizingNodeIDsReducer([]))
+      }, 16)
     },
     [
       containerHeight,

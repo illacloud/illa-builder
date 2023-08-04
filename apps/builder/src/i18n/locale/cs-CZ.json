@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Nejoblíbenější",
-      "recent": "Nedávno aktualizované",
+      "recent": "Nejnovější",
       "star": "Oblíbené"
     },
     "search": "Hledat",
     "no-result": "Žádný výsledek. Aktualizujte nebo změňte hledané výrazy.",
     "message": {
       "next-page-error": "Nepodařilo se načíst další stránku. Zkuste to prosím znovu.",
-      "create-failed": "Nepodařilo se vytvořit agenta. Zkuste to prosím znovu.",
+      "create-failed": "Nepodařilo se uložit agenta. Zkuste to prosím znovu.",
       "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
       "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
       "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
@@ -2053,7 +2053,7 @@
           "title": "Nastavit název pro zobrazení"
         },
         "page": {
-          "default_view": "Když uživatelé zadají chybovou cestu, automaticky přesměrujeme na výchozí cestu. Pokud neexistuje výchozí cesta, budeme považovat první cestu v seznamu za výchozí cestu"
+          "default_view": "Když uživatelé zadají chybu URL, automaticky přesměrujeme na výchozí dílčí stránku. Pokud neexistuje žádná výchozí podstránka, budeme považovat první podstránku v seznamu za výchozí podstránku"
         },
         "chart": {
           "direction": "Nastavte směr grafu. ",
@@ -2266,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Žádná podstránka"
       }
     },
     "page": {
       "label_name": {
         "add": "Přidat",
         "body": "Tělo",
-        "default_view": "Výchozí zobrazení",
-        "edit_view": "Upravit cestu",
+        "default_view": "Výchozí podstránka",
+        "edit_view": "Upravit podstránku",
         "footer": "Zápatí",
         "header": "Záhlaví",
         "key": "Klíč",
@@ -2282,12 +2285,14 @@
         "right_panel": "Pravý panel",
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
-        "view_path": "Cesta",
-        "views": "Zobrazení",
+        "view_path": "Název",
+        "views": "Podstránky",
         "width": "Width",
         "height": "Výška",
         "columns": "Sloupce",
-        "set_as_default_subpage": "Nastavit jako výchozí podstránku"
+        "set_as_default_subpage": "Nastavit jako výchozí podstránku",
+        "delete-page": "Odstranit stránku",
+        "delete-sub-page": "Odstranit podstránku"
       },
       "model_tips": {
         "cancel_button": "Zrušit",
@@ -2302,8 +2307,11 @@
       "tab_title": "Stránka",
       "tooltips": {
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
-        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit cestu. Například, pokud změníš cestu na '**newPath**', a přidej ji jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit název. Například, pokud změníš název na '**newPage**', a přidej ho jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
+      },
+      "message": {
+        "new_path": "Nebyla nalezena žádná odpovídající substránka. Byla přidána nová substránka. "
       }
     },
     "validate_message": {
@@ -2606,8 +2614,12 @@
         "text": "Generovat text"
       },
       "message": {
-        "click-start": "Klikněte na tlačítko Start pro spuštění."
+        "click-start": "Klikněte na tlačítko Start pro spuštění.",
+        "insufficient_token": "Nedostatečný token"
       }
+    },
+    "common": {
+      "required": "Požadováno"
     }
   },
   "exit_preview": "Ukončit náhled",
@@ -3022,12 +3034,12 @@
       "name": "Formulář schématu JSON"
     },
     "page": {
-      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. ",
+      "path_duplicated": "Název stránky je duplicitní. Použijte prosím unikátní název, abyste se vyhnuli chybám. ",
       "tips": {
         "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
       },
       "label": {
-        "rename_url": "Upravit cestu"
+        "rename_url": "Upravit podstránku"
       }
     }
   },
@@ -3365,6 +3377,10 @@
       },
       "password": {
         "title": "Heslo"
+      },
+      "subscribe_illa_news": {
+        "label": "Přihlásit se k odběru emailového zpravodaje ILLY",
+        "tips": "Po předplatném vás ILLA bude informovat o nejnovějších funkcích, událostech, průmyslových trendech a dalších novinkách týkajících se ILLA Cloud prostřednictvím e-mailu."
       }
     }
   },

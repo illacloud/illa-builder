@@ -28,3 +28,14 @@ export const pageContainerWrapperStyle = css`
   width: 100%;
   height: 100%;
 `
+
+export const emptyContainerStyle = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${getColor("grayBlue", "04")};
+  font-size: 14px;
+  padding: 0 16px;
+`

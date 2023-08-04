@@ -10,6 +10,7 @@ import {
   UpdateComponentNodeLayoutInfoPayload,
   UpdateComponentSlicePropsPayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
+import { getNeedChangeViewDisplayNames } from "@/redux/currentApp/editor/components/componentsReducer"
 import {
   getCanvas,
   searchDsl,
@@ -22,6 +23,7 @@ import {
   DeleteComponentNodePayload,
   DeletePageNodePayload,
   DeleteSectionViewPayload,
+  DeleteSubPageViewNodePayload,
   DeleteTargetPageSectionPayload,
   SortComponentNodeChildrenPayload,
   UpdateComponentDisplayNamePayload,
@@ -494,6 +496,7 @@ export const componentsAsync = (
       )
       break
     }
+    case "addSectionViewConfigByConfigReducer":
     case "addSectionViewReducer": {
       const { parentNodeName } = payload as AddSectionViewPayload
       const rootNode = getCanvas(nextRootState)
@@ -699,6 +702,116 @@ export const componentsAsync = (
         ),
       )
       break
+    }
+    case "deleteSubPageViewNodeReducer": {
+      const rootNode = getCanvas(prevRootState)
+      const nextRootNode = getCanvas(nextRootState)
+      if (!rootNode) break
+      const { pageName, subPagePath } = payload as DeleteSubPageViewNodePayload
+      const deleteDisplayNames = getNeedChangeViewDisplayNames(
+        rootNode,
+        pageName,
+        subPagePath,
+      )
+      const needUpdateParentNode = deleteDisplayNames
+        .map((displayName) => {
+          const currentNode = searchDsl(rootNode, displayName)
+          if (!currentNode) return null
+          return searchDsl(nextRootNode, currentNode.parentNode)
+        })
+        .filter((node) => node !== null) as ComponentNode[]
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(needUpdateParentNode)
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.DELETE_STATE,
+          Target.COMPONENTS,
+          true,
+          action,
+          teamID,
+          uid,
+          deleteDisplayNames,
+        ),
+      )
+
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.UPDATE_STATE,
+          Target.COMPONENTS,
+          true,
+          null,
+          teamID,
+          uid,
+          updateWSPayload,
+        ),
+      )
+      break
+    }
+    case "updateSubPagePathReducer":
+    case "updateDefaultSubPagePathReducer": {
+      const nextRootNode = getCanvas(nextRootState)
+      if (!nextRootNode) break
+      const { pageName } = payload as DeleteSubPageViewNodePayload
+      const pageNode = searchDsl(nextRootNode, pageName)
+      if (!pageNode) return
+      const needUpdateNodes = pageNode.childrenNode?.filter((node) => {
+        return node.type !== "MODAL_SECTION_NODE"
+      })
+      if (!Array.isArray(needUpdateNodes)) return
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(needUpdateNodes)
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.UPDATE_STATE,
+          Target.COMPONENTS,
+          true,
+          action,
+          teamID,
+          uid,
+          updateWSPayload,
+        ),
+      )
+      break
+    }
+    case "addSubPageReducer": {
+      const { pageName } = payload as { pageName: string }
+      const nextRootNode = getCanvas(nextRootState)
+      if (!nextRootNode) break
+      const pageNode = searchDsl(nextRootNode, pageName)
+      if (!pageNode) break
+      const bodySection = pageNode.childrenNode.find(
+        (node) => node.showName === "bodySection",
+      )
+      if (!bodySection) break
+      const sectionChildrenNode = bodySection.childrenNode
+      if (!Array.isArray(sectionChildrenNode)) break
+      const addedSectionViewNode =
+        sectionChildrenNode[sectionChildrenNode.length - 1]
+
+      const updateWSPayload =
+        transformComponentReduxPayloadToWsPayload(bodySection)
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.UPDATE_STATE,
+          Target.COMPONENTS,
+          true,
+          null,
+          teamID,
+          uid,
+          updateWSPayload,
+        ),
+      )
+      Connection.getTextRoom("app", currentAppID)?.send(
+        getTextMessagePayload(
+          Signal.CREATE_STATE,
+          Target.COMPONENTS,
+          true,
+          action,
+          teamID,
+          uid,
+          [addedSectionViewNode],
+        ),
+      )
     }
   }
 }
