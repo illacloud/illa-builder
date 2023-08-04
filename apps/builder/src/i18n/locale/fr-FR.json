@@ -2053,7 +2053,7 @@
           "title": "Définir le titre à afficher"
         },
         "page": {
-          "default_view": "Lorsque les utilisateurs saisissent un chemin d'erreur, nous redirigerons automatiquement vers le chemin par défaut. S'il n'y a pas de chemin par défaut, nous traiterons le premier chemin de la liste comme chemin par défaut"
+          "default_view": "Lorsque les utilisateurs saisissent une URL d'erreur, nous redirigerons automatiquement vers la sous-page par défaut. S'il n'y a pas de sous-page par défaut, nous traiterons la première sous-page de la liste comme sous-page par défaut"
         },
         "chart": {
           "direction": "Définissez la direction du graphique. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Panneau droit",
         "set_as_homepage": "Définir comme page d'accueil",
         "show_fold_icon": "Afficher l'icône du pli",
-        "view_path": "Chemin d'accès",
+        "view_path": "Nom",
         "views": "Sous-pages",
         "width": "Width",
         "height": "Hauteur",
@@ -2307,11 +2307,11 @@
       "tab_title": "Page",
       "tooltips": {
         "show_fold_icon": "Afficher un bouton pour réduire ou agrandir le panneau",
-        "view_path": "Pour configurer l'accès à cette page, vous devrez ajuster le chemin. Par exemple, si vous changez le chemin d'accès en '**newPath**', et que vous l'ajoutez en tant que sous-page de la page d'accueil. Cette page est alors accessible via l'URL suivante : cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Pour configurer l'accès à cette page, vous devrez ajuster le nom. Par exemple, si vous changez le nom en '**newPage**', et que vous l'ajoutez en tant que sous-page de la page d'accueil. Cette page est alors accessible via l'URL suivante : cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "La largeur de la page en pourcentage de la largeur du navigateur."
       },
       "message": {
-        "new_path": "Aucun chemin trouvé correspondant. Un nouveau chemin a été ajouté. "
+        "new_path": "Aucune sous-page correspondante trouvée. Une nouvelle sous-page a été ajoutée. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,13 @@
       "name": "Forme de Schéma JSON"
     },
     "page": {
-      "path_duplicated": "Le chemin est dupliqué. Veuillez utiliser un chemin unique pour éviter les erreurs. ",
+      "path_duplicated": "Le nom de la page est dupliqué. Veuillez utiliser un nom unique pour éviter les erreurs. ",
       "tips": {
         "blank_view": "Ce module n'a pas de pages enfants. Veuillez d'abord les ajouter via le panneau de page à droite."
       },
       "label": {
-        "rename_url": "Modifier le chemin d'accès"
+        "rename_url": "Modifier la sous-page",
+        "rename_page_url": "Modifier la page"
       }
     }
   },

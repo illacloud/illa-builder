@@ -22,6 +22,7 @@ import {
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { RootState } from "@/store"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { placePaddingStyle } from "./style"
 
 export const PageBasic: FC = () => {
   const { t } = useTranslation()
@@ -139,19 +140,22 @@ export const PageBasic: FC = () => {
         </SetterPadding>
       </LeftAndRightLayout>
       <LeftAndRightLayout>
-        <PageLabel labelName={t("editor.page.label_name.body")} size="big" />
-      </LeftAndRightLayout>
-      <LeftAndRightLayout>
         <SetterPadding>
+          <div css={placePaddingStyle}>
+            <PageLabel
+              labelName={t("editor.page.label_name.body")}
+              size="big"
+            />
+          </div>
           <ViewList sectionName="bodySection" />
         </SetterPadding>
       </LeftAndRightLayout>
-      <VerticalLayout>
-        <PageLabel
-          labelName={t("editor.page.label_name.default_view")}
-          size="small"
-        />
-        <SetterPadding>
+      <SetterPadding>
+        <VerticalLayout>
+          <PageLabel
+            labelName={t("editor.page.label_name.default_view")}
+            size="small"
+          />
           <Input
             value={targetDefaultViewValue("bodySection")}
             onChange={(value) => {
@@ -159,28 +163,29 @@ export const PageBasic: FC = () => {
             }}
             colorScheme="techPurple"
           />
-        </SetterPadding>
-      </VerticalLayout>
+        </VerticalLayout>
+      </SetterPadding>
+
       {hasLeft && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.left_panel")}
-              size="big"
-            />
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
             <SetterPadding>
+              <div css={placePaddingStyle}>
+                <PageLabel
+                  labelName={t("editor.page.label_name.left_panel")}
+                  size="big"
+                />
+              </div>
               <ViewList sectionName="leftSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <VerticalLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.default_view")}
-              size="small"
-            />
-            <SetterPadding>
+          <SetterPadding>
+            <VerticalLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.default_view")}
+                size="small"
+              />
               <Input
                 value={targetDefaultViewValue("leftSection")}
                 onChange={(value) => {
@@ -188,30 +193,30 @@ export const PageBasic: FC = () => {
                 }}
                 colorScheme="techPurple"
               />
-            </SetterPadding>
-          </VerticalLayout>
+            </VerticalLayout>
+          </SetterPadding>
         </>
       )}
       {hasRight && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.right_panel")}
-              size="big"
-            />
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
             <SetterPadding>
+              <div css={placePaddingStyle}>
+                <PageLabel
+                  labelName={t("editor.page.label_name.right_panel")}
+                  size="big"
+                />
+              </div>
               <ViewList sectionName="rightSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <VerticalLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.default_view")}
-              size="small"
-            />
-            <SetterPadding>
+          <SetterPadding>
+            <VerticalLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.default_view")}
+                size="small"
+              />
               <Input
                 value={targetDefaultViewValue("rightSection")}
                 onChange={(value) => {
@@ -219,30 +224,30 @@ export const PageBasic: FC = () => {
                 }}
                 colorScheme="techPurple"
               />
-            </SetterPadding>
-          </VerticalLayout>
+            </VerticalLayout>
+          </SetterPadding>
         </>
       )}
       {hasHeader && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.header")}
-              size="big"
-            />
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
             <SetterPadding>
+              <div css={placePaddingStyle}>
+                <PageLabel
+                  labelName={t("editor.page.label_name.header")}
+                  size="big"
+                />
+              </div>
               <ViewList sectionName="headerSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <VerticalLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.default_view")}
-              size="small"
-            />
-            <SetterPadding>
+          <SetterPadding>
+            <VerticalLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.default_view")}
+                size="small"
+              />
               <Input
                 value={targetDefaultViewValue("headerSection")}
                 onChange={(value) => {
@@ -250,30 +255,30 @@ export const PageBasic: FC = () => {
                 }}
                 colorScheme="techPurple"
               />
-            </SetterPadding>
-          </VerticalLayout>
+            </VerticalLayout>
+          </SetterPadding>
         </>
       )}
       {hasFooter && (
         <>
           <PanelDivider />
           <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.footer")}
-              size="big"
-            />
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
             <SetterPadding>
+              <div css={placePaddingStyle}>
+                <PageLabel
+                  labelName={t("editor.page.label_name.footer")}
+                  size="big"
+                />
+              </div>
               <ViewList sectionName="footerSection" />
             </SetterPadding>
           </LeftAndRightLayout>
-          <VerticalLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.default_view")}
-              size="small"
-            />
-            <SetterPadding>
+          <SetterPadding>
+            <VerticalLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.default_view")}
+                size="small"
+              />
               <Input
                 value={targetDefaultViewValue("footerSection")}
                 onChange={(value) => {
@@ -281,8 +286,8 @@ export const PageBasic: FC = () => {
                 }}
                 colorScheme="techPurple"
               />
-            </SetterPadding>
-          </VerticalLayout>
+            </VerticalLayout>
+          </SetterPadding>
         </>
       )}
     </PanelBar>

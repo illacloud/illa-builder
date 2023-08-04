@@ -52,7 +52,7 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
       },
     )
     const diffSubPaths = difference(bodySectionSubPaths, hasPaths)
-    if (diffSubPaths.length === 0) {
+    if (diffSubPaths.length === 0 && sectionName !== "bodySection") {
       message.info({
         content: t("editor.page.message.new_path"),
       })

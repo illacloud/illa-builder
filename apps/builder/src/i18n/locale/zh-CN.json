@@ -2053,7 +2053,7 @@
           "title": "设置数值的标题"
         },
         "page": {
-          "default_view": "当用户输错路径时，我们会自动重定向到默认路径。当没有默认路径，我们会将列表里第一个路径视作默认路径。"
+          "default_view": "当用户输错URL时，我们会自动重定向到默认子页面。当没有默认子页面，我们会将列表里第一个子页面作默认子页面。"
         },
         "chart": {
           "direction": "设置图表方向 ",
@@ -2285,7 +2285,7 @@
         "right_panel": "右侧面板",
         "set_as_homepage": "设置为主页",
         "show_fold_icon": "显示折叠按钮",
-        "view_path": "路径",
+        "view_path": "名称",
         "views": "子页面",
         "width": "宽度",
         "height": "高度",
@@ -2307,11 +2307,11 @@
       "tab_title": "页面",
       "tooltips": {
         "show_fold_icon": "显示一个按钮，用于收起或展开面板",
-        "view_path": "要配置访问该页面的链接，您需要调整路径。 例如，如果您将路径更改为“**newPath**”，并将其添加为主页的子页面。 然后可以通过以下 URL 访问此页面：cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**。",
+        "view_path": "要配置访问该页面的链接，您需要调整名称。 例如，如果您将路径更改为“**newPage**”，并将其添加为主页的子页面。 然后可以通过以下 URL 访问此页面：cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**。",
         "auto_canvas_width": "页面宽度占浏览器宽度的百分比。"
       },
       "message": {
-        "new_path": "为匹配到路径。已为您添加新路径。"
+        "new_path": "未匹配到子页面。已为您添加新的子页面。"
       }
     },
     "validate_message": {
@@ -3034,12 +3034,13 @@
       "name": "动态表单"
     },
     "page": {
-      "path_duplicated": "路径重复，请使用唯一路径以避免错误",
+      "path_duplicated": "页面名称重复，请使用唯一的名称以避免错误",
       "tips": {
         "blank_view": "该模块无子页面，请先通过右侧Page面板添加"
       },
       "label": {
-        "rename_url": "编辑路径"
+        "rename_url": "编辑子页面",
+        "rename_page_url": "编辑页面"
       }
     }
   },

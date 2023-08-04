@@ -2053,7 +2053,7 @@
           "title": "Stel de titel in voor weergave"
         },
         "page": {
-          "default_view": "Wanneer gebruikers een foutpad invoeren, wordt automatisch doorverwezen naar het standaard pad. Wanneer er geen standaard pad is, zullen we het eerste pad in de lijst behandelen als het standaardpad"
+          "default_view": "Wanneer gebruikers een fout-URL invoeren, wordt automatisch doorverwezen naar de standaard subpagina. Wanneer er geen standaard subpagina is, zullen we de eerste subpagina in de lijst behandelen als de standaard subpagina"
         },
         "chart": {
           "direction": "Stel de richting van de grafiek in. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Rechter paneel",
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
-        "view_path": "Pad",
+        "view_path": "naam",
         "views": "Subpagina's",
         "width": "Width",
         "height": "Højde",
@@ -2307,11 +2307,11 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
-        "view_path": "Om toegang tot deze pagina te configureren, moet u het pad aanpassen. Bijvoorbeeld, als je het pad veranderd naar '**newPath**', en voeg het toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Om toegang tot deze pagina te configureren, moet u de naam aanpassen. Bijvoorbeeld, als je de naam wijzigt naar '**newPage**', en voeg deze toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
       },
       "message": {
-        "new_path": "Geen overeenstemmend pad gevonden. Nieuw pad is toegevoegd. "
+        "new_path": "Geen overeenkomende sub-pagina gevonden. Nieuwe subpagina is toegevoegd. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,13 @@
       "name": "JSON Schema formulier"
     },
     "page": {
-      "path_duplicated": "Het pad wordt gedupliceerd. Gebruik een uniek pad om fouten te voorkomen. ",
+      "path_duplicated": "De paginanaam is gedupliceerd. Gebruik een unieke naam om fouten te voorkomen. ",
       "tips": {
         "blank_view": "Deze module heeft geen onderliggende pagina's. Voeg ze eerst toe via het pagina paneel aan de rechterkant."
       },
       "label": {
-        "rename_url": "Pad bewerken"
+        "rename_url": "Subpagina bewerken",
+        "rename_page_url": "Pagina bewerken"
       }
     }
   },

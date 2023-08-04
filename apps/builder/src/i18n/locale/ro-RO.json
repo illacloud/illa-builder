@@ -2053,7 +2053,7 @@
           "title": "Setați titlul de afișat"
         },
         "page": {
-          "default_view": "Când utilizatorii introduc o traiectorie de eroare, vom redirecționa automat către calea implicită. Când nu există o cale implicită, vom trata prima cale din listă ca pe o cale implicită"
+          "default_view": "Când utilizatorii introduc un URL de eroare, vom redirecționa automat către sub-pagina implicită. Când nu există nici o sub-pagină implicită, vom trata prima sub-pagină din listă ca pe sub-pagină implicită"
         },
         "chart": {
           "direction": "Setați direcția graficului. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Panoul din dreapta",
         "set_as_homepage": "Setează ca website",
         "show_fold_icon": "Afișare pictogramă pli",
-        "view_path": "Cale",
+        "view_path": "Nume",
         "views": "Subpagini",
         "width": "Width",
         "height": "Înălțime",
@@ -2307,11 +2307,11 @@
       "tab_title": "Pagină",
       "tooltips": {
         "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
-        "view_path": "Pentru a configura accesul la această pagină, va trebui să ajustați calea. De exemplu, dacă schimbați calea către '**newPath**', și adăugați-o ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Pentru a configura accesul la această pagină, va trebui să modificaţi numele. De exemplu, dacă schimbați numele în '**nou**', și adăugați-l ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
       },
       "message": {
-        "new_path": "Nici o cale de potrivire găsită. A fost adăugată o nouă cale. "
+        "new_path": "Nu s-a găsit nici o sub-pagină potrivită. A fost adăugată o nouă subpagină. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,13 @@
       "name": "Formular JSON Schema"
     },
     "page": {
-      "path_duplicated": "Calea este duplicată. Vă rugăm să folosiți o cale unică pentru a evita erorile. ",
+      "path_duplicated": "Numele paginii este duplicat. Vă rugăm să folosiţi un nume unic pentru a evita erorile. ",
       "tips": {
         "blank_view": "Acest modul nu are pagini copii. Vă rugăm să le adăugaţi mai întâi prin panoul de pagină din dreapta."
       },
       "label": {
-        "rename_url": "Editare cale"
+        "rename_url": "Editare subpagină",
+        "rename_page_url": "Editare pagină"
       }
     }
   },

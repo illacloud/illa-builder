@@ -2053,7 +2053,7 @@
           "title": "Nastavit název pro zobrazení"
         },
         "page": {
-          "default_view": "Když uživatelé zadají chybovou cestu, automaticky přesměrujeme na výchozí cestu. Pokud neexistuje výchozí cesta, budeme považovat první cestu v seznamu za výchozí cestu"
+          "default_view": "Když uživatelé zadají chybu URL, automaticky přesměrujeme na výchozí dílčí stránku. Pokud neexistuje žádná výchozí podstránka, budeme považovat první podstránku v seznamu za výchozí podstránku"
         },
         "chart": {
           "direction": "Nastavte směr grafu. ",
@@ -2285,7 +2285,7 @@
         "right_panel": "Pravý panel",
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
-        "view_path": "Cesta",
+        "view_path": "Název",
         "views": "Podstránky",
         "width": "Width",
         "height": "Výška",
@@ -2307,11 +2307,11 @@
       "tab_title": "Stránka",
       "tooltips": {
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
-        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit cestu. Například, pokud změníš cestu na '**newPath**', a přidej ji jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit název. Například, pokud změníš název na '**newPage**', a přidej ho jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
       },
       "message": {
-        "new_path": "Nebyla nalezena žádná odpovídající cesta. Byla přidána nová cesta. "
+        "new_path": "Nebyla nalezena žádná odpovídající substránka. Byla přidána nová substránka. "
       }
     },
     "validate_message": {
@@ -3034,12 +3034,13 @@
       "name": "Formulář schématu JSON"
     },
     "page": {
-      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. ",
+      "path_duplicated": "Název stránky je duplicitní. Použijte prosím unikátní název, abyste se vyhnuli chybám. ",
       "tips": {
         "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
       },
       "label": {
-        "rename_url": "Upravit cestu"
+        "rename_url": "Upravit podstránku",
+        "rename_page_url": "Upravit stránku"
       }
     }
   },
