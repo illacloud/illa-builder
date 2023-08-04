@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Mest populära",
-      "recent": "Nyligen uppdaterade",
+      "recent": "Senaste",
       "star": "Stjärnmärkta"
     },
     "search": "Sök",
     "no-result": "Inga resultat här. Uppdatera eller ändra dina söktermer.",
     "message": {
       "next-page-error": "Det gick inte att ladda nästa sida. Försök igen.",
-      "create-failed": "Det gick inte att skapa agent. Försök igen.",
+      "create-failed": "Det gick inte att spara agenten. Försök igen.",
       "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
       "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
       "fork-failed": "Det gick inte att fork, försök igen.",
@@ -2266,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Ingen undersida"
       }
     },
     "page": {
       "label_name": {
         "add": "Lägg till",
         "body": "Kropp",
-        "default_view": "Förvald vy",
-        "edit_view": "Redigera sökväg",
+        "default_view": "Förvald undersida",
+        "edit_view": "Redigera undersida",
         "footer": "Sidfot",
         "header": "Rubrik",
         "key": "Nyckel",
@@ -2283,11 +2286,13 @@
         "set_as_homepage": "Ange som hemsida",
         "show_fold_icon": "Visa vik-ikon",
         "view_path": "Sökväg",
-        "views": "Visningar",
+        "views": "Sidor",
         "width": "Width",
         "height": "Höjd",
         "columns": "Kolumner",
-        "set_as_default_subpage": "Ange som standard undersida"
+        "set_as_default_subpage": "Ange som standard undersida",
+        "delete-page": "Ta bort sida",
+        "delete-sub-page": "Ta bort undersida"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
@@ -2304,6 +2309,9 @@
         "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
         "view_path": "För att konfigurera åtkomst till den här sidan måste du justera sökvägen. Till exempel, om du ändrar sökvägen till '**newPath**' och lägger till den som en undersida på hemsidan. Den här sidan kan sedan nås via följande URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
+      },
+      "message": {
+        "new_path": "Ingen matchande sökväg hittad. Ny sökväg har lagts till. "
       }
     },
     "validate_message": {
@@ -2606,8 +2614,12 @@
         "text": "Generera text"
       },
       "message": {
-        "click-start": "Klicka på Start -knappen för att utlösa."
+        "click-start": "Klicka på Start -knappen för att utlösa.",
+        "insufficient_token": "Otillräcklig token"
       }
+    },
+    "common": {
+      "required": "Krävs"
     }
   },
   "exit_preview": "Avsluta förhandsgranskning",
@@ -3365,6 +3377,10 @@
       },
       "password": {
         "title": "Lösenord"
+      },
+      "subscribe_illa_news": {
+        "label": "Prenumerera på ILLA:s nyhetsbrev via e-post",
+        "tips": "Efter prenumerationen kommer ILLA att informera dig om de senaste funktionerna, händelserna, branschtrender och andra nyheter relaterade till ILLA Cloud via e-post."
       }
     }
   },

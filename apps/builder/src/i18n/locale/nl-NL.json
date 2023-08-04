@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Meest populair",
-      "recent": "Onlangs bijgewerkt",
+      "recent": "Nieuwste",
       "star": "Sterren"
     },
     "search": "Zoeken",
     "no-result": "Geen resultaten gevonden. Gelieve uw zoektermen te vernieuwen of te wijzigen.",
     "message": {
       "next-page-error": "Fout bij laden van de volgende pagina. Probeer het opnieuw.",
-      "create-failed": "Kan agent niet maken. Probeer het opnieuw.",
+      "create-failed": "Kan agent niet opslaan. Probeer het opnieuw.",
       "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
       "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
       "fork-failed": "Fork mislukt, probeer het opnieuw.",
@@ -2266,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Geen subpagina"
       }
     },
     "page": {
       "label_name": {
         "add": "Toevoegen",
         "body": "Lichaam",
-        "default_view": "Standaard weergave",
-        "edit_view": "Pad bewerken",
+        "default_view": "Standaard subpagina",
+        "edit_view": "Subpagina bewerken",
         "footer": "Voettekst",
         "header": "Koptekst",
         "key": "Sleutel",
@@ -2283,11 +2286,13 @@
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
         "view_path": "Pad",
-        "views": "Weergaven",
+        "views": "Subpagina's",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolommen",
-        "set_as_default_subpage": "Als standaard subpagina instellen"
+        "set_as_default_subpage": "Als standaard subpagina instellen",
+        "delete-page": "Pagina verwijderen",
+        "delete-sub-page": "Verwijder subpagina"
       },
       "model_tips": {
         "cancel_button": "annuleren",
@@ -2304,6 +2309,9 @@
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
         "view_path": "Om toegang tot deze pagina te configureren, moet u het pad aanpassen. Bijvoorbeeld, als je het pad veranderd naar '**newPath**', en voeg het toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
+      },
+      "message": {
+        "new_path": "Geen overeenstemmend pad gevonden. Nieuw pad is toegevoegd. "
       }
     },
     "validate_message": {
@@ -2606,8 +2614,12 @@
         "text": "Genereer tekst"
       },
       "message": {
-        "click-start": "Klik op de Start knop om te starten."
+        "click-start": "Klik op de Start knop om te starten.",
+        "insufficient_token": "Onvoldoende token"
       }
+    },
+    "common": {
+      "required": "vereist"
     }
   },
   "exit_preview": "Voorvertoning afsluiten",
@@ -3365,6 +3377,10 @@
       },
       "password": {
         "title": "Wachtwoord"
+      },
+      "subscribe_illa_news": {
+        "label": "Abonneer ILLA's e-mail nieuwsbrief",
+        "tips": "Na het abonneren informeert ILLA u via e-mail over de nieuwste functies, evenementen, industrie trends en ander nieuws met betrekking tot ILLA Cloud."
       }
     }
   },

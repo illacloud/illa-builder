@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Les plus populaires",
-      "recent": "Récemment mis à jour",
+      "recent": "Dernier",
       "star": "Favoris"
     },
     "search": "Chercher",
     "no-result": "Aucun résultat ici. Veuillez actualiser ou modifier les termes de votre recherche.",
     "message": {
       "next-page-error": "Impossible de charger la page suivante. Veuillez réessayer.",
-      "create-failed": "Impossible de créer l'agent. Veuillez réessayer.",
+      "create-failed": "Échec de l'enregistrement de l'agent. Veuillez réessayer.",
       "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
       "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
       "fork-failed": "Échec du fork, veuillez réessayer.",
@@ -2266,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Pas de sous-page"
       }
     },
     "page": {
       "label_name": {
         "add": "Ajouter",
         "body": "Corps",
-        "default_view": "Vue par défaut",
-        "edit_view": "Modifier le chemin d'accès",
+        "default_view": "Sous-page par défaut",
+        "edit_view": "Modifier la sous-page",
         "footer": "Pied de page",
         "header": "En-tête",
         "key": "Clés",
@@ -2283,11 +2286,13 @@
         "set_as_homepage": "Définir comme page d'accueil",
         "show_fold_icon": "Afficher l'icône du pli",
         "view_path": "Chemin d'accès",
-        "views": "Vues",
+        "views": "Sous-pages",
         "width": "Width",
         "height": "Hauteur",
         "columns": "Colonnes",
-        "set_as_default_subpage": "Définir comme sous-page par défaut"
+        "set_as_default_subpage": "Définir comme sous-page par défaut",
+        "delete-page": "Supprimer la page",
+        "delete-sub-page": "Supprimer la sous-page"
       },
       "model_tips": {
         "cancel_button": "Abandonner",
@@ -2304,6 +2309,9 @@
         "show_fold_icon": "Afficher un bouton pour réduire ou agrandir le panneau",
         "view_path": "Pour configurer l'accès à cette page, vous devrez ajuster le chemin. Par exemple, si vous changez le chemin d'accès en '**newPath**', et que vous l'ajoutez en tant que sous-page de la page d'accueil. Cette page est alors accessible via l'URL suivante : cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La largeur de la page en pourcentage de la largeur du navigateur."
+      },
+      "message": {
+        "new_path": "Aucun chemin trouvé correspondant. Un nouveau chemin a été ajouté. "
       }
     },
     "validate_message": {
@@ -2606,8 +2614,12 @@
         "text": "Générer du texte"
       },
       "message": {
-        "click-start": "Cliquez sur le bouton Démarrer pour déclencher."
+        "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
+        "insufficient_token": "Jeton insuffisant"
       }
+    },
+    "common": {
+      "required": "Requis"
     }
   },
   "exit_preview": "Quitter l'aperçu",
@@ -3365,6 +3377,10 @@
       },
       "password": {
         "title": "Mot de passe"
+      },
+      "subscribe_illa_news": {
+        "label": "S'abonner à la newsletter de l'ILLA",
+        "tips": "Après votre inscription, ILLA vous informera des dernières nouveautés, événements, tendances de l'industrie et autres nouvelles relatives à ILLA Cloud par courriel."
       }
     }
   },

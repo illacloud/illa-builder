@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Suosituin",
-      "recent": "Äskettäin päivitetty",
+      "recent": "Viimeisimmät",
       "star": "Tähdelliset"
     },
     "search": "Etsi",
     "no-result": "Ei tuloksia. Ole hyvä ja päivitä tai vaihda hakuehtoja.",
     "message": {
       "next-page-error": "Seuraavan sivun lataaminen epäonnistui. Yritä uudelleen.",
-      "create-failed": "Agentin luonti epäonnistui. Yritä uudelleen.",
+      "create-failed": "Agentin tallennus epäonnistui. Yritä uudelleen.",
       "sort-failed": "Suodattimen tyyppiä ei voitu muuttaa. Yritä uudelleen.",
       "detail-load-failed": "Tietojen noutaminen epäonnistui, yritä uudelleen.",
       "fork-failed": "Ei voitu forkata, yritä uudelleen.",
@@ -2266,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Ei alasivua"
       }
     },
     "page": {
       "label_name": {
         "add": "Lisää",
         "body": "Runko",
-        "default_view": "Oletus näkymä",
-        "edit_view": "Muokkaa polkua",
+        "default_view": "Oletus alasivu",
+        "edit_view": "Muokkaa alasivua",
         "footer": "Alatunniste",
         "header": "Otsikko",
         "key": "Avain",
@@ -2283,11 +2286,13 @@
         "set_as_homepage": "Aseta etusivuksi",
         "show_fold_icon": "Näytä kertakuvake",
         "view_path": "Polku",
-        "views": "Näkymät",
+        "views": "Alisivut",
         "width": "Width",
         "height": "Korkeus",
         "columns": "Sarakkeet",
-        "set_as_default_subpage": "Aseta oletukseksi alasivuksi"
+        "set_as_default_subpage": "Aseta oletukseksi alasivuksi",
+        "delete-page": "Poista sivu",
+        "delete-sub-page": "Poista alasivu"
       },
       "model_tips": {
         "cancel_button": "Peruuta",
@@ -2304,6 +2309,9 @@
         "show_fold_icon": "Näytä painike tiivistääksesi tai laajentaaksesi paneelia",
         "view_path": "Määrittääksesi pääsyn tälle sivulle, sinun täytyy säätää polkua. Jos esimerkiksi muutat polun poluksi '**newPath**', ja lisäät sen kotisivun alasivuksi. Tämän jälkeen tälle sivulle pääsee seuraavan URL-osoitteen kautta: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Sivujen leveys prosentteina selaimen leveydestä. @ action: button"
+      },
+      "message": {
+        "new_path": "Vastaavaa polkua ei löytynyt. Uusi polku on lisätty. "
       }
     },
     "validate_message": {
@@ -2606,8 +2614,12 @@
         "text": "Luo teksti"
       },
       "message": {
-        "click-start": "Napsauta Käynnistä painiketta käynnistääksesi."
+        "click-start": "Napsauta Käynnistä painiketta käynnistääksesi.",
+        "insufficient_token": "Riittämätön tunnus"
       }
+    },
+    "common": {
+      "required": "Pakollinen"
     }
   },
   "exit_preview": "Poistu Esikatselusta",
@@ -3365,6 +3377,10 @@
       },
       "password": {
         "title": "Salasana"
+      },
+      "subscribe_illa_news": {
+        "label": "Tilaa ILLA:n sähköpostiuutiskirje",
+        "tips": "Tilauksen jälkeen ILLA ilmoittaa sinulle uusimmista ominaisuuksista, tapahtumista, alan trendeistä ja muista ILLA Cloudiin liittyvistä uutisista sähköpostitse."
       }
     }
   },
