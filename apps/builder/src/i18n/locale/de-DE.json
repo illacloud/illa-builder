@@ -3039,7 +3039,8 @@
         "blank_view": "Dieses Modul hat keine Unterseiten. Bitte fügen Sie diese zuerst durch das Seitenfenster auf der rechten Seite."
       },
       "label": {
-        "rename_url": "Unterseite bearbeiten"
+        "rename_url": "Unterseite bearbeiten",
+        "rename_page_url": "Seite bearbeiten"
       }
     }
   },

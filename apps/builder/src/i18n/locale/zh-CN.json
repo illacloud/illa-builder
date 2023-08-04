@@ -3039,7 +3039,8 @@
         "blank_view": "该模块无子页面，请先通过右侧Page面板添加"
       },
       "label": {
-        "rename_url": "编辑子页面"
+        "rename_url": "编辑子页面",
+        "rename_page_url": "编辑页面"
       }
     }
   },

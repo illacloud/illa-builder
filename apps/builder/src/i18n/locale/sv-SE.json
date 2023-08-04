@@ -3039,7 +3039,8 @@
         "blank_view": "Modulen har inga underordnade sidor. Lägg till dem först via Sidpanelen till höger."
       },
       "label": {
-        "rename_url": "Redigera undersida"
+        "rename_url": "Redigera undersida",
+        "rename_page_url": "Redigera sida"
       }
     }
   },

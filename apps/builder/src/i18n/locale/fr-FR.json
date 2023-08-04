@@ -3039,7 +3039,8 @@
         "blank_view": "Ce module n'a pas de pages enfants. Veuillez d'abord les ajouter via le panneau de page à droite."
       },
       "label": {
-        "rename_url": "Modifier la sous-page"
+        "rename_url": "Modifier la sous-page",
+        "rename_page_url": "Modifier la page"
       }
     }
   },

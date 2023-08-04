@@ -3039,7 +3039,8 @@
         "blank_view": "This module has no sub-pages. Please add them first through the Page panel on the right."
       },
       "label": {
-        "rename_url": "Edit sub-page"
+        "rename_url": "Edit sub-page",
+        "rename_page_url": "Edit page"
       }
     }
   },

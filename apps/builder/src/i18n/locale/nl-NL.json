@@ -3039,7 +3039,8 @@
         "blank_view": "Deze module heeft geen onderliggende pagina's. Voeg ze eerst toe via het pagina paneel aan de rechterkant."
       },
       "label": {
-        "rename_url": "Subpagina bewerken"
+        "rename_url": "Subpagina bewerken",
+        "rename_page_url": "Pagina bewerken"
       }
     }
   },
