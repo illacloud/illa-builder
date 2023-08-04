@@ -2290,7 +2290,9 @@
         "width": "Width",
         "height": "Höjd",
         "columns": "Kolumner",
-        "set_as_default_subpage": "Ange som standard undersida"
+        "set_as_default_subpage": "Ange som standard undersida",
+        "delete-page": "Ta bort sida",
+        "delete-sub-page": "Ta bort undersida"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
