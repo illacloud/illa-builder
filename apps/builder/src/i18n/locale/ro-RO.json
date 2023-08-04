@@ -32,7 +32,7 @@
       "cancel": "Anulează",
       "delete": "Ștergere",
       "delete_cancel_text": "Anulează",
-      "delete_content": "După ștergere, nu va fi posibil să accesați sau să recuperați datele prin orice mijloace. Vă rugăm să confirmați.",
+      "delete_content": "Acest lucru va întrerupe aplicațiile și interogarea bibliotecii care utilizează această resursă",
       "delete_ok_text": "Ștergere",
       "delete_title": "Ești sigur?",
       "error_button": "Reîncercați",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Cele mai populare",
-      "recent": "Ultimele",
+      "recent": "Actualizat recent",
       "star": "Marcate"
     },
     "search": "Caută",
     "no-result": "Niciun rezultat aici. Reîmprospătați sau schimbați termenii de căutare.",
     "message": {
       "next-page-error": "Încărcarea paginii următoare a eșuat. Te rugăm să încerci din nou.",
-      "create-failed": "Agentul de salvare a eșuat. Te rugăm să încerci din nou.",
+      "create-failed": "Eroare la crearea agentului. Vă rugăm să încercaţi din nou.",
       "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
       "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
       "fork-failed": "Esuare fork, te rugam incearca din nou.",
@@ -2053,7 +2053,7 @@
           "title": "Setați titlul de afișat"
         },
         "page": {
-          "default_view": "Când utilizatorii introduc un URL de eroare, vom redirecționa automat către sub-pagina implicită. Când nu există nici o sub-pagină implicită, vom trata prima sub-pagină din listă ca pe sub-pagină implicită"
+          "default_view": "Când utilizatorii introduc o traiectorie de eroare, vom redirecționa automat către calea implicită. Când nu există o cale implicită, vom trata prima cale din listă ca pe o cale implicită"
         },
         "chart": {
           "direction": "Setați direcția graficului. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Adăugare",
         "body": "Corp",
-        "default_view": "Subpagina implicită",
-        "edit_view": "Editare subpagină",
+        "default_view": "Vizualizare implicită",
+        "edit_view": "Editare cale",
         "footer": "Subsol",
         "header": "Antet",
         "key": "Cheie",
@@ -2285,8 +2285,8 @@
         "right_panel": "Panoul din dreapta",
         "set_as_homepage": "Setează ca website",
         "show_fold_icon": "Afișare pictogramă pli",
-        "view_path": "Nume",
-        "views": "Subpagini",
+        "view_path": "Cale",
+        "views": "Vizualizări",
         "width": "Width",
         "height": "Înălțime",
         "columns": "Coloane",
@@ -2307,7 +2307,7 @@
       "tab_title": "Pagină",
       "tooltips": {
         "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
-        "view_path": "Pentru a configura accesul la această pagină, va trebui să modificaţi numele. De exemplu, dacă schimbați numele în '**nou**', și adăugați-l ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Pentru a configura accesul la această pagină, va trebui să ajustați calea. De exemplu, dacă schimbați calea către '**newPath**', și adăugați-o ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
       },
       "message": {
@@ -3034,12 +3034,12 @@
       "name": "Formular JSON Schema"
     },
     "page": {
-      "path_duplicated": "Numele paginii este duplicat. Vă rugăm să folosiţi un nume unic pentru a evita erorile. ",
+      "path_duplicated": "Calea este duplicată. Vă rugăm să folosiți o cale unică pentru a evita erorile. ",
       "tips": {
         "blank_view": "Acest modul nu are pagini copii. Vă rugăm să le adăugaţi mai întâi prin panoul de pagină din dreapta."
       },
       "label": {
-        "rename_url": "Editare subpagină",
+        "rename_url": "Editare cale",
         "rename_page_url": "Editare pagină"
       }
     }
