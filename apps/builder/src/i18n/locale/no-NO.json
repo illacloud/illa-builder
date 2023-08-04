@@ -3039,7 +3039,8 @@
         "blank_view": "Denne modulen har ingen undersider. Legg dem først gjennom side-panelet til høyre."
       },
       "label": {
-        "rename_url": "Rediger underside"
+        "rename_url": "Rediger underside",
+        "rename_page_url": "Rediger side"
       }
     }
   },
