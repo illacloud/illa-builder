@@ -2307,6 +2307,9 @@
         "show_fold_icon": "Vis en knap til at skjule eller udvide panelet",
         "view_path": "For at konfigurere adgang til denne side, skal du justere stien. For eksempel, hvis du ændrer stien til '**newPath**', og tilføje det som en underside af hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden af siden som en procentdel af browserens bredde."
+      },
+      "message": {
+        "new_path": "Ingen matchende sti fundet. Ny sti er blevet tilføjet. "
       }
     },
     "validate_message": {
