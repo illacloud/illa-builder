@@ -8,8 +8,9 @@ import {
   DependencyIcon,
   ForkIcon,
   RadioGroup,
+  ResetIcon,
   StarOutlineIcon,
-  useMessage,
+  getColor,
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
 import { Avatar } from "@/illa-public-component/Avatar"
@@ -31,6 +32,7 @@ import {
   agentTitleContainerStyle,
   agentTopContainerStyle,
   aiAgentContainerStyle,
+  buttonContainerStyle,
   leftPanelContainerStyle,
   rightPanelContainerStyle,
 } from "@/page/AI/AIAgentRun/style"
@@ -53,7 +55,7 @@ import { ChatContext } from "../components/ChatContext"
 export const AIAgentRun: FC = () => {
   const { agent, marketplaceInfo } = useLoaderData() as {
     agent: Agent
-    marketplaceInfo: MarketAiAgent
+    marketplaceInfo: MarketAiAgent | undefined
   }
 
   const { control, handleSubmit, getValues } = useForm<Agent>({
@@ -61,13 +63,12 @@ export const AIAgentRun: FC = () => {
     defaultValues: agent,
   })
 
-  const { isDirty } = useFormState({
+  const { isDirty, isValid } = useFormState({
     control,
   })
 
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
 
-  const message = useMessage()
   // page state
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
@@ -156,7 +157,7 @@ export const AIAgentRun: FC = () => {
             colorScheme="grayBlue"
             leftIcon={<StarOutlineIcon />}
           >
-            Star {marketplaceInfo.marketplace.numStars}
+            Star {marketplaceInfo?.marketplace.numStars}
           </Button>
           {canManage(
             currentTeamInfo.myRole,
@@ -164,7 +165,7 @@ export const AIAgentRun: FC = () => {
             ACTION_MANAGE.FORK_AGENT,
           ) && (
             <Button ml="8px" colorScheme="grayBlue" leftIcon={<ForkIcon />}>
-              Fork {marketplaceInfo.marketplace.numForks}
+              Fork {marketplaceInfo?.marketplace.numForks}
             </Button>
           )}
         </div>
@@ -187,13 +188,19 @@ export const AIAgentRun: FC = () => {
   }, [
     agent.publishedToMarketplace,
     currentTeamInfo.myRole,
-    marketplaceInfo.marketplace.numForks,
-    marketplaceInfo.marketplace.numStars,
+    marketplaceInfo?.marketplace.numForks,
+    marketplaceInfo?.marketplace.numStars,
   ])
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
-      <form onSubmit={handleSubmit(async (data) => {})}>
+      <form
+        onSubmit={handleSubmit(async (data) => {
+          isRunning
+            ? await reconnect(data.aiAgentID, data.agentType)
+            : await connect(data.aiAgentID, data.agentType)
+        })}
+      >
         <div css={aiAgentContainerStyle}>
           <div css={leftPanelContainerStyle}>
             <div css={agentTopContainerStyle}>
@@ -242,12 +249,12 @@ export const AIAgentRun: FC = () => {
               {menu}
             </div>
             <div css={agentControlContainerStyle}>
-              <AIAgentBlock title={"Mode"}>
-                <Controller
-                  name="agentType"
-                  control={control}
-                  shouldUnregister={false}
-                  render={({ field }) => (
+              <Controller
+                name="agentType"
+                control={control}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock title={"Mode"}>
                     <RadioGroup
                       {...field}
                       colorScheme={"techPurple"}
@@ -265,33 +272,33 @@ export const AIAgentRun: FC = () => {
                         },
                       ]}
                     />
-                  )}
-                />
-              </AIAgentBlock>
-              <AIAgentBlock title={"Prompt"}>
-                <Controller
-                  name="prompt"
-                  control={control}
-                  rules={{
-                    required: true,
-                  }}
-                  shouldUnregister={false}
-                  render={({ field: promptField }) => (
-                    <Controller
-                      name="variables"
-                      control={control}
-                      render={({ field: variables }) => (
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="prompt"
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                shouldUnregister={false}
+                render={({ field: promptField }) => (
+                  <Controller
+                    name="variables"
+                    control={control}
+                    render={({ field: variables }) => (
+                      <AIAgentBlock title={"Prompt"}>
                         <CodeEditor
                           {...promptField}
                           minHeight="200px"
                           editable={false}
                           completionOptions={variables.value}
                         />
-                      )}
-                    />
-                  )}
-                />
-              </AIAgentBlock>
+                      </AIAgentBlock>
+                    )}
+                  />
+                )}
+              />
               <Controller
                 name="variables"
                 control={control}
@@ -324,7 +331,7 @@ export const AIAgentRun: FC = () => {
                           field.onChange(newVariables)
                         }}
                         onAdd={() => {}}
-                        onDelete={(index) => {}}
+                        onDelete={() => {}}
                         label={""}
                       />
                     </AIAgentBlock>
@@ -333,6 +340,18 @@ export const AIAgentRun: FC = () => {
                   )
                 }
               />
+            </div>
+            <div css={buttonContainerStyle}>
+              <Button
+                flex="1"
+                disabled={!isValid}
+                loading={isConnecting}
+                ml="8px"
+                colorScheme={getColor("grayBlue", "02")}
+                leftIcon={<ResetIcon />}
+              >
+                {!isRunning ? "Start" : "Restart"}
+              </Button>
             </div>
           </div>
           <Controller
