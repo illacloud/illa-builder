@@ -7,7 +7,6 @@ export const agentRunLoader: LoaderFunction = async (args) => {
     try {
       const agent = await fetchAgentDetail(agentId)
       let marketInfo = undefined
-      console.log("longbo", agent.data.publishedToMarketplace)
       if (agent.data.publishedToMarketplace) {
         marketInfo = await getAIAgentMarketplaceInfo(agentId)
       }

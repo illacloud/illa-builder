@@ -9,6 +9,7 @@ import {
   ForkIcon,
   RadioGroup,
   ResetIcon,
+  StarFillIcon,
   StarOutlineIcon,
   getColor,
 } from "@illa-design/react"
@@ -155,7 +156,13 @@ export const AIAgentRun: FC = () => {
           <Button
             ml="8px"
             colorScheme="grayBlue"
-            leftIcon={<StarOutlineIcon />}
+            leftIcon={
+              marketplaceInfo?.marketplace.isStarredByCurrentUser ? (
+                <StarFillIcon c="#FFBB38" />
+              ) : (
+                <StarOutlineIcon />
+              )
+            }
           >
             Star {marketplaceInfo?.marketplace.numStars}
           </Button>
@@ -188,6 +195,7 @@ export const AIAgentRun: FC = () => {
   }, [
     agent.publishedToMarketplace,
     currentTeamInfo.myRole,
+    marketplaceInfo?.marketplace.isStarredByCurrentUser,
     marketplaceInfo?.marketplace.numForks,
     marketplaceInfo?.marketplace.numStars,
   ])
@@ -316,7 +324,7 @@ export const AIAgentRun: FC = () => {
                   field.value.length > 0 ? (
                     <AIAgentBlock title={"Variables"}>
                       <RecordEditor
-                        lockKey={true}
+                        fillOnly={true}
                         withoutCodeMirror
                         records={field.value}
                         valueInputType={VALIDATION_TYPES.ARRAY}

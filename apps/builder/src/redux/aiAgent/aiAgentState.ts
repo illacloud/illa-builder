@@ -115,6 +115,7 @@ export interface MarketplaceInfo {
   createdAt: string
   updatedBy: string
   updatedAt: string
+  isStarredByCurrentUser: boolean
 }
 
 export interface MarketAiAgent {

@@ -7,10 +7,14 @@ export interface RecordEditorProps {
   subLabel?: string
   onSubLabelClick?: () => void
   name?: string
-  lockKey?: boolean
+  fillOnly?: boolean
   records: Params[] | null
   onAdd: (name?: string) => void
-  customRender?: (record: Params, index: number, lockKey?: boolean) => ReactNode
+  customRender?: (
+    record: Params,
+    index: number,
+    fillOnly?: boolean,
+  ) => ReactNode
   withoutCodeMirror?: boolean
   onDelete: (index: number, record: Params, name?: string) => void
   onChangeKey: (

@@ -14,17 +14,17 @@ import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/Rec
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import {
   applyRecordEditorContainerStyle,
+  applyRecordValueStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
   recordKeyStyle,
   recordStyle,
-  recordValueStyle,
   subLabelStyle,
 } from "./style"
 
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const {
-    lockKey,
+    fillOnly,
     name,
     records,
     customRender,
@@ -58,7 +58,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
           if (customRender) {
             return (
               <div css={recordStyle} key={index}>
-                {customRender(record, index, lockKey)}
+                {customRender(record, index, fillOnly)}
                 <Button
                   type="button"
                   ml="-1px"
@@ -79,10 +79,12 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
               {withoutCodeMirror ? (
                 <Input
                   colorScheme={"techPurple"}
-                  _css={recordKeyStyle}
                   height="32px"
                   value={record.key}
-                  readOnly={lockKey}
+                  readOnly={fillOnly}
+                  minW="160px"
+                  width="0"
+                  flexGrow="1"
                   bdRadius="8px 0 0 8px"
                   placeholder="key"
                   onChange={(value) => {
@@ -93,7 +95,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 <CodeEditor
                   wrapperCss={recordKeyStyle}
                   height="32px"
-                  editable={!lockKey}
+                  editable={!fillOnly}
                   value={record.key}
                   lang={CODE_LANG.JAVASCRIPT}
                   placeholder="key"
@@ -108,9 +110,12 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 <Input
                   colorScheme={"techPurple"}
                   height="32px"
-                  bdRadius="0"
-                  _css={recordValueStyle}
+                  bdRadius={fillOnly ? "0 8px 8px 0" : "0"}
+                  ml="-1px"
                   placeholder="value"
+                  minW="160px"
+                  width="0"
+                  flexGrow="1"
                   value={record.value}
                   onChange={(value) => {
                     onChangeValue(index, record.key, value.trim(), name)
@@ -119,7 +124,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
               ) : (
                 <CodeEditor
                   height="32px"
-                  wrapperCss={recordValueStyle}
+                  wrapperCss={applyRecordValueStyle(fillOnly)}
                   lang={CODE_LANG.JAVASCRIPT}
                   placeholder="value"
                   value={record.value}
@@ -130,18 +135,20 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   }}
                 />
               )}
-              <Button
-                type="button"
-                ml="-1px"
-                minW="32px"
-                variant="outline"
-                bdRadius="0 8px 8px 0"
-                colorScheme="grayBlue"
-                onClick={() => {
-                  onDelete(index, record, name)
-                }}
-                leftIcon={<DeleteIcon />}
-              />
+              {!fillOnly && (
+                <Button
+                  type="button"
+                  ml="-1px"
+                  minW="32px"
+                  variant="outline"
+                  bdRadius="0 8px 8px 0"
+                  colorScheme="grayBlue"
+                  onClick={() => {
+                    onDelete(index, record, name)
+                  }}
+                  leftIcon={<DeleteIcon />}
+                />
+              )}
             </div>
           )
         })}
@@ -149,7 +156,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
     )
   }, [
     customRender,
-    lockKey,
+    fillOnly,
     name,
     onChangeKey,
     onChangeValue,
@@ -173,24 +180,26 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
       )}
       <div css={recordEditorStyle}>
         {recordList}
-        <span>
-          <Button
-            type="button"
-            mb="8px"
-            pd="1px 8px"
-            colorScheme="techPurple"
-            size="medium"
-            variant="text"
-            onClick={() => {
-              onAdd(name)
-            }}
-            leftIcon={
-              <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
-            }
-          >
-            {t("editor.action.panel.btn.new")}
-          </Button>
-        </span>
+        {!fillOnly && (
+          <span>
+            <Button
+              type="button"
+              mb="8px"
+              pd="1px 8px"
+              colorScheme="techPurple"
+              size="medium"
+              variant="text"
+              onClick={() => {
+                onAdd(name)
+              }}
+              leftIcon={
+                <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
+              }
+            >
+              {t("editor.action.panel.btn.new")}
+            </Button>
+          </span>
+        )}
       </div>
     </div>
   )
