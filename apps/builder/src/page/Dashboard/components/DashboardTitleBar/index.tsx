@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext } from "react"
+import { FC, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -142,6 +142,10 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
     },
   ]
 
+  const isAgentTab = useMemo(() => {
+    return pathList[pathList.length - 1] === "ai-agent"
+  }, [pathList])
+
   const onSearch = useCallback(() => {
     getAgentList()
   }, [getAgentList])
@@ -162,19 +166,19 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
         </div>
       }
       suffix={
-        isCloudVersion ? (
-          <div>
-            <Input
-              w="240px"
-              value={keyword}
-              onChange={setKeyword}
-              onPressEnter={onSearch}
-              prefix={<SearchIcon />}
-              colorScheme="techPurple"
-            />
-          </div>
-        ) : (
-          <div css={navBarAvatarContainerStyle} key="suffix">
+        <div css={navBarAvatarContainerStyle}>
+          {isCloudVersion ? (
+            isAgentTab && (
+              <Input
+                w="240px"
+                value={keyword}
+                onChange={setKeyword}
+                onPressEnter={onSearch}
+                prefix={<SearchIcon />}
+                colorScheme="techPurple"
+              />
+            )
+          ) : (
             <Dropdown
               position="bottom-end"
               trigger="click"
@@ -194,8 +198,8 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
                 />
               </div>
             </Dropdown>
-          </div>
-        )
+          )}
+        </div>
       }
       activeKey={pathList[pathList.length - 1]}
       css={containerStyle}
