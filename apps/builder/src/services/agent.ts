@@ -1,5 +1,11 @@
 import { v4 } from "uuid"
-import { agentRequest, marketplaceRequest } from "@/api/http"
+import { agentRequest, authCloudRequest, marketplaceRequest } from "@/api/http"
+import {
+  REDIRECT_PAGE_TYPE,
+  fetchInviteLinkResponse,
+  inviteByEmailResponse,
+} from "@/illa-public-component/MemberList/interface"
+import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import {
   Agent,
   AgentRaw,
@@ -10,6 +16,7 @@ import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
 import { getTeamID } from "@/utils/team"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface TeamAgentListData {
   aiAgentList: Agent[]
@@ -265,4 +272,42 @@ export const getAIAgentMarketplaceInfo = (aiAgentID: string) => {
     url: `/auth/products/aiAgents/${aiAgentID}`,
     method: "GET",
   })
+}
+
+export const shareAgentByEmail = async (
+  email: string,
+  userRole: USER_ROLE,
+  agentID: string,
+  redirectPage?: REDIRECT_PAGE_TYPE,
+) => {
+  const response = await authCloudRequest<inviteByEmailResponse>(
+    {
+      method: "POST",
+      url: `/shareAppByEmail`,
+      data: {
+        email,
+        userRole,
+        agentID,
+        redirectPage,
+        hosts: !isCloudVersion ? window.location.origin : undefined,
+      },
+    },
+    { needTeamID: true },
+  )
+  return response.data
+}
+
+export const fetchShareAgentLink = async (
+  userRole: USER_ROLE,
+  agentID: string,
+  redirectPage?: REDIRECT_PAGE_TYPE,
+) => {
+  const response = await authCloudRequest<fetchInviteLinkResponse>(
+    {
+      method: "GET",
+      url: `/shareAppLink/userRole/${userRole}/apps/${agentID}/redirectPage/${redirectPage}`,
+    },
+    { needTeamID: true },
+  )
+  return response.data
 }

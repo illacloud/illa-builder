@@ -14,14 +14,28 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
+import { ERROR_FLAG } from "@/api/errorFlag"
+import { REDIRECT_PAGE_TYPE } from "@/illa-public-component/MemberList/interface"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import {
-  canManageApp,
-  canUseUpgradeFeature,
-} from "@/illa-public-component/UserRoleUtils"
+import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
+import TeamAgentShareModal from "@/illa-public-market-component/TeamAgentShareModal"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import {
+  getCurrentMemberList,
+  getCurrentTeamInfo,
+} from "@/redux/team/teamSelector"
+import {
+  deleteAiAgent,
+  duplicateAiAgent,
+  fetchShareAgentLink,
+  shareAgentByEmail,
+} from "@/services/agent"
+import {
+  changeTeamMembersRole,
+  updateMembers,
+  updateTeamsInfo,
+} from "@/services/team"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 
 export interface AppCardActionItemProps {
@@ -31,7 +45,7 @@ export interface AppCardActionItemProps {
 }
 
 export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
-  const { aiAgentID, canEdit } = props
+  const { aiAgentID, aiAgentName, canEdit } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -39,17 +53,15 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const navigate = useNavigate()
   const { teamIdentifier } = useParams()
 
-  const teamInfo = useSelector(getCurrentTeamInfo)
+  const userInfo = useSelector(getCurrentUser)
+  const teamInfo = useSelector(getCurrentTeamInfo)!
+  const members = useSelector(getCurrentMemberList) ?? []
+  const agentLink = `${location.protocol}//${location.host}/${aiAgentID}/detail`
+
   const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
   const [shareVisible, setShareVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
-
-  const canSetPublic = canManageApp(
-    teamInfo?.myRole ?? USER_ROLE.VIEWER,
-    teamInfo?.permission?.allowEditorManageTeamMember,
-    teamInfo?.permission?.allowViewerManageTeamMember,
-  )
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo?.myRole,
@@ -64,7 +76,6 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const closeInviteModal = () => {
     setShareVisible(false)
   }
-  console.log(canSetPublic, shareVisible, closeInviteModal)
 
   const openInviteModal = useCallback(() => {
     if (isCloudVersion && !canUseBillingFeature) {
@@ -144,6 +155,75 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
       },
     })
   }, [aiAgentID, modal, message, t])
+
+  const handleChangeTeamMembersRole = (
+    teamMemberID: string,
+    userRole: USER_ROLE,
+  ) => {
+    return changeTeamMembersRole(teamMemberID, userRole)
+      .then((res) => {
+        if (userRole === USER_ROLE.OWNER) {
+          message.success({
+            content: t("user_management.mes.transfer_suc"),
+          })
+          updateTeamsInfo(teamIdentifier)
+        } else {
+          message.success({
+            content: t("user_management.mes.change_role_suc"),
+          })
+        }
+        updateMembers()
+        return res
+      })
+      .catch((error) => {
+        if (isILLAAPiError(error)) {
+          switch (error.data.errorFlag) {
+            case ERROR_FLAG.ERROR_FLAG_ACCESS_DENIED:
+            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_INCREASE_TEAM_MEMBER_DUE_TO_NO_BALANCE:
+              message.error({
+                content: t("user_management.mes.change_role_fail"),
+              })
+              break
+            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_UPDATE_TEAM_MEMBER_ROLE_BECAUSE_APPSUMO_BUYER:
+              message.error({
+                content: t("billing.message.appsumo.transfer"),
+              })
+              break
+            default:
+              if (userRole === USER_ROLE.OWNER) {
+                message.error({
+                  content: t("user_management.mes.transfer_fail"),
+                })
+              } else {
+                message.error({
+                  content: t("user_management.mes.change_role_fail"),
+                })
+              }
+              break
+          }
+        }
+        return false
+      })
+  }
+
+  const handleInviteByEmail = useCallback(
+    (email: string, userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
+      return shareAgentByEmail(email, userRole, aiAgentID, redirectPage).then(
+        (res) => {
+          updateMembers()
+          return res
+        },
+      )
+    },
+    [aiAgentID],
+  )
+
+  const fetchShareLink = useCallback(
+    (userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
+      return fetchShareAgentLink(userRole, aiAgentID, redirectPage)
+    },
+    [aiAgentID],
+  )
 
   return (
     <div onClick={stopPropagation}>
@@ -226,6 +306,19 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
           />
         </Dropdown>
       )}
+      <TeamAgentShareModal
+        visible={shareVisible}
+        onCancel={closeInviteModal}
+        agentName={aiAgentName}
+        agentLink={agentLink}
+        currentUserRole={teamInfo?.myRole}
+        teamName={teamInfo?.name}
+        userNickname={userInfo.nickname}
+        userListData={members}
+        fetchInviteLink={fetchShareLink}
+        inviteByEmail={handleInviteByEmail}
+        changeTeamMembersRole={handleChangeTeamMembersRole}
+      />
     </div>
   )
 }
