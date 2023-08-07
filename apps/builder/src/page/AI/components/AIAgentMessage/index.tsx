@@ -1,16 +1,16 @@
 import React, { FC, useContext } from "react"
 import { Avatar } from "@/illa-public-component/Avatar"
-import { AIAgentMessageProps } from "@/page/AIAgent/components/AIAgentMessage/interface"
+import { ChatContext } from "@/page/AI/components/ChatContext"
+import MarkdownMessage from "@/page/AI/components/MarkdownMessage"
+import { SenderType } from "@/redux/aiAgent/aiAgentState"
+import { AIAgentMessageProps } from "./interface"
 import {
   agentMessageContainer,
   messageContainerStyle,
   senderAvatarStyle,
   senderContainerStyle,
   senderNicknameStyle,
-} from "@/page/AIAgent/components/AIAgentMessage/style"
-import { ChatContext } from "@/page/AIAgent/components/ChatContext"
-import MarkdownMessage from "@/page/AIAgent/components/MarkdownMessage"
-import { SenderType } from "@/redux/aiAgent/aiAgentState"
+} from "./style"
 
 export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
   const { message } = props

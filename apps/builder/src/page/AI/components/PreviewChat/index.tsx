@@ -5,9 +5,9 @@ import { v4 } from "uuid"
 import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
 import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
 import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
-import AIAgentMessage from "@/page/AIAgent/components/AIAgentMessage"
-import { GenerationMessage } from "@/page/AIAgent/components/GenerationMessage"
-import { PreviewChatProps } from "@/page/AIAgent/components/PreviewChat/interface"
+import AIAgentMessage from "@/page/AI/components/AIAgentMessage"
+import { GenerationMessage } from "@/page/AI/components/GenerationMessage"
+import { PreviewChatProps } from "@/page/AI/components/PreviewChat/interface"
 import {
   blockInputContainerStyle,
   blockInputTextStyle,
@@ -22,8 +22,8 @@ import {
   previewTitleContainerStyle,
   previewTitleTextStyle,
   stopIconStyle,
-} from "@/page/AIAgent/components/PreviewChat/style"
-import UserMessage from "@/page/AIAgent/components/UserMessage"
+} from "@/page/AI/components/PreviewChat/style"
+import UserMessage from "@/page/AI/components/UserMessage"
 import {
   AI_AGENT_TYPE,
   ChatMessage,

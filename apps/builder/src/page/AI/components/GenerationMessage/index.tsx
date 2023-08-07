@@ -1,16 +1,16 @@
 import copy from "copy-to-clipboard"
 import { FC, useContext } from "react"
 import { CopyIcon, useMessage } from "@illa-design/react"
-import { ChatContext } from "@/page/AIAgent/components/ChatContext"
-import { GenerationMessageProps } from "@/page/AIAgent/components/GenerationMessage/interface"
+import { ChatContext } from "@/page/AI/components/ChatContext"
+import { GenerationMessageProps } from "@/page/AI/components/GenerationMessage/interface"
 import {
   avatarContainerStyle,
   avatarStyle,
   copyContainerStyle,
   generationContainerStyle,
   nickNameStyle,
-} from "@/page/AIAgent/components/GenerationMessage/style"
-import MarkdownMessage from "@/page/AIAgent/components/MarkdownMessage"
+} from "@/page/AI/components/GenerationMessage/style"
+import MarkdownMessage from "@/page/AI/components/MarkdownMessage"
 import { Avatar } from "@/page/App/components/Avatar"
 import { SenderType } from "@/redux/aiAgent/aiAgentState"
 

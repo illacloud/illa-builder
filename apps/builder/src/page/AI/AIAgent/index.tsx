@@ -26,27 +26,9 @@ import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
-import { AIAgentBlock } from "@/page/AIAgent/components/AIAgentBlock"
-import AILoading from "@/page/AIAgent/components/AILoading"
-import { PreviewChat } from "@/page/AIAgent/components/PreviewChat"
-import {
-  aiAgentContainerStyle,
-  buttonContainerStyle,
-  descContainerStyle,
-  descTextStyle,
-  labelStyle,
-  labelTextStyle,
-  leftLoadingCoverStyle,
-  leftPanelContainerStyle,
-  leftPanelContentContainerStyle,
-  leftPanelCoverContainer,
-  leftPanelTitleStyle,
-  leftPanelTitleTextStyle,
-  rightPanelContainerStyle,
-  uploadContainerStyle,
-  uploadContentContainerStyle,
-  uploadTextStyle,
-} from "@/page/AIAgent/style"
+import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
+import AILoading from "@/page/AI/components/AILoading"
+import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import {
   AI_AGENT_MODEL,
@@ -72,7 +54,25 @@ import {
 } from "@/services/agent"
 import store from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { ChatContext } from "./components/ChatContext"
+import { ChatContext } from "../components/ChatContext"
+import {
+  aiAgentContainerStyle,
+  buttonContainerStyle,
+  descContainerStyle,
+  descTextStyle,
+  labelStyle,
+  labelTextStyle,
+  leftLoadingCoverStyle,
+  leftPanelContainerStyle,
+  leftPanelContentContainerStyle,
+  leftPanelCoverContainer,
+  leftPanelTitleStyle,
+  leftPanelTitleTextStyle,
+  rightPanelContainerStyle,
+  uploadContainerStyle,
+  uploadContentContainerStyle,
+  uploadTextStyle,
+} from "./style"
 
 export const AIAgent: FC = () => {
   const data = useLoaderData() as {

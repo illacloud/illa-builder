@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { agentRequest, authCloudRequest } from "@/api/http"
+import { agentRequest } from "@/api/http"
 import { Agent, AgentRaw, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
 import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
@@ -130,7 +130,14 @@ export const createAgent = (agentRaw: AgentRaw) => {
 
 // send raw without variables
 export const generateDescription = (prompt: string) => {
-  return agentRequest<{ payload: string }, { prompt: string }>(
+  return agentRequest<
+    {
+      payload: string
+    },
+    {
+      prompt: string
+    }
+  >(
     {
       url: `/aiAgent/generatePromptDescription`,
       method: "POST",
@@ -148,7 +155,9 @@ export const getAIAgentWsAddress = (
   aiAgentID: string,
   signal?: AbortSignal,
 ) => {
-  return agentRequest<{ aiAgentConnectionAddress: string }>(
+  return agentRequest<{
+    aiAgentConnectionAddress: string
+  }>(
     {
       url: `/aiAgent/${aiAgentID}/connectionAddress`,
       method: "GET",
@@ -161,7 +170,9 @@ export const getAIAgentWsAddress = (
 }
 
 export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
-  return agentRequest<{ aiAgentConnectionAddress: string }>(
+  return agentRequest<{
+    aiAgentConnectionAddress: string
+  }>(
     {
       url: `/aiAgent/AIAgentAnonymous/connectionAddress`,
       method: "GET",
@@ -176,7 +187,7 @@ export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
 export const uploadAgentIcon = async (base64: string) => {
   const fileName = v4()
   const type = getFileExtensionFromBase64(base64)
-  const address = await authCloudRequest<UploadResponse>({
+  const address = await agentRequest<UploadResponse>({
     url: `/aiAgent/icon/uploadAddress/fileName/${fileName}.${type}`,
     method: "GET",
   })

@@ -1,15 +1,15 @@
 import React, { FC } from "react"
 import { useSelector } from "react-redux"
 import { Avatar } from "@/illa-public-component/Avatar"
-import MarkdownMessage from "@/page/AIAgent/components/MarkdownMessage"
-import { UserMessageProps } from "@/page/AIAgent/components/UserMessage/interface"
+import MarkdownMessage from "@/page/AI/components/MarkdownMessage"
+import { UserMessageProps } from "@/page/AI/components/UserMessage/interface"
 import {
   agentMessageContainer,
   messageContainerStyle,
   senderAvatarStyle,
   senderContainerStyle,
   senderNicknameStyle,
-} from "@/page/AIAgent/components/UserMessage/style"
+} from "@/page/AI/components/UserMessage/style"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 export const UserMessage: FC<UserMessageProps> = (props) => {
