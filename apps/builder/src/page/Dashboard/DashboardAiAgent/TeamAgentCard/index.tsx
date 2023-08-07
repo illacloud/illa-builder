@@ -5,6 +5,7 @@ import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
 import { calculateStyle } from "@/illa-public-market-component/MarketAgentCard"
 import {
   agentIconStyle,
+  applyHiddenStyle,
   descriptionStyle,
   footerStyle,
   headerStyle,
@@ -61,7 +62,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
 
       <div css={footerStyle}>
         <Tag
-          hidden={!agentInfo.publishedToMarketplace}
+          css={applyHiddenStyle(!agentInfo.publishedToMarketplace)}
           colorScheme="techPurple"
           size="small"
         >

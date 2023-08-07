@@ -21,7 +21,7 @@ import {
 } from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { deleteAiAgent, forkAIAgentToTeam } from "@/services/agent"
+import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 
 export interface AppCardActionItemProps {
@@ -77,7 +77,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const handleDuplicateApp = () => {
     if (duplicateLoading) return
     setDuplicateLoading(true)
-    forkAIAgentToTeam(aiAgentID)
+    duplicateAiAgent(aiAgentID)
       .then(
         (response) => {
           const aiAgentID = response.data.aiAgentID

@@ -119,6 +119,18 @@ export const deleteAiAgent = (aiAgentID: string) => {
   )
 }
 
+export const duplicateAiAgent = (aiAgentID: string) => {
+  return agentRequest<Agent>(
+    {
+      url: `/aiAgent/${aiAgentID}/duplicate`,
+      method: "POST",
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
 export const fetchAgentDetail = (aiAgentID: string) => {
   return agentRequest<Agent>(
     {

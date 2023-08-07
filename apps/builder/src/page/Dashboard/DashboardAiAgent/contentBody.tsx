@@ -1,7 +1,7 @@
 import { FC, useCallback, useContext, useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
-import { Input, RadioGroup } from "@illa-design/react"
+import { RadioGroup } from "@illa-design/react"
 import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
 import Select from "@/illa-public-market-component/Select"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
@@ -10,7 +10,6 @@ import {
   AiAgentContext,
 } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
-  contentContainerStyle,
   listContainerStyle,
   listFilterContainerStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
@@ -31,8 +30,6 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   const {
     marketAgentList,
     teamAgentList,
-    keyword,
-    setKeyword,
     agentType,
     setAgentType,
     sortedBy,
@@ -88,8 +85,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   }, [])
 
   return (
-    <div css={contentContainerStyle}>
-      <Input value={keyword} onChange={setKeyword} colorScheme="techPurple" />
+    <>
       <div css={listFilterContainerStyle}>
         <RadioGroup
           type="button"
@@ -133,6 +129,6 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
             )
           })}
       </div>
-    </div>
+    </>
   )
 }

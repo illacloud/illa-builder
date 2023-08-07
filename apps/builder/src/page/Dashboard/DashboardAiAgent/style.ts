@@ -19,6 +19,7 @@ export const listTitleContainerStyle = css`
   gap: 24px;
   padding: 24px 0 40px;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
+  z-index: 1;
 `
 
 export const teamInfoContainerStyle = css`
@@ -47,7 +48,7 @@ export const teamNameStyle = css`
 
 export const contentContainerStyle = css`
   width: 100%;
-  padding: 24px 68px;
+  padding: 0 68px 24px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -58,12 +59,15 @@ export const listFilterContainerStyle = css`
   justify-content: space-between;
   position: sticky;
   top: 0;
+  padding: 24px 68px;
+  background: ${getColor("white", "01")};
 `
 
 export const listContainerStyle = css`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(${agent_card_width}px, 1fr));
   grid-gap: 24px 24px;
+  padding: 0 68px 24px;
 `
 
 export const applyShowStyle = (show: boolean) => {

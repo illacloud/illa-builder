@@ -53,11 +53,12 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
   }, [keyword])
 
   const getMarketAgentList = useCallback(
-    (page: number = marketListPage) => {
+    (params: { page?: number; sort?: PRODUCT_SORT_BY } = {}) => {
+      const { page = marketListPage, sort = sortedBy } = params
       fetchNeedAuthAgentList({
         page,
         limit: 20,
-        sortedBy,
+        sortedBy: sort,
         search: keyword,
       }).then((res) => {
         setMarketListPage(res.data.pageIndex)
