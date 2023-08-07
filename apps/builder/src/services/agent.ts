@@ -1,9 +1,10 @@
 import { v4 } from "uuid"
-import { authCloudRequest, agentRequest, directRequest } from "@/api/http"
+import { agentRequest, authCloudRequest } from "@/api/http"
 import { Agent, AgentRaw, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
 import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
+import { getTeamID } from "@/utils/team"
 
 export interface TeamAgentListData {
   aiAgentList: Agent[]
@@ -69,11 +70,24 @@ export interface ForkAgentResponse {
   aiAgentID: string
 }
 
-export const forkAIAgentToTeam = (aiAgentID: string, teamID: string) => {
-  return directRequest<ForkAgentResponse>({
+export const forkAIAgentToTeam = (aiAgentID: string) => {
+  const teamID = getTeamID()
+  return agentRequest<ForkAgentResponse>({
     url: `/aiAgent/${aiAgentID}/forkTo/teams/${teamID}`,
     method: "POST",
   })
+}
+
+export const deleteAiAgent = (aiAgentID: string) => {
+  return agentRequest<ForkAgentResponse>(
+    {
+      url: `/aiAgent/${aiAgentID}`,
+      method: "DELETE",
+    },
+    {
+      needTeamID: true,
+    },
+  )
 }
 
 export const fetchAgentDetail = (aiAgentID: string) => {
@@ -163,7 +177,7 @@ export const uploadAgentIcon = async (base64: string) => {
   const fileName = v4()
   const type = getFileExtensionFromBase64(base64)
   const address = await authCloudRequest<UploadResponse>({
-    url: `aiAgent/icon/uploadAddress/fileName/${fileName}.${type}`,
+    url: `/aiAgent/icon/uploadAddress/fileName/${fileName}.${type}`,
     method: "GET",
   })
   const file = base642Blob(base64)

@@ -1,6 +1,6 @@
 import { FC, MouseEvent, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import {
   Button,
@@ -20,10 +20,8 @@ import {
   canUseUpgradeFeature,
 } from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { fetchDeleteApp } from "@/services/apps"
+import { deleteAiAgent, forkAIAgentToTeam } from "@/services/agent"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 
 export interface AppCardActionItemProps {
@@ -33,12 +31,11 @@ export interface AppCardActionItemProps {
 }
 
 export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
-  const { aiAgentID, aiAgentName, canEdit } = props
+  const { aiAgentID, canEdit } = props
 
   const { t } = useTranslation()
   const message = useMessage()
   const modal = useModal()
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { teamIdentifier } = useParams()
 
@@ -80,14 +77,10 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const handleDuplicateApp = () => {
     if (duplicateLoading) return
     setDuplicateLoading(true)
-    duplicateApp(aiAgentID, aiAgentName)
+    forkAIAgentToTeam(aiAgentID)
       .then(
         (response) => {
-          dispatch(
-            dashboardAppActions.addDashboardAppReducer({
-              app: response.data,
-            }),
-          )
+          const aiAgentID = response.data.aiAgentID
           navigate(`/${teamIdentifier}/ai-agent/${aiAgentID}`)
         },
         (failure) => {
@@ -123,14 +116,9 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
         modal.update(modalId, {
           okLoading: true,
         })
-        fetchDeleteApp(aiAgentID)
+        deleteAiAgent(aiAgentID)
           .then(
-            (response) => {
-              dispatch(
-                dashboardAppActions.removeDashboardAppReducer(
-                  response.data.appID,
-                ),
-              )
+            () => {
               message.success({
                 content: t("dashboard.app.trash_success"),
               })
@@ -155,7 +143,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
           })
       },
     })
-  }, [aiAgentID, dispatch, modal, message, t])
+  }, [aiAgentID, modal, message, t])
 
   return (
     <div onClick={stopPropagation}>

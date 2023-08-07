@@ -1,9 +1,16 @@
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
+import AutoSizer, { Size } from "react-virtualized-auto-sizer"
+import { FixedSizeGrid } from "react-window"
 import { Input, RadioGroup } from "@illa-design/react"
 import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
+import {
+  agent_card_width,
+  market_agent_card_height,
+} from "@/illa-public-market-component/MarketAgentCard/style"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
+import { team_agent_card_height } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/style"
 import {
   applyShowStyle,
   contentContainerStyle,
@@ -11,16 +18,11 @@ import {
   listFilterContainerStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
 import { Agent, MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
-import { fetchTeamAgentList, MarketAgentListData, SortOptions, TeamAgentListData } from "@/services/agent"
-import { FixedSizeGrid } from "react-window"
-import { agent_card_width, market_agent_card_height } from "@/illa-public-market-component/MarketAgentCard/style"
-import AutoSizer, { Size } from "react-virtualized-auto-sizer"
-import { team_agent_card_height } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/style"
-
-const listData: TeamAgentListData = {
-  aiAgentList: [],
-  totalAIAgentCount: 12,
-}
+import {
+  MarketAgentListData,
+  SortOptions,
+  fetchTeamAgentList,
+} from "@/services/agent"
 
 const marketListData: MarketAgentListData = {
   products: [],
@@ -35,7 +37,7 @@ export interface AgentContentBodyProps {
 
 export const CARD_GUTTER_SIZE = 24
 
-const init= Array.from({ length: 10 }, (_, index) => ({
+const init = Array.from({ length: 10 }, (_, index) => ({
   aiAgent: {
     aiAgentID: `ILAex4p1C7U2-${index}`,
     teamID: "ILAex4p1C7U2",
@@ -79,13 +81,11 @@ const init= Array.from({ length: 10 }, (_, index) => ({
 const getVirtulSize = (width: number, card_height: number, dataLen: number) => {
   // 计算每行能容纳的卡片数量
   const cardCountPerRow = Math.floor(
-    (width + CARD_GUTTER_SIZE) /
-    (agent_card_width + CARD_GUTTER_SIZE),
+    (width + CARD_GUTTER_SIZE) / (agent_card_width + CARD_GUTTER_SIZE),
   )
   // 计算实际每个卡片的宽度（考虑了间距）
   const cardWidth =
-    (width - (cardCountPerRow - 1) * CARD_GUTTER_SIZE) /
-    cardCountPerRow
+    (width - (cardCountPerRow - 1) * CARD_GUTTER_SIZE) / cardCountPerRow
   const cardHeight = card_height + CARD_GUTTER_SIZE
   const columnCount = Math.floor(width / cardWidth)
   const rowCount = Math.ceil(dataLen / columnCount)
@@ -120,10 +120,12 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
     ]
   }, [t])
 
-  const toRunAgent = useCallback((aiAgentID: string) => {
-    navigate(`/${teamIdentifier}/ai-agent/${aiAgentID}/run`)
-  }, [navigate, teamIdentifier])
-
+  const toRunAgent = useCallback(
+    (aiAgentID: string) => {
+      navigate(`/${teamIdentifier}/ai-agent/${aiAgentID}/run`)
+    },
+    [navigate, teamIdentifier],
+  )
 
   const getAgentList = () => {
     fetchTeamAgentList(SortOptions.ID).then((res) => {
@@ -161,13 +163,21 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
       <div css={listContainerStyle}>
         <AutoSizer css={applyShowStyle(agentType === "market")}>
           {({ width, height }: Size) => {
-            const {
+            const { cardWidth, cardHeight, columnCount, rowCount } =
+              getVirtulSize(width, market_agent_card_height, marketList.length)
+            console.log(
+              "cardWidth",
               cardWidth,
+              "cardHeight",
               cardHeight,
+              "columnCount",
               columnCount,
+              "rowCount",
               rowCount,
-            } = getVirtulSize(width, market_agent_card_height, marketList.length)
-            console.log("cardWidth", cardWidth, "cardHeight", cardHeight, "columnCount", columnCount, "rowCount", rowCount, "marketList", marketList.length, init)
+              "marketList",
+              marketList.length,
+              init,
+            )
             return (
               <FixedSizeGrid
                 height={height}
@@ -199,12 +209,8 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
         </AutoSizer>
         <AutoSizer css={applyShowStyle(agentType === "team")}>
           {({ width, height }: Size) => {
-            const {
-              cardWidth,
-              cardHeight,
-              columnCount,
-              rowCount,
-            } = getVirtulSize(width, team_agent_card_height, list.length)
+            const { cardWidth, cardHeight, columnCount, rowCount } =
+              getVirtulSize(width, team_agent_card_height, list.length)
             return (
               <FixedSizeGrid
                 height={height}
