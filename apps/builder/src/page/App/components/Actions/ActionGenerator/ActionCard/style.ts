@@ -37,28 +37,6 @@ export function applyItemStyle(isDraft: boolean): SerializedStyles {
   `
 }
 
-export const applyAgentCardStyle = (isDraft: boolean) => {
-  const hoverStyle = isDraft
-    ? css`
-        pointer-events: auto;
-        cursor: not-allowed;
-      `
-    : css`
-        &:hover {
-          box-shadow: 0 4px 10px 0
-            ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
-        }
-      `
-  return css`
-    width: 184px;
-    height: 54px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    ${hoverStyle};
-  `
-}
-
 export const nameStyle = css`
   font-size: 14px;
   font-weight: 500;

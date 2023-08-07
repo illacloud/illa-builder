@@ -129,7 +129,7 @@ export const JsTransformer: ActionDataItem[] = [
 
 export const AiAgent: ActionDataItem[] = [
   {
-    actionType: "agent",
+    actionType: "aiagent",
     isDraft: false,
   },
 ]

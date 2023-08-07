@@ -9,6 +9,7 @@ import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGener
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { AiAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
+import { Agent } from "@/redux/aiAgent/aiAgentState"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -18,7 +19,10 @@ import {
   ActionType,
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import {
+  getInitialAgentContent,
+  getInitialContent,
+} from "@/redux/currentApp/action/getInitialContent"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { fetchCreateAction } from "@/services/action"
 import {
@@ -76,7 +80,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   useEffect(() => {
     if (currentStep === "createAction") {
-      if (currentActionType === "agent") {
+      if (currentActionType === "aiagent") {
         return
       } else if (
         allResource.filter((value) => {
@@ -141,6 +145,57 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       loadingCallback?.(false)
     },
     [currentActionType, dispatch, message, t, isGuideMode],
+  )
+
+  const handleCreateAgentAction = useCallback(
+    async (
+      item: Agent,
+      successCallback?: () => void,
+      loadingCallback?: (loading: boolean) => void,
+    ) => {
+      if (currentActionType !== "aiagent") return
+      const displayName =
+        DisplayNameGenerator.generateDisplayName(currentActionType)
+      const initalAgentContent = getInitialAgentContent(item)
+      const data: Omit<ActionItem<ActionContent>, "actionId"> = {
+        actionType: currentActionType,
+        displayName,
+        resourceId: item.aiAgentID,
+        content: initalAgentContent,
+        ...actionItemInitial,
+        config: {
+          public: false,
+          advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+        },
+      }
+      if (isGuideMode) {
+        const createActionData: ActionItem<ActionContent> = {
+          ...data,
+          actionId: v4(),
+        }
+        dispatch(actionActions.addActionItemReducer(createActionData))
+        dispatch(configActions.changeSelectedAction(createActionData))
+        successCallback?.()
+        return
+      }
+      loadingCallback?.(true)
+      try {
+        const { data: responseData } = await fetchCreateAction(data)
+        message.success({
+          content: t("editor.action.action_list.message.success_created"),
+        })
+        dispatch(actionActions.addActionItemReducer(responseData))
+        dispatch(configActions.changeSelectedAction(responseData))
+        successCallback?.()
+      } catch (_e) {
+        message.error({
+          content: t("editor.action.action_list.message.failed"),
+        })
+        DisplayNameGenerator.removeDisplayName(displayName)
+      }
+      loadingCallback?.(false)
+    },
+    [currentActionType, dispatch, isGuideMode, message, t],
   )
 
   const handleBack = useCallback(
@@ -265,11 +320,11 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         )}
         {currentStep === "createAction" &&
           currentActionType &&
-          (currentActionType === "agent" ? (
+          (currentActionType === "aiagent" ? (
             <AiAgentSelector
               actionType={currentActionType}
               onBack={handleBack}
-              handleCreateAction={handleDirectCreateAction}
+              handleCreateAction={handleCreateAgentAction}
               onCreateAction={handleCreateAction}
             />
           ) : (

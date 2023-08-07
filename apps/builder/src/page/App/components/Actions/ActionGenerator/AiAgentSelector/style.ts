@@ -6,6 +6,12 @@ export const containerStyle = css`
   flex-direction: column;
 `
 
+export const bodyContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`
+
 export const footerStyle = css`
   height: 80px;
   padding: 24px;
@@ -48,4 +54,12 @@ export const resourceItemTitleStyle = css`
 export const resourceItemTimeStyle = css`
   flex: 1;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+`
+
+export const headerContainerStyle = css`
+  padding: 0 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `

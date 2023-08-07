@@ -1,5 +1,5 @@
 import { v4 } from "uuid"
-import { agentRequest } from "@/api/http"
+import { agentRequest, marketplaceRequest } from "@/api/http"
 import { Agent, AgentRaw, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
 import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
@@ -9,6 +9,7 @@ import { getTeamID } from "@/utils/team"
 export interface TeamAgentListData {
   aiAgentList: Agent[]
   totalAIAgentCount: number
+  totalPages: number
 }
 
 export enum SortOptions {
@@ -57,6 +58,24 @@ export const fetchTeamAgentList = (keywords?: string, signal?: AbortSignal) => {
     return fetchTeamAgentByKeywords(keywords, sortBy, signal)
   }
   return fetchTeamAgentBySort(sortBy, signal)
+}
+export const fetchTeamAgentListByPage = (
+  page: number,
+  keywords: string = "",
+  signal?: AbortSignal,
+) => {
+  return agentRequest<TeamAgentListData>(
+    {
+      url: keywords
+        ? `/aiAgent/list/limit/10/page/${page}/sortBy/id/like/keywords/${keywords}`
+        : `/aiAgent/list/limit/10/page/${page}/sortBy/id`,
+      method: "GET",
+      signal,
+    },
+    {
+      needTeamID: true,
+    },
+  )
 }
 
 export interface AgentProduct {
@@ -198,4 +217,23 @@ export const uploadAgentIcon = async (base64: string) => {
   })
   const file = base642Blob(base64)
   return await upload(address.data.uploadAddress, file)
+}
+
+export enum MARKET_AGENT_SORTED_OPTIONS {
+  POPULAR = "popular",
+  LATEST = "latest",
+  STARRED = "starred",
+}
+
+export const fetchMarketAgentList = (
+  page: number = 1,
+  sortedBy: MARKET_AGENT_SORTED_OPTIONS,
+  search: string = "",
+  signal?: AbortSignal,
+) => {
+  return marketplaceRequest<MarketAgentListData>({
+    url: `/auth/products/aiAgents?page=${page}&sortedBy=${sortedBy}&search=${search}`,
+    method: "GET",
+    signal,
+  })
 }

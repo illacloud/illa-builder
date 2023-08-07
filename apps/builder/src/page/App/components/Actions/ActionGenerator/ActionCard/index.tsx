@@ -8,9 +8,9 @@ import {
   getActionNameFromActionType,
   getActionSubTitleFromActionType,
 } from "@/utils/actionResourceTransformer"
-import { ReactComponent as AgentCard } from "./assets/agent-card.svg"
+import AIAgentCard from "./components/AiAgentCard"
 import { ActionTypeSelectorCardProps } from "./interface"
-import { applyAgentCardStyle, applyItemStyle, nameStyle } from "./style"
+import { applyItemStyle, nameStyle } from "./style"
 
 export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
   const { actionType, onSelect, isDraft } = props
@@ -23,10 +23,8 @@ export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
     }
   }, [actionType, isDraft, onSelect])
 
-  if (actionType === "agent") {
-    return (
-      <AgentCard css={applyAgentCardStyle(isDraft)} onClick={onClickCard} />
-    )
+  if (actionType === "aiagent") {
+    return <AIAgentCard onClickCard={onClickCard} />
   }
 
   return (
