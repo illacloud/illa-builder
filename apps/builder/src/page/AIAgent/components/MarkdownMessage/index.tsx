@@ -5,7 +5,7 @@ import rehypeSanitize from "rehype-sanitize"
 import remarkGfm from "remark-gfm"
 import { Link, Paragraph } from "@illa-design/react"
 import { MarkdownMessageProps } from "@/page/AIAgent/components/MarkdownMessage/interface"
-import { senderMessageStyle } from "@/page/AIAgent/components/MarkdownMessage/style"
+import { markdownMessageStyle } from "@/page/AIAgent/components/MarkdownMessage/style"
 import { HTMLTags } from "@/widgetLibrary/TextWidget/constans"
 
 export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
@@ -17,7 +17,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
 
   return (
     <ReactMarkdown
-      css={senderMessageStyle}
+      css={markdownMessageStyle}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeOptions]]}
       components={{

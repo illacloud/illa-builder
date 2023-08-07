@@ -5,6 +5,7 @@ import MarkdownMessage from "@/page/AIAgent/components/MarkdownMessage"
 import { UserMessageProps } from "@/page/AIAgent/components/UserMessage/interface"
 import {
   agentMessageContainer,
+  messageContainerStyle,
   senderAvatarStyle,
   senderContainerStyle,
   senderNicknameStyle,
@@ -18,7 +19,9 @@ export const UserMessage: FC<UserMessageProps> = (props) => {
     <div css={agentMessageContainer}>
       <div css={senderContainerStyle}>
         <span css={senderNicknameStyle}>{currentUserInfo.nickname}</span>
-        <MarkdownMessage>{message.message}</MarkdownMessage>
+        <div css={messageContainerStyle}>
+          <MarkdownMessage>{message.message}</MarkdownMessage>
+        </div>
       </div>
       <Avatar
         css={senderAvatarStyle}

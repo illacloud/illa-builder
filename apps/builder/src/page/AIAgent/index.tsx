@@ -105,7 +105,14 @@ export const AIAgent: FC = () => {
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
   // data state
-  const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
+  const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([
+    {
+      id: "",
+      nickname: "Anonymous Agent",
+      avatar: "",
+      role: SenderType.ANONYMOUS_AGENT,
+    },
+  ])
   const [isReceiving, setIsReceiving] = useState(false)
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
   const [generationMessage, setGenerationMessage] = useState<
@@ -134,7 +141,10 @@ export const AIAgent: FC = () => {
     (icon: string) => {
       const updateRoomUsers = [...inRoomUsers]
       let index = -1
-      if (getValues("aiAgentID") === "") {
+      if (
+        getValues("aiAgentID") === undefined ||
+        getValues("aiAgentID") === ""
+      ) {
         index = inRoomUsers.findIndex(
           (user) => user.role === SenderType.ANONYMOUS_AGENT,
         )
@@ -155,7 +165,10 @@ export const AIAgent: FC = () => {
     (name: string) => {
       const updateRoomUsers = [...inRoomUsers]
       let index = -1
-      if (getValues("aiAgentID") === "") {
+      if (
+        getValues("aiAgentID") === undefined ||
+        getValues("aiAgentID") === ""
+      ) {
         index = inRoomUsers.findIndex(
           (user) => user.role === SenderType.ANONYMOUS_AGENT,
         )

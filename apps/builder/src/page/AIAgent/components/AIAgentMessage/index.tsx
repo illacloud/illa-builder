@@ -3,6 +3,7 @@ import { Avatar } from "@/illa-public-component/Avatar"
 import { AIAgentMessageProps } from "@/page/AIAgent/components/AIAgentMessage/interface"
 import {
   agentMessageContainer,
+  messageContainerStyle,
   senderAvatarStyle,
   senderContainerStyle,
   senderNicknameStyle,
@@ -42,7 +43,9 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
       />
       <div css={senderContainerStyle}>
         <div css={senderNicknameStyle}>{senderNickname}</div>
-        <MarkdownMessage>{message.message}</MarkdownMessage>
+        <div css={messageContainerStyle}>
+          <MarkdownMessage>{message.message}</MarkdownMessage>
+        </div>
       </div>
     </div>
   )

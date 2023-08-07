@@ -31,3 +31,10 @@ export const senderNicknameStyle = css`
 export const senderAvatarStyle = css`
   margin-left: 16px;
 `
+
+export const messageContainerStyle = css`
+  border-radius: 8px;
+  background: ${getColor("grayBlue", "09")};
+  padding: 8px 12px;
+  margin-top: 4px;
+`
