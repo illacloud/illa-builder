@@ -14,6 +14,8 @@ export interface AgentRaw {
 export interface Agent extends AgentRaw {
   aiAgentID: string
   teamID: string
+  teamIcon: string
+  teamName: string
   publishedToMarketplace: boolean
   createdAt: string
   createdBy: string
@@ -139,6 +141,8 @@ export const AgentInitial: Agent = {
   description: "",
   aiAgentID: "",
   teamID: "",
+  teamIcon: "",
+  teamName: "",
   publishedToMarketplace: false,
   createdAt: "",
   createdBy: "",

@@ -24,6 +24,7 @@ import {
 
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const {
+    lockKey,
     name,
     records,
     customRender,
@@ -57,7 +58,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
           if (customRender) {
             return (
               <div css={recordStyle} key={index}>
-                {customRender(record, index)}
+                {customRender(record, index, lockKey)}
                 <Button
                   type="button"
                   ml="-1px"
@@ -81,6 +82,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   _css={recordKeyStyle}
                   height="32px"
                   value={record.key}
+                  readOnly={lockKey}
                   bdRadius="8px 0 0 8px"
                   placeholder="key"
                   onChange={(value) => {
@@ -91,6 +93,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 <CodeEditor
                   wrapperCss={recordKeyStyle}
                   height="32px"
+                  editable={!lockKey}
                   value={record.key}
                   lang={CODE_LANG.JAVASCRIPT}
                   placeholder="key"
@@ -146,6 +149,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
     )
   }, [
     customRender,
+    lockKey,
     name,
     onChangeKey,
     onChangeValue,

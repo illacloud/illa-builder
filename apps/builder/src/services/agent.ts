@@ -1,6 +1,11 @@
 import { v4 } from "uuid"
 import { agentRequest, marketplaceRequest } from "@/api/http"
-import { Agent, AgentRaw, MarketplaceInfo } from "@/redux/aiAgent/aiAgentState"
+import {
+  Agent,
+  AgentRaw,
+  MarketAiAgent,
+  MarketplaceInfo,
+} from "@/redux/aiAgent/aiAgentState"
 import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
@@ -211,11 +216,16 @@ export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
 export const uploadAgentIcon = async (base64: string) => {
   const fileName = v4()
   const type = getFileExtensionFromBase64(base64)
-  const address = await agentRequest<UploadResponse>({
-    url: `/aiAgent/icon/uploadAddress/fileName/${fileName}.${type}`,
-    method: "GET",
-  })
-  const file = base642Blob(base64)
+  const address = await agentRequest<UploadResponse>(
+    {
+      url: `/aiAgent/icon/uploadAddress/fileName/${fileName}.${type}`,
+      method: "GET",
+    },
+    {
+      needTeamID: true,
+    },
+  )
+  const file = await base642Blob(base64)
   return await upload(address.data.uploadAddress, file)
 }
 
@@ -235,5 +245,12 @@ export const fetchMarketAgentList = (
     url: `/auth/products/aiAgents?page=${page}&sortedBy=${sortedBy}&search=${search}`,
     method: "GET",
     signal,
+  })
+}
+
+export const getAIAgentMarketplaceInfo = (aiAgentID: string) => {
+  return marketplaceRequest<MarketAiAgent>({
+    url: `/auth/products/aiAgents/${aiAgentID}`,
+    method: "GET",
   })
 }

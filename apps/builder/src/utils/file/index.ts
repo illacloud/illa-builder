@@ -267,7 +267,7 @@ export const downloadFileFromURL = async (
   }
 }
 
-export const base642Blob = (base64: string) => {
-  let buffer = Buffer.from(base64, "base64")
-  return new Blob([buffer], { type: "application/octet-stream" })
+export const base642Blob = async (base64: string) => {
+  const result = await fetch(base64)
+  return result.blob()
 }

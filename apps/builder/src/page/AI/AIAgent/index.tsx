@@ -1,7 +1,6 @@
 import axios from "axios"
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
-import { useSelector } from "react-redux"
 import { useLoaderData } from "react-router-dom"
 import { v4 } from "uuid"
 import {
@@ -18,10 +17,7 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { Connection, getTextMessagePayload } from "@/api/ws"
-import { WSMessageListener } from "@/api/ws/illaWS"
-import { Callback, ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
-import { TextSignal, TextTarget } from "@/api/ws/textSignal"
+import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
@@ -29,30 +25,23 @@ import { AvatarUpload } from "@/illa-public-component/Cropper"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
+import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   Agent,
-  ChatMessage,
   ChatSendRequestPayload,
-  ChatWsAppendResponse,
   SenderType,
   getModelLimitToken,
 } from "@/redux/aiAgent/aiAgentState"
-import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   createAgent,
   generateDescription,
-  getAIAgentAnonymousAddress,
-  getAIAgentWsAddress,
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
-import store from "@/store"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ChatContext } from "../components/ChatContext"
 import {
@@ -79,13 +68,10 @@ export const AIAgent: FC = () => {
     agent: Agent
   }
 
-  const { control, handleSubmit, getValues } = useForm<Agent>({
+  const { control, handleSubmit, getValues, setValue } = useForm<Agent>({
     mode: "onSubmit",
     defaultValues: data.agent,
   })
-
-  const currentTeamInfo = useSelector(getCurrentTeamInfo)
-  const currentUserInfo = useSelector(getCurrentUser)
 
   const { isSubmitting, isValid, isDirty, dirtyFields } = useFormState({
     control,
@@ -105,212 +91,77 @@ export const AIAgent: FC = () => {
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
   // data state
-  const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([
-    {
-      id: "",
-      nickname: "Anonymous Agent",
-      avatar: "",
-      role: SenderType.ANONYMOUS_AGENT,
-    },
-  ])
+  const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
-  const [generationMessage, setGenerationMessage] = useState<
-    ChatMessage | undefined
-  >(undefined)
-
-  const sendMessage = useCallback(
-    (payload: ChatSendRequestPayload, signal: TextSignal = TextSignal.RUN) => {
-      setIsReceiving(true)
-      Connection.getTextRoom("ai-agent", "")?.send(
-        getTextMessagePayload(
-          signal,
-          TextTarget.ACTION,
-          false,
-          null,
-          currentTeamInfo?.id ?? "",
-          currentUserInfo.userId,
-          [payload],
-        ),
-      )
-    },
-    [currentTeamInfo?.id, currentUserInfo.userId],
-  )
 
   const updateLocalIcon = useCallback(
-    (icon: string) => {
+    (icon: string, aiAgentID?: string) => {
       const updateRoomUsers = [...inRoomUsers]
       let index = -1
-      if (
-        getValues("aiAgentID") === undefined ||
-        getValues("aiAgentID") === ""
-      ) {
+      if (aiAgentID === undefined || aiAgentID === "") {
         index = inRoomUsers.findIndex(
           (user) => user.role === SenderType.ANONYMOUS_AGENT,
         )
       } else {
-        index = inRoomUsers.findIndex(
-          (user) => user.id === getValues("aiAgentID"),
-        )
+        index = inRoomUsers.findIndex((user) => user.id === aiAgentID)
       }
       if (index != -1) {
         updateRoomUsers[index].avatar = icon
         setInRoomUsers(updateRoomUsers)
       }
     },
-    [getValues, inRoomUsers],
+    [inRoomUsers],
   )
 
   const updateLocalName = useCallback(
-    (name: string) => {
+    (name: string, aiAgentID?: string) => {
       const updateRoomUsers = [...inRoomUsers]
       let index = -1
-      if (
-        getValues("aiAgentID") === undefined ||
-        getValues("aiAgentID") === ""
-      ) {
+      if (aiAgentID === undefined || aiAgentID === "") {
         index = inRoomUsers.findIndex(
           (user) => user.role === SenderType.ANONYMOUS_AGENT,
         )
       } else {
-        index = inRoomUsers.findIndex(
-          (user) => user.id === getValues("aiAgentID"),
-        )
+        index = inRoomUsers.findIndex((user) => user.id === aiAgentID)
       }
       if (index != -1) {
         updateRoomUsers[index].nickname = name
         setInRoomUsers(updateRoomUsers)
       }
     },
-    [getValues, inRoomUsers],
+    [inRoomUsers],
   )
 
-  const connect = useCallback(
-    async (aiAgentID: string) => {
-      setIsConnecting(true)
-      let address = ""
-      if (aiAgentID === "") {
-        const response = await getAIAgentAnonymousAddress()
-        address = response.data.aiAgentConnectionAddress
-      } else {
-        const response = await getAIAgentWsAddress(aiAgentID)
-        address = response.data.aiAgentConnectionAddress
-      }
-      const messageListener = {
-        onMessage: (event, context, ws) => {
-          const message = event.data
-          if (typeof message !== "string") {
-            return
-          }
-          const dataList = message.split("\n")
-          dataList.forEach((data: string) => {
-            let callback: Callback<unknown> = JSON.parse(data)
-
-            if (callback.target === TextTarget.ACTION) {
-              let chatCallback: Callback<ChatWsAppendResponse> =
-                JSON.parse(data)
-              switch (chatCallback.errorCode) {
-                case 0:
-                  if (getValues("agentType") === AI_AGENT_TYPE.CHAT) {
-                    const newMessageList = [...chatMessages]
-                    const index = newMessageList.findIndex((m) => {
-                      return m.threadID === chatCallback.data.threadID
-                    })
-                    if (index === -1) {
-                      newMessageList.push({
-                        sender: chatCallback.data.sender,
-                        message: chatCallback.data.message,
-                        threadID: chatCallback.data.threadID,
-                      } as ChatMessage)
-                    } else {
-                      newMessageList[index].message =
-                        newMessageList[index].message +
-                        chatCallback.data.message
-                    }
-                    setChatMessages(newMessageList)
-                  } else {
-                    if (
-                      generationMessage &&
-                      generationMessage.threadID === chatCallback.data.threadID
-                    ) {
-                      const newMessage = {
-                        ...generationMessage,
-                      }
-                      newMessage.message =
-                        newMessage.message + chatCallback.data.message
-                      setGenerationMessage(newMessage)
-                    } else {
-                      setGenerationMessage({
-                        sender: chatCallback.data.sender,
-                        message: chatCallback.data.message,
-                        threadID: chatCallback.data.threadID,
-                      } as ChatMessage)
-                    }
-                  }
-                  break
-                case 14:
-                  store.dispatch(
-                    configActions.updateWSStatusReducer({
-                      context: context,
-                      wsStatus: ILLA_WEBSOCKET_STATUS.LOCKING,
-                    }),
-                  )
-                  ws.reconnect()
-                  break
-                case 15:
-                  setIsReceiving(false)
-              }
-            }
-            if (
-              callback.signal === TextSignal.ENTER &&
-              callback.broadcast.type == "enter/remote"
-            ) {
-              const { inRoomUsers } = JSON.parse(callback.broadcast.payload)
-              setInRoomUsers(inRoomUsers)
-              updateLocalIcon(getValues("icon"))
-              updateLocalName(getValues("name"))
-            }
-          })
-        },
-      } as WSMessageListener
-      Connection.enterAgentRoom(address, messageListener)
-      setIsConnecting(false)
-      setIsRunning(true)
-      sendMessage({
-        threadID: v4(),
-        prompt: getValues("prompt"),
-        variables: getValues("variables"),
-        modelConfig: getValues("modelConfig"),
-      } as ChatSendRequestPayload)
-    },
-    [
-      chatMessages,
-      generationMessage,
-      getValues,
-      sendMessage,
-      updateLocalIcon,
-      updateLocalName,
-    ],
-  )
-
-  useEffect(() => {
-    return () => {
-      Connection.leaveRoom("ai-agent", "")
-    }
-  }, [])
-
-  const reconnect = useCallback(
-    async (aiAgentID: string) => {
-      Connection.leaveRoom("ai-agent", "")
-      setIsRunning(false)
-      setChatMessages([])
-      setGenerationMessage(undefined)
-      await connect(aiAgentID)
-    },
-    [connect],
-  )
-
-  useEffect(() => {})
+  const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
+    useAgentConnect({
+      onConnecting: (isConnecting) => {
+        setIsConnecting(isConnecting)
+      },
+      onReceiving: (isReceiving) => {
+        setIsReceiving(isReceiving)
+      },
+      onRunning(isRunning: boolean): void {
+        setIsRunning(isRunning)
+      },
+      onSendPrompt(): void {
+        sendMessage(
+          {
+            threadID: v4(),
+            prompt: getValues("prompt"),
+            variables: getValues("variables"),
+            modelConfig: getValues("modelConfig"),
+          } as ChatSendRequestPayload,
+          TextSignal.RUN,
+          getValues("agentType"),
+          false,
+        )
+      },
+      onUpdateRoomUsers(roomUsers: CollaboratorsInfo[]): void {
+        setInRoomUsers(roomUsers)
+        updateLocalIcon(getValues("icon"))
+        updateLocalName(getValues("name"))
+      },
+    })
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
@@ -319,21 +170,37 @@ export const AIAgent: FC = () => {
           // icon need to update to cdn then add to agent.
           try {
             let updateIconURL = data.icon
-            const iconURL = new URL(data.icon)
-            if (iconURL.protocol !== "http:" && iconURL.protocol !== "https:") {
-              updateIconURL = await uploadAgentIcon(data.icon)
+            if (data.icon !== undefined && data.icon !== "") {
+              const iconURL = new URL(data.icon)
+              if (
+                iconURL.protocol !== "http:" &&
+                iconURL.protocol !== "https:"
+              ) {
+                updateIconURL = await uploadAgentIcon(data.icon)
+              }
             }
-            if (data.aiAgentID === "") {
-              await createAgent({
+            if (data.aiAgentID === undefined || data.aiAgentID === "") {
+              const resp = await createAgent({
                 ...data,
                 icon: updateIconURL,
+                variables: data.variables.filter(
+                  (v) => v.key !== "" && v.value !== "",
+                ),
               })
+              setValue("aiAgentID", resp.data.aiAgentID)
             } else {
-              await putAgentDetail(data.aiAgentID, {
+              const resp = await putAgentDetail(data.aiAgentID, {
                 ...data,
                 icon: updateIconURL,
+                variables: data.variables.filter(
+                  (v) => v.key !== "" && v.value !== "",
+                ),
               })
+              setValue("aiAgentID", resp.data.aiAgentID)
             }
+            message.success({
+              content: "save success",
+            })
           } catch (e) {
             if (axios.isAxiosError(e)) {
               message.error({
@@ -361,7 +228,10 @@ export const AIAgent: FC = () => {
                           let reader = new FileReader()
                           reader.onload = () => {
                             field.onChange(reader.result)
-                            updateLocalIcon(reader.result as string)
+                            updateLocalIcon(
+                              reader.result as string,
+                              getValues("aiAgentID"),
+                            )
                           }
                           reader.readAsDataURL(file)
                           return true
@@ -402,7 +272,7 @@ export const AIAgent: FC = () => {
                         colorScheme={"techPurple"}
                         onChange={(value) => {
                           field.onChange(value)
-                          updateLocalName(value)
+                          updateLocalName(value, getValues("aiAgentID"))
                         }}
                       />
                     )}
@@ -606,7 +476,7 @@ export const AIAgent: FC = () => {
                     )}
                   />
                 </AIAgentBlock>
-                <AIAgentBlock title={"Max Token"}>
+                <AIAgentBlock title={"Max Token"} required>
                   <Controller
                     control={control}
                     name={"model"}
@@ -633,7 +503,7 @@ export const AIAgent: FC = () => {
                     )}
                   />
                 </AIAgentBlock>
-                <AIAgentBlock title={"Temperature"}>
+                <AIAgentBlock title={"Temperature"} required>
                   <Controller
                     name="modelConfig.temperature"
                     control={control}
@@ -661,33 +531,33 @@ export const AIAgent: FC = () => {
               <Button
                 flex="1"
                 colorScheme="grayBlue"
-                disabled={!isValid && !isDirty}
+                disabled={!isValid || !isDirty}
                 loading={isSubmitting}
               >
                 Save
               </Button>
-              <Controller
-                control={control}
-                name="aiAgentID"
-                render={({ field }) => (
-                  <Button
-                    type="button"
-                    flex="1"
-                    disabled={!isValid}
-                    loading={isConnecting}
-                    ml="8px"
-                    colorScheme={getColor("grayBlue", "02")}
-                    leftIcon={<ResetIcon />}
-                    onClick={async () => {
-                      isRunning
-                        ? await reconnect(field.value)
-                        : await connect(field.value)
-                    }}
-                  >
-                    {!isRunning ? "Start" : "Restart"}
-                  </Button>
-                )}
-              />
+              <Button
+                type="button"
+                flex="1"
+                disabled={!isValid}
+                loading={isConnecting}
+                ml="8px"
+                colorScheme={getColor("grayBlue", "02")}
+                leftIcon={<ResetIcon />}
+                onClick={async () => {
+                  isRunning
+                    ? await reconnect(
+                        getValues("aiAgentID"),
+                        getValues("agentType"),
+                      )
+                    : await connect(
+                        getValues("aiAgentID"),
+                        getValues("agentType"),
+                      )
+                }}
+              >
+                {!isRunning ? "Start" : "Restart"}
+              </Button>
             </div>
           </div>
           <Controller
@@ -703,25 +573,25 @@ export const AIAgent: FC = () => {
                   isReceiving={isReceiving}
                   blockInput={!isRunning || blockInputDirty}
                   onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
-                    sendMessage({
-                      threadID: message.threadID,
-                      prompt: message.message,
-                      variables: [],
-                      modelConfig: getValues("modelConfig"),
-                    } as ChatSendRequestPayload)
-                    switch (agentType) {
-                      case AI_AGENT_TYPE.CHAT:
-                        setChatMessages([...chatMessages, message])
-                        break
-                      case AI_AGENT_TYPE.TEXT_GENERATION:
-                        setGenerationMessage(undefined)
-                        break
-                    }
+                    sendMessage(
+                      {
+                        threadID: message.threadID,
+                        prompt: message.message,
+                        variables: [],
+                        modelConfig: getValues("modelConfig"),
+                      } as ChatSendRequestPayload,
+                      TextSignal.RUN,
+                      agentType,
+                      true,
+                      message,
+                    )
                   }}
                   onCancelReceiving={() => {
                     sendMessage(
                       {} as ChatSendRequestPayload,
                       TextSignal.STOP_RUN,
+                      field.value,
+                      false,
                     )
                     setIsReceiving(false)
                   }}
