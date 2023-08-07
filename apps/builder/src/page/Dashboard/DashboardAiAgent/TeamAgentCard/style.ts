@@ -1,6 +1,5 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { agent_card_width } from "@/illa-public-market-component/MarketAgentCard/style"
 
 export const team_agent_card_height = 196
 
@@ -9,7 +8,7 @@ export const cardStyle = css`
   flex-direction: column;
   gap: 16px;
   padding: 24px;
-  width: ${agent_card_width}px;
+  width: 100%;
   height: ${team_agent_card_height}px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};

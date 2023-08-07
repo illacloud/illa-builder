@@ -17,8 +17,8 @@ export enum SortOptions {
   UPDATED_AT = "updatedAt",
 }
 
-export const fetchTeamAgentList = (
-  sortBy: SortOptions = SortOptions.ID,
+export const fetchTeamAgentBySort = (
+  sortBy: SortOptions = SortOptions.UPDATED_AT,
   signal?: AbortSignal,
 ) => {
   return agentRequest<TeamAgentListData>(
@@ -35,23 +35,28 @@ export const fetchTeamAgentList = (
 
 // Search AI Agent By Keywords
 export const fetchTeamAgentByKeywords = (
-  sortBy: SortOptions = SortOptions.ID,
   keywords: string,
+  sortBy: SortOptions = SortOptions.UPDATED_AT,
   signal?: AbortSignal,
 ) => {
   return agentRequest<TeamAgentListData>(
     {
-      url: `/aiAgent/list/sortBy/${sortBy}/like`,
+      url: `/aiAgent/list/sortBy/${sortBy}/like/keywords/${keywords}`,
       method: "GET",
-      params: {
-        keywords,
-      },
       signal,
     },
     {
       needTeamID: true,
     },
   )
+}
+
+export const fetchTeamAgentList = (keywords?: string, signal?: AbortSignal) => {
+  const sortBy = SortOptions.UPDATED_AT
+  if (keywords) {
+    return fetchTeamAgentByKeywords(keywords, sortBy, signal)
+  }
+  return fetchTeamAgentBySort(sortBy, signal)
 }
 
 export interface AgentProduct {

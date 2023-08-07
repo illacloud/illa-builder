@@ -3,11 +3,13 @@ import { getCurrentPageTeamIdentifier, getTeamID } from "@/utils/team"
 import { ERROR_FLAG } from "../errorFlag"
 import { actionRuntimeAxios, needAuthAxios, notNeedAuthAxios } from "./base"
 import {
-  ACTION_REQUEST_PREFIX, AGENT_REQUEST_PREFIX,
+  ACTION_REQUEST_PREFIX,
+  AGENT_REQUEST_PREFIX,
   BUILDER_REQUEST_PREFIX,
   BUILDER_WS_REQUEST_PREFIX,
   CLOUD_REQUEST_PREFIX,
   DRIVE_REQUEST_PREFIX,
+  MARKETPLACE_REQUEST_PREFIX,
   PUBLIC_DRIVE_REQUEST_PREFIX,
 } from "./constant"
 
@@ -163,6 +165,25 @@ export const agentRequest = async <
   const finalURL = getURLWithPrefix(
     requestConfig.url,
     AGENT_REQUEST_PREFIX,
+    options,
+  )
+
+  return await needAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const marketplaceRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(
+    requestConfig.url,
+    MARKETPLACE_REQUEST_PREFIX,
     options,
   )
 

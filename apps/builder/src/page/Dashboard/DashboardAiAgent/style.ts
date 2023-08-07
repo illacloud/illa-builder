@@ -1,11 +1,12 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
+import { agent_card_width } from "@/illa-public-market-component/MarketAgentCard/style"
 
 export const containerStyle = css`
   display: flex;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   flex-grow: 1;
   flex-direction: column;
 `
@@ -46,7 +47,6 @@ export const teamNameStyle = css`
 
 export const contentContainerStyle = css`
   width: 100%;
-  height: 100%;
   padding: 24px 68px;
   display: flex;
   flex-direction: column;
@@ -56,16 +56,20 @@ export const contentContainerStyle = css`
 export const listFilterContainerStyle = css`
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
 `
 
 export const listContainerStyle = css`
-  min-width: 1200px;
-  overflow: auto;
-  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(${agent_card_width}px, 1fr));
+  grid-gap: 24px 24px;
 `
 
 export const applyShowStyle = (show: boolean) => {
-  return show ? css`` : css`
-    display: none;
-  `
+  return show
+    ? css``
+    : css`
+        display: none;
+      `
 }

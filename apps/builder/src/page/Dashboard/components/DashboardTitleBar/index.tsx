@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -6,6 +6,8 @@ import {
   Divider,
   DownIcon,
   Dropdown,
+  Input,
+  SearchIcon,
   TabPane,
   Tabs,
   globalColor,
@@ -20,6 +22,7 @@ import {
   USER_ROLE,
 } from "@/illa-public-component/UserRoleUtils/interface"
 import { Avatar } from "@/page/App/components/Avatar"
+import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchLogout } from "@/services/auth"
@@ -100,6 +103,8 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
   let location = useLocation()
   let pathList = location.pathname.split("/")
 
+  const { keyword, setKeyword, getAgentList } = useContext(AiAgentContext)
+
   const canEditApp = canManage(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
     ATTRIBUTE_GROUP.APP,
@@ -137,6 +142,10 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
     },
   ]
 
+  const onSearch = useCallback(() => {
+    getAgentList()
+  }, [getAgentList])
+
   return (
     <Tabs
       prefix={
@@ -153,7 +162,18 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
         </div>
       }
       suffix={
-        isCloudVersion ? null : (
+        isCloudVersion ? (
+          <div>
+            <Input
+              w="240px"
+              value={keyword}
+              onChange={setKeyword}
+              onPressEnter={onSearch}
+              prefix={<SearchIcon />}
+              colorScheme="techPurple"
+            />
+          </div>
+        ) : (
           <div css={navBarAvatarContainerStyle} key="suffix">
             <Dropdown
               position="bottom-end"

@@ -2,9 +2,7 @@ import { CSSProperties, FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
-import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
-import { appActionButtonStyle, cardStyle } from "./style"
+import { calculateStyle } from "@/illa-public-market-component/MarketAgentCard"
 import {
   agentIconStyle,
   descriptionStyle,
@@ -13,7 +11,9 @@ import {
   nameStyle,
   titleInfoStyle,
 } from "@/illa-public-market-component/MarketAgentCard/style"
-import { calculateStyle } from "@/illa-public-market-component/MarketAgentCard"
+import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
+import { Agent } from "@/redux/aiAgent/aiAgentState"
+import { appActionButtonStyle, cardStyle } from "./style"
 
 interface TeamAgentCardProps {
   agentInfo: Agent
@@ -24,7 +24,7 @@ interface TeamAgentCardProps {
 
 export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   const { t } = useTranslation()
-  const {style, agentInfo, canEdit, onClick } = props
+  const { style, agentInfo, canEdit, onClick } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
