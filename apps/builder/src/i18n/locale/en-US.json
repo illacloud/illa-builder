@@ -2616,7 +2616,9 @@
       "message": {
         "click-start": "Click the Start button to trigger.",
         "insufficient_token": "Insufficient token"
-      }
+      },
+      "title": "🧬 Edit AI Agent",
+      "generate-desc": "AI generate"
     },
     "common": {
       "required": "Required"
