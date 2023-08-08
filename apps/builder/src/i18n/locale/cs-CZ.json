@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID listu ke kopírování",
             "sheet_to_copy_to": "List ke zkopírování do",
             "authentication": "Ověření",
-            "connect_with_oauth": "Připojit se k OAuth a uložit",
+            "connect_with_oauth": "Propojit s Google",
             "reconnect_with_oauth": "Znovu připojit s OAuth",
             "access_type": "Typ přístupu"
           },
