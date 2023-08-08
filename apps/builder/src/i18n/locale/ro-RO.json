@@ -2578,7 +2578,8 @@
           "value": "Valoare"
         },
         "welcome": "Furnizaţi un mesaj de bun venit afişat atunci când utilizatorii încep să folosească agentul. (Automatic Translation)",
-        "icon": "Incarca"
+        "icon": "Incarca",
+        "send": "Trimite ceva către Agent"
       },
       "tips": {
         "mode": "În modul chat, fiecare mesaj trimis include istoricul conversațiilor ca parte a cererii, ceea ce poate duce la rezultate mai bune, dar consumă mai multe tokeni; în modul text, fiecare mesaj trimis nu include istoricul conversaţiilor, care poate avea rezultate mai puțin optime în comparație cu modul de chat dar care conservă tokenurile.",
@@ -2622,7 +2623,8 @@
         "button": "Generare AI",
         "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
         "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. "
-      }
+      },
+      "title-preview": "Rulează fereastra"
     },
     "common": {
       "required": "Necesar"
