@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID листа для копирования",
             "sheet_to_copy_to": "Лист для копирования",
             "authentication": "Проверка подлинности",
-            "connect_with_oauth": "Подключиться к OAuth и сохранить",
+            "connect_with_oauth": "Связаться с Google",
             "reconnect_with_oauth": "Переподключаться с OAuth",
             "access_type": "Тип доступа"
           },
