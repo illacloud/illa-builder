@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Give a name to the agent",
         "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "prompt": "Enter {{ to use a variable",
         "variable": {
           "key": "Variable name",
           "value": "Value"
