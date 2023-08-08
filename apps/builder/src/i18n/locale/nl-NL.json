@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Plaats-ID om te kopiëren",
             "sheet_to_copy_to": "Tafel om naar te kopiëren",
             "authentication": "Authenticatie",
-            "connect_with_oauth": "Maak verbinding met OAuth & Opslaan",
+            "connect_with_oauth": "Verbinden met Google",
             "reconnect_with_oauth": "Opnieuw verbinden met OAuth",
             "access_type": "Type toegang"
           },
