@@ -2578,7 +2578,8 @@
           "value": "Valeur"
         },
         "welcome": "Fournir un message de bienvenue affiché lorsque les utilisateurs commencent à utiliser l'agent.",
-        "icon": "Charger"
+        "icon": "Charger",
+        "send": "Envoyer quelque chose à l'Agent"
       },
       "tips": {
         "mode": "En mode chat, chaque message envoyé inclut l'historique de la conversation dans le cadre de la requête, ce qui peut donner de meilleurs résultats, mais consomme plus de jetons ; en mode texte, chaque message envoyé n'inclut pas l'historique de la conversation, qui peut entraîner des résultats moins optimaux par rapport au mode de discussion mais conserve les jetons.",
@@ -2622,7 +2623,8 @@
         "button": "Générer une IA",
         "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
         "failed": "Échec de la génération. Veuillez réessayer plus tard. "
-      }
+      },
+      "title-preview": "Lancer la fenêtre"
     },
     "common": {
       "required": "Requis"
