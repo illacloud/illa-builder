@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "为Agent命名",
         "desc": "简要描述该Agent的用途。",
-        "prompt": "输入 / 选择变量",
+        "prompt": "输入 {{ 使用变量",
         "variable": {
           "key": "变量名",
           "value": "值"
