@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Arkiv-ID for kopiering",
             "sheet_to_copy_to": "Delark å kopiere til",
             "authentication": "Autentisering",
-            "connect_with_oauth": "Koble til med OAuth & Lagre",
+            "connect_with_oauth": "Koble til med Google",
             "reconnect_with_oauth": "Koble til OAuth på nytt",
             "access_type": "Adgangstype (Automatic Translation)"
           },
