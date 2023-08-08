@@ -230,8 +230,8 @@
             "sheet_id_to_copy": "要复制的工作表ID",
             "sheet_to_copy_to": "要复制到的工作表",
             "authentication": "验证",
-            "connect_with_oauth": "连接 OAuth 并保存",
-            "reconnect_with_oauth": "重新连接 OAuth",
+            "connect_with_oauth": "连接到Google",
+            "reconnect_with_oauth": "重新连接到Google",
             "access_type": "接入类型"
           },
           "mongodb": {
