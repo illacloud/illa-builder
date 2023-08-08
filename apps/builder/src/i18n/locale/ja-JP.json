@@ -2624,7 +2624,10 @@
         "tooltips": "AIを使用して、プロンプトに基づいて説明を生成します。 ",
         "failed": "生成に失敗しました。後でもう一度お試しください。 "
       },
-      "title-preview": "実行ウィンドウ"
+      "title-preview": "実行ウィンドウ",
+      "generate-icon": {
+        "tooltips": "エージェント名と説明に基づいてアイコンを生成するためにAIを使用します"
+      }
     },
     "common": {
       "required": "必須"
