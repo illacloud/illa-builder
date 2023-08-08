@@ -2567,7 +2567,7 @@
         "model": "Modell",
         "temperature": "Temperatur",
         "max-token": "Max. Token",
-        "icon": "Icon"
+        "icon": "Symbol"
       },
       "placeholder": {
         "name": "Geben Sie dem Agenten einen Namen",
@@ -2580,7 +2580,7 @@
         "welcome": "Geben Sie eine Willkommensnachricht an, die angezeigt wird, wenn Benutzer den Agenten verwenden.",
         "temperature": "Ein Wert zwischen 0 und 1. Je kleiner der Wert, desto besser kann der Effekt sein",
         "max-token": "Wird verwendet, um die maximale Anzahl an Tokens zu begrenzen, die in einem einzigen Lauf verbraucht werden",
-        "icon": "Upload"
+        "icon": "Hochladen"
       },
       "tips": {
         "mode": "Im Chat-Modus enthält jede gesendete Nachricht den Verlauf der Unterhaltung als Teil der Anfrage, was zu besseren Ergebnissen führen kann, aber mehr Token verbrauchen kann; im Text-Modus, jede gesendete Nachricht enthält nicht den Verlauf der Unterhaltung, was zu weniger optimalen Ergebnissen im Vergleich zum Chatmodus führen kann, aber Token bewahrt.",
@@ -2617,7 +2617,8 @@
         "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
         "insufficient_token": "Unzureichendes Token"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 KI-Agent bearbeiten",
+      "generate-desc": "KI generieren"
     },
     "common": {
       "required": "Benötigt"
