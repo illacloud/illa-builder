@@ -2567,7 +2567,7 @@
         "model": "Modello",
         "temperature": "Temperatura",
         "max-token": "Max token",
-        "icon": "Icon"
+        "icon": "Icona"
       },
       "placeholder": {
         "name": "Dare un nome all'agente",
@@ -2580,7 +2580,7 @@
         "welcome": "Fornire un messaggio di benvenuto visualizzato quando gli utenti iniziano a usare l'agente.",
         "temperature": "Un valore compreso tra 0 e 1. Più piccolo è il valore, migliore può essere l'effetto",
         "max-token": "Usato per limitare il numero massimo di token consumati in una singola esecuzione",
-        "icon": "Upload"
+        "icon": "Carica"
       },
       "tips": {
         "mode": "In modalità chat, ogni messaggio inviato include la cronologia delle conversazioni come parte della richiesta, che può portare a risultati migliori, ma consuma più gettoni; in modalità testo, ogni messaggio inviato non include la cronologia delle conversazioni, che può portare a risultati meno ottimali rispetto alla modalità di chat, ma conserva i gettoni.",
@@ -2617,7 +2617,8 @@
         "click-start": "Fare clic sul pulsante Start per attivare.",
         "insufficient_token": "Token insufficiente"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 Modifica Agente AI",
+      "generate-desc": "Generazione AI"
     },
     "common": {
       "required": "Richiesto"
