@@ -51,6 +51,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
         <TeamAgentCardActionItem
           aiAgentID={agentInfo.aiAgentID}
           aiAgentName={agentInfo.name}
+          publishedToMarketplace={agentInfo.publishedToMarketplace}
           canEdit={canEdit}
         />
       </div>

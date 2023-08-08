@@ -12,4 +12,9 @@ export const ACTION_REQUEST_PREFIX = "/action/api/v1"
 export const DRIVE_REQUEST_PREFIX = "/drive/api/v1"
 export const PUBLIC_DRIVE_REQUEST_PREFIX = "/drive/f"
 export const AGENT_REQUEST_PREFIX = "/resource-manager/api/v1"
-export const MARKETPLACE_REQUEST_PREFIX = "/marketplace/api/v1"
+
+export const MARKETPLACE_AUTH_REQUEST_PREFIX = "/marketplace/api/v1/auth"
+export const MARKETPLACE_AUTH_PRODUCT_REQUEST_PREFIX =
+  "/marketplace/api/v1/auth/products"
+export const MARKETPLACE_PUBLIC_REQUEST_PREFIX =
+  "/marketplace/api/v1/open/products"

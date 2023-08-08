@@ -1,4 +1,8 @@
-import { builderRequest, marketplaceRequest } from "@/api/http"
+import {
+  marketplaceRequest,
+  marketplaceTeamRequest,
+  publicMarketplaceRequest,
+} from "@/api/http"
 import { PublicMarketAiAgent } from "@/redux/aiAgent/aiAgentState"
 
 interface AppListType {}
@@ -49,8 +53,8 @@ export const fetchProductList = <T extends keyof ProductTypeMapping>(
     search,
   } = params
 
-  return builderRequest<ProductList<T>>({
-    url: `/api/v1/open/products/${productType}`,
+  return publicMarketplaceRequest<ProductList<T>>({
+    url: `/${productType}`,
     method: "GET",
     params: {
       page,
@@ -72,7 +76,7 @@ export const fetchNeedAuthProductList = <T extends keyof ProductTypeMapping>(
     search,
   } = params
   return marketplaceRequest<ProductList<T>>({
-    url: `/auth/products/${productType}`,
+    url: `/${productType}`,
     method: "GET",
     params: {
       page,
@@ -95,8 +99,8 @@ export const fetchNeedAuthAgentList = (params: ProductListParams) => {
 }
 
 const starProduct = (productType: PRODUCT_TYPE, productID: string) => {
-  return builderRequest({
-    url: `/api/v1/auth/products/${productType}/${productID}`,
+  return marketplaceRequest({
+    url: `/${productType}/${productID}`,
     method: "POST",
   })
 }
@@ -108,29 +112,27 @@ export const starAiAgent = (agentID: string) => {
 export const contributeProduct = (
   productType: PRODUCT_TYPE,
   productID: string,
-  teamID: string,
 ) => {
-  return builderRequest({
-    url: `/api/v1/auth/products/teams/${teamID}/${productType}/${productID}`,
+  return marketplaceTeamRequest({
+    url: `/products/${productType}/${productID}`,
     method: "POST",
   })
 }
 
-export const contributeAiAgent = (productID: string, teamID: string) => {
-  return contributeProduct(PRODUCT_TYPE.AI_AGENT, productID, teamID)
+export const contributeAiAgent = (aiAgentID: string) => {
+  return contributeProduct(PRODUCT_TYPE.AI_AGENT, aiAgentID)
 }
 
 export const unlistedProduct = (
   productType: PRODUCT_TYPE,
   productID: string,
-  teamID: string,
 ) => {
-  return builderRequest({
-    url: `/api/v1/auth/products/teams/${teamID}/${productType}/${productID}`,
+  return marketplaceTeamRequest({
+    url: `/products/${productType}/${productID}`,
     method: "DELETE",
   })
 }
 
-export const unlistedAiAgent = (productID: string, teamID: string) => {
-  return unlistedProduct(PRODUCT_TYPE.AI_AGENT, productID, teamID)
+export const unlistedAiAgent = (productID: string) => {
+  return unlistedProduct(PRODUCT_TYPE.AI_AGENT, productID)
 }

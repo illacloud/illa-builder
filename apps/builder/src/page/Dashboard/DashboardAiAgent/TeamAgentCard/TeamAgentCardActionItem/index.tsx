@@ -19,7 +19,7 @@ import { REDIRECT_PAGE_TYPE } from "@/illa-public-component/MemberList/interface
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import TeamAgentShareModal from "@/illa-public-market-component/TeamAgentShareModal"
+import TeamAgentShareModal from "@/illa-public-market-component/TeamAgentShareModal/index"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import {
   getCurrentMemberList,
@@ -31,6 +31,7 @@ import {
   fetchShareAgentLink,
   shareAgentByEmail,
 } from "@/services/agent"
+import { contributeAiAgent } from "@/services/marketPlace"
 import {
   changeTeamMembersRole,
   updateMembers,
@@ -42,10 +43,11 @@ export interface AppCardActionItemProps {
   aiAgentID: string
   aiAgentName: string
   canEdit: boolean
+  publishedToMarketplace: boolean
 }
 
 export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
-  const { aiAgentID, aiAgentName, canEdit } = props
+  const { aiAgentID, aiAgentName, canEdit, publishedToMarketplace } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -225,6 +227,10 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
     [aiAgentID],
   )
 
+  const contributeToMarketplace = useCallback(() => {
+    return contributeAiAgent(aiAgentID)
+  }, [aiAgentID])
+
   return (
     <div onClick={stopPropagation}>
       {canEdit ? (
@@ -277,7 +283,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
             leftIcon={<MoreIcon size="14px" />}
           />
         </Dropdown>
-      ) : (
+      ) : publishedToMarketplace ? (
         // for viewer
         <Dropdown
           position="bottom-end"
@@ -305,12 +311,13 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
             leftIcon={<MoreIcon size="14px" />}
           />
         </Dropdown>
-      )}
+      ) : null}
       <TeamAgentShareModal
         visible={shareVisible}
         onCancel={closeInviteModal}
         agentName={aiAgentName}
         agentLink={agentLink}
+        publishedToMarketplace={publishedToMarketplace}
         currentUserRole={teamInfo?.myRole}
         teamName={teamInfo?.name}
         userNickname={userInfo.nickname}
@@ -318,6 +325,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
         fetchInviteLink={fetchShareLink}
         inviteByEmail={handleInviteByEmail}
         changeTeamMembersRole={handleChangeTeamMembersRole}
+        contributeToMarketplace={contributeToMarketplace}
       />
     </div>
   )
