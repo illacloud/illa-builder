@@ -2567,7 +2567,7 @@
         "model": "Model",
         "temperature": "Temperatuur",
         "max-token": "Max token",
-        "icon": "Icon"
+        "icon": "Pictogram"
       },
       "placeholder": {
         "name": "Geef een naam aan de agent",
@@ -2580,7 +2580,7 @@
         "welcome": "Geef een welkomstbericht weer wanneer gebruikers de medewerker gebruiken.",
         "temperature": "Een waarde tussen 0 en 1. Hoe kleiner de waarde, hoe beter het effect kan zijn",
         "max-token": "Gebruikt om het maximum aantal gebruikte tokens dat in een enkele uitvoering wordt verbruikt te beperken",
-        "icon": "Upload"
+        "icon": "Uploaden"
       },
       "tips": {
         "mode": "In de chatmodus bevat elk verzonden bericht de gespreksgeschiedenis als onderdeel van het verzoek, wat kan leiden tot betere resultaten, maar meer tokens verbruikt; in tekstmodus, elk verzonden bericht bevat geen gespreksgeschiedenis dit kan resulteren in minder optimale resultaten vergeleken met de chatmodus maar houdt tokens in de kaart.",
@@ -2617,7 +2617,8 @@
         "click-start": "Klik op de Start knop om te starten.",
         "insufficient_token": "Onvoldoende token"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 Bewerk de AI Agent",
+      "generate-desc": "AI genereren"
     },
     "common": {
       "required": "vereist"
