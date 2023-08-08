@@ -17,7 +17,7 @@ export enum TextSignal {
   TAKE_APP_SNAPSHOT = 15,
   RECOVER_APP_SNAPSHOT = 16,
   RUN = 17,
-  STOP_RUN = 18,
+  STOP_ALL = 18,
 }
 
 export enum TextTarget {

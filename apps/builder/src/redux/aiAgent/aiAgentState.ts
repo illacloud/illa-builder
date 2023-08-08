@@ -85,6 +85,8 @@ export interface ChatSendRequestPayload {
   threadID: string
   prompt: string
   variables: Params[]
+  model: AI_AGENT_MODEL
+  agentType: AI_AGENT_TYPE
   modelConfig: AgentAdvanceConfig
 }
 

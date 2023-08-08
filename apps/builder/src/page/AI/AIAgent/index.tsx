@@ -150,6 +150,8 @@ export const AIAgent: FC = () => {
             prompt: getValues("prompt"),
             variables: getValues("variables"),
             modelConfig: getValues("modelConfig"),
+            model: getValues("model"),
+            agentType: getValues("agentType"),
           } as ChatSendRequestPayload,
           TextSignal.RUN,
           getValues("agentType"),
@@ -579,6 +581,8 @@ export const AIAgent: FC = () => {
                         prompt: message.message,
                         variables: [],
                         modelConfig: getValues("modelConfig"),
+                        model: getValues("model"),
+                        agentType: getValues("agentType"),
                       } as ChatSendRequestPayload,
                       TextSignal.RUN,
                       agentType,
@@ -589,7 +593,7 @@ export const AIAgent: FC = () => {
                   onCancelReceiving={() => {
                     sendMessage(
                       {} as ChatSendRequestPayload,
-                      TextSignal.STOP_RUN,
+                      TextSignal.STOP_ALL,
                       field.value,
                       false,
                     )
