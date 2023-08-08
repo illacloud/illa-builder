@@ -2624,7 +2624,10 @@
         "tooltips": "Usar AI para gerar a descrição baseada no seu prompt. ",
         "failed": "Falha ao gerar. Por favor, tente novamente mais tarde. "
       },
-      "title-preview": "Executar janela"
+      "title-preview": "Executar janela",
+      "generate-icon": {
+        "tooltips": "Use AI para gerar um ícone com base no nome e descrição do agente"
+      }
     },
     "common": {
       "required": "Obrigatório"
