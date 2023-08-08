@@ -2578,14 +2578,14 @@
           "value": "Verdi"
         },
         "welcome": "Gi en velkomstmelding som vises når brukere begynner å bruke agent.",
-        "temperature": "En verdi mellom 0 og 1. Jo mindre verdien er, desto bedre kan effekten være",
-        "max-token": "Brukes til å begrense maksimalt antall tokens brukt ved én kjøring",
         "icon": "Last opp"
       },
       "tips": {
         "mode": "I chat-modus inkluderer hver melding som sendes samtalelogg som en del av forespørselen, og kan resultere i bedre resultater, men forbruker flere symboler; i tekstmodus, hver sendte melding inkluderer ikke samtalehistorikken, noe som kan resultere i mindre optimale utfall sammenlignet med chat-modus, men konserverer tokener.",
         "not-start": "Fullfør Agent-konfigurasjonen, og klikk på Start å kjøre",
-        "not-start-run": "Trykk på Start knappen til venstre."
+        "not-start-run": "Trykk på Start knappen til venstre.",
+        "temperature": "En verdi mellom 0 og 1. Jo mindre verdien er, desto bedre kan effekten være",
+        "max-token": "Brukes til å begrense maksimalt antall tokens brukt ved én kjøring"
       },
       "option": {
         "mode": {
@@ -2618,7 +2618,11 @@
         "insufficient_token": "Utilstrekkelig token"
       },
       "title": "🧬 Rediger AI Agent",
-      "generate-desc": "AI genererer"
+      "generate-desc": {
+        "button": "AI genererer",
+        "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
+        "failed": "Kan ikke generere. Prøv igjen senere. "
+      }
     },
     "common": {
       "required": "Påkrevd"
