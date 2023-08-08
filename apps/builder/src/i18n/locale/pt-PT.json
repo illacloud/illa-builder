@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dê um nome ao agente",
         "desc": "Forneça uma breve descrição para o que este agente deve utilizar.",
-        "prompt": "Digite / para selecionar uma variável",
+        "prompt": "Digite {{ para usar uma variável",
         "variable": {
           "key": "Nome da variável",
           "value": "Valor"
