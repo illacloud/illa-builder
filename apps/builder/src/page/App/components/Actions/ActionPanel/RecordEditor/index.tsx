@@ -67,7 +67,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   bdRadius="0 8px 8px 0"
                   colorScheme="grayBlue"
                   onClick={() => {
-                    onDelete(index, record, name)
+                    onDelete?.(index, record, name)
                   }}
                   leftIcon={<DeleteIcon />}
                 />
@@ -88,7 +88,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   bdRadius="8px 0 0 8px"
                   placeholder="key"
                   onChange={(value) => {
-                    onChangeKey(index, value.trim(), record.value, name)
+                    onChangeKey?.(index, value.trim(), record.value, name)
                   }}
                 />
               ) : (
@@ -101,7 +101,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   placeholder="key"
                   expectValueType={VALIDATION_TYPES.STRING}
                   onChange={(value) => {
-                    onChangeKey(index, value.trim(), record.value, name)
+                    onChangeKey?.(index, value.trim(), record.value, name)
                   }}
                   singleLine
                 />
@@ -118,7 +118,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   flexGrow="1"
                   value={record.value}
                   onChange={(value) => {
-                    onChangeValue(index, record.key, value.trim(), name)
+                    onChangeValue?.(index, record.key, value.trim(), name)
                   }}
                 />
               ) : (
@@ -131,7 +131,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   expectValueType={valueExpectedType}
                   singleLine
                   onChange={(value) => {
-                    onChangeValue(index, record.key, value.trim(), name)
+                    onChangeValue?.(index, record.key, value.trim(), name)
                   }}
                 />
               )}
@@ -144,7 +144,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                   bdRadius="0 8px 8px 0"
                   colorScheme="grayBlue"
                   onClick={() => {
-                    onDelete(index, record, name)
+                    onDelete?.(index, record, name)
                   }}
                   leftIcon={<DeleteIcon />}
                 />
@@ -190,7 +190,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
               size="medium"
               variant="text"
               onClick={() => {
-                onAdd(name)
+                onAdd?.(name)
               }}
               leftIcon={
                 <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />

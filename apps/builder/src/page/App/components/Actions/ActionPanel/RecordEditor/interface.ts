@@ -9,21 +9,21 @@ export interface RecordEditorProps {
   name?: string
   fillOnly?: boolean
   records: Params[] | null
-  onAdd: (name?: string) => void
+  onAdd?: (name?: string) => void
   customRender?: (
     record: Params,
     index: number,
     fillOnly?: boolean,
   ) => ReactNode
   withoutCodeMirror?: boolean
-  onDelete: (index: number, record: Params, name?: string) => void
-  onChangeKey: (
+  onDelete?: (index: number, record: Params, name?: string) => void
+  onChangeKey?: (
     index: number,
     key: string,
     value: string,
     name?: string,
   ) => void
-  onChangeValue: (
+  onChangeValue?: (
     index: number,
     key: string,
     value: string,

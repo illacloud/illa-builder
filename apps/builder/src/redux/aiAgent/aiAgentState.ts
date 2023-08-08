@@ -99,6 +99,12 @@ export enum AI_AGENT_MODEL {
   GPT_4 = 3,
 }
 
+export const AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL = {
+  [AI_AGENT_MODEL.GPT_3_5_TURBO]: "GPT 3.5",
+  [AI_AGENT_MODEL.GPT_3_5_TURBO_16K]: "GPT 3.5-16K",
+  [AI_AGENT_MODEL.GPT_4]: "GPT 4",
+}
+
 export interface ContributorTeam {
   teamID: string
   icon: string
