@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Αναγνωριστικό φύλλου για αντιγραφή",
             "sheet_to_copy_to": "Φύλλο για αντιγραφή σε",
             "authentication": "Ταυτοποίηση",
-            "connect_with_oauth": "Σύνδεση με OAuth & αποθήκευση",
+            "connect_with_oauth": "Σύνδεση με Google",
             "reconnect_with_oauth": "Επανασύνδεση με OAuth",
             "access_type": "Τύπος πρόσβασης"
           },
