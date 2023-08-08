@@ -2578,14 +2578,14 @@
           "value": "Wert"
         },
         "welcome": "Geben Sie eine Willkommensnachricht an, die angezeigt wird, wenn Benutzer den Agenten verwenden.",
-        "temperature": "Ein Wert zwischen 0 und 1. Je kleiner der Wert, desto besser kann der Effekt sein",
-        "max-token": "Wird verwendet, um die maximale Anzahl an Tokens zu begrenzen, die in einem einzigen Lauf verbraucht werden",
         "icon": "Hochladen"
       },
       "tips": {
         "mode": "Im Chat-Modus enthält jede gesendete Nachricht den Verlauf der Unterhaltung als Teil der Anfrage, was zu besseren Ergebnissen führen kann, aber mehr Token verbrauchen kann; im Text-Modus, jede gesendete Nachricht enthält nicht den Verlauf der Unterhaltung, was zu weniger optimalen Ergebnissen im Vergleich zum Chatmodus führen kann, aber Token bewahrt.",
         "not-start": "Schließe die Agenten-Konfiguration ab und klicke auf Start, um zu starten",
-        "not-start-run": "Bitte klicken Sie auf die Schaltfläche Start auf der linken Seite."
+        "not-start-run": "Bitte klicken Sie auf die Schaltfläche Start auf der linken Seite.",
+        "temperature": "Ein Wert zwischen 0 und 1. Je kleiner der Wert, desto besser kann der Effekt sein",
+        "max-token": "Wird verwendet, um die maximale Anzahl an Tokens zu begrenzen, die in einem einzigen Lauf verbraucht werden"
       },
       "option": {
         "mode": {
@@ -2618,7 +2618,11 @@
         "insufficient_token": "Unzureichendes Token"
       },
       "title": "🧬 KI-Agent bearbeiten",
-      "generate-desc": "KI generieren"
+      "generate-desc": {
+        "button": "KI generieren",
+        "tooltips": "Verwenden Sie die KI um die Beschreibung basierend auf Ihrem Prompt zu generieren. ",
+        "failed": "Fehler beim Generieren. Bitte versuchen Sie es später erneut. "
+      }
     },
     "common": {
       "required": "Benötigt"
