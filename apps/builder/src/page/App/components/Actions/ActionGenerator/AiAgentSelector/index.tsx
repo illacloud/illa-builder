@@ -6,7 +6,9 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@/illa-public-component/MixpanelUtils/interface"
+import Select from "@/illa-public-market-component/Select"
 import { Agent } from "@/redux/aiAgent/aiAgentState"
+import { MARKET_AGENT_SORTED_OPTIONS } from "@/services/agent"
 import { track } from "@/utils/mixpanelHelper"
 import { MarketAgentList } from "./components/MarketList"
 import { TeamAgentList } from "./components/TeamAgentList"
@@ -18,6 +20,21 @@ import {
   headerContainerStyle,
 } from "./style"
 
+const sortOptions = [
+  {
+    label: "Popular",
+    value: MARKET_AGENT_SORTED_OPTIONS.POPULAR,
+  },
+  {
+    label: "Newest",
+    value: MARKET_AGENT_SORTED_OPTIONS.LATEST,
+  },
+  {
+    label: "Star",
+    value: MARKET_AGENT_SORTED_OPTIONS.STARRED,
+  },
+]
+
 export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
   const { actionType, onBack, onCreateAction, handleCreateAction } = props
 
@@ -25,6 +42,9 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
   const [agentType, setAgentType] = useState("team")
   const [loading, setLoading] = useState(false)
   const [searchKeywords, setSearchKeywords] = useState("")
+  const [sortedBy, setSortedBy] = useState<MARKET_AGENT_SORTED_OPTIONS>(
+    MARKET_AGENT_SORTED_OPTIONS.POPULAR,
+  )
 
   const debounceSearchKeywords = useRef(
     debounce(
@@ -87,17 +107,30 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
             colorScheme="grayBlue"
             onChange={setAgentType}
           />
+          {agentType === "market" && (
+            <Select
+              value={sortedBy}
+              options={sortOptions}
+              triggerPosition="bottom"
+              onChange={(value) => {
+                setSortedBy(value as MARKET_AGENT_SORTED_OPTIONS)
+              }}
+            />
+          )}
         </div>
         {agentType === "team" && (
           <TeamAgentList
             onSelect={handleClickCreateAction}
             search={searchKeywords}
+            key={searchKeywords}
           />
         )}
         {agentType === "market" && (
           <MarketAgentList
             onSelect={handleClickCreateAction}
             search={searchKeywords}
+            key={`${searchKeywords}-${sortedBy}`}
+            sortBy={sortedBy}
           />
         )}
       </div>

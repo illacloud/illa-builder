@@ -1,5 +1,6 @@
 import { FC, useCallback } from "react"
 import { Button, PlayOutlineIcon, StarOutlineIcon } from "@illa-design/react"
+import { ReactComponent as EmojiSmileIcon } from "@/assets/agent/emojiSmile.svg"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { MarketListItemProps } from "./interface"
 import {
@@ -10,6 +11,9 @@ import {
   listItemContainerStyle,
   numberContainerStyle,
   starAndRunIconContainerStyle,
+  teamIconStyle,
+  teamInfoContainerStyle,
+  teamNameStyle,
   titleAndDescContainerStyle,
   titleStyle,
 } from "./style"
@@ -30,6 +34,14 @@ export const MarketListItem: FC<MarketListItemProps> = (props) => {
           <div css={titleAndDescContainerStyle}>
             <span css={titleStyle}>{item.aiAgent.name}</span>
             <span css={descStyle}>{item.aiAgent.description}</span>
+            <div css={teamInfoContainerStyle}>
+              <span css={teamIconStyle}>
+                <EmojiSmileIcon />
+              </span>
+              <span css={teamNameStyle}>
+                {item.marketplace.contributorTeam.name}
+              </span>
+            </div>
           </div>
         </div>
         <div css={starAndRunIconContainerStyle}>

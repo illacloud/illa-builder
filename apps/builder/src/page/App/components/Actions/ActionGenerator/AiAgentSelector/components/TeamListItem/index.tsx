@@ -26,7 +26,7 @@ export const TeamListItem: FC<TeamListItemProps> = (props) => {
           <span css={descStyle}>{item.description}</span>
         </div>
       </div>
-      <Button onClick={handleClickOnSelect} colorScheme="grayBlue">
+      <Button onClick={handleClickOnSelect} colorScheme="grayBlue" w="72px">
         {/* TODO: I18n */}
         select
       </Button>

@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { FixedSizeList, ListChildComponentProps } from "react-window"
 import InfiniteLoader from "react-window-infinite-loader"
 import { Agent } from "@/redux/aiAgent/aiAgentState"
@@ -10,49 +10,34 @@ import { TeamAgentListProps } from "./interface"
 export const TeamAgentList: FC<TeamAgentListProps> = (props) => {
   const { onSelect, search = "" } = props
   const [teamList, setTeamList] = useState<Agent[]>([])
-
-  const currentPageRef = useRef(1)
-  const hasNextPageRef = useRef<boolean>(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [hasNextPage, setHasNextPage] = useState(true)
+  const [isNextPageLoading, setIsNextPageLoading] = useState(false)
 
   const loadMoreItems = useCallback(async () => {
-    const result = await fetchTeamAgentListByPage(
-      ++currentPageRef.current,
-      search,
-    )
-    hasNextPageRef.current = result.data.totalPages > currentPageRef.current
+    setIsNextPageLoading(true)
+    const result = await fetchTeamAgentListByPage(currentPage, search)
+    setCurrentPage((prev) => prev + 1)
+    setIsNextPageLoading(false)
+    setHasNextPage(result.data.totalPages > currentPage)
     setTeamList((prev) => prev.concat(result.data.aiAgentList))
-  }, [search])
+  }, [currentPage, search])
 
-  useEffect(() => {
-    const abortController = new AbortController()
-    const fetchData = async () => {
-      const result = await fetchTeamAgentListByPage(
-        currentPageRef.current,
-        search,
-        abortController.signal,
-      )
-      hasNextPageRef.current = result.data.totalPages > currentPageRef.current
-      setTeamList(result.data.aiAgentList)
-    }
-    fetchData()
-    return () => {
-      abortController.abort()
-    }
-  }, [search])
+  const itemCount = hasNextPage ? teamList.length + 1 : teamList.length
 
   return (
     <InfiniteLoader
-      itemCount={teamList.length}
-      loadMoreItems={loadMoreItems}
-      isItemLoaded={(index) =>
-        !hasNextPageRef.current || index < teamList.length
-      }
+      itemCount={itemCount}
+      loadMoreItems={isNextPageLoading ? () => {} : loadMoreItems}
+      isItemLoaded={(index) => {
+        return !hasNextPage || index < teamList.length
+      }}
     >
       {({ onItemsRendered, ref }) => (
         <FixedSizeList
           height={AGENT_LIST_HEIGHT}
           width="100%"
-          itemCount={teamList.length}
+          itemCount={itemCount}
           itemData={teamList}
           itemSize={TEAM_AGENT_ITEM_HEIGHT}
           onItemsRendered={onItemsRendered}

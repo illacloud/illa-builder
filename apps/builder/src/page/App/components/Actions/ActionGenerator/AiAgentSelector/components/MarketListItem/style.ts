@@ -41,6 +41,7 @@ export const imgStyle = css`
   width: 32px;
   height: 32px;
   border-radius: 5px;
+  flex: none;
 `
 
 export const titleAndDescContainerStyle = css`
@@ -71,4 +72,26 @@ export const descStyle = css`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+`
+
+export const teamInfoContainerStyle = css`
+  display: flex;
+  align-items: center;
+  width: 240px;
+`
+
+export const teamIconStyle = css`
+  width: 16px;
+  height: 16px;
+  flex: none;
+  overflow: hidden;
+`
+
+export const teamNameStyle = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 20px;
+  color: ${getColor("grayBlue", "03")};
 `

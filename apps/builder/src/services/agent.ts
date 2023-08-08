@@ -17,6 +17,7 @@ import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
 import { getTeamID } from "@/utils/team"
 import { isCloudVersion } from "@/utils/typeHelper"
+import { MARKET_PAGE_SIZE } from "../page/App/components/Actions/ActionGenerator/AiAgentSelector/constants"
 
 export interface TeamAgentListData {
   aiAgentList: Agent[]
@@ -108,7 +109,7 @@ export interface ForkAgentResponse {
 
 export const forkAIAgentToTeam = (aiAgentID: string) => {
   const teamID = getTeamID()
-  return agentRequest<ForkAgentResponse>({
+  return agentRequest<Agent>({
     url: `/aiAgent/${aiAgentID}/forkTo/teams/${teamID}`,
     method: "POST",
   })
@@ -258,10 +259,11 @@ export const fetchMarketAgentList = (
   page: number = 1,
   sortedBy: MARKET_AGENT_SORTED_OPTIONS,
   search: string = "",
+  pageSize: number = MARKET_PAGE_SIZE,
   signal?: AbortSignal,
 ) => {
   return marketplaceRequest<MarketAgentListData>({
-    url: `/auth/products/aiAgents?page=${page}&sortedBy=${sortedBy}&search=${search}`,
+    url: `/aiAgents?page=${page}&limit=${pageSize}&sortedBy=${sortedBy}&search=${search}`,
     method: "GET",
     signal,
   })
