@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "복사할 시트 ID",
             "sheet_to_copy_to": "복사할 시트",
             "authentication": "입증",
-            "connect_with_oauth": "OAuth 와 연결 및 저장",
+            "connect_with_oauth": "Connect with Google",
             "reconnect_with_oauth": "OAuth로 다시 연결",
             "access_type": "액세스 유형"
           },
