@@ -2578,7 +2578,8 @@
           "value": "Waarde"
         },
         "welcome": "Geef een welkomstbericht weer wanneer gebruikers de medewerker gebruiken.",
-        "icon": "Uploaden"
+        "icon": "Uploaden",
+        "send": "Stuur iets naar de agent"
       },
       "tips": {
         "mode": "In de chatmodus bevat elk verzonden bericht de gespreksgeschiedenis als onderdeel van het verzoek, wat kan leiden tot betere resultaten, maar meer tokens verbruikt; in tekstmodus, elk verzonden bericht bevat geen gespreksgeschiedenis dit kan resulteren in minder optimale resultaten vergeleken met de chatmodus maar houdt tokens in de kaart.",
@@ -2622,7 +2623,8 @@
         "button": "AI genereren",
         "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
         "failed": "Aanmaken mislukt. Probeer het later opnieuw. "
-      }
+      },
+      "title-preview": "Venster starten"
     },
     "common": {
       "required": "vereist"
