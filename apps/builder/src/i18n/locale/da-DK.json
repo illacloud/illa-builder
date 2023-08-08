@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Giv et navn til agenten",
         "desc": "Giv en kort beskrivelse af, hvad denne agent er beregnet til at blive brugt til.",
-        "prompt": "Indtast / for at vælge en variabel",
+        "prompt": "Indtast {{ for at bruge en variabel",
         "variable": {
           "key": "Variabel navn",
           "value": "Værdi"
