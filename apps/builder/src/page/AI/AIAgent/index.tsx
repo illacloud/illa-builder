@@ -310,7 +310,7 @@ export const AIAgent: FC = () => {
                             setGenerateDescLoading(true)
                             try {
                               const desc = await generateDescription(
-                                field.value,
+                                getValues("prompt"),
                               )
                               field.onChange(desc.data.payload)
                             } catch (e) {

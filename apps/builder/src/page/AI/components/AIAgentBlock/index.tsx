@@ -17,7 +17,12 @@ export const AIAgentBlock: FC<AIAgentBlockProps> = (props) => {
     <div css={agentBlockStyle}>
       <div css={blockTitleContainer}>
         {title && (
-          <Trigger disabled={tips === undefined} content={tips} trigger="hover">
+          <Trigger
+            disabled={tips === undefined}
+            content={tips}
+            trigger="hover"
+            position="top-start"
+          >
             <div css={applyBlockTextStyle(tips !== undefined)}>{title}</div>
           </Trigger>
         )}
