@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nom",
         "desc": "Libellé",
         "mode": "Mode",
@@ -2567,10 +2566,10 @@
         "welcome": "Message de bienvenue",
         "model": "Modélisation",
         "temperature": "Température",
-        "max-token": "Token max"
+        "max-token": "Token max",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Charger",
         "name": "Donner un nom à l'agent",
         "desc": "Fournir une brève description de ce à quoi cet agent est destiné à être utilisé.",
         "prompt": "Entrer / sélectionner une variable",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Fournir un message de bienvenue affiché lorsque les utilisateurs commencent à utiliser l'agent.",
         "temperature": "Une valeur comprise entre 0 et 1. Plus la valeur est petite, plus l'effet est important",
-        "max-token": "Utilisé pour limiter le nombre maximum de jetons consommés en un seul run"
+        "max-token": "Utilisé pour limiter le nombre maximum de jetons consommés en un seul run",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "En mode chat, chaque message envoyé inclut l'historique de la conversation dans le cadre de la requête, ce qui peut donner de meilleurs résultats, mais consomme plus de jetons ; en mode texte, chaque message envoyé n'inclut pas l'historique de la conversation, qui peut entraîner des résultats moins optimaux par rapport au mode de discussion mais conserve les jetons.",
