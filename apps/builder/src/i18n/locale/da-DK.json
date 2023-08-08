@@ -2578,14 +2578,14 @@
           "value": "Værdi"
         },
         "welcome": "Giv en velkomstbesked, der vises, når brugerne begynder at bruge agent.",
-        "temperature": "En værdi mellem 0 og 1. Jo mindre værdien, jo bedre kan effekten være",
-        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb",
         "icon": "Upload"
       },
       "tips": {
         "mode": "I chattilstand indeholder hver sendt besked samtalehistorikken som en del af anmodningen, hvilket kan resultere i bedre resultater, men forbruger mere tokens; i teksttilstand, hver sendt besked indeholder ikke samtaleoversigten hvilket kan resultere i mindre optimale resultater i forhold til chat-tilstand, men konserves tokens.",
         "not-start": "Færdiggør Agentens konfiguration og klik på Start for at køre",
-        "not-start-run": "Klik på Start-knappen til venstre."
+        "not-start-run": "Klik på Start-knappen til venstre.",
+        "temperature": "En værdi mellem 0 og 1. Jo mindre værdien, jo bedre kan effekten være",
+        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb"
       },
       "option": {
         "mode": {
@@ -2618,7 +2618,11 @@
         "insufficient_token": "Utilstrækkelig token"
       },
       "title": "🧬 Rediger AI Agent",
-      "generate-desc": "AI generere"
+      "generate-desc": {
+        "button": "AI generere",
+        "tooltips": "Brug AI til at generere beskrivelsen baseret på din prompt. ",
+        "failed": "Mislykkedes at generere. Prøv igen senere. "
+      }
     },
     "common": {
       "required": "Påkrævet"
