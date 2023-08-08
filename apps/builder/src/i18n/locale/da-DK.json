@@ -2578,7 +2578,8 @@
           "value": "Værdi"
         },
         "welcome": "Giv en velkomstbesked, der vises, når brugerne begynder at bruge agent.",
-        "icon": "Upload"
+        "icon": "Upload",
+        "send": "Send noget til agenten"
       },
       "tips": {
         "mode": "I chattilstand indeholder hver sendt besked samtalehistorikken som en del af anmodningen, hvilket kan resultere i bedre resultater, men forbruger mere tokens; i teksttilstand, hver sendt besked indeholder ikke samtaleoversigten hvilket kan resultere i mindre optimale resultater i forhold til chat-tilstand, men konserves tokens.",
@@ -2622,7 +2623,8 @@
         "button": "AI generere",
         "tooltips": "Brug AI til at generere beskrivelsen baseret på din prompt. ",
         "failed": "Mislykkedes at generere. Prøv igen senere. "
-      }
+      },
+      "title-preview": "Kør vindue"
     },
     "common": {
       "required": "Påkrævet"
