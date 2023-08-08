@@ -2624,7 +2624,10 @@
         "tooltips": "Brug AI til at generere beskrivelsen baseret på din prompt. ",
         "failed": "Mislykkedes at generere. Prøv igen senere. "
       },
-      "title-preview": "Kør vindue"
+      "title-preview": "Kør vindue",
+      "generate-icon": {
+        "tooltips": "Brug AI til at generere ikon baseret på agentens navn og beskrivelse"
+      }
     },
     "common": {
       "required": "Påkrævet"
