@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "naam",
         "desc": "Beschrijving",
         "mode": "Modus",
@@ -2567,10 +2566,10 @@
         "welcome": "Welkom bericht",
         "model": "Model",
         "temperature": "Temperatuur",
-        "max-token": "Max token"
+        "max-token": "Max token",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Uploaden",
         "name": "Geef een naam aan de agent",
         "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
         "prompt": "Enter / om een variabele te selecteren",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Geef een welkomstbericht weer wanneer gebruikers de medewerker gebruiken.",
         "temperature": "Een waarde tussen 0 en 1. Hoe kleiner de waarde, hoe beter het effect kan zijn",
-        "max-token": "Gebruikt om het maximum aantal gebruikte tokens dat in een enkele uitvoering wordt verbruikt te beperken"
+        "max-token": "Gebruikt om het maximum aantal gebruikte tokens dat in een enkele uitvoering wordt verbruikt te beperken",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "In de chatmodus bevat elk verzonden bericht de gespreksgeschiedenis als onderdeel van het verzoek, wat kan leiden tot betere resultaten, maar meer tokens verbruikt; in tekstmodus, elk verzonden bericht bevat geen gespreksgeschiedenis dit kan resulteren in minder optimale resultaten vergeleken met de chatmodus maar houdt tokens in de kaart.",
@@ -2616,7 +2616,8 @@
       "message": {
         "click-start": "Klik op de Start knop om te starten.",
         "insufficient_token": "Onvoldoende token"
-      }
+      },
+      "title": "🧬 Edit AI Agent"
     },
     "common": {
       "required": "vereist"
