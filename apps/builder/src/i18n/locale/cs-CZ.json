@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dejte jméno agentovi",
         "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
-        "prompt": "Zadejte / vyberte proměnnou",
+        "prompt": "Zadejte {{ pro použití proměnné",
         "variable": {
           "key": "Název proměnné",
           "value": "Hodnota"
