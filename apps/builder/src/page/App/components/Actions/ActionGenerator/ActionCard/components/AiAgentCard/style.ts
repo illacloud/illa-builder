@@ -4,7 +4,7 @@ import gradiant from "./gradiant.png"
 
 export const aiAgentCardStyle = css`
   width: 184px;
-  height: 54px;
+  height: 56px;
   border-radius: 8px;
   background-color: #0f0e0e;
   padding: 16px;
