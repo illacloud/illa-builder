@@ -11,7 +11,7 @@ import {
 } from "./style"
 
 export const AIAgentBlock: FC<AIAgentBlockProps> = (props) => {
-  const { title, tips, children, subTitle, subtitleTips, required } = props
+  const { title, tips, children, subtitle, subtitleTips, required } = props
 
   return (
     <div css={agentBlockStyle}>
@@ -28,14 +28,14 @@ export const AIAgentBlock: FC<AIAgentBlockProps> = (props) => {
         )}
         {required && <RequireIcon css={blockRequireStyle} />}
         <div style={{ flex: 1 }} />
-        {subTitle && (
+        {subtitle && (
           <Trigger
             disabled={subtitleTips === undefined}
             content={subtitleTips}
             trigger="hover"
           >
             <div css={applyBlockSubtitleStyle(subtitleTips !== undefined)}>
-              {subTitle}
+              {subtitle}
             </div>
           </Trigger>
         )}

@@ -40,6 +40,7 @@ import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaborator
 import {
   createAgent,
   generateDescription,
+  generateIcon,
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
@@ -93,6 +94,7 @@ export const AIAgent: FC = () => {
   const message = useMessage()
   // page state
   const [generateDescLoading, setGenerateDescLoading] = useState(false)
+  const [generateIconLoading, setGenerateIconLoading] = useState(false)
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
   // data state
@@ -229,7 +231,42 @@ export const AIAgent: FC = () => {
                   control={control}
                   shouldUnregister={false}
                   render={({ field }) => (
-                    <AIAgentBlock title={t("editor.ai-agent.label.icon")}>
+                    <AIAgentBlock
+                      title={t("editor.ai-agent.label.icon")}
+                      subtitle={
+                        <div
+                          css={descContainerStyle}
+                          onClick={async () => {
+                            setGenerateIconLoading(true)
+                            try {
+                              const desc = await generateIcon(
+                                getValues("name"),
+                                getValues("description"),
+                              )
+                              field.onChange(desc.data.payload)
+                            } catch (e) {
+                              message.error({
+                                content: t(
+                                  "editor.ai-agent.generate-desc.failed",
+                                ),
+                              })
+                            } finally {
+                              setGenerateIconLoading(false)
+                            }
+                          }}
+                        >
+                          {generateIconLoading ? (
+                            <AILoading spin={true} size="12px" />
+                          ) : (
+                            <AIIcon />
+                          )}
+                          <div css={descTextStyle}>
+                            {t("editor.ai-agent.generate-desc.button")}
+                          </div>
+                        </div>
+                      }
+                      subtitleTips={t("editor.ai-agent.generate-icon.tooltips")}
+                    >
                       <AvatarUpload
                         onOk={async (file) => {
                           let reader = new FileReader()
@@ -303,7 +340,7 @@ export const AIAgent: FC = () => {
                       title={t("editor.ai-agent.label.desc")}
                       subtitleTips={t("editor.ai-agent.generate-desc.tooltips")}
                       required
-                      subTitle={
+                      subtitle={
                         <div
                           css={descContainerStyle}
                           onClick={async () => {
@@ -314,13 +351,11 @@ export const AIAgent: FC = () => {
                               )
                               field.onChange(desc.data.payload)
                             } catch (e) {
-                              if (axios.isAxiosError(e)) {
-                                message.error({
-                                  content: t(
-                                    "editor.ai-agent.generate-desc.failed",
-                                  ),
-                                })
-                              }
+                              message.error({
+                                content: t(
+                                  "editor.ai-agent.generate-desc.failed",
+                                ),
+                              })
                             } finally {
                               setGenerateDescLoading(false)
                             }

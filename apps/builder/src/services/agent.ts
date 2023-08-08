@@ -200,6 +200,30 @@ export const generateDescription = (prompt: string) => {
   )
 }
 
+export const generateIcon = (name: string, description: string) => {
+  return agentRequest<
+    {
+      payload: string
+    },
+    {
+      name: string
+      description: string
+    }
+  >(
+    {
+      url: `/aiAgent/generateIcon`,
+      method: "POST",
+      data: {
+        name: name,
+        description: description,
+      },
+    },
+    {
+      needTeamID: true,
+    },
+  )
+}
+
 export const getAIAgentWsAddress = (
   aiAgentID: string,
   signal?: AbortSignal,
