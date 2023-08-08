@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Navn",
         "desc": "Varebeskrivelse",
         "mode": "Tilstand",
@@ -2567,10 +2566,10 @@
         "welcome": "Velkomst besked",
         "model": "Model",
         "temperature": "Temperatur",
-        "max-token": "Maks. token"
+        "max-token": "Maks. token",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Upload",
         "name": "Giv et navn til agenten",
         "desc": "Giv en kort beskrivelse af, hvad denne agent er beregnet til at blive brugt til.",
         "prompt": "Indtast / for at vælge en variabel",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Giv en velkomstbesked, der vises, når brugerne begynder at bruge agent.",
         "temperature": "En værdi mellem 0 og 1. Jo mindre værdien, jo bedre kan effekten være",
-        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb"
+        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "I chattilstand indeholder hver sendt besked samtalehistorikken som en del af anmodningen, hvilket kan resultere i bedre resultater, men forbruger mere tokens; i teksttilstand, hver sendt besked indeholder ikke samtaleoversigten hvilket kan resultere i mindre optimale resultater i forhold til chat-tilstand, men konserves tokens.",
@@ -2616,7 +2616,8 @@
       "message": {
         "click-start": "Klik på knappen Start for at udløse.",
         "insufficient_token": "Utilstrækkelig token"
-      }
+      },
+      "title": "🧬 Edit AI Agent"
     },
     "common": {
       "required": "Påkrævet"
