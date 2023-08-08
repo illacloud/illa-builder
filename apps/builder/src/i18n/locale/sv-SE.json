@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Ge ett namn till agenten",
         "desc": "Ge en kort beskrivning av vad denna agent är avsedd att användas till.",
-        "prompt": "Ange / för att välja en variabel",
+        "prompt": "Ange {{ för att använda en variabel",
         "variable": {
           "key": "Variabelt namn",
           "value": "Värde"
