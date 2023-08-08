@@ -2624,7 +2624,10 @@
         "tooltips": "Käytä tekoälyä luodaksesi kehotuksesi perustuvan kuvauksen. ",
         "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. "
       },
-      "title-preview": "Suorita ikkuna"
+      "title-preview": "Suorita ikkuna",
+      "generate-icon": {
+        "tooltips": "Käytä tekoälyä luodaksesi kuvakkeen agenttien nimen ja kuvauksen perusteella"
+      }
     },
     "common": {
       "required": "Pakollinen"
