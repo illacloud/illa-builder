@@ -2578,14 +2578,14 @@
           "value": "Valore"
         },
         "welcome": "Fornire un messaggio di benvenuto visualizzato quando gli utenti iniziano a usare l'agente.",
-        "temperature": "Un valore compreso tra 0 e 1. Più piccolo è il valore, migliore può essere l'effetto",
-        "max-token": "Usato per limitare il numero massimo di token consumati in una singola esecuzione",
         "icon": "Carica"
       },
       "tips": {
         "mode": "In modalità chat, ogni messaggio inviato include la cronologia delle conversazioni come parte della richiesta, che può portare a risultati migliori, ma consuma più gettoni; in modalità testo, ogni messaggio inviato non include la cronologia delle conversazioni, che può portare a risultati meno ottimali rispetto alla modalità di chat, ma conserva i gettoni.",
         "not-start": "Completare la configurazione dell'agente e fare clic su Avvia per eseguire",
-        "not-start-run": "Fare clic sul pulsante Start sulla sinistra."
+        "not-start-run": "Fare clic sul pulsante Start sulla sinistra.",
+        "temperature": "Un valore compreso tra 0 e 1. Più piccolo è il valore, migliore può essere l'effetto",
+        "max-token": "Usato per limitare il numero massimo di token consumati in una singola esecuzione"
       },
       "option": {
         "mode": {
@@ -2618,7 +2618,11 @@
         "insufficient_token": "Token insufficiente"
       },
       "title": "🧬 Modifica Agente AI",
-      "generate-desc": "Generazione AI"
+      "generate-desc": {
+        "button": "Generazione AI",
+        "tooltips": "Usa AI per generare la descrizione in base al tuo prompt. ",
+        "failed": "Impossibile generare. Riprova più tardi. "
+      }
     },
     "common": {
       "required": "Richiesto"
