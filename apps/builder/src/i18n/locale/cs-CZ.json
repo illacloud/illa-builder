@@ -2578,7 +2578,8 @@
           "value": "Hodnota"
         },
         "welcome": "Poskytněte uvítací zprávu zobrazenou když uživatelé začnou používat agenta.",
-        "icon": "Nahrát"
+        "icon": "Nahrát",
+        "send": "Poslat něco agentovi"
       },
       "tips": {
         "mode": "V režimu chatu obsahuje každá odeslaná zpráva jako součást žádosti historii konverzace, která může vést k lepším výsledkům, ale spotřebovává více tokenů; v textovém režimu každá odeslaná zpráva nezahrnuje historii konverzace, což může vést k méně optimálním výsledkům ve srovnání s chatem, ale zachovává tokeny.",
@@ -2622,7 +2623,8 @@
         "button": "Generovat AI",
         "tooltips": "Použijte AI k vygenerování popisu na základě vaší výzvy. ",
         "failed": "Generování se nezdařilo. Opakujte akci později. "
-      }
+      },
+      "title-preview": "Spustit okno"
     },
     "common": {
       "required": "Požadováno"
