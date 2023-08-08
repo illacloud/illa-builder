@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID листа для копіювання",
             "sheet_to_copy_to": "Аркуш для копіювання",
             "authentication": "Автентифікація",
-            "connect_with_oauth": "З'єднатися з OAuth і зберегти",
+            "connect_with_oauth": "Увійти через Google",
             "reconnect_with_oauth": "Повторне підключення з OAuth",
             "access_type": "Тип доступу"
           },
