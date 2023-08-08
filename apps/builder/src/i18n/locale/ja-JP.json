@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "コピーするシートID",
             "sheet_to_copy_to": "コピー先のシート",
             "authentication": "認証",
-            "connect_with_oauth": "OAuth で接続して保存",
+            "connect_with_oauth": "Google と接続する",
             "reconnect_with_oauth": "OAuth で再接続する",
             "access_type": "アクセスの種類"
           },
