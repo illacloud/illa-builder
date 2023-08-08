@@ -2578,14 +2578,14 @@
           "value": "Value"
         },
         "welcome": "Provide a welcome message displayed when users start use the agent.",
-        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
-        "max-token": "Used to limit the maximum number of tokens consumed in a single run",
         "icon": "Upload"
       },
       "tips": {
         "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
         "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "not-start-run": "Please click the Start button on the left.",
+        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
+        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
       },
       "option": {
         "mode": {
@@ -2618,7 +2618,11 @@
         "insufficient_token": "Insufficient token"
       },
       "title": "🧬 Edit AI Agent",
-      "generate-desc": "AI generate"
+      "generate-desc": {
+        "button": "AI generate",
+        "tooltips": "Use AI to generate the description based on your prompt. ",
+        "failed": "Failed to generate. Please try again later. "
+      }
     },
     "common": {
       "required": "Required"
