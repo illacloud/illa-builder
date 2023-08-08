@@ -4,24 +4,32 @@ import { ReactComponent as RequireIcon } from "@/assets/agent/require.svg"
 import { AIAgentBlockProps } from "./interface"
 import {
   agentBlockStyle,
-  applyBlockSubTitleStyle,
+  applyBlockSubtitleStyle,
+  applyBlockTextStyle,
   blockRequireStyle,
-  blockTextStyle,
   blockTitleContainer,
 } from "./style"
 
 export const AIAgentBlock: FC<AIAgentBlockProps> = (props) => {
-  const { title, children, subTitle, tips, required } = props
+  const { title, tips, children, subTitle, subtitleTips, required } = props
 
   return (
     <div css={agentBlockStyle}>
       <div css={blockTitleContainer}>
-        <div css={blockTextStyle}>{title}</div>
+        {title && (
+          <Trigger disabled={tips === undefined} content={tips} trigger="hover">
+            <div css={applyBlockTextStyle(tips !== undefined)}>{title}</div>
+          </Trigger>
+        )}
         {required && <RequireIcon css={blockRequireStyle} />}
         <div style={{ flex: 1 }} />
         {subTitle && (
-          <Trigger disabled={tips === undefined} content={tips} trigger="hover">
-            <div css={applyBlockSubTitleStyle(tips !== undefined)}>
+          <Trigger
+            disabled={subtitleTips === undefined}
+            content={subtitleTips}
+            trigger="hover"
+          >
+            <div css={applyBlockSubtitleStyle(subtitleTips !== undefined)}>
               {subTitle}
             </div>
           </Trigger>

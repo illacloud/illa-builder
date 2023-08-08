@@ -371,6 +371,7 @@ export const AIAgentRun: FC = () => {
             render={({ field }) => (
               <div css={rightPanelContainerStyle}>
                 <PreviewChat
+                  editState="RUN"
                   agentType={field.value}
                   chatMessages={chatMessages}
                   generationMessage={generationMessage}

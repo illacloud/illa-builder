@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useCallback, useMemo, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
@@ -39,12 +40,15 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     onSendMessage,
     isReceiving,
     blockInput,
+    editState,
     onCancelReceiving,
   } = props
 
   const currentUserInfo = useSelector(getCurrentUser)
 
   const [textAreaVal, setTextAreaVal] = useState("")
+
+  const { t } = useTranslation()
 
   const messagesList = useMemo(() => {
     return chatMessages.map((message) => {
@@ -84,13 +88,19 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   return (
     <div css={previewChatContainerStyle}>
       <div css={previewTitleContainerStyle}>
-        <div css={previewTitleTextStyle}>Preview Window</div>
-        <Button ml="8px" colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
-          Share
-        </Button>
-        <Button ml="8px" colorScheme="grayBlue" leftIcon={<ContributeIcon />}>
-          Contribute to marketplace
-        </Button>
+        <div css={previewTitleTextStyle}>
+          {t("editor.ai-agent.title-preview")}
+        </div>
+        {editState === "EDIT" && (
+          <Button ml="8px" colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
+            {t("share")}
+          </Button>
+        )}
+        {editState === "EDIT" && (
+          <Button ml="8px" colorScheme="grayBlue" leftIcon={<ContributeIcon />}>
+            {t("editor.ai-agent.contribute")}
+          </Button>
+        )}
       </div>
       <div css={chatContainerStyle}>
         {agentType === AI_AGENT_TYPE.CHAT ? messagesList : generationBlock}
@@ -115,7 +125,9 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               transition={{ duration: 0.2 }}
             >
               <div css={generatingContentContainerStyle}>
-                <div css={generatingTextStyle}>Generating...</div>
+                <div css={generatingTextStyle}>
+                  {t("editor.ai-agent.button.generating")}
+                </div>
                 <div css={generatingDividerStyle} />
                 <StopIcon
                   css={stopIconStyle}
@@ -153,14 +165,16 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             sendAndClearMessage()
           }}
         >
-          Send
+          {t("editor.ai-agent.button.send")}
         </Button>
       </div>
       {blockInput && (
         <div css={blockInputContainerStyle}>
           <AgentBlockInput />
           <div css={blockInputTextStyle}>
-            Complete the Agent and click run in the left panel
+            {editState === "RUN"
+              ? t("editor.ai-agent.tips.not-start-run")
+              : t("editor.ai-agent.tips.not-start")}
           </div>
         </div>
       )}

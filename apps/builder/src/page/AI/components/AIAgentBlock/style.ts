@@ -7,12 +7,19 @@ export const agentBlockStyle = css`
   width: 100%;
 `
 
-export const blockTextStyle = css`
-  color: ${getColor("grayBlue", "02")};
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 22px;
-`
+export function applyBlockTextStyle(
+  renderBottomLine?: boolean,
+): SerializedStyles {
+  return css`
+    color: ${getColor("grayBlue", "02")};
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    border-bottom: ${renderBottomLine
+      ? `1px dashed ${getColor("grayBlue", "06")}`
+      : "none"};
+  `
+}
 
 export const blockRequireStyle = css`
   margin-left: 4px;
@@ -25,7 +32,7 @@ export const blockTitleContainer = css`
   margin-bottom: 8px;
 `
 
-export function applyBlockSubTitleStyle(
+export function applyBlockSubtitleStyle(
   renderBottomLine?: boolean,
 ): SerializedStyles {
   return css`
