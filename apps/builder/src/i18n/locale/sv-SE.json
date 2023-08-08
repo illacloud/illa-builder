@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Id för att kopiera",
             "sheet_to_copy_to": "Ark att kopiera till",
             "authentication": "Autentisering",
-            "connect_with_oauth": "Anslut med OAuth & Spara",
+            "connect_with_oauth": "Anslut med Google",
             "reconnect_with_oauth": "Återanslut med OAuth",
             "access_type": "Åtkomsttyp"
           },
