@@ -2624,7 +2624,10 @@
         "tooltips": "基于您的Prompt，使用AI生成描述信息",
         "failed": "生成失败，请稍后重试"
       },
-      "title-preview": "运行窗口"
+      "title-preview": "运行窗口",
+      "generate-icon": {
+        "tooltips": "基于Agent的名称和描述，使用AI生成icon"
+      }
     },
     "common": {
       "required": "必填"
