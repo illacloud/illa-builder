@@ -14,29 +14,11 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { ERROR_FLAG } from "@/api/errorFlag"
-import { REDIRECT_PAGE_TYPE } from "@/illa-public-component/MemberList/interface"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import TeamAgentShareModal from "@/illa-public-market-component/TeamAgentShareModal/index"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import {
-  getCurrentMemberList,
-  getCurrentTeamInfo,
-} from "@/redux/team/teamSelector"
-import {
-  deleteAiAgent,
-  duplicateAiAgent,
-  fetchShareAgentLink,
-  shareAgentByEmail,
-} from "@/services/agent"
-import { contributeAiAgent } from "@/services/marketPlace"
-import {
-  changeTeamMembersRole,
-  updateMembers,
-  updateTeamsInfo,
-} from "@/services/team"
+import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 
 export interface AppCardActionItemProps {
@@ -55,10 +37,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const navigate = useNavigate()
   const { teamIdentifier } = useParams()
 
-  const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)!
-  const members = useSelector(getCurrentMemberList) ?? []
-  const agentLink = `${location.protocol}//${location.host}/${aiAgentID}/detail`
 
   const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
@@ -158,79 +137,6 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
     })
   }, [aiAgentID, modal, message, t])
 
-  const handleChangeTeamMembersRole = (
-    teamMemberID: string,
-    userRole: USER_ROLE,
-  ) => {
-    return changeTeamMembersRole(teamMemberID, userRole)
-      .then((res) => {
-        if (userRole === USER_ROLE.OWNER) {
-          message.success({
-            content: t("user_management.mes.transfer_suc"),
-          })
-          updateTeamsInfo(teamIdentifier)
-        } else {
-          message.success({
-            content: t("user_management.mes.change_role_suc"),
-          })
-        }
-        updateMembers()
-        return res
-      })
-      .catch((error) => {
-        if (isILLAAPiError(error)) {
-          switch (error.data.errorFlag) {
-            case ERROR_FLAG.ERROR_FLAG_ACCESS_DENIED:
-            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_INCREASE_TEAM_MEMBER_DUE_TO_NO_BALANCE:
-              message.error({
-                content: t("user_management.mes.change_role_fail"),
-              })
-              break
-            case ERROR_FLAG.ERROR_FLAG_CAN_NOT_UPDATE_TEAM_MEMBER_ROLE_BECAUSE_APPSUMO_BUYER:
-              message.error({
-                content: t("billing.message.appsumo.transfer"),
-              })
-              break
-            default:
-              if (userRole === USER_ROLE.OWNER) {
-                message.error({
-                  content: t("user_management.mes.transfer_fail"),
-                })
-              } else {
-                message.error({
-                  content: t("user_management.mes.change_role_fail"),
-                })
-              }
-              break
-          }
-        }
-        return false
-      })
-  }
-
-  const handleInviteByEmail = useCallback(
-    (email: string, userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
-      return shareAgentByEmail(email, userRole, aiAgentID, redirectPage).then(
-        (res) => {
-          updateMembers()
-          return res
-        },
-      )
-    },
-    [aiAgentID],
-  )
-
-  const fetchShareLink = useCallback(
-    (userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
-      return fetchShareAgentLink(userRole, aiAgentID, redirectPage)
-    },
-    [aiAgentID],
-  )
-
-  const contributeToMarketplace = useCallback(() => {
-    return contributeAiAgent(aiAgentID)
-  }, [aiAgentID])
-
   return (
     <div onClick={stopPropagation}>
       {canEdit ? (
@@ -312,20 +218,12 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
           />
         </Dropdown>
       ) : null}
-      <TeamAgentShareModal
+      <AgentShareModal
         visible={shareVisible}
         onCancel={closeInviteModal}
-        agentName={aiAgentName}
-        agentLink={agentLink}
+        aiAgentID={aiAgentID}
+        aiAgentName={aiAgentName}
         publishedToMarketplace={publishedToMarketplace}
-        currentUserRole={teamInfo?.myRole}
-        teamName={teamInfo?.name}
-        userNickname={userInfo.nickname}
-        userListData={members}
-        fetchInviteLink={fetchShareLink}
-        inviteByEmail={handleInviteByEmail}
-        changeTeamMembersRole={handleChangeTeamMembersRole}
-        contributeToMarketplace={contributeToMarketplace}
       />
     </div>
   )
