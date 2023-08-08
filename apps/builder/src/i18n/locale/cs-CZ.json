@@ -2578,14 +2578,14 @@
           "value": "Hodnota"
         },
         "welcome": "Poskytněte uvítací zprávu zobrazenou když uživatelé začnou používat agenta.",
-        "temperature": "Hodnota mezi 0 a 1. Čím menší hodnota, tím lepší může být efekt",
-        "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě",
         "icon": "Nahrát"
       },
       "tips": {
         "mode": "V režimu chatu obsahuje každá odeslaná zpráva jako součást žádosti historii konverzace, která může vést k lepším výsledkům, ale spotřebovává více tokenů; v textovém režimu každá odeslaná zpráva nezahrnuje historii konverzace, což může vést k méně optimálním výsledkům ve srovnání s chatem, ale zachovává tokeny.",
         "not-start": "Dokončete konfiguraci agenta a klepněte na tlačítko Start pro spuštění",
-        "not-start-run": "Klikněte prosím na tlačítko Start na levé straně."
+        "not-start-run": "Klikněte prosím na tlačítko Start na levé straně.",
+        "temperature": "Hodnota mezi 0 a 1. Čím menší hodnota, tím lepší může být efekt",
+        "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě"
       },
       "option": {
         "mode": {
@@ -2618,7 +2618,11 @@
         "insufficient_token": "Nedostatečný token"
       },
       "title": "🧬 Úprava AI agenta",
-      "generate-desc": "Generovat AI"
+      "generate-desc": {
+        "button": "Generovat AI",
+        "tooltips": "Použijte AI k vygenerování popisu na základě vaší výzvy. ",
+        "failed": "Generování se nezdařilo. Opakujte akci později. "
+      }
     },
     "common": {
       "required": "Požadováno"
