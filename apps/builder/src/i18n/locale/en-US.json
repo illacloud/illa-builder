@@ -2578,7 +2578,8 @@
           "value": "Value"
         },
         "welcome": "Provide a welcome message displayed when users start use the agent.",
-        "icon": "Upload"
+        "icon": "Upload",
+        "send": "Send something to the Agent"
       },
       "tips": {
         "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
@@ -2622,7 +2623,8 @@
         "button": "AI generate",
         "tooltips": "Use AI to generate the description based on your prompt. ",
         "failed": "Failed to generate. Please try again later. "
-      }
+      },
+      "title-preview": "Run window"
     },
     "common": {
       "required": "Required"
