@@ -32,7 +32,7 @@
       "cancel": "Abandonner",
       "delete": "Supprimez",
       "delete_cancel_text": "Abandonner",
-      "delete_content": "Après la suppression, il ne sera pas possible d'accéder ou de récupérer les données par quelque moyen que ce soit. Veuillez confirmer.",
+      "delete_content": "Cela cassera les requêtes des applications et de la bibliothèque de requêtes qui utilisent cette ressource",
       "delete_ok_text": "Supprimez",
       "delete_title": "Êtes-vous sûr(e) ?",
       "error_button": "Réessayer",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Les plus populaires",
-      "recent": "Dernier",
+      "recent": "Récemment mis à jour",
       "star": "Favoris"
     },
     "search": "Chercher",
     "no-result": "Aucun résultat ici. Veuillez actualiser ou modifier les termes de votre recherche.",
     "message": {
       "next-page-error": "Impossible de charger la page suivante. Veuillez réessayer.",
-      "create-failed": "Échec de l'enregistrement de l'agent. Veuillez réessayer.",
+      "create-failed": "Impossible de créer l'agent. Veuillez réessayer.",
       "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
       "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
       "fork-failed": "Échec du fork, veuillez réessayer.",
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID de la feuille à copier",
             "sheet_to_copy_to": "Feuille à copier vers",
             "authentication": "Authentification",
-            "connect_with_oauth": "Se connecter avec OAuth & Enregistrer",
+            "connect_with_oauth": "Se connecter avec Google",
             "reconnect_with_oauth": "Reconnecter avec OAuth",
             "access_type": "Type d'accès"
           },
@@ -2053,7 +2053,7 @@
           "title": "Définir le titre à afficher"
         },
         "page": {
-          "default_view": "Lorsque les utilisateurs saisissent une URL d'erreur, nous redirigerons automatiquement vers la sous-page par défaut. S'il n'y a pas de sous-page par défaut, nous traiterons la première sous-page de la liste comme sous-page par défaut"
+          "default_view": "Lorsque les utilisateurs saisissent un chemin d'erreur, nous redirigerons automatiquement vers le chemin par défaut. S'il n'y a pas de chemin par défaut, nous traiterons le premier chemin de la liste comme chemin par défaut"
         },
         "chart": {
           "direction": "Définissez la direction du graphique. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Ajouter",
         "body": "Corps",
-        "default_view": "Sous-page par défaut",
-        "edit_view": "Modifier la sous-page",
+        "default_view": "Vue par défaut",
+        "edit_view": "Modifier le chemin d'accès",
         "footer": "Pied de page",
         "header": "En-tête",
         "key": "Clés",
@@ -2285,8 +2285,8 @@
         "right_panel": "Panneau droit",
         "set_as_homepage": "Définir comme page d'accueil",
         "show_fold_icon": "Afficher l'icône du pli",
-        "view_path": "Nom",
-        "views": "Sous-pages",
+        "view_path": "Chemin d'accès",
+        "views": "Vues",
         "width": "Width",
         "height": "Hauteur",
         "columns": "Colonnes",
@@ -2307,7 +2307,7 @@
       "tab_title": "Page",
       "tooltips": {
         "show_fold_icon": "Afficher un bouton pour réduire ou agrandir le panneau",
-        "view_path": "Pour configurer l'accès à cette page, vous devrez ajuster le nom. Par exemple, si vous changez le nom en '**newPage**', et que vous l'ajoutez en tant que sous-page de la page d'accueil. Cette page est alors accessible via l'URL suivante : cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Pour configurer l'accès à cette page, vous devrez ajuster le chemin. Par exemple, si vous changez le chemin d'accès en '**newPath**', et que vous l'ajoutez en tant que sous-page de la page d'accueil. Cette page est alors accessible via l'URL suivante : cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La largeur de la page en pourcentage de la largeur du navigateur."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nom",
         "desc": "Libellé",
         "mode": "Mode",
@@ -2567,25 +2566,27 @@
         "welcome": "Message de bienvenue",
         "model": "Modélisation",
         "temperature": "Température",
-        "max-token": "Token max"
+        "max-token": "Token max",
+        "icon": "Icône"
       },
       "placeholder": {
-        "logo": "Charger",
         "name": "Donner un nom à l'agent",
         "desc": "Fournir une brève description de ce à quoi cet agent est destiné à être utilisé.",
-        "prompt": "Entrer / sélectionner une variable",
+        "prompt": "Entrez {{ pour utiliser une variable",
         "variable": {
           "key": "Nom de la variable",
           "value": "Valeur"
         },
         "welcome": "Fournir un message de bienvenue affiché lorsque les utilisateurs commencent à utiliser l'agent.",
-        "temperature": "Une valeur comprise entre 0 et 1. Plus la valeur est petite, plus l'effet est important",
-        "max-token": "Utilisé pour limiter le nombre maximum de jetons consommés en un seul run"
+        "icon": "Charger",
+        "send": "Envoyer quelque chose à l'Agent"
       },
       "tips": {
         "mode": "En mode chat, chaque message envoyé inclut l'historique de la conversation dans le cadre de la requête, ce qui peut donner de meilleurs résultats, mais consomme plus de jetons ; en mode texte, chaque message envoyé n'inclut pas l'historique de la conversation, qui peut entraîner des résultats moins optimaux par rapport au mode de discussion mais conserve les jetons.",
         "not-start": "Complétez la configuration de l'agent et cliquez sur Démarrer pour lancer",
-        "not-start-run": "Veuillez cliquer sur le bouton Démarrer à gauche."
+        "not-start-run": "Veuillez cliquer sur le bouton Démarrer à gauche.",
+        "temperature": "Une valeur comprise entre 0 et 1. Plus la valeur est petite, plus l'effet est important",
+        "max-token": "Utilisé pour limiter le nombre maximum de jetons consommés en un seul run"
       },
       "option": {
         "mode": {
@@ -2616,6 +2617,16 @@
       "message": {
         "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
         "insufficient_token": "Jeton insuffisant"
+      },
+      "title": "🧬 Modifier l'Agent IA",
+      "generate-desc": {
+        "button": "Générer une IA",
+        "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
+        "failed": "Échec de la génération. Veuillez réessayer plus tard. "
+      },
+      "title-preview": "Lancer la fenêtre",
+      "generate-icon": {
+        "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent"
       }
     },
     "common": {
@@ -3034,12 +3045,12 @@
       "name": "Forme de Schéma JSON"
     },
     "page": {
-      "path_duplicated": "Le nom de la page est dupliqué. Veuillez utiliser un nom unique pour éviter les erreurs. ",
+      "path_duplicated": "Le chemin est dupliqué. Veuillez utiliser un chemin unique pour éviter les erreurs. ",
       "tips": {
         "blank_view": "Ce module n'a pas de pages enfants. Veuillez d'abord les ajouter via le panneau de page à droite."
       },
       "label": {
-        "rename_url": "Modifier la sous-page",
+        "rename_url": "Modifier le chemin d'accès",
         "rename_page_url": "Modifier la page"
       }
     }

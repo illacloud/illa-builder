@@ -32,7 +32,7 @@
       "cancel": "Cancelar",
       "delete": "Eliminar",
       "delete_cancel_text": "Cancelar",
-      "delete_content": "Después de la eliminación, no será posible acceder o recuperar los datos a través de ningún medio. Por favor, confirme por favor.",
+      "delete_content": "Esto romperá las consultas de las aplicaciones y las bibliotecas de consultas que utilizan este recurso",
       "delete_ok_text": "Eliminar",
       "delete_title": "¿Estás seguro?",
       "error_button": "Reintentar",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Más popular",
-      "recent": "Última",
+      "recent": "Actualizado recientemente",
       "star": "Favoritos"
     },
     "search": "Buscar",
     "no-result": "No hay resultados aquí. Por favor, actualice o cambie sus términos de búsqueda.",
     "message": {
       "next-page-error": "Error al cargar la página siguiente. Por favor, inténtalo de nuevo.",
-      "create-failed": "Error al guardar el agente. Inténtelo de nuevo.",
+      "create-failed": "Error al crear el agente. Por favor, inténtalo de nuevo.",
       "sort-failed": "Error al cambiar el tipo de filtro. Por favor, inténtalo de nuevo.",
       "detail-load-failed": "Error al recuperar los detalles, inténtalo de nuevo.",
       "fork-failed": "Error al bifurcar, inténtelo de nuevo.",
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID de hoja a copiar",
             "sheet_to_copy_to": "Hoja a copiar",
             "authentication": "Autenticación",
-            "connect_with_oauth": "Conectar con OAuth & Save",
+            "connect_with_oauth": "Conectar con Google",
             "reconnect_with_oauth": "Volver a conectar con OAuth",
             "access_type": "Tipo de acceso"
           },
@@ -2053,7 +2053,7 @@
           "title": "Establecer el título a mostrar"
         },
         "page": {
-          "default_view": "Cuando los usuarios ingresan una URL de error, redirigiremos automáticamente a la subpágina predeterminada. Cuando no hay subpágina por defecto, trataremos la primera subpágina de la lista como la subpágina por defecto"
+          "default_view": "Cuando los usuarios ingresan una ruta de error, redirigiremos automáticamente a la ruta por defecto. Cuando no hay una ruta por defecto, trataremos la primera ruta de la lista como la ruta por defecto"
         },
         "chart": {
           "direction": "Establecer la dirección del gráfico. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Añadir",
         "body": "Cuerpo",
-        "default_view": "Sub-página por defecto",
-        "edit_view": "Editar subpágina",
+        "default_view": "Vista por defecto",
+        "edit_view": "Editar ruta",
         "footer": "Pie",
         "header": "Cabecera",
         "key": "Clave",
@@ -2285,8 +2285,8 @@
         "right_panel": "Panel derecho",
         "set_as_homepage": "Establecer como página de inicio",
         "show_fold_icon": "Mostrar icono plegable",
-        "view_path": "Nombre",
-        "views": "Subpáginas",
+        "view_path": "Ruta",
+        "views": "Vistas",
         "width": "Width",
         "height": "Altura",
         "columns": "Columnas",
@@ -2307,7 +2307,7 @@
       "tab_title": "Pgina",
       "tooltips": {
         "show_fold_icon": "Mostrar un botón para contraer o expandir el panel",
-        "view_path": "Para configurar el acceso a esta página, tendrá que ajustar el nombre. Por ejemplo, si cambia el nombre a '**nueva página**', y añádelo como una subpágina de la página de inicio. Esta página puede accederse a través de la siguiente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Para configurar el acceso a esta página, tendrás que ajustar la ruta. Por ejemplo, si cambias la ruta a '**newPath**', y la agregas como una subpágina de la página de inicio. Esta página puede accederse a través de la siguiente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "El ancho de la página como porcentaje del ancho del navegador."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nombre",
         "desc": "Descripción",
         "mode": "Modo",
@@ -2567,25 +2566,27 @@
         "welcome": "Mensaje de bienvenida",
         "model": "Modelo",
         "temperature": "Temperatura",
-        "max-token": "Token máximo"
+        "max-token": "Token máximo",
+        "icon": "Icono"
       },
       "placeholder": {
-        "logo": "Subir",
         "name": "Dar un nombre al agente",
         "desc": "Proporcione una breve descripción de para qué se pretende utilizar este agente.",
-        "prompt": "Introduzca / para seleccionar una variable",
+        "prompt": "Ingrese {{ para usar una variable",
         "variable": {
           "key": "Nombre variable",
           "value": "Valor"
         },
         "welcome": "Proporcionar un mensaje de bienvenida mostrado cuando los usuarios comiencen a utilizar el agente.",
-        "temperature": "Un valor entre 0 y 1. Cuanto menor sea el valor, mejor puede ser el efecto",
-        "max-token": "Utilizado para limitar el número máximo de tokens consumidos en una sola ejecución"
+        "icon": "Subir",
+        "send": "Enviar algo al agente"
       },
       "tips": {
         "mode": "En el modo de chat, cada mensaje enviado incluye el historial de conversación como parte de la solicitud, que puede resultar en mejores resultados pero consume más tokens; en modo texto, cada mensaje enviado no incluye el historial de conversaciones, que puede resultar en resultados menos óptimos en comparación con el modo de chat, pero conserva los tokens.",
         "not-start": "Completa la configuración del agente y haz clic en Inicio para ejecutar",
-        "not-start-run": "Haga clic en el botón Inicio de la izquierda."
+        "not-start-run": "Haga clic en el botón Inicio de la izquierda.",
+        "temperature": "Un valor entre 0 y 1. Cuanto menor sea el valor, mejor puede ser el efecto",
+        "max-token": "Utilizado para limitar el número máximo de tokens consumidos en una sola ejecución"
       },
       "option": {
         "mode": {
@@ -2616,6 +2617,16 @@
       "message": {
         "click-start": "Haga clic en el botón Inicio para activar.",
         "insufficient_token": "Token insuficiente"
+      },
+      "title": "🧬 Editar agente AI",
+      "generate-desc": {
+        "button": "Generar IA",
+        "tooltips": "Usa IA para generar la descripción basada en tu petición. ",
+        "failed": "Error al generar. Inténtalo de nuevo más tarde. "
+      },
+      "title-preview": "Ejecutar ventana",
+      "generate-icon": {
+        "tooltips": "Usar IA para generar un icono basado en el nombre del agente y la descripción"
       }
     },
     "common": {
@@ -3034,12 +3045,12 @@
       "name": "Formulario de esquema JSON"
     },
     "page": {
-      "path_duplicated": "El nombre de la página está duplicado. Por favor, utilice un nombre único para evitar errores. ",
+      "path_duplicated": "La ruta está duplicada. Utilice una ruta única para evitar errores. ",
       "tips": {
         "blank_view": "Este módulo no tiene páginas hijas. Por favor, añádelas primero a través del panel de página a la derecha."
       },
       "label": {
-        "rename_url": "Editar subpágina",
+        "rename_url": "Editar ruta",
         "rename_page_url": "Editar página"
       }
     }

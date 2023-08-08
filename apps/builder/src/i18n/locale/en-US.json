@@ -230,8 +230,8 @@
             "sheet_id_to_copy": "Sheet ID to copy",
             "sheet_to_copy_to": "Sheet to copy to",
             "authentication": "Authentication",
-            "connect_with_oauth": "Connect with OAuth & Save",
-            "reconnect_with_oauth": "Reconnect with OAuth",
+            "connect_with_oauth": "Connect with Google",
+            "reconnect_with_oauth": "Reconnect with Google",
             "access_type": "Access type"
           },
           "mongodb": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Name",
         "desc": "Description",
         "mode": "Mode",
@@ -2567,25 +2566,27 @@
         "welcome": "Welcome message",
         "model": "Model",
         "temperature": "Temperature",
-        "max-token": "Max token"
+        "max-token": "Max token",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Upload",
         "name": "Give a name to the agent",
         "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "prompt": "Enter {{ to use a variable",
         "variable": {
           "key": "Variable name",
           "value": "Value"
         },
         "welcome": "Provide a welcome message displayed when users start use the agent.",
-        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
-        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
+        "icon": "Upload",
+        "send": "Send something to the Agent"
       },
       "tips": {
         "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
         "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "not-start-run": "Please click the Start button on the left.",
+        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
+        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
       },
       "option": {
         "mode": {
@@ -2616,6 +2617,16 @@
       "message": {
         "click-start": "Click the Start button to trigger.",
         "insufficient_token": "Insufficient token"
+      },
+      "title": "🧬 Edit AI Agent",
+      "generate-desc": {
+        "button": "AI generate",
+        "tooltips": "Use AI to generate the description based on your prompt. ",
+        "failed": "Failed to generate. Please try again later. "
+      },
+      "title-preview": "Run window",
+      "generate-icon": {
+        "tooltips": "Use AI to generate icon based on the agent name and description"
       }
     },
     "common": {

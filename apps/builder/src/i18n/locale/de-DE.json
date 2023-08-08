@@ -32,7 +32,7 @@
       "cancel": "Abbrechen",
       "delete": "Löschen",
       "delete_cancel_text": "Abbrechen",
-      "delete_content": "Nach dem Löschen wird es nicht möglich sein, auf die Daten zuzugreifen oder sie wiederherzustellen. Bitte bestätigen.",
+      "delete_content": "Dadurch werden Apps und Abfragebibliotheksabfragen unterbrochen, die diese Ressource verwenden",
       "delete_ok_text": "Löschen",
       "delete_title": "Bist du sicher?",
       "error_button": "Wiederholen",
@@ -61,14 +61,14 @@
     },
     "sort-type": {
       "popular": "Beliebteste",
-      "recent": "Neueste",
+      "recent": "Kürzlich aktualisiert",
       "star": "Markiert"
     },
     "search": "Suchen",
     "no-result": "Kein Ergebnis hier. Bitte aktualisieren oder ändern Sie Ihre Suchbegriffe.",
     "message": {
       "next-page-error": "Fehler beim Laden der nächsten Seite. Bitte versuchen Sie es erneut.",
-      "create-failed": "Fehler beim Speichern des Agenten. Bitte versuchen Sie es erneut.",
+      "create-failed": "Fehler beim Erstellen des Agenten. Bitte versuchen Sie es erneut.",
       "sort-failed": "Filtertyp konnte nicht geändert werden. Bitte versuchen Sie es erneut.",
       "detail-load-failed": "Fehler beim Abrufen der Details, bitte versuchen Sie es erneut.",
       "fork-failed": "Fehler beim Forken, bitte versuchen Sie es erneut.",
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Tabellennummer zum Kopieren",
             "sheet_to_copy_to": "Blatt zum Kopieren",
             "authentication": "Authentifizierung",
-            "connect_with_oauth": "Mit OAuth & Save verbinden",
+            "connect_with_oauth": "Mit Google verbinden",
             "reconnect_with_oauth": "Mit OAuh erneut verbinden",
             "access_type": "Zugriffstyp"
           },
@@ -2053,7 +2053,7 @@
           "title": "Den anzuzeigenden Titel festlegen"
         },
         "page": {
-          "default_view": "Wenn Benutzer eine Fehleradresse eingeben, werden wir automatisch zur Standard-Unterseite weiterleiten. Wenn es keine Standard-Unterseite gibt, behandeln wir die erste Unterseite in der Liste als Standard-Unterseite"
+          "default_view": "Wenn Benutzer einen Fehlerpfad eingeben, werden wir automatisch auf den Standardpfad umleiten. Wenn es keinen Standardpfad gibt, werden wir den ersten Pfad in der Liste als Standardpfad behandeln"
         },
         "chart": {
           "direction": "Setze die Richtung des Diagramms. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Neu",
         "body": "Körper",
-        "default_view": "Standard-Unterseite",
-        "edit_view": "Unterseite bearbeiten",
+        "default_view": "Standardansicht",
+        "edit_view": "Pfad bearbeiten",
         "footer": "Fußzeile",
         "header": "Kopfzeile",
         "key": "Schlüssel",
@@ -2285,8 +2285,8 @@
         "right_panel": "Rechte Leiste",
         "set_as_homepage": "Als Startseite festlegen",
         "show_fold_icon": "Faltsymbol anzeigen",
-        "view_path": "Name",
-        "views": "Unterseiten",
+        "view_path": "Pfad",
+        "views": "Aufrufe",
         "width": "Width",
         "height": "Höhe",
         "columns": "Spalten",
@@ -2307,7 +2307,7 @@
       "tab_title": "Seite",
       "tooltips": {
         "show_fold_icon": "Schaltfläche zum Einklappen oder Vergrößern des Panels anzeigen",
-        "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Namen anpassen. Zum Beispiel, wenn Sie den Namen in '**newPage**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Pfad anpassen. Zum Beispiel, wenn Sie den Pfad zu '**newPath**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Die Seitenbreite als Prozentsatz der Browserbreite."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Name",
         "desc": "Beschreibung",
         "mode": "Modus",
@@ -2567,25 +2566,27 @@
         "welcome": "Willkommensnachricht",
         "model": "Modell",
         "temperature": "Temperatur",
-        "max-token": "Max. Token"
+        "max-token": "Max. Token",
+        "icon": "Symbol"
       },
       "placeholder": {
-        "logo": "Hochladen",
         "name": "Geben Sie dem Agenten einen Namen",
         "desc": "Geben Sie eine kurze Beschreibung dessen an, wofür dieser Agent verwendet werden soll.",
-        "prompt": "Geben Sie ein / um eine Variable auszuwählen",
+        "prompt": "Geben Sie {{ ein, um eine Variable zu verwenden",
         "variable": {
           "key": "Variablenname",
           "value": "Wert"
         },
         "welcome": "Geben Sie eine Willkommensnachricht an, die angezeigt wird, wenn Benutzer den Agenten verwenden.",
-        "temperature": "Ein Wert zwischen 0 und 1. Je kleiner der Wert, desto besser kann der Effekt sein",
-        "max-token": "Wird verwendet, um die maximale Anzahl an Tokens zu begrenzen, die in einem einzigen Lauf verbraucht werden"
+        "icon": "Hochladen",
+        "send": "Senden Sie etwas an den Agenten"
       },
       "tips": {
         "mode": "Im Chat-Modus enthält jede gesendete Nachricht den Verlauf der Unterhaltung als Teil der Anfrage, was zu besseren Ergebnissen führen kann, aber mehr Token verbrauchen kann; im Text-Modus, jede gesendete Nachricht enthält nicht den Verlauf der Unterhaltung, was zu weniger optimalen Ergebnissen im Vergleich zum Chatmodus führen kann, aber Token bewahrt.",
         "not-start": "Schließe die Agenten-Konfiguration ab und klicke auf Start, um zu starten",
-        "not-start-run": "Bitte klicken Sie auf die Schaltfläche Start auf der linken Seite."
+        "not-start-run": "Bitte klicken Sie auf die Schaltfläche Start auf der linken Seite.",
+        "temperature": "Ein Wert zwischen 0 und 1. Je kleiner der Wert, desto besser kann der Effekt sein",
+        "max-token": "Wird verwendet, um die maximale Anzahl an Tokens zu begrenzen, die in einem einzigen Lauf verbraucht werden"
       },
       "option": {
         "mode": {
@@ -2616,6 +2617,16 @@
       "message": {
         "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
         "insufficient_token": "Unzureichendes Token"
+      },
+      "title": "🧬 KI-Agent bearbeiten",
+      "generate-desc": {
+        "button": "KI generieren",
+        "tooltips": "Verwenden Sie die KI um die Beschreibung basierend auf Ihrem Prompt zu generieren. ",
+        "failed": "Fehler beim Generieren. Bitte versuchen Sie es später erneut. "
+      },
+      "title-preview": "Fenster ausführen",
+      "generate-icon": {
+        "tooltips": "Verwende KI um ein Icon basierend auf dem Agentennamen und der Beschreibung zu generieren"
       }
     },
     "common": {
@@ -3034,12 +3045,12 @@
       "name": "JSON-Schema-Formular"
     },
     "page": {
-      "path_duplicated": "Der Seitenname wurde dupliziert. Bitte verwenden Sie einen eindeutigen Namen, um Fehler zu vermeiden. ",
+      "path_duplicated": "Der Pfad wurde dupliziert. Bitte verwenden Sie einen eindeutigen Pfad, um Fehler zu vermeiden. ",
       "tips": {
         "blank_view": "Dieses Modul hat keine Unterseiten. Bitte fügen Sie diese zuerst durch das Seitenfenster auf der rechten Seite."
       },
       "label": {
-        "rename_url": "Unterseite bearbeiten",
+        "rename_url": "Pfad bearbeiten",
         "rename_page_url": "Seite bearbeiten"
       }
     }
