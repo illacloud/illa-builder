@@ -2624,7 +2624,10 @@
         "tooltips": "Użyj AI do wygenerowania opisu na podstawie Twojego pytania. ",
         "failed": "Nie udało się wygenerować. Spróbuj ponownie później. "
       },
-      "title-preview": "Uruchom okno"
+      "title-preview": "Uruchom okno",
+      "generate-icon": {
+        "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela"
+      }
     },
     "common": {
       "required": "Wymagane"
