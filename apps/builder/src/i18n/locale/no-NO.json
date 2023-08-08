@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Navn",
         "desc": "Beskrivelse",
         "mode": "Modus",
@@ -2567,10 +2566,10 @@
         "welcome": "Velkommen melding",
         "model": "Modell",
         "temperature": "Temperatur",
-        "max-token": "Maks token"
+        "max-token": "Maks token",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Last opp",
         "name": "Gi et navn til agenten",
         "desc": "Gi en kort beskrivelse av hva denne agenten skal brukes til.",
         "prompt": "Skriv inn / for å velge en variabel",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Gi en velkomstmelding som vises når brukere begynner å bruke agent.",
         "temperature": "En verdi mellom 0 og 1. Jo mindre verdien er, desto bedre kan effekten være",
-        "max-token": "Brukes til å begrense maksimalt antall tokens brukt ved én kjøring"
+        "max-token": "Brukes til å begrense maksimalt antall tokens brukt ved én kjøring",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "I chat-modus inkluderer hver melding som sendes samtalelogg som en del av forespørselen, og kan resultere i bedre resultater, men forbruker flere symboler; i tekstmodus, hver sendte melding inkluderer ikke samtalehistorikken, noe som kan resultere i mindre optimale utfall sammenlignet med chat-modus, men konserverer tokener.",
@@ -2616,7 +2616,8 @@
       "message": {
         "click-start": "Klikk på Start knappen for å utløse.",
         "insufficient_token": "Utilstrekkelig token"
-      }
+      },
+      "title": "🧬 Edit AI Agent"
     },
     "common": {
       "required": "Påkrevd"
