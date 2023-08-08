@@ -2578,7 +2578,8 @@
           "value": "Arvo"
         },
         "welcome": "Anna tervetuliaisviesti näytettäessä, kun käyttäjät alkavat käyttää agenttia.",
-        "icon": "Lähetä"
+        "icon": "Lähetä",
+        "send": "Lähetä jotain Agentille"
       },
       "tips": {
         "mode": "Chat-tilassa jokainen lähetetty viesti sisältää keskustelun historian osana pyyntöä, joka voi johtaa parempiin tuloksiin mutta kuluttaa enemmän kuponkia; tekstitilassa, jokainen lähetetty viesti ei sisällä keskustelun historiaa, joka voi johtaa vähemmän optimaalisia tuloksia verrattuna chat-tilaan, mutta säilyttää rahakkeet.",
@@ -2622,7 +2623,8 @@
         "button": "tekoälyn luominen",
         "tooltips": "Käytä tekoälyä luodaksesi kehotuksesi perustuvan kuvauksen. ",
         "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. "
-      }
+      },
+      "title-preview": "Suorita ikkuna"
     },
     "common": {
       "required": "Pakollinen"
