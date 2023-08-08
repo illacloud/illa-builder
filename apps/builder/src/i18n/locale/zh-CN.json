@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "图标",
         "name": "名称",
         "desc": "描述",
         "mode": "模式",
@@ -2567,10 +2566,10 @@
         "welcome": "初始消息",
         "model": "模型",
         "temperature": "Temperature",
-        "max-token": "最大Token"
+        "max-token": "最大Token",
+        "icon": "图标"
       },
       "placeholder": {
-        "logo": "上传",
         "name": "为Agent命名",
         "desc": "简要描述该Agent的用途。",
         "prompt": "输入 / 选择变量",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "提供一个初始消息，在用户开始使用这个agent时展示",
         "temperature": "0到1之间的值，值越小结果约优",
-        "max-token": "用于限制单次运行的最大数量限制"
+        "max-token": "用于限制单次运行的最大数量限制",
+        "icon": "上传"
       },
       "tips": {
         "mode": "在聊天模式下，发送的每条消息时都会带上对话历史记录一起请求，这可以使结果更优，但会消耗更多的Token； 在文本模式下，发送的每条消息不包含对话历史记录，与聊天模式相比，这个模式的结果可能不够好，但可以节省Token。",
@@ -2616,7 +2616,8 @@
       "message": {
         "click-start": "点击开始按钮触发运行",
         "insufficient_token": "Token不足"
-      }
+      },
+      "title": "🧬 Edit AI Agent"
     },
     "common": {
       "required": "必填"
