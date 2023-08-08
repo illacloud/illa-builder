@@ -58,6 +58,8 @@ import {
   leftPanelTitleStyle,
   leftPanelTitleTextStyle,
   rightPanelContainerStyle,
+  temperatureContainerStyle,
+  temperatureStyle,
   uploadContainerStyle,
   uploadContentContainerStyle,
   uploadTextStyle,
@@ -514,13 +516,16 @@ export const AIAgent: FC = () => {
                     }}
                     shouldUnregister={false}
                     render={({ field }) => (
-                      <Slider
-                        {...field}
-                        colorScheme={getColor("grayBlue", "02")}
-                        step={0.1}
-                        min={0}
-                        max={1}
-                      />
+                      <div css={temperatureContainerStyle}>
+                        <Slider
+                          {...field}
+                          colorScheme={getColor("grayBlue", "02")}
+                          step={0.01}
+                          min={0}
+                          max={1}
+                        />
+                        <span css={temperatureStyle}>{field.value}</span>
+                      </div>
                     )}
                   />
                 </AIAgentBlock>

@@ -128,3 +128,20 @@ export const formContainerStyle = css`
   flex-basis: 528px;
   min-width: 528px;
 `
+
+export const temperatureContainerStyle = css`
+  display: flex;
+  align-items: center;
+`
+
+export const temperatureStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  margin-left: 16px;
+  width: 34px;
+  font-weight: 400;
+  line-height: 22px;
+  text-transform: capitalize;
+`
