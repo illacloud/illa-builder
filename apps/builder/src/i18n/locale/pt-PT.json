@@ -2578,14 +2578,14 @@
           "value": "Valor"
         },
         "welcome": "Indique uma mensagem de boas-vindas exibida quando os usuários começarem a usar o agente.",
-        "temperature": "Um valor entre 0 e 1. Quanto menor o valor, melhor o efeito pode ser",
-        "max-token": "Usado para limitar o número máximo de tokens consumidos em uma única execução",
         "icon": "Transferir"
       },
       "tips": {
         "mode": "No modo de chat, cada mensagem enviada inclui o histórico de conversas como parte da solicitação, o que pode resultar em melhores resultados, mas consome mais tokens; no modo de texto, cada mensagem enviada não inclui o histórico de conversação que pode resultar em resultados menos ideais comparados com o modo de bate-papo, mas conserva tokens.",
         "not-start": "Concluir o agente de configuração e clique em Iniciar para executar",
-        "not-start-run": "Por favor, clique no botão Iniciar à esquerda."
+        "not-start-run": "Por favor, clique no botão Iniciar à esquerda.",
+        "temperature": "Um valor entre 0 e 1. Quanto menor o valor, melhor o efeito pode ser",
+        "max-token": "Usado para limitar o número máximo de tokens consumidos em uma única execução"
       },
       "option": {
         "mode": {
@@ -2618,7 +2618,11 @@
         "insufficient_token": "Token insuficiente"
       },
       "title": "🧬 Editar Agente IA",
-      "generate-desc": "Gerar IA"
+      "generate-desc": {
+        "button": "Gerar IA",
+        "tooltips": "Usar AI para gerar a descrição baseada no seu prompt. ",
+        "failed": "Falha ao gerar. Por favor, tente novamente mais tarde. "
+      }
     },
     "common": {
       "required": "Obrigatório"
