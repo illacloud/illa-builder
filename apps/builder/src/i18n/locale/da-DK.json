@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Ark ID til kopiering",
             "sheet_to_copy_to": "Ark der skal kopieres til",
             "authentication": "Godkendelse",
-            "connect_with_oauth": "Forbind med OAuth og gem",
+            "connect_with_oauth": "Forbind med Google",
             "reconnect_with_oauth": "Genopret forbindelse med OAuth",
             "access_type": "Adgangs type"
           },
