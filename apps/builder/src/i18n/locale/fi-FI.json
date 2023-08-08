@@ -2578,14 +2578,14 @@
           "value": "Arvo"
         },
         "welcome": "Anna tervetuliaisviesti näytettäessä, kun käyttäjät alkavat käyttää agenttia.",
-        "temperature": "Arvo välillä 0 ja 1. Mitä pienempi arvo, sitä parempi vaikutus voi olla",
-        "max-token": "Käytetään rajoittamaan yhdellä kerralla kulutettujen rahakkeiden enimmäismäärää",
         "icon": "Lähetä"
       },
       "tips": {
         "mode": "Chat-tilassa jokainen lähetetty viesti sisältää keskustelun historian osana pyyntöä, joka voi johtaa parempiin tuloksiin mutta kuluttaa enemmän kuponkia; tekstitilassa, jokainen lähetetty viesti ei sisällä keskustelun historiaa, joka voi johtaa vähemmän optimaalisia tuloksia verrattuna chat-tilaan, mutta säilyttää rahakkeet.",
         "not-start": "Suorita Agentin asetus ja käynnistä napsauttamalla Käynnistä",
-        "not-start-run": "Klikkaa vasemmalla olevaa Käynnistä-painiketta."
+        "not-start-run": "Klikkaa vasemmalla olevaa Käynnistä-painiketta.",
+        "temperature": "Arvo välillä 0 ja 1. Mitä pienempi arvo, sitä parempi vaikutus voi olla",
+        "max-token": "Käytetään rajoittamaan yhdellä kerralla kulutettujen rahakkeiden enimmäismäärää"
       },
       "option": {
         "mode": {
@@ -2618,7 +2618,11 @@
         "insufficient_token": "Riittämätön tunnus"
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
-      "generate-desc": "tekoälyn luominen"
+      "generate-desc": {
+        "button": "tekoälyn luominen",
+        "tooltips": "Käytä tekoälyä luodaksesi kehotuksesi perustuvan kuvauksen. ",
+        "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. "
+      }
     },
     "common": {
       "required": "Pakollinen"
