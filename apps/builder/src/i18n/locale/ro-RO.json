@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nume",
         "desc": "Descriere",
         "mode": "Mod",
@@ -2567,10 +2566,10 @@
         "welcome": "Mesaj de întâmpinare",
         "model": "Model",
         "temperature": "Temperatură",
-        "max-token": "Token-ul maxim"
+        "max-token": "Token-ul maxim",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Incarca",
         "name": "Dă un nume agentului",
         "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
         "prompt": "Introduceți / pentru a selecta o variabilă",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Furnizaţi un mesaj de bun venit afişat atunci când utilizatorii încep să folosească agentul. (Automatic Translation)",
         "temperature": "O valoare între 0 și 1. Cu cât valoarea este mai mică, cu atât efectul poate fi mai bun",
-        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare"
+        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "În modul chat, fiecare mesaj trimis include istoricul conversațiilor ca parte a cererii, ceea ce poate duce la rezultate mai bune, dar consumă mai multe tokeni; în modul text, fiecare mesaj trimis nu include istoricul conversaţiilor, care poate avea rezultate mai puțin optime în comparație cu modul de chat dar care conservă tokenurile.",
