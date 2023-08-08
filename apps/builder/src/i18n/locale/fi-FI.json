@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nimi",
         "desc": "Kuvaus",
         "mode": "Tila",
@@ -2567,10 +2566,10 @@
         "welcome": "Tervetuloa viesti",
         "model": "Malli",
         "temperature": "Lämpötila",
-        "max-token": "Max tunnus"
+        "max-token": "Max tunnus",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Lähetä",
         "name": "Anna nimi agentille",
         "desc": "Anna lyhyt kuvaus siitä, mihin tämä agentti on tarkoitettu käytettäväksi.",
         "prompt": "Syötä / valitse muuttuja",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Anna tervetuliaisviesti näytettäessä, kun käyttäjät alkavat käyttää agenttia.",
         "temperature": "Arvo välillä 0 ja 1. Mitä pienempi arvo, sitä parempi vaikutus voi olla",
-        "max-token": "Käytetään rajoittamaan yhdellä kerralla kulutettujen rahakkeiden enimmäismäärää"
+        "max-token": "Käytetään rajoittamaan yhdellä kerralla kulutettujen rahakkeiden enimmäismäärää",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "Chat-tilassa jokainen lähetetty viesti sisältää keskustelun historian osana pyyntöä, joka voi johtaa parempiin tuloksiin mutta kuluttaa enemmän kuponkia; tekstitilassa, jokainen lähetetty viesti ei sisällä keskustelun historiaa, joka voi johtaa vähemmän optimaalisia tuloksia verrattuna chat-tilaan, mutta säilyttää rahakkeet.",
@@ -2616,7 +2616,8 @@
       "message": {
         "click-start": "Napsauta Käynnistä painiketta käynnistääksesi.",
         "insufficient_token": "Riittämätön tunnus"
-      }
+      },
+      "title": "🧬 Edit AI Agent"
     },
     "common": {
       "required": "Pakollinen"
