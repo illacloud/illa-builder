@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nombre",
         "desc": "Descripción",
         "mode": "Modo",
@@ -2567,10 +2566,10 @@
         "welcome": "Mensaje de bienvenida",
         "model": "Modelo",
         "temperature": "Temperatura",
-        "max-token": "Token máximo"
+        "max-token": "Token máximo",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Subir",
         "name": "Dar un nombre al agente",
         "desc": "Proporcione una breve descripción de para qué se pretende utilizar este agente.",
         "prompt": "Introduzca / para seleccionar una variable",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Proporcionar un mensaje de bienvenida mostrado cuando los usuarios comiencen a utilizar el agente.",
         "temperature": "Un valor entre 0 y 1. Cuanto menor sea el valor, mejor puede ser el efecto",
-        "max-token": "Utilizado para limitar el número máximo de tokens consumidos en una sola ejecución"
+        "max-token": "Utilizado para limitar el número máximo de tokens consumidos en una sola ejecución",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "En el modo de chat, cada mensaje enviado incluye el historial de conversación como parte de la solicitud, que puede resultar en mejores resultados pero consume más tokens; en modo texto, cada mensaje enviado no incluye el historial de conversaciones, que puede resultar en resultados menos óptimos en comparación con el modo de chat, pero conserva los tokens.",
