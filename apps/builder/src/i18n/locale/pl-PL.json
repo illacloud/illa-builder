@@ -2578,7 +2578,8 @@
           "value": "Wartość"
         },
         "welcome": "Podaj wiadomość powitalną wyświetlaną, gdy użytkownicy zaczną używać agenta.",
-        "icon": "Prześlij"
+        "icon": "Prześlij",
+        "send": "Wyślij coś do Agenta"
       },
       "tips": {
         "mode": "W trybie czatu każda wysłana wiadomość zawiera historię rozmów jako część żądania, co może prowadzić do lepszych wyników, ale zużywa więcej tokenów; w trybie tekstowym, każda wysłana wiadomość nie zawiera historii konwersacji, co może skutkować mniej optymalnymi wynikami w porównaniu do trybu czatu, ale zachowuje tokeny.",
@@ -2622,7 +2623,8 @@
         "button": "Wygeneruj SI",
         "tooltips": "Użyj AI do wygenerowania opisu na podstawie Twojego pytania. ",
         "failed": "Nie udało się wygenerować. Spróbuj ponownie później. "
-      }
+      },
+      "title-preview": "Uruchom okno"
     },
     "common": {
       "required": "Wymagane"
