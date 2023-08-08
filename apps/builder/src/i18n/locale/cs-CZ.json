@@ -2567,7 +2567,7 @@
         "model": "Vzor",
         "temperature": "Teplota",
         "max-token": "Maximální token",
-        "icon": "Icon"
+        "icon": "Ikona"
       },
       "placeholder": {
         "name": "Dejte jméno agentovi",
@@ -2580,7 +2580,7 @@
         "welcome": "Poskytněte uvítací zprávu zobrazenou když uživatelé začnou používat agenta.",
         "temperature": "Hodnota mezi 0 a 1. Čím menší hodnota, tím lepší může být efekt",
         "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě",
-        "icon": "Upload"
+        "icon": "Nahrát"
       },
       "tips": {
         "mode": "V režimu chatu obsahuje každá odeslaná zpráva jako součást žádosti historii konverzace, která může vést k lepším výsledkům, ale spotřebovává více tokenů; v textovém režimu každá odeslaná zpráva nezahrnuje historii konverzace, což může vést k méně optimálním výsledkům ve srovnání s chatem, ale zachovává tokeny.",
@@ -2617,7 +2617,8 @@
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
         "insufficient_token": "Nedostatečný token"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 Úprava AI agenta",
+      "generate-desc": "Generovat AI"
     },
     "common": {
       "required": "Požadováno"
