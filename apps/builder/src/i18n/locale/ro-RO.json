@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dă un nume agentului",
         "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
-        "prompt": "Introduceți / pentru a selecta o variabilă",
+        "prompt": "Introduceţi {{ pentru a utiliza o variabilă",
         "variable": {
           "key": "Denumire variabilă",
           "value": "Valoare"
