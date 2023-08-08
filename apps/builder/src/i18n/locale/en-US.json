@@ -230,8 +230,8 @@
             "sheet_id_to_copy": "Sheet ID to copy",
             "sheet_to_copy_to": "Sheet to copy to",
             "authentication": "Authentication",
-            "connect_with_oauth": "Connect with OAuth & Save",
-            "reconnect_with_oauth": "Reconnect with OAuth",
+            "connect_with_oauth": "Connect with Google",
+            "reconnect_with_oauth": "Reconnect with Google",
             "access_type": "Access type"
           },
           "mongodb": {
