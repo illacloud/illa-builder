@@ -2578,7 +2578,8 @@
           "value": "Valore"
         },
         "welcome": "Fornire un messaggio di benvenuto visualizzato quando gli utenti iniziano a usare l'agente.",
-        "icon": "Carica"
+        "icon": "Carica",
+        "send": "Invia qualcosa all'agente"
       },
       "tips": {
         "mode": "In modalità chat, ogni messaggio inviato include la cronologia delle conversazioni come parte della richiesta, che può portare a risultati migliori, ma consuma più gettoni; in modalità testo, ogni messaggio inviato non include la cronologia delle conversazioni, che può portare a risultati meno ottimali rispetto alla modalità di chat, ma conserva i gettoni.",
@@ -2622,7 +2623,8 @@
         "button": "Generazione AI",
         "tooltips": "Usa AI per generare la descrizione in base al tuo prompt. ",
         "failed": "Impossibile generare. Riprova più tardi. "
-      }
+      },
+      "title-preview": "Esegui finestra"
     },
     "common": {
       "required": "Richiesto"
