@@ -2578,7 +2578,8 @@
           "value": "Verdi"
         },
         "welcome": "Gi en velkomstmelding som vises når brukere begynner å bruke agent.",
-        "icon": "Last opp"
+        "icon": "Last opp",
+        "send": "Send noe til agenten"
       },
       "tips": {
         "mode": "I chat-modus inkluderer hver melding som sendes samtalelogg som en del av forespørselen, og kan resultere i bedre resultater, men forbruker flere symboler; i tekstmodus, hver sendte melding inkluderer ikke samtalehistorikken, noe som kan resultere i mindre optimale utfall sammenlignet med chat-modus, men konserverer tokener.",
@@ -2622,7 +2623,8 @@
         "button": "AI genererer",
         "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
         "failed": "Kan ikke generere. Prøv igjen senere. "
-      }
+      },
+      "title-preview": "Kjøre vindu"
     },
     "common": {
       "required": "Påkrevd"
