@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Name",
         "desc": "Description",
         "mode": "Mode",
@@ -2567,10 +2566,10 @@
         "welcome": "Welcome message",
         "model": "Model",
         "temperature": "Temperature",
-        "max-token": "Max token"
+        "max-token": "Max token",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Upload",
         "name": "Give a name to the agent",
         "desc": "Provide a brief description of what this agent is intended to be used for.",
         "prompt": "Enter / to select a variable",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Provide a welcome message displayed when users start use the agent.",
         "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
-        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
+        "max-token": "Used to limit the maximum number of tokens consumed in a single run",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
@@ -2616,7 +2616,8 @@
       "message": {
         "click-start": "Click the Start button to trigger.",
         "insufficient_token": "Insufficient token"
-      }
+      },
+      "title": "🧬 Edit AI Agent"
     },
     "common": {
       "required": "Required"
