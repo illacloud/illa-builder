@@ -2567,7 +2567,7 @@
         "model": "Malli",
         "temperature": "Lämpötila",
         "max-token": "Max tunnus",
-        "icon": "Icon"
+        "icon": "Kuvake"
       },
       "placeholder": {
         "name": "Anna nimi agentille",
@@ -2580,7 +2580,7 @@
         "welcome": "Anna tervetuliaisviesti näytettäessä, kun käyttäjät alkavat käyttää agenttia.",
         "temperature": "Arvo välillä 0 ja 1. Mitä pienempi arvo, sitä parempi vaikutus voi olla",
         "max-token": "Käytetään rajoittamaan yhdellä kerralla kulutettujen rahakkeiden enimmäismäärää",
-        "icon": "Upload"
+        "icon": "Lähetä"
       },
       "tips": {
         "mode": "Chat-tilassa jokainen lähetetty viesti sisältää keskustelun historian osana pyyntöä, joka voi johtaa parempiin tuloksiin mutta kuluttaa enemmän kuponkia; tekstitilassa, jokainen lähetetty viesti ei sisällä keskustelun historiaa, joka voi johtaa vähemmän optimaalisia tuloksia verrattuna chat-tilaan, mutta säilyttää rahakkeet.",
@@ -2617,7 +2617,8 @@
         "click-start": "Napsauta Käynnistä painiketta käynnistääksesi.",
         "insufficient_token": "Riittämätön tunnus"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 Muokkaa tekoälyn Agenttia",
+      "generate-desc": "tekoälyn luominen"
     },
     "common": {
       "required": "Pakollinen"
