@@ -2567,7 +2567,7 @@
         "model": "Modelo",
         "temperature": "Temperatura",
         "max-token": "Max token",
-        "icon": "Icon"
+        "icon": "Ícone"
       },
       "placeholder": {
         "name": "Dê um nome ao agente",
@@ -2580,7 +2580,7 @@
         "welcome": "Indique uma mensagem de boas-vindas exibida quando os usuários começarem a usar o agente.",
         "temperature": "Um valor entre 0 e 1. Quanto menor o valor, melhor o efeito pode ser",
         "max-token": "Usado para limitar o número máximo de tokens consumidos em uma única execução",
-        "icon": "Upload"
+        "icon": "Transferir"
       },
       "tips": {
         "mode": "No modo de chat, cada mensagem enviada inclui o histórico de conversas como parte da solicitação, o que pode resultar em melhores resultados, mas consome mais tokens; no modo de texto, cada mensagem enviada não inclui o histórico de conversação que pode resultar em resultados menos ideais comparados com o modo de bate-papo, mas conserva tokens.",
@@ -2617,7 +2617,8 @@
         "click-start": "Clique no botão iniciar para disparar.",
         "insufficient_token": "Token insuficiente"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 Editar Agente IA",
+      "generate-desc": "Gerar IA"
     },
     "common": {
       "required": "Obrigatório"
