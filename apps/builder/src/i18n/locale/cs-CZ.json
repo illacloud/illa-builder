@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Název",
         "desc": "L 343, 22.12.2009, s. 1).",
         "mode": "Režim",
@@ -2567,10 +2566,10 @@
         "welcome": "Uvítací zpráva",
         "model": "Vzor",
         "temperature": "Teplota",
-        "max-token": "Maximální token"
+        "max-token": "Maximální token",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Nahrát",
         "name": "Dejte jméno agentovi",
         "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
         "prompt": "Zadejte / vyberte proměnnou",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Poskytněte uvítací zprávu zobrazenou když uživatelé začnou používat agenta.",
         "temperature": "Hodnota mezi 0 a 1. Čím menší hodnota, tím lepší může být efekt",
-        "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě"
+        "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "V režimu chatu obsahuje každá odeslaná zpráva jako součást žádosti historii konverzace, která může vést k lepším výsledkům, ale spotřebovává více tokenů; v textovém režimu každá odeslaná zpráva nezahrnuje historii konverzace, což může vést k méně optimálním výsledkům ve srovnání s chatem, ale zachovává tokeny.",
@@ -2616,7 +2616,8 @@
       "message": {
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
         "insufficient_token": "Nedostatečný token"
-      }
+      },
+      "title": "🧬 Edit AI Agent"
     },
     "common": {
       "required": "Požadováno"
