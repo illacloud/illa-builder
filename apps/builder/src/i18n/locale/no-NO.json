@@ -2624,7 +2624,10 @@
         "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
         "failed": "Kan ikke generere. Prøv igjen senere. "
       },
-      "title-preview": "Kjøre vindu"
+      "title-preview": "Kjøre vindu",
+      "generate-icon": {
+        "tooltips": "Bruk AI til å generere ikon basert på agent navn og beskrivelse"
+      }
     },
     "common": {
       "required": "Påkrevd"
