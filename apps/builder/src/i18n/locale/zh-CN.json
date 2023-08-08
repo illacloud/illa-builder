@@ -2617,7 +2617,8 @@
         "click-start": "点击开始按钮触发运行",
         "insufficient_token": "Token不足"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 编辑AI Agent",
+      "generate-desc": "AI生成"
     },
     "common": {
       "required": "必填"
