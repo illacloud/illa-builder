@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Foglio ID da copiare",
             "sheet_to_copy_to": "Foglio su cui copiare",
             "authentication": "Autenticazione",
-            "connect_with_oauth": "Connettiti con OAuth & Salva",
+            "connect_with_oauth": "Connettiti con Google",
             "reconnect_with_oauth": "Riconnetti con OAuth",
             "access_type": "Tipo di accesso"
           },
