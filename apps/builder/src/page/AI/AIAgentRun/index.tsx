@@ -21,6 +21,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@/illa-public-component/UserRoleUtils/interface"
+import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import {
   agentAvatarStyle,
   agentControlContainerStyle,
@@ -40,7 +41,6 @@ import {
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import {
   AI_AGENT_TYPE,
   Agent,

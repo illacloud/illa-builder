@@ -22,11 +22,11 @@ import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
+import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,

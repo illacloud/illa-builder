@@ -6,6 +6,7 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import {
   codeMirrorWrapperLabelStyle,
   codeMirrorWrapperValueStyle,
@@ -17,7 +18,6 @@ import {
   updateEditorKeyContainerStyle,
   updateEditorValueContainerStyle,
 } from "@/page/App/components/Actions/ActionPanel/GoogleSheetsPanel/style"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { InputEditor } from "@/page/App/components/InputEditor"
 import { TextLink } from "@/page/User/components/TextLink"
 import { GoogleSheetsActionUpdateOpts } from "@/redux/currentApp/action/googleSheetsAction"

@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
+import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import {
   recordKeyStyle,
   recordValueStyle,
-} from "@/page/App/components/Actions/ActionPanel/RecordEditor/style"
+} from "@/illa-public-market-component/RecordEditor/style"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"

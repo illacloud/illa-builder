@@ -7,6 +7,7 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import { AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL } from "@/redux/aiAgent/aiAgentState"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -15,7 +16,6 @@ import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import HorizontalWithLabel from "../Layout/HorizontalWithLabel"
 import ActionPanelSpace from "../Layout/Space"
-import { RecordEditor } from "../RecordEditor"
 import { ResourceChoose } from "../ResourceChoose"
 import { TransformerComponent } from "../TransformerComponent"
 import { maxTokenInputStyle } from "./style"

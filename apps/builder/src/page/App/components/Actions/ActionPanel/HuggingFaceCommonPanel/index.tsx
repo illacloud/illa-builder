@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { Select, SelectValue } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { HuggingFaceCommonPanelProps } from "@/page/App/components/Actions/ActionPanel/HuggingFaceCommonPanel/interface"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import {
   bodyChooserStyle,
