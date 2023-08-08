@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nazwisko",
         "desc": "Opis",
         "mode": "Tryb",
@@ -2567,10 +2566,10 @@
         "welcome": "Wiadomość powitalna",
         "model": "Wzór",
         "temperature": "Temperatura",
-        "max-token": "Maksymalny token"
+        "max-token": "Maksymalny token",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Prześlij",
         "name": "Podaj nazwę agentowi",
         "desc": "Należy podać krótki opis tego, do czego ma być stosowany ten agent.",
         "prompt": "Wprowadź / aby wybrać zmienną",
@@ -2580,7 +2579,8 @@
         },
         "welcome": "Podaj wiadomość powitalną wyświetlaną, gdy użytkownicy zaczną używać agenta.",
         "temperature": "Wartość między 0 a 1. Im mniejsza wartość, tym lepszy efekt może być",
-        "max-token": "Używane do ograniczenia maksymalnej liczby tokenów zużytych w pojedynczym uruchomieniu"
+        "max-token": "Używane do ograniczenia maksymalnej liczby tokenów zużytych w pojedynczym uruchomieniu",
+        "icon": "Upload"
       },
       "tips": {
         "mode": "W trybie czatu każda wysłana wiadomość zawiera historię rozmów jako część żądania, co może prowadzić do lepszych wyników, ale zużywa więcej tokenów; w trybie tekstowym, każda wysłana wiadomość nie zawiera historii konwersacji, co może skutkować mniej optymalnymi wynikami w porównaniu do trybu czatu, ale zachowuje tokeny.",
@@ -2616,7 +2616,8 @@
       "message": {
         "click-start": "Kliknij przycisk Start, aby wyzwalać.",
         "insufficient_token": "Niewystarczający token"
-      }
+      },
+      "title": "🧬 Edit AI Agent"
     },
     "common": {
       "required": "Wymagane"
