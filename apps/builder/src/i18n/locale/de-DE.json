@@ -2578,7 +2578,8 @@
           "value": "Wert"
         },
         "welcome": "Geben Sie eine Willkommensnachricht an, die angezeigt wird, wenn Benutzer den Agenten verwenden.",
-        "icon": "Hochladen"
+        "icon": "Hochladen",
+        "send": "Senden Sie etwas an den Agenten"
       },
       "tips": {
         "mode": "Im Chat-Modus enthält jede gesendete Nachricht den Verlauf der Unterhaltung als Teil der Anfrage, was zu besseren Ergebnissen führen kann, aber mehr Token verbrauchen kann; im Text-Modus, jede gesendete Nachricht enthält nicht den Verlauf der Unterhaltung, was zu weniger optimalen Ergebnissen im Vergleich zum Chatmodus führen kann, aber Token bewahrt.",
@@ -2622,7 +2623,8 @@
         "button": "KI generieren",
         "tooltips": "Verwenden Sie die KI um die Beschreibung basierend auf Ihrem Prompt zu generieren. ",
         "failed": "Fehler beim Generieren. Bitte versuchen Sie es später erneut. "
-      }
+      },
+      "title-preview": "Fenster ausführen"
     },
     "common": {
       "required": "Benötigt"
