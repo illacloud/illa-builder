@@ -2578,7 +2578,8 @@
           "value": "Valor"
         },
         "welcome": "Proporcionar un mensaje de bienvenida mostrado cuando los usuarios comiencen a utilizar el agente.",
-        "icon": "Subir"
+        "icon": "Subir",
+        "send": "Enviar algo al agente"
       },
       "tips": {
         "mode": "En el modo de chat, cada mensaje enviado incluye el historial de conversación como parte de la solicitud, que puede resultar en mejores resultados pero consume más tokens; en modo texto, cada mensaje enviado no incluye el historial de conversaciones, que puede resultar en resultados menos óptimos en comparación con el modo de chat, pero conserva los tokens.",
@@ -2622,7 +2623,8 @@
         "button": "Generar IA",
         "tooltips": "Usa IA para generar la descripción basada en tu petición. ",
         "failed": "Error al generar. Inténtalo de nuevo más tarde. "
-      }
+      },
+      "title-preview": "Ejecutar ventana"
     },
     "common": {
       "required": "Requerido"
