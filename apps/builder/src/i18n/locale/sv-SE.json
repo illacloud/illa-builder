@@ -2578,7 +2578,8 @@
           "value": "Värde"
         },
         "welcome": "Ange ett välkomstmeddelande som visas när användare börjar använda agenten.",
-        "icon": "Ladda upp"
+        "icon": "Ladda upp",
+        "send": "Skicka något till agenten"
       },
       "tips": {
         "mode": "I chattläget inkluderar varje meddelande konversationshistoriken som en del av begäran, vilket kan resultera i bättre resultat men förbrukar fler tokens; i textläge, varje meddelande som skickas innehåller inte konversationshistorik, vilket kan resultera i mindre optimala resultat jämfört med chattläge men sparar polletter.",
@@ -2622,7 +2623,8 @@
         "button": "AI generera",
         "tooltips": "Använd AI för att generera beskrivningen baserat på din prompt. ",
         "failed": "Det gick inte att generera. Försök igen senare. "
-      }
+      },
+      "title-preview": "Kör fönster"
     },
     "common": {
       "required": "Krävs"
