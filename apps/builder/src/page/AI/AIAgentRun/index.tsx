@@ -1,5 +1,6 @@
 import { FC, useCallback, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useLoaderData } from "react-router-dom"
 import { v4 } from "uuid"
@@ -77,6 +78,8 @@ export const AIAgentRun: FC = () => {
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
 
+  const { t } = useTranslation()
+
   const updateLocalIcon = useCallback(
     (icon: string, aiAgentID?: string) => {
       const updateRoomUsers = [...inRoomUsers]
@@ -153,7 +156,7 @@ export const AIAgentRun: FC = () => {
       return (
         <div css={agentMenuContainerStyle}>
           <Button colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
-            Share
+            {t("share")}
           </Button>
           <Button
             ml="8px"
@@ -166,7 +169,9 @@ export const AIAgentRun: FC = () => {
               )
             }
           >
-            Star {marketplaceInfo?.marketplace.numStars}
+            {t("marketplace.star", {
+              operationNum: marketplaceInfo?.marketplace.numStars,
+            })}
           </Button>
           {canManage(
             currentTeamInfo.myRole,
@@ -174,7 +179,9 @@ export const AIAgentRun: FC = () => {
             ACTION_MANAGE.FORK_AGENT,
           ) && (
             <Button ml="8px" colorScheme="grayBlue" leftIcon={<ForkIcon />}>
-              Fork {marketplaceInfo?.marketplace.numForks}
+              {t("marketplace.fork", {
+                operationNum: marketplaceInfo?.marketplace.numForks,
+              })}
             </Button>
           )}
         </div>
@@ -188,7 +195,7 @@ export const AIAgentRun: FC = () => {
         ) && (
           <div css={agentMenuContainerStyle}>
             <Button colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
-              Share
+              {t("share")}
             </Button>
           </div>
         )
@@ -200,6 +207,7 @@ export const AIAgentRun: FC = () => {
     marketplaceInfo?.marketplace.isStarredByCurrentUser,
     marketplaceInfo?.marketplace.numForks,
     marketplaceInfo?.marketplace.numStars,
+    t,
   ])
 
   return (
@@ -264,7 +272,10 @@ export const AIAgentRun: FC = () => {
                 control={control}
                 shouldUnregister={false}
                 render={({ field }) => (
-                  <AIAgentBlock title={"Mode"}>
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.tips.mode")}
+                    tips={t("editor.ai-agent.tips.mode")}
+                  >
                     <RadioGroup
                       {...field}
                       colorScheme={"techPurple"}
@@ -324,7 +335,7 @@ export const AIAgentRun: FC = () => {
                 shouldUnregister={false}
                 render={({ field }) =>
                   field.value.length > 0 ? (
-                    <AIAgentBlock title={"Variables"}>
+                    <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
                       <RecordEditor
                         fillOnly={true}
                         withoutCodeMirror
@@ -360,7 +371,9 @@ export const AIAgentRun: FC = () => {
                 colorScheme={getColor("grayBlue", "02")}
                 leftIcon={<ResetIcon />}
               >
-                {!isRunning ? "Start" : "Restart"}
+                {!isRunning
+                  ? t("editor.ai-agent.start")
+                  : t("editor.ai-agent.restart")}
               </Button>
             </div>
           </div>
