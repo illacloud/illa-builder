@@ -32,12 +32,15 @@
       "cancel": "Anulează",
       "delete": "Ștergere",
       "delete_cancel_text": "Anulează",
-      "delete_content": "Acest lucru va întrerupe aplicațiile și interogarea bibliotecii care utilizează această resursă",
+      "delete_content": "După ștergere, nu va fi posibil să accesați sau să recuperați datele prin orice mijloace. Vă rugăm să confirmați.",
       "delete_ok_text": "Ștergere",
       "delete_title": "Ești sigur?",
       "error_button": "Reîncercați",
       "error_description": "Există o problemă cu operația dvs.",
-      "error_title": "Eroare"
+      "error_title": "Eroare",
+      "marketplace": "Piață",
+      "run": "Rulează",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Creare nou",
@@ -51,6 +54,28 @@
       "save_success": "Salvare reușită",
       "test_fail": "Nu a reușit să testeze",
       "test_success": "Test cu succes"
+    },
+    "list-type": {
+      "team": "Echipa",
+      "marketplace": "Piața agenților"
+    },
+    "sort-type": {
+      "popular": "Cele mai populare",
+      "recent": "Ultimele",
+      "star": "Marcate"
+    },
+    "search": "Caută",
+    "no-result": "Niciun rezultat aici. Reîmprospătați sau schimbați termenii de căutare.",
+    "message": {
+      "next-page-error": "Încărcarea paginii următoare a eșuat. Te rugăm să încerci din nou.",
+      "create-failed": "Agentul de salvare a eșuat. Te rugăm să încerci din nou.",
+      "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
+      "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
+      "fork-failed": "Esuare fork, te rugam incearca din nou.",
+      "create-suc": "Creare esuata, te rugam incearca din nou.",
+      "fork-suc": "Facturat cu succes.",
+      "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
+      "delete-suc": "Eliminat cu succes. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Cont de serviciu"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Selectare"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Selecteaza pagini"
+            },
+            "ai-agent": {
+              "value": "Valoare"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3,5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Înregistrări",
             "record": "Înregistrare",
             "record_ids": "ID inregistrare"
+          },
+          "ai-agent": {
+            "model": "Model",
+            "variable": "Variabilă",
+            "input": "Trimite conținut",
+            "max-token": "Token-ul maxim"
           }
         },
         "menu": {
@@ -1543,7 +1590,8 @@
           "thousand_separator": "Arată separatorul de mii",
           "trend_color": "Activează culoarea tendinței",
           "prefix_text": "Prefix text",
-          "suffix_text": "Text în completare"
+          "suffix_text": "Text în completare",
+          "title": "Titlu"
         },
         "mute": "Amuțit",
         "collapse": {
@@ -1724,7 +1772,25 @@
           "only_show_icon": "Arată doar pictograma",
           "groupLabels": "Etichete grup"
         },
-        "hover_bg_color": "Fundal Hover"
+        "hover_bg_color": "Fundal Hover",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Date implicite din formular",
+          "hidden_submit_button": "Buton de adăugare ascuns",
+          "submit_button_full_w": "Trimite buton lățime completă",
+          "submit_button_text": "Trimiteți textul butonului"
+        },
+        "chart": {
+          "direction": "Direcție",
+          "y-axis_value": "Valoarea axei Y",
+          "stack_grouped_data": "Date grupate stack",
+          "x-axis_type": "Tipul axei X",
+          "format": "Format",
+          "legend_position": "Poziție legendă",
+          "grid_line": "Linie grilă",
+          "y-axis_type": "Tipul axei Y"
+        }
       },
       "setter_tooltip": {
         "action": "Acțiunile dvs pentru a declanșa interogări, a controla componente sau a apela datele din resursele dvs. Acțiuni multiple async vor fi executate în paralel.",
@@ -1931,7 +1997,7 @@
           "total_row_count": "Numărul de rânduri folosit pentru a număra numărul de pagină.",
           "next_cursor": "Un identificator folosit pentru a localiza următorul punct de pornire al unui set de date, pentru a pagina și a extrage date în loturi",
           "has_next_page": "Un boolean folosit pentru a indica dacă există o altă pagină de date disponibile. Ne poate ajuta să controlăm mai bine recuperarea datelor în interogările paginate și să optimizăm performanța interogării",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Un array de obiect închis în {{ }}. De exemplu, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\":\"valoarea to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. Sprijinim aceste filterFn: \"equalTo\", \"notEqualTo\", \"conţine\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"goly\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "Modul filtre. ŞI sau SAU.",
           "currency_code": "USD",
           "whether_allow_users_": "Dacă permiteți utilizatorilor să selecteze o celulă",
@@ -1982,6 +2048,22 @@
           "logo": "Setați sigla dvs. cu un URL",
           "title": "Setați aici un titlu, cum ar fi numele companiei",
           "only_show_icon": "CĂTRE ascunderea etichetei şi arată doar pictograma"
+        },
+        "statistics": {
+          "title": "Setați titlul de afișat"
+        },
+        "page": {
+          "default_view": "Când utilizatorii introduc un URL de eroare, vom redirecționa automat către sub-pagina implicită. Când nu există nici o sub-pagină implicită, vom trata prima sub-pagină din listă ca pe sub-pagină implicită"
+        },
+        "chart": {
+          "direction": "Setați direcția graficului. ",
+          "y-axis_value": "Setează valoarea axei Y",
+          "stack_grouped_data": "Valorile din diferite grupuri cu aceeași valoare a axei X vor fi stivuite într-un grafic stacked. Graficele suprapuse pot fi folosite pentru a compara dimensiunea generală a diferitelor categorii sau grupuri, precum și dimensiunile relative ale subcategoriilor sau subgrupurilor individuale.",
+          "x-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor.",
+          "format": "Un șir de format de dată valid. Vezi [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Pentru a seta poziția legendei. ",
+          "grid_line": "Pentru a seta culoarea liniei grilei. ",
+          "y-axis_type": "Setarea tipului de grafic poate îmbunătăți lizibilitatea datelor."
         }
       },
       "setter_option": {
@@ -2084,6 +2166,20 @@
             "replace": "Înlocuiește",
             "keepboth": "Păstrați ambele"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Gogoașă",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Orizontal",
+            "vertical": "Verticală"
+          },
+          "x-axis_type": {
+            "Default": "Implicit",
+            "Date": "Data"
+          }
         }
       },
       "setter_placeholder": {
@@ -2113,6 +2209,14 @@
         },
         "table": {
           "currency_code": "Codul monedei definit în [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "Schema JSON pentru formular.\n\nExemplu\n{{action1.data }}\n\nAflați mai multe despre cum să scrieți schema JSON [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Schema UI pentru formular - vezi uiSchema prop pentru [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExemplu\n{{ action1.data }}",
+          "default_form_data": "Date implicite din formular - vezi formData prop pentru [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExemplu\r\n{{ action1.data }}",
+          "hidden_submit_button": "Setați dacă să ascundeți butonul de trimitere",
+          "submit_button_full_w": "Setaţi dacă butonul de adăugare are are lăţimea completă.",
+          "submit_button_text": "Setaţi textul butonului de trimitere"
         }
       },
       "setter_tootip": {
@@ -2162,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Nicio subpagină"
       }
     },
     "page": {
       "label_name": {
         "add": "Adăugare",
         "body": "Corp",
-        "default_view": "Vizualizare implicită",
-        "edit_view": "Editare vizualizare",
+        "default_view": "Subpagina implicită",
+        "edit_view": "Editare subpagină",
         "footer": "Subsol",
         "header": "Antet",
         "key": "Cheie",
@@ -2178,11 +2285,14 @@
         "right_panel": "Panoul din dreapta",
         "set_as_homepage": "Setează ca website",
         "show_fold_icon": "Afișare pictogramă pli",
-        "view_path": "Vizualizare cale",
-        "views": "Vizualizări",
+        "view_path": "Nume",
+        "views": "Subpagini",
         "width": "Width",
         "height": "Înălțime",
-        "columns": "Coloane"
+        "columns": "Coloane",
+        "set_as_default_subpage": "Setează ca subpagină implicită",
+        "delete-page": "Ștergeți pagina",
+        "delete-sub-page": "Ștergere subpagină"
       },
       "model_tips": {
         "cancel_button": "Anulează",
@@ -2197,8 +2307,11 @@
       "tab_title": "Pagină",
       "tooltips": {
         "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
-        "view_path": "Un șir după exemplu.ro/app/page/ pentru a accesa această vizualizare",
+        "view_path": "Pentru a configura accesul la această pagină, va trebui să modificaţi numele. De exemplu, dacă schimbați numele în '**nou**', și adăugați-l ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
+      },
+      "message": {
+        "new_path": "Nu s-a găsit nici o sub-pagină potrivită. A fost adăugată o nouă subpagină. "
       }
     },
     "validate_message": {
@@ -2442,6 +2555,71 @@
           "preview": "Nu s-a putut încărca istoricul înregistrării."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Nume",
+        "desc": "Descriere",
+        "mode": "Mod",
+        "prompt": "Prompt",
+        "variable": "Variabilă",
+        "welcome": "Mesaj de întâmpinare",
+        "model": "Model",
+        "temperature": "Temperatură",
+        "max-token": "Token-ul maxim"
+      },
+      "placeholder": {
+        "logo": "Incarca",
+        "name": "Dă un nume agentului",
+        "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
+        "prompt": "Introduceți / pentru a selecta o variabilă",
+        "variable": {
+          "key": "Denumire variabilă",
+          "value": "Valoare"
+        },
+        "welcome": "Furnizaţi un mesaj de bun venit afişat atunci când utilizatorii încep să folosească agentul. (Automatic Translation)",
+        "temperature": "O valoare între 0 și 1. Cu cât valoarea este mai mică, cu atât efectul poate fi mai bun",
+        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare"
+      },
+      "tips": {
+        "mode": "În modul chat, fiecare mesaj trimis include istoricul conversațiilor ca parte a cererii, ceea ce poate duce la rezultate mai bune, dar consumă mai multe tokeni; în modul text, fiecare mesaj trimis nu include istoricul conversaţiilor, care poate avea rezultate mai puțin optime în comparație cu modul de chat dar care conservă tokenurile.",
+        "not-start": "Completează configurația agentului și apasă Start pentru a rula",
+        "not-start-run": "Vă rugăm să faceţi clic pe butonul de pornire din stânga."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Generare text"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3,5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nou",
+      "save": "Salvează",
+      "start": "Pornire",
+      "restart": "Repornire",
+      "contribute": "Contribuie la piata",
+      "button": {
+        "send": "Trimite",
+        "generating": "Generare"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Genereaza text"
+      },
+      "message": {
+        "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
+        "insufficient_token": "Token insuficient"
+      }
+    },
+    "common": {
+      "required": "Necesar"
     }
   },
   "exit_preview": "Ieșiți din previzualizare",
@@ -2851,6 +3029,19 @@
         "cancel": "Anulează",
         "no_file": "Nici un fişier"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Formular JSON Schema"
+    },
+    "page": {
+      "path_duplicated": "Numele paginii este duplicat. Vă rugăm să folosiţi un nume unic pentru a evita erorile. ",
+      "tips": {
+        "blank_view": "Acest modul nu are pagini copii. Vă rugăm să le adăugaţi mai întâi prin panoul de pagină din dreapta."
+      },
+      "label": {
+        "rename_url": "Editare subpagină",
+        "rename_page_url": "Editare pagină"
+      }
     }
   },
   "page": {
@@ -3187,6 +3378,10 @@
       },
       "password": {
         "title": "Parolă"
+      },
+      "subscribe_illa_news": {
+        "label": "Aboneaza-te la buletinul informativ prin email",
+        "tips": "După abonare, ILLA vă va informa prin e-mail despre cele mai recente caracteristici, evenimente, tendințe industriale și alte știri legate de ILLA Cloud."
       }
     }
   },
@@ -3407,7 +3602,7 @@
     "subscription_general": {
       "plan": {
         "free": "Gratuit",
-        "plus": "Premium"
+        "plus": "Plus"
       },
       "sub_cycle": {
         "yearly": "Anual",
@@ -3518,16 +3713,16 @@
         "add_license": "Veți adăuga licențe {{changeNum}} . Odată confirmate, vom deduce imediat plata pentru noile licențe pentru acest ciclu de facturare. <0>Aflați mai multe</0>",
         "remove_license": "Veți elimina licențele {{changeNum}} . Odată confirmate, modificările vor intra în vigoare în următorul ciclu de facturare. <0>Aflați mai multe</0>",
         "add_traffic": "Urmează să adaugi traficul de {{changeNum}}GB. Odată confirmat, vom deduce imediat costul traficului suplimentar. <0>Află mai multe</0>",
-        "subscribe_storage": "Vă veți abona la ILLA Cloud Premium. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. <0>Află mai multe</0>",
+        "subscribe_storage": "Vă veți abona la ILLA Cloud Plus. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. <0>Află mai multe</0>",
         "subscribe_license": "Vă veți abona la ILLA Drive. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. <0>Află mai multe</0>",
         "update_plan_increase_license": "Urmează să adaugi {{changeNum}} licențe și să îți actualizezi perioada de abonament. <0>Află mai multe</0>",
         "update_plan_remove_license": "Veți elimina {{changeNum}} licențe și vă veți actualiza perioada de abonament. <0>Aflați mai multe</0>",
         "update_plan_increase_storage": "Urmează să adaugi spațiul de stocare {{changeNum}} GB și să-ți actualizezi perioada de abonament. <0>Află mai multe</0>",
         "update_plan_remove_storage": "Veți elimina spațiul de stocare {{changeNum}} GB și vă veți actualiza perioada de abonament. <0>Aflați mai multe</0>",
-        "unsubscribe_license": "Vă veți dezabona la Premium ILLA Cloud. După anulare, începând de la următorul ciclu de facturare, funcțiile Premium nu vor mai fi accesibile. <0>Află mai multe</0>",
+        "unsubscribe_license": "Te vei dezabona de la ILLA Cloud Plus. După anulare, începând de la următorul ciclu de facturare, funcțiile Plus nu vor mai fi accesibile. <0>Află mai multe</0>",
         "unsubscribe_storage": "Veți dezabona stocarea ILLA Drive. După anulare, începând de la următorul ciclu de facturare, capacitatea de stocare va fi restabilită la 100MB. <0>Află mai multe</0>",
-        "subscribe_license_monthly": "Vă veți abona la un abonament lunar ILLA Cloud Premium. <0>Aflați mai multe</0>",
-        "subscribe_license_yearly": "Vă veți abona la un abonament anual ILLA Cloud Premium. <0>Aflați mai multe</0>",
+        "subscribe_license_monthly": "Vă veți abona la un abonament lunar ILLA Cloud Plus. <0>Aflați mai multe</0>",
+        "subscribe_license_yearly": "Vă veți abona la un abonament anual ILLA Cloud Plus. <0>Aflați mai multe</0>",
         "subscribe_storage_monthly": "Urmează să adaugi spațiul de stocare {{changeNum}}GB. Odată confirmat, vom deduce imediat costul stocării. <0>Află mai multe</0>",
         "subscribe_storage_yearly": "Urmează să adaugi spațiul de stocare {{changeNum}}GB. Odată confirmat, vom deduce imediat costul stocării. <0>Află mai multe</0>"
       },
@@ -3540,7 +3735,7 @@
         "add_traffic": "După deducerea reușită, traficul tău va crește în timp real. Odată ce traficul este utilizat, taxele nu pot fi rambursate, traficul neutilizat poate fi rambursat în unități GB. De exemplu, dacă achiziționați 10GB de trafic și utilizați 4.5GB, puteți solicita o rambursare de 5GB. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "subscribe_storage_yearly": "Vă veți abona la abonamentul anual de stocare ILLA Drive. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. Suma efectivă dedusă depinde de cantitatea de capacitate de stocare la care v-ați abonat în GB. De exemplu, dacă începi primul abonament pe 25 februarie, 2023, cu o taxă anuală de abonament de 9 $. pe GB, şi aveţi un total de 3 GB, vom scădea $29. la 25 februarie 2023. Dacă adăugați 2 GB pe 25 martie, 2023, vom deduce prima dată plata de 11 luni rămasă la 25 martie 2023. Apoi, până la 25 februarie 2024, vom deduce plata pentru 5 GB, care este (2+3)*$9,9=$49. . Dacă doriți să reduceți spațiul de stocare sau să faceți alte modificări la abonament, vă rugăm să îl actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "subscribe_storage_monthly": "Vă veți abona la abonamentul lunar de stocare ILLA Drive. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. Suma efectivă dedusă depinde de cantitatea de capacitate de stocare la care v-ați abonat în GB. De exemplu, dacă începeți primul abonament pe 25 februarie, 2023, cu o taxă de abonament lunar de $0. 9 per GB şi aveţi un total de 3 GB, vom deduce 2 $. 7 la 25 februarie 2023. Dacă adăugaţi încă 2 licenţe la 21 martie 2023, vom deduce prima dată restul de 5 zile la 21 martie 2023. Apoi, până la 25 martie 2023, vom deduce plata pentru 5 licenţe, care este (2+3)*$. 9=$4.95. Dacă doriți să reduceți licențele sau să efectuați alte modificări la abonament, actualizați-l înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
-        "subscribe_license_monthly": "Vă veți abona la abonamentul lunar ILLA Cloud Premium. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. Suma efectivă dedusă depinde de numărul de licențe pe care le aveți. De exemplu, dacă începeți primul abonament pe 25 februarie, 2023, cu un abonament lunar de 12 dolari pe licență, si aveti un total de 3 licente, vom deduce 36 USD la 25 februarie 2023. Dacă adăugaţi încă 2 licenţe la 21 martie 2023, vom deduce prima dată restul de 5 zile la 21 martie 2023. Apoi, până la 25 martie 2023, vom deduce plata pentru 5 licenţe, care este (2+3)*$12=$60. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
+        "subscribe_license_monthly": "Vă veți abona la abonamentul lunar al ILLA Cloud Plus. Vom deduce automat taxele din contul tău la începutul fiecărui ciclu de plată. Suma efectivă dedusă depinde de numărul de licențe pe care le aveți. De exemplu, dacă începeți primul abonament pe 25 februarie, 2023, cu un abonament lunar de 12 dolari pe licență, si aveti un total de 3 licente, vom deduce 36 USD la 25 februarie 2023. Dacă adăugaţi încă 2 licenţe la 21 martie 2023, vom deduce prima dată restul de 5 zile la 21 martie 2023. Apoi, până la 25 martie 2023, vom deduce plata pentru 5 licenţe, care este (2+3)*$12=$60. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_remove_license": "Taxele vor fi deduse automat din perioada următoare pe baza numărului actualizat de licențe și a tarifării noilor cicluri de facturare. Dacă numărul de utilizatori cu permisiuni de editare depăşeşte numărul de licenţe la începutul următorului ciclu de facturare, toţi utilizatorii cu excepţia proprietarului vor fi dezactivaţi până când eliminaţi membrii sau creşteţi numărul de licenţe din intervalul disponibil. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_increase_storage": "Taxele vor fi deduse automat din perioada următoare pe baza stocării actualizate și a stabilirii prețurilor pentru noul ciclu de facturare. De data aceasta, vom deduce plata pentru depozitarea mărită în conformitate cu ciclul de facturare curent. Calcularea regulilor folosind un abonament lunar de stocare ca exemplu: Să luăm în considerare un scenariu în care v-ați abonat inițial la 5 GB începând cu 14 martie, şi ciclul de facturare se întinde de la data de 14 a acestei luni la data de 13 a lunii următoare. Pe 10 mai decizi să adaugi 1 GB. În acel moment, au rămas 4 zile până la sfârşitul ciclului actual în 13 mai (care totalizează 30 de zile din 14 aprilie până în 13 mai). Pentru a calcula plata ajustată, vom deduce costul de 1 GB, care se ridică la aproximativ $0. 9, proporțional cu durata de 4 zile în cadrul ciclului de 30 de zile. Prin urmare, deducerea este estimată la o licență * $0,99 / 30 zile * 4 zile, rezultând în aproximativ 0,132. Începând cu următorul ciclu de facturare, toate taxele de stocare vor fi consolidate și achitate împreună. Dacă doriți să reduceți licențele sau să faceți alte modificări la abonament, vă rugăm să le actualizați înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_remove_storage": "Taxele vor fi deduse automat din perioada următoare pe baza stocării actualizate și a stabilirii prețurilor pentru noul ciclu de facturare. În cazul în care capacitatea de stocare ocupată de fișierele dvs. depășește capacitatea de stocare abonată la începutul următorului ciclu de facturare, Toate fişierele vor fi dezactivate până când ştergeţi fişiere sau creşteţi capacitatea de stocare în intervalul disponibil. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>"
@@ -3598,8 +3793,8 @@
         "got_it": "Am înțeles"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgradează la Premium",
-        "this_feature_is_avai": "Această funcție este disponibilă doar pentru utilizatorii Premium. Pentru a o folosi, te rugăm să faci upgrade la Plus. Prin trecerea la Premium, vei avea acces și la următoarele caracteristici. ",
+        "upgrade_to_plus": "Upgrade la Plus",
+        "this_feature_is_avai": "Această funcție este disponibilă doar pentru utilizatorii Plus. Pentru a o folosi, vă rugăm să faceți upgrade la Plus. Actualizând la Plus, vei avea acces și la următoarele funcții. ",
         "add_unlimited_viewer": "Adaugă nelimitat vizitator pentru GRATUIT",
         "publish_public_appli": "Publicare aplicații publice",
         "ai_sql_generation": "Generare AI SQL",
@@ -3609,7 +3804,7 @@
         "insufficient_license_title": "Licențe insuficiente",
         "insufficient_license_description": "Pentru a invita mai mulți editori, vă rugăm să măriți mai întâi licențele. Toți membrii echipei dvs. ar putea folosi funcțiile pentru ILLA Cloud Plus. Accesul specific la fiecare caracteristică depinde de rolul fiecărui membru. ",
         "insufficient_license_button": "Adăugați licențe",
-        "pricing": "editor/lună, an ($20/editor, lunar)"
+        "pricing": "/editor/lună, anual"
       },
       "expired": {
         "owner": "Abonamentul dvs. a expirat. Pentru a continua să îl folosiți, vă rugăm să îl reînnoiți.",
@@ -3655,6 +3850,10 @@
         "title": "Schimbați planul?",
         "button_cancel": "Anulează",
         "button_confirm": "Confirmare"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 este pentru echipa Premium. ",
+        "string2": "Pentru a o folosi, vă rugăm să faceţi upgrade la Premium. Prin upgrade la Premium, veţi avea de asemenea acces la următoarele caracteristici. "
       }
     },
     "homepage": {
@@ -3726,15 +3925,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Invită să editezi",
-      "invite_to_use": "Invită să utilizezi"
+      "invite_to_use": "Invită să utilizezi",
+      "share-with-team": "Partajează cu echipa",
+      "contribute": "Contribuie"
     },
     "desc": {
-      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
+      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. ",
+      "contribute": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
     },
     "tips": {
       "admin": "Membrul care poate gestiona toţi membrii cu excepţia Owner, editează APP-urile şi vizualizează APP-urile",
       "editor": "Membrul care poate gestiona membrii editorului şi vizualizatorului, editează APP-urile şi vizualizează APP-urile",
       "viewer": "Membrul care poate gestiona utilizatorii şi vizualiza APP-urile"
+    },
+    "label": {
+      "contribute": "Contribuie la piata",
+      "social-media": "Distribuie pe"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Știri hacker"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Salut! Tocmai am descoperit acest uimitor Agent AI. Ai putea fi interesat să îi dai o încercare! Verifică-l! {{promptName}}:{{promptLink}} #AIwrite #PromptManagement #ProductivityBoost",
+        "reddit": "Uită-te la acest uimitor Agent AI [{{promptName}}]",
+        "linkedin": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "facebook": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "whatsapp": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
+        "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
+      },
+      "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
     }
+  },
+  "ai-agents": "Agenți AI",
+  "marketplace": {
+    "star": "Star {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

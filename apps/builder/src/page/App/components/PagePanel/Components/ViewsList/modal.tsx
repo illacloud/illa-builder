@@ -13,7 +13,7 @@ import {
 } from "./style"
 
 export const Modal: FC<ModalProps> = (props) => {
-  const { onCloseModal, name, path, handleUpdateItem, attrPath } = props
+  const { onCloseModal, path, handleUpdateItem } = props
   const { t } = useTranslation()
 
   return (
@@ -25,19 +25,6 @@ export const Modal: FC<ModalProps> = (props) => {
         </div>
       </div>
       <LeftAndRightLayout>
-        <PageLabel labelName={t("editor.page.label_name.key")} size="big" />
-        <SetterPadding>
-          <Input
-            w="200px"
-            value={name}
-            colorScheme="techPurple"
-            onChange={(value) => {
-              handleUpdateItem(`${attrPath}.key`, value)
-            }}
-          />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      <LeftAndRightLayout>
         <PageLabel
           labelName={t("editor.page.label_name.view_path")}
           size="big"
@@ -48,9 +35,7 @@ export const Modal: FC<ModalProps> = (props) => {
             w="200px"
             value={path}
             colorScheme="techPurple"
-            onChange={(value) => {
-              handleUpdateItem(`${attrPath}.path`, value)
-            }}
+            onChange={handleUpdateItem}
           />
         </SetterPadding>
       </LeftAndRightLayout>

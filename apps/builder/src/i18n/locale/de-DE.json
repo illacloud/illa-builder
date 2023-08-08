@@ -32,12 +32,15 @@
       "cancel": "Abbrechen",
       "delete": "Löschen",
       "delete_cancel_text": "Abbrechen",
-      "delete_content": "Dadurch werden Apps und Abfragebibliotheksabfragen unterbrochen, die diese Ressource verwenden",
+      "delete_content": "Nach dem Löschen wird es nicht möglich sein, auf die Daten zuzugreifen oder sie wiederherzustellen. Bitte bestätigen.",
       "delete_ok_text": "Löschen",
       "delete_title": "Bist du sicher?",
       "error_button": "Wiederholen",
       "error_description": "Es gibt ein Problem mit Ihrer Operation.",
-      "error_title": "Fehler"
+      "error_title": "Fehler",
+      "marketplace": "Marktplatz",
+      "run": "Ausführen",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Neu erstellen",
@@ -51,6 +54,28 @@
       "save_success": "Erfolgreich gespeichert",
       "test_fail": "Test fehlgeschlagen",
       "test_success": "Test erfolgreich"
+    },
+    "list-type": {
+      "team": "Team's",
+      "marketplace": "Agentenmarkt"
+    },
+    "sort-type": {
+      "popular": "Beliebteste",
+      "recent": "Neueste",
+      "star": "Markiert"
+    },
+    "search": "Suchen",
+    "no-result": "Kein Ergebnis hier. Bitte aktualisieren oder ändern Sie Ihre Suchbegriffe.",
+    "message": {
+      "next-page-error": "Fehler beim Laden der nächsten Seite. Bitte versuchen Sie es erneut.",
+      "create-failed": "Fehler beim Speichern des Agenten. Bitte versuchen Sie es erneut.",
+      "sort-failed": "Filtertyp konnte nicht geändert werden. Bitte versuchen Sie es erneut.",
+      "detail-load-failed": "Fehler beim Abrufen der Details, bitte versuchen Sie es erneut.",
+      "fork-failed": "Fehler beim Forken, bitte versuchen Sie es erneut.",
+      "create-suc": "Fehler beim Erstellen, bitte erneut versuchen.",
+      "fork-suc": "Erfolgreich geforkt.",
+      "delete-failed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut. ",
+      "delete-suc": "Erfolgreich gelöscht. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Service-Konto"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Auswählen"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Seiten auswählen"
+            },
+            "ai-agent": {
+              "value": "Wert"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-Turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Datensätze",
             "record": "Datensatz",
             "record_ids": "Datensatz-IDs"
+          },
+          "ai-agent": {
+            "model": "Modell",
+            "variable": "Variable",
+            "input": "Inhalt senden",
+            "max-token": "Max. Token"
           }
         },
         "menu": {
@@ -1543,7 +1590,8 @@
           "thousand_separator": "Tausend-Trennzeichen anzeigen",
           "trend_color": "Trendfarbe aktivieren",
           "prefix_text": "Präfix Text",
-          "suffix_text": "Suffix Text"
+          "suffix_text": "Suffix Text",
+          "title": "Titel"
         },
         "mute": "Stumm",
         "collapse": {
@@ -1724,7 +1772,25 @@
           "only_show_icon": "Nur Symbol anzeigen",
           "groupLabels": "Gruppenbezeichnungen"
         },
-        "hover_bg_color": "Hover-Hintergrund"
+        "hover_bg_color": "Hover-Hintergrund",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Standard-Formulardaten",
+          "hidden_submit_button": "Versteckter Senden-Button",
+          "submit_button_full_w": "Vollbreite der Schaltfläche senden",
+          "submit_button_text": "Text der Schaltfläche senden"
+        },
+        "chart": {
+          "direction": "Richtung",
+          "y-axis_value": "Y-Achsen-Wert",
+          "stack_grouped_data": "Gruppierte Daten",
+          "x-axis_type": "X-Achsen-Typ",
+          "format": "Format",
+          "legend_position": "Legendenposition",
+          "grid_line": "Rasterlinie",
+          "y-axis_type": "Y-Achsen-Typ"
+        }
       },
       "setter_tooltip": {
         "action": "Ihre Aktionen zu Komponenten lösen Abfragen, Steuerkomponenten aus oder rufen die Daten in Ihren Ressourcen auf. Mehrere async-Aktionen werden parallel ausgeführt.",
@@ -1931,7 +1997,7 @@
           "total_row_count": "Die Anzahl der Zeilen, die zur Zählung der Seitenzahl verwendet werden.",
           "next_cursor": "Ein Bezeichner zum Auffinden des nächsten Startpunkts einer Datenmenge, um Daten in Batches zu paginieren und abzurufen",
           "has_next_page": "Eine boolesche Angabe, um anzugeben, ob eine andere Datenseite zur Verfügung steht. Es kann uns helfen, das Abrufen von Daten in paginierten Abfragen besser zu steuern und die Abfrageleistung zu optimieren",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Ein Array von Objekten, das in {{ }}eingeschlossen ist. Zum Beispiel {{ [{\"**id**\":\"Name der zu filternden Spalte\", \"**value**\":\"The value to match\", \"**filterFn**\":\"Enthält, Gleiche, ...\"}] }}. Wir unterstützen diese FilterFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"leer\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "Der Filtermodus. AND oder OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Ob es Benutzern erlaubt eine Zelle auszuwählen",
@@ -1982,6 +2048,22 @@
           "logo": "Logo mit URL festlegen",
           "title": "Legen Sie hier einen Titel wie den Firmennamen fest",
           "only_show_icon": "BIS die Bezeichnung verstecken und nur Symbol anzeigen"
+        },
+        "statistics": {
+          "title": "Den anzuzeigenden Titel festlegen"
+        },
+        "page": {
+          "default_view": "Wenn Benutzer eine Fehleradresse eingeben, werden wir automatisch zur Standard-Unterseite weiterleiten. Wenn es keine Standard-Unterseite gibt, behandeln wir die erste Unterseite in der Liste als Standard-Unterseite"
+        },
+        "chart": {
+          "direction": "Setze die Richtung des Diagramms. ",
+          "y-axis_value": "Setze den Wert der Y-Achse",
+          "stack_grouped_data": "Werte aus verschiedenen Gruppen mit dem gleichen X-Achsen-Wert werden in einem Stapeldiagramm gestapelt. Gestapelte Diagramme können zum Vergleich der Gesamtgröße verschiedener Kategorien oder Gruppen verwendet werden sowie die relativen Größen einzelner Unterkategorien oder Untergruppen.",
+          "x-axis_type": "Die Einstellung des Diagrammtyps kann die Datenlesbarkeit verbessern.",
+          "format": "Ein gültiger Datumsformat-String. Siehe [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Um die Position des legenten zu setzen. ",
+          "grid_line": "Um die Farbe der Rasterlinie einzustellen. ",
+          "y-axis_type": "Die Einstellung des Diagrammtyps kann die Datenlesbarkeit verbessern."
         }
       },
       "setter_option": {
@@ -2084,6 +2166,20 @@
             "replace": "Ersetzen",
             "keepboth": "Beides behalten"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Datum"
+          }
         }
       },
       "setter_placeholder": {
@@ -2113,6 +2209,14 @@
         },
         "table": {
           "currency_code": "Der Währungscode definiert in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON Schema für das Formular.\n\nBeispiel\n{{action1.data }}\n\nErfahre mehr darüber, wie du das JSON Schema [react-jsonschema-form]schreibst (https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "UI-Schema für das Formular - siehe uiSchema Prop für die [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nBeispiel\n{{ action1.data }}",
+          "default_form_data": "Standard-Formulardaten - siehe Formulardaten für den [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nBeispiel\r\n{{ action1.data }}",
+          "hidden_submit_button": "Legen Sie fest, ob die Schaltfläche \"Absenden\" ausblenden soll",
+          "submit_button_full_w": "Legen Sie fest, ob die Schaltfläche \"Absenden\" die volle Breite hat.",
+          "submit_button_text": "Setze den Text der Schaltfläche \"Absenden\""
         }
       },
       "setter_tootip": {
@@ -2162,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Keine Unterseite"
       }
     },
     "page": {
       "label_name": {
         "add": "Neu",
         "body": "Körper",
-        "default_view": "Standardansicht",
-        "edit_view": "Ansicht bearbeiten",
+        "default_view": "Standard-Unterseite",
+        "edit_view": "Unterseite bearbeiten",
         "footer": "Fußzeile",
         "header": "Kopfzeile",
         "key": "Schlüssel",
@@ -2178,11 +2285,14 @@
         "right_panel": "Rechte Leiste",
         "set_as_homepage": "Als Startseite festlegen",
         "show_fold_icon": "Faltsymbol anzeigen",
-        "view_path": "Pfad anzeigen",
-        "views": "Aufrufe",
+        "view_path": "Name",
+        "views": "Unterseiten",
         "width": "Width",
         "height": "Höhe",
-        "columns": "Spalten"
+        "columns": "Spalten",
+        "set_as_default_subpage": "Als Standard-Unterseite festlegen",
+        "delete-page": "Seite löschen",
+        "delete-sub-page": "Unterseite löschen"
       },
       "model_tips": {
         "cancel_button": "Abbrechen",
@@ -2197,8 +2307,11 @@
       "tab_title": "Seite",
       "tooltips": {
         "show_fold_icon": "Schaltfläche zum Einklappen oder Vergrößern des Panels anzeigen",
-        "view_path": "Ein String hinter Beispiel.com/app/page/ um auf diese Ansicht zuzugreifen",
+        "view_path": "Um den Zugriff auf diese Seite zu konfigurieren, müssen Sie den Namen anpassen. Zum Beispiel, wenn Sie den Namen in '**newPage**' ändern und ihn als Unterseite der Startseite hinzufügen. Diese Seite kann dann über die folgende URL aufgerufen werden: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Die Seitenbreite als Prozentsatz der Browserbreite."
+      },
+      "message": {
+        "new_path": "Keine passende Unterseite gefunden. Neue Unterseite wurde hinzugefügt. "
       }
     },
     "validate_message": {
@@ -2442,6 +2555,71 @@
           "preview": "Fehler beim Laden des Verlaufsdatums."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Name",
+        "desc": "Beschreibung",
+        "mode": "Modus",
+        "prompt": "Prompt",
+        "variable": "Variable",
+        "welcome": "Willkommensnachricht",
+        "model": "Modell",
+        "temperature": "Temperatur",
+        "max-token": "Max. Token"
+      },
+      "placeholder": {
+        "logo": "Hochladen",
+        "name": "Geben Sie dem Agenten einen Namen",
+        "desc": "Geben Sie eine kurze Beschreibung dessen an, wofür dieser Agent verwendet werden soll.",
+        "prompt": "Geben Sie ein / um eine Variable auszuwählen",
+        "variable": {
+          "key": "Variablenname",
+          "value": "Wert"
+        },
+        "welcome": "Geben Sie eine Willkommensnachricht an, die angezeigt wird, wenn Benutzer den Agenten verwenden.",
+        "temperature": "Ein Wert zwischen 0 und 1. Je kleiner der Wert, desto besser kann der Effekt sein",
+        "max-token": "Wird verwendet, um die maximale Anzahl an Tokens zu begrenzen, die in einem einzigen Lauf verbraucht werden"
+      },
+      "tips": {
+        "mode": "Im Chat-Modus enthält jede gesendete Nachricht den Verlauf der Unterhaltung als Teil der Anfrage, was zu besseren Ergebnissen führen kann, aber mehr Token verbrauchen kann; im Text-Modus, jede gesendete Nachricht enthält nicht den Verlauf der Unterhaltung, was zu weniger optimalen Ergebnissen im Vergleich zum Chatmodus führen kann, aber Token bewahrt.",
+        "not-start": "Schließe die Agenten-Konfiguration ab und klicke auf Start, um zu starten",
+        "not-start-run": "Bitte klicken Sie auf die Schaltfläche Start auf der linken Seite."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chat",
+          "text": "Textgenerierung"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-Turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Neu",
+      "save": "Speichern",
+      "start": "Start",
+      "restart": "Neustart",
+      "contribute": "Zum Marktplatz beitragen",
+      "button": {
+        "send": "Senden",
+        "generating": "Generiere"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chat",
+        "text": "Text generieren"
+      },
+      "message": {
+        "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
+        "insufficient_token": "Unzureichendes Token"
+      }
+    },
+    "common": {
+      "required": "Benötigt"
     }
   },
   "exit_preview": "Vorschau beenden",
@@ -2851,6 +3029,19 @@
         "cancel": "Abbrechen",
         "no_file": "Keine Datei"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "JSON-Schema-Formular"
+    },
+    "page": {
+      "path_duplicated": "Der Seitenname wurde dupliziert. Bitte verwenden Sie einen eindeutigen Namen, um Fehler zu vermeiden. ",
+      "tips": {
+        "blank_view": "Dieses Modul hat keine Unterseiten. Bitte fügen Sie diese zuerst durch das Seitenfenster auf der rechten Seite."
+      },
+      "label": {
+        "rename_url": "Unterseite bearbeiten",
+        "rename_page_url": "Seite bearbeiten"
+      }
     }
   },
   "page": {
@@ -3187,6 +3378,10 @@
       },
       "password": {
         "title": "Passwort"
+      },
+      "subscribe_illa_news": {
+        "label": "ILLA Newsletter abonnieren",
+        "tips": "Nach der Anmeldung informiert Sie ILLA über die neuesten Funktionen, Ereignisse, Branchentrends und Neuigkeiten rund um ILLA Cloud per E-Mail."
       }
     }
   },
@@ -3407,7 +3602,7 @@
     "subscription_general": {
       "plan": {
         "free": "Kostenlos",
-        "plus": "Prämie"
+        "plus": "Plus"
       },
       "sub_cycle": {
         "yearly": "Jährlich",
@@ -3518,16 +3713,16 @@
         "add_license": "Sie werden {{changeNum}} Lizenzen hinzufügen. Nach der Bestätigung werden wir die Zahlung für die neuen Lizenzen für diesen Abrechnungszyklus sofort abziehen. <0>Mehr erfahren</0>",
         "remove_license": "Sie werden {{changeNum}} Lizenzen entfernen. Sobald diese bestätigt sind, werden die Änderungen im nächsten Abrechnungszyklus wirksam. <0>Mehr erfahren</0>",
         "add_traffic": "Sie werden {{changeNum}}GB-Datenverkehr hinzufügen. Nach der Bestätigung werden wir die Kosten für den zusätzlichen Datenverkehr sofort abziehen. <0>Mehr erfahren</0>",
-        "subscribe_storage": "Sie abonnieren ILLA Cloud Premium. Wir werden die Gebühren automatisch zu Beginn jedes Zahlungszyklus von Ihrem Konto abziehen. <0>Mehr erfahren</0>",
+        "subscribe_storage": "Sie abonnieren ILLA Cloud Plus. Wir werden die Gebühren automatisch zu Beginn jedes Zahlungszyklus von Ihrem Konto abziehen. <0>Mehr erfahren</0>",
         "subscribe_license": "Sie abonnieren ILLA Drive. Wir werden die Gebühren automatisch zu Beginn jedes Zahlungszyklus von Ihrem Konto abziehen. <0>Mehr erfahren</0>",
         "update_plan_increase_license": "Sie werden {{changeNum}} Lizenzen hinzufügen und Ihr Abonnement aktualisieren. <0>Mehr erfahren</0>",
         "update_plan_remove_license": "Sie werden {{changeNum}} Lizenzen entfernen und Ihr Abonnement aktualisieren. <0>Mehr erfahren</0>",
         "update_plan_increase_storage": "Sie werden {{changeNum}} GB Speicher hinzufügen und Ihr Abonnement aktualisieren. <0>Mehr erfahren</0>",
         "update_plan_remove_storage": "Sie werden {{changeNum}} GB Speicher entfernen und Ihr Abonnement aktualisieren. <0>Mehr erfahren</0>",
-        "unsubscribe_license": "Sie werden ILLA Cloud Premium abbestellen. Nach dem Abbrechen, beginnend mit dem nächsten Abrechnungszyklus, werden die Premium-Funktionen nicht mehr zugänglich sein. <0>Mehr erfahren</0>",
+        "unsubscribe_license": "Sie werden ILLA Cloud Plus abbestellen. Nach dem Abbrechen, beginnend mit dem nächsten Abrechnungszyklus, werden die Plus Funktionen nicht mehr zugänglich sein. <0>Mehr erfahren</0>",
         "unsubscribe_storage": "Sie werden den ILLA Drive Speicher abbestellen. Nach dem Abbrechen wird die Speicherkapazität ab dem nächsten Abrechnungszyklus auf 100 MB wiederhergestellt. <0>Mehr erfahren</0>",
-        "subscribe_license_monthly": "Sie abonnieren das ILLA Cloud Premium Monatsabonnement. <0>Mehr erfahren</0>",
-        "subscribe_license_yearly": "Sie abonnieren das ILLA Cloud Premium Jahresabonnement. <0>Mehr erfahren</0>",
+        "subscribe_license_monthly": "Sie abonnieren das ILLA Cloud Plus Monatsabonnement. <0>Mehr erfahren</0>",
+        "subscribe_license_yearly": "Sie abonnieren das ILLA Cloud Plus Jahresabonnement. <0>Mehr erfahren</0>",
         "subscribe_storage_monthly": "Sie werden {{changeNum}}GB Speicher hinzufügen. Sobald dies bestätigt ist, werden wir die Kosten für den Speicher sofort abziehen. <0>Mehr erfahren</0>",
         "subscribe_storage_yearly": "Sie werden {{changeNum}}GB Speicher hinzufügen. Sobald dies bestätigt ist, werden wir die Kosten für den Speicher sofort abziehen. <0>Mehr erfahren</0>"
       },
@@ -3540,7 +3735,7 @@
         "add_traffic": "Nach erfolgreichem Abzug wird Ihr Traffic in Echtzeit steigen. Sobald der Verkehr genutzt wird, können die Gebühren nicht erstattet werden. Nicht genutzte Verkehrsmittel können in Einheiten von GB zurückerstattet werden. Zum Beispiel, wenn Sie 10 GB Verkehr kaufen und 4,5 GB verwenden, können Sie eine Rückerstattung von 5 GB beantragen. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
         "subscribe_storage_yearly": "Sie abonnieren das Jahresabonnement des ILLA Drive Speichers. Wir werden die Gebühren automatisch zu Beginn jedes Zahlungszyklus von Ihrem Konto abziehen. Der tatsächliche abgezogene Betrag hängt davon ab, wie viel Speicherkapazität Sie bei GB abonniert haben. Zum Beispiel, wenn Sie Ihr erstes Abonnement am 25. Februar 2023, mit einer jährlichen Abonnementgebühr von 9 $. pro GB, und Sie haben eine Gesamtsumme von 3 GB, wir werden $29 abziehen. am 25. Februar 2023. Wenn du am 25. März 2023 2 GB hinzufügst, werden wir die restlichen 11 Monate am 25. März 2023 abziehen. Dann werden wir bis zum 25. Februar 2024 die Zahlung für 5 GB ((2+3)*$9,9=$49) abziehen. . Wenn Sie den Speicher reduzieren oder andere Änderungen am Abonnement vornehmen möchten, aktualisieren Sie ihn bitte vor Beginn des nächsten Zeitraums. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
         "subscribe_storage_monthly": "Sie abonnieren das monatliche Abonnement des ILLA Drive Speichers. Wir werden die Gebühren automatisch zu Beginn jedes Zahlungszyklus von Ihrem Konto abziehen. Der tatsächliche abgezogene Betrag hängt davon ab, wie viel Speicherkapazität Sie bei GB abonniert haben. Zum Beispiel, wenn Sie Ihr erstes Abonnement am 25. Februar 2023 mit einer monatlichen Abonnementgebühr von $0 beginnen. 9 pro GB, und Sie haben eine Gesamtsumme von 3 GB, wir werden $2. 7. am 25. Februar 2023. Wenn Sie am 21. März 2023 2 weitere Lizenzen hinzufügen, werden wir die restlichen 5 Tage am 21. März 2023 abziehen. Dann werden wir bis zum 25. März 2023 die Zahlung für 5 Lizenzen abziehen, das sind (2+3)*$0. 9=$4.95. Wenn Sie Lizenzen reduzieren oder andere Änderungen am Abonnement vornehmen möchten, aktualisieren Sie es bitte vor Beginn des nächsten Zeitraums. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
-        "subscribe_license_monthly": "Sie abonnieren das monatliche Abonnement von ILLA Cloud Premium. Wir werden die Gebühren automatisch zu Beginn jedes Zahlungszyklus von Ihrem Konto abziehen. Der tatsächliche Betrag hängt von der Anzahl der Lizenzen ab, die Sie besitzen. Zum Beispiel, wenn Sie Ihr erstes Abonnement am 25. Februar 2023 mit einer monatlichen Abonnementgebühr von 12 $ pro Lizenz beginnen, und Sie haben insgesamt 3 Lizenzen, wir werden $36 am 25. Februar 2023 abziehen. Wenn Sie am 21. März 2023 2 weitere Lizenzen hinzufügen, werden wir die restlichen 5 Tage am 21. März 2023 abziehen. Dann werden wir bis zum 25. März 2023 die Zahlung für 5 Lizenzen abziehen, das sind (2+3)*$12=$60. Wenn Sie Lizenzen reduzieren oder andere Änderungen am Abonnement vornehmen möchten, aktualisieren Sie diese bitte vor Beginn des nächsten Zeitraums. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
+        "subscribe_license_monthly": "Sie abonnieren das monatliche Abonnement von ILLA Cloud Plus. Wir werden die Gebühren automatisch zu Beginn jedes Zahlungszyklus von Ihrem Konto abziehen. Der tatsächliche Betrag hängt von der Anzahl der Lizenzen ab, die Sie besitzen. Zum Beispiel, wenn Sie Ihr erstes Abonnement am 25. Februar 2023 mit einer monatlichen Abonnementgebühr von 12 $ pro Lizenz beginnen, und Sie haben insgesamt 3 Lizenzen, wir werden $36 am 25. Februar 2023 abziehen. Wenn Sie am 21. März 2023 2 weitere Lizenzen hinzufügen, werden wir die restlichen 5 Tage am 21. März 2023 abziehen. Dann werden wir bis zum 25. März 2023 die Zahlung für 5 Lizenzen abziehen, das sind (2+3)*$12=$60. Wenn Sie Lizenzen reduzieren oder andere Änderungen am Abonnement vornehmen möchten, aktualisieren Sie diese bitte vor Beginn des nächsten Zeitraums. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
         "update_plan_remove_license": "Die Gebühren werden automatisch abhängig von der aktualisierten Anzahl der Lizenzen und der Preisgestaltung des neuen Abrechnungszyklus ab der nächsten Periode abgezogen. Wenn die Anzahl der Benutzer mit Bearbeitungsberechtigungen die Anzahl der Lizenzen zu Beginn des nächsten Abrechnungszyklus überschreitet, alle Benutzer außer dem Eigentümer werden deaktiviert, bis Sie Mitglieder entfernen oder die Anzahl der Lizenzen innerhalb des verfügbaren Bereichs erhöhen. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
         "update_plan_increase_storage": "Die Gebühren werden automatisch auf der Grundlage der aktualisierten Speicherung und der Preisgestaltung des neuen Abrechnungszyklus ab dem nächsten Zeitraum abgezogen. Diesmal werden wir die Zahlung für die erhöhte Lagerung nach dem aktuellen Abrechnungszyklus abziehen. Berechnungsregeln verwenden zum Beispiel ein monatliches Speicherabonnement: Lass uns ein Szenario in Betracht ziehen, bei dem du ab dem 14. März zunächst 5 GB abonniert hast und der Abrechnungszyklus erstreckt sich vom 14. dieses Monats bis zum 13. des nächsten Monats. Am 10. Mai beschließt man, 1 GB hinzuzufügen. An diesem Punkt bis zum Ende des aktuellen Zyklus am 13. Mai verblieben (insgesamt 30 Tage vom 14. April bis 13. Mai). Um die bereinigte Zahlung zu berechnen, werden die Kosten von 1 GB abgezogen, die ungefähr $0 beträgt. 9, proportional zur Dauer von 4 Tagen innerhalb des 30-tägigen Zyklus. Daher wird der Abzug als 1 Lizenz geschätzt * $0,99 / 30 Tage * 4 Tage, was in etwa $0,132. Ab dem nächsten Abrechnungszyklus werden alle Lagergebühren konsolidiert und gemeinsam gezahlt. Wenn Sie Lizenzen reduzieren oder andere Änderungen am Abonnement vornehmen möchten, aktualisieren Sie diese bitte vor Beginn des nächsten Zeitraums. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
         "update_plan_remove_storage": "Die Gebühren werden automatisch auf der Grundlage der aktualisierten Speicherung und der Preisgestaltung des neuen Abrechnungszyklus ab dem nächsten Zeitraum abgezogen. Wenn die Speicherkapazität Ihrer Dateien die abonnierte Speicherkapazität zu Beginn des nächsten Abrechnungszyklus übersteigt, alle Dateien werden deaktiviert, bis Sie Dateien löschen oder die Speicherkapazität im verfügbaren Bereich erhöhen. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>"
@@ -3598,8 +3793,8 @@
         "got_it": "Verstanden"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgrade auf Premium",
-        "this_feature_is_avai": "Diese Funktion ist nur für Premium-Nutzer verfügbar. Bitte upgraden Sie auf Plus. Durch ein Upgrade auf Premium haben Sie auch Zugriff auf die folgenden Funktionen. ",
+        "upgrade_to_plus": "Auf Plus upgraden",
+        "this_feature_is_avai": "Diese Funktion ist nur für Plus-Benutzer verfügbar. Um sie zu verwenden, aktualisieren Sie bitte auf Plus. Durch ein Upgrade auf Plus haben Sie auch Zugriff auf die folgenden Funktionen. ",
         "add_unlimited_viewer": "Fügen Sie unbegrenzte Zuschauer Mitglieder kostenlos hinzu",
         "publish_public_appli": "Öffentliche Anwendungen veröffentlichen",
         "ai_sql_generation": "AI SQL Generierung",
@@ -3609,7 +3804,7 @@
         "insufficient_license_title": "Unzureichende Lizenzen",
         "insufficient_license_description": "Um weitere Editoren einzuladen, erhöhen Sie bitte zuerst die Lizenzen. Alle Mitglieder Ihres Teams können die Funktionen für ILLA Cloud Plus nutzen. Der spezifische Zugriff auf jede Funktion hängt von der Rolle jedes Mitglieds ab. ",
         "insufficient_license_button": "Lizenzen hinzufügen",
-        "pricing": "editor/mo, jährlich($20/Editor, monatlich)"
+        "pricing": "/Editor/Monat, jährlich"
       },
       "expired": {
         "owner": "Ihr Abonnement ist abgelaufen. Um fortzufahren, erneuern Sie es bitte erneut.",
@@ -3655,6 +3850,10 @@
         "title": "Plan ändern?",
         "button_cancel": "Abbrechen",
         "button_confirm": "Bestätigen"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 ist für das Premium-Team. ",
+        "string2": "Um es zu verwenden, upgraden Sie bitte auf Premium. Durch ein Upgrade auf Premium, haben Sie auch Zugriff auf die folgenden Funktionen. "
       }
     },
     "homepage": {
@@ -3726,15 +3925,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Zum Bearbeiten einladen",
-      "invite_to_use": "Zur Nutzung einladen"
+      "invite_to_use": "Zur Nutzung einladen",
+      "share-with-team": "Mit Team teilen",
+      "contribute": "Mitwirken"
     },
     "desc": {
-      "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. "
+      "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. ",
+      "contribute": "Nachdem Sie zum Marketplace beigetragen haben, können alle Benutzer Ihren Agent ausführen, markieren und forken. Wenn Benutzer aus anderen Teams diesen Agent betreiben, wird er Ihre Ressourcen nicht verbrauchen."
     },
     "tips": {
       "admin": "Das Mitglied, das alle Mitglieder außer Eigentümer verwalten kann, APPs bearbeiten und APPs anzeigen kann",
       "editor": "Das Mitglied, das Editor- und Viewer-Mitglieder verwalten kann, APPs bearbeiten und APPs anzeigen kann",
       "viewer": "Das Mitglied, das Viewer-Mitglieder verwalten und APPs anzeigen kann"
+    },
+    "label": {
+      "contribute": "Zum Marktplatz beitragen",
+      "social-media": "Teilen auf"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hallo! Ich habe gerade diesen erstaunlichen AI Agent entdeckt. Sie könnten auch daran interessiert sein, es auszuprobieren! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Schau dir diesen erstaunlichen KI Agent [{{promptName}} ] an",
+        "linkedin": "Achten Sie auf alle KI-Enthusiasten und Profis, die ihre Produktivität steigern wollen! Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
+        "facebook": "Achten Sie auf alle KI-Enthusiasten und Profis, die ihre Produktivität steigern wollen! Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
+        "whatsapp": "Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!",
+        "hackernews": "Vereinfachen Sie Ihre Arbeitsbelastung mit [{{promptName}}] - Der KI-Agent, der die Aufgabe erledigt"
+      },
+      "contribute": "Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!"
     }
+  },
+  "ai-agents": "KI-Agenten",
+  "marketplace": {
+    "star": "Star {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

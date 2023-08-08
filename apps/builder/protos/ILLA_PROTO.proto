@@ -16,6 +16,9 @@ enum Signal {
   SIGNAL_COOPERATE_ATTACH = 11;
   SIGNAL_COOPERATE_DISATTACH = 12;
   SIGNAL_MOVE_CURSOR = 13;
+  SIGNAL_FORCE_REFRESH = 14;
+  SIGNAL_TAKE_APP_SNAPSHOT = 15;
+  SIGNAL_RECOVER_APP_SNAPSHOT = 16;
 }
 
 enum Target {
@@ -29,6 +32,7 @@ enum Target {
   TARGET_RESOURCE = 7;           // only for broadcast
   TARGET_ACTION = 8;             // only for broadcast
   TARGET_CURSOR = 9;             // only for broadcast
+  TARGET_WINDOW = 10;            // only for broadcast
 }
 
 message MovingMessageBin {

@@ -32,12 +32,15 @@
       "cancel": "Avbryt",
       "delete": "Radera",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "Detta kommer att bryta apparna och frågebibliotekets frågor som använder denna resurs",
+      "delete_content": "Efter radering, kommer det inte att vara möjligt att komma åt eller återställa data på något sätt. Bekräfta.",
       "delete_ok_text": "Radera",
       "delete_title": "Är du säker?",
       "error_button": "Försök igen",
       "error_description": "Det finns ett problem med din operation.",
-      "error_title": "Fel"
+      "error_title": "Fel",
+      "marketplace": "Marknadsplats",
+      "run": "Kör",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Skapa ny",
@@ -51,6 +54,28 @@
       "save_success": "Sparades framgångsrikt",
       "test_fail": "Det gick inte att testa",
       "test_success": "Testet lyckades"
+    },
+    "list-type": {
+      "team": "Lagets",
+      "marketplace": "Agentkommando"
+    },
+    "sort-type": {
+      "popular": "Mest populära",
+      "recent": "Senaste",
+      "star": "Stjärnmärkta"
+    },
+    "search": "Sök",
+    "no-result": "Inga resultat här. Uppdatera eller ändra dina söktermer.",
+    "message": {
+      "next-page-error": "Det gick inte att ladda nästa sida. Försök igen.",
+      "create-failed": "Det gick inte att spara agenten. Försök igen.",
+      "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
+      "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
+      "fork-failed": "Det gick inte att fork, försök igen.",
+      "create-suc": "Det gick inte att skapa, försök igen.",
+      "fork-suc": "Framgångsrikt forked.",
+      "delete-failed": "Misslyckades att ta bort. Försök igen. ",
+      "delete-suc": "Raderades framgångsrikt. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Tjänstens konto"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Välj"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Välj sidor"
+            },
+            "ai-agent": {
+              "value": "Värde"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Poster",
             "record": "Spela in",
             "record_ids": "Spela in ID"
+          },
+          "ai-agent": {
+            "model": "Modell",
+            "variable": "Variabel",
+            "input": "Skicka innehåll",
+            "max-token": "Max token"
           }
         },
         "menu": {
@@ -1543,7 +1590,8 @@
           "thousand_separator": "Visa tusen avgränsare",
           "trend_color": "Aktivera trendfärg",
           "prefix_text": "Prefix text",
-          "suffix_text": "Suffix text"
+          "suffix_text": "Suffix text",
+          "title": "Titel"
         },
         "mute": "Tysta",
         "collapse": {
@@ -1724,7 +1772,25 @@
           "only_show_icon": "Visa bara ikon",
           "groupLabels": "Grupp etiketter"
         },
-        "hover_bg_color": "Hover bakgrund"
+        "hover_bg_color": "Hover bakgrund",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Förvald formulärdata",
+          "hidden_submit_button": "Dold inlämningsknapp",
+          "submit_button_full_w": "Skicka knappen full bredd",
+          "submit_button_text": "Skicka knapptext"
+        },
+        "chart": {
+          "direction": "Riktning",
+          "y-axis_value": "Y-axel värde",
+          "stack_grouped_data": "Stapla grupperad data",
+          "x-axis_type": "Typ av X-axel",
+          "format": "Formatera",
+          "legend_position": "Legend position",
+          "grid_line": "Rutnätslinje",
+          "y-axis_type": "Y-axel typ"
+        }
       },
       "setter_tooltip": {
         "action": "Dina åtgärder för komponenter utlöser frågor, kontrollkomponenter eller anropar data i dina resurser. Flera asynska åtgärder kommer att utföras parallellt.",
@@ -1931,7 +1997,7 @@
           "total_row_count": "Antalet rader som används för att räkna sidnumret.",
           "next_cursor": "En identifierare som används för att hitta nästa startpunkt för en uppsättning data, för att paginera och hämta data i batcher",
           "has_next_page": "En boolesk som används för att ange om det finns en annan sida av data tillgänglig. Det kan hjälpa oss att bättre kontrollera datainsamling i sidnumrerade frågor och optimera frågeprestanda",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "En array av objekt inneslutna i {{ }}. Till exempel, {{ [{\"**id**\":\"namn på kolumnen till filter\", \"**värde**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}. Vi stöder dessa filterFn: \"equalTo\", \"notEqualTo\", \"innehåller\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"före\", \"efter\". ",
           "filter_mode": "Filterläget. OCH eller OR.",
           "currency_code": "USD",
           "whether_allow_users_": "Om tillåta användare att välja en cell",
@@ -1982,6 +2048,22 @@
           "logo": "Ange din logotyp med en URL",
           "title": "Ange en titel som företagsnamn här",
           "only_show_icon": "Att gömma etiketten och bara visa ikonen"
+        },
+        "statistics": {
+          "title": "Ange titel att visa"
+        },
+        "page": {
+          "default_view": "När användare anger en fel-URL kommer vi automatiskt att omdirigera till standardundersidan. När det inte finns någon standard undersida, kommer vi att behandla den första undersidan i listan som standard undersida"
+        },
+        "chart": {
+          "direction": "Ange riktningen för sjökortet. ",
+          "y-axis_value": "Ange värdet på Y-axeln",
+          "stack_grouped_data": "Värden från olika grupper med samma X-axelvärde kommer att staplas i ett staplat diagram. Staplade diagram kan användas för att jämföra den totala storleken på olika kategorier eller grupper, samt de relativa storlekarna för enskilda underkategorier eller undergrupper.",
+          "x-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten.",
+          "format": "Ett giltigt datumformat. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Att ställa in positionen för legent. ",
+          "grid_line": "För att ställa in färgen på rutnät linje. ",
+          "y-axis_type": "Ställa in diagramtyp kan förbättra dataläsbarheten."
         }
       },
       "setter_option": {
@@ -2084,6 +2166,20 @@
             "replace": "Ersätt",
             "keepboth": "Behåll båda"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Munk",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horisontell",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Datum"
+          }
         }
       },
       "setter_placeholder": {
@@ -2113,6 +2209,14 @@
         },
         "table": {
           "currency_code": "Valutakoden definierad i [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON Schema för formuläret.\n\nExempel\n{{action1.data }}\n\nLäs mer om hur du skriver JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "UI Schema för formuläret - se uiSchema prop för [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExempel\n{{ action1.data }}",
+          "default_form_data": "Standard formulärdata - se formuläret Data prop för [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExempel\r\n{{ action1.data }}",
+          "hidden_submit_button": "Ange om du vill dölja skicka in knappen",
+          "submit_button_full_w": "Ange om skicka knappen är fullbredd.",
+          "submit_button_text": "Ställ in texten på inlämningsknappen"
         }
       },
       "setter_tootip": {
@@ -2162,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Ingen undersida"
       }
     },
     "page": {
       "label_name": {
         "add": "Lägg till",
         "body": "Kropp",
-        "default_view": "Förvald vy",
-        "edit_view": "Redigera vy",
+        "default_view": "Förvald undersida",
+        "edit_view": "Redigera undersida",
         "footer": "Sidfot",
         "header": "Rubrik",
         "key": "Nyckel",
@@ -2178,11 +2285,14 @@
         "right_panel": "Höger panel",
         "set_as_homepage": "Ange som hemsida",
         "show_fold_icon": "Visa vik-ikon",
-        "view_path": "Visa sökväg",
-        "views": "Visningar",
+        "view_path": "Namn",
+        "views": "Sidor",
         "width": "Width",
         "height": "Höjd",
-        "columns": "Kolumner"
+        "columns": "Kolumner",
+        "set_as_default_subpage": "Ange som standard undersida",
+        "delete-page": "Ta bort sida",
+        "delete-sub-page": "Ta bort undersida"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
@@ -2197,8 +2307,11 @@
       "tab_title": "Sida",
       "tooltips": {
         "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
-        "view_path": "En sträng efter example.com/app/page/ för att komma åt denna vy",
+        "view_path": "För att konfigurera åtkomst till den här sidan måste du justera namnet. Till exempel, om du ändrar namnet till \"**newPage**\", och lägga till det som en undersida på hemsidan. Denna sida kan sedan nås via följande URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
+      },
+      "message": {
+        "new_path": "Inga matchande undersidor hittades. Ny undersida har lagts till. "
       }
     },
     "validate_message": {
@@ -2442,6 +2555,71 @@
           "preview": "Det gick inte att läsa in historikposten."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logotyp",
+        "name": "Namn",
+        "desc": "Beskrivning",
+        "mode": "Läge",
+        "prompt": "Prompt",
+        "variable": "Variabel",
+        "welcome": "Välkommen meddelande",
+        "model": "Modell",
+        "temperature": "Temperatur",
+        "max-token": "Max token"
+      },
+      "placeholder": {
+        "logo": "Ladda upp",
+        "name": "Ge ett namn till agenten",
+        "desc": "Ge en kort beskrivning av vad denna agent är avsedd att användas till.",
+        "prompt": "Ange / för att välja en variabel",
+        "variable": {
+          "key": "Variabelt namn",
+          "value": "Värde"
+        },
+        "welcome": "Ange ett välkomstmeddelande som visas när användare börjar använda agenten.",
+        "temperature": "Ett värde mellan 0 och 1. Ju mindre värdet är, desto bättre effekt kan",
+        "max-token": "Används för att begränsa det maximala antalet polletter som konsumeras i en enda körning"
+      },
+      "tips": {
+        "mode": "I chattläget inkluderar varje meddelande konversationshistoriken som en del av begäran, vilket kan resultera i bättre resultat men förbrukar fler tokens; i textläge, varje meddelande som skickas innehåller inte konversationshistorik, vilket kan resultera i mindre optimala resultat jämfört med chattläge men sparar polletter.",
+        "not-start": "Slutför agentkonfigurationen och klicka på Start för att köra",
+        "not-start-run": "Klicka på Start -knappen till vänster."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chatt",
+          "text": "Generering av text"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Ny",
+      "save": "Spara",
+      "start": "Starta",
+      "restart": "Starta om",
+      "contribute": "Bidra till marknadsplatsen",
+      "button": {
+        "send": "Skicka",
+        "generating": "Genererar"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chatt",
+        "text": "Generera text"
+      },
+      "message": {
+        "click-start": "Klicka på Start -knappen för att utlösa.",
+        "insufficient_token": "Otillräcklig token"
+      }
+    },
+    "common": {
+      "required": "Krävs"
     }
   },
   "exit_preview": "Avsluta förhandsgranskning",
@@ -2851,6 +3029,19 @@
         "cancel": "Avbryt",
         "no_file": "Ingen fil"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Formulär för JSON Schema"
+    },
+    "page": {
+      "path_duplicated": "Sidans namn dupliceras. Använd ett unikt namn för att undvika fel. ",
+      "tips": {
+        "blank_view": "Modulen har inga underordnade sidor. Lägg till dem först via Sidpanelen till höger."
+      },
+      "label": {
+        "rename_url": "Redigera undersida",
+        "rename_page_url": "Redigera sida"
+      }
     }
   },
   "page": {
@@ -3187,6 +3378,10 @@
       },
       "password": {
         "title": "Lösenord"
+      },
+      "subscribe_illa_news": {
+        "label": "Prenumerera på ILLA:s nyhetsbrev via e-post",
+        "tips": "Efter prenumerationen kommer ILLA att informera dig om de senaste funktionerna, händelserna, branschtrender och andra nyheter relaterade till ILLA Cloud via e-post."
       }
     }
   },
@@ -3407,7 +3602,7 @@
     "subscription_general": {
       "plan": {
         "free": "Gratis",
-        "plus": "Premium"
+        "plus": "Plus"
       },
       "sub_cycle": {
         "yearly": "Årligen",
@@ -3518,16 +3713,16 @@
         "add_license": "Du kommer att lägga till {{changeNum}} licenser. När bekräftat kommer vi omedelbart att dra av betalningen för de nya licenserna för denna faktureringscykel. <0>Läs mer</0>",
         "remove_license": "Du kommer att ta bort {{changeNum}} licenser. När du har bekräftat kommer ändringarna att träda i kraft under nästa faktureringscykel. <0>Läs mer</0>",
         "add_traffic": "Du kommer att lägga till {{changeNum}}GB trafik. När vi har bekräftat kommer vi att dra av kostnaden för den extra trafiken omedelbart. <0>Läs mer</0>",
-        "subscribe_storage": "Du kommer att prenumerera på ILLA Cloud Premium. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalcykel. <0>Läs mer</0>",
+        "subscribe_storage": "Du kommer att prenumerera på ILLA Cloud Plus. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalcykel. <0>Läs mer</0>",
         "subscribe_license": "Du kommer att prenumerera på ILLA Drive. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalcykel. <0>Läs mer</0>",
         "update_plan_increase_license": "Du kommer att lägga till {{changeNum}} licenser och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
         "update_plan_remove_license": "Du kommer att ta bort {{changeNum}} licenser och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
         "update_plan_increase_storage": "Du kommer att lägga till {{changeNum}} GB lagring och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
         "update_plan_remove_storage": "Du kommer att ta bort {{changeNum}} GB lagring och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
-        "unsubscribe_license": "Du kommer att avregistrera dig från ILLA Cloud Premium. Efter avbokning, från och med nästa faktureringscykel, kommer Premium-funktionerna inte längre vara tillgängliga. <0>Läs mer</0>",
+        "unsubscribe_license": "Du kommer att avregistrera dig från ILLA Cloud Plus. Efter avbokning, från och med nästa faktureringscykel, kommer Plus-funktionerna inte längre vara tillgängliga. <0>Läs mer</0>",
         "unsubscribe_storage": "Du kommer att avsluta prenumerationen på ILLA Drive lagring. Efter avbokning, med början från nästa faktureringscykel, kommer lagringskapaciteten att återställas till 100MB. <0>Läs mer</0>",
-        "subscribe_license_monthly": "Du kommer att prenumerera på månadsabonnemanget ILLA Cloud Premium. <0>Läs mer</0>",
-        "subscribe_license_yearly": "Du kommer att prenumerera på ILLA Cloud Premium per år. <0>Läs mer</0>",
+        "subscribe_license_monthly": "Du kommer att prenumerera på månadsabonnemanget ILLA Cloud Plus. <0>Läs mer</0>",
+        "subscribe_license_yearly": "Du kommer att prenumerera på ILLA Cloud Plus årsavgift. <0>Läs mer</0>",
         "subscribe_storage_monthly": "Du kommer att lägga till {{changeNum}}GB lagring. När vi har bekräftat kommer vi att dra av kostnaden för lagringen omedelbart. <0>Läs mer</0>",
         "subscribe_storage_yearly": "Du kommer att lägga till {{changeNum}}GB lagring. När vi har bekräftat kommer vi att dra av kostnaden för lagringen omedelbart. <0>Läs mer</0>"
       },
@@ -3540,7 +3735,7 @@
         "add_traffic": "Efter lyckad avdrag, din trafik kommer att öka i realtid. När trafiken används kan avgifterna inte återbetalas. Oanvänd trafik kan återbetalas i enheter av GB. Till exempel, om du köper 10 GB trafik och använder 4,5 GB, kan du ansöka om återbetalning på 5 GB. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "subscribe_storage_yearly": "Du kommer att prenumerera på den årliga prenumerationen av ILLA Drive lagring. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalningscykel. Det faktiska beloppet som dras av beror på hur mycket lagringskapacitet du har prenumererat i GB. Till exempel, om du börjar ditt första abonnemang den 25 februari 2023, med en årlig abonnemangsavgift på $9. per GB, och du har totalt 3 GB, kommer vi att dra av $ 29. den 25 februari 2023. Om du lägger till 2 GB den 25 mars 2023, kommer vi först dra av resterande 11 månaders betalning den 25 mars 2023. Sedan, den 25 februari, 2024, kommer vi att dra av betalningen för 5 GB, vilket är (2+3)*$9.9=$49. . Om du vill minska lagringsutrymmet eller göra andra ändringar i abonnemanget, vänligen uppdatera det innan början av nästa period. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "subscribe_storage_monthly": "Du kommer att prenumerera på den månatliga prenumerationen av ILLA Drive lagring. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalningscykel. Det faktiska beloppet som dras av beror på hur mycket lagringskapacitet du har prenumererat i GB. Till exempel, om du börjar din första prenumeration den 25 februari 2023, med en månadsavgift på $0. 9 per GB, och du har totalt 3 GB, kommer vi att dra av $ 2. 7 den 25 februari 2023. Om du lägger till ytterligare 2 licenser den 21 mars 2023, kommer vi först att dra av de återstående 5 dagarnas betalning den 21 mars 2023. Sedan, den 25 mars 2023, kommer vi att dra av betalningen för 5 licenser, vilket är (2+3)*$0. 9 = $ 4,95. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan början av nästa period. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
-        "subscribe_license_monthly": "Du kommer att prenumerera på den månatliga prenumerationen på ILLA Cloud Premium. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalningscykel. Det faktiska beloppet som dras av beror på hur många licenser du har. Till exempel, om du börjar din första prenumeration den 25 februari 2023, med en månadsavgift på $12 per licens, och du har totalt 3 licenser, vi kommer att dra av $36 den 25 februari 2023. Om du lägger till ytterligare 2 licenser den 21 mars 2023, kommer vi först att dra av de återstående 5 dagarnas betalning den 21 mars 2023. Sedan, den 25 mars 2023, kommer vi att dra av betalningen för 5 licenser, vilket är (2+3)*$12=$60. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+        "subscribe_license_monthly": "Du kommer att prenumerera på den månatliga prenumerationen på ILLA Cloud Plus. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalningscykel. Det faktiska beloppet som dras av beror på hur många licenser du har. Till exempel, om du börjar din första prenumeration den 25 februari 2023, med en månadsavgift på $12 per licens, och du har totalt 3 licenser, vi kommer att dra av $36 den 25 februari 2023. Om du lägger till ytterligare 2 licenser den 21 mars 2023, kommer vi först att dra av de återstående 5 dagarnas betalning den 21 mars 2023. Sedan, den 25 mars 2023, kommer vi att dra av betalningen för 5 licenser, vilket är (2+3)*$12=$60. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "update_plan_remove_license": "Avgifterna dras automatiskt av baserat på det uppdaterade antalet licenser och prissättningen av ny faktureringscykel från nästa period. Om antalet användare med redigeringsbehörighet överstiger antalet licenser i början av nästa faktureringscykel alla användare utom ägaren kommer att inaktiveras tills du tar bort medlemmar eller öka antalet licenser inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "update_plan_increase_storage": "Avgifterna dras automatiskt av baserat på den uppdaterade lagringen och prissättningen av ny faktureringscykel från nästa period. Den här gången kommer vi att dra av betalningen för den ökade lagringen enligt nuvarande faktureringscykel. Beräkningsregler med hjälp av en månatlig lagringsprenumeration som exempel: Låt oss överväga ett scenario där du ursprungligen prenumererade på 5 GB från och med den 14 mars, och faktureringscykeln spänner från den 14 i denna månad till den 13 i nästa månad. Den 10 maj bestämmer du dig för att lägga till 1 GB. Vid det tillfället, det fanns 4 dagar kvar till slutet av den nuvarande cykeln den 13 maj (totalt 30 dagar från 14 april till 13 maj). För att beräkna den justerade betalningen, kommer vi att dra av kostnaden för 1 GB, vilket uppgår till cirka $ 0. 9, proportionellt mot varaktigheten av 4 dagar inom 30-dagars cykel. Därför är avdraget uppskattas till 1 licens * $0,99 / 30 dagar * 4 dagar, vilket resulterar i cirka $0,132. Från och med nästa faktureringscykel kommer alla lagringsavgifter att konsolideras och betalas tillsammans. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "update_plan_remove_storage": "Avgifterna dras automatiskt av baserat på den uppdaterade lagringen och prissättningen av ny faktureringscykel från nästa period. Om lagringskapaciteten i dina filer överskrider den prenumererade lagringskapaciteten i början av nästa faktureringscykel alla filer kommer att inaktiveras tills du tar bort filer eller ökar lagringskapaciteten inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>"
@@ -3598,8 +3793,8 @@
         "got_it": "Jag fattar"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Uppgradera till Premium",
-        "this_feature_is_avai": "Denna funktion är endast tillgänglig för Premiumanvändare. För att använda den, vänligen uppgradera till Plus. Genom att uppgradera till Premium, har du också tillgång till följande funktioner. ",
+        "upgrade_to_plus": "Uppgradera till Plus",
+        "this_feature_is_avai": "Denna funktion är endast tillgänglig för Plus-användare. För att använda den, vänligen uppgradera till Plus. Genom att uppgradera till Plus har du också tillgång till följande funktioner. ",
         "add_unlimited_viewer": "Lägg till obegränsat antal läsare GRATIS",
         "publish_public_appli": "Publicera publika program",
         "ai_sql_generation": "AI SQL Generation",
@@ -3609,7 +3804,7 @@
         "insufficient_license_title": "Otillräckliga licenser",
         "insufficient_license_description": "För att bjuda in fler redaktörer, vänligen öka licenserna först. Alla medlemmar i ditt team kunde använda funktionerna för ILLA Cloud Plus. Den specifika åtkomsten till varje funktion beror på vilken roll varje medlem har. ",
         "insufficient_license_button": "Lägg till licenser",
-        "pricing": "editor/mo, årligen($20/editor, månadsvis)"
+        "pricing": "/redaktör/månad, årligt"
       },
       "expired": {
         "owner": "Din prenumeration har löpt ut. För att fortsätta använda, vänligen förnya den.",
@@ -3655,6 +3850,10 @@
         "title": "Ändra plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekräfta"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 är för Premium-teamet. ",
+        "string2": "För att använda det, vänligen uppgradera till Premium. Genom att uppgradera till Premium, kommer du också att ha tillgång till följande funktioner. "
       }
     },
     "homepage": {
@@ -3726,15 +3925,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Bjud in att redigera",
-      "invite_to_use": "Bjud in att använda"
+      "invite_to_use": "Bjud in att använda",
+      "share-with-team": "Dela med team",
+      "contribute": "Bidra"
     },
     "desc": {
-      "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. "
+      "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. ",
+      "contribute": "Efter att ha bidragit till marknaden kan alla användare köra, stjärna och gaffel din Jobbevakning. När användare från andra team kör denna agent, kommer det inte att konsumera dina resurser."
     },
     "tips": {
       "admin": "Medlemmen som kan hantera alla medlemmar utom ägare, redigera APP och visa APP",
       "editor": "Medlemmen som kan hantera redigerings- och tittarmedlemmar, redigera APP:er och visa APP:er",
       "viewer": "Medlemmen som kan hantera tittarmedlemmar och visa APP:er"
+    },
+    "label": {
+      "contribute": "Bidra till marknadsplatsen",
+      "social-media": "Dela på"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hackernyheter"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hej där! Jag upptäckte just denna fantastiska AI-agent. Du kanske är intresserad av att prova också! Kolla in det! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProduktivitetÖka",
+        "reddit": "Kolla in denna fantastiska AI-agent [{{promptName}}]",
+        "linkedin": "Uppmärksamhet alla AI-entusiaster och proffs som vill öka sin produktivitet! Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "facebook": "Uppmärksamhet alla AI-entusiaster och proffs som vill öka sin produktivitet! Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "whatsapp": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!",
+        "hackernews": "Förenkla din arbetsbelastning med [{{promptName}}] - AI-agenten som får jobbet klart"
+      },
+      "contribute": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!"
     }
+  },
+  "ai-agents": "AI agenter",
+  "marketplace": {
+    "star": "Stjärna {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

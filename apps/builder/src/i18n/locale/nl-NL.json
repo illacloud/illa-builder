@@ -32,12 +32,15 @@
       "cancel": "annuleren",
       "delete": "Verwijderen",
       "delete_cancel_text": "annuleren",
-      "delete_content": "Dit zal Apps en Query Bibliotheek vragen die deze bron gebruiken breken",
+      "delete_content": "Na verwijdering is het niet mogelijk om de gegevens op alle manieren te gebruiken of te herstellen. Gelieve te bevestigen.",
       "delete_ok_text": "Verwijderen",
       "delete_title": "Weet je het zeker?",
       "error_button": "Opnieuw",
       "error_description": "Er is een probleem met uw operatie.",
-      "error_title": "Foutmelding"
+      "error_title": "Foutmelding",
+      "marketplace": "Marktplaats",
+      "run": "Uitvoeren",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Nieuwe aanmaken",
@@ -51,6 +54,28 @@
       "save_success": "Succesvol opgeslagen",
       "test_fail": "Test mislukt",
       "test_success": "Test succesvol"
+    },
+    "list-type": {
+      "team": "Team's",
+      "marketplace": "Agent markt"
+    },
+    "sort-type": {
+      "popular": "Meest populair",
+      "recent": "Nieuwste",
+      "star": "Sterren"
+    },
+    "search": "Zoeken",
+    "no-result": "Geen resultaten gevonden. Gelieve uw zoektermen te vernieuwen of te wijzigen.",
+    "message": {
+      "next-page-error": "Fout bij laden van de volgende pagina. Probeer het opnieuw.",
+      "create-failed": "Kan agent niet opslaan. Probeer het opnieuw.",
+      "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
+      "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
+      "fork-failed": "Fork mislukt, probeer het opnieuw.",
+      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
+      "fork-suc": "Succesvol opgeforkt.",
+      "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
+      "delete-suc": "Succesvol verwijderd. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Service Account"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Selecteren"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Pagina's selecteren"
+            },
+            "ai-agent": {
+              "value": "Waarde"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Records",
             "record": "Opnemen",
             "record_ids": "ID's opnemen"
+          },
+          "ai-agent": {
+            "model": "Model",
+            "variable": "Variabele",
+            "input": "Inhoud verzenden",
+            "max-token": "Max token"
           }
         },
         "menu": {
@@ -1543,7 +1590,8 @@
           "thousand_separator": "Toon duizend scheidingsteken",
           "trend_color": "Schakel trend kleur in",
           "prefix_text": "Voorvoegsel tekst",
-          "suffix_text": "Achtervoegsel tekst"
+          "suffix_text": "Achtervoegsel tekst",
+          "title": "Aanspreektitel"
         },
         "mute": "Dempen",
         "collapse": {
@@ -1724,7 +1772,25 @@
           "only_show_icon": "Alleen pictogram weergeven",
           "groupLabels": "Groep labels"
         },
-        "hover_bg_color": "Muisover achtergrond"
+        "hover_bg_color": "Muisover achtergrond",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Standaard formuliergegevens",
+          "hidden_submit_button": "Verborgen verzendknop",
+          "submit_button_full_w": "Volledige breedte indieningsknop",
+          "submit_button_text": "Tekst inzenderknop"
+        },
+        "chart": {
+          "direction": "Richting",
+          "y-axis_value": "Y-as waarde",
+          "stack_grouped_data": "Stack gegroepeerde gegevens",
+          "x-axis_type": "X-as type",
+          "format": "Formatteren",
+          "legend_position": "Legende positie",
+          "grid_line": "Raster lijn",
+          "y-axis_type": "Y-as type"
+        }
       },
       "setter_tooltip": {
         "action": "Uw acties voor componenten trigger van queries, beheer componenten of roep de gegevens in uw bronnen op. Meerdere async acties worden parallel uitgevoerd.",
@@ -1931,7 +1997,7 @@
           "total_row_count": "Het aantal rijen gebruikt om het paginanummer te tellen.",
           "next_cursor": "Een id die gebruikt wordt om het volgende startpunt van een reeks gegevens te vinden, om gegevens in batches te versturen en op te halen",
           "has_next_page": "Een boolean gebruikt om aan te geven of er een andere pagina met gegevens beschikbaar is. Het kan ons helpen om het ophalen van gegevens beter te controleren in gepagineerde query's en het optimaliseren van de queryprestaties",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Een reeks objecten omgeven in {{ }}. Bijvoorbeeld, {{ [{\"**id**\":\"name van de kolom om te filteren\", \"**value**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}. Wij ondersteunen deze filterFn: \"equalTo\", \"notEqualTo\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"voor\", \"na\". ",
           "filter_mode": "De filtermodus. AND of OOR.",
           "currency_code": "USD",
           "whether_allow_users_": "Of gebruikers een cel mogen selecteren",
@@ -1982,6 +2048,22 @@
           "logo": "Stel uw logo in met een URL",
           "title": "Stel hier een titel in zoals bedrijfsnaam",
           "only_show_icon": "Verbergen van het label en alleen pictogram tonen"
+        },
+        "statistics": {
+          "title": "Stel de titel in voor weergave"
+        },
+        "page": {
+          "default_view": "Wanneer gebruikers een fout-URL invoeren, wordt automatisch doorverwezen naar de standaard subpagina. Wanneer er geen standaard subpagina is, zullen we de eerste subpagina in de lijst behandelen als de standaard subpagina"
+        },
+        "chart": {
+          "direction": "Stel de richting van de grafiek in. ",
+          "y-axis_value": "Stel de waarde van de Y-as in",
+          "stack_grouped_data": "Waarden van verschillende groepen met dezelfde X-as waarde worden opgestapeld in een gestapelde grafiek. Gestapelde grafieken kunnen worden gebruikt om de totale grootte van verschillende categorieën of groepen te vergelijken. evenals de relatieve grootte van individuele subcategorieën of subgroepen.",
+          "x-axis_type": "Het instellen van het grafiektype kan de leesbaarheid van gegevens verbeteren.",
+          "format": "Een geldige datumnotatie string. Zie [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Om de positie van de legende in te stellen. ",
+          "grid_line": "Om de kleur van de rasterlijn in te stellen. ",
+          "y-axis_type": "Het instellen van het grafiektype kan de leesbaarheid van gegevens verbeteren."
         }
       },
       "setter_option": {
@@ -2084,6 +2166,20 @@
             "replace": "Vervangen",
             "keepboth": "Houd beide"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Donut",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontaal",
+            "vertical": "Verticaal"
+          },
+          "x-axis_type": {
+            "Default": "Standaard",
+            "Date": "Datum:"
+          }
         }
       },
       "setter_placeholder": {
@@ -2113,6 +2209,14 @@
         },
         "table": {
           "currency_code": "De valutacode gedefinieerd in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON Schema voor het formulier.\n\nVoorbeeld\n{{action1.data }}\n\nMeer informatie over het schrijven van de JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "UI Schema voor de vorm - zie de uiSchema prop voor de [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nVoorbeeld\n{{ action1.data }}",
+          "default_form_data": "Standaard formuliergegevens - zie de formData prop voor de [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nVoorbeeld\r\n{{ action1.data }}",
+          "hidden_submit_button": "Stel in of de verzendknop moet worden verborgen",
+          "submit_button_full_w": "Stel in of de verzendknop volledige breedte heeft.",
+          "submit_button_text": "Stel de tekst van de verzendknop in"
         }
       },
       "setter_tootip": {
@@ -2162,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Geen subpagina"
       }
     },
     "page": {
       "label_name": {
         "add": "Toevoegen",
         "body": "Lichaam",
-        "default_view": "Standaard weergave",
-        "edit_view": "Weergave bewerken",
+        "default_view": "Standaard subpagina",
+        "edit_view": "Subpagina bewerken",
         "footer": "Voettekst",
         "header": "Koptekst",
         "key": "Sleutel",
@@ -2178,11 +2285,14 @@
         "right_panel": "Rechter paneel",
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
-        "view_path": "View pad",
-        "views": "Weergaven",
+        "view_path": "naam",
+        "views": "Subpagina's",
         "width": "Width",
         "height": "Højde",
-        "columns": "Kolommen"
+        "columns": "Kolommen",
+        "set_as_default_subpage": "Als standaard subpagina instellen",
+        "delete-page": "Pagina verwijderen",
+        "delete-sub-page": "Verwijder subpagina"
       },
       "model_tips": {
         "cancel_button": "annuleren",
@@ -2197,8 +2307,11 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
-        "view_path": "Een string na example.com/app/page/ voor toegang tot deze weergave",
+        "view_path": "Om toegang tot deze pagina te configureren, moet u de naam aanpassen. Bijvoorbeeld, als je de naam wijzigt naar '**newPage**', en voeg deze toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
+      },
+      "message": {
+        "new_path": "Geen overeenkomende sub-pagina gevonden. Nieuwe subpagina is toegevoegd. "
       }
     },
     "validate_message": {
@@ -2442,6 +2555,71 @@
           "preview": "Kon geschiedenis record niet laden."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "naam",
+        "desc": "Beschrijving",
+        "mode": "Modus",
+        "prompt": "Prompt",
+        "variable": "Variabele",
+        "welcome": "Welkom bericht",
+        "model": "Model",
+        "temperature": "Temperatuur",
+        "max-token": "Max token"
+      },
+      "placeholder": {
+        "logo": "Uploaden",
+        "name": "Geef een naam aan de agent",
+        "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
+        "prompt": "Enter / om een variabele te selecteren",
+        "variable": {
+          "key": "Naam variabele",
+          "value": "Waarde"
+        },
+        "welcome": "Geef een welkomstbericht weer wanneer gebruikers de medewerker gebruiken.",
+        "temperature": "Een waarde tussen 0 en 1. Hoe kleiner de waarde, hoe beter het effect kan zijn",
+        "max-token": "Gebruikt om het maximum aantal gebruikte tokens dat in een enkele uitvoering wordt verbruikt te beperken"
+      },
+      "tips": {
+        "mode": "In de chatmodus bevat elk verzonden bericht de gespreksgeschiedenis als onderdeel van het verzoek, wat kan leiden tot betere resultaten, maar meer tokens verbruikt; in tekstmodus, elk verzonden bericht bevat geen gespreksgeschiedenis dit kan resulteren in minder optimale resultaten vergeleken met de chatmodus maar houdt tokens in de kaart.",
+        "not-start": "Voltooi de agent configureren en klik op Start om uit te voeren",
+        "not-start-run": "Klik op de Start knop aan de linkerkant."
+      },
+      "option": {
+        "mode": {
+          "chat": "Chatten",
+          "text": "Tekst genereren"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nieuw",
+      "save": "Opslaan",
+      "start": "Beginnen",
+      "restart": "Herstarten",
+      "contribute": "Draag bij aan de marktplaats",
+      "button": {
+        "send": "Verzenden",
+        "generating": "Genereren"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Chatten",
+        "text": "Genereer tekst"
+      },
+      "message": {
+        "click-start": "Klik op de Start knop om te starten.",
+        "insufficient_token": "Onvoldoende token"
+      }
+    },
+    "common": {
+      "required": "vereist"
     }
   },
   "exit_preview": "Voorvertoning afsluiten",
@@ -2851,6 +3029,19 @@
         "cancel": "annuleren",
         "no_file": "Geen bestand"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "JSON Schema formulier"
+    },
+    "page": {
+      "path_duplicated": "De paginanaam is gedupliceerd. Gebruik een unieke naam om fouten te voorkomen. ",
+      "tips": {
+        "blank_view": "Deze module heeft geen onderliggende pagina's. Voeg ze eerst toe via het pagina paneel aan de rechterkant."
+      },
+      "label": {
+        "rename_url": "Subpagina bewerken",
+        "rename_page_url": "Pagina bewerken"
+      }
     }
   },
   "page": {
@@ -3187,6 +3378,10 @@
       },
       "password": {
         "title": "Wachtwoord"
+      },
+      "subscribe_illa_news": {
+        "label": "Abonneer ILLA's e-mail nieuwsbrief",
+        "tips": "Na het abonneren informeert ILLA u via e-mail over de nieuwste functies, evenementen, industrie trends en ander nieuws met betrekking tot ILLA Cloud."
       }
     }
   },
@@ -3407,7 +3602,7 @@
     "subscription_general": {
       "plan": {
         "free": "Vrij",
-        "plus": "Premium"
+        "plus": "Plus"
       },
       "sub_cycle": {
         "yearly": "Jaarlijks",
@@ -3518,16 +3713,16 @@
         "add_license": "Je gaat {{changeNum}} licenties toevoegen. Eenmaal bevestigd, trekken we de betaling voor de nieuwe licenties onmiddellijk af voor deze factureringscyclus. <0>Meer informatie</0>",
         "remove_license": "U gaat {{changeNum}} licenties verwijderen. Eenmaal bevestigd, zullen de wijzigingen van kracht worden in de volgende factuurcyclus. <0>Meer informatie</0>",
         "add_traffic": "U gaat {{changeNum}}GB verkeer toevoegen. Eenmaal bevestigd, trekken we de kosten van het extra verkeer onmiddellijk af. <0>Meer informatie</0>",
-        "subscribe_storage": "Je gaat je abonneren op een ILLA Cloud Premium. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. <0>Meer informatie</0>",
+        "subscribe_storage": "Je gaat je abonneren op ILLA Cloud Plus. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. <0>Meer informatie</0>",
         "subscribe_license": "Je gaat je abonneren op ILLA Drive. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. <0>Meer informatie</0>",
         "update_plan_increase_license": "U gaat {{changeNum}} licenties toevoegen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
         "update_plan_remove_license": "U gaat {{changeNum}} licenties verwijderen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
         "update_plan_increase_storage": "U gaat {{changeNum}} GB opslagruimte toevoegen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
         "update_plan_remove_storage": "U gaat {{changeNum}} GB opslag verwijderen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
-        "unsubscribe_license": "Je gaat je afmelden voor ILLA Cloud Premium. Na het annuleren van de volgende factureringscyclus zullen de premium-functies niet langer toegankelijk zijn. <0>Meer informatie</0>",
+        "unsubscribe_license": "Je gaat je afmelden voor ILLA Cloud Plus. Na annulering, vanaf de volgende factureringscyclus, zullen de Plus functies niet meer toegankelijk zijn. <0>Meer informatie</0>",
         "unsubscribe_storage": "Je gaat je afmelden voor de ILLA Drive-opslag. Na annulering, vanaf de volgende factureringscyclus, zal de opslagcapaciteit worden hersteld naar 100 MB. <0>Meer informatie</0>",
-        "subscribe_license_monthly": "U gaat zich abonneren op maandelijks ILLA Cloud Premium abonnement. <0>Meer informatie</0>",
-        "subscribe_license_yearly": "Je gaat je abonneren op een ILLA Cloud Premium jaarabonnement. <0>Meer informatie</0>",
+        "subscribe_license_monthly": "U gaat zich abonneren op een maandelijks ILLA Cloud Plus abonnement. <0>Meer informatie</0>",
+        "subscribe_license_yearly": "Je gaat je abonneren op een ILLA Cloud Plus jaarabonnement. <0>Meer informatie</0>",
         "subscribe_storage_monthly": "Je gaat {{changeNum}}GB opslagruimte toevoegen. Eenmaal bevestigd, trekken we de kosten van de opslag onmiddellijk af. <0>Meer informatie</0>",
         "subscribe_storage_yearly": "Je gaat {{changeNum}}GB opslagruimte toevoegen. Eenmaal bevestigd, trekken we de kosten van de opslag onmiddellijk af. <0>Meer informatie</0>"
       },
@@ -3540,7 +3735,7 @@
         "add_traffic": "Na succesvolle aftrek, zal uw verkeer in real-time toenemen. Zodra het verkeer is gebruikt, kunnen de kosten niet meer worden terugbetaald, ongebruikt verkeer kan worden terugbetaald in eenheden van GB. Als je bijvoorbeeld 10GB aan verkeer aanschaft en 4.5GB gebruikt, kun je een restitutie van 5GB aanvragen. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "subscribe_storage_yearly": "U zult zich abonneren op het jaarlijkse abonnement van de opslag in ILLA Drive. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag hangt af van hoeveel opslagcapaciteit je hebt ingeschreven in GB. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een jaarlijkse abonnementskosten van $9. per GB, en u heeft een totaal van 3 GB, zullen we $29 aftrekken. op 25 februari 2023. Als je 2 GB toevoegt op 25 maart 2023, gaan we eerst de resterende 11 maanden betaling aftrekken op 25 maart 2023. Vervolgens zullen we op 25 februari 2024 de betaling voor 5 GB aftrekken, dat wil zeggen (2+3)*$9.9=$49. . Als u de opslag wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, moet u deze vóór het begin van de volgende periode bijwerken. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "subscribe_storage_monthly": "U zult zich abonneren op het maandelijkse abonnement van de opslag in ILLA Drive. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag hangt af van hoeveel opslagcapaciteit je hebt ingeschreven in GB. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een maandelijkse abonnementskosten van $0. 9 per GB, en u hebt een totaal van 3 GB, zullen we $ 2 aftrekken. 7 op 25 februari, 2023. Als je nog 2 licenties toevoegt op 21 maart 2023, gaan we eerst de resterende 5 dagen betaling in mindering op 21 maart 2023. Vervolgens zullen we, op 25 maart 2023, de betaling voor 5 licenties aftrekken, dat wil zeggen (2+3)*$0. 9=$4{,}95. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
-        "subscribe_license_monthly": "Je gaat je abonneren op het maandelijkse abonnement van de ILLA Cloud Premium. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag is afhankelijk van het aantal licenties dat je hebt. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een maandelijkse abonnementskosten van $12 per licentie, en u heeft een totaal van 3 licenties, we zullen $36 aftrekken op 25 februari 2023. Als je nog 2 licenties toevoegt op 21 maart 2023, gaan we eerst de resterende 5 dagen betaling in mindering op 21 maart 2023. Vervolgens zullen we, op 25 maart 2023, de betaling voor 5 licenties aftrekken, dat wil zeggen (2+3)*$12=$60. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "subscribe_license_monthly": "U abonneert zich op het maandelijkse abonnement van ILLA Cloud Plus. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag is afhankelijk van het aantal licenties dat je hebt. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een maandelijkse abonnementskosten van $12 per licentie, en u heeft een totaal van 3 licenties, we zullen $36 aftrekken op 25 februari 2023. Als je nog 2 licenties toevoegt op 21 maart 2023, gaan we eerst de resterende 5 dagen betaling in mindering op 21 maart 2023. Vervolgens zullen we, op 25 maart 2023, de betaling voor 5 licenties aftrekken, dat wil zeggen (2+3)*$12=$60. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "update_plan_remove_license": "De vergoedingen worden automatisch afgetrokken op basis van het bijgewerkte aantal licenties en de prijzen van de nieuwe factureringscyclus vanaf de volgende periode. Als het aantal gebruikers met bewerkingsrechten het aantal licenties aan het begin van de volgende factureringscyclus overschrijdt, alle gebruikers behalve de eigenaar zullen worden uitgeschakeld totdat u de leden verwijdert of het aantal licenties binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "update_plan_increase_storage": "De vergoedingen worden automatisch afgetrokken op basis van de bijgewerkte opslag en de prijzen van nieuwe factureringscyclus vanaf de volgende periode. Deze keer brengen we de betaling voor de verhoogde opslag in mindering op basis van de huidige factureringscyclus. Berekeningsregels met behulp van een maandelijks opslagabonnement als voorbeeld: Laten we een scenario overwegen waarbij u aanvankelijk geabonneerd bent op 5 GB vanaf 14 maart, vanaf 14 maart. en de factureringscyclus loopt van de 14e van deze maand naar de dertiende van de volgende maand. Op 10 mei besluit je 1 GB toe te voegen. Op dat punt er waren vier dagen over tot het einde van de huidige cyclus op 13 mei (30 dagen in totaal van 14 april tot 13 mei). Om de aangepaste betaling te berekenen, trekken we de kosten van 1 GB af, die ongeveer $0 bedragen. 9, in verhouding tot de duur van 4 dagen binnen de 30 dagen cyclus. De aftrek wordt daarom geschat als 1 licentie * $0,99 / 30 dagen * 4 dagen, wat resulteert in ongeveer $0,132. Vanaf de volgende factureringscyclus worden alle opslagkosten gezamenlijk geconsolideerd en betaald. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "update_plan_remove_storage": "De vergoedingen worden automatisch afgetrokken op basis van de bijgewerkte opslag en de prijzen van nieuwe factureringscyclus vanaf de volgende periode. Als de door uw bestanden bezette opslagcapaciteit de geabonneerde opslagcapaciteit overschrijdt aan het begin van de volgende factureringscyclus, alle bestanden zullen worden uitgeschakeld totdat u bestanden verwijdert of de opslagcapaciteit binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>"
@@ -3598,8 +3793,8 @@
         "got_it": "Ik snap het"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Upgrade naar Premium",
-        "this_feature_is_avai": "Deze functie is alleen beschikbaar voor Premium-gebruikers. Upgrade naar Plus om deze te gebruiken. Door een upgrade naar Premium heeft u ook toegang tot de volgende functies. ",
+        "upgrade_to_plus": "Upgrade naar Plus",
+        "this_feature_is_avai": "Deze functie is alleen beschikbaar voor Plus gebruikers. Upgrade naar Plus om deze te gebruiken. Door een upgrade naar Plus heeft u ook toegang tot de volgende functies. ",
         "add_unlimited_viewer": "Onbeperkte kijkleden GRATIS toevoegen",
         "publish_public_appli": "Publieke toepassingen publiceren",
         "ai_sql_generation": "AI SQL Generatie",
@@ -3609,7 +3804,7 @@
         "insufficient_license_title": "Onvoldoende licenties",
         "insufficient_license_description": "Om meer tekstverwerkers uit te nodigen, moet je eerst de licenties verhogen. Alle leden van je team kunnen de functies voor ILLA Cloud Plus gebruiken. De specifieke toegang tot elke functie is afhankelijk van de rol van elk lid. ",
         "insufficient_license_button": "Licenties toevoegen",
-        "pricing": "editor/mo, jaarlijks ($20/editor, maandelijks)"
+        "pricing": "/editor/maand, jaarlijks"
       },
       "expired": {
         "owner": "Uw abonnement is verlopen. Vernieuw uw abonnement om door te gaan met gebruiken.",
@@ -3655,6 +3850,10 @@
         "title": "Abonnement wijzigen?",
         "button_cancel": "annuleren",
         "button_confirm": "Bevestigen"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 is voor Premium team. ",
+        "string2": "Upgrade naar Premium om het te gebruiken. Je hebt ook toegang tot de volgende functies. "
       }
     },
     "homepage": {
@@ -3726,15 +3925,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Uitnodigen om te bewerken",
-      "invite_to_use": "Uitnodigen om te gebruiken"
+      "invite_to_use": "Uitnodigen om te gebruiken",
+      "share-with-team": "Deel met team",
+      "contribute": "Meedoen"
     },
     "desc": {
-      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
+      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. ",
+      "contribute": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
     },
     "tips": {
       "admin": "Het lid dat alle leden behalve de Eigenaar kan beheren, APP's kan bewerken en APP's kan bekijken",
       "editor": "Het lid dat de APP's kan beheren en bekijken",
       "viewer": "Het lid dat de APP's kan beheren en bekijken"
+    },
+    "label": {
+      "contribute": "Draag bij aan de marktplaats",
+      "social-media": "Delen op"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nieuws"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hey daar! Ik heb net dit geweldige AI-agent ontdekt. Misschien ben je geïnteresseerd in het ook proberen te proberen! Bekijk het! {{promptName}}:{{promptLink}} #AIwriting #Snelbeheer #ProductivityBoost",
+        "reddit": "Bekijk deze geweldige AI Agent [{{promptName}}]",
+        "linkedin": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "facebook": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "whatsapp": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
+        "hackernews": "Vereenvoudig je werkdruk met [{{promptName}}] - De AI Agent die de Job Gereed krijgt"
+      },
+      "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
     }
+  },
+  "ai-agents": "AI agenten",
+  "marketplace": {
+    "star": "Ster {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

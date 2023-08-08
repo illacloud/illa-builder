@@ -1,3 +1,6 @@
 # snapchat
 __snapshots__/**
 *.test.tsx.snap
+ILLA_PROTO.*
+*.md
+*.mdx

@@ -32,27 +32,27 @@ export const CHART_WIDGET_V2_CONFIG: WidgetConfig = {
 export function initChartWidgetDefaultProps() {
   return {
     dataSourceJS: `{{[
-  {
-    month: "April",
-    users: 3700,
-    incomes: 4000,
-  },
-  {
-    month: "May",
-    users: 5400,
-    incomes: 8700,
-  },
-  {
-    month: "June",
-    users: 6000,
-    incomes: 12000,
-  },
-  {
-    month: "July",
-    users: 8000,
-    incomes: 14000,
-  },
-]}}`,
+      {
+        month: "April",
+        users: 3700,
+        incomes: 4000,
+      },
+      {
+        month: "May",
+        users: 5400,
+        incomes: 8700,
+      },
+      {
+        month: "June",
+        users: 6000,
+        incomes: 12000,
+      },
+      {
+        month: "July",
+        users: 8000,
+        incomes: 14000,
+      },
+    ]}}`,
     chartType: "bar",
     dataSourceMode: "dynamic",
     xAxis: "month",
@@ -67,5 +67,13 @@ export function initChartWidgetDefaultProps() {
       },
     ],
     $dynamicAttrPaths: ["dataSourceJS"],
+    direction: "x",
+    legendPosition: "top",
+    dateFormat: "YYYY-MM-DD",
+    borderColor: "#ffffffff",
+    radius: "4px",
+    backgroundColor: "#ffffffff",
+    borderWidth: "1px",
+    shadow: "small",
   }
 }

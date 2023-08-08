@@ -125,14 +125,12 @@ export const customerCodeStyle = css`
   border-radius: 0;
   background-color: ${getColor("white", "01")};
 
-  > .cm-editor {
+  .cm-editor.ͼ1 {
     border: none;
     border-radius: 0;
 
-    & > .cm-scroller {
-      & > .cm-gutters {
-        border-radius: 0;
-      }
+    & > .cm-scroller > .cm-gutters {
+      border-radius: 0;
     }
   }
 `

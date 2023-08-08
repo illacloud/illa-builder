@@ -74,6 +74,7 @@ export const ActionListWithNewButton: FC<ListWithNewButtonProps> = (props) => {
           <List
             _css={listStyle}
             bordered={false}
+            split={false}
             data={searchList}
             render={(data) => {
               return (

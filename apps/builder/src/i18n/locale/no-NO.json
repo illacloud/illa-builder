@@ -32,12 +32,15 @@
       "cancel": "Avbryt",
       "delete": "Slett",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "Dette vil bryte app- og spørringsbibliotekets spørringer som bruker denne ressursen",
+      "delete_content": "Etter sletting vil det ikke være mulig å få tilgang til eller gjenopprette dataene på noen måter. Vennligst bekreft.",
       "delete_ok_text": "Slett",
       "delete_title": "Er du sikker?",
       "error_button": "Prøv igjen",
       "error_description": "Det er et problem med operasjonen din.",
-      "error_title": "Feil"
+      "error_title": "Feil",
+      "marketplace": "Markedsplass",
+      "run": "Kjør",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Opprett ny",
@@ -51,6 +54,28 @@
       "save_success": "Lagring vellykket",
       "test_fail": "Kan ikke teste",
       "test_success": "Test vellykket"
+    },
+    "list-type": {
+      "team": "Teamet",
+      "marketplace": "Agent marked"
+    },
+    "sort-type": {
+      "popular": "Mest populære",
+      "recent": "Siste",
+      "star": "Stjernemerket"
+    },
+    "search": "Søk",
+    "no-result": "Ingen resultater her. Oppdater eller endre søketermene dine.",
+    "message": {
+      "next-page-error": "Kunne ikke laste neste side. Vennligst prøv igjen.",
+      "create-failed": "Kan ikke lagre agent. Prøv på nytt.",
+      "sort-failed": "Kan ikke endre filtertypen. Vennligst prøv på nytt.",
+      "detail-load-failed": "Kan ikke hente detaljer, prøv igjen.",
+      "fork-failed": "Skaffe, vennligst prøv igjen.",
+      "create-suc": "Kunne ikke opprette, vennligst prøv igjen.",
+      "fork-suc": "Kampanjen ble fullført.",
+      "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
+      "delete-suc": "Sletting vellykket. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Tjenestekonto (Automatic Translation)"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Velg"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Velg sider"
+            },
+            "ai-agent": {
+              "value": "Verdi"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Poster",
             "record": "Registrer",
             "record_ids": "Ta opp ID-er"
+          },
+          "ai-agent": {
+            "model": "Modell",
+            "variable": "Variabel",
+            "input": "Send innhold",
+            "max-token": "Maks token"
           }
         },
         "menu": {
@@ -1543,7 +1590,8 @@
           "thousand_separator": "Vis tusenskilletegn",
           "trend_color": "Aktiver trendfarge",
           "prefix_text": "Prefiks tekst",
-          "suffix_text": "Suffiks tekst"
+          "suffix_text": "Suffiks tekst",
+          "title": "Tittel"
         },
         "mute": "Demp",
         "collapse": {
@@ -1724,7 +1772,25 @@
           "only_show_icon": "Vis kun ikon",
           "groupLabels": "Lag gruppe-etiketter"
         },
-        "hover_bg_color": "Svevende bakgrunn"
+        "hover_bg_color": "Svevende bakgrunn",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Standard formulardata",
+          "hidden_submit_button": "Skjult sendingsknapp",
+          "submit_button_full_w": "Send knapp full bredde",
+          "submit_button_text": "Send knappetekst"
+        },
+        "chart": {
+          "direction": "Retning",
+          "y-axis_value": "Y-akse verdi",
+          "stack_grouped_data": "Stabel grupperte data",
+          "x-axis_type": "X-akse- type",
+          "format": "Formatér",
+          "legend_position": "Plassering av forklaring",
+          "grid_line": "Rutenettlinje",
+          "y-axis_type": "Y-akse type"
+        }
       },
       "setter_tooltip": {
         "action": "Handlinger for komponenter utløser spørringer, kontroller eller ringe data i ressursene dine. Flere async handlinger vil utføres parallelt.",
@@ -1931,7 +1997,7 @@
           "total_row_count": "Antall rader som brukes til å telle sidenummeret.",
           "next_cursor": "En identifikator som brukes til å finne neste startpunkt for et sett med data, for å paginere og hente data i batcher",
           "has_next_page": "En bolsk verdi brukt til å indikere om det er en annen data-side tilgjengelig. Dette kan hjelpe oss med å bedre kontrollere data ved å hente inn sider og optimalisere spørringens ytelse",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "En rekke objekter som er vedlagt i {{ }}. For eksempel, {{ [{\"**id**\":\"name of the column to filter\", \"**value**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }. Vi støtter disse filterFn: \"equalTo\", \"notEqualTo\", \"container\", \"no notis\", \"notisblokk\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"tom\", \"ikkematom\", \"før\", \"etter\". ",
           "filter_mode": "Filtermodus. OG eller eller.",
           "currency_code": "USD",
           "whether_allow_users_": "Om brukere kan velge en celle",
@@ -1982,6 +2048,22 @@
           "logo": "Sett din logo med URL",
           "title": "Angi en tittel som firmanavn her",
           "only_show_icon": "TO hidden the label og kun vis ikon"
+        },
+        "statistics": {
+          "title": "Sett tittel som skal vises"
+        },
+        "page": {
+          "default_view": "Når brukere angir en feilURL, vil vi automatisk omdirigere til standard underside. Når det ikke er noen standard underside, vil vi behandle den første undersiden i listen som standard underside"
+        },
+        "chart": {
+          "direction": "Angi kartretning ",
+          "y-axis_value": "Sett verdien til Y-aksen",
+          "stack_grouped_data": "Verdier fra ulike grupper med samme X-akse verdi vil bli stablet i et stablet diagram. Stakkede diagrammer kan brukes til å sammenligne samlet størrelse på forskjellige kategorier eller grupper. så vel som den relative størrelsen på individuelle undergrupper eller undergrupper.",
+          "x-axis_type": "Å angi diagramtypen kan forbedre lesbarheten til data.",
+          "format": "Et gyldig datoformat streng. Se [dayJS](https://day.js.org/docs/en/parse/string-format).",
+          "legend_position": "Setter du en legentes stilling. ",
+          "grid_line": "For å angi fargen på rutenettlinjen. ",
+          "y-axis_type": "Å angi diagramtypen kan forbedre lesbarheten til data."
         }
       },
       "setter_option": {
@@ -2084,6 +2166,20 @@
             "replace": "Erstatt",
             "keepboth": "Behold begge"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Doughnøtt",
+            "Radar": "Rader"
+          },
+          "direction": {
+            "horizontal": "Horisontal",
+            "vertical": "Vertikal"
+          },
+          "x-axis_type": {
+            "Default": "Standard",
+            "Date": "Dato"
+          }
         }
       },
       "setter_placeholder": {
@@ -2113,6 +2209,14 @@
         },
         "table": {
           "currency_code": "Valutakoden definert i [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "JSON skjema for skjemaet.\n\nEksempel\n{{action1.data }}\n\nLær mer om hvordan du skriver JSON Schema [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "UI skjema for skjemaet - se uiema prop for [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\neksempel\n{{ action1.data }}",
+          "default_form_data": "Standard skjemadata - se formData prop for [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nEksempel\r\n{{ action1.data }}",
+          "hidden_submit_button": "Angi om du vil skjule sendingsknappen",
+          "submit_button_full_w": "Angi om «Send inn»-knappen er full bredde.",
+          "submit_button_text": "Angi teksten til «Send inn»-knappen"
         }
       },
       "setter_tootip": {
@@ -2162,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Ingen underside"
       }
     },
     "page": {
       "label_name": {
         "add": "Legg til",
         "body": "Innhold",
-        "default_view": "Standard visning",
-        "edit_view": "Rediger visning",
+        "default_view": "Standard underside",
+        "edit_view": "Rediger underside",
         "footer": "Bunntekst",
         "header": "Topptekst",
         "key": "Nøkkel",
@@ -2178,11 +2285,14 @@
         "right_panel": "Høyre panel",
         "set_as_homepage": "Bruk som startside",
         "show_fold_icon": "Vis foldeikon",
-        "view_path": "Vis sti",
-        "views": "Visninger",
+        "view_path": "Navn",
+        "views": "Undersider",
         "width": "Width",
         "height": "Høyde",
-        "columns": "Kolonner"
+        "columns": "Kolonner",
+        "set_as_default_subpage": "Sett som standard underside",
+        "delete-page": "Slett side",
+        "delete-sub-page": "Slett underside"
       },
       "model_tips": {
         "cancel_button": "Avbryt",
@@ -2197,8 +2307,11 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knapp for å skjule eller utvide panelet",
-        "view_path": "En streng etter eksempel.no/app/page/ for å få tilgang til denne visningen",
+        "view_path": "For å konfigurere tilgang til denne siden, må du justere navnet. Hvis du for eksempel endrer navnet til '**newPage**', og legger det til som en underside for hovedsiden. Denne siden kan da nås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Bredden på siden som prosentandel av nettleserbredden."
+      },
+      "message": {
+        "new_path": "Ingen samsvarende underside funnet. Ny underside er lagt til. "
       }
     },
     "validate_message": {
@@ -2442,6 +2555,71 @@
           "preview": "Kan ikke laste inn historikkoppføringen."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Navn",
+        "desc": "Beskrivelse",
+        "mode": "Modus",
+        "prompt": "Prompt",
+        "variable": "Variabel",
+        "welcome": "Velkommen melding",
+        "model": "Modell",
+        "temperature": "Temperatur",
+        "max-token": "Maks token"
+      },
+      "placeholder": {
+        "logo": "Last opp",
+        "name": "Gi et navn til agenten",
+        "desc": "Gi en kort beskrivelse av hva denne agenten skal brukes til.",
+        "prompt": "Skriv inn / for å velge en variabel",
+        "variable": {
+          "key": "Variabelens navn",
+          "value": "Verdi"
+        },
+        "welcome": "Gi en velkomstmelding som vises når brukere begynner å bruke agent.",
+        "temperature": "En verdi mellom 0 og 1. Jo mindre verdien er, desto bedre kan effekten være",
+        "max-token": "Brukes til å begrense maksimalt antall tokens brukt ved én kjøring"
+      },
+      "tips": {
+        "mode": "I chat-modus inkluderer hver melding som sendes samtalelogg som en del av forespørselen, og kan resultere i bedre resultater, men forbruker flere symboler; i tekstmodus, hver sendte melding inkluderer ikke samtalehistorikken, noe som kan resultere i mindre optimale utfall sammenlignet med chat-modus, men konserverer tokener.",
+        "not-start": "Fullfør Agent-konfigurasjonen, og klikk på Start å kjøre",
+        "not-start-run": "Trykk på Start knappen til venstre."
+      },
+      "option": {
+        "mode": {
+          "chat": "Samtale",
+          "text": "Generering av tekst"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Ny",
+      "save": "Lagre",
+      "start": "Begynn",
+      "restart": "Omstart",
+      "contribute": "Bidra til markedsplassen",
+      "button": {
+        "send": "Sende",
+        "generating": "Genererer"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Samtale",
+        "text": "Generere tekst"
+      },
+      "message": {
+        "click-start": "Klikk på Start knappen for å utløse.",
+        "insufficient_token": "Utilstrekkelig token"
+      }
+    },
+    "common": {
+      "required": "Påkrevd"
     }
   },
   "exit_preview": "Avslutt forhåndsvisning",
@@ -2851,6 +3029,19 @@
         "cancel": "Avbryt",
         "no_file": "Ingen fil"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "JSON skjema skjema"
+    },
+    "page": {
+      "path_duplicated": "Sidenavnet er duplisert. Bruk et unikt navn for å unngå feil. ",
+      "tips": {
+        "blank_view": "Denne modulen har ingen undersider. Legg dem først gjennom side-panelet til høyre."
+      },
+      "label": {
+        "rename_url": "Rediger underside",
+        "rename_page_url": "Rediger side"
+      }
     }
   },
   "page": {
@@ -3187,6 +3378,10 @@
       },
       "password": {
         "title": "Passord"
+      },
+      "subscribe_illa_news": {
+        "label": "Abonner på ILLAs nyhetsbrev",
+        "tips": "Etter å ha abonnert vil ILLA informere deg om de siste funksjonene, arrangementene, utviklingen i bransjen og andre nyheter knyttet til ILLA Cloud via e-post."
       }
     }
   },
@@ -3407,7 +3602,7 @@
     "subscription_general": {
       "plan": {
         "free": "Gratis",
-        "plus": "Premium"
+        "plus": "Pluss"
       },
       "sub_cycle": {
         "yearly": "Årlig",
@@ -3518,16 +3713,16 @@
         "add_license": "Du kommer til å legge til {{changeNum}} lisenser. Når det er bekreftet, vil vi umiddelbart trekke fra betalingen på de nye lisensene for denne faktureringssyklusen. <0>Lær mer</0>",
         "remove_license": "Du kommer til å fjerne {{changeNum}} lisenser. Når det er bekreftet, vil endringene tre i den neste faktureringssyklusen. <0>Lær mer</0>",
         "add_traffic": "Du kommer til å legge til {{changeNum}}GB trafikk. Når bekreftet vil vi trekke kostnaden på den ekstra trafikken umiddelbart. <0>Lær mer</0>",
-        "subscribe_storage": "Du kommer til å abonnere på ILLA Cloud Premium. Vi vil automatisk trekke gebyrer fra kontoen din ved begynnelsen av hver betalingssyklus. <0>Lær mer</0>",
+        "subscribe_storage": "Du skal abonnere på ILLA Cloud Plus. Vi vil automatisk trekke gebyrer fra kontoen din ved begynnelsen av hver betalingssyklus. <0>Lær mer</0>",
         "subscribe_license": "Du skal abonnere på ILLA-driveren. Vi vil automatisk trekke gebyrer fra kontoen din ved begynnelsen av hver betalingssyklus. <0>Lær mer</0>",
         "update_plan_increase_license": "Du legger til {{changeNum}} lisenser og oppdaterer abonnementsperioden. <0>Lær mer</0>",
         "update_plan_remove_license": "Du kommer til å fjerne {{changeNum}} lisenser og oppdatere abonnementsperioden. <0>Lær mer</0>",
         "update_plan_increase_storage": "Du skal legge til {{changeNum}} GB lagringsplass og oppdatere abonnementsperioden. <0>Lær mer</0>",
         "update_plan_remove_storage": "Du kommer til å fjerne lagring på {{changeNum}} GB og oppdatere abonnementsperioden. <0>Lær mer</0>",
-        "unsubscribe_license": "Du kommer til å melde deg av ILLA Cloud Premium. Etter kansellering, starter fra den neste faktureringssyklusen, vil Premium-funksjonene ikke lenger være tilgjengelige. <0>Lær mer</0>",
+        "unsubscribe_license": "Du kommer til å stoppe abonnementet med ILLA Cloud Plus. Etter kansellering, som starter fra neste faktureringssyklus, vil Plus-funksjonene ikke lenger være tilgjengelige. <0>Lær mer</0>",
         "unsubscribe_storage": "Du kommer til å stoppe abonnementet på ILLA-stasjonen. Etter kansellering, fra neste faktureringssyklus, vil lagringskapasiteten bli gjenopprettet til 100MB. <0>Lær mer</0>",
-        "subscribe_license_monthly": "Du kommer til å abonnere på ILLA Cloud Premium månedlig. <0>Lær mer</0>",
-        "subscribe_license_yearly": "Du kommer til å abonnere på ILLA Cloud Premium årlig abonnement. <0>Lær mer</0>",
+        "subscribe_license_monthly": "Du kommer til å abonnere på ILLA Cloud Plus månedlig abonnement. <0>Lær mer</0>",
+        "subscribe_license_yearly": "Du kommer til å abonnere på ILLA Cloud Plus årlig abonnement. <0>Lær mer</0>",
         "subscribe_storage_monthly": "Du kommer til å legge til {{changeNum}}GB lagringsplass. Når det er bekreftet vil vi trekke fra kostnaden på lageret umiddelbart. <0>Lær mer</0>",
         "subscribe_storage_yearly": "Du kommer til å legge til {{changeNum}}GB lagringsplass. Når det er bekreftet vil vi trekke fra kostnaden på lageret umiddelbart. <0>Lær mer</0>"
       },
@@ -3540,7 +3735,7 @@
         "add_traffic": "Etter vellykket fratrekk vil trafikken din øke i sanntid. Når trafikken er brukt, kan ikke avgiftene refunderes. Ikke-brukstrafikk kan tilbakebetales i enheter av GB. Hvis du for eksempel kjøper 10GB trafikk og bruker 4.5GB, kan du søke om refusjon på 5GB. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
         "subscribe_storage_yearly": "Du skal abonnere på årlig abonnement på ILLA-stasjonen. Vi vil automatisk trekke gebyrer fra kontoen din ved begynnelsen av hver betalingssyklus. Det faktiske antallet som ble trukket avhenger av hvor mye lagringskapasitet du har abonnert på i GB. Hvis du for eksempel starter ditt første abonnement 25. februar 2023 med et årlig abonnementsgebyr på $9. per GB, og du har til sammen 3 GB, trekker vi fra en verdi $29. 25. februar 2023. Dersom du tilfører 2 GB 25. mars 2023, trekker vi første gang de 11 resterende månedenes betaling 25. mars 2023. Deretter, innen 25. februar, 2024, vil vi trekke fra betalingen til 5 GB, som er (2+3)*$9,9=$49. . Dersom du ønsker å redusere lagring eller gjøre andre endringer i abonnementet, vennligst oppdater det før neste periode. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
         "subscribe_storage_monthly": "Du skal abonnere på et månedlig abonnement på ILLA-stasjonen. Vi vil automatisk trekke gebyrer fra kontoen din ved begynnelsen av hver betalingssyklus. Det faktiske antallet som ble trukket avhenger av hvor mye lagringskapasitet du har abonnert på i GB. Hvis du for eksempel starter ditt første abonnement 25. februar 2023 med et månedlig abonnementsgebyr på $0. 9 per GB, og du har til sammen 3 GB, vil vi trekke fra $2. 7 on February 25, 2023. Hvis du legger til to nye lisenser 21. mars 2023, trekker vi først ut de resterende 5 dagenes betaling 21. mars 2023. Så innen 25. mars 2023 trekker vi fra betalingen på 5 lisenser, som er (2+3)*$0. 9=$4.95. Hvis du ønsker å redusere lisenser eller gjøre andre endringer i abonnementet, vennligst oppdater det før oppstart i neste periode. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
-        "subscribe_license_monthly": "Du kommer til å abonnere på et månedlig abonnement på ILLA Cloud Premium. Vi vil automatisk trekke gebyrer fra kontoen din ved begynnelsen av hver betalingssyklus. Det faktiske trukket beløpet avhenger av hvor mange lisenser du har. Hvis du for eksempel starter ditt første abonnement 25. februar 2023 med et månedlig abonnementsgebyr på $12 per lisens, og du har til sammen 3 lisenser, vi kommer til å trekke fra $36 den 25. februar 2023. Hvis du legger til to nye lisenser 21. mars 2023, trekker vi først ut de resterende 5 dagenes betaling 21. mars 2023. Så innen 25. mars 2023 vil vi trekke fra betalingen på 5 lisenser, som er (2+3)*$12=$60. Dersom du ønsker å redusere lisensene eller gjøre andre endringer i abonnementet, vennligst oppdater det før starten i neste periode. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
+        "subscribe_license_monthly": "Du kommer til å abonnere på et månedlig abonnement på ILLA Cloud Plus. Vi vil automatisk trekke gebyrer fra kontoen din ved begynnelsen av hver betalingssyklus. Det faktiske trukket beløpet avhenger av hvor mange lisenser du har. Hvis du for eksempel starter ditt første abonnement 25. februar 2023 med et månedlig abonnementsgebyr på $12 per lisens, og du har til sammen 3 lisenser, vi kommer til å trekke fra $36 den 25. februar 2023. Hvis du legger til to nye lisenser 21. mars 2023, trekker vi først ut de resterende 5 dagenes betaling 21. mars 2023. Så innen 25. mars 2023 vil vi trekke fra betalingen på 5 lisenser, som er (2+3)*$12=$60. Dersom du ønsker å redusere lisensene eller gjøre andre endringer i abonnementet, vennligst oppdater det før starten i neste periode. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
         "update_plan_remove_license": "Avgiftene vil bli automatisk trukket basert på det oppdaterte antall lisenser og prising av ny faktureringssyklus fra neste periode. Hvis antall brukere med redigeringstillatelser overskrider antall lisenser ved starten av neste faktureringssyklus, alle brukere unntatt eieren vil bli deaktivert før du fjerner medlemmer, eller øker antallet lisenser innenfor tilgjengelig område. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
         "update_plan_increase_storage": "Avgiftene vil automatisk trekkes fra basert på oppdatert lagring og prising av nye faktureringssykluser for neste periode. Denne gangen vil vi trekke fra beløpet som har ligget på lagringen etter den nåværende faktureringssyklusen. Beregningsregler ved hjelp av et månedlig lagringsabonnement som et eksempel: La oss vurdere et scenario der du først abonnerer på 5 GB fra og med 14. mars og faktureringssyklusen strekker seg fra 14. i denne måneden til 13. i neste måned. Den 10. mai velger du å legge til 1 GB. På det punktet Det var 4 dager igjen til slutten av denne syklusen den 13. mai (som utgjør 30 dager fra 14. april og 13. mai). For å beregne justert betaling vil vi trekke ut kostnaden på 1 GB, som utgjør ca USD 0,-. 9, proporsjonalt med 4 dager i løpet av 30-dagers syklusen. Derfor er fradraget beregnet til 1 lisens * $0,99 / 30 dager * 4 dager, noe som gir om lag 0,132. Fra og med neste faktureringssyklus vil alle lagringskostnader konsolideres og betales sammen. Dersom du ønsker å redusere lisensene eller gjøre andre endringer i abonnementet, vennligst oppdater det før starten i neste periode. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
         "update_plan_remove_storage": "Avgiftene vil automatisk trekkes fra basert på oppdatert lagring og prising av nye faktureringssykluser for neste periode. Dersom kapasiteten for lagring som er okkupert, overskrider kapasiteten for abonnementslagring ved begynnelsen av neste faktureringssyklus, alle filer vil bli deaktivert inntil du sletter filene, eller øker lagringskapasiteten innenfor tilgjengelig område. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>"
@@ -3598,8 +3793,8 @@
         "got_it": "Har det"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Oppgrader til Premium",
-        "this_feature_is_avai": "Denne funksjonen er kun tilgjengelig for Premium-brukere. For å bruke den, vennligst oppgrader til Plus. Ved å oppgradere til Premium, vil du også ha tilgang til følgende funksjoner. ",
+        "upgrade_to_plus": "Oppgrader til Plus",
+        "this_feature_is_avai": "Denne funksjonen er bare tilgjengelig for Plus-brukere. For å bruke den, vennligst oppgrader til Plus. Ved å oppgradere til Plus, vil du også ha tilgang til følgende funksjoner. ",
         "add_unlimited_viewer": "Legg til ubegrenset antall seere GRATIS",
         "publish_public_appli": "Publiser offentlige søknader",
         "ai_sql_generation": "AI SQL Generering",
@@ -3609,7 +3804,7 @@
         "insufficient_license_title": "Ikke nok lisenser",
         "insufficient_license_description": "For å invitere flere editorer, vennligst øk lisensene først. Alle medlemmer i teamet ditt kan bruke funksjonene for ILLA Cloud Plus. Den spesifikke tilgangen til hver funksjon avhenger av rollen til hvert medlem. ",
         "insufficient_license_button": "Legg til lisenser",
-        "pricing": "redaktør/mo, årlig($20/editor, månedlig)"
+        "pricing": "/rediger/måned, årlig"
       },
       "expired": {
         "owner": "Abonnementet ditt er utløpt. For å fortsette å bruke, vennligst fornye det.",
@@ -3655,6 +3850,10 @@
         "title": "Endre plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekreft"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 er for Premium-team. ",
+        "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
       }
     },
     "homepage": {
@@ -3726,15 +3925,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Inviter til å redigere",
-      "invite_to_use": "Inviter til bruk"
+      "invite_to_use": "Inviter til bruk",
+      "share-with-team": "Del med team",
+      "contribute": "Bidra"
     },
     "desc": {
-      "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
+      "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. ",
+      "contribute": "Etter at du har bidratt til markedsplassen, kan alle brukere kjøre, stjerne og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine."
     },
     "tips": {
       "admin": "Medlemmet som kan administrere alle medlemmer unntatt eier, redigere APP og vise APPer",
       "editor": "Medlemmet som kan behandle redigeringsprogram og vise medlemmer, redigere APPer og vise APPer",
       "viewer": "Medlemmet som kan administrere seermedlemmer og vise APPer"
+    },
+    "label": {
+      "contribute": "Bidra til markedsplassen",
+      "social-media": "Del på"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nyheter"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hei der! Jeg oppdaget nettopp denne fantastiske AI Agent. Du kan være interessert i å gi den en prøve også! Sjekk denne! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Sjekk ut denne fantastiske AI-agenten [{{promptName}}]",
+        "linkedin": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
+        "facebook": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
+        "whatsapp": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
+        "hackernews": "Forenkle arbeidsmengde med [{{promptName}}] - AI-agenten gjør jobben ferdig"
+      },
+      "contribute": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!"
     }
+  },
+  "ai-agents": "AI agenter",
+  "marketplace": {
+    "star": "Stjerne {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

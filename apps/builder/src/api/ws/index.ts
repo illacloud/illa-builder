@@ -107,10 +107,11 @@ export const fixedWsURL = (wsURL: string) => {
     ? location.protocol
     : new URL(HTTP_REQUEST_PUBLIC_BASE_URL).protocol
   const wsProtocol = protocol === "https:" ? "wss://" : "ws://"
-  const wsPREFIX = `${wsProtocol}${
-    isCloudVersion ? location.host : new URL(HTTP_REQUEST_PUBLIC_BASE_URL).host
-  }`
+
   if (!isCloudVersion) {
+    const wsPREFIX = `${wsProtocol}${
+      new URL(HTTP_REQUEST_PUBLIC_BASE_URL).host
+    }`
     wsURL = `${wsPREFIX}${wsURL}`
   }
   return wsURL

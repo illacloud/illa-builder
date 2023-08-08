@@ -82,7 +82,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const showDeleteDialog = (
     displayName: string[],
-    type?: "widget" | "page" | "action",
+    type?: "widget" | "page" | "action" | "subpage" | "pageView",
     options?: Record<string, any>,
   ) => {
     const modal = createModal()
@@ -109,52 +109,75 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
           modal.update(id, { visible: false })
         },
         onOk: () => {
-          if (type === "page") {
-            setAlreadyShowDeleteDialog(false)
-            modal.update(id, { visible: false })
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-              element: "delete_page_modal_delete",
-            })
-            dispatch(
-              componentsActions.deletePageNodeReducer({
-                displayName: displayName[0],
-                originPageSortedKey: options?.originPageSortedKey || [],
-              }),
-            )
-            return
-          } else if (type === "widget") {
-            setAlreadyShowDeleteDialog(false)
-            modal.update(id, { visible: false })
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-              element: "component_delete_modal_delete",
-              parameter3: options?.source || "left_delete",
-            })
-            dispatch(
-              componentsActions.deleteComponentNodeReducer({
-                displayNames: displayName,
-                source: options?.source || "left_delete",
-              }),
-            )
-            dispatch(configActions.clearSelectedComponent())
-          } else if (type === "action") {
-            modal.update(id, { okLoading: true })
-            for (let i = 0; i < displayName.length; i++) {
-              const action = getActionItemByDisplayName(
-                store.getState(),
-                displayName[i],
+          switch (type) {
+            case "page": {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "delete_page_modal_delete",
+              })
+              dispatch(
+                componentsActions.deletePageNodeReducer({
+                  displayName: displayName[0],
+                  originPageSortedKey: options?.originPageSortedKey || [],
+                }),
               )
-              if (action) {
-                // fail to await @chenlongbo
-                onDeleteActionItem(action)
-              }
+              break
             }
-            trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
-              element: "action_delete_modal_delete",
-            })
-            modal.update(id, { okLoading: false })
-            setAlreadyShowDeleteDialog(false)
-            modal.update(id, { visible: false })
+            case "widget": {
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "component_delete_modal_delete",
+                parameter3: options?.source || "left_delete",
+              })
+              dispatch(
+                componentsActions.deleteComponentNodeReducer({
+                  displayNames: displayName,
+                  source: options?.source || "left_delete",
+                }),
+              )
+              dispatch(configActions.clearSelectedComponent())
+              break
+            }
+            case "action": {
+              setAlreadyShowDeleteDialog(false)
+              modal.update(id, { okLoading: true })
+              for (let i = 0; i < displayName.length; i++) {
+                const action = getActionItemByDisplayName(
+                  store.getState(),
+                  displayName[i],
+                )
+                if (action) {
+                  // fail to await @chenlongbo
+                  onDeleteActionItem(action)
+                }
+              }
+              trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
+                element: "action_delete_modal_delete",
+              })
+              modal.update(id, { okLoading: false })
+              modal.update(id, { visible: false })
+              return
+            }
+            case "subpage": {
+              dispatch(
+                componentsActions.deleteSubPageViewNodeReducer({
+                  pageName: options!.parentPageName,
+                  subPagePath: displayName[0],
+                }),
+              )
+              break
+            }
+            case "pageView": {
+              dispatch(
+                componentsActions.deleteSectionViewReducer({
+                  viewDisplayName: options!.viewDisplayName,
+                  parentNodeName: options!.parentNodeName,
+                  originPageSortedKey: options!.originPageSortedKey,
+                }),
+              )
+              break
+            }
           }
+          setAlreadyShowDeleteDialog(false)
+          modal.update(id, { visible: false })
         },
         afterOpen: () => {
           if (type === "page") {

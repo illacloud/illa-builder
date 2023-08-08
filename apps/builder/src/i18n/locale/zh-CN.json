@@ -32,12 +32,15 @@
       "cancel": "取消",
       "delete": "删除",
       "delete_cancel_text": "取消",
-      "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
+      "delete_content": "删除后将无法通过任何方式访问和恢复，请确认",
       "delete_ok_text": "删除",
       "delete_title": "确认",
       "error_button": "重试",
       "error_description": "请求错误",
-      "error_title": "错误"
+      "error_title": "错误",
+      "marketplace": "Marketplace",
+      "run": "运行",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "创建资源",
@@ -51,6 +54,28 @@
       "save_success": "保存成功",
       "test_fail": "测试失败",
       "test_success": "测试成功"
+    },
+    "list-type": {
+      "team": "团队Agent",
+      "marketplace": "Agent库"
+    },
+    "sort-type": {
+      "popular": "最受欢迎",
+      "recent": "最新",
+      "star": "Starred"
+    },
+    "search": "Search",
+    "no-result": "没有结果，请刷新或更新您的搜索词。",
+    "message": {
+      "next-page-error": "下一页加载失败，请重试",
+      "create-failed": "Agent保存失败，请重试",
+      "sort-failed": "筛选类型过滤失败，请重试",
+      "detail-load-failed": "详细信息查询失败，请重试",
+      "fork-failed": "Fork失败，请重试",
+      "create-suc": "创建失败，请重试",
+      "fork-suc": "Fork成功",
+      "delete-failed": "删除失败，请重试",
+      "delete-suc": "删除成功"
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "服务账户"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "选择"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "选择页面"
+            },
+            "ai-agent": {
+              "value": "值"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "ASC",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Records",
             "record": "Record",
             "record_ids": "Record IDs"
+          },
+          "ai-agent": {
+            "model": "模型",
+            "variable": "变量",
+            "input": "发送内容",
+            "max-token": "最大Token"
           }
         },
         "menu": {
@@ -1543,7 +1590,8 @@
           "thousand_separator": "显示千位分隔符",
           "trend_color": "使用趋势色",
           "prefix_text": "前缀文字",
-          "suffix_text": "后缀文字"
+          "suffix_text": "后缀文字",
+          "title": "标题"
         },
         "mute": "静音",
         "collapse": {
@@ -1724,7 +1772,25 @@
           "only_show_icon": "只展示icon",
           "groupLabels": "群组标签"
         },
-        "hover_bg_color": "悬停背景"
+        "hover_bg_color": "悬停背景",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "默认表单数据",
+          "default_form_data": "隐藏提交按钮",
+          "hidden_submit_button": "隐藏提交按钮",
+          "submit_button_full_w": "提交按钮全宽",
+          "submit_button_text": "提交按钮文案"
+        },
+        "chart": {
+          "direction": "方向",
+          "y-axis_value": "纵坐标值",
+          "stack_grouped_data": "堆栈数据",
+          "x-axis_type": "X轴类型",
+          "format": "格式",
+          "legend_position": "图例位置",
+          "grid_line": "网格线",
+          "y-axis_type": "Y轴类型"
+        }
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -1931,7 +1997,7 @@
           "total_row_count": "用于计算页码的行数。",
           "next_cursor": "用于定位一组数据的下一个起点的标识符，以便分页并检索分批数据",
           "has_next_page": "用于表示是否有另一页可用数据的布尔值。 它可以帮助我们更好地控制分页查询中的数据检索，并优化查询性能。",
-          "filters": "一个写在{{}}里的对象数组。例如{{ [{\"**id**\":\"待过滤的列名\", \"**value**\"：\"待匹配的值\", \"**filterFn**\":\"contains, equals, ...\"}] }}. 我们支持这些 filterFn：\"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
+          "filters": "一个包含在 {{ }}中的对象数组。 例如：{{{\"**id**\":\"name of the line to filter\", \"**value**\":\"the value to match\", \"**filterFn**\":\"contains, equals, ...\"}] }}。 我们支持这些过滤器: \"equalto\", \"notEqualTo\", \"contains\", \"does NotContain\", \"lessThan\", \"notLessThan\", \"motMoreThan\", \"empty\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "过滤器的模式，and或or。",
           "currency_code": "USD",
           "whether_allow_users_": "是否允许用户选中一个单元格",
@@ -1982,6 +2048,22 @@
           "logo": "使用URL设置您的logo",
           "title": "在此设置标题，如公司名称",
           "only_show_icon": "隐藏菜单的文案，只显示icon"
+        },
+        "statistics": {
+          "title": "设置数值的标题"
+        },
+        "page": {
+          "default_view": "当用户输错URL时，我们会自动重定向到默认子页面。当没有默认子页面，我们会将列表里第一个子页面作默认子页面。"
+        },
+        "chart": {
+          "direction": "设置图表方向 ",
+          "y-axis_value": "设置Y轴的值",
+          "stack_grouped_data": "具有相同X轴值的不同组别的值将被堆叠在堆叠图表中。 可使用堆积图来比较不同类别或组的总体大小。",
+          "x-axis_type": "设置图表类型以提高数据可读性。",
+          "format": "一个符合规范的时间格式，请参考 [dayJS](https://day.js.org/docs/en/parse/string-format)",
+          "legend_position": "设置图例的位置",
+          "grid_line": "设置网格线的颜色",
+          "y-axis_type": "设置图表类型以提高数据可读性。"
         }
       },
       "setter_option": {
@@ -2084,6 +2166,20 @@
             "replace": "替换",
             "keepboth": "保留两者"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "环状图",
+            "Radar": "雷达图"
+          },
+          "direction": {
+            "horizontal": "横向",
+            "vertical": "纵向"
+          },
+          "x-axis_type": {
+            "Default": "默认",
+            "Date": "日期"
+          }
         }
       },
       "setter_placeholder": {
@@ -2113,6 +2209,14 @@
         },
         "table": {
           "currency_code": "货币代码定义[ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "表单的JSON Schema. \n\n示例\n{{action1.data }}\n\n了解如何写JSON Schema: [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "表单的UI Schema。查看 [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)了解uiSchema的属性。\n\n示例\n{{action1.data }}",
+          "default_form_data": "表单的默认数据。查看 [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)了解formData属性。\n\n示例\n{{action1.data }}",
+          "hidden_submit_button": "设置是否隐藏提交按钮",
+          "submit_button_full_w": "设置提交按钮是否全宽",
+          "submit_button_text": "甚至提交按钮的文案"
         }
       },
       "setter_tootip": {
@@ -2162,14 +2266,17 @@
         "reply_image": "[图片]",
         "reply_video": "[视频]",
         "reply_audio": "[音频]"
+      },
+      "page": {
+        "blank_view": "无子页面"
       }
     },
     "page": {
       "label_name": {
         "add": "新建",
         "body": "主体",
-        "default_view": "默认视图",
-        "edit_view": "编辑视图",
+        "default_view": "默认子页面",
+        "edit_view": "编辑子页面",
         "footer": "页脚",
         "header": "页头",
         "key": "键值",
@@ -2178,11 +2285,14 @@
         "right_panel": "右侧面板",
         "set_as_homepage": "设置为主页",
         "show_fold_icon": "显示折叠按钮",
-        "view_path": "视图路径",
-        "views": "视图",
+        "view_path": "名称",
+        "views": "子页面",
         "width": "宽度",
         "height": "高度",
-        "columns": "列数"
+        "columns": "列数",
+        "set_as_default_subpage": "设置为默认子页面",
+        "delete-page": "删除页面",
+        "delete-sub-page": "删除子页面"
       },
       "model_tips": {
         "cancel_button": "取消",
@@ -2197,8 +2307,11 @@
       "tab_title": "页面",
       "tooltips": {
         "show_fold_icon": "显示一个按钮，用于收起或展开面板",
-        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图",
+        "view_path": "要配置访问该页面的链接，您需要调整名称。 例如，如果您将路径更改为“**newPage**”，并将其添加为主页的子页面。 然后可以通过以下 URL 访问此页面：cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**。",
         "auto_canvas_width": "页面宽度占浏览器宽度的百分比。"
+      },
+      "message": {
+        "new_path": "未匹配到子页面。已为您添加新的子页面。"
       }
     },
     "validate_message": {
@@ -2442,6 +2555,71 @@
           "preview": "历史记录加载失败"
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "图标",
+        "name": "名称",
+        "desc": "描述",
+        "mode": "模式",
+        "prompt": "Prompt",
+        "variable": "参数",
+        "welcome": "初始消息",
+        "model": "模型",
+        "temperature": "Temperature",
+        "max-token": "最大Token"
+      },
+      "placeholder": {
+        "logo": "上传",
+        "name": "为Agent命名",
+        "desc": "简要描述该Agent的用途。",
+        "prompt": "输入 / 选择变量",
+        "variable": {
+          "key": "变量名",
+          "value": "值"
+        },
+        "welcome": "提供一个初始消息，在用户开始使用这个agent时展示",
+        "temperature": "0到1之间的值，值越小结果约优",
+        "max-token": "用于限制单次运行的最大数量限制"
+      },
+      "tips": {
+        "mode": "在聊天模式下，发送的每条消息时都会带上对话历史记录一起请求，这可以使结果更优，但会消耗更多的Token； 在文本模式下，发送的每条消息不包含对话历史记录，与聊天模式相比，这个模式的结果可能不够好，但可以节省Token。",
+        "not-start": "完成Agent配置并点击开始运行",
+        "not-start-run": "请点击左侧的开始按钮。"
+      },
+      "option": {
+        "mode": {
+          "chat": "对话",
+          "text": "文本生成"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "新增",
+      "save": "保存",
+      "start": "开始",
+      "restart": "重新开始",
+      "contribute": "贡献到Marketplace",
+      "button": {
+        "send": "发送",
+        "generating": "正在生成"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "对话",
+        "text": "生成文本"
+      },
+      "message": {
+        "click-start": "点击开始按钮触发运行",
+        "insufficient_token": "Token不足"
+      }
+    },
+    "common": {
+      "required": "必填"
     }
   },
   "exit_preview": "退出预览",
@@ -2851,6 +3029,19 @@
         "cancel": "取消",
         "no_file": "没有文件"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "动态表单"
+    },
+    "page": {
+      "path_duplicated": "页面名称重复，请使用唯一的名称以避免错误",
+      "tips": {
+        "blank_view": "该模块无子页面，请先通过右侧Page面板添加"
+      },
+      "label": {
+        "rename_url": "编辑子页面",
+        "rename_page_url": "编辑页面"
+      }
     }
   },
   "page": {
@@ -3187,6 +3378,10 @@
       },
       "password": {
         "title": "密码"
+      },
+      "subscribe_illa_news": {
+        "label": "订阅 ILLA 的最新资讯",
+        "tips": "订阅后，ILLA将通过电子邮件告知您与ILLA Cloud相关的最新功能、活动、行业趋势以及其他资讯。"
       }
     }
   },
@@ -3655,6 +3850,10 @@
         "title": "变更方案？",
         "button_cancel": "取消",
         "button_confirm": "确认"
+      },
+      "ai-agent": {
+        "string1": "GPT-4是为Premium团队提供的选项。",
+        "string2": "请升级到Premium以使用它。通过升级到Premium，您还将获得以下权益。"
       }
     },
     "homepage": {
@@ -3726,15 +3925,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "邀请进行编辑",
-      "invite_to_use": "邀请使用"
+      "invite_to_use": "邀请使用",
+      "share-with-team": "和团队共享",
+      "contribute": "贡献"
     },
     "desc": {
-      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
+      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 ",
+      "contribute": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
     },
     "tips": {
       "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
       "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
       "viewer": "可以管理浏览者、查看APP"
+    },
+    "label": {
+      "contribute": "贡献到Marketplace",
+      "social-media": "分享到"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Check out this amazing AI Agent [{{promptName}}]",
+        "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "whatsapp": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
+        "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
+      },
+      "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     }
+  },
+  "ai-agents": "AI Agents",
+  "marketplace": {
+    "star": "Star {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }

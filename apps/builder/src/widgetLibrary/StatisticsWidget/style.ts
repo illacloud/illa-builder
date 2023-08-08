@@ -31,7 +31,7 @@ export const getStatisticWrapperStyle = (textAlign?: string) => {
   const alignItemsStyle = getAlignItems(textAlign)
   return css`
     display: flex;
-    gap: 8px;
+    gap: 4px;
     flex-direction: column;
     align-items: center;
     ${alignItemsStyle};
@@ -64,6 +64,7 @@ export const getStatisticStyle = (color?: string) => {
       color: ${getColor(color || "", "03")};
       max-width: 100%;
     }
+    line-height: 36px;
   `
 }
 
@@ -149,9 +150,9 @@ export const getStatisticLabelStyle = (textAlign?: string) => {
   return css`
     ${textAlignStyle};
     max-width: 100%;
-    margin-bottom: 4px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     ${overflowStyle};
     font-size: 12px;
+    line-height: 16px;
   `
 }

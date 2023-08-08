@@ -42,8 +42,8 @@ import {
   CODE_TYPE,
   ICodeMirrorOptions,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { ILLAEditorRuntimePropsCollectorInstance } from "@/utils/executionTreeHelper/runtimePropsCollector"
 import { isObject } from "@/utils/typeHelper"
-import { ILLAEditorRuntimePropsCollectorInstance } from "../../../../utils/executionTreeHelper/runtimePropsCollector"
 
 export const basicExtension: Extension = [
   history(),

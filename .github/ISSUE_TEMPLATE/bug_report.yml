@@ -1,7 +1,10 @@
 # thx chakra ui template
 name: "Bug Report"
 description: "File a bug report"
-labels: ["Type: Bug 🐛", "needs triage"]
+labels: ["bug"]
+assignees:
+  - Aruseito
+title: "[BUG] "
 body:
   - type: "markdown"
     attributes:
@@ -33,6 +36,16 @@ body:
         2. Click on '...'
         3. Scroll down to '...'
         4. See error
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - cloud
+        - self-host
+    validations:
+      required: true
   - type: "input"
     id: "illa-builder-version"
     attributes:

@@ -33,22 +33,30 @@ export const getSelfHostUserInfoLoader: LoaderFunction = async () => {
   return redirect("/login")
 }
 
-export const getSelfHostTeamsInfoLoader: LoaderFunction = async () => {
+export const getSelfHostTeamsInfoLoader: LoaderFunction = async (args) => {
+  const { params } = args
+  const { teamIdentifier } = params
   const currentTeamInfoInDisk = getCurrentTeamInfo(store.getState())
   if (currentTeamInfoInDisk?.id) {
     return null
   }
-  try {
-    const response = await fetchMyTeamsInfo()
-    const teamsInfo = response.data ?? []
+  if (!teamIdentifier) {
+    return redirect("/login")
+  }
+  const response = await fetchMyTeamsInfo()
+  const teamsInfo = response.data ?? []
+  const currentTeamInfo = teamsInfo.find(
+    (item) => item.identifier === teamIdentifier,
+  )
+  if (currentTeamInfo) {
     store.dispatch(
       teamActions.updateTeamReducer({
-        currentId: teamsInfo?.[0]?.id,
+        currentId: currentTeamInfo.id,
         items: teamsInfo,
       }),
     )
+
     return null
-  } catch (e) {
-    return redirect("/500")
   }
+  return redirect("/404")
 }

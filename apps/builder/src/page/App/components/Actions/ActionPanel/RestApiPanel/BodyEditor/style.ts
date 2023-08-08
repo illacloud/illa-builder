@@ -1,5 +1,9 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
+import {
+  recordKeyStyle,
+  recordValueStyle,
+} from "@/illa-public-market-component/RecordEditor/style"
 
 export const bodyEditorContainerStyle = css`
   display: flex;
@@ -35,4 +39,16 @@ export const bodySelectorStyle = css`
 
 export const codeEditorStyle = css`
   margin: 8px 0;
+`
+
+export const restRecordKeyStyle = css`
+  ${recordKeyStyle};
+  margin-right: -1px;
+`
+
+export const restRecordValueStyle = css`
+  ${recordValueStyle};
+  & .cm-scroller {
+    overflow-x: hidden;
+  }
 `

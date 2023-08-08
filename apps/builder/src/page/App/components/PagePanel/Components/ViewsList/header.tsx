@@ -1,16 +1,22 @@
+import { difference } from "lodash"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { AddIcon, Link } from "@illa-design/react"
+import { AddIcon, Link, useMessage } from "@illa-design/react"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
+import { generateSectionContainerConfig } from "@/utils/generators/generatePageOrSectionConfig"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { HeaderProps } from "./interface"
 import { headerLabelStyle, viewsListHeaderWrapperStyle } from "./style"
+import { generateNewViewItemFromBodySectionConfig } from "./utils"
 
 export const ViewListHeader: FC<HeaderProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const message = useMessage()
   const { sectionName, parentNodeDisplayName } = props
 
   const handleClickAddButton = useCallback(() => {
@@ -19,13 +25,54 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
       parameter2: sectionName.slice(0, -7),
     })
 
+    const parentNode = searchDSLByDisplayName(parentNodeDisplayName)
+    if (!parentNode) return
+    if (!parentNode || !parentNode.props) return
+    let bodySectionSubPaths: string[] = []
+    if (sectionName !== "bodySection") {
+      const pageNode = searchDSLByDisplayName(parentNode.parentNode!)
+      if (!pageNode) return
+      const bodySectionNode = pageNode.childrenNode.find(
+        (node) => node.showName === "bodySection",
+      )
+      if (!bodySectionNode) return
+      bodySectionSubPaths =
+        bodySectionNode.props?.sectionViewConfigs.map(
+          (config: Record<string, string>) => config.path,
+        ) ?? []
+    }
+
+    const config = generateSectionContainerConfig(
+      parentNodeDisplayName,
+      `${sectionName}Container`,
+    )
+    const hasPaths = parentNode.props.sectionViewConfigs.map(
+      (item: SectionViewShape) => {
+        return item.path
+      },
+    )
+    const diffSubPaths = difference(bodySectionSubPaths, hasPaths)
+    if (diffSubPaths.length === 0 && sectionName !== "bodySection") {
+      message.info({
+        content: t("editor.page.message.new_path"),
+      })
+    }
+
+    const newSectionViewConfig = generateNewViewItemFromBodySectionConfig(
+      hasPaths,
+      config.displayName,
+      parentNodeDisplayName,
+      diffSubPaths,
+    )
     dispatch(
-      componentsActions.addSectionViewReducer({
+      componentsActions.addSectionViewConfigByConfigReducer({
         parentNodeName: parentNodeDisplayName,
         sectionName,
+        sectionViewConfig: newSectionViewConfig,
+        sectionViewNode: config,
       }),
     )
-  }, [dispatch, parentNodeDisplayName, sectionName])
+  }, [dispatch, message, parentNodeDisplayName, sectionName, t])
 
   return (
     <div css={viewsListHeaderWrapperStyle}>

@@ -5,10 +5,6 @@ import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
-import {
-  recordKeyStyle,
-  recordValueStyle,
-} from "@/illa-public-market-component/RecordEditor/style"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -29,6 +25,8 @@ import {
   bodyLabelStyle,
   bodySelectorStyle,
   codeEditorStyle,
+  restRecordKeyStyle,
+  restRecordValueStyle,
 } from "./style"
 
 export const BodyEditor: FC<BodyEditorProps> = (props) => {
@@ -259,7 +257,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                         record.value,
                       )
                     }
-                    wrapperCss={recordKeyStyle}
+                    wrapperCss={restRecordKeyStyle}
                     expectValueType={VALIDATION_TYPES.STRING}
                     lang={CODE_LANG.JAVASCRIPT}
                     placeholder="key"
@@ -312,7 +310,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                       )
                     }
                     height="32px"
-                    wrapperCss={recordValueStyle}
+                    wrapperCss={restRecordValueStyle}
                     lang={CODE_LANG.JAVASCRIPT}
                     placeholder={
                       record.type === "file"

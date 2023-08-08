@@ -1,3 +1,5 @@
+import { ChartType } from "chart.js"
+import dayjs from "dayjs"
 import { get, max, mean, min, sum } from "lodash"
 import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/ChartWidget/interface"
 
@@ -128,5 +130,32 @@ export const formatData = (
     default: {
       return []
     }
+  }
+}
+
+export const typeWithNoAxis = (type: ChartType | string) => {
+  return type === "pie" || type === "doughnut" || type === "radar"
+}
+
+export const typeWithDiffColor = (type: ChartType) => {
+  return type === "pie" || type === "doughnut"
+}
+
+export const mergeValueFromDynamic = (
+  isDynamic: boolean,
+  attrValue: string,
+  attrValueDynamic: string,
+) => {
+  if (isDynamic) {
+    return attrValueDynamic
+  }
+  return attrValue
+}
+
+export const getDateFormatLabel = (value: string, dateFormat?: string) => {
+  try {
+    return dayjs(value).format(dateFormat)
+  } catch (e) {
+    return value
   }
 }

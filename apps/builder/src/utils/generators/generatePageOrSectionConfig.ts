@@ -12,6 +12,7 @@ import {
   SECTION_POSITION,
   SectionNode,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { newGenerateComponentNode } from "./generateComponentNode"
 import { DisplayNameGenerator } from "./generateDisplayName"
 
 export type SectionNodeType =
@@ -25,7 +26,6 @@ export type SectionNodeType =
 export const generateSectionContainerConfig = (
   parentNode: string,
   showName: string,
-  childrenNode: ComponentNode[] = [],
 ): ComponentNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "CONTAINER_NODE",
@@ -44,15 +44,35 @@ export const generateSectionContainerConfig = (
     x: -1,
     y: -1,
     z: 0,
-    childrenNode: childrenNode,
+    childrenNode: [],
     version: 0,
     props: {},
   }
 }
 
+const generateSectionsChildrenMenuComponentNode = (
+  parentDisplayName: string,
+) => {
+  const displayName = DisplayNameGenerator.generateDisplayName(
+    "MENU_WIDGET",
+    "menu",
+  )
+  const menuNode = newGenerateComponentNode(
+    0,
+    0,
+    32,
+    "MENU_WIDGET",
+    displayName,
+    parentDisplayName,
+  )
+  menuNode.props!.$dynamicAttrPaths = ["dataSources", "selectedValues"]
+  return menuNode
+}
+
 export const generateSectionConfig = (
   parentNode: string,
   showName: SectionNodeType,
+  bodySubpaths: string[] = ["sub-page1"],
 ): SectionNode => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "SECTION_NODE",
@@ -62,6 +82,28 @@ export const generateSectionConfig = (
     displayName,
     `${showName}Container`,
   )
+
+  if (showName === "headerSection") {
+    const menuNode = generateSectionsChildrenMenuComponentNode(
+      childrenNode.displayName,
+    )
+    childrenNode.childrenNode.push(menuNode)
+  }
+
+  if (showName === "leftSection") {
+    const menuNode = generateSectionsChildrenMenuComponentNode(
+      childrenNode.displayName,
+    )
+    menuNode.w = 8
+    menuNode.props!.mode = "vertical"
+    childrenNode.childrenNode.push(menuNode)
+  }
+
+  const defaultSubPath =
+    Array.isArray(bodySubpaths) && bodySubpaths.length > 0
+      ? bodySubpaths[0]
+      : "sub-page1"
+
   return {
     displayName: `${displayName}`,
     parentNode: parentNode,
@@ -79,13 +121,13 @@ export const generateSectionConfig = (
     props: {
       currentViewIndex: 0,
       viewSortedKey: [childrenNode.displayName],
-      defaultViewKey: "View 1",
+      defaultViewKey: defaultSubPath,
       sectionViewConfigs: [
         {
           id: v4(),
           viewDisplayName: childrenNode.displayName,
-          key: "View 1",
-          path: "View1",
+          key: defaultSubPath,
+          path: defaultSubPath,
         },
       ],
     },

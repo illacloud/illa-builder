@@ -32,12 +32,15 @@
       "cancel": "Abandonner",
       "delete": "Supprimez",
       "delete_cancel_text": "Abandonner",
-      "delete_content": "Cela cassera les requêtes des applications et de la bibliothèque de requêtes qui utilisent cette ressource",
+      "delete_content": "Après la suppression, il ne sera pas possible d'accéder ou de récupérer les données par quelque moyen que ce soit. Veuillez confirmer.",
       "delete_ok_text": "Supprimez",
       "delete_title": "Êtes-vous sûr(e) ?",
       "error_button": "Réessayer",
       "error_description": "Il y a un problème avec votre opération.",
-      "error_title": "Erreur"
+      "error_title": "Erreur",
+      "marketplace": "Place de marché",
+      "run": "Exécuter",
+      "fork": "Fork"
     },
     "resource": {
       "create_resource": "Créer un nouveau",
@@ -51,6 +54,28 @@
       "save_success": "Sauvegarde réussie",
       "test_fail": "Échec du test",
       "test_success": "Test réussi"
+    },
+    "list-type": {
+      "team": "Equipes",
+      "marketplace": "Marché des agents"
+    },
+    "sort-type": {
+      "popular": "Les plus populaires",
+      "recent": "Dernier",
+      "star": "Favoris"
+    },
+    "search": "Chercher",
+    "no-result": "Aucun résultat ici. Veuillez actualiser ou modifier les termes de votre recherche.",
+    "message": {
+      "next-page-error": "Impossible de charger la page suivante. Veuillez réessayer.",
+      "create-failed": "Échec de l'enregistrement de l'agent. Veuillez réessayer.",
+      "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
+      "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
+      "fork-failed": "Échec du fork, veuillez réessayer.",
+      "create-suc": "Échec de la création, veuillez réessayer.",
+      "fork-suc": "Forké avec succès.",
+      "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
+      "delete-suc": "Supprimé avec succès. "
     }
   },
   "dayjs": {
@@ -393,6 +418,11 @@
           "gs": {
             "service_account": "Compte de service"
           }
+        },
+        "button": {
+          "marketplace": {
+            "select": "Sélectionner"
+          }
         }
       },
       "panel": {
@@ -485,6 +515,9 @@
             },
             "advanced": {
               "select_pages": "Sélectionner les pages"
+            },
+            "ai-agent": {
+              "value": "Valeur"
             }
           },
           "option": {
@@ -560,6 +593,14 @@
                 "asc": "NAS",
                 "desc": "DESC"
               }
+            },
+            "ai-agent": {
+              "model": {
+                "gpt-3": {
+                  "5-turbo": "gpt-3.5-turbo"
+                },
+                "gpt-4": "gpt-4"
+              }
             }
           },
           "restapi": {
@@ -632,6 +673,12 @@
             "records": "Enregistrements",
             "record": "Enregistrements",
             "record_ids": "ID d'enregistrement"
+          },
+          "ai-agent": {
+            "model": "Modélisation",
+            "variable": "Variable",
+            "input": "Envoyer du contenu",
+            "max-token": "Token max"
           }
         },
         "menu": {
@@ -1543,7 +1590,8 @@
           "thousand_separator": "Afficher le séparateur de mille",
           "trend_color": "Activer la couleur de tendance",
           "prefix_text": "Texte du préfixe",
-          "suffix_text": "Suffixe de texte"
+          "suffix_text": "Suffixe de texte",
+          "title": "Titre de la page"
         },
         "mute": "Couper le son",
         "collapse": {
@@ -1724,7 +1772,25 @@
           "only_show_icon": "Afficher uniquement l'icône",
           "groupLabels": "Étiquettes de groupe"
         },
-        "hover_bg_color": "Arrière-plan du survol"
+        "hover_bg_color": "Arrière-plan du survol",
+        "jsonSchemaForm": {
+          "JSONSchema": "JSONSchema",
+          "UISchema": "UISchema",
+          "default_form_data": "Données de formulaire par défaut",
+          "hidden_submit_button": "Bouton d'envoi masqué",
+          "submit_button_full_w": "Soumettre le bouton en pleine largeur",
+          "submit_button_text": "Texte du bouton de soumission"
+        },
+        "chart": {
+          "direction": "Orientation",
+          "y-axis_value": "Valeur de l'axe Y",
+          "stack_grouped_data": "Empiler les données groupées",
+          "x-axis_type": "Type d'axe X",
+          "format": "Formater",
+          "legend_position": "Position de la légende",
+          "grid_line": "Ligne de grille",
+          "y-axis_type": "Type d'axe Y"
+        }
       },
       "setter_tooltip": {
         "action": "Vos actions pour déclencher des requêtes, contrôler des composants ou appeler les données dans vos ressources. Plusieurs actions asynchrones seront exécutées en parallèle.",
@@ -1931,7 +1997,7 @@
           "total_row_count": "Le nombre de lignes utilisées pour compter le numéro de page.",
           "next_cursor": "Un identifiant utilisé pour localiser le point de départ suivant d'un ensemble de données, afin de paginer et récupérer des données en lots",
           "has_next_page": "Un booléen utilisé pour indiquer s'il y a une autre page de données disponible. Cela peut nous aider à mieux contrôler la récupération des données dans les requêtes paginées et à optimiser les performances des requêtes",
-          "filters": "An array of object. Set the original column name as key ",
+          "filters": "Un tableau d'objet entouré par {{ }}. Par exemple, {{ [{\"**id**\":\"nom de la colonne à filtrer\", \"**valeur**\":\"la valeur à correspondre\", \"**filterFn**\":\"contains, equals, ...\"}] }}. Nous supportons ces filterFn: \"equalTo\", \"notEqualTo\", \"contains\", \"doesNotContain\", \"lessThan\", \"notLessThan\", \"moreThan\", \"notMoreThan\", \"vide\", \"notEmpty\", \"before\", \"after\". ",
           "filter_mode": "Le mode filtre. ET OU OU.",
           "currency_code": "USD",
           "whether_allow_users_": "Permettre aux utilisateurs de sélectionner une cellule",
@@ -1982,6 +2048,22 @@
           "logo": "Définissez votre logo avec une URL",
           "title": "Définir un titre comme le nom de la société ici",
           "only_show_icon": "À masquer le libellé et ne montrer que l'icône"
+        },
+        "statistics": {
+          "title": "Définir le titre à afficher"
+        },
+        "page": {
+          "default_view": "Lorsque les utilisateurs saisissent une URL d'erreur, nous redirigerons automatiquement vers la sous-page par défaut. S'il n'y a pas de sous-page par défaut, nous traiterons la première sous-page de la liste comme sous-page par défaut"
+        },
+        "chart": {
+          "direction": "Définissez la direction du graphique. ",
+          "y-axis_value": "Définir la valeur de l'axe Y",
+          "stack_grouped_data": "Les valeurs de différents groupes avec la même valeur d'axe X seront empilées dans un graphique empilé. Les graphiques empilés peuvent être utilisés pour comparer la taille globale de différentes catégories ou groupes, ainsi que la taille relative des sous-catégories ou sous-groupes individuels.",
+          "x-axis_type": "Définir le type de graphique peut améliorer la lisibilité des données.",
+          "format": "Une chaîne de format de date valide. Voir [dayJS](https://day.js.org/docs/fr/parse/string-format).",
+          "legend_position": "Fixer la position de la légende. ",
+          "grid_line": "Définir la couleur de la ligne de la grille. ",
+          "y-axis_type": "Définir le type de graphique peut améliorer la lisibilité des données."
         }
       },
       "setter_option": {
@@ -2084,6 +2166,20 @@
             "replace": "Remplacer",
             "keepboth": "Garder les deux"
           }
+        },
+        "chart": {
+          "chart-type": {
+            "Doughnut": "Noisette",
+            "Radar": "Radar"
+          },
+          "direction": {
+            "horizontal": "Horizontal",
+            "vertical": "Vertical"
+          },
+          "x-axis_type": {
+            "Default": "Par défaut",
+            "Date": "Date"
+          }
         }
       },
       "setter_placeholder": {
@@ -2113,6 +2209,14 @@
         },
         "table": {
           "currency_code": "Le code de la devise défini dans [ISO 4217](https://fr.wikipedia.org/wiki/ISO_4217)"
+        },
+        "jsonSchemaForm": {
+          "JSONSchema": "Schéma JSON pour le formulaire.\n\nExemple\n{{action1.data }}\n\nEn savoir plus sur la façon d'écrire le Schéma JSON [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)",
+          "UISchema": "Schéma d'interface pour le formulaire - voir la prop uiSchema pour l' [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\n\nExemple\n{{ action1.data }}",
+          "default_form_data": "Données de formulaire par défaut - voir la prop formData pour la [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)\r\n\r\nExemple\r\n{{ action1.data }}",
+          "hidden_submit_button": "Définir si le bouton d'envoi doit être masqué",
+          "submit_button_full_w": "Définit si le bouton d'envoi est en pleine largeur.",
+          "submit_button_text": "Définir le texte du bouton Soumettre"
         }
       },
       "setter_tootip": {
@@ -2162,14 +2266,17 @@
         "reply_image": "[Image]",
         "reply_video": "[Video]",
         "reply_audio": "[Audio]"
+      },
+      "page": {
+        "blank_view": "Pas de sous-page"
       }
     },
     "page": {
       "label_name": {
         "add": "Ajouter",
         "body": "Corps",
-        "default_view": "Vue par défaut",
-        "edit_view": "Modifier la vue",
+        "default_view": "Sous-page par défaut",
+        "edit_view": "Modifier la sous-page",
         "footer": "Pied de page",
         "header": "En-tête",
         "key": "Clés",
@@ -2178,11 +2285,14 @@
         "right_panel": "Panneau droit",
         "set_as_homepage": "Définir comme page d'accueil",
         "show_fold_icon": "Afficher l'icône du pli",
-        "view_path": "Voir le chemin d'accès",
-        "views": "Vues",
+        "view_path": "Nom",
+        "views": "Sous-pages",
         "width": "Width",
         "height": "Hauteur",
-        "columns": "Colonnes"
+        "columns": "Colonnes",
+        "set_as_default_subpage": "Définir comme sous-page par défaut",
+        "delete-page": "Supprimer la page",
+        "delete-sub-page": "Supprimer la sous-page"
       },
       "model_tips": {
         "cancel_button": "Abandonner",
@@ -2197,8 +2307,11 @@
       "tab_title": "Page",
       "tooltips": {
         "show_fold_icon": "Afficher un bouton pour réduire ou agrandir le panneau",
-        "view_path": "Une chaîne après exemple.com/app/page/ pour accéder à cette vue",
+        "view_path": "Pour configurer l'accès à cette page, vous devrez ajuster le nom. Par exemple, si vous changez le nom en '**newPage**', et que vous l'ajoutez en tant que sous-page de la page d'accueil. Cette page est alors accessible via l'URL suivante : cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "La largeur de la page en pourcentage de la largeur du navigateur."
+      },
+      "message": {
+        "new_path": "Aucune sous-page correspondante trouvée. Une nouvelle sous-page a été ajoutée. "
       }
     },
     "validate_message": {
@@ -2442,6 +2555,71 @@
           "preview": "Impossible de charger l'enregistrement de l'historique."
         }
       }
+    },
+    "ai-agent": {
+      "label": {
+        "logo": "Logo",
+        "name": "Nom",
+        "desc": "Libellé",
+        "mode": "Mode",
+        "prompt": "Prompt",
+        "variable": "Variable",
+        "welcome": "Message de bienvenue",
+        "model": "Modélisation",
+        "temperature": "Température",
+        "max-token": "Token max"
+      },
+      "placeholder": {
+        "logo": "Charger",
+        "name": "Donner un nom à l'agent",
+        "desc": "Fournir une brève description de ce à quoi cet agent est destiné à être utilisé.",
+        "prompt": "Entrer / sélectionner une variable",
+        "variable": {
+          "key": "Nom de la variable",
+          "value": "Valeur"
+        },
+        "welcome": "Fournir un message de bienvenue affiché lorsque les utilisateurs commencent à utiliser l'agent.",
+        "temperature": "Une valeur comprise entre 0 et 1. Plus la valeur est petite, plus l'effet est important",
+        "max-token": "Utilisé pour limiter le nombre maximum de jetons consommés en un seul run"
+      },
+      "tips": {
+        "mode": "En mode chat, chaque message envoyé inclut l'historique de la conversation dans le cadre de la requête, ce qui peut donner de meilleurs résultats, mais consomme plus de jetons ; en mode texte, chaque message envoyé n'inclut pas l'historique de la conversation, qui peut entraîner des résultats moins optimaux par rapport au mode de discussion mais conserve les jetons.",
+        "not-start": "Complétez la configuration de l'agent et cliquez sur Démarrer pour lancer",
+        "not-start-run": "Veuillez cliquer sur le bouton Démarrer à gauche."
+      },
+      "option": {
+        "mode": {
+          "chat": "Discuter",
+          "text": "Génération de texte"
+        },
+        "model": {
+          "gpt-3": {
+            "5-turbo": "gpt-3.5-turbo"
+          },
+          "gpt-4": "gpt-4"
+        }
+      },
+      "new": "Nouveau",
+      "save": "Enregistrer",
+      "start": "Début",
+      "restart": "Redémarrer",
+      "contribute": "Contribuer au marché",
+      "button": {
+        "send": "Envoyer",
+        "generating": "Génération en cours"
+      },
+      "tab": {
+        "prompt": "Prompt",
+        "chat": "Discuter",
+        "text": "Générer du texte"
+      },
+      "message": {
+        "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
+        "insufficient_token": "Jeton insuffisant"
+      }
+    },
+    "common": {
+      "required": "Requis"
     }
   },
   "exit_preview": "Quitter l'aperçu",
@@ -2851,6 +3029,19 @@
         "cancel": "Abandonner",
         "no_file": "Aucun fichier"
       }
+    },
+    "jsonSchemaForm": {
+      "name": "Forme de Schéma JSON"
+    },
+    "page": {
+      "path_duplicated": "Le nom de la page est dupliqué. Veuillez utiliser un nom unique pour éviter les erreurs. ",
+      "tips": {
+        "blank_view": "Ce module n'a pas de pages enfants. Veuillez d'abord les ajouter via le panneau de page à droite."
+      },
+      "label": {
+        "rename_url": "Modifier la sous-page",
+        "rename_page_url": "Modifier la page"
+      }
     }
   },
   "page": {
@@ -3187,6 +3378,10 @@
       },
       "password": {
         "title": "Mot de passe"
+      },
+      "subscribe_illa_news": {
+        "label": "S'abonner à la newsletter de l'ILLA",
+        "tips": "Après votre inscription, ILLA vous informera des dernières nouveautés, événements, tendances de l'industrie et autres nouvelles relatives à ILLA Cloud par courriel."
       }
     }
   },
@@ -3407,7 +3602,7 @@
     "subscription_general": {
       "plan": {
         "free": "Gratuit",
-        "plus": "Premium"
+        "plus": "Plus"
       },
       "sub_cycle": {
         "yearly": "Annuel",
@@ -3518,16 +3713,16 @@
         "add_license": "Vous allez ajouter {{changeNum}} licences. Une fois confirmé, nous déduirons immédiatement le paiement des nouvelles licences pour ce cycle de facturation. <0>En savoir plus</0>",
         "remove_license": "Vous allez supprimer {{changeNum}} licences. Une fois confirmées, les modifications prendront effet dans le prochain cycle de facturation. <0>En savoir plus</0>",
         "add_traffic": "Vous allez ajouter {{changeNum}}Go de trafic. Une fois confirmé, nous déduirons immédiatement le coût du trafic supplémentaire. <0>En savoir plus</0>",
-        "subscribe_storage": "Vous allez vous abonner à ILLA Cloud Premium. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. <0>En savoir plus</0>",
+        "subscribe_storage": "Vous allez vous abonner à ILLA Cloud Plus. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. <0>En savoir plus</0>",
         "subscribe_license": "Vous allez vous abonner à ILLA Drive. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. <0>En savoir plus</0>",
         "update_plan_increase_license": "Vous allez ajouter {{changeNum}} licences et mettre à jour votre période d'abonnement. <0>En savoir plus</0>",
         "update_plan_remove_license": "Vous allez supprimer {{changeNum}} licences et mettre à jour votre période d'abonnement. <0>En savoir plus</0>",
         "update_plan_increase_storage": "Vous allez ajouter {{changeNum}} Go de stockage et mettre à jour votre période d'abonnement. <0>En savoir plus</0>",
         "update_plan_remove_storage": "Vous allez supprimer {{changeNum}} Go de stockage et mettre à jour votre période d'abonnement. <0>En savoir plus</0>",
-        "unsubscribe_license": "Vous allez vous désabonner ILLA Cloud Premium. Après annulation, à partir du prochain cycle de facturation, les fonctionnalités Premium ne seront plus accessibles. <0>En savoir plus</0>",
+        "unsubscribe_license": "Vous allez vous désabonner ILLA Cloud Plus. Après annulation, à partir du prochain cycle de facturation, les fonctionnalités Plus ne seront plus accessibles. <0>En savoir plus</0>",
         "unsubscribe_storage": "Vous allez vous désabonner du stockage ILLA Drive. Après annulation, à partir du prochain cycle de facturation, la capacité de stockage sera restaurée à 100Mo. <0>En savoir plus</0>",
-        "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel ILLA Cloud Premium. <0>En savoir plus</0>",
-        "subscribe_license_yearly": "Vous allez vous abonner à l'abonnement annuel ILLA Cloud Premium. <0>En savoir plus</0>",
+        "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel ILLA Cloud Plus. <0>En savoir plus</0>",
+        "subscribe_license_yearly": "Vous allez vous abonner à ILLA Cloud Plus chaque année. <0>En savoir plus</0>",
         "subscribe_storage_monthly": "Vous allez ajouter {{changeNum}}Go de stockage. Une fois confirmé, nous déduirons immédiatement le coût du stockage. <0>En savoir plus</0>",
         "subscribe_storage_yearly": "Vous allez ajouter {{changeNum}}Go de stockage. Une fois confirmé, nous déduirons immédiatement le coût du stockage. <0>En savoir plus</0>"
       },
@@ -3540,7 +3735,7 @@
         "add_traffic": "Après déduction réussie, votre trafic augmentera en temps réel. Une fois le trafic utilisé, les frais ne peuvent pas être remboursés. Le trafic inutilisé peut être remboursé en unités de Go. Par exemple, si vous achetez 10 Go de trafic et que vous utilisez 4,5 Go, vous pouvez demander un remboursement de 5 Go. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "subscribe_storage_yearly": "Vous allez vous abonner à l'abonnement annuel au stockage ILLA Drive. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend de la capacité de stockage que vous avez souscrit en Go. Par exemple, si vous commencez votre premier abonnement le 25 février 2023 avec des frais d'abonnement annuels de 9 $. par Go, et vous avez un total de 3 Go, nous déduirons 29 $. le 25 février 2023. Si vous ajoutez 2 Go le 25 mars 2023, nous déduirons d'abord le paiement restant de 11 mois le 25 mars 2023. Puis, d'ici le 25 février 2024, nous déduirons le paiement pour 5 Go, ce qui est (2+3)*9,9$ = 49$. . Si vous souhaitez réduire le stockage ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "subscribe_storage_monthly": "Vous allez vous abonner à l'abonnement mensuel au stockage ILLA Drive. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend de la capacité de stockage que vous avez souscrit en Go. Par exemple, si vous commencez votre premier abonnement le 25 février 2023, avec des frais d'abonnement mensuels de 0 $. 9 par Go, et vous avez un total de 3 Go, nous déduirons 2 $. 7 le 25 février 2023. Si vous ajoutez 2 licences supplémentaires le 21 mars 2023, nous déduirons d'abord le paiement restant de 5 jours le 21 mars 2023. Ensuite, d'ici le 25 mars 2023, nous déduirons le paiement de 5 licences, soit (2+3)*0 $. 9=4,95 $. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
-        "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel de ILLA Cloud Premium. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend du nombre de licences que vous avez. Par exemple, si vous commencez votre premier abonnement le 25 février 2023, avec des frais d'abonnement mensuels de 12 $ par licence, et vous avez un total de 3 licences, nous déduirons 36 $ le 25 février 2023. Si vous ajoutez 2 licences supplémentaires le 21 mars 2023, nous déduirons d'abord le paiement restant de 5 jours le 21 mars 2023. Puis, d'ici le 25 mars 2023, nous déduirons le paiement de 5 licences, soit (2+3)*$12=$60. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
+        "subscribe_license_monthly": "Vous allez vous abonner à l'abonnement mensuel d'ILLA Cloud Plus. Nous déduirons automatiquement les frais de votre compte au début de chaque cycle de paiement. Le montant réel déduit dépend du nombre de licences que vous avez. Par exemple, si vous commencez votre premier abonnement le 25 février 2023, avec des frais d'abonnement mensuels de 12 $ par licence, et vous avez un total de 3 licences, nous déduirons 36 $ le 25 février 2023. Si vous ajoutez 2 licences supplémentaires le 21 mars 2023, nous déduirons d'abord le paiement restant de 5 jours le 21 mars 2023. Puis, d'ici le 25 mars 2023, nous déduirons le paiement de 5 licences, soit (2+3)*$12=$60. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_remove_license": "Les frais seront automatiquement déduits en fonction du nombre de licences mis à jour et du prix du nouveau cycle de facturation à partir de la prochaine période. Si le nombre d'utilisateurs ayant des autorisations d'édition dépasse le nombre de licences au début du prochain cycle de facturation, tous les utilisateurs, sauf le propriétaire, seront désactivés jusqu'à ce que vous supprimiez des membres ou augmentiez le nombre de licences dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_increase_storage": "Les frais seront automatiquement déduits en fonction de la mise à jour du stockage et du prix du nouveau cycle de facturation à partir de la prochaine période. Cette fois-ci, nous déduirons le paiement pour l'augmentation du stockage selon le cycle de facturation en cours. Règles de calcul en utilisant un abonnement de stockage mensuel comme exemple : Examinons un scénario où vous vous êtes initialement abonné à 5 Go à partir du 14 mars, et le cycle de facturation s'étend du 14e de ce mois au 13e du mois prochain. Le 10 mai, vous décidez d'ajouter 1 Go. À ce moment-là, il restait 4 jours jusqu'à la fin du cycle courant le 13 mai (ce qui totalise 30 jours entre le 14 avril et le 13 mai). Pour calculer le paiement rajusté, nous déduirons le coût de 1 GB, qui s'élève à environ 0 $. 9, proportionné à la durée de 4 jours dans le cycle de 30 jours. Par conséquent, la déduction est estimée à 1 licence * 0,99 $ / 30 jours * 4 jours, ce qui signifie environ 0,132 $. À partir du prochain cycle de facturation, tous les frais de stockage seront consolidés et payés ensemble. Si vous souhaitez réduire les licences ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_remove_storage": "Les frais seront automatiquement déduits en fonction de la mise à jour du stockage et du prix du nouveau cycle de facturation à partir de la prochaine période. Si la capacité de stockage occupée par vos fichiers dépasse la capacité de stockage souscrite au début du prochain cycle de facturation, Tous les fichiers seront désactivés jusqu'à ce que vous supprimiez des fichiers ou augmentiez la capacité de stockage dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>"
@@ -3598,8 +3793,8 @@
         "got_it": "Compris"
       },
       "upgrade_now_admin": {
-        "upgrade_to_plus": "Passer à la version Premium",
-        "this_feature_is_avai": "Cette fonctionnalité est uniquement disponible pour les utilisateurs Premium. Pour l'utiliser, veuillez passer à la version Plus. En passant à Premium, vous aurez également accès aux fonctionnalités suivantes. ",
+        "upgrade_to_plus": "Mettre à niveau vers Plus",
+        "this_feature_is_avai": "Cette fonctionnalité est uniquement disponible pour les utilisateurs Plus. Pour l'utiliser, veuillez passer à la version Plus. En mettant à niveau vers Plus, vous aurez également accès aux fonctionnalités suivantes. ",
         "add_unlimited_viewer": "Ajoutez un nombre illimité de spectateurs gratuitement",
         "publish_public_appli": "Publier des applications publiques",
         "ai_sql_generation": "Génération de l'IA SQL",
@@ -3609,7 +3804,7 @@
         "insufficient_license_title": "Licences insuffisantes",
         "insufficient_license_description": "Pour inviter plus d'éditeurs, veuillez d'abord augmenter les licences. Tous les membres de votre équipe pourraient utiliser les fonctionnalités pour ILLA Cloud Plus. L'accès spécifique à chaque fonctionnalité dépend du rôle de chaque membre. ",
         "insufficient_license_button": "Ajouter des licences",
-        "pricing": "éditeur/mo, annuelle(20$/éditeur, mensuellement)"
+        "pricing": "/fr/editor/mois, annuellement"
       },
       "expired": {
         "owner": "Votre abonnement a expiré. Pour continuer à l'utiliser, veuillez le renouveler.",
@@ -3655,6 +3850,10 @@
         "title": "Changer de plan ?",
         "button_cancel": "Abandonner",
         "button_confirm": "Valider"
+      },
+      "ai-agent": {
+        "string1": "GPT-4 est destiné à l'équipe Premium. ",
+        "string2": "Pour l'utiliser, passez à la version Premium. En passant à la version Premium, vous aurez également accès aux fonctionnalités suivantes. "
       }
     },
     "homepage": {
@@ -3726,15 +3925,48 @@
   "new_share": {
     "title": {
       "invite_to_edit": "Inviter à modifier",
-      "invite_to_use": "Inviter à utiliser"
+      "invite_to_use": "Inviter à utiliser",
+      "share-with-team": "Partager avec l'équipe",
+      "contribute": "Contribuer"
     },
     "desc": {
-      "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. "
+      "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. ",
+      "contribute": "Après avoir contribué au Marketplace, tous les utilisateurs peuvent fonctionner, étoiler et fork votre Agent. Lorsque des utilisateurs d'autres équipes exécutent cet Agent, il ne consommera pas vos ressources."
     },
     "tips": {
       "admin": "Le membre qui peut gérer tous les membres sauf le propriétaire, modifier les APP et voir les APPs",
       "editor": "Le membre qui peut gérer les membres de l'éditeur, éditer les APP et afficher les APP",
       "viewer": "Le membre qui peut gérer les membres de la visionneuse et voir les APP"
+    },
+    "label": {
+      "contribute": "Contribuer au marché",
+      "social-media": "Partager sur"
+    },
+    "options": {
+      "social-media": {
+        "twitter": "Twitter",
+        "reddit": "Reddit",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Nouvelles des pirates informatiques"
+      }
+    },
+    "default-text": {
+      "social-media": {
+        "twitter": "Salut ! Je viens juste de découvrir cet agent IA incroyable. Vous pourriez être intéressé par un essai aussi ! Allez voir ! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
+        "reddit": "Découvrez cet incroyable Agent IA [{{promptName}}]",
+        "linkedin": "Attention à tous les passionnés et professionnels de l'IA qui cherchent à augmenter leur productivité! Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!",
+        "facebook": "Attention à tous les passionnés et professionnels de l'IA qui cherchent à augmenter leur productivité! Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!",
+        "whatsapp": "Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!",
+        "hackernews": "Simplifiez votre charge de travail avec [{{promptName}}] - L'agent IA qui obtient la tâche terminée"
+      },
+      "contribute": "Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!"
     }
+  },
+  "ai-agents": "Agents IA",
+  "marketplace": {
+    "star": "Étoile {{operationNum}}",
+    "fork": "Fork {{operationNum}}"
   }
 }
