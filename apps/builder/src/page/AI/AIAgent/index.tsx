@@ -239,11 +239,11 @@ export const AIAgent: FC = () => {
                           onClick={async () => {
                             setGenerateIconLoading(true)
                             try {
-                              const desc = await generateIcon(
+                              const icon = await generateIcon(
                                 getValues("name"),
                                 getValues("description"),
                               )
-                              field.onChange(desc.data.payload)
+                              field.onChange(icon.data.payload)
                             } catch (e) {
                               message.error({
                                 content: t(
