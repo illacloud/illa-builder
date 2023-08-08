@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Kopioitava levytunniste",
             "sheet_to_copy_to": "Taulu, josta kopioidaan",
             "authentication": "Todennus",
-            "connect_with_oauth": "Yhdistä OAuthiin ja tallenna",
+            "connect_with_oauth": "Yhdistä Googleen",
             "reconnect_with_oauth": "Yhdistä OAuth uudelleen",
             "access_type": "Pääsyn tyyppi"
           },
