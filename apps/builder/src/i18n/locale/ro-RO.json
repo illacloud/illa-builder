@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID placă de copiat",
             "sheet_to_copy_to": "Placă pentru copiere la",
             "authentication": "Autentificare",
-            "connect_with_oauth": "Conectează-te cu OAuth & Salvează",
+            "connect_with_oauth": "Conectează-te cu Google",
             "reconnect_with_oauth": "Reconectați cu OAuth",
             "access_type": "Tip de acces"
           },
