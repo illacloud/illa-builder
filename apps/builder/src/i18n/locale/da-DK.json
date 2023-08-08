@@ -2567,7 +2567,7 @@
         "model": "Model",
         "temperature": "Temperatur",
         "max-token": "Maks. token",
-        "icon": "Icon"
+        "icon": "Ikon"
       },
       "placeholder": {
         "name": "Giv et navn til agenten",
@@ -2617,7 +2617,8 @@
         "click-start": "Klik på knappen Start for at udløse.",
         "insufficient_token": "Utilstrækkelig token"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 Rediger AI Agent",
+      "generate-desc": "AI generere"
     },
     "common": {
       "required": "Påkrævet"
