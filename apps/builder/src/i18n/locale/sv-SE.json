@@ -2567,7 +2567,7 @@
         "model": "Modell",
         "temperature": "Temperatur",
         "max-token": "Max token",
-        "icon": "Icon"
+        "icon": "Ikon"
       },
       "placeholder": {
         "name": "Ge ett namn till agenten",
@@ -2580,7 +2580,7 @@
         "welcome": "Ange ett välkomstmeddelande som visas när användare börjar använda agenten.",
         "temperature": "Ett värde mellan 0 och 1. Ju mindre värdet är, desto bättre effekt kan",
         "max-token": "Används för att begränsa det maximala antalet polletter som konsumeras i en enda körning",
-        "icon": "Upload"
+        "icon": "Ladda upp"
       },
       "tips": {
         "mode": "I chattläget inkluderar varje meddelande konversationshistoriken som en del av begäran, vilket kan resultera i bättre resultat men förbrukar fler tokens; i textläge, varje meddelande som skickas innehåller inte konversationshistorik, vilket kan resultera i mindre optimala resultat jämfört med chattläge men sparar polletter.",
@@ -2617,7 +2617,8 @@
         "click-start": "Klicka på Start -knappen för att utlösa.",
         "insufficient_token": "Otillräcklig token"
       },
-      "title": "🧬 Edit AI Agent"
+      "title": "🧬 Redigera AI agent",
+      "generate-desc": "AI generera"
     },
     "common": {
       "required": "Krävs"
