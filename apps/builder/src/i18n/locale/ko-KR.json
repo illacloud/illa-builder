@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Give a name to the agent",
         "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter {{ to use a variable",
+        "prompt": "Enter {{variableName}} to use a variable",
         "variable": {
           "key": "Variable name",
           "value": "Value"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Click the Start button to trigger.",
-        "insufficient_token": "Insufficient token"
+        "insufficient_token": "Insufficient token",
+        "start-failed": "Failed to start. Please try again. "
       },
       "title": "🧬 Edit AI Agent",
       "generate-desc": {
