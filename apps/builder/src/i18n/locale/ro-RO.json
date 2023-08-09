@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dă un nume agentului",
         "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
-        "prompt": "Introduceţi {{ pentru a utiliza o variabilă",
+        "prompt": "Introduceți {{variableName}} pentru a utiliza o variabilă",
         "variable": {
           "key": "Denumire variabilă",
           "value": "Valoare"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
-        "insufficient_token": "Token insuficient"
+        "insufficient_token": "Token insuficient",
+        "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. "
       },
       "title": "🧬 Editare agent AI",
       "generate-desc": {
