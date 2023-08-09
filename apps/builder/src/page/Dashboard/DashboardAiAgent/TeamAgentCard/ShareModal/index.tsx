@@ -6,7 +6,9 @@ import { useMessage } from "@illa-design/react"
 import { ERROR_FLAG } from "@/api/errorFlag"
 import { REDIRECT_PAGE_TYPE } from "@/illa-public-component/MemberList/interface"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import TeamAgentShareModal from "@/illa-public-market-component/TeamAgentShareModal"
+import TeamAgentShareModal, {
+  TeamAgentShareModalProps,
+} from "@/illa-public-market-component/TeamAgentShareModal"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import {
   getCurrentMemberList,
@@ -21,16 +23,24 @@ import {
 } from "@/services/team"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
-export interface AgentShareModalProps {
-  visible: boolean
-  onCancel: () => void
+export interface AgentShareModalProps
+  extends Pick<
+    TeamAgentShareModalProps,
+    "visible" | "onCancel" | "publishedToMarketplace" | "defaultTab"
+  > {
   aiAgentID: string
   aiAgentName: string
-  publishedToMarketplace: boolean
 }
+
 const AgentShareModal: FC<AgentShareModalProps> = (props) => {
-  const { aiAgentID, aiAgentName, publishedToMarketplace, visible, onCancel } =
-    props
+  const {
+    aiAgentID,
+    aiAgentName,
+    publishedToMarketplace,
+    defaultTab,
+    visible,
+    onCancel,
+  } = props
 
   const message = useMessage()
   const { t } = useTranslation()
@@ -118,6 +128,7 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
     <TeamAgentShareModal
       visible={visible}
       onCancel={onCancel}
+      defaultTab={defaultTab}
       agentName={aiAgentName}
       agentLink={agentLink}
       publishedToMarketplace={publishedToMarketplace}
