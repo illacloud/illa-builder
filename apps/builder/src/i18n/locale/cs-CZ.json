@@ -3866,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 je pro prémiový tým. ",
         "string2": "Chcete-li jej použít, proveďte upgrade na Premium. Proveďte upgrade na Premium, budete mít také přístup k následujícím funkcím. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funkce pro prémiové týmy",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Tato funkce je pro prémiové týmy. Pro upgrade kontaktujte správce týmu. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
