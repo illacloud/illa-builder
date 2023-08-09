@@ -3866,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 è per il team Premium. ",
         "string2": "Per usarlo, aggiorna a Premium. Aggiornando a Premium, avrai anche accesso alle seguenti funzionalità. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Caratteristica per i team Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Questa funzione è per i team premium. Si prega di contattare gli amministratori del team per l'aggiornamento. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
