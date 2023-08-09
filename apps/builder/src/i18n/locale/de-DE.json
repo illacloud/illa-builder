@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Geben Sie dem Agenten einen Namen",
         "desc": "Geben Sie eine kurze Beschreibung dessen an, wofür dieser Agent verwendet werden soll.",
-        "prompt": "Geben Sie {{ ein, um eine Variable zu verwenden",
+        "prompt": "Geben Sie {{variableName}} ein, um eine Variable zu verwenden",
         "variable": {
           "key": "Variablenname",
           "value": "Wert"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
-        "insufficient_token": "Unzureichendes Token"
+        "insufficient_token": "Unzureichendes Token",
+        "start-failed": "Start fehlgeschlagen. Bitte versuchen Sie es erneut. "
       },
       "title": "🧬 KI-Agent bearbeiten",
       "generate-desc": {
