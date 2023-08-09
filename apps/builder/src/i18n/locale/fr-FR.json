@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Donner un nom à l'agent",
         "desc": "Fournir une brève description de ce à quoi cet agent est destiné à être utilisé.",
-        "prompt": "Entrez {{ pour utiliser une variable",
+        "prompt": "Entrez {{variableName}} pour utiliser une variable",
         "variable": {
           "key": "Nom de la variable",
           "value": "Valeur"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
-        "insufficient_token": "Jeton insuffisant"
+        "insufficient_token": "Jeton insuffisant",
+        "start-failed": "Impossible de démarrer. Veuillez réessayer. "
       },
       "title": "🧬 Modifier l'Agent IA",
       "generate-desc": {
