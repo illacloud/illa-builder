@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dare un nome all'agente",
         "desc": "Fornire una breve descrizione di cosa si intende utilizzare questo agente.",
-        "prompt": "Inserisci {{ per usare una variabile",
+        "prompt": "Inserisci {{variableName}} per usare una variabile",
         "variable": {
           "key": "Nome della variabile",
           "value": "Valore"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Fare clic sul pulsante Start per attivare.",
-        "insufficient_token": "Token insufficiente"
+        "insufficient_token": "Token insufficiente",
+        "start-failed": "Impossibile iniziare. Per favore riprova. "
       },
       "title": "🧬 Modifica Agente AI",
       "generate-desc": {
