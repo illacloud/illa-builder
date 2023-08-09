@@ -3866,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4是为Premium团队提供的选项。",
         "string2": "请升级到Premium以使用它。通过升级到Premium，您还将获得以下权益。"
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Premium团队专属功能",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "该功能是Premium团队专属功能，请联系您团队的管理员升级。"
+            }
+          }
+        },
+        "upgrade_button": "好的"
       }
     },
     "homepage": {
