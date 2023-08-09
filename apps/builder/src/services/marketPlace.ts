@@ -100,7 +100,7 @@ export const fetchNeedAuthAgentList = (params: ProductListParams) => {
 
 const starProduct = (productType: PRODUCT_TYPE, productID: string) => {
   return marketplaceRequest({
-    url: `/${productType}/${productID}`,
+    url: `/${productType}/${productID}/star`,
     method: "POST",
   })
 }
@@ -133,6 +133,6 @@ export const unlistedProduct = (
   })
 }
 
-export const unlistedAiAgent = (productID: string) => {
-  return unlistedProduct(PRODUCT_TYPE.AI_AGENT, productID)
+export const unlistedAiAgent = (aiAgentID: string) => {
+  return unlistedProduct(PRODUCT_TYPE.AI_AGENT, aiAgentID)
 }

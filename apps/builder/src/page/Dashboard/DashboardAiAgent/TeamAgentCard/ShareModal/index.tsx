@@ -15,7 +15,7 @@ import {
   getCurrentTeamInfo,
 } from "@/redux/team/teamSelector"
 import { fetchShareAgentLink, shareAgentByEmail } from "@/services/agent"
-import { contributeAiAgent } from "@/services/marketPlace"
+import { contributeAiAgent, unlistedAiAgent } from "@/services/marketPlace"
 import {
   changeTeamMembersRole,
   updateMembers,
@@ -120,9 +120,12 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
     [aiAgentID],
   )
 
-  const contributeToMarketplace = useCallback(() => {
-    return contributeAiAgent(aiAgentID)
-  }, [aiAgentID])
+  const contributeToMarketplace = useCallback(
+    (value: boolean) => {
+      return value ? contributeAiAgent(aiAgentID) : unlistedAiAgent(aiAgentID)
+    },
+    [aiAgentID],
+  )
 
   return (
     <TeamAgentShareModal
