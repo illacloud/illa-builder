@@ -44,7 +44,7 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
 
   // market agent
   const [sortedBy, setSortedBy] = useState(PRODUCT_SORT_BY.POPULARITY)
-  const [marketListPage, setMarketListPage] = useState(0)
+  const [marketListPage, setMarketListPage] = useState(1)
 
   const getTeamAgentList = useCallback(() => {
     fetchTeamAgentList(keyword).then((res) => {
@@ -62,7 +62,11 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
         search: keyword,
       }).then((res) => {
         setMarketListPage(res.data.pageIndex)
-        setMarketAgentList(res.data.products)
+        if (res.data.pageIndex > 1) {
+          setMarketAgentList((prevState) => prevState.concat(res.data.products))
+        } else {
+          setMarketAgentList(res.data.products)
+        }
       })
     },
     [marketListPage, sortedBy, keyword],

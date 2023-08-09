@@ -30,6 +30,7 @@ export interface AgentShareModalProps
   > {
   aiAgentID: string
   aiAgentName: string
+  onContributed?: (value: boolean) => void
 }
 
 const AgentShareModal: FC<AgentShareModalProps> = (props) => {
@@ -40,6 +41,7 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
     defaultTab,
     visible,
     onCancel,
+    onContributed,
   } = props
 
   const message = useMessage()
@@ -121,10 +123,14 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
   )
 
   const contributeToMarketplace = useCallback(
-    (value: boolean) => {
-      return value ? contributeAiAgent(aiAgentID) : unlistedAiAgent(aiAgentID)
+    async (value: boolean) => {
+      const res = (await value)
+        ? contributeAiAgent(aiAgentID)
+        : unlistedAiAgent(aiAgentID)
+      onContributed?.(value)
+      return res
     },
-    [aiAgentID],
+    [aiAgentID, onContributed],
   )
 
   return (
