@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dejte jméno agentovi",
         "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
-        "prompt": "Zadejte {{ pro použití proměnné",
+        "prompt": "Zadejte {{variableName}} pro použití proměnné",
         "variable": {
           "key": "Název proměnné",
           "value": "Hodnota"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
-        "insufficient_token": "Nedostatečný token"
+        "insufficient_token": "Nedostatečný token",
+        "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. "
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
