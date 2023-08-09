@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "エージェントに名前を付けてください",
         "desc": "このエージェントが何に使用されるかを簡単に説明します。",
-        "prompt": "変数を使用するには{{ を入力してください",
+        "prompt": "変数を使用するには、 {{variableName}} を入力してください",
         "variable": {
           "key": "変数名",
           "value": "値"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "開始ボタンをクリックしてトリガーします。",
-        "insufficient_token": "トークンが足りません"
+        "insufficient_token": "トークンが足りません",
+        "start-failed": "開始に失敗しました。もう一度やり直してください。 "
       },
       "title": "🧬 AI エージェントの編集",
       "generate-desc": {
