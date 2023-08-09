@@ -25,10 +25,12 @@ import {
   ATTRIBUTE_GROUP,
 } from "@/illa-public-component/UserRoleUtils/interface"
 import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
+import ShareToSocialMedia from "@/illa-public-market-component/ShareToSocialMedia"
 import { labelStyle, labelTextStyle } from "@/page/AI/AIAgent/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
+import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
@@ -78,6 +80,7 @@ export const AIAgentRunPC: FC = () => {
   // page state
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
+  const [shareDialogVisible, setShareDialogVisible] = useState(false)
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
@@ -102,6 +105,80 @@ export const AIAgentRunPC: FC = () => {
     },
     [inRoomUsers],
   )
+
+  const dialog = useMemo(() => {
+    return (
+      <Controller
+        control={control}
+        name="publishedToMarketplace"
+        render={({ field }) => {
+          if (!shareDialogVisible) {
+            return <></>
+          }
+          if (field.value) {
+            if (
+              canManage(
+                currentTeamInfo.myRole,
+                ATTRIBUTE_GROUP.AGENT,
+                ACTION_MANAGE.FORK_AGENT,
+              )
+            ) {
+              return (
+                <AgentShareModal
+                  aiAgentID={agent.aiAgentID}
+                  aiAgentName={agent.name}
+                  publishedToMarketplace={field.value}
+                  visible={shareDialogVisible}
+                  onCancel={() => {
+                    setShareDialogVisible(false)
+                  }}
+                />
+              )
+            } else {
+              return (
+                <ShareToSocialMedia
+                  agentID={agent.aiAgentID}
+                  agentName={agent.name}
+                  visible={shareDialogVisible}
+                  onCancel={() => {
+                    setShareDialogVisible(false)
+                  }}
+                />
+              )
+            }
+          } else {
+            if (
+              canManage(
+                currentTeamInfo.myRole,
+                ATTRIBUTE_GROUP.AGENT,
+                ACTION_MANAGE.FORK_AGENT,
+              )
+            ) {
+              return (
+                <AgentShareModal
+                  aiAgentID={agent.aiAgentID}
+                  aiAgentName={agent.name}
+                  publishedToMarketplace={field.value}
+                  visible={shareDialogVisible}
+                  onCancel={() => {
+                    setShareDialogVisible(false)
+                  }}
+                />
+              )
+            } else {
+              return <></>
+            }
+          }
+        }}
+      />
+    )
+  }, [
+    agent.aiAgentID,
+    agent.name,
+    control,
+    currentTeamInfo.myRole,
+    shareDialogVisible,
+  ])
 
   const updateLocalName = useCallback(
     (name: string, aiAgentID?: string) => {
@@ -160,7 +237,13 @@ export const AIAgentRunPC: FC = () => {
     if (agent.publishedToMarketplace) {
       return (
         <div css={agentMenuContainerStyle}>
-          <Button colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
+          <Button
+            colorScheme="grayBlue"
+            leftIcon={<DependencyIcon />}
+            onClick={() => {
+              setShareDialogVisible(true)
+            }}
+          >
             {t("share")}
           </Button>
           <Button
@@ -199,7 +282,13 @@ export const AIAgentRunPC: FC = () => {
           ACTION_MANAGE.FORK_AGENT,
         ) && (
           <div css={agentMenuContainerStyle}>
-            <Button colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
+            <Button
+              colorScheme="grayBlue"
+              leftIcon={<DependencyIcon />}
+              onClick={() => {
+                setShareDialogVisible(true)
+              }}
+            >
               {t("share")}
             </Button>
           </div>
@@ -468,6 +557,7 @@ export const AIAgentRunPC: FC = () => {
             )}
           />
         </div>
+        {dialog}
       </form>
     </ChatContext.Provider>
   )

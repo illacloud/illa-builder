@@ -1,7 +1,8 @@
 import { motion } from "framer-motion"
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { useLoaderData } from "react-router-dom"
 import { v4 } from "uuid"
 import {
@@ -16,12 +17,19 @@ import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
+import { canManage } from "@/illa-public-component/UserRoleUtils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@/illa-public-component/UserRoleUtils/interface"
 import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
+import ShareToSocialMedia from "@/illa-public-market-component/ShareToSocialMedia"
 import { labelStyle, labelTextStyle } from "@/page/AI/AIAgent/style"
 import { buttonContainerStyle } from "@/page/AI/AIAgentRun/AIAgentRunPC/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
+import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
@@ -31,6 +39,7 @@ import {
   SenderType,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ChatContext } from "../../components/ChatContext"
 import {
@@ -65,6 +74,8 @@ export const AIAgentRunMobile: FC = () => {
     defaultValues: agent,
   })
 
+  const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
+
   const { isDirty, isValid } = useFormState({
     control,
   })
@@ -74,6 +85,7 @@ export const AIAgentRunMobile: FC = () => {
   // page state
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
+  const [shareDialogVisible, setShareDialogVisible] = useState(false)
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
@@ -157,6 +169,80 @@ export const AIAgentRunMobile: FC = () => {
         updateLocalName(getValues("name"))
       },
     })
+
+  const dialog = useMemo(() => {
+    return (
+      <Controller
+        control={control}
+        name="publishedToMarketplace"
+        render={({ field }) => {
+          if (!shareDialogVisible) {
+            return <></>
+          }
+          if (field.value) {
+            if (
+              canManage(
+                currentTeamInfo.myRole,
+                ATTRIBUTE_GROUP.AGENT,
+                ACTION_MANAGE.FORK_AGENT,
+              )
+            ) {
+              return (
+                <AgentShareModal
+                  aiAgentID={agent.aiAgentID}
+                  aiAgentName={agent.name}
+                  publishedToMarketplace={field.value}
+                  visible={shareDialogVisible}
+                  onCancel={() => {
+                    setShareDialogVisible(false)
+                  }}
+                />
+              )
+            } else {
+              return (
+                <ShareToSocialMedia
+                  agentID={agent.aiAgentID}
+                  agentName={agent.name}
+                  visible={shareDialogVisible}
+                  onCancel={() => {
+                    setShareDialogVisible(false)
+                  }}
+                />
+              )
+            }
+          } else {
+            if (
+              canManage(
+                currentTeamInfo.myRole,
+                ATTRIBUTE_GROUP.AGENT,
+                ACTION_MANAGE.FORK_AGENT,
+              )
+            ) {
+              return (
+                <AgentShareModal
+                  aiAgentID={agent.aiAgentID}
+                  aiAgentName={agent.name}
+                  publishedToMarketplace={field.value}
+                  visible={shareDialogVisible}
+                  onCancel={() => {
+                    setShareDialogVisible(false)
+                  }}
+                />
+              )
+            } else {
+              return <></>
+            }
+          }
+        }}
+      />
+    )
+  }, [
+    agent.aiAgentID,
+    agent.name,
+    control,
+    currentTeamInfo.myRole,
+    shareDialogVisible,
+  ])
 
   const configTab = (
     <div css={configContainerStyle}>
@@ -372,9 +458,32 @@ export const AIAgentRunMobile: FC = () => {
                   )}
                 </div>
               </div>
-              <div css={shareContainerStyle}>
-                <DependencyIcon fs="48px" />
-              </div>
+              <Controller
+                name="publishedToMarketplace"
+                control={control}
+                render={({ field }) => {
+                  if (
+                    !field.value &&
+                    !canManage(
+                      currentTeamInfo.myRole,
+                      ATTRIBUTE_GROUP.AGENT,
+                      ACTION_MANAGE.FORK_AGENT,
+                    )
+                  ) {
+                    return <></>
+                  }
+                  return (
+                    <div
+                      css={shareContainerStyle}
+                      onClick={() => {
+                        setShareDialogVisible(true)
+                      }}
+                    >
+                      <DependencyIcon fs="48px" />
+                    </div>
+                  )
+                }}
+              />
             </div>
             <Controller
               name="agentType"
@@ -420,6 +529,7 @@ export const AIAgentRunMobile: FC = () => {
           </div>
           {currentSelectTab === "run" && previewChatTab}
           {currentSelectTab === "config" && configTab}
+          {dialog}
         </div>
       </form>
     </ChatContext.Provider>
