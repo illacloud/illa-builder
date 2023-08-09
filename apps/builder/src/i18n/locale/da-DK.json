@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Giv et navn til agenten",
         "desc": "Giv en kort beskrivelse af, hvad denne agent er beregnet til at blive brugt til.",
-        "prompt": "Indtast {{ for at bruge en variabel",
+        "prompt": "Indtast {{variableName}} for at bruge en variabel",
         "variable": {
           "key": "Variabel navn",
           "value": "Værdi"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klik på knappen Start for at udløse.",
-        "insufficient_token": "Utilstrækkelig token"
+        "insufficient_token": "Utilstrækkelig token",
+        "start-failed": "Mislykkedes at starte. Prøv igen. "
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
