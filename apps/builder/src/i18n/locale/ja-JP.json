@@ -3866,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4はプレミアムチーム用です。 ",
         "string2": "使用するには、プレミアムにアップグレードしてください。プレミアムにアップグレードすると、次の機能も利用できます。 "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "プレミアムチームの機能",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "この機能はプレミアムチーム用です。アップグレードするにはチーム管理者にお問い合わせください。 "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
