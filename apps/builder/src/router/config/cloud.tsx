@@ -53,6 +53,7 @@ export const cloudRouter: RoutesObjectPro[] = [
       lazy(() => import("@/page/AI/AIAgentRun")),
       <FullPageLoading />,
     ),
+    accessByMobile: true,
     loader: agentRunLoader,
   },
   {

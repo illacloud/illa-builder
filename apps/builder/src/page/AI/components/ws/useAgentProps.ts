@@ -12,6 +12,7 @@ export interface UseAgentProps {
   onReceiving: (isReceiving: boolean) => void
   onUpdateRoomUsers: (roomUsers: CollaboratorsInfo[]) => void
   onSendPrompt: () => void
+  onStartRunning: () => void
 }
 
 export interface UseAgentReturn {

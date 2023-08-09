@@ -11,4 +11,5 @@ export interface PreviewChatProps {
   onCancelReceiving: () => void
   blockInput: boolean
   isReceiving: boolean
+  isMobile: boolean
 }

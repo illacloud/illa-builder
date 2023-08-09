@@ -141,6 +141,7 @@ export const AIAgent: FC = () => {
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
+      onStartRunning: () => {},
       onConnecting: (isConnecting) => {
         setIsConnecting(isConnecting)
       },
@@ -154,7 +155,7 @@ export const AIAgent: FC = () => {
         sendMessage(
           {
             threadID: v4(),
-            prompt: getValues("prompt"),
+            prompt: encodeURI(getValues("prompt")),
             variables: getValues("variables"),
             modelConfig: getValues("modelConfig"),
             model: getValues("model"),
@@ -229,6 +230,9 @@ export const AIAgent: FC = () => {
                 <Controller
                   name="icon"
                   control={control}
+                  rules={{
+                    required: true,
+                  }}
                   shouldUnregister={false}
                   render={({ field }) => (
                     <AIAgentBlock
@@ -237,6 +241,17 @@ export const AIAgent: FC = () => {
                         <div
                           css={descContainerStyle}
                           onClick={async () => {
+                            if (
+                              !getValues("name") ||
+                              !getValues("description")
+                            ) {
+                              message.error({
+                                content: t(
+                                  "editor.ai-agent.generate-icon.blank",
+                                ),
+                              })
+                              return
+                            }
                             setGenerateIconLoading(true)
                             try {
                               const icon = await generateIcon(
@@ -344,6 +359,14 @@ export const AIAgent: FC = () => {
                         <div
                           css={descContainerStyle}
                           onClick={async () => {
+                            if (!getValues("prompt")) {
+                              message.error({
+                                content: t(
+                                  "editor.ai-agent.generate-desc.blank",
+                                ),
+                              })
+                              return
+                            }
                             setGenerateDescLoading(true)
                             try {
                               const desc = await generateDescription(
@@ -643,6 +666,7 @@ export const AIAgent: FC = () => {
             render={({ field }) => (
               <div css={rightPanelContainerStyle}>
                 <PreviewChat
+                  isMobile={false}
                   editState="EDIT"
                   agentType={field.value}
                   chatMessages={chatMessages}
@@ -653,7 +677,7 @@ export const AIAgent: FC = () => {
                     sendMessage(
                       {
                         threadID: message.threadID,
-                        prompt: message.message,
+                        prompt: encodeURI(message.message),
                         variables: [],
                         modelConfig: getValues("modelConfig"),
                         model: getValues("model"),

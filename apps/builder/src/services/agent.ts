@@ -191,7 +191,7 @@ export const generateDescription = (prompt: string) => {
       url: `/aiAgent/generatePromptDescription`,
       method: "POST",
       data: {
-        prompt: prompt,
+        prompt: encodeURI(prompt),
       },
     },
     {
@@ -214,8 +214,8 @@ export const generateIcon = (name: string, description: string) => {
       url: `/aiAgent/generateIcon`,
       method: "POST",
       data: {
-        name: name,
-        description: description,
+        name: encodeURI(name),
+        description: encodeURI(description),
       },
     },
     {
@@ -295,7 +295,7 @@ export const fetchMarketAgentList = (
 
 export const getAIAgentMarketplaceInfo = (aiAgentID: string) => {
   return marketplaceRequest<MarketAiAgent>({
-    url: `/auth/products/aiAgents/${aiAgentID}`,
+    url: `/aiAgents/${aiAgentID}`,
     method: "GET",
   })
 }

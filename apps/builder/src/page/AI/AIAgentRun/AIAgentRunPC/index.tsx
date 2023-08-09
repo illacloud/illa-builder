@@ -10,11 +10,13 @@ import {
   ForkIcon,
   RadioGroup,
   ResetIcon,
+  Select,
   StarFillIcon,
   StarOutlineIcon,
   getColor,
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
+import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -23,10 +25,12 @@ import {
   ATTRIBUTE_GROUP,
 } from "@/illa-public-component/UserRoleUtils/interface"
 import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
+import { labelStyle, labelTextStyle } from "@/page/AI/AIAgent/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import {
+  AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   Agent,
   ChatSendRequestPayload,
@@ -120,6 +124,7 @@ export const AIAgentRunPC: FC = () => {
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
+      onStartRunning: () => {},
       onConnecting: (isConnecting) => {
         setIsConnecting(isConnecting)
       },
@@ -273,7 +278,7 @@ export const AIAgentRunPC: FC = () => {
                 shouldUnregister={false}
                 render={({ field }) => (
                   <AIAgentBlock
-                    title={t("editor.ai-agent.tips.mode")}
+                    title={t("editor.ai-agent.label.mode")}
                     tips={t("editor.ai-agent.tips.mode")}
                   >
                     <RadioGroup
@@ -361,6 +366,48 @@ export const AIAgentRunPC: FC = () => {
                   )
                 }
               />
+              <Controller
+                name="model"
+                control={control}
+                render={({ field }) => (
+                  <AIAgentBlock title={t("editor.ai-agent.label.model")}>
+                    <Select
+                      {...field}
+                      readOnly={true}
+                      colorScheme={"techPurple"}
+                      options={[
+                        {
+                          label: (
+                            <div css={labelStyle}>
+                              <OpenAIIcon />
+                              <span css={labelTextStyle}>GPT-3.5</span>
+                            </div>
+                          ),
+                          value: AI_AGENT_MODEL.GPT_3_5_TURBO,
+                        },
+                        {
+                          label: (
+                            <div css={labelStyle}>
+                              <OpenAIIcon />
+                              <span css={labelTextStyle}>GPT-3.5-16k</span>
+                            </div>
+                          ),
+                          value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
+                        },
+                        {
+                          label: (
+                            <div css={labelStyle}>
+                              <OpenAIIcon />
+                              <span css={labelTextStyle}>GPT-4</span>
+                            </div>
+                          ),
+                          value: AI_AGENT_MODEL.GPT_4,
+                        },
+                      ]}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
             </div>
             <div css={buttonContainerStyle}>
               <Button
@@ -384,6 +431,7 @@ export const AIAgentRunPC: FC = () => {
             render={({ field }) => (
               <div css={rightPanelContainerStyle}>
                 <PreviewChat
+                  isMobile={false}
                   editState="RUN"
                   agentType={field.value}
                   chatMessages={chatMessages}

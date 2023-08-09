@@ -34,6 +34,7 @@ import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {
+    isMobile,
     agentType,
     chatMessages,
     generationMessage,
@@ -87,21 +88,31 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
 
   return (
     <div css={previewChatContainerStyle}>
-      <div css={previewTitleContainerStyle}>
-        <div css={previewTitleTextStyle}>
-          {t("editor.ai-agent.title-preview")}
+      {!isMobile && (
+        <div css={previewTitleContainerStyle}>
+          <div css={previewTitleTextStyle}>
+            {t("editor.ai-agent.title-preview")}
+          </div>
+          {editState === "EDIT" && (
+            <Button
+              ml="8px"
+              colorScheme="grayBlue"
+              leftIcon={<DependencyIcon />}
+            >
+              {t("share")}
+            </Button>
+          )}
+          {editState === "EDIT" && (
+            <Button
+              ml="8px"
+              colorScheme="grayBlue"
+              leftIcon={<ContributeIcon />}
+            >
+              {t("editor.ai-agent.contribute")}
+            </Button>
+          )}
         </div>
-        {editState === "EDIT" && (
-          <Button ml="8px" colorScheme="grayBlue" leftIcon={<DependencyIcon />}>
-            {t("share")}
-          </Button>
-        )}
-        {editState === "EDIT" && (
-          <Button ml="8px" colorScheme="grayBlue" leftIcon={<ContributeIcon />}>
-            {t("editor.ai-agent.contribute")}
-          </Button>
-        )}
-      </div>
+      )}
       <div css={chatContainerStyle}>
         {agentType === AI_AGENT_TYPE.CHAT ? messagesList : generationBlock}
       </div>

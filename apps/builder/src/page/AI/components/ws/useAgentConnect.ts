@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useMessage } from "@illa-design/react"
 import { Connection, getTextMessagePayload } from "@/api/ws"
@@ -31,6 +32,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
     onUpdateRoomUsers,
     onRunning,
     onSendPrompt,
+    onStartRunning,
   } = useAgentProps
 
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
@@ -42,6 +44,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
   const currentUserInfo = useSelector(getCurrentUser)
 
   const message = useMessage()
+  const { t } = useTranslation()
 
   const sendMessage = useCallback(
     (
@@ -168,11 +171,12 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
         Connection.enterAgentRoom(address, messageListener)
         onConnecting(false)
         onRunning(true)
+        onStartRunning()
         onSendPrompt()
       } catch (e) {
         onConnecting(false)
         message.error({
-          content: "start fail",
+          content: t("editor.ai-agent.message.start-failed"),
         })
         return
       }
@@ -180,12 +184,14 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
     [
       onConnecting,
       onRunning,
+      onStartRunning,
       onSendPrompt,
       onReceiving,
       chatMessages,
       generationMessage,
       onUpdateRoomUsers,
       message,
+      t,
     ],
   )
 
