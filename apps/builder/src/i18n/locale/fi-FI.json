@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Anna nimi agentille",
         "desc": "Anna lyhyt kuvaus siitä, mihin tämä agentti on tarkoitettu käytettäväksi.",
-        "prompt": "Syötä {{ käyttääksesi muuttujaa",
+        "prompt": "Syötä {{variableName}} käyttääksesi muuttujaa",
         "variable": {
           "key": "Muuttujan nimi",
           "value": "Arvo"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Napsauta Käynnistä painiketta käynnistääksesi.",
-        "insufficient_token": "Riittämätön tunnus"
+        "insufficient_token": "Riittämätön tunnus",
+        "start-failed": "Aloitus epäonnistui. Yritä uudelleen. "
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
