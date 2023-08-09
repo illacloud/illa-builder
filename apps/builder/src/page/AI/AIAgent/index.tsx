@@ -2,6 +2,7 @@ import axios from "axios"
 import { FC, useCallback, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { useLoaderData } from "react-router-dom"
 import { v4 } from "uuid"
 import {
@@ -23,11 +24,17 @@ import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
+import { canManage } from "@/illa-public-component/UserRoleUtils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@/illa-public-component/UserRoleUtils/interface"
 import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
+import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
@@ -37,6 +44,7 @@ import {
   getModelLimitToken,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   createAgent,
   generateDescription,
@@ -83,6 +91,8 @@ export const AIAgent: FC = () => {
 
   const { t } = useTranslation()
 
+  const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
+
   const blockInputDirty: boolean =
     Boolean(dirtyFields.variables) ||
     (dirtyFields.agentType ?? false) ||
@@ -97,6 +107,10 @@ export const AIAgent: FC = () => {
   const [generateIconLoading, setGenerateIconLoading] = useState(false)
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
+  const [shareDialogVisible, setShareDialogVisible] = useState(false)
+  const [contributedDialogVisible, setContributedDialogVisible] =
+    useState(false)
+
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
@@ -148,10 +162,10 @@ export const AIAgent: FC = () => {
       onReceiving: (isReceiving) => {
         setIsReceiving(isReceiving)
       },
-      onRunning(isRunning: boolean): void {
+      onRunning: (isRunning: boolean) => {
         setIsRunning(isRunning)
       },
-      onSendPrompt(): void {
+      onSendPrompt: () => {
         sendMessage(
           {
             threadID: v4(),
@@ -166,7 +180,7 @@ export const AIAgent: FC = () => {
           false,
         )
       },
-      onUpdateRoomUsers(roomUsers: CollaboratorsInfo[]): void {
+      onUpdateRoomUsers: (roomUsers: CollaboratorsInfo[]) => {
         setInRoomUsers(roomUsers)
         updateLocalIcon(getValues("icon"))
         updateLocalName(getValues("name"))
@@ -237,6 +251,7 @@ export const AIAgent: FC = () => {
                   render={({ field }) => (
                     <AIAgentBlock
                       title={t("editor.ai-agent.label.icon")}
+                      required
                       subtitle={
                         <div
                           css={descContainerStyle}
@@ -664,45 +679,109 @@ export const AIAgent: FC = () => {
             control={control}
             shouldUnregister={false}
             render={({ field }) => (
-              <div css={rightPanelContainerStyle}>
-                <PreviewChat
-                  isMobile={false}
-                  editState="EDIT"
-                  agentType={field.value}
-                  chatMessages={chatMessages}
-                  generationMessage={generationMessage}
-                  isReceiving={isReceiving}
-                  blockInput={!isRunning || blockInputDirty}
-                  onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
-                    sendMessage(
-                      {
-                        threadID: message.threadID,
-                        prompt: encodeURI(message.message),
-                        variables: [],
-                        modelConfig: getValues("modelConfig"),
-                        model: getValues("model"),
-                        agentType: getValues("agentType"),
-                      } as ChatSendRequestPayload,
-                      TextSignal.RUN,
-                      agentType,
-                      true,
-                      message,
-                    )
-                  }}
-                  onCancelReceiving={() => {
-                    sendMessage(
-                      {} as ChatSendRequestPayload,
-                      TextSignal.STOP_ALL,
-                      field.value,
-                      false,
-                    )
-                    setIsReceiving(false)
-                  }}
-                />
-              </div>
+              <Controller
+                name="aiAgentID"
+                control={control}
+                render={({ field: idField }) => (
+                  <div css={rightPanelContainerStyle}>
+                    <PreviewChat
+                      hasCreated={!idField.value}
+                      isMobile={false}
+                      editState="EDIT"
+                      agentType={field.value}
+                      chatMessages={chatMessages}
+                      generationMessage={generationMessage}
+                      isReceiving={isReceiving}
+                      blockInput={!isRunning || blockInputDirty}
+                      onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+                        sendMessage(
+                          {
+                            threadID: message.threadID,
+                            prompt: encodeURI(message.message),
+                            variables: [],
+                            modelConfig: getValues("modelConfig"),
+                            model: getValues("model"),
+                            agentType: getValues("agentType"),
+                          } as ChatSendRequestPayload,
+                          TextSignal.RUN,
+                          agentType,
+                          true,
+                          message,
+                        )
+                      }}
+                      onCancelReceiving={() => {
+                        sendMessage(
+                          {} as ChatSendRequestPayload,
+                          TextSignal.STOP_ALL,
+                          field.value,
+                          false,
+                        )
+                        setIsReceiving(false)
+                      }}
+                      onShowShareDialog={() => {
+                        setShareDialogVisible(true)
+                      }}
+                      onShowContributeDialog={() => {
+                        setContributedDialogVisible(true)
+                      }}
+                    />
+                  </div>
+                )}
+              />
             )}
           />
         </div>
+        {canManage(
+          currentTeamInfo.myRole,
+          ATTRIBUTE_GROUP.AGENT,
+          ACTION_MANAGE.FORK_AGENT,
+        ) && (
+          <Controller
+            control={control}
+            name="aiAgentID"
+            render={({ field: idField }) => (
+              <Controller
+                control={control}
+                name="name"
+                render={({ field: nameField }) => (
+                  <Controller
+                    control={control}
+                    name="publishedToMarketplace"
+                    render={({ field }) => (
+                      <>
+                        <AgentShareModal
+                          aiAgentID={idField.value}
+                          aiAgentName={nameField.value}
+                          publishedToMarketplace={field.value}
+                          onContributed={(contributed) => {
+                            field.onChange(contributed)
+                          }}
+                          visible={shareDialogVisible}
+                          onCancel={() => {
+                            setShareDialogVisible(false)
+                          }}
+                        />
+                        <AgentShareModal
+                          aiAgentID={idField.value}
+                          aiAgentName={nameField.value}
+                          publishedToMarketplace={field.value}
+                          onContributed={(contributed) => {
+                            field.onChange(contributed)
+                          }}
+                          visible={contributedDialogVisible}
+                          defaultTab="contribute"
+                          onCancel={() => {
+                            setContributedDialogVisible(false)
+                          }}
+                        />
+                      </>
+                    )}
+                  />
+                )}
+              />
+            )}
+          />
+        )}
       </form>
     </ChatContext.Provider>
   )

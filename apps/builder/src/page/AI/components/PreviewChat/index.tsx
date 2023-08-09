@@ -6,6 +6,11 @@ import { v4 } from "uuid"
 import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
 import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
 import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
+import { canManage } from "@/illa-public-component/UserRoleUtils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@/illa-public-component/UserRoleUtils/interface"
 import AIAgentMessage from "@/page/AI/components/AIAgentMessage"
 import { GenerationMessage } from "@/page/AI/components/GenerationMessage"
 import { PreviewChatProps } from "@/page/AI/components/PreviewChat/interface"
@@ -31,9 +36,11 @@ import {
   SenderType,
 } from "@/redux/aiAgent/aiAgentState"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {
+    hasCreated,
     isMobile,
     agentType,
     chatMessages,
@@ -43,9 +50,12 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     blockInput,
     editState,
     onCancelReceiving,
+    onShowShareDialog,
+    onShowContributeDialog,
   } = props
 
   const currentUserInfo = useSelector(getCurrentUser)
+  const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
 
   const [textAreaVal, setTextAreaVal] = useState("")
 
@@ -88,31 +98,44 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
 
   return (
     <div css={previewChatContainerStyle}>
-      {!isMobile && (
-        <div css={previewTitleContainerStyle}>
-          <div css={previewTitleTextStyle}>
-            {t("editor.ai-agent.title-preview")}
+      {!isMobile &&
+        canManage(
+          currentTeamInfo.myRole,
+          ATTRIBUTE_GROUP.AGENT,
+          ACTION_MANAGE.FORK_AGENT,
+        ) && (
+          <div css={previewTitleContainerStyle}>
+            <div css={previewTitleTextStyle}>
+              {t("editor.ai-agent.title-preview")}
+            </div>
+            {editState === "EDIT" && (
+              <Button
+                disabled={!hasCreated}
+                ml="8px"
+                colorScheme="grayBlue"
+                leftIcon={<DependencyIcon />}
+                onClick={() => {
+                  onShowShareDialog?.()
+                }}
+              >
+                {t("share")}
+              </Button>
+            )}
+            {editState === "EDIT" && (
+              <Button
+                disabled={!hasCreated}
+                ml="8px"
+                colorScheme="grayBlue"
+                leftIcon={<ContributeIcon />}
+                onClick={() => {
+                  onShowContributeDialog?.()
+                }}
+              >
+                {t("editor.ai-agent.contribute")}
+              </Button>
+            )}
           </div>
-          {editState === "EDIT" && (
-            <Button
-              ml="8px"
-              colorScheme="grayBlue"
-              leftIcon={<DependencyIcon />}
-            >
-              {t("share")}
-            </Button>
-          )}
-          {editState === "EDIT" && (
-            <Button
-              ml="8px"
-              colorScheme="grayBlue"
-              leftIcon={<ContributeIcon />}
-            >
-              {t("editor.ai-agent.contribute")}
-            </Button>
-          )}
-        </div>
-      )}
+        )}
       <div css={chatContainerStyle}>
         {agentType === AI_AGENT_TYPE.CHAT ? messagesList : generationBlock}
       </div>

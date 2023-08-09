@@ -523,6 +523,7 @@ export const AIAgentRunPC: FC = () => {
             render={({ field }) => (
               <div css={rightPanelContainerStyle}>
                 <PreviewChat
+                  hasCreated={true}
                   isMobile={false}
                   editState="RUN"
                   agentType={field.value}
