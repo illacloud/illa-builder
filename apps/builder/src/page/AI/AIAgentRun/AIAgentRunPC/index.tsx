@@ -128,6 +128,9 @@ export const AIAgentRunPC: FC = () => {
                   aiAgentID={agent.aiAgentID}
                   aiAgentName={agent.name}
                   publishedToMarketplace={field.value}
+                  onContributed={(contributed) => {
+                    field.onChange(contributed)
+                  }}
                   visible={shareDialogVisible}
                   onCancel={() => {
                     setShareDialogVisible(false)

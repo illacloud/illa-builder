@@ -190,6 +190,9 @@ export const AIAgentRunMobile: FC = () => {
               return (
                 <AgentShareModal
                   aiAgentID={agent.aiAgentID}
+                  onContributed={(contributed) => {
+                    field.onChange(contributed)
+                  }}
                   aiAgentName={agent.name}
                   publishedToMarketplace={field.value}
                   visible={shareDialogVisible}
