@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dê um nome ao agente",
         "desc": "Forneça uma breve descrição para o que este agente deve utilizar.",
-        "prompt": "Digite {{ para usar uma variável",
+        "prompt": "Digite {{variableName}} para usar uma variável",
         "variable": {
           "key": "Nome da variável",
           "value": "Valor"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Clique no botão iniciar para disparar.",
-        "insufficient_token": "Token insuficiente"
+        "insufficient_token": "Token insuficiente",
+        "start-failed": "Falha ao iniciar. Por favor, tente novamente. "
       },
       "title": "🧬 Editar Agente IA",
       "generate-desc": {
