@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Podaj nazwę agentowi",
         "desc": "Należy podać krótki opis tego, do czego ma być stosowany ten agent.",
-        "prompt": "Wprowadź {{ aby użyć zmiennej",
+        "prompt": "Wprowadź {{variableName}} aby użyć zmiennej",
         "variable": {
           "key": "Nazwa zmiennej",
           "value": "Wartość"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Kliknij przycisk Start, aby wyzwalać.",
-        "insufficient_token": "Niewystarczający token"
+        "insufficient_token": "Niewystarczający token",
+        "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. "
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
