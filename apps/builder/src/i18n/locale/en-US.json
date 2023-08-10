@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Give a name to the agent",
         "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter {{ to use a variable",
+        "prompt": "Enter {{variableName}} to use a variable",
         "variable": {
           "key": "Variable name",
           "value": "Value"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Click the Start button to trigger.",
-        "insufficient_token": "Insufficient token"
+        "insufficient_token": "Insufficient token",
+        "start-failed": "Failed to start. Please try again. "
       },
       "title": "🧬 Edit AI Agent",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 is for Premium team. ",
         "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Feature for Premium teams",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "This feature is for the premium teams. Please contact your team admins to upgrade. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {

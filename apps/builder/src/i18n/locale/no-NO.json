@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Gi et navn til agenten",
         "desc": "Gi en kort beskrivelse av hva denne agenten skal brukes til.",
-        "prompt": "Angi {{ for å bruke en variabel",
+        "prompt": "Angi {{variableName}} for å bruke en variabel",
         "variable": {
           "key": "Variabelens navn",
           "value": "Verdi"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klikk på Start knappen for å utløse.",
-        "insufficient_token": "Utilstrekkelig token"
+        "insufficient_token": "Utilstrekkelig token",
+        "start-failed": "Kunne ikke starte. Vennligst prøv igjen. "
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 er for Premium-team. ",
         "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funksjon for Premium-lag",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Denne funksjonen er for premiumteamene. Vennligst kontakt ditt team administrator for å oppgradere. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {

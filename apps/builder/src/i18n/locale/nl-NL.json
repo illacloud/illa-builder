@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Geef een naam aan de agent",
         "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
-        "prompt": "Voer {{ om een variabele te gebruiken in",
+        "prompt": "Voer {{variableName}} in om een variabele te gebruiken",
         "variable": {
           "key": "Naam variabele",
           "value": "Waarde"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klik op de Start knop om te starten.",
-        "insufficient_token": "Onvoldoende token"
+        "insufficient_token": "Onvoldoende token",
+        "start-failed": "Starten mislukt. Probeer het opnieuw. "
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 is voor Premium team. ",
         "string2": "Upgrade naar Premium om het te gebruiken. Je hebt ook toegang tot de volgende functies. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Functie voor Premium teams",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Deze functie is voor de premium teams. Neem contact op met uw team admins om te upgraden. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {

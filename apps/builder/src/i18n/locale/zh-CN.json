@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "为Agent命名",
         "desc": "简要描述该Agent的用途。",
-        "prompt": "输入 {{ 使用变量",
+        "prompt": "输入 {{变量名}} 使用变量",
         "variable": {
           "key": "变量名",
           "value": "值"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "点击开始按钮触发运行",
-        "insufficient_token": "Token不足"
+        "insufficient_token": "Token不足",
+        "start-failed": "开始失败，请重试。"
       },
       "title": "🧬 编辑AI Agent",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4是为Premium团队提供的选项。",
         "string2": "请升级到Premium以使用它。通过升级到Premium，您还将获得以下权益。"
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Premium团队专属功能",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "该功能是Premium团队专属功能，请联系您团队的管理员升级。"
+            }
+          }
+        },
+        "upgrade_button": "好的"
       }
     },
     "homepage": {

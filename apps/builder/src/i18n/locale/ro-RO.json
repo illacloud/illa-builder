@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dă un nume agentului",
         "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
-        "prompt": "Introduceţi {{ pentru a utiliza o variabilă",
+        "prompt": "Introduceți {{variableName}} pentru a utiliza o variabilă",
         "variable": {
           "key": "Denumire variabilă",
           "value": "Valoare"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
-        "insufficient_token": "Token insuficient"
+        "insufficient_token": "Token insuficient",
+        "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. "
       },
       "title": "🧬 Editare agent AI",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 este pentru echipa Premium. ",
         "string2": "Pentru a o folosi, vă rugăm să faceţi upgrade la Premium. Prin upgrade la Premium, veţi avea de asemenea acces la următoarele caracteristici. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Caracteristică pentru echipele Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Această caracteristică este pentru echipele premium. Vă rugăm să contactați administratorii echipei pentru a face upgrade. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {

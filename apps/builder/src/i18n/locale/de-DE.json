@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Geben Sie dem Agenten einen Namen",
         "desc": "Geben Sie eine kurze Beschreibung dessen an, wofür dieser Agent verwendet werden soll.",
-        "prompt": "Geben Sie {{ ein, um eine Variable zu verwenden",
+        "prompt": "Geben Sie {{variableName}} ein, um eine Variable zu verwenden",
         "variable": {
           "key": "Variablenname",
           "value": "Wert"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
-        "insufficient_token": "Unzureichendes Token"
+        "insufficient_token": "Unzureichendes Token",
+        "start-failed": "Start fehlgeschlagen. Bitte versuchen Sie es erneut. "
       },
       "title": "🧬 KI-Agent bearbeiten",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 ist für das Premium-Team. ",
         "string2": "Um es zu verwenden, upgraden Sie bitte auf Premium. Durch ein Upgrade auf Premium, haben Sie auch Zugriff auf die folgenden Funktionen. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funktion für Premium-Teams",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Diese Funktion ist für die Premium-Teams. Bitte kontaktieren Sie Ihre Team-Administratoren um ein Upgrade durchzuführen. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {

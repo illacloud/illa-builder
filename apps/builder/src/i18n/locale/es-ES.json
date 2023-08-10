@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dar un nombre al agente",
         "desc": "Proporcione una breve descripción de para qué se pretende utilizar este agente.",
-        "prompt": "Ingrese {{ para usar una variable",
+        "prompt": "Introduzca {{variableName}} para usar una variable",
         "variable": {
           "key": "Nombre variable",
           "value": "Valor"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Haga clic en el botón Inicio para activar.",
-        "insufficient_token": "Token insuficiente"
+        "insufficient_token": "Token insuficiente",
+        "start-failed": "Error al iniciar. Vuelve a intentarlo. "
       },
       "title": "🧬 Editar agente AI",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 es para el equipo Premium. ",
         "string2": "Para usarlo, actualice a Premium. Al actualizar a Premium, también tendrá acceso a las siguientes características. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Característica para equipos Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Esta función es para los equipos premium. Póngase en contacto con los administradores de su equipo para actualizar. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {

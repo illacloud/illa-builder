@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dejte jméno agentovi",
         "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
-        "prompt": "Zadejte {{ pro použití proměnné",
+        "prompt": "Zadejte {{variableName}} pro použití proměnné",
         "variable": {
           "key": "Název proměnné",
           "value": "Hodnota"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
-        "insufficient_token": "Nedostatečný token"
+        "insufficient_token": "Nedostatečný token",
+        "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. "
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 je pro prémiový tým. ",
         "string2": "Chcete-li jej použít, proveďte upgrade na Premium. Proveďte upgrade na Premium, budete mít také přístup k následujícím funkcím. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funkce pro prémiové týmy",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Tato funkce je pro prémiové týmy. Pro upgrade kontaktujte správce týmu. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {

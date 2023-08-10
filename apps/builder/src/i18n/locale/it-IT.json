@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dare un nome all'agente",
         "desc": "Fornire una breve descrizione di cosa si intende utilizzare questo agente.",
-        "prompt": "Inserisci {{ per usare una variabile",
+        "prompt": "Inserisci {{variableName}} per usare una variabile",
         "variable": {
           "key": "Nome della variabile",
           "value": "Valore"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Fare clic sul pulsante Start per attivare.",
-        "insufficient_token": "Token insufficiente"
+        "insufficient_token": "Token insufficiente",
+        "start-failed": "Impossibile iniziare. Per favore riprova. "
       },
       "title": "🧬 Modifica Agente AI",
       "generate-desc": {
@@ -3865,6 +3866,17 @@
       "ai-agent": {
         "string1": "GPT-4 è per il team Premium. ",
         "string2": "Per usarlo, aggiorna a Premium. Aggiornando a Premium, avrai anche accesso alle seguenti funzionalità. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Caratteristica per i team Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Questa funzione è per i team premium. Si prega di contattare gli amministratori del team per l'aggiornamento. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
