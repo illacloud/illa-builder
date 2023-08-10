@@ -51,6 +51,7 @@ export function getModelLimitToken(model: AI_AGENT_MODEL): number {
 export interface AgentAdvanceConfig {
   temperature: number
   maxTokens: number
+  stream: boolean
 }
 
 export enum SenderType {
@@ -144,7 +145,8 @@ export const AgentInitial: Agent = {
   prompt: "",
   modelConfig: {
     temperature: 1,
-    maxTokens: 2048,
+    maxTokens: 512,
+    stream: true,
   },
   icon: "",
   description: "",

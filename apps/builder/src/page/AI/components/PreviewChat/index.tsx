@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion"
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
@@ -57,6 +57,8 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const currentUserInfo = useSelector(getCurrentUser)
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
 
+  const chatRef = useRef<HTMLDivElement>(null)
+
   const [textAreaVal, setTextAreaVal] = useState("")
 
   const { t } = useTranslation()
@@ -72,6 +74,12 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       return <AIAgentMessage key={message.threadID} message={message} />
     })
   }, [currentUserInfo.userId, chatMessages])
+
+  useEffect(() => {
+    chatRef.current?.scrollTo({
+      top: chatRef.current.scrollHeight,
+    })
+  }, [chatMessages, generationMessage])
 
   const sendAndClearMessage = useCallback(() => {
     if (textAreaVal !== "") {
@@ -136,7 +144,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             )}
           </div>
         )}
-      <div css={chatContainerStyle}>
+      <div ref={chatRef} css={chatContainerStyle}>
         {agentType === AI_AGENT_TYPE.CHAT ? messagesList : generationBlock}
       </div>
       <div css={inputTextContainerStyle}>

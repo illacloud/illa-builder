@@ -1,6 +1,6 @@
-import axios from "axios"
-import { FC, useCallback, useState } from "react"
-import { Controller, useForm, useFormState } from "react-hook-form"
+import { isEqual } from "lodash"
+import { FC, useCallback, useMemo, useState } from "react"
+import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useLoaderData } from "react-router-dom"
@@ -80,26 +80,18 @@ export const AIAgent: FC = () => {
     agent: Agent
   }
 
-  const { control, handleSubmit, getValues, setValue } = useForm<Agent>({
+  const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
     defaultValues: data.agent,
   })
 
-  const { isSubmitting, isValid, isDirty, dirtyFields } = useFormState({
+  const { isSubmitting, isValid, isDirty } = useFormState({
     control,
   })
 
   const { t } = useTranslation()
 
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
-
-  const blockInputDirty: boolean =
-    Boolean(dirtyFields.variables) ||
-    (dirtyFields.agentType ?? false) ||
-    (dirtyFields.modelConfig?.maxTokens ?? false) ||
-    (dirtyFields.modelConfig?.temperature ?? false) ||
-    (dirtyFields.model ?? false) ||
-    (dirtyFields.prompt ?? false)
 
   const message = useMessage()
   // page state
@@ -114,48 +106,91 @@ export const AIAgent: FC = () => {
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
+  const [lastRunAgent, setLastRunAgent] = useState<Agent | undefined>()
 
   const updateLocalIcon = useCallback(
-    (icon: string, aiAgentID?: string) => {
-      const updateRoomUsers = [...inRoomUsers]
+    (icon: string, newRoomUsers: CollaboratorsInfo[], aiAgentID?: string) => {
+      const updateRoomUsers = [...newRoomUsers]
       let index = -1
       if (aiAgentID === undefined || aiAgentID === "") {
-        index = inRoomUsers.findIndex(
-          (user) => user.role === SenderType.ANONYMOUS_AGENT,
+        index = updateRoomUsers.findIndex(
+          (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
         )
       } else {
-        index = inRoomUsers.findIndex((user) => user.id === aiAgentID)
+        index = updateRoomUsers.findIndex((user) => user.id === aiAgentID)
       }
       if (index != -1) {
         updateRoomUsers[index].avatar = icon
         setInRoomUsers(updateRoomUsers)
       }
     },
-    [inRoomUsers],
+    [],
   )
 
   const updateLocalName = useCallback(
-    (name: string, aiAgentID?: string) => {
-      const updateRoomUsers = [...inRoomUsers]
+    (name: string, newRoomUsers: CollaboratorsInfo[], aiAgentID?: string) => {
+      const updateRoomUsers = [...newRoomUsers]
       let index = -1
       if (aiAgentID === undefined || aiAgentID === "") {
-        index = inRoomUsers.findIndex(
-          (user) => user.role === SenderType.ANONYMOUS_AGENT,
+        index = updateRoomUsers.findIndex(
+          (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
         )
       } else {
-        index = inRoomUsers.findIndex((user) => user.id === aiAgentID)
+        index = updateRoomUsers.findIndex((user) => user.id === aiAgentID)
       }
       if (index != -1) {
         updateRoomUsers[index].nickname = name
         setInRoomUsers(updateRoomUsers)
       }
     },
-    [inRoomUsers],
+    [],
   )
+
+  // watch dirty
+  const getRunAgent = useCallback(() => {
+    return {
+      variables: getValues("variables"),
+      modelConfig: {
+        maxTokens: getValues("modelConfig.maxTokens"),
+        temperature: getValues("modelConfig.temperature"),
+      },
+      model: getValues("model"),
+      prompt: getValues("prompt"),
+      agentType: getValues("agentType"),
+    } as Agent
+  }, [getValues])
+
+  const fieldArray = useWatch({
+    control: control,
+    name: [
+      "variables",
+      "modelConfig.maxTokens",
+      "modelConfig.temperature",
+      "model",
+      "prompt",
+      "agentType",
+    ],
+  })
+
+  const blockInputDirty = useMemo(() => {
+    if (lastRunAgent === undefined) {
+      return true
+    }
+    return (
+      !isEqual(lastRunAgent.variables, fieldArray[0]) ||
+      !isEqual(lastRunAgent.modelConfig.maxTokens, fieldArray[1]) ||
+      !isEqual(lastRunAgent.modelConfig.temperature, fieldArray[2]) ||
+      !isEqual(lastRunAgent.model, fieldArray[3]) ||
+      !isEqual(lastRunAgent.prompt, fieldArray[4]) ||
+      !isEqual(lastRunAgent.agentType, fieldArray[5])
+    )
+  }, [lastRunAgent, fieldArray])
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
-      onStartRunning: () => {},
+      onStartRunning: () => {
+        setLastRunAgent(getRunAgent())
+      },
       onConnecting: (isConnecting) => {
         setIsConnecting(isConnecting)
       },
@@ -182,59 +217,56 @@ export const AIAgent: FC = () => {
       },
       onUpdateRoomUsers: (roomUsers: CollaboratorsInfo[]) => {
         setInRoomUsers(roomUsers)
-        updateLocalIcon(getValues("icon"))
-        updateLocalName(getValues("name"))
+        updateLocalIcon(getValues("icon"), roomUsers)
+        updateLocalName(getValues("name"), roomUsers)
       },
     })
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
-      <form
-        onSubmit={handleSubmit(async (data) => {
-          // icon need to update to cdn then add to agent.
-          try {
-            let updateIconURL = data.icon
-            if (data.icon !== undefined && data.icon !== "") {
-              const iconURL = new URL(data.icon)
-              if (
-                iconURL.protocol !== "http:" &&
-                iconURL.protocol !== "https:"
-              ) {
-                updateIconURL = await uploadAgentIcon(data.icon)
+      <div css={aiAgentContainerStyle}>
+        <form
+          onSubmit={handleSubmit(async (data) => {
+            try {
+              let updateIconURL = data.icon
+              if (data.icon !== undefined && data.icon !== "") {
+                const iconURL = new URL(data.icon)
+                if (
+                  iconURL.protocol !== "http:" &&
+                  iconURL.protocol !== "https:"
+                ) {
+                  updateIconURL = await uploadAgentIcon(data.icon)
+                }
               }
-            }
-            if (data.aiAgentID === undefined || data.aiAgentID === "") {
-              const resp = await createAgent({
-                ...data,
-                icon: updateIconURL,
-                variables: data.variables.filter(
-                  (v) => v.key !== "" && v.value !== "",
-                ),
+              if (data.aiAgentID === undefined || data.aiAgentID === "") {
+                const resp = await createAgent({
+                  ...data,
+                  icon: updateIconURL,
+                  variables: data.variables.filter(
+                    (v) => v.key !== "" && v.value !== "",
+                  ),
+                })
+                reset(resp.data)
+              } else {
+                const resp = await putAgentDetail(data.aiAgentID, {
+                  ...data,
+                  icon: updateIconURL,
+                  variables: data.variables.filter(
+                    (v) => v.key !== "" && v.value !== "",
+                  ),
+                })
+                reset(resp.data)
+              }
+              message.success({
+                content: t("dashboard.message.create-suc"),
               })
-              setValue("aiAgentID", resp.data.aiAgentID)
-            } else {
-              const resp = await putAgentDetail(data.aiAgentID, {
-                ...data,
-                icon: updateIconURL,
-                variables: data.variables.filter(
-                  (v) => v.key !== "" && v.value !== "",
-                ),
-              })
-              setValue("aiAgentID", resp.data.aiAgentID)
-            }
-            message.success({
-              content: t("dashboard.message.create-suc"),
-            })
-          } catch (e) {
-            if (axios.isAxiosError(e)) {
+            } catch (e) {
               message.error({
                 content: t("dashboard.message.create-failed"),
               })
             }
-          }
-        })}
-      >
-        <div css={aiAgentContainerStyle}>
+          })}
+        >
           <div css={leftPanelContainerStyle}>
             <div css={leftPanelCoverContainer}>
               <div css={[leftPanelTitleStyle, leftPanelTitleTextStyle]}>
@@ -304,6 +336,7 @@ export const AIAgent: FC = () => {
                             field.onChange(reader.result)
                             updateLocalIcon(
                               reader.result as string,
+                              inRoomUsers,
                               getValues("aiAgentID"),
                             )
                           }
@@ -352,7 +385,11 @@ export const AIAgent: FC = () => {
                         colorScheme={"techPurple"}
                         onChange={(value) => {
                           field.onChange(value)
-                          updateLocalName(value, getValues("aiAgentID"))
+                          updateLocalName(
+                            value,
+                            inRoomUsers,
+                            getValues("aiAgentID"),
+                          )
                         }}
                       />
                     </AIAgentBlock>
@@ -591,8 +628,9 @@ export const AIAgent: FC = () => {
                         control={control}
                         rules={{
                           required: true,
-                          min: 0,
-                          max: getModelLimitToken(modelField.value),
+                          validate: (value) =>
+                            value > 0 &&
+                            value <= getModelLimitToken(modelField.value),
                         }}
                         shouldUnregister={false}
                         render={({ field }) => (
@@ -613,6 +651,7 @@ export const AIAgent: FC = () => {
                   control={control}
                   rules={{
                     required: true,
+                    validate: (value) => value > 0 && value <= 2,
                   }}
                   shouldUnregister={false}
                   render={({ field }) => (
@@ -625,9 +664,9 @@ export const AIAgent: FC = () => {
                         <Slider
                           {...field}
                           colorScheme={getColor("grayBlue", "02")}
-                          step={0.01}
+                          step={0.1}
                           min={0}
-                          max={1}
+                          max={2}
                         />
                         <span css={temperatureStyle}>{field.value}</span>
                       </div>
@@ -641,6 +680,7 @@ export const AIAgent: FC = () => {
             </div>
             <div css={buttonContainerStyle}>
               <Button
+                id="save-button"
                 flex="1"
                 colorScheme="grayBlue"
                 disabled={!isValid || !isDirty}
@@ -649,8 +689,8 @@ export const AIAgent: FC = () => {
                 {t("editor.ai-agent.save")}
               </Button>
               <Button
-                type="button"
                 flex="1"
+                type="button"
                 disabled={!isValid}
                 loading={isConnecting}
                 ml="8px"
@@ -674,115 +714,115 @@ export const AIAgent: FC = () => {
               </Button>
             </div>
           </div>
-          <Controller
-            name="agentType"
-            control={control}
-            shouldUnregister={false}
-            render={({ field }) => (
-              <Controller
-                name="aiAgentID"
-                control={control}
-                render={({ field: idField }) => (
-                  <div css={rightPanelContainerStyle}>
-                    <PreviewChat
-                      hasCreated={!idField.value}
-                      isMobile={false}
-                      editState="EDIT"
-                      agentType={field.value}
-                      chatMessages={chatMessages}
-                      generationMessage={generationMessage}
-                      isReceiving={isReceiving}
-                      blockInput={!isRunning || blockInputDirty}
-                      onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
-                        sendMessage(
-                          {
-                            threadID: message.threadID,
-                            prompt: encodeURI(message.message),
-                            variables: [],
-                            modelConfig: getValues("modelConfig"),
-                            model: getValues("model"),
-                            agentType: getValues("agentType"),
-                          } as ChatSendRequestPayload,
-                          TextSignal.RUN,
-                          agentType,
-                          true,
-                          message,
-                        )
-                      }}
-                      onCancelReceiving={() => {
-                        sendMessage(
-                          {} as ChatSendRequestPayload,
-                          TextSignal.STOP_ALL,
-                          field.value,
-                          false,
-                        )
-                        setIsReceiving(false)
-                      }}
-                      onShowShareDialog={() => {
-                        setShareDialogVisible(true)
-                      }}
-                      onShowContributeDialog={() => {
-                        setContributedDialogVisible(true)
-                      }}
-                    />
-                  </div>
-                )}
-              />
-            )}
-          />
-        </div>
-        {canManage(
-          currentTeamInfo.myRole,
-          ATTRIBUTE_GROUP.AGENT,
-          ACTION_MANAGE.FORK_AGENT,
-        ) && (
-          <Controller
-            control={control}
-            name="aiAgentID"
-            render={({ field: idField }) => (
-              <Controller
-                control={control}
-                name="name"
-                render={({ field: nameField }) => (
-                  <Controller
-                    control={control}
-                    name="publishedToMarketplace"
-                    render={({ field }) => (
-                      <>
-                        <AgentShareModal
-                          aiAgentID={idField.value}
-                          aiAgentName={nameField.value}
-                          publishedToMarketplace={field.value}
-                          onContributed={(contributed) => {
-                            field.onChange(contributed)
-                          }}
-                          visible={shareDialogVisible}
-                          onCancel={() => {
-                            setShareDialogVisible(false)
-                          }}
-                        />
-                        <AgentShareModal
-                          aiAgentID={idField.value}
-                          aiAgentName={nameField.value}
-                          publishedToMarketplace={field.value}
-                          onContributed={(contributed) => {
-                            field.onChange(contributed)
-                          }}
-                          visible={contributedDialogVisible}
-                          defaultTab="contribute"
-                          onCancel={() => {
-                            setContributedDialogVisible(false)
-                          }}
-                        />
-                      </>
-                    )}
+        </form>
+        <Controller
+          name="agentType"
+          control={control}
+          shouldUnregister={false}
+          render={({ field }) => (
+            <Controller
+              name="aiAgentID"
+              control={control}
+              render={({ field: idField }) => (
+                <div css={rightPanelContainerStyle}>
+                  <PreviewChat
+                    hasCreated={Boolean(idField.value)}
+                    isMobile={false}
+                    editState="EDIT"
+                    agentType={field.value}
+                    chatMessages={chatMessages}
+                    generationMessage={generationMessage}
+                    isReceiving={isReceiving}
+                    blockInput={!isRunning || blockInputDirty}
+                    onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+                      sendMessage(
+                        {
+                          threadID: message.threadID,
+                          prompt: encodeURI(message.message),
+                          variables: [],
+                          modelConfig: getValues("modelConfig"),
+                          model: getValues("model"),
+                          agentType: getValues("agentType"),
+                        } as ChatSendRequestPayload,
+                        TextSignal.RUN,
+                        agentType,
+                        true,
+                        message,
+                      )
+                    }}
+                    onCancelReceiving={() => {
+                      sendMessage(
+                        {} as ChatSendRequestPayload,
+                        TextSignal.STOP_ALL,
+                        field.value,
+                        false,
+                      )
+                      setIsReceiving(false)
+                    }}
+                    onShowShareDialog={() => {
+                      setShareDialogVisible(true)
+                    }}
+                    onShowContributeDialog={() => {
+                      setContributedDialogVisible(true)
+                    }}
                   />
-                )}
-              />
-            )}
-          />
-        )}
-      </form>
+                </div>
+              )}
+            />
+          )}
+        />
+      </div>
+      {canManage(
+        currentTeamInfo.myRole,
+        ATTRIBUTE_GROUP.AGENT,
+        ACTION_MANAGE.FORK_AGENT,
+      ) && (
+        <Controller
+          control={control}
+          name="aiAgentID"
+          render={({ field: idField }) => (
+            <Controller
+              control={control}
+              name="name"
+              render={({ field: nameField }) => (
+                <Controller
+                  control={control}
+                  name="publishedToMarketplace"
+                  render={({ field }) => (
+                    <>
+                      <AgentShareModal
+                        aiAgentID={idField.value}
+                        aiAgentName={nameField.value}
+                        publishedToMarketplace={field.value}
+                        onContributed={(contributed) => {
+                          field.onChange(contributed)
+                        }}
+                        visible={shareDialogVisible}
+                        onCancel={() => {
+                          setShareDialogVisible(false)
+                        }}
+                      />
+                      <AgentShareModal
+                        aiAgentID={idField.value}
+                        aiAgentName={nameField.value}
+                        publishedToMarketplace={field.value}
+                        onContributed={(contributed) => {
+                          field.onChange(contributed)
+                        }}
+                        visible={contributedDialogVisible}
+                        defaultTab="contribute"
+                        onCancel={() => {
+                          setContributedDialogVisible(false)
+                        }}
+                      />
+                    </>
+                  )}
+                />
+              )}
+            />
+          )}
+        />
+      )}
     </ChatContext.Provider>
   )
 }

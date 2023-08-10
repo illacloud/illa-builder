@@ -247,7 +247,7 @@ export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
     aiAgentConnectionAddress: string
   }>(
     {
-      url: `/aiAgent/AIAgentAnonymous/connectionAddress`,
+      url: `/aiAgentAnonymous/connectionAddress`,
       method: "GET",
       signal,
     },

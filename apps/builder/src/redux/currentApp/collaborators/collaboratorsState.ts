@@ -4,7 +4,7 @@ export interface CollaboratorsInfo {
   id: string
   nickname: string
   avatar: string
-  role: SenderType
+  roomRole: SenderType
 }
 
 export interface CollaboratorsState {

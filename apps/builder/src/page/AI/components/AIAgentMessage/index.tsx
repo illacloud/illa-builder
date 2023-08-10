@@ -18,7 +18,7 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
   const senderNickname =
     message.sender.senderType === SenderType.ANONYMOUS_AGENT
       ? chatContext.inRoomUsers.find(
-          (user) => user.role == SenderType.ANONYMOUS_AGENT,
+          (user) => user.roomRole == SenderType.ANONYMOUS_AGENT,
         )?.nickname ?? ""
       : chatContext.inRoomUsers.find(
           (user) => user.id == message.sender.senderID,
@@ -27,7 +27,7 @@ export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
   const senderAvatar =
     message.sender.senderType === SenderType.ANONYMOUS_AGENT
       ? chatContext.inRoomUsers.find(
-          (user) => user.role == SenderType.ANONYMOUS_AGENT,
+          (user) => user.roomRole == SenderType.ANONYMOUS_AGENT,
         )?.avatar ?? ""
       : chatContext.inRoomUsers.find(
           (user) => user.id == message.sender.senderID,

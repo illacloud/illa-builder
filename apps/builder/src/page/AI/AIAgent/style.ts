@@ -38,6 +38,7 @@ export const leftLoadingCoverStyle = css`
   background: ${getColor("white", "03")};
   height: 100%;
   width: 100%;
+  z-index: 10;
 `
 
 export const leftPanelTitleStyle = css`

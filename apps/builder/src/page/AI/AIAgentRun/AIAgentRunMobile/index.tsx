@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -36,7 +36,6 @@ import {
   Agent,
   ChatSendRequestPayload,
   MarketAiAgent,
-  SenderType,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -69,7 +68,7 @@ export const AIAgentRunMobile: FC = () => {
     marketplaceInfo: MarketAiAgent | undefined
   }
 
-  const { control, handleSubmit, getValues } = useForm<Agent>({
+  const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
     defaultValues: agent,
   })
@@ -94,44 +93,6 @@ export const AIAgentRunMobile: FC = () => {
 
   const [currentSelectTab, setCurrentSelectTab] = useState<"config" | "run">(
     "config",
-  )
-
-  const updateLocalIcon = useCallback(
-    (icon: string, aiAgentID?: string) => {
-      const updateRoomUsers = [...inRoomUsers]
-      let index = -1
-      if (aiAgentID === undefined || aiAgentID === "") {
-        index = inRoomUsers.findIndex(
-          (user) => user.role === SenderType.ANONYMOUS_AGENT,
-        )
-      } else {
-        index = inRoomUsers.findIndex((user) => user.id === aiAgentID)
-      }
-      if (index != -1) {
-        updateRoomUsers[index].avatar = icon
-        setInRoomUsers(updateRoomUsers)
-      }
-    },
-    [inRoomUsers],
-  )
-
-  const updateLocalName = useCallback(
-    (name: string, aiAgentID?: string) => {
-      const updateRoomUsers = [...inRoomUsers]
-      let index = -1
-      if (aiAgentID === undefined || aiAgentID === "") {
-        index = inRoomUsers.findIndex(
-          (user) => user.role === SenderType.ANONYMOUS_AGENT,
-        )
-      } else {
-        index = inRoomUsers.findIndex((user) => user.id === aiAgentID)
-      }
-      if (index != -1) {
-        updateRoomUsers[index].nickname = name
-        setInRoomUsers(updateRoomUsers)
-      }
-    },
-    [inRoomUsers],
   )
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
@@ -165,8 +126,6 @@ export const AIAgentRunMobile: FC = () => {
       },
       onUpdateRoomUsers(roomUsers: CollaboratorsInfo[]): void {
         setInRoomUsers(roomUsers)
-        updateLocalIcon(getValues("icon"))
-        updateLocalName(getValues("name"))
       },
     })
 
@@ -422,120 +381,121 @@ export const AIAgentRunMobile: FC = () => {
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
-      <form
-        onSubmit={handleSubmit(async (data) => {
-          isRunning
-            ? await reconnect(data.aiAgentID, data.agentType)
-            : await connect(data.aiAgentID, data.agentType)
-        })}
-      >
-        <div css={aiAgentContainerStyle}>
-          <div css={headerContainerStyle}>
-            <div css={headerInfoStyle}>
+      <div css={aiAgentContainerStyle}>
+        <div css={headerContainerStyle}>
+          <div css={headerInfoStyle}>
+            <Controller
+              name="icon"
+              control={control}
+              render={({ field }) => (
+                <Avatar css={agentIconStyle} avatarUrl={field.value} />
+              )}
+            />
+            <div css={agentContentContainerStyle}>
               <Controller
-                name="icon"
+                name="name"
                 control={control}
                 render={({ field }) => (
-                  <Avatar css={agentIconStyle} avatarUrl={field.value} />
+                  <div css={agentNameStyle}>{field.value}</div>
                 )}
               />
-              <div css={agentContentContainerStyle}>
-                <Controller
-                  name="name"
-                  control={control}
-                  render={({ field }) => (
-                    <div css={agentNameStyle}>{field.value}</div>
+              <div css={agentMarketContainerStyle}>
+                <div css={agentTeamNameStyle}>{agent.teamName}</div>
+                {agent.publishedToMarketplace && (
+                  <div css={agentMarketResultStyle}>
+                    {t("marketplace.star", {
+                      operationNum: marketplaceInfo?.marketplace.numStars,
+                    })}{" "}
+                    ·{" "}
+                    {t("marketplace.fork", {
+                      operationNum: marketplaceInfo?.marketplace.numForks,
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+            <Controller
+              name="publishedToMarketplace"
+              control={control}
+              render={({ field }) => {
+                if (
+                  !field.value &&
+                  !canManage(
+                    currentTeamInfo.myRole,
+                    ATTRIBUTE_GROUP.AGENT,
+                    ACTION_MANAGE.FORK_AGENT,
+                  )
+                ) {
+                  return <></>
+                }
+                return (
+                  <div
+                    css={shareContainerStyle}
+                    onClick={() => {
+                      setShareDialogVisible(true)
+                    }}
+                  >
+                    <DependencyIcon fs="48px" />
+                  </div>
+                )
+              }}
+            />
+          </div>
+          <Controller
+            name="agentType"
+            control={control}
+            render={({ field }) => (
+              <div css={tabsContainerStyle}>
+                <div
+                  css={tabContainerStyle}
+                  onClick={() => {
+                    setCurrentSelectTab("config")
+                  }}
+                >
+                  <div css={tabStyle}>{t("editor.ai-agent.tab.prompt")}</div>
+                  {currentSelectTab === "config" && (
+                    <motion.div css={lineStyle} layoutId="underline" />
                   )}
-                />
-                <div css={agentMarketContainerStyle}>
-                  <div css={agentTeamNameStyle}>{agent.teamName}</div>
-                  {agent.publishedToMarketplace && (
-                    <div css={agentMarketResultStyle}>
-                      {t("marketplace.star", {
-                        operationNum: marketplaceInfo?.marketplace.numStars,
-                      })}{" "}
-                      ·{" "}
-                      {t("marketplace.fork", {
-                        operationNum: marketplaceInfo?.marketplace.numForks,
-                      })}
-                    </div>
+                </div>
+                <div css={dividerStyle} />
+                <div
+                  css={tabContainerStyle}
+                  onClick={() => {
+                    if (!isRunning || isDirty) {
+                      message.info({
+                        content: t("editor.ai-agent.message.click-start"),
+                      })
+                      return
+                    }
+                    setCurrentSelectTab("run")
+                  }}
+                >
+                  <div css={tabStyle}>
+                    {field.value === AI_AGENT_TYPE.CHAT
+                      ? t("editor.ai-agent.tab.chat")
+                      : t("editor.ai-agent.tab.text")}
+                  </div>
+                  {currentSelectTab === "run" && (
+                    <motion.div css={lineStyle} layoutId="underline" />
                   )}
                 </div>
               </div>
-              <Controller
-                name="publishedToMarketplace"
-                control={control}
-                render={({ field }) => {
-                  if (
-                    !field.value &&
-                    !canManage(
-                      currentTeamInfo.myRole,
-                      ATTRIBUTE_GROUP.AGENT,
-                      ACTION_MANAGE.FORK_AGENT,
-                    )
-                  ) {
-                    return <></>
-                  }
-                  return (
-                    <div
-                      css={shareContainerStyle}
-                      onClick={() => {
-                        setShareDialogVisible(true)
-                      }}
-                    >
-                      <DependencyIcon fs="48px" />
-                    </div>
-                  )
-                }}
-              />
-            </div>
-            <Controller
-              name="agentType"
-              control={control}
-              render={({ field }) => (
-                <div css={tabsContainerStyle}>
-                  <div
-                    css={tabContainerStyle}
-                    onClick={() => {
-                      setCurrentSelectTab("config")
-                    }}
-                  >
-                    <div css={tabStyle}>{t("editor.ai-agent.tab.prompt")}</div>
-                    {currentSelectTab === "config" && (
-                      <motion.div css={lineStyle} layoutId="underline" />
-                    )}
-                  </div>
-                  <div css={dividerStyle} />
-                  <div
-                    css={tabContainerStyle}
-                    onClick={() => {
-                      if (!isRunning || isDirty) {
-                        message.info({
-                          content: t("editor.ai-agent.message.click-start"),
-                        })
-                        return
-                      }
-                      setCurrentSelectTab("run")
-                    }}
-                  >
-                    <div css={tabStyle}>
-                      {field.value === AI_AGENT_TYPE.CHAT
-                        ? t("editor.ai-agent.tab.chat")
-                        : t("editor.ai-agent.tab.text")}
-                    </div>
-                    {currentSelectTab === "run" && (
-                      <motion.div css={lineStyle} layoutId="underline" />
-                    )}
-                  </div>
-                </div>
-              )}
-            />
-          </div>
-          {currentSelectTab === "run" && previewChatTab}
-          {currentSelectTab === "config" && configTab}
-          {dialog}
+            )}
+          />
         </div>
-      </form>
+        {currentSelectTab === "run" && previewChatTab}
+        <form
+          onSubmit={handleSubmit(async (data) => {
+            reset(data)
+            isRunning
+              ? await reconnect(data.aiAgentID, data.agentType)
+              : await connect(data.aiAgentID, data.agentType)
+          })}
+        >
+          {currentSelectTab === "config" && configTab}
+        </form>
+        {dialog}
+      </div>
     </ChatContext.Provider>
   )
 }

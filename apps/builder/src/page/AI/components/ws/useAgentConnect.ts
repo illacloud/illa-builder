@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useMessage } from "@illa-design/react"
 import { Connection, getTextMessagePayload } from "@/api/ws"
 import { WSMessageListener } from "@/api/ws/illaWS"
-import { Callback, ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
+import { Callback } from "@/api/ws/interface"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import {
   UseAgentProps,
@@ -16,14 +16,13 @@ import {
   ChatSendRequestPayload,
   ChatWsAppendResponse,
 } from "@/redux/aiAgent/aiAgentState"
-import { configActions } from "@/redux/config/configSlice"
+import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   getAIAgentAnonymousAddress,
   getAIAgentWsAddress,
 } from "@/services/agent"
-import store from "@/store"
 
 export function useAgentConnect(useAgentProps: UseAgentProps) {
   const {
@@ -39,6 +38,9 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
   const [generationMessage, setGenerationMessage] = useState<
     ChatMessage | undefined
   >(undefined)
+
+  const chatMessagesRef = useRef<ChatMessage[]>([])
+  const generationMessageRef = useRef<ChatMessage | undefined>(undefined)
 
   const currentTeamInfo = useSelector(getCurrentTeamInfo)
   const currentUserInfo = useSelector(getCurrentUser)
@@ -59,8 +61,11 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
         getTextMessagePayload(
           signal,
           TextTarget.ACTION,
-          false,
-          null,
+          true,
+          {
+            type: "chat",
+            payload: {},
+          },
           currentTeamInfo?.id ?? "",
           currentUserInfo.userId,
           [payload],
@@ -69,9 +74,14 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
       if (updateMessage && messageContent) {
         switch (aiAgentType) {
           case AI_AGENT_TYPE.CHAT:
+            chatMessagesRef.current = [
+              ...chatMessagesRef.current,
+              messageContent,
+            ]
             setChatMessages([...chatMessages, messageContent])
             break
           case AI_AGENT_TYPE.TEXT_GENERATION:
+            generationMessageRef.current = undefined
             setGenerationMessage(undefined)
             break
         }
@@ -79,6 +89,47 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
     },
     [chatMessages, currentTeamInfo?.id, currentUserInfo.userId, onReceiving],
   )
+
+  const onUpdateChatMessage = useCallback((message: ChatMessage) => {
+    const newMessageList = [...chatMessagesRef.current]
+    const index = newMessageList.findIndex((m) => {
+      return m.threadID === message.threadID
+    })
+    if (index === -1) {
+      newMessageList.push({
+        sender: message.sender,
+        message: message.message,
+        threadID: message.threadID,
+      } as ChatMessage)
+    } else {
+      newMessageList[index].message =
+        newMessageList[index].message + message.message
+    }
+    chatMessagesRef.current = newMessageList
+    setChatMessages(newMessageList)
+  }, [])
+
+  const onUpdateGenerationMessage = useCallback((message: ChatMessage) => {
+    if (
+      generationMessageRef.current &&
+      generationMessageRef.current.threadID === message.threadID
+    ) {
+      const newMessage = {
+        ...generationMessageRef.current,
+      }
+      newMessage.message = newMessage.message + message.message
+      generationMessageRef.current = newMessage
+      setGenerationMessage(newMessage)
+    } else {
+      const m = {
+        sender: message.sender,
+        message: message.message,
+        threadID: message.threadID,
+      } as ChatMessage
+      generationMessageRef.current = m
+      setGenerationMessage(m)
+    }
+  }, [])
 
   const connect = useCallback(
     async (aiAgentID: string, agentType: AI_AGENT_TYPE) => {
@@ -92,78 +143,47 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
           const response = await getAIAgentWsAddress(aiAgentID)
           address = response.data.aiAgentConnectionAddress
         }
+
         const messageListener = {
-          onMessage: (event, context, ws) => {
-            const message = event.data
-            if (typeof message !== "string") {
+          onMessage: (event) => {
+            const m = event.data
+            if (typeof m !== "string") {
               return
             }
-            const dataList = message.split("\n")
+            const dataList = m.split("\n")
             dataList.forEach((data: string) => {
               let callback: Callback<unknown> = JSON.parse(data)
-
-              if (callback.target === TextTarget.ACTION) {
-                let chatCallback: Callback<ChatWsAppendResponse> =
-                  JSON.parse(data)
-                switch (chatCallback.errorCode) {
-                  case 0:
-                    if (agentType === AI_AGENT_TYPE.CHAT) {
-                      const newMessageList = [...chatMessages]
-                      const index = newMessageList.findIndex((m) => {
-                        return m.threadID === chatCallback.data.threadID
-                      })
-                      if (index === -1) {
-                        newMessageList.push({
-                          sender: chatCallback.data.sender,
-                          message: chatCallback.data.message,
-                          threadID: chatCallback.data.threadID,
-                        } as ChatMessage)
-                      } else {
-                        newMessageList[index].message =
-                          newMessageList[index].message +
-                          chatCallback.data.message
-                      }
-                      setChatMessages(newMessageList)
-                    } else {
-                      if (
-                        generationMessage &&
-                        generationMessage.threadID ===
-                          chatCallback.data.threadID
-                      ) {
-                        const newMessage = {
-                          ...generationMessage,
-                        }
-                        newMessage.message =
-                          newMessage.message + chatCallback.data.message
-                        setGenerationMessage(newMessage)
-                      } else {
-                        setGenerationMessage({
-                          sender: chatCallback.data.sender,
-                          message: chatCallback.data.message,
-                          threadID: chatCallback.data.threadID,
-                        } as ChatMessage)
-                      }
-                    }
-                    break
-                  case 14:
-                    store.dispatch(
-                      configActions.updateWSStatusReducer({
-                        context: context,
-                        wsStatus: ILLA_WEBSOCKET_STATUS.LOCKING,
-                      }),
-                    )
-                    ws.reconnect()
-                    break
-                  case 15:
-                    onReceiving(false)
+              if (callback.broadcast?.type === "enter/remote") {
+                const { inRoomUsers } = callback.broadcast.payload as {
+                  inRoomUsers: CollaboratorsInfo[]
                 }
-              }
-              if (
-                callback.signal === TextSignal.ENTER &&
-                callback.broadcast.type == "enter/remote"
-              ) {
-                const { inRoomUsers } = JSON.parse(callback.broadcast.payload)
                 onUpdateRoomUsers(inRoomUsers)
+                onSendPrompt()
+              } else {
+                if (callback.broadcast?.type === "chat/remote") {
+                  switch (callback.errorCode) {
+                    case 0:
+                      let chatCallback = callback.broadcast
+                        .payload as ChatWsAppendResponse
+                      if (agentType === AI_AGENT_TYPE.CHAT) {
+                        onUpdateChatMessage(chatCallback)
+                      } else {
+                        onUpdateGenerationMessage(chatCallback)
+                      }
+                      break
+                    case 15:
+                      onReceiving(false)
+                      break
+                  }
+                } else {
+                  if (callback.errorCode !== 3 && callback.errorCode !== 0) {
+                    onReceiving(false)
+                    onRunning(false)
+                    message.error({
+                      content: t("editor.ai-agent.message.start-failed"),
+                    })
+                  }
+                }
               }
             })
           },
@@ -171,8 +191,8 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
         Connection.enterAgentRoom(address, messageListener)
         onConnecting(false)
         onRunning(true)
+        onReceiving(true)
         onStartRunning()
-        onSendPrompt()
       } catch (e) {
         onConnecting(false)
         message.error({
@@ -186,10 +206,10 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
       onRunning,
       onStartRunning,
       onSendPrompt,
-      onReceiving,
-      chatMessages,
-      generationMessage,
       onUpdateRoomUsers,
+      onReceiving,
+      onUpdateChatMessage,
+      onUpdateGenerationMessage,
       message,
       t,
     ],
@@ -205,7 +225,9 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
     async (aiAgentID: string, aiAgentType: AI_AGENT_TYPE) => {
       Connection.leaveRoom("ai-agent", "")
       onRunning(false)
+      chatMessagesRef.current = []
       setChatMessages([])
+      generationMessageRef.current = undefined
       setGenerationMessage(undefined)
       await connect(aiAgentID, aiAgentType)
     },

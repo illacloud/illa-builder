@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -37,7 +37,6 @@ import {
   Agent,
   ChatSendRequestPayload,
   MarketAiAgent,
-  SenderType,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
@@ -66,7 +65,7 @@ export const AIAgentRunPC: FC = () => {
     marketplaceInfo: MarketAiAgent | undefined
   }
 
-  const { control, handleSubmit, getValues } = useForm<Agent>({
+  const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
     defaultValues: agent,
   })
@@ -86,25 +85,6 @@ export const AIAgentRunPC: FC = () => {
   const [isReceiving, setIsReceiving] = useState(false)
 
   const { t } = useTranslation()
-
-  const updateLocalIcon = useCallback(
-    (icon: string, aiAgentID?: string) => {
-      const updateRoomUsers = [...inRoomUsers]
-      let index = -1
-      if (aiAgentID === undefined || aiAgentID === "") {
-        index = inRoomUsers.findIndex(
-          (user) => user.role === SenderType.ANONYMOUS_AGENT,
-        )
-      } else {
-        index = inRoomUsers.findIndex((user) => user.id === aiAgentID)
-      }
-      if (index != -1) {
-        updateRoomUsers[index].avatar = icon
-        setInRoomUsers(updateRoomUsers)
-      }
-    },
-    [inRoomUsers],
-  )
 
   const dialog = useMemo(() => {
     return (
@@ -183,25 +163,6 @@ export const AIAgentRunPC: FC = () => {
     shareDialogVisible,
   ])
 
-  const updateLocalName = useCallback(
-    (name: string, aiAgentID?: string) => {
-      const updateRoomUsers = [...inRoomUsers]
-      let index = -1
-      if (aiAgentID === undefined || aiAgentID === "") {
-        index = inRoomUsers.findIndex(
-          (user) => user.role === SenderType.ANONYMOUS_AGENT,
-        )
-      } else {
-        index = inRoomUsers.findIndex((user) => user.id === aiAgentID)
-      }
-      if (index != -1) {
-        updateRoomUsers[index].nickname = name
-        setInRoomUsers(updateRoomUsers)
-      }
-    },
-    [inRoomUsers],
-  )
-
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
       onStartRunning: () => {},
@@ -231,8 +192,6 @@ export const AIAgentRunPC: FC = () => {
       },
       onUpdateRoomUsers(roomUsers: CollaboratorsInfo[]): void {
         setInRoomUsers(roomUsers)
-        updateLocalIcon(getValues("icon"))
-        updateLocalName(getValues("name"))
       },
     })
 
@@ -309,14 +268,15 @@ export const AIAgentRunPC: FC = () => {
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
-      <form
-        onSubmit={handleSubmit(async (data) => {
-          isRunning
-            ? await reconnect(data.aiAgentID, data.agentType)
-            : await connect(data.aiAgentID, data.agentType)
-        })}
-      >
-        <div css={aiAgentContainerStyle}>
+      <div css={aiAgentContainerStyle}>
+        <form
+          onSubmit={handleSubmit(async (data) => {
+            reset(data)
+            isRunning
+              ? await reconnect(data.aiAgentID, data.agentType)
+              : await connect(data.aiAgentID, data.agentType)
+          })}
+        >
           <div css={leftPanelContainerStyle}>
             <div css={agentTopContainerStyle}>
               <div css={agentTitleContainerStyle}>
@@ -516,53 +476,53 @@ export const AIAgentRunPC: FC = () => {
               </Button>
             </div>
           </div>
-          <Controller
-            name="agentType"
-            control={control}
-            shouldUnregister={false}
-            render={({ field }) => (
-              <div css={rightPanelContainerStyle}>
-                <PreviewChat
-                  hasCreated={true}
-                  isMobile={false}
-                  editState="RUN"
-                  agentType={field.value}
-                  chatMessages={chatMessages}
-                  generationMessage={generationMessage}
-                  isReceiving={isReceiving}
-                  blockInput={!isRunning || isDirty}
-                  onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
-                    sendMessage(
-                      {
-                        threadID: message.threadID,
-                        prompt: message.message,
-                        variables: [],
-                        modelConfig: getValues("modelConfig"),
-                        model: getValues("model"),
-                        agentType: getValues("agentType"),
-                      } as ChatSendRequestPayload,
-                      TextSignal.RUN,
-                      agentType,
-                      true,
-                      message,
-                    )
-                  }}
-                  onCancelReceiving={() => {
-                    sendMessage(
-                      {} as ChatSendRequestPayload,
-                      TextSignal.STOP_ALL,
-                      field.value,
-                      false,
-                    )
-                    setIsReceiving(false)
-                  }}
-                />
-              </div>
-            )}
-          />
-        </div>
-        {dialog}
-      </form>
+        </form>
+        <Controller
+          name="agentType"
+          control={control}
+          shouldUnregister={false}
+          render={({ field }) => (
+            <div css={rightPanelContainerStyle}>
+              <PreviewChat
+                hasCreated={true}
+                isMobile={false}
+                editState="RUN"
+                agentType={field.value}
+                chatMessages={chatMessages}
+                generationMessage={generationMessage}
+                isReceiving={isReceiving}
+                blockInput={!isRunning || isDirty}
+                onSendMessage={(message, agentType: AI_AGENT_TYPE) => {
+                  sendMessage(
+                    {
+                      threadID: message.threadID,
+                      prompt: message.message,
+                      variables: [],
+                      modelConfig: getValues("modelConfig"),
+                      model: getValues("model"),
+                      agentType: getValues("agentType"),
+                    } as ChatSendRequestPayload,
+                    TextSignal.RUN,
+                    agentType,
+                    true,
+                    message,
+                  )
+                }}
+                onCancelReceiving={() => {
+                  sendMessage(
+                    {} as ChatSendRequestPayload,
+                    TextSignal.STOP_ALL,
+                    field.value,
+                    false,
+                  )
+                  setIsReceiving(false)
+                }}
+              />
+            </div>
+          )}
+        />
+      </div>
+      {dialog}
     </ChatContext.Provider>
   )
 }
