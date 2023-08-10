@@ -1,4 +1,5 @@
 import { FC, useCallback } from "react"
+import { useTranslation } from "react-i18next"
 import { Button, PlayOutlineIcon, StarOutlineIcon } from "@illa-design/react"
 import { ReactComponent as EmojiSmileIcon } from "@/assets/agent/emojiSmile.svg"
 import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
@@ -21,6 +22,7 @@ import { formatNumForAgent } from "./utils"
 
 export const MarketListItem: FC<MarketListItemProps> = (props) => {
   const { item, onSelected, style } = props
+  const { t } = useTranslation()
 
   const handleClickOnSelect = useCallback(() => {
     onSelected(item.aiAgent)
@@ -60,8 +62,9 @@ export const MarketListItem: FC<MarketListItemProps> = (props) => {
         colorScheme="grayBlue"
         leftIcon={<ForkIcon />}
       >
-        {/* TODO: I18n */}
-        Fork {formatNumForAgent(item.marketplace.numForks)}
+        {t("marketplace.fork", {
+          operationNum: formatNumForAgent(item.marketplace.numForks),
+        })}
       </Button>
     </div>
   )

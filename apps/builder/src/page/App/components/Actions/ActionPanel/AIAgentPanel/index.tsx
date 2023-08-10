@@ -1,4 +1,5 @@
 import { FC, useCallback } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, InputNumber } from "@illa-design/react"
 import { ReactComponent as ModalOpenAIIcon } from "@/assets/agent/modal-openai.svg"
@@ -22,6 +23,7 @@ import { maxTokenInputStyle } from "./style"
 
 const AIAgentPanel: FC = () => {
   const currentAction = useSelector(getCachedAction)!
+  const { t } = useTranslation()
   const dispatch = useDispatch()
 
   const aiAgentContent = currentAction.content as AiAgentActionContent
@@ -62,7 +64,7 @@ const AIAgentPanel: FC = () => {
     <div>
       <ResourceChoose />
       <ActionPanelSpace />
-      <HorizontalWithLabel labelName="Model">
+      <HorizontalWithLabel labelName={t("editor.ai-agent.label.model")}>
         <Input
           prefix={<ModalOpenAIIcon />}
           colorScheme="techPurple"
@@ -76,20 +78,22 @@ const AIAgentPanel: FC = () => {
         fillOnly
         records={aiAgentContent.variables}
         onChangeValue={handleChangeVariableValue}
-        label="Variable"
+        label={t("editor.ai-agent.label.variable")}
       />
-      <HorizontalWithLabel labelName="Input">
+      <HorizontalWithLabel
+        labelName={t("editor.action.panel.label.ai-agent.input")}
+      >
         <CodeEditor
           lang={CODE_LANG.JAVASCRIPT}
           expectValueType={VALIDATION_TYPES.STRING}
-          modalTitle="Input"
+          modalTitle={t("editor.action.panel.label.ai-agent.input")}
           codeType={CODE_TYPE.NO_METHOD_FUNCTION}
           canShowCompleteInfo
           value={aiAgentContent.input}
           onChange={handleChangeInput}
         />
       </HorizontalWithLabel>
-      <HorizontalWithLabel labelName="Max Token">
+      <HorizontalWithLabel labelName={t("editor.ai-agent.label.max-token")}>
         <InputNumber
           readOnly
           value={aiAgentContent.maxTokens}

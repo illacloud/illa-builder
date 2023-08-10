@@ -21,6 +21,7 @@ import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { track } from "@/utils/mixpanelHelper"
+import { isCloudVersion } from "../../../../../../utils/typeHelper"
 import { ActionCard } from "../ActionCard"
 import { ActionTypeSelectorProps } from "./interface"
 import { categoryStyle, containerStyle, resourceListStyle } from "./style"
@@ -35,7 +36,10 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const isGuideMode = useSelector(getIsILLAGuideMode)
   return (
     <Spin css={containerStyle} colorScheme="techPurple" loading={loading}>
-      {ActionTypeList.map(({ title, item, category }) => (
+      {ActionTypeList.filter((item) => {
+        if (!isCloudVersion) return item.category !== "aiAgent"
+        return item
+      }).map(({ title, item, category }) => (
         <div key={category}>
           <span css={categoryStyle}>{title}</span>
           <div css={resourceListStyle}>

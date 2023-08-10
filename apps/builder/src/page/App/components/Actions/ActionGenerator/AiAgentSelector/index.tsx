@@ -10,6 +10,7 @@ import Select from "@/illa-public-market-component/Select"
 import { Agent } from "@/redux/aiAgent/aiAgentState"
 import { MARKET_AGENT_SORTED_OPTIONS } from "@/services/agent"
 import { track } from "@/utils/mixpanelHelper"
+import i18n from "../../../../../../i18n/config"
 import { MarketAgentList } from "./components/MarketList"
 import { TeamAgentList } from "./components/TeamAgentList"
 import { ActionResourceSelectorProps } from "./interface"
@@ -22,15 +23,15 @@ import {
 
 const sortOptions = [
   {
-    label: "Popular",
+    label: i18n.t("dashboard.sort-type.popular"),
     value: MARKET_AGENT_SORTED_OPTIONS.POPULAR,
   },
   {
-    label: "Newest",
+    label: i18n.t("dashboard.sort-type.recent"),
     value: MARKET_AGENT_SORTED_OPTIONS.LATEST,
   },
   {
-    label: "Star",
+    label: i18n.t("dashboard.sort-type.star"),
     value: MARKET_AGENT_SORTED_OPTIONS.STARRED,
   },
 ]
@@ -59,11 +60,11 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
   const agentOptions = useMemo(() => {
     return [
       {
-        label: t("Team AI Agent"),
+        label: t("dashboard.list-type.team"),
         value: "team",
       },
       {
-        label: t("Agent market"),
+        label: t("dashboard.list-type.marketplace"),
         value: "market",
       },
     ]
@@ -96,6 +97,8 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
           pd="0px 24px"
           colorScheme="techPurple"
           onChange={debounceSearchKeywords.current}
+          placeholder={t("dashboard.search")}
+          allowClear
         />
         <div css={headerContainerStyle}>
           <RadioGroup
