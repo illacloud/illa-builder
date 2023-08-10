@@ -3290,7 +3290,8 @@
       "permission": "Berechtigung",
       "operation": "Operation",
       "transfer": "Übertrage Eigentum",
-      "remove": "Entfernen"
+      "remove": "Entfernen",
+      "ai-agent": "KI-Agenten"
     },
     "transfer_modal": {
       "title": "Bist du sicher, dass du das Eigentum übertragen möchtest?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Vereinfachen Sie Ihre Arbeitsbelastung mit [{{promptName}}] - Der KI-Agent, der die Aufgabe erledigt"
       },
       "contribute": "Ich bin auf eine AI Agent-Plattform gestoßen, die innovative Lösungen zur Vereinfachung komplexer Aufgaben und zur Integration in Ihre internen Werkzeuge bietet. Ich habe persönlich [{{promptName}}] ausprobiert und wurde durch seine Fähigkeiten weggeblasen. Es ist ein Spielwechsel für alle, die der Kurve voraus bleiben möchten. Schau es dir selbst bei {{promptLink}} an und lass mich wissen, was du denkst!"
+    },
+    "button": {
+      "contribute": "Zum Marktplatz beitragen",
+      "share_contribute": "Kopieren & Teilen",
+      "uncontribute": "Beitrag abbrechen"
     }
   },
   "ai-agents": "KI-Agenten",
