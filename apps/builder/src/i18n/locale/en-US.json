@@ -72,7 +72,7 @@
       "sort-failed": "Failed to change the filter type. Please try again.",
       "detail-load-failed": "Failed to retrieve details, please try again.",
       "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
+      "create-suc": "Successfully saved",
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
       "delete-suc": "Successfully deleted. "
