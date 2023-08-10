@@ -72,7 +72,7 @@
       "sort-failed": "Kan ikke endre filtertypen. Vennligst prøv på nytt.",
       "detail-load-failed": "Kan ikke hente detaljer, prøv igjen.",
       "fork-failed": "Skaffe, vennligst prøv igjen.",
-      "create-suc": "Kunne ikke opprette, vennligst prøv igjen.",
+      "create-suc": "Lagring vellykket",
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. "
