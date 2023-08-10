@@ -72,7 +72,7 @@
       "sort-failed": "Kunne ikke ændre filtertypen. Prøv igen.",
       "detail-load-failed": "Kunne ikke hente detaljer. Prøv venligst igen.",
       "fork-failed": "Mislykkedes at gaffel, prøv igen.",
-      "create-suc": "Kunne ikke oprettes. Prøv venligst igen.",
+      "create-suc": "Gemt med succes",
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. "
