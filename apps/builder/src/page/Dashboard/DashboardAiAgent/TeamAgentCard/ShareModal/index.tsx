@@ -14,10 +14,15 @@ import {
   getCurrentMemberList,
   getCurrentTeamInfo,
 } from "@/redux/team/teamSelector"
-import { fetchShareAgentLink, shareAgentByEmail } from "@/services/agent"
+import {
+  fetchShareAgentLink,
+  renewShareAgentLink,
+  shareAgentByEmail,
+} from "@/services/agent"
 import { contributeAiAgent, unlistedAiAgent } from "@/services/marketPlace"
 import {
   changeTeamMembersRole,
+  setInviteLinkEnabled,
   updateMembers,
   updateTeamsInfo,
 } from "@/services/team"
@@ -122,6 +127,13 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
     [aiAgentID],
   )
 
+  const renewShareLink = useCallback(
+    (userRole: USER_ROLE) => {
+      return renewShareAgentLink(userRole, aiAgentID)
+    },
+    [aiAgentID],
+  )
+
   const contributeToMarketplace = useCallback(
     async (value: boolean) => {
       const res = (await value)
@@ -145,7 +157,10 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
       teamName={teamInfo?.name}
       userNickname={userInfo.nickname}
       userListData={members}
+      allowInviteByLink={teamInfo?.permission?.inviteLinkEnabled}
       fetchInviteLink={fetchShareLink}
+      renewInviteLink={renewShareLink}
+      configInviteLink={setInviteLinkEnabled}
       inviteByEmail={handleInviteByEmail}
       changeTeamMembersRole={handleChangeTeamMembersRole}
       contributeToMarketplace={contributeToMarketplace}

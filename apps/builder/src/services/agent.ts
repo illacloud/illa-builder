@@ -6,6 +6,7 @@ import {
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
 import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
+import { MARKET_PAGE_SIZE } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/constants"
 import {
   Agent,
   AgentRaw,
@@ -17,7 +18,6 @@ import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
 import { getTeamID } from "@/utils/team"
 import { isCloudVersion } from "@/utils/typeHelper"
-import { MARKET_PAGE_SIZE } from "../page/App/components/Actions/ActionGenerator/AiAgentSelector/constants"
 
 export interface TeamAgentListData {
   aiAgentList: Agent[]
@@ -332,6 +332,21 @@ export const fetchShareAgentLink = async (
     {
       method: "GET",
       url: `/shareAppLink/userRole/${userRole}/apps/${agentID}/redirectPage/${redirectPage}`,
+    },
+    { needTeamID: true },
+  )
+  return response.data
+}
+
+export const renewShareAgentLink = async (
+  userRole: USER_ROLE,
+  agentID: string,
+  redirectPage?: REDIRECT_PAGE_TYPE,
+) => {
+  const response = await authCloudRequest<fetchInviteLinkResponse>(
+    {
+      method: "GET",
+      url: `/newShareAppLink/userRole/${userRole}/apps/${agentID}/redirectPage/${redirectPage}`,
     },
     { needTeamID: true },
   )
