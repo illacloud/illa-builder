@@ -72,7 +72,7 @@
       "sort-failed": "Suodattimen tyyppiä ei voitu muuttaa. Yritä uudelleen.",
       "detail-load-failed": "Tietojen noutaminen epäonnistui, yritä uudelleen.",
       "fork-failed": "Ei voitu forkata, yritä uudelleen.",
-      "create-suc": "Ei voitu luoda, yritä uudelleen.",
+      "create-suc": "Tallennus onnistui",
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
       "delete-suc": "Poistettu onnistuneesti. "
