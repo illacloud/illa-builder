@@ -8,20 +8,25 @@ import App from "./App"
 import store from "./store"
 
 if (
-  import.meta.env.PROD &&
-  import.meta.env.VITE_INSTANCE_ID === "CLOUD" &&
-  import.meta.env.VITE_SENTRY_SERVER_API
+  process.env.ILLA_APP_ENV &&
+  process.env.ILLA_APP_ENV !== "development" &&
+  process.env.VITE_INSTANCE_ID === "CLOUD" &&
+  process.env.VITE_SENTRY_SERVER_API
 ) {
   Sentry.init({
-    dsn: import.meta.env.VITE_SENTRY_SERVER_API,
+    dsn: process.env.VITE_SENTRY_SERVER_API,
     integrations: [new Sentry.BrowserTracing()],
-    environment: import.meta.env.ILLA_APP_ENV,
+    environment: process.env.ILLA_APP_ENV,
     tracesSampleRate: 1.0,
-    release: `illa-builder@${import.meta.env.ILLA_APP_VERSION}`,
+    release: `illa-builder@${process.env.ILLA_APP_VERSION}`,
   })
 }
 
-if (import.meta.env.PROD && import.meta.env.VITE_INSTANCE_ID === "CLOUD") {
+if (
+  process.env.ILLA_APP_ENV &&
+  process.env.ILLA_APP_ENV !== "development" &&
+  process.env.VITE_INSTANCE_ID === "CLOUD"
+) {
   const firstScript = document.createElement("script")
   const sendScript = document.createElement("script")
   sendScript.innerHTML = `    window.dataLayer = window.dataLayer || []

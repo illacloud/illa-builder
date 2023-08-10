@@ -17,7 +17,6 @@ export const IllaApp: FC = () => {
 
   useEffect(() => {
     const abortController = new AbortController()
-
     fetchDashboardWsURL(abortController.signal)
       .then((res) => {
         Connection.enterDashboardRoom(fixedWsURL(res.data.wsURL))
@@ -34,6 +33,8 @@ export const IllaApp: FC = () => {
       )
     }
   }, [dispatch])
+
+  console.log("process.env.test", process.env)
 
   return (
     <div css={containerStyle}>

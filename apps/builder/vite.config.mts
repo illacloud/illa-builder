@@ -10,9 +10,20 @@ import checker from "vite-plugin-checker"
 import svgr from "vite-plugin-svgr"
 import pkg from "./package.json"
 
+const getUsedEnv = (env: Record<string, string>) => {
+  const usedEnv: Record<string, string> = {}
+  Object.keys(env).forEach((key) => {
+    if (key.startsWith("VITE_") || key.startsWith("ILLA_")) {
+      usedEnv[`process.env.${key}`] = JSON.stringify(env[key])
+    }
+  })
+  return usedEnv
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "")
+
   const useHttps = env.VITE_USE_HTTPS === "true"
   const BASIC_PLUGIN = [
     mdx(),
@@ -74,20 +85,7 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     envPrefix: ["VITE_", "ILLA_"],
-    define: {
-      "import.meta.env.ILLA_APP_VERSION": JSON.stringify(pkg.version),
-      "import.meta.env.ILLA_APP_ENV": JSON.stringify(env.ILLA_APP_ENV),
-      "import.meta.env.ILLA_GOOGLE_MAP_KEY": JSON.stringify(
-        env.ILLA_GOOGLE_MAP_KEY,
-      ),
-      "import.meta.env.ILLA_MIXPANEL_API_KEY": JSON.stringify(
-        env.ILLA_MIXPANEL_API_KEY,
-      ),
-      "import.meta.env.VITE_API_BASE_URL": JSON.stringify(
-        env.VITE_API_BASE_URL,
-      ),
-      "import.meta.env.VITE_CLOUD_URL": JSON.stringify(env.VITE_CLOUD_URL),
-    },
+    define: getUsedEnv(env),
     build: {
       sourcemap: true,
       reportCompressedSize: false,

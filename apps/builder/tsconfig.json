@@ -21,7 +21,13 @@
       "@/*": ["./*"],
       "@assets/*": ["./src/assets/*"]
     },
-    "types": ["vite/client", "vite-plugin-svgr/client", "mdx", "node"]
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client",
+      "mdx",
+      "node",
+      "./src/types/environment.d.ts"
+    ]
   },
   "include": [
     "./src/**/*.tsx",

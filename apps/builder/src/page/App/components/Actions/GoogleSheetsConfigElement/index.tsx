@@ -75,7 +75,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   useOAuthRefresh(resourceId)
 
   const oauthMethodOptions = useMemo(() => {
-    if (import.meta.env.ILLA_APP_ENV === "production") {
+    if (process.env.ILLA_APP_ENV === "production") {
       return [
         {
           label: t("editor.action.form.option.gs.service_account"),
