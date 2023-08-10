@@ -1,10 +1,10 @@
 import { isCloudVersion } from "@/utils/typeHelper"
 
 export const HTTP_REQUEST_PUBLIC_BASE_URL = isCloudVersion
-  ? `//${process.env.VITE_API_BASE_URL}`
+  ? `//${process.env.ILLA_API_BASE_URL}`
   : // if use self-host,must has protocol,like this:http://localhost:8080
-  process.env.VITE_API_BASE_URL
-  ? `${location.protocol}//${process.env.VITE_API_BASE_URL}`
+  process.env.ILLA_API_BASE_URL
+  ? `${location.protocol}//${process.env.ILLA_API_BASE_URL}`
   : `${location.origin}`
 
 export const BUILDER_REQUEST_PREFIX = "/builder/api/v1"

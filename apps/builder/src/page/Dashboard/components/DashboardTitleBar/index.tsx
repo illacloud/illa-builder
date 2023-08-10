@@ -157,7 +157,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
           <Logo
             onClick={() => {
               if (isCloudVersion) {
-                window.location.href = `//${process.env.VITE_CLOUD_URL}`
+                window.location.href = `//${process.env.ILLA_CLOUD_URL}`
               } else {
                 navigate(`./apps`)
               }

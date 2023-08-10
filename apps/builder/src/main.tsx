@@ -10,11 +10,11 @@ import store from "./store"
 if (
   process.env.ILLA_APP_ENV &&
   process.env.ILLA_APP_ENV !== "development" &&
-  process.env.VITE_INSTANCE_ID === "CLOUD" &&
-  process.env.VITE_SENTRY_SERVER_API
+  process.env.ILLA_INSTANCE_ID === "CLOUD" &&
+  process.env.ILLA_SENTRY_SERVER_API
 ) {
   Sentry.init({
-    dsn: process.env.VITE_SENTRY_SERVER_API,
+    dsn: process.env.ILLA_SENTRY_SERVER_API,
     integrations: [new Sentry.BrowserTracing()],
     environment: process.env.ILLA_APP_ENV,
     tracesSampleRate: 1.0,
@@ -25,7 +25,7 @@ if (
 if (
   process.env.ILLA_APP_ENV &&
   process.env.ILLA_APP_ENV !== "development" &&
-  process.env.VITE_INSTANCE_ID === "CLOUD"
+  process.env.ILLA_INSTANCE_ID === "CLOUD"
 ) {
   const firstScript = document.createElement("script")
   const sendScript = document.createElement("script")

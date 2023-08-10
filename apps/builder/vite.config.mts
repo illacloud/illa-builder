@@ -13,7 +13,7 @@ import pkg from "./package.json"
 const getUsedEnv = (env: Record<string, string>) => {
   const usedEnv: Record<string, string> = {}
   Object.keys(env).forEach((key) => {
-    if (key.startsWith("VITE_") || key.startsWith("ILLA_")) {
+    if (key.startsWith("ILLA_")) {
       usedEnv[`process.env.${key}`] = JSON.stringify(env[key])
     }
   })
@@ -24,7 +24,7 @@ const getUsedEnv = (env: Record<string, string>) => {
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "")
 
-  const useHttps = env.VITE_USE_HTTPS === "true"
+  const useHttps = env.ILLA_USE_HTTPS === "true"
   const BASIC_PLUGIN = [
     mdx(),
     react({
@@ -49,7 +49,7 @@ export default defineConfig(({ command, mode }) => {
   if (command === "serve" && useHttps) {
     plugin.push(basicSsl())
   } else {
-    if (env.VITE_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
+    if (env.ILLA_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
       plugin.push(
         sentryVitePlugin({
           org: "sentry",
@@ -84,7 +84,7 @@ export default defineConfig(({ command, mode }) => {
         "@assets": resolve(__dirname, "src/assets"),
       },
     },
-    envPrefix: ["VITE_", "ILLA_"],
+    envPrefix: ["ILLA_"],
     define: getUsedEnv(env),
     build: {
       sourcemap: true,
