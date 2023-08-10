@@ -3290,7 +3290,8 @@
       "permission": "Bevoegdheden",
       "operation": "Bewerking",
       "transfer": "Transfer Ownership",
-      "remove": "Verwijderen"
+      "remove": "Verwijderen",
+      "ai-agent": "AI agenten"
     },
     "transfer_modal": {
       "title": "Weet u zeker dat u de eigenaarschap wilt overmaken?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Vereenvoudig je werkdruk met [{{promptName}}] - De AI Agent die de Job Gereed krijgt"
       },
       "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
+    },
+    "button": {
+      "contribute": "Draag bij aan de marktplaats",
+      "share_contribute": "Kopiëren & delen",
+      "uncontribute": "Annuleer bijdrage"
     }
   },
   "ai-agents": "AI agenten",

@@ -3290,7 +3290,8 @@
       "permission": "Uprawnienie",
       "operation": "Operacja",
       "transfer": "Przenieś własność",
-      "remove": "Usuń"
+      "remove": "Usuń",
+      "ai-agent": "Agenci SI"
     },
     "transfer_modal": {
       "title": "Czy na pewno chcesz przenieść własność?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Uprość obciążenie zadaniami z [{{promptName}}] - Agent AI, który wykonuje zadanie"
       },
       "contribute": "Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!"
+    },
+    "button": {
+      "contribute": "Przyczyń się do marketplace",
+      "share_contribute": "Kopiuj i udostępnij",
+      "uncontribute": "Anuluj wkład"
     }
   },
   "ai-agents": "Agenci SI",

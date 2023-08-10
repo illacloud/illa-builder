@@ -3290,7 +3290,8 @@
       "permission": "Právo",
       "operation": "Operace",
       "transfer": "Převést vlastnictví",
-      "remove": "Odebrat"
+      "remove": "Odebrat",
+      "ai-agent": "AI agenti"
     },
     "transfer_modal": {
       "title": "Jste si jisti, že chcete převést vlastnictví?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Zjednodušit pracovní zatížení pomocí [{{promptName}}] - AI agenta, který práci dokončil"
       },
       "contribute": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!"
+    },
+    "button": {
+      "contribute": "Přispějte na tržišti",
+      "share_contribute": "Kopírovat a sdílet",
+      "uncontribute": "Zrušit příspěvek"
     }
   },
   "ai-agents": "AI agenti",

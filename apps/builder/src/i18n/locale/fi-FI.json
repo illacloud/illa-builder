@@ -3290,7 +3290,8 @@
       "permission": "Käyttöoikeus",
       "operation": "Toiminto",
       "transfer": "Siirrä omistajuus",
-      "remove": "Poista"
+      "remove": "Poista",
+      "ai-agent": "AI Agents"
     },
     "transfer_modal": {
       "title": "Oletko varma, että haluat siirtää omistajuutta?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Yksinkertaista työtaakkaa [{{promptName}}] - tekoälyn agentti, joka saa tehtävän valmiiksi."
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "contribute": "Osallistu markkinapaikkaan",
+      "share_contribute": "Kopioi & Jaa",
+      "uncontribute": "Peruuta lisäys"
     }
   },
   "ai-agents": "AI Agents",

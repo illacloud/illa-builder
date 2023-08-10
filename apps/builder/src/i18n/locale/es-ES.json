@@ -3290,7 +3290,8 @@
       "permission": "Permiso",
       "operation": "Operación",
       "transfer": "Transferir propiedad",
-      "remove": "Eliminar"
+      "remove": "Eliminar",
+      "ai-agent": "Agentes de IA"
     },
     "transfer_modal": {
       "title": "¿Estás seguro de que quieres transferir tu propietario?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Simplifique su carga de trabajo con [{{promptName}}] - El agente de IA que consigue el trabajo hecho"
       },
       "contribute": "Me encontré con una plataforma de AI Agent que ofrece soluciones de vanguardia para simplificar tareas complejas e integrarse con sus herramientas internas. Personalmente probé [{{promptName}}] y fue explotado por sus capacidades. Es un cambio de juego para cualquiera que busque mantenerse por delante de la curva. ¡Échale un vistazo a ti mismo en {{promptLink}} y hazme saber lo que piensas!"
+    },
+    "button": {
+      "contribute": "Contribuir al mercado",
+      "share_contribute": "Copiar y compartir",
+      "uncontribute": "Cancelar contribución"
     }
   },
   "ai-agents": "Agentes de IA",

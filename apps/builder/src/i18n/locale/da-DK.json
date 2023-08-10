@@ -3290,7 +3290,8 @@
       "permission": "Tilladelse",
       "operation": "Handling",
       "transfer": "Overfør ejerskab",
-      "remove": "Fjern"
+      "remove": "Fjern",
+      "ai-agent": "AI Agenter"
     },
     "transfer_modal": {
       "title": "Er du sikker på, at du vil overføre ejerskab?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Forenkle din arbejdsbyrde med [{{promptName}}] - AI Agent, der Får det færdige job"
       },
       "contribute": "Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!"
+    },
+    "button": {
+      "contribute": "Bidrag til markedspladsen",
+      "share_contribute": "Kopiér & Del",
+      "uncontribute": "Annuller bidrag"
     }
   },
   "ai-agents": "AI Agenter",

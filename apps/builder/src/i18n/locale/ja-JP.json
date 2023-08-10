@@ -3290,7 +3290,8 @@
       "permission": "権限",
       "operation": "オペレーション",
       "transfer": "所有権の譲渡",
-      "remove": "削除"
+      "remove": "削除",
+      "ai-agent": "AI Agents"
     },
     "transfer_modal": {
       "title": "所有権を譲渡してもよろしいですか？",
@@ -3985,6 +3986,11 @@
         "hackernews": "[{{promptName}}] で作業負荷を簡素化する - 作業を完了させるAIエージェント"
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "contribute": "マーケットプレイスに貢献する",
+      "share_contribute": "コピー & 共有",
+      "uncontribute": "投稿をキャンセル"
     }
   },
   "ai-agents": "AIエージェント",

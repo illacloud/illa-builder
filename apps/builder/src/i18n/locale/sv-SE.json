@@ -3290,7 +3290,8 @@
       "permission": "Behörighet",
       "operation": "Åtgärd",
       "transfer": "Överför ägarskap",
-      "remove": "Radera"
+      "remove": "Radera",
+      "ai-agent": "AI agenter"
     },
     "transfer_modal": {
       "title": "Är du säker på att du vill överföra ägande?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Förenkla din arbetsbelastning med [{{promptName}}] - AI-agenten som får jobbet klart"
       },
       "contribute": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!"
+    },
+    "button": {
+      "contribute": "Bidra till marknadsplatsen",
+      "share_contribute": "Kopiera & dela",
+      "uncontribute": "Avbryt bidrag"
     }
   },
   "ai-agents": "AI agenter",

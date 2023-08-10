@@ -3290,7 +3290,8 @@
       "permission": "Permisiune",
       "operation": "Operațiune",
       "transfer": "Transferă proprietate",
-      "remove": "Elimină"
+      "remove": "Elimină",
+      "ai-agent": "Agenți AI"
     },
     "transfer_modal": {
       "title": "Sunteţi sigur că doriţi să transferaţi dreptul de proprietate?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
       },
       "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
+    },
+    "button": {
+      "contribute": "Contribuie la piata",
+      "share_contribute": "Copiază & Partajează",
+      "uncontribute": "Anulează contribuția"
     }
   },
   "ai-agents": "Agenți AI",

@@ -3290,7 +3290,8 @@
       "permission": "권한",
       "operation": "운영",
       "transfer": "소유권 이전",
-      "remove": "제거"
+      "remove": "제거",
+      "ai-agent": "AI Agents"
     },
     "transfer_modal": {
       "title": "소유권을 이전하시겠습니까?",
@@ -3985,6 +3986,11 @@
         "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "contribute": "Contribute to marketplace",
+      "share_contribute": "Copy & Share",
+      "uncontribute": "Cancel contribution"
     }
   },
   "ai-agents": "AI Agents",
