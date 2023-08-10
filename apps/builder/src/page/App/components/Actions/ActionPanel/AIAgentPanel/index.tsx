@@ -15,9 +15,9 @@ import { configActions } from "@/redux/config/configSlice"
 import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { AIAgentResourceChoose } from "../AIAgentResourceChoose"
 import HorizontalWithLabel from "../Layout/HorizontalWithLabel"
 import ActionPanelSpace from "../Layout/Space"
-import { ResourceChoose } from "../ResourceChoose"
 import { TransformerComponent } from "../TransformerComponent"
 import { maxTokenInputStyle } from "./style"
 
@@ -62,7 +62,7 @@ const AIAgentPanel: FC = () => {
 
   return (
     <div>
-      <ResourceChoose />
+      <AIAgentResourceChoose />
       <ActionPanelSpace />
       <HorizontalWithLabel labelName={t("editor.ai-agent.label.model")}>
         <Input
