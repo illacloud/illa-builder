@@ -3,7 +3,7 @@ import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useLoaderData } from "react-router-dom"
+import { useAsyncValue } from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -63,7 +63,7 @@ import {
 } from "./style"
 
 export const AIAgentRunMobile: FC = () => {
-  const { agent, marketplaceInfo } = useLoaderData() as {
+  const { agent, marketplaceInfo } = useAsyncValue() as {
     agent: Agent
     marketplaceInfo: MarketAiAgent | undefined
   }

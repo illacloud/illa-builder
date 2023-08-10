@@ -1,21 +1,22 @@
-import { LoaderFunction, redirect } from "react-router-dom"
+import { LoaderFunction, defer } from "react-router-dom"
 import { AgentInitial } from "@/redux/aiAgent/aiAgentState"
 import { fetchAgentDetail } from "@/services/agent"
 
-export const agentLoader: LoaderFunction = async (args) => {
-  const { agentId } = args.params
+const getAgentInitData = async (agentId?: string) => {
   if (agentId) {
-    try {
-      const agent = await fetchAgentDetail(agentId)
-      return {
-        agent: agent.data,
-      }
-    } catch (e) {
-      return redirect("/404")
+    const agent = await fetchAgentDetail(agentId)
+    return {
+      agent: agent.data,
     }
   } else {
     return {
       agent: AgentInitial,
     }
   }
+}
+export const agentLoader: LoaderFunction = async (args) => {
+  const { agentId } = args.params
+  return defer({
+    data: getAgentInitData(agentId),
+  })
 }
