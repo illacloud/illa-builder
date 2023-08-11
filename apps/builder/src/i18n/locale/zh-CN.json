@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "点击开始按钮触发运行",
-        "insufficient_token": "Token不足",
+        "insufficient_token": "Colla不足",
         "start-failed": "开始失败，请重试。",
-        "reconnect": "连接已断开，正在重连"
+        "reconnect": "连接已断开，正在重连",
+        "token-not-enough": "运行已达模型上限，请重新开始。"
       },
       "title": "🧬 编辑AI Agent",
       "generate-desc": {
