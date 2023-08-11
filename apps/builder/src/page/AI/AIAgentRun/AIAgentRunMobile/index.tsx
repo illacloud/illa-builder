@@ -108,6 +108,15 @@ export const AIAgentRunMobile: FC = () => {
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
+      onSendClean: () => {
+        sendMessage(
+          {} as ChatSendRequestPayload,
+          TextSignal.CLEAN,
+          getValues("agentType"),
+          "clean",
+          false,
+        )
+      },
       onStartRunning: () => {
         setCurrentSelectTab("run")
       },
@@ -132,6 +141,7 @@ export const AIAgentRunMobile: FC = () => {
           } as ChatSendRequestPayload,
           TextSignal.RUN,
           getValues("agentType"),
+          "chat",
           false,
         )
       },
@@ -369,6 +379,7 @@ export const AIAgentRunMobile: FC = () => {
                 } as ChatSendRequestPayload,
                 TextSignal.RUN,
                 agentType,
+                "chat",
                 true,
                 message,
               )
@@ -378,6 +389,7 @@ export const AIAgentRunMobile: FC = () => {
                 {} as ChatSendRequestPayload,
                 TextSignal.STOP_ALL,
                 field.value,
+                "stop_all",
                 false,
               )
               setIsReceiving(false)

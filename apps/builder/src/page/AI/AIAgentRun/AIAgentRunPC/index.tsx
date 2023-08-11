@@ -176,6 +176,15 @@ export const AIAgentRunPC: FC = () => {
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
+      onSendClean: () => {
+        sendMessage(
+          {} as ChatSendRequestPayload,
+          TextSignal.CLEAN,
+          getValues("agentType"),
+          "clean",
+          false,
+        )
+      },
       onStartRunning: () => {},
       onConnecting: (isConnecting) => {
         setIsConnecting(isConnecting)
@@ -198,6 +207,7 @@ export const AIAgentRunPC: FC = () => {
           } as ChatSendRequestPayload,
           TextSignal.RUN,
           getValues("agentType"),
+          "chat",
           false,
         )
       },
@@ -520,6 +530,7 @@ export const AIAgentRunPC: FC = () => {
                     } as ChatSendRequestPayload,
                     TextSignal.RUN,
                     agentType,
+                    "chat",
                     true,
                     message,
                   )
@@ -529,6 +540,7 @@ export const AIAgentRunPC: FC = () => {
                     {} as ChatSendRequestPayload,
                     TextSignal.STOP_ALL,
                     field.value,
+                    "stop_all",
                     false,
                   )
                   setIsReceiving(false)

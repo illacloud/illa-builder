@@ -1,4 +1,5 @@
 import { TextSignal } from "@/api/ws/textSignal"
+import { AgentMessageType } from "@/page/AI/components/ws/useAgentConnect"
 import {
   AI_AGENT_TYPE,
   ChatMessage,
@@ -13,6 +14,7 @@ export interface UseAgentProps {
   onUpdateRoomUsers: (roomUsers: CollaboratorsInfo[]) => void
   onSendPrompt: () => void
   onStartRunning: () => void
+  onSendClean: () => void
 }
 
 export interface UseAgentReturn {
@@ -22,6 +24,7 @@ export interface UseAgentReturn {
     payload: ChatSendRequestPayload,
     signal: TextSignal,
     aiAgentType: AI_AGENT_TYPE,
+    type: AgentMessageType,
     updateMessage?: boolean,
     messageContent?: ChatMessage,
   ) => void

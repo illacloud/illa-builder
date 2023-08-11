@@ -203,6 +203,15 @@ export const AIAgent: FC = () => {
       onRunning: (isRunning: boolean) => {
         setIsRunning(isRunning)
       },
+      onSendClean: () => {
+        sendMessage(
+          {} as ChatSendRequestPayload,
+          TextSignal.CLEAN,
+          getValues("agentType"),
+          "clean",
+          false,
+        )
+      },
       onSendPrompt: () => {
         sendMessage(
           {
@@ -215,6 +224,7 @@ export const AIAgent: FC = () => {
           } as ChatSendRequestPayload,
           TextSignal.RUN,
           getValues("agentType"),
+          "chat",
           false,
         )
       },
@@ -759,6 +769,7 @@ export const AIAgent: FC = () => {
                         } as ChatSendRequestPayload,
                         TextSignal.RUN,
                         agentType,
+                        "chat",
                         true,
                         message,
                       )
@@ -768,6 +779,7 @@ export const AIAgent: FC = () => {
                         {} as ChatSendRequestPayload,
                         TextSignal.STOP_ALL,
                         field.value,
+                        "stop_all",
                         false,
                       )
                       setIsReceiving(false)

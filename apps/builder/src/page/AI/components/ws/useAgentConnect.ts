@@ -24,10 +24,13 @@ import {
   getAIAgentWsAddress,
 } from "@/services/agent"
 
+export type AgentMessageType = "chat" | "stop_all" | "clean"
+
 export function useAgentConnect(useAgentProps: UseAgentProps) {
   const {
     onConnecting,
     onReceiving,
+    onSendClean,
     onUpdateRoomUsers,
     onRunning,
     onSendPrompt,
@@ -53,6 +56,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
       payload: ChatSendRequestPayload,
       signal: TextSignal,
       aiAgentType: AI_AGENT_TYPE,
+      type: AgentMessageType,
       updateMessage?: boolean,
       messageContent?: ChatMessage,
     ) => {
@@ -63,7 +67,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
           TextTarget.ACTION,
           true,
           {
-            type: "chat",
+            type: type,
             payload: {},
           },
           currentTeamInfo?.id ?? "",
@@ -153,14 +157,15 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
             const dataList = m.split("\n")
             dataList.forEach((data: string) => {
               let callback: Callback<unknown> = JSON.parse(data)
-              if (callback.broadcast?.type === "enter/remote") {
-                const { inRoomUsers } = callback.broadcast.payload as {
-                  inRoomUsers: CollaboratorsInfo[]
-                }
-                onUpdateRoomUsers(inRoomUsers)
-                onSendPrompt()
-              } else {
-                if (callback.broadcast?.type === "chat/remote") {
+              switch (callback.broadcast?.type) {
+                case "enter/remote":
+                  const { inRoomUsers } = callback.broadcast.payload as {
+                    inRoomUsers: CollaboratorsInfo[]
+                  }
+                  onUpdateRoomUsers(inRoomUsers)
+                  onSendClean()
+                  break
+                case "chat/remote":
                   switch (callback.errorCode) {
                     case 0:
                       let chatCallback = callback.broadcast
@@ -175,7 +180,13 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                       onReceiving(false)
                       break
                   }
-                } else {
+                  break
+                case "stop_all/remote":
+                  break
+                case "clean/remote":
+                  onSendPrompt()
+                  break
+                default:
                   if (callback.errorCode !== 3 && callback.errorCode !== 0) {
                     onReceiving(false)
                     onRunning(false)
@@ -183,7 +194,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                       content: t("editor.ai-agent.message.start-failed"),
                     })
                   }
-                }
+                  break
               }
             })
           },
@@ -204,10 +215,11 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
     [
       onConnecting,
       onRunning,
-      onStartRunning,
-      onSendPrompt,
-      onUpdateRoomUsers,
       onReceiving,
+      onStartRunning,
+      onUpdateRoomUsers,
+      onSendClean,
+      onSendPrompt,
       onUpdateChatMessage,
       onUpdateGenerationMessage,
       message,
