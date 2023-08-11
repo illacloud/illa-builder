@@ -2629,8 +2629,8 @@
         "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "Czat",
+        "textGeneration": "Generowanie tekstu"
       }
     },
     "common": {
