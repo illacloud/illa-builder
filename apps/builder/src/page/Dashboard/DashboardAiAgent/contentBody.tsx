@@ -1,22 +1,21 @@
-import { FC, useCallback, useContext, useEffect, useMemo } from "react"
+import { FC, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import { useNavigate, useParams, useSearchParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { RadioGroup } from "@illa-design/react"
 import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
 import Select from "@/illa-public-market-component/Select"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
-import {
-  AgentType,
-  AiAgentContext,
-} from "@/page/Dashboard/DashboardAiAgent/context"
+import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
   listContainerStyle,
   listFilterContainerStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
+import { DashboardAiAgentLoaderData } from "@/router/loader/dashBoardLoader"
 import { PRODUCT_SORT_BY } from "@/services/marketPlace"
 
 export interface AgentContentBodyProps {
   canEdit: boolean
+  agentData: DashboardAiAgentLoaderData["marketAgentData"]
 }
 
 export const DEFAULT_AGENT_TAB = "team"
@@ -25,17 +24,14 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   const { canEdit } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
-  const [_, setSearchParams] = useSearchParams()
 
   const {
     marketAgentList,
     teamAgentList,
     agentType,
-    setAgentType,
     sortedBy,
     setSortedBy,
-    // marketListPage,
-    getAgentList,
+    handleAgentTypeChange,
   } = useContext(AiAgentContext)
 
   const agentOptions = useMemo(() => {
@@ -73,19 +69,8 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
     [navigate, teamIdentifier],
   )
 
-  const handleAgentTypeChange = (newType: string) => {
-    setAgentType(newType as AgentType)
-    setSearchParams({ list: newType })
-    getAgentList(newType as AgentType)
-  }
-
-  useEffect(() => {
-    getAgentList()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
-    <>
+    <div>
       <div css={listFilterContainerStyle}>
         <RadioGroup
           type="button"
@@ -129,6 +114,6 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
             )
           })}
       </div>
-    </>
+    </div>
   )
 }

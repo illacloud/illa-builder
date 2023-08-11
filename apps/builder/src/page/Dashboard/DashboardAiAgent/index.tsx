@@ -1,7 +1,13 @@
 import { FC, Suspense, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { Await, useLoaderData, useNavigate, useParams } from "react-router-dom"
+import {
+  Await,
+  useLoaderData,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom"
 import { Button, PlusIcon } from "@illa-design/react"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -10,7 +16,11 @@ import {
   ATTRIBUTE_GROUP,
   USER_ROLE,
 } from "@/illa-public-component/UserRoleUtils/interface"
-import { AgentContentBody } from "@/page/Dashboard/DashboardAiAgent/contentBody"
+import {
+  AgentContentBody,
+  DEFAULT_AGENT_TAB,
+} from "@/page/Dashboard/DashboardAiAgent/contentBody"
+import { AgentType } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
   containerStyle,
   listTitleContainerStyle,
@@ -19,8 +29,8 @@ import {
   teamNameStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
 import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { DashboardAiAgentLoaderData } from "@/router/loader/dashBoardLoader"
 import { DashboardErrorElement } from "../components/ErrorElement"
 import { DashBoardLoading } from "../components/Loading"
 
@@ -28,11 +38,12 @@ const DashboardAiAgent: FC = () => {
   const { t } = useTranslation()
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
-  const { appList } = useLoaderData() as { appList: DashboardApp[] }
-
+  const loaderData = useLoaderData() as DashboardAiAgentLoaderData
+  const [searchParams] = useSearchParams()
   const teamInfo = useSelector(getCurrentTeamInfo)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
+  const agentType = (searchParams.get("list") as AgentType) || DEFAULT_AGENT_TAB
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
 
   const canEditApp = canManage(
@@ -74,8 +85,20 @@ const DashboardAiAgent: FC = () => {
         ) : null}
       </div>
       <Suspense fallback={<DashBoardLoading />}>
-        <Await resolve={appList} errorElement={<DashboardErrorElement />}>
-          <AgentContentBody canEdit={canEditApp} />
+        <Await
+          resolve={
+            agentType === "market"
+              ? loaderData.marketAgentData
+              : loaderData.teamAgentList
+          }
+          errorElement={<DashboardErrorElement />}
+        >
+          {(agentData) => {
+            console.log(loaderData, "loaderDataloaderData")
+            return (
+              <AgentContentBody canEdit={canEditApp} agentData={agentData} />
+            )
+          }}
         </Await>
       </Suspense>
       <DashBoardInviteModal

@@ -45,6 +45,7 @@ export type MarketAgentList = ProductList<PRODUCT_TYPE.AI_AGENT>
 export const fetchProductList = <T extends keyof ProductTypeMapping>(
   productType: T,
   params: ProductListParams,
+  signal?: AbortSignal,
 ) => {
   const {
     page = 0,
@@ -62,12 +63,14 @@ export const fetchProductList = <T extends keyof ProductTypeMapping>(
       sortedBy,
       search,
     },
+    signal,
   })
 }
 
 export const fetchNeedAuthProductList = <T extends keyof ProductTypeMapping>(
   productType: T,
   params: ProductListParams,
+  signal?: AbortSignal,
 ) => {
   const {
     page = 0,
@@ -84,17 +87,29 @@ export const fetchNeedAuthProductList = <T extends keyof ProductTypeMapping>(
       sortedBy,
       search,
     },
+    signal,
   })
 }
 
-export const fetchAgentList = (params: ProductListParams) => {
-  return fetchProductList<PRODUCT_TYPE.AI_AGENT>(PRODUCT_TYPE.AI_AGENT, params)
+export const fetchAgentList = (
+  params: ProductListParams,
+  signal?: AbortSignal,
+) => {
+  return fetchProductList<PRODUCT_TYPE.AI_AGENT>(
+    PRODUCT_TYPE.AI_AGENT,
+    params,
+    signal,
+  )
 }
 
-export const fetchNeedAuthAgentList = (params: ProductListParams) => {
+export const fetchNeedAuthAgentList = (
+  params: ProductListParams,
+  signal?: AbortSignal,
+) => {
   return fetchNeedAuthProductList<PRODUCT_TYPE.AI_AGENT>(
     PRODUCT_TYPE.AI_AGENT,
     params,
+    signal,
   )
 }
 

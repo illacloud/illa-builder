@@ -1,7 +1,12 @@
 import { FC, ReactNode, createContext, useCallback, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
 import { DEFAULT_AGENT_TAB } from "@/page/Dashboard/DashboardAiAgent/contentBody"
 import { Agent, PublicMarketAiAgent } from "@/redux/aiAgent/aiAgentState"
+import { getDashboardMarketAiAgent } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSelector"
+import { dashboardMarketAiAgentActions } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSlice"
+import { getDashboardTeamAiAgentList } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSelector"
+import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import { fetchTeamAgentList } from "@/services/agent"
 import { PRODUCT_SORT_BY, fetchNeedAuthAgentList } from "@/services/marketPlace"
 
@@ -12,29 +17,29 @@ interface ProviderProps {
 export type AgentType = "team" | "market"
 
 interface Inject extends Omit<ProviderProps, "children"> {
-  keyword: string
-  setKeyword: (keyword: string) => void
+  handleSearchAgent: (keyword: string) => void
   agentType: AgentType
-  setAgentType: (type: AgentType) => void
+  handleAgentTypeChange: (type: AgentType) => void
   teamAgentList: Agent[]
   marketAgentList: PublicMarketAiAgent[]
-  getAgentList: (type?: AgentType) => void
   loading: boolean
-  setLoading: (loading: boolean) => void
   sortedBy: PRODUCT_SORT_BY
   setSortedBy: (sortedBy: PRODUCT_SORT_BY) => void
-  marketListPage: number
 }
+
+export const MARKET_INITIAL_PAGE = 1
+export const MARKET_PAGE_SIZE = 20
+export const MARKET_DEFAULT_SORT = PRODUCT_SORT_BY.POPULARITY
 
 export const AiAgentContext = createContext<Inject>({} as Inject)
 
 export const AiAgentProvider: FC<ProviderProps> = (props) => {
+  const dispatch = useDispatch()
   const [searchParams] = useSearchParams()
-
-  const [teamAgentList, setTeamAgentList] = useState<Agent[]>([])
-  const [marketAgentList, setMarketAgentList] = useState<PublicMarketAiAgent[]>(
-    [],
-  )
+  const teamAgentList = useSelector(getDashboardTeamAiAgentList)
+  const marketAgentData = useSelector(getDashboardMarketAiAgent)
+  const marketAgentList = marketAgentData.products
+  const marketListPage = marketAgentData.pageIndex
 
   const [loading, setLoading] = useState(false)
   const [agentType, setAgentType] = useState<AgentType>(
@@ -43,60 +48,84 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
   const [keyword, setKeyword] = useState("")
 
   // market agent
-  const [sortedBy, setSortedBy] = useState(PRODUCT_SORT_BY.POPULARITY)
-  const [marketListPage, setMarketListPage] = useState(1)
+  const [sortedBy, setSortedBy] = useState(MARKET_DEFAULT_SORT)
 
-  const getTeamAgentList = useCallback(() => {
-    fetchTeamAgentList(keyword).then((res) => {
-      setTeamAgentList(res.data.aiAgentList)
-    })
-  }, [keyword])
+  const getTeamAgentList = useCallback(
+    async (keyword?: string) => {
+      const res = await fetchTeamAgentList(keyword)
+      dispatch(
+        dashboardTeamAiAgentActions.updateTeamAiAgentListReducer(
+          res.data.aiAgentList,
+        ),
+      )
+    },
+    [dispatch],
+  )
 
   const getMarketAgentList = useCallback(
-    (params: { page?: number; sort?: PRODUCT_SORT_BY } = {}) => {
+    async (
+      params: {
+        page?: number
+        sort?: PRODUCT_SORT_BY
+        search?: string
+      } = {},
+    ) => {
+      setLoading(true)
+      console.log(keyword, "getMarketAgentList change")
       const { page = marketListPage, sort = sortedBy } = params
-      fetchNeedAuthAgentList({
+      const res = await fetchNeedAuthAgentList({
         page,
-        limit: 20,
+        limit: MARKET_PAGE_SIZE,
         sortedBy: sort,
         search: keyword,
-      }).then((res) => {
-        setMarketListPage(res.data.pageIndex)
-        if (res.data.pageIndex > 1) {
-          setMarketAgentList((prevState) => prevState.concat(res.data.products))
-        } else {
-          setMarketAgentList(res.data.products)
-        }
       })
+      dispatch(
+        dashboardMarketAiAgentActions.updateMarketAiAgentListReducer(res.data),
+      )
+      setLoading(false)
     },
-    [marketListPage, sortedBy, keyword],
+    [marketListPage, sortedBy, keyword, dispatch],
   )
 
   const getAgentList = useCallback(
-    (type: AgentType = agentType) => {
+    async (type: AgentType = agentType) => {
       if (type === "team") {
-        getTeamAgentList()
+        await getTeamAgentList()
       } else if (type === "market") {
-        getMarketAgentList()
+        await getMarketAgentList()
       }
     },
     [agentType, getTeamAgentList, getMarketAgentList],
   )
 
+  const handleSearchAgent = async (keyword: string) => {
+    setKeyword(keyword)
+    if (agentType === "team") {
+      await getTeamAgentList(keyword)
+    } else if (agentType === "market") {
+      await getMarketAgentList({
+        search: keyword,
+      })
+    }
+  }
+
+  const handleAgentTypeChange = (newType: unknown) => {
+    setAgentType(newType as AgentType)
+    searchParams.set("list", newType as AgentType)
+    const newUrl = window.location.pathname + "?" + searchParams.toString()
+    window.history.replaceState({}, "", newUrl)
+    getAgentList(newType as AgentType)
+  }
+
   const value = {
-    ...props,
-    keyword,
-    setKeyword,
     agentType,
-    setAgentType,
     teamAgentList,
     marketAgentList,
-    getAgentList,
     loading,
-    setLoading,
     sortedBy,
     setSortedBy,
-    marketListPage,
+    handleSearchAgent,
+    handleAgentTypeChange,
   }
 
   return (

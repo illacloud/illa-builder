@@ -19,6 +19,8 @@ import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentAppHistoryReducer from "@/redux/currentAppHistory/currentAppHistorySlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
+import dashboardMarketAiAgentReducer from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSlice"
+import dashboardTeamAiAgentReducer from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import guideReducer from "@/redux/guide/guideSlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import teamReducer from "@/redux/team/teamSlice"
@@ -45,6 +47,8 @@ const appReducer = combineReducers({
 
 const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
+  dashboardTeamAiAgents: dashboardTeamAiAgentReducer,
+  dashboardMarketAiAgents: dashboardMarketAiAgentReducer,
 })
 
 const middlewares = [reduxAsync, UndoRedo, guideAsync]
