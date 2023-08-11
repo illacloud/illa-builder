@@ -2625,9 +2625,12 @@
         "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
         "failed": "Échec de la génération. Veuillez réessayer plus tard. "
       },
-      "title-preview": "Lancer la fenêtre",
       "generate-icon": {
         "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
