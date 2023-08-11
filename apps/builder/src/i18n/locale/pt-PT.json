@@ -2629,8 +2629,8 @@
         "tooltips": "Use AI para gerar um ícone com base no nome e descrição do agente"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "Bate-papo",
+        "textGeneration": "Geração de texto"
       }
     },
     "common": {
