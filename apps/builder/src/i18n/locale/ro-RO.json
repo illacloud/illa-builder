@@ -2618,7 +2618,7 @@
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
         "insufficient_token": "Token insuficient",
         "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. ",
-        "reconnect": "Connection lost. Reconnection in progress."
+        "reconnect": "Conexiune pierdută. Reconectare în progres."
       },
       "title": "🧬 Editare agent AI",
       "generate-desc": {
