@@ -2630,7 +2630,7 @@
       },
       "title-preview": {
         "chat": "对话",
-        "textGeneration": "文本生成"
+        "text-generation": "文本生成"
       }
     },
     "common": {
