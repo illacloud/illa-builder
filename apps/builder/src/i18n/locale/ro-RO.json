@@ -72,7 +72,7 @@
       "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
       "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
       "fork-failed": "Esuare fork, te rugam incearca din nou.",
-      "create-suc": "Creare esuata, te rugam incearca din nou.",
+      "create-suc": "Salvat cu succes",
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. "
@@ -2625,9 +2625,12 @@
         "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
         "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. "
       },
-      "title-preview": "Rulează fereastra",
       "generate-icon": {
         "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Generare text"
       }
     },
     "common": {

@@ -72,7 +72,7 @@
       "sort-failed": "Kan ikke endre filtertypen. Vennligst prøv på nytt.",
       "detail-load-failed": "Kan ikke hente detaljer, prøv igjen.",
       "fork-failed": "Skaffe, vennligst prøv igjen.",
-      "create-suc": "Kunne ikke opprette, vennligst prøv igjen.",
+      "create-suc": "Lagring vellykket",
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. "
@@ -2625,9 +2625,12 @@
         "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
         "failed": "Kan ikke generere. Prøv igjen senere. "
       },
-      "title-preview": "Kjøre vindu",
       "generate-icon": {
         "tooltips": "Bruk AI til å generere ikon basert på agent navn og beskrivelse"
+      },
+      "title-preview": {
+        "chat": "Samtale",
+        "textGeneration": "Generering av tekst"
       }
     },
     "common": {

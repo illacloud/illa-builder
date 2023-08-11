@@ -72,7 +72,7 @@
       "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
       "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
       "fork-failed": "Fork mislukt, probeer het opnieuw.",
-      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
+      "create-suc": "Succesvol opgeslagen",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. "
@@ -2625,9 +2625,12 @@
         "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
         "failed": "Aanmaken mislukt. Probeer het later opnieuw. "
       },
-      "title-preview": "Venster starten",
       "generate-icon": {
         "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
+      },
+      "title-preview": {
+        "chat": "Chatten",
+        "textGeneration": "Tekst genereren"
       }
     },
     "common": {

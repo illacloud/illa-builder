@@ -72,7 +72,7 @@
       "sort-failed": "Zmiana typu filtra nie powiodła się. Spróbuj ponownie.",
       "detail-load-failed": "Nie udało się pobrać szczegółów, spróbuj ponownie.",
       "fork-failed": "Nie udało się forkować, spróbuj ponownie.",
-      "create-suc": "Nie udało się utworzyć, spróbuj ponownie.",
+      "create-suc": "Zapisano pomyślnie",
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
       "delete-suc": "Usunięto pomyślnie. "
@@ -2625,9 +2625,12 @@
         "tooltips": "Użyj AI do wygenerowania opisu na podstawie Twojego pytania. ",
         "failed": "Nie udało się wygenerować. Spróbuj ponownie później. "
       },
-      "title-preview": "Uruchom okno",
       "generate-icon": {
         "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela"
+      },
+      "title-preview": {
+        "chat": "Czat",
+        "textGeneration": "Generowanie tekstu"
       }
     },
     "common": {

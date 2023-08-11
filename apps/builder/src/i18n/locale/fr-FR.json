@@ -72,7 +72,7 @@
       "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
       "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
       "fork-failed": "Échec du fork, veuillez réessayer.",
-      "create-suc": "Échec de la création, veuillez réessayer.",
+      "create-suc": "Sauvegardé avec succès",
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
       "delete-suc": "Supprimé avec succès. "
@@ -2625,9 +2625,12 @@
         "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
         "failed": "Échec de la génération. Veuillez réessayer plus tard. "
       },
-      "title-preview": "Lancer la fenêtre",
       "generate-icon": {
         "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent"
+      },
+      "title-preview": {
+        "chat": "Discuter",
+        "textGeneration": "Génération de texte"
       }
     },
     "common": {

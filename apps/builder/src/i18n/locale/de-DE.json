@@ -72,7 +72,7 @@
       "sort-failed": "Filtertyp konnte nicht geändert werden. Bitte versuchen Sie es erneut.",
       "detail-load-failed": "Fehler beim Abrufen der Details, bitte versuchen Sie es erneut.",
       "fork-failed": "Fehler beim Forken, bitte versuchen Sie es erneut.",
-      "create-suc": "Fehler beim Erstellen, bitte erneut versuchen.",
+      "create-suc": "Erfolgreich gespeichert",
       "fork-suc": "Erfolgreich geforkt.",
       "delete-failed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut. ",
       "delete-suc": "Erfolgreich gelöscht. "
@@ -2625,9 +2625,12 @@
         "tooltips": "Verwenden Sie die KI um die Beschreibung basierend auf Ihrem Prompt zu generieren. ",
         "failed": "Fehler beim Generieren. Bitte versuchen Sie es später erneut. "
       },
-      "title-preview": "Fenster ausführen",
       "generate-icon": {
         "tooltips": "Verwende KI um ein Icon basierend auf dem Agentennamen und der Beschreibung zu generieren"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Textgenerierung"
       }
     },
     "common": {

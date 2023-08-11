@@ -72,7 +72,7 @@
       "sort-failed": "Não foi possível alterar o tipo de filtro. Tente novamente.",
       "detail-load-failed": "Falha ao recuperar detalhes, por favor tente novamente.",
       "fork-failed": "Falha ao fazer o fork, por favor, tente novamente.",
-      "create-suc": "Falha ao criar. Por favor, tente novamente.",
+      "create-suc": "Salvo com Sucesso",
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
       "delete-suc": "Excluído com sucesso. "
@@ -2625,9 +2625,12 @@
         "tooltips": "Usar AI para gerar a descrição baseada no seu prompt. ",
         "failed": "Falha ao gerar. Por favor, tente novamente mais tarde. "
       },
-      "title-preview": "Executar janela",
       "generate-icon": {
         "tooltips": "Use AI para gerar um ícone com base no nome e descrição do agente"
+      },
+      "title-preview": {
+        "chat": "Bate-papo",
+        "textGeneration": "Geração de texto"
       }
     },
     "common": {

@@ -72,7 +72,7 @@
       "sort-failed": "Modifica del tipo di filtro non riuscita. Riprova.",
       "detail-load-failed": "Impossibile recuperare i dettagli, per favore riprova.",
       "fork-failed": "Impossibile effettuare il fork, riprova.",
-      "create-suc": "Creazione non riuscita, riprova.",
+      "create-suc": "Salvato con successo",
       "fork-suc": "Forked con successo.",
       "delete-failed": "Eliminazione non riuscita. Riprova. ",
       "delete-suc": "Eliminato con successo. "
@@ -2625,9 +2625,12 @@
         "tooltips": "Usa AI per generare la descrizione in base al tuo prompt. ",
         "failed": "Impossibile generare. Riprova più tardi. "
       },
-      "title-preview": "Esegui finestra",
       "generate-icon": {
         "tooltips": "Usa AI per generare icona in base al nome e alla descrizione dell'agente"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Generazione testo"
       }
     },
     "common": {
