@@ -15,6 +15,7 @@ import {
 export const AIAgentMessage: FC<AIAgentMessageProps> = (props) => {
   const { message } = props
   const chatContext = useContext(ChatContext)
+
   const senderNickname =
     message.sender.senderType === SenderType.ANONYMOUS_AGENT
       ? chatContext.inRoomUsers.find(

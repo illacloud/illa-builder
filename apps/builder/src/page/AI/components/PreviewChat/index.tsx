@@ -114,7 +114,9 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         ) && (
           <div css={previewTitleContainerStyle}>
             <div css={previewTitleTextStyle}>
-              {t("editor.ai-agent.title-preview")}
+              {agentType === AI_AGENT_TYPE.CHAT
+                ? t("editor.ai-agent.title-preview.chat")
+                : t("editor.ai-agent.title-preview.text-generation")}
             </div>
             {editState === "EDIT" && (
               <Button

@@ -123,30 +123,42 @@ export const AIAgent: FC = () => {
     (icon: string, newRoomUsers: CollaboratorsInfo[]) => {
       const updateRoomUsers = [...newRoomUsers]
       let index = -1
-      index = updateRoomUsers.findIndex(
-        (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
-      )
+      if (getValues("aiAgentID")) {
+        index = updateRoomUsers.findIndex(
+          (user) => user.id === getValues("aiAgentID"),
+        )
+      } else {
+        index = updateRoomUsers.findIndex(
+          (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
+        )
+      }
       if (index != -1) {
         updateRoomUsers[index].avatar = icon
-        setInRoomUsers(updateRoomUsers)
       }
+      return updateRoomUsers
     },
-    [],
+    [getValues],
   )
 
   const updateLocalName = useCallback(
     (name: string, newRoomUsers: CollaboratorsInfo[]) => {
       const updateRoomUsers = [...newRoomUsers]
       let index = -1
-      index = updateRoomUsers.findIndex(
-        (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
-      )
+      if (getValues("aiAgentID")) {
+        index = updateRoomUsers.findIndex(
+          (user) => user.id === getValues("aiAgentID"),
+        )
+      } else {
+        index = updateRoomUsers.findIndex(
+          (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
+        )
+      }
       if (index != -1) {
         updateRoomUsers[index].nickname = name
-        setInRoomUsers(updateRoomUsers)
       }
+      return updateRoomUsers
     },
-    [],
+    [getValues],
   )
 
   // watch dirty
@@ -229,9 +241,9 @@ export const AIAgent: FC = () => {
         )
       },
       onUpdateRoomUsers: (roomUsers: CollaboratorsInfo[]) => {
-        setInRoomUsers(roomUsers)
-        updateLocalIcon(getValues("icon"), roomUsers)
-        updateLocalName(getValues("name"), roomUsers)
+        let newRoomUsers = updateLocalIcon(getValues("icon"), roomUsers)
+        newRoomUsers = updateLocalName(getValues("name"), roomUsers)
+        setInRoomUsers(newRoomUsers)
       },
     })
 
@@ -347,9 +359,11 @@ export const AIAgent: FC = () => {
                           let reader = new FileReader()
                           reader.onload = () => {
                             field.onChange(reader.result)
-                            updateLocalIcon(
-                              reader.result as string,
-                              inRoomUsers,
+                            setInRoomUsers(
+                              updateLocalIcon(
+                                reader.result as string,
+                                inRoomUsers,
+                              ),
                             )
                           }
                           reader.readAsDataURL(file)
@@ -397,7 +411,7 @@ export const AIAgent: FC = () => {
                         colorScheme={"techPurple"}
                         onChange={(value) => {
                           field.onChange(value)
-                          updateLocalName(value, inRoomUsers)
+                          setInRoomUsers(updateLocalName(value, inRoomUsers))
                         }}
                       />
                     </AIAgentBlock>
