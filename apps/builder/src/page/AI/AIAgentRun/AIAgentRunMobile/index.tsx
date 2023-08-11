@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { FC, useMemo, useState } from "react"
+import { FC, useContext, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -17,7 +17,11 @@ import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import {
+  canManage,
+  canUseUpgradeFeature,
+} from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -93,6 +97,14 @@ export const AIAgentRunMobile: FC = () => {
 
   const [currentSelectTab, setCurrentSelectTab] = useState<"config" | "run">(
     "config",
+  )
+
+  // premium dialog
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const canUseBillingFeature = canUseUpgradeFeature(
+    currentTeamInfo?.myRole,
+    currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
+    currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
@@ -486,6 +498,13 @@ export const AIAgentRunMobile: FC = () => {
         {currentSelectTab === "run" && previewChatTab}
         <form
           onSubmit={handleSubmit(async (data) => {
+            if (
+              data.model !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+              !canUseBillingFeature
+            ) {
+              handleUpgradeModalVisible(true, "agent")
+              return
+            }
             reset(data)
             isRunning
               ? await reconnect(data.aiAgentID, data.agentType)

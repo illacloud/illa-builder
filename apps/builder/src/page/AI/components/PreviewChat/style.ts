@@ -63,6 +63,7 @@ export const chatContainerStyle = css`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  padding-bottom: 110px;
 `
 
 export const inputStyle = css`

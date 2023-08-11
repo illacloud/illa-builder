@@ -1,5 +1,5 @@
 import { isEqual } from "lodash"
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -24,7 +24,11 @@ import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
+import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
+import {
+  canManage,
+  canUseUpgradeFeature,
+} from "@/illa-public-component/UserRoleUtils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -108,17 +112,21 @@ export const AIAgent: FC = () => {
   const [isReceiving, setIsReceiving] = useState(false)
   const [lastRunAgent, setLastRunAgent] = useState<Agent | undefined>()
 
+  // premium dialog
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const canUseBillingFeature = canUseUpgradeFeature(
+    currentTeamInfo?.myRole,
+    currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
+    currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
+
   const updateLocalIcon = useCallback(
-    (icon: string, newRoomUsers: CollaboratorsInfo[], aiAgentID?: string) => {
+    (icon: string, newRoomUsers: CollaboratorsInfo[]) => {
       const updateRoomUsers = [...newRoomUsers]
       let index = -1
-      if (aiAgentID === undefined || aiAgentID === "") {
-        index = updateRoomUsers.findIndex(
-          (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
-        )
-      } else {
-        index = updateRoomUsers.findIndex((user) => user.id === aiAgentID)
-      }
+      index = updateRoomUsers.findIndex(
+        (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
+      )
       if (index != -1) {
         updateRoomUsers[index].avatar = icon
         setInRoomUsers(updateRoomUsers)
@@ -128,16 +136,12 @@ export const AIAgent: FC = () => {
   )
 
   const updateLocalName = useCallback(
-    (name: string, newRoomUsers: CollaboratorsInfo[], aiAgentID?: string) => {
+    (name: string, newRoomUsers: CollaboratorsInfo[]) => {
       const updateRoomUsers = [...newRoomUsers]
       let index = -1
-      if (aiAgentID === undefined || aiAgentID === "") {
-        index = updateRoomUsers.findIndex(
-          (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
-        )
-      } else {
-        index = updateRoomUsers.findIndex((user) => user.id === aiAgentID)
-      }
+      index = updateRoomUsers.findIndex(
+        (user) => user.roomRole === SenderType.ANONYMOUS_AGENT,
+      )
       if (index != -1) {
         updateRoomUsers[index].nickname = name
         setInRoomUsers(updateRoomUsers)
@@ -337,7 +341,6 @@ export const AIAgent: FC = () => {
                             updateLocalIcon(
                               reader.result as string,
                               inRoomUsers,
-                              getValues("aiAgentID"),
                             )
                           }
                           reader.readAsDataURL(file)
@@ -385,11 +388,7 @@ export const AIAgent: FC = () => {
                         colorScheme={"techPurple"}
                         onChange={(value) => {
                           field.onChange(value)
-                          updateLocalName(
-                            value,
-                            inRoomUsers,
-                            getValues("aiAgentID"),
-                          )
+                          updateLocalName(value, inRoomUsers)
                         }}
                       />
                     </AIAgentBlock>
@@ -580,6 +579,16 @@ export const AIAgent: FC = () => {
                     >
                       <Select
                         {...field}
+                        onChange={(value) => {
+                          if (
+                            value !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+                            !canUseBillingFeature
+                          ) {
+                            handleUpgradeModalVisible(true, "agent")
+                            return
+                          }
+                          field.onChange(value)
+                        }}
                         colorScheme={"techPurple"}
                         options={[
                           {
@@ -697,6 +706,13 @@ export const AIAgent: FC = () => {
                 colorScheme={getColor("grayBlue", "02")}
                 leftIcon={<ResetIcon />}
                 onClick={async () => {
+                  if (
+                    getValues("model") !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+                    !canUseBillingFeature
+                  ) {
+                    handleUpgradeModalVisible(true, "agent")
+                    return
+                  }
                   isRunning
                     ? await reconnect(
                         getValues("aiAgentID"),

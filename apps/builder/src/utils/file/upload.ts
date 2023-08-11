@@ -1,8 +1,8 @@
-import { needAuthRequest } from "@/api/http"
+import { notNeedAuthRequest } from "@/api/http"
 
 export const upload = async (url: string, file: Blob) => {
   const resUrl = url.split("?")[0]
-  await needAuthRequest({
+  await notNeedAuthRequest({
     url,
     method: "PUT",
     data: file,
