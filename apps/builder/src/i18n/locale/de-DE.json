@@ -2617,7 +2617,8 @@
       "message": {
         "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
         "insufficient_token": "Unzureichendes Token",
-        "start-failed": "Start fehlgeschlagen. Bitte versuchen Sie es erneut. "
+        "start-failed": "Start fehlgeschlagen. Bitte versuchen Sie es erneut. ",
+        "reconnect": "Connection lost. Reconnection in progress."
       },
       "title": "🧬 KI-Agent bearbeiten",
       "generate-desc": {
