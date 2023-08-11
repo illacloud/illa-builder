@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "Haga clic en el botón Inicio para activar.",
-        "insufficient_token": "Token insuficiente",
+        "insufficient_token": "Colla insuficiente",
         "start-failed": "Error al iniciar. Vuelve a intentarlo. ",
-        "reconnect": "Conexión perdida. Reconexión en curso."
+        "reconnect": "Conexión perdida. Reconexión en curso.",
+        "token-not-enough": "Límite de modelo alcanzado. Por favor reinicie."
       },
       "title": "🧬 Editar agente AI",
       "generate-desc": {
