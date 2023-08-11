@@ -2625,9 +2625,12 @@
         "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
         "failed": "Aanmaken mislukt. Probeer het later opnieuw. "
       },
-      "title-preview": "Venster starten",
       "generate-icon": {
         "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
