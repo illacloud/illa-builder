@@ -85,8 +85,6 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
             setChatMessages([...chatMessages, messageContent])
             break
           case AI_AGENT_TYPE.TEXT_GENERATION:
-            generationMessageRef.current = undefined
-            setGenerationMessage(undefined)
             break
         }
       }
@@ -135,6 +133,13 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
     }
   }, [])
 
+  const cleanMessage = useCallback(() => {
+    chatMessagesRef.current = []
+    setChatMessages([])
+    generationMessageRef.current = undefined
+    setGenerationMessage(undefined)
+  }, [])
+
   const connect = useCallback(
     async (aiAgentID: string, agentType: AI_AGENT_TYPE) => {
       onConnecting(true)
@@ -163,6 +168,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                     inRoomUsers: CollaboratorsInfo[]
                   }
                   onUpdateRoomUsers(inRoomUsers)
+                  cleanMessage()
                   onSendClean()
                   break
                 case "chat/remote":
@@ -187,16 +193,32 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                   onSendPrompt()
                   break
                 default:
-                  if (callback.errorCode !== 3 && callback.errorCode !== 0) {
-                    onReceiving(false)
-                    onRunning(false)
-                    message.error({
-                      content: t("editor.ai-agent.message.start-failed"),
-                    })
+                  if (callback.errorCode === 0 || callback.errorCode === 3) {
+                    break
+                  }
+                  switch (callback.errorCode) {
+                    case 1:
+                      onReceiving(false)
+                      onRunning(false)
+                      message.error({
+                        content: t("editor.ai-agent.message.start-failed"),
+                      })
+                      break
+                    case 16:
+                      message.error({
+                        content: t("editor.ai-agent.message.token-not-enough"),
+                      })
+                      break
                   }
                   break
               }
             })
+          },
+          onClosed: () => {
+            onReceiving(true)
+          },
+          onError: () => {
+            onReceiving(true)
           },
         } as WSMessageListener
         Connection.enterAgentRoom(address, messageListener)
@@ -213,6 +235,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
       }
     },
     [
+      cleanMessage,
       onConnecting,
       onRunning,
       onReceiving,

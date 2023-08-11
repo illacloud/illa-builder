@@ -38,6 +38,8 @@ export interface WSMessageListener {
     context: ILLA_WEBSOCKET_CONTEXT,
     ws: ILLAWebsocket,
   ) => void
+  onError?: (context: ILLA_WEBSOCKET_CONTEXT, ws: ILLAWebsocket) => void
+  onClosed?: (context: ILLA_WEBSOCKET_CONTEXT, ws: ILLAWebsocket) => void
 }
 
 export const ReduxMessageListener: WSMessageListener = {
@@ -164,6 +166,9 @@ export class ILLAWebsocket {
             wsStatus: ILLA_WEBSOCKET_STATUS.CLOSED,
           }),
         )
+        this.listeners.forEach((listener) => {
+          listener.onClosed?.(this.context, this)
+        })
       }
       this.ws.onerror = () => {
         this.reconnect()
@@ -173,6 +178,9 @@ export class ILLAWebsocket {
             wsStatus: ILLA_WEBSOCKET_STATUS.FAILED,
           }),
         )
+        this.listeners.forEach((listener) => {
+          listener.onError?.(this.context, this)
+        })
       }
       this.ws.onopen = () => {
         console.log(`[WS OPENED](${this.url}) connection succeeded`)

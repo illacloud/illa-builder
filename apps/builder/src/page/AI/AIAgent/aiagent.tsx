@@ -194,7 +194,10 @@ export const AIAgent: FC = () => {
       return true
     }
     return (
-      !isEqual(lastRunAgent.variables, fieldArray[0]) ||
+      !isEqual(
+        lastRunAgent.variables.filter((v) => v.key !== "" && v.value !== ""),
+        fieldArray[0].filter((v) => v.key !== "" && v.value !== ""),
+      ) ||
       !isEqual(lastRunAgent.modelConfig.maxTokens, fieldArray[1]) ||
       !isEqual(lastRunAgent.modelConfig.temperature, fieldArray[2]) ||
       !isEqual(lastRunAgent.model, fieldArray[3]) ||
@@ -274,7 +277,13 @@ export const AIAgent: FC = () => {
                     (v) => v.key !== "" && v.value !== "",
                   ),
                 })
-                reset(resp.data)
+                reset({
+                  ...resp.data,
+                  variables:
+                    resp.data.variables.length === 0
+                      ? [{ key: "", value: "" }]
+                      : resp.data.variables,
+                })
               } else {
                 const resp = await putAgentDetail(data.aiAgentID, {
                   ...data,
@@ -283,7 +292,13 @@ export const AIAgent: FC = () => {
                     (v) => v.key !== "" && v.value !== "",
                   ),
                 })
-                reset(resp.data)
+                reset({
+                  ...resp.data,
+                  variables:
+                    resp.data.variables.length === 0
+                      ? [{ key: "", value: "" }]
+                      : resp.data.variables,
+                })
               }
               message.success({
                 content: t("dashboard.message.create-suc"),
@@ -553,11 +568,7 @@ export const AIAgent: FC = () => {
                   render={({ field }) => (
                     <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
                       <RecordEditor
-                        records={
-                          field.value.length > 0
-                            ? field.value
-                            : [{ key: "", value: "" }]
-                        }
+                        records={field.value}
                         onAdd={() => {
                           field.onChange([
                             ...field.value,

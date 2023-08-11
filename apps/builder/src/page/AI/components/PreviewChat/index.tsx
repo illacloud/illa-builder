@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
+import { ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
 import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
 import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -35,6 +36,7 @@ import {
   ChatMessage,
   SenderType,
 } from "@/redux/aiAgent/aiAgentState"
+import { getAgentWSStatus } from "@/redux/config/configSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 
@@ -56,6 +58,8 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
 
   const currentUserInfo = useSelector(getCurrentUser)
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
+
+  const wsStatus = useSelector(getAgentWSStatus)
 
   const chatRef = useRef<HTMLDivElement>(null)
 
@@ -151,7 +155,9 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       </div>
       <div css={inputTextContainerStyle}>
         <AnimatePresence>
-          {isReceiving && (
+          {(isReceiving ||
+            wsStatus === ILLA_WEBSOCKET_STATUS.CLOSED ||
+            wsStatus === ILLA_WEBSOCKET_STATUS.FAILED) && (
             <motion.div
               css={generatingContainerStyle}
               initial={{
@@ -170,7 +176,10 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
             >
               <div css={generatingContentContainerStyle}>
                 <div css={generatingTextStyle}>
-                  {t("editor.ai-agent.button.generating")}
+                  {wsStatus === ILLA_WEBSOCKET_STATUS.CLOSED ||
+                  wsStatus === ILLA_WEBSOCKET_STATUS.FAILED
+                    ? t("editor.ai-agent.message.reconnect")
+                    : t("editor.ai-agent.button.generating")}
                 </div>
                 <div css={generatingDividerStyle} />
                 <StopIcon
