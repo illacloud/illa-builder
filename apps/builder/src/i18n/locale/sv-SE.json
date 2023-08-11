@@ -2618,7 +2618,7 @@
         "click-start": "Klicka på Start -knappen för att utlösa.",
         "insufficient_token": "Otillräcklig token",
         "start-failed": "Det gick inte att starta. Försök igen. ",
-        "reconnect": "Connection lost. Reconnection in progress."
+        "reconnect": "Anslutning förlorad. Återgång pågår."
       },
       "title": "🧬 Redigera AI agent",
       "generate-desc": {
