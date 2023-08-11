@@ -2630,7 +2630,7 @@
       },
       "title-preview": {
         "chat": "Keskustelu",
-        "textGeneration": "Tekstin luonti"
+        "text-generation": "Tekstin luonti"
       }
     },
     "common": {
