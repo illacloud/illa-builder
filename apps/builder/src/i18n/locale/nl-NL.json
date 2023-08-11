@@ -2617,7 +2617,8 @@
       "message": {
         "click-start": "Klik op de Start knop om te starten.",
         "insufficient_token": "Onvoldoende token",
-        "start-failed": "Starten mislukt. Probeer het opnieuw. "
+        "start-failed": "Starten mislukt. Probeer het opnieuw. ",
+        "reconnect": "Connection lost. Reconnection in progress."
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
