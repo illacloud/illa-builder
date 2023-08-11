@@ -63,6 +63,14 @@ export const listFilterContainerStyle = css`
   background: ${getColor("white", "01")};
 `
 
+export const loadingStyle = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`
+
 export const listContainerStyle = css`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(${agent_card_width}px, 1fr));

@@ -1,13 +1,7 @@
-import { FC, Suspense, useCallback, useState } from "react"
+import { FC, Suspense, UIEvent, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import {
-  Await,
-  useLoaderData,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom"
+import { Await, useLoaderData, useNavigate, useParams } from "react-router-dom"
 import { Button, PlusIcon } from "@illa-design/react"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { canManage } from "@/illa-public-component/UserRoleUtils"
@@ -16,11 +10,8 @@ import {
   ATTRIBUTE_GROUP,
   USER_ROLE,
 } from "@/illa-public-component/UserRoleUtils/interface"
-import {
-  AgentContentBody,
-  DEFAULT_AGENT_TAB,
-} from "@/page/Dashboard/DashboardAiAgent/contentBody"
-import { AgentType } from "@/page/Dashboard/DashboardAiAgent/context"
+import { AgentContentBody } from "@/page/Dashboard/DashboardAiAgent/contentBody"
+import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
   containerStyle,
   listTitleContainerStyle,
@@ -29,6 +20,7 @@ import {
   teamNameStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
 import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
+import { getHasMoreMarketAgent } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSelector"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { DashboardAiAgentLoaderData } from "@/router/loader/dashBoardLoader"
 import { DashboardErrorElement } from "../components/ErrorElement"
@@ -39,11 +31,13 @@ const DashboardAiAgent: FC = () => {
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
   const loaderData = useLoaderData() as DashboardAiAgentLoaderData
-  const [searchParams] = useSearchParams()
+
+  const { agentType, loadMoreMarketAgent } = useContext(AiAgentContext)
+
   const teamInfo = useSelector(getCurrentTeamInfo)
+  const hasMoreData = useSelector(getHasMoreMarketAgent)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
-  const agentType = (searchParams.get("list") as AgentType) || DEFAULT_AGENT_TAB
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
 
   const canEditApp = canManage(
@@ -60,8 +54,19 @@ const DashboardAiAgent: FC = () => {
     setInviteModalVisible(false)
   }
 
+  const handleCardScroll = (event: UIEvent<HTMLDivElement>) => {
+    if (agentType === "market") {
+      if (!hasMoreData) return
+      const target = event.target as HTMLDivElement
+      if (target.scrollHeight - target.scrollTop - target.clientHeight <= 100) {
+        console.log("scroll to bottom")
+        loadMoreMarketAgent()
+      }
+    }
+  }
+
   return (
-    <div css={containerStyle}>
+    <div css={containerStyle} onScroll={handleCardScroll}>
       <div css={listTitleContainerStyle}>
         <div css={teamInfoContainerStyle}>
           <Avatar
@@ -93,12 +98,7 @@ const DashboardAiAgent: FC = () => {
           }
           errorElement={<DashboardErrorElement />}
         >
-          {(agentData) => {
-            console.log(loaderData, "loaderDataloaderData")
-            return (
-              <AgentContentBody canEdit={canEditApp} agentData={agentData} />
-            )
-          }}
+          <AgentContentBody canEdit={canEditApp} />
         </Await>
       </Suspense>
       <DashBoardInviteModal

@@ -1,7 +1,14 @@
 import { FC, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { RadioGroup } from "@illa-design/react"
+import {
+  Empty,
+  EmptyIcon,
+  Loading,
+  RadioGroup,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
 import Select from "@/illa-public-market-component/Select"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
@@ -9,13 +16,12 @@ import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
   listContainerStyle,
   listFilterContainerStyle,
+  loadingStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
-import { DashboardAiAgentLoaderData } from "@/router/loader/dashBoardLoader"
 import { PRODUCT_SORT_BY } from "@/services/marketPlace"
 
 export interface AgentContentBodyProps {
   canEdit: boolean
-  agentData: DashboardAiAgentLoaderData["marketAgentData"]
 }
 
 export const DEFAULT_AGENT_TAB = "team"
@@ -26,11 +32,12 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   const navigate = useNavigate()
 
   const {
+    loading,
     marketAgentList,
     teamAgentList,
     agentType,
     sortedBy,
-    setSortedBy,
+    onChangeSort,
     handleAgentTypeChange,
   } = useContext(AiAgentContext)
 
@@ -69,8 +76,15 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
     [navigate, teamIdentifier],
   )
 
+  const noData = useMemo(() => {
+    return (
+      (agentType === "market" && marketAgentList.length === 0) ||
+      (agentType === "team" && teamAgentList.length === 0)
+    )
+  }, [agentType, marketAgentList?.length, teamAgentList?.length])
+
   return (
-    <div>
+    <>
       <div css={listFilterContainerStyle}>
         <RadioGroup
           type="button"
@@ -86,34 +100,51 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
             value={sortedBy}
             options={sortOptions}
             onChange={(value) => {
-              setSortedBy(value as PRODUCT_SORT_BY)
+              onChangeSort(value as PRODUCT_SORT_BY)
             }}
           />
         )}
       </div>
-      <div css={listContainerStyle}>
-        {agentType === "market" &&
-          marketAgentList?.map((item) => {
-            return (
-              <MarketAgentCard
-                key={item.aiAgent.aiAgentID}
-                agentInfo={item}
-                onClick={toRunAgent}
-              />
-            )
-          })}
-        {agentType === "team" &&
-          teamAgentList?.map((item) => {
-            return (
-              <TeamAgentCard
-                key={item.aiAgentID}
-                agentInfo={item}
-                canEdit={canEdit}
-                onClick={toRunAgent}
-              />
-            )
-          })}
-      </div>
-    </div>
+      {loading ? (
+        <div css={loadingStyle}>
+          <Loading colorScheme="techPurple" />
+        </div>
+      ) : noData ? (
+        <Empty
+          paddingVertical="120px"
+          icon={
+            <EmptyIcon
+              size="48px"
+              color={globalColor(`--${illaPrefix}-grayBlue-02`)}
+            />
+          }
+          description={t("new_dashboard.desc.blank")}
+        />
+      ) : (
+        <div css={listContainerStyle}>
+          {agentType === "market" &&
+            marketAgentList?.map((item) => {
+              return (
+                <MarketAgentCard
+                  key={item.aiAgent.aiAgentID}
+                  agentInfo={item}
+                  onClick={toRunAgent}
+                />
+              )
+            })}
+          {agentType === "team" &&
+            teamAgentList?.map((item) => {
+              return (
+                <TeamAgentCard
+                  key={item.aiAgentID}
+                  agentInfo={item}
+                  canEdit={canEdit}
+                  onClick={toRunAgent}
+                />
+              )
+            })}
+        </div>
+      )}
+    </>
   )
 }

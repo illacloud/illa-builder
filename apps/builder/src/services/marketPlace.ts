@@ -26,7 +26,7 @@ export enum PRODUCT_SORT_BY {
   STARRED = "starred",
 }
 
-interface ProductListParams {
+export interface ProductListParams {
   page: number
   limit: number
   sortedBy: PRODUCT_SORT_BY
