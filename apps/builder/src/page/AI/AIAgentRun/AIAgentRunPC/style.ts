@@ -4,8 +4,8 @@ import { getColor } from "@illa-design/react"
 export const aiAgentContainerStyle = css`
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `
 
 export const leftPanelContainerStyle = css`
