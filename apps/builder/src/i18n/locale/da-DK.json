@@ -2617,7 +2617,8 @@
       "message": {
         "click-start": "Klik på knappen Start for at udløse.",
         "insufficient_token": "Utilstrækkelig token",
-        "start-failed": "Mislykkedes at starte. Prøv igen. "
+        "start-failed": "Mislykkedes at starte. Prøv igen. ",
+        "reconnect": "Connection lost. Reconnection in progress."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
