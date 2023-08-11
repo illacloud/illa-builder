@@ -2625,9 +2625,12 @@
         "tooltips": "Usa IA para generar la descripción basada en tu petición. ",
         "failed": "Error al generar. Inténtalo de nuevo más tarde. "
       },
-      "title-preview": "Ejecutar ventana",
       "generate-icon": {
         "tooltips": "Usar IA para generar un icono basado en el nombre del agente y la descripción"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
