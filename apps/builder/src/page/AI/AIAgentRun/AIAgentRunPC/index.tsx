@@ -296,211 +296,208 @@ export const AIAgentRunPC: FC = () => {
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
       <div css={aiAgentContainerStyle}>
-        <form
-          onSubmit={handleSubmit(async (data) => {
-            if (
-              data.model !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
-              !canUseBillingFeature
-            ) {
-              handleUpgradeModalVisible(true, "agent")
-              return
-            }
-            reset(data)
-            isRunning
-              ? await reconnect(data.aiAgentID, data.agentType)
-              : await connect(data.aiAgentID, data.agentType)
-          })}
-        >
-          <div css={leftPanelContainerStyle}>
-            <div css={agentTopContainerStyle}>
-              <div css={agentTitleContainerStyle}>
-                <Controller
-                  control={control}
-                  name="icon"
-                  render={({ field }) => (
-                    <Avatar css={agentAvatarStyle} avatarUrl={field.value} />
-                  )}
-                />
-                <Controller
-                  control={control}
-                  name="name"
-                  render={({ field }) => (
-                    <div css={agentNicknameStyle}>{field.value}</div>
-                  )}
-                />
-              </div>
+        <div css={leftPanelContainerStyle}>
+          <div css={agentTopContainerStyle}>
+            <div css={agentTitleContainerStyle}>
               <Controller
                 control={control}
-                name="description"
+                name="icon"
                 render={({ field }) => (
-                  <div css={agentDescStyle}>{field.value}</div>
+                  <Avatar css={agentAvatarStyle} avatarUrl={field.value} />
                 )}
               />
-              <div css={agentTeamInfoContainerStyle}>
-                <Controller
-                  control={control}
-                  name="teamIcon"
-                  render={({ field }) => (
-                    <Avatar
-                      css={agentTeamAvatarStyle}
-                      avatarUrl={field.value}
-                    />
-                  )}
-                />
-                <Controller
-                  control={control}
-                  name="teamName"
-                  render={({ field }) => (
-                    <div css={agentTeamNameStyle}>{field.value}</div>
-                  )}
-                />
-              </div>
-              {menu}
+              <Controller
+                control={control}
+                name="name"
+                render={({ field }) => (
+                  <div css={agentNicknameStyle}>{field.value}</div>
+                )}
+              />
             </div>
-            <div css={agentControlContainerStyle}>
+            <Controller
+              control={control}
+              name="description"
+              render={({ field }) => (
+                <div css={agentDescStyle}>{field.value}</div>
+              )}
+            />
+            <div css={agentTeamInfoContainerStyle}>
               <Controller
-                name="agentType"
                 control={control}
-                shouldUnregister={false}
+                name="teamIcon"
                 render={({ field }) => (
-                  <AIAgentBlock
-                    title={t("editor.ai-agent.label.mode")}
-                    tips={t("editor.ai-agent.tips.mode")}
-                  >
-                    <RadioGroup
-                      {...field}
-                      colorScheme={"techPurple"}
-                      w="100%"
-                      type="button"
-                      forceEqualWidth={true}
-                      options={[
-                        {
-                          value: AI_AGENT_TYPE.CHAT,
-                          label: "Chat",
-                        },
-                        {
-                          value: AI_AGENT_TYPE.TEXT_GENERATION,
-                          label: "Text Generation",
-                        },
-                      ]}
-                    />
-                  </AIAgentBlock>
+                  <Avatar css={agentTeamAvatarStyle} avatarUrl={field.value} />
                 )}
               />
               <Controller
-                name="prompt"
                 control={control}
-                rules={{
-                  required: true,
-                }}
-                shouldUnregister={false}
-                render={({ field: promptField }) => (
-                  <Controller
-                    name="variables"
-                    control={control}
-                    render={({ field: variables }) => (
-                      <AIAgentBlock title={"Prompt"}>
-                        <CodeEditor
-                          {...promptField}
-                          minHeight="200px"
-                          editable={false}
-                          completionOptions={variables.value}
-                        />
-                      </AIAgentBlock>
-                    )}
+                name="teamName"
+                render={({ field }) => (
+                  <div css={agentTeamNameStyle}>{field.value}</div>
+                )}
+              />
+            </div>
+            {menu}
+          </div>
+          <div css={agentControlContainerStyle}>
+            <Controller
+              name="agentType"
+              control={control}
+              shouldUnregister={false}
+              render={({ field }) => (
+                <AIAgentBlock
+                  title={t("editor.ai-agent.label.mode")}
+                  tips={t("editor.ai-agent.tips.mode")}
+                >
+                  <RadioGroup
+                    {...field}
+                    colorScheme={"techPurple"}
+                    w="100%"
+                    type="button"
+                    forceEqualWidth={true}
+                    options={[
+                      {
+                        value: AI_AGENT_TYPE.CHAT,
+                        label: "Chat",
+                      },
+                      {
+                        value: AI_AGENT_TYPE.TEXT_GENERATION,
+                        label: "Text Generation",
+                      },
+                    ]}
                   />
-                )}
-              />
-              <Controller
-                name="variables"
-                control={control}
-                rules={{
-                  validate: (value) =>
-                    value.every(
-                      (param) => param.key !== "" && param.value !== "",
-                    ) ||
-                    (value.length === 1 &&
-                      value[0].key === "" &&
-                      value[0].value === ""),
-                }}
-                shouldUnregister={false}
-                render={({ field }) =>
-                  field.value.length > 0 ? (
-                    <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
-                      <RecordEditor
-                        fillOnly
-                        records={field.value}
-                        onChangeKey={(index, key) => {
-                          const newVariables = [...field.value]
-                          newVariables[index].key = key
-                          field.onChange(newVariables)
-                        }}
-                        onChangeValue={(index, _, value) => {
-                          const newVariables = [...field.value]
-                          newVariables[index].value = value
-                          field.onChange(newVariables)
-                        }}
-                        onAdd={() => {}}
-                        onDelete={() => {}}
-                        label={""}
+                </AIAgentBlock>
+              )}
+            />
+            <Controller
+              name="prompt"
+              control={control}
+              rules={{
+                required: true,
+              }}
+              shouldUnregister={false}
+              render={({ field: promptField }) => (
+                <Controller
+                  name="variables"
+                  control={control}
+                  render={({ field: variables }) => (
+                    <AIAgentBlock title={"Prompt"}>
+                      <CodeEditor
+                        {...promptField}
+                        minHeight="200px"
+                        editable={false}
+                        completionOptions={variables.value}
                       />
                     </AIAgentBlock>
-                  ) : (
-                    <></>
-                  )
-                }
-              />
-              <Controller
-                name="model"
-                control={control}
-                render={({ field }) => (
-                  <AIAgentBlock title={t("editor.ai-agent.label.model")}>
-                    <Select
-                      {...field}
-                      readOnly={true}
-                      colorScheme={"techPurple"}
-                      options={[
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-3.5</span>
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_3_5_TURBO,
-                        },
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-3.5-16k</span>
-                              <div css={premiumContainerStyle}>
-                                <UpgradeIcon />
-                                <div style={{ marginLeft: 4 }}>Premium</div>
-                              </div>
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
-                        },
-                        {
-                          label: (
-                            <div css={labelStyle}>
-                              <OpenAIIcon />
-                              <span css={labelTextStyle}>GPT-4</span>
-                              <div css={premiumContainerStyle}>
-                                <UpgradeIcon />
-                                <div style={{ marginLeft: 4 }}>Premium</div>
-                              </div>
-                            </div>
-                          ),
-                          value: AI_AGENT_MODEL.GPT_4,
-                        },
-                      ]}
+                  )}
+                />
+              )}
+            />
+            <Controller
+              name="variables"
+              control={control}
+              rules={{
+                validate: (value) =>
+                  value.every(
+                    (param) => param.key !== "" && param.value !== "",
+                  ) ||
+                  (value.length === 1 &&
+                    value[0].key === "" &&
+                    value[0].value === ""),
+              }}
+              shouldUnregister={false}
+              render={({ field }) =>
+                field.value.length > 0 ? (
+                  <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
+                    <RecordEditor
+                      fillOnly
+                      records={field.value}
+                      onChangeKey={(index, key) => {
+                        const newVariables = [...field.value]
+                        newVariables[index].key = key
+                        field.onChange(newVariables)
+                      }}
+                      onChangeValue={(index, _, value) => {
+                        const newVariables = [...field.value]
+                        newVariables[index].value = value
+                        field.onChange(newVariables)
+                      }}
+                      onAdd={() => {}}
+                      onDelete={() => {}}
+                      label={""}
                     />
                   </AIAgentBlock>
-                )}
-              />
-            </div>
+                ) : (
+                  <></>
+                )
+              }
+            />
+            <Controller
+              name="model"
+              control={control}
+              render={({ field }) => (
+                <AIAgentBlock title={t("editor.ai-agent.label.model")}>
+                  <Select
+                    {...field}
+                    readOnly={true}
+                    colorScheme={"techPurple"}
+                    options={[
+                      {
+                        label: (
+                          <div css={labelStyle}>
+                            <OpenAIIcon />
+                            <span css={labelTextStyle}>GPT-3.5</span>
+                          </div>
+                        ),
+                        value: AI_AGENT_MODEL.GPT_3_5_TURBO,
+                      },
+                      {
+                        label: (
+                          <div css={labelStyle}>
+                            <OpenAIIcon />
+                            <span css={labelTextStyle}>GPT-3.5-16k</span>
+                            <div css={premiumContainerStyle}>
+                              <UpgradeIcon />
+                              <div style={{ marginLeft: 4 }}>Premium</div>
+                            </div>
+                          </div>
+                        ),
+                        value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
+                      },
+                      {
+                        label: (
+                          <div css={labelStyle}>
+                            <OpenAIIcon />
+                            <span css={labelTextStyle}>GPT-4</span>
+                            <div css={premiumContainerStyle}>
+                              <UpgradeIcon />
+                              <div style={{ marginLeft: 4 }}>Premium</div>
+                            </div>
+                          </div>
+                        ),
+                        value: AI_AGENT_MODEL.GPT_4,
+                      },
+                    ]}
+                  />
+                </AIAgentBlock>
+              )}
+            />
+          </div>
+          <form
+            onSubmit={handleSubmit(async (data) => {
+              if (
+                data.model !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+                !canUseBillingFeature
+              ) {
+                handleUpgradeModalVisible(true, "agent")
+                return
+              }
+              reset(data)
+              isRunning
+                ? await reconnect(data.aiAgentID, data.agentType)
+                : await connect(data.aiAgentID, data.agentType)
+            })}
+          >
             <div css={buttonContainerStyle}>
               <Button
                 flex="1"
@@ -515,8 +512,8 @@ export const AIAgentRunPC: FC = () => {
                   : t("editor.ai-agent.restart")}
               </Button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
         <Controller
           name="agentType"
           control={control}

@@ -217,9 +217,6 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
           onClosed: () => {
             onReceiving(true)
           },
-          onError: () => {
-            onReceiving(true)
-          },
         } as WSMessageListener
         Connection.enterAgentRoom(address, messageListener)
         onConnecting(false)

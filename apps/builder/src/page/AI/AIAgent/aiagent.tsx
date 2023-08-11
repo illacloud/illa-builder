@@ -256,484 +256,475 @@ export const AIAgent: FC = () => {
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>
       <div css={aiAgentContainerStyle}>
-        <form
-          onSubmit={handleSubmit(async (data) => {
-            try {
-              let updateIconURL = data.icon
-              if (data.icon !== undefined && data.icon !== "") {
-                const iconURL = new URL(data.icon)
-                if (
-                  iconURL.protocol !== "http:" &&
-                  iconURL.protocol !== "https:"
-                ) {
-                  updateIconURL = await uploadAgentIcon(data.icon)
-                }
-              }
-              if (data.aiAgentID === undefined || data.aiAgentID === "") {
-                const resp = await createAgent({
-                  ...data,
-                  icon: updateIconURL,
-                  variables: data.variables.filter(
-                    (v) => v.key !== "" && v.value !== "",
-                  ),
-                })
-                reset({
-                  ...resp.data,
-                  variables:
-                    resp.data.variables.length === 0
-                      ? [{ key: "", value: "" }]
-                      : resp.data.variables,
-                })
-              } else {
-                const resp = await putAgentDetail(data.aiAgentID, {
-                  ...data,
-                  icon: updateIconURL,
-                  variables: data.variables.filter(
-                    (v) => v.key !== "" && v.value !== "",
-                  ),
-                })
-                reset({
-                  ...resp.data,
-                  variables:
-                    resp.data.variables.length === 0
-                      ? [{ key: "", value: "" }]
-                      : resp.data.variables,
-                })
-              }
-              message.success({
-                content: t("dashboard.message.create-suc"),
-              })
-            } catch (e) {
-              message.error({
-                content: t("dashboard.message.create-failed"),
-              })
-            }
-          })}
-        >
-          <div css={leftPanelContainerStyle}>
-            <div css={leftPanelCoverContainer}>
-              <div css={[leftPanelTitleStyle, leftPanelTitleTextStyle]}>
-                {t("editor.ai-agent.title")}
-              </div>
-              <div css={leftPanelContentContainerStyle}>
-                <Controller
-                  name="icon"
-                  control={control}
-                  rules={{
-                    required: true,
-                  }}
-                  shouldUnregister={false}
-                  render={({ field }) => (
-                    <AIAgentBlock
-                      title={t("editor.ai-agent.label.icon")}
-                      required
-                      subtitle={
-                        <div
-                          css={descContainerStyle}
-                          onClick={async () => {
-                            if (
-                              !getValues("name") ||
-                              !getValues("description")
-                            ) {
-                              message.error({
-                                content: t(
-                                  "editor.ai-agent.generate-icon.blank",
-                                ),
-                              })
-                              return
-                            }
-                            setGenerateIconLoading(true)
-                            try {
-                              const icon = await generateIcon(
-                                getValues("name"),
-                                getValues("description"),
-                              )
-                              field.onChange(icon.data.payload)
-                            } catch (e) {
-                              message.error({
-                                content: t(
-                                  "editor.ai-agent.generate-desc.failed",
-                                ),
-                              })
-                            } finally {
-                              setGenerateIconLoading(false)
-                            }
-                          }}
-                        >
-                          {generateIconLoading ? (
-                            <AILoading spin={true} size="12px" />
-                          ) : (
-                            <AIIcon />
-                          )}
-                          <div css={descTextStyle}>
-                            {t("editor.ai-agent.generate-desc.button")}
-                          </div>
-                        </div>
-                      }
-                      subtitleTips={t("editor.ai-agent.generate-icon.tooltips")}
-                    >
-                      <AvatarUpload
-                        onOk={async (file) => {
-                          let reader = new FileReader()
-                          reader.onload = () => {
-                            field.onChange(reader.result)
-                            setInRoomUsers(
-                              updateLocalIcon(
-                                reader.result as string,
-                                inRoomUsers,
-                              ),
-                            )
+        <div css={leftPanelContainerStyle}>
+          <div css={leftPanelCoverContainer}>
+            <div css={[leftPanelTitleStyle, leftPanelTitleTextStyle]}>
+              {t("editor.ai-agent.title")}
+            </div>
+            <div css={leftPanelContentContainerStyle}>
+              <Controller
+                name="icon"
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.icon")}
+                    required
+                    subtitle={
+                      <div
+                        css={descContainerStyle}
+                        onClick={async () => {
+                          if (!getValues("name") || !getValues("description")) {
+                            message.error({
+                              content: t("editor.ai-agent.generate-icon.blank"),
+                            })
+                            return
                           }
-                          reader.readAsDataURL(file)
-                          return true
+                          setGenerateIconLoading(true)
+                          try {
+                            const icon = await generateIcon(
+                              getValues("name"),
+                              getValues("description"),
+                            )
+                            field.onChange(icon.data.payload)
+                          } catch (e) {
+                            message.error({
+                              content: t(
+                                "editor.ai-agent.generate-desc.failed",
+                              ),
+                            })
+                          } finally {
+                            setGenerateIconLoading(false)
+                          }
                         }}
                       >
-                        {!field.value ? (
-                          <div>
-                            <div css={uploadContainerStyle}>
-                              <div css={uploadContentContainerStyle}>
-                                <PlusIcon c={getColor("grayBlue", "03")} />
-                                <div css={uploadTextStyle}>
-                                  {t("editor.ai-agent.placeholder.icon")}
-                                </div>
+                        {generateIconLoading ? (
+                          <AILoading spin={true} size="12px" />
+                        ) : (
+                          <AIIcon />
+                        )}
+                        <div css={descTextStyle}>
+                          {t("editor.ai-agent.generate-desc.button")}
+                        </div>
+                      </div>
+                    }
+                    subtitleTips={t("editor.ai-agent.generate-icon.tooltips")}
+                  >
+                    <AvatarUpload
+                      onOk={async (file) => {
+                        let reader = new FileReader()
+                        reader.onload = () => {
+                          field.onChange(reader.result)
+                          setInRoomUsers(
+                            updateLocalIcon(
+                              reader.result as string,
+                              inRoomUsers,
+                            ),
+                          )
+                        }
+                        reader.readAsDataURL(file)
+                        return true
+                      }}
+                    >
+                      {!field.value ? (
+                        <div>
+                          <div css={uploadContainerStyle}>
+                            <div css={uploadContentContainerStyle}>
+                              <PlusIcon c={getColor("grayBlue", "03")} />
+                              <div css={uploadTextStyle}>
+                                {t("editor.ai-agent.placeholder.icon")}
                               </div>
                             </div>
                           </div>
-                        ) : (
-                          <Image
-                            src={field.value}
-                            css={uploadContentContainerStyle}
-                            width="100px"
-                            height="100px"
-                          />
-                        )}
-                      </AvatarUpload>
-                    </AIAgentBlock>
-                  )}
-                />
-                <Controller
-                  name="name"
-                  control={control}
-                  rules={{
-                    required: true,
-                  }}
-                  shouldUnregister={false}
-                  render={({ field }) => (
-                    <AIAgentBlock
-                      title={t("editor.ai-agent.label.name")}
-                      required
-                    >
-                      <Input
-                        {...field}
-                        placeholder={t("editor.ai-agent.placeholder.name")}
-                        colorScheme={"techPurple"}
-                        onChange={(value) => {
-                          field.onChange(value)
-                          setInRoomUsers(updateLocalName(value, inRoomUsers))
-                        }}
-                      />
-                    </AIAgentBlock>
-                  )}
-                />
-                <Controller
-                  name="description"
-                  control={control}
-                  rules={{
-                    required: true,
-                  }}
-                  shouldUnregister={false}
-                  render={({ field }) => (
-                    <AIAgentBlock
-                      title={t("editor.ai-agent.label.desc")}
-                      subtitleTips={t("editor.ai-agent.generate-desc.tooltips")}
-                      required
-                      subtitle={
-                        <div
-                          css={descContainerStyle}
-                          onClick={async () => {
-                            if (!getValues("prompt")) {
-                              message.error({
-                                content: t(
-                                  "editor.ai-agent.generate-desc.blank",
-                                ),
-                              })
-                              return
-                            }
-                            setGenerateDescLoading(true)
-                            try {
-                              const desc = await generateDescription(
-                                getValues("prompt"),
-                              )
-                              field.onChange(desc.data.payload)
-                            } catch (e) {
-                              message.error({
-                                content: t(
-                                  "editor.ai-agent.generate-desc.failed",
-                                ),
-                              })
-                            } finally {
-                              setGenerateDescLoading(false)
-                            }
-                          }}
-                        >
-                          {generateDescLoading ? (
-                            <AILoading spin={true} size="12px" />
-                          ) : (
-                            <AIIcon />
-                          )}
-                          <div css={descTextStyle}>
-                            {t("editor.ai-agent.generate-desc.button")}
-                          </div>
                         </div>
-                      }
-                    >
-                      <TextArea
-                        {...field}
-                        minH="64px"
-                        placeholder={t("editor.ai-agent.placeholder.desc")}
-                        colorScheme={"techPurple"}
-                      />
-                    </AIAgentBlock>
-                  )}
-                />
-                <Controller
-                  name="agentType"
-                  control={control}
-                  shouldUnregister={false}
-                  render={({ field }) => (
-                    <AIAgentBlock
-                      title={t("editor.ai-agent.label.mode")}
-                      tips={t("editor.ai-agent.tips.mode")}
-                      required
-                    >
-                      <RadioGroup
-                        {...field}
-                        colorScheme={"techPurple"}
-                        w="100%"
-                        type="button"
-                        forceEqualWidth={true}
-                        options={[
-                          {
-                            value: AI_AGENT_TYPE.CHAT,
-                            label: t("editor.ai-agent.option.mode.chat"),
-                          },
-                          {
-                            value: AI_AGENT_TYPE.TEXT_GENERATION,
-                            label: t("editor.ai-agent.option.mode.text"),
-                          },
-                        ]}
-                      />
-                    </AIAgentBlock>
-                  )}
-                />
-                <Controller
-                  name="prompt"
-                  control={control}
-                  rules={{
-                    required: true,
-                  }}
-                  shouldUnregister={false}
-                  render={({ field: promptField }) => (
-                    <AIAgentBlock title={"Prompt"} required>
-                      <Controller
-                        name="variables"
-                        control={control}
-                        render={({ field: variables }) => (
-                          <CodeEditor
-                            {...promptField}
-                            placeholder={t(
-                              "editor.ai-agent.placeholder.prompt",
-                            )}
-                            minHeight="200px"
-                            completionOptions={variables.value}
-                          />
-                        )}
-                      />
-                    </AIAgentBlock>
-                  )}
-                />
-                <Controller
-                  name="variables"
-                  control={control}
-                  rules={{
-                    validate: (value) =>
-                      value.every(
-                        (param) => param.key !== "" && param.value !== "",
-                      ) ||
-                      (value.length === 1 &&
-                        value[0].key === "" &&
-                        value[0].value === ""),
-                  }}
-                  shouldUnregister={false}
-                  render={({ field }) => (
-                    <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
-                      <RecordEditor
-                        records={field.value}
-                        onAdd={() => {
-                          field.onChange([
-                            ...field.value,
-                            {
-                              key: "",
-                              value: "",
-                            },
-                          ])
-                        }}
-                        onChangeKey={(index, key) => {
-                          const newVariables = [...field.value]
-                          newVariables[index].key = key
-                          field.onChange(newVariables)
-                        }}
-                        onChangeValue={(index, _, value) => {
-                          const newVariables = [...field.value]
-                          newVariables[index].value = value
-                          field.onChange(newVariables)
-                        }}
-                        onDelete={(index) => {
-                          const newVariables = [...field.value]
-                          newVariables.splice(index, 1)
-                          if (newVariables.length === 0) {
-                            newVariables.push({
-                              key: "",
-                              value: "",
+                      ) : (
+                        <Image
+                          src={field.value}
+                          css={uploadContentContainerStyle}
+                          width="100px"
+                          height="100px"
+                        />
+                      )}
+                    </AvatarUpload>
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="name"
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.name")}
+                    required
+                  >
+                    <Input
+                      {...field}
+                      placeholder={t("editor.ai-agent.placeholder.name")}
+                      colorScheme={"techPurple"}
+                      onChange={(value) => {
+                        field.onChange(value)
+                        setInRoomUsers(updateLocalName(value, inRoomUsers))
+                      }}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="description"
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.desc")}
+                    subtitleTips={t("editor.ai-agent.generate-desc.tooltips")}
+                    required
+                    subtitle={
+                      <div
+                        css={descContainerStyle}
+                        onClick={async () => {
+                          if (!getValues("prompt")) {
+                            message.error({
+                              content: t("editor.ai-agent.generate-desc.blank"),
                             })
-                          }
-                          field.onChange(newVariables)
-                        }}
-                        label={""}
-                      />
-                    </AIAgentBlock>
-                  )}
-                />
-                <Controller
-                  name="model"
-                  control={control}
-                  rules={{
-                    required: true,
-                  }}
-                  shouldUnregister={false}
-                  render={({ field }) => (
-                    <AIAgentBlock
-                      title={t("editor.ai-agent.label.model")}
-                      required
-                    >
-                      <Select
-                        {...field}
-                        onChange={(value) => {
-                          if (
-                            value !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
-                            !canUseBillingFeature
-                          ) {
-                            handleUpgradeModalVisible(true, "agent")
                             return
                           }
-                          field.onChange(value)
+                          setGenerateDescLoading(true)
+                          try {
+                            const desc = await generateDescription(
+                              getValues("prompt"),
+                            )
+                            field.onChange(desc.data.payload)
+                          } catch (e) {
+                            message.error({
+                              content: t(
+                                "editor.ai-agent.generate-desc.failed",
+                              ),
+                            })
+                          } finally {
+                            setGenerateDescLoading(false)
+                          }
                         }}
-                        colorScheme={"techPurple"}
-                        options={[
-                          {
-                            label: (
-                              <div css={labelStyle}>
-                                <OpenAIIcon />
-                                <span css={labelTextStyle}>GPT-3.5</span>
-                              </div>
-                            ),
-                            value: AI_AGENT_MODEL.GPT_3_5_TURBO,
-                          },
-                          {
-                            label: (
-                              <div css={labelStyle}>
-                                <OpenAIIcon />
-                                <span css={labelTextStyle}>GPT-3.5-16k</span>
-                                <div css={premiumContainerStyle}>
-                                  <UpgradeIcon />
-                                  <div style={{ marginLeft: 4 }}>Premium</div>
-                                </div>
-                              </div>
-                            ),
-                            value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
-                          },
-                          {
-                            label: (
-                              <div css={labelStyle}>
-                                <OpenAIIcon />
-                                <span css={labelTextStyle}>GPT-4</span>
-                                <div css={premiumContainerStyle}>
-                                  <UpgradeIcon />
-                                  <div style={{ marginLeft: 4 }}>Premium</div>
-                                </div>
-                              </div>
-                            ),
-                            value: AI_AGENT_MODEL.GPT_4,
-                          },
-                        ]}
-                      />
-                    </AIAgentBlock>
-                  )}
-                />
-                <Controller
-                  control={control}
-                  name={"model"}
-                  render={({ field: modelField }) => (
-                    <AIAgentBlock
-                      title={"Max Token"}
-                      tips={t("editor.ai-agent.tips.max-token")}
-                      required
-                    >
-                      <Controller
-                        name={"modelConfig.maxTokens"}
-                        control={control}
-                        rules={{
-                          required: true,
-                          validate: (value) =>
-                            value > 0 &&
-                            value <= getModelLimitToken(modelField.value),
-                        }}
-                        shouldUnregister={false}
-                        render={({ field }) => (
-                          <InputNumber
-                            {...field}
-                            colorScheme={"techPurple"}
-                            mode="button"
-                            min={0}
-                            max={getModelLimitToken(modelField.value)}
-                          />
+                      >
+                        {generateDescLoading ? (
+                          <AILoading spin={true} size="12px" />
+                        ) : (
+                          <AIIcon />
                         )}
-                      />
-                    </AIAgentBlock>
-                  )}
-                />
-                <Controller
-                  name="modelConfig.temperature"
-                  control={control}
-                  rules={{
-                    required: true,
-                    validate: (value) => value > 0 && value <= 2,
-                  }}
-                  shouldUnregister={false}
-                  render={({ field }) => (
-                    <AIAgentBlock
-                      title={"Temperature"}
-                      tips={t("editor.ai-agent.tips.temperature")}
-                      required
-                    >
-                      <div css={temperatureContainerStyle}>
-                        <Slider
-                          {...field}
-                          colorScheme={getColor("grayBlue", "02")}
-                          step={0.1}
-                          min={0}
-                          max={2}
-                        />
-                        <span css={temperatureStyle}>{field.value}</span>
+                        <div css={descTextStyle}>
+                          {t("editor.ai-agent.generate-desc.button")}
+                        </div>
                       </div>
-                    </AIAgentBlock>
-                  )}
-                />
-              </div>
-              {(isConnecting || isSubmitting) && (
-                <div css={leftLoadingCoverStyle} />
-              )}
+                    }
+                  >
+                    <TextArea
+                      {...field}
+                      minH="64px"
+                      placeholder={t("editor.ai-agent.placeholder.desc")}
+                      colorScheme={"techPurple"}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="agentType"
+                control={control}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.mode")}
+                    tips={t("editor.ai-agent.tips.mode")}
+                    required
+                  >
+                    <RadioGroup
+                      {...field}
+                      colorScheme={"techPurple"}
+                      w="100%"
+                      type="button"
+                      forceEqualWidth={true}
+                      options={[
+                        {
+                          value: AI_AGENT_TYPE.CHAT,
+                          label: t("editor.ai-agent.option.mode.chat"),
+                        },
+                        {
+                          value: AI_AGENT_TYPE.TEXT_GENERATION,
+                          label: t("editor.ai-agent.option.mode.text"),
+                        },
+                      ]}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="prompt"
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                shouldUnregister={false}
+                render={({ field: promptField }) => (
+                  <AIAgentBlock title={"Prompt"} required>
+                    <Controller
+                      name="variables"
+                      control={control}
+                      render={({ field: variables }) => (
+                        <CodeEditor
+                          {...promptField}
+                          placeholder={t("editor.ai-agent.placeholder.prompt")}
+                          minHeight="200px"
+                          completionOptions={variables.value}
+                        />
+                      )}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="variables"
+                control={control}
+                rules={{
+                  validate: (value) =>
+                    value.every(
+                      (param) => param.key !== "" && param.value !== "",
+                    ) ||
+                    (value.length === 1 &&
+                      value[0].key === "" &&
+                      value[0].value === ""),
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
+                    <RecordEditor
+                      records={field.value}
+                      onAdd={() => {
+                        field.onChange([
+                          ...field.value,
+                          {
+                            key: "",
+                            value: "",
+                          },
+                        ])
+                      }}
+                      onChangeKey={(index, key) => {
+                        const newVariables = [...field.value]
+                        newVariables[index].key = key
+                        field.onChange(newVariables)
+                      }}
+                      onChangeValue={(index, _, value) => {
+                        const newVariables = [...field.value]
+                        newVariables[index].value = value
+                        field.onChange(newVariables)
+                      }}
+                      onDelete={(index) => {
+                        const newVariables = [...field.value]
+                        newVariables.splice(index, 1)
+                        if (newVariables.length === 0) {
+                          newVariables.push({
+                            key: "",
+                            value: "",
+                          })
+                        }
+                        field.onChange(newVariables)
+                      }}
+                      label={""}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="model"
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={t("editor.ai-agent.label.model")}
+                    required
+                  >
+                    <Select
+                      {...field}
+                      onChange={(value) => {
+                        if (
+                          value !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+                          !canUseBillingFeature
+                        ) {
+                          handleUpgradeModalVisible(true, "agent")
+                          return
+                        }
+                        field.onChange(value)
+                      }}
+                      colorScheme={"techPurple"}
+                      options={[
+                        {
+                          label: (
+                            <div css={labelStyle}>
+                              <OpenAIIcon />
+                              <span css={labelTextStyle}>GPT-3.5</span>
+                            </div>
+                          ),
+                          value: AI_AGENT_MODEL.GPT_3_5_TURBO,
+                        },
+                        {
+                          label: (
+                            <div css={labelStyle}>
+                              <OpenAIIcon />
+                              <span css={labelTextStyle}>GPT-3.5-16k</span>
+                              <div css={premiumContainerStyle}>
+                                <UpgradeIcon />
+                                <div style={{ marginLeft: 4 }}>Premium</div>
+                              </div>
+                            </div>
+                          ),
+                          value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
+                        },
+                        {
+                          label: (
+                            <div css={labelStyle}>
+                              <OpenAIIcon />
+                              <span css={labelTextStyle}>GPT-4</span>
+                              <div css={premiumContainerStyle}>
+                                <UpgradeIcon />
+                                <div style={{ marginLeft: 4 }}>Premium</div>
+                              </div>
+                            </div>
+                          ),
+                          value: AI_AGENT_MODEL.GPT_4,
+                        },
+                      ]}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                control={control}
+                name={"model"}
+                render={({ field: modelField }) => (
+                  <AIAgentBlock
+                    title={"Max Token"}
+                    tips={t("editor.ai-agent.tips.max-token")}
+                    required
+                  >
+                    <Controller
+                      name={"modelConfig.maxTokens"}
+                      control={control}
+                      rules={{
+                        required: true,
+                        validate: (value) =>
+                          value > 0 &&
+                          value <= getModelLimitToken(modelField.value),
+                      }}
+                      shouldUnregister={false}
+                      render={({ field }) => (
+                        <InputNumber
+                          {...field}
+                          colorScheme={"techPurple"}
+                          mode="button"
+                          min={0}
+                          max={getModelLimitToken(modelField.value)}
+                        />
+                      )}
+                    />
+                  </AIAgentBlock>
+                )}
+              />
+              <Controller
+                name="modelConfig.temperature"
+                control={control}
+                rules={{
+                  required: true,
+                  validate: (value) => value > 0 && value <= 2,
+                }}
+                shouldUnregister={false}
+                render={({ field }) => (
+                  <AIAgentBlock
+                    title={"Temperature"}
+                    tips={t("editor.ai-agent.tips.temperature")}
+                    required
+                  >
+                    <div css={temperatureContainerStyle}>
+                      <Slider
+                        {...field}
+                        colorScheme={getColor("grayBlue", "02")}
+                        step={0.1}
+                        min={0}
+                        max={2}
+                      />
+                      <span css={temperatureStyle}>{field.value}</span>
+                    </div>
+                  </AIAgentBlock>
+                )}
+              />
             </div>
+            {(isConnecting || isSubmitting) && (
+              <div css={leftLoadingCoverStyle} />
+            )}
+          </div>
+          <form
+            onSubmit={handleSubmit(async (data) => {
+              try {
+                let updateIconURL = data.icon
+                if (data.icon !== undefined && data.icon !== "") {
+                  const iconURL = new URL(data.icon)
+                  if (
+                    iconURL.protocol !== "http:" &&
+                    iconURL.protocol !== "https:"
+                  ) {
+                    updateIconURL = await uploadAgentIcon(data.icon)
+                  }
+                }
+                if (data.aiAgentID === undefined || data.aiAgentID === "") {
+                  const resp = await createAgent({
+                    ...data,
+                    icon: updateIconURL,
+                    variables: data.variables.filter(
+                      (v) => v.key !== "" && v.value !== "",
+                    ),
+                  })
+                  reset({
+                    ...resp.data,
+                    variables:
+                      resp.data.variables.length === 0
+                        ? [{ key: "", value: "" }]
+                        : resp.data.variables,
+                  })
+                } else {
+                  const resp = await putAgentDetail(data.aiAgentID, {
+                    ...data,
+                    icon: updateIconURL,
+                    variables: data.variables.filter(
+                      (v) => v.key !== "" && v.value !== "",
+                    ),
+                  })
+                  reset({
+                    ...resp.data,
+                    variables:
+                      resp.data.variables.length === 0
+                        ? [{ key: "", value: "" }]
+                        : resp.data.variables,
+                  })
+                }
+                message.success({
+                  content: t("dashboard.message.create-suc"),
+                })
+              } catch (e) {
+                message.error({
+                  content: t("dashboard.message.create-failed"),
+                })
+              }
+            })}
+          >
             <div css={buttonContainerStyle}>
               <Button
                 id="save-button"
@@ -776,8 +767,8 @@ export const AIAgent: FC = () => {
                   : t("editor.ai-agent.restart")}
               </Button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
         <Controller
           name="agentType"
           control={control}

@@ -335,20 +335,36 @@ export const AIAgentRunMobile: FC = () => {
           )}
         />
       </div>
-      <div css={buttonContainerStyle}>
-        <Button
-          flex="1"
-          disabled={!isValid}
-          loading={isConnecting}
-          ml="8px"
-          colorScheme={getColor("grayBlue", "02")}
-          leftIcon={<ResetIcon />}
-        >
-          {!isRunning
-            ? t("editor.ai-agent.start")
-            : t("editor.ai-agent.restart")}
-        </Button>
-      </div>
+      <form
+        onSubmit={handleSubmit(async (data) => {
+          if (
+            data.model !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
+            !canUseBillingFeature
+          ) {
+            handleUpgradeModalVisible(true, "agent")
+            return
+          }
+          reset(data)
+          isRunning
+            ? await reconnect(data.aiAgentID, data.agentType)
+            : await connect(data.aiAgentID, data.agentType)
+        })}
+      >
+        <div css={buttonContainerStyle}>
+          <Button
+            flex="1"
+            disabled={!isValid}
+            loading={isConnecting}
+            ml="8px"
+            colorScheme={getColor("grayBlue", "02")}
+            leftIcon={<ResetIcon />}
+          >
+            {!isRunning
+              ? t("editor.ai-agent.start")
+              : t("editor.ai-agent.restart")}
+          </Button>
+        </div>
+      </form>
     </div>
   )
 
@@ -507,23 +523,7 @@ export const AIAgentRunMobile: FC = () => {
           />
         </div>
         {currentSelectTab === "run" && previewChatTab}
-        <form
-          onSubmit={handleSubmit(async (data) => {
-            if (
-              data.model !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
-              !canUseBillingFeature
-            ) {
-              handleUpgradeModalVisible(true, "agent")
-              return
-            }
-            reset(data)
-            isRunning
-              ? await reconnect(data.aiAgentID, data.agentType)
-              : await connect(data.aiAgentID, data.agentType)
-          })}
-        >
-          {currentSelectTab === "config" && configTab}
-        </form>
+        {currentSelectTab === "config" && configTab}
         {dialog}
       </div>
     </ChatContext.Provider>
