@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "開始ボタンをクリックしてトリガーします。",
-        "insufficient_token": "トークンが足りません",
+        "insufficient_token": "Colla不足",
         "start-failed": "開始に失敗しました。もう一度やり直してください。 ",
-        "reconnect": "接続が失われました。再接続中..."
+        "reconnect": "接続が失われました。再接続中...",
+        "token-not-enough": "モデルの上限に達しました。再起動してください。"
       },
       "title": "🧬 AI エージェントの編集",
       "generate-desc": {
