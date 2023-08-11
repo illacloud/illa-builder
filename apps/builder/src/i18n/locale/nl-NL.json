@@ -72,7 +72,7 @@
       "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
       "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
       "fork-failed": "Fork mislukt, probeer het opnieuw.",
-      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
+      "create-suc": "Succesvol opgeslagen",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Geef een naam aan de agent",
         "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
-        "prompt": "Voer {{ om een variabele te gebruiken in",
+        "prompt": "Voer {{variableName}} in om een variabele te gebruiken",
         "variable": {
           "key": "Naam variabele",
           "value": "Waarde"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klik op de Start knop om te starten.",
-        "insufficient_token": "Onvoldoende token"
+        "insufficient_token": "Onvoldoende token",
+        "start-failed": "Starten mislukt. Probeer het opnieuw. "
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
         "failed": "Aanmaken mislukt. Probeer het later opnieuw. "
       },
-      "title-preview": "Venster starten",
       "generate-icon": {
         "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
+      },
+      "title-preview": {
+        "chat": "Chatten",
+        "textGeneration": "Tekst genereren"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "Bevoegdheden",
       "operation": "Bewerking",
       "transfer": "Transfer Ownership",
-      "remove": "Verwijderen"
+      "remove": "Verwijderen",
+      "ai-agent": "AI agenten"
     },
     "transfer_modal": {
       "title": "Weet u zeker dat u de eigenaarschap wilt overmaken?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 is voor Premium team. ",
         "string2": "Upgrade naar Premium om het te gebruiken. Je hebt ook toegang tot de volgende functies. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Functie voor Premium teams",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Deze functie is voor de premium teams. Neem contact op met uw team admins om te upgraden. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Vereenvoudig je werkdruk met [{{promptName}}] - De AI Agent die de Job Gereed krijgt"
       },
       "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
+    },
+    "button": {
+      "contribute": "Draag bij aan de marktplaats",
+      "share_contribute": "Kopiëren & delen",
+      "uncontribute": "Annuleer bijdrage"
     }
   },
   "ai-agents": "AI agenten",

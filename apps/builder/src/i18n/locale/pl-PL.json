@@ -72,7 +72,7 @@
       "sort-failed": "Zmiana typu filtra nie powiodła się. Spróbuj ponownie.",
       "detail-load-failed": "Nie udało się pobrać szczegółów, spróbuj ponownie.",
       "fork-failed": "Nie udało się forkować, spróbuj ponownie.",
-      "create-suc": "Nie udało się utworzyć, spróbuj ponownie.",
+      "create-suc": "Zapisano pomyślnie",
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
       "delete-suc": "Usunięto pomyślnie. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Podaj nazwę agentowi",
         "desc": "Należy podać krótki opis tego, do czego ma być stosowany ten agent.",
-        "prompt": "Wprowadź {{ aby użyć zmiennej",
+        "prompt": "Wprowadź {{variableName}} aby użyć zmiennej",
         "variable": {
           "key": "Nazwa zmiennej",
           "value": "Wartość"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Kliknij przycisk Start, aby wyzwalać.",
-        "insufficient_token": "Niewystarczający token"
+        "insufficient_token": "Niewystarczający token",
+        "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. "
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Użyj AI do wygenerowania opisu na podstawie Twojego pytania. ",
         "failed": "Nie udało się wygenerować. Spróbuj ponownie później. "
       },
-      "title-preview": "Uruchom okno",
       "generate-icon": {
         "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela"
+      },
+      "title-preview": {
+        "chat": "Czat",
+        "textGeneration": "Generowanie tekstu"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "Uprawnienie",
       "operation": "Operacja",
       "transfer": "Przenieś własność",
-      "remove": "Usuń"
+      "remove": "Usuń",
+      "ai-agent": "Agenci SI"
     },
     "transfer_modal": {
       "title": "Czy na pewno chcesz przenieść własność?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 jest dla zespołu Premium. ",
         "string2": "Aby go użyć, uaktualnij do wersji Premium. Uaktualniając do wersji Premium, będziesz miał również dostęp do następujących funkcji. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funkcja dla drużyn Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Ta funkcja jest dostępna dla zespołów premium. Skontaktuj się z administratorami zespołu, aby ulepszyć. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Uprość obciążenie zadaniami z [{{promptName}}] - Agent AI, który wykonuje zadanie"
       },
       "contribute": "Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!"
+    },
+    "button": {
+      "contribute": "Przyczyń się do marketplace",
+      "share_contribute": "Kopiuj i udostępnij",
+      "uncontribute": "Anuluj wkład"
     }
   },
   "ai-agents": "Agenci SI",

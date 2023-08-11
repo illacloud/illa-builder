@@ -72,7 +72,7 @@
       "sort-failed": "筛选类型过滤失败，请重试",
       "detail-load-failed": "详细信息查询失败，请重试",
       "fork-failed": "Fork失败，请重试",
-      "create-suc": "创建失败，请重试",
+      "create-suc": "保存成功",
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
       "delete-suc": "删除成功"
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "为Agent命名",
         "desc": "简要描述该Agent的用途。",
-        "prompt": "输入 {{ 使用变量",
+        "prompt": "输入 {{变量名}} 使用变量",
         "variable": {
           "key": "变量名",
           "value": "值"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "点击开始按钮触发运行",
-        "insufficient_token": "Token不足"
+        "insufficient_token": "Token不足",
+        "start-failed": "开始失败，请重试。"
       },
       "title": "🧬 编辑AI Agent",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "基于您的Prompt，使用AI生成描述信息",
         "failed": "生成失败，请稍后重试"
       },
-      "title-preview": "运行窗口",
       "generate-icon": {
         "tooltips": "基于Agent的名称和描述，使用AI生成icon"
+      },
+      "title-preview": {
+        "chat": "对话",
+        "textGeneration": "文本生成"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "权限",
       "operation": "操作",
       "transfer": "转移所有权",
-      "remove": "移除"
+      "remove": "移除",
+      "ai-agent": "AI Agents"
     },
     "transfer_modal": {
       "title": "您确定要转移所有权吗？",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4是为Premium团队提供的选项。",
         "string2": "请升级到Premium以使用它。通过升级到Premium，您还将获得以下权益。"
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Premium团队专属功能",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "该功能是Premium团队专属功能，请联系您团队的管理员升级。"
+            }
+          }
+        },
+        "upgrade_button": "好的"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "contribute": "贡献到marketplace",
+      "share_contribute": "复制并分享",
+      "uncontribute": "取消贡献"
     }
   },
   "ai-agents": "AI Agents",

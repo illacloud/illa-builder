@@ -72,7 +72,7 @@
       "sort-failed": "Suodattimen tyyppiä ei voitu muuttaa. Yritä uudelleen.",
       "detail-load-failed": "Tietojen noutaminen epäonnistui, yritä uudelleen.",
       "fork-failed": "Ei voitu forkata, yritä uudelleen.",
-      "create-suc": "Ei voitu luoda, yritä uudelleen.",
+      "create-suc": "Tallennus onnistui",
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
       "delete-suc": "Poistettu onnistuneesti. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Anna nimi agentille",
         "desc": "Anna lyhyt kuvaus siitä, mihin tämä agentti on tarkoitettu käytettäväksi.",
-        "prompt": "Syötä {{ käyttääksesi muuttujaa",
+        "prompt": "Syötä {{variableName}} käyttääksesi muuttujaa",
         "variable": {
           "key": "Muuttujan nimi",
           "value": "Arvo"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Napsauta Käynnistä painiketta käynnistääksesi.",
-        "insufficient_token": "Riittämätön tunnus"
+        "insufficient_token": "Riittämätön tunnus",
+        "start-failed": "Aloitus epäonnistui. Yritä uudelleen. "
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Käytä tekoälyä luodaksesi kehotuksesi perustuvan kuvauksen. ",
         "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. "
       },
-      "title-preview": "Suorita ikkuna",
       "generate-icon": {
         "tooltips": "Käytä tekoälyä luodaksesi kuvakkeen agenttien nimen ja kuvauksen perusteella"
+      },
+      "title-preview": {
+        "chat": "Keskustelu",
+        "textGeneration": "Tekstin luonti"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "Käyttöoikeus",
       "operation": "Toiminto",
       "transfer": "Siirrä omistajuus",
-      "remove": "Poista"
+      "remove": "Poista",
+      "ai-agent": "AI Agents"
     },
     "transfer_modal": {
       "title": "Oletko varma, että haluat siirtää omistajuutta?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 on Premium-tiimille. ",
         "string2": "Jos haluat käyttää sitä, päivitä Premiumiin. Päivittämällä Premiumiin sinulla on myös pääsy seuraaviin ominaisuuksiin. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Ominaisuus Premium-tiimeille",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Tämä ominaisuus on Premium-tiimeille. Ole hyvä ja ota yhteyttä tiimin ylläpitäjiin päivittääksesi. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Yksinkertaista työtaakkaa [{{promptName}}] - tekoälyn agentti, joka saa tehtävän valmiiksi."
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "contribute": "Osallistu markkinapaikkaan",
+      "share_contribute": "Kopioi & Jaa",
+      "uncontribute": "Peruuta lisäys"
     }
   },
   "ai-agents": "AI Agents",

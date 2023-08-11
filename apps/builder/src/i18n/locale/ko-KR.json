@@ -72,7 +72,7 @@
       "sort-failed": "Failed to change the filter type. Please try again.",
       "detail-load-failed": "Failed to retrieve details, please try again.",
       "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
+      "create-suc": "Successfully saved",
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
       "delete-suc": "Successfully deleted. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Give a name to the agent",
         "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter {{ to use a variable",
+        "prompt": "Enter {{variableName}} to use a variable",
         "variable": {
           "key": "Variable name",
           "value": "Value"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Click the Start button to trigger.",
-        "insufficient_token": "Insufficient token"
+        "insufficient_token": "Insufficient token",
+        "start-failed": "Failed to start. Please try again. "
       },
       "title": "🧬 Edit AI Agent",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Use AI to generate the description based on your prompt. ",
         "failed": "Failed to generate. Please try again later. "
       },
-      "title-preview": "Run window",
       "generate-icon": {
         "tooltips": "Use AI to generate icon based on the agent name and description"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "권한",
       "operation": "운영",
       "transfer": "소유권 이전",
-      "remove": "제거"
+      "remove": "제거",
+      "ai-agent": "AI Agents"
     },
     "transfer_modal": {
       "title": "소유권을 이전하시겠습니까?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 is for Premium team. ",
         "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Feature for Premium teams",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "This feature is for the premium teams. Please contact your team admins to upgrade. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "contribute": "Contribute to marketplace",
+      "share_contribute": "Copy & Share",
+      "uncontribute": "Cancel contribution"
     }
   },
   "ai-agents": "AI Agents",

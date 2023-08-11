@@ -72,7 +72,7 @@
       "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
       "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
       "fork-failed": "Det gick inte att fork, försök igen.",
-      "create-suc": "Det gick inte att skapa, försök igen.",
+      "create-suc": "Sparades framgångsrikt",
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
       "delete-suc": "Raderades framgångsrikt. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Ge ett namn till agenten",
         "desc": "Ge en kort beskrivning av vad denna agent är avsedd att användas till.",
-        "prompt": "Ange {{ för att använda en variabel",
+        "prompt": "Ange {{variableName}} för att använda en variabel",
         "variable": {
           "key": "Variabelt namn",
           "value": "Värde"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klicka på Start -knappen för att utlösa.",
-        "insufficient_token": "Otillräcklig token"
+        "insufficient_token": "Otillräcklig token",
+        "start-failed": "Det gick inte att starta. Försök igen. "
       },
       "title": "🧬 Redigera AI agent",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Använd AI för att generera beskrivningen baserat på din prompt. ",
         "failed": "Det gick inte att generera. Försök igen senare. "
       },
-      "title-preview": "Kör fönster",
       "generate-icon": {
         "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning"
+      },
+      "title-preview": {
+        "chat": "Chatt",
+        "textGeneration": "Generering av text"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "Behörighet",
       "operation": "Åtgärd",
       "transfer": "Överför ägarskap",
-      "remove": "Radera"
+      "remove": "Radera",
+      "ai-agent": "AI agenter"
     },
     "transfer_modal": {
       "title": "Är du säker på att du vill överföra ägande?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 är för Premium-teamet. ",
         "string2": "För att använda det, vänligen uppgradera till Premium. Genom att uppgradera till Premium, kommer du också att ha tillgång till följande funktioner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funktion för Premium-team",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Den här funktionen är för premiumteamen. Kontakta teamets administratörer för att uppgradera. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Förenkla din arbetsbelastning med [{{promptName}}] - AI-agenten som får jobbet klart"
       },
       "contribute": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!"
+    },
+    "button": {
+      "contribute": "Bidra till marknadsplatsen",
+      "share_contribute": "Kopiera & dela",
+      "uncontribute": "Avbryt bidrag"
     }
   },
   "ai-agents": "AI agenter",

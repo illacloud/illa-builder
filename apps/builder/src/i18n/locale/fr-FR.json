@@ -72,7 +72,7 @@
       "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
       "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
       "fork-failed": "Échec du fork, veuillez réessayer.",
-      "create-suc": "Échec de la création, veuillez réessayer.",
+      "create-suc": "Sauvegardé avec succès",
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
       "delete-suc": "Supprimé avec succès. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Donner un nom à l'agent",
         "desc": "Fournir une brève description de ce à quoi cet agent est destiné à être utilisé.",
-        "prompt": "Entrez {{ pour utiliser une variable",
+        "prompt": "Entrez {{variableName}} pour utiliser une variable",
         "variable": {
           "key": "Nom de la variable",
           "value": "Valeur"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
-        "insufficient_token": "Jeton insuffisant"
+        "insufficient_token": "Jeton insuffisant",
+        "start-failed": "Impossible de démarrer. Veuillez réessayer. "
       },
       "title": "🧬 Modifier l'Agent IA",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
         "failed": "Échec de la génération. Veuillez réessayer plus tard. "
       },
-      "title-preview": "Lancer la fenêtre",
       "generate-icon": {
         "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent"
+      },
+      "title-preview": {
+        "chat": "Discuter",
+        "textGeneration": "Génération de texte"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "Permission",
       "operation": "Opération",
       "transfer": "Transférer la propriété",
-      "remove": "Retirer"
+      "remove": "Retirer",
+      "ai-agent": "Agents IA"
     },
     "transfer_modal": {
       "title": "Êtes-vous sûr de vouloir transférer la propriété ?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 est destiné à l'équipe Premium. ",
         "string2": "Pour l'utiliser, passez à la version Premium. En passant à la version Premium, vous aurez également accès aux fonctionnalités suivantes. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Fonctionnalité pour les équipes Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Cette fonctionnalité est destinée aux équipes premium. Veuillez contacter les administrateurs de votre équipe pour mettre à niveau. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Simplifiez votre charge de travail avec [{{promptName}}] - L'agent IA qui obtient la tâche terminée"
       },
       "contribute": "Je suis tombé sur une plate-forme AI Agent qui offre des solutions de pointe pour simplifier les tâches complexes et intégrer vos outils internes. J'ai personnellement essayé [{{promptName}}] et j'ai été propulsé par ses capacités. C'est un changement de jeu pour tous ceux qui cherchent à rester en avance sur la courbe. Jetez-y un coup d'oeil sur {{promptLink}} et faites-moi savoir ce que vous en pensez!"
+    },
+    "button": {
+      "contribute": "Contribuer au marché",
+      "share_contribute": "Copier et partager",
+      "uncontribute": "Annuler la contribution"
     }
   },
   "ai-agents": "Agents IA",

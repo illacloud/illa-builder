@@ -72,7 +72,7 @@
       "sort-failed": "Kan ikke endre filtertypen. Vennligst prøv på nytt.",
       "detail-load-failed": "Kan ikke hente detaljer, prøv igjen.",
       "fork-failed": "Skaffe, vennligst prøv igjen.",
-      "create-suc": "Kunne ikke opprette, vennligst prøv igjen.",
+      "create-suc": "Lagring vellykket",
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Gi et navn til agenten",
         "desc": "Gi en kort beskrivelse av hva denne agenten skal brukes til.",
-        "prompt": "Angi {{ for å bruke en variabel",
+        "prompt": "Angi {{variableName}} for å bruke en variabel",
         "variable": {
           "key": "Variabelens navn",
           "value": "Verdi"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klikk på Start knappen for å utløse.",
-        "insufficient_token": "Utilstrekkelig token"
+        "insufficient_token": "Utilstrekkelig token",
+        "start-failed": "Kunne ikke starte. Vennligst prøv igjen. "
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
         "failed": "Kan ikke generere. Prøv igjen senere. "
       },
-      "title-preview": "Kjøre vindu",
       "generate-icon": {
         "tooltips": "Bruk AI til å generere ikon basert på agent navn og beskrivelse"
+      },
+      "title-preview": {
+        "chat": "Samtale",
+        "textGeneration": "Generering av tekst"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "Tillatelse",
       "operation": "Operasjon",
       "transfer": "Overfør eierskap",
-      "remove": "Fjern"
+      "remove": "Fjern",
+      "ai-agent": "AI agenter"
     },
     "transfer_modal": {
       "title": "Er du sikker på at du vil overføre eierskap?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 er for Premium-team. ",
         "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funksjon for Premium-lag",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Denne funksjonen er for premiumteamene. Vennligst kontakt ditt team administrator for å oppgradere. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Forenkle arbeidsmengde med [{{promptName}}] - AI-agenten gjør jobben ferdig"
       },
       "contribute": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!"
+    },
+    "button": {
+      "contribute": "Bidra til markedsplassen",
+      "share_contribute": "Kopier og Del",
+      "uncontribute": "Avbryt bidrag"
     }
   },
   "ai-agents": "AI agenter",

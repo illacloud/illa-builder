@@ -72,7 +72,7 @@
       "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
       "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
       "fork-failed": "Esuare fork, te rugam incearca din nou.",
-      "create-suc": "Creare esuata, te rugam incearca din nou.",
+      "create-suc": "Salvat cu succes",
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dă un nume agentului",
         "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
-        "prompt": "Introduceţi {{ pentru a utiliza o variabilă",
+        "prompt": "Introduceți {{variableName}} pentru a utiliza o variabilă",
         "variable": {
           "key": "Denumire variabilă",
           "value": "Valoare"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
-        "insufficient_token": "Token insuficient"
+        "insufficient_token": "Token insuficient",
+        "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. "
       },
       "title": "🧬 Editare agent AI",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
         "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. "
       },
-      "title-preview": "Rulează fereastra",
       "generate-icon": {
         "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Generare text"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "Permisiune",
       "operation": "Operațiune",
       "transfer": "Transferă proprietate",
-      "remove": "Elimină"
+      "remove": "Elimină",
+      "ai-agent": "Agenți AI"
     },
     "transfer_modal": {
       "title": "Sunteţi sigur că doriţi să transferaţi dreptul de proprietate?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 este pentru echipa Premium. ",
         "string2": "Pentru a o folosi, vă rugăm să faceţi upgrade la Premium. Prin upgrade la Premium, veţi avea de asemenea acces la următoarele caracteristici. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Caracteristică pentru echipele Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Această caracteristică este pentru echipele premium. Vă rugăm să contactați administratorii echipei pentru a face upgrade. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
       },
       "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
+    },
+    "button": {
+      "contribute": "Contribuie la piata",
+      "share_contribute": "Copiază & Partajează",
+      "uncontribute": "Anulează contribuția"
     }
   },
   "ai-agents": "Agenți AI",

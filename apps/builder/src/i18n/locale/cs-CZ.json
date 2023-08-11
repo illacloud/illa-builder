@@ -72,7 +72,7 @@
       "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
       "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
       "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
-      "create-suc": "Nepodařilo se vytvořit, zkuste to prosím znovu.",
+      "create-suc": "Úspěšně uloženo",
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. "
@@ -2572,7 +2572,7 @@
       "placeholder": {
         "name": "Dejte jméno agentovi",
         "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
-        "prompt": "Zadejte {{ pro použití proměnné",
+        "prompt": "Zadejte {{variableName}} pro použití proměnné",
         "variable": {
           "key": "Název proměnné",
           "value": "Hodnota"
@@ -2616,7 +2616,8 @@
       },
       "message": {
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
-        "insufficient_token": "Nedostatečný token"
+        "insufficient_token": "Nedostatečný token",
+        "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. "
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
@@ -2624,9 +2625,12 @@
         "tooltips": "Použijte AI k vygenerování popisu na základě vaší výzvy. ",
         "failed": "Generování se nezdařilo. Opakujte akci později. "
       },
-      "title-preview": "Spustit okno",
       "generate-icon": {
         "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Generování textu"
       }
     },
     "common": {
@@ -3289,7 +3293,8 @@
       "permission": "Právo",
       "operation": "Operace",
       "transfer": "Převést vlastnictví",
-      "remove": "Odebrat"
+      "remove": "Odebrat",
+      "ai-agent": "AI agenti"
     },
     "transfer_modal": {
       "title": "Jste si jisti, že chcete převést vlastnictví?",
@@ -3865,6 +3870,17 @@
       "ai-agent": {
         "string1": "GPT-4 je pro prémiový tým. ",
         "string2": "Chcete-li jej použít, proveďte upgrade na Premium. Proveďte upgrade na Premium, budete mít také přístup k následujícím funkcím. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funkce pro prémiové týmy",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Tato funkce je pro prémiové týmy. Pro upgrade kontaktujte správce týmu. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3973,6 +3989,11 @@
         "hackernews": "Zjednodušit pracovní zatížení pomocí [{{promptName}}] - AI agenta, který práci dokončil"
       },
       "contribute": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!"
+    },
+    "button": {
+      "contribute": "Přispějte na tržišti",
+      "share_contribute": "Kopírovat a sdílet",
+      "uncontribute": "Zrušit příspěvek"
     }
   },
   "ai-agents": "AI agenti",
