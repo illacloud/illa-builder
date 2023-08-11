@@ -2629,8 +2629,8 @@
         "tooltips": "エージェント名と説明に基づいてアイコンを生成するためにAIを使用します"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "チャット",
+        "textGeneration": "テキストの生成"
       }
     },
     "common": {
