@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
-        "insufficient_token": "Jeton insuffisant",
+        "insufficient_token": "Colla Insuffisante",
         "start-failed": "Impossible de démarrer. Veuillez réessayer. ",
-        "reconnect": "Connexion perdue. Reconnexion en cours."
+        "reconnect": "Connexion perdue. Reconnexion en cours.",
+        "token-not-enough": "Limite du modèle atteinte. Veuillez recommencer."
       },
       "title": "🧬 Modifier l'Agent IA",
       "generate-desc": {
