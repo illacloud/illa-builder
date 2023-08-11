@@ -2629,8 +2629,8 @@
         "tooltips": "Bruk AI til å generere ikon basert på agent navn og beskrivelse"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "Samtale",
+        "textGeneration": "Generering av tekst"
       }
     },
     "common": {
