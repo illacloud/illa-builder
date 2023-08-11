@@ -2630,7 +2630,7 @@
       },
       "title-preview": {
         "chat": "Chat",
-        "textGeneration": "Generování textu"
+        "text-generation": "Generování textu"
       }
     },
     "common": {
