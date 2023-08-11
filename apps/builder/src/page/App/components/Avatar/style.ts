@@ -7,10 +7,9 @@ export function applyUserAvatarStyle(
   type?: string,
 ): SerializedStyles {
   const basicStyle = css`
-    display: flex;
+    display: inline-block;
     background: ${background};
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     border-radius: 50%;
     cursor: pointer;
     flex-shrink: 0;
