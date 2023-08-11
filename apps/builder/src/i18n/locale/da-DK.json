@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "Klik på knappen Start for at udløse.",
-        "insufficient_token": "Utilstrækkelig token",
+        "insufficient_token": "Utilstrækkelig Colla",
         "start-failed": "Mislykkedes at starte. Prøv igen. ",
-        "reconnect": "Forbindelse tabt. Gentilkobling i gang."
+        "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
+        "token-not-enough": "Model grænse nået. Genstart."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
