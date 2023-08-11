@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "Klicka på Start -knappen för att utlösa.",
-        "insufficient_token": "Otillräcklig token",
+        "insufficient_token": "Otillräcklig Colla",
         "start-failed": "Det gick inte att starta. Försök igen. ",
-        "reconnect": "Anslutning förlorad. Återgång pågår."
+        "reconnect": "Anslutning förlorad. Återgång pågår.",
+        "token-not-enough": "Modellens gräns har uppnåtts. Vänligen starta om."
       },
       "title": "🧬 Redigera AI agent",
       "generate-desc": {
