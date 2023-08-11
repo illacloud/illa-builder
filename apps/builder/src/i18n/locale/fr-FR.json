@@ -2618,7 +2618,7 @@
         "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
         "insufficient_token": "Jeton insuffisant",
         "start-failed": "Impossible de démarrer. Veuillez réessayer. ",
-        "reconnect": "Connection lost. Reconnection in progress."
+        "reconnect": "Connexion perdue. Reconnexion en cours."
       },
       "title": "🧬 Modifier l'Agent IA",
       "generate-desc": {
