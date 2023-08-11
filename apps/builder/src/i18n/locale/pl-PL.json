@@ -2618,7 +2618,7 @@
         "click-start": "Kliknij przycisk Start, aby wyzwalać.",
         "insufficient_token": "Niewystarczający token",
         "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. ",
-        "reconnect": "Connection lost. Reconnection in progress."
+        "reconnect": "Połączenie zostało utracone. Trwa ponowne połączenie."
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
