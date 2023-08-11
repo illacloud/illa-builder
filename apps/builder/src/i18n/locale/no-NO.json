@@ -2630,7 +2630,7 @@
       },
       "title-preview": {
         "chat": "Samtale",
-        "textGeneration": "Generering av tekst"
+        "text-generation": "Generering av tekst"
       }
     },
     "common": {
