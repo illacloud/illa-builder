@@ -2618,7 +2618,7 @@
         "click-start": "Натисніть «Запустити», щоб увімкнути тригер.",
         "insufficient_token": "Недостатньо токену",
         "start-failed": "Не вдалося запустити. Будь ласка, спробуйте ще раз. ",
-        "reconnect": "Connection lost. Reconnection in progress."
+        "reconnect": "З'єднання втрачено. Виконується повторне підключення."
       },
       "title": ":dn: Редагувати AI Agent",
       "generate-desc": {
