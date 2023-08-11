@@ -19,6 +19,7 @@ import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { Avatar } from "@/illa-public-component/Avatar"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
+import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import {
   canManage,
@@ -30,7 +31,11 @@ import {
 } from "@/illa-public-component/UserRoleUtils/interface"
 import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import ShareToSocialMedia from "@/illa-public-market-component/ShareToSocialMedia"
-import { labelStyle, labelTextStyle } from "@/page/AI/AIAgent/style"
+import {
+  labelStyle,
+  labelTextStyle,
+  premiumContainerStyle,
+} from "@/page/AI/AIAgent/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
@@ -203,6 +208,7 @@ export const AIAgentRunPC: FC = () => {
             variables: getValues("variables"),
             modelConfig: getValues("modelConfig"),
             model: getValues("model"),
+            actionID: getValues("aiAgentID"),
             agentType: getValues("agentType"),
           } as ChatSendRequestPayload,
           TextSignal.RUN,
@@ -468,6 +474,10 @@ export const AIAgentRunPC: FC = () => {
                             <div css={labelStyle}>
                               <OpenAIIcon />
                               <span css={labelTextStyle}>GPT-3.5-16k</span>
+                              <div css={premiumContainerStyle}>
+                                <UpgradeIcon />
+                                <div style={{ marginLeft: 4 }}>Premium</div>
+                              </div>
                             </div>
                           ),
                           value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
@@ -477,6 +487,10 @@ export const AIAgentRunPC: FC = () => {
                             <div css={labelStyle}>
                               <OpenAIIcon />
                               <span css={labelTextStyle}>GPT-4</span>
+                              <div css={premiumContainerStyle}>
+                                <UpgradeIcon />
+                                <div style={{ marginLeft: 4 }}>Premium</div>
+                              </div>
                             </div>
                           ),
                           value: AI_AGENT_MODEL.GPT_4,
@@ -527,6 +541,7 @@ export const AIAgentRunPC: FC = () => {
                       modelConfig: getValues("modelConfig"),
                       model: getValues("model"),
                       agentType: getValues("agentType"),
+                      actionID: getValues("aiAgentID"),
                     } as ChatSendRequestPayload,
                     TextSignal.RUN,
                     agentType,

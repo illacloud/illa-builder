@@ -85,6 +85,7 @@ export interface ChatMessage {
 export interface ChatSendRequestPayload {
   threadID: string
   prompt: string
+  actionID: string // the ID of who answered the question
   variables: Params[]
   model: AI_AGENT_MODEL
   agentType: AI_AGENT_TYPE

@@ -24,6 +24,7 @@ import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/illa-public-component/CodeMirror"
 import { AvatarUpload } from "@/illa-public-component/Cropper"
+import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import {
   canManage,
@@ -70,6 +71,7 @@ import {
   leftPanelCoverContainer,
   leftPanelTitleStyle,
   leftPanelTitleTextStyle,
+  premiumContainerStyle,
   rightPanelContainerStyle,
   temperatureContainerStyle,
   temperatureStyle,
@@ -230,6 +232,7 @@ export const AIAgent: FC = () => {
             threadID: v4(),
             prompt: encodeURI(getValues("prompt")),
             variables: getValues("variables"),
+            actionID: getValues("aiAgentID"),
             modelConfig: getValues("modelConfig"),
             model: getValues("model"),
             agentType: getValues("agentType"),
@@ -550,7 +553,11 @@ export const AIAgent: FC = () => {
                   render={({ field }) => (
                     <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
                       <RecordEditor
-                        records={field.value}
+                        records={
+                          field.value.length > 0
+                            ? field.value
+                            : [{ key: "", value: "" }]
+                        }
                         onAdd={() => {
                           field.onChange([
                             ...field.value,
@@ -626,6 +633,10 @@ export const AIAgent: FC = () => {
                               <div css={labelStyle}>
                                 <OpenAIIcon />
                                 <span css={labelTextStyle}>GPT-3.5-16k</span>
+                                <div css={premiumContainerStyle}>
+                                  <UpgradeIcon />
+                                  <div style={{ marginLeft: 4 }}>Premium</div>
+                                </div>
                               </div>
                             ),
                             value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
@@ -635,6 +646,10 @@ export const AIAgent: FC = () => {
                               <div css={labelStyle}>
                                 <OpenAIIcon />
                                 <span css={labelTextStyle}>GPT-4</span>
+                                <div css={premiumContainerStyle}>
+                                  <UpgradeIcon />
+                                  <div style={{ marginLeft: 4 }}>Premium</div>
+                                </div>
                               </div>
                             ),
                             value: AI_AGENT_MODEL.GPT_4,
@@ -777,6 +792,7 @@ export const AIAgent: FC = () => {
                           threadID: message.threadID,
                           prompt: encodeURI(message.message),
                           variables: [],
+                          actionID: getValues("aiAgentID"),
                           modelConfig: getValues("modelConfig"),
                           model: getValues("model"),
                           agentType: getValues("agentType"),

@@ -135,6 +135,7 @@ export const AIAgentRunMobile: FC = () => {
             threadID: v4(),
             prompt: getValues("prompt"),
             variables: getValues("variables"),
+            actionID: getValues("aiAgentID"),
             modelConfig: getValues("modelConfig"),
             model: getValues("model"),
             agentType: getValues("agentType"),
@@ -372,6 +373,7 @@ export const AIAgentRunMobile: FC = () => {
                 {
                   threadID: message.threadID,
                   prompt: message.message,
+                  actionID: getValues("aiAgentID"),
                   variables: [],
                   modelConfig: getValues("modelConfig"),
                   model: getValues("model"),
