@@ -2625,9 +2625,12 @@
         "tooltips": "Usa AI per generare la descrizione in base al tuo prompt. ",
         "failed": "Impossibile generare. Riprova più tardi. "
       },
-      "title-preview": "Esegui finestra",
       "generate-icon": {
         "tooltips": "Usa AI per generare icona in base al nome e alla descrizione dell'agente"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
