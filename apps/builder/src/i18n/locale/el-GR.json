@@ -2630,7 +2630,7 @@
       },
       "title-preview": {
         "chat": "Συνομιλία",
-        "textGeneration": "Δημιουργία κειμένου"
+        "text-generation": "Δημιουργία κειμένου"
       }
     },
     "common": {
