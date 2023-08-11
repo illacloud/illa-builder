@@ -2625,9 +2625,12 @@
         "tooltips": "Använd AI för att generera beskrivningen baserat på din prompt. ",
         "failed": "Det gick inte att generera. Försök igen senare. "
       },
-      "title-preview": "Kör fönster",
       "generate-icon": {
         "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
