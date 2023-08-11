@@ -2618,7 +2618,7 @@
         "click-start": "Clique no botão iniciar para disparar.",
         "insufficient_token": "Token insuficiente",
         "start-failed": "Falha ao iniciar. Por favor, tente novamente. ",
-        "reconnect": "Connection lost. Reconnection in progress."
+        "reconnect": "Conexão perdida. Reconexão em progresso."
       },
       "title": "🧬 Editar Agente IA",
       "generate-desc": {
