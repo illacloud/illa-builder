@@ -2617,7 +2617,8 @@
       "message": {
         "click-start": "点击开始按钮触发运行",
         "insufficient_token": "Token不足",
-        "start-failed": "开始失败，请重试。"
+        "start-failed": "开始失败，请重试。",
+        "reconnect": "连接已断开，正在尝试重连"
       },
       "title": "🧬 编辑AI Agent",
       "generate-desc": {
