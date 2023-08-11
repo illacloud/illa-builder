@@ -2,6 +2,8 @@ import React, { FC } from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
+import codeExtra from "remark-code-extra"
+import codeFrontmatter from "remark-code-frontmatter"
 import remarkGfm from "remark-gfm"
 import { Link, Paragraph } from "@illa-design/react"
 import { MarkdownMessageProps } from "@/page/AI/components/MarkdownMessage/interface"
@@ -18,7 +20,7 @@ export const MarkdownMessage: FC<MarkdownMessageProps> = (props) => {
   return (
     <ReactMarkdown
       css={markdownMessageStyle}
-      remarkPlugins={[remarkGfm]}
+      remarkPlugins={[remarkGfm, codeFrontmatter, codeExtra]}
       rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeOptions]]}
       components={{
         a: ({ href, children }) => (
