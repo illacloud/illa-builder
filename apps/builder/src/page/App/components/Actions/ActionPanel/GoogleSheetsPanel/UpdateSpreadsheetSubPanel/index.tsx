@@ -6,7 +6,7 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
+import { RecordEditor } from "@/components/RecordEditor"
 import {
   codeMirrorWrapperLabelStyle,
   codeMirrorWrapperValueStyle,

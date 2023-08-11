@@ -3,7 +3,7 @@ import { getColor } from "@illa-design/react"
 import {
   recordKeyStyle,
   recordValueStyle,
-} from "@/illa-public-market-component/RecordEditor/style"
+} from "@/components/RecordEditor/style"
 
 export const bodyEditorContainerStyle = css`
   display: flex;

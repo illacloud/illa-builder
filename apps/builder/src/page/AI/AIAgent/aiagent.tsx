@@ -56,7 +56,6 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ChatContext } from "../components/ChatContext"
 import {
   aiAgentContainerStyle,
@@ -527,9 +526,7 @@ export const AIAgent: FC = () => {
                   render={({ field }) => (
                     <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
                       <RecordEditor
-                        withoutCodeMirror
                         records={field.value}
-                        valueInputType={VALIDATION_TYPES.ARRAY}
                         onAdd={() => {
                           field.onChange([
                             ...field.value,

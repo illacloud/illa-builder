@@ -44,7 +44,6 @@ import {
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,
@@ -413,10 +412,8 @@ export const AIAgentRunPC: FC = () => {
                   field.value.length > 0 ? (
                     <AIAgentBlock title={t("editor.ai-agent.label.variable")}>
                       <RecordEditor
-                        fillOnly={true}
-                        withoutCodeMirror
+                        fillOnly
                         records={field.value}
-                        valueInputType={VALIDATION_TYPES.ARRAY}
                         onChangeKey={(index, key) => {
                           const newVariables = [...field.value]
                           newVariables[index].key = key
