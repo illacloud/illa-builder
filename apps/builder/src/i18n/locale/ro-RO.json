@@ -2625,9 +2625,12 @@
         "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
         "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. "
       },
-      "title-preview": "Rulează fereastra",
       "generate-icon": {
         "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
