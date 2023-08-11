@@ -2629,8 +2629,8 @@
         "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "Chatt",
+        "textGeneration": "Generering av text"
       }
     },
     "common": {
