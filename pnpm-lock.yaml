@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -363,18 +367,6 @@ importers:
       tern:
         specifier: ^0.24.3
         version: 0.24.3
-      test-component:
-        specifier: workspace:*
-        version: link:../../packages/testComponentPackage/TestComponent
-      test-component2:
-        specifier: workspace:*
-        version: link:../../packages/testComponentPackage/TestComponent2
-      test-component3:
-        specifier: workspace:*
-        version: link:../../packages/testComponentPackage2/TestComponent
-      test-component4:
-        specifier: workspace:*
-        version: link:../../packages/testComponentPackage2/TestComponent2
       toposort:
         specifier: ^2.0.2
         version: 2.0.2
@@ -2329,42 +2321,6 @@ importers:
       eslint-plugin-unused-imports:
         specifier: ^2.0.0
         version: 2.0.0(@typescript-eslint/eslint-plugin@5.62.0)(eslint@8.33.0)
-
-  packages/testComponentPackage/TestComponent:
-    dependencies:
-      react:
-        specifier: '*'
-        version: 18.2.0
-      react-dom:
-        specifier: '*'
-        version: 18.2.0(react@18.2.0)
-
-  packages/testComponentPackage/TestComponent2:
-    dependencies:
-      react:
-        specifier: '*'
-        version: 18.2.0
-      react-dom:
-        specifier: '*'
-        version: 18.2.0(react@18.2.0)
-
-  packages/testComponentPackage2/TestComponent:
-    dependencies:
-      react:
-        specifier: '*'
-        version: 18.2.0
-      react-dom:
-        specifier: '*'
-        version: 18.2.0(react@18.2.0)
-
-  packages/testComponentPackage2/TestComponent2:
-    dependencies:
-      react:
-        specifier: '*'
-        version: 18.2.0
-      react-dom:
-        specifier: '*'
-        version: 18.2.0(react@18.2.0)
 
   packages/tsconfig: {}
 
