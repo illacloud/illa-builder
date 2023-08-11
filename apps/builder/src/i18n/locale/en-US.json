@@ -2625,9 +2625,12 @@
         "tooltips": "Use AI to generate the description based on your prompt. ",
         "failed": "Failed to generate. Please try again later. "
       },
-      "title-preview": "Run window",
       "generate-icon": {
         "tooltips": "Use AI to generate icon based on the agent name and description"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
