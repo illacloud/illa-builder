@@ -2630,7 +2630,7 @@
       },
       "title-preview": {
         "chat": "Chat",
-        "textGeneration": "Text generation"
+        "text-generation": "Text generation"
       }
     },
     "common": {
