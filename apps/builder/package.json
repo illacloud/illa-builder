@@ -157,7 +157,9 @@
     "protoc": "1.0.4",
     "rollup-plugin-visualizer": "^5.9.0",
     "vite-plugin-checker": "^0.6.1",
-    "vite-plugin-svgr": "^2.1.0"
+    "vite-plugin-svgr": "^2.1.0",
+    "eslint-config-illa": "workspace:*",
+    "tsconfig": "workspace:*"
   },
   "engines": {
     "pnpm": "^8"
