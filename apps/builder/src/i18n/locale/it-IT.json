@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "Fare clic sul pulsante Start per attivare.",
-        "insufficient_token": "Token insufficiente",
+        "insufficient_token": "Colla Insufficiente",
         "start-failed": "Impossibile iniziare. Per favore riprova. ",
-        "reconnect": "Connessione persa. Riconnessione in corso."
+        "reconnect": "Connessione persa. Riconnessione in corso.",
+        "token-not-enough": "Limite del modello raggiunto. Riavviare."
       },
       "title": "🧬 Modifica Agente AI",
       "generate-desc": {
