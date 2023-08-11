@@ -2625,9 +2625,12 @@
         "tooltips": "Použijte AI k vygenerování popisu na základě vaší výzvy. ",
         "failed": "Generování se nezdařilo. Opakujte akci později. "
       },
-      "title-preview": "Spustit okno",
       "generate-icon": {
         "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "textGeneration": "Text generation"
       }
     },
     "common": {
