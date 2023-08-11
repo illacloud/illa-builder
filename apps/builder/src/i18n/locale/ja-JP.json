@@ -2630,7 +2630,7 @@
       },
       "title-preview": {
         "chat": "チャット",
-        "textGeneration": "テキストの生成"
+        "text-generation": "テキストの生成"
       }
     },
     "common": {
