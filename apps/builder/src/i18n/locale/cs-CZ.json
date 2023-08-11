@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
-        "insufficient_token": "Nedostatečný token",
+        "insufficient_token": "Nedostatek Colla",
         "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. ",
-        "reconnect": "Spojení ztraceno. Probíhá opětovné připojení."
+        "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
+        "token-not-enough": "Dosažen limit modelu. Prosím restartujte."
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
