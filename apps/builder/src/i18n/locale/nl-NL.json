@@ -2629,8 +2629,8 @@
         "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "Chatten",
+        "textGeneration": "Tekst genereren"
       }
     },
     "common": {
