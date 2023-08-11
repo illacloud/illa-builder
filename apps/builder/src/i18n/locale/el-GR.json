@@ -2629,8 +2629,8 @@
         "tooltips": "Χρήση AI για τη δημιουργία εικονιδίου με βάση το όνομα και την περιγραφή του πράκτορα"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "Συνομιλία",
+        "textGeneration": "Δημιουργία κειμένου"
       }
     },
     "common": {
