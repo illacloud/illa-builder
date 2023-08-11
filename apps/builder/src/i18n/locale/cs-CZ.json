@@ -2618,7 +2618,7 @@
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
         "insufficient_token": "Nedostatečný token",
         "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. ",
-        "reconnect": "Connection lost. Reconnection in progress."
+        "reconnect": "Spojení ztraceno. Probíhá opětovné připojení."
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
