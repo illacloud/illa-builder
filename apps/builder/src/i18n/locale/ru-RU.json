@@ -2629,8 +2629,8 @@
         "tooltips": "Использовать ИИ для создания иконки на основе имени агента и описания"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "Чат",
+        "textGeneration": "Генерация текста"
       }
     },
     "common": {
