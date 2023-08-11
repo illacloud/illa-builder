@@ -2616,9 +2616,10 @@
       },
       "message": {
         "click-start": "Klikk på Start knappen for å utløse.",
-        "insufficient_token": "Utilstrekkelig token",
+        "insufficient_token": "Utilstrekkelig Colla",
         "start-failed": "Kunne ikke starte. Vennligst prøv igjen. ",
-        "reconnect": "Forbindelsen ble brutt. Rekonstituering pågår."
+        "reconnect": "Forbindelsen ble brutt. Rekonstituering pågår.",
+        "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
