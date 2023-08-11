@@ -2629,8 +2629,8 @@
         "tooltips": "Використовувати ШІ для генерування значків на основі назви агента та опису"
       },
       "title-preview": {
-        "chat": "Chat",
-        "textGeneration": "Text generation"
+        "chat": "Чат",
+        "textGeneration": "Генерація тексту"
       }
     },
     "common": {
