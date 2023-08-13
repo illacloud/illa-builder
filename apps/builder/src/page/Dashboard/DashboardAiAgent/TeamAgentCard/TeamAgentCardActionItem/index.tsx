@@ -1,6 +1,6 @@
 import { FC, MouseEvent, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import {
   Button,
@@ -17,6 +17,7 @@ import {
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
+import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
@@ -35,6 +36,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const message = useMessage()
   const modal = useModal()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { teamIdentifier } = useParams()
 
   const teamInfo = useSelector(getCurrentTeamInfo)!
@@ -137,6 +139,20 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
     })
   }, [aiAgentID, modal, message, t])
 
+  const onContributed = useCallback(
+    (value: boolean) => {
+      dispatch(
+        dashboardTeamAiAgentActions.modifyTeamAiAgentReducer({
+          aiAgentID,
+          modifiedProps: {
+            publishedToMarketplace: value,
+          },
+        }),
+      )
+    },
+    [dispatch, aiAgentID],
+  )
+
   return (
     <div onClick={stopPropagation}>
       {canEdit ? (
@@ -224,6 +240,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
         aiAgentID={aiAgentID}
         aiAgentName={aiAgentName}
         publishedToMarketplace={publishedToMarketplace}
+        onContributed={onContributed}
       />
     </div>
   )

@@ -136,9 +136,9 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
 
   const contributeToMarketplace = useCallback(
     async (value: boolean) => {
-      const res = (await value)
-        ? contributeAiAgent(aiAgentID)
-        : unlistedAiAgent(aiAgentID)
+      const res = value
+        ? await contributeAiAgent(aiAgentID)
+        : await unlistedAiAgent(aiAgentID)
       onContributed?.(value)
       return res
     },
