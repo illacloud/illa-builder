@@ -81,7 +81,7 @@ const DashboardAiAgent: FC = () => {
           <Button
             w="320px"
             size="large"
-            colorScheme="blackAlpha"
+            colorScheme="black"
             leftIcon={<PlusIcon size="10px" />}
             onClick={handleCreateAgent}
           >

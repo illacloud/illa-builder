@@ -96,7 +96,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
             leftIcon={<PlayFillIcon />}
             onClick={onCardClick}
           >
-            {t("run")}
+            {t("dashboard.common.run")}
           </Button>
         </Space>
       </div>
