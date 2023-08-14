@@ -3275,7 +3275,8 @@
       "custom_copy_text": "{{userName}} запрошує вас приєднатися до 「{{teamName}}」. Натисніть посилання для команди: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Залишилися ліцензії"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Успішно запрошений",
