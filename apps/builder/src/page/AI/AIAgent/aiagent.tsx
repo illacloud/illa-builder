@@ -87,7 +87,13 @@ export const AIAgent: FC = () => {
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
-    defaultValues: data.agent,
+    defaultValues: {
+      ...data.agent,
+      variables:
+        data.agent.variables.length === 0
+          ? [{ key: "", value: "" }]
+          : data.agent.variables,
+    },
   })
 
   const { isSubmitting, isValid, isDirty } = useFormState({
