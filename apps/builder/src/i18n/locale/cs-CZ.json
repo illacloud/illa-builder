@@ -3275,7 +3275,8 @@
       "custom_copy_text": "{{userName}} vás zve k připojení se k 「{{teamName}}」. Klepnutím na odkaz se připojíte k týmu: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Zbývající licence"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} tě sdílel AI agenta z <unk>{{teamName}}<unk> . Klepni na odkaz pro připojení k týmu a vyzkoušej AI agenta: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Pozvánka úspěšně",
