@@ -2616,8 +2616,10 @@
       },
       "message": {
         "click-start": "Klik på knappen Start for at udløse.",
-        "insufficient_token": "Utilstrækkelig token",
-        "start-failed": "Mislykkedes at starte. Prøv igen. "
+        "insufficient_token": "Utilstrækkelig Colla",
+        "start-failed": "Mislykkedes at starte. Prøv igen. ",
+        "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
+        "token-not-enough": "Model grænse nået. Genstart."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
@@ -2630,7 +2632,7 @@
       },
       "title-preview": {
         "chat": "Chat",
-        "textGeneration": "Tekst generation"
+        "text-generation": "Tekst generation"
       }
     },
     "common": {

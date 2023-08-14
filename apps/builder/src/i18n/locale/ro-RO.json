@@ -2616,8 +2616,10 @@
       },
       "message": {
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
-        "insufficient_token": "Token insuficient",
-        "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. "
+        "insufficient_token": "Colla insuficientă",
+        "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. ",
+        "reconnect": "Conexiune pierdută. Reconectare în progres.",
+        "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi."
       },
       "title": "🧬 Editare agent AI",
       "generate-desc": {
@@ -2630,7 +2632,7 @@
       },
       "title-preview": {
         "chat": "Chat",
-        "textGeneration": "Generare text"
+        "text-generation": "Generare text"
       }
     },
     "common": {
