@@ -3275,7 +3275,8 @@
       "custom_copy_text": "{{userName}} inviterer deg til å bli med i 「{{teamName}}」. Klikk på lenken for å bli med i teamet: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Gjenstående lisenser"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invitert vellykket",
