@@ -1,3 +1,4 @@
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -12,7 +13,6 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchPrivateAppInitData } from "@/services/apps"
 import { fetchResources } from "@/services/resource"
 import store from "@/store"

@@ -1,3 +1,13 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
+import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import { canManage } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -5,16 +15,6 @@ import { useBeforeUnload, useNavigate, useParams } from "react-router-dom"
 import { NextIcon, Spin } from "@illa-design/react"
 import { ReactComponent as CardCover } from "@/assets/tutorial/card-cover.svg"
 import { Templates } from "@/config/template"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-  USER_ROLE,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import {
   appsContainerStyle,
   contentStyle,
@@ -28,7 +28,6 @@ import {
   cardTitleStyle,
   titleStyle,
 } from "@/page/Dashboard/Tutorial/style"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   track,
   trackPageDurationEnd,

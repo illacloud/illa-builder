@@ -1,17 +1,17 @@
+import { UpgradeIcon } from "@illa-public/icon"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { FC, ReactNode, useContext, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DownIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { ReactComponent as CheckmarkIcon } from "@/illa-public-component/RoleSelect/assets/success.svg"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { updateAppPublicConfig } from "@/services/apps"
 import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"

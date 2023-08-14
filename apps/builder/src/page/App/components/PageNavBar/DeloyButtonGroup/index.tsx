@@ -1,3 +1,4 @@
+import { UpgradeIcon } from "@illa-public/icon"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import {
@@ -9,7 +10,6 @@ import {
   Dropdown,
   Tag,
 } from "@illa-design/react"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import {
   deployButtonStyle,
   deployConfigButtonStyle,

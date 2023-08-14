@@ -1,9 +1,9 @@
+import userDataStore, { getCurrentTeamInfo } from "@illa-public/user-data"
 import { Connection, getTextMessagePayload } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { configActions } from "@/redux/config/configSlice"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store, { AppListenerEffectAPI } from "@/store"
 
 export const getDisattachedComponents = (
@@ -19,7 +19,7 @@ export const getDisattachedComponents = (
 export const updateSelectedComponentUsersHandler = (payload: string[]) => {
   const currentAppID = store.getState().currentApp.appInfo.appId ?? ""
   const { id: teamID = "", uid = "" } =
-    getCurrentTeamInfo(store.getState()) ?? {}
+    getCurrentTeamInfo(userDataStore.getState()) ?? {}
   Connection.getTextRoom("app", currentAppID)?.send(
     getTextMessagePayload(
       TextSignal.COOPERATE_ATTACH,
@@ -39,7 +39,7 @@ export const updateSelectedComponentUsersHandler = (payload: string[]) => {
 export const clearComponentAttachedUsersHandler = (payload: string[]) => {
   const currentAppID = store.getState().currentApp.appInfo.appId ?? ""
   const { id: teamID = "", uid = "" } =
-    getCurrentTeamInfo(store.getState()) ?? {}
+    getCurrentTeamInfo(userDataStore.getState()) ?? {}
   Connection.getTextRoom("app", currentAppID)?.send(
     getTextMessagePayload(
       TextSignal.COOPERATE_DISATTACH,

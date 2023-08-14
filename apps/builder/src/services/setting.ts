@@ -1,8 +1,5 @@
+import { CurrentUser, UserInfoResponse } from "@illa-public/user-data"
 import { authCloudRequest } from "@/api/http"
-import {
-  CurrentUser,
-  UserInfoResponse,
-} from "@/redux/currentUser/currentUserState"
 
 export const fetchChangeNickname = (nickname: string) => {
   return authCloudRequest<UserInfoResponse>({

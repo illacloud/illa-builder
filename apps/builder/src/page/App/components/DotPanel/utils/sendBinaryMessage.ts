@@ -1,9 +1,8 @@
+import userDataStore, { getCurrentUser } from "@illa-public/user-data"
 import { throttle } from "lodash"
 import { Connection, getBinaryMessagePayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/ILLA_PROTO"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
-import store from "@/store"
 
 export const sendMousePosition = (
   parentDisplayName: string,
@@ -15,8 +14,7 @@ export const sendMousePosition = (
 ) => {
   if (cursorXInteger < 0 || cursorYInteger < 0) return
   const appID = ILLARoute.state.matches[0].params.appId
-  const rootState = store.getState()
-  const currentUserInfo = getCurrentUser(rootState)
+  const currentUserInfo = getCurrentUser(userDataStore.getState())
   if (!appID || !currentUserInfo.userId) return
   const ws = Connection.getBinaryRoom("app", appID)
   const binMessage = getBinaryMessagePayload(
@@ -68,8 +66,7 @@ export const sendShadowPosition = (
   )
     return
   const appID = ILLARoute.state.matches[0].params.appId
-  const rootState = store.getState()
-  const currentUserInfo = getCurrentUser(rootState)
+  const currentUserInfo = getCurrentUser(userDataStore.getState())
   if (!appID || !currentUserInfo.userId) return
   const ws = Connection.getBinaryRoom("app", appID)
   const binMessage = getBinaryMessagePayload(

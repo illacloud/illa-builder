@@ -1,10 +1,10 @@
-import { FC, useEffect } from "react"
-import { useTranslation } from "react-i18next"
-import { ReactComponent as LaptopIcon } from "@/assets/laptop.svg"
 import {
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
-} from "@/illa-public-component/MixpanelUtils/interface"
+} from "@illa-public/mixpanel-utils"
+import { FC, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+import { ReactComponent as LaptopIcon } from "@/assets/laptop.svg"
 import {
   contentStyle,
   contentWrapperStyle,

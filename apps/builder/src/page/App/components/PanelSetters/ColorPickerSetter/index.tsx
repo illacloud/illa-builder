@@ -1,8 +1,8 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { hexToHsva } from "@uiw/react-color"
 import { debounce } from "lodash"
 import { FC, useRef } from "react"
 import { Trigger, globalColor, illaPrefix } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ColorPicker } from "@/page/App/components/ColorPicker"
 import {
   ButtonContentWrapperStyle,

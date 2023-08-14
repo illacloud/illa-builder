@@ -1,3 +1,4 @@
+import { USER_ROLE } from "@illa-public/user-role-utils/interface"
 import { v4 } from "uuid"
 import { agentRequest, authCloudRequest, marketplaceRequest } from "@/api/http"
 import {
@@ -5,7 +6,6 @@ import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { MARKET_PAGE_SIZE } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/constants"
 import {
   Agent,

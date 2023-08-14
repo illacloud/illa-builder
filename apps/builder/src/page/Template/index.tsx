@@ -1,3 +1,7 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
@@ -8,10 +12,6 @@ import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { Iframe } from "@/components/Iframe"
 import { getTemplateConfig } from "@/config/template"
 import { TemplateName } from "@/config/template/interface"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import {
   informationStyle,
   logoCursorStyle,

@@ -1,11 +1,13 @@
+import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
+import userDataStore, {
+  currentUserActions,
+  getCurrentTeamInfo,
+  getCurrentUser,
+  teamActions,
+} from "@illa-public/user-data"
+import { canAccessManage } from "@illa-public/user-role-utils"
 import { LoaderFunction, redirect } from "react-router-dom"
 import i18n from "@/i18n/config"
-import { ILLAMixpanel } from "@/illa-public-component/MixpanelUtils"
-import { canAccessManage } from "@/illa-public-component/UserRoleUtils"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { teamActions } from "@/redux/team/teamSlice"
 import { cloudUrl } from "@/router/constant"
 import { fetchMyTeamsInfo } from "@/services/team"
 import { fetchUserInfo } from "@/services/users"
@@ -26,7 +28,7 @@ export const setTokenToLocalStorageLoader: LoaderFunction = async (args) => {
 
 export const getUserInfoLoader: LoaderFunction = async () => {
   const authToken = getAuthToken()
-  const userInfo = getCurrentUser(store.getState())
+  const userInfo = getCurrentUser(userDataStore.getState())
   const currentLng = window.localStorage.getItem("i18nextLng")
 
   if (userInfo.userId) {
@@ -63,7 +65,7 @@ export const getUserInfoLoader: LoaderFunction = async () => {
 export const getTeamsInfoLoader: LoaderFunction = async (args) => {
   const { params } = args
   const { teamIdentifier } = params
-  const currentTeamInfoInDisk = getCurrentTeamInfo(store.getState())
+  const currentTeamInfoInDisk = getCurrentTeamInfo(userDataStore.getState())
   if (currentTeamInfoInDisk?.id) {
     return null
   }

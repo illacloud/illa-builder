@@ -1,3 +1,4 @@
+import userDataStore from "@illa-public/user-data"
 import * as Sentry from "@sentry/react"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
@@ -45,8 +46,10 @@ const root = createRoot(document.getElementById("root")!!)
 
 root.render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
+    <Provider store={userDataStore}>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </Provider>
   </StrictMode>,
 )

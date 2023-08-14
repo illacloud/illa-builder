@@ -1,11 +1,11 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { FC, MouseEvent, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Space } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { appActionButtonStyle } from "@/page/Dashboard/DashboardApps/AppCard/style"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { track } from "@/utils/mixpanelHelper"

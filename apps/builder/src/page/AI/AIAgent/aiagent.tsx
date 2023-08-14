@@ -1,3 +1,14 @@
+import { CodeEditor } from "@illa-public/code-editor"
+import { AvatarUpload } from "@illa-public/cropper"
+import { UpgradeIcon } from "@illa-public/icon"
+import { RecordEditor } from "@illa-public/record-editor"
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { isEqual } from "lodash"
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -22,19 +33,6 @@ import {
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
-import { CodeEditor } from "@/illa-public-component/CodeMirror"
-import { AvatarUpload } from "@/illa-public-component/Cropper"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import {
-  canManage,
-  canUseUpgradeFeature,
-} from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@/illa-public-component/UserRoleUtils/interface"
-import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
@@ -49,7 +47,6 @@ import {
   getModelLimitToken,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   createAgent,
   generateDescription,

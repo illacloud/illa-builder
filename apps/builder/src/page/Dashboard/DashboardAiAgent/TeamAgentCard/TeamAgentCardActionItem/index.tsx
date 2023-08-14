@@ -1,3 +1,6 @@
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { FC, MouseEvent, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -14,11 +17,8 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
 import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 

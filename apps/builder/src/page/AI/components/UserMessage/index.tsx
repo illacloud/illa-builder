@@ -1,6 +1,7 @@
-import React, { FC } from "react"
+import { Avatar } from "@illa-public/avatar"
+import { getCurrentUser } from "@illa-public/user-data"
+import { FC } from "react"
 import { useSelector } from "react-redux"
-import { Avatar } from "@/illa-public-component/Avatar"
 import MarkdownMessage from "@/page/AI/components/MarkdownMessage"
 import { UserMessageProps } from "@/page/AI/components/UserMessage/interface"
 import {
@@ -10,7 +11,6 @@ import {
   senderContainerStyle,
   senderNicknameStyle,
 } from "@/page/AI/components/UserMessage/style"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 export const UserMessage: FC<UserMessageProps> = (props) => {
   const { message } = props

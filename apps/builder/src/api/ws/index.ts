@@ -1,3 +1,4 @@
+import userDataStore, { getCurrentTeamInfo } from "@illa-public/user-data"
 import {
   ILLAWebsocket,
   ReduxMessageListener,
@@ -5,8 +6,6 @@ import {
 } from "@/api/ws/illaWS"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import store from "@/store"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { HTTP_REQUEST_PUBLIC_BASE_URL } from "../http/constant"
 import { MovingMessageBin, Signal, Target } from "./ILLA_PROTO"
@@ -159,7 +158,7 @@ export class Connection {
 
   static leaveRoom(type: RoomType, roomId: string) {
     const { id: teamID = "", uid = "" } =
-      getCurrentTeamInfo(store.getState()) ?? {}
+      getCurrentTeamInfo(userDataStore.getState()) ?? {}
     let textWS = this.roomMap.get(`${type}/${roomId}`) as ILLAWebsocket
     let binaryWS = this.roomMap.get(`app/${roomId}/binary`)
     if (textWS != undefined) {

@@ -1,4 +1,9 @@
 import { Global } from "@emotion/react"
+import {
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import { currentUserActions } from "@illa-public/user-data"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -8,11 +13,11 @@ import { useMessage } from "@illa-design/react"
 import { ERROR_FLAG } from "@/api/errorFlag"
 import { formatLanguage } from "@/i18n/config"
 import RegisterPage from "@/illa-public-component/User/register"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignUp } from "@/services/auth"
 import { sendEmail } from "@/services/users"
 import { mobileAdaptationStyle } from "@/style"
+import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import { RegisterFields } from "./interface"
@@ -98,7 +103,10 @@ const UserRegister: FC = () => {
   }
 
   return (
-    <>
+    <MixpanelTrackProvider
+      basicTrack={track}
+      pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.SIGNUP}
+    >
       <Global styles={mobileAdaptationStyle} />
       <RegisterPage
         loading={submitLoading}
@@ -106,7 +114,7 @@ const UserRegister: FC = () => {
         onSubmit={onSubmit}
         sendEmail={sendEmail}
       />
-    </>
+    </MixpanelTrackProvider>
   )
 }
 

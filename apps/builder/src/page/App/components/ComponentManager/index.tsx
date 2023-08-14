@@ -1,3 +1,4 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import {
   FC,
   HTMLAttributes,
@@ -9,7 +10,6 @@ import {
 import { useSelector } from "react-redux"
 import { SimpleTabs, getRenderBody } from "@/components/Tabs"
 import { COMPONENT_MANAGER_TABS } from "@/components/Tabs/constant"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 import { FocusManager } from "@/utils/focusManager"

@@ -1,3 +1,4 @@
+import userDataStore, { getCurrentTeamInfo } from "@illa-public/user-data"
 import { getTextMessagePayload } from "@/api/ws/index"
 import {
   Callback,
@@ -7,7 +8,6 @@ import {
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { getIsOnline } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import store from "@/store"
 import {
   ADD_DISPLAY_NAME,
@@ -185,7 +185,7 @@ export class ILLAWebsocket {
       this.ws.onopen = () => {
         console.log(`[WS OPENED](${this.url}) connection succeeded`)
         const { id: teamID = "", uid = "" } =
-          getCurrentTeamInfo(store.getState()) ?? {}
+          getCurrentTeamInfo(userDataStore.getState()) ?? {}
         store.dispatch(configActions.updateDevicesOnlineStatusReducer(true))
         store.dispatch(
           configActions.updateWSStatusReducer({

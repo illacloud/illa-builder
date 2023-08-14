@@ -1,3 +1,9 @@
+import {
+  USER_ROLE,
+  getCurrentMemberList,
+  getCurrentTeamInfo,
+  getCurrentUser,
+} from "@illa-public/user-data"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -5,15 +11,9 @@ import { useParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { ERROR_FLAG } from "@/api/errorFlag"
 import { REDIRECT_PAGE_TYPE } from "@/illa-public-component/MemberList/interface"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import TeamAgentShareModal, {
   TeamAgentShareModalProps,
-} from "@/illa-public-market-component/TeamAgentShareModal"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import {
-  getCurrentMemberList,
-  getCurrentTeamInfo,
-} from "@/redux/team/teamSelector"
+} from "@/illa-public-component/TeamAgentShareModal"
 import {
   fetchShareAgentLink,
   renewShareAgentLink,

@@ -1,3 +1,9 @@
+import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
+import { canManage } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -7,11 +13,6 @@ import { Button, ContributeIcon, DependencyIcon } from "@illa-design/react"
 import { ILLA_WEBSOCKET_STATUS } from "@/api/ws/interface"
 import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-input.svg"
 import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import AIAgentMessage from "@/page/AI/components/AIAgentMessage"
 import { GenerationMessage } from "@/page/AI/components/GenerationMessage"
 import { PreviewChatProps } from "@/page/AI/components/PreviewChat/interface"
@@ -37,8 +38,6 @@ import {
   SenderType,
 } from "@/redux/aiAgent/aiAgentState"
 import { getAgentWSStatus } from "@/redux/config/configSelector"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {

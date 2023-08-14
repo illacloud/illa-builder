@@ -1,9 +1,9 @@
+import { CurrentUser } from "@illa-public/user-data"
 import { BuilderInfo } from "@/redux/builderInfo/builderInfoState"
 import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
 
 export interface CurrentUserInfoInTree {
   userID: string

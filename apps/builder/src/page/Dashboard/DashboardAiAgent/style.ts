@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-import { agent_card_width } from "@/illa-public-market-component/MarketAgentCard/style"
+import { agent_card_width } from "@/illa-public-component/MarketAgentCard/style"
 
 export const containerStyle = css`
   display: flex;

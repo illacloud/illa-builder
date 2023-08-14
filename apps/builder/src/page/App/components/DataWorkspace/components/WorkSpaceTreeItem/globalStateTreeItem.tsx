@@ -1,7 +1,7 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, memo, useState } from "react"
 import { PenIcon, Trigger, isArray, isObject } from "@illa-design/react"
 import { MAX_LEN_WITH_SNIPPETS } from "@/components/CodeEditor"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { WorkSpaceTreeNodeProps } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/interface"
 import {
   applySimpleItemContainerStyle,

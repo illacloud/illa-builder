@@ -1,10 +1,14 @@
-import { ILLAMixpanel } from "@/illa-public-component/MixpanelUtils"
 import {
+  ILLAMixpanel,
   ILLAProperties,
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_PAGE_NAME,
-} from "@/illa-public-component/MixpanelUtils/interface"
+} from "@illa-public/mixpanel-utils"
+import userDataStore, {
+  getCurrentTeamInfo,
+  getCurrentUser,
+} from "@illa-public/user-data"
 import {
   getIllaMode,
   getIsILLAProductMode,
@@ -12,9 +16,7 @@ import {
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideInfo } from "@/redux/guide/guideSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
 import store from "@/store"
 
@@ -95,8 +97,7 @@ const getPageInfo = () => {
 }
 
 const getTeamInfo = () => {
-  const rootState = store.getState()
-  const teamInfo = getCurrentTeamInfo(rootState)
+  const teamInfo = getCurrentTeamInfo(userDataStore.getState())
   return {
     role: teamInfo?.myRole || "-1",
   }
@@ -121,8 +122,7 @@ const getAppIsPublic = () => {
 }
 
 const getUserID = () => {
-  const rootState = store.getState()
-  const userInfo = getCurrentUser(rootState)
+  const userInfo = getCurrentUser(userDataStore.getState())
   return userInfo?.userId || ""
 }
 

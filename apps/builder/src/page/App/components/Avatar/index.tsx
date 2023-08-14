@@ -1,3 +1,4 @@
+import { getColorByString } from "@illa/public-utils"
 import { FC } from "react"
 import { Popover } from "@illa-design/react"
 import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@/api/http/constant"
@@ -6,7 +7,6 @@ import {
   applyUserAvatarStyle,
   getAvatarStyle,
 } from "@/page/App/components/Avatar/style"
-import { getColorByString } from "@/utils/colorHelper"
 import { isCloudVersion } from "@/utils/typeHelper"
 
 const getFirstChar = (str: string | undefined) => {

@@ -1,5 +1,13 @@
 import createCache from "@emotion/cache"
 import { CacheProvider, Global } from "@emotion/react"
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+} from "@illa-public/mixpanel-utils"
+import {
+  getCurrentConfigLanguage,
+  getCurrentTranslateLanguage,
+} from "@illa-public/user-data"
 import { useEffect } from "react"
 import { DndProvider } from "react-dnd"
 import { TouchBackend } from "react-dnd-touch-backend"
@@ -15,16 +23,8 @@ import {
 } from "@illa-design/react"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
-import {
-  getCurrentConfigLanguage,
-  getCurrentTranslateLanguage,
-} from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
 import { px2Rem } from "@/utils/stylis-plugin/px2rem"
-import {
-  ILLA_MIXPANEL_EVENT_TYPE,
-  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
-} from "./illa-public-component/MixpanelUtils/interface"
 import { globalStyle } from "./style"
 import { track } from "./utils/mixpanelHelper"
 

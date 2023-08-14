@@ -1,3 +1,23 @@
+import { Avatar } from "@illa-public/avatar"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getIsTutorialViewed,
+} from "@illa-public/user-data"
+import {
+  canManage,
+  canManageApp,
+  canUseUpgradeFeature,
+} from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { isBoolean } from "lodash"
 import {
   FC,
@@ -18,28 +38,10 @@ import {
 } from "react-router-dom"
 import { Button, PlusIcon, useMessage } from "@illa-design/react"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
-import { Avatar } from "@/illa-public-component/Avatar"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import {
-  canManage,
-  canManageApp,
-  canUseUpgradeFeature,
-} from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-  USER_ROLE,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { openGuideModal } from "@/page/Template/gideModeModal"
-import { getIsTutorialViewed } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchCreateApp } from "@/services/apps"
 import {
   track,

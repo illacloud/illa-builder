@@ -1,3 +1,4 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { isEqual } from "lodash"
 import {
   Suspense,
@@ -19,7 +20,6 @@ import {
   getColor,
   useMessage,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import {

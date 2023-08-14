@@ -17,13 +17,11 @@ import dragShadowReducer from "@/redux/currentApp/dragShadow/dragShadowSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentAppHistoryReducer from "@/redux/currentAppHistory/currentAppHistorySlice"
-import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import dashboardMarketAiAgentReducer from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSlice"
 import dashboardTeamAiAgentReducer from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import guideReducer from "@/redux/guide/guideSlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
-import teamReducer from "@/redux/team/teamSlice"
 import { mixpanelReport } from "./middleware/mixpanelReport"
 import { UndoRedo } from "./middleware/undoRedo"
 import cursorSlice from "./redux/currentApp/cursor/cursorSlice"
@@ -66,11 +64,9 @@ const store = configureStore({
     config: configReducer,
     currentApp: appReducer,
     dashboard: dashboardReducer,
-    currentUser: currentUserReducer,
     currentAppHistory: currentAppHistoryReducer,
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
-    team: teamReducer,
     guide: guideReducer,
   },
   devTools: process.env.ILLA_APP_ENV === "development",

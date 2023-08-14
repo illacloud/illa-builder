@@ -1,14 +1,14 @@
+import {
+  USER_ROLE,
+  getCurrentMemberList,
+  getCurrentTeamInfo,
+  getCurrentUser,
+} from "@illa-public/user-data"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { MemberList } from "@/illa-public-component/MemberList"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { MemberProps } from "@/page/Member/interface"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import {
-  getCurrentMemberList,
-  getCurrentTeamInfo,
-} from "@/redux/team/teamSelector"
 import { fetchBuilderDesc } from "@/services/public"
 import {
   changeTeamMembersRole,

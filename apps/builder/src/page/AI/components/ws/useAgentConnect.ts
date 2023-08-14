@@ -1,3 +1,4 @@
+import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -17,8 +18,6 @@ import {
   ChatWsAppendResponse,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   getAIAgentAnonymousAddress,
   getAIAgentWsAddress,

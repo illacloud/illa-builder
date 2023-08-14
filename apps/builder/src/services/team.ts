@@ -1,12 +1,15 @@
+import userDataStore, {
+  MemberInfo,
+  TeamInfo,
+  USER_ROLE,
+  getCurrentTeamInfo,
+  teamActions,
+} from "@illa-public/user-data"
 import { authCloudRequest } from "@/api/http"
 import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { teamActions } from "@/redux/team/teamSlice"
-import { MemberInfo, TeamInfo } from "@/redux/team/teamState"
 import { isCloudVersion } from "@/utils/typeHelper"
 import store from "../store"
 
@@ -189,7 +192,7 @@ export const removeTeam = async () => {
 
 export const setInviteLinkEnabled = async (inviteLinkEnabled: boolean) => {
   await fetchUpdateInviteLinkStatus({ inviteLinkEnabled })
-  const teamInfo = getCurrentTeamInfo(store.getState())
+  const teamInfo = getCurrentTeamInfo(userDataStore.getState())
   const teamIdentifier = teamInfo?.identifier
   await updateTeamsInfo(teamIdentifier)
   return inviteLinkEnabled
@@ -200,7 +203,7 @@ export const updateTeamPermissionConfig = async (
   allowViewerManageTeamMember: boolean,
   blockRegister: boolean,
 ) => {
-  const teamInfo = getCurrentTeamInfo(store.getState())
+  const teamInfo = getCurrentTeamInfo(userDataStore.getState())
   const teamIdentifier = teamInfo?.identifier
 
   const requestData = {

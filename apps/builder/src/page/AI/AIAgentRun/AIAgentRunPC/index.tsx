@@ -1,3 +1,14 @@
+import { Avatar } from "@illa-public/avatar"
+import { CodeEditor } from "@illa-public/code-editor"
+import { UpgradeIcon } from "@illa-public/icon"
+import { RecordEditor } from "@illa-public/record-editor"
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { FC, useContext, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -17,20 +28,7 @@ import {
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
-import { Avatar } from "@/illa-public-component/Avatar"
-import { CodeEditor } from "@/illa-public-component/CodeMirror"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import {
-  canManage,
-  canUseUpgradeFeature,
-} from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@/illa-public-component/UserRoleUtils/interface"
-import { RecordEditor } from "@/illa-public-market-component/RecordEditor"
-import ShareToSocialMedia from "@/illa-public-market-component/ShareToSocialMedia"
+import ShareToSocialMedia from "@/illa-public-component/ShareToSocialMedia"
 import {
   labelStyle,
   labelTextStyle,
@@ -48,7 +46,6 @@ import {
   MarketAiAgent,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,

@@ -1,8 +1,8 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { getOverlapPoints } from "overlap-area"
 import { FC, useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Selecto, { OnDragStart, SelectoEvents } from "react-selecto"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getIsILLAProductMode,
   getSelectedComponentDisplayNames,

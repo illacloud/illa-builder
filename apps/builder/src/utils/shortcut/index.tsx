@@ -1,3 +1,7 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import {
   FC,
   ReactNode,
@@ -13,9 +17,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { Key } from "ts-key-enum"
 import { createModal, useMessage } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { onDeleteActionItem } from "@/page/App/components/Actions/api"
 import {
   getIsILLAEditMode,
@@ -33,7 +34,6 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { takeSnapShot } from "@/services/history"
 import store from "@/store"
 import { CopyManager } from "@/utils/copyManager"

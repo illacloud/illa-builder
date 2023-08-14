@@ -1,12 +1,11 @@
+import userDataStore, { getCurrentTeamInfo } from "@illa-public/user-data"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   fetchAPPPublicStatus,
   fetchPrivateAppInitData,
   fetchPubicAppInitData,
 } from "@/services/apps"
 import { fetchResources } from "@/services/resource"
-import store from "@/store"
 import { getTeamsInfoLoader } from "./cloudAuthLoader"
 
 export const deployLoader: LoaderFunction = async (args) => {
@@ -33,7 +32,7 @@ export const deployLoader: LoaderFunction = async (args) => {
         appInfo,
       })
     } else {
-      const teamInfo = getCurrentTeamInfo(store.getState())
+      const teamInfo = getCurrentTeamInfo(userDataStore.getState())
       if (teamInfo && teamInfo.identifier !== teamIdentifier) {
         return redirect("/403")
       }

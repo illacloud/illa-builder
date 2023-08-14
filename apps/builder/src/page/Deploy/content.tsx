@@ -1,3 +1,7 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { AxiosResponse } from "axios"
 import { FC, useEffect } from "react"
@@ -7,10 +11,6 @@ import { TriggerProvider } from "@illa-design/react"
 import { useDestroyApp } from "@/hooks/useDestoryExecutionTree"
 import { fixedActionToNewAction } from "@/hooks/utils/fixedAction"
 import { fixedComponentsToNewComponents } from "@/hooks/utils/fixedComponents"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"

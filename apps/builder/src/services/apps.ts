@@ -1,3 +1,4 @@
+import { USER_ROLE } from "@illa-public/user-role-utils/interface"
 import { createAction } from "@/api/actions"
 import { authCloudRequest, builderRequest } from "@/api/http"
 import {
@@ -5,7 +6,6 @@ import {
   fetchInviteLinkResponse,
   inviteByEmailResponse,
 } from "@/illa-public-component/MemberList/interface"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"

@@ -1,11 +1,11 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+} from "@illa-public/mixpanel-utils"
 import { FC, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { Button, Result403Icon } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_EVENT_TYPE,
-  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { ErrorPage } from "@/page/Status/errorPage"
 import { buttonStyle, iconStyle } from "@/page/Status/style"
 import { track } from "@/utils/mixpanelHelper"

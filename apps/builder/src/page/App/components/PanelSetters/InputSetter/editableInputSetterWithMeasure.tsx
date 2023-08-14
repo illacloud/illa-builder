@@ -1,6 +1,6 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, FocusEvent, useCallback } from "react"
 import { Input } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { EditableInputSetterProps } from "@/page/App/components/PanelSetters/InputSetter/interface"
 import {
   editableInputIconStyle,

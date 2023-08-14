@@ -1,3 +1,5 @@
+import { MarketAgentCard } from "@illa-public/market-agent-card"
+import Select from "@illa-public/select"
 import { FC, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
@@ -9,8 +11,6 @@ import {
   globalColor,
   illaPrefix,
 } from "@illa-design/react"
-import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
-import Select from "@/illa-public-market-component/Select"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
 import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import {

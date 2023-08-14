@@ -1,3 +1,11 @@
+import { UpgradeIcon } from "@illa-public/icon"
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import {
   FC,
   HTMLAttributes,
@@ -14,17 +22,6 @@ import { Await, useLoaderData, useParams } from "react-router-dom"
 import { Button, DownIcon, Switch, Trigger } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { FullPageLoading } from "@/components/FullPageLoading"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import {
-  canManage,
-  canUseUpgradeFeature,
-} from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-  USER_ROLE,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import {
   applyPopupStateStyle,
   deployContainerStyle,
@@ -40,7 +37,6 @@ import {
   getCurrentAppWaterMarkConfig,
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { updateWaterMarkConfig } from "@/services/apps"
 import { isCloudVersion } from "@/utils/typeHelper"
 import { DeployContent } from "./content"

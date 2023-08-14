@@ -1,8 +1,10 @@
+import userDataStore, {
+  currentUserActions,
+  getCurrentTeamInfo,
+  getCurrentUser,
+  teamActions,
+} from "@illa-public/user-data"
 import { LoaderFunction, redirect } from "react-router-dom"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { teamActions } from "@/redux/team/teamSlice"
 import { fetchMyTeamsInfo } from "@/services/team"
 import { fetchUserInfo } from "@/services/users"
 import store from "@/store"
@@ -10,7 +12,7 @@ import { getAuthToken } from "@/utils/auth"
 
 export const getSelfHostUserInfoLoader: LoaderFunction = async () => {
   const authToken = getAuthToken()
-  const currentUser = getCurrentUser(store.getState())
+  const currentUser = getCurrentUser(userDataStore.getState())
 
   if (currentUser.userId) {
     return null

@@ -1,15 +1,15 @@
+import { Avatar } from "@illa-public/avatar"
+import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import { canManage } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { FC, Suspense, UIEvent, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Await, useLoaderData, useNavigate, useParams } from "react-router-dom"
 import { Button, PlusIcon } from "@illa-design/react"
-import { Avatar } from "@/illa-public-component/Avatar"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-  USER_ROLE,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import { AgentContentBody } from "@/page/Dashboard/DashboardAiAgent/contentBody"
 import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
@@ -21,7 +21,6 @@ import {
 } from "@/page/Dashboard/DashboardAiAgent/style"
 import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { getHasMoreMarketAgent } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { DashboardAiAgentLoaderData } from "@/router/loader/dashBoardLoader"
 import { DashboardErrorElement } from "../components/ErrorElement"
 import { DashBoardLoading } from "../components/Loading"

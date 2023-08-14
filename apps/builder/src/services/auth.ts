@@ -1,7 +1,7 @@
+import { UserInfoResponse } from "@illa-public/user-data"
 import { authCloudRequest, notNeedAuthCloudRequest } from "@/api/http"
 import { RegisterResult } from "@/page/User/Register/interface"
 import { ResetPwdFields } from "@/page/User/ResetPassword/interface"
-import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
 
 export const fetchSignIn = async (data: unknown) => {
   return notNeedAuthCloudRequest<UserInfoResponse>({

@@ -1,6 +1,6 @@
+import { currentUserActions } from "@illa-public/user-data"
 import { v4 } from "uuid"
 import { authCloudRequest } from "@/api/http"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { fetchSendEmail } from "@/services/auth"
 import { upload } from "@/utils/file/upload"
 import { ILLABuilderStorage } from "@/utils/storage"

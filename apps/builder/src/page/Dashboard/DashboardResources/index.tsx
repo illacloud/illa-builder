@@ -1,3 +1,14 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  ACTION_ACCESS,
+  ATTRIBUTE_GROUP,
+  canAccess,
+} from "@illa-public/user-role-utils"
 import { FC, Suspense, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -5,24 +16,12 @@ import { Await, useBeforeUnload, useLoaderData } from "react-router-dom"
 import { Button } from "@illa-design/react"
 import { useGoogleAuthStatus } from "@/hooks/useGoogleAuthStatus"
 import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
-import { canAccess } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_ACCESS,
-  ATTRIBUTE_GROUP,
-  USER_ROLE,
-} from "@/illa-public-component/UserRoleUtils/interface"
-import {
   appsContainerStyle,
   listTitleContainerStyle,
   listTitleStyle,
 } from "@/page/Dashboard/DashboardApps/style"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 import { ResourceListState } from "@/redux/resource/resourceState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   resourceContextHelper,
   track,

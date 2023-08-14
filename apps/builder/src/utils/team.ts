@@ -1,9 +1,8 @@
-import { getCurrentId } from "@/redux/team/teamSelector"
+import userDataStore, { getCurrentId } from "@illa-public/user-data"
 import { ILLARoute } from "@/router"
-import store from "@/store"
 
 export const getTeamID = () => {
-  return getCurrentId(store.getState())
+  return getCurrentId(userDataStore.getState())
 }
 
 // maybe not same as current team

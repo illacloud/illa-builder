@@ -1,14 +1,15 @@
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canManage } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { TriggerProvider } from "@illa-design/react"
 import { Guide } from "@/components/Guide"
 import { useInitGuideApp } from "@/hooks/useInitGuideApp"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import { ActionEditor } from "@/page/App/components/Actions"
 import { AppLoading } from "@/page/App/components/AppLoading"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
@@ -37,7 +38,6 @@ import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { getGuideStatus } from "@/redux/guide/guideSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { startAppListening } from "@/store"
 import { Shortcut } from "@/utils/shortcut"
 import { useResize } from "../App/components/ScaleSquare/components/InnerResizingContainer/ResizeHandler/hooks"

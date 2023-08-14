@@ -1,5 +1,5 @@
+import { Avatar } from "@illa-public/avatar"
 import React, { FC, useContext } from "react"
-import { Avatar } from "@/illa-public-component/Avatar"
 import { ChatContext } from "@/page/AI/components/ChatContext"
 import MarkdownMessage from "@/page/AI/components/MarkdownMessage"
 import { SenderType } from "@/redux/aiAgent/aiAgentState"

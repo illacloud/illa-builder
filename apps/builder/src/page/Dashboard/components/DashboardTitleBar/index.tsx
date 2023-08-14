@@ -1,4 +1,14 @@
 import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getCurrentUser,
+} from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
+import {
   FC,
   KeyboardEvent,
   ReactNode,
@@ -22,16 +32,8 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-  USER_ROLE,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import { Avatar } from "@/page/App/components/Avatar"
 import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchLogout } from "@/services/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"

@@ -1,4 +1,9 @@
 import { Global } from "@emotion/react"
+import {
+  ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import { currentUserActions } from "@illa-public/user-data"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -7,10 +12,10 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { ERROR_FLAG } from "@/api/errorFlag"
 import LoginPage from "@/illa-public-component/User/login"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignIn } from "@/services/auth"
 import { mobileAdaptationStyle } from "@/style"
+import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
 import { LoginFields } from "./interface"
@@ -76,14 +81,17 @@ const UserLogin: FC = () => {
   }
 
   return (
-    <>
+    <MixpanelTrackProvider
+      basicTrack={track}
+      pageName={ILLA_MIXPANEL_PUBLIC_PAGE_NAME.LOGIN}
+    >
       <Global styles={mobileAdaptationStyle} />
       <LoginPage
         loading={submitLoading}
         errorMsg={errorMsg}
         onSubmit={onSubmit}
       />
-    </>
+    </MixpanelTrackProvider>
   )
 }
 

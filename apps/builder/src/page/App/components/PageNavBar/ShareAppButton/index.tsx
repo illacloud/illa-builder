@@ -1,7 +1,7 @@
+import { UpgradeIcon } from "@illa-public/icon"
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, getColor } from "@illa-design/react"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
 import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
 import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"

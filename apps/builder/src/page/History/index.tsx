@@ -1,3 +1,9 @@
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canManage } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -5,11 +11,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { Loading, TriggerProvider, useMessage } from "@illa-design/react"
 import { updateCurrentAppInfo } from "@/hooks/useInitApp"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import {
   centerPanelStyle,
@@ -29,7 +30,6 @@ import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execut
 import { getCurrentAppSnapshotID } from "@/redux/currentAppHistory/currentAppHistorySelector"
 import { currentAppHistoryActions } from "@/redux/currentAppHistory/currentAppHistorySlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchSnapShot } from "@/services/history"
 import { startAppListening } from "@/store"
 

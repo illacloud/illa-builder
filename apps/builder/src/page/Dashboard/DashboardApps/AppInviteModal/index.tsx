@@ -1,3 +1,9 @@
+import {
+  USER_ROLE,
+  getCurrentMemberList,
+  getCurrentTeamInfo,
+  getCurrentUser,
+} from "@illa-public/user-data"
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -14,14 +20,8 @@ import {
   SubscribeInfo,
   TotalTeamLicense,
 } from "@/illa-public-component/MemberList/interface"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import {
-  getCurrentMemberList,
-  getCurrentTeamInfo,
-} from "@/redux/team/teamSelector"
 import {
   fetchShareAppLink,
   renewShareAppLink,

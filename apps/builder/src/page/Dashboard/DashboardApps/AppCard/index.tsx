@@ -1,12 +1,12 @@
+import { Avatar } from "@illa-public/avatar"
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { FC, MouseEvent, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Tag } from "@illa-design/react"
-import { Avatar } from "@/illa-public-component/Avatar"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { ActionButtonGroup } from "@/page/Dashboard/DashboardApps/AppCard/ActionButtonGroup"
 import {
   appNameStyle,

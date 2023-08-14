@@ -1,4 +1,15 @@
 import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackProvider,
+} from "@illa-public/mixpanel-utils"
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  canManageApp,
+  canUseUpgradeFeature,
+} from "@illa-public/user-role-utils"
+import {
   FC,
   HTMLAttributes,
   useCallback,
@@ -22,22 +33,10 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackProvider } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import {
-  canManageApp,
-  canUseUpgradeFeature,
-} from "@/illa-public-component/UserRoleUtils"
-import { USER_ROLE } from "@/illa-public-component/UserRoleUtils/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
 import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
