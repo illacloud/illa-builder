@@ -112,8 +112,6 @@
     "rehype-raw": "^6.1.1",
     "rehype-sanitize": "^5.0.1",
     "remark-gfm": "^3.0.1",
-    "remark-code-frontmatter":"^1.0.0",
-    "remark-code-extra":"^1.0.1",
     "streamsaver": "^2.0.6",
     "stylis": "^4.1.3",
     "tern": "^0.24.3",
