@@ -307,7 +307,7 @@ export const shareAgentByEmail = async (
   const response = await authCloudRequest<inviteByEmailResponse>(
     {
       method: "POST",
-      url: `/shareAppByEmail`,
+      url: `/shareAIAgentByEmail`,
       data: {
         email,
         userRole,
@@ -329,7 +329,7 @@ export const fetchShareAgentLink = async (
   const response = await authCloudRequest<fetchInviteLinkResponse>(
     {
       method: "GET",
-      url: `/shareAppLink/userRole/${userRole}/apps/${agentID}/redirectPage/${redirectPage}`,
+      url: `/shareAIAgentLink/userRole/${userRole}/aiAgent/${agentID}/redirectPage/${redirectPage}`,
     },
     { needTeamID: true },
   )
@@ -344,7 +344,7 @@ export const renewShareAgentLink = async (
   const response = await authCloudRequest<fetchInviteLinkResponse>(
     {
       method: "GET",
-      url: `/newShareAppLink/userRole/${userRole}/apps/${agentID}/redirectPage/${redirectPage}`,
+      url: `/newShareAIAgentLink/userRole/${userRole}/aiAgent/${agentID}/redirectPage/${redirectPage}`,
     },
     { needTeamID: true },
   )
