@@ -3275,7 +3275,8 @@
       "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}",
       "tips": {
         "license_insufficient": "剩余许可证"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}}分享给您一个来自「{{teamName}}」团队的AI Agent. 点击链接加入团队并使用AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "邀请成功",
