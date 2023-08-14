@@ -3275,7 +3275,8 @@
       "custom_copy_text": "{{userName}} が「{{チーム名}}」に参加するよう招待しています。 リンクをクリックしてチームに参加します: {{inviteLink}}",
       "tips": {
         "license_insufficient": "残りのライセンス"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} が「{{teamName}}」のAIエージェントを共有しました。リンクをクリックしてチームに参加し、AIエージェントを試してみてください: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "招待しました",
