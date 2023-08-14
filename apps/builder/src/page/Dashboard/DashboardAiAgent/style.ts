@@ -71,6 +71,13 @@ export const loadingStyle = css`
   height: 100%;
 `
 
+export const moreDataStyle = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+`
+
 export const listContainerStyle = css`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(${agent_card_width}px, 1fr));

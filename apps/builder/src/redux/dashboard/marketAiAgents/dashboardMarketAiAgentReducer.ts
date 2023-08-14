@@ -2,6 +2,13 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { DashboardMarketAiAgentState } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentState"
 import { MarketAgentList } from "@/services/marketPlace"
 
+export const initMarketAiAgentListReducer: CaseReducer<
+  DashboardMarketAiAgentState,
+  PayloadAction<MarketAgentList>
+> = (state, action) => {
+  return action.payload
+}
+
 export const updateMarketAiAgentListReducer: CaseReducer<
   DashboardMarketAiAgentState,
   PayloadAction<MarketAgentList>
@@ -16,5 +23,15 @@ export const updateMarketAiAgentListReducer: CaseReducer<
     }
   } else {
     return action.payload
+  }
+}
+
+export const modifyMarketAiAgentReducer: CaseReducer<
+  DashboardMarketAiAgentState,
+  PayloadAction<Partial<MarketAgentList>>
+> = (state, action) => {
+  return {
+    ...state,
+    ...action.payload,
   }
 }

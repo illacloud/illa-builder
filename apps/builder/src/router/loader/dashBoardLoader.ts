@@ -63,7 +63,7 @@ export const getDashboardAiAgentLoader: LoaderFunction = async ({
       request.signal,
     ).then((res) => {
       store.dispatch(
-        dashboardMarketAiAgentActions.updateMarketAiAgentListReducer(res.data),
+        dashboardMarketAiAgentActions.initMarketAiAgentListReducer(res.data),
       )
       return res.data
     }),

@@ -1,5 +1,6 @@
 import { FC, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import {
   Empty,
@@ -17,7 +18,9 @@ import {
   listContainerStyle,
   listFilterContainerStyle,
   loadingStyle,
+  moreDataStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
+import { getHasMoreMarketAgent } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSelector"
 import { PRODUCT_SORT_BY } from "@/services/marketPlace"
 
 export interface AgentContentBodyProps {
@@ -30,15 +33,18 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   const { canEdit } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
+  const hasMoreData = useSelector(getHasMoreMarketAgent)
 
   const {
     loading,
+    canLoadBefore,
     marketAgentList,
     teamAgentList,
     agentType,
     sortedBy,
     onChangeSort,
     handleAgentTypeChange,
+    loadBeforeMarketAgent,
   } = useContext(AiAgentContext)
 
   const agentOptions = useMemo(() => {
@@ -120,10 +126,15 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
           }
           description={t("new_dashboard.desc.blank")}
         />
-      ) : (
-        <div css={listContainerStyle}>
-          {agentType === "market" &&
-            marketAgentList?.map((item) => {
+      ) : agentType === "market" ? (
+        <div>
+          {canLoadBefore && (
+            <div css={moreDataStyle} onClick={loadBeforeMarketAgent}>
+              {t("new_dashboard.desc.load_more")}
+            </div>
+          )}
+          <div css={listContainerStyle}>
+            {marketAgentList?.map((item) => {
               return (
                 <MarketAgentCard
                   key={item.aiAgent.aiAgentID}
@@ -132,19 +143,27 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
                 />
               )
             })}
-          {agentType === "team" &&
-            teamAgentList?.map((item) => {
-              return (
-                <TeamAgentCard
-                  key={item.aiAgentID}
-                  agentInfo={item}
-                  canEdit={canEdit}
-                  onClick={toRunAgent}
-                />
-              )
-            })}
+          </div>
+          {hasMoreData && (
+            <div css={moreDataStyle}>
+              <Loading colorScheme="techPurple" />
+            </div>
+          )}
         </div>
-      )}
+      ) : agentType === "team" ? (
+        <div css={listContainerStyle}>
+          {teamAgentList?.map((item) => {
+            return (
+              <TeamAgentCard
+                key={item.aiAgentID}
+                agentInfo={item}
+                canEdit={canEdit}
+                onClick={toRunAgent}
+              />
+            )
+          })}
+        </div>
+      ) : null}
     </>
   )
 }

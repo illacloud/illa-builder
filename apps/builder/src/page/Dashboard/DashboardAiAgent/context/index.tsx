@@ -1,4 +1,11 @@
-import { FC, ReactNode, createContext, useCallback, useState } from "react"
+import {
+  FC,
+  ReactNode,
+  createContext,
+  useCallback,
+  useMemo,
+  useState,
+} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
 import { DEFAULT_AGENT_TAB } from "@/page/Dashboard/DashboardAiAgent/contentBody"
@@ -29,12 +36,15 @@ interface Inject extends Omit<ProviderProps, "children"> {
   loading: boolean
   sortedBy: PRODUCT_SORT_BY
   onChangeSort: (sortedBy: PRODUCT_SORT_BY) => void
+  canLoadBefore: boolean
+  loadBeforeMarketAgent: () => void
   loadMoreMarketAgent: () => void
 }
 
 export const MARKET_INITIAL_PAGE = 1
 export const MARKET_PAGE_SIZE = 20
 export const MARKET_DEFAULT_SORT = PRODUCT_SORT_BY.POPULARITY
+export const MARKET_LIMIT_ITEMS = 1000
 
 export const AiAgentContext = createContext<Inject>({} as Inject)
 
@@ -55,6 +65,19 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
 
   // market agent
   const [sort, setSort] = useState(MARKET_DEFAULT_SORT)
+
+  const currentMarketList = useMemo(() => {
+    return marketAgentList
+      .slice(0, marketListPage * MARKET_PAGE_SIZE)
+      .slice(-MARKET_LIMIT_ITEMS)
+  }, [marketAgentList, marketListPage])
+
+  const canLoadBefore = useMemo(() => {
+    return (
+      currentMarketList[0]?.aiAgent.aiAgentID !==
+      marketAgentList[0]?.aiAgent.aiAgentID
+    )
+  }, [currentMarketList, marketAgentList])
 
   const getTeamAgentList = useCallback(
     async (keyword?: string) => {
@@ -132,6 +155,20 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
     [keyword, getTeamAgentList, getMarketAgentList, searchParams],
   )
 
+  const loadBeforeMarketAgent = useCallback(async () => {
+    const currentItemIndex = marketAgentList.findIndex((value) => {
+      return value.aiAgent.aiAgentID === currentMarketList[0].aiAgent.aiAgentID
+    })
+    if (currentItemIndex === 0 || currentItemIndex === -1) return
+    const newItemIndex = Math.max(currentItemIndex - MARKET_PAGE_SIZE, 0)
+    dispatch(
+      dashboardMarketAiAgentActions.modifyMarketAiAgentReducer({
+        products: marketAgentList.slice(0, newItemIndex + MARKET_LIMIT_ITEMS),
+        pageIndex: marketListPage - 1,
+      }),
+    )
+  }, [dispatch, marketAgentList, currentMarketList, marketListPage])
+
   const loadMoreMarketAgent = useCallback(async () => {
     if (loadMore) return
     setLoadMore(true)
@@ -150,13 +187,15 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
   const value = {
     agentType,
     teamAgentList,
-    marketAgentList,
+    marketAgentList: currentMarketList,
     loading,
+    canLoadBefore,
     sortedBy: sort,
     onChangeSort,
     handleSearchAgent,
     handleAgentTypeChange,
     loadMoreMarketAgent,
+    loadBeforeMarketAgent,
   }
 
   return (
