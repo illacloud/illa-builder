@@ -2616,8 +2616,10 @@
       },
       "message": {
         "click-start": "Haga clic en el botón Inicio para activar.",
-        "insufficient_token": "Token insuficiente",
-        "start-failed": "Error al iniciar. Vuelve a intentarlo. "
+        "insufficient_token": "Colla insuficiente",
+        "start-failed": "Error al iniciar. Vuelve a intentarlo. ",
+        "reconnect": "Conexión perdida. Reconexión en curso.",
+        "token-not-enough": "Límite de modelo alcanzado. Por favor reinicie."
       },
       "title": "🧬 Editar agente AI",
       "generate-desc": {
@@ -2630,7 +2632,7 @@
       },
       "title-preview": {
         "chat": "Chatear",
-        "textGeneration": "Generación de texto"
+        "text-generation": "Generación de texto"
       }
     },
     "common": {

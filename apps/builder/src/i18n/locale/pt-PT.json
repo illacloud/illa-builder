@@ -2616,8 +2616,10 @@
       },
       "message": {
         "click-start": "Clique no botão iniciar para disparar.",
-        "insufficient_token": "Token insuficiente",
-        "start-failed": "Falha ao iniciar. Por favor, tente novamente. "
+        "insufficient_token": "Colla Insuficiente",
+        "start-failed": "Falha ao iniciar. Por favor, tente novamente. ",
+        "reconnect": "Conexão perdida. Reconexão em progresso.",
+        "token-not-enough": "Limite de modelos atingido. Por favor reinicie."
       },
       "title": "🧬 Editar Agente IA",
       "generate-desc": {
@@ -2630,7 +2632,7 @@
       },
       "title-preview": {
         "chat": "Bate-papo",
-        "textGeneration": "Geração de texto"
+        "text-generation": "Geração de texto"
       }
     },
     "common": {

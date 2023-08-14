@@ -2616,8 +2616,10 @@
       },
       "message": {
         "click-start": "Klicken Sie zum Auslösen auf die Start-Schaltfläche.",
-        "insufficient_token": "Unzureichendes Token",
-        "start-failed": "Start fehlgeschlagen. Bitte versuchen Sie es erneut. "
+        "insufficient_token": "Unzureichende Colla",
+        "start-failed": "Start fehlgeschlagen. Bitte versuchen Sie es erneut. ",
+        "reconnect": "Verbindung verloren. Wiederverbindung im Gange.",
+        "token-not-enough": "Modelllimit erreicht. Bitte neu starten."
       },
       "title": "🧬 KI-Agent bearbeiten",
       "generate-desc": {
@@ -2630,7 +2632,7 @@
       },
       "title-preview": {
         "chat": "Chat",
-        "textGeneration": "Textgenerierung"
+        "text-generation": "Textgenerierung"
       }
     },
     "common": {

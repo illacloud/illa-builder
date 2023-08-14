@@ -2616,8 +2616,10 @@
       },
       "message": {
         "click-start": "Kliknij przycisk Start, aby wyzwalać.",
-        "insufficient_token": "Niewystarczający token",
-        "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. "
+        "insufficient_token": "Niewystarczająca ilość Colla",
+        "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. ",
+        "reconnect": "Połączenie zostało utracone. Trwa ponowne połączenie.",
+        "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie."
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
@@ -2630,7 +2632,7 @@
       },
       "title-preview": {
         "chat": "Czat",
-        "textGeneration": "Generowanie tekstu"
+        "text-generation": "Generowanie tekstu"
       }
     },
     "common": {

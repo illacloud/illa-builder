@@ -2616,8 +2616,10 @@
       },
       "message": {
         "click-start": "Klik op de Start knop om te starten.",
-        "insufficient_token": "Onvoldoende token",
-        "start-failed": "Starten mislukt. Probeer het opnieuw. "
+        "insufficient_token": "Onvoldoende Colla",
+        "start-failed": "Starten mislukt. Probeer het opnieuw. ",
+        "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
+        "token-not-enough": "Model limiet bereikt. Start opnieuw."
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
@@ -2630,7 +2632,7 @@
       },
       "title-preview": {
         "chat": "Chatten",
-        "textGeneration": "Tekst genereren"
+        "text-generation": "Tekst genereren"
       }
     },
     "common": {
