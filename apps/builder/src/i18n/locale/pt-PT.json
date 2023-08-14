@@ -3275,7 +3275,8 @@
       "custom_copy_text": "{{userName}} convida você para entrar no 「{{teamName}}」. Clique no link para entrar na equipe: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Licenças restantes"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} compartilhou um Agente de I{{teamName}}para você. Clique no link para participar da equipe e experimente o Agente de IA: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Convidado com sucesso",
