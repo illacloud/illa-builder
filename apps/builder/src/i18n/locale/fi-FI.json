@@ -3275,7 +3275,8 @@
       "custom_copy_text": "{{userName}} kutsuu sinut liittymään「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Jäljellä olevat lisenssit"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Kutsuttu onnistuneesti",
