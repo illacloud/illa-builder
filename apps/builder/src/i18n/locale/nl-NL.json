@@ -3275,7 +3275,8 @@
       "custom_copy_text": "{{userName}} nodigt je uit om lid te worden van 「{{teamName}}」. Klik op de link om lid te worden van het team: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Resterende licenties"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Succesvol uitgenodigd",
