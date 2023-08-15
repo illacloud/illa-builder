@@ -75,8 +75,7 @@
       "create-suc": "Guardado correctamente",
       "fork-suc": "Bifurcado con éxito.",
       "delete-failed": "Error al eliminar. Por favor, inténtelo de nuevo. ",
-      "delete-suc": "Eliminado correctamente. ",
-      "token": "El valor actual de los tokens Max es bajo, lo que puede causar resultados incompletos devueltos."
+      "delete-suc": "Eliminado correctamente. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Colla insuficiente",
         "start-failed": "Error al iniciar. Vuelve a intentarlo. ",
         "reconnect": "Conexión perdida. Reconexión en curso.",
-        "token-not-enough": "Límite de modelo alcanzado. Por favor reinicie."
+        "token-not-enough": "Límite de modelo alcanzado. Por favor reinicie.",
+        "token": "El valor actual de los tokens Max es bajo, lo que puede causar resultados incompletos devueltos."
       },
       "title": "🧬 Editar agente AI",
       "generate-desc": {
