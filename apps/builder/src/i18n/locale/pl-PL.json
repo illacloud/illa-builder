@@ -75,7 +75,8 @@
       "create-suc": "Zapisano pomyślnie",
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
-      "delete-suc": "Usunięto pomyślnie. "
+      "delete-suc": "Usunięto pomyślnie. ",
+      "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki."
     }
   },
   "dayjs": {
