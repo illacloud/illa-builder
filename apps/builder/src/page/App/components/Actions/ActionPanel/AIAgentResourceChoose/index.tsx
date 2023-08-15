@@ -1,9 +1,9 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { FC, Suspense } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Option, Select, TriggerProvider } from "@illa-design/react"
-import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
+import { getAgentIcon } from "@/page/App/components/Actions/getIcon"
 import {
   getCachedAction,
   getSelectedAction,
@@ -14,8 +14,7 @@ import {
   ActionTriggerMode,
   IAdvancedConfig,
 } from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { getAllResources } from "@/redux/resource/resourceSelector"
+import { getDashboardTeamAIAgentList } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   itemContainer,
@@ -30,14 +29,13 @@ export const AIAgentResourceChoose: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  // TODO: wei need replace to agent
-  const resourceList = useSelector(getAllResources)
+  const agentList = useSelector(getDashboardTeamAIAgentList)
   const action = useSelector(getCachedAction)!!
   const selectedAction = useSelector(getSelectedAction)!!
 
   //maybe empty
-  const currentSelectResource = resourceList.find(
-    (r) => r.resourceID === action.resourceID,
+  const currentSelectResource = agentList.find(
+    (r) => r.aiAgentID === action.resourceID,
   )
 
   return (
@@ -54,33 +52,26 @@ export const AIAgentResourceChoose: FC = () => {
                 : t("editor.action.resource_choose.deleted")
             }
             onChange={(value) => {
-              const resource = resourceList.find((r) => r.resourceID === value)
+              const resource = agentList.find((r) => r.aiAgentID === value)
               if (resource != undefined) {
                 dispatch(
                   configActions.updateCachedAction({
                     ...action,
                     // selected resource is same as action type
-                    actionType: resource.resourceType,
+                    actionType: "aiagent",
                     resourceID: value as string,
-                    content:
-                      selectedAction.actionType === value
-                        ? selectedAction.content
-                        : getInitialContent(resource.resourceType),
+                    content: selectedAction.content,
                   }),
                 )
               }
             }}
           >
-            {resourceList.map((item) => {
+            {agentList.map((item) => {
               return (
-                <Option value={item.resourceID} key={item.resourceID}>
+                <Option value={item.aiAgentID} key={item.aiAgentID}>
                   <div css={itemContainer}>
-                    <span css={itemLogo}>
-                      <Suspense>
-                        {getIconFromResourceType(item.resourceType, "14px")}
-                      </Suspense>
-                    </span>
-                    <span css={itemText}>{item.resourceName}</span>
+                    <span css={itemLogo}>{getAgentIcon(item, "14px")}</span>
+                    <span css={itemText}>{item.name}</span>
                   </div>
                 </Option>
               )

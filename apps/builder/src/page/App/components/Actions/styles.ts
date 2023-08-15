@@ -151,3 +151,8 @@ export const oAuthErrorIconStyle: SerializedStyles = css`
   font-size: 16px;
   color: ${getColor("orange", "03")};
 `
+
+export const agentActionStyle = (size: string) => css`
+  width: ${size};
+  height: ${size};
+`
