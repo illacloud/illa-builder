@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -2750,6 +2746,9 @@ importers:
       '@illa-fe-utils/storage':
         specifier: '*'
         version: 0.0.3
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@types/mixpanel-browser':
         specifier: ^2.38.1
         version: 2.38.1
@@ -3061,8 +3060,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@reduxjs/toolkit':
-        specifier: '*'
-        version: 1.0.3
+        specifier: ^1.9.5
+        version: 1.9.5(react-redux@8.1.1)(react@18.2.0)
       '@types/react':
         specifier: ^18.0.27
         version: 18.0.27
@@ -3082,8 +3081,8 @@ importers:
         specifier: '*'
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
       react-redux:
-        specifier: '*'
-        version: 0.1.0(react@18.2.0)(redux@4.2.1)
+        specifier: ^8.1.1
+        version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       react-router-dom:
         specifier: ^6.14.0
         version: 6.14.0(react-dom@18.2.0)(react@18.2.0)
@@ -3202,7 +3201,7 @@ importers:
         specifier: '*'
         version: link:../../../illa-design/packages/react
       '@reduxjs/toolkit':
-        specifier: '*'
+        specifier: ^1.9.5
         version: 1.9.5(react-redux@8.1.1)(react@18.2.0)
       '@types/react':
         specifier: ^18.0.27
@@ -3217,7 +3216,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-redux:
-        specifier: '*'
+        specifier: ^8.1.1
         version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
     devDependencies:
       '@types/node':
@@ -4302,8 +4301,6 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
-      react:
-        optional: true
     dependencies:
       '@babel/runtime': 7.22.6
       '@emotion/babel-plugin': 11.11.0
@@ -4988,17 +4985,6 @@ packages:
 
   /@react-google-maps/marker-clusterer@2.16.1:
     resolution: {integrity: sha512-jOuyqzWLeXvQcoAu6TCVWHAuko+sDt0JjawNHBGqUNLywMtTCvYP0L0PiqJZOUCUeRYGdUy0AKxQ+30vAkvwag==}
-    dev: false
-
-  /@reduxjs/toolkit@1.0.3:
-    resolution: {integrity: sha512-4nmu/i2OW77Pwy4PW5E7ICWNS38UMFZEaneQtkgNQSDhz6/8y8nseCgBF10UF+ZeVyKLC/HvUcEDrJk6HbirOA==}
-    dependencies:
-      immer: 4.0.2
-      redux: 4.2.1
-      redux-devtools-extension: 2.13.9(redux@4.2.1)
-      redux-immutable-state-invariant: 2.1.0
-      redux-thunk: 2.4.2(redux@4.2.1)
-      reselect: 4.1.8
     dev: false
 
   /@reduxjs/toolkit@1.9.5(react-redux@8.1.1)(react@18.2.0):
@@ -9179,10 +9165,6 @@ packages:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
 
-  /immer@4.0.2:
-    resolution: {integrity: sha512-Q/tm+yKqnKy4RIBmmtISBlhXuSDrB69e9EKTYiIenIKQkXBQir43w+kN/eGiax3wt1J0O1b2fYcNqLSbEcXA7w==}
-    dev: false
-
   /immer@9.0.21:
     resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
     dev: false
@@ -9620,6 +9602,7 @@ packages:
 
   /json-stringify-safe@5.0.1:
     resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
+    dev: true
 
   /json2mq@0.2.0:
     resolution: {integrity: sha512-SzoRg7ux5DWTII9J2qkrZrqV1gt+rTaoufMxEzXbS26Uid0NwaJd123HcoB80TgubEppxxIGdNxCx50fEoEWQA==}
@@ -11648,18 +11631,6 @@ packages:
       react-fast-compare: 3.2.0
     dev: false
 
-  /react-redux@0.1.0(react@18.2.0)(redux@4.2.1):
-    resolution: {integrity: sha512-CunBqQBGrGjafIxqmReNeIQdQak7B3v5b8i55wF7g+9iKX/ZnEDZ3ade+b4derMNwmv4QsiMhsIMoHmg29mGtA==}
-    deprecated: BROKEN RELEASE! Use 0.2.1 instead. Thanks.
-    peerDependencies:
-      react: ^0.13.0
-      redux: '>=1.0.0-alpha'
-    dependencies:
-      invariant: 2.2.4
-      react: 18.2.0
-      redux: 4.2.1
-    dev: false
-
   /react-redux@8.1.1(@types/react-dom@18.0.10)(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
     resolution: {integrity: sha512-5W0QaKtEhj+3bC0Nj0NkqkhIv8gLADH/2kYFMTHxCVqQILiWzLv6MaLuV5wJU3BQEdHKzTfcvPN0WMS6SC1oyA==}
     peerDependencies:
@@ -12019,22 +11990,6 @@ packages:
       indent-string: 4.0.0
       strip-indent: 3.0.0
     dev: true
-
-  /redux-devtools-extension@2.13.9(redux@4.2.1):
-    resolution: {integrity: sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==}
-    deprecated: Package moved to @redux-devtools/extension.
-    peerDependencies:
-      redux: ^3.1.0 || ^4.0.0
-    dependencies:
-      redux: 4.2.1
-    dev: false
-
-  /redux-immutable-state-invariant@2.1.0:
-    resolution: {integrity: sha512-3czbDKs35FwiBRsx/3KabUk5zSOoTXC+cgVofGkpBNv3jQcqIe5JrHcF5AmVt7B/4hyJ8MijBIpCJ8cife6yJg==}
-    dependencies:
-      invariant: 2.2.4
-      json-stringify-safe: 5.0.1
-    dev: false
 
   /redux-logger@3.0.6:
     resolution: {integrity: sha512-JoCIok7bg/XpqA1JqCqXFypuqBbQzGQySrhFzewB7ThcnysTO30l4VCst86AuB9T9tuT03MAA56Jw2PNhRSNCg==}
@@ -13991,3 +13946,7 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
