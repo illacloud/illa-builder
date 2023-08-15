@@ -75,7 +75,8 @@
       "create-suc": "Sparades framgångsrikt",
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
-      "delete-suc": "Raderades framgångsrikt. "
+      "delete-suc": "Raderades framgångsrikt. ",
+      "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat."
     }
   },
   "dayjs": {
@@ -3276,7 +3277,7 @@
       "tips": {
         "license_insufficient": "Återstående licenser"
       },
-      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} delade dig en AI-agent från <unk>{{teamName}}<unk> . Klicka på länken för att gå med i teamet och prova AI-agenten: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Inbjuden lyckades",
