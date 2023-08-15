@@ -65,7 +65,7 @@ export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
       showTime={{ step: { minute: minuteStep }, format }}
       colorScheme={colorScheme}
       format={format}
-      value={isString(value) ? value : undefined}
+      value={isString(value) && value ? value : ""}
       disabled={disabled}
       placeholder={placeholder}
       allowClear={showClear}

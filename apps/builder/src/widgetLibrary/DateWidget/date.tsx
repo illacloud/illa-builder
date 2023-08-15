@@ -64,7 +64,7 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
       editable={!readOnly}
       colorScheme={colorScheme}
       format={dateFormat}
-      value={isString(value) ? value : undefined}
+      value={isString(value) && value ? value : ""}
       disabled={disabled}
       placeholder={placeholder}
       allowClear={showClear}
