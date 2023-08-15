@@ -56,7 +56,9 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)!
   const members = useSelector(getCurrentMemberList) ?? []
-  const agentLink = `${location.protocol}//${process.env.ILLA_MARKET_URL}/${aiAgentID}/detail`
+  const agentLink = `${location.protocol}//${
+    import.meta.env.ILLA_MARKET_URL
+  }/${aiAgentID}/detail`
 
   const handleChangeTeamMembersRole = (
     teamMemberID: string,

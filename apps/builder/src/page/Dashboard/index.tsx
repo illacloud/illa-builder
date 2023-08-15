@@ -34,8 +34,6 @@ export const IllaApp: FC = () => {
     }
   }, [dispatch])
 
-  console.log("process.env.test", process.env)
-
   return (
     <div css={containerStyle}>
       <AiAgentProvider>

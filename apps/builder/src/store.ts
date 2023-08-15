@@ -53,7 +53,7 @@ const dashboardReducer = combineReducers({
 
 const middlewares = [reduxAsync, UndoRedo, guideAsync]
 
-if (process.env.ILLA_APP_ENV === "development") {
+if (import.meta.env.ILLA_APP_ENV === "development") {
   middlewares.push(logger)
 }
 
@@ -73,7 +73,7 @@ const store = configureStore({
     team: teamReducer,
     guide: guideReducer,
   },
-  devTools: process.env.ILLA_APP_ENV === "development",
+  devTools: import.meta.env.ILLA_APP_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
