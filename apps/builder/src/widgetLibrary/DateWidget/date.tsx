@@ -1,6 +1,6 @@
 import dayjs, { Dayjs } from "dayjs"
 import { FC, useCallback, useEffect } from "react"
-import { SingleDatePicker } from "@illa-design/react"
+import { SingleDatePicker, isString } from "@illa-design/react"
 import { AutoHeightContainer } from "@/widgetLibrary/PublicSector/AutoHeightContainer"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
@@ -64,7 +64,7 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
       editable={!readOnly}
       colorScheme={colorScheme}
       format={dateFormat}
-      value={value}
+      value={isString(value) ? value : undefined}
       disabled={disabled}
       placeholder={placeholder}
       allowClear={showClear}
