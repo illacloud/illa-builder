@@ -2,7 +2,7 @@ import { FC, ReactNode, createContext, useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
 import { DEFAULT_AGENT_TAB } from "@/page/Dashboard/DashboardAiAgent/contentBody"
-import { Agent, PublicMarketAiAgent } from "@/redux/aiAgent/aiAgentState"
+import { Agent, MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
 import { getDashboardMarketAiAgent } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSelector"
 import { dashboardMarketAiAgentActions } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSlice"
 import { getDashboardTeamAiAgentList } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSelector"
@@ -13,6 +13,7 @@ import {
   ProductListParams,
   fetchNeedAuthAgentList,
 } from "@/services/marketPlace"
+
 
 interface ProviderProps {
   children: ReactNode
@@ -25,7 +26,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
   agentType: AgentType
   handleAgentTypeChange: (type: AgentType) => void
   teamAgentList: Agent[]
-  marketAgentList: PublicMarketAiAgent[]
+  marketAgentList: MarketAiAgent[]
   loading: boolean
   sortedBy: PRODUCT_SORT_BY
   onChangeSort: (sortedBy: PRODUCT_SORT_BY) => void

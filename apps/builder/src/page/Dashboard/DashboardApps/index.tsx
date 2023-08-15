@@ -1,4 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
+import InviteModal from "@illa-public/invite-modal"
+import { INVITE_FROM } from "@illa-public/invite-modal/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -38,7 +40,6 @@ import {
 } from "react-router-dom"
 import { Button, PlusIcon, useMessage } from "@illa-design/react"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
-import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { openGuideModal } from "@/page/Template/gideModeModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
@@ -59,6 +60,7 @@ import {
   teamAvatarStyle,
   teamInfoContainerStyle,
 } from "./style"
+
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -128,10 +130,6 @@ export const DashboardApps: FC = () => {
         setLoading(false)
       })
   }, [loading, teamIdentifier, dispatch, navigate, message, t])
-
-  const closeInviteModal = () => {
-    setInviteModalVisible(false)
-  }
 
   const openInviteModal = useCallback(() => {
     if (isCloudVersion && !canUseBillingFeature) {
@@ -212,11 +210,14 @@ export const DashboardApps: FC = () => {
           />
         </Await>
       </Suspense>
-      <DashBoardInviteModal
-        hasApp={false}
-        visible={inviteModalVisible}
-        handleCloseModal={closeInviteModal}
-      />
+      {inviteModalVisible && (
+        <InviteModal
+          from={INVITE_FROM.BUILDER_DASHBOARD}
+          onClose={() => {
+            setInviteModalVisible(false)
+          }}
+        />
+      )}
     </div>
   )
 }

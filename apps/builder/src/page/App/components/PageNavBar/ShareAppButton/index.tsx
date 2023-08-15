@@ -1,28 +1,20 @@
-import { UpgradeIcon } from "@illa-public/icon"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
-import { FC, useCallback, useContext, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { Button, getColor } from "@illa-design/react"
-import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { isCloudVersion } from "@/utils/typeHelper"
-
-export interface ShareAppButtonProps {
-  canUseBillingFeature: boolean
-  appInfo: DashboardApp
-}
+import {UpgradeIcon} from "@illa-public/icon"
+import InviteModal from "@illa-public/invite-modal"
+import {INVITE_FROM} from "@illa-public/invite-modal/interface"
+import {UpgradeCloudContext} from "@illa-public/upgrade-cloud-provider"
+import {FC, useCallback, useContext, useState} from "react"
+import {useTranslation} from "react-i18next"
+import {Button, getColor} from "@illa-design/react"
+import {ShareAppButtonProps} from "@/page/App/components/PageNavBar/ShareAppButton/interface"
+import {isCloudVersion} from "@/utils/typeHelper"
 
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
-  const { t } = useTranslation()
-  const { appInfo, canUseBillingFeature } = props
+  const {t} = useTranslation()
+  const {appInfo, canUseBillingFeature} = props
 
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const {handleUpgradeModalVisible} = useContext(UpgradeCloudContext)
 
   const [shareModalVisible, setShareModalVisible] = useState(false)
-
-  const closeInviteModal = useCallback(() => {
-    setShareModalVisible(false)
-  }, [])
 
   const openInviteModal = useCallback(() => {
     if (isCloudVersion && !canUseBillingFeature) {
@@ -33,27 +25,27 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
   }, [canUseBillingFeature, handleUpgradeModalVisible])
 
   return (
-    <div>
+    <>
       <Button
         colorScheme="grayBlue"
         rightIcon={
           isCloudVersion &&
           !canUseBillingFeature && (
-            <UpgradeIcon color={getColor("techPurple", "01")} />
+            <UpgradeIcon color={getColor("techPurple", "01")}/>
           )
         }
         onClick={openInviteModal}
       >
         {t("share")}
       </Button>
-
-      <DashBoardInviteModal
-        appInfo={appInfo}
-        visible={shareModalVisible}
-        handleCloseModal={closeInviteModal}
-        inviteToUseAppStatus="hidden"
-        from="builder_editor"
-      />
-    </div>
+      {shareModalVisible && (
+        <InviteModal
+          from={INVITE_FROM.BUILDER_IDE}
+          onClose={() => {
+            setShareModalVisible(false)
+          }}
+        />
+      )}
+    </>
   )
 }

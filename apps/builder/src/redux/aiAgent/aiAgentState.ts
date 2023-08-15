@@ -24,9 +24,6 @@ export interface Agent extends AgentRaw {
   editedBy: AgentEditor[]
 }
 
-export interface PublicAgent
-  extends Omit<Agent, "variables" | "prompt" | "modelConfig"> {}
-
 export interface AgentEditor {
   userID: string
   nickname: string
@@ -130,11 +127,6 @@ export interface MarketplaceInfo {
 
 export interface MarketAiAgent {
   aiAgent: Agent
-  marketplace: MarketplaceInfo
-}
-
-export interface PublicMarketAiAgent {
-  aiAgent: PublicAgent
   marketplace: MarketplaceInfo
 }
 

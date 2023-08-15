@@ -1,33 +1,31 @@
-import { calculateStyle } from "@illa-public/market-agent-card"
-// TODO: @AruSeito @smallSohoSolo refactor this usage
+import {FC, MouseEvent, useCallback} from "react"
+import {useTranslation} from "react-i18next"
+import {useNavigate, useParams} from "react-router-dom"
+import {Button, PenIcon, PlayFillIcon, Space, Tag} from "@illa-design/react"
+import {Agent} from "@/redux/aiAgent/aiAgentState"
+import {TeamAgentCardActionItem} from "../TeamAgentCardActionItem"
 import {
   agentIconStyle,
+  appActionButtonStyle,
   applyHiddenStyle,
+  cardStyle,
   descriptionStyle,
   footerStyle,
   headerStyle,
   nameStyle,
   titleInfoStyle,
-} from "@illa-public/market-agent-card/style"
-import { CSSProperties, FC, MouseEvent, useCallback } from "react"
-import { useTranslation } from "react-i18next"
-import { useNavigate, useParams } from "react-router-dom"
-import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
-import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
-import { appActionButtonStyle, cardStyle } from "./style"
+} from "./style"
 
 interface TeamAgentCardProps {
   agentInfo: Agent
   canEdit: boolean
-  style?: CSSProperties
   onClick: (aiAgentID: string) => void
 }
 
 export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
-  const { t } = useTranslation()
-  const { style, agentInfo, canEdit, onClick } = props
-  const { teamIdentifier } = useParams()
+  const {t} = useTranslation()
+  const {agentInfo, canEdit, onClick} = props
+  const {teamIdentifier} = useParams()
   const navigate = useNavigate()
 
   const onCardClick = useCallback(() => {
@@ -43,10 +41,10 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   )
 
   return (
-    <div css={cardStyle} style={calculateStyle(style)} onClick={onCardClick}>
+    <div css={cardStyle} onClick={onCardClick}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
-          <img css={agentIconStyle} src={agentInfo.icon} alt="" />
+          <img css={agentIconStyle} src={agentInfo.icon} alt=""/>
           <span css={nameStyle}>{agentInfo.name}</span>
         </div>
         <TeamAgentCardActionItem
@@ -83,7 +81,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
               className="dashboardAgentEditButton"
               variant="text"
               colorScheme="grayBlue"
-              leftIcon={<PenIcon size="16px" />}
+              leftIcon={<PenIcon size="16px"/>}
               onClick={toEditAgent}
             >
               {t("edit")}
@@ -94,7 +92,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
             className="dashboardAgentRunButton"
             variant="text"
             colorScheme="grayBlue"
-            leftIcon={<PlayFillIcon />}
+            leftIcon={<PlayFillIcon/>}
             onClick={onCardClick}
           >
             {t("dashboard.common.run")}

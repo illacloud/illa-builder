@@ -20,6 +20,7 @@ import {
 } from "@/page/Dashboard/DashboardAiAgent/style"
 import { PRODUCT_SORT_BY } from "@/services/marketPlace"
 
+
 export interface AgentContentBodyProps {
   canEdit: boolean
 }
@@ -127,8 +128,18 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
               return (
                 <MarketAgentCard
                   key={item.aiAgent.aiAgentID}
-                  agentInfo={item}
-                  onClick={toRunAgent}
+                  onClick={() => {
+                    toRunAgent(item.aiAgent.aiAgentID)
+                  }}
+                  numRuns={item.marketplace.numRuns}
+                  contributorTeamID={item.marketplace.contributorTeam.teamID}
+                  contributorTeamIcon={item.marketplace.contributorTeam.icon}
+                  contributorTeamName={item.marketplace.contributorTeam.name}
+                  description={item.aiAgent.description}
+                  icon={item.aiAgent.icon}
+                  name={item.aiAgent.name}
+                  numForks={item.marketplace.numForks}
+                  numStars={item.marketplace.numStars}
                 />
               )
             })}

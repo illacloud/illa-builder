@@ -28,7 +28,6 @@ import {
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
-import ShareToSocialMedia from "@/illa-public-component/ShareToSocialMedia"
 import {
   labelStyle,
   labelTextStyle,
@@ -37,7 +36,6 @@ import {
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
-import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
@@ -63,6 +61,7 @@ import {
   leftPanelContainerStyle,
   rightPanelContainerStyle,
 } from "./style"
+
 
 export const AIAgentRunPC: FC = () => {
   const { agent, marketplaceInfo } = useAsyncValue() as {
@@ -116,31 +115,9 @@ export const AIAgentRunPC: FC = () => {
                 ACTION_MANAGE.FORK_AGENT,
               )
             ) {
-              return (
-                <AgentShareModal
-                  aiAgentID={agent.aiAgentID}
-                  aiAgentName={agent.name}
-                  publishedToMarketplace={field.value}
-                  onContributed={(contributed) => {
-                    field.onChange(contributed)
-                  }}
-                  visible={shareDialogVisible}
-                  onCancel={() => {
-                    setShareDialogVisible(false)
-                  }}
-                />
-              )
+              return <></>
             } else {
-              return (
-                <ShareToSocialMedia
-                  agentID={agent.aiAgentID}
-                  agentName={agent.name}
-                  visible={shareDialogVisible}
-                  onCancel={() => {
-                    setShareDialogVisible(false)
-                  }}
-                />
-              )
+              return <></>
             }
           } else {
             if (
@@ -150,17 +127,7 @@ export const AIAgentRunPC: FC = () => {
                 ACTION_MANAGE.FORK_AGENT,
               )
             ) {
-              return (
-                <AgentShareModal
-                  aiAgentID={agent.aiAgentID}
-                  aiAgentName={agent.name}
-                  publishedToMarketplace={field.value}
-                  visible={shareDialogVisible}
-                  onCancel={() => {
-                    setShareDialogVisible(false)
-                  }}
-                />
-              )
+              return <></>
             } else {
               return <></>
             }
@@ -168,13 +135,7 @@ export const AIAgentRunPC: FC = () => {
         }}
       />
     )
-  }, [
-    agent.aiAgentID,
-    agent.name,
-    control,
-    currentTeamInfo.myRole,
-    shareDialogVisible,
-  ])
+  }, [control, currentTeamInfo.myRole, shareDialogVisible])
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({

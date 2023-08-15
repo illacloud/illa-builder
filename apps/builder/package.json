@@ -128,7 +128,8 @@
     "@illa-public/upgrade-cloud-provider": "workspace:*",
     "@illa-public/market-agent-card": "workspace:*",
     "@illa-public/sso-module": "workspace:*",
-    "@illa-public/layout-auto-change": "workspace:*"
+    "@illa-public/layout-auto-change": "workspace:*",
+    "@illa-public/invite-modal": "workspace:*"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",

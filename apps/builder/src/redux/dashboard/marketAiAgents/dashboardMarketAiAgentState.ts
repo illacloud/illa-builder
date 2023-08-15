@@ -1,7 +1,7 @@
-import { PublicMarketAiAgent } from "@/redux/aiAgent/aiAgentState"
+import { MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
 
 export interface DashboardMarketAiAgentState {
-  products: PublicMarketAiAgent[]
+  products: MarketAiAgent[]
   total: number
   pageSize: number
   pageIndex: number

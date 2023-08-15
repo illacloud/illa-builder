@@ -3,9 +3,10 @@ import {
   marketplaceTeamRequest,
   publicMarketplaceRequest,
 } from "@/api/http"
-import { PublicMarketAiAgent } from "@/redux/aiAgent/aiAgentState"
+import { MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
 
 interface AppListType {}
+
 interface HubListType {}
 
 export enum PRODUCT_TYPE {
@@ -15,7 +16,7 @@ export enum PRODUCT_TYPE {
 }
 
 type ProductTypeMapping = {
-  [PRODUCT_TYPE.AI_AGENT]: PublicMarketAiAgent
+  [PRODUCT_TYPE.AI_AGENT]: MarketAiAgent
   [PRODUCT_TYPE.APP]: AppListType
   [PRODUCT_TYPE.HUB]: HubListType
 }

@@ -1,3 +1,5 @@
+import InviteModal from "@illa-public/invite-modal"
+import { INVITE_FROM } from "@illa-public/invite-modal/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -34,13 +36,13 @@ import {
   useModal,
 } from "@illa-design/react"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
-import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+
 
 export interface AppCardActionItemProps extends HTMLAttributes<HTMLDivElement> {
   appId: string
@@ -81,10 +83,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     teamInfo?.totalTeamLicense?.teamLicensePurchased,
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
-
-  const closeInviteModal = () => {
-    setShareVisible(false)
-  }
 
   const handleDuplicateApp = () => {
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
@@ -404,11 +402,14 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
       >
-        <DashBoardInviteModal
-          appInfo={app}
-          visible={shareVisible}
-          handleCloseModal={closeInviteModal}
-        />
+        {shareVisible && (
+          <InviteModal
+            from={INVITE_FROM.BUILDER_DASHBOARD}
+            onClose={() => {
+              setShareVisible(false)
+            }}
+          />
+        )}
       </MixpanelTrackProvider>
       <AppSettingModal
         appInfo={app}

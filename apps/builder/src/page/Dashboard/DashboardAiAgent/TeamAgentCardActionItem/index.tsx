@@ -17,10 +17,10 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
 import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
 import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+
 
 export interface AppCardActionItemProps {
   aiAgentID: string
@@ -234,14 +234,6 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
           />
         </Dropdown>
       ) : null}
-      <AgentShareModal
-        visible={shareVisible}
-        onCancel={closeInviteModal}
-        aiAgentID={aiAgentID}
-        aiAgentName={aiAgentName}
-        publishedToMarketplace={publishedToMarketplace}
-        onContributed={onContributed}
-      />
     </div>
   )
 }

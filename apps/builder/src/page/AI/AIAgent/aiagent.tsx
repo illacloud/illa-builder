@@ -37,7 +37,6 @@ import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
-import AgentShareModal from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/ShareModal"
 import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
@@ -842,35 +841,7 @@ export const AIAgent: FC = () => {
                 <Controller
                   control={control}
                   name="publishedToMarketplace"
-                  render={({ field }) => (
-                    <>
-                      <AgentShareModal
-                        aiAgentID={idField.value}
-                        aiAgentName={nameField.value}
-                        publishedToMarketplace={field.value}
-                        onContributed={(contributed) => {
-                          field.onChange(contributed)
-                        }}
-                        visible={shareDialogVisible}
-                        onCancel={() => {
-                          setShareDialogVisible(false)
-                        }}
-                      />
-                      <AgentShareModal
-                        aiAgentID={idField.value}
-                        aiAgentName={nameField.value}
-                        publishedToMarketplace={field.value}
-                        onContributed={(contributed) => {
-                          field.onChange(contributed)
-                        }}
-                        visible={contributedDialogVisible}
-                        defaultTab="contribute"
-                        onCancel={() => {
-                          setContributedDialogVisible(false)
-                        }}
-                      />
-                    </>
-                  )}
+                  render={({ field }) => <></>}
                 />
               )}
             />

@@ -1,4 +1,5 @@
 import { Avatar } from "@illa-public/avatar"
+import InviteModal from "@illa-public/invite-modal"
 import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
 import { canManage } from "@illa-public/user-role-utils"
 import {
@@ -10,6 +11,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Await, useLoaderData, useNavigate, useParams } from "react-router-dom"
 import { Button, PlusIcon } from "@illa-design/react"
+import { INVITE_FROM } from "@/../../../packages/illa-public-component/InviteModal/interface"
 import { AgentContentBody } from "@/page/Dashboard/DashboardAiAgent/contentBody"
 import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
@@ -19,11 +21,11 @@ import {
   teamInfoContainerStyle,
   teamNameStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
-import { DashBoardInviteModal } from "@/page/Dashboard/DashboardApps/AppInviteModal"
 import { getHasMoreMarketAgent } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSelector"
 import { DashboardAiAgentLoaderData } from "@/router/loader/dashBoardLoader"
 import { DashboardErrorElement } from "../components/ErrorElement"
 import { DashBoardLoading } from "../components/Loading"
+
 
 const DashboardAiAgent: FC = () => {
   const { t } = useTranslation()
@@ -48,10 +50,6 @@ const DashboardAiAgent: FC = () => {
   const handleCreateAgent = useCallback(() => {
     navigate(`/${teamIdentifier}/ai-agent`)
   }, [navigate, teamIdentifier])
-
-  const closeInviteModal = () => {
-    setInviteModalVisible(false)
-  }
 
   const handleCardScroll = (event: UIEvent<HTMLDivElement>) => {
     if (agentType === "market") {
@@ -100,11 +98,14 @@ const DashboardAiAgent: FC = () => {
           <AgentContentBody canEdit={canEditApp} />
         </Await>
       </Suspense>
-      <DashBoardInviteModal
-        hasApp={false}
-        visible={inviteModalVisible}
-        handleCloseModal={closeInviteModal}
-      />
+      {inviteModalVisible && (
+        <InviteModal
+          from={INVITE_FROM.AGENT_DASHBOARD}
+          onClose={() => {
+            setInviteModalVisible(false)
+          }}
+        />
+      )}
     </div>
   )
 }

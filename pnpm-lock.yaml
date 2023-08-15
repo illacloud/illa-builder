@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -153,6 +157,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Icon
+      '@illa-public/invite-modal':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/InviteModal
       '@illa-public/layout-auto-change':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/LayoutAutoChange
@@ -2530,6 +2537,76 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
+  packages/illa-public-component/InviteModal:
+    dependencies:
+      '@emotion/react':
+        specifier: '*'
+        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
+      '@illa-design/react':
+        specifier: '*'
+        version: link:../../../illa-design/packages/react
+      '@illa-public/auth-shown':
+        specifier: workspace:*
+        version: link:../AuthShown
+      '@illa-public/avatar':
+        specifier: workspace:*
+        version: link:../Avatar
+      '@illa-public/icon':
+        specifier: workspace:*
+        version: link:../Icon
+      '@illa-public/layout-auto-change':
+        specifier: workspace:*
+        version: link:../LayoutAutoChange
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:*
+        version: link:../MixpanelUtils
+      '@illa-public/role-select':
+        specifier: workspace:*
+        version: link:../RoleSelect
+      '@illa-public/upgrade-cloud-provider':
+        specifier: workspace:*
+        version: link:../UpgradeCloudProvider
+      '@illa-public/usage-card':
+        specifier: workspace:*
+        version: link:../UsageCard
+      '@illa-public/user-data':
+        specifier: workspace:*
+        version: link:../UserData
+      '@illa-public/user-role-utils':
+        specifier: workspace:*
+        version: link:../UserRoleUtils
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@types/react':
+        specifier: ^18.0.27
+        version: 18.0.27
+      '@types/react-dom':
+        specifier: ^18.0.10
+        version: 18.0.10
+      copy-to-clipboard:
+        specifier: ^3.3.2
+        version: 3.3.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.30.0
+        version: 7.43.1(react@18.2.0)
+      react-i18next:
+        specifier: '*'
+        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+      vite-plugin-svgr:
+        specifier: ^2.1.0
+        version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
+
   packages/illa-public-component/LayoutAutoChange:
     dependencies:
       '@emotion/react':
@@ -2664,9 +2741,6 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
 
   packages/illa-public-component/MixpanelUtils:
     dependencies:
@@ -2879,15 +2953,39 @@ importers:
       '@illa-design/react':
         specifier: '*'
         version: link:../../../illa-design/packages/react
+      '@illa-public/auth-shown':
+        specifier: workspace:*
+        version: link:../AuthShown
+      '@illa-public/layout-auto-change':
+        specifier: workspace:*
+        version: link:../LayoutAutoChange
+      '@illa-public/member-list':
+        specifier: workspace:*
+        version: link:../MemberList
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:*
+        version: link:../MixpanelUtils
+      '@illa-public/role-select':
+        specifier: workspace:*
+        version: link:../RoleSelect
+      '@illa-public/upgrade-cloud-provider':
+        specifier: workspace:*
+        version: link:../UpgradeCloudProvider
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@types/react':
         specifier: ^18.0.27
         version: 18.0.27
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      copy-to-clipboard:
+        specifier: ^3.3.2
+        version: 3.3.3
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2901,95 +2999,6 @@ importers:
       '@types/node':
         specifier: ^18.14.4
         version: 18.14.5
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-
-  packages/illa-public-component/ShareToSocialMedia:
-    dependencies:
-      '@emotion/react':
-        specifier: '*'
-        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
-      '@illa-design/react':
-        specifier: '*'
-        version: link:../../../illa-design/packages/react
-      '@illa-public/layout-auto-change':
-        specifier: workspace:*
-        version: link:../LayoutAutoChange
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.0.27
-      '@types/react-dom':
-        specifier: ^18.0.10
-        version: 18.0.10
-      copy-to-clipboard:
-        specifier: ^3.3.2
-        version: 3.3.3
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-i18next:
-        specifier: '*'
-        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
-
-  packages/illa-public-component/TeamAgentShareModal:
-    dependencies:
-      '@emotion/react':
-        specifier: '*'
-        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
-      '@illa-design/react':
-        specifier: '*'
-        version: link:../../../illa-design/packages/react
-      '@illa-public/auth-shown':
-        specifier: workspace:*
-        version: link:../AuthShown
-      '@illa-public/layout-auto-change':
-        specifier: workspace:*
-        version: link:../LayoutAutoChange
-      '@illa-public/role-select':
-        specifier: workspace:*
-        version: link:../RoleSelect
-      '@illa-public/user-data':
-        specifier: workspace:*
-        version: link:../UserData
-      '@illa-public/user-role-utils':
-        specifier: workspace:*
-        version: link:../UserRoleUtils
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.0.27
-      '@types/react-dom':
-        specifier: ^18.0.10
-        version: 18.0.10
-      copy-to-clipboard:
-        specifier: ^3.3.2
-        version: 3.3.3
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-i18next:
-        specifier: '*'
-        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -3053,7 +3062,7 @@ importers:
         version: link:../utils
       '@reduxjs/toolkit':
         specifier: '*'
-        version: 1.9.5(react-redux@8.1.1)(react@18.2.0)
+        version: 1.0.3
       '@types/react':
         specifier: ^18.0.27
         version: 18.0.27
@@ -3074,7 +3083,7 @@ importers:
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
       react-redux:
         specifier: '*'
-        version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+        version: 0.1.0(react@18.2.0)(redux@4.2.1)
       react-router-dom:
         specifier: ^6.14.0
         version: 6.14.0(react-dom@18.2.0)(react@18.2.0)
@@ -4977,6 +4986,17 @@ packages:
 
   /@react-google-maps/marker-clusterer@2.16.1:
     resolution: {integrity: sha512-jOuyqzWLeXvQcoAu6TCVWHAuko+sDt0JjawNHBGqUNLywMtTCvYP0L0PiqJZOUCUeRYGdUy0AKxQ+30vAkvwag==}
+    dev: false
+
+  /@reduxjs/toolkit@1.0.3:
+    resolution: {integrity: sha512-4nmu/i2OW77Pwy4PW5E7ICWNS38UMFZEaneQtkgNQSDhz6/8y8nseCgBF10UF+ZeVyKLC/HvUcEDrJk6HbirOA==}
+    dependencies:
+      immer: 4.0.2
+      redux: 4.2.1
+      redux-devtools-extension: 2.13.9(redux@4.2.1)
+      redux-immutable-state-invariant: 2.1.0
+      redux-thunk: 2.4.2(redux@4.2.1)
+      reselect: 4.1.8
     dev: false
 
   /@reduxjs/toolkit@1.9.5(react-redux@8.1.1)(react@18.2.0):
@@ -7809,7 +7829,7 @@ packages:
   /dom-helpers@5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       csstype: 3.1.1
     dev: false
 
@@ -9157,6 +9177,10 @@ packages:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
 
+  /immer@4.0.2:
+    resolution: {integrity: sha512-Q/tm+yKqnKy4RIBmmtISBlhXuSDrB69e9EKTYiIenIKQkXBQir43w+kN/eGiax3wt1J0O1b2fYcNqLSbEcXA7w==}
+    dev: false
+
   /immer@9.0.21:
     resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
     dev: false
@@ -9594,7 +9618,6 @@ packages:
 
   /json-stringify-safe@5.0.1:
     resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
-    dev: true
 
   /json2mq@0.2.0:
     resolution: {integrity: sha512-SzoRg7ux5DWTII9J2qkrZrqV1gt+rTaoufMxEzXbS26Uid0NwaJd123HcoB80TgubEppxxIGdNxCx50fEoEWQA==}
@@ -11573,7 +11596,7 @@ packages:
       react: '>=16.3.0'
       react-dom: '>=16.3.0'
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@popperjs/core': 2.11.7
       '@restart/hooks': 0.4.9(react@18.2.0)
       '@types/warning': 3.0.0
@@ -11621,6 +11644,18 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-fast-compare: 3.2.0
+    dev: false
+
+  /react-redux@0.1.0(react@18.2.0)(redux@4.2.1):
+    resolution: {integrity: sha512-CunBqQBGrGjafIxqmReNeIQdQak7B3v5b8i55wF7g+9iKX/ZnEDZ3ade+b4derMNwmv4QsiMhsIMoHmg29mGtA==}
+    deprecated: BROKEN RELEASE! Use 0.2.1 instead. Thanks.
+    peerDependencies:
+      react: ^0.13.0
+      redux: '>=1.0.0-alpha'
+    dependencies:
+      invariant: 2.2.4
+      react: 18.2.0
+      redux: 4.2.1
     dev: false
 
   /react-redux@8.1.1(@types/react-dom@18.0.10)(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1):
@@ -11983,6 +12018,22 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
+  /redux-devtools-extension@2.13.9(redux@4.2.1):
+    resolution: {integrity: sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==}
+    deprecated: Package moved to @redux-devtools/extension.
+    peerDependencies:
+      redux: ^3.1.0 || ^4.0.0
+    dependencies:
+      redux: 4.2.1
+    dev: false
+
+  /redux-immutable-state-invariant@2.1.0:
+    resolution: {integrity: sha512-3czbDKs35FwiBRsx/3KabUk5zSOoTXC+cgVofGkpBNv3jQcqIe5JrHcF5AmVt7B/4hyJ8MijBIpCJ8cife6yJg==}
+    dependencies:
+      invariant: 2.2.4
+      json-stringify-safe: 5.0.1
+    dev: false
+
   /redux-logger@3.0.6:
     resolution: {integrity: sha512-JoCIok7bg/XpqA1JqCqXFypuqBbQzGQySrhFzewB7ThcnysTO30l4VCst86AuB9T9tuT03MAA56Jw2PNhRSNCg==}
     dependencies:
@@ -12000,7 +12051,7 @@ packages:
   /redux@4.2.1:
     resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
 
   /regenerator-runtime@0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
@@ -13224,7 +13275,7 @@ packages:
     peerDependencies:
       react: '>=15.0.0'
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       '@types/react': 18.2.14
       invariant: 2.2.4
       react: 18.2.0
@@ -13938,7 +13989,3 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
