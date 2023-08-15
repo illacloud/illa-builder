@@ -1,3 +1,4 @@
+import { formatNumForAgent } from "@illa-public/utils"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, PlayOutlineIcon, StarOutlineIcon } from "@illa-design/react"
@@ -18,7 +19,6 @@ import {
   titleAndDescContainerStyle,
   titleStyle,
 } from "./style"
-import { formatNumForAgent } from "./utils"
 
 export const MarketListItem: FC<MarketListItemProps> = (props) => {
   const { item, onSelected, style } = props
