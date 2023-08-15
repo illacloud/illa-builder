@@ -75,8 +75,7 @@
       "create-suc": "Lagring vellykket",
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
-      "delete-suc": "Sletting vellykket. ",
-      "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater."
+      "delete-suc": "Sletting vellykket. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Utilstrekkelig Colla",
         "start-failed": "Kunne ikke starte. Vennligst prøv igjen. ",
         "reconnect": "Forbindelsen ble brutt. Rekonstituering pågår.",
-        "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt."
+        "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt.",
+        "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
