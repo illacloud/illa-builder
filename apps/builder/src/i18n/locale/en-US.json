@@ -75,8 +75,7 @@
       "create-suc": "Successfully saved",
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. ",
-      "token": "The current value of Max tokens is low, which may cause incomplete returned results."
+      "delete-suc": "Successfully deleted. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Insufficient Colla",
         "start-failed": "Failed to start. Please try again. ",
         "reconnect": "Connection lost. Reconnecting...",
-        "token-not-enough": "Model limit reached. Please restart."
+        "token-not-enough": "Model limit reached. Please restart.",
+        "token": "The current value of Max tokens is low, which may cause incomplete returned results."
       },
       "title": "🧬 Edit AI Agent",
       "generate-desc": {
