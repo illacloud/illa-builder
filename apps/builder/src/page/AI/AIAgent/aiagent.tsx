@@ -236,6 +236,11 @@ export const AIAgent: FC = () => {
         )
       },
       onSendPrompt: () => {
+        if (getValues("prompt").length <= getValues("modelConfig.maxTokens")) {
+          message.info({
+            content: t("editor.ai-agent.message.token"),
+          })
+        }
         sendMessage(
           {
             threadID: v4(),
