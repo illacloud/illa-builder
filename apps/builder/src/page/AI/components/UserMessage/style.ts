@@ -35,7 +35,10 @@ export const senderAvatarStyle = css`
 export const messageContainerStyle = css`
   border-radius: 8px;
   margin-left: 48px;
-  background: ${getColor("grayBlue", "09")};
+  background: ${getColor("techPurple", "01")};
+  color: ${getColor("white", "01")};
+  font-size: 14px;
+  line-height: 22px;
   padding: 8px 12px;
   margin-top: 4px;
 `

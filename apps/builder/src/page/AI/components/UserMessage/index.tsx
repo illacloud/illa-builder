@@ -1,7 +1,6 @@
 import React, { FC } from "react"
 import { useSelector } from "react-redux"
 import { Avatar } from "@/illa-public-component/Avatar"
-import MarkdownMessage from "@/page/AI/components/MarkdownMessage"
 import { UserMessageProps } from "@/page/AI/components/UserMessage/interface"
 import {
   agentMessageContainer,
@@ -19,9 +18,7 @@ export const UserMessage: FC<UserMessageProps> = (props) => {
     <div css={agentMessageContainer}>
       <div css={senderContainerStyle}>
         <span css={senderNicknameStyle}>{currentUserInfo.nickname}</span>
-        <div css={messageContainerStyle}>
-          <MarkdownMessage>{message.message}</MarkdownMessage>
-        </div>
+        <div css={messageContainerStyle}>{message.message}</div>
       </div>
       <Avatar
         css={senderAvatarStyle}
