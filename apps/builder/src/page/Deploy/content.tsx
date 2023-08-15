@@ -18,8 +18,10 @@ import { setupComponentsListeners } from "@/redux/currentApp/editor/components/c
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { TeamAgentListData } from "@/services/agent"
 import { startAppListening } from "@/store"
 import {
   track,
@@ -33,6 +35,7 @@ interface IDeployContentAsyncValue {
   isPublic: boolean
   appInfo: Promise<AxiosResponse<CurrentAppResp>>
   resourceInfo: Promise<AxiosResponse<Resource<ResourceContent>[]>>
+  teamAgentList: Promise<AxiosResponse<TeamAgentListData>>
 }
 
 export const DeployContent: FC = () => {
@@ -48,13 +51,22 @@ export const DeployContent: FC = () => {
   }, [])
 
   useEffect(() => {
-    const { resourceInfo: resourceResponse, appInfo: appInfoResponse } =
-      asyncValue
+    const {
+      resourceInfo: resourceResponse,
+      appInfo: appInfoResponse,
+      teamAgentList,
+    } = asyncValue
     const initApp = async () => {
       const appInfo = await appInfoResponse
       if (!asyncValue.isPublic) {
         const resourceInfo = await resourceResponse
         dispatch(resourceActions.updateResourceListReducer(resourceInfo.data))
+        const agentList = await teamAgentList
+        dispatch(
+          dashboardTeamAiAgentActions.updateTeamAiAgentListReducer(
+            agentList.data.aiAgentList,
+          ),
+        )
         dispatch(configActions.updateIllaMode("production"))
         dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
         const fixedComponents = fixedComponentsToNewComponents(
