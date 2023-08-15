@@ -1,4 +1,3 @@
-import userDataStore, { getCurrentUser } from "@illa-public/user-data"
 import { createSelector } from "@reduxjs/toolkit"
 import { get, set } from "lodash"
 import { DEFAULT_MIN_COLUMN } from "@/page/App/components/ScaleSquare/constant/widget"
@@ -6,8 +5,6 @@ import { getSelectedComponentDisplayNames } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
 import store, { RootState } from "@/store"
-import { RawTreeFactory } from "../../../../utils/executionTreeHelper/rawTreeFactory"
-import { getRawSeeds } from "../../executionTree/executionSelector"
 
 export function searchDSLByDisplayName(
   displayName: string,
@@ -586,13 +583,3 @@ export const getCurrentPageSortedKeys = createSelector(
     return rootNode.props?.pageSortedKey ?? []
   },
 )
-
-export const getCurrentAppRawTree = (rootState: RootState) => {
-  const rawSeeds = getRawSeeds(rootState)
-  const userInfoSeeds = getCurrentUser(userDataStore.getState())
-  const seeds = RawTreeFactory.create({
-    ...rawSeeds,
-    currentUserInfo: userInfoSeeds,
-  })
-  return seeds
-}

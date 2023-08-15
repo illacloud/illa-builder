@@ -1,4 +1,4 @@
-import userDataStore, {
+import {
   MemberInfo,
   TeamInfo,
   USER_ROLE,
@@ -6,7 +6,6 @@ import userDataStore, {
   teamActions,
 } from "@illa-public/user-data"
 import { authCloudRequest } from "@/api/http"
-import { isCloudVersion } from "@/utils/typeHelper"
 import store from "../store"
 
 export const fetchMyTeamsInfo = () => {
@@ -133,7 +132,7 @@ export const removeTeam = async () => {
 
 export const setInviteLinkEnabled = async (inviteLinkEnabled: boolean) => {
   await fetchUpdateInviteLinkStatus({ inviteLinkEnabled })
-  const teamInfo = getCurrentTeamInfo(userDataStore.getState())
+  const teamInfo = getCurrentTeamInfo(store.getState())
   const teamIdentifier = teamInfo?.identifier
   await updateTeamsInfo(teamIdentifier)
   return inviteLinkEnabled
@@ -144,7 +143,7 @@ export const updateTeamPermissionConfig = async (
   allowViewerManageTeamMember: boolean,
   blockRegister: boolean,
 ) => {
-  const teamInfo = getCurrentTeamInfo(userDataStore.getState())
+  const teamInfo = getCurrentTeamInfo(store.getState())
   const teamIdentifier = teamInfo?.identifier
 
   const requestData = {

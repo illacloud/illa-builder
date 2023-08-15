@@ -1,4 +1,4 @@
-import userDataStore, { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { getTextMessagePayload } from "@/api/ws/index"
 import {
   Callback,
@@ -185,7 +185,7 @@ export class ILLAWebsocket {
       this.ws.onopen = () => {
         console.log(`[WS OPENED](${this.url}) connection succeeded`)
         const { id: teamID = "", uid = "" } =
-          getCurrentTeamInfo(userDataStore.getState()) ?? {}
+          getCurrentTeamInfo(store.getState()) ?? {}
         store.dispatch(configActions.updateDevicesOnlineStatusReducer(true))
         store.dispatch(
           configActions.updateWSStatusReducer({

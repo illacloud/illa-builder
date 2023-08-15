@@ -2,10 +2,15 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, memo, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { Dropdown, PlusIcon, Trigger, useMessage } from "@illa-design/react"
+import {
+  Dropdown,
+  PlusIcon,
+  SettingIcon,
+  Trigger,
+  useMessage,
+} from "@illa-design/react"
 import { ReactComponent as HomepageIcon } from "@/assets/dataWorkspace/homepage.svg"
 import { ReactComponent as WebsiteIcon } from "@/assets/dataWorkspace/website.svg"
-import { ReactComponent as SettingIcon } from "@/illa-public-component/MemberList/assets/icon/setting.svg"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"

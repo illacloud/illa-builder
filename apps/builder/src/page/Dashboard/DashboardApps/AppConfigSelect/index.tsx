@@ -9,8 +9,7 @@ import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { FC, ReactNode, useContext, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { DownIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
-import { ReactComponent as CheckmarkIcon } from "@/illa-public-component/RoleSelect/assets/success.svg"
+import { DownIcon, SuccessIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { updateAppPublicConfig } from "@/services/apps"
 import { track } from "@/utils/mixpanelHelper"
@@ -157,7 +156,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
                 }}
               >
                 {option.label}
-                {option.value === isPublic && <CheckmarkIcon />}
+                {option.value === isPublic && <SuccessIcon />}
               </div>
             )
           })}

@@ -5,10 +5,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_PAGE_NAME,
 } from "@illa-public/mixpanel-utils"
-import userDataStore, {
-  getCurrentTeamInfo,
-  getCurrentUser,
-} from "@illa-public/user-data"
+import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
 import {
   getIllaMode,
   getIsILLAProductMode,
@@ -97,7 +94,7 @@ const getPageInfo = () => {
 }
 
 const getTeamInfo = () => {
-  const teamInfo = getCurrentTeamInfo(userDataStore.getState())
+  const teamInfo = getCurrentTeamInfo(store.getState())
   return {
     role: teamInfo?.myRole || "-1",
   }
@@ -122,7 +119,7 @@ const getAppIsPublic = () => {
 }
 
 const getUserID = () => {
-  const userInfo = getCurrentUser(userDataStore.getState())
+  const userInfo = getCurrentUser(store.getState())
   return userInfo?.userId || ""
 }
 

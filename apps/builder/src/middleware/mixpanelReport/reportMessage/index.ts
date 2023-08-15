@@ -1,6 +1,6 @@
-import userDataStore, { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { PayloadAction } from "@reduxjs/toolkit"
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { componentsOperationReport } from "./component"
 
 export const reportMessage = (
@@ -10,7 +10,7 @@ export const reportMessage = (
 ) => {
   const currentAppID = nextRootState.currentApp.appInfo.appId ?? ""
   const { id: teamID = "", id = "" } =
-    getCurrentTeamInfo(userDataStore.getState()) ?? {}
+    getCurrentTeamInfo(store.getState()) ?? {}
   const { type } = action
   const typeList = type.split("/")
   const reduxType = typeList[0]

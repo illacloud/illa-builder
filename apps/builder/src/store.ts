@@ -1,3 +1,4 @@
+import { currentUserReducer, teamReducer } from "@illa-public/user-data"
 import {
   ListenerEffectAPI,
   TypedStartListening,
@@ -68,6 +69,8 @@ const store = configureStore({
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
     guide: guideReducer,
+    currentUser: currentUserReducer,
+    team: teamReducer,
   },
   devTools: process.env.ILLA_APP_ENV === "development",
   middleware: (getDefaultMiddleware) =>

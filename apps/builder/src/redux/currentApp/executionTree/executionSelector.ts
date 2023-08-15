@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@illa-public/user-data"
 import { createSelector } from "@reduxjs/toolkit"
 import { cloneDeep, get } from "lodash"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
@@ -8,21 +9,24 @@ import {
   getPageNameMapDescendantNodeDisplayNames,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { RootState } from "@/store"
+import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 
-export const getRawSeeds = createSelector(
+export const getRawTree = createSelector(
   [
     getActionList,
     getAllComponentDisplayNameMapProps,
+    getCurrentUser,
     getBuilderInfo,
     getOriginalGlobalData,
   ],
-  (actions, widgets, builderInfo, globalData) => {
-    return {
-      actions,
+  (actions, widgets, currentUserInfo, builderInfo, globalData) => {
+    return RawTreeFactory.create({
+      actions: actions ?? [],
       widgets: widgets ?? {},
+      currentUserInfo,
       builderInfo,
       globalData,
-    }
+    })
   },
 )
 

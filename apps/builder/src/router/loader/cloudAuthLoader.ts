@@ -1,5 +1,5 @@
 import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
-import userDataStore, {
+import {
   currentUserActions,
   getCurrentTeamInfo,
   getCurrentUser,
@@ -28,7 +28,7 @@ export const setTokenToLocalStorageLoader: LoaderFunction = async (args) => {
 
 export const getUserInfoLoader: LoaderFunction = async () => {
   const authToken = getAuthToken()
-  const userInfo = getCurrentUser(userDataStore.getState())
+  const userInfo = getCurrentUser(store.getState())
   const currentLng = window.localStorage.getItem("i18nextLng")
 
   if (userInfo.userId) {
@@ -65,7 +65,7 @@ export const getUserInfoLoader: LoaderFunction = async () => {
 export const getTeamsInfoLoader: LoaderFunction = async (args) => {
   const { params } = args
   const { teamIdentifier } = params
-  const currentTeamInfoInDisk = getCurrentTeamInfo(userDataStore.getState())
+  const currentTeamInfoInDisk = getCurrentTeamInfo(store.getState())
   if (currentTeamInfoInDisk?.id) {
     return null
   }

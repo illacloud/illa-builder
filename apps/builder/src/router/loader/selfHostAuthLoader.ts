@@ -1,4 +1,4 @@
-import userDataStore, {
+import {
   currentUserActions,
   getCurrentTeamInfo,
   getCurrentUser,
@@ -12,7 +12,7 @@ import { getAuthToken } from "@/utils/auth"
 
 export const getSelfHostUserInfoLoader: LoaderFunction = async () => {
   const authToken = getAuthToken()
-  const currentUser = getCurrentUser(userDataStore.getState())
+  const currentUser = getCurrentUser(store.getState())
 
   if (currentUser.userId) {
     return null
@@ -38,7 +38,7 @@ export const getSelfHostUserInfoLoader: LoaderFunction = async () => {
 export const getSelfHostTeamsInfoLoader: LoaderFunction = async (args) => {
   const { params } = args
   const { teamIdentifier } = params
-  const currentTeamInfoInDisk = getCurrentTeamInfo(userDataStore.getState())
+  const currentTeamInfoInDisk = getCurrentTeamInfo(store.getState())
   if (currentTeamInfoInDisk?.id) {
     return null
   }
@@ -51,7 +51,7 @@ export const getSelfHostTeamsInfoLoader: LoaderFunction = async (args) => {
     (item) => item.identifier === teamIdentifier,
   )
   if (currentTeamInfo) {
-    userDataStore.dispatch(
+    store.dispatch(
       teamActions.updateTeamReducer({
         currentId: currentTeamInfo.id,
         items: teamsInfo,

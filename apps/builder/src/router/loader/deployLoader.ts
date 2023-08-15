@@ -1,4 +1,4 @@
-import userDataStore, { getCurrentTeamInfo } from "@illa-public/user-data"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
 import {
   fetchAPPPublicStatus,
@@ -6,6 +6,7 @@ import {
   fetchPubicAppInitData,
 } from "@/services/apps"
 import { fetchResources } from "@/services/resource"
+import store from "@/store"
 import { getTeamsInfoLoader } from "./cloudAuthLoader"
 
 export const deployLoader: LoaderFunction = async (args) => {
@@ -32,7 +33,7 @@ export const deployLoader: LoaderFunction = async (args) => {
         appInfo,
       })
     } else {
-      const teamInfo = getCurrentTeamInfo(userDataStore.getState())
+      const teamInfo = getCurrentTeamInfo(store.getState())
       if (teamInfo && teamInfo.identifier !== teamIdentifier) {
         return redirect("/403")
       }

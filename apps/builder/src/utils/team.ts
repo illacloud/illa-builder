@@ -1,8 +1,9 @@
-import userDataStore, { getCurrentId } from "@illa-public/user-data"
+import { getCurrentId } from "@illa-public/user-data"
 import { ILLARoute } from "@/router"
+import store from "../store"
 
 export const getTeamID = () => {
-  return getCurrentId(userDataStore.getState())
+  return getCurrentId(store.getState())
 }
 
 // maybe not same as current team
