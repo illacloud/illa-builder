@@ -75,7 +75,8 @@
       "create-suc": "Successfully saved",
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "delete-suc": "Successfully deleted. ",
+      "token": "The current value of Max tokens is low, which may cause incomplete returned results."
     }
   },
   "dayjs": {
