@@ -75,7 +75,8 @@
       "create-suc": "Sauvegardé avec succès",
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
-      "delete-suc": "Supprimé avec succès. "
+      "delete-suc": "Supprimé avec succès. ",
+      "token": "La valeur actuelle des jetons Max est faible, ce qui peut causer des retours incomplets."
     }
   },
   "dayjs": {
