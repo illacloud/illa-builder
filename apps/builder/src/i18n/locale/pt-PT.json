@@ -75,8 +75,7 @@
       "create-suc": "Salvo com Sucesso",
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
-      "delete-suc": "Excluído com sucesso. ",
-      "token": "O valor atual do Max de tokens é baixo, o que pode causar resultados incompletos retornados."
+      "delete-suc": "Excluído com sucesso. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Colla Insuficiente",
         "start-failed": "Falha ao iniciar. Por favor, tente novamente. ",
         "reconnect": "Conexão perdida. Reconexão em progresso.",
-        "token-not-enough": "Limite de modelos atingido. Por favor reinicie."
+        "token-not-enough": "Limite de modelos atingido. Por favor reinicie.",
+        "token": "O valor atual do Max de tokens é baixo, o que pode causar resultados incompletos retornados."
       },
       "title": "🧬 Editar Agente IA",
       "generate-desc": {
