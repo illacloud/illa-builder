@@ -75,8 +75,7 @@
       "create-suc": "Salvat cu succes",
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
-      "delete-suc": "Eliminat cu succes. ",
-      "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate."
+      "delete-suc": "Eliminat cu succes. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Colla insuficientă",
         "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. ",
         "reconnect": "Conexiune pierdută. Reconectare în progres.",
-        "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi."
+        "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi.",
+        "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate."
       },
       "title": "🧬 Editare agent AI",
       "generate-desc": {
