@@ -75,8 +75,7 @@
       "create-suc": "Gemt med succes",
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
-      "delete-suc": "Slettet succesfuldt. ",
-      "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater."
+      "delete-suc": "Slettet succesfuldt. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Utilstrækkelig Colla",
         "start-failed": "Mislykkedes at starte. Prøv igen. ",
         "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
-        "token-not-enough": "Model grænse nået. Genstart."
+        "token-not-enough": "Model grænse nået. Genstart.",
+        "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
