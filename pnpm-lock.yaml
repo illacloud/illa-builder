@@ -2061,6 +2061,9 @@ importers:
       '@illa-design/theme':
         specifier: workspace:*
         version: link:../theme
+      framer-motion:
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -7777,6 +7780,11 @@ packages:
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
     dependencies:
       '@motionone/dom': 10.13.1
       framesync: 6.1.2
