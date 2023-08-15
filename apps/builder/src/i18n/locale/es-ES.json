@@ -75,7 +75,8 @@
       "create-suc": "Guardado correctamente",
       "fork-suc": "Bifurcado con éxito.",
       "delete-failed": "Error al eliminar. Por favor, inténtelo de nuevo. ",
-      "delete-suc": "Eliminado correctamente. "
+      "delete-suc": "Eliminado correctamente. ",
+      "token": "El valor actual de los tokens Max es bajo, lo que puede causar resultados incompletos devueltos."
     }
   },
   "dayjs": {
