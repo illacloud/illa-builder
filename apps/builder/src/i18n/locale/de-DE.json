@@ -75,7 +75,8 @@
       "create-suc": "Erfolgreich gespeichert",
       "fork-suc": "Erfolgreich geforkt.",
       "delete-failed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut. ",
-      "delete-suc": "Erfolgreich gelöscht. "
+      "delete-suc": "Erfolgreich gelöscht. ",
+      "token": "Der aktuelle Wert von Max Token ist niedrig, was unvollständige Ergebnisse verursachen kann."
     }
   },
   "dayjs": {
