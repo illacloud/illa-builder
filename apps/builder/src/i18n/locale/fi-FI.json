@@ -75,8 +75,7 @@
       "create-suc": "Tallennus onnistui",
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
-      "delete-suc": "Poistettu onnistuneesti. ",
-      "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia."
+      "delete-suc": "Poistettu onnistuneesti. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Riittämätön Colla",
         "start-failed": "Aloitus epäonnistui. Yritä uudelleen. ",
         "reconnect": "Yhteys menetetty. Uudelleenyhdistäminen käynnissä.",
-        "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen."
+        "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen.",
+        "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia."
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
