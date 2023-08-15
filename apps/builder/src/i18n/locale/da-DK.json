@@ -75,7 +75,8 @@
       "create-suc": "Gemt med succes",
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
-      "delete-suc": "Slettet succesfuldt. "
+      "delete-suc": "Slettet succesfuldt. ",
+      "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater."
     }
   },
   "dayjs": {
