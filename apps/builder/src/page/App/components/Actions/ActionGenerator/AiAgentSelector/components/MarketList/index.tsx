@@ -7,11 +7,8 @@ import {
   fetchMarketAgentList,
   forkAIAgentToTeam,
 } from "@/services/agent"
-import {
-  AGENT_LIST_HEIGHT,
-  MARKET_AGENT_ITEM_HEIGHT,
-  MARKET_PAGE_SIZE,
-} from "../../constants"
+import { AGENT_LIST_HEIGHT, MARKET_AGENT_ITEM_HEIGHT } from "../../constants"
+import { EmptyState } from "../EmptyState"
 import { MarketListItem } from "../MarketListItem"
 import { MarketAgentListProps } from "./interface"
 
@@ -42,12 +39,11 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
     const result = await fetchMarketAgentList(currentPage, sortBy, search)
     setCurrentPage((prev) => prev + 1)
     setIsNextPageLoading(false)
-    setHasNextPage(result.data.total === MARKET_PAGE_SIZE)
+    setHasNextPage(marketList.length + result.data.pageSize < result.data.total)
     setMarketList((prev) => prev.concat(result.data.products))
-  }, [currentPage, search, sortBy])
+  }, [currentPage, marketList.length, search, sortBy])
 
   const itemCount = hasNextPage ? marketList.length + 1 : marketList.length
-  console.log("hasNextPage", hasNextPage)
 
   return (
     <InfiniteLoader
@@ -55,36 +51,40 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
       loadMoreItems={isNextPageLoading ? () => {} : loadMoreItems}
       isItemLoaded={(index) => !hasNextPage || index < marketList.length}
     >
-      {({ onItemsRendered, ref }) => (
-        <FixedSizeList
-          height={AGENT_LIST_HEIGHT}
-          width="100%"
-          itemCount={itemCount}
-          itemData={marketList}
-          itemSize={MARKET_AGENT_ITEM_HEIGHT}
-          onItemsRendered={onItemsRendered}
-          ref={ref}
-        >
-          {(props: ListChildComponentProps<MarketAiAgent[]>) => {
-            const { index, style, data } = props
-            if (
-              !Array.isArray(data) ||
-              data.length === 0 ||
-              index >= data.length
-            )
-              return null
-            const item = data[index]
-            if (!item || !item.aiAgent || !item.marketplace) return null
-            return (
-              <MarketListItem
-                item={data[index]}
-                onSelected={handleClickFork}
-                style={style}
-              />
-            )
-          }}
-        </FixedSizeList>
-      )}
+      {({ onItemsRendered, ref }) =>
+        itemCount === 0 ? (
+          <EmptyState />
+        ) : (
+          <FixedSizeList
+            height={AGENT_LIST_HEIGHT}
+            width="100%"
+            itemCount={itemCount}
+            itemData={marketList}
+            itemSize={MARKET_AGENT_ITEM_HEIGHT}
+            onItemsRendered={onItemsRendered}
+            ref={ref}
+          >
+            {(props: ListChildComponentProps<MarketAiAgent[]>) => {
+              const { index, style, data } = props
+              if (
+                !Array.isArray(data) ||
+                data.length === 0 ||
+                index >= data.length
+              )
+                return null
+              const item = data[index]
+              if (!item || !item.aiAgent || !item.marketplace) return null
+              return (
+                <MarketListItem
+                  item={data[index]}
+                  onSelected={handleClickFork}
+                  style={style}
+                />
+              )
+            }}
+          </FixedSizeList>
+        )
+      }
     </InfiniteLoader>
   )
 }
