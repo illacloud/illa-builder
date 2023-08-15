@@ -1,6 +1,7 @@
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
-export type RoomType = "dashboard" | "app"
+export type RoomType = "dashboard" | "app" | "ai-agent"
 
 export interface Room {
   wsURL: string
@@ -19,6 +20,8 @@ export interface Callback<T> {
   errorMessage: string
   // 0 success, not zero error
   errorCode: number
+  target: TextTarget
+  signal: TextSignal
 }
 
 export interface ILLAWebSocketComponentPayload {
@@ -41,4 +44,5 @@ export enum ILLA_WEBSOCKET_CONTEXT {
   DASHBOARD = "DASHBOARD",
   APP = "APP",
   APP_BINARY = "APP_BINARY",
+  AI_AGENT = "AI_AGENT",
 }

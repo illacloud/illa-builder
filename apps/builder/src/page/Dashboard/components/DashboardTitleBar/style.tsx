@@ -81,3 +81,25 @@ export function applyUserAvatarStyle(background: string): SerializedStyles {
     border-radius: 50%;
   `
 }
+
+export const aiAgentBetaStyle = css`
+  display: inline-flex;
+  padding: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 9px;
+  background: rgba(255, 175, 223, 0.24);
+  color: #e960ff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  margin-left: -8px;
+`
+
+export const tabsContainer = css`
+  padding: 4px 0;
+`

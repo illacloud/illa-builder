@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
 import { Connection, getTextMessagePayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/ILLA_PROTO"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { RootState } from "@/store"
 
 export const appInfoAsync = (
@@ -18,8 +18,8 @@ export const appInfoAsync = (
     case "updateAppInfoReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.APPS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.APPS,
           true,
           action,
           teamID,

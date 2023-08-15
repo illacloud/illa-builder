@@ -57,7 +57,7 @@ export const MapBox: FC<MapProps> = ({
   }
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: import.meta.env.ILLA_GOOGLE_MAP_KEY,
+    googleMapsApiKey: process.env.ILLA_GOOGLE_MAP_KEY,
     libraries: Libraries,
   })
 

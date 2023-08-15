@@ -32,7 +32,7 @@
       "cancel": "Anulează",
       "delete": "Ștergere",
       "delete_cancel_text": "Anulează",
-      "delete_content": "După ștergere, nu va fi posibil să accesați sau să recuperați datele prin orice mijloace. Vă rugăm să confirmați.",
+      "delete_content": "Acest lucru va întrerupe aplicațiile și interogarea bibliotecii care utilizează această resursă",
       "delete_ok_text": "Ștergere",
       "delete_title": "Ești sigur?",
       "error_button": "Reîncercați",
@@ -61,18 +61,18 @@
     },
     "sort-type": {
       "popular": "Cele mai populare",
-      "recent": "Ultimele",
+      "recent": "Actualizat recent",
       "star": "Marcate"
     },
     "search": "Caută",
     "no-result": "Niciun rezultat aici. Reîmprospătați sau schimbați termenii de căutare.",
     "message": {
       "next-page-error": "Încărcarea paginii următoare a eșuat. Te rugăm să încerci din nou.",
-      "create-failed": "Agentul de salvare a eșuat. Te rugăm să încerci din nou.",
+      "create-failed": "Eroare la crearea agentului. Vă rugăm să încercaţi din nou.",
       "sort-failed": "Schimbarea tipului de filtru a eșuat. Te rugăm să încerci din nou.",
       "detail-load-failed": "Preluarea detaliilor a eșuat, te rugăm să încerci din nou.",
       "fork-failed": "Esuare fork, te rugam incearca din nou.",
-      "create-suc": "Creare esuata, te rugam incearca din nou.",
+      "create-suc": "Salvat cu succes",
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. "
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID placă de copiat",
             "sheet_to_copy_to": "Placă pentru copiere la",
             "authentication": "Autentificare",
-            "connect_with_oauth": "Conectează-te cu OAuth & Salvează",
+            "connect_with_oauth": "Conectează-te cu Google",
             "reconnect_with_oauth": "Reconectați cu OAuth",
             "access_type": "Tip de acces"
           },
@@ -2053,7 +2053,7 @@
           "title": "Setați titlul de afișat"
         },
         "page": {
-          "default_view": "Când utilizatorii introduc un URL de eroare, vom redirecționa automat către sub-pagina implicită. Când nu există nici o sub-pagină implicită, vom trata prima sub-pagină din listă ca pe sub-pagină implicită"
+          "default_view": "Când utilizatorii introduc o traiectorie de eroare, vom redirecționa automat către calea implicită. Când nu există o cale implicită, vom trata prima cale din listă ca pe o cale implicită"
         },
         "chart": {
           "direction": "Setați direcția graficului. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Adăugare",
         "body": "Corp",
-        "default_view": "Subpagina implicită",
-        "edit_view": "Editare subpagină",
+        "default_view": "Vizualizare implicită",
+        "edit_view": "Editare cale",
         "footer": "Subsol",
         "header": "Antet",
         "key": "Cheie",
@@ -2285,8 +2285,8 @@
         "right_panel": "Panoul din dreapta",
         "set_as_homepage": "Setează ca website",
         "show_fold_icon": "Afișare pictogramă pli",
-        "view_path": "Nume",
-        "views": "Subpagini",
+        "view_path": "Cale",
+        "views": "Vizualizări",
         "width": "Width",
         "height": "Înălțime",
         "columns": "Coloane",
@@ -2307,7 +2307,7 @@
       "tab_title": "Pagină",
       "tooltips": {
         "show_fold_icon": "Arată un buton pentru a restrânge sau extinde panoul",
-        "view_path": "Pentru a configura accesul la această pagină, va trebui să modificaţi numele. De exemplu, dacă schimbați numele în '**nou**', și adăugați-l ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Pentru a configura accesul la această pagină, va trebui să ajustați calea. De exemplu, dacă schimbați calea către '**newPath**', și adăugați-o ca subpagină a paginii de start. Această pagină poate fi accesată la următorul URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Lățimea paginii ca procent din lățimea browserului."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nume",
         "desc": "Descriere",
         "mode": "Mod",
@@ -2567,25 +2566,27 @@
         "welcome": "Mesaj de întâmpinare",
         "model": "Model",
         "temperature": "Temperatură",
-        "max-token": "Token-ul maxim"
+        "max-token": "Token-ul maxim",
+        "icon": "Iconiță"
       },
       "placeholder": {
-        "logo": "Incarca",
         "name": "Dă un nume agentului",
         "desc": "Furnizați o scurtă descriere a destinației acestui agent pentru a fi utilizat.",
-        "prompt": "Introduceți / pentru a selecta o variabilă",
+        "prompt": "Introduceți {{variableName}} pentru a utiliza o variabilă",
         "variable": {
           "key": "Denumire variabilă",
           "value": "Valoare"
         },
         "welcome": "Furnizaţi un mesaj de bun venit afişat atunci când utilizatorii încep să folosească agentul. (Automatic Translation)",
-        "temperature": "O valoare între 0 și 1. Cu cât valoarea este mai mică, cu atât efectul poate fi mai bun",
-        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare"
+        "icon": "Incarca",
+        "send": "Trimite ceva către Agent"
       },
       "tips": {
         "mode": "În modul chat, fiecare mesaj trimis include istoricul conversațiilor ca parte a cererii, ceea ce poate duce la rezultate mai bune, dar consumă mai multe tokeni; în modul text, fiecare mesaj trimis nu include istoricul conversaţiilor, care poate avea rezultate mai puțin optime în comparație cu modul de chat dar care conservă tokenurile.",
         "not-start": "Completează configurația agentului și apasă Start pentru a rula",
-        "not-start-run": "Vă rugăm să faceţi clic pe butonul de pornire din stânga."
+        "not-start-run": "Vă rugăm să faceţi clic pe butonul de pornire din stânga.",
+        "temperature": "O valoare între 0 și 1. Cu cât valoarea este mai mică, cu atât efectul poate fi mai bun",
+        "max-token": "Folosit pentru a limita numărul maxim de jetoane consumate într-o singură rulare"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Faceți clic pe butonul de pornire pentru a declanșa.",
-        "insufficient_token": "Token insuficient"
+        "insufficient_token": "Colla insuficientă",
+        "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. ",
+        "reconnect": "Conexiune pierdută. Reconectare în progres.",
+        "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi."
+      },
+      "title": "🧬 Editare agent AI",
+      "generate-desc": {
+        "button": "Generare AI",
+        "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
+        "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. "
+      },
+      "generate-icon": {
+        "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "text-generation": "Generare text"
       }
     },
     "common": {
@@ -3034,12 +3051,12 @@
       "name": "Formular JSON Schema"
     },
     "page": {
-      "path_duplicated": "Numele paginii este duplicat. Vă rugăm să folosiţi un nume unic pentru a evita erorile. ",
+      "path_duplicated": "Calea este duplicată. Vă rugăm să folosiți o cale unică pentru a evita erorile. ",
       "tips": {
         "blank_view": "Acest modul nu are pagini copii. Vă rugăm să le adăugaţi mai întâi prin panoul de pagină din dreapta."
       },
       "label": {
-        "rename_url": "Editare subpagină",
+        "rename_url": "Editare cale",
         "rename_page_url": "Editare pagină"
       }
     }
@@ -3278,7 +3295,8 @@
       "permission": "Permisiune",
       "operation": "Operațiune",
       "transfer": "Transferă proprietate",
-      "remove": "Elimină"
+      "remove": "Elimină",
+      "ai-agent": "Agenți AI"
     },
     "transfer_modal": {
       "title": "Sunteţi sigur că doriţi să transferaţi dreptul de proprietate?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 este pentru echipa Premium. ",
         "string2": "Pentru a o folosi, vă rugăm să faceţi upgrade la Premium. Prin upgrade la Premium, veţi avea de asemenea acces la următoarele caracteristici. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Caracteristică pentru echipele Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Această caracteristică este pentru echipele premium. Vă rugăm să contactați administratorii echipei pentru a face upgrade. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Simplifică-ți volumul de lucru cu [{{promptName}}] - Agentul AI care câștigă slujba"
       },
       "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
+    },
+    "button": {
+      "contribute": "Contribuie la piata",
+      "share_contribute": "Copiază & Partajează",
+      "uncontribute": "Anulează contribuția"
     }
   },
   "ai-agents": "Agenți AI",

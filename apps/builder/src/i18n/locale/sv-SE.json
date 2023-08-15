@@ -32,7 +32,7 @@
       "cancel": "Avbryt",
       "delete": "Radera",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "Efter radering, kommer det inte att vara möjligt att komma åt eller återställa data på något sätt. Bekräfta.",
+      "delete_content": "Detta kommer att bryta apparna och frågebibliotekets frågor som använder denna resurs",
       "delete_ok_text": "Radera",
       "delete_title": "Är du säker?",
       "error_button": "Försök igen",
@@ -61,18 +61,18 @@
     },
     "sort-type": {
       "popular": "Mest populära",
-      "recent": "Senaste",
+      "recent": "Nyligen uppdaterade",
       "star": "Stjärnmärkta"
     },
     "search": "Sök",
     "no-result": "Inga resultat här. Uppdatera eller ändra dina söktermer.",
     "message": {
       "next-page-error": "Det gick inte att ladda nästa sida. Försök igen.",
-      "create-failed": "Det gick inte att spara agenten. Försök igen.",
+      "create-failed": "Det gick inte att skapa agent. Försök igen.",
       "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
       "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
       "fork-failed": "Det gick inte att fork, försök igen.",
-      "create-suc": "Det gick inte att skapa, försök igen.",
+      "create-suc": "Sparades framgångsrikt",
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
       "delete-suc": "Raderades framgångsrikt. "
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Id för att kopiera",
             "sheet_to_copy_to": "Ark att kopiera till",
             "authentication": "Autentisering",
-            "connect_with_oauth": "Anslut med OAuth & Spara",
+            "connect_with_oauth": "Anslut med Google",
             "reconnect_with_oauth": "Återanslut med OAuth",
             "access_type": "Åtkomsttyp"
           },
@@ -2053,7 +2053,7 @@
           "title": "Ange titel att visa"
         },
         "page": {
-          "default_view": "När användare anger en fel-URL kommer vi automatiskt att omdirigera till standardundersidan. När det inte finns någon standard undersida, kommer vi att behandla den första undersidan i listan som standard undersida"
+          "default_view": "När användare anger en felsökväg, kommer vi automatiskt att omdirigera till standardsökvägen. När det inte finns någon standardväg, kommer vi att behandla den första sökvägen i listan som standardsökvägen"
         },
         "chart": {
           "direction": "Ange riktningen för sjökortet. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Lägg till",
         "body": "Kropp",
-        "default_view": "Förvald undersida",
-        "edit_view": "Redigera undersida",
+        "default_view": "Förvald vy",
+        "edit_view": "Redigera sökväg",
         "footer": "Sidfot",
         "header": "Rubrik",
         "key": "Nyckel",
@@ -2285,8 +2285,8 @@
         "right_panel": "Höger panel",
         "set_as_homepage": "Ange som hemsida",
         "show_fold_icon": "Visa vik-ikon",
-        "view_path": "Namn",
-        "views": "Sidor",
+        "view_path": "Sökväg",
+        "views": "Visningar",
         "width": "Width",
         "height": "Höjd",
         "columns": "Kolumner",
@@ -2307,7 +2307,7 @@
       "tab_title": "Sida",
       "tooltips": {
         "show_fold_icon": "Visa en knapp för att komprimera eller utöka panelen",
-        "view_path": "För att konfigurera åtkomst till den här sidan måste du justera namnet. Till exempel, om du ändrar namnet till \"**newPage**\", och lägga till det som en undersida på hemsidan. Denna sida kan sedan nås via följande URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "För att konfigurera åtkomst till den här sidan måste du justera sökvägen. Till exempel, om du ändrar sökvägen till '**newPath**' och lägger till den som en undersida på hemsidan. Den här sidan kan sedan nås via följande URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på sidan i procent av webbläsarens bredd."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logotyp",
         "name": "Namn",
         "desc": "Beskrivning",
         "mode": "Läge",
@@ -2567,25 +2566,27 @@
         "welcome": "Välkommen meddelande",
         "model": "Modell",
         "temperature": "Temperatur",
-        "max-token": "Max token"
+        "max-token": "Max token",
+        "icon": "Ikon"
       },
       "placeholder": {
-        "logo": "Ladda upp",
         "name": "Ge ett namn till agenten",
         "desc": "Ge en kort beskrivning av vad denna agent är avsedd att användas till.",
-        "prompt": "Ange / för att välja en variabel",
+        "prompt": "Ange {{variableName}} för att använda en variabel",
         "variable": {
           "key": "Variabelt namn",
           "value": "Värde"
         },
         "welcome": "Ange ett välkomstmeddelande som visas när användare börjar använda agenten.",
-        "temperature": "Ett värde mellan 0 och 1. Ju mindre värdet är, desto bättre effekt kan",
-        "max-token": "Används för att begränsa det maximala antalet polletter som konsumeras i en enda körning"
+        "icon": "Ladda upp",
+        "send": "Skicka något till agenten"
       },
       "tips": {
         "mode": "I chattläget inkluderar varje meddelande konversationshistoriken som en del av begäran, vilket kan resultera i bättre resultat men förbrukar fler tokens; i textläge, varje meddelande som skickas innehåller inte konversationshistorik, vilket kan resultera i mindre optimala resultat jämfört med chattläge men sparar polletter.",
         "not-start": "Slutför agentkonfigurationen och klicka på Start för att köra",
-        "not-start-run": "Klicka på Start -knappen till vänster."
+        "not-start-run": "Klicka på Start -knappen till vänster.",
+        "temperature": "Ett värde mellan 0 och 1. Ju mindre värdet är, desto bättre effekt kan",
+        "max-token": "Används för att begränsa det maximala antalet polletter som konsumeras i en enda körning"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Klicka på Start -knappen för att utlösa.",
-        "insufficient_token": "Otillräcklig token"
+        "insufficient_token": "Otillräcklig Colla",
+        "start-failed": "Det gick inte att starta. Försök igen. ",
+        "reconnect": "Anslutning förlorad. Återgång pågår.",
+        "token-not-enough": "Modellens gräns har uppnåtts. Vänligen starta om."
+      },
+      "title": "🧬 Redigera AI agent",
+      "generate-desc": {
+        "button": "AI generera",
+        "tooltips": "Använd AI för att generera beskrivningen baserat på din prompt. ",
+        "failed": "Det gick inte att generera. Försök igen senare. "
+      },
+      "generate-icon": {
+        "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning"
+      },
+      "title-preview": {
+        "chat": "Chatt",
+        "text-generation": "Generering av text"
       }
     },
     "common": {
@@ -3034,12 +3051,12 @@
       "name": "Formulär för JSON Schema"
     },
     "page": {
-      "path_duplicated": "Sidans namn dupliceras. Använd ett unikt namn för att undvika fel. ",
+      "path_duplicated": "Sökvägen är duplicerad. Använd en unik sökväg för att undvika fel. ",
       "tips": {
         "blank_view": "Modulen har inga underordnade sidor. Lägg till dem först via Sidpanelen till höger."
       },
       "label": {
-        "rename_url": "Redigera undersida",
+        "rename_url": "Redigera sökväg",
         "rename_page_url": "Redigera sida"
       }
     }
@@ -3278,7 +3295,8 @@
       "permission": "Behörighet",
       "operation": "Åtgärd",
       "transfer": "Överför ägarskap",
-      "remove": "Radera"
+      "remove": "Radera",
+      "ai-agent": "AI agenter"
     },
     "transfer_modal": {
       "title": "Är du säker på att du vill överföra ägande?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 är för Premium-teamet. ",
         "string2": "För att använda det, vänligen uppgradera till Premium. Genom att uppgradera till Premium, kommer du också att ha tillgång till följande funktioner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funktion för Premium-team",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Den här funktionen är för premiumteamen. Kontakta teamets administratörer för att uppgradera. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Förenkla din arbetsbelastning med [{{promptName}}] - AI-agenten som får jobbet klart"
       },
       "contribute": "Jag kom över en AI Agent-plattform som erbjuder banbrytande lösningar för att förenkla komplexa uppgifter och integrera med dina interna verktyg. Jag försökte personligen [{{promptName}}] och blåstes bort av dess kapacitet. Det är en spel-växlare för alla som vill ligga före kurvan. Kolla in det själv på {{promptLink}} och låt mig veta vad du tycker!"
+    },
+    "button": {
+      "contribute": "Bidra till marknadsplatsen",
+      "share_contribute": "Kopiera & dela",
+      "uncontribute": "Avbryt bidrag"
     }
   },
   "ai-agents": "AI agenter",

@@ -6,6 +6,7 @@ import {
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
+import { AiAgentProvider } from "@/page/Dashboard/DashboardAiAgent/context"
 import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
 import { configActions } from "@/redux/config/configSlice"
 import { fetchDashboardWsURL } from "@/services/public"
@@ -16,7 +17,6 @@ export const IllaApp: FC = () => {
 
   useEffect(() => {
     const abortController = new AbortController()
-
     fetchDashboardWsURL(abortController.signal)
       .then((res) => {
         Connection.enterDashboardRoom(fixedWsURL(res.data.wsURL))
@@ -34,10 +34,14 @@ export const IllaApp: FC = () => {
     }
   }, [dispatch])
 
+  console.log("process.env.test", process.env)
+
   return (
     <div css={containerStyle}>
-      <DashboardTitleBar />
-      <Outlet />
+      <AiAgentProvider>
+        <DashboardTitleBar />
+        <Outlet />
+      </AiAgentProvider>
     </div>
   )
 }

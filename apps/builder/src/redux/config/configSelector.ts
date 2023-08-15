@@ -126,6 +126,10 @@ export const getAppWSStatus = (state: RootState) => {
   return state.config.wsStatus.APP
 }
 
+export const getAgentWSStatus = (state: RootState) => {
+  return state.config.wsStatus.AI_AGENT
+}
+
 export const getHoveredComponents = createSelector(
   [getEditorConfig],
   (editorConfig) => {

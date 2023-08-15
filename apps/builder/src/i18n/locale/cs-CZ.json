@@ -32,7 +32,7 @@
       "cancel": "Zrušit",
       "delete": "Vymazat",
       "delete_cancel_text": "Zrušit",
-      "delete_content": "Po smazání nebude možné přistupovat k datům nebo je obnovovat jakýmkoliv způsobem. Potvrďte prosím.",
+      "delete_content": "Toto rozbije aplikace a knihovny dotazů, které používají tento zdroj",
       "delete_ok_text": "Vymazat",
       "delete_title": "Jste si jisti?",
       "error_button": "Opakovat",
@@ -61,18 +61,18 @@
     },
     "sort-type": {
       "popular": "Nejoblíbenější",
-      "recent": "Nejnovější",
+      "recent": "Nedávno aktualizované",
       "star": "Oblíbené"
     },
     "search": "Hledat",
     "no-result": "Žádný výsledek. Aktualizujte nebo změňte hledané výrazy.",
     "message": {
       "next-page-error": "Nepodařilo se načíst další stránku. Zkuste to prosím znovu.",
-      "create-failed": "Nepodařilo se uložit agenta. Zkuste to prosím znovu.",
+      "create-failed": "Nepodařilo se vytvořit agenta. Zkuste to prosím znovu.",
       "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
       "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
       "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
-      "create-suc": "Nepodařilo se vytvořit, zkuste to prosím znovu.",
+      "create-suc": "Úspěšně uloženo",
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. "
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID listu ke kopírování",
             "sheet_to_copy_to": "List ke zkopírování do",
             "authentication": "Ověření",
-            "connect_with_oauth": "Připojit se k OAuth a uložit",
+            "connect_with_oauth": "Propojit s Google",
             "reconnect_with_oauth": "Znovu připojit s OAuth",
             "access_type": "Typ přístupu"
           },
@@ -2053,7 +2053,7 @@
           "title": "Nastavit název pro zobrazení"
         },
         "page": {
-          "default_view": "Když uživatelé zadají chybu URL, automaticky přesměrujeme na výchozí dílčí stránku. Pokud neexistuje žádná výchozí podstránka, budeme považovat první podstránku v seznamu za výchozí podstránku"
+          "default_view": "Když uživatelé zadají chybovou cestu, automaticky přesměrujeme na výchozí cestu. Pokud neexistuje výchozí cesta, budeme považovat první cestu v seznamu za výchozí cestu"
         },
         "chart": {
           "direction": "Nastavte směr grafu. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Přidat",
         "body": "Tělo",
-        "default_view": "Výchozí podstránka",
-        "edit_view": "Upravit podstránku",
+        "default_view": "Výchozí zobrazení",
+        "edit_view": "Upravit cestu",
         "footer": "Zápatí",
         "header": "Záhlaví",
         "key": "Klíč",
@@ -2285,8 +2285,8 @@
         "right_panel": "Pravý panel",
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
-        "view_path": "Název",
-        "views": "Podstránky",
+        "view_path": "Cesta",
+        "views": "Zobrazení",
         "width": "Width",
         "height": "Výška",
         "columns": "Sloupce",
@@ -2307,7 +2307,7 @@
       "tab_title": "Stránka",
       "tooltips": {
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
-        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit název. Například, pokud změníš název na '**newPage**', a přidej ho jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit cestu. Například, pokud změníš cestu na '**newPath**', a přidej ji jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Název",
         "desc": "L 343, 22.12.2009, s. 1).",
         "mode": "Režim",
@@ -2567,25 +2566,27 @@
         "welcome": "Uvítací zpráva",
         "model": "Vzor",
         "temperature": "Teplota",
-        "max-token": "Maximální token"
+        "max-token": "Maximální token",
+        "icon": "Ikona"
       },
       "placeholder": {
-        "logo": "Nahrát",
         "name": "Dejte jméno agentovi",
         "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
-        "prompt": "Zadejte / vyberte proměnnou",
+        "prompt": "Zadejte {{variableName}} pro použití proměnné",
         "variable": {
           "key": "Název proměnné",
           "value": "Hodnota"
         },
         "welcome": "Poskytněte uvítací zprávu zobrazenou když uživatelé začnou používat agenta.",
-        "temperature": "Hodnota mezi 0 a 1. Čím menší hodnota, tím lepší může být efekt",
-        "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě"
+        "icon": "Nahrát",
+        "send": "Poslat něco agentovi"
       },
       "tips": {
         "mode": "V režimu chatu obsahuje každá odeslaná zpráva jako součást žádosti historii konverzace, která může vést k lepším výsledkům, ale spotřebovává více tokenů; v textovém režimu každá odeslaná zpráva nezahrnuje historii konverzace, což může vést k méně optimálním výsledkům ve srovnání s chatem, ale zachovává tokeny.",
         "not-start": "Dokončete konfiguraci agenta a klepněte na tlačítko Start pro spuštění",
-        "not-start-run": "Klikněte prosím na tlačítko Start na levé straně."
+        "not-start-run": "Klikněte prosím na tlačítko Start na levé straně.",
+        "temperature": "Hodnota mezi 0 a 1. Čím menší hodnota, tím lepší může být efekt",
+        "max-token": "Používá se k omezení maximálního počtu tokenů spotřebovaných v jednom jízdě"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
-        "insufficient_token": "Nedostatečný token"
+        "insufficient_token": "Nedostatek Colla",
+        "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. ",
+        "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
+        "token-not-enough": "Dosažen limit modelu. Prosím restartujte."
+      },
+      "title": "🧬 Úprava AI agenta",
+      "generate-desc": {
+        "button": "Generovat AI",
+        "tooltips": "Použijte AI k vygenerování popisu na základě vaší výzvy. ",
+        "failed": "Generování se nezdařilo. Opakujte akci později. "
+      },
+      "generate-icon": {
+        "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "text-generation": "Generování textu"
       }
     },
     "common": {
@@ -3034,12 +3051,12 @@
       "name": "Formulář schématu JSON"
     },
     "page": {
-      "path_duplicated": "Název stránky je duplicitní. Použijte prosím unikátní název, abyste se vyhnuli chybám. ",
+      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. ",
       "tips": {
         "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
       },
       "label": {
-        "rename_url": "Upravit podstránku",
+        "rename_url": "Upravit cestu",
         "rename_page_url": "Upravit stránku"
       }
     }
@@ -3278,7 +3295,8 @@
       "permission": "Právo",
       "operation": "Operace",
       "transfer": "Převést vlastnictví",
-      "remove": "Odebrat"
+      "remove": "Odebrat",
+      "ai-agent": "AI agenti"
     },
     "transfer_modal": {
       "title": "Jste si jisti, že chcete převést vlastnictví?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 je pro prémiový tým. ",
         "string2": "Chcete-li jej použít, proveďte upgrade na Premium. Proveďte upgrade na Premium, budete mít také přístup k následujícím funkcím. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funkce pro prémiové týmy",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Tato funkce je pro prémiové týmy. Pro upgrade kontaktujte správce týmu. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Zjednodušit pracovní zatížení pomocí [{{promptName}}] - AI agenta, který práci dokončil"
       },
       "contribute": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!"
+    },
+    "button": {
+      "contribute": "Přispějte na tržišti",
+      "share_contribute": "Kopírovat a sdílet",
+      "uncontribute": "Zrušit příspěvek"
     }
   },
   "ai-agents": "AI agenti",

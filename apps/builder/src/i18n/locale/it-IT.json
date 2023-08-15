@@ -32,7 +32,7 @@
       "cancel": "Annulla",
       "delete": "Elimina",
       "delete_cancel_text": "Annulla",
-      "delete_content": "Dopo la cancellazione, non sarà possibile accedere o recuperare i dati attraverso qualsiasi mezzo. Si prega di confermare.",
+      "delete_content": "Questo interromperà le query di App e Libreria Query che utilizzano questa risorsa",
       "delete_ok_text": "Elimina",
       "delete_title": "Sei sicuro?",
       "error_button": "Riprova",
@@ -61,18 +61,18 @@
     },
     "sort-type": {
       "popular": "Più popolari",
-      "recent": "Ultimi",
+      "recent": "Aggiornato di recente",
       "star": "Preferiti"
     },
     "search": "Cerca",
     "no-result": "Nessun risultato qui. Si prega di aggiornare o modificare i termini di ricerca.",
     "message": {
       "next-page-error": "Impossibile caricare la pagina successiva. Per favore riprova.",
-      "create-failed": "Impossibile salvare l'agente. Riprova.",
+      "create-failed": "Creazione dell'agente non riuscita. Riprova.",
       "sort-failed": "Modifica del tipo di filtro non riuscita. Riprova.",
       "detail-load-failed": "Impossibile recuperare i dettagli, per favore riprova.",
       "fork-failed": "Impossibile effettuare il fork, riprova.",
-      "create-suc": "Creazione non riuscita, riprova.",
+      "create-suc": "Salvato con successo",
       "fork-suc": "Forked con successo.",
       "delete-failed": "Eliminazione non riuscita. Riprova. ",
       "delete-suc": "Eliminato con successo. "
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Foglio ID da copiare",
             "sheet_to_copy_to": "Foglio su cui copiare",
             "authentication": "Autenticazione",
-            "connect_with_oauth": "Connettiti con OAuth & Salva",
+            "connect_with_oauth": "Connettiti con Google",
             "reconnect_with_oauth": "Riconnetti con OAuth",
             "access_type": "Tipo di accesso"
           },
@@ -2053,7 +2053,7 @@
           "title": "Imposta il titolo da visualizzare"
         },
         "page": {
-          "default_view": "Quando gli utenti inseriscono un URL di errore, reindirizzeremo automaticamente alla sotto-pagina predefinita. Quando non c'è nessuna sotto-pagina predefinita, tratteremo la prima sotto-pagina dell'elenco come la sotto-pagina predefinita"
+          "default_view": "Quando gli utenti inseriscono un percorso di errore, reindirizzeremo automaticamente al percorso predefinito. Quando non c'è un percorso predefinito, tratteremo il primo percorso nella lista come il percorso predefinito"
         },
         "chart": {
           "direction": "Imposta la direzione del grafico. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Aggiungi",
         "body": "Corpo",
-        "default_view": "Sotto-pagina predefinita",
-        "edit_view": "Modifica sotto-pagina",
+        "default_view": "Vista predefinita",
+        "edit_view": "Modifica percorso",
         "footer": "Footer",
         "header": "Intestazione",
         "key": "Chiave",
@@ -2285,8 +2285,8 @@
         "right_panel": "Pannello destro",
         "set_as_homepage": "Imposta come homepage",
         "show_fold_icon": "Mostra icona piega",
-        "view_path": "Nome",
-        "views": "Sotto-pagine",
+        "view_path": "Percorso",
+        "views": "Viste",
         "width": "Width",
         "height": "Altezza",
         "columns": "Colonne",
@@ -2307,7 +2307,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Mostra un pulsante per comprimere o espandere il pannello",
-        "view_path": "Per configurare l'accesso a questa pagina, è necessario modificare il nome. Per esempio, se si cambia il nome in '**newPage**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Per configurare l'accesso a questa pagina, è necessario regolare il percorso. Per esempio, se si cambia il percorso per '**newPath**', e aggiungerlo come una sotto-pagina della homepage. A questa pagina è possibile accedere tramite il seguente URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "La larghezza della pagina come percentuale della larghezza del browser."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Nome",
         "desc": "Descrizione",
         "mode": "Modalità",
@@ -2567,25 +2566,27 @@
         "welcome": "Messaggio di benvenuto",
         "model": "Modello",
         "temperature": "Temperatura",
-        "max-token": "Max token"
+        "max-token": "Max token",
+        "icon": "Icona"
       },
       "placeholder": {
-        "logo": "Carica",
         "name": "Dare un nome all'agente",
         "desc": "Fornire una breve descrizione di cosa si intende utilizzare questo agente.",
-        "prompt": "Inserisci / per selezionare una variabile",
+        "prompt": "Inserisci {{variableName}} per usare una variabile",
         "variable": {
           "key": "Nome della variabile",
           "value": "Valore"
         },
         "welcome": "Fornire un messaggio di benvenuto visualizzato quando gli utenti iniziano a usare l'agente.",
-        "temperature": "Un valore compreso tra 0 e 1. Più piccolo è il valore, migliore può essere l'effetto",
-        "max-token": "Usato per limitare il numero massimo di token consumati in una singola esecuzione"
+        "icon": "Carica",
+        "send": "Invia qualcosa all'agente"
       },
       "tips": {
         "mode": "In modalità chat, ogni messaggio inviato include la cronologia delle conversazioni come parte della richiesta, che può portare a risultati migliori, ma consuma più gettoni; in modalità testo, ogni messaggio inviato non include la cronologia delle conversazioni, che può portare a risultati meno ottimali rispetto alla modalità di chat, ma conserva i gettoni.",
         "not-start": "Completare la configurazione dell'agente e fare clic su Avvia per eseguire",
-        "not-start-run": "Fare clic sul pulsante Start sulla sinistra."
+        "not-start-run": "Fare clic sul pulsante Start sulla sinistra.",
+        "temperature": "Un valore compreso tra 0 e 1. Più piccolo è il valore, migliore può essere l'effetto",
+        "max-token": "Usato per limitare il numero massimo di token consumati in una singola esecuzione"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Fare clic sul pulsante Start per attivare.",
-        "insufficient_token": "Token insufficiente"
+        "insufficient_token": "Colla Insufficiente",
+        "start-failed": "Impossibile iniziare. Per favore riprova. ",
+        "reconnect": "Connessione persa. Riconnessione in corso.",
+        "token-not-enough": "Limite del modello raggiunto. Riavviare."
+      },
+      "title": "🧬 Modifica Agente AI",
+      "generate-desc": {
+        "button": "Generazione AI",
+        "tooltips": "Usa AI per generare la descrizione in base al tuo prompt. ",
+        "failed": "Impossibile generare. Riprova più tardi. "
+      },
+      "generate-icon": {
+        "tooltips": "Usa AI per generare icona in base al nome e alla descrizione dell'agente"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "text-generation": "Generazione testo"
       }
     },
     "common": {
@@ -3034,12 +3051,12 @@
       "name": "Modulo Schema JSON"
     },
     "page": {
-      "path_duplicated": "Il nome della pagina è duplicato. Si prega di utilizzare un nome univoco per evitare errori. ",
+      "path_duplicated": "Il percorso è duplicato. Si prega di utilizzare un percorso univoco per evitare errori. ",
       "tips": {
         "blank_view": "Questo modulo non ha pagine figlie. Si prega di aggiungerle prima attraverso il pannello Pagina a destra."
       },
       "label": {
-        "rename_url": "Modifica sotto-pagina",
+        "rename_url": "Modifica percorso",
         "rename_page_url": "Modifica pagina"
       }
     }
@@ -3278,7 +3295,8 @@
       "permission": "Permesso",
       "operation": "Operazione",
       "transfer": "Trasferisci proprietà",
-      "remove": "Rimuovi"
+      "remove": "Rimuovi",
+      "ai-agent": "Agenti AI"
     },
     "transfer_modal": {
       "title": "Sei sicuro di voler trasferire la proprietà?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 è per il team Premium. ",
         "string2": "Per usarlo, aggiorna a Premium. Aggiornando a Premium, avrai anche accesso alle seguenti funzionalità. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Caratteristica per i team Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Questa funzione è per i team premium. Si prega di contattare gli amministratori del team per l'aggiornamento. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Semplifica il tuo carico di lavoro con [{{promptName}}] - L'agente AI che ottiene il lavoro fatto"
       },
       "contribute": "Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!"
+    },
+    "button": {
+      "contribute": "Contribuisci al mercato",
+      "share_contribute": "Copia & Condividi",
+      "uncontribute": "Annulla contributo"
     }
   },
   "ai-agents": "Agenti AI",

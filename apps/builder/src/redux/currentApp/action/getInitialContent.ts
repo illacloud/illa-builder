@@ -1,3 +1,4 @@
+import { Agent } from "@/redux/aiAgent/aiAgentState"
 import {
   ActionContent,
   ActionType,
@@ -71,5 +72,14 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return AirtableActionConfigInitial
     default:
       return {} as ActionContent
+  }
+}
+
+export function getInitialAgentContent(agent: Agent): ActionContent {
+  return {
+    aiAgentModel: agent.model,
+    maxTokens: agent.modelConfig.maxTokens,
+    variables: agent.variables,
+    input: "",
   }
 }

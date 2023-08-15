@@ -72,7 +72,7 @@
       "sort-failed": "Failed to change the filter type. Please try again.",
       "detail-load-failed": "Failed to retrieve details, please try again.",
       "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Failed to create, please try again.",
+      "create-suc": "Successfully saved",
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
       "delete-suc": "Successfully deleted. "
@@ -230,8 +230,8 @@
             "sheet_id_to_copy": "Sheet ID to copy",
             "sheet_to_copy_to": "Sheet to copy to",
             "authentication": "Authentication",
-            "connect_with_oauth": "Connect with OAuth & Save",
-            "reconnect_with_oauth": "Reconnect with OAuth",
+            "connect_with_oauth": "Connect with Google",
+            "reconnect_with_oauth": "Reconnect with Google",
             "access_type": "Access type"
           },
           "mongodb": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Name",
         "desc": "Description",
         "mode": "Mode",
@@ -2567,25 +2566,27 @@
         "welcome": "Welcome message",
         "model": "Model",
         "temperature": "Temperature",
-        "max-token": "Max token"
+        "max-token": "Max token",
+        "icon": "Icon"
       },
       "placeholder": {
-        "logo": "Upload",
         "name": "Give a name to the agent",
         "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter / to select a variable",
+        "prompt": "Enter {{variableName}} to use a variable",
         "variable": {
           "key": "Variable name",
           "value": "Value"
         },
         "welcome": "Provide a welcome message displayed when users start use the agent.",
-        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
-        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
+        "icon": "Upload",
+        "send": "Send something to the Agent"
       },
       "tips": {
         "mode": "In chat mode, each message sent includes the conversation history as part of the request, which can result in better outcomes but consumes more tokens; in text mode, each message sent does not include the conversation history, which may result in less optimal outcomes compared to chat mode but conserves tokens.",
         "not-start": "Complete the Agent configure and click Start to run",
-        "not-start-run": "Please click the Start button on the left."
+        "not-start-run": "Please click the Start button on the left.",
+        "temperature": "A value between 0 and 1. The smaller the value, the better the effect may be",
+        "max-token": "Used to limit the maximum number of tokens consumed in a single run"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Click the Start button to trigger.",
-        "insufficient_token": "Insufficient token"
+        "insufficient_token": "Insufficient Colla",
+        "start-failed": "Failed to start. Please try again. ",
+        "reconnect": "Connection lost. Reconnecting...",
+        "token-not-enough": "Model limit reached. Please restart."
+      },
+      "title": "🧬 Edit AI Agent",
+      "generate-desc": {
+        "button": "AI generate",
+        "tooltips": "Use AI to generate the description based on your prompt. ",
+        "failed": "Failed to generate. Please try again later. "
+      },
+      "generate-icon": {
+        "tooltips": "Use AI to generate icon based on the agent name and description"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "text-generation": "Text generation"
       }
     },
     "common": {
@@ -3278,7 +3295,8 @@
       "permission": "Permission",
       "operation": "Operation",
       "transfer": "Transfer ownership",
-      "remove": "Remove"
+      "remove": "Remove",
+      "ai-agent": "AI Agents"
     },
     "transfer_modal": {
       "title": "Are you sure you want to transfer ownership?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 is for Premium team. ",
         "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Feature for Premium teams",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "This feature is for the premium teams. Please contact your team admins to upgrade. "
+            }
+          }
+        },
+        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Simplify Your Workload with [{{promptName}}] - The AI Agent That Gets the Job Done"
       },
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
+    },
+    "button": {
+      "contribute": "Contribute to marketplace",
+      "share_contribute": "Copy & Share",
+      "uncontribute": "Cancel contribution"
     }
   },
   "ai-agents": "AI Agents",

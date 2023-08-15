@@ -32,7 +32,7 @@
       "cancel": "Annuller",
       "delete": "Slet",
       "delete_cancel_text": "Annuller",
-      "delete_content": "Efter sletning, vil det ikke være muligt at få adgang til eller gendanne data på nogen måde. Bekræft venligst.",
+      "delete_content": "Dette vil ødelægge Apps og Forespørgselsbibliotek forespørgsler der bruger denne ressource",
       "delete_ok_text": "Slet",
       "delete_title": "Er du sikker?",
       "error_button": "Forsøg igen",
@@ -61,18 +61,18 @@
     },
     "sort-type": {
       "popular": "Mest populære",
-      "recent": "Seneste",
+      "recent": "Nyligt opdateret",
       "star": "Stjernemarkerede"
     },
     "search": "Søg",
     "no-result": "Intet resultat her. Opdater eller ændr venligst dine søgeord.",
     "message": {
       "next-page-error": "Næste side kunne ikke indlæses. Prøv igen.",
-      "create-failed": "Agenten kunne ikke gemmes. Prøv venligst igen.",
+      "create-failed": "Mislykkedes at oprette agent. Prøv venligst igen.",
       "sort-failed": "Kunne ikke ændre filtertypen. Prøv igen.",
       "detail-load-failed": "Kunne ikke hente detaljer. Prøv venligst igen.",
       "fork-failed": "Mislykkedes at gaffel, prøv igen.",
-      "create-suc": "Kunne ikke oprettes. Prøv venligst igen.",
+      "create-suc": "Gemt med succes",
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. "
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Ark ID til kopiering",
             "sheet_to_copy_to": "Ark der skal kopieres til",
             "authentication": "Godkendelse",
-            "connect_with_oauth": "Forbind med OAuth og gem",
+            "connect_with_oauth": "Forbind med Google",
             "reconnect_with_oauth": "Genopret forbindelse med OAuth",
             "access_type": "Adgangs type"
           },
@@ -2053,7 +2053,7 @@
           "title": "Indstil titlen der skal vises"
         },
         "page": {
-          "default_view": "Når brugere indtaster en fejl URL, vil vi automatisk omdirigere til standard undersiden. Når der ikke er nogen standard underside, vil vi behandle den første underside på listen som standard underside"
+          "default_view": "Når brugerne indtaster en fejl sti, vil vi automatisk omdirigere til standardstien. Når der ikke er nogen standardsti, vil vi behandle den første sti på listen som standardstien"
         },
         "chart": {
           "direction": "Indstil diagrammets retning. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Tilføj",
         "body": "Krop",
-        "default_view": "Standard underside",
-        "edit_view": "Rediger underside",
+        "default_view": "Standard visning",
+        "edit_view": "Rediger sti",
         "footer": "Sidefod",
         "header": "Overskrift",
         "key": "Nøgle",
@@ -2285,8 +2285,8 @@
         "right_panel": "Højre panel",
         "set_as_homepage": "Sæt som startside",
         "show_fold_icon": "Vis faldsikon",
-        "view_path": "Navn",
-        "views": "Undersider",
+        "view_path": "Sti",
+        "views": "Visninger",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolonner",
@@ -2307,7 +2307,7 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knap til at skjule eller udvide panelet",
-        "view_path": "For at konfigurere adgang til denne side, skal du justere navnet. For eksempel, hvis du ændrer navnet til '**newPage**', og tilføje det som en underside på hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPage**.",
+        "view_path": "For at konfigurere adgang til denne side, skal du justere stien. For eksempel, hvis du ændrer stien til '**newPath**', og tilføje det som en underside af hjemmesiden. Denne side kan derefter tilgås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden af siden som en procentdel af browserens bredde."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Navn",
         "desc": "Varebeskrivelse",
         "mode": "Tilstand",
@@ -2567,25 +2566,27 @@
         "welcome": "Velkomst besked",
         "model": "Model",
         "temperature": "Temperatur",
-        "max-token": "Maks. token"
+        "max-token": "Maks. token",
+        "icon": "Ikon"
       },
       "placeholder": {
-        "logo": "Upload",
         "name": "Giv et navn til agenten",
         "desc": "Giv en kort beskrivelse af, hvad denne agent er beregnet til at blive brugt til.",
-        "prompt": "Indtast / for at vælge en variabel",
+        "prompt": "Indtast {{variableName}} for at bruge en variabel",
         "variable": {
           "key": "Variabel navn",
           "value": "Værdi"
         },
         "welcome": "Giv en velkomstbesked, der vises, når brugerne begynder at bruge agent.",
-        "temperature": "En værdi mellem 0 og 1. Jo mindre værdien, jo bedre kan effekten være",
-        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb"
+        "icon": "Upload",
+        "send": "Send noget til agenten"
       },
       "tips": {
         "mode": "I chattilstand indeholder hver sendt besked samtalehistorikken som en del af anmodningen, hvilket kan resultere i bedre resultater, men forbruger mere tokens; i teksttilstand, hver sendt besked indeholder ikke samtaleoversigten hvilket kan resultere i mindre optimale resultater i forhold til chat-tilstand, men konserves tokens.",
         "not-start": "Færdiggør Agentens konfiguration og klik på Start for at køre",
-        "not-start-run": "Klik på Start-knappen til venstre."
+        "not-start-run": "Klik på Start-knappen til venstre.",
+        "temperature": "En værdi mellem 0 og 1. Jo mindre værdien, jo bedre kan effekten være",
+        "max-token": "Bruges til at begrænse det maksimale antal tokens der forbruges i et enkelt løb"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Klik på knappen Start for at udløse.",
-        "insufficient_token": "Utilstrækkelig token"
+        "insufficient_token": "Utilstrækkelig Colla",
+        "start-failed": "Mislykkedes at starte. Prøv igen. ",
+        "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
+        "token-not-enough": "Model grænse nået. Genstart."
+      },
+      "title": "🧬 Rediger AI Agent",
+      "generate-desc": {
+        "button": "AI generere",
+        "tooltips": "Brug AI til at generere beskrivelsen baseret på din prompt. ",
+        "failed": "Mislykkedes at generere. Prøv igen senere. "
+      },
+      "generate-icon": {
+        "tooltips": "Brug AI til at generere ikon baseret på agentens navn og beskrivelse"
+      },
+      "title-preview": {
+        "chat": "Chat",
+        "text-generation": "Tekst generation"
       }
     },
     "common": {
@@ -3034,12 +3051,12 @@
       "name": "JSON Skema Form"
     },
     "page": {
-      "path_duplicated": "The page name is duplicated. Please use a unique name to avoid errors. (Automatic Copy) ",
+      "path_duplicated": "Stien er duplikeret. Brug venligst en unik sti for at undgå fejl. ",
       "tips": {
         "blank_view": "Dette modul har ingen undersider. Tilføj dem først gennem sidepanelet til højre."
       },
       "label": {
-        "rename_url": "Rediger underside",
+        "rename_url": "Rediger sti",
         "rename_page_url": "Rediger side"
       }
     }
@@ -3278,7 +3295,8 @@
       "permission": "Tilladelse",
       "operation": "Handling",
       "transfer": "Overfør ejerskab",
-      "remove": "Fjern"
+      "remove": "Fjern",
+      "ai-agent": "AI Agenter"
     },
     "transfer_modal": {
       "title": "Er du sikker på, at du vil overføre ejerskab?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 er for Premium-teamet. ",
         "string2": "For at bruge den, skal du opgradere til Premium. Ved at opgradere til Premium, vil du også have adgang til følgende funktioner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funktion til Premium teams",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Denne funktion er for premium teams. Kontakt venligst dine teamadministratorer for at opgradere. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Forenkle din arbejdsbyrde med [{{promptName}}] - AI Agent, der Får det færdige job"
       },
       "contribute": "Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!"
+    },
+    "button": {
+      "contribute": "Bidrag til markedspladsen",
+      "share_contribute": "Kopiér & Del",
+      "uncontribute": "Annuller bidrag"
     }
   },
   "ai-agents": "AI Agenter",

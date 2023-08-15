@@ -4,10 +4,14 @@ import { ERROR_FLAG } from "../errorFlag"
 import { actionRuntimeAxios, needAuthAxios, notNeedAuthAxios } from "./base"
 import {
   ACTION_REQUEST_PREFIX,
+  AGENT_REQUEST_PREFIX,
   BUILDER_REQUEST_PREFIX,
   BUILDER_WS_REQUEST_PREFIX,
   CLOUD_REQUEST_PREFIX,
   DRIVE_REQUEST_PREFIX,
+  MARKETPLACE_AUTH_PRODUCT_REQUEST_PREFIX,
+  MARKETPLACE_AUTH_REQUEST_PREFIX,
+  MARKETPLACE_PUBLIC_REQUEST_PREFIX,
   PUBLIC_DRIVE_REQUEST_PREFIX,
 } from "./constant"
 
@@ -149,6 +153,98 @@ export const builderRequest = async <
     BUILDER_REQUEST_PREFIX,
     options,
   )
+
+  return await needAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const agentRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(
+    requestConfig.url,
+    AGENT_REQUEST_PREFIX,
+    options,
+  )
+
+  return await needAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const marketplaceRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(
+    requestConfig.url,
+    MARKETPLACE_AUTH_PRODUCT_REQUEST_PREFIX,
+    options,
+  )
+
+  return await needAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const marketplaceTeamRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+) => {
+  const finalURL = getURLWithPrefix(
+    requestConfig.url,
+    MARKETPLACE_AUTH_REQUEST_PREFIX,
+    {
+      needTeamID: true,
+    },
+  )
+
+  return await needAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const publicMarketplaceRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(
+    requestConfig.url,
+    MARKETPLACE_PUBLIC_REQUEST_PREFIX,
+    options,
+  )
+
+  return await notNeedAuthRequest<ResponseData, RequestData>({
+    ...requestConfig,
+    url: finalURL,
+  })
+}
+
+export const directRequest = async <
+  ResponseData = unknown,
+  RequestData = unknown,
+>(
+  requestConfig: AxiosRequestConfig<RequestData>,
+  options?: RequestHandlerOptions,
+) => {
+  const finalURL = getURLWithPrefix(requestConfig.url, "", options)
 
   return await needAuthRequest<ResponseData, RequestData>({
     ...requestConfig,

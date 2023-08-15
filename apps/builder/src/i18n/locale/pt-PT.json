@@ -32,7 +32,7 @@
       "cancel": "cancelar",
       "delete": "excluir",
       "delete_cancel_text": "cancelar",
-      "delete_content": "Após a exclusão, não será possível acessar ou recuperar os dados por qualquer meio. Por favor, confirme.",
+      "delete_content": "Isto quebrará as consultas de Apps e da Biblioteca de Consulta que usam este recurso",
       "delete_ok_text": "excluir",
       "delete_title": "Você tem certeza?",
       "error_button": "Repetir",
@@ -61,18 +61,18 @@
     },
     "sort-type": {
       "popular": "Mais popular",
-      "recent": "Últimos",
+      "recent": "Mais recentemente atualizados",
       "star": "Marcado"
     },
     "search": "Pesquisa",
     "no-result": "Não há resultados aqui. Por favor, atualize ou altere os termos da pesquisa.",
     "message": {
       "next-page-error": "Falha ao carregar a próxima página. Por favor, tente novamente.",
-      "create-failed": "Falha ao salvar o agente. Tente novamente",
+      "create-failed": "Falha ao criar agente. Por favor, tente novamente.",
       "sort-failed": "Não foi possível alterar o tipo de filtro. Tente novamente.",
       "detail-load-failed": "Falha ao recuperar detalhes, por favor tente novamente.",
       "fork-failed": "Falha ao fazer o fork, por favor, tente novamente.",
-      "create-suc": "Falha ao criar. Por favor, tente novamente.",
+      "create-suc": "Salvo com Sucesso",
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
       "delete-suc": "Excluído com sucesso. "
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "ID da Chapa para copiar",
             "sheet_to_copy_to": "Folha para a qual deseja copiar",
             "authentication": "Autenticação",
-            "connect_with_oauth": "Conectar com OAuth e Salvar",
+            "connect_with_oauth": "Conectar-se com Google",
             "reconnect_with_oauth": "Reconectar com OAuth",
             "access_type": "Tipo de acesso"
           },
@@ -2053,7 +2053,7 @@
           "title": "Defina o título para exibição"
         },
         "page": {
-          "default_view": "Quando os usuários informam uma URL de erro, vamos automaticamente redirecionar para a sub-página padrão. Quando não há nenhuma sub-página padrão, trataremos a primeira sub-página da lista como a sub-página padrão"
+          "default_view": "Quando os usuários informam um caminho de erro, vamos automaticamente redirecionar para o caminho padrão. Quando não há um caminho padrão, trataremos o primeiro caminho da lista como o caminho padrão"
         },
         "chart": {
           "direction": "Define a direção do gráfico. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Adicionar",
         "body": "Conteúdo",
-        "default_view": "Subpágina padrão",
-        "edit_view": "Editar sub-página",
+        "default_view": "Visualização padrão",
+        "edit_view": "Editar caminho",
         "footer": "Rodapé",
         "header": "Cabeçalho",
         "key": "Chave",
@@ -2285,8 +2285,8 @@
         "right_panel": "Painel direito",
         "set_as_homepage": "Definir como página inicial",
         "show_fold_icon": "Mostrar ícone da dobra",
-        "view_path": "Nome:",
-        "views": "Subpáginas",
+        "view_path": "Caminho",
+        "views": "Visualizações",
         "width": "Width",
         "height": "Altura",
         "columns": "Colunas",
@@ -2307,7 +2307,7 @@
       "tab_title": "Página",
       "tooltips": {
         "show_fold_icon": "Mostrar um botão para recolher ou expandir o painel",
-        "view_path": "Para configurar o acesso a esta página, você precisará ajustar o nome. Por exemplo, se você alterar o nome para '**novaPágina**' e adicioná-lo como uma sub-página da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/sua/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Para configurar o acesso a esta página, é necessário ajustar o caminho. Por exemplo, se você alterar o caminho para '**newPath**', e adicioná-lo como uma subpágina da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "A largura da página como porcentagem da largura do navegador."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logotipo",
         "name": "Nome:",
         "desc": "Descrição:",
         "mode": "Modo",
@@ -2567,25 +2566,27 @@
         "welcome": "Mensagem de boas-vindas",
         "model": "Modelo",
         "temperature": "Temperatura",
-        "max-token": "Max token"
+        "max-token": "Max token",
+        "icon": "Ícone"
       },
       "placeholder": {
-        "logo": "Transferir",
         "name": "Dê um nome ao agente",
         "desc": "Forneça uma breve descrição para o que este agente deve utilizar.",
-        "prompt": "Digite / para selecionar uma variável",
+        "prompt": "Digite {{variableName}} para usar uma variável",
         "variable": {
           "key": "Nome da variável",
           "value": "Valor"
         },
         "welcome": "Indique uma mensagem de boas-vindas exibida quando os usuários começarem a usar o agente.",
-        "temperature": "Um valor entre 0 e 1. Quanto menor o valor, melhor o efeito pode ser",
-        "max-token": "Usado para limitar o número máximo de tokens consumidos em uma única execução"
+        "icon": "Transferir",
+        "send": "Envie algo para o Agente"
       },
       "tips": {
         "mode": "No modo de chat, cada mensagem enviada inclui o histórico de conversas como parte da solicitação, o que pode resultar em melhores resultados, mas consome mais tokens; no modo de texto, cada mensagem enviada não inclui o histórico de conversação que pode resultar em resultados menos ideais comparados com o modo de bate-papo, mas conserva tokens.",
         "not-start": "Concluir o agente de configuração e clique em Iniciar para executar",
-        "not-start-run": "Por favor, clique no botão Iniciar à esquerda."
+        "not-start-run": "Por favor, clique no botão Iniciar à esquerda.",
+        "temperature": "Um valor entre 0 e 1. Quanto menor o valor, melhor o efeito pode ser",
+        "max-token": "Usado para limitar o número máximo de tokens consumidos em uma única execução"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Clique no botão iniciar para disparar.",
-        "insufficient_token": "Token insuficiente"
+        "insufficient_token": "Colla Insuficiente",
+        "start-failed": "Falha ao iniciar. Por favor, tente novamente. ",
+        "reconnect": "Conexão perdida. Reconexão em progresso.",
+        "token-not-enough": "Limite de modelos atingido. Por favor reinicie."
+      },
+      "title": "🧬 Editar Agente IA",
+      "generate-desc": {
+        "button": "Gerar IA",
+        "tooltips": "Usar AI para gerar a descrição baseada no seu prompt. ",
+        "failed": "Falha ao gerar. Por favor, tente novamente mais tarde. "
+      },
+      "generate-icon": {
+        "tooltips": "Use AI para gerar um ícone com base no nome e descrição do agente"
+      },
+      "title-preview": {
+        "chat": "Bate-papo",
+        "text-generation": "Geração de texto"
       }
     },
     "common": {
@@ -3034,12 +3051,12 @@
       "name": "Formulário JSON de esquema"
     },
     "page": {
-      "path_duplicated": "O nome da página está duplicado. Por favor, use um nome exclusivo para evitar erros. ",
+      "path_duplicated": "O caminho está duplicado. Por favor, use um caminho único para evitar erros. ",
       "tips": {
         "blank_view": "Este módulo não tem páginas filhas. Por favor adicione-as primeiro através do painel de Página à direita."
       },
       "label": {
-        "rename_url": "Editar sub-página",
+        "rename_url": "Editar caminho",
         "rename_page_url": "Editar página"
       }
     }
@@ -3278,7 +3295,8 @@
       "permission": "Permisschar@@0o",
       "operation": "Operação",
       "transfer": "Transferir Propriedade",
-      "remove": "Excluir"
+      "remove": "Excluir",
+      "ai-agent": "Agentes de IA"
     },
     "transfer_modal": {
       "title": "Tem certeza de que deseja transferir a propriedade?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 é para a equipe Premium. ",
         "string2": "Para usá-lo, por favor, atualize para o Premium. Ao atualizar para o Premium, você também terá acesso aos seguintes recursos. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Recurso para equipes Premium",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Este recurso é para as equipes premium. Entre em contato com os administradores da sua equipe para melhorar. "
+            }
+          }
+        },
+        "upgrade_button": "Certo"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Simplifique sua carga de trabalho com [{{promptName}}] - O Agente IA que Obtém o Trabalho Concluído"
       },
       "contribute": "Encontrei uma plataforma de Agente IA que oferece soluções de ponta para simplificar tarefas complexas e integrar com suas ferramentas internas. Eu experimentei pessoalmente [{{promptName}}] e fui soprado pelas suas capacidades. É uma mudança de jogo para qualquer um que queira ficar à frente da curva. Dê uma olhada por você mesmo no {{promptLink}} e diga-me o que você achou!"
+    },
+    "button": {
+      "contribute": "Contribua para o marketplace",
+      "share_contribute": "Copiar e Compartilhar",
+      "uncontribute": "Cancelar contribuição"
     }
   },
   "ai-agents": "Agentes de IA",

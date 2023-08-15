@@ -589,7 +589,7 @@ if (isCloudVersion) {
     eventHandlerConfig: DRIVE_PICKER_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/DrivePickerWidget/drivePicker")),
   }
-  if (import.meta.env.ILLA_GOOGLE_MAP_KEY) {
+  if (process.env.ILLA_GOOGLE_MAP_KEY) {
     WidgetConfigMap["MAP_WIDGET"] = {
       config: MAP_WIDGET_CONFIG,
       panelConfig: MAP_PANEL_CONFIG,

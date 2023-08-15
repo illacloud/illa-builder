@@ -1,27 +1,18 @@
 {
+  "extends": "tsconfig/react.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "noEmit": true,
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"],
       "@assets/*": ["./src/assets/*"]
     },
-    "types": ["vite/client", "vite-plugin-svgr/client", "mdx", "node"]
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client",
+      "mdx",
+      "node",
+      "./src/types/environment.d.ts"
+    ]
   },
   "include": [
     "./src/**/*.tsx",

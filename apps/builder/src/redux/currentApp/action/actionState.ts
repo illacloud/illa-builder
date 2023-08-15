@@ -1,3 +1,4 @@
+import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import {
   AirtableAction,
   AirtableActionConfigType,
@@ -102,6 +103,7 @@ export type ActionType =
   | "appwrite"
   | "upstash"
   | "airtable"
+  | "aiagent"
 
 export type ActionTriggerMode = "manually" | "automate"
 
@@ -177,6 +179,7 @@ export type ActionContent =
   | CouchDBAction<CouchDBOptionsType>
   | GoogleSheetsAction<GoogleSheetsActionOpts>
   | AirtableAction<AirtableActionConfigType>
+  | AiAgentActionContent
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 

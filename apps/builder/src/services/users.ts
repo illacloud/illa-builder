@@ -1,7 +1,8 @@
 import { v4 } from "uuid"
-import { authCloudRequest, needAuthRequest } from "@/api/http"
+import { authCloudRequest } from "@/api/http"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { fetchSendEmail } from "@/services/auth"
+import { upload } from "@/utils/file/upload"
 import { ILLABuilderStorage } from "@/utils/storage"
 import { isCloudVersion } from "@/utils/typeHelper"
 import store from "../store"
@@ -22,6 +23,7 @@ interface IUserInfoResponse {
   updatedAt: string
   userID: string
 }
+
 export const fetchUserInfo = () => {
   return authCloudRequest<IUserInfoResponse>({
     url: "/users",
@@ -62,21 +64,6 @@ export const getUserAvatarUploadAddress = async (type: string) => {
     return data
   }
   return Promise.reject("data is undefined")
-}
-
-export const upload = async (url: string, file: Blob) => {
-  const resUrl = url.split("?")[0]
-  await needAuthRequest({
-    url,
-    method: "PUT",
-    data: file,
-    headers: {
-      "Content-Type": "multipart/form-data",
-      "Content-Encoding": "compress",
-      "x-amz-acl": "public-read",
-    },
-  })
-  return resUrl
 }
 
 export const updateUserAvatar = async (avatar: string) => {

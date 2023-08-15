@@ -1,9 +1,8 @@
 import { FC, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
-import { useMessage } from "@illa-design/react"
+import { ForkIcon, useMessage } from "@illa-design/react"
 import { forkTemplateApp } from "@/api/actions"
-import { ReactComponent as ForkIcon } from "@/assets/tutorial/fork.svg"
 import { TemplateName } from "@/config/template/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,

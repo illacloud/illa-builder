@@ -32,7 +32,7 @@
       "cancel": "Avbryt",
       "delete": "Slett",
       "delete_cancel_text": "Avbryt",
-      "delete_content": "Etter sletting vil det ikke være mulig å få tilgang til eller gjenopprette dataene på noen måter. Vennligst bekreft.",
+      "delete_content": "Dette vil bryte app- og spørringsbibliotekets spørringer som bruker denne ressursen",
       "delete_ok_text": "Slett",
       "delete_title": "Er du sikker?",
       "error_button": "Prøv igjen",
@@ -61,18 +61,18 @@
     },
     "sort-type": {
       "popular": "Mest populære",
-      "recent": "Siste",
+      "recent": "Sist oppdatert",
       "star": "Stjernemerket"
     },
     "search": "Søk",
     "no-result": "Ingen resultater her. Oppdater eller endre søketermene dine.",
     "message": {
       "next-page-error": "Kunne ikke laste neste side. Vennligst prøv igjen.",
-      "create-failed": "Kan ikke lagre agent. Prøv på nytt.",
+      "create-failed": "Kunne ikke opprette agent. Prøv på nytt.",
       "sort-failed": "Kan ikke endre filtertypen. Vennligst prøv på nytt.",
       "detail-load-failed": "Kan ikke hente detaljer, prøv igjen.",
       "fork-failed": "Skaffe, vennligst prøv igjen.",
-      "create-suc": "Kunne ikke opprette, vennligst prøv igjen.",
+      "create-suc": "Lagring vellykket",
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. "
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Arkiv-ID for kopiering",
             "sheet_to_copy_to": "Delark å kopiere til",
             "authentication": "Autentisering",
-            "connect_with_oauth": "Koble til med OAuth & Lagre",
+            "connect_with_oauth": "Koble til med Google",
             "reconnect_with_oauth": "Koble til OAuth på nytt",
             "access_type": "Adgangstype (Automatic Translation)"
           },
@@ -2053,7 +2053,7 @@
           "title": "Sett tittel som skal vises"
         },
         "page": {
-          "default_view": "Når brukere angir en feilURL, vil vi automatisk omdirigere til standard underside. Når det ikke er noen standard underside, vil vi behandle den første undersiden i listen som standard underside"
+          "default_view": "Når brukere skriver inn en feilsti, vil vi automatisk omdirigere til standardstien. Når det ikke er noen standardbane, behandler vi den første stien i listen som standard sti"
         },
         "chart": {
           "direction": "Angi kartretning ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Legg til",
         "body": "Innhold",
-        "default_view": "Standard underside",
-        "edit_view": "Rediger underside",
+        "default_view": "Standard visning",
+        "edit_view": "Endre sti",
         "footer": "Bunntekst",
         "header": "Topptekst",
         "key": "Nøkkel",
@@ -2285,8 +2285,8 @@
         "right_panel": "Høyre panel",
         "set_as_homepage": "Bruk som startside",
         "show_fold_icon": "Vis foldeikon",
-        "view_path": "Navn",
-        "views": "Undersider",
+        "view_path": "Sti",
+        "views": "Visninger",
         "width": "Width",
         "height": "Høyde",
         "columns": "Kolonner",
@@ -2307,7 +2307,7 @@
       "tab_title": "Side",
       "tooltips": {
         "show_fold_icon": "Vis en knapp for å skjule eller utvide panelet",
-        "view_path": "For å konfigurere tilgang til denne siden, må du justere navnet. Hvis du for eksempel endrer navnet til '**newPage**', og legger det til som en underside for hovedsiden. Denne siden kan da nås via følgende URL: cloud.illacloud.com/yourTeam/deploy/app/app/appid/homepage/**newPage**.",
+        "view_path": "For å konfigurere tilgang til denne siden, må du justere veien. Hvis du for eksempel endrer stien til '**newPath**', og legger den til som en underside for hjemmesiden. Denne siden kan da nås via følgende URL: overskytende .illakloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "Bredden på siden som prosentandel av nettleserbredden."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "Navn",
         "desc": "Beskrivelse",
         "mode": "Modus",
@@ -2567,25 +2566,27 @@
         "welcome": "Velkommen melding",
         "model": "Modell",
         "temperature": "Temperatur",
-        "max-token": "Maks token"
+        "max-token": "Maks token",
+        "icon": "Ikon"
       },
       "placeholder": {
-        "logo": "Last opp",
         "name": "Gi et navn til agenten",
         "desc": "Gi en kort beskrivelse av hva denne agenten skal brukes til.",
-        "prompt": "Skriv inn / for å velge en variabel",
+        "prompt": "Angi {{variableName}} for å bruke en variabel",
         "variable": {
           "key": "Variabelens navn",
           "value": "Verdi"
         },
         "welcome": "Gi en velkomstmelding som vises når brukere begynner å bruke agent.",
-        "temperature": "En verdi mellom 0 og 1. Jo mindre verdien er, desto bedre kan effekten være",
-        "max-token": "Brukes til å begrense maksimalt antall tokens brukt ved én kjøring"
+        "icon": "Last opp",
+        "send": "Send noe til agenten"
       },
       "tips": {
         "mode": "I chat-modus inkluderer hver melding som sendes samtalelogg som en del av forespørselen, og kan resultere i bedre resultater, men forbruker flere symboler; i tekstmodus, hver sendte melding inkluderer ikke samtalehistorikken, noe som kan resultere i mindre optimale utfall sammenlignet med chat-modus, men konserverer tokener.",
         "not-start": "Fullfør Agent-konfigurasjonen, og klikk på Start å kjøre",
-        "not-start-run": "Trykk på Start knappen til venstre."
+        "not-start-run": "Trykk på Start knappen til venstre.",
+        "temperature": "En verdi mellom 0 og 1. Jo mindre verdien er, desto bedre kan effekten være",
+        "max-token": "Brukes til å begrense maksimalt antall tokens brukt ved én kjøring"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Klikk på Start knappen for å utløse.",
-        "insufficient_token": "Utilstrekkelig token"
+        "insufficient_token": "Utilstrekkelig Colla",
+        "start-failed": "Kunne ikke starte. Vennligst prøv igjen. ",
+        "reconnect": "Forbindelsen ble brutt. Rekonstituering pågår.",
+        "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt."
+      },
+      "title": "🧬 Rediger AI Agent",
+      "generate-desc": {
+        "button": "AI genererer",
+        "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
+        "failed": "Kan ikke generere. Prøv igjen senere. "
+      },
+      "generate-icon": {
+        "tooltips": "Bruk AI til å generere ikon basert på agent navn og beskrivelse"
+      },
+      "title-preview": {
+        "chat": "Samtale",
+        "text-generation": "Generering av tekst"
       }
     },
     "common": {
@@ -3034,12 +3051,12 @@
       "name": "JSON skjema skjema"
     },
     "page": {
-      "path_duplicated": "Sidenavnet er duplisert. Bruk et unikt navn for å unngå feil. ",
+      "path_duplicated": "Stien er duplisert. Bruk en unik bane for å unngå feil. ",
       "tips": {
         "blank_view": "Denne modulen har ingen undersider. Legg dem først gjennom side-panelet til høyre."
       },
       "label": {
-        "rename_url": "Rediger underside",
+        "rename_url": "Endre sti",
         "rename_page_url": "Rediger side"
       }
     }
@@ -3278,7 +3295,8 @@
       "permission": "Tillatelse",
       "operation": "Operasjon",
       "transfer": "Overfør eierskap",
-      "remove": "Fjern"
+      "remove": "Fjern",
+      "ai-agent": "AI agenter"
     },
     "transfer_modal": {
       "title": "Er du sikker på at du vil overføre eierskap?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 er for Premium-team. ",
         "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Funksjon for Premium-lag",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Denne funksjonen er for premiumteamene. Vennligst kontakt ditt team administrator for å oppgradere. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Forenkle arbeidsmengde med [{{promptName}}] - AI-agenten gjør jobben ferdig"
       },
       "contribute": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!"
+    },
+    "button": {
+      "contribute": "Bidra til markedsplassen",
+      "share_contribute": "Kopier og Del",
+      "uncontribute": "Avbryt bidrag"
     }
   },
   "ai-agents": "AI agenter",

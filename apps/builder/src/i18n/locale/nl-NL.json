@@ -32,7 +32,7 @@
       "cancel": "annuleren",
       "delete": "Verwijderen",
       "delete_cancel_text": "annuleren",
-      "delete_content": "Na verwijdering is het niet mogelijk om de gegevens op alle manieren te gebruiken of te herstellen. Gelieve te bevestigen.",
+      "delete_content": "Dit zal Apps en Query Bibliotheek vragen die deze bron gebruiken breken",
       "delete_ok_text": "Verwijderen",
       "delete_title": "Weet je het zeker?",
       "error_button": "Opnieuw",
@@ -61,18 +61,18 @@
     },
     "sort-type": {
       "popular": "Meest populair",
-      "recent": "Nieuwste",
+      "recent": "Onlangs bijgewerkt",
       "star": "Sterren"
     },
     "search": "Zoeken",
     "no-result": "Geen resultaten gevonden. Gelieve uw zoektermen te vernieuwen of te wijzigen.",
     "message": {
       "next-page-error": "Fout bij laden van de volgende pagina. Probeer het opnieuw.",
-      "create-failed": "Kan agent niet opslaan. Probeer het opnieuw.",
+      "create-failed": "Kan agent niet maken. Probeer het opnieuw.",
       "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
       "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
       "fork-failed": "Fork mislukt, probeer het opnieuw.",
-      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
+      "create-suc": "Succesvol opgeslagen",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. "
@@ -230,7 +230,7 @@
             "sheet_id_to_copy": "Plaats-ID om te kopiëren",
             "sheet_to_copy_to": "Tafel om naar te kopiëren",
             "authentication": "Authenticatie",
-            "connect_with_oauth": "Maak verbinding met OAuth & Opslaan",
+            "connect_with_oauth": "Verbinden met Google",
             "reconnect_with_oauth": "Opnieuw verbinden met OAuth",
             "access_type": "Type toegang"
           },
@@ -2053,7 +2053,7 @@
           "title": "Stel de titel in voor weergave"
         },
         "page": {
-          "default_view": "Wanneer gebruikers een fout-URL invoeren, wordt automatisch doorverwezen naar de standaard subpagina. Wanneer er geen standaard subpagina is, zullen we de eerste subpagina in de lijst behandelen als de standaard subpagina"
+          "default_view": "Wanneer gebruikers een foutpad invoeren, wordt automatisch doorverwezen naar het standaard pad. Wanneer er geen standaard pad is, zullen we het eerste pad in de lijst behandelen als het standaardpad"
         },
         "chart": {
           "direction": "Stel de richting van de grafiek in. ",
@@ -2275,8 +2275,8 @@
       "label_name": {
         "add": "Toevoegen",
         "body": "Lichaam",
-        "default_view": "Standaard subpagina",
-        "edit_view": "Subpagina bewerken",
+        "default_view": "Standaard weergave",
+        "edit_view": "Pad bewerken",
         "footer": "Voettekst",
         "header": "Koptekst",
         "key": "Sleutel",
@@ -2285,8 +2285,8 @@
         "right_panel": "Rechter paneel",
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
-        "view_path": "naam",
-        "views": "Subpagina's",
+        "view_path": "Pad",
+        "views": "Weergaven",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolommen",
@@ -2307,7 +2307,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
-        "view_path": "Om toegang tot deze pagina te configureren, moet u de naam aanpassen. Bijvoorbeeld, als je de naam wijzigt naar '**newPage**', en voeg deze toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
+        "view_path": "Om toegang tot deze pagina te configureren, moet u het pad aanpassen. Bijvoorbeeld, als je het pad veranderd naar '**newPath**', en voeg het toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
       },
       "message": {
@@ -2558,7 +2558,6 @@
     },
     "ai-agent": {
       "label": {
-        "logo": "Logo",
         "name": "naam",
         "desc": "Beschrijving",
         "mode": "Modus",
@@ -2567,25 +2566,27 @@
         "welcome": "Welkom bericht",
         "model": "Model",
         "temperature": "Temperatuur",
-        "max-token": "Max token"
+        "max-token": "Max token",
+        "icon": "Pictogram"
       },
       "placeholder": {
-        "logo": "Uploaden",
         "name": "Geef een naam aan de agent",
         "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
-        "prompt": "Enter / om een variabele te selecteren",
+        "prompt": "Voer {{variableName}} in om een variabele te gebruiken",
         "variable": {
           "key": "Naam variabele",
           "value": "Waarde"
         },
         "welcome": "Geef een welkomstbericht weer wanneer gebruikers de medewerker gebruiken.",
-        "temperature": "Een waarde tussen 0 en 1. Hoe kleiner de waarde, hoe beter het effect kan zijn",
-        "max-token": "Gebruikt om het maximum aantal gebruikte tokens dat in een enkele uitvoering wordt verbruikt te beperken"
+        "icon": "Uploaden",
+        "send": "Stuur iets naar de agent"
       },
       "tips": {
         "mode": "In de chatmodus bevat elk verzonden bericht de gespreksgeschiedenis als onderdeel van het verzoek, wat kan leiden tot betere resultaten, maar meer tokens verbruikt; in tekstmodus, elk verzonden bericht bevat geen gespreksgeschiedenis dit kan resulteren in minder optimale resultaten vergeleken met de chatmodus maar houdt tokens in de kaart.",
         "not-start": "Voltooi de agent configureren en klik op Start om uit te voeren",
-        "not-start-run": "Klik op de Start knop aan de linkerkant."
+        "not-start-run": "Klik op de Start knop aan de linkerkant.",
+        "temperature": "Een waarde tussen 0 en 1. Hoe kleiner de waarde, hoe beter het effect kan zijn",
+        "max-token": "Gebruikt om het maximum aantal gebruikte tokens dat in een enkele uitvoering wordt verbruikt te beperken"
       },
       "option": {
         "mode": {
@@ -2615,7 +2616,23 @@
       },
       "message": {
         "click-start": "Klik op de Start knop om te starten.",
-        "insufficient_token": "Onvoldoende token"
+        "insufficient_token": "Onvoldoende Colla",
+        "start-failed": "Starten mislukt. Probeer het opnieuw. ",
+        "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
+        "token-not-enough": "Model limiet bereikt. Start opnieuw."
+      },
+      "title": "🧬 Bewerk de AI Agent",
+      "generate-desc": {
+        "button": "AI genereren",
+        "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
+        "failed": "Aanmaken mislukt. Probeer het later opnieuw. "
+      },
+      "generate-icon": {
+        "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
+      },
+      "title-preview": {
+        "chat": "Chatten",
+        "text-generation": "Tekst genereren"
       }
     },
     "common": {
@@ -3034,12 +3051,12 @@
       "name": "JSON Schema formulier"
     },
     "page": {
-      "path_duplicated": "De paginanaam is gedupliceerd. Gebruik een unieke naam om fouten te voorkomen. ",
+      "path_duplicated": "Het pad wordt gedupliceerd. Gebruik een uniek pad om fouten te voorkomen. ",
       "tips": {
         "blank_view": "Deze module heeft geen onderliggende pagina's. Voeg ze eerst toe via het pagina paneel aan de rechterkant."
       },
       "label": {
-        "rename_url": "Subpagina bewerken",
+        "rename_url": "Pad bewerken",
         "rename_page_url": "Pagina bewerken"
       }
     }
@@ -3278,7 +3295,8 @@
       "permission": "Bevoegdheden",
       "operation": "Bewerking",
       "transfer": "Transfer Ownership",
-      "remove": "Verwijderen"
+      "remove": "Verwijderen",
+      "ai-agent": "AI agenten"
     },
     "transfer_modal": {
       "title": "Weet u zeker dat u de eigenaarschap wilt overmaken?",
@@ -3854,6 +3872,17 @@
       "ai-agent": {
         "string1": "GPT-4 is voor Premium team. ",
         "string2": "Upgrade naar Premium om het te gebruiken. Je hebt ook toegang tot de volgende functies. "
+      },
+      "upgrade_now_not_admin": {
+        "upgrade_title": "Functie voor Premium teams",
+        "upgrade_title billing": {
+          "modal": {
+            "upgrade_now_not_admin": {
+              "upgrade_desc": "Deze functie is voor de premium teams. Neem contact op met uw team admins om te upgraden. "
+            }
+          }
+        },
+        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3962,6 +3991,11 @@
         "hackernews": "Vereenvoudig je werkdruk met [{{promptName}}] - De AI Agent die de Job Gereed krijgt"
       },
       "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
+    },
+    "button": {
+      "contribute": "Draag bij aan de marktplaats",
+      "share_contribute": "Kopiëren & delen",
+      "uncontribute": "Annuleer bijdrage"
     }
   },
   "ai-agents": "AI agenten",
