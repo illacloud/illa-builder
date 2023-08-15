@@ -75,7 +75,8 @@
       "create-suc": "Salvat cu succes",
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
-      "delete-suc": "Eliminat cu succes. "
+      "delete-suc": "Eliminat cu succes. ",
+      "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate."
     }
   },
   "dayjs": {
@@ -3276,7 +3277,7 @@
       "tips": {
         "license_insufficient": "Licențe rămase"
       },
-      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} ți-a distribuit un AI Agent la <unk>{{teamName}}order. Faceți clic pe link pentru a vă alătura echipei și încercați AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invitat cu succes",
