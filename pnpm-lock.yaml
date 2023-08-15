@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -153,6 +157,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Icon
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/ILLANet
       '@illa-public/invite-modal':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/InviteModal
@@ -2086,6 +2093,9 @@ importers:
       '@illa-design/theme':
         specifier: workspace:*
         version: link:../theme
+      framer-motion:
+        specifier: ^7.6.12
+        version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2504,6 +2514,19 @@ importers:
       vite-plugin-svgr:
         specifier: ^2.1.0
         version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
+
+  packages/illa-public-component/ILLANet:
+    dependencies:
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      axios:
+        specifier: ^0.26.1
+        version: 0.26.1
+    devDependencies:
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
 
   packages/illa-public-component/Icon:
     dependencies:
@@ -3047,6 +3070,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../ILLANet
       '@illa-public/text-link':
         specifier: workspace:*
         version: link:../TextLink
@@ -13946,7 +13972,3 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

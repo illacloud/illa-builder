@@ -1,4 +1,5 @@
 import { Global } from "@emotion/react"
+import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
 import {
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
   MixpanelTrackProvider,
@@ -11,7 +12,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
-import { ERROR_FLAG } from "@/api/errorFlag"
 import { formatLanguage } from "@/i18n/config"
 import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignUp } from "@/services/auth"

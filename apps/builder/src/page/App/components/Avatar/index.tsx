@@ -1,7 +1,7 @@
+import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@illa-public/illa-net/constant"
 import { getColorByString } from "@illa-public/utils"
 import { FC } from "react"
 import { Popover } from "@illa-design/react"
-import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@/api/http/constant"
 import { AvatarProps } from "@/page/App/components/Avatar/interface"
 import {
   applyUserAvatarStyle,

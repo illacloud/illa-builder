@@ -1,4 +1,4 @@
-import { builderRequest } from "@/api/http"
+import { builderRequest } from "@illa-public/illa-net"
 import { BuilderCardInfo } from "@/page/Member/interface"
 
 export const fetchBuilderDesc = () => {

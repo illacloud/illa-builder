@@ -1,11 +1,5 @@
-import { USER_ROLE } from "@illa-public/user-data"
+import { agentRequest, marketplaceRequest } from "@illa-public/illa-net"
 import { v4 } from "uuid"
-import { agentRequest, authCloudRequest, marketplaceRequest } from "@/api/http"
-import {
-  REDIRECT_PAGE_TYPE,
-  fetchInviteLinkResponse,
-  inviteByEmailResponse,
-} from "@/illa-public-component/MemberList/interface"
 import { MARKET_PAGE_SIZE } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/constants"
 import {
   Agent,
@@ -17,7 +11,6 @@ import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
 import { getTeamID } from "@/utils/team"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface TeamAgentListData {
   aiAgentList: Agent[]
@@ -296,57 +289,4 @@ export const getAIAgentMarketplaceInfo = (aiAgentID: string) => {
     url: `/aiAgents/${aiAgentID}`,
     method: "GET",
   })
-}
-
-export const shareAgentByEmail = async (
-  email: string,
-  userRole: USER_ROLE,
-  agentID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<inviteByEmailResponse>(
-    {
-      method: "POST",
-      url: `/shareAIAgentByEmail`,
-      data: {
-        email,
-        userRole,
-        agentID,
-        redirectPage,
-        hosts: !isCloudVersion ? window.location.origin : undefined,
-      },
-    },
-    { needTeamID: true },
-  )
-  return response.data
-}
-
-export const fetchShareAgentLink = async (
-  userRole: USER_ROLE,
-  agentID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/shareAIAgentLink/userRole/${userRole}/aiAgent/${agentID}/redirectPage/${redirectPage}`,
-    },
-    { needTeamID: true },
-  )
-  return response.data
-}
-
-export const renewShareAgentLink = async (
-  userRole: USER_ROLE,
-  agentID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/newShareAIAgentLink/userRole/${userRole}/aiAgent/${agentID}/redirectPage/${redirectPage}`,
-    },
-    { needTeamID: true },
-  )
-  return response.data
 }

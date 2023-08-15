@@ -1,3 +1,4 @@
+import { builderRequest } from "@illa-public/illa-net"
 import { isEqual } from "lodash"
 import { getTemplateConfig } from "@/config/template"
 import { TemplateName } from "@/config/template/interface"
@@ -15,7 +16,6 @@ import {
 } from "@/redux/resource/resourceState"
 import { createApp } from "@/services/apps"
 import store from "@/store"
-import { builderRequest } from "../http"
 
 export const createResource = async (
   data: ResourceInitialConfig<ResourceContent>,

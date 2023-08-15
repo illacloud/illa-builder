@@ -2,7 +2,7 @@ import {
   marketplaceRequest,
   marketplaceTeamRequest,
   publicMarketplaceRequest,
-} from "@/api/http"
+} from "@illa-public/illa-net"
 import { MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
 
 interface AppListType {}

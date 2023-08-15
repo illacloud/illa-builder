@@ -1,7 +1,7 @@
+import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
 import { Zip, ZipPassThrough } from "fflate"
 import { createWriteStream } from "streamsaver"
 import { createMessage } from "@illa-design/react"
-import { ERROR_FLAG } from "@/api/errorFlag"
 import i18n from "@/i18n/config"
 import { UPLOAD_FILE_STATUS, fetchDownloadURLByTinyURL } from "@/services/drive"
 import {

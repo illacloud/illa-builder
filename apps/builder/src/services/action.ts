@@ -1,5 +1,10 @@
+import {
+  actionBasicRequest,
+  actionRequest,
+  builderRequest,
+} from "@illa-public/illa-net"
+import { BUILDER_REQUEST_PREFIX } from "@illa-public/illa-net/constant"
 import { AxiosRequestConfig, Method } from "axios"
-import { actionBasicRequest, actionRequest, builderRequest } from "@/api/http"
 import {
   ActionContent,
   ActionItem,
@@ -7,7 +12,6 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
 import { getParamsFromIllaRoute } from "@/utils/routerHelper"
-import { BUILDER_REQUEST_PREFIX } from "../api/http/constant"
 
 interface IActionTestConnectionRequestData {
   resourceId: string
@@ -142,6 +146,7 @@ interface IGenerateSQLRequest {
 interface IGenerateSQLResponse {
   payload: string
 }
+
 export const fetchGenerateSQL = async (
   appID: string,
   data: IGenerateSQLRequest,

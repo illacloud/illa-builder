@@ -1,6 +1,6 @@
+import { ILLAApiError } from "@illa-public/illa-net"
 import { AxiosResponse } from "axios"
 import { createMessage } from "@illa-design/react"
-import { ILLAApiError } from "@/api/http"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"

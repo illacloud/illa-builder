@@ -1,10 +1,10 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { AxiosError } from "axios"
 import { ILLARoute } from "@/router"
 import { cloudRedirect } from "@/router/constant"
 import { getQS } from "@/router/utils/translateQS"
 import { removeAuthToken } from "@/utils/auth"
 import { commonBillingErrorHandler } from "@/utils/billing/errorHandler"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 const getRedirectPathWhen401 = (searchParams: URLSearchParams) => {
   const inviteToken = searchParams.get("inviteToken")

@@ -79,7 +79,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
       },
     )
     try {
-      const res = await updateAppPublicConfig(isPublic, appId)
+      await updateAppPublicConfig(isPublic, appId)
       track?.(
         ILLA_MIXPANEL_EVENT_TYPE.REQUEST,
         ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
@@ -97,7 +97,6 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
           config: { public: isPublic },
         }),
       )
-      return res
     } catch (e) {
       console.error(e)
       track?.(

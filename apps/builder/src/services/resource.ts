@@ -1,4 +1,4 @@
-import { builderRequest, notNeedAuthRequest } from "@/api/http"
+import { builderRequest, notNeedAuthRequest } from "@illa-public/illa-net"
 import { AccessType } from "@/redux/resource/googleSheetResource"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
@@ -35,6 +35,7 @@ export const requestUpdateResource = async (
 interface IWhiteListIPResponse {
   resources: string[]
 }
+
 export const requestWhiteListIP = async () => {
   return await notNeedAuthRequest<IWhiteListIPResponse>({
     url: "https://peripheral-api.illasoft.com/v1/meta",
@@ -57,6 +58,7 @@ interface IResourceMeta {
   resourceName: string
   schema: Record<string, Record<string, { data_type: string }>>
 }
+
 export const fetchResourceMeta = async (resourceID: string) => {
   return builderRequest<IResourceMeta>(
     {

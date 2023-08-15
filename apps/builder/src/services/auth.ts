@@ -1,5 +1,8 @@
+import {
+  authCloudRequest,
+  notNeedAuthCloudRequest,
+} from "@illa-public/illa-net"
 import { UserInfoResponse } from "@illa-public/user-data"
-import { authCloudRequest, notNeedAuthCloudRequest } from "@/api/http"
 import { RegisterResult } from "@/page/User/Register/interface"
 import { ResetPwdFields } from "@/page/User/ResetPassword/interface"
 
@@ -30,6 +33,7 @@ interface ISendEmail {
   email: string
   usage: "signup" | "forgetpwd"
 }
+
 export const fetchSendEmail = async (data: ISendEmail) => {
   return await notNeedAuthCloudRequest<{ verificationToken: string }>({
     method: "POST",

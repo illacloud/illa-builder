@@ -1,4 +1,4 @@
-import { builderRequest, builderWSRequest } from "@/api/http"
+import { builderRequest, builderWSRequest } from "@illa-public/illa-net"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { SnapshotList } from "@/redux/currentAppHistory/currentAppHistoryState"
 

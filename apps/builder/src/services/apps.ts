@@ -1,11 +1,5 @@
-import { USER_ROLE } from "@illa-public/user-data"
+import { builderRequest } from "@illa-public/illa-net"
 import { createAction } from "@/api/actions"
-import { authCloudRequest, builderRequest } from "@/api/http"
-import {
-  REDIRECT_PAGE_TYPE,
-  fetchInviteLinkResponse,
-  inviteByEmailResponse,
-} from "@/illa-public-component/MemberList/interface"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
@@ -14,11 +8,11 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import store from "@/store"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 interface IAPPPublicStatus {
   isPublic: boolean
 }
+
 export const fetchAPPPublicStatus = async (
   appID: string,
   teamIdentifier?: string,
@@ -129,6 +123,7 @@ interface IAppCreateRequestData {
   appName: string
   initScheme: ComponentNode
 }
+
 export const fetchCreateApp = (data: IAppCreateRequestData) => {
   return builderRequest<DashboardApp>(
     {
@@ -165,66 +160,11 @@ export const fetchCopyApp = (appID: string, name: string) => {
   )
 }
 
-export const shareAppByEmail = async (
-  email: string,
-  userRole: USER_ROLE,
-  appID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<inviteByEmailResponse>(
-    {
-      method: "POST",
-      url: `/shareAppByEmail`,
-      data: {
-        email,
-        userRole,
-        appID,
-        redirectPage,
-        hosts: !isCloudVersion ? window.location.origin : undefined,
-      },
-    },
-    { needTeamID: true },
-  )
-  return response.data
-}
-
-export const fetchShareAppLink = async (
-  userRole: USER_ROLE,
-  appID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/shareAppLink/userRole/${userRole}/apps/${appID}/redirectPage/${redirectPage}`,
-    },
-    { needTeamID: true },
-  )
-  return response.data
-}
-
-export const renewShareAppLink = async (
-  userRole: USER_ROLE,
-  appID: string,
-  redirectPage?: REDIRECT_PAGE_TYPE,
-) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/newShareAppLink/userRole/${userRole}/apps/${appID}/redirectPage/${redirectPage}`,
-    },
-    {
-      needTeamID: true,
-    },
-  )
-  return response.data
-}
-
 export const updateAppPublicConfig = async (
   isPublic: boolean,
   appID: string,
 ) => {
-  await builderRequest<fetchInviteLinkResponse>(
+  await builderRequest<{}>(
     {
       method: "PATCH",
       url: `/apps/${appID}/config`,

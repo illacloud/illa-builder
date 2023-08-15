@@ -1,3 +1,4 @@
+import { authCloudRequest } from "@illa-public/illa-net"
 import {
   MemberInfo,
   TeamInfo,
@@ -5,7 +6,6 @@ import {
   getCurrentTeamInfo,
   teamActions,
 } from "@illa-public/user-data"
-import { authCloudRequest } from "@/api/http"
 import store from "../store"
 
 export const fetchMyTeamsInfo = () => {

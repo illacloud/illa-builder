@@ -1,6 +1,6 @@
+import { ILLAApiError } from "@illa-public/illa-net"
 import { AxiosResponse } from "axios"
 import { isString } from "@illa-design/react"
-import { ILLAApiError } from "@/api/http"
 import { ActionType } from "../redux/currentApp/action/actionState"
 import { IActionRunResultResponseData } from "../services/action"
 

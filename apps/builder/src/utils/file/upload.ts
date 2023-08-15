@@ -1,4 +1,4 @@
-import { notNeedAuthRequest } from "@/api/http"
+import { notNeedAuthRequest } from "@illa-public/illa-net"
 
 export const upload = async (url: string, file: Blob) => {
   const resUrl = url.split("?")[0]
