@@ -75,7 +75,8 @@
       "create-suc": "Úspěšně uloženo",
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
-      "delete-suc": "Úspěšně smazáno. "
+      "delete-suc": "Úspěšně smazáno. ",
+      "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky."
     }
   },
   "dayjs": {
