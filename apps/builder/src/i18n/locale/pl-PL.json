@@ -75,8 +75,7 @@
       "create-suc": "Zapisano pomyślnie",
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
-      "delete-suc": "Usunięto pomyślnie. ",
-      "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki."
+      "delete-suc": "Usunięto pomyślnie. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Niewystarczająca ilość Colla",
         "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. ",
         "reconnect": "Połączenie zostało utracone. Trwa ponowne połączenie.",
-        "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie."
+        "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie.",
+        "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki."
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
