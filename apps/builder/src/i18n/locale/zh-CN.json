@@ -75,7 +75,8 @@
       "create-suc": "保存成功",
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
-      "delete-suc": "删除成功"
+      "delete-suc": "删除成功",
+      "token": "当前Max token较小，可能导致返回结果不完整"
     }
   },
   "dayjs": {
