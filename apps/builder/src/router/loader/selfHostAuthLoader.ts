@@ -38,7 +38,7 @@ export const getSelfHostUserInfoLoader: LoaderFunction = async () => {
 export const getSelfHostTeamsInfoLoader: LoaderFunction = async (args) => {
   const { params } = args
   const { teamIdentifier } = params
-  const currentTeamInfoInDisk = getCurrentTeamInfo(store.getState())
+  const currentTeamInfoInDisk = getCurrentTeamInfo(userDataStore.getState())
   if (currentTeamInfoInDisk?.id) {
     return null
   }
@@ -51,7 +51,7 @@ export const getSelfHostTeamsInfoLoader: LoaderFunction = async (args) => {
     (item) => item.identifier === teamIdentifier,
   )
   if (currentTeamInfo) {
-    store.dispatch(
+    userDataStore.dispatch(
       teamActions.updateTeamReducer({
         currentId: currentTeamInfo.id,
         items: teamsInfo,

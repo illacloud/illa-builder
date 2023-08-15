@@ -153,6 +153,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Icon
+      '@illa-public/layout-auto-change':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/LayoutAutoChange
       '@illa-public/market-agent-card':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MarketAgentCard
@@ -165,6 +168,9 @@ importers:
       '@illa-public/select':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/Select
+      '@illa-public/sso-module':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/SSOModule
       '@illa-public/upgrade-cloud-provider':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/UpgradeCloudProvider
@@ -258,9 +264,6 @@ importers:
       fflate:
         specifier: ^0.8.0
         version: 0.8.0
-      fnv-plus:
-        specifier: ^1.3.1
-        version: 1.3.1
       framer-motion:
         specifier: ^7.6.12
         version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
@@ -430,9 +433,6 @@ importers:
       '@types/downloadjs':
         specifier: ^1.4.3
         version: 1.4.3
-      '@types/fnv-plus':
-        specifier: ^1.3.0
-        version: 1.3.0
       '@types/google.maps':
         specifier: ^3.53.2
         version: 3.53.2
@@ -2436,6 +2436,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2476,6 +2479,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2575,6 +2581,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2710,6 +2719,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2747,6 +2759,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2757,6 +2772,67 @@ importers:
         specifier: '*'
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
+      vite-plugin-svgr:
+        specifier: ^2.1.0
+        version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
+
+  packages/illa-public-component/SSOModule:
+    dependencies:
+      '@emotion/react':
+        specifier: '*'
+        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
+      '@illa-design/react':
+        specifier: '*'
+        version: link:../../../illa-design/packages/react
+      '@illa-public/layout-auto-change':
+        specifier: workspace:*
+        version: link:../LayoutAutoChange
+      '@illa-public/mixpanel-utils':
+        specifier: workspace:*
+        version: link:../MixpanelUtils
+      '@illa-public/text-link':
+        specifier: workspace:*
+        version: link:../TextLink
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
+      '@types/react':
+        specifier: ^18.0.27
+        version: 18.0.27
+      '@types/react-dom':
+        specifier: ^18.0.10
+        version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-helmet-async:
+        specifier: ^1.3.0
+        version: 1.3.0(react-dom@18.2.0)(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.30.0
+        version: 7.43.1(react@18.2.0)
+      react-i18next:
+        specifier: '*'
+        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.14.0
+        version: 6.14.0(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@types/mdx':
+        specifier: ^2.0.3
+        version: 2.0.3
+      '@types/node':
+        specifier: ^18.14.4
+        version: 18.14.5
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -2794,6 +2870,40 @@ importers:
       vite-plugin-svgr:
         specifier: ^2.1.0
         version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
+
+  packages/illa-public-component/ShareModal:
+    dependencies:
+      '@emotion/react':
+        specifier: '*'
+        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
+      '@illa-design/react':
+        specifier: '*'
+        version: link:../../../illa-design/packages/react
+      '@illa-public/user-data':
+        specifier: workspace:*
+        version: link:../UserData
+      '@types/react':
+        specifier: ^18.0.27
+        version: 18.0.27
+      '@types/react-dom':
+        specifier: ^18.0.10
+        version: 18.0.10
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-i18next:
+        specifier: '*'
+        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^18.14.4
+        version: 18.14.5
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../tsconfig
 
   packages/illa-public-component/ShareToSocialMedia:
     dependencies:
@@ -2941,12 +3051,18 @@ importers:
       '@illa-public/utils':
         specifier: workspace:*
         version: link:../utils
+      '@reduxjs/toolkit':
+        specifier: '*'
+        version: 1.9.5(react-redux@8.1.1)(react@18.2.0)
       '@types/react':
         specifier: ^18.0.27
         version: 18.0.27
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2956,6 +3072,9 @@ importers:
       react-i18next:
         specifier: '*'
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
+      react-redux:
+        specifier: '*'
+        version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
       react-router-dom:
         specifier: ^6.14.0
         version: 6.14.0(react-dom@18.2.0)(react@18.2.0)
@@ -2987,6 +3106,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3030,6 +3152,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.0.10
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -3045,7 +3170,13 @@ importers:
       react-i18next:
         specifier: '*'
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
+      react-router-dom:
+        specifier: ^6.14.0
+        version: 6.14.0(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
+      '@types/mdx':
+        specifier: ^2.0.3
+        version: 2.0.3
       '@types/node':
         specifier: ^18.14.4
         version: 18.14.5
@@ -3058,15 +3189,9 @@ importers:
 
   packages/illa-public-component/UserData:
     dependencies:
-      '@emotion/react':
-        specifier: '*'
-        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
         specifier: '*'
         version: link:../../../illa-design/packages/react
-      '@illa-public/user-role-utils':
-        specifier: workspace:*
-        version: link:../UserRoleUtils
       '@reduxjs/toolkit':
         specifier: '*'
         version: 1.9.5(react-redux@8.1.1)(react@18.2.0)
@@ -9009,7 +9134,7 @@ packages:
   /i18next@22.4.9:
     resolution: {integrity: sha512-8gWMmUz460KJDQp/ob3MNUX84cVuDRY9PLFPnV8d+Qezz/6dkjxwOaH70xjrCNDO+JrUL25iXfAIN9wUkInNZw==}
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
     dev: false
 
   /iconv-lite@0.4.24:
@@ -11347,7 +11472,7 @@ packages:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.6
       invariant: 2.2.4
       prop-types: 15.8.1
       react: 18.2.0

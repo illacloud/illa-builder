@@ -3,6 +3,7 @@ import {
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
+import { LoginPage } from "@illa-public/sso-module"
 import { currentUserActions } from "@illa-public/user-data"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
@@ -11,7 +12,6 @@ import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { ERROR_FLAG } from "@/api/errorFlag"
-import LoginPage from "@/illa-public-component/User/login"
 import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignIn } from "@/services/auth"
 import { mobileAdaptationStyle } from "@/style"
@@ -87,9 +87,9 @@ const UserLogin: FC = () => {
     >
       <Global styles={mobileAdaptationStyle} />
       <LoginPage
-        loading={submitLoading}
-        errorMsg={errorMsg}
-        onSubmit={onSubmit}
+      // loading={submitLoading}
+      // errorMsg={errorMsg}
+      // onSubmit={onSubmit}
       />
     </MixpanelTrackProvider>
   )

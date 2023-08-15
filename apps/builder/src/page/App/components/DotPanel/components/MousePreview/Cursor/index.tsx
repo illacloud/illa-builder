@@ -1,4 +1,4 @@
-import { getColorByString } from "@illa/public-utils"
+import { getColorByString } from "@illa-public/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import { FC, useCallback, useEffect } from "react"
 import { useTranslation } from "react-i18next"

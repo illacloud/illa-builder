@@ -1,4 +1,4 @@
-import { USER_ROLE } from "@illa-public/user-role-utils/interface"
+import { USER_ROLE } from "@illa-public/user-data"
 import { v4 } from "uuid"
 import { agentRequest, authCloudRequest, marketplaceRequest } from "@/api/http"
 import {

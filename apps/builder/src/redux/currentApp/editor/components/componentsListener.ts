@@ -22,7 +22,7 @@ import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
   getInDependenciesMap,
-  getRawTree,
+  getRawSeeds,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { WidgetLayoutInfo } from "@/redux/currentApp/executionTree/executionState"
@@ -358,7 +358,7 @@ const handleUpdateDisplayNameEffect = (
   const { displayName, newDisplayName } = action.payload
   const rootState = listenerApi.getState()
   const independenciesMap = getInDependenciesMap(rootState)
-  const seeds = getRawTree(rootState)
+  const seeds = getRawSeeds(rootState)
 
   const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
     independenciesMap,
@@ -392,7 +392,7 @@ const handleUpdateGlobalDataDisplayNameEffect = (
   if (!oldKey) return
   const rootState = listenerApi.getState()
   const independenciesMap = getInDependenciesMap(rootState)
-  const seeds = getRawTree(rootState)
+  const seeds = getRawSeeds(rootState)
   const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
     independenciesMap,
     seeds,

@@ -1,4 +1,4 @@
-import { getColorByString } from "@illa/public-utils"
+import { getColorByString } from "@illa-public/utils"
 import { FC } from "react"
 import { Popover } from "@illa-design/react"
 import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@/api/http/constant"

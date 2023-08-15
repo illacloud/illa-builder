@@ -16,13 +16,13 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import {
   getExecutionResult,
   getExecutionWidgetLayoutInfo,
-  getRawTree,
   getWidgetExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
 import { cursorActions } from "../cursor/cursorSlice"
+import { getCurrentAppRawTree } from "../editor/components/componentsSelector"
 import { ComponentNode } from "../editor/components/componentsState"
 import {
   BatchUpdateWidgetLayoutInfoPayload,
@@ -80,7 +80,7 @@ async function handleStartExecution(
   listenerApi: AppListenerEffectAPI,
 ) {
   const rootState = listenerApi.getState()
-  const rawTree = getRawTree(rootState)
+  const rawTree = getCurrentAppRawTree(rootState)
   if (!rawTree) return
   const oldExecutionTree = getExecutionResult(rootState)
   if (!executionTree) {

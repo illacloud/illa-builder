@@ -6,13 +6,13 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import {
   getActionExecutionResult,
   getInDependenciesMap,
-  getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { fetchUpdateAction } from "@/services/action"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { registerActionPeriod } from "@/utils/action/runAction"
 import { changeDisplayNameHelper } from "@/utils/changeDisplayNameHelper"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getCurrentAppRawTree } from "../editor/components/componentsSelector"
 import {
   ActionContent,
   ActionItem,
@@ -70,7 +70,7 @@ const handleUpdateDisplayNameEffect = (
   const { oldDisplayName, newDisplayName } = action.payload
   const rootState = listenerApi.getState()
   const independenciesMap = getInDependenciesMap(rootState)
-  const seeds = getRawTree(rootState)
+  const seeds = getCurrentAppRawTree(rootState)
   const { updateActionSlice, updateWidgetSlice } = changeDisplayNameHelper(
     independenciesMap,
     seeds,

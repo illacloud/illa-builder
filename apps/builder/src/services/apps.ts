@@ -1,4 +1,4 @@
-import { USER_ROLE } from "@illa-public/user-role-utils/interface"
+import { USER_ROLE } from "@illa-public/user-data"
 import { createAction } from "@/api/actions"
 import { authCloudRequest, builderRequest } from "@/api/http"
 import {

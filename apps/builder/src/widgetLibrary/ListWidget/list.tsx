@@ -17,10 +17,7 @@ import {
 } from "@/page/App/components/ScaleSquare/style"
 import { getIsILLAEditMode } from "@/redux/config/configSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import {
-  getExecutionResult,
-  getRawTree,
-} from "@/redux/currentApp/executionTree/executionSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -41,6 +38,7 @@ import {
   listParentContainerWithPagination,
   paginationWrapperStyle,
 } from "@/widgetLibrary/ListWidget/style"
+import { getCurrentAppRawTree } from "../../redux/currentApp/editor/components/componentsSelector"
 import { RenderChildrenCanvas } from "../PublicSector/RenderChildrenCanvas"
 
 const RenderTemplateContainer: FC<RenderTemplateContainerProps> = (props) => {
@@ -459,7 +457,7 @@ export const ListWidget: FC<ListWidgetProps> = (props) => {
 
   const propsRef = useRef(props)
   const executionResult = useSelector(getExecutionResult)
-  const rawTree = useSelector(getRawTree)
+  const rawTree = useSelector(getCurrentAppRawTree)
 
   const prevDataSourcesRef = useRef(dataSources)
 

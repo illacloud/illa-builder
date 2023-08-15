@@ -1,4 +1,4 @@
-import { USER_ROLE, USER_STATUS } from "@illa-public/user-role-utils/interface"
+import { USER_ROLE, USER_STATUS } from "@illa-public/user-data"
 import { HTMLAttributes } from "react"
 
 export interface MemberProps extends HTMLAttributes<HTMLDivElement> {}

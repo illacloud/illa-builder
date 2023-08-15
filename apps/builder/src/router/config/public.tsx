@@ -46,20 +46,6 @@ export const publicTeamChildrenRouter: RoutesObjectPro[] = [
 
 export const publicRouterConfig: RoutesObjectPro[] = [
   {
-    path: "/privacy-policy",
-    accessByMobile: true,
-    element: lazyLoad(
-      lazy(() => import("@/illa-public-component/User/policy/PrivacyPolicy")),
-    ),
-  },
-  {
-    path: "/terms-and-conditions",
-    accessByMobile: true,
-    element: lazyLoad(
-      lazy(() => import("@/illa-public-component/User/policy/TermsOfService")),
-    ),
-  },
-  {
     path: "/403",
     element: lazyLoad(lazy(() => import("@/page/Status/403"))),
     accessByMobile: true,

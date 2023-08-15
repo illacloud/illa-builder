@@ -1,7 +1,7 @@
 import { Global } from "@emotion/react"
+import { UpgradeCloudProvider } from "@illa-public/upgrade-cloud-provider"
 import { createBrowserRouter } from "react-router-dom"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
-import { UpgradeCloudProvider } from "@/illa-public-component/UpgradeCloudProvider"
 import { RoutesObjectPro } from "@/router/interface"
 import { routerConfig } from "@/router/routerConfig"
 import { mobileAdaptationStyle } from "@/style"

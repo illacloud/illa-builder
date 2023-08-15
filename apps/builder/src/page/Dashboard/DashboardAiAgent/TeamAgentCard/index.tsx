@@ -1,8 +1,5 @@
-import { CSSProperties, FC, MouseEvent, useCallback } from "react"
-import { useTranslation } from "react-i18next"
-import { useNavigate, useParams } from "react-router-dom"
-import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
-import { calculateStyle } from "@/illa-public-component/MarketAgentCard"
+import { calculateStyle } from "@illa-public/market-agent-card"
+// TODO: @AruSeito @smallSohoSolo refactor this usage
 import {
   agentIconStyle,
   applyHiddenStyle,
@@ -11,7 +8,11 @@ import {
   headerStyle,
   nameStyle,
   titleInfoStyle,
-} from "@/illa-public-component/MarketAgentCard/style"
+} from "@illa-public/market-agent-card/style"
+import { CSSProperties, FC, MouseEvent, useCallback } from "react"
+import { useTranslation } from "react-i18next"
+import { useNavigate, useParams } from "react-router-dom"
+import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
 import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
 import { Agent } from "@/redux/aiAgent/aiAgentState"
 import { appActionButtonStyle, cardStyle } from "./style"

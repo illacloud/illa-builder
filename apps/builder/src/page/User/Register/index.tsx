@@ -3,6 +3,7 @@ import {
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
+import { RegisterPage } from "@illa-public/sso-module"
 import { currentUserActions } from "@illa-public/user-data"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
@@ -12,10 +13,9 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { ERROR_FLAG } from "@/api/errorFlag"
 import { formatLanguage } from "@/i18n/config"
-import RegisterPage from "@/illa-public-component/User/register"
 import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignUp } from "@/services/auth"
-import { sendEmail } from "@/services/users"
+// import { sendEmail } from "@/services/users"
 import { mobileAdaptationStyle } from "@/style"
 import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
@@ -109,10 +109,10 @@ const UserRegister: FC = () => {
     >
       <Global styles={mobileAdaptationStyle} />
       <RegisterPage
-        loading={submitLoading}
-        errorMsg={errorMsg}
-        onSubmit={onSubmit}
-        sendEmail={sendEmail}
+      // loading={submitLoading}
+      // errorMsg={errorMsg}
+      // onSubmit={onSubmit}
+      // sendEmail={sendEmail}
       />
     </MixpanelTrackProvider>
   )

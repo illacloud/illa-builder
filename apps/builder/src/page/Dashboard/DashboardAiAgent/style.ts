@@ -1,6 +1,7 @@
 import { css } from "@emotion/react"
+// TODO: @AruSeito @smallSohoSolo refactor this usage
+import { agent_card_width } from "@illa-public/market-agent-card/style"
 import { getColor } from "@illa-design/react"
-import { agent_card_width } from "@/illa-public-component/MarketAgentCard/style"
 
 export const containerStyle = css`
   display: flex;
