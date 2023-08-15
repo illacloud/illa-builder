@@ -1,5 +1,4 @@
 import {
-  USER_ROLE,
   getCurrentMemberList,
   getCurrentTeamInfo,
   getCurrentUser,
@@ -7,23 +6,11 @@ import {
 import { FC, useCallback, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { MemberList } from "@/illa-public-component/MemberList"
 import { MemberProps } from "@/page/Member/interface"
 import { fetchBuilderDesc } from "@/services/public"
-import {
-  changeTeamMembersRole,
-  fetchInviteLink,
-  fetchRenewInviteLink,
-  inviteByEmail,
-  removeTeam,
-  removeTeamMembers,
-  setInviteLinkEnabled,
-  updateMembers,
-  updateTeamPermissionConfig,
-  updateTeamsInfo,
-} from "@/services/team"
+import { removeTeamMembers, updateMembers } from "@/services/team"
 import { leaveTeamErrorHandler } from "@/utils/billing/errorHandler"
-import { isCloudVersion } from "@/utils/typeHelper"
+
 
 export const Member: FC<MemberProps> = () => {
   const { teamIdentifier } = useParams()
@@ -72,19 +59,6 @@ export const Member: FC<MemberProps> = () => {
     }
   }, [])
 
-  const handleChangeTeamMembersRole = useCallback(
-    (teamMemberID: string, userRole: USER_ROLE) => {
-      return changeTeamMembersRole(teamMemberID, userRole).then((res) => {
-        if (userRole === USER_ROLE.OWNER) {
-          updateTeamsInfo(teamIdentifier)
-        }
-        updateMemberList()
-        return res
-      })
-    },
-    [updateMemberList, teamIdentifier],
-  )
-
   useEffect(() => {
     if (teamId) {
       updateMemberList()
@@ -97,32 +71,7 @@ export const Member: FC<MemberProps> = () => {
     return null
   }
 
-  return (
-    <MemberList
-      blockRegister={teamInfo?.permission.blockRegister}
-      isCloudVersion={isCloudVersion}
-      loading={false}
-      userListData={members}
-      currentUserID={userInfo?.userId}
-      currentUserRole={teamInfo?.myRole}
-      currentTeamMemberID={teamInfo?.teamMemberID}
-      currentTeamLicense={teamInfo?.currentTeamLicense}
-      totalTeamLicense={teamInfo?.totalTeamLicense}
-      removeTeam={removeTeam}
-      fetchInviteLink={fetchInviteLink}
-      renewInviteLink={fetchRenewInviteLink}
-      teamName={"ILLA"}
-      userNickname={userInfo.nickname}
-      configInviteLink={setInviteLinkEnabled}
-      allowInviteByLink={inviteLinkEnabled}
-      allowEditorManageTeamMember={allowEditorManageTeamMember}
-      allowViewerManageTeamMember={allowViewerManageTeamMember}
-      inviteByEmail={inviteByEmail}
-      removeTeamMembers={handleRemoveTeamMembers}
-      changeTeamMembersRole={handleChangeTeamMembersRole}
-      updateTeamPermissionConfig={updateTeamPermissionConfig}
-    />
-  )
+  return <div></div>
 }
 
 export default Member

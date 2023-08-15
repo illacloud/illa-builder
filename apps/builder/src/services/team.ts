@@ -6,10 +6,6 @@ import userDataStore, {
   teamActions,
 } from "@illa-public/user-data"
 import { authCloudRequest } from "@/api/http"
-import {
-  fetchInviteLinkResponse,
-  inviteByEmailResponse,
-} from "@/illa-public-component/MemberList/interface"
 import { isCloudVersion } from "@/utils/typeHelper"
 import store from "../store"
 
@@ -80,69 +76,14 @@ export const fetchUpdateTeamPermissionConfig = (
   )
 }
 
-export const fetchInviteLink = async (userRole: USER_ROLE) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/inviteLink/userRole/${userRole}`,
-    },
-    {
-      needTeamID: true,
-    },
-  )
-  return response.data
-}
-
-export const fetchRenewInviteLink = async (userRole: USER_ROLE) => {
-  const response = await authCloudRequest<fetchInviteLinkResponse>(
-    {
-      method: "GET",
-      url: `/newInviteLink/userRole/${userRole}`,
-    },
-    {
-      needTeamID: true,
-    },
-  )
-  return response.data
-}
-
 interface IInviteByEmailRequest {
   email: string
   userRole: USER_ROLE
   hosts?: string
 }
 
-export const fetchInviteByEmail = (data: IInviteByEmailRequest) => {
-  return authCloudRequest<inviteByEmailResponse>(
-    {
-      method: "POST",
-      url: `/inviteByEmail`,
-      data,
-    },
-    {
-      needTeamID: true,
-    },
-  )
-}
-
 interface IUpdateChangeUserRoleRequest {
   userRole: USER_ROLE
-}
-
-export const fetchChangeUserRole = (
-  teamMemberID: string,
-  data: IUpdateChangeUserRoleRequest,
-) => {
-  return authCloudRequest<inviteByEmailResponse>(
-    {
-      method: "PATCH",
-      url: `/teamMembers/${teamMemberID}/role`,
-      data,
-    },
-    {
-      needTeamID: true,
-    },
-  )
 }
 
 export const fetchRemoveTeamMember = (teamMemberID: string) => {
@@ -214,28 +155,6 @@ export const updateTeamPermissionConfig = async (
   await fetchUpdateTeamPermissionConfig(requestData)
   await updateTeamsInfo(teamIdentifier)
   return allowEditorManageTeamMember && allowViewerManageTeamMember
-}
-
-export const inviteByEmail = async (email: string, userRole: USER_ROLE) => {
-  const requestData = {
-    email,
-    userRole,
-    hosts: !isCloudVersion ? window.location.origin : undefined,
-  }
-  const response = await fetchInviteByEmail(requestData)
-  await updateMembers()
-  return response.data
-}
-
-export const changeTeamMembersRole = async (
-  teamMemberID: string,
-  userRole: USER_ROLE,
-) => {
-  const requestData = {
-    userRole,
-  }
-  await fetchChangeUserRole(teamMemberID, requestData)
-  return true
 }
 
 export const removeTeamMembers = async (teamMemberID: string) => {
