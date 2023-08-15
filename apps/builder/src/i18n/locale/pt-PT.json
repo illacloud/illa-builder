@@ -75,7 +75,8 @@
       "create-suc": "Salvo com Sucesso",
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
-      "delete-suc": "Excluído com sucesso. "
+      "delete-suc": "Excluído com sucesso. ",
+      "token": "O valor atual do Max de tokens é baixo, o que pode causar resultados incompletos retornados."
     }
   },
   "dayjs": {
