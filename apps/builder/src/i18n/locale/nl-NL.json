@@ -75,8 +75,7 @@
       "create-suc": "Succesvol opgeslagen",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
-      "delete-suc": "Succesvol verwijderd. ",
-      "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten."
+      "delete-suc": "Succesvol verwijderd. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Onvoldoende Colla",
         "start-failed": "Starten mislukt. Probeer het opnieuw. ",
         "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
-        "token-not-enough": "Model limiet bereikt. Start opnieuw."
+        "token-not-enough": "Model limiet bereikt. Start opnieuw.",
+        "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten."
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
