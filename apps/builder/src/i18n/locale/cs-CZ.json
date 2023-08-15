@@ -75,8 +75,7 @@
       "create-suc": "Úspěšně uloženo",
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
-      "delete-suc": "Úspěšně smazáno. ",
-      "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky."
+      "delete-suc": "Úspěšně smazáno. "
     }
   },
   "dayjs": {
@@ -2620,7 +2619,8 @@
         "insufficient_token": "Nedostatek Colla",
         "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. ",
         "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
-        "token-not-enough": "Dosažen limit modelu. Prosím restartujte."
+        "token-not-enough": "Dosažen limit modelu. Prosím restartujte.",
+        "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky."
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
