@@ -75,7 +75,8 @@
       "create-suc": "Succesvol opgeslagen",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
-      "delete-suc": "Succesvol verwijderd. "
+      "delete-suc": "Succesvol verwijderd. ",
+      "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten."
     }
   },
   "dayjs": {
