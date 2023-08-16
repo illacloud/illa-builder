@@ -166,6 +166,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         config: {
           public: false,
           advancedConfig: INIT_ACTION_ADVANCED_CONFIG,
+          icon: item.icon,
         },
       }
       if (isGuideMode) {

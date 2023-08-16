@@ -77,9 +77,13 @@ export function getInitialContent(actionType: ActionType): ActionContent {
 
 export function getInitialAgentContent(agent: Agent): ActionContent {
   return {
-    aiAgentModel: agent.model,
-    maxTokens: agent.modelConfig.maxTokens,
+    agentType: agent.agentType,
+    model: agent.model,
     variables: agent.variables,
     input: "",
+    modelConfig: {
+      maxTokens: agent.modelConfig.maxTokens,
+      stream: agent.modelConfig.stream,
+    },
   }
 }

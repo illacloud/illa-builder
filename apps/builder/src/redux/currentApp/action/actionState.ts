@@ -125,6 +125,7 @@ export interface IAdvancedConfig {
 export interface ActionConfig {
   public: boolean
   advancedConfig?: IAdvancedConfig
+  icon?: string
 }
 
 export interface ActionItem<T extends ActionContent> {

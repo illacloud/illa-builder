@@ -16,6 +16,7 @@ import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { AIAgentResourceChoose } from "../AIAgentResourceChoose"
+import { ActionEventHandler } from "../ActionEventHandler"
 import HorizontalWithLabel from "../Layout/HorizontalWithLabel"
 import ActionPanelSpace from "../Layout/Space"
 import { TransformerComponent } from "../TransformerComponent"
@@ -69,9 +70,7 @@ const AIAgentPanel: FC = () => {
           prefix={<ModalOpenAIIcon />}
           colorScheme="techPurple"
           readOnly
-          value={
-            AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL[aiAgentContent.aiAgentModel]
-          }
+          value={AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL[aiAgentContent.model]}
         />
       </HorizontalWithLabel>
       <RecordEditor
@@ -96,7 +95,7 @@ const AIAgentPanel: FC = () => {
       <HorizontalWithLabel labelName={t("editor.ai-agent.label.max-token")}>
         <InputNumber
           readOnly
-          value={aiAgentContent.maxTokens}
+          value={aiAgentContent.modelConfig.maxTokens}
           mode="button"
           colorScheme="techPurple"
           size="large"
@@ -105,6 +104,7 @@ const AIAgentPanel: FC = () => {
         />
       </HorizontalWithLabel>
       <TransformerComponent />
+      <ActionEventHandler />
     </div>
   )
 }
