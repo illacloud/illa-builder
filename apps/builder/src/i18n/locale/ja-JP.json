@@ -3939,7 +3939,8 @@
       "update_suc": "正常に更新されました"
     },
     "button": {
-      "blank": "最初のアプリを作成する"
+      "blank": "最初のアプリを作成する",
+      "blank-agent": "AIエージェントを作成"
     }
   },
   "new_deploy": {
