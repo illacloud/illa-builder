@@ -76,7 +76,8 @@
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
       "delete-suc": "Supprimé avec succès. "
-    }
+    },
+    "create": "Créer"
   },
   "dayjs": {
     "just_now": "Juste maintenant"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Pas de description",
-      "blank": "Aucune application"
+      "blank": "Aucune application",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Réglage de l'application",
