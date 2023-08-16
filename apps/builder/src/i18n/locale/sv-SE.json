@@ -76,7 +76,8 @@
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
       "delete-suc": "Raderades framgångsrikt. "
-    }
+    },
+    "create": "Skapa"
   },
   "dayjs": {
     "just_now": "Just nu"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Ingen beskrivning",
-      "blank": "Ingen applikation"
+      "blank": "Ingen applikation",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Appens inställning",
