@@ -76,7 +76,8 @@
       "fork-suc": "Успешно форкнуто.",
       "delete-failed": "Не удалось удалить. Попробуйте еще раз. ",
       "delete-suc": "Успешно удалено. "
-    }
+    },
+    "create": "Создать"
   },
   "dayjs": {
     "just_now": "Только что"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Нет описания",
-      "blank": "Нет приложения"
+      "blank": "Нет приложения",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Настройки приложения",
