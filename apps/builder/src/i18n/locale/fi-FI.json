@@ -3939,7 +3939,8 @@
       "update_suc": "Päivitys onnistui"
     },
     "button": {
-      "blank": "Luo ensimmäinen sovelluksesi"
+      "blank": "Luo ensimmäinen sovelluksesi",
+      "blank-agent": "Luo AI Agentti"
     }
   },
   "new_deploy": {
