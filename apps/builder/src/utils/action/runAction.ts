@@ -124,6 +124,7 @@ export const runActionWithExecutionResult = async (
   const actionContent = transformDataFormat(
     actionType as ActionType,
     restContent,
+    $resourceID,
   ) as ActionContent
 
   store.dispatch(
