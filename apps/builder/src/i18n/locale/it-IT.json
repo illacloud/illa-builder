@@ -76,7 +76,8 @@
       "fork-suc": "Forked con successo.",
       "delete-failed": "Eliminazione non riuscita. Riprova. ",
       "delete-suc": "Eliminato con successo. "
-    }
+    },
+    "create": "Crea"
   },
   "dayjs": {
     "just_now": "Proprio ora"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Nessuna descrizione",
-      "blank": "Nessuna applicazione"
+      "blank": "Nessuna applicazione",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Impostazioni app",
