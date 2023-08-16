@@ -76,7 +76,8 @@
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. "
-    }
+    },
+    "create": "Opret"
   },
   "dayjs": {
     "just_now": "Lige nu"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Ingen beskrivelse",
-      "blank": "Ingen applikation"
+      "blank": "Ingen applikation",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "App indstilling",
