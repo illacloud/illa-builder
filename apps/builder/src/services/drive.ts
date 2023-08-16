@@ -1,5 +1,6 @@
 import { driveRequest, publicDriveRequest } from "@illa-public/illa-net"
 import { stringify } from "qs"
+import { getCurrentTeamID, getCurrentTeamIdentifier } from "../utils/team"
 
 export enum UPLOAD_FILE_DUPLICATION_HANDLER {
   COVER = "cover",
@@ -44,7 +45,7 @@ export const fetchUploadFilesToAnonymous = async (
       },
     },
     {
-      needTeamIdentifier: true,
+      teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
 }
@@ -70,7 +71,7 @@ export const fetchUploadFilesStatusAnonymous = async (
       },
     },
     {
-      needTeamIdentifier: true,
+      teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
 }
@@ -106,7 +107,7 @@ export const fetchGetUploadFileURL = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -124,7 +125,7 @@ export const fetchUpdateFileStatus = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -213,7 +214,7 @@ export const fetchFileList = async (
       signal: abortSignal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -233,7 +234,7 @@ export const fetchAnonymousFileList = async (
       signal: abortSignal,
     },
     {
-      needTeamIdentifier: true,
+      teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
 }
@@ -274,7 +275,7 @@ export const fetchBatchGenerateTinyUrl = async (
       signal: abortSignal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -292,7 +293,7 @@ export const fetchBatchAnonymousGenerateTinyUrl = async (
       signal: abortSignal,
     },
     {
-      needTeamIdentifier: true,
+      teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
 }
@@ -308,7 +309,7 @@ export const fetchAnonymousPermission = async () => {
       method: "GET",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -320,7 +321,7 @@ export const fetchOpenAnonymousPermission = async () => {
       method: "POST",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -332,7 +333,7 @@ export const fetchCloseAnonymousPermission = async () => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

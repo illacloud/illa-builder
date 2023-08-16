@@ -14,7 +14,7 @@ const getUsedEnv = (env: Record<string, string>) => {
   const usedEnv: Record<string, string> = {}
   Object.keys(env).forEach((key) => {
     if (key.startsWith("ILLA_")) {
-      usedEnv[`process.env.${key}`] = JSON.stringify(env[key])
+      usedEnv[`import.meta.env.${key}`] = JSON.stringify(env[key])
     }
   })
   return usedEnv
@@ -40,7 +40,9 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     }),
-    visualizer(),
+    visualizer({
+      template: "network",
+    }),
   ]
 
   const plugin = BASIC_PLUGIN

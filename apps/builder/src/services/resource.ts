@@ -1,6 +1,7 @@
 import { builderRequest, notNeedAuthRequest } from "@illa-public/illa-net"
 import { AccessType } from "@/redux/resource/googleSheetResource"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { getCurrentTeamID } from "../utils/team"
 
 export const requestCreateResource = async (data: unknown) => {
   return await builderRequest<Resource<ResourceContent>>(
@@ -10,7 +11,7 @@ export const requestCreateResource = async (data: unknown) => {
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -27,7 +28,7 @@ export const requestUpdateResource = async (
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -50,7 +51,7 @@ export const fetchResources = (signal: AbortSignal) => {
       method: "GET",
       signal: signal,
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
 }
 
@@ -66,7 +67,7 @@ export const fetchResourceMeta = async (resourceID: string) => {
       method: "GET",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -78,7 +79,7 @@ export const fetchDeleteResource = async (resourceID: string) => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -100,7 +101,7 @@ export const getOAuthAccessToken = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -115,7 +116,7 @@ export const redirectToGoogleOAuth = async (
       url: `/resources/${resourceId}/oauth2?accessToken=${accessToken}`,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -131,7 +132,7 @@ export const getOAuthRefreshData = async (
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

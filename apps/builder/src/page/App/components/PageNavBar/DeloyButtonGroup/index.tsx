@@ -1,4 +1,5 @@
 import { UpgradeIcon } from "@illa-public/icon"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import {
@@ -17,7 +18,6 @@ import {
   deployLabelStyle,
   deployMenuStyle,
 } from "@/page/App/components/PageNavBar/DeloyButtonGroup/style"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export interface DeployButtonGroupProps {
   onClickDeploy: () => void

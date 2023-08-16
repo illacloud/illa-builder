@@ -12,6 +12,7 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
 import { getParamsFromIllaRoute } from "@/utils/routerHelper"
+import { getCurrentTeamID, getCurrentTeamIdentifier } from "../utils/team"
 
 interface IActionTestConnectionRequestData {
   resourceId: string
@@ -26,7 +27,7 @@ export const fetchActionTestConnection = (
   return actionRequest<null>(
     { url: "/resources/testConnection", method: "POST", data },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -52,13 +53,13 @@ export const fetchActionRunResult = (
   abortSignal?: AbortSignal,
 ) => {
   let url: string
-  let options: { needTeamIdentifier?: boolean; needTeamID?: boolean } = {}
+  let options: { teamIdentifier?: string; teamID?: string } = {}
   if (isPublic) {
     url = `/apps/${appID}/publicActions/${actionId}/run`
-    options.needTeamIdentifier = true
+    options.teamIdentifier = getCurrentTeamIdentifier()
   } else {
     url = `/apps/${appID}/actions/${actionId}/run`
-    options.needTeamID = true
+    options.teamID = getCurrentTeamID()
   }
   return actionRequest<IActionRunResultResponseData>(
     { url, method: "POST", data, signal: abortSignal },
@@ -95,7 +96,7 @@ export const fetchCreateAction = (
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -113,7 +114,7 @@ export const fetchDeleteAction = (actionID: string) => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -133,7 +134,7 @@ export const fetchUpdateAction = (action: ActionItem<ActionContent>) => {
       url: `/apps/${appId}/actions/${action.actionId}`,
       data: action,
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
 }
 
@@ -158,7 +159,7 @@ export const fetchGenerateSQL = async (
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
     BUILDER_REQUEST_PREFIX,
   )

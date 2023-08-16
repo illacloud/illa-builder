@@ -6,6 +6,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   FC,
   HTMLAttributes,
@@ -38,7 +39,6 @@ import {
 } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { updateWaterMarkConfig } from "@/services/apps"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { DeployContent } from "./content"
 
 const WaterMark: FC<HTMLAttributes<HTMLDivElement>> = (props) => {

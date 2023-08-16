@@ -1,10 +1,10 @@
 import { authCloudRequest } from "@illa-public/illa-net"
 import { currentUserActions } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import { v4 } from "uuid"
 import { fetchSendEmail } from "@/services/auth"
 import { upload } from "@/utils/file/upload"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion } from "@/utils/typeHelper"
 import store from "../store"
 
 interface IUserInfoResponse {

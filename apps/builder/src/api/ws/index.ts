@@ -1,5 +1,6 @@
 import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@illa-public/illa-net/constant"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   ILLAWebsocket,
   ReduxMessageListener,
@@ -8,7 +9,6 @@ import {
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import store from "@/store"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { MovingMessageBin, Signal, Target } from "./ILLA_PROTO"
 import { ILLABinaryWebsocket } from "./illaBinaryWS"
 import {

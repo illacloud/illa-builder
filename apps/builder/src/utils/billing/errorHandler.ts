@@ -1,9 +1,10 @@
 import { ERROR_FLAG } from "@illa-public/illa-net/errorFlag"
+import { isCloudVersion } from "@illa-public/utils"
 import { matchPath } from "react-router-dom"
 import { createMessage } from "@illa-design/react"
 import i18n from "@/i18n/config"
 import { cloudUrl } from "@/router/constant"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 
 const message = createMessage()
 export const commonBillingErrorHandler = (error: unknown) => {

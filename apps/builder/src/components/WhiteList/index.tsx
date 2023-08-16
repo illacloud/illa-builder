@@ -1,3 +1,4 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { AxiosResponse } from "axios"
 import copy from "copy-to-clipboard"
 import { FC, useCallback, useEffect, useState } from "react"
@@ -10,7 +11,6 @@ import {
   useMessage,
 } from "@illa-design/react"
 import { requestWhiteListIP } from "@/services/resource"
-import { isCloudVersion } from "@/utils/typeHelper"
 import {
   ipListContainerStyle,
   ipListStyle,

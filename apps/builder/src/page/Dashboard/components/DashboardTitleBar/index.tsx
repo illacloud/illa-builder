@@ -8,6 +8,7 @@ import {
   ATTRIBUTE_GROUP,
   canManage,
 } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   FC,
   KeyboardEvent,
@@ -36,7 +37,6 @@ import { Avatar } from "@/page/App/components/Avatar"
 import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import { fetchLogout } from "@/services/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion } from "@/utils/typeHelper"
 import {
   aiAgentBetaStyle,
   containerStyle,
@@ -179,7 +179,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
             <Logo
               onClick={() => {
                 if (isCloudVersion) {
-                  window.location.href = `//${process.env.ILLA_CLOUD_URL}`
+                  window.location.href = `//${import.meta.env.ILLA_CLOUD_URL}`
                 } else {
                   navigate(`./apps`)
                 }

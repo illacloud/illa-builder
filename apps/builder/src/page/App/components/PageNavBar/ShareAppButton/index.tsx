@@ -1,18 +1,18 @@
-import {UpgradeIcon} from "@illa-public/icon"
+import { UpgradeIcon } from "@illa-public/icon"
 import InviteModal from "@illa-public/invite-modal"
-import {INVITE_FROM} from "@illa-public/invite-modal/interface"
-import {UpgradeCloudContext} from "@illa-public/upgrade-cloud-provider"
-import {FC, useCallback, useContext, useState} from "react"
-import {useTranslation} from "react-i18next"
-import {Button, getColor} from "@illa-design/react"
-import {ShareAppButtonProps} from "@/page/App/components/PageNavBar/ShareAppButton/interface"
-import {isCloudVersion} from "@/utils/typeHelper"
+import { INVITE_FROM } from "@illa-public/invite-modal/interface"
+import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { isCloudVersion } from "@illa-public/utils"
+import { FC, useCallback, useContext, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { Button, getColor } from "@illa-design/react"
+import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppButton/interface"
 
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
-  const {t} = useTranslation()
-  const {appInfo, canUseBillingFeature} = props
+  const { t } = useTranslation()
+  const { appInfo, canUseBillingFeature } = props
 
-  const {handleUpgradeModalVisible} = useContext(UpgradeCloudContext)
+  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
   const [shareModalVisible, setShareModalVisible] = useState(false)
 
@@ -31,7 +31,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
         rightIcon={
           isCloudVersion &&
           !canUseBillingFeature && (
-            <UpgradeIcon color={getColor("techPurple", "01")}/>
+            <UpgradeIcon color={getColor("techPurple", "01")} />
           )
         }
         onClick={openInviteModal}

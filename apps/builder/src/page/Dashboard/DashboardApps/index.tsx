@@ -20,6 +20,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
+import { isCloudVersion } from "@illa-public/utils"
 import { isBoolean } from "lodash"
 import {
   FC,
@@ -49,7 +50,6 @@ import {
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { DashboardErrorElement } from "../components/ErrorElement"
 import { DashBoardLoading } from "../components/Loading"
 import { AppsContentBody } from "./contentBody"
@@ -60,7 +60,6 @@ import {
   teamAvatarStyle,
   teamInfoContainerStyle,
 } from "./style"
-
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()

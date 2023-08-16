@@ -1,6 +1,7 @@
 import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, MouseEvent, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -19,8 +20,7 @@ import {
 } from "@illa-design/react"
 import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
-
+import { isILLAAPiError } from "@/utils/typeHelper"
 
 export interface AppCardActionItemProps {
   aiAgentID: string

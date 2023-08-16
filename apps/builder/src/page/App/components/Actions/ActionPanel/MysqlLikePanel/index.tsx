@@ -2,6 +2,7 @@ import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   FC,
   useCallback,
@@ -34,7 +35,7 @@ import { ResourcesData } from "@/redux/resource/resourceState"
 import { fetchGenerateSQL } from "@/services/action"
 import { fetchResourceMeta } from "@/services/resource"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const MysqlLikePanel: FC = () => {

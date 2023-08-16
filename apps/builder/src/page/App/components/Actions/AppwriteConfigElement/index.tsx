@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -39,7 +40,6 @@ import {
 } from "@/redux/resource/appWriteResource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
   const { resourceId, onBack, onFinished } = props

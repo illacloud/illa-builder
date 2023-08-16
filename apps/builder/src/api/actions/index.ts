@@ -16,6 +16,7 @@ import {
 } from "@/redux/resource/resourceState"
 import { createApp } from "@/services/apps"
 import store from "@/store"
+import { getCurrentTeamID } from "@/utils/team"
 
 export const createResource = async (
   data: ResourceInitialConfig<ResourceContent>,
@@ -27,7 +28,7 @@ export const createResource = async (
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
   store.dispatch(resourceActions.addResourceItemReducer(response.data))
@@ -44,7 +45,7 @@ export const createAction = async (
       method: "POST",
       data,
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
   store.dispatch(actionActions.addActionItemReducer(response.data))
   return response.data.actionId

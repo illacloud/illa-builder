@@ -3,6 +3,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, MouseEvent, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
@@ -24,7 +25,6 @@ import AppConfigSelect from "@/page/Dashboard/DashboardApps/AppConfigSelect"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 interface AppCardProps {
   appInfo: DashboardApp

@@ -8,6 +8,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import store from "@/store"
+import { getCurrentTeamID } from "../utils/team"
 
 interface IAPPPublicStatus {
   isPublic: boolean
@@ -25,8 +26,7 @@ export const fetchAPPPublicStatus = async (
       signal: signal,
     },
     {
-      needTeamIdentifier: true,
-      teamIdentifier,
+      teamIdentifier: teamIdentifier,
     },
   )
 }
@@ -44,8 +44,7 @@ export const fetchPubicAppInitData = (
       signal: signal,
     },
     {
-      needTeamIdentifier: true,
-      teamIdentifier,
+      teamIdentifier: teamIdentifier,
     },
   )
 }
@@ -53,7 +52,7 @@ export const fetchPubicAppInitData = (
 export const fetchPrivateAppInitData = async (
   appID: string,
   versionID: string,
-  teamIdentifier?: string,
+  teamID?: string,
   signal?: AbortSignal,
 ) => {
   return await builderRequest<CurrentAppResp>(
@@ -63,8 +62,7 @@ export const fetchPrivateAppInitData = async (
       signal: signal,
     },
     {
-      needTeamID: true,
-      teamIdentifier,
+      teamID,
     },
   )
 }
@@ -79,7 +77,7 @@ export const fetchDeployApp = (appID: string, isPublic?: boolean) => {
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -101,7 +99,7 @@ export const fetchChangeAppSetting = (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -114,7 +112,7 @@ export const fetchAppList = (signal: AbortSignal) => {
       signal: signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -131,7 +129,7 @@ export const fetchCreateApp = (data: IAppCreateRequestData) => {
       method: "POST",
       data,
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
 }
 
@@ -141,7 +139,7 @@ export const fetchDeleteApp = (appID: string) => {
       url: `/apps/${appID}`,
       method: "DELETE",
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
 }
 
@@ -155,7 +153,7 @@ export const fetchCopyApp = (appID: string, name: string) => {
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -173,7 +171,7 @@ export const updateAppPublicConfig = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
   return true
@@ -192,7 +190,7 @@ export const updateWaterMarkConfig = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -213,7 +211,7 @@ export const updateAppConfig = async (
       data: config,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

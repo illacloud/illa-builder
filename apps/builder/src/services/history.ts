@@ -1,6 +1,7 @@
 import { builderRequest, builderWSRequest } from "@illa-public/illa-net"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { SnapshotList } from "@/redux/currentAppHistory/currentAppHistoryState"
+import { getCurrentTeamID } from "../utils/team"
 
 export const fetchSnapShotList = (params: {
   appID: string
@@ -16,7 +17,7 @@ export const fetchSnapShotList = (params: {
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -33,7 +34,7 @@ export const fetchSnapShot = (
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -45,7 +46,7 @@ export const recoverSnapShot = (appID: string, snapshotID: string) => {
       method: "POST",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -56,7 +57,7 @@ export const recoverSnapShotWS = (appID: string) => {
       method: "POST",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -69,7 +70,7 @@ export const takeSnapShot = (appID: string) => {
       method: "POST",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

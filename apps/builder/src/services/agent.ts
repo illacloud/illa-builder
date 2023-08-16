@@ -10,7 +10,7 @@ import {
 import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
-import { getTeamID } from "@/utils/team"
+import { getCurrentTeamID } from "@/utils/team"
 
 export interface TeamAgentListData {
   aiAgentList: Agent[]
@@ -33,7 +33,7 @@ export const fetchTeamAgent = (signal?: AbortSignal) => {
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -51,7 +51,7 @@ export const fetchTeamAgentByKeywords = (
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -77,7 +77,7 @@ export const fetchTeamAgentListByPage = (
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -99,7 +99,7 @@ export interface ForkAgentResponse {
 }
 
 export const forkAIAgentToTeam = (aiAgentID: string) => {
-  const teamID = getTeamID()
+  const teamID = getCurrentTeamID()
   return agentRequest<Agent>({
     url: `/aiAgent/${aiAgentID}/forkTo/teams/${teamID}`,
     method: "POST",
@@ -113,7 +113,7 @@ export const deleteAiAgent = (aiAgentID: string) => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -125,7 +125,7 @@ export const duplicateAiAgent = (aiAgentID: string) => {
       method: "POST",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -137,7 +137,7 @@ export const fetchAgentDetail = (aiAgentID: string) => {
       method: "GET",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -150,7 +150,7 @@ export const putAgentDetail = (aiAgentID: string, agentRaw: AgentRaw) => {
       data: agentRaw,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -163,7 +163,7 @@ export const createAgent = (agentRaw: AgentRaw) => {
       data: agentRaw,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -186,7 +186,7 @@ export const generateDescription = (prompt: string) => {
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -210,7 +210,7 @@ export const generateIcon = (name: string, description: string) => {
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -228,7 +228,7 @@ export const getAIAgentWsAddress = (
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -243,7 +243,7 @@ export const getAIAgentAnonymousAddress = (signal?: AbortSignal) => {
       signal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -257,7 +257,7 @@ export const uploadAgentIcon = async (base64: string) => {
       method: "GET",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
   const file = await base642Blob(base64)

@@ -11,6 +11,7 @@ import {
   canManageApp,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   FC,
   HTMLAttributes,
@@ -41,8 +42,7 @@ import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
-
+import { isILLAAPiError } from "@/utils/typeHelper"
 
 export interface AppCardActionItemProps extends HTMLAttributes<HTMLDivElement> {
   appId: string

@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -41,7 +42,6 @@ import { Resource } from "@/redux/resource/resourceState"
 import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished, type } = props

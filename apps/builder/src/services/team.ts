@@ -7,6 +7,7 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import store from "../store"
+import { getCurrentTeamID } from "../utils/team"
 
 export const fetchMyTeamsInfo = () => {
   return authCloudRequest<TeamInfo[]>({
@@ -22,7 +23,7 @@ export const fetchUpdateMembers = () => {
       url: "/members",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -33,7 +34,7 @@ export const fetchRemoveTeam = () => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -50,7 +51,7 @@ export const fetchUpdateInviteLinkStatus = (data: IInviteLinkStatusRequest) => {
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -70,7 +71,7 @@ export const fetchUpdateTeamPermissionConfig = (
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -92,7 +93,7 @@ export const fetchRemoveTeamMember = (teamMemberID: string) => {
       url: `/teamMembers/${teamMemberID}`,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -43,7 +44,6 @@ import {
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 import { handleLinkOpen } from "@/utils/navigate"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { MysqlLikeConfigElementProps } from "./interface"
 
 const getResourceDefaultPort = (resourceType: string) => {

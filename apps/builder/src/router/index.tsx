@@ -1,11 +1,11 @@
 import { Global } from "@emotion/react"
 import { UpgradeCloudProvider } from "@illa-public/upgrade-cloud-provider"
+import { isCloudVersion } from "@illa-public/utils"
 import { createBrowserRouter } from "react-router-dom"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
 import { RoutesObjectPro } from "@/router/interface"
 import { routerConfig } from "@/router/routerConfig"
 import { mobileAdaptationStyle } from "@/style"
-import { isCloudVersion } from "@/utils/typeHelper"
 import { beautifyURLLoader } from "./loader/beautifyURLLoader"
 import { setTokenToLocalStorageLoader } from "./loader/cloudAuthLoader"
 import {

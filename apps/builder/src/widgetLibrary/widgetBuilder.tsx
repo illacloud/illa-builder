@@ -1,5 +1,5 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, LazyExoticComponent, lazy } from "react"
-import { isCloudVersion } from "@/utils/typeHelper"
 import {
   AUDIO_EVENT_HANDLER_CONFIG,
   AUDIO_PANEL_CONFIG,
@@ -589,7 +589,7 @@ if (isCloudVersion) {
     eventHandlerConfig: DRIVE_PICKER_EVENT_HANDLER_CONFIG,
     widget: lazy(() => import("@/widgetLibrary/DrivePickerWidget/drivePicker")),
   }
-  if (process.env.ILLA_GOOGLE_MAP_KEY) {
+  if (import.meta.env.ILLA_GOOGLE_MAP_KEY) {
     WidgetConfigMap["MAP_WIDGET"] = {
       config: MAP_WIDGET_CONFIG,
       panelConfig: MAP_PANEL_CONFIG,

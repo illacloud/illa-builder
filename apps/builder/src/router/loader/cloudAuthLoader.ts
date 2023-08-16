@@ -6,6 +6,7 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import { canAccessManage } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { LoaderFunction, redirect } from "react-router-dom"
 import i18n from "@/i18n/config"
 import { cloudUrl } from "@/router/constant"
@@ -14,7 +15,6 @@ import { fetchUserInfo } from "@/services/users"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const setTokenToLocalStorageLoader: LoaderFunction = async (args) => {
   const url = new URL(args.request.url)

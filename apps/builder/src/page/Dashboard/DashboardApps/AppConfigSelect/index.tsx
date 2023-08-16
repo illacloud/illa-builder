@@ -6,6 +6,7 @@ import {
 import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, ReactNode, useContext, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -13,7 +14,7 @@ import { DownIcon, SuccessIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { updateAppPublicConfig } from "@/services/apps"
 import { track } from "@/utils/mixpanelHelper"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import {
   optionContentStyle,
   optionItemStyle,

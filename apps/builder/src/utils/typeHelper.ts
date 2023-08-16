@@ -73,8 +73,6 @@ export const isInt = (val: string | number): boolean => {
 export const isValidDisplayName = (displayName: string): boolean =>
   DISPLAY_NAME_REGEX.test(displayName)
 
-export const isCloudVersion = process.env.ILLA_INSTANCE_ID === "CLOUD"
-
 export const isILLAAPiError = (
   error: unknown,
 ): error is AxiosResponse<ILLAApiError> => {

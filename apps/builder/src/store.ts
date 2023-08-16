@@ -1,4 +1,5 @@
 import { currentUserReducer, teamReducer } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   ListenerEffectAPI,
   TypedStartListening,
@@ -26,7 +27,6 @@ import resourceReducer from "@/redux/resource/resourceSlice"
 import { mixpanelReport } from "./middleware/mixpanelReport"
 import { UndoRedo } from "./middleware/undoRedo"
 import cursorSlice from "./redux/currentApp/cursor/cursorSlice"
-import { isCloudVersion } from "./utils/typeHelper"
 
 const listenerMiddleware = createListenerMiddleware()
 
@@ -52,7 +52,7 @@ const dashboardReducer = combineReducers({
 
 const middlewares = [reduxAsync, UndoRedo, guideAsync]
 
-if (process.env.ILLA_APP_ENV === "development") {
+if (import.meta.env.ILLA_APP_ENV === "development") {
   middlewares.push(logger)
 }
 
@@ -72,7 +72,7 @@ const store = configureStore({
     currentUser: currentUserReducer,
     team: teamReducer,
   },
-  devTools: process.env.ILLA_APP_ENV === "development",
+  devTools: import.meta.env.ILLA_APP_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

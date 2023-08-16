@@ -1,13 +1,13 @@
 import { useMemo } from "react"
 import { Helmet } from "react-helmet-async"
 import { useTranslation } from "react-i18next"
+import TermsOfServiceUS from "@/illa-public-component/User/policy/en-US/terms-of-serivce.mdx"
+import TermsOfServiceJP from "@/illa-public-component/User/policy/ja-JP/terms-of-serivce.mdx"
+import TermsOfServiceKR from "@/illa-public-component/User/policy/ko-KR/terms-of-serivce.mdx"
+import TermsOfServiceCN from "@/illa-public-component/User/policy/zh-CN/terms-of-serivce.mdx"
 import { policyContainer } from "../style"
-import PrivacyPolicyUS from "./en-US/privacy-policy.mdx"
-import PrivacyPolicyJP from "./ja-JP/privacy-policy.mdx"
-import PrivacyPolicyKR from "./ko-KR/privacy-policy.mdx"
-import PrivacyPolicyCN from "./zh-CN/privacy-policy.mdx"
 
-const PrivacyPolicy = () => {
+const TermsOfService = () => {
   const { i18n, t } = useTranslation()
   const localLanguage = i18n.language
   const lng = useMemo(() => {
@@ -21,25 +21,25 @@ const PrivacyPolicy = () => {
     switch (mergeLng) {
       default:
       case "en-US":
-        return <PrivacyPolicyUS />
+        return <TermsOfServiceUS />
       case "zh-CN":
-        return <PrivacyPolicyCN />
+        return <TermsOfServiceCN />
       case "ja-JP":
-        return <PrivacyPolicyJP />
+        return <TermsOfServiceJP />
       case "ko-KR":
-        return <PrivacyPolicyKR />
+        return <TermsOfServiceKR />
     }
   }, [mergeLng])
 
   return (
     <div css={policyContainer}>
       <Helmet>
-        <title>{t("policy.privacy.title")}</title>
-        <meta name="description" content={t("policy.privacy.description")} />
+        <title>{t("policy.terms.title")}</title>
+        <meta name="description" content={t("policy.terms.description")} />
       </Helmet>
       {ReturnedComponent}
     </div>
   )
 }
 
-export default PrivacyPolicy
+export default TermsOfService

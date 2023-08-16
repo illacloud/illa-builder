@@ -7,15 +7,6 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { hasDynamicStringSnippet } from "@/utils/evaluateDynamicString/utils"
 import { runOriginAction } from "../action/runAction"
 import { wrapperScriptCode } from "../evaluateDynamicString/valueConverter"
-import {
-  copyToClipboard,
-  downloadFile,
-  goToURL,
-  setRouter,
-  showNotification,
-} from "./utils/commonUtils"
-import { downloadFromILLADrive, saveToILLADrive } from "./utils/driveUtils"
-import { setGlobalDataIn, setGlobalDataValue } from "./utils/globalDataUtils"
 import { clearLocalStorage, setValueLocalStorage } from "./utils/localStorage"
 
 export enum EVENT_ACTION_TYPE {
@@ -46,7 +37,7 @@ export const transformEvents = (
       const params = { url, newTab }
       return {
         script: () => {
-          goToURL(params)
+          globalData.utils.goToURL(params)
         },
         enabled,
       }
@@ -61,7 +52,7 @@ export const transformEvents = (
       }
       return {
         script: () => {
-          showNotification(params)
+          globalData.utils.showNotification(params)
         },
         enabled,
       }
@@ -71,7 +62,7 @@ export const transformEvents = (
       const { copiedValue, enabled } = event
       return {
         script: () => {
-          copyToClipboard(copiedValue)
+          globalData.utils.copyToClipboard(copiedValue)
         },
         enabled,
       }
@@ -94,7 +85,7 @@ export const transformEvents = (
 
           return {
             script: () => {
-              setGlobalDataIn(params)
+              globalData.utils.setGlobalDataIn(params)
             },
             enabled,
           }
@@ -104,7 +95,7 @@ export const transformEvents = (
 
           return {
             script: () => {
-              setGlobalDataValue(params)
+              globalData.utils.setGlobalDataValue(params)
             },
             enabled,
           }
@@ -142,7 +133,7 @@ export const transformEvents = (
 
       return {
         script: () => {
-          setRouter({
+          globalData.utils.setRouter({
             pagePath,
             viewPath,
           })
@@ -158,7 +149,7 @@ export const transformEvents = (
           if ([undefined, null, ""].includes(fileData)) {
             return
           }
-          downloadFile({
+          globalData.utils.downloadFile({
             fileType,
             fileName,
             data: fileData,
@@ -376,7 +367,7 @@ export const transformEvents = (
       const { downloadInfo, asZip, enabled } = event
       return {
         script: () => {
-          downloadFromILLADrive({
+          globalData.utils.downloadFromILLADrive({
             downloadInfo,
             asZip,
           })
@@ -398,7 +389,7 @@ export const transformEvents = (
 
       return {
         script: () => {
-          saveToILLADrive({
+          globalData.utils.saveToILLADrive({
             fileData,
             fileName,
             fileType,

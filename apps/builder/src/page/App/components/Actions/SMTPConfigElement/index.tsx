@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
 } from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -37,7 +38,6 @@ import {
 } from "@/redux/resource/smtpResource"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props

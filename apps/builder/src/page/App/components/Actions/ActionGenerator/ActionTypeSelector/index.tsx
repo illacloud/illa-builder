@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -21,7 +22,6 @@ import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { fetchCreateAction } from "@/services/action"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { track } from "@/utils/mixpanelHelper"
-import { isCloudVersion } from "../../../../../../utils/typeHelper"
 import { ActionCard } from "../ActionCard"
 import { ActionTypeSelectorProps } from "./interface"
 import { categoryStyle, containerStyle, resourceListStyle } from "./style"

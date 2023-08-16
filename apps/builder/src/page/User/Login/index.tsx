@@ -6,6 +6,7 @@ import {
 } from "@illa-public/mixpanel-utils"
 import { LoginPage } from "@illa-public/sso-module"
 import { currentUserActions } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -17,7 +18,7 @@ import { fetchSignIn } from "@/services/auth"
 import { mobileAdaptationStyle } from "@/style"
 import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import { LoginFields } from "./interface"
 
 const UserLogin: FC = () => {

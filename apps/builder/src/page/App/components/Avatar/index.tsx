@@ -1,5 +1,6 @@
 import { HTTP_REQUEST_PUBLIC_BASE_URL } from "@illa-public/illa-net/constant"
 import { getColorByString } from "@illa-public/utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC } from "react"
 import { Popover } from "@illa-design/react"
 import { AvatarProps } from "@/page/App/components/Avatar/interface"
@@ -7,7 +8,6 @@ import {
   applyUserAvatarStyle,
   getAvatarStyle,
 } from "@/page/App/components/Avatar/style"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 const getFirstChar = (str: string | undefined) => {
   if (!str) return "U"
