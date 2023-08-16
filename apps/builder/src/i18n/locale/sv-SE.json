@@ -3939,7 +3939,8 @@
       "update_suc": "Uppdaterades framgångsrikt"
     },
     "button": {
-      "blank": "Skapa din första app"
+      "blank": "Skapa din första app",
+      "blank-agent": "Skapa AI-agent"
     }
   },
   "new_deploy": {
