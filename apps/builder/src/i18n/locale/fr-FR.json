@@ -3939,7 +3939,8 @@
       "update_suc": "Mis à jour avec succès"
     },
     "button": {
-      "blank": "Créez votre première application"
+      "blank": "Créez votre première application",
+      "blank-agent": "Créer un Agent IA"
     }
   },
   "new_deploy": {
