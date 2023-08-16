@@ -159,7 +159,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
         <div>
           {canLoadBefore && (
             <div css={moreDataStyle} onClick={loadBeforeMarketAgent}>
-              {t("new_dashboard.desc.load_more")}
+              {t("load.before")}
             </div>
           )}
           <div css={listContainerStyle}>
