@@ -3939,7 +3939,8 @@
       "update_suc": "Úspěšně aktualizováno"
     },
     "button": {
-      "blank": "Vytvořte svou první aplikaci"
+      "blank": "Vytvořte svou první aplikaci",
+      "blank-agent": "Vytvořit AI agenta"
     }
   },
   "new_deploy": {
