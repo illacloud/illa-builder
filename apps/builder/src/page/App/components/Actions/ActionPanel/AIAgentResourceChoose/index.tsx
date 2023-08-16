@@ -18,7 +18,6 @@ import { getDashboardTeamAIAgentList } from "@/redux/dashboard/teamAIAgents/dash
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {
   itemContainer,
-  itemLogo,
   itemText,
   resourceChooseContainerStyle,
   resourceEndStyle,
@@ -70,7 +69,7 @@ export const AIAgentResourceChoose: FC = () => {
               return (
                 <Option value={item.aiAgentID} key={item.aiAgentID}>
                   <div css={itemContainer}>
-                    <span css={itemLogo}>{getAgentIcon(item, "14px")}</span>
+                    {getAgentIcon(item, "14px")}
                     <span css={itemText}>{item.name}</span>
                   </div>
                 </Option>

@@ -111,6 +111,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         displayName,
         resourceID,
         content: initialContent,
+        isVirtualResource: true,
         ...actionItemInitial,
       }
       if (data.actionType !== "transformer") {
@@ -164,6 +165,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         displayName,
         resourceID: item.aiAgentID,
         content: initalAgentContent,
+        isVirtualResource: true,
         ...actionItemInitial,
         config: {
           public: false,

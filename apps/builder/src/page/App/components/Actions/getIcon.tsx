@@ -47,7 +47,7 @@ const TransformerIcon = lazy(
 )
 
 export function getAgentIcon(agent: Agent, size: string) {
-  return <img src={agent.icon} css={agentActionStyle(size)} />
+  return <img src={agent?.icon} css={agentActionStyle(size)} />
 }
 
 export function getIconFromResourceType(
