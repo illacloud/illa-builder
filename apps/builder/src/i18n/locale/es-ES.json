@@ -76,7 +76,8 @@
       "fork-suc": "Bifurcado con éxito.",
       "delete-failed": "Error al eliminar. Por favor, inténtelo de nuevo. ",
       "delete-suc": "Eliminado correctamente. "
-    }
+    },
+    "create": "Crear"
   },
   "dayjs": {
     "just_now": "Justo ahora"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Sin descripción",
-      "blank": "Ninguna aplicación"
+      "blank": "Ninguna aplicación",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Ajustes de app",
