@@ -3939,7 +3939,8 @@
       "update_suc": "Erfolgreich aktualisiert"
     },
     "button": {
-      "blank": "Erstelle deine erste App"
+      "blank": "Erstelle deine erste App",
+      "blank-agent": "KI-Agent erstellen"
     }
   },
   "new_deploy": {
