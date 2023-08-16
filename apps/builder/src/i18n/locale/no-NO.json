@@ -76,7 +76,8 @@
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. "
-    }
+    },
+    "create": "Opprett"
   },
   "dayjs": {
     "just_now": "Nå nettopp"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Ingen beskrivelse",
-      "blank": "Ingen programmer"
+      "blank": "Ingen programmer",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Innstillinger for app",
