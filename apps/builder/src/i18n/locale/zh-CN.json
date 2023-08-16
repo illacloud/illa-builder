@@ -76,7 +76,8 @@
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
       "delete-suc": "删除成功"
-    }
+    },
+    "create": "创建"
   },
   "dayjs": {
     "just_now": "刚刚"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "暂无描述",
-      "blank": "没有项目"
+      "blank": "没有项目",
+      "blank-agent": "无AI Agent"
     },
     "app_setting": {
       "app_setting": "项目设置",
