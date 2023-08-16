@@ -3939,7 +3939,8 @@
       "update_suc": "Actualizare reușită"
     },
     "button": {
-      "blank": "Creează prima ta aplicație"
+      "blank": "Creează prima ta aplicație",
+      "blank-agent": "Creează AI Agent"
     }
   },
   "new_deploy": {
