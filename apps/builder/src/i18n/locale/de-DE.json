@@ -76,7 +76,8 @@
       "fork-suc": "Erfolgreich geforkt.",
       "delete-failed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut. ",
       "delete-suc": "Erfolgreich gelöscht. "
-    }
+    },
+    "create": "Anlegen"
   },
   "dayjs": {
     "just_now": "Gerade jetzt"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Keine Beschreibung",
-      "blank": "Keine Anwendung"
+      "blank": "Keine Anwendung",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "App-Einstellung",
