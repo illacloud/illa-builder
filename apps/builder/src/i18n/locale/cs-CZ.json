@@ -76,7 +76,8 @@
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. "
-    }
+    },
+    "create": "Vytvořit"
   },
   "dayjs": {
     "just_now": "Právě teď"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Bez popisu",
-      "blank": "Žádná aplikace"
+      "blank": "Žádná aplikace",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Nastavení aplikace",
