@@ -3939,7 +3939,8 @@
       "update_suc": "Oppdatering ferdig"
     },
     "button": {
-      "blank": "Opprett din første app"
+      "blank": "Opprett din første app",
+      "blank-agent": "Lag AI-Agent"
     }
   },
   "new_deploy": {
