@@ -3939,7 +3939,8 @@
       "update_suc": "Succesvol geüpdatet"
     },
     "button": {
-      "blank": "Maak je eerste app"
+      "blank": "Maak je eerste app",
+      "blank-agent": "Maak AI Agent"
     }
   },
   "new_deploy": {
