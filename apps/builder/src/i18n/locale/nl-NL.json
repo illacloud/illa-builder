@@ -76,7 +76,8 @@
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. "
-    }
+    },
+    "create": "Aanmaken"
   },
   "dayjs": {
     "just_now": "Op dit moment"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Geen beschrijving",
-      "blank": "Geen toepassing"
+      "blank": "Geen toepassing",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "App instelling",
