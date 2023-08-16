@@ -1,4 +1,13 @@
-import { FC, Suspense, UIEvent, useCallback, useContext, useState } from "react"
+import {
+  FC,
+  Suspense,
+  UIEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Await, useLoaderData, useNavigate, useParams } from "react-router-dom"
@@ -34,6 +43,7 @@ const DashboardAiAgent: FC = () => {
 
   const { agentType, loadMoreMarketAgent } = useContext(AiAgentContext)
 
+  const ref = useRef<HTMLButtonElement>(null)
   const teamInfo = useSelector(getCurrentTeamInfo)
   const hasMoreData = useSelector(getHasMoreMarketAgent)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
@@ -65,6 +75,36 @@ const DashboardAiAgent: FC = () => {
     }
   }
 
+  useEffect(() => {
+    const currentRef = ref.current
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          document
+            .querySelector(".create-agent")
+            ?.setAttribute("style", "display: flex")
+        } else {
+          document.querySelector(".create-agent")?.removeAttribute("style")
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0,
+      },
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef)
+      }
+    }
+  }, [])
+
   return (
     <div css={containerStyle} onScroll={handleCardScroll}>
       <div css={listTitleContainerStyle}>
@@ -79,10 +119,11 @@ const DashboardAiAgent: FC = () => {
         </div>
         {canEditApp ? (
           <Button
+            ref={ref}
             w="320px"
             size="large"
             colorScheme="black"
-            leftIcon={<PlusIcon size="10px" />}
+            leftIcon={<PlusIcon size="12px" />}
             onClick={handleCreateAgent}
           >
             {t("Create an Agent")}

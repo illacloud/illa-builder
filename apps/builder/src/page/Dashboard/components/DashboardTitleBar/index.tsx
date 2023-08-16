@@ -8,12 +8,14 @@ import {
 } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import {
+  Button,
   Divider,
   DownIcon,
   Dropdown,
   Input,
+  PlusIcon,
   SearchIcon,
   TabPane,
   Tabs,
@@ -38,9 +40,11 @@ import { isCloudVersion } from "@/utils/typeHelper"
 import {
   aiAgentBetaStyle,
   containerStyle,
+  createAgentStyle,
   expandStyle,
   navBarAvatarContainerStyle,
   navBarLogoContainerStyle,
+  searchIconStyle,
   settingBodyStyle,
   settingItemStyle,
   settingListStyle,
@@ -106,6 +110,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
   const { loadingCallBack } = props
 
   const { t } = useTranslation()
+  const { teamIdentifier } = useParams()
   const userInfo = useSelector(getCurrentUser)
   const teamInfo = useSelector(getCurrentTeamInfo)
   let navigate = useNavigate()
@@ -169,6 +174,10 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
     [handleSearchAgent],
   )
 
+  const handleCreateAgent = useCallback(() => {
+    navigate(`/${teamIdentifier}/ai-agent`)
+  }, [navigate, teamIdentifier])
+
   return (
     <div css={tabsContainer}>
       <Tabs
@@ -189,12 +198,26 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
           <div css={navBarAvatarContainerStyle}>
             {isCloudVersion ? (
               isAgentTab && (
-                <Input
-                  w="240px"
-                  onPressEnter={onSearch}
-                  prefix={<SearchIcon />}
-                  colorScheme="techPurple"
-                />
+                <>
+                  <Input
+                    w="240px"
+                    bdRadius="20px"
+                    onPressEnter={onSearch}
+                    prefix={<SearchIcon containerStyle={searchIconStyle} />}
+                    placeholder={t("dashboard.search")}
+                    colorScheme="techPurple"
+                  />
+                  <Button
+                    ml="16px"
+                    colorScheme="black"
+                    className="create-agent"
+                    _css={createAgentStyle}
+                    leftIcon={<PlusIcon size="12px" />}
+                    onClick={handleCreateAgent}
+                  >
+                    {t("dashboard.create")}
+                  </Button>
+                </>
               )
             ) : (
               <Dropdown
@@ -221,6 +244,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
         }
         activeKey={pathList[pathList.length - 1]}
         css={containerStyle}
+        variant="line"
         withoutContent
         colorScheme="grayBlue"
         size="large"
