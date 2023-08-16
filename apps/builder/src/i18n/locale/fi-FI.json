@@ -76,7 +76,8 @@
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
       "delete-suc": "Poistettu onnistuneesti. "
-    }
+    },
+    "create": "Luo"
   },
   "dayjs": {
     "just_now": "Juuri nyt"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Ei kuvausta",
-      "blank": "Ei sovellusta"
+      "blank": "Ei sovellusta",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Sovelluksen asetus",
