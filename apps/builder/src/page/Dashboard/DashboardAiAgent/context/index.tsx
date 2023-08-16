@@ -39,6 +39,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
   canLoadBefore: boolean
   loadBeforeMarketAgent: () => void
   loadMoreMarketAgent: () => void
+  isFilteredResult: boolean
 }
 
 export const MARKET_INITIAL_PAGE = 1
@@ -184,6 +185,12 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
     setLoadMore(false)
   }, [dispatch, loadMore, keyword, marketListPage, sort])
 
+  const isFilteredResult = useMemo(() => {
+    return agentType === "market"
+      ? sort !== PRODUCT_SORT_BY.STARRED || keyword !== ""
+      : keyword !== ""
+  }, [agentType, keyword, sort])
+
   const value = {
     agentType,
     teamAgentList,
@@ -196,6 +203,7 @@ export const AiAgentProvider: FC<ProviderProps> = (props) => {
     handleAgentTypeChange,
     loadMoreMarketAgent,
     loadBeforeMarketAgent,
+    isFilteredResult,
   }
 
   return (

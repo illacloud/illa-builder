@@ -3,18 +3,20 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import {
+  Button,
   Empty,
   EmptyIcon,
   Loading,
+  PlusIcon,
   RadioGroup,
-  globalColor,
-  illaPrefix,
+  getColor,
 } from "@illa-design/react"
 import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
 import Select from "@/illa-public-market-component/Select"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
 import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
+  emptyStyle,
   listContainerStyle,
   listFilterContainerStyle,
   loadingStyle,
@@ -42,6 +44,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
     teamAgentList,
     agentType,
     sortedBy,
+    isFilteredResult,
     onChangeSort,
     handleAgentTypeChange,
     loadBeforeMarketAgent,
@@ -82,6 +85,10 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
     [navigate, teamIdentifier],
   )
 
+  const handleCreateAgent = useCallback(() => {
+    navigate(`/${teamIdentifier}/ai-agent`)
+  }, [navigate, teamIdentifier])
+
   const noData = useMemo(() => {
     return (
       (agentType === "market" && marketAgentList.length === 0) ||
@@ -118,13 +125,28 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
       ) : noData ? (
         <Empty
           paddingVertical="120px"
-          icon={
-            <EmptyIcon
-              size="48px"
-              color={globalColor(`--${illaPrefix}-grayBlue-02`)}
-            />
+          icon={<EmptyIcon size="48px" color={getColor("grayBlue", "02")} />}
+          description={
+            isFilteredResult ? (
+              <div css={emptyStyle}>
+                <div>{t("new_dashboard.desc.blank-agent")}</div>
+              </div>
+            ) : (
+              <div css={emptyStyle}>
+                <div>{t("new_dashboard.desc.blank-agent")}</div>
+                <div>
+                  <Button
+                    colorScheme="grayBlue"
+                    loading={loading}
+                    leftIcon={<PlusIcon size="10px" />}
+                    onClick={handleCreateAgent}
+                  >
+                    {t("Create an Agent")}
+                  </Button>
+                </div>
+              </div>
+            )
           }
-          description={t("new_dashboard.desc.blank")}
         />
       ) : agentType === "market" ? (
         <div>

@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 import { agent_card_width } from "@/illa-public-market-component/MarketAgentCard/style"
 
 export const containerStyle = css`
@@ -69,6 +69,17 @@ export const loadingStyle = css`
   align-items: center;
   width: 100%;
   height: 100%;
+`
+
+export const emptyStyle = css`
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-weight: 600;
+  line-height: 22px;
 `
 
 export const moreDataStyle = css`
