@@ -76,7 +76,8 @@
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
       "delete-suc": "Usunięto pomyślnie. "
-    }
+    },
+    "create": "Utwórz"
   },
   "dayjs": {
     "just_now": "Właśnie teraz"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Brak opisu",
-      "blank": "Brak aplikacji"
+      "blank": "Brak aplikacji",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Ustawienia aplikacji",
