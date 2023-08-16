@@ -76,7 +76,8 @@
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
       "delete-suc": "Successfully deleted. "
-    }
+    },
+    "create": "Create"
   },
   "dayjs": {
     "just_now": "단지"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "No description",
-      "blank": "No application"
+      "blank": "No application",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "App setting",
