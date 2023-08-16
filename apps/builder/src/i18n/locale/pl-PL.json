@@ -3939,7 +3939,8 @@
       "update_suc": "Pomyślnie zaktualizowano"
     },
     "button": {
-      "blank": "Utwórz swoją pierwszą aplikację"
+      "blank": "Utwórz swoją pierwszą aplikację",
+      "blank-agent": "Utwórz agenta AI"
     }
   },
   "new_deploy": {
