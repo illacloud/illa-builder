@@ -55,6 +55,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                       actionType: item,
                       displayName,
                       content: initialContent,
+                      isVirtualResource: false,
                       ...actionItemInitial,
                     }
                     if (isGuideMode) {

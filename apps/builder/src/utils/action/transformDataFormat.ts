@@ -22,10 +22,7 @@ import {
   BooleanValueMap,
 } from "@/redux/currentApp/action/huggingFaceAction"
 import { Params } from "@/redux/resource/restapiResource"
-import { getCurrentId } from "@/redux/team/teamSelector"
-import store from "@/store"
 import { isObject } from "@/utils/typeHelper"
-import { getAuthToken } from "../auth"
 
 const getAppwriteFilterValue = (value: string) => {
   const val = value.trim().replace(/^\[|\]$/g, "")
@@ -35,7 +32,6 @@ const getAppwriteFilterValue = (value: string) => {
 export const transformDataFormat = (
   actionType: ActionType,
   contents: Record<string, any>,
-  resourceId: string,
 ) => {
   switch (actionType) {
     case "smtp": {
@@ -277,14 +273,6 @@ export const transformDataFormat = (
                   : bulkDeleteConfig.recordIds,
             },
           }
-      }
-    }
-    case "aiagent": {
-      return {
-        ...contents,
-        aiAgentID: resourceId,
-        teamID: getCurrentId(store.getState()),
-        authorization: getAuthToken(),
       }
     }
     default:

@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
+import { AGENT_LIST_HEIGHT } from "../../constants"
 
 export const emptyContainerStyle = css`
   width: 100%;
@@ -8,8 +9,8 @@ export const emptyContainerStyle = css`
   align-items: center;
   justify-content: center;
   gap: 4px;
+  height: ${AGENT_LIST_HEIGHT}px;
 `
-
 export const emptyTipsStyle = css`
   text-align: center;
   font-size: 14px;

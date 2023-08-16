@@ -12,7 +12,7 @@ import { RecordEditor } from "@/components/RecordEditor"
 import { AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL } from "@/redux/aiAgent/aiAgentState"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
+import { BaseAiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { AIAgentResourceChoose } from "../AIAgentResourceChoose"
@@ -27,7 +27,7 @@ const AIAgentPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const aiAgentContent = currentAction.content as AiAgentActionContent
+  const aiAgentContent = currentAction.content as BaseAiAgentActionContent
 
   const handleChangeInput = useCallback(
     (value: string) => {
