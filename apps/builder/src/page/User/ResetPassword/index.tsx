@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { fetchUpdatePassword } from "@/services/auth"
+import { sendEmail } from "@/services/users"
 import { mobileAdaptationStyle } from "@/style"
 import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
@@ -69,6 +70,10 @@ const ResetPassword: FC = () => {
     setSubmitLoading(false)
   }
 
+  const handleSendEmail = (email: string) => {
+    return sendEmail(email, "forgetpwd")
+  }
+
   return (
     <MixpanelTrackProvider
       basicTrack={track}
@@ -76,10 +81,10 @@ const ResetPassword: FC = () => {
     >
       <Global styles={mobileAdaptationStyle} />
       <ResetPasswordPage
-      // loading={submitLoading}
-      // errorMsg={errorMsg}
-      // onSubmit={onSubmit}
-      // sendEmail={sendEmail}
+        loading={submitLoading}
+        errorMsg={errorMsg}
+        onSubmit={onSubmit}
+        sendEmail={handleSendEmail}
       />
     </MixpanelTrackProvider>
   )

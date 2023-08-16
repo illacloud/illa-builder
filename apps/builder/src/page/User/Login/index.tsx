@@ -88,9 +88,9 @@ const UserLogin: FC = () => {
     >
       <Global styles={mobileAdaptationStyle} />
       <LoginPage
-      // loading={submitLoading}
-      // errorMsg={errorMsg}
-      // onSubmit={onSubmit}
+        loading={submitLoading}
+        errorMsg={errorMsg}
+        onSubmit={onSubmit}
       />
     </MixpanelTrackProvider>
   )

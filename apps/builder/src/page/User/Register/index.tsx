@@ -16,7 +16,7 @@ import { useMessage } from "@illa-design/react"
 import { formatLanguage } from "@/i18n/config"
 import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
 import { fetchSignUp } from "@/services/auth"
-// import { sendEmail } from "@/services/users"
+import { sendEmail } from "@/services/users"
 import { mobileAdaptationStyle } from "@/style"
 import { track } from "@/utils/mixpanelHelper"
 import { ILLABuilderStorage } from "@/utils/storage"
@@ -103,6 +103,10 @@ const UserRegister: FC = () => {
     setSubmitLoading(false)
   }
 
+  const handleSendEmail = (email: string) => {
+    return sendEmail(email, "signup")
+  }
+
   return (
     <MixpanelTrackProvider
       basicTrack={track}
@@ -110,10 +114,10 @@ const UserRegister: FC = () => {
     >
       <Global styles={mobileAdaptationStyle} />
       <RegisterPage
-      // loading={submitLoading}
-      // errorMsg={errorMsg}
-      // onSubmit={onSubmit}
-      // sendEmail={sendEmail}
+        loading={submitLoading}
+        errorMsg={errorMsg}
+        onSubmit={onSubmit}
+        sendEmail={handleSendEmail}
       />
     </MixpanelTrackProvider>
   )
