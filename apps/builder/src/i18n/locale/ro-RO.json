@@ -76,7 +76,8 @@
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. "
-    }
+    },
+    "create": "Crează"
   },
   "dayjs": {
     "just_now": "Chiar acum"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Nici o descriere",
-      "blank": "Nicio cerere"
+      "blank": "Nicio cerere",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Setare aplicație",
