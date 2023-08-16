@@ -2,19 +2,19 @@ import { CSSProperties, FC, MouseEvent, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
-import { calculateStyle } from "@/illa-public-market-component/MarketAgentCard"
+import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
+import { Agent } from "@/redux/aiAgent/aiAgentState"
 import {
   agentIconStyle,
+  appActionButtonStyle,
   applyHiddenStyle,
+  cardStyle,
   descriptionStyle,
   footerStyle,
   headerStyle,
   nameStyle,
   titleInfoStyle,
-} from "@/illa-public-market-component/MarketAgentCard/style"
-import { TeamAgentCardActionItem } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard/TeamAgentCardActionItem"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
-import { appActionButtonStyle, cardStyle } from "./style"
+} from "./style"
 
 interface TeamAgentCardProps {
   agentInfo: Agent
@@ -42,7 +42,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   )
 
   return (
-    <div css={cardStyle} style={calculateStyle(style)} onClick={onCardClick}>
+    <div css={cardStyle} style={style} onClick={onCardClick}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <img css={agentIconStyle} src={agentInfo.icon} alt="" />
