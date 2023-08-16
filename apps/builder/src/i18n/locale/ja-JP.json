@@ -76,7 +76,8 @@
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
       "delete-suc": "正常に削除しました。 "
-    }
+    },
+    "create": "作成"
   },
   "dayjs": {
     "just_now": "ただ"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "説明がありません",
-      "blank": "アプリケーションがありません"
+      "blank": "アプリケーションがありません",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "アプリの設定",
