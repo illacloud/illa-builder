@@ -76,7 +76,8 @@
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
       "delete-suc": "Excluído com sucesso. "
-    }
+    },
+    "create": "Crio"
   },
   "dayjs": {
     "just_now": "Agora há pouco"
@@ -3916,7 +3917,8 @@
     },
     "desc": {
       "no_description": "Sem descrição",
-      "blank": "Nenhum aplicativo"
+      "blank": "Nenhum aplicativo",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Configuração do aplicativo",
