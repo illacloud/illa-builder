@@ -126,7 +126,7 @@ const DashboardAiAgent: FC = () => {
             leftIcon={<PlusIcon size="12px" />}
             onClick={handleCreateAgent}
           >
-            {t("Create an Agent")}
+            {t("create_new")}
           </Button>
         ) : null}
       </div>

@@ -14,6 +14,7 @@ import {
 import { MarketAgentCard } from "@/illa-public-market-component/MarketAgentCard"
 import Select from "@/illa-public-market-component/Select"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
+import SearchEmptyIcon from "@/page/Dashboard/DashboardAiAgent/assets/search-empty"
 import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import {
   emptyStyle,
@@ -125,7 +126,13 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
       ) : noData ? (
         <Empty
           paddingVertical="120px"
-          icon={<EmptyIcon size="48px" color={getColor("grayBlue", "02")} />}
+          icon={
+            isFilteredResult ? (
+              <SearchEmptyIcon size="48px" color={getColor("grayBlue", "02")} />
+            ) : (
+              <EmptyIcon size="48px" color={getColor("grayBlue", "02")} />
+            )
+          }
           description={
             isFilteredResult ? (
               <div css={emptyStyle}>
@@ -141,7 +148,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
                     leftIcon={<PlusIcon size="10px" />}
                     onClick={handleCreateAgent}
                   >
-                    {t("Create an Agent")}
+                    {t("new_dashboard.button.blank-agent")}
                   </Button>
                 </div>
               </div>
