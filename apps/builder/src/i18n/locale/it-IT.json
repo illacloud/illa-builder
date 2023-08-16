@@ -3939,7 +3939,8 @@
       "update_suc": "Aggiornato correttamente"
     },
     "button": {
-      "blank": "Crea la tua prima app"
+      "blank": "Crea la tua prima app",
+      "blank-agent": "Crea Agente AI"
     }
   },
   "new_deploy": {
