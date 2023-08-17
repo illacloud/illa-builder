@@ -21,7 +21,7 @@ type ProductTypeMapping = {
 }
 
 export enum PRODUCT_SORT_BY {
-  POPULARITY = "popularity",
+  POPULARITY = "popular",
   TIME = "time",
   STARRED = "starred",
 }
