@@ -3314,7 +3314,8 @@
       "cancel": "Annulla"
     },
     "status": {
-      "pending": "In Attesa"
+      "pending": "In Attesa",
+      "current-user": "Tu"
     },
     "settings": {
       "allow_editors_invite": "Consenti agli editori e agli spettatori di gestire i membri",
