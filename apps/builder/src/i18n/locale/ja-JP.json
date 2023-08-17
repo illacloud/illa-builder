@@ -76,7 +76,8 @@
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
       "delete-suc": "正常に削除しました。 "
-    }
+    },
+    "create": "作成"
   },
   "dayjs": {
     "just_now": "ただ"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Colla不足",
         "start-failed": "開始に失敗しました。もう一度やり直してください。 ",
         "reconnect": "接続が失われました。再接続中...",
-        "token-not-enough": "モデルの上限に達しました。再起動してください。"
+        "token-not-enough": "モデルの上限に達しました。再起動してください。",
+        "token": "Maxトークンの現在の値が低いため、結果が不完全になる可能性があります。"
       },
       "title": "🧬 AI エージェントの編集",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} が「{{チーム名}}」に参加するよう招待しています。 リンクをクリックしてチームに参加します: {{inviteLink}}",
       "tips": {
         "license_insufficient": "残りのライセンス"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} が「{{teamName}}」のAIエージェントを共有しました。リンクをクリックしてチームに参加し、AIエージェントを試してみてください: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "招待しました",
@@ -3311,7 +3314,8 @@
       "cancel": "キャンセル"
     },
     "status": {
-      "pending": "処理待ち"
+      "pending": "処理待ち",
+      "current-user": "あなたです"
     },
     "settings": {
       "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "説明がありません",
-      "blank": "アプリケーションがありません"
+      "blank": "アプリケーションがありません",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "アプリの設定",
@@ -3935,7 +3940,8 @@
       "update_suc": "正常に更新されました"
     },
     "button": {
-      "blank": "最初のアプリを作成する"
+      "blank": "最初のアプリを作成する",
+      "blank-agent": "AIエージェントを作成"
     }
   },
   "new_deploy": {

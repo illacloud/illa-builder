@@ -76,7 +76,8 @@
       "fork-suc": "Erfolgreich geforkt.",
       "delete-failed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut. ",
       "delete-suc": "Erfolgreich gelöscht. "
-    }
+    },
+    "create": "Anlegen"
   },
   "dayjs": {
     "just_now": "Gerade jetzt"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Unzureichende Colla",
         "start-failed": "Start fehlgeschlagen. Bitte versuchen Sie es erneut. ",
         "reconnect": "Verbindung verloren. Wiederverbindung im Gange.",
-        "token-not-enough": "Modelllimit erreicht. Bitte neu starten."
+        "token-not-enough": "Modelllimit erreicht. Bitte neu starten.",
+        "token": "Der aktuelle Wert von Max Token ist niedrig, was unvollständige Ergebnisse verursachen kann."
       },
       "title": "🧬 KI-Agent bearbeiten",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} lädt Sie ein, 「{{teamName}}」beizutreten. Klicken Sie auf den Link, um dem Team beizutreten: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Verbleibende Lizenzen"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} hat dir einen AI Agent von <unk>{{teamName}}<unk> geteilt. Klicke auf den Link, um dem Team beizutreten und versuche den AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Erfolgreich eingeladen",
@@ -3311,7 +3314,8 @@
       "cancel": "Abbrechen"
     },
     "status": {
-      "pending": "Ausstehend"
+      "pending": "Ausstehend",
+      "current-user": "Du"
     },
     "settings": {
       "allow_editors_invite": "Redakteure und Betrachter die Verwaltung von Mitgliedern erlauben",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Keine Beschreibung",
-      "blank": "Keine Anwendung"
+      "blank": "Keine Anwendung",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "App-Einstellung",
@@ -3935,7 +3940,8 @@
       "update_suc": "Erfolgreich aktualisiert"
     },
     "button": {
-      "blank": "Erstelle deine erste App"
+      "blank": "Erstelle deine erste App",
+      "blank-agent": "KI-Agent erstellen"
     }
   },
   "new_deploy": {

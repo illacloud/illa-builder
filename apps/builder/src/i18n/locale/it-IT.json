@@ -76,7 +76,8 @@
       "fork-suc": "Forked con successo.",
       "delete-failed": "Eliminazione non riuscita. Riprova. ",
       "delete-suc": "Eliminato con successo. "
-    }
+    },
+    "create": "Crea"
   },
   "dayjs": {
     "just_now": "Proprio ora"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Colla Insufficiente",
         "start-failed": "Impossibile iniziare. Per favore riprova. ",
         "reconnect": "Connessione persa. Riconnessione in corso.",
-        "token-not-enough": "Limite del modello raggiunto. Riavviare."
+        "token-not-enough": "Limite del modello raggiunto. Riavviare.",
+        "token": "Il valore attuale di Max token è basso, il che può causare risultati restituiti incompleti."
       },
       "title": "🧬 Modifica Agente AI",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} ti invita ad unirti a 「{{teamName}}」. Clicca sul link per unirti alla squadra: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Licenze rimanenti"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} ti ha condiviso un agente AI di <unk>{{teamName}}<unk> . Clicca il link per unirti alla squadra e prova l'agente AI: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invitato con successo",
@@ -3311,7 +3314,8 @@
       "cancel": "Annulla"
     },
     "status": {
-      "pending": "In Attesa"
+      "pending": "In Attesa",
+      "current-user": "Tu"
     },
     "settings": {
       "allow_editors_invite": "Consenti agli editori e agli spettatori di gestire i membri",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Nessuna descrizione",
-      "blank": "Nessuna applicazione"
+      "blank": "Nessuna applicazione",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Impostazioni app",
@@ -3935,7 +3940,8 @@
       "update_suc": "Aggiornato correttamente"
     },
     "button": {
-      "blank": "Crea la tua prima app"
+      "blank": "Crea la tua prima app",
+      "blank-agent": "Crea Agente AI"
     }
   },
   "new_deploy": {

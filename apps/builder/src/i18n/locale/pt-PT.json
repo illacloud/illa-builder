@@ -76,7 +76,8 @@
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
       "delete-suc": "Excluído com sucesso. "
-    }
+    },
+    "create": "Crio"
   },
   "dayjs": {
     "just_now": "Agora há pouco"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Colla Insuficiente",
         "start-failed": "Falha ao iniciar. Por favor, tente novamente. ",
         "reconnect": "Conexão perdida. Reconexão em progresso.",
-        "token-not-enough": "Limite de modelos atingido. Por favor reinicie."
+        "token-not-enough": "Limite de modelos atingido. Por favor reinicie.",
+        "token": "O valor atual do Max de tokens é baixo, o que pode causar resultados incompletos retornados."
       },
       "title": "🧬 Editar Agente IA",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} convida você para entrar no 「{{teamName}}」. Clique no link para entrar na equipe: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Licenças restantes"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} compartilhou um Agente de I{{teamName}}para você. Clique no link para participar da equipe e experimente o Agente de IA: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Convidado com sucesso",
@@ -3311,7 +3314,8 @@
       "cancel": "cancelar"
     },
     "status": {
-      "pending": "PENDENTE"
+      "pending": "PENDENTE",
+      "current-user": "Tu"
     },
     "settings": {
       "allow_editors_invite": "Permitir que editores e espectadores gerenciem membros",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Sem descrição",
-      "blank": "Nenhum aplicativo"
+      "blank": "Nenhum aplicativo",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Configuração do aplicativo",
@@ -3935,7 +3940,8 @@
       "update_suc": "Atualizado com Sucesso"
     },
     "button": {
-      "blank": "Crie seu primeiro aplicativo"
+      "blank": "Crie seu primeiro aplicativo",
+      "blank-agent": "Criar Agente IA"
     }
   },
   "new_deploy": {

@@ -76,7 +76,8 @@
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
       "delete-suc": "Sletting vellykket. "
-    }
+    },
+    "create": "Opprett"
   },
   "dayjs": {
     "just_now": "Nå nettopp"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Utilstrekkelig Colla",
         "start-failed": "Kunne ikke starte. Vennligst prøv igjen. ",
         "reconnect": "Forbindelsen ble brutt. Rekonstituering pågår.",
-        "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt."
+        "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt.",
+        "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} inviterer deg til å bli med i 「{{teamName}}」. Klikk på lenken for å bli med i teamet: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Gjenstående lisenser"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} delte deg en AI agent:{{teamName}}ε. Klikk på lenken for å bli med i laget og prøv AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invitert vellykket",
@@ -3311,7 +3314,8 @@
       "cancel": "Avbryt"
     },
     "status": {
-      "pending": "Ventende"
+      "pending": "Ventende",
+      "current-user": "Du"
     },
     "settings": {
       "allow_editors_invite": "Tillat redaktører og seere å administrere medlemmer",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Ingen beskrivelse",
-      "blank": "Ingen programmer"
+      "blank": "Ingen programmer",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Innstillinger for app",
@@ -3935,7 +3940,8 @@
       "update_suc": "Oppdatering ferdig"
     },
     "button": {
-      "blank": "Opprett din første app"
+      "blank": "Opprett din første app",
+      "blank-agent": "Lag AI-Agent"
     }
   },
   "new_deploy": {

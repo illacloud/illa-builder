@@ -76,7 +76,8 @@
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. "
-    }
+    },
+    "create": "Aanmaken"
   },
   "dayjs": {
     "just_now": "Op dit moment"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Onvoldoende Colla",
         "start-failed": "Starten mislukt. Probeer het opnieuw. ",
         "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
-        "token-not-enough": "Model limiet bereikt. Start opnieuw."
+        "token-not-enough": "Model limiet bereikt. Start opnieuw.",
+        "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten."
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} nodigt je uit om lid te worden van 「{{teamName}}」. Klik op de link om lid te worden van het team: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Resterende licenties"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Succesvol uitgenodigd",
@@ -3311,7 +3314,8 @@
       "cancel": "annuleren"
     },
     "status": {
-      "pending": "Lopende"
+      "pending": "Lopende",
+      "current-user": "Jij"
     },
     "settings": {
       "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Geen beschrijving",
-      "blank": "Geen toepassing"
+      "blank": "Geen toepassing",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "App instelling",
@@ -3935,7 +3940,8 @@
       "update_suc": "Succesvol geüpdatet"
     },
     "button": {
-      "blank": "Maak je eerste app"
+      "blank": "Maak je eerste app",
+      "blank-agent": "Maak AI Agent"
     }
   },
   "new_deploy": {

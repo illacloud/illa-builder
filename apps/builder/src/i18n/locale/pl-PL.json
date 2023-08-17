@@ -76,7 +76,8 @@
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
       "delete-suc": "Usunięto pomyślnie. "
-    }
+    },
+    "create": "Utwórz"
   },
   "dayjs": {
     "just_now": "Właśnie teraz"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Niewystarczająca ilość Colla",
         "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. ",
         "reconnect": "Połączenie zostało utracone. Trwa ponowne połączenie.",
-        "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie."
+        "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie.",
+        "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki."
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} zaprasza Cię do dołączenia do 「{{teamName}}」. Kliknij link, aby dołączyć do drużyny: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Pozostałe licencje"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} podzielił się z tobą Agentem AI z <unk>{{teamName}}. Kliknij na link, aby dołączyć do zespołu i wypróbuj Agenta AI: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Zaproszono pomyślnie",
@@ -3311,7 +3314,8 @@
       "cancel": "Anuluj"
     },
     "status": {
-      "pending": "Oczekujące"
+      "pending": "Oczekujące",
+      "current-user": "Ty"
     },
     "settings": {
       "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Brak opisu",
-      "blank": "Brak aplikacji"
+      "blank": "Brak aplikacji",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Ustawienia aplikacji",
@@ -3935,7 +3940,8 @@
       "update_suc": "Pomyślnie zaktualizowano"
     },
     "button": {
-      "blank": "Utwórz swoją pierwszą aplikację"
+      "blank": "Utwórz swoją pierwszą aplikację",
+      "blank-agent": "Utwórz agenta AI"
     }
   },
   "new_deploy": {
