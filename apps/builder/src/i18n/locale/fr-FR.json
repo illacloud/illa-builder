@@ -72,7 +72,7 @@
       "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
       "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
       "fork-failed": "Échec du fork, veuillez réessayer.",
-      "create-suc": "Sauvegardé avec succès",
+      "create-suc": "Échec de la création, veuillez réessayer.",
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
       "delete-suc": "Supprimé avec succès. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "ID de la feuille à copier",
             "sheet_to_copy_to": "Feuille à copier vers",
             "authentication": "Authentification",
-            "connect_with_oauth": "Se connecter avec Google",
+            "connect_with_oauth": "Se connecter avec OAuth & Enregistrer",
             "reconnect_with_oauth": "Reconnecter avec OAuth",
             "access_type": "Type d'accès"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Donner un nom à l'agent",
         "desc": "Fournir une brève description de ce à quoi cet agent est destiné à être utilisé.",
-        "prompt": "Entrez {{variableName}} pour utiliser une variable",
+        "prompt": "Entrez {{ pour utiliser une variable",
         "variable": {
           "key": "Nom de la variable",
           "value": "Valeur"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Cliquez sur le bouton Démarrer pour déclencher.",
-        "insufficient_token": "Colla Insuffisante",
+        "insufficient_token": "Jeton insuffisant",
         "start-failed": "Impossible de démarrer. Veuillez réessayer. ",
         "reconnect": "Connexion perdue. Reconnexion en cours.",
         "token-not-enough": "Limite du modèle atteinte. Veuillez recommencer.",
