@@ -3314,7 +3314,8 @@
       "cancel": "キャンセル"
     },
     "status": {
-      "pending": "処理待ち"
+      "pending": "処理待ち",
+      "current-user": "あなたです"
     },
     "settings": {
       "allow_editors_invite": "編集者と閲覧者がメンバーを管理できるようにします",
