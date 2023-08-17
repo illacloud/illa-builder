@@ -5,6 +5,10 @@ import {
   ILLA_MIXPANEL_PUBLIC_PAGE_NAME,
 } from "@illa-public/mixpanel-utils"
 import {
+  UpgradeDrawerGroup,
+  UpgradeModalGroup,
+} from "@illa-public/upgrade-modal"
+import {
   getCurrentConfigLanguage,
   getCurrentTranslateLanguage,
 } from "@illa-public/user-data"
@@ -69,6 +73,8 @@ function App() {
           <ConfigProvider locale={configLanguage}>
             <Global styles={globalStyle} />
             <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+            <UpgradeDrawerGroup />
+            <UpgradeModalGroup />
             <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
             <ModalGroup />
             <RouterProvider router={ILLARoute} />

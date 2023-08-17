@@ -1,16 +1,8 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
-import {
-  FC,
-  ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from "react"
 import { useHotkeys } from "react-hotkeys-hook"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -59,7 +51,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
   const executionResult = useSelector(getExecutionResult)
   const showShadows = useSelector(isShowDot)
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   // shortcut
   const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
@@ -357,7 +349,9 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleSaveToHistory = useCallback(async () => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
     } else if (appId) {
       if (saveLoading) return
       setSaveLoading(true)
@@ -374,14 +368,7 @@ export const Shortcut: FC<{ children: ReactNode }> = ({ children }) => {
         setSaveLoading(false)
       }
     }
-  }, [
-    canUseBillingFeature,
-    handleUpgradeModalVisible,
-    saveLoading,
-    appId,
-    message,
-    t,
-  ])
+  }, [appId, canUseBillingFeature, message, saveLoading, t, upgradeModal])
 
   useHotkeys(
     `${isMAC() ? Key.Meta : Key.Control}+s`,

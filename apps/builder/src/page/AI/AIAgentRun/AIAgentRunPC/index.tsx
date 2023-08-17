@@ -2,14 +2,14 @@ import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
 import { UpgradeIcon } from "@illa-public/icon"
 import { RecordEditor } from "@illa-public/record-editor"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { FC, useContext, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -62,7 +62,6 @@ import {
   rightPanelContainerStyle,
 } from "./style"
 
-
 export const AIAgentRunPC: FC = () => {
   const { agent, marketplaceInfo } = useAsyncValue() as {
     agent: Agent
@@ -87,9 +86,9 @@ export const AIAgentRunPC: FC = () => {
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
+  const upgradeModal = useUpgradeModal()
 
   // premium dialog
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
   const canUseBillingFeature = canUseUpgradeFeature(
     currentTeamInfo?.myRole,
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
@@ -447,7 +446,9 @@ export const AIAgentRunPC: FC = () => {
                 data.model !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
                 !canUseBillingFeature
               ) {
-                handleUpgradeModalVisible(true, "agent")
+                upgradeModal({
+                  modalType: "agent",
+                })
                 return
               }
               reset(data)

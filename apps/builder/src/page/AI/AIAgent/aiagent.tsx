@@ -2,7 +2,7 @@ import { CodeEditor } from "@illa-public/code-editor"
 import { AvatarUpload } from "@illa-public/cropper"
 import { UpgradeIcon } from "@illa-public/icon"
 import { RecordEditor } from "@illa-public/record-editor"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import {
@@ -10,7 +10,7 @@ import {
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
 import { isEqual } from "lodash"
-import { FC, useCallback, useContext, useMemo, useState } from "react"
+import { FC, useCallback, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -95,6 +95,7 @@ export const AIAgent: FC = () => {
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
 
   const message = useMessage()
+  const upgradeModal = useUpgradeModal()
   // page state
   const [generateDescLoading, setGenerateDescLoading] = useState(false)
   const [generateIconLoading, setGenerateIconLoading] = useState(false)
@@ -110,7 +111,6 @@ export const AIAgent: FC = () => {
   const [lastRunAgent, setLastRunAgent] = useState<Agent | undefined>()
 
   // premium dialog
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
   const canUseBillingFeature = canUseUpgradeFeature(
     currentTeamInfo?.myRole,
     currentTeamInfo?.totalTeamLicense?.teamLicensePurchased,
@@ -556,7 +556,9 @@ export const AIAgent: FC = () => {
                           value !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
                           !canUseBillingFeature
                         ) {
-                          handleUpgradeModalVisible(true, "agent")
+                          upgradeModal({
+                            modalType: "agent",
+                          })
                           return
                         }
                         field.onChange(value)
@@ -744,7 +746,9 @@ export const AIAgent: FC = () => {
                     getValues("model") !== AI_AGENT_MODEL.GPT_3_5_TURBO &&
                     !canUseBillingFeature
                   ) {
-                    handleUpgradeModalVisible(true, "agent")
+                    upgradeModal({
+                      modalType: "agent",
+                    })
                     return
                   }
                   isRunning

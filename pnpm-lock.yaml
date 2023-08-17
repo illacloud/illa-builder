@@ -180,9 +180,9 @@ importers:
       '@illa-public/sso-module':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/SSOModule
-      '@illa-public/upgrade-cloud-provider':
+      '@illa-public/upgrade-modal':
         specifier: workspace:*
-        version: link:../../packages/illa-public-component/UpgradeCloudProvider
+        version: link:../../packages/illa-public-component/UpgradeModal
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/UserData

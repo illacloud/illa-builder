@@ -1,5 +1,5 @@
 import { UpgradeIcon } from "@illa-public/icon"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
 import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import {
@@ -13,7 +13,6 @@ import {
   MouseEvent,
   Suspense,
   useCallback,
-  useContext,
   useEffect,
   useState,
 } from "react"
@@ -68,7 +67,7 @@ export const Deploy: FC = () => {
 
   const data = useLoaderData()
   const { appId } = useParams()
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   const [popupVisible, setPopupVisible] = useState<boolean>()
 
@@ -106,9 +105,11 @@ export const Deploy: FC = () => {
 
   const handleUpgradeModal = useCallback(() => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
     }
-  }, [canUseBillingFeature, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, upgradeModal])
 
   useEffect(() => {
     document.title = currentApp.appName

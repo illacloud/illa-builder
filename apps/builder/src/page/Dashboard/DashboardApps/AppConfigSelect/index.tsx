@@ -3,11 +3,11 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
-import { FC, ReactNode, useContext, useMemo, useState } from "react"
+import { FC, ReactNode, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DownIcon, SuccessIcon, Tag, Trigger, UpIcon } from "@illa-design/react"
@@ -35,7 +35,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
   const dispatch = useDispatch()
 
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   const [popupVisible, setPopupVisible] = useState<boolean>()
 
@@ -148,7 +148,9 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
                 key={index}
                 onClick={() => {
                   if (isCloudVersion && !canUseBillingFeature) {
-                    handleUpgradeModalVisible(true, "upgrade")
+                    upgradeModal({
+                      modalType: "upgrade",
+                    })
                     return
                   }
                   onVisibleChange(false)
