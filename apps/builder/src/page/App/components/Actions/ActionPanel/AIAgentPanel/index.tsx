@@ -1,18 +1,15 @@
-import { FC, useCallback } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Input, InputNumber } from "@illa-design/react"
 import { ReactComponent as ModalOpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
-import {
-  CODE_LANG,
-  CODE_TYPE,
-} from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/components/RecordEditor"
 import { AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL } from "@/redux/aiAgent/aiAgentState"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { BaseAiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
+import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { AIAgentResourceChoose } from "../AIAgentResourceChoose"
@@ -27,7 +24,7 @@ const AIAgentPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const aiAgentContent = currentAction.content as BaseAiAgentActionContent
+  const aiAgentContent = currentAction.content as AiAgentActionContent
 
   const handleChangeInput = useCallback(
     (value: string) => {
@@ -61,6 +58,36 @@ const AIAgentPanel: FC = () => {
     [aiAgentContent, currentAction, dispatch],
   )
 
+  const variables = useMemo(() => {
+    const resourcesKeys = aiAgentContent.virtualResource.variables.map(
+      (item) => item.key,
+    )
+
+    const resourcesKeyValues = aiAgentContent.virtualResource.variables.reduce(
+      (acc, cur) => {
+        acc[cur.key] = cur.value
+        return acc
+      },
+      {} as Record<string, string>,
+    )
+
+    const currentActionKeyValues = aiAgentContent.variables.reduce(
+      (acc, cur) => {
+        acc[cur.key] = cur.value
+        return acc
+      },
+      {} as Record<string, string>,
+    )
+
+    const variable = resourcesKeys.map((item) => {
+      return {
+        key: item,
+        value: currentActionKeyValues[item] || resourcesKeyValues[item] || "",
+      }
+    })
+    return variable
+  }, [aiAgentContent.variables, aiAgentContent.virtualResource.variables])
+
   return (
     <div>
       <AIAgentResourceChoose />
@@ -70,12 +97,16 @@ const AIAgentPanel: FC = () => {
           prefix={<ModalOpenAIIcon />}
           colorScheme="techPurple"
           readOnly
-          value={AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL[aiAgentContent.model]}
+          value={
+            AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL[
+              aiAgentContent.virtualResource.model
+            ]
+          }
         />
       </HorizontalWithLabel>
       <RecordEditor
         fillOnly
-        records={aiAgentContent.variables}
+        records={variables}
         onChangeValue={handleChangeVariableValue}
         label={t("editor.ai-agent.label.variable")}
       />
@@ -86,8 +117,6 @@ const AIAgentPanel: FC = () => {
           lang={CODE_LANG.JAVASCRIPT}
           expectValueType={VALIDATION_TYPES.STRING}
           modalTitle={t("editor.action.panel.label.ai-agent.input")}
-          codeType={CODE_TYPE.NO_METHOD_FUNCTION}
-          canShowCompleteInfo
           value={aiAgentContent.input}
           onChange={handleChangeInput}
         />
@@ -95,12 +124,13 @@ const AIAgentPanel: FC = () => {
       <HorizontalWithLabel labelName={t("editor.ai-agent.label.max-token")}>
         <InputNumber
           readOnly
-          value={aiAgentContent.modelConfig.maxTokens}
+          value={aiAgentContent.virtualResource.modelConfig.maxTokens}
           mode="button"
           colorScheme="techPurple"
           size="large"
           w="320px"
           css={maxTokenInputStyle}
+          hideControl
         />
       </HorizontalWithLabel>
       <TransformerComponent />
