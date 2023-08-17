@@ -3314,7 +3314,8 @@
       "cancel": "Anuluj"
     },
     "status": {
-      "pending": "Oczekujące"
+      "pending": "Oczekujące",
+      "current-user": "Ty"
     },
     "settings": {
       "allow_editors_invite": "Pozwól edytorom i widzom zarządzać członkami",
