@@ -3315,7 +3315,7 @@
     },
     "status": {
       "pending": "Väntande",
-      "current-user": "You"
+      "current-user": "Du"
     },
     "settings": {
       "allow_editors_invite": "Tillåt redaktörer och tittare att hantera medlemmar",
