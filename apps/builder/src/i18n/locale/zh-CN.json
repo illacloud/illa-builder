@@ -3314,7 +3314,8 @@
       "cancel": "取消"
     },
     "status": {
-      "pending": "等待处理"
+      "pending": "等待处理",
+      "current-user": "当前用户"
     },
     "settings": {
       "allow_editors_invite": "允许编辑者和浏览者管理成员",
