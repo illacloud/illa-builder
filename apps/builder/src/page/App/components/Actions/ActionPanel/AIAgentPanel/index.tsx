@@ -63,21 +63,22 @@ const AIAgentPanel: FC = () => {
       (item) => item.key,
     )
 
-    const resourcesKeyValues = aiAgentContent.virtualResource.variables.reduce(
-      (acc, cur) => {
-        acc[cur.key] = cur.value
-        return acc
-      },
-      {} as Record<string, string>,
-    )
+    let resourcesKeyValues: Record<string, string> = {}
+    if (aiAgentContent.virtualResource.variables.length > 0) {
+      aiAgentContent.virtualResource.variables.forEach((item) => {
+        if (!item) return
+        resourcesKeyValues[item.key] = item.value
+      })
+    }
 
-    const currentActionKeyValues = aiAgentContent.variables.reduce(
-      (acc, cur) => {
-        acc[cur.key] = cur.value
-        return acc
-      },
-      {} as Record<string, string>,
-    )
+    let currentActionKeyValues: Record<string, string> = {}
+
+    if (aiAgentContent.variables.length > 0) {
+      aiAgentContent.variables.forEach((item) => {
+        if (!item) return
+        currentActionKeyValues[item.key] = item.value
+      })
+    }
 
     const variable = resourcesKeys.map((item) => {
       return {
