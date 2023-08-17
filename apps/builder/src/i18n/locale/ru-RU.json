@@ -3314,7 +3314,8 @@
       "cancel": "Отмена"
     },
     "status": {
-      "pending": "В ожидании"
+      "pending": "В ожидании",
+      "current-user": "You"
     },
     "settings": {
       "allow_editors_invite": "Разрешить редакторам и зрителям управлять участниками",
