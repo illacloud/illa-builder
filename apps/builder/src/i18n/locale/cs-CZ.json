@@ -3314,7 +3314,8 @@
       "cancel": "Zrušit"
     },
     "status": {
-      "pending": "Nevyřízeno"
+      "pending": "Nevyřízeno",
+      "current-user": "Vy"
     },
     "settings": {
       "allow_editors_invite": "Povolit editorům a divákům spravovat členy",
