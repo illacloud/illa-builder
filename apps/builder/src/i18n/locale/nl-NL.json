@@ -3314,7 +3314,8 @@
       "cancel": "annuleren"
     },
     "status": {
-      "pending": "Lopende"
+      "pending": "Lopende",
+      "current-user": "Jij"
     },
     "settings": {
       "allow_editors_invite": "Sta bewerkers en kijkers toe om leden te beheren",
