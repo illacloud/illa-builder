@@ -1,8 +1,8 @@
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
-import { FC, MouseEvent, useCallback, useContext, useState } from "react"
+import { FC, MouseEvent, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -41,7 +41,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)!
 
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   const [shareVisible, setShareVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
@@ -62,11 +62,13 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
 
   const openInviteModal = useCallback(() => {
     if (isCloudVersion && !canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
       return
     }
     setShareVisible(true)
-  }, [canUseBillingFeature, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, upgradeModal])
 
   const handleDuplicateApp = () => {
     if (duplicateLoading) return

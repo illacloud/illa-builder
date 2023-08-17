@@ -1,5 +1,4 @@
 import { Global } from "@emotion/react"
-import { UpgradeCloudProvider } from "@illa-public/upgrade-cloud-provider"
 import { isCloudVersion } from "@illa-public/utils"
 import { createBrowserRouter } from "react-router-dom"
 import { LayoutAutoChange } from "@/components/LayoutAutoChange"
@@ -36,11 +35,6 @@ const wrappedRouter = (
           <Global styles={mobileAdaptationStyle} />
           {element}
         </>
-      )
-    }
-    if (isCloudVersion) {
-      newRouteItem.element = (
-        <UpgradeCloudProvider>{newRouteItem.element}</UpgradeCloudProvider>
       )
     }
     newRouteItem.loader = async (args) => {

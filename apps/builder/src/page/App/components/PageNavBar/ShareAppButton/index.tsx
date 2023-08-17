@@ -1,14 +1,14 @@
 import { UpgradeIcon } from "@illa-public/icon"
 import InviteModal from "@illa-public/invite-modal"
 import { INVITE_FROM } from "@illa-public/invite-modal/interface"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
-import { FC, useCallback, useContext, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, getColor } from "@illa-design/react"
 import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppButton/interface"
+import { useUpgradeModal } from '@illa-public/upgrade-modal'
 
 
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
@@ -17,17 +17,17 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
 
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   const [shareModalVisible, setShareModalVisible] = useState(false)
 
   const openInviteModal = useCallback(() => {
     if (isCloudVersion && !canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({modalType: 'upgrade'})
       return
     }
     setShareModalVisible(true)
-  }, [canUseBillingFeature, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, upgradeModal])
 
   return (
     <>

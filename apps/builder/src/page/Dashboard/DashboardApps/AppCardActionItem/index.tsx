@@ -5,7 +5,7 @@ import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
 import {
   canManageApp,
@@ -16,7 +16,6 @@ import {
   FC,
   HTMLAttributes,
   useCallback,
-  useContext,
   useEffect,
   useState,
 } from "react"
@@ -67,7 +66,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     )!!
   })
   const teamInfo = useSelector(getCurrentTeamInfo)!!
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   const [shareVisible, setShareVisible] = useState(false)
   const [appSettingVisible, setAppSettingVisible] = useState(false)
@@ -133,11 +132,13 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       parameter5: appId,
     })
     if (isCloudVersion && !canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
       return
     }
     setShareVisible(true)
-  }, [appId, canUseBillingFeature, handleUpgradeModalVisible])
+  }, [appId, canUseBillingFeature, upgradeModal])
 
   const handleDeleteApp = useCallback(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {

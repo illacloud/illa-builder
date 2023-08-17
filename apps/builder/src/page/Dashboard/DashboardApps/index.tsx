@@ -5,7 +5,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
   getCurrentTeamInfo,
@@ -22,14 +22,7 @@ import {
 } from "@illa-public/user-role-utils/interface"
 import { isCloudVersion } from "@illa-public/utils"
 import { isBoolean } from "lodash"
-import {
-  FC,
-  Suspense,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react"
+import { FC, Suspense, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -72,7 +65,7 @@ export const DashboardApps: FC = () => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)
   const isTutorialViewed = useSelector(getIsTutorialViewed)
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   const [loading, setLoading] = useState(false)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
@@ -133,11 +126,13 @@ export const DashboardApps: FC = () => {
 
   const openInviteModal = useCallback(() => {
     if (isCloudVersion && !canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
       return
     }
     setInviteModalVisible(true)
-  }, [canUseBillingFeature, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, upgradeModal])
 
   if (
     isBoolean(isTutorialViewed) &&

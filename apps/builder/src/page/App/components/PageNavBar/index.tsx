@@ -1,6 +1,6 @@
 import { UpgradeIcon } from "@illa-public/icon"
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
@@ -8,7 +8,6 @@ import {
   FC,
   MouseEvent,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useState,
@@ -110,7 +109,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const isEditMode = useSelector(getIsILLAEditMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
   const teamInfo = useSelector(getCurrentTeamInfo)
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
@@ -198,7 +197,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const handleClickDeployMenu = useCallback(
     async (key: string | number) => {
       if (key === "public" && !canUseBillingFeature) {
-        handleUpgradeModalVisible(true, "upgrade")
+        upgradeModal({
+          modalType: "upgrade",
+        })
       } else {
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
           element: "invite_modal_public_switch",
@@ -238,9 +239,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [
       appInfo.appId,
       appInfo.config?.public,
-      deployApp,
       canUseBillingFeature,
-      handleUpgradeModalVisible,
+      deployApp,
+      upgradeModal,
     ],
   )
 
@@ -284,17 +285,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const handleOpenHistory = useCallback(() => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
     } else {
       navigate(`/${teamIdentifier}/appHistory/${appId}`)
     }
-  }, [
-    navigate,
-    teamIdentifier,
-    appId,
-    canUseBillingFeature,
-    handleUpgradeModalVisible,
-  ])
+  }, [appId, canUseBillingFeature, navigate, teamIdentifier, upgradeModal])
 
   const handleSaveToHistory = useCallback(async () => {
     if (appId) {
@@ -324,9 +321,11 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const checkUpgrade = useCallback(() => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
     }
-  }, [canUseBillingFeature, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, upgradeModal])
 
   const PreviewButton = useMemo(
     () => (

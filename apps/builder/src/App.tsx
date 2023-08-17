@@ -27,6 +27,7 @@ import { ILLARoute } from "@/router"
 import { px2Rem } from "@/utils/stylis-plugin/px2rem"
 import { globalStyle } from "./style"
 import { track } from "./utils/mixpanelHelper"
+import { UpgradeDrawerGroup, UpgradeModalGroup } from '@illa-public/upgrade-modal'
 
 const dragOptions = {
   enableTouchEvents: true,
@@ -69,6 +70,8 @@ function App() {
           <ConfigProvider locale={configLanguage}>
             <Global styles={globalStyle} />
             <MessageGroup pt={!isProductMode ? "46px" : "0"} />
+            <UpgradeDrawerGroup />
+            <UpgradeModalGroup />
             <NotificationGroup pt={!isProductMode ? "46px" : "0"} />
             <ModalGroup />
             <RouterProvider router={ILLARoute} />

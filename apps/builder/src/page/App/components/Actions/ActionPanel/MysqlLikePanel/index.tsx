@@ -1,12 +1,11 @@
 import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
-import { UpgradeCloudContext } from "@illa-public/upgrade-cloud-provider"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import {
   FC,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -52,7 +51,7 @@ const MysqlLikePanel: FC = () => {
   )
 
   const { t } = useTranslation()
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const upgradeModal = useUpgradeModal()
 
   useEffect(() => {
     if (currentAction.resourceId == undefined) return
@@ -115,7 +114,9 @@ const MysqlLikePanel: FC = () => {
   }, [])
   const handleClickGenerate = useCallback(async () => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
       return
     }
     setGenerateLoading(true)
@@ -153,13 +154,13 @@ const MysqlLikePanel: FC = () => {
     setGenerateLoading(false)
   }, [
     appInfo.appId,
+    canUseBillingFeature,
     currentAction,
     currentSqlAction,
     dispatch,
     message,
     mysqlContent,
-    canUseBillingFeature,
-    handleUpgradeModalVisible,
+    upgradeModal,
   ])
 
   return (
