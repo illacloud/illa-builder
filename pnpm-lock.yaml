@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -2582,9 +2578,9 @@ importers:
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../MixpanelUtils
-      '@illa-public/role-select':
+      '@illa-public/role-selector':
         specifier: workspace:*
-        version: link:../RoleSelect
+        version: link:../RoleSelector
       '@illa-public/upgrade-cloud-provider':
         specifier: workspace:*
         version: link:../UpgradeCloudProvider
@@ -2700,7 +2696,7 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
-  packages/illa-public-component/MemberList:
+  packages/illa-public-component/MemberPage:
     dependencies:
       '@emotion/react':
         specifier: '*'
@@ -2717,15 +2713,18 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../ILLANet
       '@illa-public/layout-auto-change':
         specifier: workspace:*
         version: link:../LayoutAutoChange
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../MixpanelUtils
-      '@illa-public/role-select':
+      '@illa-public/role-selector':
         specifier: workspace:*
-        version: link:../RoleSelect
+        version: link:../RoleSelector
       '@illa-public/upgrade-cloud-provider':
         specifier: workspace:*
         version: link:../UpgradeCloudProvider
@@ -2741,6 +2740,9 @@ importers:
       '@illa-public/utils':
         specifier: workspace:*
         version: link:../utils
+      '@reduxjs/toolkit':
+        specifier: ^1.9.5
+        version: 1.9.5(react-redux@8.1.1)(react@18.2.0)
       '@types/react':
         specifier: ^18.0.27
         version: 18.0.27
@@ -2750,6 +2752,9 @@ importers:
       copy-to-clipboard:
         specifier: ^3.3.2
         version: 3.3.3
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2762,6 +2767,9 @@ importers:
       react-i18next:
         specifier: '*'
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
+      react-redux:
+        specifier: ^8.1.1
+        version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
     devDependencies:
       tsconfig:
         specifier: workspace:*
@@ -2838,7 +2846,7 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
-  packages/illa-public-component/RoleSelect:
+  packages/illa-public-component/RoleSelector:
     dependencies:
       '@emotion/react':
         specifier: '*'
@@ -2849,12 +2857,6 @@ importers:
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData
-      '@illa-public/user-role-utils':
-        specifier: workspace:*
-        version: link:../UserRoleUtils
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
       '@types/react':
         specifier: ^18.0.27
         version: 18.0.27
@@ -2966,67 +2968,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
-
-  packages/illa-public-component/ShareModal:
-    dependencies:
-      '@emotion/react':
-        specifier: '*'
-        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
-      '@illa-design/react':
-        specifier: '*'
-        version: link:../../../illa-design/packages/react
-      '@illa-public/auth-shown':
-        specifier: workspace:*
-        version: link:../AuthShown
-      '@illa-public/layout-auto-change':
-        specifier: workspace:*
-        version: link:../LayoutAutoChange
-      '@illa-public/member-list':
-        specifier: workspace:*
-        version: link:../MemberList
-      '@illa-public/mixpanel-utils':
-        specifier: workspace:*
-        version: link:../MixpanelUtils
-      '@illa-public/role-select':
-        specifier: workspace:*
-        version: link:../RoleSelect
-      '@illa-public/upgrade-cloud-provider':
-        specifier: workspace:*
-        version: link:../UpgradeCloudProvider
-      '@illa-public/user-data':
-        specifier: workspace:*
-        version: link:../UserData
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.0.27
-      '@types/react-dom':
-        specifier: ^18.0.10
-        version: 18.0.10
-      copy-to-clipboard:
-        specifier: ^3.3.2
-        version: 3.3.3
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-i18next:
-        specifier: '*'
-        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
-      '@types/node':
-        specifier: ^18.14.4
-        version: 18.14.5
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -3165,67 +3106,6 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
-
-  packages/illa-public-component/User:
-    dependencies:
-      '@emotion/react':
-        specifier: '*'
-        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
-      '@illa-design/react':
-        specifier: '*'
-        version: link:../../../illa-design/packages/react
-      '@illa-public/layout-auto-change':
-        specifier: workspace:*
-        version: link:../LayoutAutoChange
-      '@illa-public/mixpanel-utils':
-        specifier: workspace:*
-        version: link:../MixpanelUtils
-      '@illa-public/text-link':
-        specifier: workspace:*
-        version: link:../TextLink
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.0.27
-      '@types/react-dom':
-        specifier: ^18.0.10
-        version: 18.0.10
-      i18next:
-        specifier: '*'
-        version: 22.4.9
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-helmet-async:
-        specifier: ^1.3.0
-        version: 1.3.0(react-dom@18.2.0)(react@18.2.0)
-      react-hook-form:
-        specifier: ^7.30.0
-        version: 7.43.1(react@18.2.0)
-      react-i18next:
-        specifier: '*'
-        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
-      react-router-dom:
-        specifier: ^6.14.0
-        version: 6.14.0(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
-      '@types/mdx':
-        specifier: ^2.0.3
-        version: 2.0.3
-      '@types/node':
-        specifier: ^18.14.4
-        version: 18.14.5
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
 
   packages/illa-public-component/UserData:
     dependencies:
@@ -13978,3 +13858,7 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
