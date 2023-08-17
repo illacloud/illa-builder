@@ -3315,7 +3315,7 @@
     },
     "status": {
       "pending": "Очікує підтвердження",
-      "current-user": "You"
+      "current-user": "Ви"
     },
     "settings": {
       "allow_editors_invite": "Дозволити редакторам та глядачам керувати учасниками",
