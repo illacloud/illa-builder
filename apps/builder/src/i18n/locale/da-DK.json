@@ -76,7 +76,8 @@
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. "
-    }
+    },
+    "create": "Opret"
   },
   "dayjs": {
     "just_now": "Lige nu"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Utilstrækkelig Colla",
         "start-failed": "Mislykkedes at starte. Prøv igen. ",
         "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
-        "token-not-enough": "Model grænse nået. Genstart."
+        "token-not-enough": "Model grænse nået. Genstart.",
+        "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} inviterer dig til at deltage i 「{{teamName}}」. Klik på linket for at deltage i teamet: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Resterende licenser"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} har delt dig en AI Agent of ¤{{teamName}}- Klik på linket for at deltage i teamet og prøv AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Inviteret med succes",
@@ -3311,7 +3314,8 @@
       "cancel": "Annuller"
     },
     "status": {
-      "pending": "Afventer"
+      "pending": "Afventer",
+      "current-user": "Dig"
     },
     "settings": {
       "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Ingen beskrivelse",
-      "blank": "Ingen applikation"
+      "blank": "Ingen applikation",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "App indstilling",
@@ -3935,7 +3940,8 @@
       "update_suc": "Opdatering lykkedes"
     },
     "button": {
-      "blank": "Opret din første app"
+      "blank": "Opret din første app",
+      "blank-agent": "Opret AI Agent"
     }
   },
   "new_deploy": {

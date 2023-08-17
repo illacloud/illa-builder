@@ -76,7 +76,8 @@
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
       "delete-suc": "Successfully deleted. "
-    }
+    },
+    "create": "Create"
   },
   "dayjs": {
     "just_now": "단지"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Insufficient Colla",
         "start-failed": "Failed to start. Please try again. ",
         "reconnect": "Connection lost. Reconnecting...",
-        "token-not-enough": "Model limit reached. Please restart."
+        "token-not-enough": "Model limit reached. Please restart.",
+        "token": "The current value of Max tokens is low, which may cause incomplete returned results."
       },
       "title": "🧬 Edit AI Agent",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}}님이 당신을 「{{teamName}}」에 초대합니다. 링크를 클릭하여 팀에 합류하세요: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Remaining licenses"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "초대 성공",
@@ -3311,7 +3314,8 @@
       "cancel": "취소"
     },
     "status": {
-      "pending": "보류 중"
+      "pending": "보류 중",
+      "current-user": "You"
     },
     "settings": {
       "allow_editors_invite": "편집자와 뷰어가 회원을 관리하도록 허용합니다",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "No description",
-      "blank": "No application"
+      "blank": "No application",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "App setting",
@@ -3935,7 +3940,8 @@
       "update_suc": "Successfully updated"
     },
     "button": {
-      "blank": "Create your first app"
+      "blank": "Create your first app",
+      "blank-agent": "Create AI Agent"
     }
   },
   "new_deploy": {

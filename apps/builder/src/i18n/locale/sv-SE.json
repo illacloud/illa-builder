@@ -76,7 +76,8 @@
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
       "delete-suc": "Raderades framgångsrikt. "
-    }
+    },
+    "create": "Skapa"
   },
   "dayjs": {
     "just_now": "Just nu"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Otillräcklig Colla",
         "start-failed": "Det gick inte att starta. Försök igen. ",
         "reconnect": "Anslutning förlorad. Återgång pågår.",
-        "token-not-enough": "Modellens gräns har uppnåtts. Vänligen starta om."
+        "token-not-enough": "Modellens gräns har uppnåtts. Vänligen starta om.",
+        "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat."
       },
       "title": "🧬 Redigera AI agent",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} bjuder in dig att gå med i 「{{teamName}}」. Klicka på länken för att gå med i teamet: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Återstående licenser"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} delade dig en AI-agent från <unk>{{teamName}}<unk> . Klicka på länken för att gå med i teamet och prova AI-agenten: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Inbjuden lyckades",
@@ -3311,7 +3314,8 @@
       "cancel": "Avbryt"
     },
     "status": {
-      "pending": "Väntande"
+      "pending": "Väntande",
+      "current-user": "Du"
     },
     "settings": {
       "allow_editors_invite": "Tillåt redaktörer och tittare att hantera medlemmar",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Ingen beskrivning",
-      "blank": "Ingen applikation"
+      "blank": "Ingen applikation",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Appens inställning",
@@ -3935,7 +3940,8 @@
       "update_suc": "Uppdaterades framgångsrikt"
     },
     "button": {
-      "blank": "Skapa din första app"
+      "blank": "Skapa din första app",
+      "blank-agent": "Skapa AI-agent"
     }
   },
   "new_deploy": {

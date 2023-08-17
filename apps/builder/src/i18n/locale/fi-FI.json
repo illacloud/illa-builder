@@ -76,7 +76,8 @@
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
       "delete-suc": "Poistettu onnistuneesti. "
-    }
+    },
+    "create": "Luo"
   },
   "dayjs": {
     "just_now": "Juuri nyt"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Riittämätön Colla",
         "start-failed": "Aloitus epäonnistui. Yritä uudelleen. ",
         "reconnect": "Yhteys menetetty. Uudelleenyhdistäminen käynnissä.",
-        "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen."
+        "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen.",
+        "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia."
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} kutsuu sinut liittymään「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Jäljellä olevat lisenssit"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Kutsuttu onnistuneesti",
@@ -3311,7 +3314,8 @@
       "cancel": "Peruuta"
     },
     "status": {
-      "pending": "Odottaa"
+      "pending": "Odottaa",
+      "current-user": "Sinä"
     },
     "settings": {
       "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Ei kuvausta",
-      "blank": "Ei sovellusta"
+      "blank": "Ei sovellusta",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Sovelluksen asetus",
@@ -3935,7 +3940,8 @@
       "update_suc": "Päivitys onnistui"
     },
     "button": {
-      "blank": "Luo ensimmäinen sovelluksesi"
+      "blank": "Luo ensimmäinen sovelluksesi",
+      "blank-agent": "Luo AI Agentti"
     }
   },
   "new_deploy": {

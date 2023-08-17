@@ -76,7 +76,8 @@
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
       "delete-suc": "删除成功"
-    }
+    },
+    "create": "创建"
   },
   "dayjs": {
     "just_now": "刚刚"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Colla不足",
         "start-failed": "开始失败，请重试。",
         "reconnect": "连接已断开，正在重连",
-        "token-not-enough": "运行已达模型上限，请重新开始。"
+        "token-not-enough": "运行已达模型上限，请重新开始。",
+        "token": "当前Max token较小，可能导致返回结果不完整"
       },
       "title": "🧬 编辑AI Agent",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} 邀请您加入 「{{teamName}}」。点击链接加入团队：{{inviteLink}}",
       "tips": {
         "license_insufficient": "剩余许可证"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}}分享给您一个来自「{{teamName}}」团队的AI Agent. 点击链接加入团队并使用AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "邀请成功",
@@ -3311,7 +3314,8 @@
       "cancel": "取消"
     },
     "status": {
-      "pending": "等待处理"
+      "pending": "等待处理",
+      "current-user": "当前用户"
     },
     "settings": {
       "allow_editors_invite": "允许编辑者和浏览者管理成员",
@@ -3891,7 +3895,7 @@
       "cancel": "取消"
     },
     "advanced": {
-      "feature": "移除水标"
+      "feature": "移除水印"
     },
     "redirect_page": {
       "desc1": "感谢您的购买。ILLA Cloud将持续为您提供更多功能",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "暂无描述",
-      "blank": "没有项目"
+      "blank": "没有项目",
+      "blank-agent": "无AI Agent"
     },
     "app_setting": {
       "app_setting": "项目设置",
@@ -3935,7 +3940,8 @@
       "update_suc": "更新成功"
     },
     "button": {
-      "blank": "创建第一个项目"
+      "blank": "创建第一个项目",
+      "blank-agent": "创建AI Agent"
     }
   },
   "new_deploy": {

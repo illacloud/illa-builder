@@ -76,7 +76,8 @@
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
       "delete-suc": "Eliminat cu succes. "
-    }
+    },
+    "create": "Crează"
   },
   "dayjs": {
     "just_now": "Chiar acum"
@@ -2619,7 +2620,8 @@
         "insufficient_token": "Colla insuficientă",
         "start-failed": "Pornirea a eșuat. Te rugăm să încerci din nou. ",
         "reconnect": "Conexiune pierdută. Reconectare în progres.",
-        "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi."
+        "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi.",
+        "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate."
       },
       "title": "🧬 Editare agent AI",
       "generate-desc": {
@@ -3275,7 +3277,8 @@
       "custom_copy_text": "{{userName}} vă invită să vă alăturați「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Licențe rămase"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} ți-a distribuit un AI Agent la <unk>{{teamName}}order. Faceți clic pe link pentru a vă alătura echipei și încercați AI Agent: {{inviteLink}}"
     },
     "mes": {
       "invite_suc": "Invitat cu succes",
@@ -3311,7 +3314,8 @@
       "cancel": "Anulează"
     },
     "status": {
-      "pending": "In asteptare"
+      "pending": "In asteptare",
+      "current-user": "Tu"
     },
     "settings": {
       "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii",
@@ -3914,7 +3918,8 @@
     },
     "desc": {
       "no_description": "Nici o descriere",
-      "blank": "Nicio cerere"
+      "blank": "Nicio cerere",
+      "blank-agent": "No AI Agent"
     },
     "app_setting": {
       "app_setting": "Setare aplicație",
@@ -3935,7 +3940,8 @@
       "update_suc": "Actualizare reușită"
     },
     "button": {
-      "blank": "Creează prima ta aplicație"
+      "blank": "Creează prima ta aplicație",
+      "blank-agent": "Creează AI Agent"
     }
   },
   "new_deploy": {
