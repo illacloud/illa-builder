@@ -3314,7 +3314,8 @@
       "cancel": "Avbryt"
     },
     "status": {
-      "pending": "Väntande"
+      "pending": "Väntande",
+      "current-user": "You"
     },
     "settings": {
       "allow_editors_invite": "Tillåt redaktörer och tittare att hantera medlemmar",
