@@ -3314,7 +3314,8 @@
       "cancel": "Annuller"
     },
     "status": {
-      "pending": "Afventer"
+      "pending": "Afventer",
+      "current-user": "Dig"
     },
     "settings": {
       "allow_editors_invite": "Tillad editorer og seere at administrere medlemmer",
