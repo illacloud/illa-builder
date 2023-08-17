@@ -3314,7 +3314,8 @@
       "cancel": "Peruuta"
     },
     "status": {
-      "pending": "Odottaa"
+      "pending": "Odottaa",
+      "current-user": "Sinä"
     },
     "settings": {
       "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä",
