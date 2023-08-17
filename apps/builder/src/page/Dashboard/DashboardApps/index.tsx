@@ -61,6 +61,7 @@ import {
   teamInfoContainerStyle,
 } from "./style"
 
+
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
   const { teamIdentifier } = useParams()
@@ -211,6 +212,9 @@ export const DashboardApps: FC = () => {
       </Suspense>
       {inviteModalVisible && (
         <InviteModal
+          defaultAllowInviteLink={teamInfo!!.permission.inviteLinkEnabled}
+          teamID={teamInfo!!.id}
+          currentUserRole={currentUserRole}
           from={INVITE_FROM.BUILDER_DASHBOARD}
           onClose={() => {
             setInviteModalVisible(false)

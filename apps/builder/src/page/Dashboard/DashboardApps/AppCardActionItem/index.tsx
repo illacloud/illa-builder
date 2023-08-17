@@ -44,6 +44,7 @@ import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
+
 export interface AppCardActionItemProps extends HTMLAttributes<HTMLDivElement> {
   appId: string
   canEditApp: boolean
@@ -65,7 +66,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       (item) => item.appId === appId,
     )!!
   })
-  const teamInfo = useSelector(getCurrentTeamInfo)
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
   const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
 
   const [shareVisible, setShareVisible] = useState(false)
@@ -404,6 +405,8 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       >
         {shareVisible && (
           <InviteModal
+            teamID={teamInfo.id}
+            currentUserRole={teamInfo.myRole}
             from={INVITE_FROM.BUILDER_DASHBOARD}
             onClose={() => {
               setShareVisible(false)

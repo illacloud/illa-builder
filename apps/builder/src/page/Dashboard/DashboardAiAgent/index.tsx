@@ -35,7 +35,7 @@ const DashboardAiAgent: FC = () => {
 
   const { agentType, loadMoreMarketAgent } = useContext(AiAgentContext)
 
-  const teamInfo = useSelector(getCurrentTeamInfo)
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
   const hasMoreData = useSelector(getHasMoreMarketAgent)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
@@ -100,6 +100,8 @@ const DashboardAiAgent: FC = () => {
       </Suspense>
       {inviteModalVisible && (
         <InviteModal
+          teamID={teamInfo.id}
+          currentUserRole={currentUserRole}
           from={INVITE_FROM.AGENT_DASHBOARD}
           onClose={() => {
             setInviteModalVisible(false)

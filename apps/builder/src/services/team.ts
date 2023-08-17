@@ -2,12 +2,12 @@ import { authCloudRequest } from "@illa-public/illa-net"
 import {
   MemberInfo,
   TeamInfo,
-  USER_ROLE,
   getCurrentTeamInfo,
   teamActions,
 } from "@illa-public/user-data"
 import store from "../store"
 import { getCurrentTeamID } from "../utils/team"
+
 
 export const fetchMyTeamsInfo = () => {
   return authCloudRequest<TeamInfo[]>({
@@ -74,16 +74,6 @@ export const fetchUpdateTeamPermissionConfig = (
       teamID: getCurrentTeamID(),
     },
   )
-}
-
-interface IInviteByEmailRequest {
-  email: string
-  userRole: USER_ROLE
-  hosts?: string
-}
-
-interface IUpdateChangeUserRoleRequest {
-  userRole: USER_ROLE
 }
 
 export const fetchRemoveTeamMember = (teamMemberID: string) => {

@@ -2573,6 +2573,9 @@ importers:
       '@illa-public/icon':
         specifier: workspace:*
         version: link:../Icon
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../ILLANet
       '@illa-public/layout-auto-change':
         specifier: workspace:*
         version: link:../LayoutAutoChange
@@ -2606,6 +2609,9 @@ importers:
       copy-to-clipboard:
         specifier: ^3.3.2
         version: 3.3.3
+      i18next:
+        specifier: '*'
+        version: 22.4.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
