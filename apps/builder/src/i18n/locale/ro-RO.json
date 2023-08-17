@@ -3314,7 +3314,8 @@
       "cancel": "Anulează"
     },
     "status": {
-      "pending": "In asteptare"
+      "pending": "In asteptare",
+      "current-user": "You"
     },
     "settings": {
       "allow_editors_invite": "Permiteți editorilor și spectatorilor să gestioneze membrii",
