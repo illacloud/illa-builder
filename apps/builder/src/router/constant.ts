@@ -1,5 +1,5 @@
 export const cloudUrl = `${location.protocol}//${
-  import.meta.env.VITE_CLOUD_URL
+  import.meta.env.ILLA_CLOUD_URL
 }`
 
 export const cloudRedirect = `${cloudUrl}?redirectUrl=${encodeURIComponent(

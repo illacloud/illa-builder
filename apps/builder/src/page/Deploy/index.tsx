@@ -34,6 +34,7 @@ import {
   upgradePopContainerStyle,
   upgradeTitleStyle,
 } from "@/page/Deploy/style"
+import Page404 from "@/page/Status/404"
 import {
   getAppInfo,
   getCurrentAppWaterMarkConfig,
@@ -42,7 +43,6 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { updateWaterMarkConfig } from "@/services/apps"
 import { isCloudVersion } from "@/utils/typeHelper"
-import Page404 from "../status/404"
 import { DeployContent } from "./content"
 
 const WaterMark: FC<HTMLAttributes<HTMLDivElement>> = (props) => {

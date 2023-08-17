@@ -1,5 +1,6 @@
 import { LoaderFunction, defer, redirect } from "react-router-dom"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchTeamAgent } from "@/services/agent"
 import {
   fetchAPPPublicStatus,
   fetchPrivateAppInitData,
@@ -50,11 +51,13 @@ export const deployLoader: LoaderFunction = async (args) => {
         args.request.signal,
       )
       const resourceInfo = fetchResources(args.request.signal)
+      const teamAgentList = fetchTeamAgent(args.request.signal)
 
       return defer({
         isPublic,
         appInfo,
         resourceInfo,
+        teamAgentList,
       })
     }
   } catch (e) {

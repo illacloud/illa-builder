@@ -2,8 +2,8 @@ import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { RecordEditor } from "@/components/RecordEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
@@ -124,7 +124,7 @@ const GraphQLPanel: FC = () => {
           onDelete={handleOnDeleteKeyValue}
           onChangeKey={handleOnChangeKeyOrValue}
           onChangeValue={handleOnChangeKeyOrValue}
-          valueInputType="any"
+          valueInputType={VALIDATION_TYPES.ANY}
         />
         <RecordEditor
           key="headers"
