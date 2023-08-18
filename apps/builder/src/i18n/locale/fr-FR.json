@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Étoile {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Chargement en cours..."
   }
 }
