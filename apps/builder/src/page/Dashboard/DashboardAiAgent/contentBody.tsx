@@ -20,6 +20,7 @@ import {
   emptyStyle,
   listContainerStyle,
   listFilterContainerStyle,
+  loadMoreStyle,
   loadingStyle,
   moreDataStyle,
 } from "@/page/Dashboard/DashboardAiAgent/style"
@@ -54,11 +55,11 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   const agentOptions = useMemo(() => {
     return [
       {
-        label: t("Team AI Agent"),
+        label: t("dashboard.list-type.team"),
         value: "team",
       },
       {
-        label: t("Agent market"),
+        label: t("dashboard.list-type.marketplace"),
         value: "market",
       },
     ]
@@ -66,15 +67,15 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
 
   const sortOptions = [
     {
-      label: "Popular",
+      label: t("dashboard.sort-type.popular"),
       value: PRODUCT_SORT_BY.POPULARITY,
     },
     {
-      label: "Newest",
+      label: t("dashboard.sort-type.recent"),
       value: PRODUCT_SORT_BY.TIME,
     },
     {
-      label: "Star",
+      label: t("dashboard.sort-type.star"),
       value: PRODUCT_SORT_BY.STARRED,
     },
   ]
@@ -158,7 +159,7 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
       ) : agentType === "market" ? (
         <div>
           {canLoadBefore && (
-            <div css={moreDataStyle} onClick={loadBeforeMarketAgent}>
+            <div css={loadMoreStyle} onClick={loadBeforeMarketAgent}>
               {t("load.before")}
             </div>
           )}

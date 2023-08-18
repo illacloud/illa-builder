@@ -69,7 +69,6 @@ const DashboardAiAgent: FC = () => {
       if (!hasMoreData) return
       const target = event.target as HTMLDivElement
       if (target.scrollHeight - target.scrollTop - target.clientHeight <= 100) {
-        console.log("scroll to bottom")
         loadMoreMarketAgent()
       }
     }

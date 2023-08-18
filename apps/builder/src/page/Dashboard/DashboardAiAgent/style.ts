@@ -89,6 +89,11 @@ export const moreDataStyle = css`
   height: 40px;
 `
 
+export const loadMoreStyle = css`
+  ${moreDataStyle};
+  cursor: pointer;
+`
+
 export const listContainerStyle = css`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(${agent_card_width}px, 1fr));
