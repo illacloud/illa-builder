@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Star {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Φόρτωση..."
   }
 }
