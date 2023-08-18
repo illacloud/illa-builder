@@ -2,7 +2,6 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
     "ts-check": {
@@ -13,17 +12,13 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true,
-      "dependsOn": ["build"]
+      "persistent": true
     },
     "build-cloud": {
       "dependsOn": ["build"]
     },
     "build-self": {
       "dependsOn": ["build"]
-    },
-    "test": {
-      "dependsOn": ["dev"]
     }
   }
 }
