@@ -15,10 +15,10 @@
       "persistent": true
     },
     "build-cloud": {
-      "dependsOn": ["build"]
+      "outputs": ["dist/**"]
     },
     "build-self": {
-      "dependsOn": ["build"]
+      "outputs": ["dist/**"]
     }
   }
 }
