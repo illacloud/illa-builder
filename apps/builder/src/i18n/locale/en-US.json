@@ -1117,7 +1117,8 @@
       "type": {
         "api": "API",
         "database": "Database",
-        "js_transformer": "JavaScript Transformer"
+        "js_transformer": "JavaScript Transformer",
+        "ai_agent": "AI Agent"
       },
       "message": {
         "mssql": {
