@@ -1117,8 +1117,7 @@
       "type": {
         "api": "API",
         "database": "Database",
-        "js_transformer": "JavaScript Transformer",
-        "ai_agent": "AI Agent"
+        "js_transformer": "JavaScript Transformer"
       },
       "message": {
         "mssql": {
@@ -4011,6 +4010,6 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "Loading..."
+    "before": "Load more"
   }
 }
