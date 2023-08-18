@@ -33,6 +33,7 @@ export enum TextTarget {
   ACTION = 8,
   CURSOR = 9,
   WINDOW = 10,
+  AI_AGENT = 11,
 }
 
 export enum ErrorCode {
