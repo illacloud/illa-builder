@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Gwiazdka {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Ładowanie..."
   }
 }
