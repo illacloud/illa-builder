@@ -74,6 +74,11 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
     duplicateAiAgent(aiAgentID)
       .then(
         (response) => {
+          dispatch(
+            dashboardTeamAiAgentActions.addTeamAiAgentReducer({
+              aiAgent: response.data,
+            }),
+          )
           const aiAgentID = response.data.aiAgentID
           navigate(`/${teamIdentifier}/ai-agent/${aiAgentID}`)
         },
@@ -116,6 +121,9 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
               message.success({
                 content: t("dashboard.app.trash_success"),
               })
+              dispatch(
+                dashboardTeamAiAgentActions.removeTeamAiAgentReducer(aiAgentID),
+              )
               modal.close(modalId)
             },
             (error) => {
@@ -137,7 +145,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
           })
       },
     })
-  }, [aiAgentID, modal, message, t])
+  }, [aiAgentID, dispatch, modal, message, t])
 
   const onContributed = useCallback(
     (value: boolean) => {
