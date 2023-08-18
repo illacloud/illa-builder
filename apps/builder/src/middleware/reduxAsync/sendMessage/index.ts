@@ -1,4 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit"
+import { teamAiAgentsAsync } from "@/middleware/reduxAsync/sendMessage/teamAiAgentsMethod"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { RootState } from "@/store"
 import { actionsAsync } from "./actionMethod"
@@ -45,6 +46,18 @@ export const sendMessage = (
     }
     case "apps": {
       appsAsync(
+        reduxAction,
+        currentAppID,
+        action,
+        teamID,
+        id,
+        prevRootState,
+        nextRootState,
+      )
+      break
+    }
+    case "teamAiAgents": {
+      teamAiAgentsAsync(
         reduxAction,
         currentAppID,
         action,
