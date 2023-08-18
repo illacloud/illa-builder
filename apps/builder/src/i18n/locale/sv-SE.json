@@ -72,7 +72,7 @@
       "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
       "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
       "fork-failed": "Det gick inte att fork, försök igen.",
-      "create-suc": "Sparades framgångsrikt",
+      "create-suc": "Det gick inte att skapa, försök igen.",
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
       "delete-suc": "Raderades framgångsrikt. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "Id för att kopiera",
             "sheet_to_copy_to": "Ark att kopiera till",
             "authentication": "Autentisering",
-            "connect_with_oauth": "Anslut med Google",
+            "connect_with_oauth": "Anslut med OAuth & Spara",
             "reconnect_with_oauth": "Återanslut med OAuth",
             "access_type": "Åtkomsttyp"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Ge ett namn till agenten",
         "desc": "Ge en kort beskrivning av vad denna agent är avsedd att användas till.",
-        "prompt": "Ange {{variableName}} för att använda en variabel",
+        "prompt": "Ange {{ för att använda en variabel",
         "variable": {
           "key": "Variabelt namn",
           "value": "Värde"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Klicka på Start -knappen för att utlösa.",
-        "insufficient_token": "Otillräcklig Colla",
+        "insufficient_token": "Otillräcklig token",
         "start-failed": "Det gick inte att starta. Försök igen. ",
         "reconnect": "Anslutning förlorad. Återgång pågår.",
         "token-not-enough": "Modellens gräns har uppnåtts. Vänligen starta om.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Stjärna {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Laddar..."
   }
 }

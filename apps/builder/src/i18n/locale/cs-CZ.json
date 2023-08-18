@@ -72,7 +72,7 @@
       "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
       "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
       "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
-      "create-suc": "Úspěšně uloženo",
+      "create-suc": "Nepodařilo se vytvořit, zkuste to prosím znovu.",
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "ID listu ke kopírování",
             "sheet_to_copy_to": "List ke zkopírování do",
             "authentication": "Ověření",
-            "connect_with_oauth": "Propojit s Google",
+            "connect_with_oauth": "Připojit se k OAuth a uložit",
             "reconnect_with_oauth": "Znovu připojit s OAuth",
             "access_type": "Typ přístupu"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Dejte jméno agentovi",
         "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
-        "prompt": "Zadejte {{variableName}} pro použití proměnné",
+        "prompt": "Zadejte {{ pro použití proměnné",
         "variable": {
           "key": "Název proměnné",
           "value": "Hodnota"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
-        "insufficient_token": "Nedostatek Colla",
+        "insufficient_token": "Nedostatečný token",
         "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. ",
         "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
         "token-not-enough": "Dosažen limit modelu. Prosím restartujte.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Hvězda {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Načítám..."
   }
 }

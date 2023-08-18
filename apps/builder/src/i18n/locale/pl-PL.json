@@ -72,7 +72,7 @@
       "sort-failed": "Zmiana typu filtra nie powiodła się. Spróbuj ponownie.",
       "detail-load-failed": "Nie udało się pobrać szczegółów, spróbuj ponownie.",
       "fork-failed": "Nie udało się forkować, spróbuj ponownie.",
-      "create-suc": "Zapisano pomyślnie",
+      "create-suc": "Nie udało się utworzyć, spróbuj ponownie.",
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
       "delete-suc": "Usunięto pomyślnie. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "ID arkusza do skopiowania",
             "sheet_to_copy_to": "Arkusz do skopiowania",
             "authentication": "Uwierzytelnianie",
-            "connect_with_oauth": "Połącz z Google",
+            "connect_with_oauth": "Połącz z OAuth i Zapisz",
             "reconnect_with_oauth": "Połącz ponownie z OAuth",
             "access_type": "Typ dostępu"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Podaj nazwę agentowi",
         "desc": "Należy podać krótki opis tego, do czego ma być stosowany ten agent.",
-        "prompt": "Wprowadź {{variableName}} aby użyć zmiennej",
+        "prompt": "Wprowadź {{ aby użyć zmiennej",
         "variable": {
           "key": "Nazwa zmiennej",
           "value": "Wartość"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Kliknij przycisk Start, aby wyzwalać.",
-        "insufficient_token": "Niewystarczająca ilość Colla",
+        "insufficient_token": "Niewystarczający token",
         "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. ",
         "reconnect": "Połączenie zostało utracone. Trwa ponowne połączenie.",
         "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Gwiazdka {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Ładowanie..."
   }
 }

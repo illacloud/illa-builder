@@ -72,7 +72,7 @@
       "sort-failed": "Error al cambiar el tipo de filtro. Por favor, inténtalo de nuevo.",
       "detail-load-failed": "Error al recuperar los detalles, inténtalo de nuevo.",
       "fork-failed": "Error al bifurcar, inténtelo de nuevo.",
-      "create-suc": "Guardado correctamente",
+      "create-suc": "Error al crear, inténtelo de nuevo.",
       "fork-suc": "Bifurcado con éxito.",
       "delete-failed": "Error al eliminar. Por favor, inténtelo de nuevo. ",
       "delete-suc": "Eliminado correctamente. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "ID de hoja a copiar",
             "sheet_to_copy_to": "Hoja a copiar",
             "authentication": "Autenticación",
-            "connect_with_oauth": "Conectar con Google",
+            "connect_with_oauth": "Conectar con OAuth & Save",
             "reconnect_with_oauth": "Volver a conectar con OAuth",
             "access_type": "Tipo de acceso"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Dar un nombre al agente",
         "desc": "Proporcione una breve descripción de para qué se pretende utilizar este agente.",
-        "prompt": "Introduzca {{variableName}} para usar una variable",
+        "prompt": "Ingrese {{ para usar una variable",
         "variable": {
           "key": "Nombre variable",
           "value": "Valor"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Haga clic en el botón Inicio para activar.",
-        "insufficient_token": "Colla insuficiente",
+        "insufficient_token": "Token insuficiente",
         "start-failed": "Error al iniciar. Vuelve a intentarlo. ",
         "reconnect": "Conexión perdida. Reconexión en curso.",
         "token-not-enough": "Límite de modelo alcanzado. Por favor reinicie.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Estrella {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Cargando..."
   }
 }

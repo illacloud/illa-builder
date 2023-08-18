@@ -72,7 +72,7 @@
       "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
       "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
       "fork-failed": "Fork mislukt, probeer het opnieuw.",
-      "create-suc": "Succesvol opgeslagen",
+      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "Plaats-ID om te kopiëren",
             "sheet_to_copy_to": "Tafel om naar te kopiëren",
             "authentication": "Authenticatie",
-            "connect_with_oauth": "Verbinden met Google",
+            "connect_with_oauth": "Maak verbinding met OAuth & Opslaan",
             "reconnect_with_oauth": "Opnieuw verbinden met OAuth",
             "access_type": "Type toegang"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Geef een naam aan de agent",
         "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
-        "prompt": "Voer {{variableName}} in om een variabele te gebruiken",
+        "prompt": "Voer {{ om een variabele te gebruiken in",
         "variable": {
           "key": "Naam variabele",
           "value": "Waarde"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Klik op de Start knop om te starten.",
-        "insufficient_token": "Onvoldoende Colla",
+        "insufficient_token": "Onvoldoende token",
         "start-failed": "Starten mislukt. Probeer het opnieuw. ",
         "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
         "token-not-enough": "Model limiet bereikt. Start opnieuw.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Ster {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Laden..."
   }
 }

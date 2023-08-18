@@ -72,7 +72,7 @@
       "sort-failed": "Suodattimen tyyppiä ei voitu muuttaa. Yritä uudelleen.",
       "detail-load-failed": "Tietojen noutaminen epäonnistui, yritä uudelleen.",
       "fork-failed": "Ei voitu forkata, yritä uudelleen.",
-      "create-suc": "Tallennus onnistui",
+      "create-suc": "Ei voitu luoda, yritä uudelleen.",
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
       "delete-suc": "Poistettu onnistuneesti. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "Kopioitava levytunniste",
             "sheet_to_copy_to": "Taulu, josta kopioidaan",
             "authentication": "Todennus",
-            "connect_with_oauth": "Yhdistä Googleen",
+            "connect_with_oauth": "Yhdistä OAuthiin ja tallenna",
             "reconnect_with_oauth": "Yhdistä OAuth uudelleen",
             "access_type": "Pääsyn tyyppi"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Anna nimi agentille",
         "desc": "Anna lyhyt kuvaus siitä, mihin tämä agentti on tarkoitettu käytettäväksi.",
-        "prompt": "Syötä {{variableName}} käyttääksesi muuttujaa",
+        "prompt": "Syötä {{ käyttääksesi muuttujaa",
         "variable": {
           "key": "Muuttujan nimi",
           "value": "Arvo"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Napsauta Käynnistä painiketta käynnistääksesi.",
-        "insufficient_token": "Riittämätön Colla",
+        "insufficient_token": "Riittämätön tunnus",
         "start-failed": "Aloitus epäonnistui. Yritä uudelleen. ",
         "reconnect": "Yhteys menetetty. Uudelleenyhdistäminen käynnissä.",
         "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Tähti {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Ladataan..."
   }
 }

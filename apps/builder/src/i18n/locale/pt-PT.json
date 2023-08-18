@@ -72,7 +72,7 @@
       "sort-failed": "Não foi possível alterar o tipo de filtro. Tente novamente.",
       "detail-load-failed": "Falha ao recuperar detalhes, por favor tente novamente.",
       "fork-failed": "Falha ao fazer o fork, por favor, tente novamente.",
-      "create-suc": "Salvo com Sucesso",
+      "create-suc": "Falha ao criar. Por favor, tente novamente.",
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
       "delete-suc": "Excluído com sucesso. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "ID da Chapa para copiar",
             "sheet_to_copy_to": "Folha para a qual deseja copiar",
             "authentication": "Autenticação",
-            "connect_with_oauth": "Conectar-se com Google",
+            "connect_with_oauth": "Conectar com OAuth e Salvar",
             "reconnect_with_oauth": "Reconectar com OAuth",
             "access_type": "Tipo de acesso"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Dê um nome ao agente",
         "desc": "Forneça uma breve descrição para o que este agente deve utilizar.",
-        "prompt": "Digite {{variableName}} para usar uma variável",
+        "prompt": "Digite {{ para usar uma variável",
         "variable": {
           "key": "Nome da variável",
           "value": "Valor"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Clique no botão iniciar para disparar.",
-        "insufficient_token": "Colla Insuficiente",
+        "insufficient_token": "Token insuficiente",
         "start-failed": "Falha ao iniciar. Por favor, tente novamente. ",
         "reconnect": "Conexão perdida. Reconexão em progresso.",
         "token-not-enough": "Limite de modelos atingido. Por favor reinicie.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Estrela {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Carregandochar@@0"
   }
 }

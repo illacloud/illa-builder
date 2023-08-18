@@ -72,7 +72,7 @@
       "sort-failed": "Failed to change the filter type. Please try again.",
       "detail-load-failed": "Failed to retrieve details, please try again.",
       "fork-failed": "Failed to fork, please try again.",
-      "create-suc": "Successfully saved",
+      "create-suc": "Failed to create, please try again.",
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
       "delete-suc": "Successfully deleted. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "복사할 시트 ID",
             "sheet_to_copy_to": "복사할 시트",
             "authentication": "입증",
-            "connect_with_oauth": "Connect with Google",
+            "connect_with_oauth": "OAuth 와 연결 및 저장",
             "reconnect_with_oauth": "OAuth로 다시 연결",
             "access_type": "액세스 유형"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Give a name to the agent",
         "desc": "Provide a brief description of what this agent is intended to be used for.",
-        "prompt": "Enter {{variableName}} to use a variable",
+        "prompt": "Enter {{ to use a variable",
         "variable": {
           "key": "Variable name",
           "value": "Value"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Click the Start button to trigger.",
-        "insufficient_token": "Insufficient Colla",
+        "insufficient_token": "Insufficient token",
         "start-failed": "Failed to start. Please try again. ",
         "reconnect": "Connection lost. Reconnecting...",
         "token-not-enough": "Model limit reached. Please restart.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Star {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Loading..."
   }
 }

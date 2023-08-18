@@ -72,7 +72,7 @@
       "sort-failed": "Kunne ikke ændre filtertypen. Prøv igen.",
       "detail-load-failed": "Kunne ikke hente detaljer. Prøv venligst igen.",
       "fork-failed": "Mislykkedes at gaffel, prøv igen.",
-      "create-suc": "Gemt med succes",
+      "create-suc": "Kunne ikke oprettes. Prøv venligst igen.",
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
       "delete-suc": "Slettet succesfuldt. "
@@ -231,7 +231,7 @@
             "sheet_id_to_copy": "Ark ID til kopiering",
             "sheet_to_copy_to": "Ark der skal kopieres til",
             "authentication": "Godkendelse",
-            "connect_with_oauth": "Forbind med Google",
+            "connect_with_oauth": "Forbind med OAuth og gem",
             "reconnect_with_oauth": "Genopret forbindelse med OAuth",
             "access_type": "Adgangs type"
           },
@@ -2573,7 +2573,7 @@
       "placeholder": {
         "name": "Giv et navn til agenten",
         "desc": "Giv en kort beskrivelse af, hvad denne agent er beregnet til at blive brugt til.",
-        "prompt": "Indtast {{variableName}} for at bruge en variabel",
+        "prompt": "Indtast {{ for at bruge en variabel",
         "variable": {
           "key": "Variabel navn",
           "value": "Værdi"
@@ -2617,7 +2617,7 @@
       },
       "message": {
         "click-start": "Klik på knappen Start for at udløse.",
-        "insufficient_token": "Utilstrækkelig Colla",
+        "insufficient_token": "Utilstrækkelig token",
         "start-failed": "Mislykkedes at starte. Prøv igen. ",
         "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
         "token-not-enough": "Model grænse nået. Genstart.",
@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Stjerne {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Indlæser..."
   }
 }
