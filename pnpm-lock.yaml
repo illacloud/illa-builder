@@ -165,6 +165,9 @@ importers:
       '@illa-public/market-agent-card':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MarketAgentCard
+      '@illa-public/member-page':
+        specifier: workspace:*
+        version: link:../../packages/illa-public-component/MemberPage
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MixpanelUtils
@@ -2857,6 +2860,9 @@ importers:
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData
+      '@illa-public/user-role-utils':
+        specifier: workspace:*
+        version: link:../UserRoleUtils
       '@types/react':
         specifier: ^18.0.27
         version: 18.0.27
