@@ -1,9 +1,15 @@
 import { CodeEditor } from "@illa-public/code-editor"
 import { AvatarUpload } from "@illa-public/cropper"
 import { UpgradeIcon } from "@illa-public/icon"
+import { ShareAgentTab } from "@illa-public/invite-modal/ShareAgent/interface"
+import { ShareAgentPC } from "@illa-public/invite-modal/ShareAgent/pc"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  teamActions,
+} from "@illa-public/user-data"
 import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
@@ -13,7 +19,7 @@ import { isEqual } from "lodash"
 import { FC, useCallback, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue } from "react-router-dom"
 import { v4 } from "uuid"
 import {
@@ -96,6 +102,11 @@ export const AIAgent: FC = () => {
 
   const message = useMessage()
   const upgradeModal = useUpgradeModal()
+
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
+
+  const dispatch = useDispatch()
+
   // page state
   const [generateDescLoading, setGenerateDescLoading] = useState(false)
   const [generateIconLoading, setGenerateIconLoading] = useState(false)
@@ -829,29 +840,66 @@ export const AIAgent: FC = () => {
           )}
         />
       </div>
-      {canManage(
-        currentTeamInfo.myRole,
-        ATTRIBUTE_GROUP.AGENT,
-        ACTION_MANAGE.FORK_AGENT,
-      ) && (
-        <Controller
-          control={control}
-          name="aiAgentID"
-          render={({ field: idField }) => (
-            <Controller
-              control={control}
-              name="name"
-              render={({ field: nameField }) => (
-                <Controller
-                  control={control}
-                  name="publishedToMarketplace"
-                  render={({ field }) => <></>}
-                />
-              )}
-            />
-          )}
-        />
-      )}
+      <Controller
+        control={control}
+        name="aiAgentID"
+        render={({ field: idField }) => (
+          <Controller
+            control={control}
+            name="name"
+            render={({ field: nameField }) => (
+              <Controller
+                control={control}
+                name="publishedToMarketplace"
+                render={({ field }) => (
+                  <>
+                    {(shareDialogVisible || contributedDialogVisible) && (
+                      <ShareAgentPC
+                        canInvite={canManage(
+                          currentTeamInfo.myRole,
+                          ATTRIBUTE_GROUP.AGENT,
+                          ACTION_MANAGE.FORK_AGENT,
+                        )}
+                        defaultTab={
+                          contributedDialogVisible
+                            ? ShareAgentTab.TO_MARKETPLACE
+                            : ShareAgentTab.SHARE_WITH_TEAM
+                        }
+                        defaultInviteUserRole={USER_ROLE.VIEWER}
+                        teamID={teamInfo.id}
+                        currentUserRole={teamInfo.myRole}
+                        balance={teamInfo.currentTeamLicense.balance}
+                        defaultAllowInviteLink={
+                          teamInfo.permission.inviteLinkEnabled
+                        }
+                        onInviteLinkStateChange={(enableInviteLink) => {
+                          dispatch(
+                            teamActions.updateTeamMemberPermissionReducer({
+                              teamID: teamInfo.id,
+                              newPermission: {
+                                ...teamInfo.permission,
+                                inviteLinkEnabled: enableInviteLink,
+                              },
+                            }),
+                          )
+                        }}
+                        teamIdentify={teamInfo.identifier}
+                        agentID={idField.value}
+                        defaultAgentContributed={field.value}
+                        onAgentContributed={(isAgentContributed) => {
+                          field.onChange(isAgentContributed)
+                        }}
+                        onCopyInviteLink={() => {}}
+                        onCopyAgentMarketLink={() => {}}
+                      />
+                    )}
+                  </>
+                )}
+              />
+            )}
+          />
+        )}
+      />
     </ChatContext.Provider>
   )
 }

@@ -1,4 +1,5 @@
 import { Avatar } from "@illa-public/avatar"
+import { InviteMemberPC } from "@illa-public/invite-modal"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -7,7 +8,9 @@ import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
   getCurrentTeamInfo,
+  getCurrentUser,
   getIsTutorialViewed,
+  teamActions,
 } from "@illa-public/user-data"
 import {
   canManage,
@@ -36,6 +39,7 @@ import { openGuideModal } from "@/page/Template/gideModeModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fetchCreateApp } from "@/services/apps"
+import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import {
   track,
   trackPageDurationEnd,
@@ -60,9 +64,10 @@ export const DashboardApps: FC = () => {
   const navigate = useNavigate()
   const { appList } = useLoaderData() as { appList: DashboardApp[] }
 
-  const teamInfo = useSelector(getCurrentTeamInfo)
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
   const isTutorialViewed = useSelector(getIsTutorialViewed)
   const upgradeModal = useUpgradeModal()
+  const currentUserInfo = useSelector(getCurrentUser)
 
   const [loading, setLoading] = useState(false)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
@@ -81,7 +86,7 @@ export const DashboardApps: FC = () => {
     ACTION_MANAGE.CREATE_APP,
   )
 
-  const canSetPublic = canManageInvite(
+  const showInvite = canManageInvite(
     currentUserRole,
     teamInfo?.permission?.allowEditorManageTeamMember,
     teamInfo?.permission?.allowViewerManageTeamMember,
@@ -174,7 +179,7 @@ export const DashboardApps: FC = () => {
           <span css={listTitleStyle}>{teamInfo?.name}</span>
         </div>
         <div>
-          {canSetPublic ? (
+          {showInvite ? (
             <Button w="200px" colorScheme="grayBlue" onClick={openInviteModal}>
               {t("user_management.page.invite")}
             </Button>
@@ -202,7 +207,37 @@ export const DashboardApps: FC = () => {
           />
         </Await>
       </Suspense>
-      TODO: @longbo invite
+      {inviteModalVisible && (
+        <InviteMemberPC
+          onClose={() => setInviteModalVisible(false)}
+          canInvite={showInvite}
+          currentUserRole={currentUserRole}
+          defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+          defaultInviteUserRole={USER_ROLE.VIEWER}
+          balance={teamInfo.currentTeamLicense.balance}
+          onCopyInviteLink={(inviteLink) => {
+            copyToClipboard(
+              t("user_management.modal.custom_copy_text", {
+                inviteLink: inviteLink,
+                teamName: teamInfo.name,
+                userName: currentUserInfo.nickname,
+              }),
+            )
+          }}
+          onInviteLinkStateChange={(isInviteLink) => {
+            dispatch(
+              teamActions.updateTeamMemberPermissionReducer({
+                teamID: teamInfo.id,
+                newPermission: {
+                  ...teamInfo.permission,
+                  inviteLinkEnabled: isInviteLink,
+                },
+              }),
+            )
+          }}
+          teamID={teamInfo.id}
+        />
+      )}
     </div>
   )
 }

@@ -1,9 +1,15 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
 import { UpgradeIcon } from "@illa-public/icon"
+import { ShareAgentTab } from "@illa-public/invite-modal/ShareAgent/interface"
+import { ShareAgentPC } from "@illa-public/invite-modal/ShareAgent/pc"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  teamActions,
+} from "@illa-public/user-data"
 import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
@@ -12,7 +18,7 @@ import {
 import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue } from "react-router-dom"
 import { v4 } from "uuid"
 import {
@@ -95,46 +101,68 @@ export const AIAgentRunPC: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
+
   const { t } = useTranslation()
+
+  const dispatch = useDispatch()
 
   const dialog = useMemo(() => {
     return (
       <Controller
         control={control}
         name="publishedToMarketplace"
-        render={({ field }) => {
-          if (!shareDialogVisible) {
-            return <></>
-          }
-          if (field.value) {
-            if (
-              canManage(
-                currentTeamInfo.myRole,
-                ATTRIBUTE_GROUP.AGENT,
-                ACTION_MANAGE.FORK_AGENT,
-              )
-            ) {
-              return <></>
-            } else {
-              return <></>
-            }
-          } else {
-            if (
-              canManage(
-                currentTeamInfo.myRole,
-                ATTRIBUTE_GROUP.AGENT,
-                ACTION_MANAGE.FORK_AGENT,
-              )
-            ) {
-              return <></>
-            } else {
-              return <></>
-            }
-          }
-        }}
+        render={({ field }) => (
+          <>
+            {shareDialogVisible && (
+              <ShareAgentPC
+                canInvite={canManage(
+                  currentTeamInfo.myRole,
+                  ATTRIBUTE_GROUP.AGENT,
+                  ACTION_MANAGE.FORK_AGENT,
+                )}
+                defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
+                defaultInviteUserRole={USER_ROLE.VIEWER}
+                teamID={teamInfo.id}
+                currentUserRole={teamInfo.myRole}
+                balance={teamInfo.currentTeamLicense.balance}
+                defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+                onInviteLinkStateChange={(enableInviteLink) => {
+                  dispatch(
+                    teamActions.updateTeamMemberPermissionReducer({
+                      teamID: teamInfo.id,
+                      newPermission: {
+                        ...teamInfo.permission,
+                        inviteLinkEnabled: enableInviteLink,
+                      },
+                    }),
+                  )
+                }}
+                teamIdentify={teamInfo.identifier}
+                agentID={""}
+                defaultAgentContributed={field.value}
+                onAgentContributed={(isAgentContributed) => {
+                  field.onChange(isAgentContributed)
+                }}
+                onCopyInviteLink={() => {}}
+                onCopyAgentMarketLink={() => {}}
+              />
+            )}
+          </>
+        )}
       />
     )
-  }, [control, currentTeamInfo.myRole, shareDialogVisible])
+  }, [
+    control,
+    currentTeamInfo.myRole,
+    dispatch,
+    shareDialogVisible,
+    teamInfo.currentTeamLicense.balance,
+    teamInfo.id,
+    teamInfo.identifier,
+    teamInfo.myRole,
+    teamInfo.permission,
+  ])
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
