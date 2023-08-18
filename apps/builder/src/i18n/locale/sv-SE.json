@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Stjärna {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Laddar..."
   }
 }
