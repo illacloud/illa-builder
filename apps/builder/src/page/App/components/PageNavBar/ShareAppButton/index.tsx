@@ -1,6 +1,4 @@
 import { UpgradeIcon } from "@illa-public/icon"
-import InviteModal from "@illa-public/invite-modal"
-import { INVITE_FROM } from "@illa-public/invite-modal/interface"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
@@ -17,7 +15,6 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
   const teamInfo = useSelector(getCurrentTeamInfo)!!
 
   const upgradeModal = useUpgradeModal()
-
   const [shareModalVisible, setShareModalVisible] = useState(false)
 
   const openInviteModal = useCallback(() => {
@@ -42,16 +39,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
       >
         {t("share")}
       </Button>
-      {shareModalVisible && (
-        <InviteModal
-          teamID={teamInfo.id}
-          currentUserRole={teamInfo.myRole}
-          from={INVITE_FROM.BUILDER_IDE}
-          onClose={() => {
-            setShareModalVisible(false)
-          }}
-        />
-      )}
+      TODO: @longbo invite
     </>
   )
 }

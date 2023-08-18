@@ -1,5 +1,3 @@
-import InviteModal from "@illa-public/invite-modal"
-import { INVITE_FROM } from "@illa-public/invite-modal/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -8,7 +6,7 @@ import {
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
 import {
-  canManageApp,
+  canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
@@ -60,12 +58,11 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   })
   const teamInfo = useSelector(getCurrentTeamInfo)!!
   const upgradeModal = useUpgradeModal()
-
   const [shareVisible, setShareVisible] = useState(false)
   const [appSettingVisible, setAppSettingVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
 
-  const canSetPublic = canManageApp(
+  const showInvite = canManageInvite(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
     teamInfo?.permission?.allowEditorManageTeamMember,
     teamInfo?.permission?.allowViewerManageTeamMember,
@@ -253,14 +250,14 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   }, [appId])
 
   useEffect(() => {
-    if (canEditApp || (isDeploy && canSetPublic)) {
+    if (canEditApp || (isDeploy && showInvite)) {
       track(
         ILLA_MIXPANEL_EVENT_TYPE.SHOW,
         ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
         { element: "app_more", parameter5: appId },
       )
     }
-  }, [canEditApp, isDeploy, canSetPublic, appId])
+  }, [canEditApp, isDeploy, showInvite, appId])
 
   useEffect(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
@@ -350,7 +347,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             leftIcon={<MoreIcon size="14px" />}
           />
         </Dropdown>
-      ) : isDeploy && canSetPublic ? (
+      ) : isDeploy && showInvite ? (
         // for viewer
         <Dropdown
           position="bottom-end"
@@ -397,16 +394,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
       >
-        {shareVisible && (
-          <InviteModal
-            teamID={teamInfo.id}
-            currentUserRole={teamInfo.myRole}
-            from={INVITE_FROM.BUILDER_DASHBOARD}
-            onClose={() => {
-              setShareVisible(false)
-            }}
-          />
-        )}
+        TODO: @longbo invite
       </MixpanelTrackProvider>
       <AppSettingModal
         appInfo={app}

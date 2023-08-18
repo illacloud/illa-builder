@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -2701,9 +2705,6 @@ importers:
       '@illa-public/role-selector':
         specifier: workspace:*
         version: link:../RoleSelector
-      '@illa-public/upgrade-cloud-provider':
-        specifier: workspace:*
-        version: link:../UpgradeCloudProvider
       '@illa-public/usage-card':
         specifier: workspace:*
         version: link:../UsageCard
@@ -2845,9 +2846,6 @@ importers:
       '@illa-public/role-selector':
         specifier: workspace:*
         version: link:../RoleSelector
-      '@illa-public/upgrade-cloud-provider':
-        specifier: workspace:*
-        version: link:../UpgradeCloudProvider
       '@illa-public/usage-card':
         specifier: workspace:*
         version: link:../UsageCard
@@ -3124,70 +3122,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-    devDependencies:
-      tsconfig:
-        specifier: workspace:*
-        version: link:../../tsconfig
-      vite-plugin-svgr:
-        specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.2)
-
-  packages/illa-public-component/UpgradeCloudProvider:
-    dependencies:
-      '@emotion/react':
-        specifier: '*'
-        version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
-      '@illa-design/react':
-        specifier: '*'
-        version: link:../../illa-design/packages/react
-      '@illa-public/icon':
-        specifier: workspace:*
-        version: link:../Icon
-      '@illa-public/illa-net':
-        specifier: workspace:*
-        version: link:../ILLANet
-      '@illa-public/text-link':
-        specifier: workspace:*
-        version: link:../TextLink
-      '@illa-public/user-data':
-        specifier: workspace:*
-        version: link:../UserData
-      '@illa-public/user-role-utils':
-        specifier: workspace:*
-        version: link:../UserRoleUtils
-      '@illa-public/utils':
-        specifier: workspace:*
-        version: link:../utils
-      '@reduxjs/toolkit':
-        specifier: ^1.9.5
-        version: 1.9.5(react-redux@8.1.1)(react@18.2.0)
-      '@types/react':
-        specifier: ^18.0.27
-        version: 18.0.27
-      '@types/react-dom':
-        specifier: ^18.0.10
-        version: 18.0.10
-      i18next:
-        specifier: '*'
-        version: 22.4.9
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-i18next:
-        specifier: '*'
-        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
-      react-redux:
-        specifier: ^8.1.1
-        version: 8.1.1(@types/react-dom@18.0.10)(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
-      react-router-dom:
-        specifier: ^6.14.0
-        version: 6.14.0(react-dom@18.2.0)(react@18.2.0)
-      react-use:
-        specifier: ^17.4.0
-        version: 17.4.0(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       tsconfig:
         specifier: workspace:*
@@ -20036,7 +19970,3 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

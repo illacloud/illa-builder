@@ -22,6 +22,7 @@ import {
   valueLabelStyle,
 } from "./style"
 
+
 interface AppConfigSelectProps {
   canEditApp: boolean
   appId: string
@@ -35,6 +36,7 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
   const dispatch = useDispatch()
 
   const teamInfo = useSelector(getCurrentTeamInfo)
+
   const upgradeModal = useUpgradeModal()
 
   const [popupVisible, setPopupVisible] = useState<boolean>()

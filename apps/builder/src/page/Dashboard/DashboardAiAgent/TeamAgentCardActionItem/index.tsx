@@ -42,7 +42,6 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const teamInfo = useSelector(getCurrentTeamInfo)!
 
   const upgradeModal = useUpgradeModal()
-
   const [shareVisible, setShareVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
 

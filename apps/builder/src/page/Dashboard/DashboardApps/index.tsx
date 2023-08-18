@@ -1,6 +1,4 @@
 import { Avatar } from "@illa-public/avatar"
-import InviteModal from "@illa-public/invite-modal"
-import { INVITE_FROM } from "@illa-public/invite-modal/interface"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -13,7 +11,7 @@ import {
 } from "@illa-public/user-data"
 import {
   canManage,
-  canManageApp,
+  canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
 import {
@@ -83,7 +81,7 @@ export const DashboardApps: FC = () => {
     ACTION_MANAGE.CREATE_APP,
   )
 
-  const canSetPublic = canManageApp(
+  const canSetPublic = canManageInvite(
     currentUserRole,
     teamInfo?.permission?.allowEditorManageTeamMember,
     teamInfo?.permission?.allowViewerManageTeamMember,
@@ -204,17 +202,7 @@ export const DashboardApps: FC = () => {
           />
         </Await>
       </Suspense>
-      {inviteModalVisible && (
-        <InviteModal
-          defaultAllowInviteLink={teamInfo!!.permission.inviteLinkEnabled}
-          teamID={teamInfo!!.id}
-          currentUserRole={currentUserRole}
-          from={INVITE_FROM.BUILDER_DASHBOARD}
-          onClose={() => {
-            setInviteModalVisible(false)
-          }}
-        />
-      )}
+      TODO: @longbo invite
     </div>
   )
 }

@@ -151,7 +151,7 @@ export const Deploy: FC = () => {
                       mt="8px"
                       colorScheme="techPurple"
                       leftIcon={<UpgradeIcon />}
-                      onClick={handleUpgradeModal}
+                      // TODO @longbo update drawer
                     >
                       {t("billing.homepage.upgrade")}
                     </Button>
