@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Зірка {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Завантажується..."
   }
 }
