@@ -226,7 +226,13 @@ export enum Target {
      *
      * @generated from protobuf enum value: TARGET_WINDOW = 10;
      */
-    WINDOW = 10
+    WINDOW = 10,
+    /**
+     * only for broadcast
+     *
+     * @generated from protobuf enum value: TARGET_AI_AGENT = 11;
+     */
+    AI_AGENT = 10
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class MovingMessageBin$Type extends MessageType<MovingMessageBin> {

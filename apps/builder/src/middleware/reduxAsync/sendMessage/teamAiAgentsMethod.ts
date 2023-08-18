@@ -18,7 +18,7 @@ export const teamAiAgentsAsync = (
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
           TextSignal.CREATE_STATE,
-          TextTarget.APPS,
+          TextTarget.AI_AGENT,
           true,
           action,
           teamID,
@@ -31,7 +31,7 @@ export const teamAiAgentsAsync = (
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
           TextSignal.GLOBAL_BROADCAST_ONLY,
-          TextTarget.APPS,
+          TextTarget.AI_AGENT,
           true,
           action,
           teamID,
@@ -44,7 +44,7 @@ export const teamAiAgentsAsync = (
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
           TextSignal.UPDATE_STATE,
-          TextTarget.APPS,
+          TextTarget.AI_AGENT,
           true,
           action,
           teamID,
