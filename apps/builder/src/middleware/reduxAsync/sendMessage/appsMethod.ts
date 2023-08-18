@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
 import { Connection, getTextMessagePayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/ILLA_PROTO"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { RootState } from "@/store"
 
 export const appsAsync = (
@@ -17,8 +17,8 @@ export const appsAsync = (
     case "addDashboardAppReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
-          Signal.CREATE_STATE,
-          Target.APPS,
+          TextSignal.CREATE_STATE,
+          TextTarget.APPS,
           true,
           action,
           teamID,
@@ -30,8 +30,8 @@ export const appsAsync = (
     case "removeDashboardAppReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
-          Signal.GLOBAL_BROADCAST_ONLY,
-          Target.APPS,
+          TextSignal.GLOBAL_BROADCAST_ONLY,
+          TextTarget.APPS,
           true,
           action,
           teamID,
@@ -44,8 +44,8 @@ export const appsAsync = (
     case "modifyConfigDashboardAppReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
-          Signal.UPDATE_STATE,
-          Target.APPS,
+          TextSignal.UPDATE_STATE,
+          TextTarget.APPS,
           true,
           action,
           teamID,

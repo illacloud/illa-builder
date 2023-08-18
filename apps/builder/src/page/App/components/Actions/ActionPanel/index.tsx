@@ -86,6 +86,9 @@ const SMTPPanel = lazy(
 const TransformerPanel = lazy(
   () => import("@/page/App/components/Actions/ActionPanel/TransformerPanel"),
 )
+const AIAgentPanel = lazy(
+  () => import("@/page/App/components/Actions/ActionPanel/AIAgentPanel"),
+)
 
 export const ActionPanel: FC = () => {
   const cachedAction = useSelector(getCachedAction)
@@ -175,6 +178,8 @@ export const ActionPanel: FC = () => {
         return <CouchDBPanel />
       case "airtable":
         return <AirtablePanel />
+      case "aiagent":
+        return <AIAgentPanel />
       default:
         return <></>
     }

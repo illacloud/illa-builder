@@ -1,8 +1,9 @@
 import { SerializedStyles, css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/react"
+import { getColor, globalColor, illaPrefix } from "@illa-design/react"
 
 export const containerStyle: SerializedStyles = css`
   box-sizing: border-box;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.06);
   width: 100%;
 
   & > div {
@@ -21,6 +22,9 @@ export const navBarLogoContainerStyle: SerializedStyles = css`
 `
 
 export const navBarAvatarContainerStyle: SerializedStyles = css`
+  position: absolute;
+  top: 2px;
+  right: 0;
   padding-left: 16px;
   padding-right: 16px;
   display: inline-flex;
@@ -30,6 +34,14 @@ export const navBarAvatarContainerStyle: SerializedStyles = css`
   align-self: center;
   flex-direction: row;
   cursor: pointer;
+`
+
+export const searchIconStyle = css`
+  color: ${getColor("grayBlue", "04")};
+`
+
+export const createAgentStyle = css`
+  display: none;
 `
 
 export const expandStyle: SerializedStyles = css`
@@ -81,3 +93,26 @@ export function applyUserAvatarStyle(background: string): SerializedStyles {
     border-radius: 50%;
   `
 }
+
+export const aiAgentBetaStyle = css`
+  display: inline-flex;
+  padding: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 9px;
+  background: rgba(255, 175, 223, 0.24);
+  color: #e960ff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  margin-left: -8px;
+`
+
+export const tabsContainer = css`
+  position: relative;
+  padding: 4px 0;
+`

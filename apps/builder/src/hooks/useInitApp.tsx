@@ -11,8 +11,10 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
+import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchTeamAgent } from "@/services/agent"
 import { fetchPrivateAppInitData } from "@/services/apps"
 import { fetchResources } from "@/services/resource"
 import store from "@/store"
@@ -77,10 +79,16 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       Promise.all([
         fetchPrivateAppInitData(appId, versionId, teamID, controller.signal),
         fetchResources(controller.signal),
+        fetchTeamAgent(controller.signal),
       ])
         .then((res) => {
           dispatch(resourceActions.updateResourceListReducer(res[1].data))
           handleCurrentApp(res[0].data)
+          dispatch(
+            dashboardTeamAiAgentActions.updateTeamAiAgentListReducer(
+              res[2].data.aiAgentList,
+            ),
+          )
         })
         .catch(() => {
           setErrorState(true)

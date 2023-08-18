@@ -7,6 +7,7 @@ export enum VALIDATION_TYPES {
   ARRAY = "Array",
   OBJECT = "Object",
   UNDEFINED = "Undefined",
+  ANY = "any",
 }
 
 export interface ValidationResponse {

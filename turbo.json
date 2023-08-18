@@ -2,43 +2,28 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "dist/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
     },
     "ts-check": {
-      "dependsOn": [
-        "^ts-check"
-      ]
+      "dependsOn": ["^ts-check"]
     },
     "preview": {
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "dev": {
       "cache": false,
-      "dependsOn": [
-        "build"
-      ]
+      "persistent": true,
+      "dependsOn": ["build"]
     },
     "build-cloud": {
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "build-self": {
-      "dependsOn": [
-        "build"
-      ]
+      "dependsOn": ["build"]
     },
     "test": {
-      "dependsOn": [
-        "dev"
-      ]
+      "dependsOn": ["dev"]
     }
   }
 }

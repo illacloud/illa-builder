@@ -13,3 +13,11 @@ export const getCurrentTeamInfo = createSelector(
     return items.find((item) => item.id === currentId)
   },
 )
+
+export const getCurrentTeamTotalLicense = createSelector(
+  [getCurrentTeamInfo],
+  (teamInfo) => {
+    if (!teamInfo) return
+    return teamInfo.totalTeamLicense
+  },
+)

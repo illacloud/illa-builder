@@ -177,14 +177,17 @@ export const runActionWithExecutionResult = async (
       response,
       isClientS3,
     )
+
     let userTransformedData = runTransformer(
       transformer,
       illaInnerTransformedResponse.data ?? "",
     )
+
     store.dispatch(
       executionActions.updateExecutionByDisplayNameReducer({
         displayName: displayName,
         value: {
+          ...illaInnerTransformedResponse,
           data: userTransformedData,
           runResult: undefined,
           isRunning: false,
@@ -192,6 +195,7 @@ export const runActionWithExecutionResult = async (
         },
       }),
     )
+
     if (needRunEventHandler) {
       runAllEventHandler(originSuccessEvent, $dynamicAttrPaths)
     }

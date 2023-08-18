@@ -36,11 +36,11 @@ The core team is monitoring for pull requests. We will review your pull request 
 After cloning Illa-builder, run `pnpm install`to fetch its dependencies.After this,you need input the following to `apps/builder/.env.development.local`
 
 ```
-VITE_API_BASE_URL=localhost:9999  # this is your backend address,if not has this line, it will use the default backend address,location.origin
-VITE_INSTANCE_ID=SELF_HOST_CLOUD
+ILLA_API_BASE_URL=localhost:9999  # this is your backend address,if not has this line, it will use the default backend address,location.origin
+ILLA_INSTANCE_ID=SELF_HOST_CLOUD
 ILLA_APP_VERSION=0.0.0
 ILLA_APP_ENV=development
-VITE_USE_HTTPS=false
+ILLA_USE_HTTPS=false
 ```
 
 Then, you can run several commands:
@@ -53,8 +53,8 @@ Then, you can run several commands:
 If you need to run the production version, you need input the following to `apps/builder/env.self`
 
 ```
-VITE_API_BASE_URL=localhost:9999  # this is your backend address,if not has this line, it will use the default backend address,location.origin
-VITE_INSTANCE_ID=SELF_HOST_CLOUD
+ILLA_API_BASE_URL=localhost:9999  # this is your backend address,if not has this line, it will use the default backend address,location.origin
+ILLA_INSTANCE_ID=SELF_HOST_CLOUD
 ILLA_APP_VERSION=0.0.0
 ILLA_APP_ENV=production
 ```
@@ -69,11 +69,11 @@ ILLA_APP_ENV=production
 You can install [illa](https://github.com/illacloud/illa).illa is a CLI tool for hosting ILLA Builder at local. And then you can run `illa deploy -S -p 9345`,this means you will deploy illa-builder-backend at port 9345. And then you can modify your `.env.development.local` like this:
 
 ```
-VITE_API_BASE_URL=localhost:9345
-VITE_INSTANCE_ID=SELF_HOST_CLOUD
+ILLA_API_BASE_URL=localhost:9345
+ILLA_INSTANCE_ID=SELF_HOST_CLOUD
 ILLA_APP_VERSION=0.0.0
 ILLA_APP_ENV=development
-VITE_USE_HTTPS=false
+ILLA_USE_HTTPS=false
 ```
 
 
