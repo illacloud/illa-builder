@@ -4008,5 +4008,8 @@
   "marketplace": {
     "star": "Ster {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Laden..."
   }
 }
