@@ -4005,16 +4005,16 @@
     },
     "default-text-apps": {
       "social-media": {
-        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "reddit": "Check out this amazing app [{{appName}}]",
-        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+        "twitter": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}",
+        "reddit": "Podívejte se na tuto úžasnou aplikaci [{{appName}}]",
+        "linkedin": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}",
+        "facebook": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}",
+        "whatsapp": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}"
       },
       "social-mediak": {
-        "hackernews": "Easy-to-use web app template [{{appName}}]"
+        "hackernews": "Šablona webové aplikace [{{appName}}]"
       },
-      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      "contribute": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI agenti",
