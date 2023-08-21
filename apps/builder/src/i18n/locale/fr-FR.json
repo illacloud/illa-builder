@@ -4005,16 +4005,16 @@
     },
     "default-text-apps": {
       "social-media": {
-        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "reddit": "Check out this amazing app [{{appName}}]",
-        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+        "twitter": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}",
+        "reddit": "Découvrez cette application incroyable [{{appName}}]",
+        "linkedin": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}",
+        "facebook": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}",
+        "whatsapp": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}"
       },
       "social-mediak": {
-        "hackernews": "Easy-to-use web app template [{{appName}}]"
+        "hackernews": "Modèle d'application web [{{appName}} ] facile à utiliser"
       },
-      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      "contribute": "Je viens de trouver une application intéressante. Vérifiez-la ! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "Agents IA",
