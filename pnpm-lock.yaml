@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -2704,6 +2708,9 @@ importers:
       '@illa-public/role-selector':
         specifier: workspace:*
         version: link:../RoleSelector
+      '@illa-public/upgrade-modal':
+        specifier: workspace:*
+        version: link:../UpgradeModal
       '@illa-public/usage-card':
         specifier: workspace:*
         version: link:../UsageCard
@@ -2741,6 +2748,9 @@ importers:
         specifier: '*'
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
+      '@types/node':
+        specifier: ^18.14.4
+        version: 18.14.5
       tsconfig:
         specifier: workspace:*
         version: link:../../tsconfig
@@ -19969,7 +19979,3 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
