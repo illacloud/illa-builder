@@ -4005,16 +4005,16 @@
     },
     "default-text-apps": {
       "social-media": {
-        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "reddit": "Check out this amazing app [{{appName}}]",
-        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+        "twitter": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "reddit": "Tjek denne fantastiske app [{{appName}}]",
+        "linkedin": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "facebook": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "whatsapp": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}"
       },
       "social-mediak": {
-        "hackernews": "Easy-to-use web app template [{{appName}}]"
+        "hackernews": "Let at bruge web-app skabelon [{{appName}}]"
       },
-      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      "contribute": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI Agenter",
