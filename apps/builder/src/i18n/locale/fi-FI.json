@@ -4006,7 +4006,7 @@
     "default-text-apps": {
       "social-media": {
         "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "reddit": "Check out this amazing app [{{appName}}]",
+        "reddit": "Tutustu tähän hämmästyttävään sovellukseen [{{appName}}]",
         "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
         "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
         "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
