@@ -138,14 +138,19 @@ export const AIAgentRunPC: FC = () => {
                     }),
                   )
                 }}
-                teamIdentify={teamInfo.identifier}
-                agentID={""}
+                agentID={agent.aiAgentID}
                 defaultAgentContributed={field.value}
                 onAgentContributed={(isAgentContributed) => {
                   field.onChange(isAgentContributed)
                 }}
                 onCopyInviteLink={() => {}}
                 onCopyAgentMarketLink={() => {}}
+                ownerTeamIdentify={agent.teamID}
+                userRoleForThisAgent={
+                  currentTeamInfo.id === agent.teamID
+                    ? currentTeamInfo.myRole
+                    : USER_ROLE.VIEWER
+                }
               />
             )}
           </>
@@ -153,13 +158,15 @@ export const AIAgentRunPC: FC = () => {
       />
     )
   }, [
+    agent.aiAgentID,
+    agent.teamID,
     control,
+    currentTeamInfo.id,
     currentTeamInfo.myRole,
     dispatch,
     shareDialogVisible,
     teamInfo.currentTeamLicense.balance,
     teamInfo.id,
-    teamInfo.identifier,
     teamInfo.myRole,
     teamInfo.permission,
   ])

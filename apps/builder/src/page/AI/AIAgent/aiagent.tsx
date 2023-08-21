@@ -883,7 +883,6 @@ export const AIAgent: FC = () => {
                             }),
                           )
                         }}
-                        teamIdentify={teamInfo.identifier}
                         agentID={idField.value}
                         defaultAgentContributed={field.value}
                         onAgentContributed={(isAgentContributed) => {
@@ -891,6 +890,8 @@ export const AIAgent: FC = () => {
                         }}
                         onCopyInviteLink={() => {}}
                         onCopyAgentMarketLink={() => {}}
+                        ownerTeamIdentify={currentTeamInfo.identifier}
+                        userRoleForThisAgent={currentTeamInfo.myRole}
                       />
                     )}
                   </>
