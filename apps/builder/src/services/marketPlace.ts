@@ -21,8 +21,8 @@ type ProductTypeMapping = {
 }
 
 export enum PRODUCT_SORT_BY {
-  POPULARITY = "popular",
-  TIME = "time",
+  POPULAR = "popular",
+  LATEST = "latest",
   STARRED = "starred",
 }
 
@@ -50,7 +50,7 @@ export const fetchProductList = <T extends keyof ProductTypeMapping>(
   const {
     page = 0,
     limit = 10,
-    sortedBy = PRODUCT_SORT_BY.POPULARITY,
+    sortedBy = PRODUCT_SORT_BY.POPULAR,
     search,
   } = params
 
@@ -75,7 +75,7 @@ export const fetchNeedAuthProductList = <T extends keyof ProductTypeMapping>(
   const {
     page = 0,
     limit = 10,
-    sortedBy = PRODUCT_SORT_BY.POPULARITY,
+    sortedBy = PRODUCT_SORT_BY.POPULAR,
     search,
   } = params
   return marketplaceRequest<ProductList<T>>({

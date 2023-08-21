@@ -68,11 +68,11 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
   const sortOptions = [
     {
       label: t("dashboard.sort-type.popular"),
-      value: PRODUCT_SORT_BY.POPULARITY,
+      value: PRODUCT_SORT_BY.POPULAR,
     },
     {
       label: t("dashboard.sort-type.recent"),
-      value: PRODUCT_SORT_BY.TIME,
+      value: PRODUCT_SORT_BY.LATEST,
     },
     {
       label: t("dashboard.sort-type.star"),
