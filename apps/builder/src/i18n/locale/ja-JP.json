@@ -4005,16 +4005,16 @@
     },
     "default-text-apps": {
       "social-media": {
-        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "reddit": "Check out this amazing app [{{appName}}]",
-        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+        "twitter": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "reddit": "この素晴らしいアプリをチェックしてください [{{appName}}]",
+        "linkedin": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "facebook": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "whatsapp": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}"
       },
       "social-mediak": {
-        "hackernews": "Easy-to-use web app template [{{appName}}]"
+        "hackernews": "簡単に使えるウェブアプリテンプレート [{{appName}}]"
       },
-      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      "contribute": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AIエージェント",
