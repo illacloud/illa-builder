@@ -4002,6 +4002,19 @@
       "contribute": "マーケットプレイスに貢献する",
       "share_contribute": "コピー & 共有",
       "uncontribute": "投稿をキャンセル"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "reddit": "Check out this amazing app [{{appName}}]",
+        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Easy-to-use web app template [{{appName}}]"
+      },
+      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AIエージェント",
