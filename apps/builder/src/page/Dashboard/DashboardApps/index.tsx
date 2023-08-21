@@ -56,6 +56,7 @@ import {
   teamInfoContainerStyle,
 } from "./style"
 
+
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
   const { teamIdentifier } = useParams()
@@ -214,7 +215,7 @@ export const DashboardApps: FC = () => {
           currentUserRole={currentUserRole}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           defaultInviteUserRole={USER_ROLE.VIEWER}
-          balance={teamInfo.currentTeamLicense.balance}
+          defaultBalance={teamInfo.currentTeamLicense.balance}
           onCopyInviteLink={(inviteLink) => {
             copyToClipboard(
               t("user_management.modal.custom_copy_text", {
@@ -236,6 +237,17 @@ export const DashboardApps: FC = () => {
             )
           }}
           teamID={teamInfo.id}
+          onBalanceChange={(balance) => {
+            dispatch(
+              teamActions.updateTeamMemberSubscribeReducer({
+                teamID: teamInfo.id,
+                subscribeInfo: {
+                  ...teamInfo.currentTeamLicense,
+                  balance: balance,
+                },
+              }),
+            )
+          }}
         />
       )}
     </div>

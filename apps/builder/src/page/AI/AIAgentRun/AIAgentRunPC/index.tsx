@@ -128,7 +128,7 @@ export const AIAgentRunPC: FC = () => {
                 defaultInviteUserRole={USER_ROLE.VIEWER}
                 teamID={teamInfo.id}
                 currentUserRole={teamInfo.myRole}
-                balance={teamInfo.currentTeamLicense.balance}
+                defaultBalance={teamInfo.currentTeamLicense.balance}
                 defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
                 onInviteLinkStateChange={(enableInviteLink) => {
                   dispatch(
@@ -154,6 +154,17 @@ export const AIAgentRunPC: FC = () => {
                     : USER_ROLE.VIEWER
                 }
                 ownerTeamID={agent.teamID}
+                onBalanceChange={(balance) => {
+                  dispatch(
+                    teamActions.updateTeamMemberSubscribeReducer({
+                      teamID: teamInfo.id,
+                      subscribeInfo: {
+                        ...teamInfo.currentTeamLicense,
+                        balance: balance,
+                      },
+                    }),
+                  )
+                }}
               />
             )}
           </>

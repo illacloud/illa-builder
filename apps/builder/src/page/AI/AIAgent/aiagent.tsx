@@ -872,7 +872,7 @@ export const AIAgent: FC = () => {
                         defaultInviteUserRole={USER_ROLE.VIEWER}
                         teamID={teamInfo.id}
                         currentUserRole={teamInfo.myRole}
-                        balance={teamInfo.currentTeamLicense.balance}
+                        defaultBalance={teamInfo.currentTeamLicense.balance}
                         defaultAllowInviteLink={
                           teamInfo.permission.inviteLinkEnabled
                         }
@@ -896,6 +896,17 @@ export const AIAgent: FC = () => {
                         onCopyAgentMarketLink={() => {}}
                         userRoleForThisAgent={currentTeamInfo.myRole}
                         ownerTeamID={currentTeamInfo.id}
+                        onBalanceChange={(balance) => {
+                          dispatch(
+                            teamActions.updateTeamMemberSubscribeReducer({
+                              teamID: teamInfo.id,
+                              subscribeInfo: {
+                                ...teamInfo.currentTeamLicense,
+                                balance: balance,
+                              },
+                            }),
+                          )
+                        }}
                       />
                     )}
                   </>
