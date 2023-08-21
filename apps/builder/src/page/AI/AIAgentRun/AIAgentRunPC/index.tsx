@@ -116,6 +116,9 @@ export const AIAgentRunPC: FC = () => {
           <>
             {shareDialogVisible && (
               <ShareAgentPC
+                onClose={() => {
+                  setShareDialogVisible(false)
+                }}
                 canInvite={canManage(
                   currentTeamInfo.myRole,
                   ATTRIBUTE_GROUP.AGENT,
@@ -145,12 +148,12 @@ export const AIAgentRunPC: FC = () => {
                 }}
                 onCopyInviteLink={() => {}}
                 onCopyAgentMarketLink={() => {}}
-                ownerTeamIdentify={agent.teamID}
                 userRoleForThisAgent={
                   currentTeamInfo.id === agent.teamID
                     ? currentTeamInfo.myRole
                     : USER_ROLE.VIEWER
                 }
+                ownerTeamID={agent.teamID}
               />
             )}
           </>

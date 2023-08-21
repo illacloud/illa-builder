@@ -5,7 +5,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { FC, Suspense, UIEvent, useCallback, useContext, useState } from "react"
+import { FC, Suspense, UIEvent, useCallback, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Await, useLoaderData, useNavigate, useParams } from "react-router-dom"
@@ -34,7 +34,6 @@ const DashboardAiAgent: FC = () => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
   const hasMoreData = useSelector(getHasMoreMarketAgent)
-  const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
 
@@ -53,7 +52,6 @@ const DashboardAiAgent: FC = () => {
       if (!hasMoreData) return
       const target = event.target as HTMLDivElement
       if (target.scrollHeight - target.scrollTop - target.clientHeight <= 100) {
-        console.log("scroll to bottom")
         loadMoreMarketAgent()
       }
     }
@@ -95,7 +93,6 @@ const DashboardAiAgent: FC = () => {
           <AgentContentBody canEdit={canEditApp} />
         </Await>
       </Suspense>
-      TODO: @longbo invite
     </div>
   )
 }
