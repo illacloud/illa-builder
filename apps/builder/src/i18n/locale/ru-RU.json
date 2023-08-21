@@ -4005,16 +4005,16 @@
     },
     "default-text-apps": {
       "social-media": {
-        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "reddit": "Check out this amazing app [{{appName}}]",
-        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
-        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+        "twitter": "Я только что нашел интересное приложение. Посмотрите его! {{appName}}:{{appLink}}",
+        "reddit": "Посмотрите это замечательное приложение [{{appName}}]",
+        "linkedin": "Я только что нашел интересное приложение. Посмотрите его! {{appName}}:{{appLink}}",
+        "facebook": "Я только что нашел интересное приложение. Посмотрите его! {{appName}}:{{appLink}}",
+        "whatsapp": "Я только что нашел интересное приложение. Посмотрите его! {{appName}}:{{appLink}}"
       },
       "social-mediak": {
-        "hackernews": "Easy-to-use web app template [{{appName}}]"
+        "hackernews": "Простой в использовании шаблон веб-приложения [{{appName}}]"
       },
-      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      "contribute": "Я только что нашел интересное приложение. Посмотрите его! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "Агенты ИИ",
