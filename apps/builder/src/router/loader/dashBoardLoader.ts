@@ -54,7 +54,7 @@ export const getDashboardAiAgentLoader: LoaderFunction = async ({
       )
       return res.data
     }),
-    marketAgentList: fetchNeedAuthAgentList(
+    marketAgentData: fetchNeedAuthAgentList(
       {
         page: MARKET_INITIAL_PAGE,
         limit: MARKET_PAGE_SIZE,

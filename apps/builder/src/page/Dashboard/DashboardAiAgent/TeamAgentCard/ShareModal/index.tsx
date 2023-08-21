@@ -111,27 +111,38 @@ const AgentShareModal: FC<AgentShareModalProps> = (props) => {
   }
 
   const handleInviteByEmail = useCallback(
-    (email: string, userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
-      return shareAgentByEmail(email, userRole, aiAgentID, redirectPage).then(
-        (res) => {
-          updateMembers()
-          return res
-        },
-      )
+    (email: string, userRole: USER_ROLE) => {
+      return shareAgentByEmail(
+        email,
+        userRole,
+        aiAgentID,
+        REDIRECT_PAGE_TYPE.RELEASE,
+      ).then((res) => {
+        updateMembers()
+        return res
+      })
     },
     [aiAgentID],
   )
 
   const fetchShareLink = useCallback(
-    (userRole: USER_ROLE, redirectPage?: REDIRECT_PAGE_TYPE) => {
-      return fetchShareAgentLink(userRole, aiAgentID, redirectPage)
+    (userRole: USER_ROLE) => {
+      return fetchShareAgentLink(
+        userRole,
+        aiAgentID,
+        REDIRECT_PAGE_TYPE.RELEASE,
+      )
     },
     [aiAgentID],
   )
 
   const renewShareLink = useCallback(
     (userRole: USER_ROLE) => {
-      return renewShareAgentLink(userRole, aiAgentID)
+      return renewShareAgentLink(
+        userRole,
+        aiAgentID,
+        REDIRECT_PAGE_TYPE.RELEASE,
+      )
     },
     [aiAgentID],
   )
