@@ -43,7 +43,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
 }
 
 export const MARKET_INITIAL_PAGE = 1
-export const MARKET_PAGE_SIZE = 20
+export const MARKET_PAGE_SIZE = 30
 export const MARKET_DEFAULT_SORT = PRODUCT_SORT_BY.POPULARITY
 export const MARKET_LIMIT_ITEMS = 1000
 
