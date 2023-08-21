@@ -107,83 +107,69 @@ export const AIAgentRunPC: FC = () => {
 
   const dispatch = useDispatch()
 
-  const dialog = useMemo(() => {
-    return (
-      <Controller
-        control={control}
-        name="publishedToMarketplace"
-        render={({ field }) => (
-          <>
-            {shareDialogVisible && (
-              <ShareAgentPC
-                onClose={() => {
-                  setShareDialogVisible(false)
-                }}
-                canInvite={canManage(
-                  currentTeamInfo.myRole,
-                  ATTRIBUTE_GROUP.AGENT,
-                  ACTION_MANAGE.FORK_AGENT,
-                )}
-                defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
-                defaultInviteUserRole={USER_ROLE.VIEWER}
-                teamID={teamInfo.id}
-                currentUserRole={teamInfo.myRole}
-                defaultBalance={teamInfo.currentTeamLicense.balance}
-                defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
-                onInviteLinkStateChange={(enableInviteLink) => {
-                  dispatch(
-                    teamActions.updateTeamMemberPermissionReducer({
-                      teamID: teamInfo.id,
-                      newPermission: {
-                        ...teamInfo.permission,
-                        inviteLinkEnabled: enableInviteLink,
-                      },
-                    }),
-                  )
-                }}
-                agentID={agent.aiAgentID}
-                defaultAgentContributed={field.value}
-                onAgentContributed={(isAgentContributed) => {
-                  field.onChange(isAgentContributed)
-                }}
-                onCopyInviteLink={() => {}}
-                onCopyAgentMarketLink={() => {}}
-                userRoleForThisAgent={
-                  currentTeamInfo.id === agent.teamID
-                    ? currentTeamInfo.myRole
-                    : USER_ROLE.VIEWER
-                }
-                ownerTeamID={agent.teamID}
-                onBalanceChange={(balance) => {
-                  dispatch(
-                    teamActions.updateTeamMemberSubscribeReducer({
-                      teamID: teamInfo.id,
-                      subscribeInfo: {
-                        ...teamInfo.currentTeamLicense,
-                        balance: balance,
-                      },
-                    }),
-                  )
-                }}
-              />
-            )}
-          </>
-        )}
-      />
-    )
-  }, [
-    agent.aiAgentID,
-    agent.teamID,
-    control,
-    currentTeamInfo.id,
-    currentTeamInfo.myRole,
-    dispatch,
-    shareDialogVisible,
-    teamInfo.currentTeamLicense.balance,
-    teamInfo.id,
-    teamInfo.myRole,
-    teamInfo.permission,
-  ])
+  const dialog = (
+    <Controller
+      control={control}
+      name="publishedToMarketplace"
+      render={({ field }) => (
+        <>
+          {shareDialogVisible && (
+            <ShareAgentPC
+              onClose={() => {
+                setShareDialogVisible(false)
+              }}
+              canInvite={canManage(
+                currentTeamInfo.myRole,
+                ATTRIBUTE_GROUP.AGENT,
+                ACTION_MANAGE.FORK_AGENT,
+              )}
+              defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
+              defaultInviteUserRole={USER_ROLE.VIEWER}
+              teamID={teamInfo.id}
+              currentUserRole={teamInfo.myRole}
+              defaultBalance={teamInfo.currentTeamLicense.balance}
+              defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+              onInviteLinkStateChange={(enableInviteLink) => {
+                dispatch(
+                  teamActions.updateTeamMemberPermissionReducer({
+                    teamID: teamInfo.id,
+                    newPermission: {
+                      ...teamInfo.permission,
+                      inviteLinkEnabled: enableInviteLink,
+                    },
+                  }),
+                )
+              }}
+              agentID={agent.aiAgentID}
+              defaultAgentContributed={field.value}
+              onAgentContributed={(isAgentContributed) => {
+                field.onChange(isAgentContributed)
+              }}
+              onCopyInviteLink={() => {}}
+              onCopyAgentMarketLink={() => {}}
+              userRoleForThisAgent={
+                currentTeamInfo.id === agent.teamID
+                  ? currentTeamInfo.myRole
+                  : USER_ROLE.VIEWER
+              }
+              ownerTeamID={agent.teamID}
+              onBalanceChange={(balance) => {
+                dispatch(
+                  teamActions.updateTeamMemberSubscribeReducer({
+                    teamID: teamInfo.id,
+                    subscribeInfo: {
+                      ...teamInfo.currentTeamLicense,
+                      balance: balance,
+                    },
+                  }),
+                )
+              }}
+            />
+          )}
+        </>
+      )}
+    />
+  )
 
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
