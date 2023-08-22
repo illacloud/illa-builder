@@ -3232,7 +3232,12 @@
       "owner": "Besitzer",
       "admin": "Administer",
       "editor": "Redakteur",
-      "viewer": "Betrachter"
+      "viewer": "Betrachter",
+      "tips": {
+        "admin": "Das Mitglied, das alle Mitglieder außer Eigentümer verwalten kann, APPs bearbeiten und APPs anzeigen kann",
+        "editor": "Das Mitglied, das Editor- und Viewer-Mitglieder verwalten kann, APPs bearbeiten und APPs anzeigen kann",
+        "viewer": "Das Mitglied, das Viewer-Mitglieder verwalten und APPs anzeigen kann"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "E-Mail-Adresse eingeben",
         "invited": "Haben eingeladen",
         "in_list": "Dieser Benutzer ist bereits in Ihrem Team.",
-        "notmail": "{{ email }} ist keine E-Mail",
-        "duplicate": "{{ email }} ist dupliziert"
+        "duplicate": "{{ email }} ist dupliziert",
+        "not_mail": "{{ email }} ist keine E-Mail"
       },
       "invalid_email": "Bitte geben Sie eine gültige E-Mail ein",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. ",
       "contribute": "Nachdem Sie zum Marketplace beigetragen haben, können alle Benutzer Ihren Agent ausführen, markieren und forken. Wenn Benutzer aus anderen Teams diesen Agent betreiben, wird er Ihre Ressourcen nicht verbrauchen."
-    },
-    "tips": {
-      "admin": "Das Mitglied, das alle Mitglieder außer Eigentümer verwalten kann, APPs bearbeiten und APPs anzeigen kann",
-      "editor": "Das Mitglied, das Editor- und Viewer-Mitglieder verwalten kann, APPs bearbeiten und APPs anzeigen kann",
-      "viewer": "Das Mitglied, das Viewer-Mitglieder verwalten und APPs anzeigen kann"
     },
     "label": {
       "contribute": "Zum Marktplatz beitragen",
