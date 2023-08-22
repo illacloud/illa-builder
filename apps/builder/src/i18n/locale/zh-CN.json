@@ -3297,7 +3297,8 @@
           "app": "我刚发现了一个有意思的app： {{ appName }}，通过链接查看：{{ appLink }}",
           "agent": "我刚发现了一个有意思的AI Agent：  {{ agentName }}. 通过链接查看: {{ agentLink }}"
         },
-        "desc": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
+        "desc": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。",
+        "turn_off": "取消贡献"
       },
       "social_media": {
         "label": "分享到",
