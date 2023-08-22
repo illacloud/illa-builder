@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "Kutsu jäseniä"
+        "invite_members": "Kutsu jäseniä",
+        "invite_to_use": "Kutsu käyttämään",
+        "invite_to_edit": "Kutsu muokattavaksi"
       },
       "link": {
         "invite_title": "Kutsu linkki",
         "copy": "Kopioi",
         "turn_off": "Poista kutsulinkit käytöstä",
         "update": "Päivitä kutsulinkit",
-        "description": "Jaa salainen linkki, jonka avulla ihmiset voivat liittyä tiimiisi.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Ota kutsulinkit käyttöön",
         "fail": "Linkin hankkiminen epäonnistui, yritä myöhemmin uudelleen",
         "copied_suc": "Kopioitu!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Kutsu muokattavaksi",
-      "invite_to_use": "Kutsu käyttämään",
       "share-with-team": "Jaa tiimin kanssa",
       "contribute": "Osallistu"
     },
