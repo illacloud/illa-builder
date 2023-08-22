@@ -3232,7 +3232,12 @@
       "owner": "Proprietario",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Visualizzatore"
+      "viewer": "Visualizzatore",
+      "tips": {
+        "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
+        "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
+        "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Inserisci indirizzo email",
         "invited": "Hanno invitato",
         "in_list": "Questo utente è già nel tuo team.",
-        "notmail": "{{ email }} non è un'email",
-        "duplicate": "{{ email }} è duplicato"
+        "duplicate": "{{ email }} è duplicato",
+        "not_mail": "{{ email }} non è un'email"
       },
       "invalid_email": "Inserisci un'email valida",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. ",
       "contribute": "Dopo aver contribuito al Marketplace, tutti gli utenti possono eseguire, stella e fork il tuo Agente. Quando gli utenti di altri team eseguono questo Agente, non consumerà le tue risorse."
-    },
-    "tips": {
-      "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
-      "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
-      "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
     },
     "label": {
       "contribute": "Contribuisci al mercato",
