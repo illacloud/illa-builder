@@ -3285,7 +3285,23 @@
       "tips": {
         "license_insufficient": "Licenças restantes"
       },
-      "custom-copy-ai-agent": "{{userName}} compartilhou um Agente de I{{teamName}}para você. Clique no link para participar da equipe e experimente o Agente de IA: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} compartilhou um Agente de I{{teamName}}para você. Clique no link para participar da equipe e experimente o Agente de IA: {{inviteLink}}",
+      "contribute": {
+        "label": "Contribua para o marketplace"
+      },
+      "social_media": {
+        "label": "Compartilhar em",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Siga-nos",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Notícias do hacker",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+        }
+      }
     },
     "mes": {
       "invite_suc": "Convidado com sucesso",
@@ -3974,22 +3990,10 @@
       "contribute": "Após contribuir para o Marketplace, todos os usuários podem executar, estrelar e bifurcar o seu Agente. Quando usuários de outras equipes executam este Agente, não consumirá seus recursos."
     },
     "label": {
-      "contribute": "Contribua para o marketplace",
-      "social-media": "Compartilhar em"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Siga-nos",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Notícias do hacker"
-      }
+      "contribute": "Contribua para o marketplace"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Olá! Acabei de descobrir este incrível atendente de IA. Pode ser que você esteja interessado em fazer uma tentativa! Dê uma olhada! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Confira este incrível Agente IA [{{promptName}}]",
         "linkedin": "Atenção a todos os entusiastas e profissionais da IA procurando aumentar a sua produtividade! Encontrei uma plataforma de Agente IA que oferece soluções de ponta para simplificar tarefas complexas e integrar com suas ferramentas internas. Eu experimentei pessoalmente [{{promptName}}] e fui soprado pelas suas capacidades. É uma mudança de jogo para qualquer um que queira ficar à frente da curva. Dê uma olhada por você mesmo no {{promptLink}} e diga-me o que você achou!",
         "facebook": "Atenção a todos os entusiastas e profissionais da IA procurando aumentar a sua produtividade! Encontrei uma plataforma de Agente IA que oferece soluções de ponta para simplificar tarefas complexas e integrar com suas ferramentas internas. Eu experimentei pessoalmente [{{promptName}}] e fui soprado pelas suas capacidades. É uma mudança de jogo para qualquer um que queira ficar à frente da curva. Dê uma olhada por você mesmo no {{promptLink}} e diga-me o que você achou!",
@@ -3999,7 +4003,6 @@
       "contribute": "Encontrei uma plataforma de Agente IA que oferece soluções de ponta para simplificar tarefas complexas e integrar com suas ferramentas internas. Eu experimentei pessoalmente [{{promptName}}] e fui soprado pelas suas capacidades. É uma mudança de jogo para qualquer um que queira ficar à frente da curva. Dê uma olhada por você mesmo no {{promptLink}} e diga-me o que você achou!"
     },
     "button": {
-      "contribute": "Contribua para o marketplace",
       "share_contribute": "Copiar e Compartilhar",
       "uncontribute": "Cancelar contribuição"
     },
