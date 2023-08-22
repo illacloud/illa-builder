@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "Bjud in medlemmar"
+        "invite_members": "Bjud in medlemmar",
+        "invite_to_use": "Bjud in att använda",
+        "invite_to_edit": "Bjud in att redigera"
       },
       "link": {
         "invite_title": "Bjud in länk",
         "copy": "Kopiera",
         "turn_off": "Stäng av inbjudningslänkar",
         "update": "Uppdatera inbjudningslänkar",
-        "description": "Dela en hemlig länk människor kan använda för att gå med i ditt team.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Slå på inbjudningslänkar",
         "fail": "Det gick inte att få länken, försök igen senare",
         "copied_suc": "Kopierad!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Bjud in att redigera",
-      "invite_to_use": "Bjud in att använda",
       "share-with-team": "Dela med team",
       "contribute": "Bidra"
     },
