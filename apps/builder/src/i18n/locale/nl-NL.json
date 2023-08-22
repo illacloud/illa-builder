@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Nodig leden uit",
         "invite_to_use": "Uitnodigen om te gebruiken",
-        "invite_to_edit": "Uitnodigen om te bewerken"
+        "invite_to_edit": "Uitnodigen om te bewerken",
+        "contribute": "Marktplaats"
       },
       "link": {
         "invite_title": "Uitnodigings link",
         "copy": "Kopiëren",
         "turn_off": "Uitnodigingslinks uitschakelen",
         "update": "Uitnodigingslinks bijwerken",
-        "description": "Turn on and invite members via link. ",
+        "description": "Schakel leden in en nodig uit via link. ",
         "turn_on": "Uitnodigingslinks inschakelen",
         "fail": "Fout bij het verkrijgen van de link, probeer het later opnieuw",
         "copied_suc": "Gekopieerd!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Uitschakelen mislukt",
         "turn_on_fail": "Fout bij inschakelen",
         "make_public_title": "Maak de app openbaar",
-        "make_public_copy": "Kopiëren"
+        "make_public_copy": "Kopiëren",
+        "marketplace": {
+          "label": "Deel met link"
+        }
       },
       "email": {
         "invite_title": "Uitnodigen per e-mail",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Uitnodigen",
-        "public": "Openbaar"
+        "public": "Openbaar",
+        "with_team": "Deel met teamleden"
       },
       "custom_copy_text_app_invite": "{{userName}} heeft u een app van 「{{teamName}}」gedeeld. Klik op de link om u aan te sluiten bij het team en controleer de APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} heeft u een APP van 「{{teamName}}」gedeeld. Klik op de link om de app te controleren: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Draag bij aan de marktplaats"
+        "label": "Draag bij aan de marktplaats",
+        "default_text": {
+          "app": "Ik heb net een indrukwekkende app ontdekt genaamd {{ appName }}. Bekijk het: {{ appLink }}",
+          "agent": "Ik heb net een indrukwekkende AI Agent genaamd {{ agentName }}ontdekt. Controleer het: {{ agentLink }}"
+        },
+        "desc": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
       },
       "social_media": {
         "label": "Delen op",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Hacker Nieuws",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Ik heb net een indrukwekkende app ontdekt genaamd {{ appName }}",
+          "agent": "Ik heb net een indrukwekkende AI Agent ontdekt genaamd {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} deelt je een AI Agent van Kof{{ teamName }}. Sluit je aan bij het team en controleer het: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Succesvol uitgenodigd",
@@ -3986,8 +3997,7 @@
       "contribute": "Meedoen"
     },
     "desc": {
-      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. ",
-      "contribute": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
+      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
     },
     "label": {
       "contribute": "Draag bij aan de marktplaats"
