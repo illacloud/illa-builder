@@ -165,6 +165,9 @@ export const AIAgentRunMobile: FC = () => {
           <>
             {shareDialogVisible && (
               <ShareAgentMobile
+                redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${
+                  agent.aiAgentID
+                }/run`}
                 onClose={() => {
                   setShareDialogVisible(false)
                 }}
