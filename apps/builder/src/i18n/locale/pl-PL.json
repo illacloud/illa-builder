@@ -3232,7 +3232,12 @@
       "owner": "Właściciel",
       "admin": "Administer",
       "editor": "Edytor",
-      "viewer": "Przeglądarka"
+      "viewer": "Przeglądarka",
+      "tips": {
+        "admin": "Użytkownik, który może zarządzać wszystkimi użytkownikami z wyjątkiem właściciela, edytować APPs i przeglądać APP",
+        "editor": "Użytkownik, który może zarządzać edytorami i użytkownikami przeglądarek, edytować aplikacje i przeglądać aplikacje",
+        "viewer": "Użytkownik, który może zarządzać użytkownikami przeglądarki i przeglądać APP"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Wprowadź adres e-mail",
         "invited": "Zaproszono",
         "in_list": "Ten użytkownik jest już w twoim zespole.",
-        "notmail": "{{ email }} nie jest adresem e-mail",
-        "duplicate": "{{ email }} jest zduplikowane"
+        "duplicate": "{{ email }} jest zduplikowane",
+        "not_mail": "{{ email }} nie jest adresem e-mail"
       },
       "invalid_email": "Wprowadź poprawny adres e-mail",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "Aplikacja nie została wdrożona. Publiczny dostęp i dostęp do przeglądarki mogą napotkać błędy. ",
       "contribute": "Po wniesieniu wkładu do Marketplace, wszyscy użytkownicy mogą działać, gwiazdkę i rozwidlić swojego przedstawiciela. Gdy użytkownicy z innych drużyn uruchamiają tego agenta, nie zużywają twoich zasobów."
-    },
-    "tips": {
-      "admin": "Użytkownik, który może zarządzać wszystkimi użytkownikami z wyjątkiem właściciela, edytować APPs i przeglądać APP",
-      "editor": "Użytkownik, który może zarządzać edytorami i użytkownikami przeglądarek, edytować aplikacje i przeglądać aplikacje",
-      "viewer": "Użytkownik, który może zarządzać użytkownikami przeglądarki i przeglądać APP"
     },
     "label": {
       "contribute": "Przyczyń się do marketplace",
