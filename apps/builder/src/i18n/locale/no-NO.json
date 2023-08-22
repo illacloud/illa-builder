@@ -3232,7 +3232,12 @@
       "owner": "Eier",
       "admin": "Administer",
       "editor": "Redaktør",
-      "viewer": "Bruker"
+      "viewer": "Bruker",
+      "tips": {
+        "admin": "Medlemmet som kan administrere alle medlemmer unntatt eier, redigere APP og vise APPer",
+        "editor": "Medlemmet som kan behandle redigeringsprogram og vise medlemmer, redigere APPer og vise APPer",
+        "viewer": "Medlemmet som kan administrere seermedlemmer og vise APPer"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Skriv inn e-postadresse",
         "invited": "Har invitert",
         "in_list": "Denne brukeren er allerede i teamet ditt.",
-        "notmail": "{{ email }} er ikke en e-post",
-        "duplicate": "{{ email }} er duplisert"
+        "duplicate": "{{ email }} er duplisert",
+        "not_mail": "{{ email }} er ikke en e-post"
       },
       "invalid_email": "Vennligst skriv inn en gyldig e-post",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. ",
       "contribute": "Etter at du har bidratt til markedsplassen, kan alle brukere kjøre, stjerne og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine."
-    },
-    "tips": {
-      "admin": "Medlemmet som kan administrere alle medlemmer unntatt eier, redigere APP og vise APPer",
-      "editor": "Medlemmet som kan behandle redigeringsprogram og vise medlemmer, redigere APPer og vise APPer",
-      "viewer": "Medlemmet som kan administrere seermedlemmer og vise APPer"
     },
     "label": {
       "contribute": "Bidra til markedsplassen",
