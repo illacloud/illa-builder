@@ -3232,7 +3232,12 @@
       "owner": "Ägare",
       "admin": "Administer",
       "editor": "Redigerare",
-      "viewer": "Läsare"
+      "viewer": "Läsare",
+      "tips": {
+        "admin": "Medlemmen som kan hantera alla medlemmar utom ägare, redigera APP och visa APP",
+        "editor": "Medlemmen som kan hantera redigerings- och tittarmedlemmar, redigera APP:er och visa APP:er",
+        "viewer": "Medlemmen som kan hantera tittarmedlemmar och visa APP:er"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Ange e-postadress",
         "invited": "Har bjudit in",
         "in_list": "Den här användaren är redan i ditt team.",
-        "notmail": "{{ email }} är inte en e-postadress",
-        "duplicate": "{{ email }} är duplicerad"
+        "duplicate": "{{ email }} är duplicerad",
+        "not_mail": "{{ email }} är inte en e-postadress"
       },
       "invalid_email": "Ange en giltig e-postadress",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. ",
       "contribute": "Efter att ha bidragit till marknaden kan alla användare köra, stjärna och gaffel din Jobbevakning. När användare från andra team kör denna agent, kommer det inte att konsumera dina resurser."
-    },
-    "tips": {
-      "admin": "Medlemmen som kan hantera alla medlemmar utom ägare, redigera APP och visa APP",
-      "editor": "Medlemmen som kan hantera redigerings- och tittarmedlemmar, redigera APP:er och visa APP:er",
-      "viewer": "Medlemmen som kan hantera tittarmedlemmar och visa APP:er"
     },
     "label": {
       "contribute": "Bidra till marknadsplatsen",
