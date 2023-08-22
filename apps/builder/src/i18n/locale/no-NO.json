@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Inviter medlemmer",
         "invite_to_use": "Inviter til bruk",
-        "invite_to_edit": "Inviter til å redigere"
+        "invite_to_edit": "Inviter til å redigere",
+        "contribute": "Markedsplass"
       },
       "link": {
         "invite_title": "Inviter lenke",
         "copy": "Kopier",
         "turn_off": "Slå av invitasjonslenker",
         "update": "Oppdater invitasjonslenker",
-        "description": "Turn on and invite members via link. ",
+        "description": "Slå på og inviter medlemmer via lenken. ",
         "turn_on": "Slå på invitasjonslenker",
         "fail": "Kunne ikke finne koblingen, prøv igjen senere",
         "copied_suc": "Kopiert!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Kunne ikke slå av",
         "turn_on_fail": "Kunne ikke slå på",
         "make_public_title": "Gjør appen offentlig",
-        "make_public_copy": "Kopier"
+        "make_public_copy": "Kopier",
+        "marketplace": {
+          "label": "Del med lenke"
+        }
       },
       "email": {
         "invite_title": "Inviter via e-post",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Inviter",
-        "public": "Offentlig"
+        "public": "Offentlig",
+        "with_team": "Del med teammedlemmer"
       },
       "custom_copy_text_app_invite": "{{userName}} har delt deg en app av 「{{teamName}}」. Klikk på lenken for å bli med i teamet og sjekk APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} har delt deg en APP fra {{teamName}}. Klikk på lenken for å sjekke APP: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} delte deg en AI agent:{{teamName}}ε. Klikk på lenken for å bli med i laget og prøv AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Bidra til markedsplassen"
+        "label": "Bidra til markedsplassen",
+        "default_text": {
+          "app": "Jeg oppdaget en imponerende app som heter {{ appName }}. Sjekk den: {{ appLink }}",
+          "agent": "Jeg oppdaget nettopp en imponerende AI Agent kalt {{ agentName }}. Sjekk det: {{ agentLink }}"
+        },
+        "desc": "Etter at du har bidratt til markedsplassen, kan alle brukere kjøre, stjerne og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine."
       },
       "social_media": {
         "label": "Del på",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Hacker Nyheter",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Jeg oppdaget nettopp en imponerende app som heter {{ appName }}",
+          "agent": "Jeg oppdaget nettopp en imponerende AI-Agent kalt {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} deler deg en AI Agent fra ########{{ teamName }}ε. Bli med på laget og kontroller den: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invitert vellykket",
@@ -3986,8 +3997,7 @@
       "contribute": "Bidra"
     },
     "desc": {
-      "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. ",
-      "contribute": "Etter at du har bidratt til markedsplassen, kan alle brukere kjøre, stjerne og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine."
+      "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
     },
     "label": {
       "contribute": "Bidra til markedsplassen"
