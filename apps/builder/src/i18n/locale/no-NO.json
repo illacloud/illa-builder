@@ -3285,7 +3285,23 @@
       "tips": {
         "license_insufficient": "Gjenstående lisenser"
       },
-      "custom-copy-ai-agent": "{{userName}} delte deg en AI agent:{{teamName}}ε. Klikk på lenken for å bli med i laget og prøv AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} delte deg en AI agent:{{teamName}}ε. Klikk på lenken for å bli med i laget og prøv AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Bidra til markedsplassen"
+      },
+      "social_media": {
+        "label": "Del på",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nyheter",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+        }
+      }
     },
     "mes": {
       "invite_suc": "Invitert vellykket",
@@ -3974,22 +3990,10 @@
       "contribute": "Etter at du har bidratt til markedsplassen, kan alle brukere kjøre, stjerne og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine."
     },
     "label": {
-      "contribute": "Bidra til markedsplassen",
-      "social-media": "Del på"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker Nyheter"
-      }
+      "contribute": "Bidra til markedsplassen"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hei der! Jeg oppdaget nettopp denne fantastiske AI Agent. Du kan være interessert i å gi den en prøve også! Sjekk denne! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Sjekk ut denne fantastiske AI-agenten [{{promptName}}]",
         "linkedin": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
         "facebook": "Legg merke til alle AI entusiaster og fagfolk som søker økt produktivitet! Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!",
@@ -3999,7 +4003,6 @@
       "contribute": "Jeg kom over en AI Agent plattform som tilbyr banebrytende løsninger for å forenkle komplekse oppgaver og integrere med deres interne verktøy. Jeg var personlig utprøvd [{{promptName}}] og fikk blåst bort fra dens skapninger. Det er en spill-forvandler for alle som ser etter å være foran kurven. Sjekk ut for deg selv hos {{promptLink}} , og gi meg beskjed om hva du tenker!"
     },
     "button": {
-      "contribute": "Bidra til markedsplassen",
       "share_contribute": "Kopier og Del",
       "uncontribute": "Avbryt bidrag"
     },
