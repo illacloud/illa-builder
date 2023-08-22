@@ -27,7 +27,7 @@ export const UserMessage: FC<UserMessageProps> = (props) => {
         css={senderAvatarStyle}
         avatarUrl={currentUserInfo.avatar}
         name={currentUserInfo.nickname}
-        id={currentUserInfo.userId}
+        id={currentUserInfo.userID}
       />
     </div>
   )

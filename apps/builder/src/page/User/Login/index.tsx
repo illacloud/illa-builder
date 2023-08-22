@@ -5,12 +5,10 @@ import {
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
 import { LoginPage } from "@illa-public/sso-module"
-import { currentUserActions } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { SubmitHandler } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
 import { translateSearchParamsToURLPathWithSelfHost } from "@/router/utils/translateQS"
@@ -27,7 +25,6 @@ const UserLogin: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const dispatch = useDispatch()
 
   const message = useMessage()
   const onSubmit: SubmitHandler<LoginFields> = async (requestBody) => {
@@ -35,17 +32,10 @@ const UserLogin: FC = () => {
     try {
       const res = await fetchSignIn(requestBody)
       const token = res.headers["illa-token"]
-      if (!token) return
+      if (!token) {
+        return
+      }
       ILLABuilderStorage.setLocalStorage("token", token, -1)
-      dispatch(
-        currentUserActions.updateCurrentUserReducer({
-          userId: res.data.id,
-          nickname: res.data.nickname,
-          language: res.data.language || "en-US",
-          email: res.data.email,
-          avatar: res.data.avatar,
-        }),
-      )
       if (!isCloudVersion) {
         const urlSearchParams = new URLSearchParams(location.search)
         const path = translateSearchParamsToURLPathWithSelfHost(urlSearchParams)

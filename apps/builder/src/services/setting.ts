@@ -1,8 +1,8 @@
 import { authCloudRequest } from "@illa-public/illa-net"
-import { CurrentUser, UserInfoResponse } from "@illa-public/user-data"
+import { CurrentUser } from "@illa-public/user-data"
 
 export const fetchChangeNickname = (nickname: string) => {
-  return authCloudRequest<UserInfoResponse>({
+  return authCloudRequest<{}>({
     url: "/users/nickname",
     method: "PATCH",
     data: {

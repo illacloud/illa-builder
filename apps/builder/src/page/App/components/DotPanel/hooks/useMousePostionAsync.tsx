@@ -126,7 +126,7 @@ export const useMousePositionAsync = (
     params.appId,
     unitWidth,
     userInfo.nickname,
-    userInfo.userId,
+    userInfo.userID,
     width,
     wrapperRef,
   ])

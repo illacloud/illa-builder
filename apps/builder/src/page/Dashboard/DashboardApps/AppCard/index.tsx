@@ -131,6 +131,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
           canEditApp={canEditApp}
           isDeploy={appInfo.mainlineVersion !== 0}
           onClick={stopPropagation}
+          appName={appInfo.appName}
         />
       </div>
       <div>

@@ -2,9 +2,11 @@ import {
   authCloudRequest,
   notNeedAuthCloudRequest,
 } from "@illa-public/illa-net"
-import { UserInfoResponse } from "@illa-public/user-data"
+import { BaseUserInfo } from "@illa-public/user-data"
 import { RegisterResult } from "@/page/User/Register/interface"
 import { ResetPwdFields } from "@/page/User/ResetPassword/interface"
+
+export interface UserInfoResponse extends BaseUserInfo {}
 
 export const fetchSignIn = async (data: unknown) => {
   return notNeedAuthCloudRequest<UserInfoResponse>({
@@ -14,8 +16,10 @@ export const fetchSignIn = async (data: unknown) => {
   })
 }
 
+interface RegisterResponse extends BaseUserInfo {}
+
 export const fetchSignUp = async (data: unknown) => {
-  return notNeedAuthCloudRequest<RegisterResult>({
+  return notNeedAuthCloudRequest<RegisterResponse>({
     method: "POST",
     url: "/auth/signup",
     data,

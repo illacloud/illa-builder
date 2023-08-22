@@ -82,13 +82,7 @@ export const SettingAccount: FC = () => {
     }
     setIsLoading(true)
     try {
-      const response = await fetchChangeNickname(nickNameValue)
-      dispatch(
-        currentUserActions.updateCurrentUserReducer({
-          ...response.data,
-          userId: response.data.id,
-        }),
-      )
+      await fetchChangeNickname(nickNameValue)
       message.success({
         content: "success!",
       })
@@ -105,14 +99,14 @@ export const SettingAccount: FC = () => {
     }
 
     setIsLoading(false)
-  }, [dispatch, errorMessage, message, nickNameValue, t])
+  }, [errorMessage, message, nickNameValue, t])
 
   return (
     <div css={settingAccountStyle}>
       <AvatarUpload onOk={handleUpdateAvatar}>
         <Avatar
           css={avatarStyle}
-          userId={userInfo?.userId}
+          userId={userInfo?.userID}
           nickname={userInfo?.nickname}
           avatar={userInfo?.avatar}
         />

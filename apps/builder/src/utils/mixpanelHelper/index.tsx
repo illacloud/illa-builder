@@ -120,7 +120,7 @@ const getAppIsPublic = () => {
 
 const getUserID = () => {
   const userInfo = getCurrentUser(store.getState())
-  return userInfo?.userId || ""
+  return userInfo?.userID || ""
 }
 
 const getAPPMode = () => {

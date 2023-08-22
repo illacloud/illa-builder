@@ -16,13 +16,13 @@ export const sendMousePosition = (
   if (cursorXInteger < 0 || cursorYInteger < 0) return
   const appID = ILLARoute.state.matches[0].params.appId
   const currentUserInfo = getCurrentUser(store.getState())
-  if (!appID || !currentUserInfo.userId) return
+  if (!appID || !currentUserInfo.userID) return
   const ws = Connection.getBinaryRoom("app", appID)
   const binMessage = getBinaryMessagePayload(
     Signal.MOVE_CURSOR,
     Target.CURSOR,
     true,
-    currentUserInfo.userId,
+    currentUserInfo.userID,
     currentUserInfo.nickname,
     isLeave ? -1 : 1,
     parentDisplayName,
@@ -68,13 +68,13 @@ export const sendShadowPosition = (
     return
   const appID = ILLARoute.state.matches[0].params.appId
   const currentUserInfo = getCurrentUser(store.getState())
-  if (!appID || !currentUserInfo.userId) return
+  if (!appID || !currentUserInfo.userID) return
   const ws = Connection.getBinaryRoom("app", appID)
   const binMessage = getBinaryMessagePayload(
     Signal.MOVE_STATE,
     Target.COMPONENTS,
     true,
-    currentUserInfo.userId,
+    currentUserInfo.userID,
     currentUserInfo.nickname,
     status,
     parentDisplayName,

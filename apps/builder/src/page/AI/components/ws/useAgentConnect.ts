@@ -70,7 +70,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
             payload: {},
           },
           currentTeamInfo?.id ?? "",
-          currentUserInfo.userId,
+          currentUserInfo.userID,
           [payload],
         ),
       )
@@ -88,7 +88,7 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
         }
       }
     },
-    [chatMessages, currentTeamInfo?.id, currentUserInfo.userId, onReceiving],
+    [chatMessages, currentTeamInfo?.id, currentUserInfo.userID, onReceiving],
   )
 
   const onUpdateChatMessage = useCallback((message: ChatMessage) => {

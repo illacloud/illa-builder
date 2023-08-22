@@ -14,18 +14,13 @@ export const getSelfHostUserInfoLoader: LoaderFunction = async () => {
   const authToken = getAuthToken()
   const currentUser = getCurrentUser(store.getState())
 
-  if (currentUser.userId) {
+  if (currentUser.userID) {
     return null
   }
   if (authToken) {
     try {
       const response = await fetchUserInfo()
-      store.dispatch(
-        currentUserActions.updateCurrentUserReducer({
-          ...response.data,
-          userId: response.data.userID,
-        }),
-      )
+      store.dispatch(currentUserActions.updateCurrentUserReducer(response.data))
       return null
     } catch (e) {
       return redirect("/500")

@@ -70,13 +70,13 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
     return chatMessages.map((message) => {
       if (
         message.sender.senderType === SenderType.USER &&
-        message.sender.senderID === currentUserInfo.userId
+        message.sender.senderID === currentUserInfo.userID
       ) {
         return <UserMessage key={message.threadID} message={message} />
       }
       return <AIAgentMessage key={message.threadID} message={message} />
     })
-  }, [currentUserInfo.userId, chatMessages])
+  }, [currentUserInfo.userID, chatMessages])
 
   useEffect(() => {
     chatRef.current?.scrollTo({
@@ -91,7 +91,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
           threadID: v4(),
           message: textAreaVal,
           sender: {
-            senderID: currentUserInfo.userId,
+            senderID: currentUserInfo.userID,
             senderType: SenderType.USER,
           },
         } as ChatMessage,
@@ -99,7 +99,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       )
       setTextAreaVal("")
     }
-  }, [agentType, currentUserInfo.userId, onSendMessage, textAreaVal])
+  }, [agentType, currentUserInfo.userID, onSendMessage, textAreaVal])
 
   const generationBlock = useMemo(() => {
     return (

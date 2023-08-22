@@ -85,7 +85,7 @@ const SettingTrigger: FC<PageLoadingProps> = (props) => {
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
         <Avatar
-          userId={userInfo.userId}
+          userId={userInfo.userID}
           nickname={userInfo.nickname}
           avatar={userInfo?.avatar}
         />
@@ -207,7 +207,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
               >
                 <div>
                   <Avatar
-                    userId={userInfo?.userId}
+                    userId={userInfo?.userID}
                     nickname={userInfo?.nickname}
                     avatar={userInfo?.avatar}
                   />

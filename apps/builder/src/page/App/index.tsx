@@ -94,7 +94,7 @@ export const Editor: FC = () => {
   }
   useEffect(() => {
     const abortController = new AbortController()
-    if (currentUser != null && currentUser.userId != "" && appId) {
+    if (currentUser != null && currentUser.userID != "" && appId) {
       Promise.all([
         fetchAppTextWsUrl(appId, abortController.signal),
         fetchAppBinaryWsUrl(appId, abortController.signal),
