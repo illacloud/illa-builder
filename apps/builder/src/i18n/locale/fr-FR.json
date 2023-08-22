@@ -3232,7 +3232,12 @@
       "owner": "Propriétaire",
       "admin": "Administer",
       "editor": "Editeur",
-      "viewer": "Visionneuse"
+      "viewer": "Visionneuse",
+      "tips": {
+        "admin": "Le membre qui peut gérer tous les membres sauf le propriétaire, modifier les APP et voir les APPs",
+        "editor": "Le membre qui peut gérer les membres de l'éditeur, éditer les APP et afficher les APP",
+        "viewer": "Le membre qui peut gérer les membres de la visionneuse et voir les APP"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Entrez votre adresse e-mail",
         "invited": "Ont invité",
         "in_list": "Cet utilisateur est déjà dans votre équipe.",
-        "notmail": "{{ email }} n'est pas un email",
-        "duplicate": "{{ email }} est dupliqué"
+        "duplicate": "{{ email }} est dupliqué",
+        "not_mail": "{{ email }} n'est pas un email"
       },
       "invalid_email": "Veuillez entrer une adresse e-mail valide",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. ",
       "contribute": "Après avoir contribué au Marketplace, tous les utilisateurs peuvent fonctionner, étoiler et fork votre Agent. Lorsque des utilisateurs d'autres équipes exécutent cet Agent, il ne consommera pas vos ressources."
-    },
-    "tips": {
-      "admin": "Le membre qui peut gérer tous les membres sauf le propriétaire, modifier les APP et voir les APPs",
-      "editor": "Le membre qui peut gérer les membres de l'éditeur, éditer les APP et afficher les APP",
-      "viewer": "Le membre qui peut gérer les membres de la visionneuse et voir les APP"
     },
     "label": {
       "contribute": "Contribuer au marché",
