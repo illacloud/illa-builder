@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Inviter des membres",
         "invite_to_use": "Inviter à utiliser",
-        "invite_to_edit": "Inviter à modifier"
+        "invite_to_edit": "Inviter à modifier",
+        "contribute": "Place de marché"
       },
       "link": {
         "invite_title": "Lien d'invitation",
         "copy": "Copie",
         "turn_off": "Désactiver les liens d'invitation",
         "update": "Mettre à jour les liens d'invitation",
-        "description": "Turn on and invite members via link. ",
+        "description": "Activez et invitez des membres via un lien. ",
         "turn_on": "Activer les liens d'invitation",
         "fail": "Impossible d'obtenir le lien, veuillez réessayer plus tard",
         "copied_suc": "Copié!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Échec de la désactivation",
         "turn_on_fail": "Échec de l'activation",
         "make_public_title": "Rendre l'application publique",
-        "make_public_copy": "Copie"
+        "make_public_copy": "Copie",
+        "marketplace": {
+          "label": "Partager avec le lien"
+        }
       },
       "email": {
         "invite_title": "Inviter par e-mail",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Inviter",
-        "public": "Publique"
+        "public": "Publique",
+        "with_team": "Partager avec les membres de l'équipe"
       },
       "custom_copy_text_app_invite": "{{userName}} vous a partagé une application de 「{{teamName}}」. Cliquez sur le lien pour rejoindre l'équipe et vérifier l'APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} vous a partagé une APP de 「{{teamName}}」. Cliquez sur le lien pour vérifier l'APP: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} vous a partagé un Agent IA de <unk>{{teamName}}Ω. Cliquez sur le lien pour rejoindre l'équipe et essayer l'Agent IA: {{inviteLink}}",
       "contribute": {
-        "label": "Contribuer au marché"
+        "label": "Contribuer au marché",
+        "default_text": {
+          "app": "Je viens de découvrir une application impressionnante appelée {{ appName }}. Vérifiez: {{ appLink }}",
+          "agent": "Je viens de découvrir un agent IA impressionnant appelé {{ agentName }}. Vérifiez: {{ agentLink }}"
+        },
+        "desc": "Après avoir contribué au Marketplace, tous les utilisateurs peuvent fonctionner, étoiler et fork votre Agent. Lorsque des utilisateurs d'autres équipes exécutent cet Agent, il ne consommera pas vos ressources."
       },
       "social_media": {
         "label": "Partager sur",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Nouvelles des pirates informatiques",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Je viens de découvrir une application impressionnante appelée {{ appName }}",
+          "agent": "Je viens de découvrir un agent IA impressionnant appelé {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} vous partage un Agent IA de <unk>{{ teamName }}Ω. Rejoignez l'équipe et vérifiez: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invité avec succès",
@@ -3986,8 +3997,7 @@
       "contribute": "Contribuer"
     },
     "desc": {
-      "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. ",
-      "contribute": "Après avoir contribué au Marketplace, tous les utilisateurs peuvent fonctionner, étoiler et fork votre Agent. Lorsque des utilisateurs d'autres équipes exécutent cet Agent, il ne consommera pas vos ressources."
+      "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. "
     },
     "label": {
       "contribute": "Contribuer au marché"
