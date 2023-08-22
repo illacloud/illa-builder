@@ -3297,7 +3297,8 @@
           "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}. Verificați: {{ appLink }}",
           "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}. Verificați: {{ agentLink }}"
         },
-        "desc": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
+        "desc": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele.",
+        "turn_off": "Anulează contribuția"
       },
       "social_media": {
         "label": "Distribuie pe",
