@@ -3297,7 +3297,8 @@
           "app": "Ich habe gerade eine beeindruckende App namens {{ appName }}entdeckt. Überprüfe sie: {{ appLink }}",
           "agent": "Ich habe gerade einen beeindruckenden KI-Agent namens {{ agentName }}entdeckt. Überprüfe es: {{ agentLink }}"
         },
-        "desc": "Nachdem Sie zum Marketplace beigetragen haben, können alle Benutzer Ihren Agent ausführen, markieren und forken. Wenn Benutzer aus anderen Teams diesen Agent betreiben, wird er Ihre Ressourcen nicht verbrauchen."
+        "desc": "Nachdem Sie zum Marketplace beigetragen haben, können alle Benutzer Ihren Agent ausführen, markieren und forken. Wenn Benutzer aus anderen Teams diesen Agent betreiben, wird er Ihre Ressourcen nicht verbrauchen.",
+        "turn_off": "Beitrag abbrechen"
       },
       "social_media": {
         "label": "Teilen auf",
