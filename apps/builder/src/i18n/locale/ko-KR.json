@@ -3243,7 +3243,8 @@
       "title": {
         "invite_members": "멤버 초대",
         "invite_to_use": "Invite to use",
-        "invite_to_edit": "Invite to edit"
+        "invite_to_edit": "Invite to edit",
+        "contribute": "Marketplace"
       },
       "link": {
         "invite_title": "초대 링크",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "사용 중지하지 못했습니다",
         "turn_on_fail": "사용 설정 실패",
         "make_public_title": "앱을 공개",
-        "make_public_copy": "복사"
+        "make_public_copy": "복사",
+        "marketplace": {
+          "label": "Share with link"
+        }
       },
       "email": {
         "invite_title": "이메일로 초대",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "멤버 초대",
-        "public": "공개"
+        "public": "공개",
+        "with_team": "Share with team members"
       },
       "custom_copy_text_app_invite": "{{userName}}님이 「{{teamName}}」에 초대합니다. 링크를 클릭하여 팀에 합류하세요: {{invite Link}}",
       "custom_copy_text_public": "{{userName}}님이 「{{teamName}}」에서 나와 앱을 공유했습니다. 앱을 확인하려면 링크를 클릭하세요: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to marketplace"
+        "label": "Contribute to marketplace",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
+        },
+        "desc": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
       },
       "social_media": {
         "label": "Share on",
@@ -3301,7 +3311,8 @@
           "app": "I just discovered an impressive app called {{ appName }}",
           "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "초대 성공",
@@ -3986,8 +3997,7 @@
       "contribute": "Contribute"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
     },
     "label": {
       "contribute": "Contribute to marketplace"
