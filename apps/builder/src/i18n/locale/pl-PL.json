@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "Zaproś członków"
+        "invite_members": "Zaproś członków",
+        "invite_to_use": "Zaproś do użycia",
+        "invite_to_edit": "Zaproś do edycji"
       },
       "link": {
         "invite_title": "Link zaproszenia",
         "copy": "Kopiuj",
         "turn_off": "Wyłącz linki z zaproszeniem",
         "update": "Aktualizuj linki z zaproszeniem",
-        "description": "Podziel się tajnym linkiem osoby mogą użyć do dołączenia do Twojego zespołu.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Włącz linki z zaproszeniem",
         "fail": "Nie udało się uzyskać linku, spróbuj ponownie później",
         "copied_suc": "Skopiowano!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Zaproś do edycji",
-      "invite_to_use": "Zaproś do użycia",
       "share-with-team": "Udostępnij zespołowi",
       "contribute": "Wesprzyj"
     },
