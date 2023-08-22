@@ -125,6 +125,8 @@ export const AppCard: FC<AppCardProps> = (props) => {
           </div>
         </div>
         <AppCardActionItem
+          isPublic={appInfo.config.public}
+          isContributed={false}
           appId={appInfo.appId}
           canEditApp={canEditApp}
           isDeploy={appInfo.mainlineVersion !== 0}

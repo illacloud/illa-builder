@@ -1,9 +1,9 @@
-export interface DashboardItemMenuProps {
+import {HTMLAttributes} from "react";
+
+export interface AppCardActionItemProps extends HTMLAttributes<HTMLDivElement> {
   appId: string
   canEditApp: boolean
   isDeploy: boolean
-}
-
-export interface DeleteDashboardAppResponse {
-  appID: string
+  isPublic: boolean
+  isContributed: boolean
 }

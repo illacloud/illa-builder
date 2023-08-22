@@ -1,16 +1,21 @@
+import { ShareAppPC } from "@illa-public/invite-modal/ShareApp/pc"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackProvider,
 } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  teamActions,
+} from "@illa-public/user-data"
 import {
   canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
-import { FC, HTMLAttributes, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -27,6 +32,7 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
+import { AppCardActionItemProps } from "@/page/Dashboard/DashboardApps/AppCardActionItem/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -35,14 +41,10 @@ import { RootState } from "@/store"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
-export interface AppCardActionItemProps extends HTMLAttributes<HTMLDivElement> {
-  appId: string
-  canEditApp: boolean
-  isDeploy: boolean
-}
 
 export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
-  const { appId, canEditApp, isDeploy, ...rest } = props
+  const { appId, canEditApp, isPublic, isContributed, isDeploy, ...rest } =
+    props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -394,7 +396,52 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         basicTrack={track}
         pageName={ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP}
       >
-        TODO: @longbo invite
+        {shareVisible && (
+          <ShareAppPC
+            defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+            onInviteLinkStateChange={(enableInviteLink) => {
+              dispatch(
+                teamActions.updateTeamMemberPermissionReducer({
+                  teamID: teamInfo.id,
+                  newPermission: {
+                    ...teamInfo.permission,
+                    inviteLinkEnabled: enableInviteLink,
+                  },
+                }),
+              )
+            }}
+            onClose={() => {
+              setShareVisible(false)
+            }}
+            canInvite={showInvite}
+            isDeployed={isDeploy}
+            defaultBalance={teamInfo.currentTeamLicense.balance}
+            teamID={teamInfo.id}
+            currentUserRole={teamInfo.myRole}
+            onBalanceChange={(balance) => {
+              dispatch(
+                teamActions.updateTeamMemberSubscribeReducer({
+                  teamID: teamInfo.id,
+                  subscribeInfo: {
+                    ...teamInfo.currentTeamLicense,
+                    balance: balance,
+                  },
+                }),
+              )
+            }}
+            defaultAppPublic={isPublic}
+            defaultAppContribute={isContributed}
+            appID={appId}
+            userRoleForThisApp={teamInfo.myRole}
+            ownerTeamID={teamInfo.id}
+            ownerTeamIdentify={teamInfo.identifier}
+            onAppPublic={(isPublic) => {}}
+            onAppContribute={(isContributed) => {}}
+            onCopyPublicLink={() => {}}
+            onCopyContributeLink={() => {}}
+            onCopyInviteLink={() => {}}
+          />
+        )}
       </MixpanelTrackProvider>
       <AppSettingModal
         appInfo={app}
