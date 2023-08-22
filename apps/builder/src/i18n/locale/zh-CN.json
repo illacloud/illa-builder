@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "邀请成员"
+        "invite_members": "邀请成员",
+        "invite_to_use": "邀请使用",
+        "invite_to_edit": "邀请进行编辑"
       },
       "link": {
         "invite_title": "邀请链接",
         "copy": "复制",
         "turn_off": "关闭邀请链接",
         "update": "更新邀请链接",
-        "description": "允许用户通过您分享的私密链接加入团队",
+        "description": "开启并通过链接邀请成员。 ",
         "turn_on": "打开邀请链接",
         "fail": "链接获取失败，请稍后重试",
         "copied_suc": "复制成功！",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "邀请进行编辑",
-      "invite_to_use": "邀请使用",
       "share-with-team": "和团队共享",
       "contribute": "贡献"
     },
