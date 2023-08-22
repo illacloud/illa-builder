@@ -3285,7 +3285,23 @@
       "tips": {
         "license_insufficient": "Resterende licenties"
       },
-      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Draag bij aan de marktplaats"
+      },
+      "social_media": {
+        "label": "Delen op",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nieuws",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+        }
+      }
     },
     "mes": {
       "invite_suc": "Succesvol uitgenodigd",
@@ -3974,22 +3990,10 @@
       "contribute": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
     },
     "label": {
-      "contribute": "Draag bij aan de marktplaats",
-      "social-media": "Delen op"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker Nieuws"
-      }
+      "contribute": "Draag bij aan de marktplaats"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey daar! Ik heb net dit geweldige AI-agent ontdekt. Misschien ben je geïnteresseerd in het ook proberen te proberen! Bekijk het! {{promptName}}:{{promptLink}} #AIwriting #Snelbeheer #ProductivityBoost",
         "reddit": "Bekijk deze geweldige AI Agent [{{promptName}}]",
         "linkedin": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
         "facebook": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
@@ -3999,7 +4003,6 @@
       "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
     },
     "button": {
-      "contribute": "Draag bij aan de marktplaats",
       "share_contribute": "Kopiëren & delen",
       "uncontribute": "Annuleer bijdrage"
     },
