@@ -131,15 +131,8 @@ export const AgentContentBody: FC<AgentContentBodyProps> = (props) => {
                   onClick={() => {
                     toRunAgent(item.aiAgent.aiAgentID)
                   }}
-                  numRuns={item.marketplace.numRuns}
-                  contributorTeamID={item.marketplace.contributorTeam.teamID}
-                  contributorTeamIcon={item.marketplace.contributorTeam.icon}
-                  contributorTeamName={item.marketplace.contributorTeam.name}
-                  description={item.aiAgent.description}
-                  icon={item.aiAgent.icon}
-                  name={item.aiAgent.name}
-                  numForks={item.marketplace.numForks}
-                  numStars={item.marketplace.numStars}
+                  aiAgent={item.aiAgent}
+                  marketplace={item.marketplace}
                 />
               )
             })}

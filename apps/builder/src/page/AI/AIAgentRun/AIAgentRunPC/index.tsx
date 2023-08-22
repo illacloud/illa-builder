@@ -8,6 +8,7 @@ import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
   getCurrentTeamInfo,
+  getCurrentUser,
   teamActions,
 } from "@illa-public/user-data"
 import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
@@ -67,6 +68,7 @@ import {
   leftPanelContainerStyle,
   rightPanelContainerStyle,
 } from "./style"
+import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 
 
 export const AIAgentRunPC: FC = () => {
@@ -85,6 +87,7 @@ export const AIAgentRunPC: FC = () => {
   })
 
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
+  const currentUserInfo = useSelector(getCurrentUser)
 
   // page state
   const [isRunning, setIsRunning] = useState(false)
@@ -146,8 +149,23 @@ export const AIAgentRunPC: FC = () => {
               onAgentContributed={(isAgentContributed) => {
                 field.onChange(isAgentContributed)
               }}
-              onCopyInviteLink={() => {}}
-              onCopyAgentMarketLink={() => {}}
+              onCopyInviteLink={(link: string) => {
+                copyToClipboard(
+                  t("user_management.modal.custom_copy_text_agent_invite", {
+                    userName: currentUserInfo.nickname,
+                    teamName: teamInfo.name,
+                    inviteLink: link,
+                  }),
+                )
+              }}
+              onCopyAgentMarketLink={(link: string) => {
+                copyToClipboard(
+                  t("user_management.modal.contribute.default_text.agent", {
+                    agentName: agent.name,
+                    agentLink: link,
+                  }),
+                )
+              }}
               userRoleForThisAgent={
                 currentTeamInfo.id === agent.teamID
                   ? currentTeamInfo.myRole

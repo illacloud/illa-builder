@@ -1,8 +1,15 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
+import { ShareAgentTab } from "@illa-public/invite-modal/ShareAgent/interface"
+import { ShareAgentMobile } from "@illa-public/invite-modal/ShareAgent/mobile"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getCurrentUser,
+  teamActions,
+} from "@illa-public/user-data"
 import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
@@ -12,7 +19,7 @@ import { motion } from "framer-motion"
 import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useAsyncValue } from "react-router-dom"
 import { v4 } from "uuid"
 import {
@@ -38,6 +45,7 @@ import {
   MarketAiAgent,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentContentContainerStyle,
@@ -87,6 +95,7 @@ export const AIAgentRunMobile: FC = () => {
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
+  const currentUserInfo = useSelector(getCurrentUser)
 
   const { t } = useTranslation()
 
@@ -101,6 +110,9 @@ export const AIAgentRunMobile: FC = () => {
     currentTeamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
+  const dispatch = useDispatch()
+
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
       onSendClean: () => {
@@ -112,9 +124,7 @@ export const AIAgentRunMobile: FC = () => {
           false,
         )
       },
-      onStartRunning: () => {
-        setCurrentSelectTab("run")
-      },
+      onStartRunning: () => {},
       onConnecting: (isConnecting) => {
         setIsConnecting(isConnecting)
       },
@@ -130,9 +140,9 @@ export const AIAgentRunMobile: FC = () => {
             threadID: v4(),
             prompt: getValues("prompt"),
             variables: getValues("variables"),
-            actionID: getValues("aiAgentID"),
             modelConfig: getValues("modelConfig"),
             model: getValues("model"),
+            actionID: getValues("aiAgentID"),
             agentType: getValues("agentType"),
           } as ChatSendRequestPayload,
           TextSignal.RUN,
@@ -151,39 +161,97 @@ export const AIAgentRunMobile: FC = () => {
       <Controller
         control={control}
         name="publishedToMarketplace"
-        render={({ field }) => {
-          if (!shareDialogVisible) {
-            return <></>
-          }
-          if (field.value) {
-            if (
-              canManage(
-                currentTeamInfo.myRole,
-                ATTRIBUTE_GROUP.AGENT,
-                ACTION_MANAGE.FORK_AGENT,
-              )
-            ) {
-              return <></>
-            } else {
-              return <></>
-            }
-          } else {
-            if (
-              canManage(
-                currentTeamInfo.myRole,
-                ATTRIBUTE_GROUP.AGENT,
-                ACTION_MANAGE.FORK_AGENT,
-              )
-            ) {
-              return <></>
-            } else {
-              return <></>
-            }
-          }
-        }}
+        render={({ field }) => (
+          <>
+            {shareDialogVisible && (
+              <ShareAgentMobile
+                onClose={() => {
+                  setShareDialogVisible(false)
+                }}
+                canInvite={canManage(
+                  currentTeamInfo.myRole,
+                  ATTRIBUTE_GROUP.AGENT,
+                  ACTION_MANAGE.FORK_AGENT,
+                )}
+                defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
+                defaultInviteUserRole={USER_ROLE.VIEWER}
+                teamID={teamInfo.id}
+                currentUserRole={teamInfo.myRole}
+                defaultBalance={teamInfo.currentTeamLicense.balance}
+                defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+                onInviteLinkStateChange={(enableInviteLink) => {
+                  dispatch(
+                    teamActions.updateTeamMemberPermissionReducer({
+                      teamID: teamInfo.id,
+                      newPermission: {
+                        ...teamInfo.permission,
+                        inviteLinkEnabled: enableInviteLink,
+                      },
+                    }),
+                  )
+                }}
+                agentID={agent.aiAgentID}
+                defaultAgentContributed={field.value}
+                onAgentContributed={(isAgentContributed) => {
+                  field.onChange(isAgentContributed)
+                }}
+                onCopyInviteLink={(link: string) => {
+                  copyToClipboard(
+                    t("user_management.modal.custom_copy_text_agent_invite", {
+                      userName: currentUserInfo.nickname,
+                      teamName: teamInfo.name,
+                      inviteLink: link,
+                    }),
+                  )
+                }}
+                onCopyAgentMarketLink={(link: string) => {
+                  copyToClipboard(
+                    t("user_management.modal.contribute.default_text.agent", {
+                      agentName: agent.name,
+                      agentLink: link,
+                    }),
+                  )
+                }}
+                userRoleForThisAgent={
+                  currentTeamInfo.id === agent.teamID
+                    ? currentTeamInfo.myRole
+                    : USER_ROLE.VIEWER
+                }
+                ownerTeamID={agent.teamID}
+                onBalanceChange={(balance) => {
+                  dispatch(
+                    teamActions.updateTeamMemberSubscribeReducer({
+                      teamID: teamInfo.id,
+                      subscribeInfo: {
+                        ...teamInfo.currentTeamLicense,
+                        balance: balance,
+                      },
+                    }),
+                  )
+                }}
+              />
+            )}
+          </>
+        )}
       />
     )
-  }, [control, currentTeamInfo.myRole, shareDialogVisible])
+  }, [
+    agent.aiAgentID,
+    agent.name,
+    agent.teamID,
+    control,
+    currentTeamInfo.id,
+    currentTeamInfo.myRole,
+    currentUserInfo.nickname,
+    dispatch,
+    shareDialogVisible,
+    t,
+    teamInfo.currentTeamLicense,
+    teamInfo.id,
+    teamInfo.myRole,
+    teamInfo.name,
+    teamInfo.permission,
+  ])
 
   const configTab = (
     <div css={configContainerStyle}>
