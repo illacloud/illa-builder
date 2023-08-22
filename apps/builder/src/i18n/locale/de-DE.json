@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Mitglieder einladen",
         "invite_to_use": "Zur Nutzung einladen",
-        "invite_to_edit": "Zum Bearbeiten einladen"
+        "invite_to_edit": "Zum Bearbeiten einladen",
+        "contribute": "Marktplatz"
       },
       "link": {
         "invite_title": "Einladungslink",
         "copy": "Kopieren",
         "turn_off": "Einladungslinks ausschalten",
         "update": "Einladungslinks aktualisieren",
-        "description": "Turn on and invite members via link. ",
+        "description": "Schalten Sie Mitglieder ein und laden Sie Mitglieder per Link ein. ",
         "turn_on": "Einladungslinks einschalten",
         "fail": "Fehler beim Abrufen des Links, bitte versuchen Sie es später erneut",
         "copied_suc": "Kopiert!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Abschalten fehlgeschlagen",
         "turn_on_fail": "Einschalten fehlgeschlagen",
         "make_public_title": "Die App öffentlich machen",
-        "make_public_copy": "Kopieren"
+        "make_public_copy": "Kopieren",
+        "marketplace": {
+          "label": "Mit Link teilen"
+        }
       },
       "email": {
         "invite_title": "Per E-Mail einladen",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Einladen",
-        "public": "Öffentlich"
+        "public": "Öffentlich",
+        "with_team": "Mit Teammitgliedern teilen"
       },
       "custom_copy_text_app_invite": "{{userName}} hat dir eine App von 「{{teamName}}」geteilt. Klicke auf den Link, um dem Team beizutreten und überprüfe die APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} hat Ihnen eine App von 「{{teamName}}」freigegeben. Klicken Sie auf den Link, um die App zu überprüfen: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} hat dir einen AI Agent von <unk>{{teamName}}<unk> geteilt. Klicke auf den Link, um dem Team beizutreten und versuche den AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Zum Marktplatz beitragen"
+        "label": "Zum Marktplatz beitragen",
+        "default_text": {
+          "app": "Ich habe gerade eine beeindruckende App namens {{ appName }}entdeckt. Überprüfe sie: {{ appLink }}",
+          "agent": "Ich habe gerade einen beeindruckenden KI-Agent namens {{ agentName }}entdeckt. Überprüfe es: {{ agentLink }}"
+        },
+        "desc": "Nachdem Sie zum Marketplace beigetragen haben, können alle Benutzer Ihren Agent ausführen, markieren und forken. Wenn Benutzer aus anderen Teams diesen Agent betreiben, wird er Ihre Ressourcen nicht verbrauchen."
       },
       "social_media": {
         "label": "Teilen auf",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Hacker News",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Ich habe gerade eine beeindruckende App namens {{ appName }} entdeckt",
+          "agent": "Ich habe gerade einen beeindruckenden KI-Agent namens {{ agentName }} entdeckt"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} teilen Sie einen AI Agent von <unk>{{ teamName }}<unk> . Schließen Sie sich dem Team an und überprüfen Sie: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Erfolgreich eingeladen",
@@ -3986,8 +3997,7 @@
       "contribute": "Mitwirken"
     },
     "desc": {
-      "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. ",
-      "contribute": "Nachdem Sie zum Marketplace beigetragen haben, können alle Benutzer Ihren Agent ausführen, markieren und forken. Wenn Benutzer aus anderen Teams diesen Agent betreiben, wird er Ihre Ressourcen nicht verbrauchen."
+      "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. "
     },
     "label": {
       "contribute": "Zum Marktplatz beitragen"
