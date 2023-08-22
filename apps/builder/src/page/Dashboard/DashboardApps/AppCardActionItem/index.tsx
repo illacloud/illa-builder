@@ -8,6 +8,7 @@ import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
   getCurrentTeamInfo,
+  getCurrentUser,
   teamActions,
 } from "@illa-public/user-data"
 import {
@@ -35,16 +36,25 @@ import {
 import { AppCardActionItemProps } from "@/page/Dashboard/DashboardApps/AppCardActionItem/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
+import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
 
 export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
-  const { appId, canEditApp, isPublic, isContributed, isDeploy, ...rest } =
-    props
+  const {
+    appId,
+    appName,
+    canEditApp,
+    isPublic,
+    isContributed,
+    isDeploy,
+    ...rest
+  } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -59,6 +69,9 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     )!!
   })
   const teamInfo = useSelector(getCurrentTeamInfo)!!
+
+  const currentUserInfo = useSelector(getCurrentUser)
+
   const upgradeModal = useUpgradeModal()
   const [shareVisible, setShareVisible] = useState(false)
   const [appSettingVisible, setAppSettingVisible] = useState(false)
@@ -435,11 +448,47 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             userRoleForThisApp={teamInfo.myRole}
             ownerTeamID={teamInfo.id}
             ownerTeamIdentify={teamInfo.identifier}
-            onAppPublic={(isPublic) => {}}
-            onAppContribute={(isContributed) => {}}
-            onCopyPublicLink={() => {}}
-            onCopyContributeLink={() => {}}
-            onCopyInviteLink={() => {}}
+            onAppPublic={(isPublic) => {
+              dispatch(appInfoActions.updateAppPublicReducer(isPublic))
+            }}
+            onAppContribute={(isContributed) => {
+              dispatch(appInfoActions.updateAppContributeReducer(isContributed))
+            }}
+            onCopyPublicLink={(link) => {
+              copyToClipboard(
+                t("user_management.modal.custom_copy_text_app_invite", {
+                  userName: currentUserInfo.nickname,
+                  teamName: teamInfo.name,
+                  inviteLink: link,
+                }),
+              )
+            }}
+            onCopyContributeLink={(link) => {
+              copyToClipboard(
+                t("user_management.modal.contribute.default_text.app", {
+                  appName: appName,
+                  appLink: link,
+                }),
+              )
+            }}
+            onCopyEditInviteLink={(link) => {
+              copyToClipboard(
+                t("user_management.modal.custom_copy_text_app_invite", {
+                  userName: currentUserInfo.nickname,
+                  teamName: teamInfo.name,
+                  inviteLink: link,
+                }),
+              )
+            }}
+            onCopyUseInviteLink={(link) => {
+              copyToClipboard(
+                t("user_management.modal.custom_copy_text_app_invite", {
+                  userName: currentUserInfo.nickname,
+                  teamName: teamInfo.name,
+                  inviteLink: link,
+                }),
+              )
+            }}
           />
         )}
       </MixpanelTrackProvider>

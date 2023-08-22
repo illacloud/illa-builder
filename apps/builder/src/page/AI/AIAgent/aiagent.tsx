@@ -8,6 +8,7 @@ import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
   getCurrentTeamInfo,
+  getCurrentUser,
   teamActions,
 } from "@illa-public/user-data"
 import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
@@ -59,6 +60,7 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
+import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { ChatContext } from "../components/ChatContext"
 import {
   aiAgentContainerStyle,
@@ -103,7 +105,7 @@ export const AIAgent: FC = () => {
   const message = useMessage()
   const upgradeModal = useUpgradeModal()
 
-  const teamInfo = useSelector(getCurrentTeamInfo)!!
+  const currentUserInfo = useSelector(getCurrentUser)
 
   const dispatch = useDispatch()
 
@@ -870,18 +872,20 @@ export const AIAgent: FC = () => {
                             : ShareAgentTab.SHARE_WITH_TEAM
                         }
                         defaultInviteUserRole={USER_ROLE.VIEWER}
-                        teamID={teamInfo.id}
-                        currentUserRole={teamInfo.myRole}
-                        defaultBalance={teamInfo.currentTeamLicense.balance}
+                        teamID={currentTeamInfo.id}
+                        currentUserRole={currentTeamInfo.myRole}
+                        defaultBalance={
+                          currentTeamInfo.currentTeamLicense.balance
+                        }
                         defaultAllowInviteLink={
-                          teamInfo.permission.inviteLinkEnabled
+                          currentTeamInfo.permission.inviteLinkEnabled
                         }
                         onInviteLinkStateChange={(enableInviteLink) => {
                           dispatch(
                             teamActions.updateTeamMemberPermissionReducer({
-                              teamID: teamInfo.id,
+                              teamID: currentTeamInfo.id,
                               newPermission: {
-                                ...teamInfo.permission,
+                                ...currentTeamInfo.permission,
                                 inviteLinkEnabled: enableInviteLink,
                               },
                             }),
@@ -892,16 +896,37 @@ export const AIAgent: FC = () => {
                         onAgentContributed={(isAgentContributed) => {
                           field.onChange(isAgentContributed)
                         }}
-                        onCopyInviteLink={() => {}}
-                        onCopyAgentMarketLink={() => {}}
+                        onCopyInviteLink={(link) => {
+                          copyToClipboard(
+                            t(
+                              "user_management.modal.custom_copy_text_agent_invite",
+                              {
+                                userName: currentUserInfo.nickname,
+                                teamName: currentTeamInfo.name,
+                                inviteLink: link,
+                              },
+                            ),
+                          )
+                        }}
+                        onCopyAgentMarketLink={(link) => {
+                          copyToClipboard(
+                            t(
+                              "user_management.modal.contribute.default_text.agent",
+                              {
+                                agentName: nameField.value,
+                                agentLink: link,
+                              },
+                            ),
+                          )
+                        }}
                         userRoleForThisAgent={currentTeamInfo.myRole}
                         ownerTeamID={currentTeamInfo.id}
                         onBalanceChange={(balance) => {
                           dispatch(
                             teamActions.updateTeamMemberSubscribeReducer({
-                              teamID: teamInfo.id,
+                              teamID: currentTeamInfo.id,
                               subscribeInfo: {
-                                ...teamInfo.currentTeamLicense,
+                                ...currentTeamInfo.currentTeamLicense,
                                 balance: balance,
                               },
                             }),

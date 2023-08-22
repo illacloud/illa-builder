@@ -1,7 +1,11 @@
 import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAppPC } from "@illa-public/invite-modal/ShareApp/pc"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
-import { getCurrentTeamInfo, teamActions } from "@illa-public/user-data"
+import {
+  getCurrentTeamInfo,
+  getCurrentUser,
+  teamActions,
+} from "@illa-public/user-data"
 import { canManageInvite } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
@@ -9,11 +13,15 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, getColor } from "@illa-design/react"
 import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppButton/interface"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 
 
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
   const { t } = useTranslation()
   const { appInfo, canUseBillingFeature } = props
+
+  const currentUserInfo = useSelector(getCurrentUser)
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
 
@@ -89,11 +97,47 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
           userRoleForThisApp={teamInfo.myRole}
           ownerTeamID={teamInfo.id}
           ownerTeamIdentify={teamInfo.identifier}
-          onAppPublic={(isPublic) => {}}
-          onAppContribute={(isContributed) => {}}
-          onCopyPublicLink={() => {}}
-          onCopyContributeLink={() => {}}
-          onCopyInviteLink={() => {}}
+          onAppPublic={(isPublic) => {
+            dispatch(appInfoActions.updateAppPublicReducer(isPublic))
+          }}
+          onAppContribute={(isContributed) => {
+            dispatch(appInfoActions.updateAppContributeReducer(isContributed))
+          }}
+          onCopyPublicLink={(link) => {
+            copyToClipboard(
+              t("user_management.modal.custom_copy_text_app_invite", {
+                userName: currentUserInfo.nickname,
+                teamName: teamInfo.name,
+                inviteLink: link,
+              }),
+            )
+          }}
+          onCopyContributeLink={(link) => {
+            copyToClipboard(
+              t("user_management.modal.contribute.default_text.app", {
+                appName: appInfo.appName,
+                appLink: link,
+              }),
+            )
+          }}
+          onCopyEditInviteLink={(link) => {
+            copyToClipboard(
+              t("user_management.modal.custom_copy_text_app_invite", {
+                userName: currentUserInfo.nickname,
+                teamName: teamInfo.name,
+                inviteLink: link,
+              }),
+            )
+          }}
+          onCopyUseInviteLink={(link) => {
+            copyToClipboard(
+              t("user_management.modal.custom_copy_text_app_invite", {
+                userName: currentUserInfo.nickname,
+                teamName: teamInfo.name,
+                inviteLink: link,
+              }),
+            )
+          }}
         />
       )}
     </>

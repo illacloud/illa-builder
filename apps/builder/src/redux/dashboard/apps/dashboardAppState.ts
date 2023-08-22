@@ -11,6 +11,7 @@ export interface DashboardAppActivity {
 export interface DashboardAppConfig {
   public: boolean
   waterMark: boolean
+  publishedToMarketplace: boolean
   description?: string
 }
 
@@ -48,6 +49,7 @@ export const DashboardAppInitialState: DashboardApp = {
   config: {
     public: false,
     waterMark: false,
+    publishedToMarketplace: false,
   },
   appActivity: {
     modifier: "",
