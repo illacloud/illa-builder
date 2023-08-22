@@ -3232,7 +3232,12 @@
       "owner": "Omistaja",
       "admin": "Administer",
       "editor": "Muokkain",
-      "viewer": "Katsoja"
+      "viewer": "Katsoja",
+      "tips": {
+        "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
+        "editor": "Jäsen, joka voi hallita editoria ja katsojan jäseniä, muokata APP:eja ja tarkastella APP:eja",
+        "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Syötä sähköpostiosoite",
         "invited": "Kutsuttu",
         "in_list": "Tämä käyttäjä on jo tiimissäsi.",
-        "notmail": "{{ email }} ei ole sähköposti",
-        "duplicate": "{{ email }} on kopioitu"
+        "duplicate": "{{ email }} on kopioitu",
+        "not_mail": "{{ email }} ei ole sähköposti"
       },
       "invalid_email": "Syötä voimassa oleva sähköpostiosoite",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. ",
       "contribute": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja."
-    },
-    "tips": {
-      "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
-      "editor": "Jäsen, joka voi hallita editoria ja katsojan jäseniä, muokata APP:eja ja tarkastella APP:eja",
-      "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
     },
     "label": {
       "contribute": "Osallistu markkinapaikkaan",
