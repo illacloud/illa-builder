@@ -3243,7 +3243,8 @@
       "title": {
         "invite_members": "邀请成员",
         "invite_to_use": "邀请使用",
-        "invite_to_edit": "邀请进行编辑"
+        "invite_to_edit": "邀请进行编辑",
+        "contribute": "Marketplace"
       },
       "link": {
         "invite_title": "邀请链接",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "关闭失败",
         "turn_on_fail": "开启失败",
         "make_public_title": "设置为公开项目",
-        "make_public_copy": "复制"
+        "make_public_copy": "复制",
+        "marketplace": {
+          "label": "通过链接分享"
+        }
       },
       "email": {
         "invite_title": "通过电子邮件邀请",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "邀请",
-        "public": "公开"
+        "public": "公开",
+        "with_team": "和team成员分享"
       },
       "custom_copy_text_app_invite": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接查看APP： {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}}分享给您一个来自「{{teamName}}」团队的AI Agent. 点击链接加入团队并使用AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "贡献到marketplace"
+        "label": "贡献到marketplace",
+        "default_text": {
+          "app": "我刚发现了一个有意思的app： {{ appName }}，通过链接查看：{{ appLink }}",
+          "agent": "我刚发现了一个有意思的AI Agent：  {{ agentName }}. 通过链接查看: {{ agentLink }}"
+        },
+        "desc": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
       },
       "social_media": {
         "label": "分享到",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Hacker News",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "我刚发现了一个有意思的app： {{ appName }}",
+          "agent": "我刚发现了一个有意思的AI Agent： {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} 分享给你一个来自 「{{ teamName }}」的AI Agent。加入团队并查看: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "邀请成功",
@@ -3986,8 +3997,7 @@
       "contribute": "贡献"
     },
     "desc": {
-      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 ",
-      "contribute": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
+      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
     },
     "label": {
       "contribute": "贡献到Marketplace"
