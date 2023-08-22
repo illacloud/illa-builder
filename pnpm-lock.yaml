@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -2475,7 +2471,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/user-data':
         specifier: workspace:*
@@ -2509,7 +2505,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
@@ -2552,7 +2548,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
@@ -2564,7 +2560,7 @@ importers:
         specifier: ^18.0.10
         version: 18.0.10
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       lodash:
         specifier: ^4.17.21
@@ -2576,7 +2572,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@types/lodash':
@@ -2592,7 +2588,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/mixpanel-utils':
         specifier: workspace:*
@@ -2607,7 +2603,7 @@ importers:
         specifier: ^18.0.10
         version: 18.0.10
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       react:
         specifier: ^18.2.0
@@ -2619,7 +2615,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(react-dom@18.2.0)(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       tsconfig:
@@ -2651,7 +2647,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
@@ -2682,7 +2678,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/auth-shown':
         specifier: workspace:*
@@ -2730,7 +2726,7 @@ importers:
         specifier: ^3.3.2
         version: 3.3.3
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       react:
         specifier: ^18.2.0
@@ -2742,7 +2738,7 @@ importers:
         specifier: ^7.30.0
         version: 7.43.1(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
       react-share:
         specifier: ^4.4.1
@@ -2764,7 +2760,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
@@ -2795,7 +2791,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/avatar':
         specifier: workspace:*
@@ -2810,7 +2806,7 @@ importers:
         specifier: ^18.0.10
         version: 18.0.10
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       react:
         specifier: ^18.2.0
@@ -2819,7 +2815,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       tsconfig:
@@ -2832,7 +2828,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/auth-shown':
         specifier: workspace:*
@@ -2880,7 +2876,7 @@ importers:
         specifier: ^3.3.2
         version: 3.3.3
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       react:
         specifier: ^18.2.0
@@ -2892,7 +2888,7 @@ importers:
         specifier: ^7.30.0
         version: 7.43.1(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
       react-redux:
         specifier: ^8.1.1
@@ -2945,7 +2941,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
@@ -2957,7 +2953,7 @@ importers:
         specifier: ^18.0.10
         version: 18.0.10
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       react:
         specifier: ^18.2.0
@@ -2966,7 +2962,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       tsconfig:
@@ -2979,7 +2975,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/user-data':
         specifier: workspace:*
@@ -2994,7 +2990,7 @@ importers:
         specifier: ^18.0.10
         version: 18.0.10
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       react:
         specifier: ^18.2.0
@@ -3003,7 +2999,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       tsconfig:
@@ -3019,7 +3015,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/icon':
         specifier: workspace:*
@@ -3043,7 +3039,7 @@ importers:
         specifier: ^18.0.10
         version: 18.0.10
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       react:
         specifier: ^18.2.0
@@ -3058,7 +3054,7 @@ importers:
         specifier: ^7.30.0
         version: 7.43.1(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
       react-router-dom:
         specifier: ^6.14.0
@@ -3083,7 +3079,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
@@ -3114,7 +3110,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
@@ -3145,7 +3141,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/icon':
         specifier: workspace:*
@@ -3178,7 +3174,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
       react-redux:
         specifier: ^8.1.1
@@ -3212,7 +3208,7 @@ importers:
         specifier: '*'
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../illa-design/packages/react
       '@illa-public/utils':
         specifier: workspace:*
@@ -3224,7 +3220,7 @@ importers:
         specifier: ^18.0.10
         version: 18.0.10
       i18next:
-        specifier: '*'
+        specifier: ^22.4.9
         version: 22.4.9
       react:
         specifier: ^18.2.0
@@ -3233,7 +3229,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-i18next:
-        specifier: '*'
+        specifier: ^12.1.4
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
       vite-plugin-svgr:
         specifier: '*'
@@ -3245,9 +3241,6 @@ importers:
 
   packages/illa-public-component/UserData:
     dependencies:
-      '@illa-design/react':
-        specifier: '*'
-        version: link:../../illa-design/packages/react
       '@reduxjs/toolkit':
         specifier: ^1.9.5
         version: 1.9.5(react-redux@8.1.1)(react@18.2.0)
@@ -19998,3 +19991,7 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

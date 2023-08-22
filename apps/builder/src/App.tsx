@@ -8,11 +8,8 @@ import {
   UpgradeDrawerGroup,
   UpgradeModalGroup,
 } from "@illa-public/upgrade-modal"
-import {
-  getCurrentConfigLanguage,
-  getCurrentTranslateLanguage,
-} from "@illa-public/user-data"
-import { useEffect } from "react"
+import { getCurrentTranslateLanguage } from "@illa-public/user-data"
+import { useEffect, useMemo } from "react"
 import { DndProvider } from "react-dnd"
 import { TouchBackend } from "react-dnd-touch-backend"
 import { HelmetProvider } from "react-helmet-async"
@@ -24,6 +21,10 @@ import {
   MessageGroup,
   ModalGroup,
   NotificationGroup,
+  enUS,
+  jaJP,
+  koKR,
+  zhCN,
 } from "@illa-design/react"
 import { illaCodeMirrorTooltipStyle } from "@/components/CodeEditor/CodeMirror/theme"
 import { getIsILLAProductMode } from "@/redux/config/configSelector"
@@ -38,8 +39,21 @@ const dragOptions = {
 }
 
 function App() {
-  const configLanguage = useSelector(getCurrentConfigLanguage)
   const currentUserLanguage = useSelector(getCurrentTranslateLanguage)
+  const configLanguage = useMemo(() => {
+    switch (currentUserLanguage) {
+      case "en-US":
+        return enUS
+      case "zh-CN":
+        return zhCN
+      case "ja-JP":
+        return jaJP
+      case "ko-KR":
+        return koKR
+      default:
+        return enUS
+    }
+  }, [currentUserLanguage])
   const { i18n } = useTranslation()
   const isProductMode = useSelector(getIsILLAProductMode)
 
