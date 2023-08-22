@@ -3285,7 +3285,23 @@
       "tips": {
         "license_insufficient": "Залишилися ліцензії"
       },
-      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Внести вклад на ринок"
+      },
+      "social_media": {
+        "label": "Поділитися на",
+        "twitter": "Твіттер",
+        "linkedin": "LinkedIn",
+        "reddit": "Реддіт",
+        "facebook": "Фейсбук",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Хакерські новини",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+        }
+      }
     },
     "mes": {
       "invite_suc": "Успішно запрошений",
@@ -3974,22 +3990,10 @@
       "contribute": "Після участі в Ринку, всі користувачі можуть бігати, зірочкою та поширювати вашого співробітника. Коли користувачі з інших команд запускають цього співробітника, вони не споживатимуть ваші ресурси."
     },
     "label": {
-      "contribute": "Внести вклад на ринок",
-      "social-media": "Поділитися на"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Твіттер",
-        "reddit": "Реддіт",
-        "linkedin": "LinkedIn",
-        "facebook": "Фейсбук",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Хакерські новини"
-      }
+      "contribute": "Внести вклад на ринок"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Погляньте на цей чарівний агент ШІ [{{promptName}}]",
         "linkedin": "Увага, всі ентузіасти та професіонали, які прагнуть підвищити свою продуктивність! Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!",
         "facebook": "Увага, всі ентузіасти та професіонали, які прагнуть підвищити свою продуктивність! Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!",
@@ -3999,7 +4003,6 @@
       "contribute": "Я прийшов на платформу AI Agent, яка пропонує найсучасніші рішення для спрощення складних завдань та інтеграції з вашими внутрішніми інструментами. Я особисто спробувала [{{promptName}}] і зринула його здібності. Це кардинальна заміна для кожного, хто хоче бути попереду кривої. Перевір це собі в {{promptLink}} і дай мені знати, що ти думаєш!"
     },
     "button": {
-      "contribute": "Внести вклад на ринок",
       "share_contribute": "Копіювати та поділитись",
       "uncontribute": "Скасувати внесок"
     },
