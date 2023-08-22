@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "Invită membri"
+        "invite_members": "Invită membri",
+        "invite_to_use": "Invită să utilizezi",
+        "invite_to_edit": "Invită să editezi"
       },
       "link": {
         "invite_title": "Link de invitație",
         "copy": "Copiază",
         "turn_off": "Oprește link-urile de invitație",
         "update": "Actualizează link-urile de invitație",
-        "description": "Partajează un link secret pe care oamenii îl pot folosi pentru a se alătura echipei tale.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Pornește link-urile de invitație",
         "fail": "Eșec la obținerea link-ului, te rugăm să încerci din nou mai târziu",
         "copied_suc": "Copiat!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invită să editezi",
-      "invite_to_use": "Invită să utilizezi",
       "share-with-team": "Partajează cu echipa",
       "contribute": "Contribuie"
     },
