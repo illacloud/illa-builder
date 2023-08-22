@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "Nodig leden uit"
+        "invite_members": "Nodig leden uit",
+        "invite_to_use": "Uitnodigen om te gebruiken",
+        "invite_to_edit": "Uitnodigen om te bewerken"
       },
       "link": {
         "invite_title": "Uitnodigings link",
         "copy": "Kopiëren",
         "turn_off": "Uitnodigingslinks uitschakelen",
         "update": "Uitnodigingslinks bijwerken",
-        "description": "Deel een geheime link die mensen kunnen gebruiken om deel te nemen aan je team.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Uitnodigingslinks inschakelen",
         "fail": "Fout bij het verkrijgen van de link, probeer het later opnieuw",
         "copied_suc": "Gekopieerd!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Uitnodigen om te bewerken",
-      "invite_to_use": "Uitnodigen om te gebruiken",
       "share-with-team": "Deel met team",
       "contribute": "Meedoen"
     },
