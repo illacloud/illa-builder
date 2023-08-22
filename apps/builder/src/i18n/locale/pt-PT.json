@@ -3297,7 +3297,8 @@
           "app": "Acabo de descobrir um aplicativo impressionante chamado {{ appName }}. Confira: {{ appLink }}",
           "agent": "Acabo de descobrir um impressionante Agente IA chamado {{ agentName }}. Confira: {{ agentLink }}"
         },
-        "desc": "Após contribuir para o Marketplace, todos os usuários podem executar, estrelar e bifurcar o seu Agente. Quando usuários de outras equipes executam este Agente, não consumirá seus recursos."
+        "desc": "Após contribuir para o Marketplace, todos os usuários podem executar, estrelar e bifurcar o seu Agente. Quando usuários de outras equipes executam este Agente, não consumirá seus recursos.",
+        "turn_off": "Cancelar contribuição"
       },
       "social_media": {
         "label": "Compartilhar em",
