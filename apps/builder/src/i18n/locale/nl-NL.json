@@ -3297,7 +3297,8 @@
           "app": "Ik heb net een indrukwekkende app ontdekt genaamd {{ appName }}. Bekijk het: {{ appLink }}",
           "agent": "Ik heb net een indrukwekkende AI Agent genaamd {{ agentName }}ontdekt. Controleer het: {{ agentLink }}"
         },
-        "desc": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
+        "desc": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken.",
+        "turn_off": "Annuleer bijdrage"
       },
       "social_media": {
         "label": "Delen op",
