@@ -3297,7 +3297,8 @@
           "app": "Je viens de découvrir une application impressionnante appelée {{ appName }}. Vérifiez: {{ appLink }}",
           "agent": "Je viens de découvrir un agent IA impressionnant appelé {{ agentName }}. Vérifiez: {{ agentLink }}"
         },
-        "desc": "Après avoir contribué au Marketplace, tous les utilisateurs peuvent fonctionner, étoiler et fork votre Agent. Lorsque des utilisateurs d'autres équipes exécutent cet Agent, il ne consommera pas vos ressources."
+        "desc": "Après avoir contribué au Marketplace, tous les utilisateurs peuvent fonctionner, étoiler et fork votre Agent. Lorsque des utilisateurs d'autres équipes exécutent cet Agent, il ne consommera pas vos ressources.",
+        "turn_off": "Annuler la contribution"
       },
       "social_media": {
         "label": "Partager sur",
