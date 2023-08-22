@@ -3232,7 +3232,12 @@
       "owner": "Proprietário",
       "admin": "Administer",
       "editor": "Editores",
-      "viewer": "Visualizador"
+      "viewer": "Visualizador",
+      "tips": {
+        "admin": "O membro que pode gerenciar todos os membros, exceto o proprietário, edite APP e veja os APPs",
+        "editor": "O membro que pode gerenciar membros do editor e visualizador, editar APP e ver APPs",
+        "viewer": "O membro que pode gerenciar o visualizador e visualizar os APPs"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Digite o endereço de e-mail",
         "invited": "Já convidou",
         "in_list": "Este usuário já está na sua equipe.",
-        "notmail": "{{ email }} não é um email",
-        "duplicate": "{{ email }} está duplicado"
+        "duplicate": "{{ email }} está duplicado",
+        "not_mail": "{{ email }} não é um email"
       },
       "invalid_email": "Por favor, digite um e-mail válido",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "O app não foi implantado. O acesso público e o acesso ao visualizador podem encontrar erros. ",
       "contribute": "Após contribuir para o Marketplace, todos os usuários podem executar, estrelar e bifurcar o seu Agente. Quando usuários de outras equipes executam este Agente, não consumirá seus recursos."
-    },
-    "tips": {
-      "admin": "O membro que pode gerenciar todos os membros, exceto o proprietário, edite APP e veja os APPs",
-      "editor": "O membro que pode gerenciar membros do editor e visualizador, editar APP e ver APPs",
-      "viewer": "O membro que pode gerenciar o visualizador e visualizar os APPs"
     },
     "label": {
       "contribute": "Contribua para o marketplace",
