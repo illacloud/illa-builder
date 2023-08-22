@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "Inviter medlemmer"
+        "invite_members": "Inviter medlemmer",
+        "invite_to_use": "Inviter til bruk",
+        "invite_to_edit": "Inviter til å redigere"
       },
       "link": {
         "invite_title": "Inviter lenke",
         "copy": "Kopier",
         "turn_off": "Slå av invitasjonslenker",
         "update": "Oppdater invitasjonslenker",
-        "description": "Del en hemmelig link folk kan bruke for å bli med i teamet ditt.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Slå på invitasjonslenker",
         "fail": "Kunne ikke finne koblingen, prøv igjen senere",
         "copied_suc": "Kopiert!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Inviter til å redigere",
-      "invite_to_use": "Inviter til bruk",
       "share-with-team": "Del med team",
       "contribute": "Bidra"
     },
