@@ -3285,7 +3285,23 @@
       "tips": {
         "license_insufficient": "Pozostałe licencje"
       },
-      "custom-copy-ai-agent": "{{userName}} podzielił się z tobą Agentem AI z <unk>{{teamName}}. Kliknij na link, aby dołączyć do zespołu i wypróbuj Agenta AI: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} podzielił się z tobą Agentem AI z <unk>{{teamName}}. Kliknij na link, aby dołączyć do zespołu i wypróbuj Agenta AI: {{inviteLink}}",
+      "contribute": {
+        "label": "Przyczyń się do marketplace"
+      },
+      "social_media": {
+        "label": "Udostępnij na",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "Aplikacja",
+        "hackernews": "Wiadomości Hakera",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+        }
+      }
     },
     "mes": {
       "invite_suc": "Zaproszono pomyślnie",
@@ -3974,22 +3990,10 @@
       "contribute": "Po wniesieniu wkładu do Marketplace, wszyscy użytkownicy mogą działać, gwiazdkę i rozwidlić swojego przedstawiciela. Gdy użytkownicy z innych drużyn uruchamiają tego agenta, nie zużywają twoich zasobów."
     },
     "label": {
-      "contribute": "Przyczyń się do marketplace",
-      "social-media": "Udostępnij na"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "Aplikacja",
-        "hackernews": "Wiadomości Hakera"
-      }
+      "contribute": "Przyczyń się do marketplace"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Cześć! Właśnie odkryłem tego niesamowitego Agenta AI. Możesz być zainteresowany także próbą! Sprawdź to! {{promptName}}:{{promptLink}} #AIwrite #PromptManagement #ProductivityBoost",
         "reddit": "Sprawdź tego niesamowitego agenta AI [{{promptName}}]",
         "linkedin": "Zwróć uwagę na wszystkich entuzjastów i profesjonalistów, którzy chcą zwiększyć swoją wydajność! Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!",
         "facebook": "Zwróć uwagę na wszystkich entuzjastów i profesjonalistów, którzy chcą zwiększyć swoją wydajność! Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!",
@@ -3999,7 +4003,6 @@
       "contribute": "Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!"
     },
     "button": {
-      "contribute": "Przyczyń się do marketplace",
       "share_contribute": "Kopiuj i udostępnij",
       "uncontribute": "Anuluj wkład"
     },
