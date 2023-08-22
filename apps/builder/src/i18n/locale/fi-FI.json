@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Kutsu jäseniä",
         "invite_to_use": "Kutsu käyttämään",
-        "invite_to_edit": "Kutsu muokattavaksi"
+        "invite_to_edit": "Kutsu muokattavaksi",
+        "contribute": "Kauppapaikka"
       },
       "link": {
         "invite_title": "Kutsu linkki",
         "copy": "Kopioi",
         "turn_off": "Poista kutsulinkit käytöstä",
         "update": "Päivitä kutsulinkit",
-        "description": "Turn on and invite members via link. ",
+        "description": "Käynnistä ja kutsu jäseniä linkin kautta. ",
         "turn_on": "Ota kutsulinkit käyttöön",
         "fail": "Linkin hankkiminen epäonnistui, yritä myöhemmin uudelleen",
         "copied_suc": "Kopioitu!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Ei voitu poistaa käytöstä",
         "turn_on_fail": "Ei voitu ottaa käyttöön",
         "make_public_title": "Tee sovellus julkiseksi",
-        "make_public_copy": "Kopioi"
+        "make_public_copy": "Kopioi",
+        "marketplace": {
+          "label": "Jaa linkin kanssa"
+        }
       },
       "email": {
         "invite_title": "Kutsu sähköpostitse",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Kutsu",
-        "public": "Julkinen"
+        "public": "Julkinen",
+        "with_team": "Jaa tiimin jäsenten kanssa"
       },
       "custom_copy_text_app_invite": "{{userName}} on jakanut sinulle sovelluksen 「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin ja tarkista APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} on jakanut sinulle APP lähteestä 「{{teamName}}」. Klikkaa linkkiä tarkistaaksesi APP: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Osallistu markkinapaikkaan"
+        "label": "Osallistu markkinapaikkaan",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
+        },
+        "desc": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja."
       },
       "social_media": {
         "label": "Jaa päällä",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Hakkerit Uutiset",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Löysin juuri vaikuttavan sovelluksen nimeltä {{ appName }}",
+          "agent": "Löysin juuri vaikuttavan tekoälyagentin nimeltä {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Kutsuttu onnistuneesti",
@@ -3986,8 +3997,7 @@
       "contribute": "Osallistu"
     },
     "desc": {
-      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. ",
-      "contribute": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja."
+      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. "
     },
     "label": {
       "contribute": "Osallistu markkinapaikkaan"
