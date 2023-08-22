@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Запросити учасників",
         "invite_to_use": "Запросити",
-        "invite_to_edit": "Запросити до редагування"
+        "invite_to_edit": "Запросити до редагування",
+        "contribute": "Магазин"
       },
       "link": {
         "invite_title": "Запрошувальне посилання",
         "copy": "Копія",
         "turn_off": "Вимкнути запрошувальні посилання",
         "update": "Оновити посилання-запрошення",
-        "description": "Turn on and invite members via link. ",
+        "description": "Увімкніть та запросіть учасників через посилання. ",
         "turn_on": "Увімкнути запрошені посилання",
         "fail": "Не вдалося отримати посилання, будь ласка, спробуйте ще раз пізніше",
         "copied_suc": "Скопійовано!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Не вдалося вимкнути",
         "turn_on_fail": "Не вдалося увімкнути",
         "make_public_title": "Зробити програму загальнодоступною",
-        "make_public_copy": "Копія"
+        "make_public_copy": "Копія",
+        "marketplace": {
+          "label": "Поділитись посиланням"
+        }
       },
       "email": {
         "invite_title": "Запросити по електронній пошті",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Запросити",
-        "public": "Загальнодоступна"
+        "public": "Загальнодоступна",
+        "with_team": "Поділитися з учасниками команди"
       },
       "custom_copy_text_app_invite": "{{userName}} поділився вашою програмою з 「{{teamName}}」. Натисніть на посилання, щоб приєднатися до команди і перевірити APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} поділилися вами APP з 「{{teamName}}」. Натисніть на посилання, щоб перевірити APP: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Внести вклад на ринок"
+        "label": "Внести вклад на ринок",
+        "default_text": {
+          "app": "Я щойно відкрив вражаючий додаток під назвою {{ appName }}. Перевірте його {{ appLink }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
+        },
+        "desc": "Після участі в Ринку, всі користувачі можуть бігати, зірочкою та поширювати вашого співробітника. Коли користувачі з інших команд запускають цього співробітника, вони не споживатимуть ваші ресурси."
       },
       "social_media": {
         "label": "Поділитися на",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Хакерські новини",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Я щойно відкрив вражаючий додаток з назвою {{ appName }}",
+          "agent": "Я щойно відкрив вражаючий AI Agent під назвою {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} повідомляє вам агента ШІ від <unk>{{ teamName }}WA. Приєднуйтесь до команди і перевірте: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Успішно запрошений",
@@ -3986,8 +3997,7 @@
       "contribute": "Зробити свій внесок"
     },
     "desc": {
-      "undeploy": "Додаток не розгорнуто. Доступ до публічного доступу і глядача можуть стикатися з помилками. ",
-      "contribute": "Після участі в Ринку, всі користувачі можуть бігати, зірочкою та поширювати вашого співробітника. Коли користувачі з інших команд запускають цього співробітника, вони не споживатимуть ваші ресурси."
+      "undeploy": "Додаток не розгорнуто. Доступ до публічного доступу і глядача можуть стикатися з помилками. "
     },
     "label": {
       "contribute": "Внести вклад на ринок"
