@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "メンバーを招待"
+        "invite_members": "メンバーを招待",
+        "invite_to_use": "招待する",
+        "invite_to_edit": "編集に招待"
       },
       "link": {
         "invite_title": "招待リンク",
         "copy": "コピー",
         "turn_off": "招待リンクをオフにする",
         "update": "招待リンクを更新する",
-        "description": "ユーザーがプライベート リンクでチームに参加できるようにする",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "招待リンクをオンにする",
         "fail": "リンクを取得できませんでした。しばらくしてからもう一度お試しください",
         "copied_suc": "コピーしました！",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "編集に招待",
-      "invite_to_use": "招待する",
       "share-with-team": "チームと共有",
       "contribute": "貢献"
     },
