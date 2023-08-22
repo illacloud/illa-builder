@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Bjud in medlemmar",
         "invite_to_use": "Bjud in att använda",
-        "invite_to_edit": "Bjud in att redigera"
+        "invite_to_edit": "Bjud in att redigera",
+        "contribute": "Marknadsplats"
       },
       "link": {
         "invite_title": "Bjud in länk",
         "copy": "Kopiera",
         "turn_off": "Stäng av inbjudningslänkar",
         "update": "Uppdatera inbjudningslänkar",
-        "description": "Turn on and invite members via link. ",
+        "description": "Aktivera och bjud in medlemmar via länk. ",
         "turn_on": "Slå på inbjudningslänkar",
         "fail": "Det gick inte att få länken, försök igen senare",
         "copied_suc": "Kopierad!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Det gick inte att stänga av",
         "turn_on_fail": "Det gick inte att slå på",
         "make_public_title": "Gör appen publik",
-        "make_public_copy": "Kopiera"
+        "make_public_copy": "Kopiera",
+        "marketplace": {
+          "label": "Dela med länk"
+        }
       },
       "email": {
         "invite_title": "Bjud in via e-post",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Bjud in",
-        "public": "Publik"
+        "public": "Publik",
+        "with_team": "Dela med teammedlemmar"
       },
       "custom_copy_text_app_invite": "{{userName}} har delat dig med en app på 「{{teamName}}」. Klicka på länken för att gå med i teamet och kontrollera APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} har delat dig en APP från 「{{teamName}}」. Klicka på länken för att kontrollera APP: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} delade dig en AI-agent från <unk>{{teamName}}<unk> . Klicka på länken för att gå med i teamet och prova AI-agenten: {{inviteLink}}",
       "contribute": {
-        "label": "Bidra till marknadsplatsen"
+        "label": "Bidra till marknadsplatsen",
+        "default_text": {
+          "app": "Jag upptäckte just en imponerande app som heter {{ appName }}. Kontrollera det: {{ appLink }}",
+          "agent": "Jag upptäckte precis en imponerande AI-agent som heter {{ agentName }}. Kontrollera det: {{ agentLink }}"
+        },
+        "desc": "Efter att ha bidragit till marknaden kan alla användare köra, stjärna och gaffel din Jobbevakning. När användare från andra team kör denna agent, kommer det inte att konsumera dina resurser."
       },
       "social_media": {
         "label": "Dela på",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Hackernyheter",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Jag upptäckte just en imponerande app som heter {{ appName }}",
+          "agent": "Jag upptäckte just en imponerande AI-agent som heter {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} delar dig en AI-agent från <unk>{{ teamName }}<unk> . Gå med i teamet och kontrollera det: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Inbjuden lyckades",
@@ -3986,8 +3997,7 @@
       "contribute": "Bidra"
     },
     "desc": {
-      "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. ",
-      "contribute": "Efter att ha bidragit till marknaden kan alla användare köra, stjärna och gaffel din Jobbevakning. När användare från andra team kör denna agent, kommer det inte att konsumera dina resurser."
+      "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. "
     },
     "label": {
       "contribute": "Bidra till marknadsplatsen"
