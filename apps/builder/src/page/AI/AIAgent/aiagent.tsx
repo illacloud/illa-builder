@@ -857,6 +857,7 @@ export const AIAgent: FC = () => {
                   <>
                     {(shareDialogVisible || contributedDialogVisible) && (
                       <ShareAgentPC
+                        redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${idField.value}`}
                         onClose={() => {
                           setShareDialogVisible(false)
                           setContributedDialogVisible(false)

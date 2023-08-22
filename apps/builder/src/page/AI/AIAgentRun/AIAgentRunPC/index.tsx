@@ -51,6 +51,7 @@ import {
   MarketAiAgent,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,
@@ -68,7 +69,6 @@ import {
   leftPanelContainerStyle,
   rightPanelContainerStyle,
 } from "./style"
-import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 
 
 export const AIAgentRunPC: FC = () => {
@@ -119,6 +119,9 @@ export const AIAgentRunPC: FC = () => {
         <>
           {shareDialogVisible && (
             <ShareAgentPC
+              redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${
+                agent.aiAgentID
+              }/run`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}

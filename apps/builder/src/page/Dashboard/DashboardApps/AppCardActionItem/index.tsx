@@ -411,6 +411,9 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       >
         {shareVisible && (
           <ShareAppPC
+            redirectUrl={`${
+              import.meta.env.ILLA_BUILDER_URL
+            }/${teamIdentifier}/dashboard/apps`}
             defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
             onInviteLinkStateChange={(enableInviteLink) => {
               dispatch(

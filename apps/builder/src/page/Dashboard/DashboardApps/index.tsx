@@ -1,10 +1,10 @@
-import { Avatar } from "@illa-public/avatar"
-import { InviteMemberPC } from "@illa-public/invite-modal"
+import {Avatar} from "@illa-public/avatar"
+import {InviteMemberPC} from "@illa-public/invite-modal"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import {useUpgradeModal} from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
   getCurrentTeamInfo,
@@ -21,11 +21,11 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { isCloudVersion } from "@illa-public/utils"
-import { isBoolean } from "lodash"
-import { FC, Suspense, useCallback, useEffect, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import {isCloudVersion} from "@illa-public/utils"
+import {isBoolean} from "lodash"
+import {FC, Suspense, useCallback, useEffect, useState} from "react"
+import {useTranslation} from "react-i18next"
+import {useDispatch, useSelector} from "react-redux"
 import {
   Await,
   useBeforeUnload,
@@ -33,21 +33,21 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom"
-import { Button, PlusIcon, useMessage } from "@illa-design/react"
-import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
-import { openGuideModal } from "@/page/Template/gideModeModal"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { fetchCreateApp } from "@/services/apps"
-import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
+import {Button, PlusIcon, useMessage} from "@illa-design/react"
+import {BASIC_APP_CONFIG} from "@/config/newAppConfig"
+import {openGuideModal} from "@/page/Template/gideModeModal"
+import {dashboardAppActions} from "@/redux/dashboard/apps/dashboardAppSlice"
+import {DashboardApp} from "@/redux/dashboard/apps/dashboardAppState"
+import {fetchCreateApp} from "@/services/apps"
+import {copyToClipboard} from "@/utils/eventHandlerHelper/utils/commonUtils"
 import {
   track,
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
-import { DashboardErrorElement } from "../components/ErrorElement"
-import { DashBoardLoading } from "../components/Loading"
-import { AppsContentBody } from "./contentBody"
+import {DashboardErrorElement} from "../components/ErrorElement"
+import {DashBoardLoading} from "../components/Loading"
+import {AppsContentBody} from "./contentBody"
 import {
   appsContainerStyle,
   listTitleContainerStyle,
@@ -58,12 +58,12 @@ import {
 
 
 export const DashboardApps: FC = () => {
-  const { t } = useTranslation()
-  const { teamIdentifier } = useParams()
+  const {t} = useTranslation()
+  const {teamIdentifier} = useParams()
   const message = useMessage()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { appList } = useLoaderData() as { appList: DashboardApp[] }
+  const {appList} = useLoaderData() as { appList: DashboardApp[] }
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
   const isTutorialViewed = useSelector(getIsTutorialViewed)
@@ -119,7 +119,7 @@ export const DashboardApps: FC = () => {
           navigate(`/${teamIdentifier}/app/${response.data.appId}`)
         },
         () => {
-          message.error({ content: t("create_fail") })
+          message.error({content: t("create_fail")})
         },
       )
       .finally(() => {
@@ -160,11 +160,11 @@ export const DashboardApps: FC = () => {
 
   useEffect(() => {
     canCreateApp &&
-      track(
-        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "create_new_app" },
-      )
+    track(
+      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+      {element: "create_new_app"},
+    )
   }, [canCreateApp])
 
   return (
@@ -190,7 +190,7 @@ export const DashboardApps: FC = () => {
               ml="4px"
               w="200px"
               colorScheme="techPurple"
-              leftIcon={<PlusIcon size="10px" />}
+              leftIcon={<PlusIcon size="10px"/>}
               loading={loading}
               onClick={handleCreateApp}
             >
@@ -199,8 +199,8 @@ export const DashboardApps: FC = () => {
           ) : null}
         </div>
       </div>
-      <Suspense fallback={<DashBoardLoading />}>
-        <Await resolve={appList} errorElement={<DashboardErrorElement />}>
+      <Suspense fallback={<DashBoardLoading/>}>
+        <Await resolve={appList} errorElement={<DashboardErrorElement/>}>
           <AppsContentBody
             canEditApp={canEditApp}
             onCreatedApp={handleCreateApp}
@@ -210,6 +210,7 @@ export const DashboardApps: FC = () => {
       </Suspense>
       {inviteModalVisible && (
         <InviteMemberPC
+          redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/${teamInfo?.identifier}/dashboard/apps`}
           onClose={() => setInviteModalVisible(false)}
           canInvite={showInvite}
           currentUserRole={currentUserRole}

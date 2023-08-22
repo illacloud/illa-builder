@@ -7,6 +7,7 @@ interface ImportMetaEnv {
   readonly ILLA_APP_VERSION: string
   readonly ILLA_APP_ENV: string
   readonly ILLA_GOOGLE_MAP_KEY: string
+  readonly ILLA_BUILDER_URL: string
 }
 
 interface ImportMeta {

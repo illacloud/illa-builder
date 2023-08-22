@@ -16,7 +16,6 @@ import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppBu
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 
-
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
   const { t } = useTranslation()
   const { appInfo, canUseBillingFeature } = props
@@ -60,6 +59,9 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
       </Button>
       {shareModalVisible && (
         <ShareAppPC
+          redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/${
+            teamInfo.identifier
+          }/${appInfo.appId}`}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           onInviteLinkStateChange={(enableInviteLink) => {
             dispatch(
