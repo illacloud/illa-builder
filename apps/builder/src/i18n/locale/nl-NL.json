@@ -3232,7 +3232,12 @@
       "owner": "Eigenaar",
       "admin": "Administer",
       "editor": "Tekstverwerker",
-      "viewer": "Bekijker"
+      "viewer": "Bekijker",
+      "tips": {
+        "admin": "Het lid dat alle leden behalve de Eigenaar kan beheren, APP's kan bewerken en APP's kan bekijken",
+        "editor": "Het lid dat de APP's kan beheren en bekijken",
+        "viewer": "Het lid dat de APP's kan beheren en bekijken"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Voer e-mailadres in",
         "invited": "Heeft u uitgenodigd",
         "in_list": "Deze gebruiker is al lid van je team.",
-        "notmail": "{{ email }} is geen e-mail",
-        "duplicate": "{{ email }} wordt gedupliceerd"
+        "duplicate": "{{ email }} wordt gedupliceerd",
+        "not_mail": "{{ email }} is geen e-mail"
       },
       "invalid_email": "Voer een geldig e-mailadres in",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. ",
       "contribute": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
-    },
-    "tips": {
-      "admin": "Het lid dat alle leden behalve de Eigenaar kan beheren, APP's kan bewerken en APP's kan bekijken",
-      "editor": "Het lid dat de APP's kan beheren en bekijken",
-      "viewer": "Het lid dat de APP's kan beheren en bekijken"
     },
     "label": {
       "contribute": "Draag bij aan de marktplaats",
