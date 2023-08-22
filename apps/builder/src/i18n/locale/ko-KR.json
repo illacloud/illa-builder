@@ -3232,7 +3232,12 @@
       "owner": "소유자",
       "admin": "관리하다",
       "editor": "편집자",
-      "viewer": "보기만"
+      "viewer": "보기만",
+      "tips": {
+        "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
+        "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
+        "viewer": "The member who can manage viewer members and view APPs"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "이메일 주소를 입력하세요",
         "invited": "초대했다",
         "in_list": "이 사용자는 이미 팀에 있습니다.",
-        "notmail": "{{ email }}는 이메일이 아닙니다.",
-        "duplicate": "{{ email }} 는 중복 이메일 주소입니다."
+        "duplicate": "{{ email }} 는 중복 이메일 주소입니다.",
+        "not_mail": "{{ email }}는 이메일이 아닙니다."
       },
       "invalid_email": "유효한 이메일 주소를 입력하세요",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. ",
       "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
-    },
-    "tips": {
-      "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
-      "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
-      "viewer": "The member who can manage viewer members and view APPs"
     },
     "label": {
       "contribute": "Contribute to marketplace",
