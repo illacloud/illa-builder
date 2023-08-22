@@ -3285,7 +3285,23 @@
       "tips": {
         "license_insufficient": "Licențe rămase"
       },
-      "custom-copy-ai-agent": "{{userName}} ți-a distribuit un AI Agent la <unk>{{teamName}}order. Faceți clic pe link pentru a vă alătura echipei și încercați AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} ți-a distribuit un AI Agent la <unk>{{teamName}}order. Faceți clic pe link pentru a vă alătura echipei și încercați AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Contribuie la piata"
+      },
+      "social_media": {
+        "label": "Distribuie pe",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Știri hacker",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+        }
+      }
     },
     "mes": {
       "invite_suc": "Invitat cu succes",
@@ -3974,22 +3990,10 @@
       "contribute": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
     },
     "label": {
-      "contribute": "Contribuie la piata",
-      "social-media": "Distribuie pe"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Știri hacker"
-      }
+      "contribute": "Contribuie la piata"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Salut! Tocmai am descoperit acest uimitor Agent AI. Ai putea fi interesat să îi dai o încercare! Verifică-l! {{promptName}}:{{promptLink}} #AIwrite #PromptManagement #ProductivityBoost",
         "reddit": "Uită-te la acest uimitor Agent AI [{{promptName}}]",
         "linkedin": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
         "facebook": "Atenţie pentru toţi entuziaştii şi profesioniştii din domeniul AI care doresc să-şi crească productivitatea! Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!",
@@ -3999,7 +4003,6 @@
       "contribute": "Am întâlnit o platformă AI Agent care oferă soluții de vârf pentru simplificarea sarcinilor complexe și integrarea cu instrumentele tale interne. Am încercat personal [{{promptName}}] și am fost uimit de capabilitățile sale. Este o schimbare de joc pentru oricine care doreşte să rămână înaintea curbei. Uită-te pentru tine la {{promptLink}} și spune-mi ce crezi!"
     },
     "button": {
-      "contribute": "Contribuie la piata",
       "share_contribute": "Copiază & Partajează",
       "uncontribute": "Anulează contribuția"
     },
