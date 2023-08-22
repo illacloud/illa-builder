@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Pozvat členy",
         "invite_to_use": "Pozvat k použití",
-        "invite_to_edit": "Pozvat k úpravě"
+        "invite_to_edit": "Pozvat k úpravě",
+        "contribute": "Tržiště"
       },
       "link": {
         "invite_title": "Odkaz na pozvání",
         "copy": "Kopírovat",
         "turn_off": "Vypnout odkazy pozvánky",
         "update": "Aktualizovat odkazy pozvánky",
-        "description": "Turn on and invite members via link. ",
+        "description": "Zapněte a pozvěte členy prostřednictvím odkazu. ",
         "turn_on": "Zapnout odkazy pozvánky",
         "fail": "Nepodařilo se získat odkaz, zkuste to prosím později",
         "copied_suc": "Zkopírováno!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Vypnutí se nezdařilo",
         "turn_on_fail": "Zapnutí se nezdařilo",
         "make_public_title": "Zveřejnit aplikaci",
-        "make_public_copy": "Kopírovat"
+        "make_public_copy": "Kopírovat",
+        "marketplace": {
+          "label": "Sdílet s odkazem"
+        }
       },
       "email": {
         "invite_title": "Pozvat e-mailem",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Pozvat",
-        "public": "Veřejnost"
+        "public": "Veřejnost",
+        "with_team": "Sdílet se členy týmu"
       },
       "custom_copy_text_app_invite": "{{userName}} vás sdílel s aplikací 「{{teamName}}」. Klikněte na odkaz pro připojení se k týmu a zkontrolujte APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} tě sdílel/a APP od 「{{teamName}}」. Klepnutím na odkaz zkontrolujte APP: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} tě sdílel AI agenta z <unk>{{teamName}}<unk> . Klepni na odkaz pro připojení k týmu a vyzkoušej AI agenta: {{inviteLink}}",
       "contribute": {
-        "label": "Přispějte na tržišti"
+        "label": "Přispějte na tržišti",
+        "default_text": {
+          "app": "Právě jsem objevil působivou aplikaci s názvem {{ appName }}. Podívejte se: {{ appLink }}",
+          "agent": "Právě jsem objevil působivý AI agent s názvem {{ agentName }}. Podívejte se: {{ agentLink }}"
+        },
+        "desc": "Po přispění do obchodu Marketplace mohou běžet, hvězda a rozštěpit vašeho agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat."
       },
       "social_media": {
         "label": "Sdílet na",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Hacker novinky",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Právě jsem objevil působivou aplikaci s názvem {{ appName }}",
+          "agent": "Právě jsem objevil působivý AI agent s názvem {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} vás sdílí AI agenta z <unk>{{ teamName }}<unk> . Připojte se k týmu a zkontrolujte jej: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Pozvánka úspěšně",
@@ -3986,8 +3997,7 @@
       "contribute": "Přispějte"
     },
     "desc": {
-      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. ",
-      "contribute": "Po přispění do obchodu Marketplace mohou běžet, hvězda a rozštěpit vašeho agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat."
+      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
     },
     "label": {
       "contribute": "Přispějte na tržišti"
