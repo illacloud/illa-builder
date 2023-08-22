@@ -3232,7 +3232,12 @@
       "owner": "所有者",
       "admin": "管理员",
       "editor": "编辑者",
-      "viewer": "浏览者"
+      "viewer": "浏览者",
+      "tips": {
+        "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
+        "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
+        "viewer": "可以管理浏览者、查看APP"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "输入电子邮件地址",
         "invited": "已邀请",
         "in_list": "该用户已加入您的团队",
-        "notmail": "{{ email }}不是一个邮箱地址",
-        "duplicate": "{{ email }}是重复的电子邮件地址"
+        "duplicate": "{{ email }}是重复的电子邮件地址",
+        "not_mail": "{{ email }}不是一个邮箱地址"
       },
       "invalid_email": "请输入有效的电子邮件",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 ",
       "contribute": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
-    },
-    "tips": {
-      "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
-      "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
-      "viewer": "可以管理浏览者、查看APP"
     },
     "label": {
       "contribute": "贡献到Marketplace",
