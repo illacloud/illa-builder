@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "멤버 초대"
+        "invite_members": "멤버 초대",
+        "invite_to_use": "Invite to use",
+        "invite_to_edit": "Invite to edit"
       },
       "link": {
         "invite_title": "초대 링크",
         "copy": "복사",
         "turn_off": "초대 링크 끄기",
         "update": "초대 링크 업데이트",
-        "description": "사용자가 비공개 링크로 팀에 참여할 수 있도록 허용",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "초대 링크 켜기",
         "fail": "링크를 가져오지 못했습니다. 나중에 다시 시도해 주세요.",
         "copied_suc": "복사됨!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use",
       "share-with-team": "Share with team",
       "contribute": "Contribute"
     },
