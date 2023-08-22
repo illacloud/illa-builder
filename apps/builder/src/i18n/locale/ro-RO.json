@@ -3232,7 +3232,12 @@
       "owner": "Proprietar",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Vizualizator"
+      "viewer": "Vizualizator",
+      "tips": {
+        "admin": "Membrul care poate gestiona toţi membrii cu excepţia Owner, editează APP-urile şi vizualizează APP-urile",
+        "editor": "Membrul care poate gestiona membrii editorului şi vizualizatorului, editează APP-urile şi vizualizează APP-urile",
+        "viewer": "Membrul care poate gestiona utilizatorii şi vizualiza APP-urile"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Introduceți adresa de e-mail",
         "invited": "Au invitat",
         "in_list": "Acest utilizator este deja în echipa dvs.",
-        "notmail": "{{ email }} nu este un e-mail",
-        "duplicate": "{{ email }} este duplicat"
+        "duplicate": "{{ email }} este duplicat",
+        "not_mail": "{{ email }} nu este un e-mail"
       },
       "invalid_email": "Te rog introdu un email valid",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. ",
       "contribute": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
-    },
-    "tips": {
-      "admin": "Membrul care poate gestiona toţi membrii cu excepţia Owner, editează APP-urile şi vizualizează APP-urile",
-      "editor": "Membrul care poate gestiona membrii editorului şi vizualizatorului, editează APP-urile şi vizualizează APP-urile",
-      "viewer": "Membrul care poate gestiona utilizatorii şi vizualiza APP-urile"
     },
     "label": {
       "contribute": "Contribuie la piata",
