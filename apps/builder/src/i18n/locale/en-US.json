@@ -3232,7 +3232,12 @@
       "owner": "Owner",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Viewer"
+      "viewer": "Viewer",
+      "tips": {
+        "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
+        "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
+        "viewer": "The member who can manage viewer members and view APPs"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Enter email address",
         "invited": "Have invited",
         "in_list": "This user is already in your team.",
-        "notmail": "{{ email }} is not an email",
-        "duplicate": "{{ email }} is duplicated"
+        "duplicate": "{{ email }} is duplicated",
+        "not_mail": "{{ email }} is not an email"
       },
       "invalid_email": "Please enter a valid email",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. ",
       "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
-    },
-    "tips": {
-      "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
-      "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
-      "viewer": "The member who can manage viewer members and view APPs"
     },
     "label": {
       "contribute": "Contribute to marketplace",
