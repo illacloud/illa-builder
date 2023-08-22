@@ -3232,7 +3232,12 @@
       "owner": "Vlastník",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Prohlížeč"
+      "viewer": "Prohlížeč",
+      "tips": {
+        "admin": "Člen, který může spravovat všechny členy kromě vlastníka, upravit APP a zobrazit APP",
+        "editor": "Člen, který může spravovat členy editorů a diváků, upravit APP a zobrazit APP",
+        "viewer": "Člen, který může spravovat členy diváku a prohlížet APP"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Zadejte e-mailovou adresu",
         "invited": "Pozvali",
         "in_list": "Tento uživatel je již ve vašem týmu.",
-        "notmail": "{{ email }} není e-mail",
-        "duplicate": "{{ email }} je duplikován"
+        "duplicate": "{{ email }} je duplikován",
+        "not_mail": "{{ email }} není e-mail"
       },
       "invalid_email": "Zadejte prosím platný e-mail",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. ",
       "contribute": "Po přispění do obchodu Marketplace mohou běžet, hvězda a rozštěpit vašeho agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat."
-    },
-    "tips": {
-      "admin": "Člen, který může spravovat všechny členy kromě vlastníka, upravit APP a zobrazit APP",
-      "editor": "Člen, který může spravovat členy editorů a diváků, upravit APP a zobrazit APP",
-      "viewer": "Člen, který může spravovat členy diváku a prohlížet APP"
     },
     "label": {
       "contribute": "Přispějte na tržišti",
