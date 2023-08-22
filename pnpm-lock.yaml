@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -581,7 +585,7 @@ importers:
         specifier: ^11.10.8
         version: 11.11.1(@types/react@18.0.27)(react@18.2.0)
       '@illa-design/react':
-        specifier: ^1.0.22
+        specifier: workspace:*
         version: link:packages/react
       '@rollup/plugin-typescript':
         specifier: ^11.1.2
@@ -19991,7 +19995,3 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
