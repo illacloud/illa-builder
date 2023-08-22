@@ -3297,7 +3297,8 @@
           "app": "Acabo de descubrir una aplicación impresionante llamada {{ appName }}. Échale un vistazo: {{ appLink }}",
           "agent": "Acabo de descubrir un impresionante agente de AI llamado {{ agentName }}. Échale un vistazo: {{ agentLink }}"
         },
-        "desc": "Después de contribuir al mercado, todos los usuarios pueden ejecutar, estrellar y bifurcar a su agente. Cuando los usuarios de otros equipos ejecutan este agente, no consumirá sus recursos."
+        "desc": "Después de contribuir al mercado, todos los usuarios pueden ejecutar, estrellar y bifurcar a su agente. Cuando los usuarios de otros equipos ejecutan este agente, no consumirá sus recursos.",
+        "turn_off": "Cancelar contribución"
       },
       "social_media": {
         "label": "Compartir en",
