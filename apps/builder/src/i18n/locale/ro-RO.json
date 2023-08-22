@@ -3243,14 +3243,15 @@
       "title": {
         "invite_members": "Invită membri",
         "invite_to_use": "Invită să utilizezi",
-        "invite_to_edit": "Invită să editezi"
+        "invite_to_edit": "Invită să editezi",
+        "contribute": "Piață"
       },
       "link": {
         "invite_title": "Link de invitație",
         "copy": "Copiază",
         "turn_off": "Oprește link-urile de invitație",
         "update": "Actualizează link-urile de invitație",
-        "description": "Turn on and invite members via link. ",
+        "description": "Porniți și invitați membrii prin link. ",
         "turn_on": "Pornește link-urile de invitație",
         "fail": "Eșec la obținerea link-ului, te rugăm să încerci din nou mai târziu",
         "copied_suc": "Copiat!",
@@ -3258,7 +3259,10 @@
         "turn_off_fail": "Oprirea esuata",
         "turn_on_fail": "Pornire eșuată",
         "make_public_title": "Faceți aplicația publică",
-        "make_public_copy": "Copiază"
+        "make_public_copy": "Copiază",
+        "marketplace": {
+          "label": "Partajează cu link-ul"
+        }
       },
       "email": {
         "invite_title": "Invită prin e-mail",
@@ -3277,7 +3281,8 @@
       },
       "tab": {
         "invite": "Invită",
-        "public": "Publice"
+        "public": "Publice",
+        "with_team": "Partajează cu membrii echipei"
       },
       "custom_copy_text_app_invite": "{{userName}} v-a distribuit o aplicație de 「{{teamName}}」. Faceți clic pe link pentru a vă alătura echipei și verificați APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} ți-a distribuit o APP de la 「{{teamName}}」. Faceți clic pe link pentru a verifica APP: {{inviteLink}}",
@@ -3287,7 +3292,12 @@
       },
       "custom-copy-ai-agent": "{{userName}} ți-a distribuit un AI Agent la <unk>{{teamName}}order. Faceți clic pe link pentru a vă alătura echipei și încercați AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribuie la piata"
+        "label": "Contribuie la piata",
+        "default_text": {
+          "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}. Verificați: {{ appLink }}",
+          "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}. Verificați: {{ agentLink }}"
+        },
+        "desc": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
       },
       "social_media": {
         "label": "Distribuie pe",
@@ -3298,10 +3308,11 @@
         "whatsapp": "WhatsApp",
         "hackernews": "Știri hacker",
         "default_text": {
-          "app": "I just discovered an impressive app called {{ appName }}",
-          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+          "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}",
+          "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}"
         }
-      }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} vă partajează un AI Agent din …………{{ teamName }}yet. Alăturați-vă echipei și verificați: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invitat cu succes",
@@ -3986,8 +3997,7 @@
       "contribute": "Contribuie"
     },
     "desc": {
-      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. ",
-      "contribute": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele."
+      "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
     },
     "label": {
       "contribute": "Contribuie la piata"
