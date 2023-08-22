@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "Invite members"
+        "invite_members": "Invite members",
+        "invite_to_use": "Invite to use",
+        "invite_to_edit": "Invite to edit"
       },
       "link": {
         "invite_title": "Invite link",
         "copy": "Copy",
         "turn_off": "Turn off invite links",
         "update": "Update invite links",
-        "description": "Share a secret link people can use to join your team.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Turn on invite links",
         "fail": "Failed to obtain the link, please try again later",
         "copied_suc": "Copied!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use",
       "share-with-team": "Share with team",
       "contribute": "Contribute"
     },
