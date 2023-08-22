@@ -3232,7 +3232,12 @@
       "owner": "Ejer",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Fremviser"
+      "viewer": "Fremviser",
+      "tips": {
+        "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
+        "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
+        "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Indtast e-mail adresse",
         "invited": "Har inviteret",
         "in_list": "Denne bruger er allerede på dit team.",
-        "notmail": "{{ email }} er ikke en e-mail",
-        "duplicate": "{{ email }} er duplikeret"
+        "duplicate": "{{ email }} er duplikeret",
+        "not_mail": "{{ email }} er ikke en e-mail"
       },
       "invalid_email": "Indtast venligst en gyldig e-mail",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. ",
       "contribute": "Efter at have bidraget til markedspladsen, kan alle brugere køre, stjerne, og gaffel din agent. Når brugere fra andre teams kører denne Agent, vil det ikke forbruge dine ressourcer."
-    },
-    "tips": {
-      "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
-      "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
-      "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
     },
     "label": {
       "contribute": "Bidrag til markedspladsen",
