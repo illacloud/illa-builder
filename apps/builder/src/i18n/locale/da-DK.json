@@ -3297,7 +3297,8 @@
           "app": "Jeg har lige opdaget en imponerende app kaldet {{ appName }}. Tjek den: {{ appLink }}",
           "agent": "Jeg har lige opdaget en imponerende AI Agent kaldet {{ agentName }}. Tjek det: {{ agentLink }}"
         },
-        "desc": "Efter at have bidraget til markedspladsen, kan alle brugere køre, stjerne, og gaffel din agent. Når brugere fra andre teams kører denne Agent, vil det ikke forbruge dine ressourcer."
+        "desc": "Efter at have bidraget til markedspladsen, kan alle brugere køre, stjerne, og gaffel din agent. Når brugere fra andre teams kører denne Agent, vil det ikke forbruge dine ressourcer.",
+        "turn_off": "Annuller bidrag"
       },
       "social_media": {
         "label": "Del på",
