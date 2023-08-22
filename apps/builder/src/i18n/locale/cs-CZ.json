@@ -3241,14 +3241,16 @@
     },
     "modal": {
       "title": {
-        "invite_members": "Pozvat členy"
+        "invite_members": "Pozvat členy",
+        "invite_to_use": "Pozvat k použití",
+        "invite_to_edit": "Pozvat k úpravě"
       },
       "link": {
         "invite_title": "Odkaz na pozvání",
         "copy": "Kopírovat",
         "turn_off": "Vypnout odkazy pozvánky",
         "update": "Aktualizovat odkazy pozvánky",
-        "description": "Sdílejte tajné odkazy lidí mohou použít pro připojení k vašemu týmu.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Zapnout odkazy pozvánky",
         "fail": "Nepodařilo se získat odkaz, zkuste to prosím později",
         "copied_suc": "Zkopírováno!",
@@ -3964,8 +3966,6 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Pozvat k úpravě",
-      "invite_to_use": "Pozvat k použití",
       "share-with-team": "Sdílet s týmem",
       "contribute": "Přispějte"
     },
