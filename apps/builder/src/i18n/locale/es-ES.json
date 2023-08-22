@@ -3232,7 +3232,12 @@
       "owner": "Propietario",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Visor"
+      "viewer": "Visor",
+      "tips": {
+        "admin": "El miembro que puede administrar a todos los miembros excepto al propietario, editar APPs, y ver APPs",
+        "editor": "El miembro que puede administrar el editor y los espectadores, editar APPs, y ver APPs",
+        "viewer": "El miembro que puede administrar a los espectadores y ver APP)"
+      }
     },
     "modal": {
       "title": {
@@ -3259,8 +3264,8 @@
         "placeholder": "Introduzca dirección de email",
         "invited": "Han invitado",
         "in_list": "Este usuario ya está en tu equipo.",
-        "notmail": "{{ email }} no es un correo electrónico",
-        "duplicate": "{{ email }} está duplicado"
+        "duplicate": "{{ email }} está duplicado",
+        "not_mail": "{{ email }} no es un correo electrónico"
       },
       "invalid_email": "Por favor ingrese un email válido",
       "message": {
@@ -3967,11 +3972,6 @@
     "desc": {
       "undeploy": "La aplicación no ha sido desplegada. El acceso público y el acceso al visor pueden encontrarse errores. ",
       "contribute": "Después de contribuir al mercado, todos los usuarios pueden ejecutar, estrellar y bifurcar a su agente. Cuando los usuarios de otros equipos ejecutan este agente, no consumirá sus recursos."
-    },
-    "tips": {
-      "admin": "El miembro que puede administrar a todos los miembros excepto al propietario, editar APPs, y ver APPs",
-      "editor": "El miembro que puede administrar el editor y los espectadores, editar APPs, y ver APPs",
-      "viewer": "El miembro que puede administrar a los espectadores y ver APP)"
     },
     "label": {
       "contribute": "Contribuir al mercado",
