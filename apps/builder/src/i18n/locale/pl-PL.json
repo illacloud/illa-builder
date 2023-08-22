@@ -3297,7 +3297,8 @@
           "app": "Właśnie odkryłem imponującą aplikację o nazwie {{ appName }}. Sprawdź to: {{ appLink }}",
           "agent": "Właśnie odkryłem imponującego agenta AI o nazwie {{ agentName }}. Sprawdź to: {{ agentLink }}"
         },
-        "desc": "Po wniesieniu wkładu do Marketplace, wszyscy użytkownicy mogą działać, gwiazdkę i rozwidlić swojego przedstawiciela. Gdy użytkownicy z innych drużyn uruchamiają tego agenta, nie zużywają twoich zasobów."
+        "desc": "Po wniesieniu wkładu do Marketplace, wszyscy użytkownicy mogą działać, gwiazdkę i rozwidlić swojego przedstawiciela. Gdy użytkownicy z innych drużyn uruchamiają tego agenta, nie zużywają twoich zasobów.",
+        "turn_off": "Anuluj wkład"
       },
       "social_media": {
         "label": "Udostępnij na",
