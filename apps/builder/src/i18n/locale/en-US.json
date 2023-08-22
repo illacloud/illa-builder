@@ -3297,7 +3297,8 @@
           "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
           "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
         },
-        "desc": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
+        "desc": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources.",
+        "turn_off": "Cancel contribution"
       },
       "social_media": {
         "label": "Share on",
