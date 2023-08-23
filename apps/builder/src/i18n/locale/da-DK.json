@@ -75,7 +75,8 @@
       "create-suc": "Kunne ikke oprettes. Prøv venligst igen.",
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
-      "delete-suc": "Slettet succesfuldt. "
+      "delete-suc": "Slettet succesfuldt. ",
+      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet."
     },
     "create": "Opret"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
         "token-not-enough": "Model grænse nået. Genstart.",
         "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst"
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
