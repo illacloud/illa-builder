@@ -2621,7 +2621,8 @@
         "start-failed": "Impossibile iniziare. Per favore riprova. ",
         "reconnect": "Connessione persa. Riconnessione in corso.",
         "token-not-enough": "Limite del modello raggiunto. Riavviare.",
-        "token": "Il valore attuale di Max token è basso, il che può causare risultati restituiti incompleti."
+        "token": "Il valore attuale di Max token è basso, il che può causare risultati restituiti incompleti.",
+        "purchase-required": "Colla is not enough to run, please recharge."
       },
       "title": "🧬 Modifica Agente AI",
       "generate-desc": {
