@@ -75,7 +75,8 @@
       "create-suc": "Creare esuata, te rugam incearca din nou.",
       "fork-suc": "Facturat cu succes.",
       "delete-failed": "Ștergerea a eșuat. Te rugăm să încerci din nou. ",
-      "delete-suc": "Eliminat cu succes. "
+      "delete-suc": "Eliminat cu succes. ",
+      "mobile-fork-suc": "Forjat cu succes. Te rugăm să editezi pe desktop."
     },
     "create": "Crează"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Conexiune pierdută. Reconectare în progres.",
         "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi.",
         "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla nu este suficient pentru a rula, vă rugăm reîncărcați."
       },
       "title": "🧬 Editare agent AI",
       "generate-desc": {
