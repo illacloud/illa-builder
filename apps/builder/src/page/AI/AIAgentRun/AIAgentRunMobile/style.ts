@@ -17,10 +17,10 @@ export const headerInfoStyle = css`
 export const headerContainerStyle = css`
   display: flex;
   flex-direction: column;
-  padding-top: 24px;
-  padding-left: 40px;
-  padding-right: 40px;
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+  padding-top: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
 `
 
 export const previewChatContainer = css`
@@ -29,19 +29,19 @@ export const previewChatContainer = css`
 `
 
 export const agentIconStyle = css`
-  width: 80px;
-  margin-right: 24px;
-  height: 80px;
-  border-radius: 16px;
+  width: 40px;
+  margin-right: 12px;
+  height: 40px;
+  border-radius: 8px;
 `
 export const shareContainerStyle = css`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 24px;
-  width: 80px;
-  height: 80px;
+  margin-left: 12px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
 `
 
@@ -57,12 +57,12 @@ export const agentMarketContainerStyle = css`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 4px;
 `
 
 export const agentTeamNameStyle = css`
   color: ${getColor("grayBlue", "02")};
-  font-size: 24px;
+  font-size: 12px;
   font-style: normal;
   overflow: hidden;
   white-space: nowrap;
@@ -70,27 +70,27 @@ export const agentTeamNameStyle = css`
   flex-grow: 1;
   flex-shrink: 1;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 15px;
 `
 
 export const agentNameStyle = css`
-  font-size: 28px;
+  font-size: 14px;
   text-overflow: ellipsis;
   overflow-x: hidden;
   white-space: nowrap;
   font-style: normal;
   font-weight: 500;
-  line-height: 34px;
+  line-height: 17px;
 `
 
 export const agentMarketResultStyle = css`
   color: ${getColor("grayBlue", "03")};
-  font-size: 24px;
-  margin-left: 16px;
+  font-size: 12px;
+  margin-left: 8px;
   white-space: nowrap;
   font-style: normal;
   font-weight: 400;
-  line-height: 32px;
+  line-height: 16px;
 `
 
 export const agentControlContainerStyle = css`
@@ -111,12 +111,12 @@ export const configContainerStyle = css`
 export const tabsContainerStyle = css`
   display: flex;
   justify-content: center;
-  margin-top: 24px;
+  margin-top: 12px;
   flex-direction: row;
 `
 
 export const dividerStyle = css`
-  width: 130px;
+  width: 65px;
   flex-shrink: 1;
 `
 
@@ -127,15 +127,15 @@ export const tabContainerStyle = css`
 
 export const tabStyle = css`
   color: ${getColor("grayBlue", "02")};
-  font-size: 28px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 44px;
+  line-height: 22px;
   text-transform: capitalize;
 `
 
 export const lineStyle = css`
   width: 100%;
-  height: 4px;
+  height: 2px;
   background: ${getColor("grayBlue", "02")};
 `

@@ -181,12 +181,17 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
                     : t("editor.ai-agent.button.generating")}
                 </div>
                 <div css={generatingDividerStyle} />
-                <StopIcon
-                  css={stopIconStyle}
-                  onClick={() => {
-                    onCancelReceiving()
-                  }}
-                />
+                {!(
+                  wsStatus === ILLA_WEBSOCKET_STATUS.CLOSED ||
+                  wsStatus === ILLA_WEBSOCKET_STATUS.FAILED
+                ) && (
+                  <StopIcon
+                    css={stopIconStyle}
+                    onClick={() => {
+                      onCancelReceiving()
+                    }}
+                  />
+                )}
               </div>
             </motion.div>
           )}

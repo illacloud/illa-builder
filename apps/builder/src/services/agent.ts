@@ -106,6 +106,20 @@ export const forkAIAgentToTeam = (aiAgentID: string) => {
   })
 }
 
+export const starAIAgent = (aiAgentID: string) => {
+  return marketplaceRequest<{}>({
+    url: `/aiAgents/${aiAgentID}/star`,
+    method: "POST",
+  })
+}
+
+export const unstarAIAgent = (aiAgentID: string) => {
+  return marketplaceRequest<{}>({
+    url: `/aiAgents/${aiAgentID}/star`,
+    method: "DELETE",
+  })
+}
+
 export const deleteAiAgent = (aiAgentID: string) => {
   return agentRequest<ForkAgentResponse>(
     {

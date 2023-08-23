@@ -91,7 +91,13 @@ export const AIAgent: FC = () => {
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
-    defaultValues: data.agent,
+    defaultValues: {
+      ...data.agent,
+      variables:
+        data.agent.variables.length === 0
+          ? [{ key: "", value: "" }]
+          : data.agent.variables,
+    },
   })
 
   const { isSubmitting, isValid, isDirty } = useFormState({
@@ -858,7 +864,9 @@ export const AIAgent: FC = () => {
                   <>
                     {(shareDialogVisible || contributedDialogVisible) && (
                       <ShareAgentPC
-                        redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${idField.value}`}
+                        redirectUrl={`${
+                          import.meta.env.ILLA_BUILDER_URL
+                        }/ai-agent/${idField.value}`}
                         onClose={() => {
                           setShareDialogVisible(false)
                           setContributedDialogVisible(false)

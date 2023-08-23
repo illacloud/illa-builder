@@ -377,6 +377,7 @@ export const AIAgentRunMobile: FC = () => {
             return
           }
           reset(data)
+          setCurrentSelectTab("run")
           isRunning
             ? await reconnect(data.aiAgentID, data.agentType)
             : await connect(data.aiAgentID, data.agentType)
@@ -506,7 +507,7 @@ export const AIAgentRunMobile: FC = () => {
                       setShareDialogVisible(true)
                     }}
                   >
-                    <DependencyIcon fs="48px" />
+                    <DependencyIcon fs="24px" />
                   </div>
                 )
               }}

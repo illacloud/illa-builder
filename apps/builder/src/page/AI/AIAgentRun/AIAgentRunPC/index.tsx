@@ -17,7 +17,7 @@ import {
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
 import { useCopyToClipboard } from "@illa-public/utils"
-import { FC, useMemo, useState } from "react"
+import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -33,6 +33,7 @@ import {
   StarFillIcon,
   StarOutlineIcon,
   getColor,
+  useMessage,
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
@@ -52,6 +53,8 @@ import {
   MarketAiAgent,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { ILLARoute } from "@/router"
+import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,
@@ -69,6 +72,7 @@ import {
   leftPanelContainerStyle,
   rightPanelContainerStyle,
 } from "./style"
+
 
 export const AIAgentRunPC: FC = () => {
   const { agent, marketplaceInfo } = useAsyncValue() as {
@@ -89,10 +93,16 @@ export const AIAgentRunPC: FC = () => {
   const currentUserInfo = useSelector(getCurrentUser)
   const copyToClipboard = useCopyToClipboard()
 
+  const message = useMessage()
+
   // page state
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
   const [shareDialogVisible, setShareDialogVisible] = useState(false)
+  const [starLoading, setStarLoading] = useState(false)
+  const [forkLoading, setForkLoading] = useState(false)
+  const [starState, setStarState] = useState(false)
+
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
@@ -236,9 +246,85 @@ export const AIAgentRunPC: FC = () => {
       },
     })
 
-  const menu = useMemo(() => {
-    if (agent.publishedToMarketplace) {
-      return (
+  const menu = agent.publishedToMarketplace ? (
+    <div css={agentMenuContainerStyle}>
+      <Button
+        colorScheme="grayBlue"
+        leftIcon={<DependencyIcon />}
+        onClick={() => {
+          setShareDialogVisible(true)
+        }}
+      >
+        {t("share")}
+      </Button>
+      <Button
+        ml="8px"
+        colorScheme="grayBlue"
+        onClick={async () => {
+          setStarLoading(true)
+          try {
+            if (starState) {
+              await unstarAIAgent(agent.aiAgentID)
+            } else {
+              await starAIAgent(agent.aiAgentID)
+            }
+            setStarState(!starState)
+          } catch (e) {
+            message.error({
+              content: t("dashboard.message.star-failed"),
+            })
+          } finally {
+            setStarLoading(false)
+          }
+        }}
+        loading={starLoading}
+        leftIcon={
+          starState ? <StarFillIcon c="#FFBB38" /> : <StarOutlineIcon />
+        }
+      >
+        {t("marketplace.star", {
+          operationNum: marketplaceInfo?.marketplace.numStars,
+        })}
+      </Button>
+      {canManage(
+        currentTeamInfo.myRole,
+        ATTRIBUTE_GROUP.AGENT,
+        ACTION_MANAGE.FORK_AGENT,
+      ) && (
+        <Button
+          ml="8px"
+          colorScheme="grayBlue"
+          loading={forkLoading}
+          leftIcon={<ForkIcon />}
+          onClick={async () => {
+            setForkLoading(true)
+            try {
+              const newAgent = await forkAIAgentToTeam(agent.aiAgentID)
+              await ILLARoute.navigate(
+                `/${teamInfo.identifier}/ai-agent/${newAgent.data.aiAgentID}`,
+              )
+            } catch (e) {
+              message.error({
+                content: t("dashboard.message.fork-failed"),
+              })
+            } finally {
+              setForkLoading(false)
+            }
+          }}
+        >
+          {t("marketplace.fork", {
+            operationNum: marketplaceInfo?.marketplace.numForks,
+          })}
+        </Button>
+      )}
+    </div>
+  ) : (
+    <>
+      {canManage(
+        currentTeamInfo.myRole,
+        ATTRIBUTE_GROUP.AGENT,
+        ACTION_MANAGE.FORK_AGENT,
+      ) && (
         <div css={agentMenuContainerStyle}>
           <Button
             colorScheme="grayBlue"
@@ -249,63 +335,10 @@ export const AIAgentRunPC: FC = () => {
           >
             {t("share")}
           </Button>
-          <Button
-            ml="8px"
-            colorScheme="grayBlue"
-            leftIcon={
-              marketplaceInfo?.marketplace.isStarredByCurrentUser ? (
-                <StarFillIcon c="#FFBB38" />
-              ) : (
-                <StarOutlineIcon />
-              )
-            }
-          >
-            {t("marketplace.star", {
-              operationNum: marketplaceInfo?.marketplace.numStars,
-            })}
-          </Button>
-          {canManage(
-            currentTeamInfo.myRole,
-            ATTRIBUTE_GROUP.AGENT,
-            ACTION_MANAGE.FORK_AGENT,
-          ) && (
-            <Button ml="8px" colorScheme="grayBlue" leftIcon={<ForkIcon />}>
-              {t("marketplace.fork", {
-                operationNum: marketplaceInfo?.marketplace.numForks,
-              })}
-            </Button>
-          )}
         </div>
-      )
-    } else {
-      return (
-        canManage(
-          currentTeamInfo.myRole,
-          ATTRIBUTE_GROUP.AGENT,
-          ACTION_MANAGE.FORK_AGENT,
-        ) && (
-          <div css={agentMenuContainerStyle}>
-            <Button
-              colorScheme="grayBlue"
-              leftIcon={<DependencyIcon />}
-              onClick={() => {
-                setShareDialogVisible(true)
-              }}
-            >
-              {t("share")}
-            </Button>
-          </div>
-        )
-      )
-    }
-  }, [
-    agent.publishedToMarketplace,
-    currentTeamInfo.myRole,
-    marketplaceInfo?.marketplace.isStarredByCurrentUser,
-    marketplaceInfo?.marketplace.numForks,
-    marketplaceInfo?.marketplace.numStars,
-    t,
-  ])
+      )}
+    </>
+  )
 
   return (
     <ChatContext.Provider value={{ inRoomUsers }}>

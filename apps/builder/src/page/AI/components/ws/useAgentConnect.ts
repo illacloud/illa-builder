@@ -205,6 +205,12 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
                       break
                     case 16:
                       message.error({
+                        content: t("editor.ai-agent.message.token"),
+                      })
+                      break
+                    case 17:
+                    case 18:
+                      message.error({
                         content: t("editor.ai-agent.message.token-not-enough"),
                       })
                       break
