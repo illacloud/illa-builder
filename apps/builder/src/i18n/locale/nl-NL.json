@@ -2621,7 +2621,8 @@
         "start-failed": "Starten mislukt. Probeer het opnieuw. ",
         "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
         "token-not-enough": "Model limiet bereikt. Start opnieuw.",
-        "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten."
+        "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten.",
+        "purchase-required": "Colla is not enough to run, please recharge."
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
