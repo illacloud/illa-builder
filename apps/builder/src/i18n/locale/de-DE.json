@@ -2623,7 +2623,8 @@
         "reconnect": "Verbindung verloren. Wiederverbindung im Gange.",
         "token-not-enough": "Modelllimit erreicht. Bitte neu starten.",
         "token": "Der aktuelle Wert von Max Token ist niedrig, was unvollständige Ergebnisse verursachen kann.",
-        "purchase-required": "Colla reicht nicht aus, bitte laden Sie auf."
+        "purchase-required": "Colla reicht nicht aus, bitte laden Sie auf.",
+        "leave": "Es gibt ungespeicherte Inhalte. Sind Sie sicher, dass Sie verlassen möchten?"
       },
       "title": "🧬 KI-Agent bearbeiten",
       "generate-desc": {
