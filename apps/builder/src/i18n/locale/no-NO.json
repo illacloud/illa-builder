@@ -4038,5 +4038,6 @@
   },
   "load": {
     "before": "Last mer"
-  }
+  },
+  "size_exceed_copied_tips": "Innholdet er for langt for kopiering. (gjeldende størrelse: {{current_size}} bytes, begrensing: {{limit_size}} bytes)"
 }
