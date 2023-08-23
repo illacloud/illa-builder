@@ -75,7 +75,8 @@
       "create-suc": "Nie udało się utworzyć, spróbuj ponownie.",
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
-      "delete-suc": "Usunięto pomyślnie. "
+      "delete-suc": "Usunięto pomyślnie. ",
+      "mobile-fork-suc": "Pomyślnie sforkowano. Proszę edytować na pulpicie."
     },
     "create": "Utwórz"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Połączenie zostało utracone. Trwa ponowne połączenie.",
         "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie.",
         "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla nie wystarczy do uruchomienia, proszę doładować."
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
