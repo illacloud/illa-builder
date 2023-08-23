@@ -75,7 +75,8 @@
       "create-suc": "保存成功",
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
-      "delete-suc": "删除成功"
+      "delete-suc": "删除成功",
+      "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
     },
     "create": "创建"
   },
