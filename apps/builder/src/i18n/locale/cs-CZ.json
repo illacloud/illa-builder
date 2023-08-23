@@ -75,7 +75,8 @@
       "create-suc": "Nepodařilo se vytvořit, zkuste to prosím znovu.",
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
-      "delete-suc": "Úspěšně smazáno. "
+      "delete-suc": "Úspěšně smazáno. ",
+      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači."
     },
     "create": "Vytvořit"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
         "token-not-enough": "Dosažen limit modelu. Prosím restartujte.",
         "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla nestačí k spuštění, prosím znovu nabit."
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
