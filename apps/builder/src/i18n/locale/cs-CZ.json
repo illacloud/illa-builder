@@ -2621,7 +2621,8 @@
         "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. ",
         "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
         "token-not-enough": "Dosažen limit modelu. Prosím restartujte.",
-        "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky."
+        "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky.",
+        "purchase-required": "Colla is not enough to run, please recharge."
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
