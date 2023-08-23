@@ -2623,7 +2623,8 @@
         "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
         "token-not-enough": "Model grænse nået. Genstart.",
         "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater.",
-        "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst"
+        "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst",
+        "leave": "Der er ikke-gemt indhold, er du sikker på, at du vil forlade?"
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
