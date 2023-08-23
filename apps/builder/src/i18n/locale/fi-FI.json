@@ -2623,7 +2623,8 @@
         "reconnect": "Yhteys menetetty. Uudelleenyhdistäminen käynnissä.",
         "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen.",
         "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia.",
-        "purchase-required": "Colla ei riitä juoksemaan, ole hyvä ja lataa."
+        "purchase-required": "Colla ei riitä juoksemaan, ole hyvä ja lataa.",
+        "leave": "Sisältöä ei ole tallennettu, oletko varma, että haluat lähteä?"
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
