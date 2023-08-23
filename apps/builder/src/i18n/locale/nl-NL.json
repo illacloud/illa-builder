@@ -75,7 +75,8 @@
       "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
-      "delete-suc": "Succesvol verwijderd. "
+      "delete-suc": "Succesvol verwijderd. ",
+      "mobile-fork-suc": "Succesvol afgebroken. Bewerk op bureaublad."
     },
     "create": "Aanmaken"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
         "token-not-enough": "Model limiet bereikt. Start opnieuw.",
         "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla is niet genoeg om te draaien, gelieve te herladen."
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
