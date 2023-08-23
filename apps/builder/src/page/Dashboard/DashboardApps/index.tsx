@@ -39,7 +39,7 @@ import {openGuideModal} from "@/page/Template/gideModeModal"
 import {dashboardAppActions} from "@/redux/dashboard/apps/dashboardAppSlice"
 import {DashboardApp} from "@/redux/dashboard/apps/dashboardAppState"
 import {fetchCreateApp} from "@/services/apps"
-import {copyToClipboard} from "@/utils/eventHandlerHelper/utils/commonUtils"
+import { useCopyToClipboard } from "@illa-public/utils"
 import {
   track,
   trackPageDurationEnd,
@@ -74,6 +74,7 @@ export const DashboardApps: FC = () => {
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
   const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
+  const copyToClipboard = useCopyToClipboard()
 
   const canEditApp = canManage(
     currentUserRole,

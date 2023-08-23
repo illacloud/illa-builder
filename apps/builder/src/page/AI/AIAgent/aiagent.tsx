@@ -60,7 +60,7 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
-import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
+import { useCopyToClipboard } from "@illa-public/utils"
 import { ChatContext } from "../components/ChatContext"
 import {
   aiAgentContainerStyle,
@@ -108,6 +108,7 @@ export const AIAgent: FC = () => {
   const currentUserInfo = useSelector(getCurrentUser)
 
   const dispatch = useDispatch()
+  const copyToClipboard = useCopyToClipboard()
 
   // page state
   const [generateDescLoading, setGenerateDescLoading] = useState(false)

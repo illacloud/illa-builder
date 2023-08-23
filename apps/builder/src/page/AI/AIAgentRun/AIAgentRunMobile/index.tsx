@@ -15,6 +15,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
+import { useCopyToClipboard } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -45,7 +46,6 @@ import {
   MarketAiAgent,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentContentContainerStyle,
@@ -87,6 +87,7 @@ export const AIAgentRunMobile: FC = () => {
 
   const message = useMessage()
   const upgradeModal = useUpgradeModal()
+  const copyToClipboard = useCopyToClipboard()
 
   // page state
   const [isRunning, setIsRunning] = useState(false)
@@ -243,6 +244,7 @@ export const AIAgentRunMobile: FC = () => {
     agent.name,
     agent.teamID,
     control,
+    copyToClipboard,
     currentTeamInfo.id,
     currentTeamInfo.myRole,
     currentUserInfo.nickname,

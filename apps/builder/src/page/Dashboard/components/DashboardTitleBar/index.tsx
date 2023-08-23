@@ -174,6 +174,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
   return (
     <div css={tabsContainer}>
       <Tabs
+        withoutBorderLine
         prefix={
           <div css={navBarLogoContainerStyle} key="prefix">
             <Logo

@@ -40,7 +40,7 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
-import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
+import { useCopyToClipboard } from "@illa-public/utils"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
@@ -76,6 +76,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const [shareVisible, setShareVisible] = useState(false)
   const [appSettingVisible, setAppSettingVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
+  const copyToClipboard = useCopyToClipboard()
 
   const showInvite = canManageInvite(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,

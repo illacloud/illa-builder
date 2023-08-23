@@ -16,6 +16,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
+import { useCopyToClipboard } from "@illa-public/utils"
 import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -51,7 +52,6 @@ import {
   MarketAiAgent,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,
@@ -70,7 +70,6 @@ import {
   rightPanelContainerStyle,
 } from "./style"
 
-
 export const AIAgentRunPC: FC = () => {
   const { agent, marketplaceInfo } = useAsyncValue() as {
     agent: Agent
@@ -88,6 +87,7 @@ export const AIAgentRunPC: FC = () => {
 
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
   const currentUserInfo = useSelector(getCurrentUser)
+  const copyToClipboard = useCopyToClipboard()
 
   // page state
   const [isRunning, setIsRunning] = useState(false)

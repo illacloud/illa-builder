@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Button, getColor } from "@illa-design/react"
 import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
+import { useCopyToClipboard } from "@illa-public/utils"
 
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
   const { t } = useTranslation()
@@ -26,6 +26,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
 
   const upgradeModal = useUpgradeModal()
   const [shareModalVisible, setShareModalVisible] = useState(false)
+  const copyToClipboard = useCopyToClipboard()
 
   const openInviteModal = useCallback(() => {
     if (isCloudVersion && !canUseBillingFeature) {
