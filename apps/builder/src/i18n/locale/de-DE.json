@@ -75,7 +75,8 @@
       "create-suc": "Fehler beim Erstellen, bitte erneut versuchen.",
       "fork-suc": "Erfolgreich geforkt.",
       "delete-failed": "Löschen fehlgeschlagen. Bitte versuchen Sie es erneut. ",
-      "delete-suc": "Erfolgreich gelöscht. "
+      "delete-suc": "Erfolgreich gelöscht. ",
+      "mobile-fork-suc": "Erfolgreich abgewiesen. Bitte bearbeiten Sie auf dem Desktop."
     },
     "create": "Anlegen"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Verbindung verloren. Wiederverbindung im Gange.",
         "token-not-enough": "Modelllimit erreicht. Bitte neu starten.",
         "token": "Der aktuelle Wert von Max Token ist niedrig, was unvollständige Ergebnisse verursachen kann.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla reicht nicht aus, bitte laden Sie auf."
       },
       "title": "🧬 KI-Agent bearbeiten",
       "generate-desc": {
