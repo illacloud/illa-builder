@@ -75,7 +75,8 @@
       "create-suc": "Creazione non riuscita, riprova.",
       "fork-suc": "Forked con successo.",
       "delete-failed": "Eliminazione non riuscita. Riprova. ",
-      "delete-suc": "Eliminato con successo. "
+      "delete-suc": "Eliminato con successo. ",
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
     },
     "create": "Crea"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Connessione persa. Riconnessione in corso.",
         "token-not-enough": "Limite del modello raggiunto. Riavviare.",
         "token": "Il valore attuale di Max token è basso, il che può causare risultati restituiti incompleti.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla non è sufficiente per funzionare, si prega di ricaricare."
       },
       "title": "🧬 Modifica Agente AI",
       "generate-desc": {
