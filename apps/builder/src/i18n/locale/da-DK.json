@@ -2621,7 +2621,8 @@
         "start-failed": "Mislykkedes at starte. Prøv igen. ",
         "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
         "token-not-enough": "Model grænse nået. Genstart.",
-        "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater."
+        "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater.",
+        "purchase-required": "Colla is not enough to run, please recharge."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
