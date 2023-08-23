@@ -2621,7 +2621,8 @@
         "start-failed": "Det gick inte att starta. Försök igen. ",
         "reconnect": "Anslutning förlorad. Återgång pågår.",
         "token-not-enough": "Modellens gräns har uppnåtts. Vänligen starta om.",
-        "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat."
+        "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat.",
+        "purchase-required": "Colla is not enough to run, please recharge."
       },
       "title": "🧬 Redigera AI agent",
       "generate-desc": {
