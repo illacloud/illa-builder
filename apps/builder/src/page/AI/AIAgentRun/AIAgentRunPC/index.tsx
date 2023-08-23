@@ -73,7 +73,6 @@ import {
   rightPanelContainerStyle,
 } from "./style"
 
-
 export const AIAgentRunPC: FC = () => {
   const { agent, marketplaceInfo } = useAsyncValue() as {
     agent: Agent
@@ -570,6 +569,7 @@ export const AIAgentRunPC: FC = () => {
           render={({ field }) => (
             <div css={rightPanelContainerStyle}>
               <PreviewChat
+                isRunning={isRunning}
                 hasCreated={true}
                 isMobile={false}
                 editState="RUN"

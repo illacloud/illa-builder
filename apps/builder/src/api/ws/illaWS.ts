@@ -153,13 +153,18 @@ export class ILLAWebsocket {
   }
 
   public clearListener() {
+    if (this.ws) {
+      this.ws.onclose = null
+      this.ws.onerror = null
+      this.ws.onopen = null
+      this.ws.onmessage = null
+    }
     this.listeners = []
   }
 
   private initEventHandle() {
     if (this.ws) {
       this.ws.onclose = () => {
-        this.reconnect()
         store.dispatch(
           configActions.updateWSStatusReducer({
             context: this.context,
@@ -169,9 +174,9 @@ export class ILLAWebsocket {
         this.listeners.forEach((listener) => {
           listener.onClosed?.(this.context, this)
         })
+        this.reconnect()
       }
       this.ws.onerror = () => {
-        this.reconnect()
         store.dispatch(
           configActions.updateWSStatusReducer({
             context: this.context,
@@ -181,9 +186,9 @@ export class ILLAWebsocket {
         this.listeners.forEach((listener) => {
           listener.onError?.(this.context, this)
         })
+        this.reconnect()
       }
       this.ws.onopen = () => {
-        console.log(`[WS OPENED](${this.url}) connection succeeded`)
         const { id: teamID = "", uid = "" } =
           getCurrentTeamInfo(store.getState()) ?? {}
         store.dispatch(configActions.updateDevicesOnlineStatusReducer(true))
@@ -250,7 +255,9 @@ export class ILLAWebsocket {
   }
 
   private heartStart() {
-    if (this.forbidReconnect) return
+    if (this.forbidReconnect) {
+      return
+    }
     this.pingTimeoutId = window.setTimeout(() => {
       this.ws?.send(pingMessage)
       this.pongTimeoutId = window.setTimeout(() => {

@@ -68,7 +68,7 @@ export const chatContainerStyle = css`
 
 export const inputStyle = css`
   padding: 5px 16px;
-  font-size: inherit;
+  font-size: 14px;
   color: ${getColor("grayBlue", "02")};
   outline: none;
   line-height: 22px;

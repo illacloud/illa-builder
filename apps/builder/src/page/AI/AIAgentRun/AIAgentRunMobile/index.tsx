@@ -409,6 +409,7 @@ export const AIAgentRunMobile: FC = () => {
       render={({ field }) => (
         <div css={previewChatContainer}>
           <PreviewChat
+            isRunning={isRunning}
             hasCreated={true}
             isMobile={true}
             editState="RUN"

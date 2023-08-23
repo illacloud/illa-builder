@@ -43,6 +43,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
   const {
     hasCreated,
     isMobile,
+    isRunning,
     agentType,
     chatMessages,
     generationMessage,
@@ -154,52 +155,70 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
       </div>
       <div css={inputTextContainerStyle}>
         <AnimatePresence>
-          {(isReceiving ||
-            wsStatus === ILLA_WEBSOCKET_STATUS.CLOSED ||
-            wsStatus === ILLA_WEBSOCKET_STATUS.FAILED) && (
-            <motion.div
-              css={generatingContainerStyle}
-              initial={{
-                y: 0,
-                opacity: 0,
-              }}
-              animate={{
-                y: -16,
-                opacity: 1,
-              }}
-              exit={{
-                y: 0,
-                opacity: 0,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <div css={generatingContentContainerStyle}>
-                <div css={generatingTextStyle}>
-                  {wsStatus === ILLA_WEBSOCKET_STATUS.CLOSED ||
-                  wsStatus === ILLA_WEBSOCKET_STATUS.FAILED
-                    ? t("editor.ai-agent.message.reconnect")
-                    : t("editor.ai-agent.button.generating")}
-                </div>
-                <div css={generatingDividerStyle} />
-                {!(
-                  wsStatus === ILLA_WEBSOCKET_STATUS.CLOSED ||
-                  wsStatus === ILLA_WEBSOCKET_STATUS.FAILED
-                ) && (
+          {isReceiving &&
+            wsStatus !== ILLA_WEBSOCKET_STATUS.CLOSED &&
+            wsStatus !== ILLA_WEBSOCKET_STATUS.FAILED && (
+              <motion.div
+                css={generatingContainerStyle}
+                initial={{
+                  y: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: -16,
+                  opacity: 1,
+                }}
+                exit={{
+                  y: 0,
+                  opacity: 0,
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <div css={generatingContentContainerStyle}>
+                  <div css={generatingTextStyle}>
+                    {t("editor.ai-agent.button.generating")}
+                  </div>
+                  <div css={generatingDividerStyle} />
                   <StopIcon
                     css={stopIconStyle}
                     onClick={() => {
                       onCancelReceiving()
                     }}
                   />
-                )}
-              </div>
-            </motion.div>
-          )}
+                </div>
+              </motion.div>
+            )}
+          {isRunning &&
+            (wsStatus === ILLA_WEBSOCKET_STATUS.CLOSED ||
+              wsStatus === ILLA_WEBSOCKET_STATUS.FAILED) && (
+              <motion.div
+                css={generatingContainerStyle}
+                initial={{
+                  y: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: -16,
+                  opacity: 1,
+                }}
+                exit={{
+                  y: 0,
+                  opacity: 0,
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <div css={generatingContentContainerStyle}>
+                  <div css={generatingTextStyle}>
+                    {t("editor.ai-agent.message.reconnect")}
+                  </div>
+                </div>
+              </motion.div>
+            )}
         </AnimatePresence>
         <textarea
           value={textAreaVal}
           css={inputStyle}
-          placeholder="Input Something"
+          placeholder={t("editor.ai-agent.placeholder.send")}
           onKeyDown={(event) => {
             if (event.key === "Enter" && !event.shiftKey) {
               event.preventDefault()

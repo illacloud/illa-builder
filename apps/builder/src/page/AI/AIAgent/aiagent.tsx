@@ -16,6 +16,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
+import { useCopyToClipboard } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -60,7 +61,6 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
-import { useCopyToClipboard } from "@illa-public/utils"
 import { ChatContext } from "../components/ChatContext"
 import {
   aiAgentContainerStyle,
@@ -800,6 +800,7 @@ export const AIAgent: FC = () => {
               render={({ field: idField }) => (
                 <div css={rightPanelContainerStyle}>
                   <PreviewChat
+                    isRunning={isRunning}
                     hasCreated={Boolean(idField.value)}
                     isMobile={false}
                     editState="EDIT"

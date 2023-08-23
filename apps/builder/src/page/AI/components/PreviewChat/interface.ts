@@ -12,6 +12,7 @@ export interface PreviewChatProps {
   onCancelReceiving: () => void
   blockInput: boolean
   isReceiving: boolean
+  isRunning: boolean
   isMobile: boolean
   onShowShareDialog?: () => void
   onShowContributeDialog?: () => void
