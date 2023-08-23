@@ -18,7 +18,7 @@ import {
 } from "@illa-public/user-role-utils/interface"
 import { useCopyToClipboard } from "@illa-public/utils"
 import { isEqual } from "lodash"
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -29,7 +29,9 @@ import {
   Image,
   Input,
   InputNumber,
+  PlayFillIcon,
   PlusIcon,
+  PreviousIcon,
   RadioGroup,
   ResetIcon,
   Select,
@@ -64,6 +66,7 @@ import {
 import { ChatContext } from "../components/ChatContext"
 import {
   aiAgentContainerStyle,
+  backTextStyle,
   buttonContainerStyle,
   descContainerStyle,
   descTextStyle,
@@ -73,7 +76,6 @@ import {
   leftPanelContainerStyle,
   leftPanelContentContainerStyle,
   leftPanelCoverContainer,
-  leftPanelTitleStyle,
   leftPanelTitleTextStyle,
   premiumContainerStyle,
   rightPanelContainerStyle,
@@ -222,6 +224,21 @@ export const AIAgent: FC = () => {
     )
   }, [lastRunAgent, fieldArray])
 
+  useEffect(() => {
+    const unload = (e: BeforeUnloadEvent) => {
+      if (isDirty) {
+        e.preventDefault()
+        e.returnValue = ""
+      }
+    }
+    window.addEventListener("beforeunload", unload)
+    window.addEventListener("onunload", unload)
+    return () => {
+      window.removeEventListener("beforeunload", unload)
+      window.removeEventListener("onunload", unload)
+    }
+  }, [isDirty])
+
   const { sendMessage, generationMessage, chatMessages, reconnect, connect } =
     useAgentConnect({
       onStartRunning: () => {
@@ -274,8 +291,14 @@ export const AIAgent: FC = () => {
       <div css={aiAgentContainerStyle}>
         <div css={leftPanelContainerStyle}>
           <div css={leftPanelCoverContainer}>
-            <div css={[leftPanelTitleStyle, leftPanelTitleTextStyle]}>
-              {t("editor.ai-agent.title")}
+            <div
+              css={leftPanelTitleTextStyle}
+              onClick={() => {
+                window.history.back()
+              }}
+            >
+              <PreviousIcon fs="16px" />
+              <span css={backTextStyle}>{t("editor.ai-agent.title")}</span>
             </div>
             <div css={leftPanelContentContainerStyle}>
               <Controller
@@ -384,6 +407,7 @@ export const AIAgent: FC = () => {
                       {...field}
                       placeholder={t("editor.ai-agent.placeholder.name")}
                       colorScheme={"techPurple"}
+                      maxLength={60}
                       onChange={(value) => {
                         field.onChange(value)
                         setInRoomUsers(updateLocalName(value, inRoomUsers))
@@ -445,6 +469,7 @@ export const AIAgent: FC = () => {
                     <TextArea
                       {...field}
                       minH="64px"
+                      maxLength={160}
                       placeholder={t("editor.ai-agent.placeholder.desc")}
                       colorScheme={"techPurple"}
                     />
@@ -463,7 +488,7 @@ export const AIAgent: FC = () => {
                   >
                     <RadioGroup
                       {...field}
-                      colorScheme={"techPurple"}
+                      colorScheme={getColor("grayBlue", "02")}
                       w="100%"
                       type="button"
                       forceEqualWidth={true}
@@ -511,11 +536,10 @@ export const AIAgent: FC = () => {
                 rules={{
                   validate: (value) =>
                     value.every(
-                      (param) => param.key !== "" && param.value !== "",
-                    ) ||
-                    (value.length === 1 &&
-                      value[0].key === "" &&
-                      value[0].value === ""),
+                      (param) =>
+                        (param.key !== "" && param.value !== "") ||
+                        (param.key === "" && param.value === ""),
+                    ),
                 }}
                 shouldUnregister={false}
                 render={({ field }) => (
@@ -749,18 +773,20 @@ export const AIAgent: FC = () => {
                 flex="1"
                 colorScheme="grayBlue"
                 disabled={!isValid || !isDirty}
+                size="large"
                 loading={isSubmitting}
               >
                 {t("editor.ai-agent.save")}
               </Button>
               <Button
                 flex="1"
+                size="large"
                 type="button"
                 disabled={!isValid}
                 loading={isConnecting}
                 ml="8px"
                 colorScheme={getColor("grayBlue", "02")}
-                leftIcon={<ResetIcon />}
+                leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
                 onClick={async () => {
                   if (
                     getValues("model") !== AI_AGENT_MODEL.GPT_3_5_TURBO &&

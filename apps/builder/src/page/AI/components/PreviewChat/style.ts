@@ -2,8 +2,7 @@ import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
 
 export const blockInputContainerStyle = css`
-  position: absolute;
-  height: 100%;
+  height: 104px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -67,7 +66,7 @@ export const chatContainerStyle = css`
 `
 
 export const inputStyle = css`
-  padding: 5px 16px;
+  padding: 6px 16px;
   font-size: 14px;
   color: ${getColor("grayBlue", "02")};
   outline: none;

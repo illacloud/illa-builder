@@ -15,7 +15,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { useCopyToClipboard } from "@illa-public/utils"
+import { formatNumForAgent, useCopyToClipboard } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -26,8 +26,14 @@ import { v4 } from "uuid"
 import {
   Button,
   DependencyIcon,
+  ForkIcon,
+  LoadingIcon,
+  PlayFillIcon,
+  PreviousIcon,
   ResetIcon,
   Select,
+  StarFillIcon,
+  StarOutlineIcon,
   getColor,
   useMessage,
 } from "@illa-design/react"
@@ -46,6 +52,7 @@ import {
   MarketAiAgent,
 } from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentContentContainerStyle,
@@ -61,6 +68,7 @@ import {
   headerContainerStyle,
   headerInfoStyle,
   lineStyle,
+  menuContainerStyle,
   previewChatContainer,
   shareContainerStyle,
   tabContainerStyle,
@@ -93,6 +101,10 @@ export const AIAgentRunMobile: FC = () => {
   const [isRunning, setIsRunning] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
   const [shareDialogVisible, setShareDialogVisible] = useState(false)
+  const [starState, setStarState] = useState(
+    marketplaceInfo?.marketplace?.isStarredByCurrentUser ?? false,
+  )
+  const [forkLoading, setForkLoading] = useState(false)
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
   const [isReceiving, setIsReceiving] = useState(false)
@@ -387,10 +399,11 @@ export const AIAgentRunMobile: FC = () => {
           <Button
             flex="1"
             disabled={!isValid}
+            size="large"
             loading={isConnecting}
             ml="8px"
             colorScheme={getColor("grayBlue", "02")}
-            leftIcon={<ResetIcon />}
+            leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
           >
             {!isRunning
               ? t("editor.ai-agent.start")
@@ -456,6 +469,95 @@ export const AIAgentRunMobile: FC = () => {
     <ChatContext.Provider value={{ inRoomUsers }}>
       <div css={aiAgentContainerStyle}>
         <div css={headerContainerStyle}>
+          <Controller
+            name="publishedToMarketplace"
+            control={control}
+            render={({ field }) => {
+              return (
+                <div css={menuContainerStyle}>
+                  <div
+                    css={shareContainerStyle}
+                    onClick={() => {
+                      window.history.back()
+                    }}
+                  >
+                    <PreviousIcon fs="24px" />
+                  </div>
+                  <div
+                    style={{
+                      flexGrow: 1,
+                    }}
+                  />
+                  {field.value &&
+                    canManage(
+                      currentTeamInfo.myRole,
+                      ATTRIBUTE_GROUP.AGENT,
+                      ACTION_MANAGE.FORK_AGENT,
+                    ) && (
+                      <div
+                        css={shareContainerStyle}
+                        onClick={async () => {
+                          setForkLoading(true)
+                          try {
+                            await forkAIAgentToTeam(agent.aiAgentID)
+                            message.success({
+                              content: t("dashboard.message.mobile-fork-suc"),
+                            })
+                          } catch (e) {
+                            message.error({
+                              content: t("dashboard.message.fork-failed"),
+                            })
+                          } finally {
+                            setForkLoading(false)
+                          }
+                        }}
+                      >
+                        {forkLoading ? (
+                          <LoadingIcon spin={true} fs="24px" />
+                        ) : (
+                          <ForkIcon fs="24px" />
+                        )}
+                      </div>
+                    )}
+                  {field.value && (
+                    <div
+                      css={shareContainerStyle}
+                      onClick={async () => {
+                        const currentState = starState
+                        setStarState(!starState)
+                        try {
+                          if (starState) {
+                            await unstarAIAgent(agent.aiAgentID)
+                          } else {
+                            await starAIAgent(agent.aiAgentID)
+                          }
+                        } catch (e) {
+                          setStarState(currentState)
+                          message.error({
+                            content: t("dashboard.message.star-failed"),
+                          })
+                        }
+                      }}
+                    >
+                      {starState ? (
+                        <StarFillIcon c="#FFBB38" fs="24px" />
+                      ) : (
+                        <StarOutlineIcon fs="24px" />
+                      )}
+                    </div>
+                  )}
+                  <div
+                    css={shareContainerStyle}
+                    onClick={() => {
+                      setShareDialogVisible(true)
+                    }}
+                  >
+                    <DependencyIcon fs="24px" />
+                  </div>
+                </div>
+              )
+            }}
+          />
           <div css={headerInfoStyle}>
             <Controller
               name="icon"
@@ -476,43 +578,32 @@ export const AIAgentRunMobile: FC = () => {
                 <div css={agentTeamNameStyle}>{agent.teamName}</div>
                 {agent.publishedToMarketplace && (
                   <div css={agentMarketResultStyle}>
-                    {t("marketplace.star", {
-                      operationNum: marketplaceInfo?.marketplace.numStars,
-                    })}{" "}
-                    ·{" "}
-                    {t("marketplace.fork", {
-                      operationNum: marketplaceInfo?.marketplace.numForks,
-                    })}
+                    {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 && (
+                      <span>
+                        {t("marketplace.star", {
+                          operationNum: formatNumForAgent(
+                            marketplaceInfo?.marketplace.numStars ?? 0,
+                          ),
+                        })}{" "}
+                      </span>
+                    )}
+                    {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 &&
+                      (marketplaceInfo?.marketplace.numForks ?? 0) > 0 &&
+                      "·"}
+                    {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
+                      <span>
+                        {" "}
+                        {t("marketplace.fork", {
+                          operationNum: formatNumForAgent(
+                            marketplaceInfo?.marketplace.numForks ?? 0,
+                          ),
+                        })}
+                      </span>
+                    )}
                   </div>
                 )}
               </div>
             </div>
-            <Controller
-              name="publishedToMarketplace"
-              control={control}
-              render={({ field }) => {
-                if (
-                  !field.value &&
-                  !canManage(
-                    currentTeamInfo.myRole,
-                    ATTRIBUTE_GROUP.AGENT,
-                    ACTION_MANAGE.FORK_AGENT,
-                  )
-                ) {
-                  return <></>
-                }
-                return (
-                  <div
-                    css={shareContainerStyle}
-                    onClick={() => {
-                      setShareDialogVisible(true)
-                    }}
-                  >
-                    <DependencyIcon fs="24px" />
-                  </div>
-                )
-              }}
-            />
           </div>
           <Controller
             name="agentType"

@@ -215,45 +215,48 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               </motion.div>
             )}
         </AnimatePresence>
-        <textarea
-          value={textAreaVal}
-          css={inputStyle}
-          placeholder={t("editor.ai-agent.placeholder.send")}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" && !event.shiftKey) {
-              event.preventDefault()
-              if (isReceiving || blockInput) {
-                return
-              }
-              sendAndClearMessage()
-            }
-          }}
-          onChange={(event) => {
-            setTextAreaVal(event.target.value)
-          }}
-        />
-        <Button
-          alignSelf="end"
-          disabled={isReceiving || blockInput}
-          mt="16px"
-          colorScheme="techPurple"
-          onClick={() => {
-            sendAndClearMessage()
-          }}
-        >
-          {t("editor.ai-agent.button.send")}
-        </Button>
-      </div>
-      {blockInput && (
-        <div css={blockInputContainerStyle}>
-          <AgentBlockInput />
-          <div css={blockInputTextStyle}>
-            {editState === "RUN"
-              ? t("editor.ai-agent.tips.not-start-run")
-              : t("editor.ai-agent.tips.not-start")}
+        {blockInput ? (
+          <div css={blockInputContainerStyle}>
+            <AgentBlockInput />
+            <div css={blockInputTextStyle}>
+              {editState === "RUN"
+                ? t("editor.ai-agent.tips.not-start-run")
+                : t("editor.ai-agent.tips.not-start")}
+            </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <>
+            <textarea
+              value={textAreaVal}
+              css={inputStyle}
+              placeholder={t("editor.ai-agent.placeholder.send")}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && !event.shiftKey) {
+                  event.preventDefault()
+                  if (isReceiving || blockInput) {
+                    return
+                  }
+                  sendAndClearMessage()
+                }
+              }}
+              onChange={(event) => {
+                setTextAreaVal(event.target.value)
+              }}
+            />
+            <Button
+              alignSelf="end"
+              disabled={isReceiving || blockInput}
+              mt="16px"
+              colorScheme="techPurple"
+              onClick={() => {
+                sendAndClearMessage()
+              }}
+            >
+              {t("editor.ai-agent.button.send")}
+            </Button>
+          </>
+        )}
+      </div>
     </div>
   )
 }

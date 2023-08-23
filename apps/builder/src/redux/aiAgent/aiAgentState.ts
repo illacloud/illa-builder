@@ -138,7 +138,7 @@ export const AgentInitial: Agent = {
   prompt: "",
   modelConfig: {
     temperature: 1,
-    maxTokens: 512,
+    maxTokens: 2048,
     stream: true,
   },
   icon: "",

@@ -34,6 +34,23 @@ export const agentTopContainerStyle = css`
   border-bottom: 1px solid ${getColor("grayBlue", "08")};
 `
 
+export const backMenuStyle = css`
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+  margin-bottom: 32px;
+  flex-grow: 1;
+`
+
+export const backTextStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 18px;
+  margin-left: 8px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+`
+
 export const agentTitleContainerStyle = css`
   display: flex;
   flex-direction: row;

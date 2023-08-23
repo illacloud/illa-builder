@@ -12,14 +12,14 @@ export const headerInfoStyle = css`
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-top: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 
 export const headerContainerStyle = css`
   display: flex;
   flex-direction: column;
-  padding-top: 12px;
-  padding-left: 20px;
-  padding-right: 20px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
 `
 
@@ -39,10 +39,19 @@ export const shareContainerStyle = css`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 12px;
+  margin-left: 6px;
   width: 40px;
   height: 40px;
   flex-shrink: 0;
+`
+
+export const menuContainerStyle = css`
+  display: flex;
+  padding-right: 16px;
+  padding-top: 12px;
+  align-items: center;
+  padding-bottom: 12px;
+  flex-direction: row;
 `
 
 export const agentContentContainerStyle = css`
@@ -67,7 +76,6 @@ export const agentTeamNameStyle = css`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  flex-grow: 1;
   flex-shrink: 1;
   font-weight: 400;
   line-height: 15px;
@@ -91,6 +99,9 @@ export const agentMarketResultStyle = css`
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  text-overflow: ellipsis;
 `
 
 export const agentControlContainerStyle = css`

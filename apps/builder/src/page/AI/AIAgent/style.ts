@@ -8,6 +8,15 @@ export const aiAgentContainerStyle = css`
   height: 100%;
 `
 
+export const backTextStyle = css`
+  color: ${getColor("grayBlue", "02")};
+  font-size: 18px;
+  margin-left: 8px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+`
+
 export const leftPanelContainerStyle = css`
   height: 100%;
   width: 528px;
@@ -41,10 +50,6 @@ export const leftLoadingCoverStyle = css`
   z-index: 10;
 `
 
-export const leftPanelTitleStyle = css`
-  padding: 24px;
-`
-
 export const buttonContainerStyle = css`
   padding: 24px;
   border-top: 1px solid ${getColor("grayBlue", "08")};
@@ -54,6 +59,8 @@ export const buttonContainerStyle = css`
 `
 
 export const leftPanelTitleTextStyle = css`
+  padding: 16px 24px 24px;
+  cursor: pointer;
   color: ${getColor("grayBlue", "02")};
   font-size: 18px;
   font-style: normal;

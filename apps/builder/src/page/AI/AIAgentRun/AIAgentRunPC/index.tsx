@@ -16,7 +16,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { useCopyToClipboard } from "@illa-public/utils"
+import { formatNumForAgent, useCopyToClipboard } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -27,6 +27,8 @@ import {
   Button,
   DependencyIcon,
   ForkIcon,
+  PlayFillIcon,
+  PreviousIcon,
   RadioGroup,
   ResetIcon,
   Select,
@@ -68,6 +70,8 @@ import {
   agentTitleContainerStyle,
   agentTopContainerStyle,
   aiAgentContainerStyle,
+  backMenuStyle,
+  backTextStyle,
   buttonContainerStyle,
   leftPanelContainerStyle,
   rightPanelContainerStyle,
@@ -100,7 +104,9 @@ export const AIAgentRunPC: FC = () => {
   const [shareDialogVisible, setShareDialogVisible] = useState(false)
   const [starLoading, setStarLoading] = useState(false)
   const [forkLoading, setForkLoading] = useState(false)
-  const [starState, setStarState] = useState(false)
+  const [starState, setStarState] = useState(
+    marketplaceInfo?.marketplace?.isStarredByCurrentUser ?? false,
+  )
 
   // data state
   const [inRoomUsers, setInRoomUsers] = useState<CollaboratorsInfo[]>([])
@@ -281,9 +287,13 @@ export const AIAgentRunPC: FC = () => {
           starState ? <StarFillIcon c="#FFBB38" /> : <StarOutlineIcon />
         }
       >
-        {t("marketplace.star", {
-          operationNum: marketplaceInfo?.marketplace.numStars,
-        })}
+        <span>{t("marketplace.star")}</span>
+        {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 && (
+          <span>
+            &#20;
+            {formatNumForAgent(marketplaceInfo?.marketplace.numStars ?? 0)}
+          </span>
+        )}
       </Button>
       {canManage(
         currentTeamInfo.myRole,
@@ -311,9 +321,13 @@ export const AIAgentRunPC: FC = () => {
             }
           }}
         >
-          {t("marketplace.fork", {
-            operationNum: marketplaceInfo?.marketplace.numForks,
-          })}
+          <span>{t("marketplace.fork")}</span>
+          {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
+            <span>
+              &#20;
+              {formatNumForAgent(marketplaceInfo?.marketplace.numForks ?? 0)}
+            </span>
+          )}
         </Button>
       )}
     </div>
@@ -344,6 +358,15 @@ export const AIAgentRunPC: FC = () => {
       <div css={aiAgentContainerStyle}>
         <div css={leftPanelContainerStyle}>
           <div css={agentTopContainerStyle}>
+            <div
+              css={backMenuStyle}
+              onClick={() => {
+                window.history.back()
+              }}
+            >
+              <PreviousIcon fs="16px" />
+              <div css={backTextStyle}>{t("back")}</div>
+            </div>
             <div css={agentTitleContainerStyle}>
               <Controller
                 control={control}
@@ -397,7 +420,7 @@ export const AIAgentRunPC: FC = () => {
                 >
                   <RadioGroup
                     {...field}
-                    colorScheme={"techPurple"}
+                    colorScheme={getColor("grayBlue", "02")}
                     w="100%"
                     type="button"
                     forceEqualWidth={true}
@@ -548,12 +571,13 @@ export const AIAgentRunPC: FC = () => {
           >
             <div css={buttonContainerStyle}>
               <Button
+                size="large"
                 flex="1"
                 disabled={!isValid}
                 loading={isConnecting}
                 ml="8px"
                 colorScheme={getColor("grayBlue", "02")}
-                leftIcon={<ResetIcon />}
+                leftIcon={isRunning ? <ResetIcon /> : <PlayFillIcon />}
               >
                 {!isRunning
                   ? t("editor.ai-agent.start")
