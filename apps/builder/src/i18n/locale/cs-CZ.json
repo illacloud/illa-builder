@@ -2623,7 +2623,8 @@
         "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
         "token-not-enough": "Dosažen limit modelu. Prosím restartujte.",
         "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky.",
-        "purchase-required": "Colla nestačí k spuštění, prosím znovu nabit."
+        "purchase-required": "Colla nestačí k spuštění, prosím znovu nabit.",
+        "leave": "Existuje neuložený obsah, jste si jisti, že chcete odejít?"
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
