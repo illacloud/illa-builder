@@ -2621,7 +2621,8 @@
         "start-failed": "Kunne ikke starte. Vennligst prøv igjen. ",
         "reconnect": "Forbindelsen ble brutt. Rekonstituering pågår.",
         "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt.",
-        "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater."
+        "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater.",
+        "purchase-required": "Colla is not enough to run, please recharge."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
