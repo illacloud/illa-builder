@@ -75,7 +75,8 @@
       "create-suc": "Det gick inte att skapa, försök igen.",
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
-      "delete-suc": "Raderades framgångsrikt. "
+      "delete-suc": "Raderades framgångsrikt. ",
+      "mobile-fork-suc": "Forkad framgångsrikt. Redigera på skrivbordet."
     },
     "create": "Skapa"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Anslutning förlorad. Återgång pågår.",
         "token-not-enough": "Modellens gräns har uppnåtts. Vänligen starta om.",
         "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla är inte tillräckligt för att köra, ladda om."
       },
       "title": "🧬 Redigera AI agent",
       "generate-desc": {
