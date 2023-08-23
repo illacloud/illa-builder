@@ -2623,7 +2623,8 @@
         "reconnect": "Conexión perdida. Reconexión en curso.",
         "token-not-enough": "Límite de modelo alcanzado. Por favor reinicie.",
         "token": "El valor actual de los tokens Max es bajo, lo que puede causar resultados incompletos devueltos.",
-        "purchase-required": "Colla no es suficiente para funcionar, por favor recarga."
+        "purchase-required": "Colla no es suficiente para funcionar, por favor recarga.",
+        "leave": "Hay contenido sin guardar, ¿estás seguro de que quieres salir?"
       },
       "title": "🧬 Editar agente AI",
       "generate-desc": {
