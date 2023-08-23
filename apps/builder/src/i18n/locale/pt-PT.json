@@ -4038,5 +4038,6 @@
   },
   "load": {
     "before": "Carregue mais"
-  }
+  },
+  "size_exceed_copied_tips": "O conteúdo é muito longo para ser copiado. (tamanho atual: {{current_size}} bytes, limite: {{limit_size}} bytes)"
 }
