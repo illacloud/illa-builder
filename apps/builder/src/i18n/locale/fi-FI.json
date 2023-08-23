@@ -75,7 +75,8 @@
       "create-suc": "Ei voitu luoda, yritä uudelleen.",
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
-      "delete-suc": "Poistettu onnistuneesti. "
+      "delete-suc": "Poistettu onnistuneesti. ",
+      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä."
     },
     "create": "Luo"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Yhteys menetetty. Uudelleenyhdistäminen käynnissä.",
         "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen.",
         "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla ei riitä juoksemaan, ole hyvä ja lataa."
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
