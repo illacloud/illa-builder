@@ -75,7 +75,8 @@
       "create-suc": "Échec de la création, veuillez réessayer.",
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
-      "delete-suc": "Supprimé avec succès. "
+      "delete-suc": "Supprimé avec succès. ",
+      "mobile-fork-suc": "Forké avec succès. Veuillez modifier sur le bureau."
     },
     "create": "Créer"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Connexion perdue. Reconnexion en cours.",
         "token-not-enough": "Limite du modèle atteinte. Veuillez recommencer.",
         "token": "La valeur actuelle des jetons Max est faible, ce qui peut causer des retours incomplets.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla ne suffit pas pour fonctionner, veuillez recharger."
       },
       "title": "🧬 Modifier l'Agent IA",
       "generate-desc": {
