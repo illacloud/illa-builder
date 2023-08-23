@@ -75,7 +75,8 @@
       "create-suc": "Falha ao criar. Por favor, tente novamente.",
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
-      "delete-suc": "Excluído com sucesso. "
+      "delete-suc": "Excluído com sucesso. ",
+      "mobile-fork-suc": "Forked com sucesso. Edite no desktop."
     },
     "create": "Crio"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Conexão perdida. Reconexão em progresso.",
         "token-not-enough": "Limite de modelos atingido. Por favor reinicie.",
         "token": "O valor atual do Max de tokens é baixo, o que pode causar resultados incompletos retornados.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla não é suficiente para funcionar, por favor recarregue."
       },
       "title": "🧬 Editar Agente IA",
       "generate-desc": {
