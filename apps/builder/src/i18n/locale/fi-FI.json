@@ -2621,7 +2621,8 @@
         "start-failed": "Aloitus epäonnistui. Yritä uudelleen. ",
         "reconnect": "Yhteys menetetty. Uudelleenyhdistäminen käynnissä.",
         "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen.",
-        "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia."
+        "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia.",
+        "purchase-required": "Colla is not enough to run, please recharge."
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
