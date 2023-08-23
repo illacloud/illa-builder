@@ -2623,7 +2623,8 @@
         "reconnect": "Connexion perdue. Reconnexion en cours.",
         "token-not-enough": "Limite du modèle atteinte. Veuillez recommencer.",
         "token": "La valeur actuelle des jetons Max est faible, ce qui peut causer des retours incomplets.",
-        "purchase-required": "Colla ne suffit pas pour fonctionner, veuillez recharger."
+        "purchase-required": "Colla ne suffit pas pour fonctionner, veuillez recharger.",
+        "leave": "Il y a du contenu non enregistré, êtes-vous sûr de vouloir quitter ?"
       },
       "title": "🧬 Modifier l'Agent IA",
       "generate-desc": {
