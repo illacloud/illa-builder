@@ -75,7 +75,8 @@
       "create-suc": "Kunne ikke opprette, vennligst prøv igjen.",
       "fork-suc": "Kampanjen ble fullført.",
       "delete-failed": "Kunne ikke slette. Prøv på nytt. ",
-      "delete-suc": "Sletting vellykket. "
+      "delete-suc": "Sletting vellykket. ",
+      "mobile-fork-suc": "Festet vellykket. Vennligst rediger på datamaskinen."
     },
     "create": "Opprett"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Forbindelsen ble brutt. Rekonstituering pågår.",
         "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt.",
         "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla er ikke nok til å kjøre, vennligst lade."
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
