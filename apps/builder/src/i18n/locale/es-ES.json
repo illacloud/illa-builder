@@ -75,7 +75,8 @@
       "create-suc": "Error al crear, inténtelo de nuevo.",
       "fork-suc": "Bifurcado con éxito.",
       "delete-failed": "Error al eliminar. Por favor, inténtelo de nuevo. ",
-      "delete-suc": "Eliminado correctamente. "
+      "delete-suc": "Eliminado correctamente. ",
+      "mobile-fork-suc": "Bifurcado con éxito. Por favor edite en el ordenador."
     },
     "create": "Crear"
   },
@@ -2622,7 +2623,7 @@
         "reconnect": "Conexión perdida. Reconexión en curso.",
         "token-not-enough": "Límite de modelo alcanzado. Por favor reinicie.",
         "token": "El valor actual de los tokens Max es bajo, lo que puede causar resultados incompletos devueltos.",
-        "purchase-required": "Colla is not enough to run, please recharge."
+        "purchase-required": "Colla no es suficiente para funcionar, por favor recarga."
       },
       "title": "🧬 Editar agente AI",
       "generate-desc": {
