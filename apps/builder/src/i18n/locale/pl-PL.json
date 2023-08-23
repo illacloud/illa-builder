@@ -2621,7 +2621,8 @@
         "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. ",
         "reconnect": "Połączenie zostało utracone. Trwa ponowne połączenie.",
         "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie.",
-        "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki."
+        "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki.",
+        "purchase-required": "Colla is not enough to run, please recharge."
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
