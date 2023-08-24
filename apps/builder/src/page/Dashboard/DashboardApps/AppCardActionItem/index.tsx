@@ -15,7 +15,7 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
+import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -40,10 +40,8 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
-import { useCopyToClipboard } from "@illa-public/utils"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
-
 
 export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const {
@@ -431,7 +429,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
               setShareVisible(false)
             }}
             canInvite={showInvite}
-            isDeployed={isDeploy}
             defaultBalance={teamInfo.currentTeamLicense.balance}
             teamID={teamInfo.id}
             currentUserRole={teamInfo.myRole}

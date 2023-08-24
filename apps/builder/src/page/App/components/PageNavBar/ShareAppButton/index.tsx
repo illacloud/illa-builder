@@ -7,14 +7,13 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import { canManageInvite } from "@illa-public/user-role-utils"
-import { isCloudVersion } from "@illa-public/utils"
+import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, getColor } from "@illa-design/react"
+import { Button, ContributeIcon, getColor } from "@illa-design/react"
 import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { useCopyToClipboard } from "@illa-public/utils"
 
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
   const { t } = useTranslation()
@@ -58,6 +57,15 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
       >
         {t("share")}
       </Button>
+      {isCloudVersion && (
+        <Button
+          colorScheme="grayBlue"
+          onClick={openInviteModal}
+          leftIcon={<ContributeIcon c={getColor("grayBlue", "02")} />}
+        >
+          {t("contribute")}
+        </Button>
+      )}
       {shareModalVisible && (
         <ShareAppPC
           redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/${
@@ -79,7 +87,6 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
             setShareModalVisible(false)
           }}
           canInvite={showInvite}
-          isDeployed={appInfo.mainlineVersion !== 0}
           defaultBalance={teamInfo.currentTeamLicense.balance}
           teamID={teamInfo.id}
           currentUserRole={teamInfo.myRole}

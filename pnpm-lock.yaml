@@ -2846,6 +2846,9 @@ importers:
       '@illa-public/illa-net':
         specifier: workspace:*
         version: link:../ILLANet
+      '@illa-public/invite-modal':
+        specifier: workspace:*
+        version: link:../InviteModal
       '@illa-public/layout-auto-change':
         specifier: workspace:*
         version: link:../LayoutAutoChange
@@ -2855,6 +2858,9 @@ importers:
       '@illa-public/role-selector':
         specifier: workspace:*
         version: link:../RoleSelector
+      '@illa-public/upgrade-modal':
+        specifier: workspace:*
+        version: link:../UpgradeModal
       '@illa-public/usage-card':
         specifier: workspace:*
         version: link:../UsageCard
