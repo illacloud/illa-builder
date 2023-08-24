@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "チームと共有",
-      "contribute": "貢献"
+      "share-with-team": "チームと共有"
     },
     "desc": {
       "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "さらに読み込む"
   },
-  "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)"
+  "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
+  "contribute": "貢献"
 }
