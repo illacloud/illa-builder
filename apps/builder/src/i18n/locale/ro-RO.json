@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "Partajează cu echipa",
-      "contribute": "Contribuie"
+      "share-with-team": "Partajează cu echipa"
     },
     "desc": {
       "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "Încarcă mai mult"
   },
-  "size_exceed_copied_tips": "Conținutul este prea lung pentru a copia. (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)"
+  "size_exceed_copied_tips": "Conținutul este prea lung pentru a copia. (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)",
+  "contribute": "Contribuie"
 }
