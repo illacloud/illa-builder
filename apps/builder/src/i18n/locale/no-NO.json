@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "Del med team",
-      "contribute": "Bidra"
+      "share-with-team": "Del med team"
     },
     "desc": {
       "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "Last mer"
   },
-  "size_exceed_copied_tips": "Innholdet er for langt for kopiering. (gjeldende størrelse: {{current_size}} bytes, begrensing: {{limit_size}} bytes)"
+  "size_exceed_copied_tips": "Innholdet er for langt for kopiering. (gjeldende størrelse: {{current_size}} bytes, begrensing: {{limit_size}} bytes)",
+  "contribute": "Bidra"
 }
