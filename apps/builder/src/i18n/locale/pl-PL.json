@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "Udostępnij zespołowi",
-      "contribute": "Wesprzyj"
+      "share-with-team": "Udostępnij zespołowi"
     },
     "desc": {
       "undeploy": "Aplikacja nie została wdrożona. Publiczny dostęp i dostęp do przeglądarki mogą napotkać błędy. "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "Załaduj więcej"
   },
-  "size_exceed_copied_tips": "Zawartość jest zbyt długa do skopiowania. (aktualny rozmiar: {{current_size}} bajtów, limit: {{limit_size}} bajtów)"
+  "size_exceed_copied_tips": "Zawartość jest zbyt długa do skopiowania. (aktualny rozmiar: {{current_size}} bajtów, limit: {{limit_size}} bajtów)",
+  "contribute": "Wesprzyj"
 }
