@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "Mit Team teilen",
-      "contribute": "Mitwirken"
+      "share-with-team": "Mit Team teilen"
     },
     "desc": {
       "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "Mehr laden"
   },
-  "size_exceed_copied_tips": "Der Inhalt ist zu lang zum Kopieren. (aktuelle Größe: {{current_size}} Bytes, Limit: {{limit_size}} Bytes)"
+  "size_exceed_copied_tips": "Der Inhalt ist zu lang zum Kopieren. (aktuelle Größe: {{current_size}} Bytes, Limit: {{limit_size}} Bytes)",
+  "contribute": "Mitwirken"
 }
