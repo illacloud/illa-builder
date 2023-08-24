@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "Compartilhar com a equipe",
-      "contribute": "Contribuir"
+      "share-with-team": "Compartilhar com a equipe"
     },
     "desc": {
       "undeploy": "O app não foi implantado. O acesso público e o acesso ao visualizador podem encontrar erros. "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "Carregue mais"
   },
-  "size_exceed_copied_tips": "O conteúdo é muito longo para ser copiado. (tamanho atual: {{current_size}} bytes, limite: {{limit_size}} bytes)"
+  "size_exceed_copied_tips": "O conteúdo é muito longo para ser copiado. (tamanho atual: {{current_size}} bytes, limite: {{limit_size}} bytes)",
+  "contribute": "Contribuir"
 }
