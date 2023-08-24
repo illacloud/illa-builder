@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "Sdílet s týmem",
-      "contribute": "Přispějte"
+      "share-with-team": "Sdílet s týmem"
     },
     "desc": {
       "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "Načíst více"
   },
-  "size_exceed_copied_tips": "Obsah je příliš dlouhý na kopírování. (aktuální velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)"
+  "size_exceed_copied_tips": "Obsah je příliš dlouhý na kopírování. (aktuální velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)",
+  "contribute": "Přispějte"
 }
