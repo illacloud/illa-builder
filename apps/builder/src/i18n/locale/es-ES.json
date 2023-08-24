@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "Compartir con el equipo",
-      "contribute": "Contribuir"
+      "share-with-team": "Compartir con el equipo"
     },
     "desc": {
       "undeploy": "La aplicación no ha sido desplegada. El acceso público y el acceso al visor pueden encontrarse errores. "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "Cargar más"
   },
-  "size_exceed_copied_tips": "El contenido es demasiado largo para copiar. (tamaño actual: {{current_size}} bytes, límite: {{limit_size}} bytes)"
+  "size_exceed_copied_tips": "El contenido es demasiado largo para copiar. (tamaño actual: {{current_size}} bytes, límite: {{limit_size}} bytes)",
+  "contribute": "Contribuir"
 }
