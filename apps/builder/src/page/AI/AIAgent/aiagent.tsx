@@ -670,10 +670,13 @@ export const AIAgent: FC = () => {
                       shouldUnregister={false}
                       render={({ field }) => (
                         <InputNumber
-                          {...field}
+                          value={field.value}
+                          onChange={(value) => {
+                            field.onChange(value)
+                          }}
                           colorScheme={"techPurple"}
                           mode="button"
-                          min={0}
+                          min={1}
                           max={getModelLimitToken(modelField.value)}
                         />
                       )}
