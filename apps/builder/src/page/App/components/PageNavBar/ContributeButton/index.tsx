@@ -1,6 +1,4 @@
-import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAppPC } from "@illa-public/invite-modal"
-import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   getCurrentTeamInfo,
   getCurrentUser,
@@ -14,29 +12,24 @@ import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, getColor } from "@illa-design/react"
-import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppButton/interface"
+import { Button, ContributeIcon, getColor } from "@illa-design/react"
+import { ContributeButtonProps } from "@/page/App/components/PageNavBar/ContributeButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 
-export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
-  const { t } = useTranslation()
+export const ContributeButton: FC<ContributeButtonProps> = (props) => {
   const { appInfo } = props
+
+  const { t } = useTranslation()
 
   const currentUserInfo = useSelector(getCurrentUser)
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
 
-  const canUseBillingFeature = canUseUpgradeFeature(
-    teamInfo?.myRole,
-    teamInfo?.totalTeamLicense?.teamLicensePurchased,
-    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
-  )
-
-  const upgradeModal = useUpgradeModal()
-  const [shareModalVisible, setShareModalVisible] = useState(false)
-  const copyToClipboard = useCopyToClipboard()
-
   const dispatch = useDispatch()
+
+  const [shareModalVisible, setShareModalVisible] = useState(false)
+
+  const copyToClipboard = useCopyToClipboard()
 
   const showInvite = canManageInvite(
     teamInfo.myRole,
@@ -44,28 +37,26 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
     teamInfo?.permission?.allowViewerManageTeamMember,
   )
 
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
+
   return (
     <>
-      <Button
-        colorScheme="grayBlue"
-        rightIcon={
-          isCloudVersion &&
-          !canUseBillingFeature && (
-            <UpgradeIcon color={getColor("techPurple", "01")} />
-          )
-        }
-        onClick={() => {
-          if (isCloudVersion && !canUseBillingFeature) {
-            upgradeModal({ modalType: "upgrade" })
-            return
-          }
-          setShareModalVisible(true)
-        }}
-      >
-        {t("share")}
-      </Button>
+      {isCloudVersion && (
+        <Button
+          colorScheme="grayBlue"
+          onClick={() => {}}
+          leftIcon={<ContributeIcon c={getColor("grayBlue", "02")} />}
+        >
+          {t("contribute")}
+        </Button>
+      )}
       {shareModalVisible && (
         <ShareAppPC
+          defaultTab={"public"}
           redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier
           }/${appInfo.appId}`}
@@ -152,3 +143,5 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
     </>
   )
 }
+
+ContributeButton.displayName = "ContributeButton"

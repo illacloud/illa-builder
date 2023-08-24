@@ -1,4 +1,4 @@
-import { ShareAppPC } from "@illa-public/invite-modal/ShareApp/pc"
+import { ShareAppPC } from "@illa-public/invite-modal"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -490,6 +490,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                 }),
               )
             }}
+            canUseBillingFeature={canUseBillingFeature}
           />
         )}
       </MixpanelTrackProvider>

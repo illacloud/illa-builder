@@ -1,5 +1,5 @@
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
-export interface ShareAppButtonProps {
+export interface ContributeButtonProps {
   appInfo: DashboardApp
 }

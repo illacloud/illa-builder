@@ -372,10 +372,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {!isGuideMode && (
           <>
             <CollaboratorsList />
-            <ShareAppButton
-              appInfo={appInfo}
-              canUseBillingFeature={canUseBillingFeature}
-            />
+            <ShareAppButton appInfo={appInfo} />
           </>
         )}
         {isEditMode ? (

@@ -1,7 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
-import { ShareAgentTab } from "@illa-public/invite-modal/ShareAgent/interface"
-import { ShareAgentMobile } from "@illa-public/invite-modal/ShareAgent/mobile"
+import { ShareAgentMobile, ShareAgentTab } from "@illa-public/invite-modal"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {

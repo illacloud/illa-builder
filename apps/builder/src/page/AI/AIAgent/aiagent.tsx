@@ -1,8 +1,7 @@
 import { CodeEditor } from "@illa-public/code-editor"
 import { AvatarUpload } from "@illa-public/cropper"
 import { UpgradeIcon } from "@illa-public/icon"
-import { ShareAgentTab } from "@illa-public/invite-modal/ShareAgent/interface"
-import { ShareAgentPC } from "@illa-public/invite-modal/ShareAgent/pc"
+import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -623,10 +622,12 @@ export const AIAgent: FC = () => {
                             <div css={labelStyle}>
                               <OpenAIIcon />
                               <span css={labelTextStyle}>GPT-3.5-16k</span>
-                              <div css={premiumContainerStyle}>
-                                <UpgradeIcon />
-                                <div style={{ marginLeft: 4 }}>Premium</div>
-                              </div>
+                              {!canUseBillingFeature && (
+                                <div css={premiumContainerStyle}>
+                                  <UpgradeIcon />
+                                  <div style={{ marginLeft: 4 }}>Premium</div>
+                                </div>
+                              )}
                             </div>
                           ),
                           value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
@@ -636,10 +637,12 @@ export const AIAgent: FC = () => {
                             <div css={labelStyle}>
                               <OpenAIIcon />
                               <span css={labelTextStyle}>GPT-4</span>
-                              <div css={premiumContainerStyle}>
-                                <UpgradeIcon />
-                                <div style={{ marginLeft: 4 }}>Premium</div>
-                              </div>
+                              {!canUseBillingFeature && (
+                                <div css={premiumContainerStyle}>
+                                  <UpgradeIcon />
+                                  <div style={{ marginLeft: 4 }}>Premium</div>
+                                </div>
+                              )}
                             </div>
                           ),
                           value: AI_AGENT_MODEL.GPT_4,

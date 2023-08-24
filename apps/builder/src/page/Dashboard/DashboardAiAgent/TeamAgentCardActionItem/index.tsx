@@ -1,5 +1,4 @@
-import { ShareAgentTab } from "@illa-public/invite-modal/ShareAgent/interface"
-import { ShareAgentPC } from "@illa-public/invite-modal/ShareAgent/pc"
+import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
