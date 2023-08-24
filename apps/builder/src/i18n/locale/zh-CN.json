@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "和团队共享",
-      "contribute": "贡献"
+      "share-with-team": "和团队共享"
     },
     "desc": {
       "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "加载更多"
   },
-  "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)"
+  "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
+  "contribute": "贡献"
 }
