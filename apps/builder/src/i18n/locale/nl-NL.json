@@ -3997,8 +3997,7 @@
   },
   "new_share": {
     "title": {
-      "share-with-team": "Deel met team",
-      "contribute": "Meedoen"
+      "share-with-team": "Deel met team"
     },
     "desc": {
       "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
@@ -4042,5 +4041,6 @@
   "load": {
     "before": "Meer laden"
   },
-  "size_exceed_copied_tips": "De inhoud is te lang om te kopiëren. (huidige grootte: {{current_size}} bytes, limiet: {{limit_size}} bytes)"
+  "size_exceed_copied_tips": "De inhoud is te lang om te kopiëren. (huidige grootte: {{current_size}} bytes, limiet: {{limit_size}} bytes)",
+  "contribute": "Meedoen"
 }
