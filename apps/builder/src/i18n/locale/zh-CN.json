@@ -56,8 +56,8 @@
       "test_success": "测试成功"
     },
     "list-type": {
-      "team": "团队Agent",
-      "marketplace": "社区"
+      "team": "团队内容",
+      "marketplace": "社区内容"
     },
     "sort-type": {
       "popular": "最受欢迎",
