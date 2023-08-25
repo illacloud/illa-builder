@@ -1,99 +1,136 @@
-import { Avatar } from "@illa-public/avatar"
-import { USER_ROLE, getCurrentTeamInfo } from "@illa-public/user-data"
-import { canManage } from "@illa-public/user-role-utils"
+import { InviteMemberPC } from "@illa-public/invite-modal"
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import {
+  USER_ROLE,
+  getCurrentTeamInfo,
+  getCurrentUser,
+  teamActions,
+} from "@illa-public/user-data"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
-} from "@illa-public/user-role-utils/interface"
-import { FC, Suspense, UIEvent, useCallback, useContext } from "react"
+  canManage,
+  canUseUpgradeFeature,
+} from "@illa-public/user-role-utils"
+import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
+import { FC, Suspense, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
-import { Await, useLoaderData, useNavigate, useParams } from "react-router-dom"
-import { Button, PlusIcon } from "@illa-design/react"
-import { AgentContentBody } from "@/page/Dashboard/DashboardAiAgent/contentBody"
-import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
-import {
-  containerStyle,
-  listTitleContainerStyle,
-  teamAvatarStyle,
-  teamInfoContainerStyle,
-  teamNameStyle,
-} from "@/page/Dashboard/DashboardAiAgent/style"
-import { getHasMoreMarketAgent } from "@/redux/dashboard/marketAiAgents/dashboardMarketAiAgentSelector"
-import { DashboardAiAgentLoaderData } from "@/router/loader/dashBoardLoader"
-import { DashboardErrorElement } from "../components/ErrorElement"
-import { DashBoardLoading } from "../components/Loading"
+import { useDispatch, useSelector } from "react-redux"
+import { Await, useLoaderData, useNavigate } from "react-router-dom"
+import { FullPageLoading } from "@/components/FullPageLoading"
+import { AgentContent } from "@/page/Dashboard/DashboardAiAgent/AgentContent"
+import { containerStyle } from "@/page/Dashboard/DashboardAiAgent/style"
+import { DashboardContentHeader } from "@/page/Dashboard/components/DashboardContentHeader"
+import { DashboardErrorElement } from "@/page/Dashboard/components/ErrorElement"
 
 const DashboardAiAgent: FC = () => {
   const { t } = useTranslation()
-  const { teamIdentifier } = useParams()
-  const navigate = useNavigate()
-  const loaderData = useLoaderData() as DashboardAiAgentLoaderData
 
-  const { agentType, loadMoreMarketAgent } = useContext(AiAgentContext)
+  const { teamAgentList } = useLoaderData() as { teamAgentList: Agent[] }
+
+  const navigate = useNavigate()
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
-  const hasMoreData = useSelector(getHasMoreMarketAgent)
 
-  const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
+  const currentUserInfo = useSelector(getCurrentUser)
 
-  const canEditApp = canManage(
-    currentUserRole,
-    ATTRIBUTE_GROUP.APP,
-    ACTION_MANAGE.EDIT_APP,
+  const dispatch = useDispatch()
+
+  const canCreateAgent = canManage(
+    teamInfo.myRole,
+    ATTRIBUTE_GROUP.AGENT,
+    ACTION_MANAGE.CREATE_AGENT,
   )
 
-  const handleCreateAgent = useCallback(() => {
-    navigate(`/${teamIdentifier}/ai-agent`)
-  }, [navigate, teamIdentifier])
+  const upgradeModal = useUpgradeModal()
 
-  const handleCardScroll = (event: UIEvent<HTMLDivElement>) => {
-    if (agentType === "market") {
-      if (!hasMoreData) return
-      const target = event.target as HTMLDivElement
-      if (target.scrollHeight - target.scrollTop - target.clientHeight <= 100) {
-        loadMoreMarketAgent()
-      }
-    }
-  }
+  const copyToClipboard = useCopyToClipboard()
+
+  const canUseBillingFeature = canUseUpgradeFeature(
+    teamInfo?.myRole,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+  )
+
+  const [showInvite, setShowInvite] = useState(false)
 
   return (
-    <div css={containerStyle} onScroll={handleCardScroll}>
-      <div css={listTitleContainerStyle}>
-        <div css={teamInfoContainerStyle}>
-          <Avatar
-            css={teamAvatarStyle}
-            avatarUrl={teamInfo?.icon}
-            name={teamInfo?.name}
-            id={teamInfo?.id}
-          />
-          <span css={teamNameStyle}>{teamInfo?.name}</span>
-        </div>
-        {canEditApp ? (
-          <Button
-            w="320px"
-            size="large"
-            colorScheme="black"
-            leftIcon={<PlusIcon size="10px" />}
-            onClick={handleCreateAgent}
+    <>
+      <div css={containerStyle}>
+        <DashboardContentHeader
+          icon={teamInfo.icon}
+          name={teamInfo.name}
+          onCreate={() => {
+            navigate(`/${teamInfo.identifier}/ai-agent`)
+          }}
+          onInvite={() => {
+            if (isCloudVersion && !canUseBillingFeature) {
+              upgradeModal({
+                modalType: "upgrade",
+              })
+              return
+            }
+            setShowInvite(true)
+          }}
+          canCreate={canCreateAgent}
+          isCreateLoading={false}
+        />
+        <Suspense fallback={<FullPageLoading />}>
+          <Await
+            resolve={teamAgentList}
+            errorElement={<DashboardErrorElement />}
           >
-            {t("Create an Agent")}
-          </Button>
-        ) : null}
+            <AgentContent />
+          </Await>
+        </Suspense>
       </div>
-      <Suspense fallback={<DashBoardLoading />}>
-        <Await
-          resolve={
-            agentType === "market"
-              ? loaderData.marketAgentData
-              : loaderData.teamAgentList
-          }
-          errorElement={<DashboardErrorElement />}
-        >
-          <AgentContentBody canEdit={canEditApp} />
-        </Await>
-      </Suspense>
-    </div>
+      {showInvite && (
+        <InviteMemberPC
+          redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+            teamInfo?.identifier
+          }/dashboard/ai-agent`}
+          onClose={() => setShowInvite(false)}
+          canInvite={showInvite}
+          currentUserRole={teamInfo.myRole}
+          defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+          defaultInviteUserRole={USER_ROLE.VIEWER}
+          defaultBalance={teamInfo.currentTeamLicense.balance}
+          onCopyInviteLink={(inviteLink) => {
+            copyToClipboard(
+              t("user_management.modal.custom_copy_text", {
+                inviteLink: inviteLink,
+                teamName: teamInfo.name,
+                userName: currentUserInfo.nickname,
+              }),
+            )
+          }}
+          onInviteLinkStateChange={(isInviteLink) => {
+            dispatch(
+              teamActions.updateTeamMemberPermissionReducer({
+                teamID: teamInfo.id,
+                newPermission: {
+                  ...teamInfo.permission,
+                  inviteLinkEnabled: isInviteLink,
+                },
+              }),
+            )
+          }}
+          teamID={teamInfo.id}
+          onBalanceChange={(balance) => {
+            dispatch(
+              teamActions.updateTeamMemberSubscribeReducer({
+                teamID: teamInfo.id,
+                subscribeInfo: {
+                  ...teamInfo.currentTeamLicense,
+                  balance: balance,
+                },
+              }),
+            )
+          }}
+        />
+      )}
+    </>
   )
 }
 

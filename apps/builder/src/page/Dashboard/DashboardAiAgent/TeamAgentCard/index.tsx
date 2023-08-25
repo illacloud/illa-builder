@@ -1,9 +1,16 @@
-import {FC, MouseEvent, useCallback} from "react"
-import {useTranslation} from "react-i18next"
-import {useNavigate, useParams} from "react-router-dom"
-import {Button, PenIcon, PlayFillIcon, Space, Tag} from "@illa-design/react"
-import {Agent} from "@/redux/aiAgent/aiAgentState"
-import {TeamAgentCardActionItem} from "../TeamAgentCardActionItem"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
+import { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { Button, PenIcon, PlayFillIcon, Space, Tag } from "@illa-design/react"
+import { TeamAgentCardActionItem } from "../TeamAgentCardActionItem"
+import { TeamAgentCardProps } from "./interface"
 import {
   agentIconStyle,
   appActionButtonStyle,
@@ -16,35 +23,24 @@ import {
   titleInfoStyle,
 } from "./style"
 
-interface TeamAgentCardProps {
-  agentInfo: Agent
-  canEdit: boolean
-  onClick: (aiAgentID: string) => void
-}
-
 export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
-  const {t} = useTranslation()
-  const {agentInfo, canEdit, onClick} = props
-  const {teamIdentifier} = useParams()
+  const { t } = useTranslation()
+  const { agentInfo, ...otherProps } = props
   const navigate = useNavigate()
 
-  const onCardClick = useCallback(() => {
-    onClick(agentInfo.aiAgentID)
-  }, [onClick, agentInfo.aiAgentID])
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
 
-  const toEditAgent = useCallback(
-    (e: MouseEvent) => {
-      e.stopPropagation()
-      navigate(`/${teamIdentifier}/ai-agent/${agentInfo.aiAgentID}`)
-    },
-    [navigate, teamIdentifier, agentInfo.aiAgentID],
+  const canEdit = canManage(
+    teamInfo.myRole,
+    ATTRIBUTE_GROUP.AGENT,
+    ACTION_MANAGE.CREATE_AGENT,
   )
 
   return (
-    <div css={cardStyle} onClick={onCardClick}>
+    <div css={cardStyle} {...otherProps}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
-          <img css={agentIconStyle} src={agentInfo.icon} alt=""/>
+          <img css={agentIconStyle} src={agentInfo.icon} alt="" />
           <span css={nameStyle}>{agentInfo.name}</span>
         </div>
         <TeamAgentCardActionItem
@@ -81,8 +77,13 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
               className="dashboardAgentEditButton"
               variant="text"
               colorScheme="grayBlue"
-              leftIcon={<PenIcon size="16px"/>}
-              onClick={toEditAgent}
+              leftIcon={<PenIcon size="16px" />}
+              onClick={(e) => {
+                e.stopPropagation()
+                navigate(
+                  `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}`,
+                )
+              }}
             >
               {t("edit")}
             </Button>
@@ -92,8 +93,13 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
             className="dashboardAgentRunButton"
             variant="text"
             colorScheme="grayBlue"
-            leftIcon={<PlayFillIcon/>}
-            onClick={onCardClick}
+            leftIcon={<PlayFillIcon />}
+            onClick={(e) => {
+              e.stopPropagation()
+              navigate(
+                `/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`,
+              )
+            }}
           >
             {t("dashboard.common.run")}
           </Button>

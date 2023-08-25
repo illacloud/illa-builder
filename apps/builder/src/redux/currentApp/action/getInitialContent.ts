@@ -1,4 +1,4 @@
-import { Agent } from "@/redux/aiAgent/aiAgentState"
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import {
   ActionContent,
   ActionType,

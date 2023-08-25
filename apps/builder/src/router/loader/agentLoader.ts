@@ -1,5 +1,5 @@
 import { LoaderFunction, defer } from "react-router-dom"
-import { AgentInitial } from "@/redux/aiAgent/aiAgentState"
+import { AgentInitial } from "@/page/AI/AIAgent/interface"
 import { fetchAgentDetail } from "@/services/agent"
 
 const getAgentInitData = async (agentId?: string) => {

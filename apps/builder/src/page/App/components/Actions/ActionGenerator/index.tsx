@@ -1,3 +1,4 @@
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import {
   ILLA_MIXPANEL_EVENT_TYPE,
   MixpanelTrackContext,
@@ -11,7 +12,6 @@ import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGener
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { AiAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"

@@ -1,16 +1,10 @@
 import { CellContext, ColumnDef } from "@tanstack/react-table"
-import { FC, Suspense, useEffect, useMemo } from "react"
+import { FC, Suspense, useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue } from "react-router-dom"
+import { useSelector } from "react-redux"
 import { Empty, Space, Table } from "@illa-design/react"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ResourceTableData } from "@/page/Dashboard/DashboardResources/interface"
-import {
-  applyTableTextStyle,
-  hoverStyle,
-  resourceNameStyle,
-} from "@/page/Dashboard/DashboardResources/style"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { AppWriteResource } from "@/redux/resource/appWriteResource"
 import { MicrosoftSqlResource } from "@/redux/resource/microsoftSqlResource"
@@ -24,7 +18,6 @@ import { NeonResource } from "@/redux/resource/neonResource"
 import { OracleResource } from "@/redux/resource/oracleResource"
 import { RedisResource } from "@/redux/resource/redisResource"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   Resource,
   ResourceContent,
@@ -36,18 +29,9 @@ import {
 } from "@/redux/resource/snowflakeResource"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { fromNow } from "@/utils/dayjs"
+import { applyTableTextStyle, hoverStyle, resourceNameStyle } from "./style"
 
-export const ResourcesContentBody: FC = () => {
-  const { data: resourcesList } = useAsyncValue() as {
-    data: ResourceListState
-  }
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(resourceActions.updateResourceListReducer(resourcesList))
-  }, [dispatch, resourcesList])
-
+export const ResourcesContent: FC = () => {
   const resourcesListInRedux: ResourceListState = useSelector(getAllResources)
   const { t } = useTranslation()
 
@@ -183,7 +167,7 @@ export const ResourcesContentBody: FC = () => {
     <>
       {resourcesListInRedux?.length ? (
         <Table
-          _css={hoverStyle}
+          css={hoverStyle}
           pinedHeader
           striped
           hoverable

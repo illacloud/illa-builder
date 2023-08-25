@@ -1,7 +1,7 @@
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { FC } from "react"
 import { Await, redirect, useLoaderData } from "react-router-dom"
 import { AIAgent } from "@/page/AI/AIAgent/aiagent"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
 
 export const AIAgentDefer: FC = () => {
   const data = useLoaderData() as {

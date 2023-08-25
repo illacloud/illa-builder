@@ -1,3 +1,4 @@
+import { AI_AGENT_TYPE } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -8,15 +9,14 @@ import { WSMessageListener } from "@/api/ws/illaWS"
 import { Callback } from "@/api/ws/interface"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import {
-  UseAgentProps,
-  UseAgentReturn,
-} from "@/page/AI/components/ws/useAgentProps"
-import {
-  AI_AGENT_TYPE,
   ChatMessage,
   ChatSendRequestPayload,
   ChatWsAppendResponse,
-} from "@/redux/aiAgent/aiAgentState"
+} from "@/page/AI/components/PreviewChat/interface"
+import {
+  UseAgentProps,
+  UseAgentReturn,
+} from "@/page/AI/components/ws/useAgentProps"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import {
   getAIAgentAnonymousAddress,

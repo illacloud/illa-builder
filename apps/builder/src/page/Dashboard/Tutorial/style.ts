@@ -62,3 +62,8 @@ export const cardFooterStyle = css`
   line-height: 22px;
   color: ${getColor("techPink", "01")};
 `
+
+export const contentStyle = css`
+  margin-top: 40px;
+  padding: 0 15%;
+`

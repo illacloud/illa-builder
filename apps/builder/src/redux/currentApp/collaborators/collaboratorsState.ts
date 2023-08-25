@@ -1,4 +1,4 @@
-import { SenderType } from "@/redux/aiAgent/aiAgentState"
+import { SenderType } from "@/page/AI/components/PreviewChat/interface"
 
 export interface CollaboratorsInfo {
   id: string

@@ -1,12 +1,15 @@
-import { FC, useCallback, useState } from "react"
-import { FixedSizeList, ListChildComponentProps } from "react-window"
-import InfiniteLoader from "react-window-infinite-loader"
-import { Agent, MarketAiAgent } from "@/redux/aiAgent/aiAgentState"
+import {
+  Agent,
+  MarketAiAgent,
+} from "@illa-public/market-agent/MarketAgentCard/interface"
 import {
   MARKET_AGENT_SORTED_OPTIONS,
   fetchMarketAgentList,
-  forkAIAgentToTeam,
-} from "@/services/agent"
+} from "@illa-public/market-agent/service"
+import { FC, useCallback, useState } from "react"
+import { FixedSizeList, ListChildComponentProps } from "react-window"
+import InfiniteLoader from "react-window-infinite-loader"
+import { forkAIAgentToTeam } from "@/services/agent"
 import {
   AGENT_LIST_HEIGHT,
   MARKET_AGENT_ITEM_HEIGHT,

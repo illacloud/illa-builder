@@ -1,6 +1,12 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
 import { ShareAgentMobile, ShareAgentTab } from "@illa-public/invite-modal"
+import {
+  AI_AGENT_MODEL,
+  AI_AGENT_TYPE,
+  Agent,
+  MarketAiAgent,
+} from "@illa-public/market-agent/MarketAgentCard/interface"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -42,14 +48,8 @@ import { labelStyle, labelTextStyle } from "@/page/AI/AIAgent/style"
 import { buttonContainerStyle } from "@/page/AI/AIAgentRun/AIAgentRunPC/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
+import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interface"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
-import {
-  AI_AGENT_MODEL,
-  AI_AGENT_TYPE,
-  Agent,
-  ChatSendRequestPayload,
-  MarketAiAgent,
-} from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
 import { ChatContext } from "../../components/ChatContext"
@@ -177,7 +177,7 @@ export const AIAgentRunMobile: FC = () => {
           <>
             {shareDialogVisible && (
               <ShareAgentMobile
-                redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${
+                redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${
                   agent.aiAgentID
                 }/run`}
                 onClose={() => {
@@ -186,7 +186,7 @@ export const AIAgentRunMobile: FC = () => {
                 canInvite={canManage(
                   currentTeamInfo.myRole,
                   ATTRIBUTE_GROUP.AGENT,
-                  ACTION_MANAGE.FORK_AGENT,
+                  ACTION_MANAGE.CREATE_AGENT,
                 )}
                 defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
                 defaultInviteUserRole={USER_ROLE.VIEWER}
@@ -491,7 +491,7 @@ export const AIAgentRunMobile: FC = () => {
                     canManage(
                       currentTeamInfo.myRole,
                       ATTRIBUTE_GROUP.AGENT,
-                      ACTION_MANAGE.FORK_AGENT,
+                      ACTION_MANAGE.CREATE_AGENT,
                     ) && (
                       <div
                         css={shareContainerStyle}

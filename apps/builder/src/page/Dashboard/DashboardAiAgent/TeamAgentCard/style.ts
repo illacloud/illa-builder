@@ -1,9 +1,5 @@
-import { SerializedStyles, css } from "@emotion/react"
-import { MOBILE_MAX_WIDTH } from "@illa-public/utils"
+import { css } from "@emotion/react"
 import { getColor } from "@illa-design/react"
-
-
-export const team_agent_card_height = 196
 
 export const cardStyle = css`
   display: flex;
@@ -11,7 +7,7 @@ export const cardStyle = css`
   gap: 16px;
   padding: 24px;
   width: 100%;
-  height: ${team_agent_card_height}px;
+  height: 196px;
   border-radius: 8px;
   border: 1px solid ${getColor("grayBlue", "08")};
   background: ${getColor("white", "01")};
@@ -39,12 +35,6 @@ export const appActionButtonStyle = css`
   transition: all 0.2s ease-in-out;
 `
 
-export const applyMobileStyle = (style: SerializedStyles) => css`
-  @media screen and (max-width: ${MOBILE_MAX_WIDTH}px) {
-    ${style};
-  }
-`
-
 export const headerStyle = css`
   display: flex;
   justify-content: space-between;
@@ -64,11 +54,6 @@ export const agentIconStyle = css`
   width: 48px;
   height: 48px;
   border-radius: 8px;
-
-  ${applyMobileStyle(css`
-    width: 40px;
-    height: 40px;
-  `)}
 `
 
 export const nameStyle = css`
@@ -78,10 +63,6 @@ export const nameStyle = css`
   line-height: 22px;
   width: 240px;
   ${textEllipsisStyle};
-
-  ${applyMobileStyle(css`
-    font-size: 16px;
-  `)}
 `
 
 export const descriptionStyle = css`
@@ -95,11 +76,6 @@ export const descriptionStyle = css`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-
-  ${applyMobileStyle(css`
-    height: 36px;
-    line-height: 18px;
-  `)}
 `
 
 export const footerStyle = css`

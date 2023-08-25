@@ -1,11 +1,9 @@
-import { CSSProperties } from "react"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 
 export interface TeamAgentListComponentProps {
   data: Agent[]
   index: number
   isScrolling?: boolean
-  style: CSSProperties
 }
 
 export interface TeamAgentListProps {

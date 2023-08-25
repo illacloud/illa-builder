@@ -2,6 +2,11 @@ import { CodeEditor } from "@illa-public/code-editor"
 import { AvatarUpload } from "@illa-public/cropper"
 import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
+import {
+  AI_AGENT_MODEL,
+  AI_AGENT_TYPE,
+  Agent,
+} from "@illa-public/market-agent/MarketAgentCard/interface"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -42,18 +47,11 @@ import {
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as AIIcon } from "@/assets/agent/ai.svg"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
+import { getModelLimitToken } from "@/page/AI/AIAgent/interface"
 import { AIAgentBlock } from "@/page/AI/components/AIAgentBlock"
 import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
-import {
-  AI_AGENT_MODEL,
-  AI_AGENT_TYPE,
-  Agent,
-  ChatSendRequestPayload,
-  SenderType,
-  getModelLimitToken,
-} from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import {
   createAgent,
@@ -63,6 +61,10 @@ import {
   uploadAgentIcon,
 } from "@/services/agent"
 import { ChatContext } from "../components/ChatContext"
+import {
+  ChatSendRequestPayload,
+  SenderType,
+} from "../components/PreviewChat/interface"
 import {
   aiAgentContainerStyle,
   backTextStyle,
@@ -897,7 +899,7 @@ export const AIAgent: FC = () => {
                   <>
                     {(shareDialogVisible || contributedDialogVisible) && (
                       <ShareAgentPC
-                        redirectUrl={`${
+                        redirectURL={`${
                           import.meta.env.ILLA_BUILDER_URL
                         }/ai-agent/${idField.value}`}
                         onClose={() => {
@@ -907,7 +909,7 @@ export const AIAgent: FC = () => {
                         canInvite={canManage(
                           currentTeamInfo.myRole,
                           ATTRIBUTE_GROUP.AGENT,
-                          ACTION_MANAGE.FORK_AGENT,
+                          ACTION_MANAGE.CREATE_AGENT,
                         )}
                         defaultTab={
                           contributedDialogVisible

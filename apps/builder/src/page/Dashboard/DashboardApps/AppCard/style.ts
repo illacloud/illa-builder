@@ -92,8 +92,3 @@ export const footerStyle = css`
   align-items: center;
   gap: 24px;
 `
-
-export const appActionButtonStyle = css`
-  visibility: hidden;
-  transition: all 0.2s ease-in-out;
-`

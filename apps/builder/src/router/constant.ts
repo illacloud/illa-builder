@@ -2,7 +2,7 @@ export const cloudUrl = `${location.protocol}//${
   import.meta.env.ILLA_CLOUD_URL
 }`
 
-export const cloudRedirect = `${cloudUrl}?redirectUrl=${encodeURIComponent(
+export const cloudRedirect = `${cloudUrl}?redirectURL=${encodeURIComponent(
   location.origin + location.pathname,
 )}`
 

@@ -13,7 +13,7 @@ import {
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
-import { FC, MouseEvent, useCallback, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -29,19 +29,15 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
+import { TeamAgentCardActionItemProps } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCardActionItem/interface"
 import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
 import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
-export interface AppCardActionItemProps {
-  aiAgentID: string
-  aiAgentName: string
-  canEdit: boolean
-  publishedToMarketplace: boolean
-}
-
-export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
+export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
+  props,
+) => {
   const { aiAgentID, aiAgentName, canEdit, publishedToMarketplace } = props
 
   const currentUser = useSelector(getCurrentUser)
@@ -65,14 +61,6 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
     teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
-  const stopPropagation = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
-  }
-
-  const closeInviteModal = () => {
-    setShareVisible(false)
-  }
-
   const openInviteModal = useCallback(() => {
     if (isCloudVersion && !canUseBillingFeature) {
       upgradeModal({
@@ -80,7 +68,7 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
       })
       return
     }
-    setShareVisible(true)
+    setShareVisible(false)
   }, [canUseBillingFeature, upgradeModal])
 
   const handleDuplicateApp = () => {
@@ -170,99 +158,98 @@ export const TeamAgentCardActionItem: FC<AppCardActionItemProps> = (props) => {
 
   return (
     <>
-      <div onClick={stopPropagation}>
-        {canEdit ? (
-          <Dropdown
-            position="bottom-end"
-            trigger="click"
-            triggerProps={{ closeDelay: 0, openDelay: 0 }}
-            dropList={
-              <DropList w="184px">
-                <DropListItem
-                  key="duplicate"
-                  value="duplicate"
-                  title={
-                    <div>
-                      <CopyIcon mr="8px" />
-                      <span>{t("duplicate")}</span>
-                    </div>
-                  }
-                  onClick={handleDuplicateApp}
-                />
-                <DropListItem
-                  key="share"
-                  value="share"
-                  title={
-                    <div>
-                      <DependencyIcon mr="8px" />
-                      <span>{t("share")}</span>
-                    </div>
-                  }
-                  onClick={openInviteModal}
-                />
-                <DropListItem
-                  key="delete"
-                  value="delete"
-                  title={
-                    <div>
-                      <DeleteOutlineIcon mr="8px" />
-                      <span>{t("dashboard.common.delete")}</span>
-                    </div>
-                  }
-                  deleted
-                  onClick={handleDelete}
-                />
-              </DropList>
-            }
-          >
-            <Button
-              variant="text"
-              colorScheme="grayBlue"
-              leftIcon={<MoreIcon size="14px" />}
-            />
-          </Dropdown>
-        ) : publishedToMarketplace ? (
-          // for viewer
-          <Dropdown
-            position="bottom-end"
-            trigger="click"
-            triggerProps={{ closeDelay: 0, openDelay: 0 }}
-            dropList={
-              <DropList w="184px">
-                <DropListItem
-                  key="share"
-                  value="share"
-                  title={
-                    <div>
-                      <DependencyIcon mr="8px" />
-                      <span>{t("share")}</span>
-                    </div>
-                  }
-                  onClick={openInviteModal}
-                />
-              </DropList>
-            }
-          >
-            <Button
-              variant="text"
-              colorScheme="grayBlue"
-              leftIcon={<MoreIcon size="14px" />}
-            />
-          </Dropdown>
-        ) : null}
-      </div>
+      {canEdit ? (
+        <Dropdown
+          position="bottom-end"
+          trigger="click"
+          triggerProps={{ closeDelay: 0, openDelay: 0 }}
+          dropList={
+            <DropList w="184px">
+              <DropListItem
+                key="duplicate"
+                value="duplicate"
+                title={
+                  <div>
+                    <CopyIcon mr="8px" />
+                    <span>{t("duplicate")}</span>
+                  </div>
+                }
+                onClick={handleDuplicateApp}
+              />
+              <DropListItem
+                key="share"
+                value="share"
+                title={
+                  <div>
+                    <DependencyIcon mr="8px" />
+                    <span>{t("share")}</span>
+                  </div>
+                }
+                onClick={openInviteModal}
+              />
+              <DropListItem
+                key="delete"
+                value="delete"
+                title={
+                  <div>
+                    <DeleteOutlineIcon mr="8px" />
+                    <span>{t("dashboard.common.delete")}</span>
+                  </div>
+                }
+                deleted
+                onClick={handleDelete}
+              />
+            </DropList>
+          }
+        >
+          <Button
+            variant="text"
+            colorScheme="grayBlue"
+            leftIcon={<MoreIcon size="14px" />}
+          />
+        </Dropdown>
+      ) : publishedToMarketplace ? (
+        // for viewer
+        <Dropdown
+          position="bottom-end"
+          trigger="click"
+          triggerProps={{ closeDelay: 0, openDelay: 0 }}
+          dropList={
+            <DropList w="184px">
+              <DropListItem
+                key="share"
+                value="share"
+                title={
+                  <div>
+                    <DependencyIcon mr="8px" />
+                    <span>{t("share")}</span>
+                  </div>
+                }
+                onClick={openInviteModal}
+              />
+            </DropList>
+          }
+        >
+          <Button
+            variant="text"
+            colorScheme="grayBlue"
+            leftIcon={<MoreIcon size="14px" />}
+          />
+        </Dropdown>
+      ) : null}
+
       {shareVisible && (
         <ShareAgentPC
-          redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/${
+          redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier
           }/dashboard/ai-agent?list=team`}
           onClose={() => {
-            closeInviteModal()
+            setShareVisible(false)
           }}
           canInvite={canManage(
             teamInfo.myRole,
             ATTRIBUTE_GROUP.AGENT,
-            ACTION_MANAGE.FORK_AGENT,
+            ACTION_MANAGE.CREATE_AGENT,
           )}
           defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
           defaultInviteUserRole={USER_ROLE.VIEWER}

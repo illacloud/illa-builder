@@ -9,14 +9,7 @@ import {
   canManage,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
-import {
-  FC,
-  KeyboardEvent,
-  ReactNode,
-  useCallback,
-  useContext,
-  useMemo,
-} from "react"
+import { FC, ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -24,8 +17,7 @@ import {
   Divider,
   DownIcon,
   Dropdown,
-  Input,
-  SearchIcon,
+  Search,
   TabPane,
   Tabs,
   globalColor,
@@ -34,7 +26,6 @@ import {
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { Avatar } from "@/page/App/components/Avatar"
-import { AiAgentContext } from "@/page/Dashboard/DashboardAiAgent/context"
 import { fetchLogout } from "@/services/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
 import {
@@ -114,7 +105,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
   let location = useLocation()
   let pathList = location.pathname.split("/")
 
-  const { handleSearchAgent } = useContext(AiAgentContext)
+  const currentActiveKey = pathList[pathList.length - 1]
 
   const canEditApp = canManage(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
@@ -160,17 +151,6 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
     },
   ]
 
-  const isAgentTab = useMemo(() => {
-    return pathList[pathList.length - 1] === "ai-agent"
-  }, [pathList])
-
-  const onSearch = useCallback(
-    (e: KeyboardEvent<HTMLInputElement>) => {
-      handleSearchAgent(e.currentTarget.value)
-    },
-    [handleSearchAgent],
-  )
-
   return (
     <div css={tabsContainer}>
       <Tabs
@@ -190,16 +170,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
         }
         suffix={
           <div css={navBarAvatarContainerStyle}>
-            {isCloudVersion ? (
-              isAgentTab && (
-                <Input
-                  w="240px"
-                  onPressEnter={onSearch}
-                  prefix={<SearchIcon />}
-                  colorScheme="techPurple"
-                />
-              )
-            ) : (
+            {!isCloudVersion && (
               <Dropdown
                 position="bottom-end"
                 trigger="click"
@@ -220,9 +191,15 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
                 </div>
               </Dropdown>
             )}
+            {currentActiveKey === "apps" && (
+              <Search w="240px" colorScheme="techPurple" />
+            )}
+            {currentActiveKey === "ai-agent" && (
+              <Search w="240px" colorScheme="techPurple" />
+            )}
           </div>
         }
-        activeKey={pathList[pathList.length - 1]}
+        activeKey={currentActiveKey}
         css={containerStyle}
         withoutContent
         colorScheme="grayBlue"

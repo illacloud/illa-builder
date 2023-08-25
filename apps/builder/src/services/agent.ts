@@ -1,12 +1,9 @@
 import { agentRequest, marketplaceRequest } from "@illa-public/illa-net"
-import { v4 } from "uuid"
-import { MARKET_PAGE_SIZE } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector/constants"
 import {
   Agent,
   AgentRaw,
-  MarketAiAgent,
-  MarketplaceInfo,
-} from "@/redux/aiAgent/aiAgentState"
+} from "@illa-public/market-agent/MarketAgentCard/interface"
+import { v4 } from "uuid"
 import { UploadResponse } from "@/services/users"
 import { base642Blob, getFileExtensionFromBase64 } from "@/utils/file"
 import { upload } from "@/utils/file/upload"
@@ -18,17 +15,10 @@ export interface TeamAgentListData {
   totalPages: number
 }
 
-export enum SortOptions {
-  ID = "id",
-  CREATED_AT = "createdAt",
-  UPDATED_AT = "updatedAt",
-}
-
 export const fetchTeamAgent = (signal?: AbortSignal) => {
-  const sortBy = SortOptions.UPDATED_AT
   return agentRequest<TeamAgentListData>(
     {
-      url: `/aiAgent/list/sortBy/${sortBy}`,
+      url: `/aiAgent/list/sortBy/updatedAt`,
       method: "GET",
       signal,
     },
@@ -43,10 +33,9 @@ export const fetchTeamAgentByKeywords = (
   keywords: string,
   signal?: AbortSignal,
 ) => {
-  const sortBy = SortOptions.UPDATED_AT
   return agentRequest<TeamAgentListData>(
     {
-      url: `/aiAgent/list/sortBy/${sortBy}/like/keywords/${keywords}`,
+      url: `/aiAgent/list/sortBy/updatedAt/like/keywords/${keywords}`,
       method: "GET",
       signal,
     },
@@ -80,18 +69,6 @@ export const fetchTeamAgentListByPage = (
       teamID: getCurrentTeamID(),
     },
   )
-}
-
-export interface AgentProduct {
-  aiAgent: Agent
-  marketplace: MarketplaceInfo
-}
-
-export interface MarketAgentListData {
-  products: AgentProduct[]
-  total: number
-  pageSize: number
-  pageIndex: 1
 }
 
 export interface ForkAgentResponse {
@@ -276,31 +253,4 @@ export const uploadAgentIcon = async (base64: string) => {
   )
   const file = await base642Blob(base64)
   return await upload(address.data.uploadAddress, file)
-}
-
-export enum MARKET_AGENT_SORTED_OPTIONS {
-  POPULAR = "popular",
-  LATEST = "latest",
-  STARRED = "starred",
-}
-
-export const fetchMarketAgentList = (
-  page: number = 1,
-  sortedBy: MARKET_AGENT_SORTED_OPTIONS,
-  search: string = "",
-  pageSize: number = MARKET_PAGE_SIZE,
-  signal?: AbortSignal,
-) => {
-  return marketplaceRequest<MarketAgentListData>({
-    url: `/aiAgents?page=${page}&limit=${pageSize}&sortedBy=${sortedBy}&search=${search}`,
-    method: "GET",
-    signal,
-  })
-}
-
-export const getAIAgentMarketplaceInfo = (aiAgentID: string) => {
-  return marketplaceRequest<MarketAiAgent>({
-    url: `/aiAgents/${aiAgentID}`,
-    method: "GET",
-  })
 }

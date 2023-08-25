@@ -1,12 +1,12 @@
-import {Avatar} from "@illa-public/avatar"
-import {InviteMemberPC} from "@illa-public/invite-modal"
+import { InviteMemberPC } from "@illa-public/invite-modal"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
-import {useUpgradeModal} from "@illa-public/upgrade-modal"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
+  currentUserActions,
   getCurrentTeamInfo,
   getCurrentUser,
   getIsTutorialViewed,
@@ -21,51 +21,41 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import {isCloudVersion} from "@illa-public/utils"
-import {isBoolean} from "lodash"
-import {FC, Suspense, useCallback, useEffect, useState} from "react"
-import {useTranslation} from "react-i18next"
-import {useDispatch, useSelector} from "react-redux"
+import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
+import { isBoolean } from "lodash"
+import { FC, Suspense, useCallback, useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
 import {
   Await,
   useBeforeUnload,
   useLoaderData,
   useNavigate,
-  useParams,
 } from "react-router-dom"
-import {Button, PlusIcon, useMessage} from "@illa-design/react"
-import {BASIC_APP_CONFIG} from "@/config/newAppConfig"
-import {openGuideModal} from "@/page/Template/gideModeModal"
-import {dashboardAppActions} from "@/redux/dashboard/apps/dashboardAppSlice"
-import {DashboardApp} from "@/redux/dashboard/apps/dashboardAppState"
-import {fetchCreateApp} from "@/services/apps"
-import { useCopyToClipboard } from "@illa-public/utils"
+import { useMessage } from "@illa-design/react"
+import { FullPageLoading } from "@/components/FullPageLoading"
+import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
+import { DashboardContentHeader } from "@/page/Dashboard/components/DashboardContentHeader"
+import { openGuideModal } from "@/page/Template/gideModeModal"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { fetchCreateApp } from "@/services/apps"
 import {
   track,
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
-import {DashboardErrorElement} from "../components/ErrorElement"
-import {DashBoardLoading} from "../components/Loading"
-import {AppsContentBody} from "./contentBody"
-import {
-  appsContainerStyle,
-  listTitleContainerStyle,
-  listTitleStyle,
-  teamAvatarStyle,
-  teamInfoContainerStyle,
-} from "./style"
-
+import { DashboardErrorElement } from "../components/ErrorElement"
+import { AppsContent } from "./AppContent"
+import { appsContainerStyle } from "./style"
 
 export const DashboardApps: FC = () => {
-  const {t} = useTranslation()
-  const {teamIdentifier} = useParams()
+  const { t } = useTranslation()
   const message = useMessage()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {appList} = useLoaderData() as { appList: DashboardApp[] }
+  const { teamAppList } = useLoaderData() as { teamAppList: DashboardApp[] }
 
-  const teamInfo = useSelector(getCurrentTeamInfo)!!
   const isTutorialViewed = useSelector(getIsTutorialViewed)
   const upgradeModal = useUpgradeModal()
   const currentUserInfo = useSelector(getCurrentUser)
@@ -73,79 +63,62 @@ export const DashboardApps: FC = () => {
   const [loading, setLoading] = useState(false)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
-  const currentUserRole = teamInfo?.myRole ?? USER_ROLE.VIEWER
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
   const copyToClipboard = useCopyToClipboard()
 
-  const canEditApp = canManage(
-    currentUserRole,
-    ATTRIBUTE_GROUP.APP,
-    ACTION_MANAGE.EDIT_APP,
-  )
-
   const canCreateApp = canManage(
-    currentUserRole,
+    teamInfo.myRole,
     ATTRIBUTE_GROUP.APP,
     ACTION_MANAGE.CREATE_APP,
   )
 
   const showInvite = canManageInvite(
-    currentUserRole,
-    teamInfo?.permission?.allowEditorManageTeamMember,
-    teamInfo?.permission?.allowViewerManageTeamMember,
+    teamInfo.myRole,
+    teamInfo.permission.allowEditorManageTeamMember,
+    teamInfo.permission.allowViewerManageTeamMember,
   )
 
   const canUseBillingFeature = canUseUpgradeFeature(
-    teamInfo?.myRole,
-    teamInfo?.totalTeamLicense?.teamLicensePurchased,
-    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+    teamInfo.myRole,
+    teamInfo.totalTeamLicense?.teamLicensePurchased,
+    teamInfo.totalTeamLicense?.teamLicenseAllPaid,
   )
 
-  const handleCreateApp = useCallback(() => {
+  const canEditApp = canManage(
+    teamInfo.myRole,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.EDIT_APP,
+  )
+
+  const handleCreateApp = useCallback(async () => {
+    setLoading(true)
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
       element: "create_new_app",
     })
-    if (loading) return
-    setLoading(true)
-    fetchCreateApp({
-      appName: "Untitled app",
-      initScheme: BASIC_APP_CONFIG,
-    })
-      .then(
-        (response) => {
-          dispatch(
-            dashboardAppActions.addDashboardAppReducer({
-              app: response.data,
-            }),
-          )
-          navigate(`/${teamIdentifier}/app/${response.data.appId}`)
-        },
-        () => {
-          message.error({content: t("create_fail")})
-        },
+    try {
+      const resp = await fetchCreateApp({
+        appName: "Untitled app",
+        initScheme: BASIC_APP_CONFIG,
+      })
+      dispatch(
+        dashboardAppActions.addDashboardAppReducer({
+          app: resp.data,
+        }),
       )
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [loading, teamIdentifier, dispatch, navigate, message, t])
-
-  const openInviteModal = useCallback(() => {
-    if (isCloudVersion && !canUseBillingFeature) {
-      upgradeModal({
-        modalType: "upgrade",
-      })
-      return
+      navigate(`/${teamInfo.identifier}/app/${resp.data.appId}`)
+    } catch (e) {
+      message.error({ content: t("create_fail") })
+    } finally {
+      setLoading(false)
     }
-    setInviteModalVisible(true)
-  }, [canUseBillingFeature, upgradeModal])
+  }, [dispatch, navigate, teamInfo.identifier, message, t])
 
-  if (
-    isBoolean(isTutorialViewed) &&
-    !isTutorialViewed &&
-    teamIdentifier &&
-    canEditApp
-  ) {
-    openGuideModal(teamIdentifier)
-  }
+  useEffect(() => {
+    if (!isBoolean(isTutorialViewed) && canEditApp) {
+      openGuideModal(teamInfo.identifier)
+      dispatch(currentUserActions.updateUserIsTutorialViewedReducer(true))
+    }
+  }, [dispatch, canEditApp, isTutorialViewed, teamInfo.identifier])
 
   useEffect(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.VISIT, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP)
@@ -161,60 +134,46 @@ export const DashboardApps: FC = () => {
 
   useEffect(() => {
     canCreateApp &&
-    track(
-      ILLA_MIXPANEL_EVENT_TYPE.SHOW,
-      ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-      {element: "create_new_app"},
-    )
+      track(
+        ILLA_MIXPANEL_EVENT_TYPE.SHOW,
+        ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+        { element: "create_new_app" },
+      )
   }, [canCreateApp])
 
   return (
     <div css={appsContainerStyle}>
-      <div css={listTitleContainerStyle}>
-        <div css={teamInfoContainerStyle}>
-          <Avatar
-            css={teamAvatarStyle}
-            avatarUrl={teamInfo?.icon}
-            name={teamInfo?.name}
-            id={teamInfo?.id}
-          />
-          <span css={listTitleStyle}>{teamInfo?.name}</span>
-        </div>
-        <div>
-          {showInvite ? (
-            <Button w="200px" colorScheme="grayBlue" onClick={openInviteModal}>
-              {t("user_management.page.invite")}
-            </Button>
-          ) : null}
-          {canCreateApp ? (
-            <Button
-              ml="4px"
-              w="200px"
-              colorScheme="techPurple"
-              leftIcon={<PlusIcon size="10px"/>}
-              loading={loading}
-              onClick={handleCreateApp}
-            >
-              {t("create_new_app")}
-            </Button>
-          ) : null}
-        </div>
-      </div>
-      <Suspense fallback={<DashBoardLoading/>}>
-        <Await resolve={appList} errorElement={<DashboardErrorElement/>}>
-          <AppsContentBody
-            canEditApp={canEditApp}
-            onCreatedApp={handleCreateApp}
-            loading={loading}
-          />
+      <DashboardContentHeader
+        icon={teamInfo.icon}
+        name={teamInfo.name}
+        onCreate={async () => {
+          await handleCreateApp()
+        }}
+        onInvite={() => {
+          if (isCloudVersion && !canUseBillingFeature) {
+            upgradeModal({
+              modalType: "upgrade",
+            })
+            return
+          }
+          setInviteModalVisible(true)
+        }}
+        canCreate={canCreateApp}
+        isCreateLoading={loading}
+      />
+      <Suspense fallback={<FullPageLoading />}>
+        <Await resolve={teamAppList} errorElement={<DashboardErrorElement />}>
+          <AppsContent onCreatedApp={handleCreateApp} loading={loading} />
         </Await>
       </Suspense>
       {inviteModalVisible && (
         <InviteMemberPC
-          redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/${teamInfo?.identifier}/dashboard/apps`}
+          redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+            teamInfo?.identifier
+          }/dashboard/apps`}
           onClose={() => setInviteModalVisible(false)}
           canInvite={showInvite}
-          currentUserRole={currentUserRole}
+          currentUserRole={teamInfo.myRole}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           defaultInviteUserRole={USER_ROLE.VIEWER}
           defaultBalance={teamInfo.currentTeamLicense.balance}

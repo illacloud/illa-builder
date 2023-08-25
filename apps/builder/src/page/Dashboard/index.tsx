@@ -6,7 +6,6 @@ import {
   ILLA_WEBSOCKET_CONTEXT,
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
-import { AiAgentProvider } from "@/page/Dashboard/DashboardAiAgent/context"
 import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
 import { configActions } from "@/redux/config/configSlice"
 import { fetchDashboardWsURL } from "@/services/public"
@@ -36,10 +35,8 @@ export const IllaApp: FC = () => {
 
   return (
     <div css={containerStyle}>
-      <AiAgentProvider>
-        <DashboardTitleBar />
-        <Outlet />
-      </AiAgentProvider>
+      <DashboardTitleBar />
+      <Outlet />
     </div>
   )
 }

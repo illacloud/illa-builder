@@ -3,12 +3,18 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
 import { FC, MouseEvent, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Tag } from "@illa-design/react"
-import { ActionButtonGroup } from "@/page/Dashboard/DashboardApps/AppCard/ActionButtonGroup"
 import {
   appNameStyle,
   cardStyle,
@@ -25,17 +31,25 @@ import AppConfigSelect from "@/page/Dashboard/DashboardApps/AppConfigSelect"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
+import { ActionButtonGroup } from "../ActionButtonGroup"
 
 interface AppCardProps {
   appInfo: DashboardApp
-  canEditApp: boolean
 }
 
 export const AppCard: FC<AppCardProps> = (props) => {
   const { t } = useTranslation()
-  const { appInfo, canEditApp, ...rest } = props
+  const { appInfo, ...rest } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
+
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
+
+  const canEditApp = canManage(
+    teamInfo.myRole,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.EDIT_APP,
+  )
 
   const stopPropagation = (e: MouseEvent) => {
     e.stopPropagation()

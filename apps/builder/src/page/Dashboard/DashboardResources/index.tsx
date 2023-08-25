@@ -14,12 +14,9 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Await, useBeforeUnload, useLoaderData } from "react-router-dom"
 import { Button } from "@illa-design/react"
+import { FullPageLoading } from "@/components/FullPageLoading"
 import { useGoogleAuthStatus } from "@/hooks/useGoogleAuthStatus"
-import {
-  appsContainerStyle,
-  listTitleContainerStyle,
-  listTitleStyle,
-} from "@/page/Dashboard/DashboardApps/style"
+import { ResourcesContent } from "@/page/Dashboard/DashboardResources/ResourceContent"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 import { ResourceListState } from "@/redux/resource/resourceState"
 import {
@@ -29,8 +26,11 @@ import {
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
 import { DashboardErrorElement } from "../components/ErrorElement"
-import { DashBoardLoading } from "../components/Loading"
-import { ResourcesContentBody } from "./contentBody"
+import {
+  appsContainerStyle,
+  listTitleContainerStyle,
+  listTitleStyle,
+} from "./style"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
@@ -88,12 +88,12 @@ export const DashboardResources: FC = () => {
             {t("dashboard.resource.create_resource")}
           </Button>
         </div>
-        <Suspense fallback={<DashBoardLoading />}>
+        <Suspense fallback={<FullPageLoading />}>
           <Await
             resolve={resourceList}
             errorElement={<DashboardErrorElement />}
           >
-            <ResourcesContentBody />
+            <ResourcesContent />
           </Await>
         </Suspense>
       </div>

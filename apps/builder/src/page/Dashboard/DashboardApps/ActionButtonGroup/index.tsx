@@ -6,14 +6,10 @@ import { FC, MouseEvent, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Space } from "@illa-design/react"
-import { appActionButtonStyle } from "@/page/Dashboard/DashboardApps/AppCard/style"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { track } from "@/utils/mixpanelHelper"
+import { ActionButtonGroupProps } from "./interface"
+import { appActionButtonStyle } from "./style"
 
-interface ActionButtonGroupProps {
-  appInfo: DashboardApp
-  canEditApp: boolean
-}
 export const ActionButtonGroup: FC<ActionButtonGroupProps> = (props) => {
   const { t } = useTranslation()
   const { appInfo, canEditApp } = props

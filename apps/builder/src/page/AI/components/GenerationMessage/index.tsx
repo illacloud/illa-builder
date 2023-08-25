@@ -11,8 +11,8 @@ import {
   nickNameStyle,
 } from "@/page/AI/components/GenerationMessage/style"
 import MarkdownMessage from "@/page/AI/components/MarkdownMessage"
+import { SenderType } from "@/page/AI/components/PreviewChat/interface"
 import { Avatar } from "@/page/App/components/Avatar"
-import { SenderType } from "@/redux/aiAgent/aiAgentState"
 
 export const GenerationMessage: FC<GenerationMessageProps> = (props) => {
   const { message } = props

@@ -162,9 +162,9 @@ importers:
       '@illa-public/layout-auto-change':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/LayoutAutoChange
-      '@illa-public/market-agent-card':
+      '@illa-public/market-agent':
         specifier: workspace:*
-        version: link:../../packages/illa-public-component/MarketAgentCard
+        version: link:../../packages/illa-public-component/MarketAgent
       '@illa-public/member-page':
         specifier: workspace:*
         version: link:../../packages/illa-public-component/MemberPage
@@ -2785,7 +2785,7 @@ importers:
         specifier: workspace:*
         version: link:../../tsconfig
 
-  packages/illa-public-component/MarketAgentCard:
+  packages/illa-public-component/MarketAgent:
     dependencies:
       '@emotion/react':
         specifier: '*'
@@ -2796,6 +2796,12 @@ importers:
       '@illa-public/avatar':
         specifier: workspace:*
         version: link:../Avatar
+      '@illa-public/illa-net':
+        specifier: workspace:*
+        version: link:../ILLANet
+      '@illa-public/record-editor':
+        specifier: workspace:*
+        version: link:../RecordEditor
       '@illa-public/utils':
         specifier: workspace:*
         version: link:../utils
@@ -5963,6 +5969,8 @@ packages:
       react: '>=16.8.0'
     peerDependenciesMeta:
       '@types/react':
+        optional: true
+      react:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.6

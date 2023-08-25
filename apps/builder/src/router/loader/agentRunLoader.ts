@@ -1,5 +1,6 @@
+import { getAIAgentMarketplaceInfo } from "@illa-public/market-agent/service"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
-import { fetchAgentDetail, getAIAgentMarketplaceInfo } from "@/services/agent"
+import { fetchAgentDetail } from "@/services/agent"
 
 const fetchAgentFullData = async (agentId: string) => {
   const agent = await fetchAgentDetail(agentId)

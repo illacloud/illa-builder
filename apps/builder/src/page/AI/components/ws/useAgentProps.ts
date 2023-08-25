@@ -1,10 +1,10 @@
+import { AI_AGENT_TYPE } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { TextSignal } from "@/api/ws/textSignal"
-import { AgentMessageType } from "@/page/AI/components/ws/useAgentConnect"
 import {
-  AI_AGENT_TYPE,
   ChatMessage,
   ChatSendRequestPayload,
-} from "@/redux/aiAgent/aiAgentState"
+} from "@/page/AI/components/PreviewChat/interface"
+import { AgentMessageType } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 
 export interface UseAgentProps {

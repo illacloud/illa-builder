@@ -8,7 +8,7 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
+import { useCopyToClipboard } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -45,21 +45,24 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
 
   return (
     <>
-      {isCloudVersion && (
-        <Button
-          colorScheme="grayBlue"
-          onClick={() => {}}
-          leftIcon={<ContributeIcon c={getColor("grayBlue", "02")} />}
-        >
-          {t("contribute")}
-        </Button>
-      )}
+      <Button
+        colorScheme="grayBlue"
+        onClick={() => {
+          setShareModalVisible(true)
+        }}
+        leftIcon={<ContributeIcon c={getColor("grayBlue", "02")} />}
+      >
+        {t("contribute")}
+      </Button>
       {shareModalVisible && (
         <ShareAppPC
           defaultTab={"public"}
-          redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/${
+          editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier
-          }/${appInfo.appId}`}
+          }/app/${appInfo.appId}`}
+          useRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+            teamInfo.identifier
+          }/deploy/app/${appInfo.appId}`}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           onInviteLinkStateChange={(enableInviteLink) => {
             dispatch(

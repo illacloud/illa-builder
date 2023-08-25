@@ -1,11 +1,10 @@
 import { authCloudRequest } from "@illa-public/illa-net"
-import { CurrentUser, currentUserActions } from "@illa-public/user-data"
+import { CurrentUser } from "@illa-public/user-data"
 import { isCloudVersion } from "@illa-public/utils"
 import { v4 } from "uuid"
 import { fetchSendEmail } from "@/services/auth"
 import { upload } from "@/utils/file/upload"
 import { ILLABuilderStorage } from "@/utils/storage"
-import store from "../store"
 
 export const fetchUserInfo = () => {
   return authCloudRequest<CurrentUser>({
@@ -82,5 +81,4 @@ export const updateTutorialViewed = async (isTutorialViewed: boolean) => {
       isTutorialViewed,
     },
   })
-  store.dispatch(currentUserActions.updateUserIsTutorialViewedReducer(true))
 }

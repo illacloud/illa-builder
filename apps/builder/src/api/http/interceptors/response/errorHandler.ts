@@ -26,7 +26,7 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
       removeAuthToken()
       if (isCloudVersion) {
         // navigate to illa cloud, avoid redirect loop
-        if (!href.includes("redirectUrl")) {
+        if (!href.includes("redirectURL")) {
           window.location.href = cloudRedirect
         }
       } else {

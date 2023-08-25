@@ -2,6 +2,12 @@ import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
 import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAgentPC, ShareAgentTab } from "@illa-public/invite-modal"
+import {
+  AI_AGENT_MODEL,
+  AI_AGENT_TYPE,
+  Agent,
+  MarketAiAgent,
+} from "@illa-public/market-agent/MarketAgentCard/interface"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
@@ -45,14 +51,8 @@ import {
 } from "@/page/AI/AIAgent/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
+import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interface"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
-import {
-  AI_AGENT_MODEL,
-  AI_AGENT_TYPE,
-  Agent,
-  ChatSendRequestPayload,
-  MarketAiAgent,
-} from "@/redux/aiAgent/aiAgentState"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { ILLARoute } from "@/router"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
@@ -133,7 +133,7 @@ export const AIAgentRunPC: FC = () => {
         <>
           {shareDialogVisible && (
             <ShareAgentPC
-              redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${
+              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${
                 agent.aiAgentID
               }/run`}
               onClose={() => {
@@ -142,7 +142,7 @@ export const AIAgentRunPC: FC = () => {
               canInvite={canManage(
                 currentTeamInfo.myRole,
                 ATTRIBUTE_GROUP.AGENT,
-                ACTION_MANAGE.FORK_AGENT,
+                ACTION_MANAGE.CREATE_AGENT,
               )}
               defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
               defaultInviteUserRole={USER_ROLE.VIEWER}
@@ -297,7 +297,7 @@ export const AIAgentRunPC: FC = () => {
       {canManage(
         currentTeamInfo.myRole,
         ATTRIBUTE_GROUP.AGENT,
-        ACTION_MANAGE.FORK_AGENT,
+        ACTION_MANAGE.CREATE_AGENT,
       ) && (
         <Button
           ml="8px"
@@ -335,7 +335,7 @@ export const AIAgentRunPC: FC = () => {
       {canManage(
         currentTeamInfo.myRole,
         ATTRIBUTE_GROUP.AGENT,
-        ACTION_MANAGE.FORK_AGENT,
+        ACTION_MANAGE.CREATE_AGENT,
       ) && (
         <div css={agentMenuContainerStyle}>
           <Button

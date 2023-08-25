@@ -66,9 +66,12 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
       </Button>
       {shareModalVisible && (
         <ShareAppPC
-          redirectUrl={`${import.meta.env.ILLA_BUILDER_URL}/${
+          editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier
-          }/${appInfo.appId}`}
+          }/app/${appInfo.appId}`}
+          useRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+            teamInfo.identifier
+          }/deploy/app/${appInfo.appId}`}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           onInviteLinkStateChange={(enableInviteLink) => {
             dispatch(

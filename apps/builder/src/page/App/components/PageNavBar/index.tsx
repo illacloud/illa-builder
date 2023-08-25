@@ -36,6 +36,7 @@ import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
+import { ContributeButton } from "@/page/App/components/PageNavBar/ContributeButton"
 import { DeployButtonGroup } from "@/page/App/components/PageNavBar/DeloyButtonGroup"
 import { ShareAppButton } from "@/page/App/components/PageNavBar/ShareAppButton"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
@@ -473,6 +474,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Badge>
               {PreviewButton}
+              {!isGuideMode && isCloudVersion && (
+                <ContributeButton appInfo={appInfo} />
+              )}
               <DeployButtonGroup
                 loading={deployLoading}
                 isPublic={appInfo?.config?.public}

@@ -1,5 +1,5 @@
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { CSSProperties } from "react"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
 
 export interface TeamListItemProps {
   item: Agent

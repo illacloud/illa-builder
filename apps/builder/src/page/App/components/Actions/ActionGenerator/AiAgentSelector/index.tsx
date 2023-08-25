@@ -1,3 +1,5 @@
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent/service"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
@@ -8,8 +10,6 @@ import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Button, PreviousIcon, RadioGroup, Search } from "@illa-design/react"
 import i18n from "@/i18n/config"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
-import { MARKET_AGENT_SORTED_OPTIONS } from "@/services/agent"
 import { track } from "@/utils/mixpanelHelper"
 import { MarketAgentList } from "./components/MarketList"
 import { TeamAgentList } from "./components/TeamAgentList"

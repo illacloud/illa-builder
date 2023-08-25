@@ -1,3 +1,4 @@
+import { AI_AGENT_TYPE } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
 import { canManage } from "@illa-public/user-role-utils"
 import {
@@ -15,7 +16,11 @@ import { ReactComponent as AgentBlockInput } from "@/assets/agent/agent-block-in
 import { ReactComponent as StopIcon } from "@/assets/agent/stop.svg"
 import AIAgentMessage from "@/page/AI/components/AIAgentMessage"
 import { GenerationMessage } from "@/page/AI/components/GenerationMessage"
-import { PreviewChatProps } from "@/page/AI/components/PreviewChat/interface"
+import {
+  ChatMessage,
+  PreviewChatProps,
+  SenderType,
+} from "@/page/AI/components/PreviewChat/interface"
 import {
   blockInputContainerStyle,
   blockInputTextStyle,
@@ -32,11 +37,6 @@ import {
   stopIconStyle,
 } from "@/page/AI/components/PreviewChat/style"
 import UserMessage from "@/page/AI/components/UserMessage"
-import {
-  AI_AGENT_TYPE,
-  ChatMessage,
-  SenderType,
-} from "@/redux/aiAgent/aiAgentState"
 import { getAgentWSStatus } from "@/redux/config/configSelector"
 
 export const PreviewChat: FC<PreviewChatProps> = (props) => {
@@ -114,7 +114,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
         canManage(
           currentTeamInfo.myRole,
           ATTRIBUTE_GROUP.AGENT,
-          ACTION_MANAGE.FORK_AGENT,
+          ACTION_MANAGE.CREATE_AGENT,
         ) && (
           <div css={previewTitleContainerStyle}>
             <div css={previewTitleTextStyle}>

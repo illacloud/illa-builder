@@ -1,7 +1,7 @@
+import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { FC, useCallback, useState } from "react"
 import { FixedSizeList, ListChildComponentProps } from "react-window"
 import InfiniteLoader from "react-window-infinite-loader"
-import { Agent } from "@/redux/aiAgent/aiAgentState"
 import { fetchTeamAgentListByPage } from "@/services/agent"
 import { AGENT_LIST_HEIGHT, TEAM_AGENT_ITEM_HEIGHT } from "../../constants"
 import { TeamListItem } from "../TeamListItem"
