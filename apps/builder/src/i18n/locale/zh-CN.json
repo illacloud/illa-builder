@@ -62,7 +62,7 @@
     "sort-type": {
       "popular": "最受欢迎",
       "recent": "最新",
-      "star": "Starred"
+      "star": "已收藏"
     },
     "search": "Search",
     "no-result": "没有结果，请刷新或更新您的搜索词。",
