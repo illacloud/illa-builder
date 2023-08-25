@@ -2,12 +2,8 @@ import { SerializedStyles, css } from "@emotion/react"
 import { getColor, globalColor, illaPrefix, zIndex } from "@illa-design/react"
 
 export const modalWrapperStyle = css`
-  background-color: ${getColor("white", "01")};
-  border: 1px solid ${getColor("grayBlue", "08")};
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   padding: 24px 24px 0;
-  width: 528px;
+  width: 100%;
 `
 
 export const modalWithMaskWrapperStyle = css`

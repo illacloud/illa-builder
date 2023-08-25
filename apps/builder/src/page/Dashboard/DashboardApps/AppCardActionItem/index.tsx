@@ -36,7 +36,6 @@ import {
 import { AppCardActionItemProps } from "@/page/Dashboard/DashboardApps/AppCardActionItem/interface"
 import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/utils"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
-import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
@@ -163,7 +162,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       okButtonProps: {
         colorScheme: "red",
       },
-      closable: false,
+      maskClosable: false,
       onOk: () => {
         track(
           ILLA_MIXPANEL_EVENT_TYPE.CLICK,
@@ -248,20 +247,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     },
     [appId, isDeploy],
   )
-
-  const onAppSettingOk = useCallback(() => {
-    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
-      element: "app_setting_modal_save",
-      parameter5: appId,
-    })
-  }, [appId])
-
-  const onAppSettingCancel = useCallback(() => {
-    track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
-      element: "app_setting_modal_close",
-      parameter5: appId,
-    })
-  }, [appId])
 
   useEffect(() => {
     if (canEditApp || (isDeploy && showInvite)) {
@@ -453,10 +438,20 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             ownerTeamID={teamInfo.id}
             ownerTeamIdentify={teamInfo.identifier}
             onAppPublic={(isPublic) => {
-              dispatch(appInfoActions.updateAppPublicReducer(isPublic))
+              dispatch(
+                dashboardAppActions.updateDashboardAppPublicReducer({
+                  appId: appId,
+                  isPublic: isPublic,
+                }),
+              )
             }}
             onAppContribute={(isContributed) => {
-              dispatch(appInfoActions.updateAppContributeReducer(isContributed))
+              dispatch(
+                dashboardAppActions.updateDashboardAppContributeReducer({
+                  appId: appId,
+                  publishedToMarketplace: isContributed,
+                }),
+              )
             }}
             onCopyPublicLink={(link) => {
               copyToClipboard(
@@ -503,8 +498,26 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         onVisibleChange={(visible) => {
           setAppSettingVisible(visible)
         }}
-        onOk={onAppSettingOk}
-        onCancel={onAppSettingCancel}
+        onSaveEvent={() => {
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            {
+              element: "app_setting_modal_save",
+              parameter5: appId,
+            },
+          )
+        }}
+        onCloseEvent={() => {
+          track(
+            ILLA_MIXPANEL_EVENT_TYPE.CLICK,
+            ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
+            {
+              element: "app_setting_modal_close",
+              parameter5: appId,
+            },
+          )
+        }}
       />
     </div>
   )

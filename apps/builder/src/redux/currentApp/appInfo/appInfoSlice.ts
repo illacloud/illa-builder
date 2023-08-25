@@ -5,7 +5,6 @@ import {
   updateAppInfoReducer,
   updateAppNameReducer,
   updateAppPublicReducer,
-  updateAppVersionReducer,
 } from "@/redux/currentApp/appInfo/appInfoReducer"
 import {
   DashboardApp,
@@ -22,7 +21,6 @@ const appInfoSlice = createSlice<
   reducers: {
     updateAppInfoReducer,
     updateAppNameReducer,
-    updateAppVersionReducer,
     updateAppContributeReducer,
     updateAppPublicReducer,
   },

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {
   addDashboardAppReducer,
-  modifyConfigDashboardAppReducer,
   removeDashboardAppReducer,
+  updateDashboardAppContributeReducer,
   updateDashboardAppListReducer,
+  updateDashboardAppPublicReducer,
   updateDashboardAppReducer,
 } from "@/redux/dashboard/apps/dashboardAppReducer"
 import { DashboardAppsInitialState } from "@/redux/dashboard/apps/dashboardAppState"
@@ -16,7 +17,8 @@ const dashboardAppSlice = createSlice({
     removeDashboardAppReducer,
     updateDashboardAppReducer,
     updateDashboardAppListReducer,
-    modifyConfigDashboardAppReducer,
+    updateDashboardAppPublicReducer,
+    updateDashboardAppContributeReducer,
   },
 })
 

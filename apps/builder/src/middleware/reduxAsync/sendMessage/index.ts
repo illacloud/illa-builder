@@ -1,5 +1,6 @@
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { PayloadAction } from "@reduxjs/toolkit"
+import { agentAsync } from "@/middleware/reduxAsync/sendMessage/agentMethod"
 import store, { RootState } from "@/store"
 import { actionsAsync } from "./actionMethod"
 import { appInfoAsync } from "./appInfoMethod"
@@ -70,6 +71,15 @@ export const sendMessage = (
     }
     case "resource": {
       resourcesAsync(
+        reduxAction,
+        currentAppID,
+        action,
+        teamID,
+        id,
+        prevRootState,
+        nextRootState,
+      )
+      agentAsync(
         reduxAction,
         currentAppID,
         action,

@@ -41,13 +41,13 @@ export const AppName: FC<AppNameProps> = (props) => {
         onVisibleChange={(visible) => {
           setAppSettingVisible(visible)
         }}
-        onOk={() => {
+        onSaveEvent={() => {
           trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
             element: "app_setting_modal_save",
             parameter5: appInfo.appId,
           })
         }}
-        onCancel={() => {
+        onCloseEvent={() => {
           trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
             element: "app_setting_modal_close",
             parameter5: appInfo.appId,

@@ -1,11 +1,16 @@
-import { DashboardApp, DashboardAppConfig } from "./dashboardAppState"
+import { DashboardApp } from "./dashboardAppState"
 
 export interface AddDashboardAppPayload {
   app: DashboardApp
   index?: number
 }
 
-export interface ModifyConfigDashboardAppPayload {
+export interface ModifyDashboardAppPublic {
   appId: string
-  config: Partial<DashboardAppConfig>
+  isPublic: boolean
+}
+
+export interface ModifyDashboardAppContribute {
+  appId: string
+  publishedToMarketplace: boolean
 }

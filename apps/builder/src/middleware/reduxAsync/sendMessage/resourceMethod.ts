@@ -97,7 +97,6 @@ export const resourcesAsync = (
           ),
         )
       }
-
       break
     }
   }

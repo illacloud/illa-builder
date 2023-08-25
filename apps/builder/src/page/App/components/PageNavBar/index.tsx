@@ -343,14 +343,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [handlePreviewButtonClick, isEditMode, previewButtonText],
   )
 
-  const handleLogoClick = useCallback(() => {
-    navigate(`/${teamIdentifier}/dashboard/apps`)
-  }, [navigate, teamIdentifier])
-
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
+        <Logo
+          width="34px"
+          onClick={() => {
+            navigate(`/${teamIdentifier}/dashboard/apps`)
+          }}
+          css={logoCursorStyle}
+        />
         <div css={informationStyle}>
           <AppName appInfo={appInfo} />
           {isOnline ? (

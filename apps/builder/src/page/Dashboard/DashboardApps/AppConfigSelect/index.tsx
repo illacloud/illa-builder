@@ -22,7 +22,6 @@ import {
   valueLabelStyle,
 } from "./style"
 
-
 interface AppConfigSelectProps {
   canEditApp: boolean
   appId: string
@@ -95,9 +94,9 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
         },
       )
       dispatch(
-        dashboardAppActions.modifyConfigDashboardAppReducer({
+        dashboardAppActions.updateDashboardAppPublicReducer({
           appId,
-          config: { public: isPublic },
+          isPublic,
         }),
       )
     } catch (e) {

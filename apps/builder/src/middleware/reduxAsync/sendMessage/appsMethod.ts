@@ -30,7 +30,7 @@ export const appsAsync = (
     case "removeDashboardAppReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
-          TextSignal.GLOBAL_BROADCAST_ONLY,
+          TextSignal.DELETE_STATE,
           TextTarget.APPS,
           true,
           action,
@@ -40,8 +40,9 @@ export const appsAsync = (
         ),
       )
       break
+    case "updateDashboardAppPublicReducer":
+    case "updateDashboardAppContributeReducer":
     case "updateDashboardAppReducer":
-    case "modifyConfigDashboardAppReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
           TextSignal.UPDATE_STATE,

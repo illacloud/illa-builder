@@ -1,3 +1,4 @@
+import { MarketAgentCard } from "@illa-public/market-agent/MarketAgentCard"
 import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent/service"
 import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { FC, useState } from "react"
@@ -14,6 +15,7 @@ import {
 } from "@illa-design/react"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCard"
 import { SortSelector } from "@/page/Dashboard/components/SortSelector"
+import { getDashboardMarketAgentList } from "@/redux/dashboard/marketAIAgents/marketAgentSelector"
 import { getDashboardTeamAiAgentList } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSelector"
 import {
   agentContent,
@@ -38,6 +40,8 @@ export const AgentContent: FC = () => {
   )
 
   const teamAgentList = useSelector(getDashboardTeamAiAgentList)
+
+  const marketAgentList = useSelector(getDashboardMarketAgentList)
 
   return (
     <div css={agentContent}>
@@ -102,6 +106,16 @@ export const AgentContent: FC = () => {
             </div>
           }
         />
+      )}
+      {currentSelectTab === "market" && (
+        <div css={cardListStyle}>
+          {marketAgentList.map((agent) => (
+            <MarketAgentCard
+              key={agent.aiAgent.aiAgentID}
+              marketAIAgent={agent}
+            />
+          ))}
+        </div>
       )}
     </div>
   )

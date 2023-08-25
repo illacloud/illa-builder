@@ -3,7 +3,7 @@ import { Connection, getTextMessagePayload } from "@/api/ws"
 import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { RootState } from "@/store"
 
-export const appInfoAsync = (
+export const agentAsync = (
   reduxAction: string,
   currentAppID: string,
   action: PayloadAction<any>,
@@ -14,14 +14,13 @@ export const appInfoAsync = (
 ) => {
   const { payload } = action
   switch (reduxAction) {
-    case "updateAppContributeReducer":
-    case "updateAppPublicReducer":
-    case "updateAppNameReducer":
-    case "updateAppInfoReducer": {
-      Connection.getTextRoom("app", currentAppID)?.send(
+    case "addTeamAiAgentReducer":
+    case "removeTeamAiAgentReducer":
+    case "modifyTeamAiAgentReducer":
+      Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
-          TextSignal.UPDATE_STATE,
-          TextTarget.APPS,
+          TextSignal.BROADCAST_ONLY,
+          TextTarget.RESOURCE,
           true,
           action,
           teamID,
@@ -30,6 +29,7 @@ export const appInfoAsync = (
         ),
       )
       break
-    }
+    default:
+      break
   }
 }

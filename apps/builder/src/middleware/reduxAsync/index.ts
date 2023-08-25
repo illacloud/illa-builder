@@ -19,7 +19,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
       const snapShot = getExecutionWidgetLayoutInfo(nextRootState)
       illaSnapshot.setSnapshot(snapShot)
     }
-
     return resp
   }
   const prevRootState = cloneDeep(store.getState())
