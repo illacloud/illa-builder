@@ -38,7 +38,7 @@
       "error_button": "重试",
       "error_description": "请求错误",
       "error_title": "错误",
-      "marketplace": "Marketplace",
+      "marketplace": "社区",
       "run": "运行",
       "fork": "Fork"
     },
@@ -64,13 +64,13 @@
       "recent": "最新",
       "star": "已收藏"
     },
-    "search": "Search",
+    "search": "搜索",
     "no-result": "没有结果，请刷新或更新您的搜索词。",
     "message": {
       "next-page-error": "下一页加载失败，请重试",
       "create-failed": "Agent保存失败，请重试",
-      "sort-failed": "筛选类型过滤失败，请重试",
-      "detail-load-failed": "详细信息查询失败，请重试",
+      "sort-failed": "筛选方式变更失败，请重试",
+      "detail-load-failed": "详细信息获取失败，请重试",
       "fork-failed": "Fork失败，请重试",
       "create-suc": "保存成功",
       "fork-suc": "Fork成功",
