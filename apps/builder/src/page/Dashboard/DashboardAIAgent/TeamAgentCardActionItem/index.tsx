@@ -122,6 +122,9 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
         deleteAIAgent(aiAgentID)
           .then(
             () => {
+              dispatch(
+                dashboardTeamAIAgentActions.removeTeamAIAgentReducer(aiAgentID),
+              )
               message.success({
                 content: t("dashboard.app.trash_success"),
               })
@@ -146,7 +149,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
           })
       },
     })
-  }, [aiAgentID, modal, message, t])
+  }, [modal, t, aiAgentID, dispatch, message])
 
   const onContributed = useCallback(
     (value: boolean) => {

@@ -53,6 +53,7 @@ import AILoading from "@/page/AI/components/AILoading"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
+import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import {
   createAgent,
   generateDescription,
@@ -742,6 +743,11 @@ export const AIAgent: FC = () => {
                       (v) => v.key !== "" && v.value !== "",
                     ),
                   })
+                  dispatch(
+                    dashboardTeamAIAgentActions.addTeamAIAgentReducer({
+                      aiAgent: resp.data,
+                    }),
+                  )
                   reset({
                     ...resp.data,
                     variables:
@@ -757,6 +763,12 @@ export const AIAgent: FC = () => {
                       (v) => v.key !== "" && v.value !== "",
                     ),
                   })
+                  dispatch(
+                    dashboardTeamAIAgentActions.modifyTeamAIAgentReducer({
+                      aiAgentID: resp.data.aiAgentID,
+                      modifiedProps: resp.data,
+                    }),
+                  )
                   reset({
                     ...resp.data,
                     variables:
