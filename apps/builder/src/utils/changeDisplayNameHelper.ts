@@ -45,7 +45,7 @@ export const changeDisplayNameHelper = (
           if (isAction(seed)) {
             updateActionSlice.push({
               displayName: displayName,
-              actionID: seed.$actionId,
+              actionID: seed.$actionID,
               propsSlice: {
                 [propsPath]: newDynamicStringValue,
               },

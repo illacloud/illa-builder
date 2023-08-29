@@ -40,7 +40,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 
 export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onFinished, onBack } = props
+  const { resourceID, onFinished, onBack } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -48,7 +48,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   const content = useMemo(() => {
@@ -87,7 +87,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "dynamodb",
         onFinished,
         setSaving,

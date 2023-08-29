@@ -40,14 +40,14 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 
 export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
   const findResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
   const { track } = useContext(MixpanelTrackContext)
 
@@ -80,7 +80,7 @@ export const SMTPConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "smtp",
         onFinished,
         setSaving,

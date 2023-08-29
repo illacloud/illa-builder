@@ -2,8 +2,8 @@ import { ResourceCreatorPage } from "@/page/Dashboard/components/ResourceGenerat
 import { ResourceType } from "@/redux/resource/resourceState"
 
 export interface ResourceCreatorProps {
-  resourceId?: string
+  resourceID?: string
   resourceType?: ResourceType
   onBack: (page: ResourceCreatorPage) => void
-  onFinished: (resourceId: string) => void
+  onFinished: (resourceID: string) => void
 }

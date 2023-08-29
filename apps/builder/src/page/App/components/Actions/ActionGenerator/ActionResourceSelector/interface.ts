@@ -6,10 +6,10 @@ export interface ActionResourceSelectorProps {
   actionType: ActionType
   onBack: (page: ActionCreatorPage) => void
   handleCreateAction: (
-    resourceId: string,
+    resourceID: string,
     successCallback?: () => void,
     loadingCallback?: (loading: boolean) => void,
   ) => void
   onCreateResource: (resourceType: ResourceType) => void
-  onCreateAction: (actionType: ActionType, resourceId?: string) => void
+  onCreateAction: (actionType: ActionType, resourceID?: string) => void
 }

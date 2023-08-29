@@ -31,7 +31,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 
 export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -44,7 +44,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
   const { track } = useContext(MixpanelTrackContext)
 
   const findResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   let content: MongoDbResource<MongoDbConfig>
@@ -93,7 +93,7 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "mongodb",
         onFinished,
         setSaving,
@@ -149,14 +149,14 @@ export const MongoDbConfigElement: FC<ConfigElementProps> = (props) => {
           <MongoDbGuiMode
             control={control}
             watch={watch}
-            resourceId={resourceId}
+            resourceID={resourceID}
           />
         )}
         {configTypeWatch === "uri" && (
           <MongoDbUriMode
             control={control}
             watch={watch}
-            resourceId={resourceId}
+            resourceID={resourceID}
           />
         )}
 

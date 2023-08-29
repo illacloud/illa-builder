@@ -22,17 +22,17 @@ export const GUIDE_COMPONENTS = Components as unknown as ComponentNode[]
 export const GUIDE_RESOURCES = Resources as Resource<ResourceContent>[]
 export const GUIDE_ACTIONS = Actions
 
-// [TODO] remove actionId when test run. @xiaoyu @karminski
+// [TODO] remove actionID when test run. @xiaoyu @karminski
 export const GUIDE_DEFAULT_ACTION_ID = "ILAfx4p1C7d0"
 
 export const GUIDE_DATA = data as unknown as CurrentAppResp
 
 const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
-  const resourceIdList = currentApp.actions.map((action) => action.resourceId)
+  const resourceIDList = currentApp.actions.map((action) => action.resourceID)
 
-  // get resources form resourceIdList, and generate filter
+  // get resources form resourceIDList, and generate filter
   const resources = GUIDE_RESOURCES.filter((resource) =>
-    resourceIdList.includes(resource.resourceId),
+    resourceIDList.includes(resource.resourceID),
   ).map(({ resourceName, resourceType, content }) => ({
     resourceName,
     resourceType,
@@ -42,7 +42,7 @@ const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
   // Add the resourceIndex attribute to actions
   const actions = currentApp.actions.map(
     ({
-      resourceId,
+      resourceID,
       displayName,
       actionType,
       transformer,
@@ -50,9 +50,9 @@ const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
       content,
       config,
     }) => {
-      const resourceIndex = resourceIdList.indexOf(resourceId)
+      const resourceIndex = resourceIDList.indexOf(resourceID)
       return {
-        resourceId,
+        resourceID,
         displayName,
         actionType,
         transformer,
@@ -83,7 +83,7 @@ export const initGuideApp = async (): Promise<CurrentAppResp> => {
           item.resourceType === data.resourceType &&
           isEqual(item.content, data.content),
       )
-      return resource ? resource.resourceId : createResource(data)
+      return resource ? resource.resourceID : createResource(data)
     }),
   )
   // init actions
@@ -92,11 +92,11 @@ export const initGuideApp = async (): Promise<CurrentAppResp> => {
     actionList = await Promise.all(
       actions.map((data) => {
         const { resourceIndex, ...actionData } = data
-        const resourceId = resourceList[resourceIndex] || ""
+        const resourceID = resourceList[resourceIndex] || ""
         return {
           ...actionData,
-          resourceId,
-          actionId: v4(),
+          resourceID,
+          actionID: v4(),
         } as ActionItem<ActionContent>
       }),
     )

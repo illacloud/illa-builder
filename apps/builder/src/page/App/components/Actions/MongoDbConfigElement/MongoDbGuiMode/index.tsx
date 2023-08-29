@@ -23,12 +23,12 @@ import { RootState } from "@/store"
 import { isContainLocalPath } from "@/utils/form"
 
 export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
-  const { control, resourceId, watch } = props
+  const { control, resourceID, watch } = props
 
   const { t } = useTranslation()
   const findResource: Resource<ResourceContent> | undefined = useSelector(
     (state: RootState) => {
-      return state.resource.find((r) => r.resourceId === resourceId)
+      return state.resource.find((r) => r.resourceID === resourceID)
     },
   )
 

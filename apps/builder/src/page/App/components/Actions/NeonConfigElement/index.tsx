@@ -97,7 +97,7 @@ const handleConnectionStringValidate = (inputString: string) => {
 }
 
 export const NeonConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onBack, onFinished } = props
+  const { resourceID, onBack, onFinished } = props
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -113,7 +113,7 @@ export const NeonConfigElement: FC<ConfigElementProps> = (props) => {
 
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<NeonResource>
   })
   const hostValue = watch("host")
@@ -179,7 +179,7 @@ export const NeonConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "neon",
         onFinished,
         setSaving,

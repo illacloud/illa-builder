@@ -33,7 +33,7 @@ const Item = DropListItem
 export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
   props,
 ) => {
-  const { resourceId } = props
+  const { resourceID } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -41,7 +41,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
   const [resourceEditorVisible, setResourceEditorVisible] = useState(false)
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((item) => item.resourceId === resourceId)!!
+    return state.resource.find((item) => item.resourceID === resourceID)!!
   })
 
   const closeResourceEditor = (element: string) => {
@@ -64,9 +64,9 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
     track(
       ILLA_MIXPANEL_EVENT_TYPE.SHOW,
       ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-      { element: "resource_more", parameter5: resourceId },
+      { element: "resource_more", parameter5: resourceID },
     )
-  }, [resourceId])
+  }, [resourceID])
 
   useEffect(() => {
     resourceEditorVisible &&
@@ -84,14 +84,14 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
     track(
       ILLA_MIXPANEL_EVENT_TYPE.CLICK,
       ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-      { element: "resource_more_delete", parameter5: resourceId },
+      { element: "resource_more_delete", parameter5: resourceID },
     )
     track(
       ILLA_MIXPANEL_EVENT_TYPE.SHOW,
       ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
       {
         element: "resource_more_delete_modal",
-        parameter5: resourceId,
+        parameter5: resourceID,
       },
     )
     const modalId = modal.show({
@@ -113,13 +113,13 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
           {
             element: "resource_more_delete_modal_delete",
-            parameter5: resourceId,
+            parameter5: resourceID,
           },
         )
         try {
-          const response = await fetchDeleteResource(resourceId)
+          const response = await fetchDeleteResource(resourceID)
           dispatch(
-            resourceActions.removeResourceItemReducer(response.data.resourceId),
+            resourceActions.removeResourceItemReducer(response.data.resourceID),
           )
           message.success({
             content: t("dashboard.resource.delete_success"),
@@ -146,12 +146,12 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
           {
             element: "resource_more_delete_modal_close",
-            parameter5: resourceId,
+            parameter5: resourceID,
           },
         )
       },
     })
-  }, [dispatch, message, modal, resourceId, t])
+  }, [dispatch, message, modal, resourceID, t])
 
   return (
     <>
@@ -165,7 +165,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
             track(
               ILLA_MIXPANEL_EVENT_TYPE.CLICK,
               ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-              { element: "resource_more_click", parameter5: resourceId },
+              { element: "resource_more_click", parameter5: resourceID },
             )
           }}
         >
@@ -186,7 +186,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                   track(
                     ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                     ILLA_MIXPANEL_BUILDER_PAGE_NAME.RESOURCE,
-                    { element: "resource_more_edit", parameter5: resourceId },
+                    { element: "resource_more_edit", parameter5: resourceID },
                   )
                 }}
               />
@@ -226,7 +226,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
             basicTrack={resourceContextHelper("resource_edit")}
           >
             <ResourceCreator
-              resourceId={resourceId}
+              resourceID={resourceID}
               onBack={() => {
                 closeResourceEditor("resource_configure_back")
               }}

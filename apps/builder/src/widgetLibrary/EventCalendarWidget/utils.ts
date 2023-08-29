@@ -18,7 +18,7 @@ export const formatEventOptions = (
     ids: [],
     starts: [],
     ends: [],
-    resourceIds: [],
+    resourceIDs: [],
     descriptions: [],
     resourceTitles: [],
     allDays: [],
@@ -29,7 +29,7 @@ export const formatEventOptions = (
     const id = mappedOption.values ?? []
     const start = mappedOption.starts ?? []
     const end = mappedOption.ends ?? []
-    const resourceId = mappedOption.resourceIds ?? []
+    const resourceID = mappedOption.resourceIDs ?? []
     const description = mappedOption.descriptions ?? []
     const resourceTitle = mappedOption.resourceTitles ?? []
     const allDay = mappedOption.allDays ?? []
@@ -40,7 +40,7 @@ export const formatEventOptions = (
       id.length,
       start.length,
       end.length,
-      resourceId.length,
+      resourceID.length,
       description.length,
       resourceTitle.length,
       allDay.length,
@@ -56,16 +56,16 @@ export const formatEventOptions = (
         i18n.t("editor.inspect.setter_content.eventCalendar.no_title")
       const startItem = start[i] || undefined
       const endItem = end[i] || undefined
-      const resourceIdItem = resourceId[i] || ""
-      const resourceIdTitleItem = resourceTitle[i]
+      const resourceIDItem = resourceID[i] || ""
+      const resourceIDTitleItem = resourceTitle[i]
       const descriptionItem = description[i] || ""
       const allDayItem = allDay[i] ?? false
       const resizableItem = resizable[i] ?? true
       const draggableItem = draggable[i] ?? true
-      resourceIdTitleItem &&
+      resourceIDTitleItem &&
         resourceMap.set(
-          safeNodeValue(resourceIdItem),
-          safeNodeValue(resourceIdTitleItem),
+          safeNodeValue(resourceIDItem),
+          safeNodeValue(resourceIDTitleItem),
         )
       idItem &&
         eventList.push({
@@ -74,8 +74,8 @@ export const formatEventOptions = (
           id: safeNodeValue(idItem),
           start: getSafeDate(startItem),
           end: getSafeDate(endItem),
-          resourceId: safeNodeValue(resourceIdItem),
-          resourceTitle: safeNodeValue(resourceIdTitleItem),
+          resourceID: safeNodeValue(resourceIDItem),
+          resourceTitle: safeNodeValue(resourceIDTitleItem),
           description: safeNodeValue(descriptionItem),
           allDay: allDayItem,
           draggable: draggableItem,
@@ -84,8 +84,8 @@ export const formatEventOptions = (
     }
     return [
       eventList,
-      Array.from(resourceMap, ([resourceId, resourceTitle]) => ({
-        resourceId,
+      Array.from(resourceMap, ([resourceID, resourceTitle]) => ({
+        resourceID,
         resourceTitle,
       })),
     ]
@@ -102,16 +102,16 @@ export const formatEventOptions = (
         i18n.t("editor.inspect.setter_content.eventCalendar.no_title")
       const startItem = option.start || undefined
       const endItem = option.end || undefined
-      const resourceIdItem = option.resourceId || `Resource-${i + 1}`
+      const resourceIDItem = option.resourceID || `Resource-${i + 1}`
       const descriptionItem = option.description || `Event-${i + 1}`
-      const resourceIdTitleItem = option.resourceTitle || `Resource-${i + 1}`
+      const resourceIDTitleItem = option.resourceTitle || `Resource-${i + 1}`
       const allDayItem = option.allDay ?? false
       const draggableItem = option.draggable ?? true
       const resizableItem = option.resizable ?? true
-      resourceIdTitleItem &&
+      resourceIDTitleItem &&
         resourceMap.set(
-          safeNodeValue(resourceIdItem),
-          safeNodeValue(resourceIdTitleItem),
+          safeNodeValue(resourceIDItem),
+          safeNodeValue(resourceIDTitleItem),
         )
       idItem &&
         eventList.push({
@@ -120,8 +120,8 @@ export const formatEventOptions = (
           id: safeNodeValue(idItem),
           start: getSafeDate(startItem),
           end: getSafeDate(endItem),
-          resourceId: safeNodeValue(resourceIdItem),
-          resourceTitle: safeNodeValue(resourceIdTitleItem),
+          resourceID: safeNodeValue(resourceIDItem),
+          resourceTitle: safeNodeValue(resourceIDTitleItem),
           description: safeNodeValue(descriptionItem),
           allDay: allDayItem,
           draggable: draggableItem,
@@ -130,8 +130,8 @@ export const formatEventOptions = (
     })
     return [
       eventList,
-      Array.from(resourceMap, ([resourceId, resourceTitle]) => ({
-        resourceId,
+      Array.from(resourceMap, ([resourceID, resourceTitle]) => ({
+        resourceID,
         resourceTitle,
       })),
     ]

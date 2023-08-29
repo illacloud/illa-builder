@@ -31,7 +31,7 @@ export const updateActionItemReducer: CaseReducer<
   PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
   const index = state.findIndex((item: ActionItem<ActionContent>) => {
-    return item.actionId === action.payload.actionId
+    return item.actionID === action.payload.actionID
   })
   if (index != -1) {
     state[index] = action.payload
@@ -44,7 +44,7 @@ export const updateActionDisplayNameReducer: CaseReducer<
   PayloadAction<UpdateActionDisplayNamePayload>
 > = (state, action) => {
   const index = state.findIndex((item: ActionItem<ActionContent>) => {
-    return item.actionId === action.payload.actionID
+    return item.actionID === action.payload.actionID
   })
   if (index != -1) {
     DisplayNameGenerator.removeDisplayName(state[index].displayName)
@@ -63,7 +63,7 @@ export const batchUpdateMultiActionSlicePropsReducer: CaseReducer<
       return
     }
     const actionIndex = state.findIndex((item) => {
-      return item.actionId === actionID
+      return item.actionID === actionID
     })
     if (actionIndex === -1) return
     const action = state[actionIndex]

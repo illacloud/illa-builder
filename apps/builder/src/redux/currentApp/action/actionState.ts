@@ -129,12 +129,12 @@ export interface ActionConfig {
 
 export interface ActionItem<T extends ActionContent> {
   config?: ActionConfig
-  actionId: string
+  actionID: string
   displayName: string
   actionType: ActionType
   transformer: Transformer
   triggerMode: ActionTriggerMode
-  resourceId?: string
+  resourceID?: string
   content: T
 }
 

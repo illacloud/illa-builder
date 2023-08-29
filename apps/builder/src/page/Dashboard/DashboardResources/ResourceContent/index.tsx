@@ -96,7 +96,7 @@ export const ResourcesContent: FC = () => {
           break
       }
       return {
-        id: resource.resourceId,
+        id: resource.resourceID,
         name: resource.resourceName,
         resourceType: resource.resourceType,
         type: getResourceNameFromResourceType(resource.resourceType),
@@ -157,7 +157,7 @@ export const ResourcesContent: FC = () => {
         enableSorting: false,
         accessorKey: "id",
         cell: (props: CellContext<ResourceTableData, string>) => (
-          <DashboardResourceItemMenu resourceId={props.getValue()} />
+          <DashboardResourceItemMenu resourceID={props.getValue()} />
         ),
       },
     ]

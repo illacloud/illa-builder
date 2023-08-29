@@ -47,13 +47,13 @@ const MysqlLikePanel: FC = () => {
   const upgradeModal = useUpgradeModal()
 
   useEffect(() => {
-    if (currentAction.resourceId == undefined) return
-    fetchResourceMeta(currentAction.resourceId).then(
+    if (currentAction.resourceID == undefined) return
+    fetchResourceMeta(currentAction.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         setSqlTable(data?.schema ?? {})
       },
     )
-  }, [currentAction.resourceId])
+  }, [currentAction.resourceID])
 
   const mode = useMemo(() => {
     switch (currentAction.actionType) {
@@ -123,7 +123,7 @@ const MysqlLikePanel: FC = () => {
     })
     const data = {
       description: inputRef.current?.value,
-      resourceID: currentAction.resourceId,
+      resourceID: currentAction.resourceID,
       action: currentSqlAction,
     }
     try {

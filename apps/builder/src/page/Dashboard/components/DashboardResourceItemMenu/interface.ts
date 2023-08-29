@@ -1,3 +1,3 @@
 export interface DashboardResourceItemMenuProps {
-  resourceId: string
+  resourceID: string
 }

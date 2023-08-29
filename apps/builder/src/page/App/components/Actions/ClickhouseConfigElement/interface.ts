@@ -1,5 +1,5 @@
 export interface ClickhouseConfigElementProps {
-  resourceId?: string
+  resourceID?: string
   onBack: () => void
-  onFinished: (resourceId: string) => void
+  onFinished: (resourceID: string) => void
 }

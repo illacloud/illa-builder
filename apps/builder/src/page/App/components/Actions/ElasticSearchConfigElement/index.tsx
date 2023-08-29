@@ -42,7 +42,7 @@ import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 
 export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
 
   const { t } = useTranslation()
 
@@ -52,7 +52,7 @@ export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
   })
 
   const findResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   const content = useMemo(() => {
@@ -90,7 +90,7 @@ export const ElasticSearchConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "elasticsearch",
         onFinished,
         setSaving,

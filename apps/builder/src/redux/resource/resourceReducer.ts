@@ -25,7 +25,7 @@ export const updateResourceItemReducer: CaseReducer<
   PayloadAction<Resource<ResourceContent>>
 > = (state, action) => {
   const targetIndex = state.findIndex(
-    (i) => i.resourceId === action.payload.resourceId,
+    (i) => i.resourceID === action.payload.resourceID,
   )
   if (targetIndex != -1) {
     state[targetIndex] = action.payload
@@ -37,7 +37,7 @@ export const removeResourceItemReducer: CaseReducer<
   PayloadAction<string>
 > = (state, action) => {
   let index = state.findIndex((i) => {
-    return i.resourceId === action.payload
+    return i.resourceID === action.payload
   })
   if (index !== -1) {
     state.splice(index, 1)

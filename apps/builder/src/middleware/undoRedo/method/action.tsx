@@ -15,7 +15,7 @@ export const actionsSnapShot = (
       const newAction = {
         type: "action/removeActionItemReducer",
         payload: {
-          actionID: action.payload.actionId,
+          actionID: action.payload.actionID,
           displayName: action.payload.displayName,
         },
         from: action.from,

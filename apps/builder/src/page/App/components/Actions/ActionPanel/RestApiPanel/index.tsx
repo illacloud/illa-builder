@@ -73,7 +73,7 @@ const RestApiPanel: FC = () => {
   const dispatch = useDispatch()
 
   const currentResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === cachedAction?.resourceId)
+    return state.resource.find((r) => r.resourceID === cachedAction?.resourceID)
   })
 
   const handleChangeMethod = useCallback(
@@ -83,7 +83,7 @@ const RestApiPanel: FC = () => {
 
       if (value !== "GET") {
         if (
-          selectedAction.resourceId === cachedAction.resourceId &&
+          selectedAction.resourceID === cachedAction.resourceID &&
           selectedAction.content.method === value
         ) {
           newBodyType = selectedAction.content.bodyType
@@ -109,7 +109,7 @@ const RestApiPanel: FC = () => {
       selectedAction.content.body,
       selectedAction.content.bodyType,
       selectedAction.content.method,
-      selectedAction.resourceId,
+      selectedAction.resourceID,
     ],
   )
 

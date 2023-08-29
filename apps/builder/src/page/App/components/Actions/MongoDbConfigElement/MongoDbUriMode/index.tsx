@@ -13,12 +13,12 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 
 export const MongoDbUriMode: FC<MongoDbConfigModeProps> = (props) => {
-  const { resourceId, control } = props
+  const { resourceID, control } = props
 
   const { t } = useTranslation()
   const findResource: Resource<ResourceContent> | undefined = useSelector(
     (state: RootState) => {
-      return state.resource.find((r) => r.resourceId === resourceId)
+      return state.resource.find((r) => r.resourceID === resourceID)
     },
   )
 

@@ -96,7 +96,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   const handleDirectCreateAction = useCallback(
     async (
-      resourceId: string,
+      resourceID: string,
       successCallback?: () => void,
       loadingCallback?: (loading: boolean) => void,
     ) => {
@@ -106,10 +106,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       const displayName =
         DisplayNameGenerator.generateDisplayName(currentActionType)
       const initialContent = getInitialContent(currentActionType)
-      const data: Omit<ActionItem<ActionContent>, "actionId"> = {
+      const data: Omit<ActionItem<ActionContent>, "actionID"> = {
         actionType: currentActionType,
         displayName,
-        resourceId,
+        resourceID,
         content: initialContent,
         ...actionItemInitial,
       }
@@ -122,7 +122,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
           ...data,
-          actionId: v4(),
+          actionID: v4(),
         }
         dispatch(actionActions.addActionItemReducer(createActionData))
         dispatch(configActions.changeSelectedAction(createActionData))
@@ -159,10 +159,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       const displayName =
         DisplayNameGenerator.generateDisplayName(currentActionType)
       const initalAgentContent = getInitialAgentContent(item)
-      const data: Omit<ActionItem<ActionContent>, "actionId"> = {
+      const data: Omit<ActionItem<ActionContent>, "actionID"> = {
         actionType: currentActionType,
         displayName,
-        resourceId: item.aiAgentID,
+        resourceID: item.aiAgentID,
         content: initalAgentContent,
         ...actionItemInitial,
         config: {
@@ -173,7 +173,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
           ...data,
-          actionId: v4(),
+          actionID: v4(),
         }
         dispatch(actionActions.addActionItemReducer(createActionData))
         dispatch(configActions.changeSelectedAction(createActionData))
@@ -260,7 +260,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   }, [onClose])
 
   const handleFinishCreateNewResource = useCallback(
-    (resourceId: string) => {
+    (resourceID: string) => {
       track?.(
         ILLA_MIXPANEL_EVENT_TYPE.CLICK,
         {
@@ -269,7 +269,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         },
         "both",
       )
-      handleDirectCreateAction(resourceId, () => {
+      handleDirectCreateAction(resourceID, () => {
         setCurrentStep("select")
         onClose()
       })
