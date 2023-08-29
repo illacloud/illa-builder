@@ -38,7 +38,7 @@
       "error_button": "Reintentar",
       "error_description": "Hay un problema con su operación.",
       "error_title": "Error",
-      "marketplace": "Community",
+      "marketplace": "Comunidad",
       "run": "Ejecutar",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "Guardar",
       "start": "Comenzar",
       "restart": "Reiniciar",
-      "contribute": "Contribute to community",
+      "contribute": "Contribuir a la comunidad",
       "button": {
         "send": "Enviar",
         "generating": "Generando"
@@ -3247,7 +3247,7 @@
         "invite_members": "Invitar miembros",
         "invite_to_use": "Invitar a usar",
         "invite_to_edit": "Invitar a editar",
-        "contribute": "Community"
+        "contribute": "Comunidad"
       },
       "link": {
         "invite_title": "Enlace de invitación",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Contribuir a la comunidad",
         "default_text": {
           "app": "Acabo de descubrir una aplicación impresionante llamada {{ appName }}. Échale un vistazo: {{ appLink }}",
           "agent": "Acabo de descubrir un impresionante agente de AI llamado {{ agentName }}. Échale un vistazo: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Sin descripción",
       "blank": "Ninguna aplicación",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No hay agente de IA aquí"
     },
     "app_setting": {
       "app_setting": "Ajustes de app",
@@ -4003,7 +4003,7 @@
       "undeploy": "La aplicación no ha sido desplegada. El acceso público y el acceso al visor pueden encontrarse errores. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Contribuir a la comunidad"
     },
     "default-text": {
       "social-media": {
