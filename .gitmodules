@@ -6,6 +6,3 @@
 	path = apps/builder/src/illa-public-component
 	url = https://github.com/illacloud/illa-public-component.git
 	branch = beta
-[submodule "apps/builder/src/illa-public-market-component"]
-	path = apps/builder/src/illa-public-market-component
-	url = https://github.com/illacloud/illa-public-market-component.git
