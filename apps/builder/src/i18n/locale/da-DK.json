@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB brugt (i alt {{total}}GB) ",
         "Traffic": "{{used}}GB brugt (i alt {{total}}GB) ",
         "colla": "{{used}} Colla brugt (i alt {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Afmeld",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "Gebyrerne vil automatisk blive fratrukket på grundlag af det opdaterede antal pladser og prisfastsættelsen af nye faktureringscyklus fra den næste periode. Denne gang vil vi fratrække betalingen for de øgede sæder i henhold til den aktuelle faktureringscyklus. Beregningsregler for stigende pladser ved hjælp af et månedligt abonnement som eksempel: Lad os overveje et scenarie, hvor du oprindeligt abonnerede på 5 pladser fra den 14. marts, og faktureringscyklussen strækker sig fra den 14. i denne måned til den 13. i næste måned. Den 10. maj, beslutter du at tilføje 1 ekstra sæde. På det tidspunkt Der var 4 dage tilbage indtil slutningen af den aktuelle cyklus den 13. maj (hvilket i alt er 30 dage fra den 14. april til den 13. maj). For at beregne den justerede betaling, vil vi fratrække prisen på 1 sæde, hvilket svarer til ca. $10, proportionalt med varigheden af 4 dage inden for 30-dages cyklussen. Derfor skønnes fradraget til 1 sæde * $10 / 30 dage * 4 dage, hvilket resulterer i cirka $1, 33. Fra og med den næste faktureringscyklus, vil alle pladsafgifter blive konsolideret og betalt sammen. Hvis du ønsker at reducere sæder eller foretage andre ændringer i abonnementet, skal du opdatere det før starten af den næste periode. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "update_plan_remove_license": "Gebyrerne vil automatisk blive fratrukket på grundlag af det opdaterede antal pladser og prisfastsættelsen af nye faktureringscyklus fra den næste periode. Hvis antallet af brugere med redigeringstilladelser overstiger antallet af pladser ved starten af den næste faktureringscyklus, alle brugere undtagen ejeren vil blive deaktiveret, indtil du fjerner medlemmer eller øger antallet af pladser inden for det tilgængelige interval. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>",
         "update_plan_remove_storage": "Gebyrerne vil automatisk blive fratrukket på grundlag af den ajourførte lagerplads og prisen på den nye faktureringscyklus fra den næste periode. Hvis lagerkapaciteten i dine filer overstiger den abonnerede lagerkapacitet ved starten af den næste faktureringscyklus, alle filer vil blive deaktiveret, indtil du sletter filer eller øge lagerkapaciteten inden for det tilgængelige interval. For mere information, se vores <0>Fortrolighedspolitik</0> og <1>Servicevilkår </1>"
+      },
+      "colla_redeem": {
+        "title": "Med {{changeNum}} Colla kan du købe: ",
+        "storage": "Lagerplads",
+        "traffic": "Trafik",
+        "token": "Token"
       }
     },
     "message": {
