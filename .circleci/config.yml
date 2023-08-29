@@ -29,12 +29,24 @@ jobs:
             if [ "${CIRCLE_BRANCH}" = "main" ]; then
               echo "Building for main branch"
               echo "export ILLA_APP_ENV=production" >> "$BASH_ENV"
+              echo "export ILLA_CLOUD_URL=https://cloud.illacloud.com" >> "$BASH_ENV"
+              echo "export ILLA_BUILDER_URL=https://builder.illacloud.com" >> "$BASH_ENV"
+              echo "export ILLA_MARKET_URL=https://illa.ai" >> "$BASH_ENV"
+              echo "export ILLA_API_BASE_URL=cloud-api.illacloud.com" >> "$BASH_ENV"
             elif [ "${CIRCLE_BRANCH}" = "beta" ]; then
               echo "Building for beta branch"
               echo "export ILLA_APP_ENV=beta" >> "$BASH_ENV"
+              echo "export ILLA_CLOUD_URL=https://cloud-beta.illacloud.com" >> "$BASH_ENV"
+              echo "export ILLA_BUILDER_URL=https://builder-beta.illacloud.com" >> "$BASH_ENV"
+              echo "export ILLA_MARKET_URL=https://beta.illa.ai" >> "$BASH_ENV"
+              echo "export ILLA_API_BASE_URL=cloud-api-beta.illacloud.com" >> "$BASH_ENV"
             elif [ "${CIRCLE_BRANCH}" = "develop" ]; then
               echo "Building for develop branch"
               echo "export ILLA_APP_ENV=test" >> "$BASH_ENV"
+              echo "export ILLA_CLOUD_URL=https://cloud-test.illacloud.com" >> "$BASH_ENV"
+              echo "export ILLA_BUILDER_URL=https://builder-test.illacloud.com" >> "$BASH_ENV"
+              echo "export ILLA_MARKET_URL=https://test.illa.ai" >> "$BASH_ENV"
+              echo "export ILLA_API_BASE_URL=cloud-api-test.illacloud.com" >> "$BASH_ENV"
             else
               echo "Not a buildable branch"
             fi
@@ -47,7 +59,7 @@ jobs:
             nvm use 18.12.1
             node -v
             npm -v
-            npm install -g pnpm@8.3.1
+            npm install -g pnpm@8.7.0
             whereis pnpm
             whereis node
             pnpm install
