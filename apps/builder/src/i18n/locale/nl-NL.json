@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB gebruikt (totaal van {{total}}GB) ",
         "Traffic": "{{used}}GB gebruikt (totaal van {{total}}GB) ",
         "colla": "{{used}} Colla gebruikt (totaal van {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Afmelden",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "De vergoedingen worden automatisch afgetrokken op basis van het bijgewerkte aantal plaatsen en de prijzen van de nieuwe factureringscyclus vanaf de volgende periode. Deze keer zullen we de betaling voor de hogere zetels aftrekken volgens de huidige factureringscyclus. Berekeningsregels voor het verhogen van de zetels met een maandelijkse zetelabonnement als voorbeeld: Laten we een scenario overwegen waarin u in eerste instantie hebt geabonneerd op 5 zetels vanaf 14 maart en de factureringscyclus loopt van de 14e van deze maand naar de dertiende van de volgende maand. Op 10 mei besluit je 1 extra zitplaats toe te voegen. Op dat punt er waren vier dagen over tot het einde van de huidige cyclus op 13 mei (30 dagen in totaal van 14 april tot 13 mei). Om de aangepaste betaling te berekenen, trekken we de kosten van 1 zitplaats af, dit komt overeen met ongeveer $10 in verhouding tot de duur van vier dagen binnen de dertig dagen. Daarom wordt de inhouding geschat als 1 zetel * $10 / 30 dagen * 4 dagen, wat resulteert in ongeveer $1,33. Vanaf de volgende factureringscyclus worden alle zittingskosten gezamenlijk geconsolideerd en betaald. Als je de zitplaatsen wilt verminderen of andere wijzigingen wilt aanbrengen in het abonnement, werk dit dan bij voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "update_plan_remove_license": "De vergoedingen worden automatisch afgetrokken op basis van het bijgewerkte aantal plaatsen en de prijzen van de nieuwe factureringscyclus vanaf de volgende periode. Als het aantal gebruikers met bewerkingsrechten het aantal plaatsen aan het begin van de volgende factuurcyclus overschrijdt, alle gebruikers behalve de eigenaar zullen worden uitgeschakeld totdat u de leden verwijdert of het aantal zitplaatsen binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "update_plan_remove_storage": "De vergoedingen worden automatisch afgetrokken op basis van de bijgewerkte opslag en de prijzen van nieuwe factureringscyclus vanaf de volgende periode. Als de door uw bestanden bezette opslagcapaciteit de geabonneerde opslagcapaciteit overschrijdt aan het begin van de volgende factureringscyclus, alle bestanden zullen worden uitgeschakeld totdat u bestanden verwijdert of de opslagcapaciteit binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>"
+      },
+      "colla_redeem": {
+        "title": "Met {{changeNum}} Colla, kunt u kopen: ",
+        "storage": "Opslagruimte",
+        "traffic": "Verkeer",
+        "token": "Token"
       }
     },
     "message": {
