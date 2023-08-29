@@ -29,7 +29,7 @@ import {
   useMessage,
   useModal,
 } from "@illa-design/react"
-import { TeamAgentCardActionItemProps } from "@/page/Dashboard/DashboardAiAgent/TeamAgentCardActionItem/interface"
+import { TeamAgentCardActionItemProps } from "@/page/Dashboard/DashboardAIAgent/TeamAgentCardActionItem/interface"
 import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
 import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"

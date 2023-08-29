@@ -17,11 +17,11 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { AgentContent } from "@/page/Dashboard/DashboardAiAgent/AgentContent"
-import { containerStyle } from "@/page/Dashboard/DashboardAiAgent/style"
+import { AgentContent } from "@/page/Dashboard/DashboardAIAgent/AgentContent"
+import { containerStyle } from "@/page/Dashboard/DashboardAIAgent/style"
 import { DashboardContentHeader } from "@/page/Dashboard/components/DashboardContentHeader"
 
-const DashboardAiAgent: FC = () => {
+const DashboardAIAgent: FC = () => {
   const { t } = useTranslation()
 
   const navigate = useNavigate()
@@ -122,6 +122,6 @@ const DashboardAiAgent: FC = () => {
   )
 }
 
-export default DashboardAiAgent
+export default DashboardAIAgent
 
-DashboardAiAgent.displayName = "DashboardAiAgent"
+DashboardAIAgent.displayName = "DashboardAIAgent"

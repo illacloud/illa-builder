@@ -1,7 +1,7 @@
 import { AI_AGENT_MODEL } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { Params } from "@/redux/resource/restapiResource"
 
-export interface AiAgentActionContent {
+export interface AIAgentActionContent {
   maxTokens: number
   variables: Params[]
   aiAgentModel: AI_AGENT_MODEL

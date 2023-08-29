@@ -1,6 +1,6 @@
 import {
   Agent,
-  MarketAiAgent,
+  MarketAIAgent,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
 import {
   MARKET_AGENT_SORTED_OPTIONS,
@@ -20,7 +20,7 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
     search,
     sortBy = MARKET_AGENT_SORTED_OPTIONS.POPULAR,
   } = props
-  const [marketList, setMarketList] = useState<MarketAiAgent[]>([])
+  const [marketList, setMarketList] = useState<MarketAIAgent[]>([])
 
   const [currentPage, setCurrentPage] = useState(1)
   const [hasNextPage, setHasNextPage] = useState(true)
@@ -63,7 +63,7 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
           onItemsRendered={onItemsRendered}
           ref={ref}
         >
-          {(props: ListChildComponentProps<MarketAiAgent[]>) => {
+          {(props: ListChildComponentProps<MarketAIAgent[]>) => {
             const { index, style, data } = props
             if (
               !Array.isArray(data) ||

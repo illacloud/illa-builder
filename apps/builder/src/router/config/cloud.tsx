@@ -28,7 +28,7 @@ export const cloudRouter: RoutesObjectPro[] = [
       {
         path: "ai-agents",
         element: lazyLoad(
-          lazy(() => import("@/page/Dashboard/DashboardAiAgent")),
+          lazy(() => import("@/page/Dashboard/DashboardAIAgent")),
           <FullPageLoading />,
         ),
         needLogin: true,

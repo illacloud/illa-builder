@@ -1,5 +1,5 @@
 import { MarketAgentCard } from "@illa-public/market-agent/MarketAgentCard"
-import { MarketAiAgent } from "@illa-public/market-agent/MarketAgentCard/interface"
+import { MarketAIAgent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import {
   MARKET_AGENT_SORTED_OPTIONS,
   fetchMarketAgentList,
@@ -32,7 +32,7 @@ export const MarketAgents = () => {
   const page = useRef<number>(1)
   const [hasMore, setHasMore] = useState<boolean>(false)
 
-  const [marketAgentList, setMarketAgentList] = useState<MarketAiAgent[]>([])
+  const [marketAgentList, setMarketAgentList] = useState<MarketAIAgent[]>([])
 
   const sort =
     (searchParams.get("sort") as MARKET_AGENT_SORTED_OPTIONS) ??
