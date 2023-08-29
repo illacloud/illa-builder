@@ -2606,7 +2606,7 @@
       "save": "Spara",
       "start": "Starta",
       "restart": "Starta om",
-      "contribute": "Bidra till marknadsplatsen",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Skicka",
         "generating": "Genererar"
@@ -3247,7 +3247,7 @@
         "invite_members": "Bjud in medlemmar",
         "invite_to_use": "Bjud in att använda",
         "invite_to_edit": "Bjud in att redigera",
-        "contribute": "Marknadsplats"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Bjud in länk",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} delade dig en AI-agent från <unk>{{teamName}}<unk> . Klicka på länken för att gå med i teamet och prova AI-agenten: {{inviteLink}}",
       "contribute": {
-        "label": "Bidra till marknadsplatsen",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Jag upptäckte just en imponerande app som heter {{ appName }}. Kontrollera det: {{ appLink }}",
           "agent": "Jag upptäckte precis en imponerande AI-agent som heter {{ agentName }}. Kontrollera det: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Ingen beskrivning",
       "blank": "Ingen applikation",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "Appens inställning",
@@ -4003,7 +4003,7 @@
       "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. "
     },
     "label": {
-      "contribute": "Bidra till marknadsplatsen"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
