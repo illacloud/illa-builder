@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB verwendet (insgesamt {{total}}GB) ",
         "Traffic": "{{used}}GB verwendet (insgesamt {{total}}GB) ",
         "colla": "{{used}} Colla verwendet (insgesamt {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Abmelden",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "Die Gebühren werden automatisch anhand der aktualisierten Sitzanzahl und der Preisgestaltung des neuen Abrechnungszyklus ab der nächsten Periode abgezogen. Diesmal werden wir die Zahlung für die erhöhten Sitze nach dem aktuellen Abrechnungszyklus abziehen. Berechnungsregeln für die Erhöhung der Sitze anhand eines monatlichen Sitzplatz-Abonnements: Lassen Sie uns ein Szenario in Betracht ziehen, bei dem Sie zunächst 5 Sitze ab dem 14. März abonniert haben und der Abrechnungszyklus erstreckt sich vom 14. dieses Monats bis zum 13. des nächsten Monats. Am 10. Mai beschließt man, einen zusätzlichen Sitzplatz hinzuzufügen. An diesem Punkt bis zum Ende des aktuellen Zyklus am 13. Mai verblieben (insgesamt 30 Tage vom 14. April bis 13. Mai). Um die bereinigte Zahlung zu berechnen, werden die Kosten von 1 Platz abgezogen, das entspricht ungefähr $10, proportional zur Dauer von 4 Tagen innerhalb des 30-tägigen Zyklus. Daher wird der Abzug als 1 Platz geschätzt * $10 / 30 Tage * 4 Tage, was in etwa $1,33. Ab dem nächsten Abrechnungszyklus werden alle Sitzplatzgebühren konsolidiert und gemeinsam gezahlt. Wenn Sie Sitze reduzieren oder andere Änderungen am Abonnement vornehmen möchten, aktualisieren Sie diese bitte vor Beginn des nächsten Zeitraums. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
         "update_plan_remove_license": "Die Gebühren werden automatisch anhand der aktualisierten Sitzanzahl und der Preisgestaltung des neuen Abrechnungszyklus ab der nächsten Periode abgezogen. Wenn die Anzahl der Benutzer mit Bearbeitungsberechtigungen die Anzahl der Sitze zu Beginn des nächsten Abrechnungszyklus überschreitet, alle Benutzer außer dem Besitzer werden deaktiviert, bis Sie Mitglieder entfernen oder die Anzahl der Plätze im verfügbaren Bereich erhöhen. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>",
         "update_plan_remove_storage": "Die Gebühren werden automatisch auf der Grundlage der aktualisierten Speicherung und der Preisgestaltung des neuen Abrechnungszyklus ab dem nächsten Zeitraum abgezogen. Wenn die Speicherkapazität Ihrer Dateien die abonnierte Speicherkapazität zu Beginn des nächsten Abrechnungszyklus übersteigt, alle Dateien werden deaktiviert, bis Sie Dateien löschen oder die Speicherkapazität im verfügbaren Bereich erhöhen. Weitere Informationen finden Sie in unserer <0>Datenschutzrichtlinie</0> und <1>Nutzungsbedingungen</1>"
+      },
+      "colla_redeem": {
+        "title": "Mit {{changeNum}} Colla, können Sie kaufen: ",
+        "storage": "Speicher",
+        "traffic": "Verkehr",
+        "token": "Token"
       }
     },
     "message": {
