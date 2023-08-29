@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB brukt (totalt {{total}}GB) ",
         "Traffic": "{{used}}GB brukt (totalt {{total}}GB) ",
         "colla": "{{used}} Kolla brukt (totalt {{total}} Kolla)"
+      },
+      "colla_usage": {
+        "token": "Sjetong"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Kolla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Kolla"
       },
       "button": {
         "unsubscribe": "Avmeld",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "Avgiftene vil bli automatisk trukket basert på det oppdaterte antall seter og prising av ny faktureringssyklus fra neste periode. Denne gangen vil vi trekke tilbake betalingen for de økte setene i samsvar med den nåværende regningssyklusen. Beregningsregler for økende seter ved hjelp av et månedlig seteabonnement som et eksempel: La oss vurdere et scenario der du først abonnerer på 5 seter fra 14. mars og faktureringssyklusen strekker seg fra 14. i denne måneden til 13. i neste måned. Den 10. mai velger du å legge til en ekstra sete. På det punktet Det var 4 dager igjen til slutten av denne syklusen den 13. mai (som utgjør 30 dager fra 14. april og 13. mai). For å beregne justert betaling kommer det til å trekke fra prisen på 1 sete, som utgjør ca. $10, proporsjonalt med 4 dager i løpet av 30-dagers syklusen. Derfor er fradraget beregnet som 1 setet* $10 / 30 dager * 4 dager, noe som resulterer i ca. $1,33. Fra og med neste faktureringssyklus blir alle setekostnader konsolidert og betalt sammen. Dersom du ønsker å redusere seter eller gjøre andre endringer i abonnementet, vennligst oppdater det før neste periode. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
         "update_plan_remove_license": "Avgiftene vil bli automatisk trukket basert på det oppdaterte antall seter og prising av ny faktureringssyklus fra neste periode. Hvis antall brukere med redigeringstillatelser overskrider antall seter i begynnelsen av neste faktureringssyklus, alle brukere unntatt eieren vil være deaktivert før du fjerner medlemmer, eller øker antallet seter innenfor tilgjengelig område. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>",
         "update_plan_remove_storage": "Avgiftene vil automatisk trekkes fra basert på oppdatert lagring og prising av nye faktureringssykluser for neste periode. Dersom kapasiteten for lagring som er okkupert, overskrider kapasiteten for abonnementslagring ved begynnelsen av neste faktureringssyklus, alle filer vil bli deaktivert inntil du sletter filene, eller øker lagringskapasiteten innenfor tilgjengelig område. For mer informasjon, se våre <0>Personvernerklæringer</0> og <1>Tjenestevilkår</1>"
+      },
+      "colla_redeem": {
+        "title": "Med {{changeNum}} samling kan du kjøpe: ",
+        "storage": "Lagring",
+        "traffic": "Trafikk",
+        "token": "Sjetong"
       }
     },
     "message": {
