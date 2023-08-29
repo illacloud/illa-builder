@@ -38,7 +38,7 @@
       "error_button": "Opnieuw",
       "error_description": "Er is een probleem met uw operatie.",
       "error_title": "Foutmelding",
-      "marketplace": "Marktplaats",
+      "marketplace": "Community",
       "run": "Uitvoeren",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agent markt"
+      "marketplace": "Gemeenschap"
     },
     "sort-type": {
       "popular": "Meest populair",
@@ -75,7 +75,8 @@
       "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
-      "delete-suc": "Succesvol verwijderd. "
+      "delete-suc": "Succesvol verwijderd. ",
+      "mobile-fork-suc": "Succesvol afgebroken. Bewerk op bureaublad."
     },
     "create": "Aanmaken"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "Starten mislukt. Probeer het opnieuw. ",
         "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
         "token-not-enough": "Model limiet bereikt. Start opnieuw.",
-        "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten."
+        "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten.",
+        "purchase-required": "Colla is niet genoeg om te draaien, gelieve te herladen.",
+        "leave": "Er zijn niet-opgeslagen inhoud, weet u zeker dat u wilt verlaten?"
       },
       "title": "🧬 Bewerk de AI Agent",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "Eigenaar",
       "admin": "Administer",
       "editor": "Tekstverwerker",
-      "viewer": "Bekijker"
+      "viewer": "Bekijker",
+      "tips": {
+        "admin": "Het lid dat alle leden behalve de Eigenaar kan beheren, APP's kan bewerken en APP's kan bekijken",
+        "editor": "Het lid dat de APP's kan beheren en bekijken",
+        "viewer": "Het lid dat de APP's kan beheren en bekijken"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Nodig leden uit"
+        "invite_members": "Nodig leden uit",
+        "invite_to_use": "Uitnodigen om te gebruiken",
+        "invite_to_edit": "Uitnodigen om te bewerken",
+        "contribute": "Marktplaats"
       },
       "link": {
         "invite_title": "Uitnodigings link",
         "copy": "Kopiëren",
         "turn_off": "Uitnodigingslinks uitschakelen",
         "update": "Uitnodigingslinks bijwerken",
-        "description": "Deel een geheime link die mensen kunnen gebruiken om deel te nemen aan je team.",
+        "description": "Schakel leden in en nodig uit via link. ",
         "turn_on": "Uitnodigingslinks inschakelen",
         "fail": "Fout bij het verkrijgen van de link, probeer het later opnieuw",
         "copied_suc": "Gekopieerd!",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "Uitschakelen mislukt",
         "turn_on_fail": "Fout bij inschakelen",
         "make_public_title": "Maak de app openbaar",
-        "make_public_copy": "Kopiëren"
+        "make_public_copy": "Kopiëren",
+        "marketplace": {
+          "label": "Deel met link"
+        }
       },
       "email": {
         "invite_title": "Uitnodigen per e-mail",
@@ -3259,8 +3273,8 @@
         "placeholder": "Voer e-mailadres in",
         "invited": "Heeft u uitgenodigd",
         "in_list": "Deze gebruiker is al lid van je team.",
-        "notmail": "{{ email }} is geen e-mail",
-        "duplicate": "{{ email }} wordt gedupliceerd"
+        "duplicate": "{{ email }} wordt gedupliceerd",
+        "not_mail": "{{ email }} is geen e-mail"
       },
       "invalid_email": "Voer een geldig e-mailadres in",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "Uitnodigen",
-        "public": "Openbaar"
+        "public": "Openbaar",
+        "with_team": "Deel met teamleden"
       },
       "custom_copy_text_app_invite": "{{userName}} heeft u een app van 「{{teamName}}」gedeeld. Klik op de link om u aan te sluiten bij het team en controleer de APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} heeft u een APP van 「{{teamName}}」gedeeld. Klik op de link om de app te controleren: {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "Resterende licenties"
       },
-      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Draag bij aan de marktplaats",
+        "default_text": {
+          "app": "Ik heb net een indrukwekkende app ontdekt genaamd {{ appName }}. Bekijk het: {{ appLink }}",
+          "agent": "Ik heb net een indrukwekkende AI Agent genaamd {{ agentName }}ontdekt. Controleer het: {{ agentLink }}"
+        },
+        "desc": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken.",
+        "turn_off": "Annuleer bijdrage"
+      },
+      "social_media": {
+        "label": "Delen op",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nieuws",
+        "default_text": {
+          "app": "Ik heb net een indrukwekkende app ontdekt genaamd {{ appName }}",
+          "agent": "Ik heb net een indrukwekkende AI Agent ontdekt genaamd {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} deelt je een AI Agent van Kof{{ teamName }}. Sluit je aan bij het team en controleer het: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Succesvol uitgenodigd",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Uitnodigen om te bewerken",
-      "invite_to_use": "Uitnodigen om te gebruiken",
-      "share-with-team": "Deel met team",
-      "contribute": "Meedoen"
+      "share-with-team": "Deel met team"
     },
     "desc": {
-      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. ",
-      "contribute": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken."
-    },
-    "tips": {
-      "admin": "Het lid dat alle leden behalve de Eigenaar kan beheren, APP's kan bewerken en APP's kan bekijken",
-      "editor": "Het lid dat de APP's kan beheren en bekijken",
-      "viewer": "Het lid dat de APP's kan beheren en bekijken"
+      "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
     },
     "label": {
-      "contribute": "Draag bij aan de marktplaats",
-      "social-media": "Delen op"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker Nieuws"
-      }
+      "contribute": "Draag bij aan de marktplaats"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey daar! Ik heb net dit geweldige AI-agent ontdekt. Misschien ben je geïnteresseerd in het ook proberen te proberen! Bekijk het! {{promptName}}:{{promptLink}} #AIwriting #Snelbeheer #ProductivityBoost",
         "reddit": "Bekijk deze geweldige AI Agent [{{promptName}}]",
         "linkedin": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
         "facebook": "Let op alle AI enthousiastelingen en professionals die op zoek zijn om hun productiviteit te verhogen! Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!",
@@ -3999,9 +4016,21 @@
       "contribute": "Ik ben een AI Agent platform tegengekomen dat geavanceerde oplossingen biedt voor het vereenvoudigen van complexe taken en het integreren met je interne tools. Ik heb persoonlijk [{{promptName}}] uitgeprobeerd en werd weggeblazen door haar capaciteiten. Het is een game-wisselaar voor iedereen die op zoek is vooruit te blijven op de curve. Bekijk het zelf in {{promptLink}} en laat me weten wat je ervan vindt!"
     },
     "button": {
-      "contribute": "Draag bij aan de marktplaats",
       "share_contribute": "Kopiëren & delen",
       "uncontribute": "Annuleer bijdrage"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "Ik heb zojuist een interessante app gevonden. Bekijk het! {{appName}}:{{appLink}}",
+        "reddit": "Bekijk deze geweldige app [{{appName}}]",
+        "linkedin": "Ik heb zojuist een interessante app gevonden. Bekijk het! {{appName}}:{{appLink}}",
+        "facebook": "Ik heb zojuist een interessante app gevonden. Bekijk het! {{appName}}:{{appLink}}",
+        "whatsapp": "Ik heb zojuist een interessante app gevonden. Bekijk het! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Makkelijk te gebruiken web app sjabloon [{{appName}}]"
+      },
+      "contribute": "Ik heb zojuist een interessante app gevonden. Bekijk het! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI agenten",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "Laden..."
-  }
+    "before": "Meer laden"
+  },
+  "size_exceed_copied_tips": "De inhoud is te lang om te kopiëren. (huidige grootte: {{current_size}} bytes, limiet: {{limit_size}} bytes)",
+  "contribute": "Meedoen"
 }

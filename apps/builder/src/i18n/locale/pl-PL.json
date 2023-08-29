@@ -38,7 +38,7 @@
       "error_button": "Ponów próbę",
       "error_description": "Wystąpił problem z twoją operacją.",
       "error_title": "Błąd",
-      "marketplace": "Sklep",
+      "marketplace": "Community",
       "run": "Uruchom",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Drużyna",
-      "marketplace": "Rynek agenta"
+      "marketplace": "Społeczność"
     },
     "sort-type": {
       "popular": "Najpopularniejsze",
@@ -75,7 +75,8 @@
       "create-suc": "Nie udało się utworzyć, spróbuj ponownie.",
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
-      "delete-suc": "Usunięto pomyślnie. "
+      "delete-suc": "Usunięto pomyślnie. ",
+      "mobile-fork-suc": "Pomyślnie sforkowano. Proszę edytować na pulpicie."
     },
     "create": "Utwórz"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "Nie udało się rozpocząć. Spróbuj ponownie. ",
         "reconnect": "Połączenie zostało utracone. Trwa ponowne połączenie.",
         "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie.",
-        "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki."
+        "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki.",
+        "purchase-required": "Colla nie wystarczy do uruchomienia, proszę doładować.",
+        "leave": "Istnieją niezapisane treści, czy na pewno chcesz opuścić?"
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "Właściciel",
       "admin": "Administer",
       "editor": "Edytor",
-      "viewer": "Przeglądarka"
+      "viewer": "Przeglądarka",
+      "tips": {
+        "admin": "Użytkownik, który może zarządzać wszystkimi użytkownikami z wyjątkiem właściciela, edytować APPs i przeglądać APP",
+        "editor": "Użytkownik, który może zarządzać edytorami i użytkownikami przeglądarek, edytować aplikacje i przeglądać aplikacje",
+        "viewer": "Użytkownik, który może zarządzać użytkownikami przeglądarki i przeglądać APP"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Zaproś członków"
+        "invite_members": "Zaproś członków",
+        "invite_to_use": "Zaproś do użycia",
+        "invite_to_edit": "Zaproś do edycji",
+        "contribute": "Sklep"
       },
       "link": {
         "invite_title": "Link zaproszenia",
         "copy": "Kopiuj",
         "turn_off": "Wyłącz linki z zaproszeniem",
         "update": "Aktualizuj linki z zaproszeniem",
-        "description": "Podziel się tajnym linkiem osoby mogą użyć do dołączenia do Twojego zespołu.",
+        "description": "Włącz i zaproś członków za pomocą linku. ",
         "turn_on": "Włącz linki z zaproszeniem",
         "fail": "Nie udało się uzyskać linku, spróbuj ponownie później",
         "copied_suc": "Skopiowano!",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "Nie udało się wyłączyć",
         "turn_on_fail": "Nie udało się włączyć",
         "make_public_title": "Upublicznij aplikację",
-        "make_public_copy": "Kopiuj"
+        "make_public_copy": "Kopiuj",
+        "marketplace": {
+          "label": "Udostępnij z linkiem"
+        }
       },
       "email": {
         "invite_title": "Zaproś przez e-mail",
@@ -3259,8 +3273,8 @@
         "placeholder": "Wprowadź adres e-mail",
         "invited": "Zaproszono",
         "in_list": "Ten użytkownik jest już w twoim zespole.",
-        "notmail": "{{ email }} nie jest adresem e-mail",
-        "duplicate": "{{ email }} jest zduplikowane"
+        "duplicate": "{{ email }} jest zduplikowane",
+        "not_mail": "{{ email }} nie jest adresem e-mail"
       },
       "invalid_email": "Wprowadź poprawny adres e-mail",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "Zaproś",
-        "public": "Publiczne"
+        "public": "Publiczne",
+        "with_team": "Udostępnij członkom zespołu"
       },
       "custom_copy_text_app_invite": "{{userName}} udostępnił Ci aplikację 「{{teamName}}」. Kliknij link, aby dołączyć do zespołu i sprawdzić API: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} udostępnił Ci APP od {{teamName}}. Kliknij na link aby sprawdzić API: {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "Pozostałe licencje"
       },
-      "custom-copy-ai-agent": "{{userName}} podzielił się z tobą Agentem AI z <unk>{{teamName}}. Kliknij na link, aby dołączyć do zespołu i wypróbuj Agenta AI: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} podzielił się z tobą Agentem AI z <unk>{{teamName}}. Kliknij na link, aby dołączyć do zespołu i wypróbuj Agenta AI: {{inviteLink}}",
+      "contribute": {
+        "label": "Przyczyń się do marketplace",
+        "default_text": {
+          "app": "Właśnie odkryłem imponującą aplikację o nazwie {{ appName }}. Sprawdź to: {{ appLink }}",
+          "agent": "Właśnie odkryłem imponującego agenta AI o nazwie {{ agentName }}. Sprawdź to: {{ agentLink }}"
+        },
+        "desc": "Po wniesieniu wkładu do Marketplace, wszyscy użytkownicy mogą działać, gwiazdkę i rozwidlić swojego przedstawiciela. Gdy użytkownicy z innych drużyn uruchamiają tego agenta, nie zużywają twoich zasobów.",
+        "turn_off": "Anuluj wkład"
+      },
+      "social_media": {
+        "label": "Udostępnij na",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "Aplikacja",
+        "hackernews": "Wiadomości Hakera",
+        "default_text": {
+          "app": "Właśnie odkryłem imponującą aplikację o nazwie {{ appName }}",
+          "agent": "Właśnie odkryłem imponującego agenta AI o nazwie {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} podziel się Agentem AI od <unk>{{ teamName }}. Dołącz do zespołu i sprawdź go: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Zaproszono pomyślnie",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Zaproś do edycji",
-      "invite_to_use": "Zaproś do użycia",
-      "share-with-team": "Udostępnij zespołowi",
-      "contribute": "Wesprzyj"
+      "share-with-team": "Udostępnij zespołowi"
     },
     "desc": {
-      "undeploy": "Aplikacja nie została wdrożona. Publiczny dostęp i dostęp do przeglądarki mogą napotkać błędy. ",
-      "contribute": "Po wniesieniu wkładu do Marketplace, wszyscy użytkownicy mogą działać, gwiazdkę i rozwidlić swojego przedstawiciela. Gdy użytkownicy z innych drużyn uruchamiają tego agenta, nie zużywają twoich zasobów."
-    },
-    "tips": {
-      "admin": "Użytkownik, który może zarządzać wszystkimi użytkownikami z wyjątkiem właściciela, edytować APPs i przeglądać APP",
-      "editor": "Użytkownik, który może zarządzać edytorami i użytkownikami przeglądarek, edytować aplikacje i przeglądać aplikacje",
-      "viewer": "Użytkownik, który może zarządzać użytkownikami przeglądarki i przeglądać APP"
+      "undeploy": "Aplikacja nie została wdrożona. Publiczny dostęp i dostęp do przeglądarki mogą napotkać błędy. "
     },
     "label": {
-      "contribute": "Przyczyń się do marketplace",
-      "social-media": "Udostępnij na"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "Aplikacja",
-        "hackernews": "Wiadomości Hakera"
-      }
+      "contribute": "Przyczyń się do marketplace"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Cześć! Właśnie odkryłem tego niesamowitego Agenta AI. Możesz być zainteresowany także próbą! Sprawdź to! {{promptName}}:{{promptLink}} #AIwrite #PromptManagement #ProductivityBoost",
         "reddit": "Sprawdź tego niesamowitego agenta AI [{{promptName}}]",
         "linkedin": "Zwróć uwagę na wszystkich entuzjastów i profesjonalistów, którzy chcą zwiększyć swoją wydajność! Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!",
         "facebook": "Zwróć uwagę na wszystkich entuzjastów i profesjonalistów, którzy chcą zwiększyć swoją wydajność! Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!",
@@ -3999,9 +4016,21 @@
       "contribute": "Połączyłem się z platformą agentów ochrony środowiska, która oferuje najnowocześniejsze rozwiązania służące uproszczeniu skomplikowanych zadań i integracji z narzędziami wewnętrznymi. Osobiście wypróbowałem [{{promptName}}] i zostałem wysadzony z jego możliwości. To zmiana gry dla każdego, kto chce pozostać przed krzywą. Sprawdź to dla siebie w {{promptLink}} i daj mi znać, co myślisz!"
     },
     "button": {
-      "contribute": "Przyczyń się do marketplace",
       "share_contribute": "Kopiuj i udostępnij",
       "uncontribute": "Anuluj wkład"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "Właśnie znalazłem interesującą aplikację. Sprawdź to! {{appName}}:{{appLink}}",
+        "reddit": "Sprawdź tę niesamowitą aplikację [{{appName}}]",
+        "linkedin": "Właśnie znalazłem interesującą aplikację. Sprawdź to! {{appName}}:{{appLink}}",
+        "facebook": "Właśnie znalazłem interesującą aplikację. Sprawdź to! {{appName}}:{{appLink}}",
+        "whatsapp": "Właśnie znalazłem interesującą aplikację. Sprawdź to! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Łatwy w użyciu szablon aplikacji internetowej [{{appName}}]"
+      },
+      "contribute": "Właśnie znalazłem interesującą aplikację. Sprawdź to! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "Agenci SI",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "Ładowanie..."
-  }
+    "before": "Załaduj więcej"
+  },
+  "size_exceed_copied_tips": "Zawartość jest zbyt długa do skopiowania. (aktualny rozmiar: {{current_size}} bajtów, limit: {{limit_size}} bajtów)",
+  "contribute": "Wesprzyj"
 }

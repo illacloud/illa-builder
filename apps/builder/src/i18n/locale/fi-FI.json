@@ -38,7 +38,7 @@
       "error_button": "Yritä Uudelleen",
       "error_description": "Sinun toiminnassasi on ongelma.",
       "error_title": "Virhe",
-      "marketplace": "Kauppapaikka",
+      "marketplace": "Community",
       "run": "Suorita",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Joukkue",
-      "marketplace": "Agentin markkinat"
+      "marketplace": "Yhteisö"
     },
     "sort-type": {
       "popular": "Suosituin",
@@ -75,7 +75,8 @@
       "create-suc": "Ei voitu luoda, yritä uudelleen.",
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
-      "delete-suc": "Poistettu onnistuneesti. "
+      "delete-suc": "Poistettu onnistuneesti. ",
+      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä."
     },
     "create": "Luo"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "Aloitus epäonnistui. Yritä uudelleen. ",
         "reconnect": "Yhteys menetetty. Uudelleenyhdistäminen käynnissä.",
         "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen.",
-        "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia."
+        "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia.",
+        "purchase-required": "Colla ei riitä juoksemaan, ole hyvä ja lataa.",
+        "leave": "Sisältöä ei ole tallennettu, oletko varma, että haluat lähteä?"
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "Omistaja",
       "admin": "Administer",
       "editor": "Muokkain",
-      "viewer": "Katsoja"
+      "viewer": "Katsoja",
+      "tips": {
+        "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
+        "editor": "Jäsen, joka voi hallita editoria ja katsojan jäseniä, muokata APP:eja ja tarkastella APP:eja",
+        "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Kutsu jäseniä"
+        "invite_members": "Kutsu jäseniä",
+        "invite_to_use": "Kutsu käyttämään",
+        "invite_to_edit": "Kutsu muokattavaksi",
+        "contribute": "Kauppapaikka"
       },
       "link": {
         "invite_title": "Kutsu linkki",
         "copy": "Kopioi",
         "turn_off": "Poista kutsulinkit käytöstä",
         "update": "Päivitä kutsulinkit",
-        "description": "Jaa salainen linkki, jonka avulla ihmiset voivat liittyä tiimiisi.",
+        "description": "Käynnistä ja kutsu jäseniä linkin kautta. ",
         "turn_on": "Ota kutsulinkit käyttöön",
         "fail": "Linkin hankkiminen epäonnistui, yritä myöhemmin uudelleen",
         "copied_suc": "Kopioitu!",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "Ei voitu poistaa käytöstä",
         "turn_on_fail": "Ei voitu ottaa käyttöön",
         "make_public_title": "Tee sovellus julkiseksi",
-        "make_public_copy": "Kopioi"
+        "make_public_copy": "Kopioi",
+        "marketplace": {
+          "label": "Jaa linkin kanssa"
+        }
       },
       "email": {
         "invite_title": "Kutsu sähköpostitse",
@@ -3259,8 +3273,8 @@
         "placeholder": "Syötä sähköpostiosoite",
         "invited": "Kutsuttu",
         "in_list": "Tämä käyttäjä on jo tiimissäsi.",
-        "notmail": "{{ email }} ei ole sähköposti",
-        "duplicate": "{{ email }} on kopioitu"
+        "duplicate": "{{ email }} on kopioitu",
+        "not_mail": "{{ email }} ei ole sähköposti"
       },
       "invalid_email": "Syötä voimassa oleva sähköpostiosoite",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "Kutsu",
-        "public": "Julkinen"
+        "public": "Julkinen",
+        "with_team": "Jaa tiimin jäsenten kanssa"
       },
       "custom_copy_text_app_invite": "{{userName}} on jakanut sinulle sovelluksen 「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin ja tarkista APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} on jakanut sinulle APP lähteestä 「{{teamName}}」. Klikkaa linkkiä tarkistaaksesi APP: {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "Jäljellä olevat lisenssit"
       },
-      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Osallistu markkinapaikkaan",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
+        },
+        "desc": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja.",
+        "turn_off": "Peruuta lisäys"
+      },
+      "social_media": {
+        "label": "Jaa päällä",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hakkerit Uutiset",
+        "default_text": {
+          "app": "Löysin juuri vaikuttavan sovelluksen nimeltä {{ appName }}",
+          "agent": "Löysin juuri vaikuttavan tekoälyagentin nimeltä {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Kutsuttu onnistuneesti",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Kutsu muokattavaksi",
-      "invite_to_use": "Kutsu käyttämään",
-      "share-with-team": "Jaa tiimin kanssa",
-      "contribute": "Osallistu"
+      "share-with-team": "Jaa tiimin kanssa"
     },
     "desc": {
-      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. ",
-      "contribute": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja."
-    },
-    "tips": {
-      "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
-      "editor": "Jäsen, joka voi hallita editoria ja katsojan jäseniä, muokata APP:eja ja tarkastella APP:eja",
-      "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
+      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. "
     },
     "label": {
-      "contribute": "Osallistu markkinapaikkaan",
-      "social-media": "Jaa päällä"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hakkerit Uutiset"
-      }
+      "contribute": "Osallistu markkinapaikkaan"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hei siellä! Löysin juuri tämän hämmästyttävän tekoälyn agentin. Sinua saattaa kiinnostaa myös kokeilla sitä! Tarkista tämä! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Tutustu tähän hämmästyttävään tekoälyn Agent [{{promptName}}]",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
@@ -3999,9 +4016,21 @@
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     },
     "button": {
-      "contribute": "Osallistu markkinapaikkaan",
       "share_contribute": "Kopioi & Jaa",
       "uncontribute": "Peruuta lisäys"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "reddit": "Tutustu tähän hämmästyttävään sovellukseen [{{appName}}]",
+        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Easy-to-use web app template [{{appName}}]"
+      },
+      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI Agents",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "Ladataan..."
-  }
+    "before": "Lataa lisää"
+  },
+  "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
+  "contribute": "Osallistu"
 }

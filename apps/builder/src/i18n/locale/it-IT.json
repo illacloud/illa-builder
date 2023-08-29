@@ -38,7 +38,7 @@
       "error_button": "Riprova",
       "error_description": "C'è un problema con la tua operazione.",
       "error_title": "Errore",
-      "marketplace": "Marketplace",
+      "marketplace": "Community",
       "run": "Esegui",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team",
-      "marketplace": "Mercato dell'agente"
+      "marketplace": "Community"
     },
     "sort-type": {
       "popular": "Più popolari",
@@ -75,7 +75,8 @@
       "create-suc": "Creazione non riuscita, riprova.",
       "fork-suc": "Forked con successo.",
       "delete-failed": "Eliminazione non riuscita. Riprova. ",
-      "delete-suc": "Eliminato con successo. "
+      "delete-suc": "Eliminato con successo. ",
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
     },
     "create": "Crea"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "Impossibile iniziare. Per favore riprova. ",
         "reconnect": "Connessione persa. Riconnessione in corso.",
         "token-not-enough": "Limite del modello raggiunto. Riavviare.",
-        "token": "Il valore attuale di Max token è basso, il che può causare risultati restituiti incompleti."
+        "token": "Il valore attuale di Max token è basso, il che può causare risultati restituiti incompleti.",
+        "purchase-required": "Colla non è sufficiente per funzionare, si prega di ricaricare.",
+        "leave": "Ci sono contenuti non salvati, sei sicuro di voler uscire?"
       },
       "title": "🧬 Modifica Agente AI",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "Proprietario",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Visualizzatore"
+      "viewer": "Visualizzatore",
+      "tips": {
+        "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
+        "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
+        "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Invita membri"
+        "invite_members": "Invita membri",
+        "invite_to_use": "Invita da usare",
+        "invite_to_edit": "Invita a modificare",
+        "contribute": "Marketplace"
       },
       "link": {
         "invite_title": "Link di invito",
         "copy": "Copia",
         "turn_off": "Disattiva link di invito",
         "update": "Aggiorna link di invito",
-        "description": "Condividi un link segreto che le persone possono usare per unirsi al tuo team.",
+        "description": "Attiva e invita i membri tramite link. ",
         "turn_on": "Attiva link di invito",
         "fail": "Impossibile ottenere il link, si prega di riprovare più tardi",
         "copied_suc": "Copiato!",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "Impossibile disattivare",
         "turn_on_fail": "Attivazione non riuscita",
         "make_public_title": "Rendi pubblica l'app",
-        "make_public_copy": "Copia"
+        "make_public_copy": "Copia",
+        "marketplace": {
+          "label": "Condividi con il link"
+        }
       },
       "email": {
         "invite_title": "Invita via email",
@@ -3259,8 +3273,8 @@
         "placeholder": "Inserisci indirizzo email",
         "invited": "Hanno invitato",
         "in_list": "Questo utente è già nel tuo team.",
-        "notmail": "{{ email }} non è un'email",
-        "duplicate": "{{ email }} è duplicato"
+        "duplicate": "{{ email }} è duplicato",
+        "not_mail": "{{ email }} non è un'email"
       },
       "invalid_email": "Inserisci un'email valida",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "Invita",
-        "public": "Pubblico"
+        "public": "Pubblico",
+        "with_team": "Condividi con i membri del team"
       },
       "custom_copy_text_app_invite": "{{userName}} ti ha condiviso un'app di 「{{teamName}}」. Clicca sul link per unirti al team e controlla l'APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} ti ha condiviso una APP da 「{{teamName}}」. Clicca sul link per controllare l'APP: {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "Licenze rimanenti"
       },
-      "custom-copy-ai-agent": "{{userName}} ti ha condiviso un agente AI di <unk>{{teamName}}<unk> . Clicca il link per unirti alla squadra e prova l'agente AI: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} ti ha condiviso un agente AI di <unk>{{teamName}}<unk> . Clicca il link per unirti alla squadra e prova l'agente AI: {{inviteLink}}",
+      "contribute": {
+        "label": "Contribuisci al mercato",
+        "default_text": {
+          "app": "Ho appena scoperto un'app impressionante chiamata {{ appName }}. Controlla: {{ appLink }}",
+          "agent": "Ho appena scoperto un agente AI impressionante chiamato {{ agentName }}. Controllalo: {{ agentLink }}"
+        },
+        "desc": "Dopo aver contribuito al Marketplace, tutti gli utenti possono eseguire, stella e fork il tuo Agente. Quando gli utenti di altri team eseguono questo Agente, non consumerà le tue risorse.",
+        "turn_off": "Annulla contributo"
+      },
+      "social_media": {
+        "label": "Condividi su",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News",
+        "default_text": {
+          "app": "Ho appena scoperto un'app impressionante chiamata {{ appName }}",
+          "agent": "Ho appena scoperto un agente AI impressionante chiamato {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} condividi un agente AI da <unk>{{ teamName }}<unk> . Unisciti al team e controllalo: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invitato con successo",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invita a modificare",
-      "invite_to_use": "Invita da usare",
-      "share-with-team": "Condividi con il team",
-      "contribute": "Contribuisci"
+      "share-with-team": "Condividi con il team"
     },
     "desc": {
-      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. ",
-      "contribute": "Dopo aver contribuito al Marketplace, tutti gli utenti possono eseguire, stella e fork il tuo Agente. Quando gli utenti di altri team eseguono questo Agente, non consumerà le tue risorse."
-    },
-    "tips": {
-      "admin": "Il membro che può gestire tutti i membri tranne Proprietario, modificare le APP e visualizzare le APP",
-      "editor": "Il membro che può gestire editor e membri del visualizzatore, modificare le APP e visualizzare le APP",
-      "viewer": "Il membro che può gestire i membri del visualizzatore e visualizzare APP"
+      "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
     },
     "label": {
-      "contribute": "Contribuisci al mercato",
-      "social-media": "Condividi su"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker News"
-      }
+      "contribute": "Contribuisci al mercato"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Ehi lì! Ho appena scoperto questo fantastico agente AI. Potresti essere interessato a dargli anche una prova! Dai un'occhiata! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Dai un'occhiata a questo fantastico agente AI [{{promptName}}]",
         "linkedin": "Attenzione tutti gli appassionati di AI e i professionisti che cercano di aumentare la loro produttività! Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
         "facebook": "Attenzione tutti gli appassionati di AI e i professionisti che cercano di aumentare la loro produttività! Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!",
@@ -3999,9 +4016,21 @@
       "contribute": "Mi sono imbattuto in una piattaforma di AI Agent che offre soluzioni all'avanguardia per semplificare compiti complessi e integrare con i vostri strumenti interni. Ho provato personalmente [{{promptName}}] ed è stato spazzato via dalle sue capacità. Si tratta di un cambio di gioco per chiunque cerchi di stare avanti rispetto alla curva. Dai un'occhiata a te stesso su {{promptLink}} e fammi sapere cosa ne pensi!"
     },
     "button": {
-      "contribute": "Contribuisci al mercato",
       "share_contribute": "Copia & Condividi",
       "uncontribute": "Annulla contributo"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "Ho appena trovato un'app interessante. Dai un'occhiata! {{appName}}:{{appLink}}",
+        "reddit": "Dai un'occhiata a questa fantastica app [{{appName}}]",
+        "linkedin": "Ho appena trovato un'app interessante. Dai un'occhiata! {{appName}}:{{appLink}}",
+        "facebook": "Ho appena trovato un'app interessante. Dai un'occhiata! {{appName}}:{{appLink}}",
+        "whatsapp": "Ho appena trovato un'app interessante. Dai un'occhiata! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Modello di app web facile da usare [{{appName}}]"
+      },
+      "contribute": "Ho appena trovato un'app interessante. Dai un'occhiata! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "Agenti AI",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "Caricamento..."
-  }
+    "before": "Carica altro"
+  },
+  "size_exceed_copied_tips": "Il contenuto è troppo lungo per copiare. (dimensione corrente: {{current_size}} byte, limite: {{limit_size}} bytes)",
+  "contribute": "Contribuisci"
 }

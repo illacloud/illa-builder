@@ -38,7 +38,7 @@
       "error_button": "Retry",
       "error_description": "There is a problem with your operation.",
       "error_title": "Error",
-      "marketplace": "Marketplace",
+      "marketplace": "Community",
       "run": "Run",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agent market"
+      "marketplace": "Community"
     },
     "sort-type": {
       "popular": "Most popular",
@@ -75,7 +75,8 @@
       "create-suc": "Successfully saved",
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
+      "delete-suc": "Successfully deleted. ",
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
     },
     "create": "Create"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "Failed to start. Please try again. ",
         "reconnect": "Connection lost. Reconnecting...",
         "token-not-enough": "Model limit reached. Please restart.",
-        "token": "The current value of Max tokens is low, which may cause incomplete returned results."
+        "token": "The current value of Max tokens is low, which may cause incomplete returned results.",
+        "purchase-required": "Colla is not enough to run, please recharge.",
+        "leave": "There are unsaved content, are you sure you want to leave?"
       },
       "title": "🧬 Edit AI Agent",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "Owner",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Viewer"
+      "viewer": "Viewer",
+      "tips": {
+        "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
+        "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
+        "viewer": "The member who can manage viewer members and view APPs"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Invite members"
+        "invite_members": "Invite members",
+        "invite_to_use": "Invite to use",
+        "invite_to_edit": "Invite to edit",
+        "contribute": "Marketplace"
       },
       "link": {
         "invite_title": "Invite link",
         "copy": "Copy",
         "turn_off": "Turn off invite links",
         "update": "Update invite links",
-        "description": "Share a secret link people can use to join your team.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Turn on invite links",
         "fail": "Failed to obtain the link, please try again later",
         "copied_suc": "Copied!",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "Failed to turn off",
         "turn_on_fail": "Failed to turn on",
         "make_public_title": "Make the app public",
-        "make_public_copy": "Copy"
+        "make_public_copy": "Copy",
+        "marketplace": {
+          "label": "Share with link"
+        }
       },
       "email": {
         "invite_title": "Invite by email",
@@ -3259,8 +3273,8 @@
         "placeholder": "Enter email address",
         "invited": "Have invited",
         "in_list": "This user is already in your team.",
-        "notmail": "{{ email }} is not an email",
-        "duplicate": "{{ email }} is duplicated"
+        "duplicate": "{{ email }} is duplicated",
+        "not_mail": "{{ email }} is not an email"
       },
       "invalid_email": "Please enter a valid email",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "Invite",
-        "public": "Public"
+        "public": "Public",
+        "with_team": "Share with team members"
       },
       "custom_copy_text_app_invite": "{{userName}} shared you an app of 「{{teamName}}」. Click the link to join the team and check the APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} shared an app with you from 「{{teamName}}」 . Click the link to check the APP: {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "Remaining licenses"
       },
-      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Contribute to marketplace",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
+        },
+        "desc": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources.",
+        "turn_off": "Cancel contribution"
+      },
+      "social_media": {
+        "label": "Share on",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invited successfully",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Share with team"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
-    },
-    "tips": {
-      "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
-      "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
-      "viewer": "The member who can manage viewer members and view APPs"
+      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker News"
-      }
+      "contribute": "Contribute to marketplace"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Check out this amazing AI Agent [{{promptName}}]",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
@@ -3999,9 +4016,21 @@
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     },
     "button": {
-      "contribute": "Contribute to marketplace",
       "share_contribute": "Copy & Share",
       "uncontribute": "Cancel contribution"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "reddit": "Check out this amazing app [{{appName}}]",
+        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Easy-to-use web app template [{{appName}}]"
+      },
+      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI Agents",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "Loading..."
-  }
+    "before": "Load more"
+  },
+  "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
+  "contribute": "Contribute"
 }

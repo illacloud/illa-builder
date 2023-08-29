@@ -38,7 +38,7 @@
       "error_button": "重试",
       "error_description": "请求错误",
       "error_title": "错误",
-      "marketplace": "Marketplace",
+      "marketplace": "社区",
       "run": "运行",
       "fork": "Fork"
     },
@@ -56,26 +56,27 @@
       "test_success": "测试成功"
     },
     "list-type": {
-      "team": "团队Agent",
-      "marketplace": "Agent库"
+      "team": "团队内容",
+      "marketplace": "社区内容"
     },
     "sort-type": {
       "popular": "最受欢迎",
       "recent": "最新",
-      "star": "Starred"
+      "star": "已收藏"
     },
-    "search": "Search",
+    "search": "搜索",
     "no-result": "没有结果，请刷新或更新您的搜索词。",
     "message": {
       "next-page-error": "下一页加载失败，请重试",
       "create-failed": "Agent保存失败，请重试",
-      "sort-failed": "筛选类型过滤失败，请重试",
-      "detail-load-failed": "详细信息查询失败，请重试",
+      "sort-failed": "筛选方式变更失败，请重试",
+      "detail-load-failed": "详细信息获取失败，请重试",
       "fork-failed": "Fork失败，请重试",
       "create-suc": "保存成功",
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
-      "delete-suc": "删除成功"
+      "delete-suc": "删除成功",
+      "mobile-fork-suc": "Fork成功，请前往桌面版编辑"
     },
     "create": "创建"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "开始失败，请重试。",
         "reconnect": "连接已断开，正在重连",
         "token-not-enough": "运行已达模型上限，请重新开始。",
-        "token": "当前Max token较小，可能导致返回结果不完整"
+        "token": "当前Max token较小，可能导致返回结果不完整",
+        "purchase-required": "Colla不足无法运行，请充值",
+        "leave": "有未保存的内容，确认要离开吗？"
       },
       "title": "🧬 编辑AI Agent",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "所有者",
       "admin": "管理员",
       "editor": "编辑者",
-      "viewer": "浏览者"
+      "viewer": "浏览者",
+      "tips": {
+        "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
+        "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
+        "viewer": "可以管理浏览者、查看APP"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "邀请成员"
+        "invite_members": "邀请成员",
+        "invite_to_use": "邀请使用",
+        "invite_to_edit": "邀请进行编辑",
+        "contribute": "Marketplace"
       },
       "link": {
         "invite_title": "邀请链接",
         "copy": "复制",
         "turn_off": "关闭邀请链接",
         "update": "更新邀请链接",
-        "description": "允许用户通过您分享的私密链接加入团队",
+        "description": "开启并通过链接邀请成员。 ",
         "turn_on": "打开邀请链接",
         "fail": "链接获取失败，请稍后重试",
         "copied_suc": "复制成功！",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "关闭失败",
         "turn_on_fail": "开启失败",
         "make_public_title": "设置为公开项目",
-        "make_public_copy": "复制"
+        "make_public_copy": "复制",
+        "marketplace": {
+          "label": "通过链接分享"
+        }
       },
       "email": {
         "invite_title": "通过电子邮件邀请",
@@ -3259,8 +3273,8 @@
         "placeholder": "输入电子邮件地址",
         "invited": "已邀请",
         "in_list": "该用户已加入您的团队",
-        "notmail": "{{ email }}不是一个邮箱地址",
-        "duplicate": "{{ email }}是重复的电子邮件地址"
+        "duplicate": "{{ email }}是重复的电子邮件地址",
+        "not_mail": "{{ email }}不是一个邮箱地址"
       },
       "invalid_email": "请输入有效的电子邮件",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "邀请",
-        "public": "公开"
+        "public": "公开",
+        "with_team": "和team成员分享"
       },
       "custom_copy_text_app_invite": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接加入团队并查看APP： {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} 分享给您一个来自「{{teamName}}」的应用。点击链接查看APP： {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "剩余许可证"
       },
-      "custom-copy-ai-agent": "{{userName}}分享给您一个来自「{{teamName}}」团队的AI Agent. 点击链接加入团队并使用AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}}分享给您一个来自「{{teamName}}」团队的AI Agent. 点击链接加入团队并使用AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "贡献到marketplace",
+        "default_text": {
+          "app": "我刚发现了一个有意思的app： {{ appName }}，通过链接查看：{{ appLink }}",
+          "agent": "我刚发现了一个有意思的AI Agent：  {{ agentName }}. 通过链接查看: {{ agentLink }}"
+        },
+        "desc": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。",
+        "turn_off": "取消贡献"
+      },
+      "social_media": {
+        "label": "分享到",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News",
+        "default_text": {
+          "app": "我刚发现了一个有意思的app： {{ appName }}",
+          "agent": "我刚发现了一个有意思的AI Agent： {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} 分享给你一个来自 「{{ teamName }}」的AI Agent。加入团队并查看: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "邀请成功",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "邀请进行编辑",
-      "invite_to_use": "邀请使用",
-      "share-with-team": "和团队共享",
-      "contribute": "贡献"
+      "share-with-team": "和团队共享"
     },
     "desc": {
-      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 ",
-      "contribute": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。"
-    },
-    "tips": {
-      "admin": "可以管理除所有者以外的所有成员、编辑APP和查看APP",
-      "editor": "可以管理编辑者和浏览者、编辑 APP和查看APP",
-      "viewer": "可以管理浏览者、查看APP"
+      "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
     },
     "label": {
-      "contribute": "贡献到Marketplace",
-      "social-media": "分享到"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker News"
-      }
+      "contribute": "贡献到Marketplace"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Check out this amazing AI Agent [{{promptName}}]",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
@@ -3999,9 +4016,21 @@
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     },
     "button": {
-      "contribute": "贡献到marketplace",
       "share_contribute": "复制并分享",
       "uncontribute": "取消贡献"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}",
+        "reddit": "看看这个有趣的应用[{{appName}}]",
+        "linkedin": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}",
+        "facebook": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}",
+        "whatsapp": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "易于使用的应用模板 [{{appName}}]"
+      },
+      "contribute": "我刚发现了一个有趣的应用程序。来看看吧！{{appName}}：{{appLink}}"
     }
   },
   "ai-agents": "AI Agents",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "正在加载..."
-  }
+    "before": "加载更多"
+  },
+  "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
+  "contribute": "贡献"
 }

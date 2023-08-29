@@ -38,7 +38,7 @@
       "error_button": "Forsøg igen",
       "error_description": "Der er et problem med din drift.",
       "error_title": "Fejl",
-      "marketplace": "Markedsplads",
+      "marketplace": "Community",
       "run": "Kør",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agentens marked"
+      "marketplace": "Fællesskab"
     },
     "sort-type": {
       "popular": "Mest populære",
@@ -75,7 +75,8 @@
       "create-suc": "Kunne ikke oprettes. Prøv venligst igen.",
       "fork-suc": "Gafler med succes.",
       "delete-failed": "Kunne ikke slette. Prøv igen. ",
-      "delete-suc": "Slettet succesfuldt. "
+      "delete-suc": "Slettet succesfuldt. ",
+      "mobile-fork-suc": "Forked med succes. Rediger venligst på skrivebordet."
     },
     "create": "Opret"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "Mislykkedes at starte. Prøv igen. ",
         "reconnect": "Forbindelse tabt. Gentilkobling i gang.",
         "token-not-enough": "Model grænse nået. Genstart.",
-        "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater."
+        "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater.",
+        "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst",
+        "leave": "Der er ikke-gemt indhold, er du sikker på, at du vil forlade?"
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "Ejer",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Fremviser"
+      "viewer": "Fremviser",
+      "tips": {
+        "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
+        "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
+        "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Inviter medlemmer"
+        "invite_members": "Inviter medlemmer",
+        "invite_to_use": "Inviter til brug",
+        "invite_to_edit": "Inviter til at redigere",
+        "contribute": "Markedsplads"
       },
       "link": {
         "invite_title": "Invitér link",
         "copy": "Kopiér",
         "turn_off": "Slå invitationslinks fra",
         "update": "Opdater invitationslinks",
-        "description": "Del et hemmeligt link folk kan bruge til at deltage i dit team.",
+        "description": "Slå og inviter medlemmer til via link. ",
         "turn_on": "Slå invitationslinks til",
         "fail": "Kunne ikke hente linket. Prøv igen senere",
         "copied_suc": "Kopieret!",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "Mislykkedes at deaktivere",
         "turn_on_fail": "Kunne ikke aktivere",
         "make_public_title": "Gør appen offentlig",
-        "make_public_copy": "Kopiér"
+        "make_public_copy": "Kopiér",
+        "marketplace": {
+          "label": "Del med link"
+        }
       },
       "email": {
         "invite_title": "Inviter via e-mail",
@@ -3259,8 +3273,8 @@
         "placeholder": "Indtast e-mail adresse",
         "invited": "Har inviteret",
         "in_list": "Denne bruger er allerede på dit team.",
-        "notmail": "{{ email }} er ikke en e-mail",
-        "duplicate": "{{ email }} er duplikeret"
+        "duplicate": "{{ email }} er duplikeret",
+        "not_mail": "{{ email }} er ikke en e-mail"
       },
       "invalid_email": "Indtast venligst en gyldig e-mail",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "Inviter",
-        "public": "Offentlig"
+        "public": "Offentlig",
+        "with_team": "Del med teammedlemmer"
       },
       "custom_copy_text_app_invite": "{{userName}} har delt dig en app på 「{{teamName}}」. Klik på linket for at deltage i teamet og tjek APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} har delt dig en APP fra 「{{teamName}}」. Klik på linket for at tjekke APP: {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "Resterende licenser"
       },
-      "custom-copy-ai-agent": "{{userName}} har delt dig en AI Agent of ¤{{teamName}}- Klik på linket for at deltage i teamet og prøv AI Agent: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} har delt dig en AI Agent of ¤{{teamName}}- Klik på linket for at deltage i teamet og prøv AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Bidrag til markedspladsen",
+        "default_text": {
+          "app": "Jeg har lige opdaget en imponerende app kaldet {{ appName }}. Tjek den: {{ appLink }}",
+          "agent": "Jeg har lige opdaget en imponerende AI Agent kaldet {{ agentName }}. Tjek det: {{ agentLink }}"
+        },
+        "desc": "Efter at have bidraget til markedspladsen, kan alle brugere køre, stjerne, og gaffel din agent. Når brugere fra andre teams kører denne Agent, vil det ikke forbruge dine ressourcer.",
+        "turn_off": "Annuller bidrag"
+      },
+      "social_media": {
+        "label": "Del på",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker Nyheder",
+        "default_text": {
+          "app": "Jeg har lige opdaget en imponerende app kaldet {{ appName }}",
+          "agent": "Jeg har lige opdaget en imponerende AI Agent kaldet {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} del dig en AI Agent fra ¤{{ teamName }}- Deltag i teamet og tjek det: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Inviteret med succes",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Inviter til at redigere",
-      "invite_to_use": "Inviter til brug",
-      "share-with-team": "Del med teamet",
-      "contribute": "Bidrag"
+      "share-with-team": "Del med teamet"
     },
     "desc": {
-      "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. ",
-      "contribute": "Efter at have bidraget til markedspladsen, kan alle brugere køre, stjerne, og gaffel din agent. Når brugere fra andre teams kører denne Agent, vil det ikke forbruge dine ressourcer."
-    },
-    "tips": {
-      "admin": "Medlem, der kan administrere alle medlemmer undtagen Ejeren, redigere APP'er og se APP'er",
-      "editor": "Medlem, der kan administrere redigerings- og seermedlemmer, redigere APP'er og se APP'er",
-      "viewer": "Medlem, der kan administrere seermedlemmer og se APP'er"
+      "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. "
     },
     "label": {
-      "contribute": "Bidrag til markedspladsen",
-      "social-media": "Del på"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker Nyheder"
-      }
+      "contribute": "Bidrag til markedspladsen"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hej der! Jeg har lige opdaget denne fantastiske AI Agent. Du er måske også interesseret i at prøve det! Tjek det ud! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProduktivityBoost",
         "reddit": "Tjek denne fantastiske AI Agent [{{promptName}}]",
         "linkedin": "Opmærksomhed alle AI entusiaster og fagfolk ønsker at øge deres produktivitet! Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
         "facebook": "Opmærksomhed alle AI entusiaster og fagfolk ønsker at øge deres produktivitet! Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!",
@@ -3999,9 +4016,21 @@
       "contribute": "Jeg stødte på en AI Agent platform, der tilbyder avancerede løsninger til at forenkle komplekse opgaver og integrere med dine interne værktøjer. Jeg personligt prøvede [{{promptName}}] og blev blæst væk af sine kapaciteter. Det er en game-changer for alle, der ønsker at holde sig foran kurven. Tjek det ud for dig selv på {{promptLink}} og lad mig vide, hvad du mener!"
     },
     "button": {
-      "contribute": "Bidrag til markedspladsen",
       "share_contribute": "Kopiér & Del",
       "uncontribute": "Annuller bidrag"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "reddit": "Tjek denne fantastiske app [{{appName}}]",
+        "linkedin": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "facebook": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}",
+        "whatsapp": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Let at bruge web-app skabelon [{{appName}}]"
+      },
+      "contribute": "Jeg har lige fundet en interessant app. Tjek det ud! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI Agenter",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "Indlæser..."
-  }
+    "before": "Indlæs mere"
+  },
+  "size_exceed_copied_tips": "Indholdet er for langt til at kopiere. (nuværende størrelse: {{current_size}} bytes, limit: {{limit_size}} bytes)",
+  "contribute": "Bidrag"
 }

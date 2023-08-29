@@ -38,7 +38,7 @@
       "error_button": "リトライ",
       "error_description": "間違ったリクエスト",
       "error_title": "間違い",
-      "marketplace": "市場",
+      "marketplace": "Community",
       "run": "実行",
       "fork": "Fork"
     },
@@ -56,8 +56,8 @@
       "test_success": "テスト成功"
     },
     "list-type": {
-      "team": "チーム",
-      "marketplace": "エージェント市場"
+      "team": "チームの",
+      "marketplace": "コミュニティ"
     },
     "sort-type": {
       "popular": "最も人気",
@@ -75,7 +75,8 @@
       "create-suc": "作成に失敗しました。もう一度やり直してください。",
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
-      "delete-suc": "正常に削除しました。 "
+      "delete-suc": "正常に削除しました。 ",
+      "mobile-fork-suc": "正常にフォークされました。デスクトップで編集してください。"
     },
     "create": "作成"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "開始に失敗しました。もう一度やり直してください。 ",
         "reconnect": "接続が失われました。再接続中...",
         "token-not-enough": "モデルの上限に達しました。再起動してください。",
-        "token": "Maxトークンの現在の値が低いため、結果が不完全になる可能性があります。"
+        "token": "Maxトークンの現在の値が低いため、結果が不完全になる可能性があります。",
+        "purchase-required": "Collaは実行するのに十分ではありません。充電してください。",
+        "leave": "保存されていないコンテンツがあります。本当に退出しますか？"
       },
       "title": "🧬 AI エージェントの編集",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "オーナー",
       "admin": " 管理者",
       "editor": "編集者",
-      "viewer": "見るだけ"
+      "viewer": "見るだけ",
+      "tips": {
+        "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
+        "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
+        "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "メンバーを招待"
+        "invite_members": "メンバーを招待",
+        "invite_to_use": "招待する",
+        "invite_to_edit": "編集に招待",
+        "contribute": "市場"
       },
       "link": {
         "invite_title": "招待リンク",
         "copy": "コピー",
         "turn_off": "招待リンクをオフにする",
         "update": "招待リンクを更新する",
-        "description": "ユーザーがプライベート リンクでチームに参加できるようにする",
+        "description": "オンにしてリンク経由でメンバーを招待します。 ",
         "turn_on": "招待リンクをオンにする",
         "fail": "リンクを取得できませんでした。しばらくしてからもう一度お試しください",
         "copied_suc": "コピーしました！",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "オフにできませんでした",
         "turn_on_fail": "オンにできませんでした",
         "make_public_title": "アプリを公開する",
-        "make_public_copy": "コピー"
+        "make_public_copy": "コピー",
+        "marketplace": {
+          "label": "リンクで共有"
+        }
       },
       "email": {
         "invite_title": "メールで招待する",
@@ -3259,8 +3273,8 @@
         "placeholder": "メールアドレスを入力",
         "invited": "招待しました",
         "in_list": "このユーザーは既にチーム内にいます",
-        "notmail": "{{ email }}はメールではありません",
-        "duplicate": "{{ email }}は重複したメールアドレスです"
+        "duplicate": "{{ email }}は重複したメールアドレスです",
+        "not_mail": "{{ email }}はメールではありません"
       },
       "invalid_email": "有効なメールアドレスを入力して下さい。",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "招待",
-        "public": "公開"
+        "public": "公開",
+        "with_team": "チームメンバーと共有"
       },
       "custom_copy_text_app_invite": "{{userName}} が「{{teamName}}」のアプリを共有しました。 リンクをクリックしてチームに参加し、アプリを確認してください: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} が「{{teamName}}」からアプリをあなたと共有しました。 リンクをクリックしてアプリを確認してください: {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "残りのライセンス"
       },
-      "custom-copy-ai-agent": "{{userName}} が「{{teamName}}」のAIエージェントを共有しました。リンクをクリックしてチームに参加し、AIエージェントを試してみてください: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} が「{{teamName}}」のAIエージェントを共有しました。リンクをクリックしてチームに参加し、AIエージェントを試してみてください: {{inviteLink}}",
+      "contribute": {
+        "label": "マーケットプレイスに貢献する",
+        "default_text": {
+          "app": "{{ appName }}と呼ばれる印象的なアプリを発見しました。確認してください： {{ appLink }}",
+          "agent": "{{ agentName }}という印象的なAIエージェントを発見しました。確認してください： {{ agentLink }}"
+        },
+        "desc": "Marketplaceに貢献すると、すべてのユーザーがエージェントを実行、スター、フォークできます。 他のチームのユーザーがこのエージェントを運営すると、あなたのリソースは消費されません。",
+        "turn_off": "投稿をキャンセル"
+      },
+      "social_media": {
+        "label": "共有先：",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "ハッカーニュース",
+        "default_text": {
+          "app": "{{ appName }} という印象的なアプリを見つけました",
+          "agent": "印象的なAIエージェント {{ agentName }}を発見しました"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} は、「{{ teamName }}」からAIエージェントを共有します。チームに参加して確認してください: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "招待しました",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "編集に招待",
-      "invite_to_use": "招待する",
-      "share-with-team": "チームと共有",
-      "contribute": "貢献"
+      "share-with-team": "チームと共有"
     },
     "desc": {
-      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 ",
-      "contribute": "Marketplaceに貢献すると、すべてのユーザーがエージェントを実行、スター、フォークできます。 他のチームのユーザーがこのエージェントを運営すると、あなたのリソースは消費されません。"
-    },
-    "tips": {
-      "admin": "オーナー以外のすべてのメンバーを管理したり、APPを編集したり、APPを表示することができるメンバー",
-      "editor": "エディタとビューアメンバーを管理したり、APPを編集したり、APPを表示できるメンバー",
-      "viewer": "ビューアメンバーを管理し、アプリを表示できるメンバー"
+      "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
     },
     "label": {
-      "contribute": "マーケットプレイスに貢献する",
-      "social-media": "共有先："
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "ハッカーニュース"
-      }
+      "contribute": "マーケットプレイスに貢献する"
     },
     "default-text": {
       "social-media": {
-        "twitter": "こんにちは！この素晴らしいAIエージェントを見つけました。 ぜひ試してみてください！ {{promptName}}:{{promptLink}} #AIwriting #ProductivityBoost",
         "reddit": "この AI エージェント [{{promptName}} ] をチェックしてください。",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
@@ -3999,9 +4016,21 @@
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     },
     "button": {
-      "contribute": "マーケットプレイスに貢献する",
       "share_contribute": "コピー & 共有",
       "uncontribute": "投稿をキャンセル"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "reddit": "この素晴らしいアプリをチェックしてください [{{appName}}]",
+        "linkedin": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "facebook": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}",
+        "whatsapp": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "簡単に使えるウェブアプリテンプレート [{{appName}}]"
+      },
+      "contribute": "興味深いアプリが見つかりました。ご確認ください！ {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AIエージェント",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "読み込み中..."
-  }
+    "before": "さらに読み込む"
+  },
+  "size_exceed_copied_tips": "コピーするにはコンテンツが長すぎます。(現在のサイズ: {{current_size}} バイト、制限: {{limit_size}} バイト)",
+  "contribute": "貢献"
 }

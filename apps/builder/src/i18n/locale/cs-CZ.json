@@ -38,7 +38,7 @@
       "error_button": "Opakovat",
       "error_description": "Vyskytl se problém s vaší operací.",
       "error_title": "Chyba",
-      "marketplace": "Tržiště",
+      "marketplace": "Community",
       "run": "Spustit",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Týmový",
-      "marketplace": "Agent trh"
+      "marketplace": "Komunita"
     },
     "sort-type": {
       "popular": "Nejoblíbenější",
@@ -75,7 +75,8 @@
       "create-suc": "Nepodařilo se vytvořit, zkuste to prosím znovu.",
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
-      "delete-suc": "Úspěšně smazáno. "
+      "delete-suc": "Úspěšně smazáno. ",
+      "mobile-fork-suc": "Odesláno úspěšně. Upravte prosím na počítači."
     },
     "create": "Vytvořit"
   },
@@ -2621,7 +2622,9 @@
         "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. ",
         "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
         "token-not-enough": "Dosažen limit modelu. Prosím restartujte.",
-        "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky."
+        "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky.",
+        "purchase-required": "Colla nestačí k spuštění, prosím znovu nabit.",
+        "leave": "Existuje neuložený obsah, jste si jisti, že chcete odejít?"
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
@@ -3232,18 +3235,26 @@
       "owner": "Vlastník",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Prohlížeč"
+      "viewer": "Prohlížeč",
+      "tips": {
+        "admin": "Člen, který může spravovat všechny členy kromě vlastníka, upravit APP a zobrazit APP",
+        "editor": "Člen, který může spravovat členy editorů a diváků, upravit APP a zobrazit APP",
+        "viewer": "Člen, který může spravovat členy diváku a prohlížet APP"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Pozvat členy"
+        "invite_members": "Pozvat členy",
+        "invite_to_use": "Pozvat k použití",
+        "invite_to_edit": "Pozvat k úpravě",
+        "contribute": "Tržiště"
       },
       "link": {
         "invite_title": "Odkaz na pozvání",
         "copy": "Kopírovat",
         "turn_off": "Vypnout odkazy pozvánky",
         "update": "Aktualizovat odkazy pozvánky",
-        "description": "Sdílejte tajné odkazy lidí mohou použít pro připojení k vašemu týmu.",
+        "description": "Zapněte a pozvěte členy prostřednictvím odkazu. ",
         "turn_on": "Zapnout odkazy pozvánky",
         "fail": "Nepodařilo se získat odkaz, zkuste to prosím později",
         "copied_suc": "Zkopírováno!",
@@ -3251,7 +3262,10 @@
         "turn_off_fail": "Vypnutí se nezdařilo",
         "turn_on_fail": "Zapnutí se nezdařilo",
         "make_public_title": "Zveřejnit aplikaci",
-        "make_public_copy": "Kopírovat"
+        "make_public_copy": "Kopírovat",
+        "marketplace": {
+          "label": "Sdílet s odkazem"
+        }
       },
       "email": {
         "invite_title": "Pozvat e-mailem",
@@ -3259,8 +3273,8 @@
         "placeholder": "Zadejte e-mailovou adresu",
         "invited": "Pozvali",
         "in_list": "Tento uživatel je již ve vašem týmu.",
-        "notmail": "{{ email }} není e-mail",
-        "duplicate": "{{ email }} je duplikován"
+        "duplicate": "{{ email }} je duplikován",
+        "not_mail": "{{ email }} není e-mail"
       },
       "invalid_email": "Zadejte prosím platný e-mail",
       "message": {
@@ -3270,7 +3284,8 @@
       },
       "tab": {
         "invite": "Pozvat",
-        "public": "Veřejnost"
+        "public": "Veřejnost",
+        "with_team": "Sdílet se členy týmu"
       },
       "custom_copy_text_app_invite": "{{userName}} vás sdílel s aplikací 「{{teamName}}」. Klikněte na odkaz pro připojení se k týmu a zkontrolujte APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} tě sdílel/a APP od 「{{teamName}}」. Klepnutím na odkaz zkontrolujte APP: {{inviteLink}}",
@@ -3278,7 +3293,30 @@
       "tips": {
         "license_insufficient": "Zbývající licence"
       },
-      "custom-copy-ai-agent": "{{userName}} tě sdílel AI agenta z <unk>{{teamName}}<unk> . Klepni na odkaz pro připojení k týmu a vyzkoušej AI agenta: {{inviteLink}}"
+      "custom-copy-ai-agent": "{{userName}} tě sdílel AI agenta z <unk>{{teamName}}<unk> . Klepni na odkaz pro připojení k týmu a vyzkoušej AI agenta: {{inviteLink}}",
+      "contribute": {
+        "label": "Přispějte na tržišti",
+        "default_text": {
+          "app": "Právě jsem objevil působivou aplikaci s názvem {{ appName }}. Podívejte se: {{ appLink }}",
+          "agent": "Právě jsem objevil působivý AI agent s názvem {{ agentName }}. Podívejte se: {{ agentLink }}"
+        },
+        "desc": "Po přispění do obchodu Marketplace mohou běžet, hvězda a rozštěpit vašeho agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat.",
+        "turn_off": "Zrušit příspěvek"
+      },
+      "social_media": {
+        "label": "Sdílet na",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker novinky",
+        "default_text": {
+          "app": "Právě jsem objevil působivou aplikaci s názvem {{ appName }}",
+          "agent": "Právě jsem objevil působivý AI agent s názvem {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} vás sdílí AI agenta z <unk>{{ teamName }}<unk> . Připojte se k týmu a zkontrolujte jej: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Pozvánka úspěšně",
@@ -3959,37 +3997,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Pozvat k úpravě",
-      "invite_to_use": "Pozvat k použití",
-      "share-with-team": "Sdílet s týmem",
-      "contribute": "Přispějte"
+      "share-with-team": "Sdílet s týmem"
     },
     "desc": {
-      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. ",
-      "contribute": "Po přispění do obchodu Marketplace mohou běžet, hvězda a rozštěpit vašeho agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat."
-    },
-    "tips": {
-      "admin": "Člen, který může spravovat všechny členy kromě vlastníka, upravit APP a zobrazit APP",
-      "editor": "Člen, který může spravovat členy editorů a diváků, upravit APP a zobrazit APP",
-      "viewer": "Člen, který může spravovat členy diváku a prohlížet APP"
+      "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
     },
     "label": {
-      "contribute": "Přispějte na tržišti",
-      "social-media": "Sdílet na"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker novinky"
-      }
+      "contribute": "Přispějte na tržišti"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Ahoj! Právě jsem objevil tohoto úžasného agenta AI. Mohlo by vás zajímat o pokus i to! Podívejte se na to! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Podívejte se na tento úžasný AI agenta [{{promptName}}]",
         "linkedin": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
         "facebook": "Pozorujte všechny nadšence AI a profesionály usilující o zvýšení jejich produktivity! Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!",
@@ -3999,9 +4016,21 @@
       "contribute": "Navštívil jsem platformu AI agenta, která nabízí špičková řešení pro zjednodušení složitých úkolů a integraci s vašimi vnitřními nástroji. Osobně jsem vyzkoušel [{{promptName}}] a byl jsem vyhozen svými schopnostmi. Je to herní výměník pro každého, kdo chce zůstat před křivkou. Podívejte se na sebe v {{promptLink}} a dejte mi vědět, co si myslíte!"
     },
     "button": {
-      "contribute": "Přispějte na tržišti",
       "share_contribute": "Kopírovat a sdílet",
       "uncontribute": "Zrušit příspěvek"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}",
+        "reddit": "Podívejte se na tuto úžasnou aplikaci [{{appName}}]",
+        "linkedin": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}",
+        "facebook": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}",
+        "whatsapp": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Šablona webové aplikace [{{appName}}]"
+      },
+      "contribute": "Právě jsem našel zajímavou aplikaci. Podívej se na to! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI agenti",
@@ -4010,6 +4039,8 @@
     "fork": "Fork {{operationNum}}"
   },
   "load": {
-    "before": "Načítám..."
-  }
+    "before": "Načíst více"
+  },
+  "size_exceed_copied_tips": "Obsah je příliš dlouhý na kopírování. (aktuální velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)",
+  "contribute": "Přispějte"
 }
