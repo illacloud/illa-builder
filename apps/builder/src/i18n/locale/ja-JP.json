@@ -38,7 +38,7 @@
       "error_button": "リトライ",
       "error_description": "間違ったリクエスト",
       "error_title": "間違い",
-      "marketplace": "Community",
+      "marketplace": "コミュニティ",
       "run": "実行",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "保存",
       "start": "開始",
       "restart": "再起動",
-      "contribute": "マーケットプレイスに貢献する",
+      "contribute": "コミュニティに貢献する",
       "button": {
         "send": "送信",
         "generating": "生成中"
@@ -3247,7 +3247,7 @@
         "invite_members": "メンバーを招待",
         "invite_to_use": "招待する",
         "invite_to_edit": "編集に招待",
-        "contribute": "市場"
+        "contribute": "コミュニティ"
       },
       "link": {
         "invite_title": "招待リンク",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} が「{{teamName}}」のAIエージェントを共有しました。リンクをクリックしてチームに参加し、AIエージェントを試してみてください: {{inviteLink}}",
       "contribute": {
-        "label": "マーケットプレイスに貢献する",
+        "label": "コミュニティに貢献する",
         "default_text": {
           "app": "{{ appName }}と呼ばれる印象的なアプリを発見しました。確認してください： {{ appLink }}",
           "agent": "{{ agentName }}という印象的なAIエージェントを発見しました。確認してください： {{ agentLink }}"
@@ -3594,16 +3594,16 @@
     "apps": {
       "components": "すべてのコンポーネント",
       "resources": "すべてのリソース",
-      "plugins": "無制限のプラグイン",
+      "plugins": "無制限のプラグイン(近日公開)",
       "sql": "AI SQLの生成",
       "watermark": "透かしを削除"
     },
     "security": {
-      "historic-7": "7日間の歴史的なバージョンの保持と回復",
-      "historic-30": "30日間の歴史的なバージョンの保持と回復",
-      "develop-environment": "環境を開発",
+      "historic-7": "歴史的版は7日間の保存と回復(近日公開予定)",
+      "historic-30": "デプロイされたバージョンと元に戻す（近日公開予定）",
+      "develop-environment": "マルチ環境(近日公開予定)",
       "app-public": "アプリを公開",
-      "restore-data": "バックアップと復元",
+      "restore-data": "バックアップ編集の履歴と復元",
       "deployed": "ILLAサポートへのアクセス",
       "dedicated": "専任ソリューションエンジニア"
     },
@@ -3612,7 +3612,7 @@
       "sql": "自然言語を入力し、SQL文を生成します",
       "staging": "ステージング環境に対してアプリをテストする",
       "app-public": "アプリを公開し、リンクを持つ誰でもアクセスできます",
-      "restore-data": "いつでもデータをバックアップまたは復元します",
+      "restore-data": "必要な時に履歴をバックアップまたは復元します",
       "deployed": "導入されたエンジニアはより速く搭載するのを助けます",
       "dedicated": "Slack/email/phoneを介した専用の顧客ソリューションエンジニア",
       "preview_insufficient": "容量不足のためファイルをプレビューできません。容量を拡大してください。"
@@ -3645,19 +3645,24 @@
     "free-members": "個人利用のメンバーは1名です",
     "unlimited-viewer": "無制限の視聴者のために無料",
     "unlimited-members": "無制限のメンバー",
-    "free-btn": "無料でアプリをビルド",
-    "plus-btn": "無料版をお試しください",
+    "free-btn": "現在のプラン",
+    "plus-btn": "アップグレードする",
     "enterprise-btn": "お問い合わせ",
     "menu": {
       "billing": "請求",
-      "license": "ライセンス",
+      "license": "シート",
       "drive": "ドライブ",
+      "colla": "Colla",
+      "appsumo": "Appsoco",
+      "colla_transaction": "Collaトランザクション履歴",
       "billing_portal": "Billing portal"
     },
     "title": {
       "billing": "請求",
-      "license": "ライセンス",
-      "drive": "ドライブ"
+      "license": "シート",
+      "drive": "ドライブ",
+      "colla": "Colla",
+      "appsumo": "Appsomo"
     },
     "subscription_general": {
       "plan": {
@@ -3666,7 +3671,8 @@
       },
       "sub_cycle": {
         "yearly": "年ごと",
-        "monthly": "月ごと"
+        "monthly": "月ごと",
+        "lifetime": "有効期間"
       },
       "billing_cyle": {
         "year": "/年",
@@ -3675,9 +3681,10 @@
       "table_title": {
         "next_payment_date": "次回の支払日",
         "expiration_date": "有効期限",
-        "licenses": "ライセンス",
+        "licenses": "席",
         "storage": "ストレージ",
-        "traffic": "トラフィック"
+        "traffic": "トラフィック",
+        "colla": "Colla"
       },
       "period": {
         "current": "現在",
@@ -3686,36 +3693,60 @@
     },
     "subscription_card": {
       "title": {
-        "License": "ライセンス",
+        "License": "席",
         "Storage": "ストレージ",
         "Traffic": "トラフィック",
-        "balance": "残高"
+        "balance": "残高",
+        "colla": "Colla"
       },
       "button": {
-        "License": "ライセンスの管理",
+        "License": "座席管理",
         "Storage": "ストレージの管理",
-        "Traffic": "トラフィックを拡大"
+        "Traffic": "トラフィックを拡大",
+        "colla": "コラの管理"
       },
       "capacity": {
-        "License": "{{used}} (合計 {{total}} ライセンス) が使用されています。",
-        "Storage": "{{used}} (合計 {{total}} GB) が使用されています。",
-        "Traffic": "{{used}} (合計 {{total}} GB) が使用されています。"
+        "License": "{{used}} 使用済み（ {{total}} 席） ",
+        "Storage": "{{used}}GB使用（ {{total}}GBの合計） ",
+        "Traffic": "{{used}}GB使用（ {{total}}GBの合計） ",
+        "colla": "{{used}} Colla used (total of {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "トークン"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "月",
+        "event": "イベント",
+        "usage": "コラの使用法"
+      },
+      "event": {
+        "increase_storage": "ストレージ容量を上げる",
+        "increase_colla": "コラを上げる",
+        "increase_traffic": "トラフィックを増加"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "ストレージの管理",
-        "manage_licenses": "ライセンスの管理",
-        "expand_traffic_capac": "トラフィック容量を拡大"
+        "manage_licenses": "座席管理",
+        "expand_traffic_capac": "トラフィック容量を拡大",
+        "colla": "コラの管理"
       },
       "plan_label": {
-        "License": "ライセンス",
+        "License": "席",
         "Storage": "ストレージ",
-        "Traffic": "トラフィック"
+        "Traffic": "トラフィック",
+        "colla": "Colla"
       },
       "plan_number_input_label": {
-        "License": "ライセンス",
-        "Storage_traffic": "GB"
+        "License": "席",
+        "Storage_traffic": "5GB",
+        "colla": "Colla"
       },
       "select_option": {
         "Yearly": "年ごと",
@@ -3739,14 +3770,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} ライセンス× {{remainDays}} 日 / {{totalDays}} 日",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} ライセンス",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} ライセンス",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} ライセンス× {{remainDays}} 日 / {{totalDays}} 日",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} ライセンス",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} ライセンス",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} ライセンス",
+        "this_period": "{{unitPrice}} × {{licenseNum}} 座席× {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} 席",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} 席",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} 座席× {{remainDays}} 日 / {{totalDays}} 日",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} 席",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} 席",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} 席",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} 席",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} 日 / {{totalDays}} 日",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3754,7 +3785,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colra"
       },
       "button": {
         "unsubscribe": "購読解除",
@@ -3762,21 +3794,23 @@
         "change_plan": "プランの変更",
         "storage_traffic_increase": "{{changeNum}} GB を上げる",
         "storage_traffic_remove": "{{changeNum}} GB を削除",
-        "license_increase": "{{changeNum}} ライセンスを増加",
-        "license_remove": "{{changeNum}} ライセンスを削除"
+        "license_increase": "{{changeNum}} 座席の増加",
+        "license_remove": "{{changeNum}} シートを削除",
+        "colla_increase": "{{changeNum}} コラを上げる",
+        "colla_remove": "{{changeNum}} コラを削除"
       },
       "description_title": {
         "add_storage": "{{changeNum}} GB のストレージを追加します。 確認が完了すると、この請求サイクルの新しいストレージの支払いがすぐに差し引かれます。<0>詳細はこちら</0>",
         "remove_storage": "{{changeNum}} GB のストレージを削除します。確認後、次の課金サイクルで変更が有効になります。<0>詳細はこちら</0>",
         "update_plan_year": "年間支払いプランに更新します。 確認後、次の請求サイクルの開始から変更が有効になります。<0>詳細はこちら</0>",
         "update_plan_monthly": "毎月の支払いプランに更新します。 確認後、次の請求サイクルの開始から変更が有効になります。<0>詳細はこちら</0>",
-        "add_license": "{{changeNum}} ライセンスを追加します。確認が完了すると、この請求サイクルの新しいライセンスの支払いがすぐに差し引かれます。<0>詳細</0>",
-        "remove_license": "{{changeNum}} ライセンスを削除します。確認後、次の請求サイクルで変更が有効になります。<0>詳細はこちら</0>",
+        "add_license": "{{changeNum}} 席を追加します。確認後、この請求サイクルの新しいシートの支払いがすぐに差し引かれます。<0>詳細はこちら</0>",
+        "remove_license": "{{changeNum}} シートを削除します。確認後、次の請求サイクルで変更が反映されます。<0>詳細</0>",
         "add_traffic": "{{changeNum}}GB のトラフィックを追加します。確認後、追加トラフィックのコストがすぐに差し引かれます。<0>詳細はこちら</0>",
         "subscribe_storage": "あなたはILLA Cloud Plusに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。<0>詳細はこちら</0>。",
         "subscribe_license": "あなたはILLAドライブに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。<0>詳細はこちら</0>。",
-        "update_plan_increase_license": "{{changeNum}} ライセンスを追加し、サブスクリプション期間を更新します。 <0>詳細</0>",
-        "update_plan_remove_license": "{{changeNum}} ライセンスを削除し、サブスクリプション期間を更新します。<0>詳細</0>",
+        "update_plan_increase_license": "{{changeNum}} シートを追加し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
+        "update_plan_remove_license": "{{changeNum}} シートを削除し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
         "update_plan_increase_storage": "{{changeNum}} GBのストレージを追加し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
         "update_plan_remove_storage": "{{changeNum}} GBのストレージを削除し、サブスクリプション期間を更新します。<0>詳細はこちら</0>",
         "unsubscribe_license": "ILLA Cloud Plusの登録を解除します。 キャンセル後、次の請求サイクルから始めて、Plus機能にアクセスできなくなります。<0>詳細</0>",
@@ -3784,21 +3818,31 @@
         "subscribe_license_monthly": "あなたはILLA Cloud Plusの月額サブスクリプションを購読します。<0>詳細はこちら</0>",
         "subscribe_license_yearly": "あなたはILLA Cloud Plusの年額サブスクリプションを購読します。<0>詳細はこちら</0>",
         "subscribe_storage_monthly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>",
-        "subscribe_storage_yearly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>"
+        "subscribe_storage_yearly": "{{changeNum}}GBのストレージを追加します。確認後、すぐにストレージのコストが差し引かれます。<0>詳細</0>",
+        "colla_sub": "あなたはコラを購読するつもりです。 確認が完了すると、各請求サイクルの開始時に自動的に手数料が差し引かれ、Colaが必要な場合に自動的にサブスクリプションをアップグレードします。 <0>詳細</0>",
+        "colla_increase": "{{changeNum}} Collaを追加します。確認が完了すると、この請求サイクルの残り金額がすぐに差し引かれます。<0>詳細</0>",
+        "colla_remove": "{{changeNum}} Collaを削除します。確認後、次の請求サイクルから有効になります。<0>詳細</0>",
+        "colla_unsubscribe": "あなたはあなたのCollaサブスクリプションをキャンセルしようとしています。確認後、次の請求サイクルから有効になります。 キャンセル後、ILLA ドライブと AI Agent の使用に問題が発生することがあります。<0>詳細はこちら</0>",
+        "colla_update": "あなたはあなたのCollaサブスクリプションを変更します。確認が完了すると、次の請求サイクルから変更が反映されます。<0>詳細</0>"
       },
       "description": {
-        "add_storage": "毎月のストレージサブスクリプションを使用した計算ルールを例として挙げてみましょう。3月14日から最初に5GBまで登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日、あなたは1GBを追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1 GBのコストを差し引くことになります。 9、30日間の周期内の4日の期間に比例しますので、控除は1ライセンス*0と推定されます。 9 / 30 日 * 4日間、およそ$ 0.132になります。 次の請求サイクルから、すべての保管料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、ユーザー<0>プライバシーポリシー</0>および<1>サービス規約</1>をご覧ください。",
         "remove_storage": "あなたのファイルによって占有されたストレージ容量が次の課金サイクルの開始時に登録されたストレージ容量を超えた場合 ファイルを削除するか、利用可能な範囲内でストレージ容量を増やすまで、すべてのファイルは無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "update_plan_year": "次の期間から、サブスクリプションは年間サブスクリプションに変更されます。 年間購読料に基づいて自動的に手数料が差し引かれます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "update_plan_monthly": "次の期間から、サブスクリプションは月額プランに変更されます 月額料金に基づいて自動的に手数料が差し引かれます ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "remove_license": "編集権限を持つユーザーの数が次の課金サイクルの開始時にライセンスの数を超えた場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内でライセンス数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_year": "次の期間から、サブスクリプションは年間サブスクリプションに変更されます。 年間購読料に基づいて自動的に手数料が差し引かれます。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_monthly": "次の期間から、サブスクリプションは月額プランに変更されます 月額料金に基づいて自動的に手数料が差し引かれます シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "add_license": "例として、月額プランを使用した計算ルールを例として挙げましょう。3月14日以降、最初に5議席まで登録されたシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日には、追加で1席追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1席の費用を差し引いていきます。 約10ドルで、30日間の期間内に4日間の期間に比例します。 したがって、控除は1席*$ 10 / 30日*4日と推定され、約$ 1.33になります。 次の請求サイクルから、すべての座席料金は統合され、一緒に支払われます。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "remove_license": "編集権限を持つユーザーの数が次の課金サイクルの開始時にシートの数を超える場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内のシート数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "add_traffic": "正常に控除された後、トラフィックはリアルタイムで増加します。 トラフィックを使用すると、手数料は返金できません。未使用のトラフィックは単位GBで返金できます。 例えば、10GBのトラフィックを購入して4.5GBを使用している場合、5GBの払い戻しを申請することができます。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "subscribe_storage_yearly": "あなたはILLAドライブストレージの年間サブスクリプションに登録することになります。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 差し引かれた実際の量は、GBで購読しているストレージ容量によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始した場合、年間サブスクリプション料金は$ 9です。 GBごとに、合計3GBを持っていると、$ 29が差し引かれます。 2023年2月25日。 2023年3月25日に2GBを追加された場合、2023年3月25日に残りの11ヶ月分の支払いが差し引かれます。 その後、2024年2月25日までに、5 GBの支払いが差し引かれます。これは(2+3)*$9.9=$49です。 をクリックします。 ストレージを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "subscribe_storage_monthly": "あなたはILLAドライブストレージの毎月のサブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 差し引かれた実際の量は、GBで購読しているストレージ容量によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始した場合、月額料金は$ 0です。 1 GBにつき9 GBの合計を持っている、私たちは$ 2を差し引く。 2023年2月25日7。 2023年3月21日にライセンスを2つ追加すると、2023年3月21日に残り5日間の支払いが差し引かれます。 その後、2023年3月25日までに、5ライセンス(2+3*0)の支払いが差し引かれます。 9=$4.95. ライセンスを減らしたり、サブスクリプションにその他の変更を加えたい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "subscribe_license_monthly": "あなたはILLA Cloud Plusの月額サブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 実際に差し引かれる金額は、ライセンスの数によって異なります。 たとえば、2023年2月25日に最初のサブスクリプションを開始し、月額プラン料金は1ライセンスあたり$ 12です。 合計3つのライセンスを持っていますが、2023年2月25日に36ドルを差し引く予定です。 2023年3月21日にライセンスを2つ追加すると、2023年3月21日に残り5日間の支払いが差し引かれます。 その後、2023年3月25日までに、5ライセンス(2+3)*12=60ドル)の支払いが差し引かれます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "update_plan_remove_license": "更新されたライセンス数と次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 編集権限を持つユーザーの数が次の課金サイクルの開始時にライセンスの数を超えた場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内でライセンス数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
-        "update_plan_increase_storage": "更新されたストレージと次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 今回は、現在の請求サイクルに応じて、ストレージの増加分の支払いが差し引かれます。 毎月のストレージサブスクリプションを使用した計算ルールを例として挙げてみましょう。3月14日から最初に5GBまで登録したシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日、あなたは1GBを追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1 GBのコストを差し引くことになります。 9、30日間のサイクル内の4日の期間に比例。 したがって、控除は約$ 0.132の結果、1ライセンス* $ 0.99/30日*4日と推定されます。 次の請求サイクルから、すべての保管料は統合され、一緒に支払われます。 ライセンスを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前にライセンスを更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "subscribe_license_monthly": "あなたはILLA Cloud Plusの月額サブスクリプションに登録するつもりです。 各支払いサイクルの開始時に、お客様のアカウントから手数料が自動的に差し引かれます。 実際に差し引かれる金額は、あなたが持っている席の数によって異なります。 例えば、2023年2月25日に最初のサブスクリプションを開始し、月額料金は1座席あたり12ドルです。 合計3席ですが2023年2月25日に36ドル差し引かれます 2023年3月21日にさらに2議席追加された場合、2023年3月21日に残り5日間の支払いが差し引かれます。 その後、2023年3月25日までに5席分の支払いが差し引かれます(2+3)*$12=$60です。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_increase_license": "更新された議席数と次の期間からの新しい請求サイクルの価格に基づいて手数料が自動的に差し引かれます。 今回は、現在の請求サイクルに応じて、増えた議席の支払いが差し引かれます。 例として、月額プランを使用してシートを増やした場合の計算ルールを例として挙げましょう。3月14日以降、当初5議席を購読した場合のシナリオを考えてみましょう。 今月14日から来月13日までの請求期間があります 5月10日には、追加の座席を1つ追加することにしました。 その時点で 5月13日の現在の周期が終了するまで残り4日間(4月14日から5月13日までの30日間)がありました。 調整された支払いを計算するために、1席の費用を差し引いていきます。 約10ドルで、30日間の期間内に4日間の期間に比例します。 したがって、控除は1席*$ 10 / 30日*4日と推定され、約$ 1.33になります。 次の請求サイクルから、すべての座席料金は統合され、一緒に支払われます。 シートを減らしたり、サブスクリプションを変更したい場合は、次の期間の開始前に更新してください。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
+        "update_plan_remove_license": "更新された議席数と次の期間からの新しい請求サイクルの価格に基づいて手数料が自動的に差し引かれます。 編集権限を持つユーザーの数が次の課金サイクルの開始時にシートの数を超える場合 オーナー以外のすべてのユーザーは、メンバーを削除するか、利用可能な範囲内のシート数を増やすまで無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。",
         "update_plan_remove_storage": "更新されたストレージと次の期間からの新しい請求サイクルの価格に基づいて、手数料は自動的に差し引かれます。 あなたのファイルによって占有されたストレージ容量が次の課金サイクルの開始時に登録されたストレージ容量を超えた場合 ファイルを削除するか、利用可能な範囲内でストレージ容量を増やすまで、すべてのファイルは無効になります。 詳細については、<0>プライバシーポリシー</0>および<1>サービス利用規約</1>をご覧ください。"
+      },
+      "colla_redeem": {
+        "title": "{{changeNum}} Collaでは、以下を購入できます。 ",
+        "storage": "ストレージ",
+        "traffic": "トラフィック",
+        "token": "トークン"
       }
     },
     "message": {
@@ -3806,8 +3850,8 @@
       "failed_to_add_traffic": "トラフィックの追加に失敗しました。もう一度やり直してください。 ",
       "failed_to_add_storage": "ストレージの追加に失敗しました。もう一度やり直してください。 ",
       "failed_to_remove_storage": "ストレージの削除に失敗しました。もう一度やり直してください。 ",
-      "failed_to_add_licens": "ライセンスの追加に失敗しました。もう一度やり直してください。 ",
-      "failed_to_remove_lic": "ライセンスの削除に失敗しました。もう一度やり直してください。 ",
+      "failed_to_add_licens": "座席を追加できませんでした。もう一度やり直してください。 ",
+      "failed_to_remove_lic": "席の削除に失敗しました。もう一度やり直してください。 ",
       "failed_to_change_pla": "プランの変更に失敗しました。もう一度やり直してください。 ",
       "failed_to_unsubscrib": "購読解除に失敗しました。もう一度やり直してください。 ",
       "successfully_removed": "正常に削除されました。変更は {{nextPaymentDate}} から適用されます。",
@@ -3817,16 +3861,20 @@
       "successfully_changed": "サブスクリプションが正常に変更されました。数分後に有効になります",
       "failed_to_change": "サブスクリプションの変更に失敗しました",
       "unsubscription_suc": "サブスクリプションは正常にキャンセルされ、次の期間から有効になります",
-      "failed_to_join_no_license": "チームライセンスが不足しているため参加できません。管理者に連絡してください。",
+      "failed_to_join_no_license": "座席が不足しているため参加できません ",
       "storage_insufficient_modal": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
       "appsumo": {
+        "suc": "正常に償還されました",
+        "fail": "交換に失敗しました。後でもう一度お試しください。",
         "transfer": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 ",
         "leave": "操作に失敗しました。このユーザーは生涯サブスクリプションにバインドされています。 "
       },
       "no_license_operate_failed": "ライセンス不足のため操作に失敗しました。",
       "failed_to_invite_no_license": "ライセンス不足のため、一部のメンバー招待に失敗しました。",
-      "error_subscribe": "プランの変更に失敗しました。後でもう一度お試しください。",
-      "unsubscription_fail": "サブスクリプションをキャンセルできませんでした。後でもう一度お試しください。"
+      "error_subscribe": "購読に失敗しました。後でもう一度お試しください。",
+      "unsubscription_fail": "サブスクリプションをキャンセルできませんでした。後でもう一度お試しください。",
+      "failed_to_update": "サブスクリプションの更新に失敗しました。もう一度やり直してください。 ",
+      "update_suc": "サブスクリプションが更新されました"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3837,7 +3885,7 @@
         "not_owner_description_drive": "このチームのストレージまたはトラフィックが不十分です。管理者にお問い合わせください。",
         "not_owner_button_drive": "了解",
         "out_title_drive": "ダウンロードに失敗しました",
-        "out_description_drive": "ダウンロードに失敗しました。ファイルの所有者に連絡してください",
+        "out_description_drive": "トラフィックが不足しているため、ダウンロードに失敗しました。ファイルの所有者に連絡してください",
         "out_button_drive": "了解"
       },
       "sub_suc": {
@@ -3845,7 +3893,7 @@
         "you_can_now_invite_m": "数分で有効になります。 メンバーを招待して、後で高度な機能を使い始めることができます。試してみてください！",
         "you_can_now_upload_m": "数分後に有効になります。さらにファイルをアップロードできるようになりました。",
         "payment_successful": "支払いが完了しました",
-        "we_have_added_the_li": "数分後に有効になります。ライセンスを追加しました。 サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
+        "we_have_added_the_li": "数分後に有効になります。シートを追加しました。 サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
         "we_have_added_the_st": "数分後に有効になります。ストレージを追加しました。 サブスクリプション期間の変更は、次の請求サイクルから有効になります。",
         "we_have_added_the_tr": "数分で有効になります。後でトラフィックを追加します。より多くのファイルをダウンロードできます。",
         "successfully_updated": "正常に更新されました",
@@ -3861,24 +3909,27 @@
         "audit_logs": "監査ログ",
         "learn_more": "もっと詳しく",
         "upgrade": "アップグレードする",
-        "insufficient_license_title": "ライセンスが足りません",
-        "insufficient_license_description": "より多くのエディタを招待するには、まずライセンスを増やしてください。チームのすべてのメンバーは、ILLA Cloud Plusの機能を使用できます。 各機能への特定のアクセスは、各メンバーの役割によって異なります。 ",
-        "insufficient_license_button": "ライセンスを追加",
+        "insufficient_license_title": "座席が足りません",
+        "insufficient_license_description": "より多くの編集者を招待するには、まず座席を増やしてください。あなたのチームのすべてのメンバーは、ILLA Cloud Plusの機能を使用できます。 各機能への特定のアクセスは、各メンバーの役割によって異なります。 ",
+        "insufficient_license_button": "シートを追加",
         "pricing": "/editor/month, year"
       },
       "expired": {
         "owner": "サブスクリプションの有効期限が切れています。引き続き使用するには、サブスクリプションを更新してください。",
         "others": "チームのサブスクリプションの有効期限が切れているため、あなたのアカウントは無効になっています。",
-        "your_subscription_ha_not_owner": "ライセンスが足りません",
+        "your_subscription_ha_not_owner": "サブスクリプション例外",
         "all_members_except_f_not_owner": "あなたのチームには十分なライセンスがありません。チームのオーナーにお問い合わせください。",
-        "upgrade_not_owner": "了解"
+        "upgrade_not_owner": "了解",
+        "your_subscription_ha": "サブスクリプションが期限切れです",
+        "all_members_except_f": "あなたのチームのサブスクリプションの有効期限が切れています。時間内に更新してください。",
+        "upgrade": "アップグレードする"
       },
       "blank_page": {
-        "insufficient_license_disable": "チームライセンスが不足しているため、あなたのアカウントは無効になっています。チームオーナーにお問い合わせください。"
+        "insufficient_license_disable": "チームスペースが不足しているため、あなたのアカウントは無効になっています。チームオーナーにお問い合わせください。"
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "ライセンスが足りません",
-        "insufficient_license_description": "より多くのエディタを招待するには、まず管理者にライセンスを増やすように接続してください。",
+        "insufficient_license_title": "座席が足りません",
+        "insufficient_license_description": "シートが不足しているため操作に失敗しました。チームオーナーに連絡してください。",
         "insufficient_license_button": "OK"
       },
       "storage_insufficient": {
@@ -3888,16 +3939,16 @@
         "not_owner_title": "ストレージ容量が足りません",
         "not_owner_description": "ファイルを正常に保存するには、管理者に問い合わせて時間内にストレージ容量を増やしてください。",
         "not_owner_button": "OK",
-        "owner_pricing": "GB/月"
+        "owner_pricing": "5 GB/月"
       },
       "traffic_insufficient": {
         "owner_title": "トラフィック容量不足",
         "owner_description": "ファイルに正常にアクセスするには、時間内にトラフィック容量を増やしてください。 ",
         "owner_button": "容量アップ",
-        "not_owner_title": "ストレージ容量が足りません",
+        "not_owner_title": "トラフィック不足",
         "not_owner_description": "ファイルに正常にアクセスするには、管理者に連絡して時間内にトラフィック容量を増やしてください。",
         "not_owner_button": "OK",
-        "owner_pricing": "GB/月"
+        "owner_pricing": "5 GB"
       },
       "cancel_confirm": {
         "description": "キャンセル後、次の課金サイクルから無料プランに戻ります。 サブスクリプションプランに含まれる機能にはアクセスできなくなります。",
@@ -3910,21 +3961,6 @@
         "title": "プランを変更しますか?",
         "button_cancel": "キャンセル",
         "button_confirm": "確認する"
-      },
-      "ai-agent": {
-        "string1": "GPT-4はプレミアムチーム用です。 ",
-        "string2": "使用するには、プレミアムにアップグレードしてください。プレミアムにアップグレードすると、次の機能も利用できます。 "
-      },
-      "upgrade_now_not_admin": {
-        "upgrade_title": "プレミアムチームの機能",
-        "upgrade_title billing": {
-          "modal": {
-            "upgrade_now_not_admin": {
-              "upgrade_desc": "この機能はプレミアムチーム用です。アップグレードするにはチーム管理者にお問い合わせください。 "
-            }
-          }
-        },
-        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3932,18 +3968,65 @@
       "upgrade": "アップグレードする",
       "cancel": "キャンセル"
     },
-    "advanced": {
-      "feature": "透かしを削除"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "本当に {{teamName}} チームでAppSumoを利用しますか？ ",
+        "cancel": "キャンセル",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "引き換えるチームを選択",
+          "create_button": "新しいチームを作成",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "アカウントを作成"
+      },
+      "update": "AppSumo プランを更新"
+    },
+    "alert": {
+      "expired": {
+        "owner": "座席数が足りないか、サブスクリプションの有効期限が切れています。時間内にアップグレードしてください。 ",
+        "others": "座席が不足しているため、無効になっています。チームオーナーにお問い合わせください"
+      }
+    },
+    "yearly_discount": "（ほぼ16.7%）",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/month",
+      "yearly": "{{ price }}/editor/year"
     },
     "redirect_page": {
+      "title": "支払いが完了しました",
       "desc1": "ご購入ありがとうございます。ILLA Cloudは引き続き多くの機能を提供します。",
       "desc2": "{{time}} 秒後に ILLA Cloud にリダイレクトしています...",
-      "title": "支払いが完了しました",
       "button": "ILLAクラウドに戻る"
     },
     "redirect_to_stripe": "Stripeにリダイレクト中",
-    "appsumo": {
-      "update": "AppSumo プランを更新"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "ILLAドライブに任意のファイルを保存するために月額100MBのストレージ。",
+          "traffic": "ILLAドライブからファイルをダウンロードするための100 MBのトラフィック。"
+        }
+      },
+      "drive": {
+        "title": "ILLAドライブ",
+        "storage": "ILLAドライブに任意のファイルを格納するために月額5GBのストレージ",
+        "traffic": "ILLAドライブからファイルをダウンロードするための5GBのトラフィック。"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "ILLAドライブに任意のファイルを保存するための月額カスタムストレージ",
+          "traffic": "ILLAドライブからファイルをダウンロードするためのカスタムトラフィック"
+        }
+      }
     }
   },
   "network": {
@@ -3957,7 +4040,7 @@
     "desc": {
       "no_description": "説明がありません",
       "blank": "アプリケーションがありません",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "ここにAIエージェントがありません"
     },
     "app_setting": {
       "app_setting": "アプリの設定",
@@ -4003,7 +4086,7 @@
       "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
     },
     "label": {
-      "contribute": "マーケットプレイスに貢献する"
+      "contribute": "コミュニティに貢献する"
     },
     "default-text": {
       "social-media": {

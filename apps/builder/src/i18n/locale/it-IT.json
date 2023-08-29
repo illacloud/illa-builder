@@ -2606,7 +2606,7 @@
       "save": "Salva",
       "start": "Inizia",
       "restart": "Riavvia",
-      "contribute": "Contribuisci al mercato",
+      "contribute": "Contribuisci alla comunità",
       "button": {
         "send": "Invia",
         "generating": "Generazione"
@@ -3247,7 +3247,7 @@
         "invite_members": "Invita membri",
         "invite_to_use": "Invita da usare",
         "invite_to_edit": "Invita a modificare",
-        "contribute": "Marketplace"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Link di invito",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} ti ha condiviso un agente AI di <unk>{{teamName}}<unk> . Clicca il link per unirti alla squadra e prova l'agente AI: {{inviteLink}}",
       "contribute": {
-        "label": "Contribuisci al mercato",
+        "label": "Contribuisci alla comunità",
         "default_text": {
           "app": "Ho appena scoperto un'app impressionante chiamata {{ appName }}. Controlla: {{ appLink }}",
           "agent": "Ho appena scoperto un agente AI impressionante chiamato {{ agentName }}. Controllalo: {{ agentLink }}"
@@ -3594,16 +3594,16 @@
     "apps": {
       "components": "Tutti i componenti",
       "resources": "Tutte le risorse",
-      "plugins": "Plugin illimitati",
+      "plugins": "Plugin illimitati (prossimamente)",
       "sql": "Generazione Ai SQL",
       "watermark": "Rimuovi filigrana"
     },
     "security": {
-      "historic-7": "La versione storica mantiene & il recupero per 7 giorni",
-      "historic-30": "La versione storica mantiene & il recupero per 30 giorni",
-      "develop-environment": "Sviluppa ambiente",
+      "historic-7": "Storico versione mantenere & recupero per 7 giorni (In arrivo)",
+      "historic-30": "Mantieni le versioni distribuite e ripristina (presto in corso)",
+      "develop-environment": "Multi-ambiente (presto in corso)",
       "app-public": "App public",
-      "restore-data": "Backup e ripristino",
+      "restore-data": "Backup della cronologia delle modifiche e ripristino",
       "deployed": "Accesso al supporto ILLA",
       "dedicated": "Ingegnere di soluzioni dedicate"
     },
@@ -3612,7 +3612,7 @@
       "sql": "Inserisci il linguaggio naturale e genera l'istruzione SQL",
       "staging": "Verifica la tua app in un ambiente di staging",
       "app-public": "Rendi pubblica l'app e chiunque abbia il link può accedervi",
-      "restore-data": "Backup o ripristino dei dati in qualsiasi momento si desidera",
+      "restore-data": "Backup o ripristino della cronologia in qualsiasi momento si desidera",
       "deployed": "Gli ingegneri dispiegati possono aiutarti a bordo più velocemente",
       "dedicated": "Ingegnere di soluzioni clienti dedicate tramite Slack/email/phone",
       "preview_insufficient": "Il file non può visualizzare l'anteprima a causa di una capacità insufficiente, si prega di espandere la capacità prima."
@@ -3645,19 +3645,24 @@
     "free-members": "Solo 1 membro per uso personale",
     "unlimited-viewer": "GRATIS per spettatori illimitati",
     "unlimited-members": "Membri illimitati",
-    "free-btn": "Costruisci app gratis",
-    "plus-btn": "Prova la versione gratuita",
+    "free-btn": "Piano attuale",
+    "plus-btn": "Aggiorna",
     "enterprise-btn": "Contattaci",
     "menu": {
       "billing": "Fatturazione",
-      "license": "Licenza",
+      "license": "Sedile",
       "drive": "Drive",
+      "colla": "Colla",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Colla cronologia transazioni",
       "billing_portal": "Portale di fatturazione"
     },
     "title": {
       "billing": "Fatturazione",
-      "license": "Licenza",
-      "drive": "Drive"
+      "license": "Sedile",
+      "drive": "Drive",
+      "colla": "Colla",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3666,7 +3671,8 @@
       },
       "sub_cycle": {
         "yearly": "Annuale",
-        "monthly": "Mensile"
+        "monthly": "Mensile",
+        "lifetime": "Durata"
       },
       "billing_cyle": {
         "year": "/ Anno",
@@ -3675,9 +3681,10 @@
       "table_title": {
         "next_payment_date": "Data di pagamento successiva",
         "expiration_date": "Data di scadenza",
-        "licenses": "Licenze",
+        "licenses": "Sedili",
         "storage": "Archiviazione",
-        "traffic": "Traffico"
+        "traffic": "Traffico",
+        "colla": "Colla"
       },
       "period": {
         "current": "Corrente",
@@ -3686,36 +3693,60 @@
     },
     "subscription_card": {
       "title": {
-        "License": "Licenza",
+        "License": "Sedili",
         "Storage": "Archiviazione",
         "Traffic": "Traffico",
-        "balance": "Saldo"
+        "balance": "Saldo",
+        "colla": "Colla"
       },
       "button": {
-        "License": "Gestisci licenze",
+        "License": "Gestisci i posti",
         "Storage": "Gestisci memoria",
-        "Traffic": "Espandi traffico"
+        "Traffic": "Espandi traffico",
+        "colla": "Gestisci Colla"
       },
       "capacity": {
-        "License": "{{used}} (totale di {{total}} licenze) sono stati utilizzati.",
-        "Storage": "{{used}} (totale {{total}} GB) sono stati utilizzati.",
-        "Traffic": "{{used}} (totale {{total}} GB) sono stati utilizzati."
+        "License": "{{used}} utilizzato (totale di {{total}} posti) ",
+        "Storage": "{{used}}GB usati (totale di {{total}}GB) ",
+        "Traffic": "{{used}}GB usati (totale di {{total}}GB) ",
+        "colla": "{{used}} Colla usato (totale {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "Mese",
+        "event": "Evento",
+        "usage": "Uso di colla"
+      },
+      "event": {
+        "increase_storage": "Aumenta memoria",
+        "increase_colla": "Aumenta Colla",
+        "increase_traffic": "Aumenta traffico"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "Gestisci memoria",
-        "manage_licenses": "Gestisci licenze",
-        "expand_traffic_capac": "Espandi capacità di traffico"
+        "manage_licenses": "Gestisci i posti",
+        "expand_traffic_capac": "Espandi capacità di traffico",
+        "colla": "Gestisci Colla"
       },
       "plan_label": {
-        "License": "Licenze",
+        "License": "Sedili",
         "Storage": "Archiviazione",
-        "Traffic": "Traffico"
+        "Traffic": "Traffico",
+        "colla": "Colla"
       },
       "plan_number_input_label": {
-        "License": "Licenze",
-        "Storage_traffic": "GB"
+        "License": "Sedili",
+        "Storage_traffic": "5GB",
+        "colla": "Colla"
       },
       "select_option": {
         "Yearly": "Annuale",
@@ -3739,14 +3770,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} licenze × {{remainDays}} giorni / {{totalDays}} giorni",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenze",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenze",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenze × {{remainDays}} giorni / {{totalDays}} giorni",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenze",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenze",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenze",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenze",
+        "this_period": "{{unitPrice}} × {{licenseNum}} posti × {{remainDays}} giorni / {{totalDays}} giorni",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} posti",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} posti",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} posti × {{remainDays}} giorni / {{totalDays}} giorni",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} posti",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} posti",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} posti",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} posti",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} giorni / {{totalDays}} giorni",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3754,7 +3785,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Disiscriviti",
@@ -3762,21 +3794,23 @@
         "change_plan": "Cambia piano",
         "storage_traffic_increase": "Aumenta {{changeNum}} GB",
         "storage_traffic_remove": "Rimuovi {{changeNum}} GB",
-        "license_increase": "Aumenta {{changeNum}} licenze",
-        "license_remove": "Rimuovi {{changeNum}} licenze"
+        "license_increase": "Increase {{changeNum}} seats",
+        "license_remove": "Rimuovi posti {{changeNum}}",
+        "colla_increase": "Increase {{changeNum}} Colla",
+        "colla_remove": "Rimuovi {{changeNum}} Colla"
       },
       "description_title": {
         "add_storage": "Stai per aggiungere {{changeNum}} GB di archiviazione. Una volta confermato, detraeremo immediatamente il pagamento per il nuovo storage per questo ciclo di fatturazione. <0>Per saperne di più</0>",
         "remove_storage": "Stai per rimuovere {{changeNum}} GB di archiviazione. Una volta confermato, le modifiche avranno effetto nel prossimo ciclo di fatturazione. <0>Per saperne di più</0>",
         "update_plan_year": "Stai per aggiornare a un piano di pagamento annuale. Una volta confermata, la modifica avrà effetto dall'inizio del prossimo ciclo di fatturazione. <0>Per saperne di più</0>",
         "update_plan_monthly": "Stai per aggiornare a un piano di pagamento mensile. Una volta confermata, la modifica avrà effetto dall'inizio del prossimo ciclo di fatturazione. <0>Per saperne di più</0>",
-        "add_license": "Stai per aggiungere {{changeNum}} licenze. Una volta confermate, detraeremo immediatamente il pagamento per le nuove licenze per questo ciclo di fatturazione. <0>Per saperne di più</0>",
-        "remove_license": "Stai per rimuovere {{changeNum}} licenze. Una volta confermate, le modifiche avranno effetto nel prossimo ciclo di fatturazione. <0>Per saperne di più</0>",
+        "add_license": "Stai per aggiungere i posti {{changeNum}} . Una volta confermati, detraeremo immediatamente il pagamento per i nuovi posti per questo ciclo di fatturazione. <0>Per saperne di più</0>",
+        "remove_license": "You are going to remove {{changeNum}} seats. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
         "add_traffic": "Stai per aggiungere {{changeNum}}GB di traffico. Una volta confermato, deduciamo immediatamente il costo del traffico aggiuntivo. <0>Per saperne di più</0>",
         "subscribe_storage": "Stai per iscriverti a ILLA Cloud Plus. Detraeremo automaticamente le commissioni dal tuo account all'inizio di ogni ciclo di pagamento. <0>Per saperne di più</0>",
         "subscribe_license": "Stai per iscriverti a ILLA Drive. Detraeremo automaticamente le commissioni dal tuo account all'inizio di ogni ciclo di pagamento. <0>Per saperne di più</0>",
-        "update_plan_increase_license": "Stai per aggiungere {{changeNum}} licenze e aggiornare il tuo periodo di abbonamento. <0>Per saperne di più</0>",
-        "update_plan_remove_license": "Stai per rimuovere {{changeNum}} licenze e aggiornare il tuo periodo di abbonamento. <0>Per saperne di più</0>",
+        "update_plan_increase_license": "Stai per aggiungere posti {{changeNum}} e aggiornare il tuo periodo di abbonamento. <0>Per saperne di più</0>",
+        "update_plan_remove_license": "Stai per rimuovere i posti {{changeNum}} e aggiornare il tuo periodo di abbonamento. <0>Per saperne di più</0>",
         "update_plan_increase_storage": "Stai per aggiungere {{changeNum}} GB di spazio e aggiornare il tuo periodo di abbonamento. <0>Per saperne di più</0>",
         "update_plan_remove_storage": "Stai per rimuovere {{changeNum}} GB di archiviazione e aggiornare il tuo periodo di abbonamento. <0>Per saperne di più</0>",
         "unsubscribe_license": "Stai per annullare l'iscrizione a ILLA Cloud Plus. Dopo la cancellazione, a partire dal prossimo ciclo di fatturazione, le funzionalità Plus non saranno più accessibili. <0>Per saperne di più</0>",
@@ -3784,21 +3818,31 @@
         "subscribe_license_monthly": "Stai per iscriverti all'abbonamento mensile di ILLA Cloud Plus. <0>Per saperne di più</0>",
         "subscribe_license_yearly": "Stai per iscriverti all'abbonamento annuale a ILLA Cloud Plus. <0>Per saperne di più</0>",
         "subscribe_storage_monthly": "Stai per aggiungere {{changeNum}}GB di archiviazione. Una volta confermato, sottrarremo immediatamente il costo dello storage. <0>Per saperne di più</0>",
-        "subscribe_storage_yearly": "Stai per aggiungere {{changeNum}}GB di archiviazione. Una volta confermato, sottrarremo immediatamente il costo dello storage. <0>Per saperne di più</0>"
+        "subscribe_storage_yearly": "Stai per aggiungere {{changeNum}}GB di archiviazione. Una volta confermato, sottrarremo immediatamente il costo dello storage. <0>Per saperne di più</0>",
+        "colla_sub": "Stai per iscriverti a Colla. Una volta confermato, detraeremo automaticamente le tasse all'inizio di ogni ciclo di fatturazione e aggiorneremo automaticamente il tuo abbonamento quando avrai bisogno di più Colla. <0>Per saperne di più</0>",
+        "colla_increase": "Stai per aggiungere {{changeNum}} Colla. Una volta confermato, detraeremo immediatamente l'importo residuo dovuto per questo ciclo di fatturazione. <0>Per saperne di più</0>",
+        "colla_remove": "Stai per rimuovere {{changeNum}} Colla. Una volta confermato, avrà effetto dal prossimo ciclo di fatturazione. <0>Per saperne di più</0>",
+        "colla_unsubscribe": "Stai per annullare il tuo abbonamento a Colla. Una volta confermato, avrà effetto dal prossimo ciclo di fatturazione. Si prega di notare che dopo la cancellazione, è possibile riscontrare problemi con l'utilizzo dell'ILLA Drive e dell'agente AI. <0>Per saperne di più</0>",
+        "colla_update": "Stai per modificare il tuo abbonamento a Colla. Una volta confermato, le modifiche avranno effetto dal prossimo ciclo di fatturazione. <0>Per saperne di più</0>"
       },
       "description": {
-        "add_storage": "Regole di calcolo utilizzando un abbonamento mensile di archiviazione come esempio: Consideriamo uno scenario in cui ti sei inizialmente iscritto a 5 GB a partire dal 14 marzo, e il ciclo di fatturazione si estende dal 14 al 13 del mese successivo. Il 10 maggio, si decide di aggiungere 1 GB. A quel punto, sono rimasti 4 giorni fino alla fine del ciclo in corso il 13 maggio (che totalizza 30 giorni dal 14 aprile al 13 maggio). Per calcolare il pagamento adeguato, detraeremo il costo di 1 GB, che ammonta a circa $0. 9, proporzionale alla durata di 4 giorni entro il ciclo di 30 giorni. Pertanto, la deduzione è stimata come 1 licenza * $0. 9 / 30 giorni * 4 giorni, con conseguente circa $0,132. A partire dal prossimo ciclo di fatturazione, tutte le spese di stoccaggio saranno consolidate e pagate insieme. Se si desidera ridurre le licenze o apportare altre modifiche alla sottoscrizione, si prega di aggiornarle prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si prega di fare riferimento al nostro utente <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
         "remove_storage": "Se la capacità di archiviazione occupata dai file supera la capacità di archiviazione sottoscritta all'inizio del ciclo di fatturazione successivo, tutti i file saranno disabilitati fino a quando non si eliminano i file o si aumenta la capacità di archiviazione all'interno dell'intervallo disponibile. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
-        "update_plan_year": "A partire dal prossimo periodo, l'abbonamento verrà modificato in abbonamento annuale, e le tasse saranno automaticamente detratte in base al prezzo di abbonamento annuale. Se si desidera ridurre le licenze o apportare altre modifiche alla sottoscrizione, si prega di aggiornarle prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
-        "update_plan_monthly": "A partire dal prossimo periodo, l'abbonamento verrà modificato in abbonamento mensile, e le tasse saranno automaticamente detratte in base al prezzo di abbonamento mensile. Se si desidera ridurre le licenze o apportare altre modifiche alla sottoscrizione, si prega di aggiornarle prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
-        "remove_license": "Se il numero di utenti con autorizzazioni di modifica supera il numero di licenze all'inizio del ciclo di fatturazione successivo, tutti gli utenti tranne il proprietario saranno disabilitati fino a quando non rimuoverai i membri o aumenterai il numero di licenze all'interno dell'intervallo disponibile. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
+        "update_plan_year": "A partire dal prossimo periodo, l'abbonamento verrà modificato in abbonamento annuale, e le tasse saranno automaticamente detratte in base al prezzo di abbonamento annuale. Se si desidera ridurre i posti o apportare altre modifiche alla sottoscrizione, si prega di aggiornarli prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
+        "update_plan_monthly": "A partire dal prossimo periodo, l'abbonamento verrà modificato in abbonamento mensile, e le tasse saranno automaticamente detratte in base al prezzo di abbonamento mensile. Se si desidera ridurre i posti o apportare altre modifiche alla sottoscrizione, si prega di aggiornarli prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
+        "add_license": "Regole di calcolo utilizzando un abbonamento mensile del posto come esempio: Consideriamo uno scenario in cui ti sei inizialmente iscritto a 5 posti a partire dal 14 marzo, e il ciclo di fatturazione si estende dal 14 al 13 del mese successivo. Il 10 maggio, si decide di aggiungere 1 posti aggiuntivi. A quel punto, sono rimasti 4 giorni fino alla fine del ciclo in corso il 13 maggio (che totalizza 30 giorni dal 14 aprile al 13 maggio). Per calcolare il pagamento adeguato, detraeremo il costo di 1 posto, che ammonta a circa 10 dollari, proporzionato alla durata di 4 giorni entro il ciclo di 30 giorni. Pertanto, la deduzione è stimata come 1 posto * $10 / 30 giorni * 4 giorni, con conseguente circa $1,33. A partire dal prossimo ciclo di fatturazione, tutte le spese di posto saranno consolidate e pagate insieme. Se si desidera ridurre i posti o apportare altre modifiche alla sottoscrizione, si prega di aggiornarli prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
+        "remove_license": "Se il numero di utenti con autorizzazioni di modifica supera il numero di posti all'inizio del ciclo di fatturazione successivo, tutti gli utenti tranne il proprietario saranno disabilitati fino a quando non rimuoverai i membri o aumenterai il numero di posti all'interno della gamma disponibile. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
         "add_traffic": "Dopo aver detratto con successo, il traffico aumenterà in tempo reale. Una volta utilizzato il traffico, le tasse non possono essere rimborsate. Il traffico inutilizzato può essere rimborsato in unità di GB. Ad esempio, se si acquista 10GB di traffico e si utilizza 4.5GB, è possibile richiedere un rimborso di 5GB. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
         "subscribe_storage_yearly": "Si sta per iscriversi all'abbonamento annuale di ILLA Drive storage. Deducheremo automaticamente le commissioni dal tuo conto all'inizio di ogni ciclo di pagamento. La quantità effettiva detratta dipende dalla quantità di capacità di archiviazione che hai sottoscritto in GB. Ad esempio, se inizi il tuo primo abbonamento il 25 febbraio 2023, con una quota di abbonamento annuale di $9. per GB, e hai un totale di 3 GB, detraeremo $29. il 25 febbraio 2023. Se si aggiungono 2 GB il 25 marzo 2023, ci sarà prima detrarre i rimanenti 11 mesi di pagamento il 25 marzo 2023. Poi, entro il 25 febbraio 2024, detraeremo il pagamento per 5 GB, che è (2+3)*$9.9=$49. . Se si desidera ridurre la memorizzazione o apportare altre modifiche alla sottoscrizione, si prega di aggiornarla prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
-        "subscribe_storage_monthly": "Si sta per iscriversi all'abbonamento mensile di ILLA Drive storage. Deducheremo automaticamente le commissioni dal tuo conto all'inizio di ogni ciclo di pagamento. La quantità effettiva detratta dipende dalla quantità di capacità di archiviazione che hai sottoscritto in GB. Ad esempio, se inizi il tuo primo abbonamento il 25 febbraio 2023, con un abbonamento mensile di $0. 9 per GB, e hai un totale di 3 GB, noi detraeremo $ 2. 7 il 25 febbraio 2023. Se si aggiungono altre 2 licenze il 21 marzo 2023, prima detraeremo i rimanenti 5 giorni di pagamento il 21 marzo 2023. Poi, entro il 25 marzo 2023, detraeremo il pagamento per 5 licenze, che è (2+3)*$0. 9=$4.95. Se si desidera ridurre le licenze o apportare altre modifiche alla sottoscrizione, si prega di aggiornarla prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
-        "subscribe_license_monthly": "Stai per iscriverti all'abbonamento mensile di ILLA Cloud Plus. Deducheremo automaticamente le commissioni dal tuo conto all'inizio di ogni ciclo di pagamento. L'importo effettivo dedotto dipende dal numero di licenze che possiedi. Ad esempio, se inizi il tuo primo abbonamento il 25 febbraio 2023, con un abbonamento mensile di $12 per licenza, e hai un totale di 3 licenze, detraeremo $36 il 25 febbraio 2023. Se si aggiungono altre 2 licenze il 21 marzo 2023, prima detraeremo i rimanenti 5 giorni di pagamento il 21 marzo 2023. Poi, entro il 25 marzo 2023, detraeremo il pagamento per 5 licenze, che è (2+3)*$12=$60. Se si desidera ridurre le licenze o apportare altre modifiche alla sottoscrizione, si prega di aggiornarle prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
-        "update_plan_remove_license": "Le commissioni saranno automaticamente detratte in base al numero aggiornato di licenze e al prezzo del nuovo ciclo di fatturazione dal prossimo periodo. Se il numero di utenti con autorizzazioni di modifica supera il numero di licenze all'inizio del ciclo di fatturazione successivo, tutti gli utenti tranne il proprietario saranno disabilitati fino a quando non rimuoverai i membri o aumenterai il numero di licenze all'interno dell'intervallo disponibile. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
-        "update_plan_increase_storage": "Le commissioni saranno automaticamente detratte in base alla memorizzazione aggiornata e al prezzo del nuovo ciclo di fatturazione dal prossimo periodo. Questa volta, detraeremo il pagamento per il deposito aumentato in base al ciclo di fatturazione corrente. Regole di calcolo utilizzando un abbonamento mensile di archiviazione come esempio: Consideriamo uno scenario in cui ti sei inizialmente iscritto a 5 GB a partire dal 14 marzo, e il ciclo di fatturazione si estende dal 14 al 13 del mese successivo. Il 10 maggio, si decide di aggiungere 1 GB. A quel punto, sono rimasti 4 giorni fino alla fine del ciclo in corso il 13 maggio (che totalizza 30 giorni dal 14 aprile al 13 maggio). Per calcolare il pagamento adeguato, detraeremo il costo di 1 GB, che ammonta a circa $0. 9, proporzionale alla durata di 4 giorni entro il ciclo di 30 giorni. Pertanto, la deduzione è stimata come 1 licenza * $0,99 / 30 giorni * 4 giorni, con conseguente circa $0,132. A partire dal prossimo ciclo di fatturazione, tutte le spese di stoccaggio saranno consolidate e pagate insieme. Se si desidera ridurre le licenze o apportare altre modifiche alla sottoscrizione, si prega di aggiornarle prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
+        "subscribe_license_monthly": "Stai per iscriverti all'abbonamento mensile di ILLA Cloud Plus. Deducheremo automaticamente le commissioni dal tuo conto all'inizio di ogni ciclo di pagamento. L'importo effettivo dedotto dipende dal numero di posti a sedere. Ad esempio, se inizi il tuo primo abbonamento il 25 febbraio 2023, con un abbonamento mensile di $12 per posto, e hai un totale di 3 posti a sedere, detraeremo $36 il 25 febbraio 2023. Se si aggiungono altri 2 posti il 21 marzo 2023, prima detraeremo i restanti 5 giorni di pagamento il 21 marzo 2023. Poi, entro il 25 marzo 2023, detraeremo il pagamento per 5 posti, che è (2+3)*$12=$60. Se si desidera ridurre i posti o apportare altre modifiche alla sottoscrizione, si prega di aggiornarli prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
+        "update_plan_increase_license": "Le commissioni saranno automaticamente detratte in base al numero aggiornato di seggi e al prezzo del nuovo ciclo di fatturazione a partire dal prossimo periodo. Questa volta, detraeremo il pagamento per i seggi aumentati in base al ciclo di fatturazione corrente. Regole di calcolo dell'aumento dei posti utilizzando un abbonamento mensile del posto come esempio: Consideriamo uno scenario in cui inizialmente ti sei iscritto a 5 posti a partire dal 14 marzo, e il ciclo di fatturazione si estende dal 14 al 13 del mese successivo. Il 10 maggio, si decide di aggiungere 1 posto aggiuntivo. A quel punto, sono rimasti 4 giorni fino alla fine del ciclo in corso il 13 maggio (che totalizza 30 giorni dal 14 aprile al 13 maggio). Per calcolare il pagamento adeguato, detraeremo il costo di 1 posto, che ammonta a circa 10 dollari, proporzionato alla durata di 4 giorni entro il ciclo di 30 giorni. Pertanto, la deduzione è stimata come 1 posto * $10 / 30 giorni * 4 giorni, con conseguente circa $1,33. A partire dal prossimo ciclo di fatturazione, tutte le spese di posto saranno consolidate e pagate insieme. Se si desidera ridurre i posti o apportare altre modifiche alla sottoscrizione, si prega di aggiornarli prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
+        "update_plan_remove_license": "Le commissioni saranno automaticamente detratte in base al numero aggiornato di seggi e al prezzo del nuovo ciclo di fatturazione a partire dal prossimo periodo. Se il numero di utenti con autorizzazioni di modifica supera il numero di posti all'inizio del ciclo di fatturazione successivo, tutti gli utenti tranne il proprietario saranno disabilitati fino a quando non rimuoverai i membri o aumenterai il numero di posti all'interno della gamma disponibile. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
         "update_plan_remove_storage": "Le commissioni saranno automaticamente detratte in base alla memorizzazione aggiornata e al prezzo del nuovo ciclo di fatturazione dal prossimo periodo. Se la capacità di archiviazione occupata dai file supera la capacità di archiviazione sottoscritta all'inizio del ciclo di fatturazione successivo, tutti i file saranno disabilitati fino a quando non si eliminano i file o si aumenta la capacità di archiviazione all'interno dell'intervallo disponibile. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>"
+      },
+      "colla_redeem": {
+        "title": "Con {{changeNum}} Colla, puoi acquistare: ",
+        "storage": "Archiviazione",
+        "traffic": "Traffico",
+        "token": "Token"
       }
     },
     "message": {
@@ -3806,8 +3850,8 @@
       "failed_to_add_traffic": "Impossibile aggiungere il traffico. Riprova. ",
       "failed_to_add_storage": "Impossibile aggiungere l'archiviazione. Riprova. ",
       "failed_to_remove_storage": "Impossibile rimuovere l'archiviazione. Riprova. ",
-      "failed_to_add_licens": "Impossibile aggiungere le licenze. Riprova. ",
-      "failed_to_remove_lic": "Impossibile rimuovere le licenze. Riprova. ",
+      "failed_to_add_licens": "Impossibile aggiungere i posti a sedere. Riprova. ",
+      "failed_to_remove_lic": "Impossibile rimuovere i posti. Si prega di riprovare. ",
       "failed_to_change_pla": "Impossibile cambiare il piano. Riprova. ",
       "failed_to_unsubscrib": "Impossibile annullare l'iscrizione. Per favore riprova. ",
       "successfully_removed": "Rimosso con successo. La modifica avrà effetto da {{nextPaymentDate}}.",
@@ -3817,16 +3861,20 @@
       "successfully_changed": "Iscrizione cambiata con successo. Avrà effetto tra pochi minuti",
       "failed_to_change": "Cambio di sottoscrizione non riuscito",
       "unsubscription_suc": "L'abbonamento è stato annullato con successo e avrà effetto dal prossimo periodo",
-      "failed_to_join_no_license": "Impossibile unirsi perché le licenze del team sono insufficienti, si prega di contattare l'amministratore.",
+      "failed_to_join_no_license": "Impossibile unirsi a causa di seggi insufficienti ",
       "storage_insufficient_modal": "L'archiviazione o il traffico di questo team non è sufficiente. Contatta il tuo amministratore.",
       "appsumo": {
+        "suc": "Riscattato con successo",
+        "fail": "Impossibile riscattare. Riprova più tardi.",
         "transfer": "Operazione non riuscita. Questo utente è associato alla sottoscrizione a vita. ",
         "leave": "Operazione non riuscita. Questo utente è associato alla sottoscrizione a vita. "
       },
       "no_license_operate_failed": "A causa di licenze insufficienti, l'operazione non è riuscita.",
       "failed_to_invite_no_license": "A causa di una licenza insufficiente, alcuni inviti dei membri non sono riusciti.",
-      "error_subscribe": "Impossibile cambiare il piano. Riprova più tardi.",
-      "unsubscription_fail": "Impossibile annullare l'iscrizione. Riprova più tardi."
+      "error_subscribe": "Iscrizione non riuscita. Riprova più tardi.",
+      "unsubscription_fail": "Impossibile annullare l'iscrizione. Riprova più tardi.",
+      "failed_to_update": "Impossibile aggiornare la sottoscrizione. Per favore riprova. ",
+      "update_suc": "Abbonamento aggiornato con successo"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3837,7 +3885,7 @@
         "not_owner_description_drive": "L'archiviazione o il traffico di questo team non è sufficiente. Contatta il tuo amministratore.",
         "not_owner_button_drive": "Ho capito",
         "out_title_drive": "Scaricamento non riuscito",
-        "out_description_drive": "Impossibile scaricare, si prega di contattare il proprietario del file",
+        "out_description_drive": "A causa di traffico insufficiente, download non riuscito. Si prega di contattare il proprietario del file",
         "out_button_drive": "Ho capito"
       },
       "sub_suc": {
@@ -3845,7 +3893,7 @@
         "you_can_now_invite_m": "Avrà effetto tra qualche minuto. Puoi invitare i membri e iniziare a usare le funzionalità avanzate più tardi. Vai avanti e prova!",
         "you_can_now_upload_m": "Avrà effetto tra qualche minuto. Ora puoi caricare più file.",
         "payment_successful": "Pagamento riuscito",
-        "we_have_added_the_li": "Ci vorrà effetto tra qualche minuto. Abbiamo aggiunto le licenze per te. Eventuali modifiche al periodo di abbonamento avranno effetto dal prossimo ciclo di fatturazione.",
+        "we_have_added_the_li": "Avrà effetto in pochi minuti. Abbiamo aggiunto i posti per voi. Eventuali modifiche al periodo di abbonamento avranno effetto dal prossimo ciclo di fatturazione.",
         "we_have_added_the_st": "Avrà effetto in pochi minuti. Abbiamo aggiunto la memoria per voi. Eventuali modifiche al periodo di abbonamento avranno effetto dal prossimo ciclo di fatturazione.",
         "we_have_added_the_tr": "Avrà effetto tra qualche minuto. Aggiungeremo il traffico per te più tardi. Ora puoi scaricare più file.",
         "successfully_updated": "Aggiornato correttamente",
@@ -3861,24 +3909,27 @@
         "audit_logs": "Registri di controllo",
         "learn_more": "Scopri di più",
         "upgrade": "Aggiorna",
-        "insufficient_license_title": "Licenze insufficienti",
-        "insufficient_license_description": "Per invitare più editori, si prega di aumentare prima le licenze. Tutti i membri del team potrebbero utilizzare le funzionalità per ILLA Cloud Plus. L'accesso specifico a ciascuna funzione dipende dal ruolo di ciascun membro. ",
-        "insufficient_license_button": "Aggiungi licenze",
+        "insufficient_license_title": "Posti insufficienti",
+        "insufficient_license_description": "Per invitare più editori, si prega di aumentare prima i posti. Tutti i membri del team potrebbero utilizzare le funzionalità per ILLA Cloud Plus. L'accesso specifico a ciascuna funzione dipende dal ruolo di ciascun membro. ",
+        "insufficient_license_button": "Aggiungi posti",
         "pricing": "/editor/mese, annuale"
       },
       "expired": {
         "owner": "Il tuo abbonamento è scaduto. Per continuare ad utilizzarlo, rinnovalo.",
         "others": "Il tuo account è stato disabilitato perché l'abbonamento al team è scaduto.",
-        "your_subscription_ha_not_owner": "Licenze non sufficienti",
+        "your_subscription_ha_not_owner": "Eccezione di abbonamento",
         "all_members_except_f_not_owner": "Il tuo team non dispone di licenze sufficienti. Contatta il proprietario del tuo team.",
-        "upgrade_not_owner": "Ho capito"
+        "upgrade_not_owner": "Ho capito",
+        "your_subscription_ha": "Abbonamento scaduto",
+        "all_members_except_f": "L'abbonamento del team è scaduto. Si prega di rinnovarlo in tempo",
+        "upgrade": "Aggiorna"
       },
       "blank_page": {
-        "insufficient_license_disable": "Il tuo account è stato disabilitato a causa di licenze del team insufficienti. Contatta il proprietario del team per assistenza."
+        "insufficient_license_disable": "Il tuo account è stato disabilitato a causa di posti di squadra insufficienti. Contatta il proprietario del team per ricevere assistenza."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Licenze insufficienti",
-        "insufficient_license_description": "Per invitare altri editori, si prega di collegare il proprio amministratore per aumentare prima le licenze.",
+        "insufficient_license_title": "Posti insufficienti",
+        "insufficient_license_description": "A causa di posti insufficienti, operazione fallita. Si prega di contattare il proprietario del team.",
         "insufficient_license_button": "OK"
       },
       "storage_insufficient": {
@@ -3888,16 +3939,16 @@
         "not_owner_title": "Capacità di stoccaggio insufficiente",
         "not_owner_description": "Al fine di memorizzare i file normalmente, si prega di contattare l'amministratore per aumentare la capacità di archiviazione in tempo.",
         "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_pricing": "5 GB/Mensile"
       },
       "traffic_insufficient": {
         "owner_title": "Capacità di traffico insufficiente",
         "owner_description": "Al fine di accedere ai file normalmente, si prega di aumentare la capacità di traffico in tempo. ",
         "owner_button": "Aumentare la capacità",
-        "not_owner_title": "Capacità di stoccaggio insufficiente",
+        "not_owner_title": "Traffico insufficiente",
         "not_owner_description": "Per accedere ai file normalmente, si prega di contattare l'amministratore per aumentare la capacità di traffico in tempo.",
         "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_pricing": "5 GB"
       },
       "cancel_confirm": {
         "description": "Dopo la cancellazione, il team tornerà al piano gratuito a partire dal prossimo ciclo di fatturazione. Le funzionalità incluse nei piani di abbonamento non saranno più accessibili.",
@@ -3910,21 +3961,6 @@
         "title": "Cambiare il piano?",
         "button_cancel": "Annulla",
         "button_confirm": "Conferma"
-      },
-      "ai-agent": {
-        "string1": "GPT-4 è per il team Premium. ",
-        "string2": "Per usarlo, aggiorna a Premium. Aggiornando a Premium, avrai anche accesso alle seguenti funzionalità. "
-      },
-      "upgrade_now_not_admin": {
-        "upgrade_title": "Caratteristica per i team Premium",
-        "upgrade_title billing": {
-          "modal": {
-            "upgrade_now_not_admin": {
-              "upgrade_desc": "Questa funzione è per i team premium. Si prega di contattare gli amministratori del team per l'aggiornamento. "
-            }
-          }
-        },
-        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3932,18 +3968,65 @@
       "upgrade": "Aggiorna",
       "cancel": "Annulla"
     },
-    "advanced": {
-      "feature": "Rimuovi filigrana"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "Sei sicuro di voler riscattare AppSumo nel team {{teamName}}? ",
+        "cancel": "Annulla",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "Seleziona una squadra da riscattare",
+          "create_button": "Crea nuovo team",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "Crea Account"
+      },
+      "update": "Aggiorna piano AppSumo"
+    },
+    "alert": {
+      "expired": {
+        "owner": "Posti insufficienti o abbonamento scaduto, si prega di aggiornare in tempo. ",
+        "others": "A causa di un posto insufficiente, sei stato disabilitato. Contatta il proprietario del team"
+      }
+    },
+    "yearly_discount": "(Save quasi 16,7%)",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/month",
+      "yearly": "{{ price }}/editor/anno"
     },
     "redirect_page": {
+      "title": "Pagamento riuscito",
       "desc1": "Grazie per il tuo acquisto. ILLA Cloud continuerà a fornirti altre funzionalità.",
       "desc2": "Reindirizzamento su ILLA Cloud in {{time}} secondi...",
-      "title": "Pagamento riuscito",
       "button": "Torna a ILLA Cloud"
     },
     "redirect_to_stripe": "Reindirizzamento a Stripe",
-    "appsumo": {
-      "update": "Aggiorna piano AppSumo"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "100 MB di spazio al mese per memorizzare qualsiasi file in ILLA Drive",
+          "traffic": "100 MB di traffico per scaricare file da ILLA Drive"
+        }
+      },
+      "drive": {
+        "title": "ILLA Drive",
+        "storage": "5 GB di spazio al mese per memorizzare qualsiasi file in ILLA Drive",
+        "traffic": "5 GB di traffico per scaricare file da ILLA Drive"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "Memoria personalizzata al mese per memorizzare qualsiasi file in ILLA Drive",
+          "traffic": "Traffico personalizzato per scaricare file da ILLA Drive"
+        }
+      }
     }
   },
   "network": {
@@ -3957,7 +4040,7 @@
     "desc": {
       "no_description": "Nessuna descrizione",
       "blank": "Nessuna applicazione",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "Nessun agente AI qui"
     },
     "app_setting": {
       "app_setting": "Impostazioni app",
@@ -4003,7 +4086,7 @@
       "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
     },
     "label": {
-      "contribute": "Contribuisci al mercato"
+      "contribute": "Contribuisci alla comunità"
     },
     "default-text": {
       "social-media": {
