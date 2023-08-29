@@ -38,7 +38,7 @@
       "error_button": "Réessayer",
       "error_description": "Il y a un problème avec votre opération.",
       "error_title": "Erreur",
-      "marketplace": "Community",
+      "marketplace": "Communauté",
       "run": "Exécuter",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "Enregistrer",
       "start": "Début",
       "restart": "Redémarrer",
-      "contribute": "Contribute to community",
+      "contribute": "Contribuer à la communauté",
       "button": {
         "send": "Envoyer",
         "generating": "Génération en cours"
@@ -3247,7 +3247,7 @@
         "invite_members": "Inviter des membres",
         "invite_to_use": "Inviter à utiliser",
         "invite_to_edit": "Inviter à modifier",
-        "contribute": "Community"
+        "contribute": "Communauté"
       },
       "link": {
         "invite_title": "Lien d'invitation",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} vous a partagé un Agent IA de <unk>{{teamName}}Ω. Cliquez sur le lien pour rejoindre l'équipe et essayer l'Agent IA: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Contribuer à la communauté",
         "default_text": {
           "app": "Je viens de découvrir une application impressionnante appelée {{ appName }}. Vérifiez: {{ appLink }}",
           "agent": "Je viens de découvrir un agent IA impressionnant appelé {{ agentName }}. Vérifiez: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Pas de description",
       "blank": "Aucune application",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "Aucun agent IA ici"
     },
     "app_setting": {
       "app_setting": "Réglage de l'application",
@@ -4003,7 +4003,7 @@
       "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Contribuer à la communauté"
     },
     "default-text": {
       "social-media": {
