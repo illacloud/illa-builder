@@ -106,7 +106,7 @@ export const SettingAccount: FC = () => {
       <AvatarUpload onOk={handleUpdateAvatar}>
         <Avatar
           css={avatarStyle}
-          userId={userInfo?.userID}
+          userID={userInfo?.userID}
           nickname={userInfo?.nickname}
           avatar={userInfo?.avatar}
         />

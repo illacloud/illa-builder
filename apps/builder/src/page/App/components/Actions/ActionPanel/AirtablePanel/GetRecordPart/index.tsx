@@ -32,7 +32,7 @@ export const GetRecordPart: FC = () => {
   return (
     <InputEditor
       title={t("editor.action.panel.label.airtable.record_id")}
-      value={config.recordId}
+      value={config.recordID}
       onChange={(value) => {
         dispatch(
           configActions.updateCachedAction({
@@ -41,7 +41,7 @@ export const GetRecordPart: FC = () => {
               ...cachedAction.content,
               config: {
                 ...config,
-                recordId: value,
+                recordID: value,
               },
             },
           }),

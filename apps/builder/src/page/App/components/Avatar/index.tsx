@@ -18,9 +18,9 @@ const getFirstChar = (str: string | undefined) => {
 }
 
 export const Avatar: FC<AvatarProps> = (props) => {
-  const { userId, nickname, avatar, showType, type, showTooltips, className } =
+  const { userID, nickname, avatar, showType, type, showTooltips, className } =
     props
-  const avatarBgColor = getColorByString(userId || "")
+  const avatarBgColor = getColorByString(userID || "")
   const avatarText = getFirstChar(nickname)
   const node = avatar ? (
     <img

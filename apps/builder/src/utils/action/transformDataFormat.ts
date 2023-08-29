@@ -267,10 +267,10 @@ export const transformDataFormat = (
             ...contents,
             config: {
               ...bulkDeleteConfig,
-              recordIds:
-                bulkDeleteConfig.recordIds === ""
+              recordIDs:
+                bulkDeleteConfig.recordIDs === ""
                   ? []
-                  : bulkDeleteConfig.recordIds,
+                  : bulkDeleteConfig.recordIDs,
             },
           }
       }
