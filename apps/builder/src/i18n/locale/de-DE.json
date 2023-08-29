@@ -2606,7 +2606,7 @@
       "save": "Speichern",
       "start": "Start",
       "restart": "Neustart",
-      "contribute": "Zum Marktplatz beitragen",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Senden",
         "generating": "Generiere"
@@ -3247,7 +3247,7 @@
         "invite_members": "Mitglieder einladen",
         "invite_to_use": "Zur Nutzung einladen",
         "invite_to_edit": "Zum Bearbeiten einladen",
-        "contribute": "Marktplatz"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Einladungslink",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} hat dir einen AI Agent von <unk>{{teamName}}<unk> geteilt. Klicke auf den Link, um dem Team beizutreten und versuche den AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Zum Marktplatz beitragen",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Ich habe gerade eine beeindruckende App namens {{ appName }}entdeckt. Überprüfe sie: {{ appLink }}",
           "agent": "Ich habe gerade einen beeindruckenden KI-Agent namens {{ agentName }}entdeckt. Überprüfe es: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Keine Beschreibung",
       "blank": "Keine Anwendung",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "App-Einstellung",
@@ -4003,7 +4003,7 @@
       "undeploy": "Die App wurde nicht bereitgestellt. Öffentlicher Zugriff und Zugriff auf den Betrachter können auf Fehler stoßen. "
     },
     "label": {
-      "contribute": "Zum Marktplatz beitragen"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
