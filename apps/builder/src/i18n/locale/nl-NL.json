@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "Door onvoldoende licenties is de bewerking mislukt.",
       "failed_to_invite_no_license": "Vanwege onvoldoende licentie, zijn sommige uitnodigingen voor leden mislukt.",
       "error_subscribe": "Abonnement mislukt. Probeer het later opnieuw.",
-      "unsubscription_fail": "Het annuleren van het abonnement is mislukt. Probeer het later opnieuw."
+      "unsubscription_fail": "Het annuleren van het abonnement is mislukt. Probeer het later opnieuw.",
+      "failed_to_update": "Bijwerken van abonnement mislukt. Probeer het opnieuw. ",
+      "update_suc": "Abonnement succesvol bijgewerkt"
     },
     "modal": {
       "storage_insufficient_modal": {
