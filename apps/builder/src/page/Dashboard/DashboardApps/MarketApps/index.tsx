@@ -1,20 +1,22 @@
 import { MarketAppCard, fetchAppList } from "@illa-public/market-app"
-import { PRODUCT_SORT_BY } from "@illa-public/market-app/service/interface"
-import { FC, useRef, useState } from "react"
+import {
+  PRODUCT_SORT_BY,
+  ProductMarketApp,
+} from "@illa-public/market-app/service/interface"
+import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
-import { Loading, useMessage } from "@illa-design/react"
+import { Loading, LoadingIcon, useMessage } from "@illa-design/react"
 import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
-import { getDashboardMarketAppsList } from "@/redux/dashboard/marketApps/marketAppSelector"
-import { dashboardMarketAppActions } from "@/redux/dashboard/marketApps/marketAppSlice"
-import { cardListContainerStyle, cardListStyle, loadingStyle } from "./style"
-
+import {
+  cardListContainerStyle,
+  cardListStyle,
+  fallbackLoadingStyle,
+  loadingStyle,
+} from "./style"
 
 export const MarketApps: FC = () => {
   const { t } = useTranslation()
-
-  const marketApps = useSelector(getDashboardMarketAppsList)
 
   const [searchParams] = useSearchParams()
 
@@ -24,13 +26,34 @@ export const MarketApps: FC = () => {
   const page = useRef<number>(1)
   const [hasMore, setHasMore] = useState<boolean>(true)
 
-  const dispatch = useDispatch()
+  const [marketApps, setMarketApps] = useState<ProductMarketApp[]>([])
+
+  const [updateLoading, setUpdateLoading] = useState<boolean>(true)
 
   const sort =
     (searchParams.get("sort") as PRODUCT_SORT_BY) ?? PRODUCT_SORT_BY.POPULAR
   const keywords = searchParams.get("keywords") ?? ""
 
-  return marketApps.length > 0 ? (
+  useEffect(() => {
+    setUpdateLoading(true)
+    fetchAppList({
+      page: 1,
+      limit: 40,
+      sortedBy: sort as PRODUCT_SORT_BY,
+      search: keywords,
+    })
+      .then((res) => {
+        setMarketApps(res.data.products)
+        return res.data
+      })
+      .finally(() => setUpdateLoading(false))
+  }, [keywords, sort])
+
+  return updateLoading ? (
+    <div css={fallbackLoadingStyle}>
+      <LoadingIcon spin={true} />
+    </div>
+  ) : marketApps.length > 0 ? (
     <div
       css={cardListContainerStyle}
       onScroll={async (event) => {
@@ -54,11 +77,7 @@ export const MarketApps: FC = () => {
               search: keywords,
             })
             page.current = page.current + 1
-            dispatch(
-              dashboardMarketAppActions.addMarketAppListReducer(
-                marketAppResp.data.products,
-              ),
-            )
+            setMarketApps([...marketApps, ...marketAppResp.data.products])
             if (!marketAppResp.data.hasMore) {
               setHasMore(false)
               return

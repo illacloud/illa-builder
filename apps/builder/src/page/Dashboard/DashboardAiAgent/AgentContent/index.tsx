@@ -1,21 +1,17 @@
 import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent/service"
-import { FC, Suspense } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { Await, useLoaderData, useSearchParams } from "react-router-dom"
-import { LoadingIcon, RadioGroup, getColor } from "@illa-design/react"
+import { useSearchParams } from "react-router-dom"
+import { RadioGroup, getColor } from "@illa-design/react"
 import { MarketAgents } from "@/page/Dashboard/DashboardAiAgent/MarketAgents"
 import { TeamAgents } from "@/page/Dashboard/DashboardAiAgent/TeamAgents"
-import { DashboardErrorElement } from "@/page/Dashboard/components/ErrorElement"
 import { SortSelector } from "@/page/Dashboard/components/SortSelector"
-import { agentContent, fallbackLoadingStyle, menuContainerStyle } from "./style"
-
+import { agentContent, menuContainerStyle } from "./style"
 
 export const AgentContent: FC = () => {
   const { t } = useTranslation()
 
   const [searchParams, setSearchParams] = useSearchParams()
-
-  const { request } = useLoaderData() as { request: Promise<any> }
 
   const currentSort =
     (searchParams.get("sort") as MARKET_AGENT_SORTED_OPTIONS) ??
@@ -64,18 +60,8 @@ export const AgentContent: FC = () => {
           />
         )}
       </div>
-      <Suspense
-        fallback={
-          <div css={fallbackLoadingStyle}>
-            <LoadingIcon spin={true} />
-          </div>
-        }
-      >
-        <Await resolve={request} errorElement={<DashboardErrorElement />}>
-          {currentSelectTab === "community" && <MarketAgents />}
-          {currentSelectTab === "team" && <TeamAgents />}
-        </Await>
-      </Suspense>
+      {currentSelectTab === "community" && <MarketAgents />}
+      {currentSelectTab === "team" && <TeamAgents />}
     </div>
   )
 }

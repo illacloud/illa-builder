@@ -104,7 +104,7 @@ export const fetchChangeAppSetting = (
   )
 }
 
-export const fetchTeamAppList = (signal: AbortSignal) => {
+export const fetchTeamAppList = (signal?: AbortSignal) => {
   return builderRequest<DashboardApp[]>(
     {
       url: "/apps",

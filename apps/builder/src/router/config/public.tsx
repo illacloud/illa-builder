@@ -3,10 +3,7 @@ import { Navigate } from "react-router-dom"
 import { FullPageLoading } from "@/components/FullPageLoading"
 import { RoutesObjectPro } from "@/router/interface"
 import { lazyLoad } from "@/router/utils/lazyLoad"
-import {
-  getDashboardAppLoader,
-  getDashboardResourcesLoader,
-} from "../loader/dashBoardLoader"
+import { getDashboardResourcesLoader } from "../loader/dashBoardLoader"
 import { deployLoader } from "../loader/deployLoader"
 
 export const publicTeamChildrenRouter: RoutesObjectPro[] = [
@@ -75,7 +72,6 @@ export const publicDashboardChildrenRouter: RoutesObjectPro[] = [
       <FullPageLoading />,
     ),
     needLogin: true,
-    loader: getDashboardAppLoader,
   },
   {
     path: "resources",

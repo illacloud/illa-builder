@@ -1,38 +1,56 @@
 import { MarketAgentCard } from "@illa-public/market-agent/MarketAgentCard"
+import { MarketAiAgent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import {
   MARKET_AGENT_SORTED_OPTIONS,
   fetchMarketAgentList,
 } from "@illa-public/market-agent/service"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
-import { Loading, useMessage } from "@illa-design/react"
+import { Loading, LoadingIcon, useMessage } from "@illa-design/react"
 import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
-import { getDashboardMarketAgentList } from "@/redux/dashboard/marketAIAgents/marketAgentSelector"
-import { dashboardMarketAgentActions } from "@/redux/dashboard/marketAIAgents/marketAgentSlice"
-import { cardListContainerStyle, cardListStyle, loadingStyle } from "./style"
+import {
+  cardListContainerStyle,
+  cardListStyle,
+  fallbackLoadingStyle,
+  loadingStyle,
+} from "./style"
 
 export const MarketAgents = () => {
   const { t } = useTranslation()
   const message = useMessage()
 
-  const marketAgentList = useSelector(getDashboardMarketAgentList)
-
   const [searchParams] = useSearchParams()
-
-  const dispatch = useDispatch()
 
   const fetching = useRef<boolean>()
   const page = useRef<number>(1)
-  const [hasMore, setHasMore] = useState<boolean>(true)
+  const [hasMore, setHasMore] = useState<boolean>(false)
+
+  const [marketAgentList, setMarketAgentList] = useState<MarketAiAgent[]>([])
 
   const sort =
     (searchParams.get("sort") as MARKET_AGENT_SORTED_OPTIONS) ??
     MARKET_AGENT_SORTED_OPTIONS.POPULAR
   const keywords = searchParams.get("keywords") ?? ""
 
-  return marketAgentList.length > 0 ? (
+  const [updateLoading, setUpdateLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    setUpdateLoading(true)
+    fetchMarketAgentList(1, sort, keywords, 40)
+      .then((res) => {
+        setMarketAgentList(res.data.products)
+        setHasMore(res.data.hasMore)
+        return res.data
+      })
+      .finally(() => setUpdateLoading(false))
+  }, [keywords, sort])
+
+  return updateLoading ? (
+    <div css={fallbackLoadingStyle}>
+      <LoadingIcon spin={true} />
+    </div>
+  ) : marketAgentList.length > 0 ? (
     <div
       css={cardListContainerStyle}
       onScroll={async (event) => {
@@ -56,11 +74,7 @@ export const MarketAgents = () => {
               40,
             )
             page.current = page.current + 1
-            dispatch(
-              dashboardMarketAgentActions.addMarketAgentListReducer(
-                agentList.data.products,
-              ),
-            )
+            setMarketAgentList([...marketAgentList, ...agentList.data.products])
             if (!agentList.data.hasMore) {
               setHasMore(false)
               return

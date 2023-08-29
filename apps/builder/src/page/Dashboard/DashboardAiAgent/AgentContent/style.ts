@@ -1,5 +1,4 @@
-import { SerializedStyles, css } from "@emotion/react"
-import { getColor } from "@illa-design/react"
+import { css } from "@emotion/react"
 
 export const agentContent = css`
   flex-grow: 1;
@@ -15,13 +14,4 @@ export const menuContainerStyle = css`
   margin-bottom: 40px;
   flex-direction: row;
   align-items: center;
-`
-
-export const fallbackLoadingStyle: SerializedStyles = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-  justify-content: center;
-  color: ${getColor("techPurple", "01")};
 `

@@ -20,3 +20,12 @@ export const loadingStyle = css`
   margin-top: 24px;
   color: ${getColor("techPurple", "01")};
 `
+
+export const fallbackLoadingStyle = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+  color: ${getColor("techPurple", "01")};
+`
