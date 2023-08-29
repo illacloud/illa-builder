@@ -2606,7 +2606,7 @@
       "save": "保存",
       "start": "開始",
       "restart": "再起動",
-      "contribute": "マーケットプレイスに貢献する",
+      "contribute": "Contribute to community",
       "button": {
         "send": "送信",
         "generating": "生成中"
@@ -3247,7 +3247,7 @@
         "invite_members": "メンバーを招待",
         "invite_to_use": "招待する",
         "invite_to_edit": "編集に招待",
-        "contribute": "市場"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "招待リンク",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} が「{{teamName}}」のAIエージェントを共有しました。リンクをクリックしてチームに参加し、AIエージェントを試してみてください: {{inviteLink}}",
       "contribute": {
-        "label": "マーケットプレイスに貢献する",
+        "label": "Contribute to community",
         "default_text": {
           "app": "{{ appName }}と呼ばれる印象的なアプリを発見しました。確認してください： {{ appLink }}",
           "agent": "{{ agentName }}という印象的なAIエージェントを発見しました。確認してください： {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "説明がありません",
       "blank": "アプリケーションがありません",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "アプリの設定",
@@ -4003,7 +4003,7 @@
       "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
     },
     "label": {
-      "contribute": "マーケットプレイスに貢献する"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
