@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "暂无描述",
       "blank": "没有项目",
-      "blank-agent": "无可用的AI Agent"
+      "blank-agent": "无AI Agent"
     },
     "app_setting": {
       "app_setting": "项目设置",
