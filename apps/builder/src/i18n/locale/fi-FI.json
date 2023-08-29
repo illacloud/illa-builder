@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "Riittämättömien lisenssien vuoksi operaatio epäonnistui.",
       "failed_to_invite_no_license": "Riittämättömän lisensoinnin vuoksi jotkin jäsenkutsut ovat epäonnistuneet.",
       "error_subscribe": "Tilaus epäonnistui. Yritä myöhemmin uudelleen.",
-      "unsubscription_fail": "Tilauksen peruuttaminen epäonnistui. Yritä myöhemmin uudelleen."
+      "unsubscription_fail": "Tilauksen peruuttaminen epäonnistui. Yritä myöhemmin uudelleen.",
+      "failed_to_update": "Tilauksen päivittäminen epäonnistui. Yritä uudelleen. ",
+      "update_suc": "Tilaus päivitetty onnistuneesti"
     },
     "modal": {
       "storage_insufficient_modal": {
