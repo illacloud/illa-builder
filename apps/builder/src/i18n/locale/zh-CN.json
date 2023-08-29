@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "由于订阅异常，操作失败。",
       "failed_to_invite_no_license": "由于许可证不足，一些成员邀请失败。",
       "error_subscribe": "订阅失败，请稍后重试",
-      "unsubscription_fail": "取消订阅失败，请稍后重试。"
+      "unsubscription_fail": "取消订阅失败，请稍后重试。",
+      "failed_to_update": "订阅更新失败，请重试",
+      "update_suc": "订阅更新成功"
     },
     "modal": {
       "storage_insufficient_modal": {
