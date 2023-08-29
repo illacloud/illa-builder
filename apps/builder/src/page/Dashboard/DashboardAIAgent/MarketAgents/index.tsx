@@ -118,7 +118,11 @@ export const MarketAgents = () => {
           />
         ))}
       </div>
-      {hasMore && <Loading css={loadingStyle} />}
+      {hasMore && (
+        <div css={loadingStyle}>
+          <Loading colorScheme="techPurple" />
+        </div>
+      )}
     </div>
   ) : (
     <EmptySearchResult desc={t("dashboard.no-result")} />

@@ -18,7 +18,6 @@ export const cardListContainerStyle = css`
 export const loadingStyle = css`
   margin-top: 24px;
   align-self: center;
-  color: ${getColor("techPurple", "01")};
 `
 
 export const fallbackLoadingStyle = css`
