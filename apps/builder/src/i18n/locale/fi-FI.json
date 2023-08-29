@@ -38,7 +38,7 @@
       "error_button": "Yritä Uudelleen",
       "error_description": "Sinun toiminnassasi on ongelma.",
       "error_title": "Virhe",
-      "marketplace": "Community",
+      "marketplace": "Yhteisö",
       "run": "Suorita",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "Tallenna",
       "start": "Aloita",
       "restart": "Käynnistä Uudelleen",
-      "contribute": "Contribute to community",
+      "contribute": "Osallistu yhteisölle",
       "button": {
         "send": "Lähetä",
         "generating": "Luodaan"
@@ -3247,7 +3247,7 @@
         "invite_members": "Kutsu jäseniä",
         "invite_to_use": "Kutsu käyttämään",
         "invite_to_edit": "Kutsu muokattavaksi",
-        "contribute": "Community"
+        "contribute": "Yhteisö"
       },
       "link": {
         "invite_title": "Kutsu linkki",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Osallistu yhteisölle",
         "default_text": {
           "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
           "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Ei kuvausta",
       "blank": "Ei sovellusta",
-      "blank-agent": "No AI Agent available"
+      "blank-agent": "Ei tekoälyagenttia tässä"
     },
     "app_setting": {
       "app_setting": "Sovelluksen asetus",
@@ -4003,7 +4003,7 @@
       "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Osallistu yhteisölle"
     },
     "default-text": {
       "social-media": {
