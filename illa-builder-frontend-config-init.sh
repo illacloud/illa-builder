@@ -16,6 +16,8 @@ _main() {
     echo 'config init.'
     echo 
 
+    echo "CLOUD_PATH = $CLOUD_PATH"
+
     # replace frontend repo
     if [ ! -n "$RELEASE_VERSION" ]; then
         echo "RELEASE_VERSION not defined, skip."
