@@ -3,6 +3,7 @@ import {
   PRODUCT_SORT_BY,
   ProductMarketApp,
 } from "@illa-public/market-app/service/interface"
+import { getMarketLinkTemplate } from "@illa-public/utils"
 import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
@@ -108,6 +109,9 @@ export const MarketApps: FC = () => {
       <div css={cardListStyle}>
         {marketApps.map((product) => (
           <MarketAppCard
+            onClick={() => {
+              window.open(getMarketLinkTemplate(product.app.appID), "_blank")
+            }}
             key={product.app.appID}
             app={product.app}
             marketplace={product.marketplace}
