@@ -3599,7 +3599,7 @@
       "watermark": "Remove watermark"
     },
     "security": {
-      "historic-7": "Historic version keep & recovery for 7 days(Coming soon)",
+      "historic-7": "Backup edit history & restore",
       "historic-30": "Keep deployed versions & revert(Coming soon)",
       "develop-environment": "Multi-environment(Coming soon)",
       "app-public": "App public",
@@ -3899,7 +3899,7 @@
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
         "insufficient_license_title": "Insufficient seats",
-        "insufficient_license_description": "To invite more editors, please increase seats first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
+        "insufficient_license_description": "To invite more editors, please increase seats first. All members of your team could use the features for ILLA Cloud Premium. The specific access to each feature depends on the role of each member. ",
         "insufficient_license_button": "Add seats",
         "pricing": "editor/month, yearly (monthly $10/editor)"
       },
