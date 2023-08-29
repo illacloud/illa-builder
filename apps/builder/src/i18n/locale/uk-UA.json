@@ -2606,7 +2606,7 @@
       "save": "Зберегти",
       "start": "Старт",
       "restart": "Перезапустити",
-      "contribute": "Внести вклад на ринок",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Відправити",
         "generating": "Генерація"
@@ -3247,7 +3247,7 @@
         "invite_members": "Запросити учасників",
         "invite_to_use": "Запросити",
         "invite_to_edit": "Запросити до редагування",
-        "contribute": "Магазин"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Запрошувальне посилання",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Внести вклад на ринок",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Я щойно відкрив вражаючий додаток під назвою {{ appName }}. Перевірте його {{ appLink }}",
           "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Без опису",
       "blank": "Додаток відсутній",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "Налаштування додатку",
@@ -4003,7 +4003,7 @@
       "undeploy": "Додаток не розгорнуто. Доступ до публічного доступу і глядача можуть стикатися з помилками. "
     },
     "label": {
-      "contribute": "Внести вклад на ринок"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
