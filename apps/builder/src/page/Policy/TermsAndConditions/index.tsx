@@ -1,11 +1,11 @@
 import { useMemo } from "react"
 import { Helmet } from "react-helmet-async"
 import { useTranslation } from "react-i18next"
-import TermsOfServiceUS from "@/illa-public-component/User/policy/en-US/terms-of-serivce.mdx"
-import TermsOfServiceJP from "@/illa-public-component/User/policy/ja-JP/terms-of-serivce.mdx"
-import TermsOfServiceKR from "@/illa-public-component/User/policy/ko-KR/terms-of-serivce.mdx"
-import TermsOfServiceCN from "@/illa-public-component/User/policy/zh-CN/terms-of-serivce.mdx"
 import { policyContainer } from "../style"
+import TermsOfServiceUS from "./en-US/terms-of-serivce.mdx"
+import TermsOfServiceJP from "./ja-JP/terms-of-serivce.mdx"
+import TermsOfServiceKR from "./ko-KR/terms-of-serivce.mdx"
+import TermsOfServiceCN from "./zh-CN/terms-of-serivce.mdx"
 
 const TermsOfService = () => {
   const { i18n, t } = useTranslation()
