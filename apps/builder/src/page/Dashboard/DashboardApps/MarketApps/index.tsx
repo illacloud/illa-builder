@@ -111,11 +111,11 @@ export const MarketApps: FC = () => {
         {marketApps.map((product) => (
           <MarketAppCard
             onClick={() => {
-              const newUrl = new URL(getMarketLinkTemplate(product.app.appID))
+              const newUrl = new URL(getMarketLinkTemplate(product.app.appId))
               newUrl.searchParams.set("token", getAuthToken())
               window.open(newUrl, "_blank")
             }}
-            key={product.app.appID}
+            key={product.app.appId}
             app={product.app}
             marketplace={product.marketplace}
           />
