@@ -23,7 +23,7 @@ export const MarketApps: FC = () => {
   const message = useMessage()
 
   const fetching = useRef<boolean>()
-  const page = useRef<number>(1)
+  const page = useRef<number>(0)
   const [hasMore, setHasMore] = useState<boolean>(true)
 
   const [marketApps, setMarketApps] = useState<ProductMarketApp[]>([])

@@ -23,7 +23,7 @@ export const MarketAgents = () => {
   const [searchParams] = useSearchParams()
 
   const fetching = useRef<boolean>()
-  const page = useRef<number>(1)
+  const page = useRef<number>(0)
   const [hasMore, setHasMore] = useState<boolean>(false)
 
   const [marketAgentList, setMarketAgentList] = useState<MarketAiAgent[]>([])
