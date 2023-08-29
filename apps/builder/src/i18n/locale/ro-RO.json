@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "Din cauza licenţelor insuficiente, operaţiunea a eşuat.",
       "failed_to_invite_no_license": "Din cauza licenţelor insuficiente, unele invitaţii ale membrilor au eşuat.",
       "error_subscribe": "Abonarea a eșuat. Te rugăm să încerci din nou mai târziu.",
-      "unsubscription_fail": "Nu s-a putut anula abonamentul. Te rugăm să încerci din nou mai târziu."
+      "unsubscription_fail": "Nu s-a putut anula abonamentul. Te rugăm să încerci din nou mai târziu.",
+      "failed_to_update": "Actualizarea abonamentului a eșuat. Te rugăm să încerci din nou. ",
+      "update_suc": "Abonament actualizat cu succes"
     },
     "modal": {
       "storage_insufficient_modal": {
