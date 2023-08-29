@@ -38,7 +38,7 @@
       "error_button": "Yritä Uudelleen",
       "error_description": "Sinun toiminnassasi on ongelma.",
       "error_title": "Virhe",
-      "marketplace": "Kauppapaikka",
+      "marketplace": "Yhteisö",
       "run": "Suorita",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Joukkue",
-      "marketplace": "Agentin markkinat"
+      "marketplace": "Yhteisö"
     },
     "sort-type": {
       "popular": "Suosituin",
@@ -75,8 +75,10 @@
       "create-suc": "Tallennus onnistui",
       "fork-suc": "Onnistuneesti väärennetty.",
       "delete-failed": "Poistaminen epäonnistui. Yritä uudelleen. ",
-      "delete-suc": "Poistettu onnistuneesti. "
-    }
+      "delete-suc": "Poistettu onnistuneesti. ",
+      "mobile-fork-suc": "forkattu onnistuneesti. Ole hyvä ja muokkaa työpöydällä."
+    },
+    "create": "Luo"
   },
   "dayjs": {
     "just_now": "Juuri nyt"
@@ -2572,7 +2574,7 @@
       "placeholder": {
         "name": "Anna nimi agentille",
         "desc": "Anna lyhyt kuvaus siitä, mihin tämä agentti on tarkoitettu käytettäväksi.",
-        "prompt": "Syötä {{variableName}} käyttääksesi muuttujaa",
+        "prompt": "Syötä {{ käyttääksesi muuttujaa",
         "variable": {
           "key": "Muuttujan nimi",
           "value": "Arvo"
@@ -2604,7 +2606,7 @@
       "save": "Tallenna",
       "start": "Aloita",
       "restart": "Käynnistä Uudelleen",
-      "contribute": "Osallistu markkinapaikkaan",
+      "contribute": "Osallistu yhteisölle",
       "button": {
         "send": "Lähetä",
         "generating": "Luodaan"
@@ -2616,10 +2618,13 @@
       },
       "message": {
         "click-start": "Napsauta Käynnistä painiketta käynnistääksesi.",
-        "insufficient_token": "Riittämätön Colla",
+        "insufficient_token": "Riittämätön tunnus",
         "start-failed": "Aloitus epäonnistui. Yritä uudelleen. ",
         "reconnect": "Yhteys menetetty. Uudelleenyhdistäminen käynnissä.",
-        "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen."
+        "token-not-enough": "Malliraja saavutettu. Käynnistä uudelleen.",
+        "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia.",
+        "purchase-required": "Colla ei riitä juoksemaan, ole hyvä ja lataa.",
+        "leave": "Sisältöä ei ole tallennettu, oletko varma, että haluat lähteä?"
       },
       "title": "🧬 Muokkaa tekoälyn Agenttia",
       "generate-desc": {
@@ -3230,18 +3235,26 @@
       "owner": "Omistaja",
       "admin": "Administer",
       "editor": "Muokkain",
-      "viewer": "Katsoja"
+      "viewer": "Katsoja",
+      "tips": {
+        "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
+        "editor": "Jäsen, joka voi hallita editoria ja katsojan jäseniä, muokata APP:eja ja tarkastella APP:eja",
+        "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Kutsu jäseniä"
+        "invite_members": "Kutsu jäseniä",
+        "invite_to_use": "Kutsu käyttämään",
+        "invite_to_edit": "Kutsu muokattavaksi",
+        "contribute": "Yhteisö"
       },
       "link": {
         "invite_title": "Kutsu linkki",
         "copy": "Kopioi",
         "turn_off": "Poista kutsulinkit käytöstä",
         "update": "Päivitä kutsulinkit",
-        "description": "Jaa salainen linkki, jonka avulla ihmiset voivat liittyä tiimiisi.",
+        "description": "Käynnistä ja kutsu jäseniä linkin kautta. ",
         "turn_on": "Ota kutsulinkit käyttöön",
         "fail": "Linkin hankkiminen epäonnistui, yritä myöhemmin uudelleen",
         "copied_suc": "Kopioitu!",
@@ -3249,7 +3262,10 @@
         "turn_off_fail": "Ei voitu poistaa käytöstä",
         "turn_on_fail": "Ei voitu ottaa käyttöön",
         "make_public_title": "Tee sovellus julkiseksi",
-        "make_public_copy": "Kopioi"
+        "make_public_copy": "Kopioi",
+        "marketplace": {
+          "label": "Jaa linkin kanssa"
+        }
       },
       "email": {
         "invite_title": "Kutsu sähköpostitse",
@@ -3257,8 +3273,8 @@
         "placeholder": "Syötä sähköpostiosoite",
         "invited": "Kutsuttu",
         "in_list": "Tämä käyttäjä on jo tiimissäsi.",
-        "notmail": "{{ email }} ei ole sähköposti",
-        "duplicate": "{{ email }} on kopioitu"
+        "duplicate": "{{ email }} on kopioitu",
+        "not_mail": "{{ email }} ei ole sähköposti"
       },
       "invalid_email": "Syötä voimassa oleva sähköpostiosoite",
       "message": {
@@ -3268,14 +3284,39 @@
       },
       "tab": {
         "invite": "Kutsu",
-        "public": "Julkinen"
+        "public": "Julkinen",
+        "with_team": "Jaa tiimin jäsenten kanssa"
       },
       "custom_copy_text_app_invite": "{{userName}} on jakanut sinulle sovelluksen 「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin ja tarkista APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} on jakanut sinulle APP lähteestä 「{{teamName}}」. Klikkaa linkkiä tarkistaaksesi APP: {{inviteLink}}",
       "custom_copy_text": "{{userName}} kutsuu sinut liittymään「{{teamName}}」. Klikkaa linkkiä liittyäksesi tiimiin: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Jäljellä olevat lisenssit"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Osallistu yhteisölle",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
+        },
+        "desc": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja.",
+        "turn_off": "Peruuta lisäys"
+      },
+      "social_media": {
+        "label": "Jaa päällä",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hakkerit Uutiset",
+        "default_text": {
+          "app": "Löysin juuri vaikuttavan sovelluksen nimeltä {{ appName }}",
+          "agent": "Löysin juuri vaikuttavan tekoälyagentin nimeltä {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Kutsuttu onnistuneesti",
@@ -3311,7 +3352,8 @@
       "cancel": "Peruuta"
     },
     "status": {
-      "pending": "Odottaa"
+      "pending": "Odottaa",
+      "current-user": "Sinä"
     },
     "settings": {
       "allow_editors_invite": "Salli muokkaajien ja katsojien hallita jäseniä",
@@ -3552,16 +3594,16 @@
     "apps": {
       "components": "Kaikki komponentit",
       "resources": "Kaikki resurssit",
-      "plugins": "Rajoittamattomat liitännäiset",
+      "plugins": "Rajaton liitännäinen(Tulossa pian)",
       "sql": "AI SQL Generation",
       "watermark": "Poista vesileima"
     },
     "security": {
-      "historic-7": "Historiallinen versio pitää palautuksen 7 päivää",
-      "historic-30": "Historiallinen versio pitää palautuksen 30 päivää",
-      "develop-environment": "Ympäristön kehittäminen",
+      "historic-7": "Varmuuskopioi muokkaushistoria ja palauta",
+      "historic-30": "Pidä käytössä olevat versiot & revert(Tulossa pian)",
+      "develop-environment": "Moniympäristö(Tulossa pian)",
       "app-public": "Sovellus julkinen",
-      "restore-data": "Varmuuskopioi ja palauta",
+      "restore-data": "Varmuuskopioi muokkaushistoria ja palauta",
       "deployed": "Pääsy ILLA-tukeen",
       "dedicated": "Omistetut ratkaisut insinööri"
     },
@@ -3570,7 +3612,7 @@
       "sql": "Syötä luontainen kieli ja luo SQL-lausunto",
       "staging": "Testaa sovelluksesi vaiheistetun julkaisun ympäristössä",
       "app-public": "Tee sovellus julkiseksi ja kuka tahansa, jolla on linkki, voi käyttää sitä",
-      "restore-data": "Varmuuskopioi tai palauta tiedot milloin tahansa haluat.",
+      "restore-data": "Varmuuskopioi tai palauta historia milloin tahansa haluat.",
       "deployed": "Käyttöönotetut insinöörit voivat auttaa aluksella nopeampaa",
       "dedicated": "Asiakasratkaisujen insinööri Slack/email/phone kautta",
       "preview_insufficient": "Tiedosto ei voi esikatsella riittämättömän kapasiteetin vuoksi, laajenna kapasiteettia ensin."
@@ -3603,19 +3645,24 @@
     "free-members": "Vain 1 jäsen henkilökohtaiseen käyttöön",
     "unlimited-viewer": "ILMAINEN rajoittamattomille katsojille",
     "unlimited-members": "Rajoittamattomat jäsenet",
-    "free-btn": "Koosta sovelluksia ilmaiseksi",
-    "plus-btn": "Kokeile ilmaista versiota",
+    "free-btn": "Nykyinen tilaus",
+    "plus-btn": "Päivitä",
     "enterprise-btn": "Ota yhteyttä",
     "menu": {
       "billing": "Laskutus",
-      "license": "Lisenssi",
+      "license": "Istuin",
       "drive": "Asema",
+      "colla": "Kolla",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Kollan tapahtumahistoria",
       "billing_portal": "Laskutusportaali"
     },
     "title": {
       "billing": "Laskutus",
-      "license": "Lisenssi",
-      "drive": "Asema"
+      "license": "Istuin",
+      "drive": "Asema",
+      "colla": "Kolla",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3624,7 +3671,8 @@
       },
       "sub_cycle": {
         "yearly": "Vuosittain",
-        "monthly": "Kuukausittain"
+        "monthly": "Kuukausittain",
+        "lifetime": "Elinikä"
       },
       "billing_cyle": {
         "year": "/ Vuosi",
@@ -3633,9 +3681,10 @@
       "table_title": {
         "next_payment_date": "Seuraava maksupäivä",
         "expiration_date": "Viimeinen käyttöpäivä",
-        "licenses": "Lisenssit",
+        "licenses": "Istuimet",
         "storage": "Tallennustila",
-        "traffic": "Liikenne"
+        "traffic": "Liikenne",
+        "colla": "Kolla"
       },
       "period": {
         "current": "Nykyinen",
@@ -3644,36 +3693,60 @@
     },
     "subscription_card": {
       "title": {
-        "License": "Lisenssi",
+        "License": "Istuimet",
         "Storage": "Tallennustila",
         "Traffic": "Liikenne",
-        "balance": "Saldo"
+        "balance": "Saldo",
+        "colla": "Kolla"
       },
       "button": {
-        "License": "Hallinnoi lisenssejä",
+        "License": "Hallitse istuimia",
         "Storage": "Hallinnoi tallennustilaa",
-        "Traffic": "Laajenna liikennettä"
+        "Traffic": "Laajenna liikennettä",
+        "colla": "Hallitse Kollaa"
       },
       "capacity": {
-        "License": "{{used}} (yhteensä {{total}} lisenssiä) on käytetty.",
-        "Storage": "{{used}} (yhteensä {{total}} GB) on käytetty.",
-        "Traffic": "{{used}} (yhteensä {{total}} GB) on käytetty."
+        "License": "{{used}} used (total of {{total}} seats) ",
+        "Storage": "{{used}}GB used (total of {{total}}GB) ",
+        "Traffic": "{{used}}GB used (total of {{total}}GB) ",
+        "colla": "{{used}} Colla used (total of {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Pääsymerkki"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "Kuukausi",
+        "event": "Tapahtuma",
+        "usage": "Kollan käyttö"
+      },
+      "event": {
+        "increase_storage": "Lisää tallennustilaa",
+        "increase_colla": "Lisää Kollaa",
+        "increase_traffic": "Lisää liikennettä"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "Hallinnoi tallennustilaa",
-        "manage_licenses": "Hallinnoi lisenssejä",
-        "expand_traffic_capac": "Laajenna liikennekapasiteettia"
+        "manage_licenses": "Hallitse istuimia",
+        "expand_traffic_capac": "Laajenna liikennekapasiteettia",
+        "colla": "Hallitse Kollaa"
       },
       "plan_label": {
-        "License": "Lisenssit",
+        "License": "Istuimet",
         "Storage": "Tallennustila",
-        "Traffic": "Liikenne"
+        "Traffic": "Liikenne",
+        "colla": "Kolla"
       },
       "plan_number_input_label": {
-        "License": "Lisenssit",
-        "Storage_traffic": "Gt"
+        "License": "Istuimet",
+        "Storage_traffic": "5 Gt",
+        "colla": "Kolla"
       },
       "select_option": {
         "Yearly": "Vuosittain",
@@ -3697,14 +3770,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} lisenssiä × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} lisenssiä",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} lisenssiä",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä × {{remainDays}} päivää / {{totalDays}} päivää",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} lisenssiä",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} lisenssiä",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} lisenssiä",
+        "this_period": "{{unitPrice}} × {{licenseNum}} seats × {{remainDays}} days / {{totalDays}} days",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} seats",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} seats",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} seats × {{remainDays}} days / {{totalDays}} days",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} seats",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} seats",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} seats",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} seats",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} päivää / {{totalDays}} päivää",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3712,7 +3785,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Peruuta Tilaus",
@@ -3720,21 +3794,23 @@
         "change_plan": "Muuta tilausta",
         "storage_traffic_increase": "Kasvata {{changeNum}} Gt",
         "storage_traffic_remove": "Poista {{changeNum}} GB",
-        "license_increase": "Kasvata {{changeNum}} lisenssiä",
-        "license_remove": "Poista {{changeNum}} lisenssiä"
+        "license_increase": "Lisää {{changeNum}} paikkaa",
+        "license_remove": "Poista {{changeNum}} paikkaa",
+        "colla_increase": "Lisää {{changeNum}} Colla",
+        "colla_remove": "Poista {{changeNum}} Colla"
       },
       "description_title": {
         "add_storage": "Olet menossa lisäämään {{changeNum}} Gt tallennustilaa. Kun se on vahvistettu, vähennämme välittömästi tämän laskutusjakson uuden tallennustilan maksun. <0>Lue lisää</0>",
         "remove_storage": "Olet poistamassa {{changeNum}} Gt tallennustilaa. Kun muutokset on vahvistettu, ne tulevat voimaan seuraavan laskutusjakson aikana. <0>Lue lisää</0>",
         "update_plan_year": "Olet menossa päivittämään se vuosittainen maksusuunnitelma. Kun muutos on vahvistettu, se tulee voimaan seuraavan laskutusjakson alusta. <0>Lue lisää</0>",
         "update_plan_monthly": "Olet menossa päivittää kuukausittain maksusuunnitelma. Kun muutos on vahvistettu, se tulee voimaan seuraavan laskutusjakson alusta. <0>Lue lisää</0>",
-        "add_license": "Sinä aiot lisätä {{changeNum}} lisenssiä. Kun se on vahvistettu, me välittömästi vähennämme tämän laskutusjakson uusien lisenssien maksun. <0>Lue lisää</0>",
-        "remove_license": "Olet poistamassa {{changeNum}} lisenssiä. Kun muutokset on vahvistettu, ne tulevat voimaan seuraavan laskutusjakson aikana. <0>Lue lisää</0>",
+        "add_license": "Olet menossa lisäämään {{changeNum}} paikkaa. Kun se on vahvistettu, vähennämme välittömästi tämän laskutusjakson uusien paikkojen maksun. <0>Lue lisää</0>",
+        "remove_license": "Aiot poistaa {{changeNum}} paikkaa. Kun muutokset on vahvistettu, ne tulevat voimaan seuraavan laskutusjakson aikana. <0>Lue lisää</0>",
         "add_traffic": "Olet menossa lisäämään {{changeNum}}Gt:n liikennettä. Kun se on vahvistettu, vähennämme lisäliikenteen kustannukset välittömästi. <0>Lue lisää</0>",
         "subscribe_storage": "Olet menossa liittymään ILLA Cloud Plus -palveluun. Vähennämme automaattisesti maksut tililtäsi jokaisen maksujakson alussa. <0>Lue lisää</0>",
         "subscribe_license": "Olet menossa tilaamaan ILLA Drive. Vähennämme automaattisesti maksut tililtäsi jokaisen maksujakson alussa. <0>Lue lisää</0>",
-        "update_plan_increase_license": "Aiot lisätä {{changeNum}} lisenssiä ja päivittää tilauskautesi. <0>Lue lisää</0>",
-        "update_plan_remove_license": "Olet poistamassa {{changeNum}} lisenssiä ja päivittämässä tilausaikaasi. <0>Lue lisää</0>",
+        "update_plan_increase_license": "Olet menossa lisäämään {{changeNum}} paikkaa ja päivittämään tilausaikaasi. <0>Lue lisää</0>",
+        "update_plan_remove_license": "Aiot poistaa {{changeNum}} paikkaa ja päivittää tilauskautesi. <0>Lue lisää</0>",
         "update_plan_increase_storage": "Aiot lisätä {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
         "update_plan_remove_storage": "Aiot poistaa {{changeNum}} Gt tallennustilan ja päivittää tilauskauden. <0>Lue lisää</0>",
         "unsubscribe_license": "Lopetat ILLA Cloud Plus -palvelun tilauksen. Peruutuksen jälkeen seuraavasta laskutusjaksosta alkaen Plus-ominaisuudet eivät ole enää käytettävissä. <0>Lue lisää</0>",
@@ -3742,21 +3818,31 @@
         "subscribe_license_monthly": "Olet menossa tilaamaan ILLA Cloud Plus kuukausittaisen tilauksen. <0>Lue lisää</0>",
         "subscribe_license_yearly": "Olet menossa tilaamaan ILLA Cloud Plus vuosittaisen tilauksen. <0>Lue lisää</0>",
         "subscribe_storage_monthly": "Olet menossa lisäämään {{changeNum}}Gt tallennustilaa. Kun se on vahvistettu, vähennämme tallennustilan kustannukset välittömästi. <0>Lue lisää</0>",
-        "subscribe_storage_yearly": "Olet menossa lisäämään {{changeNum}}Gt tallennustilaa. Kun se on vahvistettu, vähennämme tallennustilan kustannukset välittömästi. <0>Lue lisää</0>"
+        "subscribe_storage_yearly": "Olet menossa lisäämään {{changeNum}}Gt tallennustilaa. Kun se on vahvistettu, vähennämme tallennustilan kustannukset välittömästi. <0>Lue lisää</0>",
+        "colla_sub": "Olet menossa tilaamaan Collan. Kun se on vahvistettu, vähennämme automaattisesti maksut jokaisen laskutusjakson alussa ja päivitämme tilaustasi automaattisesti, kun tarvitset enemmän Collaa. <0>Lue lisää</0>",
+        "colla_increase": "Aiot lisätä {{changeNum}} Collan. Kun olet vahvistanut, vähennämme välittömästi jäljellä olevan summan tämän laskutussyklin aikana. <0>Lue lisää</0>",
+        "colla_remove": "Aiot poistaa {{changeNum}} Collan. Kun se on vahvistettu, se tulee voimaan seuraavan laskutusjakson aikana. <0>Lue lisää</0>",
+        "colla_unsubscribe": "Olet menossa peruuttamaan Colla tilauksen. Kun vahvistettu, se tulee voimaan seuraavan laskutussyklin aikana. Huomaa, että peruutuksen jälkeen saatat kokea ongelmia ILLA Driven ja AI Agent käytön kanssa. <0>Lue lisää</0>",
+        "colla_update": "Aiot muokata Colla tilaustasi. Kun muutokset on vahvistettu, ne tulevat voimaan seuraavan laskutusjakson aikana. <0>Lue lisää</0>"
       },
       "description": {
-        "add_storage": "Laskentasäännöt käyttäen kuukausittaista tallennustilausta esimerkkinä: Katsotaanpa skenaario, jossa tilaat aluksi 5 GB alkaen maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 GB. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 GB, joka on noin $ 0. 9, suhteessa kestoon 4 päivää 30 päivän aikana. Siksi vähennys on arvioitu 1 lisenssi * $ 0. 9 / 30 päivää * 4 päivää, jolloin noin 0,132 dollaria. Seuraavasta laskutusjaksosta alkaen kaikki tallennusmaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso käyttäjämme <0>Tietosuojakäytäntö</0> ja <1>Käyttöehdot</1>",
         "remove_storage": "Jos tiedostojen varaama tallennuskapasiteetti ylittää tilatun tallennuskapasiteetin seuraavan laskutusjakson alkaessa, se on suurempi kuin tilattu tallennuskapasiteetti, kaikki tiedostot poistetaan käytöstä, kunnes poistat tiedostoja tai lisäät tallennustilaa käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
-        "update_plan_year": "Alkaen seuraavasta kaudesta, tilaus muutetaan vuosittaiseksi tilaukseksi, joka on ja maksut vähennetään automaattisesti vuotuisen merkintähinnan perusteella. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
-        "update_plan_monthly": "Alkaen seuraavasta kaudesta, tilaus muutetaan kuukausittaiseksi tilaukseksi, ja maksut vähennetään automaattisesti kuukausittaisen merkintähinnan perusteella. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
-        "remove_license": "Jos niiden käyttäjien määrä, joilla on muokkausoikeuksia, ylittää lisenssien määrän seuraavan laskutusjakson alussa, kaikki käyttäjät paitsi omistaja poistetaan käytöstä, kunnes poistat jäseniä tai lisäät lisenssien määrää käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_year": "Alkaen seuraavasta kaudesta, tilaus muutetaan vuosittaiseksi tilaukseksi, joka on ja maksut vähennetään automaattisesti vuotuisen merkintähinnan perusteella. Jos haluat vähentää istumapaikkoja tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_monthly": "Alkaen seuraavasta kaudesta, tilaus muutetaan kuukausittaiseksi tilaukseksi, ja maksut vähennetään automaattisesti kuukausittaisen merkintähinnan perusteella. Jos haluat vähentää istumapaikkoja tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "add_license": "Laskentasäännöt, joissa käytetään esimerkkinä kuukausittaista istuintilausta: Tarkastellaanpa skenaariota, jossa tilasit aluksi 5 paikkaa maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 ylimääräinen paikka. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 istuin, joka on noin $ 10, suhteessa kestoon 4 päivää 30 päivän ajan. Siksi vähennys on arviolta 1 istuin * $ 10 / 30 päivää * 4 päivää, jolloin noin $ 1,33. Seuraavasta laskutusjaksosta alkaen kaikki kotipaikan maksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää istumapaikkoja tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "remove_license": "Jos muokkausoikeuksilla varustettujen käyttäjien määrä ylittää istuinten määrän seuraavan laskutussyklin alkaessa, kaikki käyttäjät paitsi omistaja poistetaan käytöstä, kunnes poistat jäseniä tai lisäät istumapaikkojen määrää käytettävissä olevalla alueella. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
         "add_traffic": "Onnistuneen vähennyksen jälkeen liikennemäärä kasvaa reaaliajassa. Kun liikenne on käytetty, maksuja ei voi palauttaa. Käyttämätön liikenne voidaan palauttaa BB:n yksiköissä. Jos esimerkiksi ostat 10 Gt liikennettä ja käytät 4,5 Gt, voit hakea palautusta 5GB. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
         "subscribe_storage_yearly": "Olet menossa tilaamaan ILLA Drive -tallennustilan vuosittaisen tilauksen. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka paljon tallennuskapasiteettia olet tilannut GB. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, jonka vuotuinen tilausmaksu on $ 9. per GB, ja sinulla on yhteensä 3 Gt, me vähentää $ 29. helmikuuta 25, 2023. Jos lisäät 2 gigatavua 25. maaliskuuta 2023, vähennämme ensin jäljellä olevat 11 kuukauden maksut 25. maaliskuuta 2023. Sitten viimeistään 25 helmikuu 2024 vähennetään maksu 5 Gt, joka on (2+3)*$9.9 = $49. . Jos haluat vähentää tallennustilaa tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
-        "subscribe_storage_monthly": "Olet menossa tilaamaan kuukausittain tilauksen ILLA Drive -tallennustilan. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka paljon tallennuskapasiteettia olet tilannut GB. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, kuukausimaksu on $ 0. 9 Gt per Gt, ja sinulla on yhteensä 3 Gt, me vähentää $ 2. 7 päivänä helmikuuta 25, 2023. Jos lisäät vielä 2 lisenssiä 21. maaliskuuta 2023, vähennämme ensin jäljellä olevan 5 päivän maksun 21. maaliskuuta 2023. Sitten, 25. maaliskuuta 2023, me vähentää maksun 5 lisenssit, joka on (2+3)*$ 0. 9 = 4,95 dollaria. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
-        "subscribe_license_monthly": "Olet menossa tilaamaan kuukausittaisen ILLA Cloud Plus -jäsenyyden. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka monta lisenssiä sinulla on. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, kuukausittainen tilausmaksu on $ 12 per lisenssi, ja sinulla on yhteensä 3 lisenssejä, me vähentää 36 dollaria helmikuun 25, 2023. Jos lisäät vielä 2 lisenssiä 21. maaliskuuta 2023, vähennämme ensin jäljellä olevan 5 päivän maksun 21. maaliskuuta 2023. Sitten 25. maaliskuuta 2023 mennessä me vähentää maksun 5 lisenssit, joka on (2+3)*$ 12 = $ 60. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
-        "update_plan_remove_license": "Maksut vähennetään automaattisesti seuraavan kauden voimassa olevan lisenssien määrän ja uuden laskutussyklin hinnoittelun perusteella. Jos niiden käyttäjien määrä, joilla on muokkausoikeuksia, ylittää lisenssien määrän seuraavan laskutusjakson alussa, kaikki käyttäjät paitsi omistaja poistetaan käytöstä, kunnes poistat jäseniä tai lisäät lisenssien määrää käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
-        "update_plan_increase_storage": "Maksut vähennetään automaattisesti seuraavan kauden ajan tasalle saatetun varastoinnin ja uuden laskutusjakson hinnoittelun perusteella. Tällä kertaa me vähennämme korotetun varastoinnin maksun nykyisen laskutussyklin mukaisesti. Laskentasäännöt käyttäen kuukausittaista tallennustilausta esimerkkinä: Katsotaanpa skenaario, jossa tilaat aluksi 5 GB alkaen maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä 1 GB. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 GB, joka on noin $ 0. 9, suhteutettuna 4 päivän kestoon 30 päivän syklin aikana. Siksi vähennys on arvioitu 1 lisenssi * 0,99 dollaria / 30 päivää * 4 päivää, jolloin noin 0,132 dollaria. Seuraavasta laskutusjaksosta alkaen kaikki tallennusmaksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää lisenssejä tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "subscribe_license_monthly": "Olet menossa tilaamaan kuukausittaisen ILLA Cloud Plus -jäsenyyden. Me automaattisesti vähennämme maksut tililtäsi jokaisen maksusyklin alussa. Varsinainen vähennetty määrä riippuu siitä, kuinka monta paikkaa sinulla on. Esimerkiksi, jos aloitat ensimmäisen tilauksesi 25. helmikuuta 2023, kuukausittainen tilausmaksu on $12 per istuin, ja sinulla on yhteensä 3 paikkaa, me vähentää 36 dollaria helmikuun 25, 2023. Jos lisäät vielä 2 paikkaa 21. maaliskuuta 2023, vähennämme ensin jäljellä olevat 5 päivän maksut 21. maaliskuuta 2023. Sitten 25. maaliskuuta 2023 mennessä vähennetään maksu 5 paikkaa, joka on (2+3)*$12 = $60. Jos haluat vähentää istumapaikkoja tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_increase_license": "Maksut vähennetään automaattisesti sen mukaan, kuinka monta paikkaa on päivitetty ja miten uusi laskutussykli hinnoitellaan seuraavalta kaudelta. Tällä kertaa me vähennämme korotettujen istuinten maksun nykyisen laskutusjakson mukaisesti. Laskentasäännöt istuinten lisäämisestä käyttäen esimerkkinä kuukausittaista istuintilausta: Katsotaanpa skenaario, jossa olet alun perin tilannut 5 paikkaa maaliskuun 14. päivästä alkaen, ja laskutus sykli ulottuu 14 tämän kuukauden ja 13. ensi kuussa. Toukokuun 10. päivänä päätät lisätä yhden ylimääräisen istuimen. Tuossa vaiheessa siellä oli 4 päivää jäljellä loppuun nykyisen syklin 13. toukokuuta (yhteensä 30 päivää huhtikuun 14 ja 13 toukokuuta). Voit laskea mukautetun maksun, me vähentää kustannukset 1 istuin, joka on noin $ 10, suhteessa kestoon 4 päivää 30 päivän ajan. Siksi vähennys on arviolta 1 istuin * $ 10 / 30 päivää * 4 päivää, jolloin noin $ 1,33. Seuraavasta laskutusjaksosta alkaen kaikki kotipaikan maksut yhdistetään ja maksetaan yhdessä. Jos haluat vähentää istumapaikkoja tai tehdä muita muutoksia tilaukseen, päivitä se ennen seuraavan kauden alkua. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
+        "update_plan_remove_license": "Maksut vähennetään automaattisesti sen mukaan, kuinka monta paikkaa on päivitetty ja miten uusi laskutussykli hinnoitellaan seuraavalta kaudelta. Jos muokkausoikeuksilla varustettujen käyttäjien määrä ylittää istuinten määrän seuraavan laskutussyklin alkaessa, kaikki käyttäjät paitsi omistaja poistetaan käytöstä, kunnes poistat jäseniä tai lisäät istumapaikkojen määrää käytettävissä olevalla alueella. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>",
         "update_plan_remove_storage": "Maksut vähennetään automaattisesti seuraavan kauden ajan tasalle saatetun varastoinnin ja uuden laskutusjakson hinnoittelun perusteella. Jos tiedostojen varaama tallennuskapasiteetti ylittää tilatun tallennuskapasiteetin seuraavan laskutusjakson alkaessa, se on suurempi kuin tilattu tallennuskapasiteetti, kaikki tiedostot poistetaan käytöstä, kunnes poistat tiedostoja tai lisäät tallennustilaa käytettävissä olevan alueen sisällä. Jos haluat lisätietoja, katso <0>Tietosuojakäytäntömme</0> ja <1>Käyttöehdot</1>"
+      },
+      "colla_redeem": {
+        "title": "{{changeNum}} Collan avulla voit ostaa: ",
+        "storage": "Tallennustila",
+        "traffic": "Liikenne",
+        "token": "Pääsymerkki"
       }
     },
     "message": {
@@ -3764,8 +3850,8 @@
       "failed_to_add_traffic": "Liikenteen lisääminen epäonnistui. Yritä uudelleen. ",
       "failed_to_add_storage": "Tallennustilan lisääminen epäonnistui. Yritä uudelleen. ",
       "failed_to_remove_storage": "Tallennustilan poisto epäonnistui. Yritä uudelleen. ",
-      "failed_to_add_licens": "Lisenssien lisääminen epäonnistui. Yritä uudelleen. ",
-      "failed_to_remove_lic": "Lisenssien poistaminen epäonnistui. Yritä uudelleen. ",
+      "failed_to_add_licens": "Istuinten lisääminen epäonnistui. Yritä uudelleen. ",
+      "failed_to_remove_lic": "Istuinten poistaminen epäonnistui. Yritä uudelleen. ",
       "failed_to_change_pla": "Suunnitelman muuttaminen epäonnistui. Yritä uudelleen. ",
       "failed_to_unsubscrib": "Tilauksen peruuttaminen epäonnistui. Yritä uudelleen. ",
       "successfully_removed": "Onnistuneesti poistettu. Muutos tulee voimaan kohteesta {{nextPaymentDate}}.",
@@ -3775,16 +3861,20 @@
       "successfully_changed": "Tilauksen muutos onnistui. Se tulee voimaan muutamassa minuutissa",
       "failed_to_change": "Tilauksen muutos epäonnistui",
       "unsubscription_suc": "Tilaus on peruutettu onnistuneesti ja tulee voimaan seuraavalta kaudelta",
-      "failed_to_join_no_license": "Liittyminen ei onnistunut, koska tiimin lisenssit eivät riitä, ota yhteyttä ylläpitäjään.",
+      "failed_to_join_no_license": "Liittäminen ei onnistu riittämättömien istuinten vuoksi ",
       "storage_insufficient_modal": "Tämän tiimin tallennustila tai liikenne ei riitä. Ota yhteyttä ylläpitäjään.",
       "appsumo": {
+        "suc": "Lunastus onnistui",
+        "fail": "Lunastaminen epäonnistui. Yritä myöhemmin uudelleen.",
         "transfer": "Toiminto epäonnistui. Tämä käyttäjä on sidottu elinikäiseen tilaukseen. ",
         "leave": "Toiminto epäonnistui. Tämä käyttäjä on sidottu elinikäiseen tilaukseen. "
       },
       "no_license_operate_failed": "Riittämättömien lisenssien vuoksi operaatio epäonnistui.",
       "failed_to_invite_no_license": "Riittämättömän lisensoinnin vuoksi jotkin jäsenkutsut ovat epäonnistuneet.",
-      "error_subscribe": "Suunnitelman muuttaminen epäonnistui. Yritä myöhemmin uudelleen.",
-      "unsubscription_fail": "Tilauksen peruuttaminen epäonnistui. Yritä myöhemmin uudelleen."
+      "error_subscribe": "Tilaus epäonnistui. Yritä myöhemmin uudelleen.",
+      "unsubscription_fail": "Tilauksen peruuttaminen epäonnistui. Yritä myöhemmin uudelleen.",
+      "failed_to_update": "Tilauksen päivittäminen epäonnistui. Yritä uudelleen. ",
+      "update_suc": "Tilaus päivitetty onnistuneesti"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3795,7 +3885,7 @@
         "not_owner_description_drive": "Tämän tiimin tallennustila tai liikenne ei riitä. Ota yhteyttä ylläpitäjään.",
         "not_owner_button_drive": "Asia ymmärretty",
         "out_title_drive": "Lataaminen epäonnistui",
-        "out_description_drive": "Lataaminen epäonnistui, ole hyvä ja ota yhteyttä tiedoston omistajaan",
+        "out_description_drive": "Liikenteen riittämättömyyden vuoksi lataaminen epäonnistui. Ota yhteyttä tiedoston omistajaan",
         "out_button_drive": "Asia ymmärretty"
       },
       "sub_suc": {
@@ -3803,7 +3893,7 @@
         "you_can_now_invite_m": "Se tulee voimaan muutamassa minuutissa. Voit kutsua jäseniä ja alkaa käyttää kehittyneitä ominaisuuksia myöhemmin. Mene eteenpäin ja kokeile sitä!",
         "you_can_now_upload_m": "Se tulee voimaan muutamassa minuutissa. Voit nyt ladata lisää tiedostoja.",
         "payment_successful": "Maksu onnistui",
-        "we_have_added_the_li": "Se tulee voimaan muutamassa minuutissa. Olemme lisänneet lisenssit sinulle. Kaikki tilauskauteen tehtävät muutokset tulevat voimaan seuraavan laskutusjakson jälkeen.",
+        "we_have_added_the_li": "Se tulee voimaan muutamassa minuutissa. Olemme lisänneet istuimet sinulle. Kaikki tilauskauteen tehtävät muutokset tulevat voimaan seuraavan laskutusjakson jälkeen.",
         "we_have_added_the_st": "Se tulee voimaan muutamassa minuutissa. Olemme lisänneet tallennustilan sinulle. Kaikki tilauskauteen tehtävät muutokset tulevat voimaan seuraavan laskutusjakson jälkeen.",
         "we_have_added_the_tr": "Se tulee voimaan muutaman minuutin kuluttua. Lisäämme liikenteen sinulle myöhemmin. Voit nyt ladata lisää tiedostoja.",
         "successfully_updated": "Päivitys onnistui",
@@ -3819,24 +3909,27 @@
         "audit_logs": "Tarkastuslokit",
         "learn_more": "Lue lisää",
         "upgrade": "Päivitä",
-        "insufficient_license_title": "Riittämättömät lisenssit",
-        "insufficient_license_description": "Kutsuaksesi lisää editoreita, lisää lisenssejä ensin. Kaikki tiimisi jäsenet voivat käyttää ILLA Cloud Plus -ominaisuuksia. Kunkin jäsenen asema riippuu kunkin ominaisuuden erityisestä saatavuudesta. ",
-        "insufficient_license_button": "Lisää lisenssejä",
+        "insufficient_license_title": "Riittämättömät istuimet",
+        "insufficient_license_description": "Voit kutsua lisää editoreita, lisää paikkoja ensin. Kaikki tiimisi jäsenet voivat käyttää ominaisuuksia ILLA Cloud Premium. Kunkin jäsenen asema riippuu kunkin ominaisuuden erityisestä saatavuudesta. ",
+        "insufficient_license_button": "Lisää istuimet",
         "pricing": "/editor/kuukausi, vuosittain"
       },
       "expired": {
         "owner": "Tilauksesi on vanhentunut. Jatkaaksesi käyttämistä, uusiudu se.",
         "others": "Tilisi on poistettu käytöstä, koska tiimin tilaus on vanhentunut.",
-        "your_subscription_ha_not_owner": "Ei tarpeeksi lisenssejä",
+        "your_subscription_ha_not_owner": "Tilauksen poikkeus",
         "all_members_except_f_not_owner": "Tiimilläsi ei ole riittävästi lisenssejä. Ota yhteyttä tiimin omistajaan.",
-        "upgrade_not_owner": "Asia ymmärretty"
+        "upgrade_not_owner": "Asia ymmärretty",
+        "your_subscription_ha": "Tilaus vanhentunut",
+        "all_members_except_f": "Tiimisi tilaus on vanhentunut. Jatka tilausta ajoissa",
+        "upgrade": "Päivitä"
       },
       "blank_page": {
-        "insufficient_license_disable": "Tilisi on poistettu käytöstä riittämättömien tiimilisenssien vuoksi. Ota yhteyttä tiimin omistajaan saadaksesi apua."
+        "insufficient_license_disable": "Tilisi on poistettu käytöstä riittämättömien tiimilähetysten vuoksi. Ota yhteyttä tiimin omistajaan saadaksesi apua."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Riittämättömät lisenssit",
-        "insufficient_license_description": "Kutsuaksesi lisää editoreita, ole hyvä ja yhdistä ylläpitäjäsi kasvattaaksesi lisenssejä ensin.",
+        "insufficient_license_title": "Riittämättömät istuimet",
+        "insufficient_license_description": "Toiminto epäonnistui. Ole hyvä ja ota yhteyttä tiimin omistajaan.",
         "insufficient_license_button": "Ok"
       },
       "storage_insufficient": {
@@ -3846,16 +3939,16 @@
         "not_owner_title": "Riittämätön varastointikapasiteetti",
         "not_owner_description": "Jotta tiedostot voidaan tallentaa normaalisti, ota yhteyttä järjestelmänvalvojaan lisätäksesi tallennuskapasiteettia ajoissa.",
         "not_owner_button": "Ok",
-        "owner_pricing": "Gt/Kuukausittain"
+        "owner_pricing": "5 Gt/Kuukausittain"
       },
       "traffic_insufficient": {
         "owner_title": "Riittämätön liikennekapasiteetti",
         "owner_description": "Jotta pääset käsiksi tiedostoihin normaalisti, lisää liikenteen kapasiteettia ajoissa. ",
         "owner_button": "Lisää kapasiteettia",
-        "not_owner_title": "Riittämätön varastointikapasiteetti",
+        "not_owner_title": "Liikenne ei riitä",
         "not_owner_description": "Jotta pääset käsiksi tiedostoihin normaalisti, ota yhteyttä järjestelmänvalvojaan lisätäksesi liikenteen kapasiteettia.",
         "not_owner_button": "Ok",
-        "owner_pricing": "Gt/Kuukausittain"
+        "owner_pricing": "5 Gt"
       },
       "cancel_confirm": {
         "description": "Peruutuksen jälkeen tiimisi palaa maksuttomaan tilaukseen seuraavan laskutusjakson jälkeen. Tilaussuunnitelmiin sisältyvät ominaisuudet eivät ole enää käytettävissä.",
@@ -3868,21 +3961,6 @@
         "title": "Vaihda suunnitelma?",
         "button_cancel": "Peruuta",
         "button_confirm": "Vahvista"
-      },
-      "ai-agent": {
-        "string1": "GPT-4 on Premium-tiimille. ",
-        "string2": "Jos haluat käyttää sitä, päivitä Premiumiin. Päivittämällä Premiumiin sinulla on myös pääsy seuraaviin ominaisuuksiin. "
-      },
-      "upgrade_now_not_admin": {
-        "upgrade_title": "Ominaisuus Premium-tiimeille",
-        "upgrade_title billing": {
-          "modal": {
-            "upgrade_now_not_admin": {
-              "upgrade_desc": "Tämä ominaisuus on Premium-tiimeille. Ole hyvä ja ota yhteyttä tiimin ylläpitäjiin päivittääksesi. "
-            }
-          }
-        },
-        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3890,18 +3968,65 @@
       "upgrade": "Päivitä",
       "cancel": "Peruuta"
     },
-    "advanced": {
-      "feature": "Poista vesileima"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "Oletko varma, että haluat lunastaa AppSumon {{teamName}} tiimissä? ",
+        "cancel": "Peruuta",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "Valitse joukkue, joka lunastaa",
+          "create_button": "Luo uusi tiimi",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "Luo Tili"
+      },
+      "update": "Päivitä AppSumo suunnitelma"
+    },
+    "alert": {
+      "expired": {
+        "owner": "Riittämätön istuin tai vanhentunut tilaus, ole hyvä ja päivitä ajoissa. ",
+        "others": "Riittämättömän istuimen vuoksi sinut on poistettu käytöstä. Ota yhteyttä tiimin omistajaan"
+      }
+    },
+    "yearly_discount": "(Säästä lähes 16,7 %)",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/kuukausi",
+      "yearly": "{{ price }}/editor/vuosi"
     },
     "redirect_page": {
+      "title": "Maksu onnistui",
       "desc1": "Kiitos ostoksestasi. ILLA Cloud tarjoaa sinulle edelleen enemmän ominaisuuksia.",
       "desc2": "Uudelleenohjataan ILLA Cloudiin {{time}} sekunnissa...",
-      "title": "Maksu onnistui",
       "button": "Takaisin ILLA-pilveen"
     },
     "redirect_to_stripe": "Uudelleenohjaus raidalle",
-    "appsumo": {
-      "update": "Päivitä AppSumo suunnitelma"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "100 Mt tallennustilaa kuukaudessa minkä tahansa tiedoston tallentamiseksi ILLA Driveen",
+          "traffic": "100 Mt liikennettä ladattavaksi ILLA Drivesta"
+        }
+      },
+      "drive": {
+        "title": "ILLA Drive",
+        "storage": "5 Gt tallennustila kuukaudessa, jotta kaikki tiedostot voidaan tallentaa ILLA Driveen",
+        "traffic": "5 Gt liikennettä ladattavaksi ILLA Drivesta"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "Mukautettu tallennustila kuukaudessa tallentaaksesi tiedostoja ILLA Driveen",
+          "traffic": "Mukautettu liikenne ladattaessa tiedostoja ILLA Drivesta"
+        }
+      }
     }
   },
   "network": {
@@ -3914,7 +4039,8 @@
     },
     "desc": {
       "no_description": "Ei kuvausta",
-      "blank": "Ei sovellusta"
+      "blank": "Ei sovellusta",
+      "blank-agent": "Ei tekoälyagenttia tässä"
     },
     "app_setting": {
       "app_setting": "Sovelluksen asetus",
@@ -3935,7 +4061,8 @@
       "update_suc": "Päivitys onnistui"
     },
     "button": {
-      "blank": "Luo ensimmäinen sovelluksesi"
+      "blank": "Luo ensimmäinen sovelluksesi",
+      "blank-agent": "Luo AI Agentti"
     }
   },
   "new_deploy": {
@@ -3953,37 +4080,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Kutsu muokattavaksi",
-      "invite_to_use": "Kutsu käyttämään",
-      "share-with-team": "Jaa tiimin kanssa",
-      "contribute": "Osallistu"
+      "share-with-team": "Jaa tiimin kanssa"
     },
     "desc": {
-      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. ",
-      "contribute": "Kun olet osallistunut markkinapaikalle, kaikki käyttäjät voivat jatkaa, tähden ja haarata Agentin. Kun muut tiimit käyttävät tätä agenttia, se ei kuluta resursseja."
-    },
-    "tips": {
-      "admin": "Jäsen, joka voi hallita kaikkia jäseniä paitsi Owner, muokkaa APP:eja ja tarkastella APP:ia",
-      "editor": "Jäsen, joka voi hallita editoria ja katsojan jäseniä, muokata APP:eja ja tarkastella APP:eja",
-      "viewer": "Jäsen, joka voi hallita katsojan jäseniä ja tarkastella APP:ia"
+      "undeploy": "Sovellusta ei ole otettu käyttöön. Yleisön pääsy ja katsojan pääsy saattaa kohdata virheitä. "
     },
     "label": {
-      "contribute": "Osallistu markkinapaikkaan",
-      "social-media": "Jaa päällä"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hakkerit Uutiset"
-      }
+      "contribute": "Osallistu yhteisölle"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hei siellä! Löysin juuri tämän hämmästyttävän tekoälyn agentin. Sinua saattaa kiinnostaa myös kokeilla sitä! Tarkista tämä! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Tutustu tähän hämmästyttävään tekoälyn Agent [{{promptName}}]",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
@@ -3993,14 +4099,31 @@
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     },
     "button": {
-      "contribute": "Osallistu markkinapaikkaan",
       "share_contribute": "Kopioi & Jaa",
       "uncontribute": "Peruuta lisäys"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "reddit": "Tutustu tähän hämmästyttävään sovellukseen [{{appName}}]",
+        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Easy-to-use web app template [{{appName}}]"
+      },
+      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI Agents",
   "marketplace": {
     "star": "Tähti {{operationNum}}",
     "fork": "Fork {{operationNum}}"
-  }
+  },
+  "load": {
+    "before": "Lataa lisää"
+  },
+  "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
+  "contribute": "Osallistu"
 }

@@ -37,7 +37,7 @@ export const DashboardResources: FC = () => {
 
   const teamInfo = useSelector(getCurrentTeamInfo)
   const { resourceList } = useLoaderData() as {
-    resourceList: ResourceListState
+    resourceList: Promise<ResourceListState>
   }
 
   const [newResourceVisible, setNewResourceVisible] = useState(false)

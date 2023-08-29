@@ -9,7 +9,6 @@ export const cardListStyle = css`
 
 export const cardListContainerStyle = css`
   display: flex;
-  align-items: center;
   flex-direction: column;
   overflow: auto;
   flex-grow: 1;
@@ -18,6 +17,7 @@ export const cardListContainerStyle = css`
 
 export const loadingStyle = css`
   margin-top: 24px;
+  align-self: center;
   color: ${getColor("techPurple", "01")};
 `
 

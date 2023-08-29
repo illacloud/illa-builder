@@ -305,6 +305,9 @@ importers:
       framer-motion:
         specifier: ^7.6.12
         version: 7.6.12(react-dom@18.2.0)(react@18.2.0)
+      fuse.js:
+        specifier: ^6.6.2
+        version: 6.6.2
       i18next:
         specifier: ^22.4.9
         version: 22.4.9
@@ -437,7 +440,7 @@ importers:
     devDependencies:
       '@mdx-js/rollup':
         specifier: ^2.3.0
-        version: 2.3.0(rollup@3.26.0)
+        version: 2.3.0(rollup@3.28.1)
       '@protobuf-ts/plugin':
         specifier: ^2.8.3
         version: 2.8.3
@@ -527,7 +530,7 @@ importers:
         version: 1.0.4
       rollup-plugin-visualizer:
         specifier: ^5.9.0
-        version: 5.9.0(rollup@3.26.0)
+        version: 5.9.0(rollup@3.28.1)
       tsconfig:
         specifier: workspace:*
         version: link:../../packages/tsconfig
@@ -536,7 +539,7 @@ importers:
         version: 0.6.1(eslint@8.33.0)(typescript@5.0.4)(vite@4.4.9)
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/eslint-config-illa:
     dependencies:
@@ -2382,8 +2385,8 @@ importers:
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.20)(react@18.2.0)
       '@floating-ui/react':
-        specifier: ^0.19.1
-        version: 0.19.1(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.25.2
+        version: 0.25.2(react-dom@18.2.0)(react@18.2.0)
       '@illa-design/config-provider':
         specifier: workspace:*
         version: link:../config-provider
@@ -2634,7 +2637,7 @@ importers:
         version: link:../../tsconfig
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/illa-public-component/ILLANet:
     dependencies:
@@ -2681,7 +2684,7 @@ importers:
         version: link:../../tsconfig
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/illa-public-component/InviteModal:
     dependencies:
@@ -2763,7 +2766,7 @@ importers:
         version: link:../../tsconfig
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/illa-public-component/LayoutAutoChange:
     dependencies:
@@ -3067,7 +3070,7 @@ importers:
         version: link:../../tsconfig
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/illa-public-component/SSOModule:
     dependencies:
@@ -3134,7 +3137,7 @@ importers:
         version: link:../../tsconfig
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/illa-public-component/Select:
     dependencies:
@@ -3165,7 +3168,7 @@ importers:
         version: link:../../tsconfig
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/illa-public-component/TextLink:
     dependencies:
@@ -3196,7 +3199,7 @@ importers:
         version: link:../../tsconfig
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/illa-public-component/UpgradeModal:
     dependencies:
@@ -3263,7 +3266,7 @@ importers:
         version: link:../../tsconfig
       vite-plugin-svgr:
         specifier: ^2.1.0
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
 
   packages/illa-public-component/UsageCard:
     dependencies:
@@ -3296,7 +3299,7 @@ importers:
         version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
       vite-plugin-svgr:
         specifier: '*'
-        version: 2.4.0(rollup@3.26.0)(vite@4.4.9)
+        version: 2.4.0(rollup@3.28.1)(vite@4.4.9)
     devDependencies:
       tsconfig:
         specifier: workspace:*
@@ -6233,39 +6236,16 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@floating-ui/core@1.2.0:
-    resolution: {integrity: sha512-GHUXPEhMEmTpnpIfesFA2KAoMJPb1SPQw964tToQwt+BbGXdhqTCWT1rOb0VURGylsxsYxiGMnseJ3IlclVpVA==}
-    dev: false
-
   /@floating-ui/core@1.4.1:
     resolution: {integrity: sha512-jk3WqquEJRlcyu7997NtR5PibI+y5bi+LS3hPmguVClypenMsCY3CBa3LAQnozRCtCrYWSEtAdiskpamuJRFOQ==}
     dependencies:
       '@floating-ui/utils': 0.1.1
-    dev: true
-
-  /@floating-ui/dom@1.2.0:
-    resolution: {integrity: sha512-QXzg57o1cjLz3cGETzKXjI3kx1xyS49DW9l7kV2jw2c8Yftd434t2hllX0sVGn2Q8MtcW/4pNm8bfE1/4n6mng==}
-    dependencies:
-      '@floating-ui/core': 1.2.0
-    dev: false
 
   /@floating-ui/dom@1.5.1:
     resolution: {integrity: sha512-KwvVcPSXg6mQygvA1TjbN/gh///36kKtllIF8SUm0qpFj8+rvYrpvlYdL1JoA71SHpDqgSSdGOSoQ0Mp3uY5aw==}
     dependencies:
       '@floating-ui/core': 1.4.1
       '@floating-ui/utils': 0.1.1
-    dev: true
-
-  /@floating-ui/react-dom@1.2.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-DbmFBLwFrZhtXgCI2ra7wXYT8L2BN4/4AMQKyu05qzsVji51tXOfF36VE2gpMB6nhJGHa85PdEg75FB4+vnLFQ==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      '@floating-ui/dom': 1.2.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
 
   /@floating-ui/react-dom@2.0.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-rZtAmSht4Lry6gdhAJDrCp/6rKN7++JnL1/Anbr/DdeyYXQPxvg/ivrbYvJulbRf4vL8b212suwMM2lxbv+RQA==}
@@ -6276,26 +6256,22 @@ packages:
       '@floating-ui/dom': 1.5.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: true
 
-  /@floating-ui/react@0.19.1(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-h7hr53rLp+VVvWvbu0dOBvGsLeeZwn1DTLIllIaLYjGWw20YhAgEqegHU+nc7BJ30ttxq4Sq6hqARm0ne6chXQ==}
+  /@floating-ui/react@0.25.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-3e10G9LFOgl32/SMWLBOwT7oVCtB+d5zBsU2GxTSVOvRgZexwno5MlYbc0BaXr+TR5EEGpqe9tg9OUbjlrVRnQ==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@floating-ui/react-dom': 1.2.2(react-dom@18.2.0)(react@18.2.0)
-      aria-hidden: 1.2.2(@types/react@18.2.20)(react@18.2.0)
+      '@floating-ui/react-dom': 2.0.1(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/utils': 0.1.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tabbable: 6.0.1
-    transitivePeerDependencies:
-      - '@types/react'
     dev: false
 
   /@floating-ui/utils@0.1.1:
     resolution: {integrity: sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==}
-    dev: true
 
   /@fortawesome/fontawesome-common-types@0.2.36:
     resolution: {integrity: sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==}
@@ -6630,14 +6606,14 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@mdx-js/rollup@2.3.0(rollup@3.26.0):
+  /@mdx-js/rollup@2.3.0(rollup@3.28.1):
     resolution: {integrity: sha512-wLvRfJS/M4UmdqTd+WoaySEE7q4BIejYf1xAHXYvtT1du/1Tl/z2450Gg2+Hu7fh05KwRRiehiTP9Yc/Dtn0fA==}
     peerDependencies:
       rollup: '>=2'
     dependencies:
       '@mdx-js/mdx': 2.3.0
-      '@rollup/pluginutils': 5.0.2(rollup@3.26.0)
-      rollup: 3.26.0
+      '@rollup/pluginutils': 5.0.2(rollup@3.28.1)
+      rollup: 3.28.1
       source-map: 0.7.4
       vfile: 5.3.7
     transitivePeerDependencies:
@@ -7329,12 +7305,12 @@ packages:
       tslib:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.26.0)
+      '@rollup/pluginutils': 5.0.2(rollup@3.28.1)
       resolve: 1.22.2
       typescript: 5.0.4
     dev: true
 
-  /@rollup/pluginutils@5.0.2(rollup@3.26.0):
+  /@rollup/pluginutils@5.0.2(rollup@3.28.1):
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -7346,7 +7322,7 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.26.0
+      rollup: 3.28.1
 
   /@scena/dragscroll@1.4.0:
     resolution: {integrity: sha512-3O8daaZD9VXA9CP3dra6xcgt/qrm0mg0xJCwiX6druCteQ9FFsXffkF8PrqxY4Z4VJ58fFKEa0RlKqbsi/XnRA==, tarball: https://registry.yarnpkg.com/@scena/dragscroll/-/dragscroll-1.4.0.tgz}
@@ -8284,7 +8260,7 @@ packages:
       vite: ^3.0.0 || ^4.0.0
     dependencies:
       '@joshwooding/vite-plugin-react-docgen-typescript': 0.2.1(typescript@5.0.4)(vite@4.4.2)
-      '@rollup/pluginutils': 5.0.2(rollup@3.26.0)
+      '@rollup/pluginutils': 5.0.2(rollup@3.28.1)
       '@storybook/builder-vite': 7.2.1(typescript@5.0.4)(vite@4.4.2)
       '@storybook/react': 7.2.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
       '@vitejs/plugin-react': 3.1.0(vite@4.4.2)
@@ -9854,7 +9830,7 @@ packages:
       '@vue/shared': 3.3.4
       estree-walker: 2.0.2
       magic-string: 0.30.1
-      postcss: 8.4.24
+      postcss: 8.4.28
       source-map-js: 1.0.2
     dev: true
 
@@ -10256,6 +10232,7 @@ packages:
       '@types/react': 18.2.20
       react: 18.2.0
       tslib: 2.5.0
+    dev: true
 
   /aria-query@5.1.3:
     resolution: {integrity: sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==}
@@ -13127,6 +13104,11 @@ packages:
 
   /functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
+
+  /fuse.js@6.6.2:
+    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
+    engines: {node: '>=10'}
+    dev: false
 
   /gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -17810,7 +17792,7 @@ packages:
     dependencies:
       glob: 7.2.3
 
-  /rollup-plugin-visualizer@5.9.0(rollup@3.26.0):
+  /rollup-plugin-visualizer@5.9.0(rollup@3.28.1):
     resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
     engines: {node: '>=14'}
     hasBin: true
@@ -17822,7 +17804,7 @@ packages:
     dependencies:
       open: 8.4.1
       picomatch: 2.3.1
-      rollup: 3.26.0
+      rollup: 3.28.1
       source-map: 0.7.4
       yargs: 17.6.2
     dev: true
@@ -17833,6 +17815,7 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
 
   /rollup@3.28.1:
     resolution: {integrity: sha512-R9OMQmIHJm9znrU3m3cpE8uhN0fGdXiawME7aZIpQqvpS/85+Vt1Hq1/yVIcYfOmaQiHjvXkQAoJukvLpau6Yw==}
@@ -19552,12 +19535,12 @@ packages:
       vscode-uri: 3.0.7
     dev: true
 
-  /vite-plugin-svgr@2.4.0(rollup@3.26.0)(vite@4.4.9):
+  /vite-plugin-svgr@2.4.0(rollup@3.28.1)(vite@4.4.9):
     resolution: {integrity: sha512-q+mJJol6ThvqkkJvvVFEndI4EaKIjSI0I3jNFgSoC9fXAz1M7kYTVUin8fhUsFojFDKZ9VHKtX6NXNaOLpbsHA==}
     peerDependencies:
       vite: ^2.6.0 || 3 || 4
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.26.0)
+      '@rollup/pluginutils': 5.0.2(rollup@3.28.1)
       '@svgr/core': 6.5.1
       vite: 4.4.9(@types/node@18.14.5)
     transitivePeerDependencies:

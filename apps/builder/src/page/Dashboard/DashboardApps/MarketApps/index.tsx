@@ -3,6 +3,7 @@ import {
   PRODUCT_SORT_BY,
   ProductMarketApp,
 } from "@illa-public/market-app/service/interface"
+import { getMarketLinkTemplate } from "@illa-public/utils"
 import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
@@ -23,7 +24,7 @@ export const MarketApps: FC = () => {
   const message = useMessage()
 
   const fetching = useRef<boolean>()
-  const page = useRef<number>(0)
+  const page = useRef<number>(1)
   const [hasMore, setHasMore] = useState<boolean>(true)
 
   const [marketApps, setMarketApps] = useState<ProductMarketApp[]>([])
@@ -35,18 +36,31 @@ export const MarketApps: FC = () => {
   const keywords = searchParams.get("keywords") ?? ""
 
   useEffect(() => {
+    const controller = new AbortController()
     setUpdateLoading(true)
-    fetchAppList({
-      page: 1,
-      limit: 40,
-      sortedBy: sort as PRODUCT_SORT_BY,
-      search: keywords,
-    })
+    fetchAppList(
+      {
+        page: 1,
+        limit: 40,
+        sortedBy: sort as PRODUCT_SORT_BY,
+        search: keywords,
+      },
+      controller.signal,
+    )
       .then((res) => {
         setMarketApps(res.data.products)
+        setUpdateLoading(false)
         return res.data
       })
-      .finally(() => setUpdateLoading(false))
+      .catch((err) => {
+        if (err.message === "canceled") {
+          return
+        }
+        setUpdateLoading(false)
+      })
+    return () => {
+      controller.abort()
+    }
   }, [keywords, sort])
 
   return updateLoading ? (
@@ -95,6 +109,9 @@ export const MarketApps: FC = () => {
       <div css={cardListStyle}>
         {marketApps.map((product) => (
           <MarketAppCard
+            onClick={() => {
+              window.open(getMarketLinkTemplate(product.app.appID), "_blank")
+            }}
             key={product.app.appID}
             app={product.app}
             marketplace={product.marketplace}
