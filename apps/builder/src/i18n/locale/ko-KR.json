@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB used (total of {{total}}GB) ",
         "Traffic": "{{used}}GB used (total of {{total}}GB) ",
         "colla": "{{used}} Colla used (total of {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Unsubscribe",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "The fees will be automatically deducted based on the updated number of seats and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased seats according to the current billing cycle. Calculation rules of increasing seats using a monthly seat subscription as an example: Let's consider a scenario where you initially subscribed to 5 seats starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional seat. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 seat, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 seat * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all seat fees will be consolidated and paid together. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
         "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of seats and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of seats at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of seats within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
         "update_plan_remove_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>"
+      },
+      "colla_redeem": {
+        "title": "With {{changeNum}} Colla, you can purchase: ",
+        "storage": "Storage",
+        "traffic": "Traffic",
+        "token": "Token"
       }
     },
     "message": {
