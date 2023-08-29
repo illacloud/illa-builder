@@ -50,6 +50,7 @@ export const MarketApps: FC = () => {
     )
       .then((res) => {
         setMarketApps(res.data.products)
+        setHasMore(res.data.hasMore)
         setUpdateLoading(false)
         return res.data
       })
@@ -121,7 +122,11 @@ export const MarketApps: FC = () => {
           />
         ))}
       </div>
-      {hasMore && <Loading css={loadingStyle} />}
+      {hasMore && (
+        <div css={loadingStyle}>
+          <Loading colorScheme="techPurple" />
+        </div>
+      )}
     </div>
   ) : (
     <EmptySearchResult desc={t("dashboard.no-result")} />
