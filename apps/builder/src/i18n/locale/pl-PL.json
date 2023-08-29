@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB użyty (suma {{total}}GB) ",
         "Traffic": "{{used}}GB użyty (suma {{total}}GB) ",
         "colla": "{{used}} Colla (łącznie {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Anuluj subskrypcję",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "Opłaty będą automatycznie odliczane w oparciu o zaktualizowaną liczbę miejsc i cenę nowego cyklu rozliczeniowego od następnego okresu. Tym razem odliczymy płatność za zwiększenie liczby miejsc zgodnie z obecnym cyklem rozliczeniowym. Zasady obliczania zwiększenia liczby miejsc za pomocą miesięcznej subskrypcji miejsc jako przykładu: Rozważmy scenariusz, w którym początkowo subskrybowałeś 5 miejsc począwszy od 14 marca, a cykl rozliczeniowy obejmuje okres od 14 dnia bieżącego miesiąca do 13 dnia następnego miesiąca. 10 maja zdecydują Państwo o dodaniu 1 dodatkowego miejsca. W tym momencie pozostało 4 dni do końca bieżącego cyklu 13 maja (łącznie 30 dni od 14 kwietnia do 13 maja). Aby obliczyć skorygowaną płatność, odliczymy koszt 1 miejsca, co odpowiada około 10 dolarów, proporcjonalnie do długości 4 dni w ciągu 30-dniowego cyklu. W związku z tym odliczenie szacuje się na 1 miejsce * 10$ / 30 dni * 4 dni, co daje około 1,33 USD. Począwszy od następnego cyklu rozliczeniowego, wszystkie opłaty za miejsce zostaną skonsolidowane i zapłacone razem. Jeśli chcesz zmniejszyć liczbę miejsc lub wprowadzić inne zmiany w subskrypcji, zaktualizuj ją przed rozpoczęciem następnego okresu. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
         "update_plan_remove_license": "Opłaty będą automatycznie odliczane w oparciu o zaktualizowaną liczbę miejsc i cenę nowego cyklu rozliczeniowego od następnego okresu. Jeśli liczba użytkowników z uprawnieniami do edycji przekracza liczbę miejsc na początku następnego cyklu rozliczeniowego, wszyscy użytkownicy z wyjątkiem właściciela zostaną wyłączeni do czasu usunięcia członków lub zwiększenia liczby miejsc w dostępnym zakresie. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>",
         "update_plan_remove_storage": "Opłaty będą automatycznie odliczane w oparciu o zaktualizowaną pamięć i cenę nowego cyklu rozliczeniowego od następnego okresu. Jeśli pojemność magazynowa zajmowana przez twoje pliki przekracza pojemność subskrybowanego magazynu na początku następnego cyklu rozliczeniowego, wszystkie pliki zostaną wyłączone, aż usuniesz pliki lub zwiększ pojemność pamięci w dostępnym zakresie. Aby uzyskać więcej informacji, zapoznaj się z naszą <0>Polityką prywatności</0> i <1>Warunkiem korzystania z usługi</1>"
+      },
+      "colla_redeem": {
+        "title": "Z {{changeNum}} Colla możesz kupić: ",
+        "storage": "Pamięć",
+        "traffic": "Ruch",
+        "token": "Token"
       }
     },
     "message": {
