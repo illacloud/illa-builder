@@ -38,7 +38,7 @@
       "error_button": "リトライ",
       "error_description": "間違ったリクエスト",
       "error_title": "間違い",
-      "marketplace": "Community",
+      "marketplace": "コミュニティ",
       "run": "実行",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "保存",
       "start": "開始",
       "restart": "再起動",
-      "contribute": "Contribute to community",
+      "contribute": "コミュニティに貢献する",
       "button": {
         "send": "送信",
         "generating": "生成中"
@@ -3247,7 +3247,7 @@
         "invite_members": "メンバーを招待",
         "invite_to_use": "招待する",
         "invite_to_edit": "編集に招待",
-        "contribute": "Community"
+        "contribute": "コミュニティ"
       },
       "link": {
         "invite_title": "招待リンク",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} が「{{teamName}}」のAIエージェントを共有しました。リンクをクリックしてチームに参加し、AIエージェントを試してみてください: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "コミュニティに貢献する",
         "default_text": {
           "app": "{{ appName }}と呼ばれる印象的なアプリを発見しました。確認してください： {{ appLink }}",
           "agent": "{{ agentName }}という印象的なAIエージェントを発見しました。確認してください： {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "説明がありません",
       "blank": "アプリケーションがありません",
-      "blank-agent": "No AI Agent available"
+      "blank-agent": "ここにAIエージェントがありません"
     },
     "app_setting": {
       "app_setting": "アプリの設定",
@@ -4003,7 +4003,7 @@
       "undeploy": "アプリがデプロイされていません。パブリックアクセスとビューアアクセスにエラーが発生する可能性があります。 "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "コミュニティに貢献する"
     },
     "default-text": {
       "social-media": {
