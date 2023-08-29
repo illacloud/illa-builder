@@ -15,8 +15,8 @@ const getAgentInitData = async (agentId?: string) => {
   }
 }
 export const agentLoader: LoaderFunction = async (args) => {
-  const { agentId } = args.params
+  const { agentID } = args.params
   return defer({
-    data: getAgentInitData(agentId),
+    data: getAgentInitData(agentID),
   })
 }

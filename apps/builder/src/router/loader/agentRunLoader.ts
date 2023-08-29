@@ -15,10 +15,10 @@ const fetchAgentFullData = async (agentId: string) => {
 }
 
 export const agentRunLoader: LoaderFunction = async (args) => {
-  const { agentId } = args.params
-  if (agentId) {
+  const { agentID } = args.params
+  if (agentID) {
     return defer({
-      data: fetchAgentFullData(agentId),
+      data: fetchAgentFullData(agentID),
     })
   } else {
     redirect("/404")
