@@ -2606,7 +2606,7 @@
       "save": "保存",
       "start": "开始",
       "restart": "重新开始",
-      "contribute": "贡献到Marketplace",
+      "contribute": "贡献到社区",
       "button": {
         "send": "发送",
         "generating": "正在生成"
@@ -3247,7 +3247,7 @@
         "invite_members": "邀请成员",
         "invite_to_use": "邀请使用",
         "invite_to_edit": "邀请进行编辑",
-        "contribute": "Marketplace"
+        "contribute": "社区"
       },
       "link": {
         "invite_title": "邀请链接",
@@ -3295,12 +3295,12 @@
       },
       "custom-copy-ai-agent": "{{userName}}分享给您一个来自「{{teamName}}」团队的AI Agent. 点击链接加入团队并使用AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "贡献到marketplace",
+        "label": "贡献到社区",
         "default_text": {
           "app": "我刚发现了一个有意思的app： {{ appName }}，通过链接查看：{{ appLink }}",
           "agent": "我刚发现了一个有意思的AI Agent：  {{ agentName }}. 通过链接查看: {{ agentLink }}"
         },
-        "desc": "贡献到Marketplace之后，所有用户都可以运行、Star和Fork您的代理。 当其他团队的用户运行此Agent时，它不会消耗您的资源。",
+        "desc": "贡献到社区之后，所有用户都可以运行、Star和Fork您的Agent。 当其他团队的用户运行此Agent时，它不会消耗您的资源。",
         "turn_off": "取消贡献"
       },
       "social_media": {
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "暂无描述",
       "blank": "没有项目",
-      "blank-agent": "无AI Agent"
+      "blank-agent": "无可用的AI Agent"
     },
     "app_setting": {
       "app_setting": "项目设置",
@@ -4003,7 +4003,7 @@
       "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
     },
     "label": {
-      "contribute": "贡献到Marketplace"
+      "contribute": "贡献到社区"
     },
     "default-text": {
       "social-media": {
