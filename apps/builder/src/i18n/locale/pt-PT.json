@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB usado (total de {{total}}GB) ",
         "Traffic": "{{used}}GB usado (total de {{total}}GB) ",
         "colla": "format@@0 {{used}} Colla used (total de {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Identificador"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Desinscrever",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "As taxas serão deduzidas automaticamente com base no número atualizado de assentos e nos preços do novo ciclo de faturamento a partir do próximo período. Desta vez, deduziremos o pagamento do aumento dos assentos de acordo com o actual ciclo de facturação. Regras de cálculo para aumentar os assentos utilizando um assento mensal como exemplo: Vamos considerar um cenário em que você inicialmente se inscreveu para 5 lugares a partir de 14 de março, e o ciclo de faturamento abrange o dia 14 deste mês até o dia 13 do próximo mês. No dia 10 de maio, você decide adicionar mais 1 lugar. Nesse ponto, havia 4 dias restantes até o final do ciclo atual no dia 13 de maio (que totaliza 30 dias entre 14 de abril e 13 de maio). Para calcular o pagamento ajustado, vamos deduzir o custo de 1 lugar, que ascende a aproximadamente 10 dólares, proporcionais à duração de 4 dias no ciclo de 30 dias. Portanto, a dedução é estimada em 1 lugar * 10 / 30 dias * 4 dias, resultando em aproximadamente 1,33. A partir do próximo ciclo de faturamento, todas as taxas de assento serão consolidadas e pagas juntas. Se você deseja reduzir os assentos ou fazer outras alterações na assinatura, atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
         "update_plan_remove_license": "As taxas serão deduzidas automaticamente com base no número atualizado de assentos e nos preços do novo ciclo de faturamento a partir do próximo período. Se o número de usuários com permissões de edição exceder o número de assentos no início do próximo ciclo de faturamento, todos os usuários, exceto o proprietário, serão desabilitados até que você remova membros ou aumente o número de lugares dentro do intervalo disponível. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
         "update_plan_remove_storage": "As taxas serão deduzidas automaticamente com base no armazenamento atualizado e nos preços do novo ciclo de faturamento do próximo período. Se a capacidade de armazenamento ocupada por seus arquivos exceder a capacidade de armazenamento do inscrito no início do próximo ciclo de faturamento, todos os arquivos serão desativados até que você exclua arquivos ou aumente a capacidade de armazenamento dentro do intervalo disponível. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>"
+      },
+      "colla_redeem": {
+        "title": "Com o {{changeNum}} Colla, você pode comprar: ",
+        "storage": "Armazenamento",
+        "traffic": "Tráfego",
+        "token": "Identificador"
       }
     },
     "message": {
