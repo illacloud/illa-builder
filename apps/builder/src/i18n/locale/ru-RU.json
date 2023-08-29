@@ -2606,7 +2606,7 @@
       "save": "Сохранить",
       "start": "Начать",
       "restart": "Перезапустить",
-      "contribute": "Внести свой вклад в рынок",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Отправить",
         "generating": "Генерация"
@@ -3247,7 +3247,7 @@
         "invite_members": "Пригласить участников",
         "invite_to_use": "Пригласить использовать",
         "invite_to_edit": "Пригласить для редактирования",
-        "contribute": "Торговая площадка"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Ссылка на приглашение",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} поделился Агентом <unk>{{teamName}}<unk> . Нажмите на ссылку, чтобы присоединиться к команде и попробуйте Агент ИИ: {{inviteLink}}",
       "contribute": {
-        "label": "Внести свой вклад в рынок",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Я только что обнаружил впечатляющее приложение под названием {{ appName }}. Проверьте: {{ appLink }}",
           "agent": "Я только что обнаружил впечатляющий ИИ агент под названием {{ agentName }}. Проверьте: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Нет описания",
       "blank": "Нет приложения",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "Настройки приложения",
@@ -4003,7 +4003,7 @@
       "undeploy": "Приложение не было развернуто. Доступ общественности и доступ к просмотрщику могут столкнуться с ошибками. "
     },
     "label": {
-      "contribute": "Внести свой вклад в рынок"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
