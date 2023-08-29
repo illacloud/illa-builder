@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB använt (totalt {{total}}GB) ",
         "Traffic": "{{used}}GB använt (totalt {{total}}GB) ",
         "colla": "{{used}} Colla används (totalt {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Avprenumerera",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "Avgifterna dras automatiskt av baserat på det uppdaterade antalet platser och prissättningen av ny faktureringscykel från nästa period. Den här gången kommer vi att dra av betalningen för de ökade platserna enligt den nuvarande faktureringscykeln. Beräkningsregler för att öka antalet platser med hjälp av en månatlig platsprenumeration som ett exempel: Låt oss överväga ett scenario där du initialt prenumererade på 5 platser från och med den 14 mars, och faktureringscykeln spänner från den 14 i denna månad till den 13 i nästa månad. Den 10 maj bestämmer du dig för att lägga till 1 extra plats. Vid det tillfället, det fanns 4 dagar kvar till slutet av den nuvarande cykeln den 13 maj (totalt 30 dagar från 14 april till 13 maj). För att beräkna den justerade betalningen kommer vi att dra av kostnaden för 1 plats, vilket uppgår till cirka $10, i proportion till varaktigheten av 4 dagar inom 30-dagars cykel. Därför är avdraget uppskattas till 1 plats * $10 / 30 dagar * 4 dagar, vilket resulterar i cirka $1,33. Från och med nästa faktureringscykel kommer alla sätesavgifter att konsolideras och betalas tillsammans. Om du vill minska antalet platser eller göra andra ändringar i abonnemanget, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "update_plan_remove_license": "Avgifterna dras automatiskt av baserat på det uppdaterade antalet platser och prissättningen av ny faktureringscykel från nästa period. Om antalet användare med redigeringsbehörighet överskrider antalet platser i början av nästa faktureringscykel alla användare utom ägaren kommer att inaktiveras tills du tar bort medlemmar eller öka antalet platser inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "update_plan_remove_storage": "Avgifterna dras automatiskt av baserat på den uppdaterade lagringen och prissättningen av ny faktureringscykel från nästa period. Om lagringskapaciteten i dina filer överskrider den prenumererade lagringskapaciteten i början av nästa faktureringscykel alla filer kommer att inaktiveras tills du tar bort filer eller ökar lagringskapaciteten inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>"
+      },
+      "colla_redeem": {
+        "title": "Med {{changeNum}} Colla, kan du köpa: ",
+        "storage": "Lagring",
+        "traffic": "Trafik",
+        "token": "Token"
       }
     },
     "message": {
