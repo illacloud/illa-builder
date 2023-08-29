@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "No description",
       "blank": "No application",
-      "blank-agent": "No AI Agent available"
+      "blank-agent": "No AI Agent here"
     },
     "app_setting": {
       "app_setting": "App setting",
