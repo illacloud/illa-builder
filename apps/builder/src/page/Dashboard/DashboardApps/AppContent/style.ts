@@ -18,6 +18,14 @@ export const fullWidthStyle: SerializedStyles = css`
   flex-direction: column;
 `
 
+export const fallbackLoadingStyle: SerializedStyles = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+  color: ${getColor("techPurple", "01")};
+`
 export const menuContainerStyle = css`
   display: flex;
   margin-bottom: 40px;

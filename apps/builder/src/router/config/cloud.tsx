@@ -14,6 +14,7 @@ import {
   publicTeamChildrenRouter,
 } from "./public"
 
+
 export const cloudRouter: RoutesObjectPro[] = [
   {
     index: true,
@@ -27,7 +28,7 @@ export const cloudRouter: RoutesObjectPro[] = [
     children: [
       ...publicDashboardChildrenRouter,
       {
-        path: "ai-agent",
+        path: "ai-agents",
         element: lazyLoad(
           lazy(() => import("@/page/Dashboard/DashboardAiAgent")),
           <FullPageLoading />,

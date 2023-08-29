@@ -1,24 +1,15 @@
-import { MARKET_AGENT_SORTED_OPTIONS } from "@illa-public/market-agent/service"
+import { PRODUCT_SORT_BY } from "@illa-public/market-app/service/interface"
 import { isCloudVersion } from "@illa-public/utils"
-import { FC, useState } from "react"
+import { FC, Suspense } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
-import {
-  Button,
-  Empty,
-  EmptyIcon,
-  PlusIcon,
-  RadioGroup,
-  getColor,
-} from "@illa-design/react"
-import { AppCard } from "@/page/Dashboard/DashboardApps/AppCard"
+import { Await, useLoaderData, useSearchParams } from "react-router-dom"
+import { LoadingIcon, RadioGroup, getColor } from "@illa-design/react"
+import { MarketApps } from "@/page/Dashboard/DashboardApps/MarketApps"
+import { TeamApps } from "@/page/Dashboard/DashboardApps/TeamApps"
+import { DashboardErrorElement } from "@/page/Dashboard/components/ErrorElement"
 import { SortSelector } from "@/page/Dashboard/components/SortSelector"
-import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import {
-  cardContainerStyle,
-  emptyStyle,
-  emptyTextStyle,
+  fallbackLoadingStyle,
   fullWidthStyle,
   menuContainerStyle,
 } from "./style"
@@ -32,15 +23,14 @@ export const AppsContent: FC<AppsContentBodyProps> = (props) => {
   const { t } = useTranslation()
   const { loading, onCreatedApp } = props
 
-  const appList: DashboardApp[] = useSelector(getDashboardApps)
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const [currentSelectTab, setCurrentSelectTab] = useState<"market" | "team">(
-    "team",
-  )
+  const currentSelectTab = searchParams.get("list") ?? "team"
 
-  const [currentSort, setCurrentSort] = useState<MARKET_AGENT_SORTED_OPTIONS>(
-    MARKET_AGENT_SORTED_OPTIONS.POPULAR,
-  )
+  const sort =
+    (searchParams.get("sort") as PRODUCT_SORT_BY) ?? PRODUCT_SORT_BY.POPULAR
+
+  const { request } = useLoaderData() as { request: Promise<any> }
 
   return (
     <div css={fullWidthStyle}>
@@ -48,7 +38,12 @@ export const AppsContent: FC<AppsContentBodyProps> = (props) => {
         <div css={menuContainerStyle}>
           <RadioGroup
             onChange={(value) => {
-              setCurrentSelectTab(value)
+              if (value === "team") {
+                searchParams.delete("sort")
+                setSearchParams(searchParams)
+              }
+              searchParams.set("list", value)
+              setSearchParams(searchParams)
             }}
             colorScheme={getColor("grayBlue", "02")}
             type="button"
@@ -59,7 +54,7 @@ export const AppsContent: FC<AppsContentBodyProps> = (props) => {
                 label: t("dashboard.list-type.team"),
               },
               {
-                value: "market",
+                value: "community",
                 label: t("dashboard.list-type.marketplace"),
               },
             ]}
@@ -69,43 +64,31 @@ export const AppsContent: FC<AppsContentBodyProps> = (props) => {
               flexGrow: 1,
             }}
           />
-          {currentSelectTab === "market" && (
+          {currentSelectTab === "community" && (
             <SortSelector
-              sort={currentSort}
+              sort={sort}
               onSortChange={(value) => {
-                setCurrentSort(value)
+                searchParams.set("sort", value)
+                setSearchParams(searchParams)
               }}
             />
           )}
         </div>
       )}
-      {currentSelectTab === "team" && appList.length !== 0 && (
-        <div css={cardContainerStyle}>
-          {appList?.map((item) => (
-            <AppCard key={item.appId} data-element="listItem" appInfo={item} />
-          ))}
-        </div>
-      )}
-      {currentSelectTab === "team" && appList.length === 0 && (
-        <Empty
-          paddingVertical="120px"
-          icon={<EmptyIcon size="48px" color={getColor("grayBlue", "02")} />}
-          description={
-            <div css={emptyStyle}>
-              <div css={emptyTextStyle}>{t("new_dashboard.desc.blank")}</div>
-              <Button
-                colorScheme="grayBlue"
-                loading={loading}
-                variant="outline"
-                leftIcon={<PlusIcon size="10px" />}
-                onClick={onCreatedApp}
-              >
-                {t("new_dashboard.button.blank")}
-              </Button>
-            </div>
-          }
-        />
-      )}
+      <Suspense
+        fallback={
+          <div css={fallbackLoadingStyle}>
+            <LoadingIcon spin={true} />
+          </div>
+        }
+      >
+        <Await resolve={request} errorElement={<DashboardErrorElement />}>
+          {currentSelectTab === "community" && <MarketApps />}
+          {currentSelectTab === "team" && (
+            <TeamApps loading={loading} navigate={onCreatedApp} />
+          )}
+        </Await>
+      </Suspense>
     </div>
   )
 }

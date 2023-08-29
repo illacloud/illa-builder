@@ -1,12 +1,13 @@
 import { FC } from "react"
 import { isFunction } from "@illa-design/react"
-import { EmptySearchResult } from "@/page/App/components/ComponentPanel/Empty"
+import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
 import { IconPickerListProps } from "@/page/App/components/PanelSetters/IconSetter/interface"
 import {
   rightBottomItemStyle,
   rightBottomStyle,
 } from "@/page/App/components/PanelSetters/IconSetter/style"
 import { AllData, AllIconData } from "@/widgetLibrary/IconWidget/utils"
+
 
 const IconPickerList: FC<IconPickerListProps> = (props) => {
   const { iconOrigin, iconType, searchInput, handleCurrentIconClick } = props

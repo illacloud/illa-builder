@@ -122,6 +122,7 @@
     "@illa-public/select": "workspace:*",
     "@illa-public/user-data": "workspace:*",
     "@illa-public/market-agent": "workspace:*",
+    "@illa-public/market-app": "workspace:*",
     "@illa-public/sso-module": "workspace:*",
     "@illa-public/layout-auto-change": "workspace:*",
     "@illa-public/invite-modal": "workspace:*",

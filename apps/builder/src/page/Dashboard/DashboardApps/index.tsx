@@ -23,38 +23,30 @@ import {
 } from "@illa-public/user-role-utils/interface"
 import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
 import { isBoolean } from "lodash"
-import { FC, Suspense, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  Await,
-  useBeforeUnload,
-  useLoaderData,
-  useNavigate,
-} from "react-router-dom"
+import { useBeforeUnload, useNavigate } from "react-router-dom"
 import { useMessage } from "@illa-design/react"
-import { FullPageLoading } from "@/components/FullPageLoading"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
 import { DashboardContentHeader } from "@/page/Dashboard/components/DashboardContentHeader"
 import { openGuideModal } from "@/page/Template/gideModeModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { fetchCreateApp } from "@/services/apps"
 import {
   track,
   trackPageDurationEnd,
   trackPageDurationStart,
 } from "@/utils/mixpanelHelper"
-import { DashboardErrorElement } from "../components/ErrorElement"
 import { AppsContent } from "./AppContent"
 import { appsContainerStyle } from "./style"
+
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
   const message = useMessage()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { teamAppList } = useLoaderData() as { teamAppList: DashboardApp[] }
 
   const isTutorialViewed = useSelector(getIsTutorialViewed)
   const upgradeModal = useUpgradeModal()
@@ -161,11 +153,7 @@ export const DashboardApps: FC = () => {
         canCreate={canCreateApp}
         isCreateLoading={loading}
       />
-      <Suspense fallback={<FullPageLoading />}>
-        <Await resolve={teamAppList} errorElement={<DashboardErrorElement />}>
-          <AppsContent onCreatedApp={handleCreateApp} loading={loading} />
-        </Await>
-      </Suspense>
+      <AppsContent onCreatedApp={handleCreateApp} loading={loading} />
       {inviteModalVisible && (
         <InviteMemberPC
           redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${

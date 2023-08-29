@@ -38,7 +38,7 @@ import { isILLAAPiError } from "@/utils/typeHelper"
 export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
   props,
 ) => {
-  const { aiAgentID, aiAgentName, canEdit, publishedToMarketplace } = props
+  const { aiAgentID, aiAgentName, publishedToMarketplace } = props
 
   const currentUser = useSelector(getCurrentUser)
 
@@ -50,6 +50,12 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
   const { teamIdentifier } = useParams()
 
   const teamInfo = useSelector(getCurrentTeamInfo)!
+
+  const canEdit = canManage(
+    teamInfo.myRole,
+    ATTRIBUTE_GROUP.AGENT,
+    ACTION_MANAGE.CREATE_AGENT,
+  )
 
   const upgradeModal = useUpgradeModal()
   const [shareVisible, setShareVisible] = useState(false)
@@ -242,7 +248,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
         <ShareAgentPC
           redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier
-          }/dashboard/ai-agent?list=team`}
+          }/dashboard/ai-agents?list=team`}
           onClose={() => {
             setShareVisible(false)
           }}

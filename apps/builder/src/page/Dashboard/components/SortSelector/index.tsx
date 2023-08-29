@@ -16,15 +16,15 @@ export const SortSelector: FC<SortSelectorProps> = (props) => {
 
   const sortOptions = [
     {
-      value: MARKET_AGENT_SORTED_OPTIONS.POPULAR,
+      value: "popular",
       label: t("dashboard.sort-type.popular"),
     },
     {
-      value: MARKET_AGENT_SORTED_OPTIONS.LATEST,
+      value: "latest",
       label: t("dashboard.sort-type.recent"),
     },
     {
-      value: MARKET_AGENT_SORTED_OPTIONS.STARRED,
+      value: "starred",
       label: t("dashboard.sort-type.star"),
     },
   ]

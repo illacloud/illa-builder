@@ -1,5 +1,4 @@
 import { InviteMemberPC } from "@illa-public/invite-modal"
-import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
   USER_ROLE,
@@ -14,20 +13,16 @@ import {
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
-import { FC, Suspense, useState } from "react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Await, useLoaderData, useNavigate } from "react-router-dom"
-import { FullPageLoading } from "@/components/FullPageLoading"
+import { useNavigate } from "react-router-dom"
 import { AgentContent } from "@/page/Dashboard/DashboardAiAgent/AgentContent"
 import { containerStyle } from "@/page/Dashboard/DashboardAiAgent/style"
 import { DashboardContentHeader } from "@/page/Dashboard/components/DashboardContentHeader"
-import { DashboardErrorElement } from "@/page/Dashboard/components/ErrorElement"
 
 const DashboardAiAgent: FC = () => {
   const { t } = useTranslation()
-
-  const { teamAgentList } = useLoaderData() as { teamAgentList: Agent[] }
 
   const navigate = useNavigate()
 
@@ -76,20 +71,13 @@ const DashboardAiAgent: FC = () => {
           canCreate={canCreateAgent}
           isCreateLoading={false}
         />
-        <Suspense fallback={<FullPageLoading />}>
-          <Await
-            resolve={teamAgentList}
-            errorElement={<DashboardErrorElement />}
-          >
-            <AgentContent />
-          </Await>
-        </Suspense>
+        <AgentContent />
       </div>
       {showInvite && (
         <InviteMemberPC
           redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo?.identifier
-          }/dashboard/ai-agent`}
+          }/dashboard/ai-agents`}
           onClose={() => setShowInvite(false)}
           canInvite={showInvite}
           currentUserRole={teamInfo.myRole}

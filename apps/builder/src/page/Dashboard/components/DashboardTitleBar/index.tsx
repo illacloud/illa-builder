@@ -9,10 +9,11 @@ import {
   canManage,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
-import { FC, ReactNode } from "react"
+import { debounce } from "lodash"
+import { FC, ReactNode, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import {
   Divider,
   DownIcon,
@@ -113,6 +114,8 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
     ACTION_MANAGE.EDIT_APP,
   )
 
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const tabs: {
     key: string
     title: string
@@ -136,7 +139,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
       hidden: isCloudVersion,
     },
     {
-      key: "ai-agent",
+      key: "ai-agents",
       title: t("user_management.page.ai-agent"),
       hidden: !isCloudVersion,
       tabsItemActiveColorScheme:
@@ -150,6 +153,16 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
       hidden: !canEditApp,
     },
   ]
+
+  const debounceSearchKeywords = useRef(
+    debounce(
+      (params: URLSearchParams) => {
+        setSearchParams(params)
+      },
+      1000,
+      { leading: false },
+    ),
+  )
 
   return (
     <div css={tabsContainer}>
@@ -192,10 +205,40 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
               </Dropdown>
             )}
             {currentActiveKey === "apps" && (
-              <Search w="240px" colorScheme="techPurple" />
+              <Search
+                pd="0px 24px"
+                w="240px"
+                colorScheme="techPurple"
+                defaultValue={searchParams.get("keywords") ?? ""}
+                onChange={(v) => {
+                  if (v === "" || v === undefined) {
+                    searchParams.delete("keywords")
+                  } else {
+                    searchParams.set("keywords", v)
+                  }
+                  debounceSearchKeywords.current(searchParams)
+                }}
+                placeholder={t("dashboard.search")}
+                allowClear
+              />
             )}
-            {currentActiveKey === "ai-agent" && (
-              <Search w="240px" colorScheme="techPurple" />
+            {currentActiveKey === "ai-agents" && (
+              <Search
+                pd="0px 24px"
+                w="240px"
+                colorScheme="techPurple"
+                defaultValue={searchParams.get("keywords") ?? ""}
+                onChange={(v) => {
+                  if (v === "" || v === undefined) {
+                    searchParams.delete("keywords")
+                  } else {
+                    searchParams.set("keywords", v)
+                  }
+                  debounceSearchKeywords.current(searchParams)
+                }}
+                placeholder={t("dashboard.search")}
+                allowClear
+              />
             )}
           </div>
         }
@@ -215,8 +258,8 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
             case "members":
               navigate(`./members`)
               break
-            case "ai-agent":
-              navigate(`./ai-agent`)
+            case "ai-agents":
+              navigate(`./ai-agents`)
               break
             case "tutorial":
               navigate(`./tutorial`)

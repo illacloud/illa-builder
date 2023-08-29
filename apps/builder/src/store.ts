@@ -21,12 +21,14 @@ import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentAppHistoryReducer from "@/redux/currentAppHistory/currentAppHistorySlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import marketAgentReducer from "@/redux/dashboard/marketAIAgents/marketAgentSlice"
+import marketAppReducer from "@/redux/dashboard/marketApps/marketAppSlice"
 import dashboardTeamAiAgentReducer from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
 import guideReducer from "@/redux/guide/guideSlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import { mixpanelReport } from "./middleware/mixpanelReport"
 import { UndoRedo } from "./middleware/undoRedo"
 import cursorSlice from "./redux/currentApp/cursor/cursorSlice"
+
 
 const listenerMiddleware = createListenerMiddleware()
 
@@ -48,6 +50,7 @@ const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
   dashboardTeamAiAgents: dashboardTeamAiAgentReducer,
   dashboardMarketAgents: marketAgentReducer,
+  dashboardMarketApps: marketAppReducer,
 })
 
 const middlewares = [reduxAsync, UndoRedo, guideAsync]

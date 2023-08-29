@@ -65,7 +65,7 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
       },
       {
         label: t("dashboard.list-type.marketplace"),
-        value: "market",
+        value: "community",
       },
     ]
   }, [t])
@@ -110,7 +110,7 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
             colorScheme="grayBlue"
             onChange={setAgentType}
           />
-          {agentType === "market" && (
+          {agentType === "community" && (
             <Select
               value={sortedBy}
               options={sortOptions}
@@ -128,7 +128,7 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
             key={searchKeywords}
           />
         )}
-        {agentType === "market" && (
+        {agentType === "community" && (
           <MarketAgentList
             onSelect={handleClickCreateAction}
             search={searchKeywords}
