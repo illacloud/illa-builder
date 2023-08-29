@@ -2606,7 +2606,7 @@
       "save": "Lagre",
       "start": "Begynn",
       "restart": "Omstart",
-      "contribute": "Bidra til markedsplassen",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Sende",
         "generating": "Genererer"
@@ -3247,7 +3247,7 @@
         "invite_members": "Inviter medlemmer",
         "invite_to_use": "Inviter til bruk",
         "invite_to_edit": "Inviter til å redigere",
-        "contribute": "Markedsplass"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Inviter lenke",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} delte deg en AI agent:{{teamName}}ε. Klikk på lenken for å bli med i laget og prøv AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Bidra til markedsplassen",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Jeg oppdaget en imponerende app som heter {{ appName }}. Sjekk den: {{ appLink }}",
           "agent": "Jeg oppdaget nettopp en imponerende AI Agent kalt {{ agentName }}. Sjekk det: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Ingen beskrivelse",
       "blank": "Ingen programmer",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "Innstillinger for app",
@@ -4003,7 +4003,7 @@
       "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
     },
     "label": {
-      "contribute": "Bidra til markedsplassen"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
