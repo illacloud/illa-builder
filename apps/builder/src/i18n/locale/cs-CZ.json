@@ -2606,7 +2606,7 @@
       "save": "Uložit",
       "start": "Začít",
       "restart": "Restartovat",
-      "contribute": "Přispějte na tržišti",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Poslat",
         "generating": "Generování"
@@ -3247,7 +3247,7 @@
         "invite_members": "Pozvat členy",
         "invite_to_use": "Pozvat k použití",
         "invite_to_edit": "Pozvat k úpravě",
-        "contribute": "Tržiště"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Odkaz na pozvání",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} tě sdílel AI agenta z <unk>{{teamName}}<unk> . Klepni na odkaz pro připojení k týmu a vyzkoušej AI agenta: {{inviteLink}}",
       "contribute": {
-        "label": "Přispějte na tržišti",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Právě jsem objevil působivou aplikaci s názvem {{ appName }}. Podívejte se: {{ appLink }}",
           "agent": "Právě jsem objevil působivý AI agent s názvem {{ agentName }}. Podívejte se: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Bez popisu",
       "blank": "Žádná aplikace",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "Nastavení aplikace",
@@ -4003,7 +4003,7 @@
       "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
     },
     "label": {
-      "contribute": "Přispějte na tržišti"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
