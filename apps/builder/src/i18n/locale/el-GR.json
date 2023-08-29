@@ -2606,7 +2606,7 @@
       "save": "Αποθήκευση",
       "start": "Έναρξη",
       "restart": "Επανεκκίνηση",
-      "contribute": "Συνεισφέρετε στην αγορά",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Αποστολή",
         "generating": "Δημιουργία"
@@ -3247,7 +3247,7 @@
         "invite_members": "Πρόσκληση μελών",
         "invite_to_use": "Πρόσκληση για χρήση",
         "invite_to_edit": "Πρόσκληση για επεξεργασία",
-        "contribute": "Αγορά"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Σύνδεσμος πρόσκλησης",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "Ο χρήστης {{userName}} σας κοινοποίησε έναν πράκτορα τεχνητής νοημοσύνης του \"{{teamName}}\". Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα και να δοκιμάσετε τον πράκτορα τεχνητής νοημοσύνης: {{inviteLink}}",
       "contribute": {
-        "label": "Συνεισφέρετε στην αγορά",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Μόλις ανακάλυψα μια εντυπωσιακή εφαρμογή που ονομάζεται {{ appName }}. Ελέγξτε το: {{ appLink }}",
           "agent": "Μόλις ανακάλυψα ένα εντυπωσιακό AI Agent που ονομάζεται {{ agentName }}. Ελέγξτε το: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Χωρίς περιγραφή",
       "blank": "Καμία εφαρμογή",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "Ρύθμιση εφαρμογής",
@@ -4003,7 +4003,7 @@
       "undeploy": "Η εφαρμογή δεν έχει αναπτυχθεί. Η πρόσβαση του κοινού και η πρόσβαση του θεατή μπορεί να αντιμετωπίσει σφάλματα. "
     },
     "label": {
-      "contribute": "Συνεισφέρετε στην αγορά"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
