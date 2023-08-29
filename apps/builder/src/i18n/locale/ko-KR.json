@@ -2606,7 +2606,7 @@
       "save": "Save",
       "start": "Start",
       "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Send",
         "generating": "Generating"
@@ -3247,7 +3247,7 @@
         "invite_members": "멤버 초대",
         "invite_to_use": "Invite to use",
         "invite_to_edit": "Invite to edit",
-        "contribute": "Marketplace"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "초대 링크",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to marketplace",
+        "label": "Contribute to community",
         "default_text": {
           "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
           "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "No description",
       "blank": "No application",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "App setting",
@@ -4003,7 +4003,7 @@
       "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
     },
     "label": {
-      "contribute": "Contribute to marketplace"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
