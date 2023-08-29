@@ -2606,7 +2606,7 @@
       "save": "Salvează",
       "start": "Pornire",
       "restart": "Repornire",
-      "contribute": "Contribuie la piata",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Trimite",
         "generating": "Generare"
@@ -3247,7 +3247,7 @@
         "invite_members": "Invită membri",
         "invite_to_use": "Invită să utilizezi",
         "invite_to_edit": "Invită să editezi",
-        "contribute": "Piață"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Link de invitație",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} ți-a distribuit un AI Agent la <unk>{{teamName}}order. Faceți clic pe link pentru a vă alătura echipei și încercați AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribuie la piata",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}. Verificați: {{ appLink }}",
           "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}. Verificați: {{ agentLink }}"
@@ -4003,7 +4003,7 @@
       "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
     },
     "label": {
-      "contribute": "Contribuie la piata"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
