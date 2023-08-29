@@ -5,8 +5,8 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import { LoadingIcon } from "@illa-design/react"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAIAgent/TeamAgentCard"
 import { TeamContentEmpty } from "@/page/Dashboard/components/TeamContentEmpty"
-import { getDashboardTeamAiAgentList } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSelector"
-import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
+import { getDashboardTeamAIAgentList } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSelector"
+import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import { fetchTeamAgent } from "@/services/agent"
 import { useFuse } from "@/utils/useFuse"
 import { cardListStyle, fallbackLoadingStyle } from "./style"
@@ -26,7 +26,7 @@ export const TeamAgents: FC = () => {
     fetchTeamAgent(controller.signal)
       .then((res) => {
         dispatch(
-          dashboardTeamAiAgentActions.updateTeamAiAgentListReducer(
+          dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
             res.data.aiAgentList,
           ),
         )
@@ -44,7 +44,7 @@ export const TeamAgents: FC = () => {
     }
   }, [dispatch])
 
-  const agentList = useSelector(getDashboardTeamAiAgentList)
+  const agentList = useSelector(getDashboardTeamAIAgentList)
 
   const fuse = useFuse(agentList, {
     keys: ["name", "description"],

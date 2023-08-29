@@ -1,5 +1,5 @@
 import { FC, memo } from "react"
-import { AiAgentCardProps } from "./interface"
+import { AIAgentCardProps } from "./interface"
 import {
   aiAgentCardStyle,
   aiAgentCardTitleStyle,
@@ -7,7 +7,7 @@ import {
   betaTagStyle,
 } from "./style"
 
-const AIAgentCard: FC<AiAgentCardProps> = (props) => {
+const AIAgentCard: FC<AIAgentCardProps> = (props) => {
   const { onClickCard } = props
   return (
     <button css={aiAgentCardStyle} onClick={onClickCard}>

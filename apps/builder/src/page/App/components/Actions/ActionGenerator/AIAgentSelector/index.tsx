@@ -36,7 +36,7 @@ const sortOptions = [
   },
 ]
 
-export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
+export const AIAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
   const { actionType, onBack, onCreateAction, handleCreateAction } = props
 
   const { t } = useTranslation()
@@ -154,4 +154,4 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
   )
 }
 
-AiAgentSelector.displayName = "AiAgentSelector"
+AIAgentSelector.displayName = "AIAgentSelector"

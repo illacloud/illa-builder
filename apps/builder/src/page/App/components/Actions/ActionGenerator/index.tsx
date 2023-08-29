@@ -8,9 +8,9 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Modal, useMessage } from "@illa-design/react"
+import { AIAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AIAgentSelector"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
-import { AiAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -323,7 +323,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         {currentStep === "createAction" &&
           currentActionType &&
           (currentActionType === "aiagent" ? (
-            <AiAgentSelector
+            <AIAgentSelector
               actionType={currentActionType}
               onBack={handleBack}
               handleCreateAction={handleCreateAgentAction}

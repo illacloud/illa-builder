@@ -8,7 +8,7 @@ import {
   getActionNameFromActionType,
   getActionSubTitleFromActionType,
 } from "@/utils/actionResourceTransformer"
-import AIAgentCard from "./components/AiAgentCard"
+import AIAgentCard from "./components/AIAgentCard"
 import { ActionTypeSelectorCardProps } from "./interface"
 import { applyItemStyle, nameStyle } from "./style"
 

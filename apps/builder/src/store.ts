@@ -20,7 +20,7 @@ import componentsReducer from "@/redux/currentApp/editor/components/componentsSl
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentAppHistoryReducer from "@/redux/currentAppHistory/currentAppHistorySlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
-import dashboardTeamAiAgentReducer from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
+import dashboardTeamAIAgentReducer from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import guideReducer from "@/redux/guide/guideSlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import { mixpanelReport } from "./middleware/mixpanelReport"
@@ -45,7 +45,7 @@ const appReducer = combineReducers({
 
 const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
-  dashboardTeamAiAgents: dashboardTeamAiAgentReducer,
+  dashboardTeamAIAgents: dashboardTeamAIAgentReducer,
 })
 
 const middlewares = [reduxAsync, UndoRedo, guideAsync]

@@ -30,8 +30,8 @@ import {
   useModal,
 } from "@illa-design/react"
 import { TeamAgentCardActionItemProps } from "@/page/Dashboard/DashboardAIAgent/TeamAgentCardActionItem/interface"
-import { dashboardTeamAiAgentActions } from "@/redux/dashboard/teamAiAgents/dashboardTeamAiAgentSlice"
-import { deleteAiAgent, duplicateAiAgent } from "@/services/agent"
+import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
+import { deleteAIAgent, duplicateAIAgent } from "@/services/agent"
 import { copyToClipboard } from "@/utils/eventHandlerHelper/utils/commonUtils"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
@@ -80,7 +80,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
   const handleDuplicateApp = () => {
     if (duplicateLoading) return
     setDuplicateLoading(true)
-    duplicateAiAgent(aiAgentID)
+    duplicateAIAgent(aiAgentID)
       .then(
         (response) => {
           const aiAgentID = response.data.aiAgentID
@@ -119,7 +119,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
         modal.update(modalId, {
           okLoading: true,
         })
-        deleteAiAgent(aiAgentID)
+        deleteAIAgent(aiAgentID)
           .then(
             () => {
               message.success({
@@ -151,7 +151,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
   const onContributed = useCallback(
     (value: boolean) => {
       dispatch(
-        dashboardTeamAiAgentActions.modifyTeamAiAgentReducer({
+        dashboardTeamAIAgentActions.modifyTeamAIAgentReducer({
           aiAgentID,
           modifiedProps: {
             publishedToMarketplace: value,
