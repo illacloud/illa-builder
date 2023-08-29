@@ -3599,7 +3599,7 @@
       "watermark": "Remove watermark"
     },
     "security": {
-      "historic-7": "Historic version keep & recovery for 7 days(Coming soon)",
+      "historic-7": "Backup edit history & restore",
       "historic-30": "Keep deployed versions & revert(Coming soon)",
       "develop-environment": "Multi-environment(Coming soon)",
       "app-public": "App public",
@@ -3652,17 +3652,17 @@
       "billing": "Billing",
       "license": "Seat",
       "drive": "Drive",
-      "colla":"Colla",
-      "appsumo":"Appsumo",
-      "colla_transaction":"Colla transaction history",
+      "colla": "Colla",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Colla transaction history",
       "billing_portal": "Billing portal"
     },
     "title": {
       "billing": "Billing",
       "license": "Seat",
       "drive": "Drive",
-      "colla":"Colla",
-      "appsumo":"Appsumo"
+      "colla": "Colla",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3684,7 +3684,7 @@
         "licenses": "Seats",
         "storage": "Storage",
         "traffic": "Traffic",
-        "colla":"Colla"
+        "colla": "Colla"
       },
       "period": {
         "current": "Current",
@@ -3697,7 +3697,7 @@
         "Storage": "Storage",
         "Traffic": "Traffic",
         "balance": "Balance",
-        "colla":"Colla"
+        "colla": "Colla"
       },
       "button": {
         "License": "Manage seats",
@@ -3709,22 +3709,22 @@
         "License": "{{used}} used (total of {{total}} seats) ",
         "Storage": "{{used}}GB used (total of {{total}}GB) ",
         "Traffic": "{{used}}GB used (total of {{total}}GB) ",
-        "colla":"{{used}} Colla used (total of {{total}} Colla)" 
+        "colla": "{{used}} Colla used (total of {{total}} Colla)"
       }
     },
-    "colla_transaction":{
-      "table_title":{
-        "month":"Month",
-        "event":"Event",
-        "usage":"Colla usage"
+    "colla_transaction": {
+      "table_title": {
+        "month": "Month",
+        "event": "Event",
+        "usage": "Colla usage"
       },
-      "event":{
-        "increase_storage":"Increase storage",
-        "increase_colla":"Increase Colla",
-        "increase_traffic":"Increase traffic"
+      "event": {
+        "increase_storage": "Increase storage",
+        "increase_colla": "Increase Colla",
+        "increase_traffic": "Increase traffic"
       },
-      "usage":{
-        "change_num":"{{changeNum}} Colla"
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
@@ -3783,7 +3783,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla":"{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{storageNum}} Colla"
       },
       "button": {
         "unsubscribe": "Unsubscribe",
@@ -3793,8 +3793,8 @@
         "storage_traffic_remove": "Remove {{changeNum}} GB",
         "license_increase": "Increase {{changeNum}} seats",
         "license_remove": "Remove {{changeNum}} seats",
-        "colla_increase":"Increase {{changeNum}} Colla",
-        "colla_remove":"Remove {{changeNum}} Colla"
+        "colla_increase": "Increase {{changeNum}} Colla",
+        "colla_remove": "Remove {{changeNum}} Colla"
       },
       "description_title": {
         "add_storage": "You are going to add {{changeNum}} GB storage. Once confirmed, we will immediately deduct the payment for the new storage for this billing cycle. <0>Learn more</0>",
@@ -3816,11 +3816,11 @@
         "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Premium yearly subscription. <0>Learn more</0>",
         "subscribe_storage_monthly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>",
         "subscribe_storage_yearly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>",
-        "colla_sub":"You are going to subscribe to Colla. Once confirmed, we will automatically deduct the fees at the beginning of each billing cycle and upgrade your subscription automatically when you require more Colla. <0>Learn more</0>",
-        "colla_increase":"You are going to add {{changeNum}} Colla. Once confirmed, we will immediately deduct the remaining amount due for this billing cycle. <0>Learn more</0>",
-        "colla_remove":"You are going to remove {{changeNum}} Colla. Once confirmed, it will take effect from the next billing cycle. <0>Learn more</0>",
-        "colla_unsubscribe":"You are going to cancel your Colla subscription. Once confirmed, it will take effect from the next billing cycle. Please note that after cancellation, you may experience issues with your ILLA Drive and AI Agent usage. <0>Learn more</0>",
-        "colla_update":"You are going to modify your Colla subscription. Once confirmed, the changes will take effect from the next billing cycle. <0>Learn more</0>"
+        "colla_sub": "You are going to subscribe to Colla. Once confirmed, we will automatically deduct the fees at the beginning of each billing cycle and upgrade your subscription automatically when you require more Colla. <0>Learn more</0>",
+        "colla_increase": "You are going to add {{changeNum}} Colla. Once confirmed, we will immediately deduct the remaining amount due for this billing cycle. <0>Learn more</0>",
+        "colla_remove": "You are going to remove {{changeNum}} Colla. Once confirmed, it will take effect from the next billing cycle. <0>Learn more</0>",
+        "colla_unsubscribe": "You are going to cancel your Colla subscription. Once confirmed, it will take effect from the next billing cycle. Please note that after cancellation, you may experience issues with your ILLA Drive and AI Agent usage. <0>Learn more</0>",
+        "colla_update": "You are going to modify your Colla subscription. Once confirmed, the changes will take effect from the next billing cycle. <0>Learn more</0>"
       },
       "description": {
         "remove_storage": "If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our  <0>Privacy Policy</0> and <1>Terms of Service</1>",
@@ -3899,7 +3899,7 @@
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
         "insufficient_license_title": "Insufficient seats",
-        "insufficient_license_description": "To invite more editors, please increase seats first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
+        "insufficient_license_description": "To invite more editors, please increase seats first. All members of your team could use the features for ILLA Cloud Premium. The specific access to each feature depends on the role of each member. ",
         "insufficient_license_button": "Add seats",
         "pricing": "editor/mo, yearly($20/editor, monthly)"
       },
