@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "På grunn av utilstrekkelige lisenser kunne operasjonen mislykkes.",
       "failed_to_invite_no_license": "På grunn av utilstrekkelig lisensiering, har noen medlemsinvitasjoner mislyktes.",
       "error_subscribe": "Kan ikke abonnere. Prøv igjen senere.",
-      "unsubscription_fail": "Kan ikke avslutte abonnementet. Vennligst prøv igjen senere."
+      "unsubscription_fail": "Kan ikke avslutte abonnementet. Vennligst prøv igjen senere.",
+      "failed_to_update": "Kan ikke oppdatere abonnementet. Vennligst prøv igjen. ",
+      "update_suc": "Abonnementet er oppdatert"
     },
     "modal": {
       "storage_insufficient_modal": {
