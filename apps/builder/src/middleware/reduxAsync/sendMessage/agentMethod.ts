@@ -14,9 +14,9 @@ export const agentAsync = (
 ) => {
   const { payload } = action
   switch (reduxAction) {
-    case "addTeamAiAgentReducer":
-    case "removeTeamAiAgentReducer":
-    case "modifyTeamAiAgentReducer":
+    case "addTeamAIAgentReducer":
+    case "removeTeamAIAgentReducer":
+    case "modifyTeamAIAgentReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(
           TextSignal.BROADCAST_ONLY,

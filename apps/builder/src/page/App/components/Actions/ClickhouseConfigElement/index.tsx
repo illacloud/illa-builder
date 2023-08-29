@@ -50,7 +50,7 @@ import { ClickhouseConfigElementProps } from "./interface"
 export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
   props,
 ) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -60,7 +60,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
 
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<ClickhouseResource>
   })
 
@@ -114,7 +114,7 @@ export const ClickhouseConfigElement: FC<ClickhouseConfigElementProps> = (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "clickhouse",
         onFinished,
         setSaving,

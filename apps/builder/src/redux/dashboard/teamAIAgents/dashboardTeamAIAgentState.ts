@@ -1,9 +1,9 @@
 import { Agent } from "@illa-public/market-agent/MarketAgentCard/interface"
 
-export interface DashboardTeamAiAgentState {
+export interface DashboardTeamAIAgentState {
   list: Agent[]
 }
 
-export const TeamAgentInitial: DashboardTeamAiAgentState = {
+export const TeamAgentInitial: DashboardTeamAIAgentState = {
   list: [],
 }

@@ -12,7 +12,7 @@ import {
 import { RecordEditor } from "@/components/RecordEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
+import { AIAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { AIAgentResourceChoose } from "../AIAgentResourceChoose"
@@ -32,7 +32,7 @@ const AIAgentPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const aiAgentContent = currentAction.content as AiAgentActionContent
+  const aiAgentContent = currentAction.content as AIAgentActionContent
 
   const handleChangeInput = useCallback(
     (value: string) => {

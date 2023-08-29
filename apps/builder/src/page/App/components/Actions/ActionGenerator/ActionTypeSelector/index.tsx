@@ -51,7 +51,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                     const displayName =
                       DisplayNameGenerator.generateDisplayName(item)
                     const initialContent = getInitialContent(item)
-                    const data: Omit<ActionItem<ActionContent>, "actionId"> = {
+                    const data: Omit<ActionItem<ActionContent>, "actionID"> = {
                       actionType: item,
                       displayName,
                       content: initialContent,
@@ -60,7 +60,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                     if (isGuideMode) {
                       const createActionData: ActionItem<ActionContent> = {
                         ...data,
-                        actionId: v4(),
+                        actionID: v4(),
                       }
                       dispatch(
                         actionActions.addActionItemReducer(createActionData),

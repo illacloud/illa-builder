@@ -43,7 +43,7 @@ const RestApiAuthTypeComponentMap = {
 }
 
 export const RestApiConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, onFinished, resourceId } = props
+  const { onBack, onFinished, resourceID } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, formState, watch } = useForm({
@@ -51,7 +51,7 @@ export const RestApiConfigElement: FC<ConfigElementProps> = (props) => {
     shouldUnregister: true,
   })
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
+    return state.resource.find((r) => r.resourceID === resourceID) as Resource<
       RestApiResource<RestApiAuth>
     >
   })
@@ -78,7 +78,7 @@ export const RestApiConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "restapi",
         onFinished,
         setSaving,

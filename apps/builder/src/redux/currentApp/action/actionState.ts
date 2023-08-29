@@ -1,4 +1,4 @@
-import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
+import { AIAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import {
   AirtableAction,
   AirtableActionConfigType,
@@ -129,12 +129,12 @@ export interface ActionConfig {
 
 export interface ActionItem<T extends ActionContent> {
   config?: ActionConfig
-  actionId: string
+  actionID: string
   displayName: string
   actionType: ActionType
   transformer: Transformer
   triggerMode: ActionTriggerMode
-  resourceId?: string
+  resourceID?: string
   content: T
 }
 
@@ -179,7 +179,7 @@ export type ActionContent =
   | CouchDBAction<CouchDBOptionsType>
   | GoogleSheetsAction<GoogleSheetsActionOpts>
   | AirtableAction<AirtableActionConfigType>
-  | AiAgentActionContent
+  | AIAgentActionContent
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 

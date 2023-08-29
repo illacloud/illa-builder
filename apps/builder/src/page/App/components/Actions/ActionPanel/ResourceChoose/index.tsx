@@ -55,7 +55,7 @@ export const ResourceChoose: FC = () => {
 
   //maybe empty
   const currentSelectResource = resourceList.find(
-    (r) => r.resourceId === action.resourceId,
+    (r) => r.resourceID === action.resourceID,
   )
 
   return (
@@ -68,18 +68,18 @@ export const ResourceChoose: FC = () => {
             colorScheme="techPurple"
             value={
               currentSelectResource
-                ? action.resourceId
+                ? action.resourceID
                 : t("editor.action.resource_choose.deleted")
             }
             onChange={(value) => {
-              const resource = resourceList.find((r) => r.resourceId === value)
+              const resource = resourceList.find((r) => r.resourceID === value)
               if (resource != undefined) {
                 dispatch(
                   configActions.updateCachedAction({
                     ...action,
                     // selected resource is same as action type
                     actionType: resource.resourceType,
-                    resourceId: value as string,
+                    resourceID: value as string,
                     content:
                       selectedAction.actionType === value
                         ? selectedAction.content
@@ -125,7 +125,7 @@ export const ResourceChoose: FC = () => {
             </Option>
             {resourceList.map((item) => {
               return (
-                <Option value={item.resourceId} key={item.resourceId}>
+                <Option value={item.resourceID} key={item.resourceID}>
                   <div css={itemContainer}>
                     <span css={itemLogo}>
                       <Suspense>
@@ -206,7 +206,7 @@ export const ResourceChoose: FC = () => {
         }}
       >
         <ResourceCreator
-          resourceId={action.resourceId}
+          resourceID={action.resourceID}
           onBack={() => {
             setEditorVisible(false)
           }}

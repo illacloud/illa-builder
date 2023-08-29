@@ -85,7 +85,7 @@ export const fetchDeleteResource = async (resourceID: string) => {
 }
 
 export const getOAuthAccessToken = async (
-  resourceId: string,
+  resourceID: string,
   redirectURL: string,
   accessType: AccessType,
 ) => {
@@ -94,7 +94,7 @@ export const getOAuthAccessToken = async (
   }>(
     {
       method: "POST",
-      url: `/resources/${resourceId}/token`,
+      url: `/resources/${resourceID}/token`,
       data: {
         accessType,
         redirectURL,
@@ -107,13 +107,13 @@ export const getOAuthAccessToken = async (
 }
 
 export const redirectToGoogleOAuth = async (
-  resourceId: string,
+  resourceID: string,
   accessToken: string,
 ) => {
   return builderRequest<{ url: string }>(
     {
       method: "GET",
-      url: `/resources/${resourceId}/oauth2?accessToken=${accessToken}`,
+      url: `/resources/${resourceID}/oauth2?accessToken=${accessToken}`,
     },
     {
       teamID: getCurrentTeamID(),
@@ -122,12 +122,12 @@ export const redirectToGoogleOAuth = async (
 }
 
 export const getOAuthRefreshData = async (
-  resourceId: string,
+  resourceID: string,
   signal: AbortSignal,
 ) => {
   return builderRequest<Resource<ResourceContent>>(
     {
-      url: `/resources/${resourceId}/refresh`,
+      url: `/resources/${resourceID}/refresh`,
       method: "POST",
       signal,
     },

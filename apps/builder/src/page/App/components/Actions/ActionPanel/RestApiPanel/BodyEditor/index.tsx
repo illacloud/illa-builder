@@ -68,7 +68,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
       let newBody = null
       const content = selectedAction?.content as RestApiAction<BodyContent>
       if (
-        selectedAction.resourceId === actionItem.resourceId &&
+        selectedAction.resourceID === actionItem.resourceID &&
         content.method !== "GET" &&
         content.bodyType !== "none" &&
         content.bodyType === value
@@ -104,7 +104,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
         }),
       )
     },
-    [actionItem, dispatch, selectedAction.content, selectedAction.resourceId],
+    [actionItem, dispatch, selectedAction.content, selectedAction.resourceID],
   )
 
   const handleOnBodyChange = useCallback(

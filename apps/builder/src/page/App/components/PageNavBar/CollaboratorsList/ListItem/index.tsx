@@ -12,7 +12,7 @@ export const UserListItem: FC<UserListItemProps> = (props) => {
   return (
     <div css={getListItemContainerStyle(type)}>
       <Avatar
-        userId={id}
+        userID={id}
         nickname={nickname}
         avatar={avatar}
         showTooltips={true}

@@ -15,7 +15,7 @@ import { getParamsFromIllaRoute } from "@/utils/routerHelper"
 import { getCurrentTeamID, getCurrentTeamIdentifier } from "../utils/team"
 
 interface IActionTestConnectionRequestData {
-  resourceId: string
+  resourceID: string
   resourceName: string
   resourceType: ResourceType
   content: ResourceContent
@@ -33,7 +33,7 @@ export const fetchActionTestConnection = (
 }
 
 interface IActionRunResultRequestData {
-  resourceId: string
+  resourceID: string
   actionType: ActionType
   displayName: string
   content: ActionContent
@@ -47,7 +47,7 @@ export interface IActionRunResultResponseData<R = Record<string, any>[]> {
 
 export const fetchActionRunResult = (
   appID: string,
-  actionId: string,
+  actionID: string,
   data: IActionRunResultRequestData,
   isPublic: boolean,
   abortSignal?: AbortSignal,
@@ -55,10 +55,10 @@ export const fetchActionRunResult = (
   let url: string
   let options: { teamIdentifier?: string; teamID?: string } = {}
   if (isPublic) {
-    url = `/apps/${appID}/publicActions/${actionId}/run`
+    url = `/apps/${appID}/publicActions/${actionID}/run`
     options.teamIdentifier = getCurrentTeamIdentifier()
   } else {
-    url = `/apps/${appID}/actions/${actionId}/run`
+    url = `/apps/${appID}/actions/${actionID}/run`
     options.teamID = getCurrentTeamID()
   }
   return actionRequest<IActionRunResultResponseData>(
@@ -82,13 +82,13 @@ export const fetchS3ActionRunResult = (
 }
 
 export const fetchCreateAction = (
-  data: Omit<ActionItem<ActionContent>, "actionId">,
+  data: Omit<ActionItem<ActionContent>, "actionID">,
 ) => {
   const appId = getParamsFromIllaRoute("appId") as string
   const url = `/apps/${appId}/actions`
   return builderRequest<
     ActionItem<ActionContent>,
-    Omit<ActionItem<ActionContent>, "actionId">
+    Omit<ActionItem<ActionContent>, "actionID">
   >(
     {
       url,
@@ -131,7 +131,7 @@ export const fetchUpdateAction = (action: ActionItem<ActionContent>) => {
   return builderRequest<ActionItem<ActionContent>>(
     {
       method: "PUT",
-      url: `/apps/${appId}/actions/${action.actionId}`,
+      url: `/apps/${appId}/actions/${action.actionID}`,
       data: action,
     },
     { teamID: getCurrentTeamID() },

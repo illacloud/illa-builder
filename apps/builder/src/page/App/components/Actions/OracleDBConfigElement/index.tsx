@@ -45,7 +45,7 @@ import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 
 export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onBack, onFinished } = props
+  const { resourceID, onBack, onFinished } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -58,7 +58,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
   const [showAlert, setShowAlert] = useState<boolean>(false)
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
   const content = (resource?.content as OracleResource) ?? OracleResourceInitial
 
@@ -91,7 +91,7 @@ export const OracleDBConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "oracle",
         onFinished,
         setSaving,

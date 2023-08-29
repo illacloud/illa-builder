@@ -73,7 +73,7 @@ export const unstarAIAgent = (aiAgentID: string) => {
   })
 }
 
-export const deleteAiAgent = (aiAgentID: string) => {
+export const deleteAIAgent = (aiAgentID: string) => {
   return agentRequest<ForkAgentResponse>(
     {
       url: `/aiAgent/${aiAgentID}`,
@@ -85,7 +85,7 @@ export const deleteAiAgent = (aiAgentID: string) => {
   )
 }
 
-export const duplicateAiAgent = (aiAgentID: string) => {
+export const duplicateAIAgent = (aiAgentID: string) => {
   return agentRequest<Agent>(
     {
       url: `/aiAgent/${aiAgentID}/duplicate`,

@@ -44,14 +44,14 @@ import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
 
 export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished, type } = props
+  const { onBack, resourceID, onFinished, type } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
   const findResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   let content: RedisResource
@@ -126,7 +126,7 @@ export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         type,
         onFinished,
         setSaving,

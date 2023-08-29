@@ -8,9 +8,9 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 } from "uuid"
 import { Modal, useMessage } from "@illa-design/react"
+import { AIAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AIAgentSelector"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
-import { AiAgentSelector } from "@/page/App/components/Actions/ActionGenerator/AiAgentSelector"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 import { getIsILLAGuideMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -96,7 +96,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   const handleDirectCreateAction = useCallback(
     async (
-      resourceId: string,
+      resourceID: string,
       successCallback?: () => void,
       loadingCallback?: (loading: boolean) => void,
     ) => {
@@ -106,10 +106,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       const displayName =
         DisplayNameGenerator.generateDisplayName(currentActionType)
       const initialContent = getInitialContent(currentActionType)
-      const data: Omit<ActionItem<ActionContent>, "actionId"> = {
+      const data: Omit<ActionItem<ActionContent>, "actionID"> = {
         actionType: currentActionType,
         displayName,
-        resourceId,
+        resourceID,
         content: initialContent,
         ...actionItemInitial,
       }
@@ -122,7 +122,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
           ...data,
-          actionId: v4(),
+          actionID: v4(),
         }
         dispatch(actionActions.addActionItemReducer(createActionData))
         dispatch(configActions.changeSelectedAction(createActionData))
@@ -159,10 +159,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       const displayName =
         DisplayNameGenerator.generateDisplayName(currentActionType)
       const initalAgentContent = getInitialAgentContent(item)
-      const data: Omit<ActionItem<ActionContent>, "actionId"> = {
+      const data: Omit<ActionItem<ActionContent>, "actionID"> = {
         actionType: currentActionType,
         displayName,
-        resourceId: item.aiAgentID,
+        resourceID: item.aiAgentID,
         content: initalAgentContent,
         ...actionItemInitial,
         config: {
@@ -173,7 +173,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       if (isGuideMode) {
         const createActionData: ActionItem<ActionContent> = {
           ...data,
-          actionId: v4(),
+          actionID: v4(),
         }
         dispatch(actionActions.addActionItemReducer(createActionData))
         dispatch(configActions.changeSelectedAction(createActionData))
@@ -260,7 +260,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   }, [onClose])
 
   const handleFinishCreateNewResource = useCallback(
-    (resourceId: string) => {
+    (resourceID: string) => {
       track?.(
         ILLA_MIXPANEL_EVENT_TYPE.CLICK,
         {
@@ -269,7 +269,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         },
         "both",
       )
-      handleDirectCreateAction(resourceId, () => {
+      handleDirectCreateAction(resourceID, () => {
         setCurrentStep("select")
         onClose()
       })
@@ -323,7 +323,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         {currentStep === "createAction" &&
           currentActionType &&
           (currentActionType === "aiagent" ? (
-            <AiAgentSelector
+            <AIAgentSelector
               actionType={currentActionType}
               onBack={handleBack}
               handleCreateAction={handleCreateAgentAction}

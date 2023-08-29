@@ -34,13 +34,13 @@ const OracleDBPanel: FC = () => {
   const content = cachedAction.content ?? OracleDBActionInitial
 
   useEffect(() => {
-    if (currentAction.resourceId == undefined) return
-    fetchResourceMeta(currentAction.resourceId).then(
+    if (currentAction.resourceID == undefined) return
+    fetchResourceMeta(currentAction.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         setSqlTable(data?.schema ?? {})
       },
     )
-  }, [currentAction.resourceId])
+  }, [currentAction.resourceID])
 
   const handleValueChange = useCallback(
     (name: string) => (value: string) => {

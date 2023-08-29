@@ -216,7 +216,7 @@ export const HuggingFaceCommonPanel: FC<HuggingFaceCommonPanelProps> = (
     (value?: SelectValue) => {
       let newBody = value === "pairs" ? PairsBodyInitital : InputInitial
       if (
-        selectedAction.resourceId === cachedAction.resourceId &&
+        selectedAction.resourceID === cachedAction.resourceID &&
         selectedAction.content?.inputs?.type === value
       ) {
         newBody = selectedAction.content.inputs.content

@@ -25,9 +25,9 @@ import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenera
 import { RootState } from "@/store"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
-  const { resourceType, resourceId, onBack, onFinished } = props
+  const { resourceType, resourceID, onBack, onFinished } = props
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   const finalResourceType = resource ? resource.resourceType : resourceType
@@ -35,7 +35,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
 
   const element = useMemo(() => {
     const configElementProps = {
-      resourceId,
+      resourceID,
       onBack: handleBack,
       onFinished,
     }
@@ -49,7 +49,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return (
           <MysqlLikeConfigElement
             resourceType={finalResourceType}
-            resourceId={resourceId}
+            resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
           />
@@ -63,7 +63,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "restapi":
         return (
           <RestApiConfigElement
-            resourceId={resourceId}
+            resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
           />
@@ -71,7 +71,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "mongodb":
         return (
           <MongoDbConfigElement
-            resourceId={resourceId}
+            resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
           />
@@ -80,7 +80,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return (
           <RedisConfigElement
             type="redis"
-            resourceId={resourceId}
+            resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
           />
@@ -89,7 +89,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return (
           <RedisConfigElement
             type="upstash"
-            resourceId={resourceId}
+            resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
           />
@@ -97,7 +97,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "elasticsearch":
         return (
           <ElasticSearchConfigElement
-            resourceId={resourceId}
+            resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
           />
@@ -109,7 +109,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "firebase":
         return (
           <FirebaseConfigElement
-            resourceId={resourceId}
+            resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
           />
@@ -119,7 +119,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "s3":
         return (
           <S3ConfigElement
-            resourceId={resourceId}
+            resourceID={resourceID}
             onBack={handleBack}
             onFinished={onFinished}
           />
@@ -143,7 +143,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       default:
         return null
     }
-  }, [resourceId, handleBack, onFinished, finalResourceType])
+  }, [resourceID, handleBack, onFinished, finalResourceType])
 
   return <>{element}</>
 }

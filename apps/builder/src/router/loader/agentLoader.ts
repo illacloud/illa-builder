@@ -2,9 +2,9 @@ import { LoaderFunction, defer } from "react-router-dom"
 import { AgentInitial } from "@/page/AI/AIAgent/interface"
 import { fetchAgentDetail } from "@/services/agent"
 
-const getAgentInitData = async (agentId?: string) => {
-  if (agentId) {
-    const agent = await fetchAgentDetail(agentId)
+const getAgentInitData = async (agentID?: string) => {
+  if (agentID) {
+    const agent = await fetchAgentDetail(agentID)
     return {
       agent: agent.data,
     }
@@ -15,8 +15,8 @@ const getAgentInitData = async (agentId?: string) => {
   }
 }
 export const agentLoader: LoaderFunction = async (args) => {
-  const { agentId } = args.params
+  const { agentID } = args.params
   return defer({
-    data: getAgentInitData(agentId),
+    data: getAgentInitData(agentID),
   })
 }

@@ -32,7 +32,7 @@ import { getOAuthAccessToken, redirectToGoogleOAuth } from "@/services/resource"
 import { validate } from "@/utils/form"
 
 export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onBack, onFinished } = props
+  const { resourceID, onBack, onFinished } = props
 
   const { handleSubmit, control, watch, formState } = useForm({
     shouldUnregister: true,
@@ -41,7 +41,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
 
   const { t } = useTranslation()
   const resource = useSelector(getAllResources).find(
-    (r) => r.resourceId === resourceId,
+    (r) => r.resourceID === resourceID,
   )
 
   const content = (resource?.content ??
@@ -57,7 +57,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
 
   const showAuthStatus = content.opts?.status !== GoogleSheetAuthStatus.Initial
 
-  const showInitialConnectButton = resourceId
+  const showInitialConnectButton = resourceID
     ? isOauthType &&
       content.opts?.status !== GoogleSheetAuthStatus.Authenticated
     : isOauthType
@@ -72,7 +72,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   )
 
   // refresh Google OAuth Status
-  useOAuthRefresh(resourceId)
+  useOAuthRefresh(resourceID)
 
   const oauthMethodOptions = useMemo(() => {
     if (import.meta.env.ILLA_APP_ENV === "production") {
@@ -97,17 +97,17 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
   }, [t])
 
   const handleOAuthConnect = async (
-    resourceId: string,
+    resourceID: string,
     accessType: AccessType,
   ) => {
     const response = await getOAuthAccessToken(
-      resourceId,
+      resourceID,
       `${window.location.origin}${location.pathname}`,
       accessType,
     )
     const { accessToken } = response.data
     if (accessToken) {
-      const res = await redirectToGoogleOAuth(resourceId, accessToken)
+      const res = await redirectToGoogleOAuth(resourceID, accessToken)
       if (res.data.url) {
         window.location.assign(res.data.url)
       }
@@ -118,11 +118,11 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "googlesheets",
-        (resourceId) => {
-          handleOAuthConnect(resourceId, accessType)
-          onFinished(resourceId)
+        (resourceID) => {
+          handleOAuthConnect(resourceID, accessType)
+          onFinished(resourceID)
         },
         setSaving,
       )}
@@ -247,7 +247,7 @@ export const GoogleSheetsConfigElement: FC<ConfigElementProps> = (props) => {
               colorScheme="gray"
               disabled={!formState.isValid}
               type="button"
-              onClick={() => handleOAuthConnect(resourceId!!, accessType)}
+              onClick={() => handleOAuthConnect(resourceID!!, accessType)}
             >
               {t("editor.action.form.label.gs.reconnect_with_oauth")}
             </Button>

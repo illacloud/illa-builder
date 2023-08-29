@@ -38,8 +38,8 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
   const handleChange = (value: string) => handleValueChange(value, "collection")
 
   useEffect(() => {
-    if (action.resourceId == undefined) return
-    fetchResourceMeta(action.resourceId).then(
+    if (action.resourceID == undefined) return
+    fetchResourceMeta(action.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         let tables: string[] = []
         if (data.schema) {
@@ -48,7 +48,7 @@ export const CollectionInput: FC<CollectionInputProps> = (props) => {
         setCollectionSelect(tables)
       },
     )
-  }, [action.resourceId])
+  }, [action.resourceID])
 
   return (
     <div css={actionItemStyle}>

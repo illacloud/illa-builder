@@ -46,7 +46,7 @@ import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 
 export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
   const { t } = useTranslation()
   const { track } = useContext(MixpanelTrackContext)
 
@@ -57,7 +57,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
 
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<MicrosoftSqlResource>
   })
 
@@ -111,7 +111,7 @@ export const MicrosoftSqlConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "mssql",
         onFinished,
         setSaving,

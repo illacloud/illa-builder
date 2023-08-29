@@ -42,14 +42,14 @@ import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 
 export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onFinished, onBack } = props
+  const { resourceID, onFinished, onBack } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   const content = resource
@@ -80,7 +80,7 @@ export const CouchDBConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "couchdb",
         onFinished,
         setSaving,

@@ -42,7 +42,7 @@ import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 
 export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onBack, onFinished } = props
+  const { resourceID, onBack, onFinished } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -50,7 +50,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
   })
   const { track } = useContext(MixpanelTrackContext)
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
   let content: AppWriteResource
   if (!resource) {
@@ -89,7 +89,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "appwrite",
         onFinished,
         setSaving,

@@ -48,7 +48,7 @@ import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 
 export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, onFinished, resourceId } = props
+  const { onBack, onFinished, resourceID } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, formState, getValues, watch } = useForm({
@@ -56,7 +56,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
     shouldUnregister: true,
   })
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
+    return state.resource.find((r) => r.resourceID === resourceID) as Resource<
       GraphQLResource<GraphQLAuth>
     >
   })
@@ -114,7 +114,7 @@ export const GraphQLConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "graphql",
         onFinished,
         setSaving,

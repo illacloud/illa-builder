@@ -1,4 +1,9 @@
 import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -17,8 +22,6 @@ import {
   nameStyle,
   titleInfoStyle,
 } from "./style"
-import {ACTION_MANAGE, ATTRIBUTE_GROUP, canManage} from "@illa-public/user-role-utils";
-
 
 export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   const { t } = useTranslation()

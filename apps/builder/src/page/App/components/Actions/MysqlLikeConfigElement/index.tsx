@@ -65,7 +65,7 @@ const getResourceDefaultPort = (resourceType: string) => {
 export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   props,
 ) => {
-  const { onBack, resourceType, resourceId, onFinished } = props
+  const { onBack, resourceType, resourceID, onFinished } = props
 
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
@@ -74,7 +74,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   })
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<MysqlLikeResource>
   })
 
@@ -150,7 +150,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         resourceType,
         onFinished,
         setSaving,

@@ -109,7 +109,7 @@ const MongoDbPanel: FC = () => {
       let newTypeContent: MongoDbActionTypeContent = AggregateContentInitial
       if (
         selectedAction &&
-        cachedAction.resourceId === selectedAction.resourceId &&
+        cachedAction.resourceID === selectedAction.resourceID &&
         (selectedAction.content as MongoDbAction<MongoDbActionTypeContent>)
           .actionType === value
       ) {

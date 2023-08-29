@@ -89,11 +89,11 @@ export const AirtableListRecordInitial: AirtableListRecord = {
 }
 
 export interface AirtableGetRecord {
-  recordId: string
+  recordID: string
 }
 
 export const AirtableGetRecordInitial: AirtableGetRecord = {
-  recordId: "",
+  recordID: "",
 }
 
 export interface AirtableCreateRecord {
@@ -114,30 +114,30 @@ export const AirtableUpdateMultipleRecordInitial: AirtableUpdateMultipleRecords 
   }
 
 export interface AirtableUpdateRecord {
-  recordId: string
+  recordID: string
   record: string
 }
 
 export const AirtableUpdateRecordInitial: AirtableUpdateRecord = {
-  recordId: "",
+  recordID: "",
   record: "",
 }
 
 export interface AirtableDeleteMultipleRecords {
-  recordIds: string //string[]
+  recordIDs: string //string[]
 }
 
 export const AirtableDeleteMultipleRecordInitial: AirtableDeleteMultipleRecords =
   {
-    recordIds: "",
+    recordIDs: "",
   }
 
 export interface AirtableDeleteRecord {
-  recordId: string
+  recordID: string
 }
 
 export const AirtableDeleteRecordInitial: AirtableDeleteRecord = {
-  recordId: "",
+  recordID: "",
 }
 
 export interface AirtableAction<T extends AirtableActionConfigType> {

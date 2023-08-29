@@ -20,14 +20,14 @@ import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
 export const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
   const currentResources = Resources as Resource<ResourceContent>[]
-  const resourceIdList = currentApp.actions.map((action) => action.resourceId)
+  const resourceIDList = currentApp.actions.map((action) => action.resourceID)
 
-  // get resources form resourceIdList, and generate filter
+  // get resources form resourceIDList, and generate filter
   const filterResources = currentResources.filter((resource) =>
-    resourceIdList.includes(resource.resourceId),
+    resourceIDList.includes(resource.resourceID),
   )
   const filterResourcesIdList = filterResources.map(
-    (resource) => resource.resourceId,
+    (resource) => resource.resourceID,
   )
 
   const resources = filterResources.map(
@@ -41,7 +41,7 @@ export const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
   // Add the resourceIndex attribute to actions
   const actions = currentApp.actions.map(
     ({
-      resourceId,
+      resourceID,
       displayName,
       actionType,
       transformer,
@@ -49,11 +49,11 @@ export const formatAppDataToConfig = (currentApp: CurrentAppResp) => {
       content,
       config,
     }) => {
-      const resourceIndex = resourceId
-        ? filterResourcesIdList.indexOf(resourceId)
+      const resourceIndex = resourceID
+        ? filterResourcesIdList.indexOf(resourceID)
         : -1
       return {
-        resourceId,
+        resourceID,
         displayName,
         actionType,
         transformer,

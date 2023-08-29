@@ -5,7 +5,7 @@ import {
   AI_AGENT_MODEL,
   AI_AGENT_TYPE,
   Agent,
-  MarketAiAgent,
+  MarketAIAgent,
 } from "@illa-public/market-agent/MarketAgentCard/interface"
 import { RecordEditor } from "@illa-public/record-editor"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
@@ -78,7 +78,7 @@ import {
 export const AIAgentRunMobile: FC = () => {
   const { agent, marketplaceInfo } = useAsyncValue() as {
     agent: Agent
-    marketplaceInfo: MarketAiAgent | undefined
+    marketplaceInfo: MarketAIAgent | undefined
   }
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({

@@ -17,7 +17,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 
 export const AirtableConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, onFinished, resourceId } = props
+  const { onBack, onFinished, resourceID } = props
   const { t } = useTranslation()
 
   const { control, handleSubmit, formState } = useForm({
@@ -26,7 +26,7 @@ export const AirtableConfigElement: FC<ConfigElementProps> = (props) => {
   })
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<AirtableResource>
   })
 
@@ -40,7 +40,7 @@ export const AirtableConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "airtable",
         onFinished,
         setSaving,

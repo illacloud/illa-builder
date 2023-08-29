@@ -97,10 +97,10 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
 
     const isChanged = useMemo(() => {
       return (
-        selectedAction?.actionId === action.actionId &&
+        selectedAction?.actionID === action.actionID &&
         !isEqual(selectedAction, cachedAction)
       )
-    }, [action.actionId, cachedAction, selectedAction])
+    }, [action.actionID, cachedAction, selectedAction])
 
     const [editName, setEditName] = useState(false)
     const [changing, setChanging] = useState(false)
@@ -139,7 +139,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             actionActions.updateActionDisplayNameReducer({
               newDisplayName: newName,
               oldDisplayName: action.displayName,
-              actionID: newAction.actionId,
+              actionID: newAction.actionID,
             }),
           )
           setEditName(false)
@@ -152,7 +152,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             actionActions.updateActionDisplayNameReducer({
               newDisplayName: newName,
               oldDisplayName: action.displayName,
-              actionID: newAction.actionId,
+              actionID: newAction.actionID,
             }),
           )
           setEditName(false)

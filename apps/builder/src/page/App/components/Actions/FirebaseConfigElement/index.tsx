@@ -48,7 +48,7 @@ import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
 
 export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -60,7 +60,7 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
   })
 
   const findResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   let content: FirebaseResource
@@ -98,7 +98,7 @@ export const FirebaseConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "firebase",
         onFinished,
         setSaving,

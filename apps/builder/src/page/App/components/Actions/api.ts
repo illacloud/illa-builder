@@ -36,18 +36,18 @@ const message = createMessage()
 
 export async function onCopyActionItem(action: ActionItem<ActionContent>) {
   const isGuideMode = getIsILLAGuideMode(store.getState())
-  const newAction = omit(action, ["displayName", "actionId"])
+  const newAction = omit(action, ["displayName", "actionID"])
   const displayName = DisplayNameGenerator.generateDisplayName(
     action.actionType,
   )
-  const data: Omit<ActionItem<ActionContent>, "actionId"> = {
+  const data: Omit<ActionItem<ActionContent>, "actionID"> = {
     ...newAction,
     displayName,
   }
   if (isGuideMode) {
     const createActionData: ActionItem<ActionContent> = {
       ...data,
-      actionId: v4(),
+      actionID: v4(),
     }
     store.dispatch(actionActions.addActionItemReducer(createActionData))
     message.success({
@@ -75,11 +75,11 @@ export async function onCopyActionItem(action: ActionItem<ActionContent>) {
 
 export async function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const isGuideMode = getIsILLAGuideMode(store.getState())
-  const { actionId, displayName } = action
+  const { actionID, displayName } = action
   if (isGuideMode) {
     store.dispatch(
       actionActions.removeActionItemReducer({
-        actionID: actionId,
+        actionID: actionID,
         displayName,
       }),
     )
@@ -89,10 +89,10 @@ export async function onDeleteActionItem(action: ActionItem<ActionContent>) {
     return
   }
   try {
-    await fetchDeleteAction(actionId)
+    await fetchDeleteAction(actionID)
     store.dispatch(
       actionActions.removeActionItemReducer({
-        actionID: actionId,
+        actionID: actionID,
         displayName,
       }),
     )
@@ -409,12 +409,12 @@ function getActionContentByType(data: FieldValues, type: ResourceType) {
 
 export function onActionConfigElementSubmit(
   handleSubmit: UseFormHandleSubmit<FieldValues>,
-  resourceId: string | undefined,
+  resourceID: string | undefined,
   resourceType: ResourceType,
-  finishedHandler: (resourceId: string) => void,
+  finishedHandler: (resourceID: string) => void,
   loadingHandler: (value: boolean) => void,
 ) {
-  const isUpdate = resourceId != undefined
+  const isUpdate = resourceID != undefined
 
   return handleSubmit(async (data: FieldValues) => {
     let content
@@ -427,7 +427,7 @@ export function onActionConfigElementSubmit(
       return
     }
     const requestData = {
-      ...(isUpdate && { resourceId: data.resourceId }),
+      ...(isUpdate && { resourceID: data.resourceID }),
       resourceName: data.resourceName,
       resourceType: resourceType,
       content,
@@ -436,13 +436,13 @@ export function onActionConfigElementSubmit(
 
     try {
       if (isUpdate) {
-        const response = await requestUpdateResource(resourceId, requestData)
+        const response = await requestUpdateResource(resourceID, requestData)
         store.dispatch(resourceActions.updateResourceItemReducer(response.data))
-        finishedHandler(response.data.resourceId)
+        finishedHandler(response.data.resourceID)
       } else {
         const response = await requestCreateResource(requestData)
         store.dispatch(resourceActions.addResourceItemReducer(response.data))
-        finishedHandler(response.data.resourceId)
+        finishedHandler(response.data.resourceID)
       }
       message.success({
         content: i18n.t("dashboard.resource.save_success"),
@@ -471,7 +471,7 @@ export async function onActionConfigElementTest(
 ) {
   loadingHandler(true)
   const requestBody = {
-    resourceId: data.resourceId,
+    resourceID: data.resourceID,
     resourceName: data.resourceName,
     resourceType,
     content,

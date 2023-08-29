@@ -35,14 +35,14 @@ import { validate } from "@/utils/form"
 type SnowflakeType = SnowflakeResource<SnowflakeAuthenticationType>
 
 export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   const content = (resource?.content ??
@@ -89,7 +89,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "snowflake",
         onFinished,
         setSaving,

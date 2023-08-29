@@ -2,7 +2,7 @@ import { ResourceType } from "@/redux/resource/resourceState"
 
 export interface MysqlLikeConfigElementProps {
   resourceType: ResourceType
-  resourceId?: string
+  resourceID?: string
   onBack: () => void
-  onFinished: (resourceId: string) => void
+  onFinished: (resourceID: string) => void
 }

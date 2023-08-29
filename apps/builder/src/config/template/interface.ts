@@ -22,7 +22,7 @@ export type TemplateResources = {
 }[]
 
 export type TemplateAction<T extends ActionContent> = Partial<ActionItem<T>> & {
-  // The resourceIndex here is used to replace the real resourceId later.
+  // The resourceIndex here is used to replace the real resourceID later.
   resourceIndex: number
 }
 

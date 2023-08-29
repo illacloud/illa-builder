@@ -32,7 +32,7 @@ export const createResource = async (
     },
   )
   store.dispatch(resourceActions.addResourceItemReducer(response.data))
-  return response.data.resourceId
+  return response.data.resourceID
 }
 
 export const createAction = async (
@@ -48,7 +48,7 @@ export const createAction = async (
     { teamID: getCurrentTeamID() },
   )
   store.dispatch(actionActions.addActionItemReducer(response.data))
-  return response.data.actionId
+  return response.data.actionID
 }
 
 export const forkTemplateApp = async (
@@ -68,7 +68,7 @@ export const forkTemplateApp = async (
           isEqual(item.content, data.content),
       )
 
-      return resource ? resource.resourceId : createResource(data)
+      return resource ? resource.resourceID : createResource(data)
     }),
   )
 
@@ -76,11 +76,11 @@ export const forkTemplateApp = async (
   if (resourceList.length) {
     await Promise.all(
       actions.map((data) => {
-        const { resourceIndex, resourceId: _, ...actionData } = data
-        const resourceId = resourceList[resourceIndex] || ""
+        const { resourceIndex, resourceID: _, ...actionData } = data
+        const resourceID = resourceList[resourceIndex] || ""
         return createAction(appId, {
           ...actionData,
-          resourceId,
+          resourceID,
         })
       }),
     )

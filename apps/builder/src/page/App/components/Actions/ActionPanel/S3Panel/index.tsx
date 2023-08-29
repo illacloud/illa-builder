@@ -66,7 +66,7 @@ const S3Panel: FC = () => {
   const handleActionChange = (value: S3ActionRequestType) => {
     let newCommandArgs: S3ActionTypeContent = ListAllContentInitial
     if (
-      cachedAction.resourceId === selectedAction.resourceId &&
+      cachedAction.resourceID === selectedAction.resourceID &&
       (selectedAction.content as S3Action<S3ActionTypeContent>).commands ===
         value
     ) {

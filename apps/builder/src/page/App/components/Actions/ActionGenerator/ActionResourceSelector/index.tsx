@@ -47,7 +47,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
     )
 
   const [selectedResourceId, setSelectedResourceId] = useState<string>(
-    resourceList[0]?.resourceId,
+    resourceList[0]?.resourceID,
   )
 
   const [loading, setLoading] = useState(false)
@@ -88,16 +88,16 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
         split={false}
         itemHeight={48}
         renderKey={(data) => {
-          return data.resourceId
+          return data.resourceID
         }}
         h="550px"
         renderRaw
         render={(r) => {
           return (
             <div
-              css={applyResourceItemStyle(r.resourceId === selectedResourceId)}
+              css={applyResourceItemStyle(r.resourceID === selectedResourceId)}
               onClick={() => {
-                setSelectedResourceId(r.resourceId)
+                setSelectedResourceId(r.resourceID)
               }}
             >
               <Suspense>
