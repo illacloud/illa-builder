@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "Z důvodu nedostatku licencí se operace nezdařila.",
       "failed_to_invite_no_license": "Z důvodu nedostatečné licence se některé pozvánky členů nezdařily.",
       "error_subscribe": "Nepodařilo se přihlásit. Opakujte akci později.",
-      "unsubscription_fail": "Nepodařilo se zrušit předplatné. Opakujte akci později."
+      "unsubscription_fail": "Nepodařilo se zrušit předplatné. Opakujte akci později.",
+      "failed_to_update": "Nepodařilo se aktualizovat odběr. Zkuste to prosím znovu. ",
+      "update_suc": "Předplatné úspěšně aktualizováno"
     },
     "modal": {
       "storage_insufficient_modal": {
