@@ -38,7 +38,7 @@
       "error_button": "Επανάληψη",
       "error_description": "Υπάρχει ένα πρόβλημα με τη λειτουργία σας.",
       "error_title": "Σφάλμα",
-      "marketplace": "Community",
+      "marketplace": "Κοινότητα",
       "run": "Εκτέλεση",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "Αποθήκευση",
       "start": "Έναρξη",
       "restart": "Επανεκκίνηση",
-      "contribute": "Contribute to community",
+      "contribute": "Συνεισφέρετε στην κοινότητα",
       "button": {
         "send": "Αποστολή",
         "generating": "Δημιουργία"
@@ -3247,7 +3247,7 @@
         "invite_members": "Πρόσκληση μελών",
         "invite_to_use": "Πρόσκληση για χρήση",
         "invite_to_edit": "Πρόσκληση για επεξεργασία",
-        "contribute": "Community"
+        "contribute": "Κοινότητα"
       },
       "link": {
         "invite_title": "Σύνδεσμος πρόσκλησης",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "Ο χρήστης {{userName}} σας κοινοποίησε έναν πράκτορα τεχνητής νοημοσύνης του \"{{teamName}}\". Κάντε κλικ στο σύνδεσμο για να συμμετάσχετε στην ομάδα και να δοκιμάσετε τον πράκτορα τεχνητής νοημοσύνης: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Συνεισφέρετε στην κοινότητα",
         "default_text": {
           "app": "Μόλις ανακάλυψα μια εντυπωσιακή εφαρμογή που ονομάζεται {{ appName }}. Ελέγξτε το: {{ appLink }}",
           "agent": "Μόλις ανακάλυψα ένα εντυπωσιακό AI Agent που ονομάζεται {{ agentName }}. Ελέγξτε το: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Χωρίς περιγραφή",
       "blank": "Καμία εφαρμογή",
-      "blank-agent": "No AI Agent available"
+      "blank-agent": "Κανένας πράκτορας τεχνητής νοημοσύνης εδώ"
     },
     "app_setting": {
       "app_setting": "Ρύθμιση εφαρμογής",
@@ -4003,7 +4003,7 @@
       "undeploy": "Η εφαρμογή δεν έχει αναπτυχθεί. Η πρόσβαση του κοινού και η πρόσβαση του θεατή μπορεί να αντιμετωπίσει σφάλματα. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Συνεισφέρετε στην κοινότητα"
     },
     "default-text": {
       "social-media": {
