@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "Aufgrund unzureichender Lizenzen ist der Vorgang fehlgeschlagen.",
       "failed_to_invite_no_license": "Aufgrund unzureichender Lizenzen sind einige Mitgliedereinladungen fehlgeschlagen.",
       "error_subscribe": "Abonnieren fehlgeschlagen. Bitte versuchen Sie es später erneut.",
-      "unsubscription_fail": "Abo konnte nicht storniert werden. Bitte versuchen Sie es später erneut."
+      "unsubscription_fail": "Abo konnte nicht storniert werden. Bitte versuchen Sie es später erneut.",
+      "failed_to_update": "Fehler beim Aktualisieren des Abonnements. Bitte versuchen Sie es erneut. ",
+      "update_suc": "Abonnement erfolgreich aktualisiert"
     },
     "modal": {
       "storage_insufficient_modal": {
