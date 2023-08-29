@@ -44,7 +44,6 @@
     "@illa-public/utils": "workspace:*",
     "@protobuf-ts/runtime": "^2.8.3",
     "@react-google-maps/api": "^2.18.1",
-    "@reduxjs/toolkit": "^1.9.1",
     "@rjsf/core": "^5.10.0",
     "@rjsf/utils": "^5.10.0",
     "@rjsf/validator-ajv8": "^5.10.0",
@@ -88,14 +87,11 @@
     "react-helmet-async": "^1.3.0",
     "react-hook-form": "^7.30.0",
     "react-hotkeys-hook": "^4.4.0",
-    "react-i18next": "^12.1.4",
     "react-icons": "^4.7.1",
     "react-markdown": "^8.0.3",
     "react-pdf": "^6.2.2",
     "react-player": "^2.11.2",
-    "react-redux": "^8.0.5",
     "react-rnd": "^10.3.7",
-    "react-router-dom": "^6.14.0",
     "react-selecto": "^1.22.0",
     "react-slick": "^0.29.0",
     "react-use": "^17.4.0",
@@ -134,8 +130,6 @@
     "@illa-public/upgrade-modal": "workspace:*"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.4.2",
-    "@changesets/cli": "^2.18.1",
     "@mdx-js/rollup": "^2.3.0",
     "@protobuf-ts/plugin": "^2.8.3",
     "@sentry/vite-plugin": "^2.4.0",
@@ -147,7 +141,6 @@
     "@types/jshint": "^2.12.1",
     "@types/lodash": "^4.14.191",
     "@types/mdx": "^2.0.3",
-    "@types/node": "^18.14.4",
     "@types/papaparse": "^5.3.7",
     "@types/qs": "^6.9.7",
     "@types/react-big-calendar": "^1.6.4",
@@ -171,8 +164,5 @@
     "vite-plugin-svgr": "^2.1.0",
     "eslint-config-illa": "workspace:*",
     "tsconfig": "workspace:*"
-  },
-  "engines": {
-    "pnpm": "^8"
   }
 }

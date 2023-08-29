@@ -11,7 +11,7 @@ const AIAgentCard: FC<AiAgentCardProps> = (props) => {
   const { onClickCard } = props
   return (
     <button css={aiAgentCardStyle} onClick={onClickCard}>
-      <span css={aiAgentCardTitleStyle}>AiAgent</span>
+      <span css={aiAgentCardTitleStyle}>AI Agent</span>
       <span css={betaTagStyle}>Beta</span>
       <span css={backgroundPartContainerStyle}></span>
     </button>

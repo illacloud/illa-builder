@@ -21,6 +21,11 @@
     "@emotion/react": "^11.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.4",
+    "@reduxjs/toolkit": "^1.9.1",
+    "react-i18next": "^12.1.4",
+    "i18next": "^22.4.9",
     "turbo": "1.8.3"
   },
   "devDependencies": {
@@ -30,16 +35,17 @@
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "@types/node": "^18.14.4",
     "eslint": "^8.33.0",
+    "eslint-config-illa": "workspace:*",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.1",
     "prettier": "^2.8.4",
     "typescript": "^5.0.4",
-    "vite": "^4.4.2",
-    "eslint-config-illa": "workspace:*"
+    "vite": "^4.4.9"
   },
   "engines": {
-    "pnpm": "^8"
+    "pnpm": "^8.7.0"
   },
   "pnpm": {
     "overrides": {
@@ -47,7 +53,11 @@
       "react-dom": "$react-dom",
       "@types/react": "$@types/react",
       "@types/react-dom": "$@types/react-dom",
-      "react-redux": "^8.0.5"
+      "react-redux": "$react-redux",
+      "react-router-dom": "$react-router-dom",
+      "@reduxjs/toolkit": "$@reduxjs/toolkit",
+      "react-i18next": "$react-i18next",
+      "i18next": "$i18next"
     }
   }
 }

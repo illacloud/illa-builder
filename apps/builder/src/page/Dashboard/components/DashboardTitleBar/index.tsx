@@ -160,7 +160,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
             <Logo
               onClick={() => {
                 if (isCloudVersion) {
-                  window.location.href = `//${import.meta.env.ILLA_CLOUD_URL}`
+                  window.location.href = `${import.meta.env.ILLA_CLOUD_URL}`
                 } else {
                   navigate(`./apps`)
                 }

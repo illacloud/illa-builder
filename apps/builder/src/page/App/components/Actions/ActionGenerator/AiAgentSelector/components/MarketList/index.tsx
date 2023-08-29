@@ -10,11 +10,7 @@ import { FC, useCallback, useState } from "react"
 import { FixedSizeList, ListChildComponentProps } from "react-window"
 import InfiniteLoader from "react-window-infinite-loader"
 import { forkAIAgentToTeam } from "@/services/agent"
-import {
-  AGENT_LIST_HEIGHT,
-  MARKET_AGENT_ITEM_HEIGHT,
-  MARKET_PAGE_SIZE,
-} from "../../constants"
+import { AGENT_LIST_HEIGHT, MARKET_AGENT_ITEM_HEIGHT } from "../../constants"
 import { MarketListItem } from "../MarketListItem"
 import { MarketAgentListProps } from "./interface"
 
@@ -45,12 +41,11 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
     const result = await fetchMarketAgentList(currentPage, sortBy, search)
     setCurrentPage((prev) => prev + 1)
     setIsNextPageLoading(false)
-    setHasNextPage(result.data.total === MARKET_PAGE_SIZE)
+    setHasNextPage(result.data.hasMore)
     setMarketList((prev) => prev.concat(result.data.products))
   }, [currentPage, search, sortBy])
 
   const itemCount = hasNextPage ? marketList.length + 1 : marketList.length
-  console.log("hasNextPage", hasNextPage)
 
   return (
     <InfiniteLoader
