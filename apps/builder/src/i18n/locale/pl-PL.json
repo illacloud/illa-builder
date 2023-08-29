@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "Z powodu niewystarczających licencji, operacja nie powiodła się.",
       "failed_to_invite_no_license": "Z powodu niewystarczającej licencji, niektóre zaproszenia użytkowników nie powiodły się.",
       "error_subscribe": "Subskrypcja nie powiodła się. Spróbuj ponownie później.",
-      "unsubscription_fail": "Nie udało się anulować subskrypcji. Spróbuj ponownie później."
+      "unsubscription_fail": "Nie udało się anulować subskrypcji. Spróbuj ponownie później.",
+      "failed_to_update": "Nie udało się zaktualizować subskrypcji. Spróbuj ponownie. ",
+      "update_suc": "Subskrypcja zaktualizowana pomyślnie"
     },
     "modal": {
       "storage_insufficient_modal": {
