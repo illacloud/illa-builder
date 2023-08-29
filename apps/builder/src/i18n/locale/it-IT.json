@@ -2606,7 +2606,7 @@
       "save": "Salva",
       "start": "Inizia",
       "restart": "Riavvia",
-      "contribute": "Contribuisci al mercato",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Invia",
         "generating": "Generazione"
@@ -3247,7 +3247,7 @@
         "invite_members": "Invita membri",
         "invite_to_use": "Invita da usare",
         "invite_to_edit": "Invita a modificare",
-        "contribute": "Marketplace"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Link di invito",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} ti ha condiviso un agente AI di <unk>{{teamName}}<unk> . Clicca il link per unirti alla squadra e prova l'agente AI: {{inviteLink}}",
       "contribute": {
-        "label": "Contribuisci al mercato",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Ho appena scoperto un'app impressionante chiamata {{ appName }}. Controlla: {{ appLink }}",
           "agent": "Ho appena scoperto un agente AI impressionante chiamato {{ agentName }}. Controllalo: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Nessuna descrizione",
       "blank": "Nessuna applicazione",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "Impostazioni app",
@@ -4003,7 +4003,7 @@
       "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
     },
     "label": {
-      "contribute": "Contribuisci al mercato"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
