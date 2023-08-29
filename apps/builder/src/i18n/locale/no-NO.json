@@ -38,7 +38,7 @@
       "error_button": "Prøv igjen",
       "error_description": "Det er et problem med operasjonen din.",
       "error_title": "Feil",
-      "marketplace": "Community",
+      "marketplace": "Fellesskap",
       "run": "Kjør",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "Lagre",
       "start": "Begynn",
       "restart": "Omstart",
-      "contribute": "Contribute to community",
+      "contribute": "Bidra til samfunnet",
       "button": {
         "send": "Sende",
         "generating": "Genererer"
@@ -3247,7 +3247,7 @@
         "invite_members": "Inviter medlemmer",
         "invite_to_use": "Inviter til bruk",
         "invite_to_edit": "Inviter til å redigere",
-        "contribute": "Community"
+        "contribute": "Fellesskap"
       },
       "link": {
         "invite_title": "Inviter lenke",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} delte deg en AI agent:{{teamName}}ε. Klikk på lenken for å bli med i laget og prøv AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Bidra til samfunnet",
         "default_text": {
           "app": "Jeg oppdaget en imponerende app som heter {{ appName }}. Sjekk den: {{ appLink }}",
           "agent": "Jeg oppdaget nettopp en imponerende AI Agent kalt {{ agentName }}. Sjekk det: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Ingen beskrivelse",
       "blank": "Ingen programmer",
-      "blank-agent": "No AI Agent available"
+      "blank-agent": "Ingen AI-Agent her"
     },
     "app_setting": {
       "app_setting": "Innstillinger for app",
@@ -4003,7 +4003,7 @@
       "undeploy": "Appen er ikke distribuert. Offentlig tilgang og seer vil kunne oppleve feil. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Bidra til samfunnet"
     },
     "default-text": {
       "social-media": {
