@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}Go utilisé (total {{total}}Go) ",
         "Traffic": "{{used}}Go utilisé (total {{total}}Go) ",
         "colla": "{{used}} Colla utilisé (total de {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Jeton"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} Go",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} Go",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} Go",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Se désabonner",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "Les frais seront automatiquement déduits en fonction du nombre de sièges mis à jour et du prix du nouveau cycle de facturation à partir de la prochaine période. Cette fois-ci, nous déduirons le paiement des sièges accrus en fonction du cycle de facturation en cours. Règles de calcul de l'augmentation des sièges en utilisant un abonnement mensuel comme exemple : Examinons un scénario où vous vous êtes initialement abonné à 5 sièges à partir du 14 mars, et le cycle de facturation s'étend du 14e de ce mois au 13e du mois prochain. Le 10 mai, vous décidez d'ajouter 1 siège supplémentaire. À ce moment-là, il restait 4 jours jusqu'à la fin du cycle courant le 13 mai (ce qui totalise 30 jours entre le 14 avril et le 13 mai). Pour calculer le paiement rajusté, nous déduirons le coût de 1 siège, qui s'élève à environ 10 $, proportionnellement à la durée de 4 jours au cours du cycle de 30 jours. Par conséquent, la déduction est estimée à 1 siège * 10 $ / 30 jours * 4 jours, ce qui se traduit par environ 1,33 $. À partir du prochain cycle de facturation, tous les frais de siège seront consolidés et payés ensemble. Si vous souhaitez réduire les sièges ou apporter d'autres modifications à l'abonnement, veuillez le mettre à jour avant le début de la période suivante. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_remove_license": "Les frais seront automatiquement déduits en fonction du nombre de sièges mis à jour et du prix du nouveau cycle de facturation à partir de la prochaine période. Si le nombre d'utilisateurs ayant des autorisations d'édition dépasse le nombre de places au début du prochain cycle de facturation, tous les utilisateurs, sauf le propriétaire, seront désactivés jusqu'à ce que vous supprimiez des membres ou augmentiez le nombre de sièges dans la fourchette disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>",
         "update_plan_remove_storage": "Les frais seront automatiquement déduits en fonction de la mise à jour du stockage et du prix du nouveau cycle de facturation à partir de la prochaine période. Si la capacité de stockage occupée par vos fichiers dépasse la capacité de stockage souscrite au début du prochain cycle de facturation, Tous les fichiers seront désactivés jusqu'à ce que vous supprimiez des fichiers ou augmentiez la capacité de stockage dans la plage disponible. Pour plus d'informations, veuillez consulter notre <0>Politique de confidentialité</0> et nos <1>Conditions d'utilisation</1>"
+      },
+      "colla_redeem": {
+        "title": "Avec {{changeNum}} Colla, vous pouvez acheter : ",
+        "storage": "Stockage",
+        "traffic": "Trafic",
+        "token": "Jeton"
       }
     },
     "message": {
