@@ -3594,16 +3594,16 @@
     "apps": {
       "components": "Alla komponenter",
       "resources": "Alla resurser",
-      "plugins": "Obegränsat antal plugins",
+      "plugins": "Obegränsade plugins(Kommer snart)",
       "sql": "AI SQL Generation",
       "watermark": "Ta bort vattenstämpel"
     },
     "security": {
-      "historic-7": "Historisk version håller & återställning i 7 dagar",
-      "historic-30": "Historisk version hålla & återhämtning i 30 dagar",
-      "develop-environment": "Utveckla miljö",
+      "historic-7": "Historisk version hålla & återhämtning i 7 dagar (Kommer snart)",
+      "historic-30": "Behåll distribuerade versioner och återställ (Kommer snart)",
+      "develop-environment": "Flermiljö(Kommer snart)",
       "app-public": "Publik app",
-      "restore-data": "Säkerhetskopiera och återställ",
+      "restore-data": "Säkerhetskopiera redigera historik och återställ",
       "deployed": "Åtkomst till ILLA Support",
       "dedicated": "Dedikerad Lösningar ingenjör"
     },
@@ -3612,7 +3612,7 @@
       "sql": "Skriv in naturligt språk och generera SQL-sats",
       "staging": "Testa din app mot en mellanlagring miljö",
       "app-public": "Gör appen publik och vem som helst med länken kan komma åt den",
-      "restore-data": "Säkerhetskopiera eller återställa data när du vill",
+      "restore-data": "Säkerhetskopiera eller återställa historik när du vill",
       "deployed": "Utplacerade ingenjörer kan hjälpa dig ombord snabbare",
       "dedicated": "Dedikerad kundlösningsingenjör via Slack/e-post/telefon",
       "preview_insufficient": "Filen kan inte förhandsgranskas på grund av otillräcklig kapacitet, vänligen utöka kapaciteten först."
@@ -3645,19 +3645,24 @@
     "free-members": "Endast en medlem för personligt bruk",
     "unlimited-viewer": "GRATIS för obegränsat antal tittare",
     "unlimited-members": "Obegränsat antal medlemmar",
-    "free-btn": "Bygg appar gratis",
-    "plus-btn": "Prova gratisversionen",
+    "free-btn": "Nuvarande plan",
+    "plus-btn": "Uppgradera",
     "enterprise-btn": "Kontakta oss",
     "menu": {
       "billing": "Fakturering",
-      "license": "Licens",
+      "license": "Sittplats",
       "drive": "Enhet",
+      "colla": "Korsa",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Colla transaktionshistorik",
       "billing_portal": "Faktureringsportal"
     },
     "title": {
       "billing": "Fakturering",
-      "license": "Licens",
-      "drive": "Enhet"
+      "license": "Sittplats",
+      "drive": "Enhet",
+      "colla": "Korsa",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3666,7 +3671,8 @@
       },
       "sub_cycle": {
         "yearly": "Årligen",
-        "monthly": "Månadsvis"
+        "monthly": "Månadsvis",
+        "lifetime": "Livstid"
       },
       "billing_cyle": {
         "year": "/ År",
@@ -3675,9 +3681,10 @@
       "table_title": {
         "next_payment_date": "Nästa betalningsdatum",
         "expiration_date": "Förfallodatum",
-        "licenses": "Licenser",
+        "licenses": "Sittplatser",
         "storage": "Lagring",
-        "traffic": "Trafik"
+        "traffic": "Trafik",
+        "colla": "Korsa"
       },
       "period": {
         "current": "Nuvarande",
@@ -3686,36 +3693,57 @@
     },
     "subscription_card": {
       "title": {
-        "License": "Licens",
+        "License": "Sittplatser",
         "Storage": "Lagring",
         "Traffic": "Trafik",
-        "balance": "Saldo"
+        "balance": "Saldo",
+        "colla": "Korsa"
       },
       "button": {
-        "License": "Hantera licenser",
+        "License": "Hantera säten",
         "Storage": "Hantera lagring",
-        "Traffic": "Expandera trafik"
+        "Traffic": "Expandera trafik",
+        "colla": "Hantera Colla"
       },
       "capacity": {
-        "License": "{{used}} (totalt {{total}} licenser) har använts.",
-        "Storage": "{{used}} (totalt {{total}} GB) har använts.",
-        "Traffic": "{{used}} (totalt {{total}} GB) har använts."
+        "License": "{{used}} använt (totalt {{total}} platser) ",
+        "Storage": "{{used}}GB använt (totalt {{total}}GB) ",
+        "Traffic": "{{used}}GB använt (totalt {{total}}GB) ",
+        "colla": "{{used}} Colla används (totalt {{total}} Colla)"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "Månad",
+        "event": "Händelse",
+        "usage": "Colla användning"
+      },
+      "event": {
+        "increase_storage": "Öka lagringsutrymmet",
+        "increase_colla": "Öka Colla",
+        "increase_traffic": "Öka trafiken"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "Hantera lagring",
-        "manage_licenses": "Hantera licenser",
-        "expand_traffic_capac": "Utöka trafikkapaciteten"
+        "manage_licenses": "Hantera säten",
+        "expand_traffic_capac": "Utöka trafikkapaciteten",
+        "colla": "Hantera Colla"
       },
       "plan_label": {
-        "License": "Licenser",
+        "License": "Sittplatser",
         "Storage": "Lagring",
-        "Traffic": "Trafik"
+        "Traffic": "Trafik",
+        "colla": "Korsa"
       },
       "plan_number_input_label": {
-        "License": "Licenser",
-        "Storage_traffic": "GB"
+        "License": "Sittplatser",
+        "Storage_traffic": "5 GB",
+        "colla": "Korsa"
       },
       "select_option": {
         "Yearly": "Årligen",
@@ -3739,14 +3767,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} licenser × {{remainDays}} dagar / {{totalDays}} dagar",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenser",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenser",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenser × {{remainDays}} dagar / {{totalDays}} dagar",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenser",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenser",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenser",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenser",
+        "this_period": "{{unitPrice}} × {{licenseNum}} platser × {{remainDays}} dagar / {{totalDays}} dagar",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} platser",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} platser",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} platser × {{remainDays}} dagar / {{totalDays}} dagar",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} platser",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} platser",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} platser",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} platser",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dagar / {{totalDays}} dagar",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3754,7 +3782,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{storageNum}} Colla"
       },
       "button": {
         "unsubscribe": "Avprenumerera",
@@ -3762,21 +3791,23 @@
         "change_plan": "Ändra plan",
         "storage_traffic_increase": "Öka {{changeNum}} GB",
         "storage_traffic_remove": "Ta bort {{changeNum}} GB",
-        "license_increase": "Öka {{changeNum}} licenser",
-        "license_remove": "Ta bort {{changeNum}} licenser"
+        "license_increase": "Öka {{changeNum}} platser",
+        "license_remove": "Ta bort {{changeNum}} platser",
+        "colla_increase": "Öka {{changeNum}} Colla",
+        "colla_remove": "Ta bort {{changeNum}} Colla"
       },
       "description_title": {
         "add_storage": "Du kommer att lägga till {{changeNum}} GB lagring. När vi har bekräftat detta kommer vi omedelbart att dra av betalningen för den nya lagringen för denna faktureringscykel. <0>Läs mer</0>",
         "remove_storage": "Du kommer att ta bort {{changeNum}} GB lagring. När du har bekräftat kommer ändringarna att träda i kraft under nästa faktureringscykel. <0>Läs mer</0>",
         "update_plan_year": "Du kommer att uppdatera till en årlig betalningsplan. När ändringen har bekräftats kommer den att träda i kraft från början av nästa faktureringscykel. <0>Läs mer</0>",
         "update_plan_monthly": "Du kommer att uppdatera till en månatlig betalningsplan. När ändringen har bekräftats kommer den att träda i kraft från början av nästa faktureringscykel. <0>Läs mer</0>",
-        "add_license": "Du kommer att lägga till {{changeNum}} licenser. När bekräftat kommer vi omedelbart att dra av betalningen för de nya licenserna för denna faktureringscykel. <0>Läs mer</0>",
-        "remove_license": "Du kommer att ta bort {{changeNum}} licenser. När du har bekräftat kommer ändringarna att träda i kraft under nästa faktureringscykel. <0>Läs mer</0>",
+        "add_license": "Du kommer att lägga till {{changeNum}} platser. När vi har bekräftat kommer vi omedelbart att dra av betalningen för de nya platserna för denna faktureringscykel. <0>Läs mer</0>",
+        "remove_license": "Du kommer att ta bort {{changeNum}} platser. När ändringarna har bekräftats kommer de att träda i kraft under nästa faktureringscykel. <0>Läs mer</0>",
         "add_traffic": "Du kommer att lägga till {{changeNum}}GB trafik. När vi har bekräftat kommer vi att dra av kostnaden för den extra trafiken omedelbart. <0>Läs mer</0>",
         "subscribe_storage": "Du kommer att prenumerera på ILLA Cloud Plus. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalcykel. <0>Läs mer</0>",
         "subscribe_license": "Du kommer att prenumerera på ILLA Drive. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalcykel. <0>Läs mer</0>",
-        "update_plan_increase_license": "Du kommer att lägga till {{changeNum}} licenser och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
-        "update_plan_remove_license": "Du kommer att ta bort {{changeNum}} licenser och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
+        "update_plan_increase_license": "Du kommer att lägga till {{changeNum}} platser och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
+        "update_plan_remove_license": "Du kommer att ta bort {{changeNum}} platser och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
         "update_plan_increase_storage": "Du kommer att lägga till {{changeNum}} GB lagring och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
         "update_plan_remove_storage": "Du kommer att ta bort {{changeNum}} GB lagring och uppdatera din prenumerationsperiod. <0>Läs mer</0>",
         "unsubscribe_license": "Du kommer att avregistrera dig från ILLA Cloud Plus. Efter avbokning, från och med nästa faktureringscykel, kommer Plus-funktionerna inte längre vara tillgängliga. <0>Läs mer</0>",
@@ -3784,20 +3815,24 @@
         "subscribe_license_monthly": "Du kommer att prenumerera på månadsabonnemanget ILLA Cloud Plus. <0>Läs mer</0>",
         "subscribe_license_yearly": "Du kommer att prenumerera på ILLA Cloud Plus årsavgift. <0>Läs mer</0>",
         "subscribe_storage_monthly": "Du kommer att lägga till {{changeNum}}GB lagring. När vi har bekräftat kommer vi att dra av kostnaden för lagringen omedelbart. <0>Läs mer</0>",
-        "subscribe_storage_yearly": "Du kommer att lägga till {{changeNum}}GB lagring. När vi har bekräftat kommer vi att dra av kostnaden för lagringen omedelbart. <0>Läs mer</0>"
+        "subscribe_storage_yearly": "Du kommer att lägga till {{changeNum}}GB lagring. När vi har bekräftat kommer vi att dra av kostnaden för lagringen omedelbart. <0>Läs mer</0>",
+        "colla_sub": "Du kommer att prenumerera på Colla. När bekräftats, kommer vi automatiskt dra av avgifterna i början av varje faktureringscykel och uppgradera din prenumeration automatiskt när du behöver mer Colla. <0>Läs mer</0>",
+        "colla_increase": "Du kommer att lägga till {{changeNum}} Colla. När vi har bekräftat detta kommer vi omedelbart att dra av det återstående beloppet för denna faktureringscykel. <0>Läs mer</0>",
+        "colla_remove": "Du kommer att ta bort {{changeNum}} Colla. När du har bekräftat detta kommer det att träda i kraft från nästa faktureringscykel. <0>Läs mer</0>",
+        "colla_unsubscribe": "Du kommer att avbryta ditt Colla abonnemang. När bekräftas, kommer det att träda i kraft från nästa faktureringscykel. Observera att du efter avbokning kan få problem med din ILLA Drive och AI Agent användning. <0>Läs mer</0>",
+        "colla_update": "Du kommer att ändra ditt Colla-abonnemang. När ändringarna har bekräftats kommer de att träda i kraft från nästa faktureringscykel. <0>Läs mer</0>"
       },
       "description": {
-        "add_storage": "Beräkningsregler med hjälp av en månatlig lagringsprenumeration som exempel: Låt oss överväga ett scenario där du ursprungligen prenumererade på 5 GB från och med den 14 mars, och faktureringscykeln spänner från den 14 i denna månad till den 13 i nästa månad. Den 10 maj bestämmer du dig för att lägga till 1 GB. Vid det tillfället, det fanns 4 dagar kvar till slutet av den nuvarande cykeln den 13 maj (totalt 30 dagar från 14 april till 13 maj). För att beräkna den justerade betalningen, kommer vi att dra av kostnaden för 1 GB, vilket uppgår till cirka $ 0. 9, proportionellt till varaktigheten av 4 dagar inom 30-dagars cykel. Därför beräknas avdraget som 1 licens * $0. 9 / 30 dagar * 4 dagar, vilket resulterar i cirka 0,132 dollar. Från och med nästa faktureringscykel kommer alla lagringsavgifter att konsolideras och betalas tillsammans. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår användare <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "remove_storage": "Om lagringskapaciteten i dina filer överskrider den prenumererade lagringskapaciteten i början av nästa faktureringscykel alla filer kommer att inaktiveras tills du tar bort filer eller ökar lagringskapaciteten inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
-        "update_plan_year": "Från och med nästa period, kommer abonnemanget att ändras till en årlig abonnemang, och avgifterna dras automatiskt av baserat på den årliga abonnemangspriset. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
-        "update_plan_monthly": "Från och med nästa period, kommer abonnemanget att ändras till ett månadsabonnemang, och avgifterna dras automatiskt av baserat på den månatliga prenumerationspriset. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
-        "remove_license": "Om antalet användare med redigeringsbehörighet överstiger antalet licenser i början av nästa faktureringscykel alla användare utom ägaren kommer att inaktiveras tills du tar bort medlemmar eller öka antalet licenser inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+        "update_plan_year": "Från och med nästa period, kommer abonnemanget att ändras till en årlig abonnemang, och avgifterna dras automatiskt av baserat på den årliga abonnemangspriset. Om du vill minska antalet platser eller göra andra ändringar i abonnemanget, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+        "update_plan_monthly": "Från och med nästa period, kommer abonnemanget att ändras till ett månadsabonnemang, och avgifterna dras automatiskt av baserat på den månatliga prenumerationspriset. Om du vill minska antalet platser eller göra andra ändringar i abonnemanget, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+        "add_license": "Beräkningsregler med hjälp av en månatlig platsprenumeration som ett exempel: Låt oss överväga ett scenario där du initialt prenumererade på 5 platser från och med 14 mars, och faktureringscykeln spänner från den 14 i denna månad till den 13 i nästa månad. Den 10 maj bestämmer du dig för att lägga till 1 extra platser. Vid det tillfället, det fanns 4 dagar kvar till slutet av den nuvarande cykeln den 13 maj (totalt 30 dagar från 14 april till 13 maj). För att beräkna den justerade betalningen kommer vi att dra av kostnaden för 1 plats, vilket uppgår till cirka $10, i proportion till varaktigheten av 4 dagar inom 30-dagars cykel. Därför är avdraget uppskattas till 1 plats * $10 / 30 dagar * 4 dagar, vilket resulterar i cirka $1,33. Från och med nästa faktureringscykel kommer alla sätesavgifter att konsolideras och betalas tillsammans. Om du vill minska antalet platser eller göra andra ändringar i abonnemanget, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+        "remove_license": "Om antalet användare med redigeringsbehörighet överskrider antalet platser i början av nästa faktureringscykel alla användare utom ägaren kommer att inaktiveras tills du tar bort medlemmar eller öka antalet platser inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "add_traffic": "Efter lyckad avdrag, din trafik kommer att öka i realtid. När trafiken används kan avgifterna inte återbetalas. Oanvänd trafik kan återbetalas i enheter av GB. Till exempel, om du köper 10 GB trafik och använder 4,5 GB, kan du ansöka om återbetalning på 5 GB. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "subscribe_storage_yearly": "Du kommer att prenumerera på den årliga prenumerationen av ILLA Drive lagring. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalningscykel. Det faktiska beloppet som dras av beror på hur mycket lagringskapacitet du har prenumererat i GB. Till exempel, om du börjar ditt första abonnemang den 25 februari 2023, med en årlig abonnemangsavgift på $9. per GB, och du har totalt 3 GB, kommer vi att dra av $ 29. den 25 februari 2023. Om du lägger till 2 GB den 25 mars 2023, kommer vi först dra av resterande 11 månaders betalning den 25 mars 2023. Sedan, den 25 februari, 2024, kommer vi att dra av betalningen för 5 GB, vilket är (2+3)*$9.9=$49. . Om du vill minska lagringsutrymmet eller göra andra ändringar i abonnemanget, vänligen uppdatera det innan början av nästa period. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
-        "subscribe_storage_monthly": "Du kommer att prenumerera på den månatliga prenumerationen av ILLA Drive lagring. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalningscykel. Det faktiska beloppet som dras av beror på hur mycket lagringskapacitet du har prenumererat i GB. Till exempel, om du börjar din första prenumeration den 25 februari 2023, med en månadsavgift på $0. 9 per GB, och du har totalt 3 GB, kommer vi att dra av $ 2. 7 den 25 februari 2023. Om du lägger till ytterligare 2 licenser den 21 mars 2023, kommer vi först att dra av de återstående 5 dagarnas betalning den 21 mars 2023. Sedan, den 25 mars 2023, kommer vi att dra av betalningen för 5 licenser, vilket är (2+3)*$0. 9 = $ 4,95. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan början av nästa period. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
-        "subscribe_license_monthly": "Du kommer att prenumerera på den månatliga prenumerationen på ILLA Cloud Plus. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalningscykel. Det faktiska beloppet som dras av beror på hur många licenser du har. Till exempel, om du börjar din första prenumeration den 25 februari 2023, med en månadsavgift på $12 per licens, och du har totalt 3 licenser, vi kommer att dra av $36 den 25 februari 2023. Om du lägger till ytterligare 2 licenser den 21 mars 2023, kommer vi först att dra av de återstående 5 dagarnas betalning den 21 mars 2023. Sedan, den 25 mars 2023, kommer vi att dra av betalningen för 5 licenser, vilket är (2+3)*$12=$60. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
-        "update_plan_remove_license": "Avgifterna dras automatiskt av baserat på det uppdaterade antalet licenser och prissättningen av ny faktureringscykel från nästa period. Om antalet användare med redigeringsbehörighet överstiger antalet licenser i början av nästa faktureringscykel alla användare utom ägaren kommer att inaktiveras tills du tar bort medlemmar eller öka antalet licenser inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
-        "update_plan_increase_storage": "Avgifterna dras automatiskt av baserat på den uppdaterade lagringen och prissättningen av ny faktureringscykel från nästa period. Den här gången kommer vi att dra av betalningen för den ökade lagringen enligt nuvarande faktureringscykel. Beräkningsregler med hjälp av en månatlig lagringsprenumeration som exempel: Låt oss överväga ett scenario där du ursprungligen prenumererade på 5 GB från och med den 14 mars, och faktureringscykeln spänner från den 14 i denna månad till den 13 i nästa månad. Den 10 maj bestämmer du dig för att lägga till 1 GB. Vid det tillfället, det fanns 4 dagar kvar till slutet av den nuvarande cykeln den 13 maj (totalt 30 dagar från 14 april till 13 maj). För att beräkna den justerade betalningen, kommer vi att dra av kostnaden för 1 GB, vilket uppgår till cirka $ 0. 9, proportionellt mot varaktigheten av 4 dagar inom 30-dagars cykel. Därför är avdraget uppskattas till 1 licens * $0,99 / 30 dagar * 4 dagar, vilket resulterar i cirka $0,132. Från och med nästa faktureringscykel kommer alla lagringsavgifter att konsolideras och betalas tillsammans. Om du vill minska licenser eller göra andra ändringar i prenumerationen, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+        "subscribe_license_monthly": "Du kommer att prenumerera på den månatliga prenumerationen på ILLA Cloud Plus. Vi kommer automatiskt att dra av avgifterna från ditt konto i början av varje betalningscykel. Det faktiska beloppet som dras av beror på hur många platser du har. Till exempel, om du börjar din första prenumeration den 25 februari 2023, med en månadsavgift på $12 per plats, och du har totalt 3 platser, vi kommer att dra av $ 36 den 25 februari 2023. Om du lägger till ytterligare 2 platser den 21 mars 2023, kommer vi först att dra av resterande 5 dagars betalning den 21 mars 2023. Sedan, den 25 mars 2023, kommer vi att dra av betalningen för 5 platser, vilket är (2+3)*$12=$60. Om du vill minska antalet platser eller göra andra ändringar i abonnemanget, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+        "update_plan_increase_license": "Avgifterna dras automatiskt av baserat på det uppdaterade antalet platser och prissättningen av ny faktureringscykel från nästa period. Den här gången kommer vi att dra av betalningen för de ökade platserna enligt den nuvarande faktureringscykeln. Beräkningsregler för att öka antalet platser med hjälp av en månatlig platsprenumeration som ett exempel: Låt oss överväga ett scenario där du initialt prenumererade på 5 platser från och med den 14 mars, och faktureringscykeln spänner från den 14 i denna månad till den 13 i nästa månad. Den 10 maj bestämmer du dig för att lägga till 1 extra plats. Vid det tillfället, det fanns 4 dagar kvar till slutet av den nuvarande cykeln den 13 maj (totalt 30 dagar från 14 april till 13 maj). För att beräkna den justerade betalningen kommer vi att dra av kostnaden för 1 plats, vilket uppgår till cirka $10, i proportion till varaktigheten av 4 dagar inom 30-dagars cykel. Därför är avdraget uppskattas till 1 plats * $10 / 30 dagar * 4 dagar, vilket resulterar i cirka $1,33. Från och med nästa faktureringscykel kommer alla sätesavgifter att konsolideras och betalas tillsammans. Om du vill minska antalet platser eller göra andra ändringar i abonnemanget, vänligen uppdatera det innan nästa period börjar. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
+        "update_plan_remove_license": "Avgifterna dras automatiskt av baserat på det uppdaterade antalet platser och prissättningen av ny faktureringscykel från nästa period. Om antalet användare med redigeringsbehörighet överskrider antalet platser i början av nästa faktureringscykel alla användare utom ägaren kommer att inaktiveras tills du tar bort medlemmar eller öka antalet platser inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>",
         "update_plan_remove_storage": "Avgifterna dras automatiskt av baserat på den uppdaterade lagringen och prissättningen av ny faktureringscykel från nästa period. Om lagringskapaciteten i dina filer överskrider den prenumererade lagringskapaciteten i början av nästa faktureringscykel alla filer kommer att inaktiveras tills du tar bort filer eller ökar lagringskapaciteten inom det tillgängliga intervallet. För mer information, se vår <0>Integritetspolicy</0> och <1>Användarvillkor</1>"
       }
     },
@@ -3806,8 +3841,8 @@
       "failed_to_add_traffic": "Det gick inte att lägga till trafik. Försök igen. ",
       "failed_to_add_storage": "Det gick inte att lägga till lagringsutrymme. Försök igen. ",
       "failed_to_remove_storage": "Det gick inte att ta bort lagringen. Försök igen. ",
-      "failed_to_add_licens": "Det gick inte att lägga till licenser. Försök igen. ",
-      "failed_to_remove_lic": "Det gick inte att ta bort licenser. Försök igen. ",
+      "failed_to_add_licens": "Det gick inte att lägga till platser. Försök igen. ",
+      "failed_to_remove_lic": "Det gick inte att ta bort platser. Försök igen. ",
       "failed_to_change_pla": "Det gick inte att ändra plan. Försök igen. ",
       "failed_to_unsubscrib": "Det gick inte att avsluta prenumerationen. Försök igen. ",
       "successfully_removed": "Lyckad borttagning. Ändringen kommer att träda i kraft från {{nextPaymentDate}}.",
@@ -3817,15 +3852,17 @@
       "successfully_changed": "Prenumerationen har ändrats. Den kommer att träda i kraft om några minuter",
       "failed_to_change": "Ändring av prenumeration misslyckades",
       "unsubscription_suc": "Prenumerationen har avslutats framgångsrikt och kommer att träda i kraft från nästa period",
-      "failed_to_join_no_license": "Det gick inte att gå med eftersom teamlicenser är otillräckliga, kontakta administratören.",
+      "failed_to_join_no_license": "Det gick inte att gå med på grund av otillräckliga platser ",
       "storage_insufficient_modal": "Lagring eller trafik i detta team är inte tillräckligt. Kontakta administratören.",
       "appsumo": {
+        "suc": "Framgångsrikt inlöst",
+        "fail": "Det gick inte att lösa in. Försök igen senare.",
         "transfer": "Drift misslyckades. Denna användare är bunden till livstids prenumeration. ",
         "leave": "Drift misslyckades. Denna användare är bunden till livstids prenumeration. "
       },
       "no_license_operate_failed": "På grund av otillräckliga licenser misslyckades åtgärden.",
       "failed_to_invite_no_license": "På grund av otillräcklig licensiering har vissa medlemsinbjudningar misslyckats.",
-      "error_subscribe": "Det gick inte att ändra plan. Försök igen senare.",
+      "error_subscribe": "Det gick inte att prenumerera. Försök igen senare.",
       "unsubscription_fail": "Det gick inte att avbryta prenumerationen. Försök igen senare."
     },
     "modal": {
@@ -3837,7 +3874,7 @@
         "not_owner_description_drive": "Lagring eller trafik i detta team är inte tillräckligt. Kontakta administratören.",
         "not_owner_button_drive": "Jag fattar",
         "out_title_drive": "Det gick inte att ladda ner",
-        "out_description_drive": "Det gick inte att ladda ner, kontakta filägaren",
+        "out_description_drive": "På grund av otillräcklig trafik misslyckades nedladdningen. Kontakta filägaren",
         "out_button_drive": "Jag fattar"
       },
       "sub_suc": {
@@ -3845,7 +3882,7 @@
         "you_can_now_invite_m": "Det kommer att träda i kraft om några minuter. Du kan bjuda in medlemmar och börja använda avancerade funktioner senare. Gå vidare och ge det ett försök!",
         "you_can_now_upload_m": "Det kommer att träda i kraft om några minuter. Du kan nu ladda upp fler filer.",
         "payment_successful": "Betalning slutförd",
-        "we_have_added_the_li": "Det kommer att träda i kraft om några minuter. Vi har lagt till licenserna för dig. Eventuella ändringar i prenumerationsperioden kommer att träda i kraft från nästa faktureringscykel.",
+        "we_have_added_the_li": "Det kommer att träda i kraft om några minuter. Vi har lagt till platserna för dig. Eventuella ändringar i prenumerationsperioden kommer att träda i kraft från nästa faktureringscykel.",
         "we_have_added_the_st": "Det kommer att träda i kraft om några minuter. Vi har lagt till förvaringen för dig. Eventuella ändringar i prenumerationsperioden kommer att träda i kraft från nästa faktureringscykel.",
         "we_have_added_the_tr": "Det kommer att träda i kraft om några minuter. Vi kommer att lägga till trafiken åt dig senare. Du kan nu ladda ner fler filer.",
         "successfully_updated": "Uppdaterades framgångsrikt",
@@ -3861,24 +3898,27 @@
         "audit_logs": "Granskningsloggar",
         "learn_more": "Läs mer",
         "upgrade": "Uppgradera",
-        "insufficient_license_title": "Otillräckliga licenser",
-        "insufficient_license_description": "För att bjuda in fler redaktörer, vänligen öka licenserna först. Alla medlemmar i ditt team kunde använda funktionerna för ILLA Cloud Plus. Den specifika åtkomsten till varje funktion beror på vilken roll varje medlem har. ",
-        "insufficient_license_button": "Lägg till licenser",
+        "insufficient_license_title": "Otillräckligt antal platser",
+        "insufficient_license_description": "För att bjuda in fler redaktörer, vänligen öka platserna först. Alla medlemmar i ditt team kunde använda funktionerna för ILLA Cloud Plus. Den specifika åtkomsten till varje funktion beror på vilken roll varje medlem har. ",
+        "insufficient_license_button": "Lägg till säten",
         "pricing": "/redaktör/månad, årligt"
       },
       "expired": {
         "owner": "Din prenumeration har löpt ut. För att fortsätta använda, vänligen förnya den.",
         "others": "Ditt konto har inaktiverats eftersom teamets prenumeration har löpt ut.",
-        "your_subscription_ha_not_owner": "Inte tillräckligt med licenser",
+        "your_subscription_ha_not_owner": "Undantag för prenumeration",
         "all_members_except_f_not_owner": "Ditt team har inte tillräckligt med licenser. Kontakta din teamägare.",
-        "upgrade_not_owner": "Jag fattar"
+        "upgrade_not_owner": "Jag fattar",
+        "your_subscription_ha": "Prenumerationen har löpt ut",
+        "all_members_except_f": "Ditt lags abonnemang har löpt ut. Förnya det i tid",
+        "upgrade": "Uppgradera"
       },
       "blank_page": {
-        "insufficient_license_disable": "Ditt konto har inaktiverats på grund av otillräckliga laglicenser. Kontakta teamägaren för hjälp."
+        "insufficient_license_disable": "Ditt konto har inaktiverats på grund av otillräckliga lagplatser. Kontakta teamets ägare för hjälp."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Otillräckliga licenser",
-        "insufficient_license_description": "För att bjuda in fler redaktörer, vänligen anslut din administratör för att öka licenserna först.",
+        "insufficient_license_title": "Otillräckligt antal platser",
+        "insufficient_license_description": "På grund av otillräckliga platser misslyckades åtgärden. Kontakta teamets ägare.",
         "insufficient_license_button": "Ok"
       },
       "storage_insufficient": {
@@ -3888,16 +3928,16 @@
         "not_owner_title": "Otillräcklig lagringskapacitet",
         "not_owner_description": "För att lagra filer normalt, kontakta din administratör för att öka lagringskapaciteten i tid.",
         "not_owner_button": "Ok",
-        "owner_pricing": "GB/månadsvis"
+        "owner_pricing": "5 GB/månadsvis"
       },
       "traffic_insufficient": {
         "owner_title": "Otillräcklig trafikkapacitet",
         "owner_description": "För att komma åt filer normalt, vänligen öka trafikkapaciteten i tid. ",
         "owner_button": "Öka kapaciteten",
-        "not_owner_title": "Otillräcklig lagringskapacitet",
+        "not_owner_title": "Otillräcklig trafik",
         "not_owner_description": "För att komma åt filer normalt, kontakta din administratör för att öka trafikkapaciteten i tid.",
         "not_owner_button": "Ok",
-        "owner_pricing": "GB/månadsvis"
+        "owner_pricing": "5 GB"
       },
       "cancel_confirm": {
         "description": "Efter avbokning kommer ditt team att återgå till den fria planen från och med nästa faktureringscykel. De funktioner som ingår i prenumerationsplanerna kommer inte längre att vara tillgängliga.",
@@ -3910,21 +3950,6 @@
         "title": "Ändra plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekräfta"
-      },
-      "ai-agent": {
-        "string1": "GPT-4 är för Premium-teamet. ",
-        "string2": "För att använda det, vänligen uppgradera till Premium. Genom att uppgradera till Premium, kommer du också att ha tillgång till följande funktioner. "
-      },
-      "upgrade_now_not_admin": {
-        "upgrade_title": "Funktion för Premium-team",
-        "upgrade_title billing": {
-          "modal": {
-            "upgrade_now_not_admin": {
-              "upgrade_desc": "Den här funktionen är för premiumteamen. Kontakta teamets administratörer för att uppgradera. "
-            }
-          }
-        },
-        "upgrade_button": "Ok"
       }
     },
     "homepage": {
@@ -3932,18 +3957,65 @@
       "upgrade": "Uppgradera",
       "cancel": "Avbryt"
     },
-    "advanced": {
-      "feature": "Ta bort vattenstämpel"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "Är du säker på att du vill lösa in AppSumo i {{teamName}} team? ",
+        "cancel": "Avbryt",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "Välj ett team att lösa in",
+          "create_button": "Skapa nytt team",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "Skapa konto"
+      },
+      "update": "Uppdatera AppSumo plan"
+    },
+    "alert": {
+      "expired": {
+        "owner": "Otillräcklig plats eller utgången prenumeration, vänligen uppgradera i tid. ",
+        "others": "På grund av otillräcklig plats har du inaktiverats. Kontakta teamets ägare"
+      }
+    },
+    "yearly_discount": "(spara nästan 16,7%)",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/månad",
+      "yearly": "{{ price }}/editor/år"
     },
     "redirect_page": {
+      "title": "Betalning slutförd",
       "desc1": "Tack för ditt köp. ILLA Cloud kommer att fortsätta att förse dig med fler funktioner.",
       "desc2": "Omdirigerar till ILLA Cloud om {{time}} sekunder...",
-      "title": "Betalning slutförd",
       "button": "Tillbaka till ILLA Cloud"
     },
     "redirect_to_stripe": "Omdirigerar till Stripe",
-    "appsumo": {
-      "update": "Uppdatera AppSumo plan"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "100 MB lagringsutrymme per månad för att lagra filer i ILLA Drive",
+          "traffic": "100 MB trafik för att ladda ner filer från ILLA Drive"
+        }
+      },
+      "drive": {
+        "title": "ILLA enhet",
+        "storage": "5 GB lagringsutrymme per månad för att lagra filer i ILLA Drive",
+        "traffic": "5 GB trafik för att ladda ner filer från ILLA Drive"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "Anpassat lagringsutrymme per månad för att lagra filer på ILLA Drive",
+          "traffic": "Anpassad trafik för att ladda ner filer från ILLA Drive"
+        }
+      }
     }
   },
   "network": {
