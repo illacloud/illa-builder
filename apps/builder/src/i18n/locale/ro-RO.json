@@ -38,7 +38,7 @@
       "error_button": "Reîncercați",
       "error_description": "Există o problemă cu operația dvs.",
       "error_title": "Eroare",
-      "marketplace": "Community",
+      "marketplace": "Comunitate",
       "run": "Rulează",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "Salvează",
       "start": "Pornire",
       "restart": "Repornire",
-      "contribute": "Contribute to community",
+      "contribute": "Contribuie la comunitate",
       "button": {
         "send": "Trimite",
         "generating": "Generare"
@@ -3247,7 +3247,7 @@
         "invite_members": "Invită membri",
         "invite_to_use": "Invită să utilizezi",
         "invite_to_edit": "Invită să editezi",
-        "contribute": "Community"
+        "contribute": "Comunitate"
       },
       "link": {
         "invite_title": "Link de invitație",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} ți-a distribuit un AI Agent la <unk>{{teamName}}order. Faceți clic pe link pentru a vă alătura echipei și încercați AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Contribuie la comunitate",
         "default_text": {
           "app": "Tocmai am descoperit o aplicație impresionantă numită {{ appName }}. Verificați: {{ appLink }}",
           "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}. Verificați: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Nici o descriere",
       "blank": "Nicio cerere",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "Niciun agent AI aici"
     },
     "app_setting": {
       "app_setting": "Setare aplicație",
@@ -4003,7 +4003,7 @@
       "undeploy": "Aplicația nu a fost implementată. Accesul public și accesul la vizualizator pot întâmpina erori. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Contribuie la comunitate"
     },
     "default-text": {
       "social-media": {
