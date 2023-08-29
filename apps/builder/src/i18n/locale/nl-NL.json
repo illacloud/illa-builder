@@ -2606,7 +2606,7 @@
       "save": "Opslaan",
       "start": "Beginnen",
       "restart": "Herstarten",
-      "contribute": "Draag bij aan de marktplaats",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Verzenden",
         "generating": "Genereren"
@@ -3247,7 +3247,7 @@
         "invite_members": "Nodig leden uit",
         "invite_to_use": "Uitnodigen om te gebruiken",
         "invite_to_edit": "Uitnodigen om te bewerken",
-        "contribute": "Marktplaats"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Uitnodigings link",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Draag bij aan de marktplaats",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Ik heb net een indrukwekkende app ontdekt genaamd {{ appName }}. Bekijk het: {{ appLink }}",
           "agent": "Ik heb net een indrukwekkende AI Agent genaamd {{ agentName }}ontdekt. Controleer het: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Geen beschrijving",
       "blank": "Geen toepassing",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "App instelling",
@@ -4003,7 +4003,7 @@
       "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
     },
     "label": {
-      "contribute": "Draag bij aan de marktplaats"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
