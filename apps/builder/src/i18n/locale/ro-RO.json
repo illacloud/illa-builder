@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB utilizat (total de {{total}}GB) ",
         "Traffic": "{{used}}GB utilizat (total de {{total}}GB) ",
         "colla": "{{used}} Colla utilizată (total de {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Dezabonare",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "Taxele vor fi deduse automat din perioada următoare, pe baza numărului actualizat de locuri și a stabilirii prețurilor pentru noul ciclu de facturare. De data aceasta, vom deduce plata pentru locurile mărite, în conformitate cu actualul ciclu de facturare. Regulile de calcul pentru creşterea numărului de locuri folosind ca exemplu un abonament lunar al scaunului: Să luăm în considerare un scenariu în care v-aţi abonat iniţial la 5 locuri începând cu 14 martie; şi ciclul de facturare se întinde de la data de 14 a acestei luni la data de 13 a lunii următoare. Pe 10 mai decideţi să adăugaţi încă un loc. În acel moment, au rămas 4 zile până la sfârşitul ciclului actual în 13 mai (care totalizează 30 de zile din 14 aprilie până în 13 mai). Pentru a calcula plata ajustată, vom deduce costul de 1 loc, care se ridică la aproximativ 10 dolari, proporţional cu durata de 4 zile a ciclului de 30 de zile. Prin urmare, deducerea este estimată la 1 scaun* $10 / 30 de zile * 4 zile, rezultând în aproximativ 1,33 $. Începând cu următorul ciclu de facturare, toate taxele de sediu vor fi consolidate și achitate împreună. Dacă doriţi să reduceţi locurile sau să faceţi alte modificări la abonament, vă rugăm să-l actualizaţi înainte de începerea perioadei următoare. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_remove_license": "Taxele vor fi deduse automat din perioada următoare, pe baza numărului actualizat de locuri și a stabilirii prețurilor pentru noul ciclu de facturare. Dacă numărul de utilizatori cu permisiuni de editare depășește numărul de locuri la începutul următorului ciclu de facturare, toţi utilizatorii cu excepţia proprietarului vor fi dezactivaţi până când eliminaţi membrii sau creşteţi numărul de locuri din intervalul disponibil. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>",
         "update_plan_remove_storage": "Taxele vor fi deduse automat din perioada următoare pe baza stocării actualizate și a stabilirii prețurilor pentru noul ciclu de facturare. În cazul în care capacitatea de stocare ocupată de fișierele dvs. depășește capacitatea de stocare abonată la începutul următorului ciclu de facturare, Toate fişierele vor fi dezactivate până când ştergeţi fişiere sau creşteţi capacitatea de stocare în intervalul disponibil. Pentru mai multe informații, vă rugăm să consultați <0>Politica de confidențialitate</0> și <1>Termenii de utilizare</1>"
+      },
+      "colla_redeem": {
+        "title": "Cu {{changeNum}} Colla, puteți cumpăra: ",
+        "storage": "Depozitare",
+        "traffic": "Trafic",
+        "token": "Token"
       }
     },
     "message": {
