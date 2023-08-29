@@ -38,7 +38,7 @@
       "error_button": "Försök igen",
       "error_description": "Det finns ett problem med din operation.",
       "error_title": "Fel",
-      "marketplace": "Community",
+      "marketplace": "Gemenskap",
       "run": "Kör",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "Spara",
       "start": "Starta",
       "restart": "Starta om",
-      "contribute": "Contribute to community",
+      "contribute": "Bidra till gemenskap",
       "button": {
         "send": "Skicka",
         "generating": "Genererar"
@@ -3247,7 +3247,7 @@
         "invite_members": "Bjud in medlemmar",
         "invite_to_use": "Bjud in att använda",
         "invite_to_edit": "Bjud in att redigera",
-        "contribute": "Community"
+        "contribute": "Gemenskap"
       },
       "link": {
         "invite_title": "Bjud in länk",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} delade dig en AI-agent från <unk>{{teamName}}<unk> . Klicka på länken för att gå med i teamet och prova AI-agenten: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Bidra till gemenskap",
         "default_text": {
           "app": "Jag upptäckte just en imponerande app som heter {{ appName }}. Kontrollera det: {{ appLink }}",
           "agent": "Jag upptäckte precis en imponerande AI-agent som heter {{ agentName }}. Kontrollera det: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Ingen beskrivning",
       "blank": "Ingen applikation",
-      "blank-agent": "No AI Agent available"
+      "blank-agent": "Ingen AI-agent här"
     },
     "app_setting": {
       "app_setting": "Appens inställning",
@@ -4003,7 +4003,7 @@
       "undeploy": "Appen har inte installerats. Publik åtkomst och läsaråtkomst kan stöta på fel. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Bidra till gemenskap"
     },
     "default-text": {
       "social-media": {
