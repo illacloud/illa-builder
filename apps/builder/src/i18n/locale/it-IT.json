@@ -2606,7 +2606,7 @@
       "save": "Salva",
       "start": "Inizia",
       "restart": "Riavvia",
-      "contribute": "Contribute to community",
+      "contribute": "Contribuisci alla comunità",
       "button": {
         "send": "Invia",
         "generating": "Generazione"
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} ti ha condiviso un agente AI di <unk>{{teamName}}<unk> . Clicca il link per unirti alla squadra e prova l'agente AI: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Contribuisci alla comunità",
         "default_text": {
           "app": "Ho appena scoperto un'app impressionante chiamata {{ appName }}. Controlla: {{ appLink }}",
           "agent": "Ho appena scoperto un agente AI impressionante chiamato {{ agentName }}. Controllalo: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Nessuna descrizione",
       "blank": "Nessuna applicazione",
-      "blank-agent": "No AI Agent available"
+      "blank-agent": "Nessun agente AI qui"
     },
     "app_setting": {
       "app_setting": "Impostazioni app",
@@ -4003,7 +4003,7 @@
       "undeploy": "L'app non è stata distribuita. L'accesso pubblico e l'accesso al visualizzatore potrebbero incontrare errori. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Contribuisci alla comunità"
     },
     "default-text": {
       "social-media": {
