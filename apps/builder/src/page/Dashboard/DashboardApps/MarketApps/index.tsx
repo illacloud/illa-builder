@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
 import { Loading, LoadingIcon, useMessage } from "@illa-design/react"
 import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
+import { getAuthToken } from "@/utils/auth"
 import {
   cardListContainerStyle,
   cardListStyle,
@@ -110,7 +111,9 @@ export const MarketApps: FC = () => {
         {marketApps.map((product) => (
           <MarketAppCard
             onClick={() => {
-              window.open(getMarketLinkTemplate(product.app.appID), "_blank")
+              const newUrl = new URL(getMarketLinkTemplate(product.app.appID))
+              newUrl.searchParams.set("token", getAuthToken())
+              window.open(newUrl, "_blank")
             }}
             key={product.app.appID}
             app={product.app}
