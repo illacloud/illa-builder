@@ -4,9 +4,11 @@ import {
   MARKET_AGENT_SORTED_OPTIONS,
   fetchMarketAgentList,
 } from "@illa-public/market-agent/service"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSearchParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { Loading, LoadingIcon, useMessage } from "@illa-design/react"
 import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
 import {
@@ -20,10 +22,14 @@ export const MarketAgents = () => {
   const { t } = useTranslation()
   const message = useMessage()
 
+  const navigate = useNavigate()
+
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
+
   const [searchParams] = useSearchParams()
 
   const fetching = useRef<boolean>()
-  const page = useRef<number>(0)
+  const page = useRef<number>(1)
   const [hasMore, setHasMore] = useState<boolean>(false)
 
   const [marketAgentList, setMarketAgentList] = useState<MarketAiAgent[]>([])
@@ -102,6 +108,11 @@ export const MarketAgents = () => {
       <div css={cardListStyle}>
         {marketAgentList.map((agent) => (
           <MarketAgentCard
+            onClick={() => {
+              navigate(
+                `/${teamInfo.identifier}/ai-agent/${agent.aiAgent.aiAgentID}`,
+              )
+            }}
             key={agent.aiAgent.aiAgentID}
             marketAIAgent={agent}
           />
