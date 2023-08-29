@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "En raison de licences insuffisantes, l'opération a échoué.",
       "failed_to_invite_no_license": "En raison de licences insuffisantes, certaines invitations de membres ont échoué.",
       "error_subscribe": "Impossible de s'abonner. Veuillez réessayer plus tard.",
-      "unsubscription_fail": "Impossible d'annuler l'abonnement. Veuillez réessayer plus tard."
+      "unsubscription_fail": "Impossible d'annuler l'abonnement. Veuillez réessayer plus tard.",
+      "failed_to_update": "Impossible de mettre à jour l'abonnement. Veuillez réessayer. ",
+      "update_suc": "Abonnement mis à jour avec succès"
     },
     "modal": {
       "storage_insufficient_modal": {
