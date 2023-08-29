@@ -28,30 +28,6 @@ export const fetchTeamAgent = (signal?: AbortSignal) => {
   )
 }
 
-// Search AI Agent By Keywords
-export const fetchTeamAgentByKeywords = (
-  keywords: string,
-  signal?: AbortSignal,
-) => {
-  return agentRequest<TeamAgentListData>(
-    {
-      url: `/aiAgent/list/sortBy/updatedAt/like/keywords/${keywords}`,
-      method: "GET",
-      signal,
-    },
-    {
-      teamID: getCurrentTeamID(),
-    },
-  )
-}
-
-export const fetchTeamAgentList = (keywords?: string, signal?: AbortSignal) => {
-  if (keywords) {
-    return fetchTeamAgentByKeywords(keywords, signal)
-  }
-  return fetchTeamAgent(signal)
-}
-
 export const fetchTeamAgentListByPage = (
   page: number,
   keywords: string = "",

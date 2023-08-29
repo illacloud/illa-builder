@@ -52,7 +52,7 @@ export const AiAgentSelector: FC<ActionResourceSelectorProps> = (props) => {
       (v: string) => {
         setSearchKeywords(v)
       },
-      1000,
+      160,
       { leading: false },
     ),
   )

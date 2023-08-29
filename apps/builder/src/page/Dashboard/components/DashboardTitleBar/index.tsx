@@ -159,7 +159,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
       (params: URLSearchParams) => {
         setSearchParams(params)
       },
-      1000,
+      160,
       { leading: false },
     ),
   )

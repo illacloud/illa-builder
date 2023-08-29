@@ -35,18 +35,31 @@ export const MarketApps: FC = () => {
   const keywords = searchParams.get("keywords") ?? ""
 
   useEffect(() => {
+    const controller = new AbortController()
     setUpdateLoading(true)
-    fetchAppList({
-      page: 1,
-      limit: 40,
-      sortedBy: sort as PRODUCT_SORT_BY,
-      search: keywords,
-    })
+    fetchAppList(
+      {
+        page: 1,
+        limit: 40,
+        sortedBy: sort as PRODUCT_SORT_BY,
+        search: keywords,
+      },
+      controller.signal,
+    )
       .then((res) => {
         setMarketApps(res.data.products)
+        setUpdateLoading(false)
         return res.data
       })
-      .finally(() => setUpdateLoading(false))
+      .catch((err) => {
+        if (err.message === "canceled") {
+          return
+        }
+        setUpdateLoading(false)
+      })
+    return () => {
+      controller.abort()
+    }
   }, [keywords, sort])
 
   return updateLoading ? (

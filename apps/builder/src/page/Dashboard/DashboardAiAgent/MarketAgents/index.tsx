@@ -36,14 +36,24 @@ export const MarketAgents = () => {
   const [updateLoading, setUpdateLoading] = useState<boolean>(true)
 
   useEffect(() => {
+    const controller = new AbortController()
     setUpdateLoading(true)
-    fetchMarketAgentList(1, sort, keywords, 40)
+    fetchMarketAgentList(1, sort, keywords, 40, controller.signal)
       .then((res) => {
         setMarketAgentList(res.data.products)
         setHasMore(res.data.hasMore)
+        setUpdateLoading(false)
         return res.data
       })
-      .finally(() => setUpdateLoading(false))
+      .catch((err) => {
+        if (err.message === "canceled") {
+          return
+        }
+        setUpdateLoading(false)
+      })
+    return () => {
+      controller.abort()
+    }
   }, [keywords, sort])
 
   return updateLoading ? (
