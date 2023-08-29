@@ -2606,7 +2606,7 @@
       "save": "Zapisz",
       "start": "Rozpocznij",
       "restart": "Uruchom ponownie",
-      "contribute": "Przyczyń się do marketplace",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Wyślij",
         "generating": "Generowanie"
@@ -3247,7 +3247,7 @@
         "invite_members": "Zaproś członków",
         "invite_to_use": "Zaproś do użycia",
         "invite_to_edit": "Zaproś do edycji",
-        "contribute": "Sklep"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Link zaproszenia",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} podzielił się z tobą Agentem AI z <unk>{{teamName}}. Kliknij na link, aby dołączyć do zespołu i wypróbuj Agenta AI: {{inviteLink}}",
       "contribute": {
-        "label": "Przyczyń się do marketplace",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Właśnie odkryłem imponującą aplikację o nazwie {{ appName }}. Sprawdź to: {{ appLink }}",
           "agent": "Właśnie odkryłem imponującego agenta AI o nazwie {{ agentName }}. Sprawdź to: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Brak opisu",
       "blank": "Brak aplikacji",
-      "blank-agent": "No AI Agent"
+      "blank-agent": "No AI Agent available"
     },
     "app_setting": {
       "app_setting": "Ustawienia aplikacji",
@@ -4003,7 +4003,7 @@
       "undeploy": "Aplikacja nie została wdrożona. Publiczny dostęp i dostęp do przeglądarki mogą napotkać błędy. "
     },
     "label": {
-      "contribute": "Przyczyń się do marketplace"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
