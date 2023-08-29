@@ -3872,7 +3872,9 @@
       "no_license_operate_failed": "På grund av otillräckliga licenser misslyckades åtgärden.",
       "failed_to_invite_no_license": "På grund av otillräcklig licensiering har vissa medlemsinbjudningar misslyckats.",
       "error_subscribe": "Det gick inte att prenumerera. Försök igen senare.",
-      "unsubscription_fail": "Det gick inte att avbryta prenumerationen. Försök igen senare."
+      "unsubscription_fail": "Det gick inte att avbryta prenumerationen. Försök igen senare.",
+      "failed_to_update": "Det gick inte att uppdatera prenumerationen. Försök igen. ",
+      "update_suc": "Prenumerationen har uppdaterats"
     },
     "modal": {
       "storage_insufficient_modal": {
