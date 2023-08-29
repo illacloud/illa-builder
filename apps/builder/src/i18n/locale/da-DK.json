@@ -38,7 +38,7 @@
       "error_button": "Forsøg igen",
       "error_description": "Der er et problem med din drift.",
       "error_title": "Fejl",
-      "marketplace": "Community",
+      "marketplace": "Fællesskab",
       "run": "Kør",
       "fork": "Fork"
     },
@@ -2606,7 +2606,7 @@
       "save": "Gem",
       "start": "Start",
       "restart": "Genstart",
-      "contribute": "Contribute to community",
+      "contribute": "Bidrag til fællesskab",
       "button": {
         "send": "Send",
         "generating": "Genererer"
@@ -3247,7 +3247,7 @@
         "invite_members": "Inviter medlemmer",
         "invite_to_use": "Inviter til brug",
         "invite_to_edit": "Inviter til at redigere",
-        "contribute": "Community"
+        "contribute": "Fællesskab"
       },
       "link": {
         "invite_title": "Invitér link",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} har delt dig en AI Agent of ¤{{teamName}}- Klik på linket for at deltage i teamet og prøv AI Agent: {{inviteLink}}",
       "contribute": {
-        "label": "Contribute to community",
+        "label": "Bidrag til fællesskab",
         "default_text": {
           "app": "Jeg har lige opdaget en imponerende app kaldet {{ appName }}. Tjek den: {{ appLink }}",
           "agent": "Jeg har lige opdaget en imponerende AI Agent kaldet {{ agentName }}. Tjek det: {{ agentLink }}"
@@ -3957,7 +3957,7 @@
     "desc": {
       "no_description": "Ingen beskrivelse",
       "blank": "Ingen applikation",
-      "blank-agent": "No AI Agent available"
+      "blank-agent": "Ingen AI Agent her"
     },
     "app_setting": {
       "app_setting": "App indstilling",
@@ -4003,7 +4003,7 @@
       "undeploy": "Appen er ikke blevet implementeret. Offentlig adgang og fremviseradgang kan støde på fejl. "
     },
     "label": {
-      "contribute": "Contribute to community"
+      "contribute": "Bidrag til fællesskab"
     },
     "default-text": {
       "social-media": {
