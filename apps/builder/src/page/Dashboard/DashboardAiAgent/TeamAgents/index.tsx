@@ -18,7 +18,7 @@ export const TeamAgents: FC = () => {
 
   const dispatch = useDispatch()
 
-  const [updateLoading, setUpdateLoading] = useState<boolean>(false)
+  const [updateLoading, setUpdateLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const controller = new AbortController()
