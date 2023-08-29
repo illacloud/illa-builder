@@ -3594,16 +3594,16 @@
     "apps": {
       "components": "Всі компоненти",
       "resources": "Усі ресурси",
-      "plugins": "Необмежена кількість плагінів",
+      "plugins": "Unlimited plugins(Coming soon)",
       "sql": "Генерація AI SQL",
       "watermark": "Видалити водяний знак"
     },
     "security": {
-      "historic-7": "Збережіть та продовжуйте рекавері на 7 днів",
-      "historic-30": "Збережіть та продовжуйте рекавері на 30 днів",
-      "develop-environment": "Розвиток навколишнього середовища",
+      "historic-7": "Historic version keep & recovery for 7 days(Coming soon)",
+      "historic-30": "Keep deployed versions & revert(Coming soon)",
+      "develop-environment": "Multi-environment(Coming soon)",
       "app-public": "Публічний додаток",
-      "restore-data": "Резервне копіювання і відновлення",
+      "restore-data": "Backup edit history & restore",
       "deployed": "Доступ до підтримки ILLA",
       "dedicated": "Виділений інженер рішень"
     },
@@ -3612,7 +3612,7 @@
       "sql": "Введіть природну мову та генеруйте SQL-оператор",
       "staging": "Перевірте вашу програму в постановці середовища",
       "app-public": "Зробити програму загальнодоступною і будь-хто, хто має до неї посилання",
-      "restore-data": "Резервне копіювання або відновлення даних у будь-який час",
+      "restore-data": "Backup or restore history at any time you want",
       "deployed": "Розгорнуті інженери можуть допомогти вам на борту швидше",
       "dedicated": "Виділений спеціаліст з пошуку клієнтів за допомогою Slack/email/телефону",
       "preview_insufficient": "Файл не може попередньо переглянути через недостатню ємність, будь ласка, спочатку розширте місткість."
@@ -3645,19 +3645,24 @@
     "free-members": "Тільки 1 учасник для особистого використання",
     "unlimited-viewer": "БЕЗКОШТОВНА для необмеженої кількості глядачів",
     "unlimited-members": "Учасники без обмежень",
-    "free-btn": "Створити застосунки безкоштовно",
-    "plus-btn": "Спробуйте безкоштовну версію",
+    "free-btn": "Current plan",
+    "plus-btn": "Upgrade",
     "enterprise-btn": "Зв'язатися з нами",
     "menu": {
       "billing": "Біллінг",
-      "license": "Ліцензія",
+      "license": "Seat",
       "drive": "Драйв",
+      "colla": "Colla",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Colla transaction history",
       "billing_portal": "Розрахунковий портал"
     },
     "title": {
       "billing": "Біллінг",
-      "license": "Ліцензія",
-      "drive": "Драйв"
+      "license": "Seat",
+      "drive": "Драйв",
+      "colla": "Colla",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3666,7 +3671,8 @@
       },
       "sub_cycle": {
         "yearly": "За рік",
-        "monthly": "Щомісячно"
+        "monthly": "Щомісячно",
+        "lifetime": "Lifetime"
       },
       "billing_cyle": {
         "year": "/ Рік",
@@ -3675,9 +3681,10 @@
       "table_title": {
         "next_payment_date": "Дата наступного платежу",
         "expiration_date": "Дійсний до",
-        "licenses": "Ліцензії",
+        "licenses": "Seats",
         "storage": "Сховище",
-        "traffic": "Трафік"
+        "traffic": "Трафік",
+        "colla": "Colla"
       },
       "period": {
         "current": "Поточна версія",
@@ -3686,36 +3693,57 @@
     },
     "subscription_card": {
       "title": {
-        "License": "Ліцензія",
+        "License": "Seats",
         "Storage": "Сховище",
         "Traffic": "Трафік",
-        "balance": "Баланс"
+        "balance": "Баланс",
+        "colla": "Colla"
       },
       "button": {
-        "License": "Керувати ліцензіями",
+        "License": "Manage seats",
         "Storage": "Керування сховищем даних",
-        "Traffic": "Розгорнути трафік"
+        "Traffic": "Розгорнути трафік",
+        "colla": "Manage Colla"
       },
       "capacity": {
-        "License": "{{used}} (всього ( {{total}} ліцензій) було використано.",
-        "Storage": "{{used}} (загалом {{total}} ГБ) використано.",
-        "Traffic": "{{used}} (загалом {{total}} ГБ) використано."
+        "License": "{{used}} used (total of {{total}} seats) ",
+        "Storage": "{{used}}GB used (total of {{total}}GB) ",
+        "Traffic": "{{used}}GB used (total of {{total}}GB) ",
+        "colla": "{{used}} Colla used (total of {{total}} Colla)"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "Month",
+        "event": "Event",
+        "usage": "Colla usage"
+      },
+      "event": {
+        "increase_storage": "Increase storage",
+        "increase_colla": "Increase Colla",
+        "increase_traffic": "Increase traffic"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "Керування сховищем даних",
-        "manage_licenses": "Керувати ліцензіями",
-        "expand_traffic_capac": "Збільшений трафік"
+        "manage_licenses": "Manage seats",
+        "expand_traffic_capac": "Збільшений трафік",
+        "colla": "Manage Colla"
       },
       "plan_label": {
-        "License": "Ліцензії",
+        "License": "Seats",
         "Storage": "Сховище",
-        "Traffic": "Трафік"
+        "Traffic": "Трафік",
+        "colla": "Colla"
       },
       "plan_number_input_label": {
-        "License": "Ліцензії",
-        "Storage_traffic": "ГБ"
+        "License": "Seats",
+        "Storage_traffic": "5GB",
+        "colla": "Colla"
       },
       "select_option": {
         "Yearly": "За рік",
@@ -3739,14 +3767,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} ГБ"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} ліцензії × {{remainDays}} днів / {{totalDays}} днів",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} ліцензій",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} ліцензій",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} ліцензії × {{remainDays}} днів / {{totalDays}} днів",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} ліцензій",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} ліцензій",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} ліцензій",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} ліцензій",
+        "this_period": "{{unitPrice}} × {{licenseNum}} seats × {{remainDays}} days / {{totalDays}} days",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} seats",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} seats",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} seats × {{remainDays}} days / {{totalDays}} days",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} seats",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} seats",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} seats",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} seats",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} Гб × {{remainDays}} днів / {{totalDays}} днів",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} ГБ",
@@ -3754,7 +3782,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} ГБ",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} ГБ",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} ГБ",
+        "colla": "{{unitPrice}} × {{storageNum}} Colla"
       },
       "button": {
         "unsubscribe": "Відмовитися від підписки",
@@ -3762,21 +3791,23 @@
         "change_plan": "Змінити план",
         "storage_traffic_increase": "Збільшення на {{changeNum}} ГБ",
         "storage_traffic_remove": "Видалити {{changeNum}} ГБ",
-        "license_increase": "Збільшити {{changeNum}} ліцензій",
-        "license_remove": "Видалити {{changeNum}} ліцензій"
+        "license_increase": "Increase {{changeNum}} seats",
+        "license_remove": "Remove {{changeNum}} seats",
+        "colla_increase": "Increase {{changeNum}} Colla",
+        "colla_remove": "Remove {{changeNum}} Colla"
       },
       "description_title": {
         "add_storage": "Ви збираєтеся додати {{changeNum}} ГБ сховища. Після підтвердження ми негайно віднімемо платіж за нове сховище для цього циклу оплати. <0>Дізнатися більше</0>",
         "remove_storage": "Ви збираєтеся видалити сховище {{changeNum}} GB даних. Після підтвердження зміни набудуть чинності в наступному платіжному циклі. <0>Дізнатися більше</0>",
         "update_plan_year": "Ви збираєтесь оновитися до щорічного платіжного плану. Після підтвердження, зміна набуде чинності від початку наступного циклу виставлення рахунків. <0>Дізнатися більше</0>",
         "update_plan_monthly": "Ви збираєтесь оновитися до місячного плану оплати. Після підтвердження, зміна набуде чинності від початку наступного циклу виставлення рахунків. <0>Дізнатися більше</0>",
-        "add_license": "Ви збираєтеся додати {{changeNum}} ліцензій. Після підтвердження ми негайно віднімемо оплату за нові ліцензії для цього платіжного циклу оплати. <0>Дізнатися більше</0>",
-        "remove_license": "Ви збираєтеся видалити ліцензії {{changeNum}} . Після підтвердження зміни набудуть чинності в наступному платіжному циклі. <0>Дізнатися більше</0>",
+        "add_license": "You are going to add {{changeNum}} seats. Once confirmed, we will immediately deduct the payment for the new seats for this billing cycle. <0>Learn more</0>",
+        "remove_license": "You are going to remove {{changeNum}} seats. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
         "add_traffic": "Ви збираєтеся додати трафік в {{changeNum}}GB. Після підтвердження ми віднімемо вартість додаткового трафіку негайно. <0>Дізнатися більше</0>",
         "subscribe_storage": "Ви підписалися на ILLA Cloud Plus. Ми автоматично віднімемо комісію з вашого рахунку на початку кожного циклу платежів. <0>Дізнатися більше</0>",
         "subscribe_license": "Ви будете підписані на ILLA Диск. Ми автоматично віднімемо комісію з вашого рахунку на початку кожного циклу платежів. <0>Дізнатися більше</0>",
-        "update_plan_increase_license": "Ви збираєтеся додати {{changeNum}} ліцензій та оновити період підписки. <0>Дізнатися більше</0>",
-        "update_plan_remove_license": "Ви збираєтеся видалити {{changeNum}} ліцензій та оновити період підписки. <0>Дізнатися більше</0>",
+        "update_plan_increase_license": "You are going to add {{changeNum}} seats and update your subscription period. <0>Learn more</0>",
+        "update_plan_remove_license": "You are going to remove {{changeNum}} seats and update your subscription period. <0>Learn more</0>",
         "update_plan_increase_storage": "Ви збираєтеся додати {{changeNum}} ГБ сховища та оновити період підписки. <0>Дізнатися більше</0>",
         "update_plan_remove_storage": "Ви збираєтеся видалити {{changeNum}} ГБ сховища та оновити період підписки. <0>Дізнатися більше</0>",
         "unsubscribe_license": "Ви відпишете ILLA Cloud Plus. Після скасування починаючи з наступного платіжного циклу, функції плюс більше не будуть доступними. <0>Дізнатися більше</0>",
@@ -3784,20 +3815,24 @@
         "subscribe_license_monthly": "Ви збираєтеся підписатись на підписку ILLA Cloud Plus. <0>Дізнатися більше</0>",
         "subscribe_license_yearly": "Ви збираєтеся підписатися на підписку ILLA Plus щорічно. <0>Дізнатися більше</0>",
         "subscribe_storage_monthly": "Ви збираєтеся додати сховище {{changeNum}}GB даних. Після підтвердження ми віднімемо вартість сховища негайно. <0>Дізнатися більше</0>",
-        "subscribe_storage_yearly": "Ви збираєтеся додати сховище {{changeNum}}GB даних. Після підтвердження ми віднімемо вартість сховища негайно. <0>Дізнатися більше</0>"
+        "subscribe_storage_yearly": "Ви збираєтеся додати сховище {{changeNum}}GB даних. Після підтвердження ми віднімемо вартість сховища негайно. <0>Дізнатися більше</0>",
+        "colla_sub": "You are going to subscribe to Colla. Once confirmed, we will automatically deduct the fees at the beginning of each billing cycle and upgrade your subscription automatically when you require more Colla. <0>Learn more</0>",
+        "colla_increase": "You are going to add {{changeNum}} Colla. Once confirmed, we will immediately deduct the remaining amount due for this billing cycle. <0>Learn more</0>",
+        "colla_remove": "You are going to remove {{changeNum}} Colla. Once confirmed, it will take effect from the next billing cycle. <0>Learn more</0>",
+        "colla_unsubscribe": "You are going to cancel your Colla subscription. Once confirmed, it will take effect from the next billing cycle. Please note that after cancellation, you may experience issues with your ILLA Drive and AI Agent usage. <0>Learn more</0>",
+        "colla_update": "You are going to modify your Colla subscription. Once confirmed, the changes will take effect from the next billing cycle. <0>Learn more</0>"
       },
       "description": {
-        "add_storage": "Правила розрахунків, використовуючи щомісячну підписку на зберігання як приклад: Розглянемо сценарій, де ви спочатку підписалися на 5 ГБ, починаючи з 14 березня, і цикл оплати розгортається з 14-го числа цього місяця до 13-го наступного місяця. 10 травня ви вирішили додати 1 ГБ. В цій точці, було ще 4 дні до кінця поточного циклу 13 травня (що складає 30 днів з 14 квітня до 13 травня). Щоб розрахувати регульований платіж, ми відраховуємо вартість 1 ГБ, що становить приблизно $ 0. 9, пропорційна до тривалості 4 днів протягом 30-денного циклу. Тому, відрахування оцінюється як 1 ліцензія * $0. 9 / 30 днів * 4 дні, що в результаті вийшло приблизно 0,132. Починаючи з наступного платіжного циклу, всі збір за зберігання буде консолідуватися і сплачуватися разом. Якщо ви хочете зменшити ліцензії або внести інші зміни до підписки, будь ласка, поновіть їх до початку наступного періоду. Для отримання додаткової інформації, будь ласка, зверніться до нашого користувача <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
         "remove_storage": "Якщо ємність зберігання, що зайняте вашими файлами, перевищує обсяг сховища на початку наступного платіжного циклу, всі файли будуть недоступні, поки ви не видалите файли або не збільшите ємність пам'яті в доступному діапазоні. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
-        "update_plan_year": "Починаючи з наступного періоду, підписка буде змінена на річну передплату, і внески будуть автоматично зняті на основі щорічного ціноутворення підписки. Якщо ви хочете зменшити ліцензії або внести інші зміни до підписки, будь ласка, поновіть їх до початку наступного періоду. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
-        "update_plan_monthly": "Починаючи з наступного періоду, підписка буде змінена на щомісячну підписку, і комісії будуть автоматично зняті на основі вартості місячної підписки. Якщо ви хочете зменшити ліцензії або внести інші зміни до підписки, будь ласка, поновіть їх до початку наступного періоду. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
-        "remove_license": "Якщо кількість користувачів з правами редагування перевищує кількість ліцензій на початку наступного платіжного циклу, всі користувачі, крім власника не будуть відключені доки ви не видалите учасників або не збільшите кількість ліцензій на доступний діапазон. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
+        "update_plan_year": "Starting from the next period, the subscription will be changed to an annual subscription, and the fees will be automatically deducted based on the annual subscription pricing. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "update_plan_monthly": "Starting from the next period, the subscription will be changed to a monthly subscription, and the fees will be automatically deducted based on the monthly subscription pricing. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "add_license": "Calculation rules using a monthly seat subscription as an example: Let's consider a scenario where you initially subscribed to 5 seats starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional seats. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 seat, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 seat * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all seat fees will be consolidated and paid together. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "remove_license": "If the number of users with editing permissions exceeds the number of seats at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of seats within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
         "add_traffic": "Після успішного відрахування, ваш трафік буде зростати в режимі реального часу. Як тільки трафік буде використано, платежі не будуть повернуті. Невикористаний трафік може бути повернений в одиницях GB. Наприклад, якщо ви купуєте 10ГБ трафіку та використовуєте 4.5ГБ, ви можете подати заявку на повернення за 5ГБ. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
         "subscribe_storage_yearly": "Ви збираєтеся підписатись на щорічну підписку на сховище ILLA Drive. Ми автоматично віднімемо комісію з вашого рахунку на початку кожного платіжного циклу. Фактична сума відрахована, залежить від того, скільки місця зберігання ви підписалися в GB. Наприклад, якщо ви почнете вашу першу підписку 25-го лютого 2023 лютого, із щорічною платою за підписку в $9. за ГБ, і ви маєте загалом 3 ГБ, ми отримаємо 29. 25 лютого 2023 року. Якщо ви додасте 2 ГБ 25-го березня 2023 року, ми спочатку віднімемо платіж що залишився на 11 місяців 25-го березня, 2023 року. Тоді, до 25 лютого, 2024 року, ми вирахуватимемо оплату за 5 ГБ, що є (2 + 3) * $9.9=$49. . Якщо ви хочете зменшити сховище або зробити інші зміни до підписки, будь ласка, поновіть їх до початку наступного періоду. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
-        "subscribe_storage_monthly": "Ви будете підписатись на місячну підписку на сховище ILLA Drive. Ми автоматично віднімемо комісію з вашого рахунку на початку кожного платіжного циклу. Фактична сума відрахована, залежить від того, скільки місця зберігання ви підписалися в GB. Наприклад, якщо ви почнете вашу першу підписку 25-го лютого 2023 лютого, це місячна плата за підписку на $0. 9 за ГБ, і ви маєте в цілому 3 ГБ, ми отримаємо 2 долари. 25-го лютого 2023 року. Якщо ви додасте ще 2 ліцензії 21 березня 2023 3, ми спочатку віднімемо 5 днів оплати 21 березня, 2023 року. Тоді, до 25-го березня 2023 року, ми вирахуватимемо оплату за 5 ліцензій, що є (2 + 3)*$0. 9=$4.95. Якщо ви хочете зменшити ліцензії або внести інші зміни до підписки, будь ласка, поновіть їх до початку наступного періоду. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
-        "subscribe_license_monthly": "Ви збираєтеся підписатися на місячну підписку ILLA Cloud Plus. Ми автоматично віднімемо комісію з вашого рахунку на початку кожного платіжного циклу. Фактична сума виведена залежить від кількості ліцензій, які у вас є. Наприклад, якщо ви починаєте вашу першу підписку 25-го лютого 2023 лютого з щомісячною платою в розмірі 12 доларів за ліцензію, і ви маєте загалом 3 ліцензії, ми вирахуватимемо 36 доларів 25 лютого 2023. Якщо ви додасте ще 2 ліцензії 21 березня 2023 3, ми спочатку віднімемо 5 днів оплати 21 березня, 2023 року. Тоді, до 25-го березня 2023 року, ми вирахуватимемо оплату за 5 ліцензій, що є (2 + 3)*$12=$60. Якщо ви хочете зменшити ліцензії або внести інші зміни до підписки, будь ласка, поновіть їх до початку наступного періоду. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
-        "update_plan_remove_license": "Комісія буде автоматично вираховуватись на основі оновленої кількості ліцензій та ціни на новий платіжний цикл з наступного періоду. Якщо кількість користувачів з правами редагування перевищує кількість ліцензій на початку наступного платіжного циклу, всі користувачі, крім власника не будуть відключені доки ви не видалите учасників або не збільшите кількість ліцензій на доступний діапазон. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
-        "update_plan_increase_storage": "Комісія буде автоматично вираховуватись на основі оновленого сховища і вартість нового платіжного циклу з наступного періоду. Цього разу ми віднімемо оплату за збільшення накопичувача відповідно до поточного циклу розрахунків. Правила розрахунків, використовуючи щомісячну підписку на зберігання як приклад: Розглянемо сценарій, де ви спочатку підписалися на 5 ГБ, починаючи з 14 березня, і цикл оплати розгортається з 14-го числа цього місяця до 13-го наступного місяця. 10 травня ви вирішили додати 1 ГБ. В цій точці, було ще 4 дні до кінця поточного циклу 13 травня (що складає 30 днів з 14 квітня до 13 травня). Щоб розрахувати регульований платіж, ми відраховуємо вартість 1 ГБ, що становить приблизно $ 0. 9, пропорційна до тривалості 4 днів протягом 30-денного циклу. Тому відрахування оцінюється як 1 ліцензія * 0,99 / 30 днів * 4 дні, що в результаті чого приблизно $ 0,132. Починаючи з наступного платіжного циклу, всі збір за зберігання буде консолідуватися і сплачуватися разом. Якщо ви хочете зменшити ліцензії або внести інші зміни до підписки, будь ласка, поновіть їх до початку наступного періоду. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>",
+        "subscribe_license_monthly": "You are going to subscribe to the monthly subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of seats you have. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $12 per seat, and you have a total of 3 seats, we will deduct $36 on February 25, 2023. If you add 2 more seats on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 seats, which is (2+3)*$12=$60. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "update_plan_increase_license": "The fees will be automatically deducted based on the updated number of seats and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased seats according to the current billing cycle. Calculation rules of increasing seats using a monthly seat subscription as an example: Let's consider a scenario where you initially subscribed to 5 seats starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional seat. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 seat, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 seat * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all seat fees will be consolidated and paid together. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of seats and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of seats at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of seats within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
         "update_plan_remove_storage": "Комісія буде автоматично вираховуватись на основі оновленого сховища і вартість нового платіжного циклу з наступного періоду. Якщо ємність зберігання, що зайняте вашими файлами, перевищує обсяг сховища на початку наступного платіжного циклу, всі файли будуть недоступні, поки ви не видалите файли або не збільшите ємність пам'яті в доступному діапазоні. Для отримання додаткової інформації, будь ласка, зверніться до нашої <0>Політики конфіденційності</0> та <1>Умови надання послуг</1>"
       }
     },
@@ -3806,8 +3841,8 @@
       "failed_to_add_traffic": "Не вдалося додати трафік. Будь ласка, спробуйте ще раз. ",
       "failed_to_add_storage": "Не вдалося додати сховище. Будь ласка, спробуйте ще раз. ",
       "failed_to_remove_storage": "Не вдалося вилучити сховище даних. Будь ласка, спробуйте ще раз. ",
-      "failed_to_add_licens": "Не вдалося додати ліцензії. Спробуйте ще раз. ",
-      "failed_to_remove_lic": "Не вдалося видалити ліцензії. Спробуйте ще раз. ",
+      "failed_to_add_licens": "Failed to add seats. Please try again. ",
+      "failed_to_remove_lic": "Failed to remove seats. Please try again. ",
       "failed_to_change_pla": "Не вдалося змінити план. Будь ласка, спробуйте ще раз. ",
       "failed_to_unsubscrib": "Не вдалося відписатися. Будь ласка, спробуйте ще раз. ",
       "successfully_removed": "Успішно вилучено. Зміни набудуть чинності від {{nextPaymentDate}}.",
@@ -3817,15 +3852,17 @@
       "successfully_changed": "Підписка успішно змінена. Це набуде чинності через кілька хвилин",
       "failed_to_change": "Не вдалося змінити підписку",
       "unsubscription_suc": "Підписку було скасовано і вона вийшла успішно з наступного періоду",
-      "failed_to_join_no_license": "Не вдається приєднатися, оскільки ліцензії команди недостатні, будь ласка, зв'яжіться з адміністратором.",
+      "failed_to_join_no_license": "Unable to join due to insufficient seats ",
       "storage_insufficient_modal": "Сховище або трафік цієї команди недостатньо. Будь ласка, зверніться до адміністратора.",
       "appsumo": {
+        "suc": "Successfully redeemed",
+        "fail": "Failed to redeem. Please try again later.",
         "transfer": "Операція не вдалася. Цей користувач прив'язаний до постійної підписки. ",
         "leave": "Операція не вдалася. Цей користувач прив'язаний до постійної підписки. "
       },
       "no_license_operate_failed": "Через недостатню ліцензію операція не вдалася.",
       "failed_to_invite_no_license": "Через недостатню ліцензію, деякі запрошення учасників не вдалося.",
-      "error_subscribe": "Не вдалося змінити тарифний план. Будь ласка, спробуйте ще раз пізніше.",
+      "error_subscribe": "Failed to subscribe. Please try again later.",
       "unsubscription_fail": "Не вдалося скасувати підписку. Будь ласка, спробуйте ще раз пізніше."
     },
     "modal": {
@@ -3837,7 +3874,7 @@
         "not_owner_description_drive": "Сховище або трафік цієї команди недостатньо. Будь ласка, зверніться до адміністратора.",
         "not_owner_button_drive": "Зрозуміло",
         "out_title_drive": "Не вдалося завантажити",
-        "out_description_drive": "Не вдалося завантажити, будь ласка, зв'яжіться з власником файлу",
+        "out_description_drive": "Due to insufficient traffic, downloading failed. Please contact the file owner",
         "out_button_drive": "Зрозуміло"
       },
       "sub_suc": {
@@ -3845,7 +3882,7 @@
         "you_can_now_invite_m": "Це набуде чинності через декілька хвилин. Ви можете запрошувати учасників та використовувати додаткові функції пізніше. Спробуйте!",
         "you_can_now_upload_m": "Це набуде чинності протягом декількох хвилин. Ви можете завантажити більше файлів.",
         "payment_successful": "Оплата пройшла успішно",
-        "we_have_added_the_li": "Це займе ефект за декілька хвилин. Ми додали ліцензії для вас. Будь-які зміни до періоду підписки набудуть чинності з наступного циклу розрахунків.",
+        "we_have_added_the_li": "It will take effect in a few minutes. We have added the seats for you. Any changes to the subscription period will take effect from the next billing cycle.",
         "we_have_added_the_st": "Це набирає чинності за декілька хвилин. Ми додали для вас пам'ять. Будь-які зміни до періоду підписки набудуть чинності з наступного циклу розрахунків.",
         "we_have_added_the_tr": "Це займе ефект через декілька хвилин. Ми додамо трафік для вас пізніше. Ви можете завантажити більше файлів.",
         "successfully_updated": "Вдало оновлено",
@@ -3861,24 +3898,27 @@
         "audit_logs": "Журнал аудиту",
         "learn_more": "Дізнатися більше",
         "upgrade": "Апґрейд",
-        "insufficient_license_title": "Недостатньо ліцензій",
-        "insufficient_license_description": "Щоб запросити більше редакторів, спочатку збільшіть ліцензії. Всі члени вашої команди зможуть використовувати ці функції для ILLA Cloud Plus. Спеціальний доступ до кожної функції залежить від ролі кожного члена. ",
-        "insufficient_license_button": "Додати ліцензії",
+        "insufficient_license_title": "Insufficient seats",
+        "insufficient_license_description": "To invite more editors, please increase seats first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
+        "insufficient_license_button": "Add seats",
         "pricing": "/редакція/місяць, щороку"
       },
       "expired": {
         "owner": "Термін дії вашої підписки закінчився. Щоб продовжити використання, будь ласка, поновіть її.",
         "others": "Ваш обліковий запис вимкнено, оскільки термін дії підписки для команди закінчився.",
-        "your_subscription_ha_not_owner": "Недостатньо ліцензій",
+        "your_subscription_ha_not_owner": "Subscription exception",
         "all_members_except_f_not_owner": "Недостатньо ліцензій. Будь ласка, зверніться до власника команди.",
-        "upgrade_not_owner": "Зрозуміло"
+        "upgrade_not_owner": "Зрозуміло",
+        "your_subscription_ha": "Subscription expired",
+        "all_members_except_f": "Your team's subscription is expired. Please renew it in-time",
+        "upgrade": "Upgrade"
       },
       "blank_page": {
-        "insufficient_license_disable": "Ваш обліковий запис вимкнено через недостатній кількості ліцензій. Будь ласка, зв'яжіться з власником команди для допомоги."
+        "insufficient_license_disable": "Your account has been disabled due to insufficient team seats. Please contact the team Owner for assistance."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Недостатньо ліцензій",
-        "insufficient_license_description": "Щоб запросити більше редакторів, будь ласка, підключіть адміністратора для того, щоб збільшити ліцензії.",
+        "insufficient_license_title": "Insufficient seats",
+        "insufficient_license_description": "Due to insufficient seats, operation failed. Please contact team owner.",
         "insufficient_license_button": "Гаразд"
       },
       "storage_insufficient": {
@@ -3888,16 +3928,16 @@
         "not_owner_title": "Недостатньо ємності сховища",
         "not_owner_description": "Для того, щоб зберігати файли як нормально, будь ласка, зверніться до адміністратора, щоб збільшити ємність зберігання в часі.",
         "not_owner_button": "Гаразд",
-        "owner_pricing": "ГБ/Щомісячно"
+        "owner_pricing": "5 GB/Monthly"
       },
       "traffic_insufficient": {
         "owner_title": "Недостатньо потужності",
         "owner_description": "Для того, щоб отримати доступ до файлів, будь ласка, збільшіть місткість трафіку. ",
         "owner_button": "Збільшення ємності",
-        "not_owner_title": "Недостатньо ємності сховища",
+        "not_owner_title": "Insufficient traffic",
         "not_owner_description": "Щоб отримати доступ до файлів, будь ласка, зверніться до адміністратора, щоб збільшити пропускну здатність в часі.",
         "not_owner_button": "Гаразд",
-        "owner_pricing": "ГБ/Щомісячно"
+        "owner_pricing": "5 GB"
       },
       "cancel_confirm": {
         "description": "Після скасування ваша команда повернеться до безкоштовного тарифного плану, починаючи з наступного циклу розрахунків. Функції, включені в тарифні плани, більше не будуть доступними.",
@@ -3910,21 +3950,6 @@
         "title": "Змінити план?",
         "button_cancel": "Скасувати",
         "button_confirm": "Підтвердити"
-      },
-      "ai-agent": {
-        "string1": "GPT-4 - для преміум-команди. ",
-        "string2": "Щоб використовувати його, будь ласка, оновіть Premium-версію. Купуючи Premium, ви також матимете доступ до наступних функцій. "
-      },
-      "upgrade_now_not_admin": {
-        "upgrade_title": "Функція для преміум команд",
-        "upgrade_title billing": {
-          "modal": {
-            "upgrade_now_not_admin": {
-              "upgrade_desc": "Ця функція призначена для преміум команд. Зверніться до адміністраторів команди, щоб оновити. "
-            }
-          }
-        },
-        "upgrade_button": "Гаразд"
       }
     },
     "homepage": {
@@ -3932,18 +3957,65 @@
       "upgrade": "Апґрейд",
       "cancel": "Скасувати"
     },
-    "advanced": {
-      "feature": "Видалити водяний знак"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "Are you sure you want to redeem AppSumo in {{teamName}} team? ",
+        "cancel": "Cancel",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "Select a team to redeem",
+          "create_button": "Create new team",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "Create Account"
+      },
+      "update": "Оновити план AppSumo"
+    },
+    "alert": {
+      "expired": {
+        "owner": "Insufficient seat or expired subscription, please upgrade in-time. ",
+        "others": "Due to insufficient seat, you have been disabled. Please contact team owner"
+      }
+    },
+    "yearly_discount": "(Save nearly 16.7%)",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/month",
+      "yearly": "{{ price }}/editor/year"
     },
     "redirect_page": {
+      "title": "Оплата пройшла успішно",
       "desc1": "Дякуємо за покупку. ILLA Cloud продовжить надавати вам більше можливостей.",
       "desc2": "Перенаправлення на Хмару ILLA через {{time}} секунд...",
-      "title": "Оплата пройшла успішно",
       "button": "Повернутися до хмарки ILLA"
     },
     "redirect_to_stripe": "Перенаправлення до смуги",
-    "appsumo": {
-      "update": "Оновити план AppSumo"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "100 MB storage per month to store any files in ILLA Drive",
+          "traffic": "100 MB traffic to download files from ILLA Drive"
+        }
+      },
+      "drive": {
+        "title": "ILLA Drive",
+        "storage": "5 GB storage per month to store any files in ILLA Drive",
+        "traffic": "5 GB traffic to download files from ILLA Drive"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "Custom storage per month to store any files in ILLA Drive",
+          "traffic": "Custom traffic to download files from ILLA Drive"
+        }
+      }
     }
   },
   "network": {
