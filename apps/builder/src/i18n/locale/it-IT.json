@@ -3710,6 +3710,9 @@
         "Storage": "{{used}}GB usati (totale di {{total}}GB) ",
         "Traffic": "{{used}}GB usati (totale di {{total}}GB) ",
         "colla": "{{used}} Colla usato (totale {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
       }
     },
     "colla_transaction": {
@@ -3783,7 +3786,7 @@
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "colla": "{{unitPrice}} × {{storageNum}} Colla"
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Disiscriviti",
@@ -3834,6 +3837,12 @@
         "update_plan_increase_license": "Le commissioni saranno automaticamente detratte in base al numero aggiornato di seggi e al prezzo del nuovo ciclo di fatturazione a partire dal prossimo periodo. Questa volta, detraeremo il pagamento per i seggi aumentati in base al ciclo di fatturazione corrente. Regole di calcolo dell'aumento dei posti utilizzando un abbonamento mensile del posto come esempio: Consideriamo uno scenario in cui inizialmente ti sei iscritto a 5 posti a partire dal 14 marzo, e il ciclo di fatturazione si estende dal 14 al 13 del mese successivo. Il 10 maggio, si decide di aggiungere 1 posto aggiuntivo. A quel punto, sono rimasti 4 giorni fino alla fine del ciclo in corso il 13 maggio (che totalizza 30 giorni dal 14 aprile al 13 maggio). Per calcolare il pagamento adeguato, detraeremo il costo di 1 posto, che ammonta a circa 10 dollari, proporzionato alla durata di 4 giorni entro il ciclo di 30 giorni. Pertanto, la deduzione è stimata come 1 posto * $10 / 30 giorni * 4 giorni, con conseguente circa $1,33. A partire dal prossimo ciclo di fatturazione, tutte le spese di posto saranno consolidate e pagate insieme. Se si desidera ridurre i posti o apportare altre modifiche alla sottoscrizione, si prega di aggiornarli prima dell'inizio del prossimo periodo. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
         "update_plan_remove_license": "Le commissioni saranno automaticamente detratte in base al numero aggiornato di seggi e al prezzo del nuovo ciclo di fatturazione a partire dal prossimo periodo. Se il numero di utenti con autorizzazioni di modifica supera il numero di posti all'inizio del ciclo di fatturazione successivo, tutti gli utenti tranne il proprietario saranno disabilitati fino a quando non rimuoverai i membri o aumenterai il numero di posti all'interno della gamma disponibile. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>",
         "update_plan_remove_storage": "Le commissioni saranno automaticamente detratte in base alla memorizzazione aggiornata e al prezzo del nuovo ciclo di fatturazione dal prossimo periodo. Se la capacità di archiviazione occupata dai file supera la capacità di archiviazione sottoscritta all'inizio del ciclo di fatturazione successivo, tutti i file saranno disabilitati fino a quando non si eliminano i file o si aumenta la capacità di archiviazione all'interno dell'intervallo disponibile. Per ulteriori informazioni, si rimanda alla nostra <0>Informativa sulla privacy</0> e <1>Termini di servizio</1>"
+      },
+      "colla_redeem": {
+        "title": "Con {{changeNum}} Colla, puoi acquistare: ",
+        "storage": "Archiviazione",
+        "traffic": "Traffico",
+        "token": "Token"
       }
     },
     "message": {
