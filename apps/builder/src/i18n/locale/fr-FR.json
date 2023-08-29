@@ -2606,7 +2606,7 @@
       "save": "Enregistrer",
       "start": "Début",
       "restart": "Redémarrer",
-      "contribute": "Contribuer au marché",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Envoyer",
         "generating": "Génération en cours"
@@ -3247,7 +3247,7 @@
         "invite_members": "Inviter des membres",
         "invite_to_use": "Inviter à utiliser",
         "invite_to_edit": "Inviter à modifier",
-        "contribute": "Place de marché"
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Lien d'invitation",
@@ -3295,7 +3295,7 @@
       },
       "custom-copy-ai-agent": "{{userName}} vous a partagé un Agent IA de <unk>{{teamName}}Ω. Cliquez sur le lien pour rejoindre l'équipe et essayer l'Agent IA: {{inviteLink}}",
       "contribute": {
-        "label": "Contribuer au marché",
+        "label": "Contribute to community",
         "default_text": {
           "app": "Je viens de découvrir une application impressionnante appelée {{ appName }}. Vérifiez: {{ appLink }}",
           "agent": "Je viens de découvrir un agent IA impressionnant appelé {{ agentName }}. Vérifiez: {{ agentLink }}"
@@ -4003,7 +4003,7 @@
       "undeploy": "L'application n'a pas été déployée. L'accès public et l'accès à la visionneuse peuvent rencontrer des erreurs. "
     },
     "label": {
-      "contribute": "Contribuer au marché"
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
