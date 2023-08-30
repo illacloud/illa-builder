@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { Loading, LoadingIcon, useMessage } from "@illa-design/react"
+import { Divider, Loading, LoadingIcon, useMessage } from "@illa-design/react"
 import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
 import {
   cardListContainerStyle,
@@ -41,6 +41,8 @@ export const MarketAgents = () => {
 
   const [updateLoading, setUpdateLoading] = useState<boolean>(true)
 
+  const [showLine, setShowLine] = useState<boolean>(false)
+
   useEffect(() => {
     const controller = new AbortController()
     setUpdateLoading(true)
@@ -67,63 +69,74 @@ export const MarketAgents = () => {
       <LoadingIcon spin={true} />
     </div>
   ) : marketAgentList.length > 0 ? (
-    <div
-      css={cardListContainerStyle}
-      onScroll={async (event) => {
-        const target = event.target as HTMLDivElement
-        if (
-          target.scrollHeight - target.scrollTop - target.clientHeight <=
-          800
-        ) {
-          if (fetching.current) {
-            return
+    <>
+      {showLine && <Divider l={0} r={0} w="100%" direction="horizontal" />}
+      <div
+        css={cardListContainerStyle}
+        onScroll={async (event) => {
+          const target = event.target as HTMLDivElement
+          if (target.scrollTop >= 24) {
+            setShowLine(true)
+          } else {
+            setShowLine(false)
           }
-          if (!hasMore) {
-            return
-          }
-          fetching.current = true
-          try {
-            const agentList = await fetchMarketAgentList(
-              page.current + 1,
-              sort,
-              keywords,
-              40,
-            )
-            page.current = page.current + 1
-            setMarketAgentList([...marketAgentList, ...agentList.data.products])
-            if (!agentList.data.hasMore) {
-              setHasMore(false)
+          if (
+            target.scrollHeight - target.scrollTop - target.clientHeight <=
+            800
+          ) {
+            if (fetching.current) {
               return
             }
-          } catch (e) {
-            message.error({
-              content: t("dashboard.message.next-page-error"),
-            })
-          } finally {
-            fetching.current = false
-          }
-        }
-      }}
-    >
-      <div css={cardListStyle}>
-        {marketAgentList.map((agent) => (
-          <MarketAgentCard
-            onClick={() => {
-              navigate(
-                `/${teamInfo.identifier}/ai-agent/${agent.aiAgent.aiAgentID}/run`,
+            if (!hasMore) {
+              return
+            }
+            fetching.current = true
+            try {
+              const agentList = await fetchMarketAgentList(
+                page.current + 1,
+                sort,
+                keywords,
+                40,
               )
-            }}
-            key={agent.aiAgent.aiAgentID}
-            marketAIAgent={agent}
-          />
-        ))}
-      </div>
-      {hasMore && (
-        <div css={loadingStyle}>
-          <Loading colorScheme="techPurple" />
+              page.current = page.current + 1
+              setMarketAgentList([
+                ...marketAgentList,
+                ...agentList.data.products,
+              ])
+              if (!agentList.data.hasMore) {
+                setHasMore(false)
+                return
+              }
+            } catch (e) {
+              message.error({
+                content: t("dashboard.message.next-page-error"),
+              })
+            } finally {
+              fetching.current = false
+            }
+          }
+        }}
+      >
+        <div css={cardListStyle}>
+          {marketAgentList.map((agent) => (
+            <MarketAgentCard
+              onClick={() => {
+                navigate(
+                  `/${teamInfo.identifier}/ai-agent/${agent.aiAgent.aiAgentID}/run`,
+                )
+              }}
+              key={agent.aiAgent.aiAgentID}
+              marketAIAgent={agent}
+            />
+          ))}
         </div>
-      )}
-    </div>
+        {hasMore && (
+          <div css={loadingStyle}>
+            <Loading colorScheme="techPurple" />
+          </div>
+        )}
+      </div>
+    </>
   ) : (
     <EmptySearchResult desc={t("dashboard.no-result")} />
   )
