@@ -2624,7 +2624,8 @@
         "token-not-enough": "Model grænse nået. Genstart.",
         "token": "Den aktuelle værdi af Max tokens er lav, hvilket kan forårsage ufuldstændige returnerede resultater.",
         "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst",
-        "leave": "Der er ikke-gemt indhold, er du sikker på, at du vil forlade?"
+        "leave": "Der er ikke-gemt indhold, er du sikker på, at du vil forlade?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
