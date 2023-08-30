@@ -32,13 +32,13 @@
       "cancel": "cancelar",
       "delete": "excluir",
       "delete_cancel_text": "cancelar",
-      "delete_content": "Isto quebrará as consultas de Apps e da Biblioteca de Consulta que usam este recurso",
+      "delete_content": "Após a exclusão, não será possível acessar ou recuperar os dados por qualquer meio. Por favor, confirme.",
       "delete_ok_text": "excluir",
       "delete_title": "Você tem certeza?",
       "error_button": "Repetir",
       "error_description": "Há um problema com sua operação.",
       "error_title": "ERRO",
-      "marketplace": "Comunidade",
+      "marketplace": "Mercado",
       "run": "Executar",
       "fork": "Fork"
     },
@@ -57,22 +57,22 @@
     },
     "list-type": {
       "team": "Equipe",
-      "marketplace": "Comunidade"
+      "marketplace": "Mercado representante"
     },
     "sort-type": {
       "popular": "Mais popular",
-      "recent": "Mais recentemente atualizados",
+      "recent": "Últimos",
       "star": "Marcado"
     },
     "search": "Pesquisa",
     "no-result": "Não há resultados aqui. Por favor, atualize ou altere os termos da pesquisa.",
     "message": {
       "next-page-error": "Falha ao carregar a próxima página. Por favor, tente novamente.",
-      "create-failed": "Falha ao criar agente. Por favor, tente novamente.",
+      "create-failed": "Falha ao salvar o agente. Tente novamente",
       "sort-failed": "Não foi possível alterar o tipo de filtro. Tente novamente.",
       "detail-load-failed": "Falha ao recuperar detalhes, por favor tente novamente.",
       "fork-failed": "Falha ao fazer o fork, por favor, tente novamente.",
-      "create-suc": "Falha ao criar. Por favor, tente novamente.",
+      "create-suc": "Salvo com Sucesso",
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
       "delete-suc": "Excluído com sucesso. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "ID da Chapa para copiar",
             "sheet_to_copy_to": "Folha para a qual deseja copiar",
             "authentication": "Autenticação",
-            "connect_with_oauth": "Conectar com OAuth e Salvar",
+            "connect_with_oauth": "Conectar-se com Google",
             "reconnect_with_oauth": "Reconectar com OAuth",
             "access_type": "Tipo de acesso"
           },
@@ -2055,7 +2055,7 @@
           "title": "Defina o título para exibição"
         },
         "page": {
-          "default_view": "Quando os usuários informam um caminho de erro, vamos automaticamente redirecionar para o caminho padrão. Quando não há um caminho padrão, trataremos o primeiro caminho da lista como o caminho padrão"
+          "default_view": "Quando os usuários informam uma URL de erro, vamos automaticamente redirecionar para a sub-página padrão. Quando não há nenhuma sub-página padrão, trataremos a primeira sub-página da lista como a sub-página padrão"
         },
         "chart": {
           "direction": "Define a direção do gráfico. ",
@@ -2277,8 +2277,8 @@
       "label_name": {
         "add": "Adicionar",
         "body": "Conteúdo",
-        "default_view": "Visualização padrão",
-        "edit_view": "Editar caminho",
+        "default_view": "Subpágina padrão",
+        "edit_view": "Editar sub-página",
         "footer": "Rodapé",
         "header": "Cabeçalho",
         "key": "Chave",
@@ -2287,8 +2287,8 @@
         "right_panel": "Painel direito",
         "set_as_homepage": "Definir como página inicial",
         "show_fold_icon": "Mostrar ícone da dobra",
-        "view_path": "Caminho",
-        "views": "Visualizações",
+        "view_path": "Nome:",
+        "views": "Subpáginas",
         "width": "Width",
         "height": "Altura",
         "columns": "Colunas",
@@ -2309,7 +2309,7 @@
       "tab_title": "Página",
       "tooltips": {
         "show_fold_icon": "Mostrar um botão para recolher ou expandir o painel",
-        "view_path": "Para configurar o acesso a esta página, é necessário ajustar o caminho. Por exemplo, se você alterar o caminho para '**newPath**', e adicioná-lo como uma subpágina da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Para configurar o acesso a esta página, você precisará ajustar o nome. Por exemplo, se você alterar o nome para '**novaPágina**' e adicioná-lo como uma sub-página da página inicial. Essa página pode então ser acessada através do seguinte URL: cloud.illacloud.com/sua/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "A largura da página como porcentagem da largura do navegador."
       },
       "message": {
@@ -2574,7 +2574,7 @@
       "placeholder": {
         "name": "Dê um nome ao agente",
         "desc": "Forneça uma breve descrição para o que este agente deve utilizar.",
-        "prompt": "Digite {{ para usar uma variável",
+        "prompt": "Digite {{variableName}} para usar uma variável",
         "variable": {
           "key": "Nome da variável",
           "value": "Valor"
@@ -2606,7 +2606,7 @@
       "save": "Guardar",
       "start": "Iniciar",
       "restart": "Reiniciar",
-      "contribute": "Contribua para a comunidade",
+      "contribute": "Contribua para o marketplace",
       "button": {
         "send": "Mandar",
         "generating": "Gerando"
@@ -2618,7 +2618,7 @@
       },
       "message": {
         "click-start": "Clique no botão iniciar para disparar.",
-        "insufficient_token": "Token insuficiente",
+        "insufficient_token": "Colla Insuficiente",
         "start-failed": "Falha ao iniciar. Por favor, tente novamente. ",
         "reconnect": "Conexão perdida. Reconexão em progresso.",
         "token-not-enough": "Limite de modelos atingido. Por favor reinicie.",
@@ -2636,8 +2636,8 @@
         "tooltips": "Use AI para gerar um ícone com base no nome e descrição do agente"
       },
       "title-preview": {
-        "chat": "Pré-visualizar janela",
-        "text-generation": "Pré-visualizar janela"
+        "chat": "Bate-papo",
+        "text-generation": "Geração de texto"
       }
     },
     "common": {
@@ -3056,12 +3056,12 @@
       "name": "Formulário JSON de esquema"
     },
     "page": {
-      "path_duplicated": "O caminho está duplicado. Por favor, use um caminho único para evitar erros. ",
+      "path_duplicated": "O nome da página está duplicado. Por favor, use um nome exclusivo para evitar erros. ",
       "tips": {
         "blank_view": "Este módulo não tem páginas filhas. Por favor adicione-as primeiro através do painel de Página à direita."
       },
       "label": {
-        "rename_url": "Editar caminho",
+        "rename_url": "Editar sub-página",
         "rename_page_url": "Editar página"
       }
     }
@@ -3254,7 +3254,7 @@
         "copy": "copiar",
         "turn_off": "Desativar links de convites",
         "update": "Atualizar links de convite",
-        "description": "Ative e convide membros via link. ",
+        "description": "Compartilhe um link secreto que as pessoas podem usar para se juntar à sua equipe.",
         "turn_on": "Ativar links de convite",
         "fail": "Falha ao obter o link, por favor, tente novamente mais tarde",
         "copied_suc": "Copiado!",
@@ -3594,16 +3594,16 @@
     "apps": {
       "components": "Todos os componentes",
       "resources": "Todos os recursos",
-      "plugins": "Plugins ilimitados (Em breve)",
+      "plugins": "Plugins ilimitados",
       "sql": "Geração de SQL AI",
       "watermark": "Remover marca d'agua"
     },
     "security": {
-      "historic-7": "Versão histórica mantém e recupera por 7 dias (Em breve)",
-      "historic-30": "Manter versões implantadas & reverter (Em breve)",
-      "develop-environment": "Multi-ambiente(Em breve)",
+      "historic-7": "Versão histórica mantém e recupera por 7 dias",
+      "historic-30": "Versão histórica mantém e recupera por 30 dias",
+      "develop-environment": "Desenvolver ambiente",
       "app-public": "Aplicativo público",
-      "restore-data": "Histórico de edição de backup e restauração",
+      "restore-data": "Backup e restauração",
       "deployed": "Acesso ao suporte à ILLA",
       "dedicated": "Engenheiro de Soluções dedicado"
     },
@@ -3612,7 +3612,7 @@
       "sql": "Insira um idioma natural e gere uma instrução SQL",
       "staging": "Teste seu aplicativo em um ambiente de teste",
       "app-public": "Torne o aplicativo público e qualquer pessoa com o link pode acessá-lo",
-      "restore-data": "Backup ou restauração do histórico quando quiser",
+      "restore-data": "Fazer backup ou restaurar dados a qualquer momento que quiser",
       "deployed": "Engenheiros implantados podem ajudá-lo a bordo mais rápido",
       "dedicated": "Engenheiro dedicado de soluções de clientes via Slack/e-mail/telefone",
       "preview_insufficient": "O arquivo não pode visualizar devido a capacidade insuficiente, por favor aumente a capacidade primeiro."
@@ -3645,12 +3645,12 @@
     "free-members": "Apenas 1 membro para uso pessoal",
     "unlimited-viewer": "GRÁTIS para espectadores ilimitados",
     "unlimited-members": "Membros ilimitados",
-    "free-btn": "Plano atual",
-    "plus-btn": "PRO",
+    "free-btn": "Crie aplicativos gratuitamente",
+    "plus-btn": "Experimente a versão gratuita",
     "enterprise-btn": "Entre em contato",
     "menu": {
       "billing": "Faturamento",
-      "license": "Assento",
+      "license": "Tipo:",
       "drive": "Dirigindo",
       "colla": "Coca",
       "appsumo": "Appsumo",
@@ -3659,7 +3659,7 @@
     },
     "title": {
       "billing": "Faturamento",
-      "license": "Assento",
+      "license": "Tipo:",
       "drive": "Dirigindo",
       "colla": "Coca",
       "appsumo": "Appsumo"
@@ -3681,7 +3681,7 @@
       "table_title": {
         "next_payment_date": "Data de pagamento Next",
         "expiration_date": "Data de validade",
-        "licenses": "Assentos",
+        "licenses": "Licenças",
         "storage": "Armazenamento",
         "traffic": "Tráfego",
         "colla": "Coca"
@@ -3693,22 +3693,22 @@
     },
     "subscription_card": {
       "title": {
-        "License": "Assentos",
+        "License": "Tipo:",
         "Storage": "Armazenamento",
         "Traffic": "Tráfego",
         "balance": "Saldo",
         "colla": "Coca"
       },
       "button": {
-        "License": "Gerenciar Assentos",
+        "License": "Gerenciar licenças",
         "Storage": "Gerenciar armazenamento",
         "Traffic": "Expandir tráfego",
         "colla": "Gerenciar Colla"
       },
       "capacity": {
-        "License": "{{used}} usados (total de {{total}} assentos) ",
-        "Storage": "{{used}}GB usado (total de {{total}}GB) ",
-        "Traffic": "{{used}}GB usado (total de {{total}}GB) ",
+        "License": "{{used}} (total de {{total}} licenças) foram usadas.",
+        "Storage": "{{used}} (total de {{total}} GB) foram usados.",
+        "Traffic": "{{used}} (total de {{total}} GB) foram usados.",
         "colla": "format@@0 {{used}} Colla used (total de {{total}} Colla)"
       },
       "colla_usage": {
@@ -3733,19 +3733,19 @@
     "payment_sidebar": {
       "title": {
         "manage_storage": "Gerenciar armazenamento",
-        "manage_licenses": "Gerenciar Assentos",
+        "manage_licenses": "Gerenciar licenças",
         "expand_traffic_capac": "Expandir capacidade de tráfego",
         "colla": "Gerenciar Colla"
       },
       "plan_label": {
-        "License": "Assentos",
+        "License": "Licenças",
         "Storage": "Armazenamento",
         "Traffic": "Tráfego",
         "colla": "Coca"
       },
       "plan_number_input_label": {
-        "License": "Assentos",
-        "Storage_traffic": "5GB",
+        "License": "Licenças",
+        "Storage_traffic": "BR",
         "colla": "Coca"
       },
       "select_option": {
@@ -3770,14 +3770,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} Sedes × {{remainDays}} dias / {{totalDays}} dias",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} lugares",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} lugares",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} Sedes × {{remainDays}} dias / {{totalDays}} dias",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} lugares",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} lugares",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} lugares",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} lugares",
+        "this_period": "{{unitPrice}} × {{licenseNum}} licenças × {{remainDays}} dias / {{totalDays}} dias",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenças",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenças",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenças × {{remainDays}} dias / {{totalDays}} dias",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenças",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenças",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licenças",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licenças",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dias / {{totalDays}} dias",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3794,8 +3794,8 @@
         "change_plan": "Alterar plano",
         "storage_traffic_increase": "Aumentar {{changeNum}} GB",
         "storage_traffic_remove": "Remover {{changeNum}} GB",
-        "license_increase": "Aumentar assentos {{changeNum}}",
-        "license_remove": "Remover assentos {{changeNum}}",
+        "license_increase": "Aumentar {{changeNum}} licenças",
+        "license_remove": "Remover {{changeNum}} licenças",
         "colla_increase": "Aumentar Colla {{changeNum}}",
         "colla_remove": "Remover Colla {{changeNum}}"
       },
@@ -3804,13 +3804,13 @@
         "remove_storage": "Você vai remover {{changeNum}} GB de armazenamento. Uma vez confirmado, as alterações entrarão em vigor no próximo ciclo de faturamento. <0>Saiba mais</0>",
         "update_plan_year": "Você vai atualizar para um plano de pagamento anual. Uma vez confirmada, a alteração entrará em vigor no início do próximo ciclo de faturamento. <0>Saiba mais</0>",
         "update_plan_monthly": "Você vai atualizar para um plano de pagamento mensal. Uma vez confirmada, a alteração entrará em vigor no início do próximo ciclo de faturamento. <0>Saiba mais</0>",
-        "add_license": "Você vai adicionar lugares {{changeNum}} . Uma vez confirmado, vamos imediatamente deduzir o pagamento dos novos assentos para este ciclo de faturamento. <0>Saiba mais</0>",
-        "remove_license": "Você vai remover assentos {{changeNum}} . Uma vez confirmadas, as mudanças entrarão em vigor no próximo ciclo de faturamento. <0>Saiba mais </0>",
+        "add_license": "Você vai adicionar {{changeNum}} licenças. Uma vez confirmada, iremos imediatamente deduzir o pagamento das novas licenças para este ciclo de faturamento. <0>Saiba mais</0>",
+        "remove_license": "Você vai remover {{changeNum}} licenças. Uma vez confirmadas, as alterações entrarão em vigor no próximo ciclo de faturamento. <0>Saiba mais</0>",
         "add_traffic": "Você adicionará {{changeNum}}GB de tráfego. Uma vez confirmado, deduziremos o custo do tráfego adicional imediatamente. <0>Saiba mais</0>",
         "subscribe_storage": "Você vai se inscrever na ILLA Cloud Plus. Vamos deduzir automaticamente as tarifas da sua conta no início de cada ciclo de pagamento. <0>Saiba mais</0>",
         "subscribe_license": "Você vai assinar o disco ILLA. Vamos deduzir automaticamente as tarifas da sua conta no início de cada ciclo de pagamento. <0>Saiba mais</0>",
-        "update_plan_increase_license": "Você vai adicionar lugares {{changeNum}} e atualizar seu período de assinatura. <0>Saiba mais</0>",
-        "update_plan_remove_license": "Você vai remover lugares {{changeNum}} e atualizar seu período de assinatura. <0>Saiba mais</0>",
+        "update_plan_increase_license": "Você vai adicionar licenças de {{changeNum}} e atualizar o seu período de assinatura. <0>Saiba mais</0>",
+        "update_plan_remove_license": "Você vai remover {{changeNum}} licenças e atualizar seu período de assinatura. <0>Saiba mais</0>",
         "update_plan_increase_storage": "Você vai adicionar {{changeNum}} GB de armazenamento e atualizar seu período de assinatura. <0>Saiba mais</0>",
         "update_plan_remove_storage": "Você vai remover {{changeNum}} GB de armazenamento e atualizar seu período de assinatura. <0>Saiba mais</0>",
         "unsubscribe_license": "Você cancelará a assinatura da ILLA Cloud Plus. Após o cancelamento, a partir do próximo ciclo de faturamento, os recursos Plus não estarão mais acessíveis. <0>Saiba mais</0>",
@@ -3827,15 +3827,15 @@
       },
       "description": {
         "remove_storage": "Se a capacidade de armazenamento ocupada por seus arquivos exceder a capacidade de armazenamento do inscrito no início do próximo ciclo de faturamento, todos os arquivos serão desativados até que você exclua arquivos ou aumente a capacidade de armazenamento dentro do intervalo disponível. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
-        "update_plan_year": "A partir do próximo período, a assinatura será alterada para uma assinatura anual, e as taxas serão deduzidas automaticamente com base nos preços anuais da assinatura. Se você deseja reduzir os assentos ou fazer outras alterações na assinatura, atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
-        "update_plan_monthly": "A partir do próximo período, a assinatura será alterada para uma assinatura mensal, e as taxas serão deduzidas automaticamente com base nos preços mensais da assinatura. Se você deseja reduzir os assentos ou fazer outras alterações na assinatura, atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
+        "update_plan_year": "A partir do próximo período, a assinatura será alterada para uma assinatura anual, e as taxas serão deduzidas automaticamente com base nos preços anuais da assinatura. Se você deseja reduzir licenças ou fazer outras alterações na assinatura, por favor atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
+        "update_plan_monthly": "A partir do próximo período, a assinatura será alterada para uma assinatura mensal, e as taxas serão deduzidas automaticamente com base nos preços mensais da assinatura. Se você deseja reduzir licenças ou fazer outras alterações na assinatura, por favor atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
         "add_license": "Regras de cálculo usando um assento mensal como exemplo: vamos considerar um cenário em que você inicialmente se inscreveu a 5 lugares a partir de 14 de março e o ciclo de faturamento abrange o dia 14 deste mês até o dia 13 do próximo mês. No dia 10 de maio, você decide adicionar mais 1 assentos. Nesse ponto, havia 4 dias restantes até o final do ciclo atual no dia 13 de maio (que totaliza 30 dias entre 14 de abril e 13 de maio). Para calcular o pagamento ajustado, vamos deduzir o custo de 1 lugar, que ascende a aproximadamente 10 dólares, proporcionais à duração de 4 dias no ciclo de 30 dias. Portanto, a dedução é estimada em 1 lugar * 10 / 30 dias * 4 dias, resultando em aproximadamente 1,33. A partir do próximo ciclo de faturamento, todas as taxas de assento serão consolidadas e pagas juntas. Se você deseja reduzir os assentos ou fazer outras alterações na assinatura, atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
-        "remove_license": "Se o número de usuários com permissões de edição exceder o número de assentos no início do próximo ciclo de faturamento, todos os usuários, exceto o proprietário, serão desabilitados até que você remova membros ou aumente o número de lugares dentro do intervalo disponível. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
+        "remove_license": "Se o número de usuários com permissões de edição exceder o número de licenças no início do próximo ciclo de faturamento, todos os usuários, exceto o proprietário, serão desabilitados até que você remova membros ou aumente o número de licenças dentro do intervalo disponível. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
         "add_traffic": "Após dedução bem-sucedida, seu tráfego aumentará em tempo real. Uma vez que o tráfego é usado, as tarifas não podem ser reembolsadas. Tráfego não utilizado pode ser reembolsado em unidades de GB. Por exemplo, se você comprar 10GB de tráfego e usar 4.5GB, você pode solicitar um reembolso de 5GB. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
         "subscribe_storage_yearly": "Você vai assinar a assinatura anual do armazenamento ILLA Drive. Vamos deduzir automaticamente as tarifas da sua conta no início de cada ciclo de pagamento. O valor real deduzido depende de quanta capacidade de armazenamento você se inscreveu em GB. Por exemplo, se você iniciar sua primeira assinatura em 25 de fevereiro de 2023, com uma taxa de assinatura anual de $9. por GB, e você tem um total de 3 GB, deduziremos $29. em 25 de fevereiro de 2023. Se você adicionar 2 GB em 25 de março de 2023, primeiro deduziremos o pagamento restante de 11 meses em 25 de março de 2023. Então, em 25 de fevereiro de 2024, deduziremos o pagamento de 5 GB, que é (2+3)*$9,9=$49. . Se você deseja reduzir o armazenamento ou fazer outras alterações na assinatura, por favor atualize-o antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
-        "subscribe_license_monthly": "Você vai assinar a assinatura mensal da ILLA Cloud Plus. Vamos deduzir automaticamente as tarifas da sua conta no início de cada ciclo de pagamento. O valor real deduzido depende do número de assentos que você tem. Por exemplo, se você iniciar sua primeira assinatura em 25 de fevereiro de 2023, com uma taxa de assinatura mensal de $12 por assento, e você tem um total de 3 lugares, vamos deduzir $36 em 25 de fevereiro de 2023. Se você somar mais 2 lugares em 21 de março de 2023, primeiro deduziremos o pagamento restante de 5 dias de pagamento em 21 de março de 2023. Então, em 25 de março de 2023, deduziremos o pagamento de 5 lugares, que é (2+3)*$12=$60. Se você deseja reduzir os assentos ou fazer outras alterações na assinatura, atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
+        "subscribe_license_monthly": "Você vai assinar a assinatura mensal da ILLA Cloud Plus. Vamos deduzir automaticamente as tarifas da sua conta no início de cada ciclo de pagamento. O valor real deduzido depende do número de licenças que você possui. Por exemplo, se você iniciar sua primeira assinatura em 25 de fevereiro de 2023, com uma taxa de assinatura mensal de $12 por licença, e você tem um total de 3 licenças, vamos deduzir $36 em 25 de fevereiro de 2023. Se você adicionar mais 2 licenças em 21 de março de 2023, primeiro deduziremos o pagamento restante de 5 dias de março de 2023. Então, em 25 de março de 2023, deduziremos o pagamento de 5 licenças, que é (2+3)*$12=$60. Se você deseja reduzir licenças ou fazer outras alterações na assinatura, por favor atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
         "update_plan_increase_license": "As taxas serão deduzidas automaticamente com base no número atualizado de assentos e nos preços do novo ciclo de faturamento a partir do próximo período. Desta vez, deduziremos o pagamento do aumento dos assentos de acordo com o actual ciclo de facturação. Regras de cálculo para aumentar os assentos utilizando um assento mensal como exemplo: Vamos considerar um cenário em que você inicialmente se inscreveu para 5 lugares a partir de 14 de março, e o ciclo de faturamento abrange o dia 14 deste mês até o dia 13 do próximo mês. No dia 10 de maio, você decide adicionar mais 1 lugar. Nesse ponto, havia 4 dias restantes até o final do ciclo atual no dia 13 de maio (que totaliza 30 dias entre 14 de abril e 13 de maio). Para calcular o pagamento ajustado, vamos deduzir o custo de 1 lugar, que ascende a aproximadamente 10 dólares, proporcionais à duração de 4 dias no ciclo de 30 dias. Portanto, a dedução é estimada em 1 lugar * 10 / 30 dias * 4 dias, resultando em aproximadamente 1,33. A partir do próximo ciclo de faturamento, todas as taxas de assento serão consolidadas e pagas juntas. Se você deseja reduzir os assentos ou fazer outras alterações na assinatura, atualize-a antes do início do próximo período. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
-        "update_plan_remove_license": "As taxas serão deduzidas automaticamente com base no número atualizado de assentos e nos preços do novo ciclo de faturamento a partir do próximo período. Se o número de usuários com permissões de edição exceder o número de assentos no início do próximo ciclo de faturamento, todos os usuários, exceto o proprietário, serão desabilitados até que você remova membros ou aumente o número de lugares dentro do intervalo disponível. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
+        "update_plan_remove_license": "As taxas serão deduzidas automaticamente com base no número atualizado de licenças e nos preços do novo ciclo de faturamento do próximo período. Se o número de usuários com permissões de edição exceder o número de licenças no início do próximo ciclo de faturamento, todos os usuários, exceto o proprietário, serão desabilitados até que você remova membros ou aumente o número de licenças dentro do intervalo disponível. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>",
         "update_plan_remove_storage": "As taxas serão deduzidas automaticamente com base no armazenamento atualizado e nos preços do novo ciclo de faturamento do próximo período. Se a capacidade de armazenamento ocupada por seus arquivos exceder a capacidade de armazenamento do inscrito no início do próximo ciclo de faturamento, todos os arquivos serão desativados até que você exclua arquivos ou aumente a capacidade de armazenamento dentro do intervalo disponível. Para obter mais informações, consulte a nossa <0>Política de Privacidade</0> e <1>Termos de Serviço</1>"
       },
       "colla_redeem": {
@@ -3850,8 +3850,8 @@
       "failed_to_add_traffic": "Não foi possível adicionar o tráfego. Tente novamente. ",
       "failed_to_add_storage": "Não foi possível adicionar o armazenamento. Tente novamente. ",
       "failed_to_remove_storage": "Falha ao remover o armazenamento. Por favor, tente novamente. ",
-      "failed_to_add_licens": "Falha ao adicionar lugares. Tente novamente. ",
-      "failed_to_remove_lic": "Falha ao remover lugares. Por favor, tente novamente. ",
+      "failed_to_add_licens": "Falha ao adicionar licenças. Por favor, tente novamente ",
+      "failed_to_remove_lic": "Falha ao remover licenças. Por favor, tente novamente ",
       "failed_to_change_pla": "Falha ao mudar o plano. Por favor, tente novamente. ",
       "failed_to_unsubscrib": "Falha ao cancelar a assinatura. Por favor, tente novamente. ",
       "successfully_removed": "Removido com sucesso. A alteração terá efeito de {{nextPaymentDate}}.",
@@ -3861,7 +3861,7 @@
       "successfully_changed": "Assinatura alterada com sucesso. entrará em vigor em alguns minutos",
       "failed_to_change": "Alteração da assinatura falhou",
       "unsubscription_suc": "A assinatura foi cancelada com sucesso e entrará em vigor a partir do próximo período",
-      "failed_to_join_no_license": "Incapaz de se juntar devido a assentos insuficientes ",
+      "failed_to_join_no_license": "Não é possível se juntar porque as licenças da equipe são insuficientes, entre em contato com o administrador.",
       "storage_insufficient_modal": "O armazenamento ou tráfego desta equipe não é suficiente. Entre em contato com o seu administrador.",
       "appsumo": {
         "suc": "resgatado com sucesso",
@@ -3871,7 +3871,7 @@
       },
       "no_license_operate_failed": "Devido a licenças insuficientes, a operação falhou.",
       "failed_to_invite_no_license": "Devido ao licenciamento insuficiente, alguns convites de membros falharam.",
-      "error_subscribe": "Falha ao assinar. Por favor, tente novamente mais tarde.",
+      "error_subscribe": "Falha ao alterar o plano. Tente novamente mais tarde.",
       "unsubscription_fail": "Falha ao cancelar a assinatura. Tente novamente mais tarde.",
       "failed_to_update": "Falha ao atualizar a assinatura. Por favor, tente novamente. ",
       "update_suc": "Assinatura atualizada com sucesso"
@@ -3885,7 +3885,7 @@
         "not_owner_description_drive": "O armazenamento ou tráfego desta equipe não é suficiente. Entre em contato com o seu administrador.",
         "not_owner_button_drive": "Eu tenho que",
         "out_title_drive": "Falha ao baixar",
-        "out_description_drive": "Devido ao tráfego insuficiente, o download falhou. Entre em contato com o proprietário do arquivo",
+        "out_description_drive": "Falha ao baixar, entre em contato com o proprietário do arquivo",
         "out_button_drive": "Eu tenho que"
       },
       "sub_suc": {
@@ -3893,7 +3893,7 @@
         "you_can_now_invite_m": "Vai entrar em vigor dentro de alguns minutos. Você pode convidar membros e começar a usar os recursos avançados mais tarde. Vá em frente e experimente!",
         "you_can_now_upload_m": "Vai ter efeito em alguns minutos. Agora você pode carregar mais arquivos.",
         "payment_successful": "Pagamento bem-sucedido",
-        "we_have_added_the_li": "Vai entrar em vigor em alguns minutos. Nós adicionamos os lugares para você. Qualquer alteração no período de assinatura entrará em vigor a partir do próximo ciclo de faturamento.",
+        "we_have_added_the_li": "Vai entrar em vigor em alguns minutos. Nós adicionamos as licenças para você. Qualquer alteração no período de assinatura entrará em vigor a partir do próximo ciclo de faturamento.",
         "we_have_added_the_st": "Vai entrar em vigor em alguns minutos. Nós adicionamos o armazenamento para você. Qualquer alteração no período de assinatura entrará em vigor a partir do próximo ciclo de faturamento.",
         "we_have_added_the_tr": "Isso entrará em vigor em alguns minutos. Adicionaremos o tráfego para você mais tarde. Agora você pode baixar mais arquivos.",
         "successfully_updated": "Atualizado com Sucesso",
@@ -3909,15 +3909,15 @@
         "audit_logs": "Logs de auditoria",
         "learn_more": "Mais informações",
         "upgrade": "PRO",
-        "insufficient_license_title": "Assentos Insuficientes",
-        "insufficient_license_description": "Para convidar mais editores, por favor, aumente os lugares primeiro. Todos os membros da sua equipe poderiam usar os recursos para ILLA Cloud Plus. O acesso específico a cada funcionalidade depende do papel de cada membro. ",
-        "insufficient_license_button": "Adicionar Assentos",
+        "insufficient_license_title": "Licenças Insuficientes",
+        "insufficient_license_description": "Para convidar mais editores, primeiro aumente as licenças. Todos os membros da sua equipe podem utilizar os recursos para ILLA Cloud Plus. O acesso específico a cada funcionalidade depende do papel de cada membro. ",
+        "insufficient_license_button": "Adicionar licenças",
         "pricing": "/editor/mês, anual"
       },
       "expired": {
         "owner": "Sua assinatura expirou. Para continuar usando, por favor, renove-a.",
         "others": "Sua conta foi desativada porque a assinatura da equipe expirou.",
-        "your_subscription_ha_not_owner": "Exceção de assinatura",
+        "your_subscription_ha_not_owner": "Sem licenças suficientes",
         "all_members_except_f_not_owner": "Seu time não tem licenças suficientes. Entre em contato com o proprietário da equipe.",
         "upgrade_not_owner": "Eu tenho que",
         "your_subscription_ha": "Assinatura expirada",
@@ -3925,11 +3925,11 @@
         "upgrade": "PRO"
       },
       "blank_page": {
-        "insufficient_license_disable": "Sua conta foi desativada devido à falta de assentos de equipe. Entre em contato com o proprietário da equipe para obter assistência."
+        "insufficient_license_disable": "Sua conta foi desativada devido a insuficientes licenças da equipe. Entre em contato com o proprietário da equipe para obter ajuda."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Assentos Insuficientes",
-        "insufficient_license_description": "Devido a assentos insuficientes, a operação falhou. Entre em contato com o proprietário da equipe.",
+        "insufficient_license_title": "Licenças Insuficientes",
+        "insufficient_license_description": "Para convidar mais editores, por favor, conecte seu administrador para aumentar as licenças primeiro.",
         "insufficient_license_button": "Certo"
       },
       "storage_insufficient": {
@@ -3939,16 +3939,16 @@
         "not_owner_title": "Capacidade de armazenamento insuficiente",
         "not_owner_description": "Para armazenar os arquivos normalmente, por favor contate o administrador para aumentar a capacidade de armazenamento a tempo.",
         "not_owner_button": "Certo",
-        "owner_pricing": "5 GB/Mensal"
+        "owner_pricing": "GB/Mensal"
       },
       "traffic_insufficient": {
         "owner_title": "Capacidade de tráfego insuficiente",
         "owner_description": "Para acessar os arquivos normalmente, aumente a capacidade de tráfego a tempo. ",
         "owner_button": "Aumentar capacidade",
-        "not_owner_title": "Tráfego insuficiente",
+        "not_owner_title": "Capacidade de armazenamento insuficiente",
         "not_owner_description": "Para acessar arquivos normalmente, entre em contato com o administrador para aumentar a capacidade de tráfego a tempo.",
         "not_owner_button": "Certo",
-        "owner_pricing": "5 GB"
+        "owner_pricing": "GB/Mensal"
       },
       "cancel_confirm": {
         "description": "Após o cancelamento, sua equipe voltará para o plano gratuito a partir do próximo ciclo de faturamento. Os recursos incluídos nos planos de assinatura não estarão mais acessíveis.",
@@ -3963,7 +3963,7 @@
         "button_confirm": "Confirmar"
       },
       "ai-agent": {
-        "string1": "Este modelo é para a equipe Premium. ",
+        "string1": "GPT-4 é para a equipe Premium. ",
         "string2": "Para usá-lo, por favor, atualize para o Premium. Ao atualizar para o Premium, você também terá acesso aos seguintes recursos. "
       }
     },
@@ -4065,7 +4065,7 @@
       "update_suc": "Atualizado com Sucesso"
     },
     "button": {
-      "blank": "Criar novo artigo",
+      "blank": "Crie seu primeiro aplicativo",
       "blank-agent": "Criar Agente IA"
     }
   },
@@ -4090,7 +4090,7 @@
       "undeploy": "O app não foi implantado. O acesso público e o acesso ao visualizador podem encontrar erros. "
     },
     "label": {
-      "contribute": "Contribua para a comunidade"
+      "contribute": "Contribua para o marketplace"
     },
     "default-text": {
       "social-media": {
