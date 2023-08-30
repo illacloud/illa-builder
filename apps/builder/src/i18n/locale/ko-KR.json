@@ -2622,7 +2622,7 @@
         "start-failed": "Failed to start. Please try again. ",
         "reconnect": "Connection lost. Reconnecting...",
         "token-not-enough": "Model limit reached. Please restart.",
-        "token": "The current value of Max tokens is low, which may cause incomplete returned results.",
+        "token": "The Max token is smaller than the number of tokens occupied by the prompt or exceeds the model's limit.",
         "purchase-required": "Colla is not enough to run, please recharge.",
         "leave": "There are unsaved content, are you sure you want to leave?"
       },
