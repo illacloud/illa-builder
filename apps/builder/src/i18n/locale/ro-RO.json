@@ -3961,6 +3961,10 @@
         "title": "Schimbați planul?",
         "button_cancel": "Anulează",
         "button_confirm": "Confirmare"
+      },
+      "ai-agent": {
+        "string1": "Acest model este pentru echipa Premium. ",
+        "string2": "Pentru a o folosi, vă rugăm să faceţi upgrade la Premium. Prin upgrade la Premium, veţi avea de asemenea acces la următoarele caracteristici. "
       }
     },
     "homepage": {
