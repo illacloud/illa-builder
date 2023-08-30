@@ -286,7 +286,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         <Dropdown
           position="bottom-end"
           trigger="click"
-          triggerProps={{ closeDelay: 0, openDelay: 0 }}
           onVisibleChange={onVisibleChange}
           dropList={
             <DropList w={"184px"}>

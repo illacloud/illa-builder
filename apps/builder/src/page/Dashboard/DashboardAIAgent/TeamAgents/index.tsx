@@ -1,4 +1,9 @@
 import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
 import { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
@@ -71,6 +76,11 @@ export const TeamAgents: FC = () => {
     </div>
   ) : (
     <TeamContentEmpty
+      showCreate={canManage(
+        teamInfo.myRole,
+        ATTRIBUTE_GROUP.AGENT,
+        ACTION_MANAGE.CREATE_AGENT,
+      )}
       loading={false}
       navigate={() => {
         navigate(`/${teamInfo.identifier}/ai-agent`)

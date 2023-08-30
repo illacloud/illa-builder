@@ -25,7 +25,7 @@ import {
 
 export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   const { t } = useTranslation()
-  const { agentInfo, ...otherProps } = props
+  const { agentInfo } = props
   const navigate = useNavigate()
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
@@ -39,10 +39,9 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   return (
     <div
       css={cardStyle}
-      {...otherProps}
-      // onClick={() => {
-      //   navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
-      // }}
+      onClick={() => {
+        navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
+      }}
     >
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
