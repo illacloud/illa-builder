@@ -24,7 +24,7 @@ import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue } from "react-router-dom"
+import { useAsyncValue, useNavigate } from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -91,6 +91,7 @@ export const AIAgent: FC = () => {
   const data = useAsyncValue() as {
     agent: Agent
   }
+  const navigate = useNavigate()
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
@@ -294,7 +295,7 @@ export const AIAgent: FC = () => {
             <div
               css={leftPanelTitleTextStyle}
               onClick={() => {
-                window.history.back()
+                navigate(-1)
               }}
             >
               <PreviousIcon fs="16px" />

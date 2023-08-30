@@ -31,7 +31,7 @@ import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue } from "react-router-dom"
+import { useAsyncValue, useNavigate } from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -91,6 +91,7 @@ export const AIAgentRunMobile: FC = () => {
     agent: Agent
     marketplaceInfo: MarketAIAgent | undefined
   }
+  const navigate = useNavigate()
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
@@ -524,7 +525,7 @@ export const AIAgentRunMobile: FC = () => {
                   <div
                     css={shareContainerStyle}
                     onClick={() => {
-                      window.history.back()
+                      navigate(-1)
                     }}
                   >
                     <PreviousIcon fs="24px" />
