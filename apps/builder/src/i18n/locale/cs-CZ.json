@@ -2624,7 +2624,8 @@
         "token-not-enough": "Dosažen limit modelu. Prosím restartujte.",
         "token": "Aktuální hodnota Max tokenů je nízká, což může způsobit neúplné vrácené výsledky.",
         "purchase-required": "Colla nestačí k spuštění, prosím znovu nabit.",
-        "leave": "Existuje neuložený obsah, jste si jisti, že chcete odejít?"
+        "leave": "Existuje neuložený obsah, jste si jisti, že chcete odejít?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "🧬 Úprava AI agenta",
       "generate-desc": {
