@@ -169,7 +169,7 @@ export const generateIcon = (name: string, description: string) => {
     }
   >(
     {
-      url: `/aiAgent/generateIcon`,
+      url: `/aiAgent/generateAvatar`,
       method: "POST",
       data: {
         name: encodeURI(name),
