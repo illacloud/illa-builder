@@ -32,13 +32,13 @@
       "cancel": "Zrušit",
       "delete": "Vymazat",
       "delete_cancel_text": "Zrušit",
-      "delete_content": "Toto rozbije aplikace a knihovny dotazů, které používají tento zdroj",
+      "delete_content": "Po smazání nebude možné přistupovat k datům nebo je obnovovat jakýmkoliv způsobem. Potvrďte prosím.",
       "delete_ok_text": "Vymazat",
       "delete_title": "Jste si jisti?",
       "error_button": "Opakovat",
       "error_description": "Vyskytl se problém s vaší operací.",
       "error_title": "Chyba",
-      "marketplace": "Komunita",
+      "marketplace": "Tržiště",
       "run": "Spustit",
       "fork": "Fork"
     },
@@ -57,22 +57,22 @@
     },
     "list-type": {
       "team": "Týmový",
-      "marketplace": "Komunita"
+      "marketplace": "Agent trh"
     },
     "sort-type": {
       "popular": "Nejoblíbenější",
-      "recent": "Nedávno aktualizované",
+      "recent": "Nejnovější",
       "star": "Oblíbené"
     },
     "search": "Hledat",
     "no-result": "Žádný výsledek. Aktualizujte nebo změňte hledané výrazy.",
     "message": {
       "next-page-error": "Nepodařilo se načíst další stránku. Zkuste to prosím znovu.",
-      "create-failed": "Nepodařilo se vytvořit agenta. Zkuste to prosím znovu.",
+      "create-failed": "Nepodařilo se uložit agenta. Zkuste to prosím znovu.",
       "sort-failed": "Nepodařilo se změnit typ filtru. Zkuste to prosím znovu.",
       "detail-load-failed": "Nepodařilo se načíst podrobnosti, zkuste to prosím znovu.",
       "fork-failed": "Rozštěpení se nezdařilo, zkuste to prosím znovu.",
-      "create-suc": "Nepodařilo se vytvořit, zkuste to prosím znovu.",
+      "create-suc": "Úspěšně uloženo",
       "fork-suc": "Rozštěpeno úspěšně.",
       "delete-failed": "Odstranění se nezdařilo. Zkuste to prosím znovu. ",
       "delete-suc": "Úspěšně smazáno. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "ID listu ke kopírování",
             "sheet_to_copy_to": "List ke zkopírování do",
             "authentication": "Ověření",
-            "connect_with_oauth": "Připojit se k OAuth a uložit",
+            "connect_with_oauth": "Propojit s Google",
             "reconnect_with_oauth": "Znovu připojit s OAuth",
             "access_type": "Typ přístupu"
           },
@@ -2055,7 +2055,7 @@
           "title": "Nastavit název pro zobrazení"
         },
         "page": {
-          "default_view": "Když uživatelé zadají chybovou cestu, automaticky přesměrujeme na výchozí cestu. Pokud neexistuje výchozí cesta, budeme považovat první cestu v seznamu za výchozí cestu"
+          "default_view": "Když uživatelé zadají chybu URL, automaticky přesměrujeme na výchozí dílčí stránku. Pokud neexistuje žádná výchozí podstránka, budeme považovat první podstránku v seznamu za výchozí podstránku"
         },
         "chart": {
           "direction": "Nastavte směr grafu. ",
@@ -2277,8 +2277,8 @@
       "label_name": {
         "add": "Přidat",
         "body": "Tělo",
-        "default_view": "Výchozí zobrazení",
-        "edit_view": "Upravit cestu",
+        "default_view": "Výchozí podstránka",
+        "edit_view": "Upravit podstránku",
         "footer": "Zápatí",
         "header": "Záhlaví",
         "key": "Klíč",
@@ -2287,8 +2287,8 @@
         "right_panel": "Pravý panel",
         "set_as_homepage": "Nastavit jako domovskou stránku",
         "show_fold_icon": "Zobrazit fold ikonu",
-        "view_path": "Cesta",
-        "views": "Zobrazení",
+        "view_path": "Název",
+        "views": "Podstránky",
         "width": "Width",
         "height": "Výška",
         "columns": "Sloupce",
@@ -2309,7 +2309,7 @@
       "tab_title": "Stránka",
       "tooltips": {
         "show_fold_icon": "Zobrazit tlačítko pro sbalení nebo rozšíření panelu",
-        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit cestu. Například, pokud změníš cestu na '**newPath**', a přidej ji jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Chcete-li nakonfigurovat přístup k této stránce, musíte upravit název. Například, pokud změníš název na '**newPage**', a přidej ho jako podstránku domovské stránky. Tato stránka může být poté přístupná přes následující URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "Šířka stránky jako procento šířky prohlížeče."
       },
       "message": {
@@ -2574,7 +2574,7 @@
       "placeholder": {
         "name": "Dejte jméno agentovi",
         "desc": "Uveďte stručný popis toho, pro co má být tento agent použit.",
-        "prompt": "Zadejte {{ pro použití proměnné",
+        "prompt": "Zadejte {{variableName}} pro použití proměnné",
         "variable": {
           "key": "Název proměnné",
           "value": "Hodnota"
@@ -2606,7 +2606,7 @@
       "save": "Uložit",
       "start": "Začít",
       "restart": "Restartovat",
-      "contribute": "Přispět do komunity",
+      "contribute": "Přispějte na tržišti",
       "button": {
         "send": "Poslat",
         "generating": "Generování"
@@ -2618,7 +2618,7 @@
       },
       "message": {
         "click-start": "Klikněte na tlačítko Start pro spuštění.",
-        "insufficient_token": "Nedostatečný token",
+        "insufficient_token": "Nedostatek Colla",
         "start-failed": "Nepodařilo se spustit. Prosím, zkuste to znovu. ",
         "reconnect": "Spojení ztraceno. Probíhá opětovné připojení.",
         "token-not-enough": "Dosažen limit modelu. Prosím restartujte.",
@@ -2636,8 +2636,8 @@
         "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta"
       },
       "title-preview": {
-        "chat": "Náhled okna",
-        "text-generation": "Náhled okna"
+        "chat": "Chat",
+        "text-generation": "Generování textu"
       }
     },
     "common": {
@@ -3056,12 +3056,12 @@
       "name": "Formulář schématu JSON"
     },
     "page": {
-      "path_duplicated": "Cesta je duplikována. Použijte jedinečnou cestu, abyste se vyhnuli chybám. ",
+      "path_duplicated": "Název stránky je duplicitní. Použijte prosím unikátní název, abyste se vyhnuli chybám. ",
       "tips": {
         "blank_view": "Tento modul nemá žádné podřízené stránky. Nejprve je prosím přidejte přes panel Stránky vpravo."
       },
       "label": {
-        "rename_url": "Upravit cestu",
+        "rename_url": "Upravit podstránku",
         "rename_page_url": "Upravit stránku"
       }
     }
@@ -3254,7 +3254,7 @@
         "copy": "Kopírovat",
         "turn_off": "Vypnout odkazy pozvánky",
         "update": "Aktualizovat odkazy pozvánky",
-        "description": "Zapněte a pozvěte členy prostřednictvím odkazu. ",
+        "description": "Sdílejte tajné odkazy lidí mohou použít pro připojení k vašemu týmu.",
         "turn_on": "Zapnout odkazy pozvánky",
         "fail": "Nepodařilo se získat odkaz, zkuste to prosím později",
         "copied_suc": "Zkopírováno!",
@@ -3594,16 +3594,16 @@
     "apps": {
       "components": "Všechny komponenty",
       "resources": "Všechny zdroje",
-      "plugins": "Neomezený počet pluginů (již brzy)",
+      "plugins": "Neomezený počet pluginů",
       "sql": "Generování AI SQL",
       "watermark": "Odstranit vodoznak"
     },
     "security": {
-      "historic-7": "Zálohovat historii úprav a obnovení",
-      "historic-30": "Ponechat nasazené verze a revert(již brzy)",
-      "develop-environment": "Multi-environment(již brzy)",
+      "historic-7": "Historická verze uchovává & obnovuje 7 dní",
+      "historic-30": "Historická verze uchovává a obnovuje po dobu 30 dní",
+      "develop-environment": "Rozvíjet životní prostředí",
       "app-public": "Veřejná aplikace",
-      "restore-data": "Zálohovat historii úprav a obnovení",
+      "restore-data": "Zálohování a obnovení",
       "deployed": "Přístup k podpoře ILLA",
       "dedicated": "Specializovaný inženýr řešení"
     },
@@ -3612,7 +3612,7 @@
       "sql": "Vložte přirozený jazyk a generujte SQL příkaz",
       "staging": "Otestujte svou aplikaci proti přípravnému prostředí",
       "app-public": "Udělejte aplikaci veřejně a kdokoli s odkazem k ní může přistupovat",
-      "restore-data": "Kdykoliv si přejete zálohovat nebo obnovit historii",
+      "restore-data": "Zálohovat nebo obnovit data kdykoliv chcete",
       "deployed": "Nasazení inženýři vám mohou pomoci rychleji",
       "dedicated": "Specializované zákaznické řešení inženýr přes Slack/email/telefon",
       "preview_insufficient": "Soubor nemůže být zobrazen z důvodu nedostatečné kapacity, prosím nejprve rozšiřte kapacitu."
@@ -3645,12 +3645,12 @@
     "free-members": "Pouze 1 člen pro osobní použití",
     "unlimited-viewer": "ZDARMA pro neomezený počet diváků",
     "unlimited-members": "Neomezený počet členů",
-    "free-btn": "Aktuální tarif",
-    "plus-btn": "Vylepšit",
+    "free-btn": "Sestavit aplikace zdarma",
+    "plus-btn": "Vyzkoušejte bezplatnou verzi",
     "enterprise-btn": "Kontaktujte nás",
     "menu": {
       "billing": "Fakturace",
-      "license": "Sedadlo",
+      "license": "Licence",
       "drive": "Řidič",
       "colla": "Colla",
       "appsumo": "Appsumo",
@@ -3659,7 +3659,7 @@
     },
     "title": {
       "billing": "Fakturace",
-      "license": "Sedadlo",
+      "license": "Licence",
       "drive": "Řidič",
       "colla": "Colla",
       "appsumo": "Appsumo"
@@ -3681,7 +3681,7 @@
       "table_title": {
         "next_payment_date": "Další datum platby",
         "expiration_date": "Datum expirace",
-        "licenses": "Sedadla",
+        "licenses": "Licence",
         "storage": "Úložiště",
         "traffic": "Provoz",
         "colla": "Colla"
@@ -3693,22 +3693,22 @@
     },
     "subscription_card": {
       "title": {
-        "License": "Sedadla",
+        "License": "Licence",
         "Storage": "Úložiště",
         "Traffic": "Provoz",
         "balance": "Zůstatek",
         "colla": "Colla"
       },
       "button": {
-        "License": "Správa sedadel",
+        "License": "Správa licencí",
         "Storage": "Správa úložiště",
         "Traffic": "Rozšířit provoz",
         "colla": "Spravovat Colla"
       },
       "capacity": {
-        "License": "{{used}} použito (celkem {{total}} sedadel) ",
-        "Storage": "{{used}}GB použito (celkem {{total}}GB) ",
-        "Traffic": "{{used}}GB použito (celkem {{total}}GB) ",
+        "License": "Bylo použito {{used}} (celkem {{total}} licencí).",
+        "Storage": "Bylo použito {{used}} (celkem {{total}} GB).",
+        "Traffic": "Bylo použito {{used}} (celkem {{total}} GB).",
         "colla": "{{used}} Colla (celkem {{total}} Colla)"
       },
       "colla_usage": {
@@ -3733,19 +3733,19 @@
     "payment_sidebar": {
       "title": {
         "manage_storage": "Správa úložiště",
-        "manage_licenses": "Správa sedadel",
+        "manage_licenses": "Správa licencí",
         "expand_traffic_capac": "Rozšířit dopravní kapacitu",
         "colla": "Spravovat Colla"
       },
       "plan_label": {
-        "License": "Sedadla",
+        "License": "Licence",
         "Storage": "Úložiště",
         "Traffic": "Provoz",
         "colla": "Colla"
       },
       "plan_number_input_label": {
-        "License": "Sedadla",
-        "Storage_traffic": "5GB",
+        "License": "Licence",
+        "Storage_traffic": "CZ",
         "colla": "Colla"
       },
       "select_option": {
@@ -3770,14 +3770,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} sedadel × {{remainDays}} dnů / {{totalDays}} dnů",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} sedadel",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} sedadel",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} sedadel × {{remainDays}} dnů / {{totalDays}} dnů",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} sedadel",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} sedadel",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} sedadel",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} sedadel",
+        "this_period": "{{unitPrice}} × {{licenseNum}} licencí × {{remainDays}} dnů / {{totalDays}} dnů",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licence",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licence",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licencí × {{remainDays}} dnů / {{totalDays}} dnů",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licence",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licence",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licence",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licence",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dnů / {{totalDays}} dnů",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3794,8 +3794,8 @@
         "change_plan": "Změnit plán",
         "storage_traffic_increase": "Zvýšit o {{changeNum}} GB",
         "storage_traffic_remove": "Odstranit {{changeNum}} GB",
-        "license_increase": "Zvýšit {{changeNum}} sedadel",
-        "license_remove": "Odstranit {{changeNum}} sedadel",
+        "license_increase": "Zvýšit {{changeNum}} licencí",
+        "license_remove": "Odstranit {{changeNum}} licencí",
         "colla_increase": "Zvýšit {{changeNum}} Colla",
         "colla_remove": "Odstranit {{changeNum}} Colla"
       },
@@ -3804,13 +3804,13 @@
         "remove_storage": "Chystáte se odstranit úložiště {{changeNum}} GB. Jakmile bude potvrzeno, změny se projeví v dalším fakturačním cyklu. <0>Více informací</0>",
         "update_plan_year": "Chystáte se aktualizovat roční plán plateb. Po potvrzení, změna se projeví od začátku příštího fakturačního cyklu. <0>Další informace</0>",
         "update_plan_monthly": "Chystáte se aktualizovat na měsíční platební plán. Po potvrzení, změna se projeví od začátku příštího fakturačního cyklu. <0>Další informace</0>",
-        "add_license": "Chystáte se přidat {{changeNum}} sedadel. Jakmile bude potvrzeno, okamžitě si odečteme platbu za nové sedadla pro tento fakturační cyklus. <0>Další informace</0>",
-        "remove_license": "Chystáte se odstranit {{changeNum}} sedadel. Jakmile bude potvrzeno, změny se projeví v dalším fakturačním cyklu. <0>Více informací</0>",
+        "add_license": "Chystáte se přidat {{changeNum}} licencí. Jakmile bude potvrzeno, okamžitě si odečteme platbu za nové licence pro tento fakturační cyklus. <0>Další informace</0>",
+        "remove_license": "Chystáte se odebrat {{changeNum}} licencí. Jakmile bude potvrzeno, změny se projeví v dalším fakturačním cyklu. <0>Více informací</0>",
         "add_traffic": "Chystáte se přidat provoz {{changeNum}}GB. Jakmile bude potvrzeno, okamžitě odečteme náklady na další provoz. <0>Další informace</0>",
         "subscribe_storage": "Přihlásíte se k odběru ILLA Cloud Plus. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. <0>Další informace</0>",
         "subscribe_license": "Přihlásíte se k odběru ILLA Drive. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. <0>Další informace</0>",
-        "update_plan_increase_license": "Chystáte se přidat {{changeNum}} sedadel a aktualizovat dobu předplatného. <0>Více informací</0>",
-        "update_plan_remove_license": "Chystáte se odstranit místa {{changeNum}} a aktualizovat období předplatného. <0>Více informací</0>",
+        "update_plan_increase_license": "Chystáte se přidat {{changeNum}} licencí a aktualizovat dobu předplatného. <0>Více informací</0>",
+        "update_plan_remove_license": "Chystáte se odstranit {{changeNum}} licencí a aktualizovat dobu předplatného. <0>Více informací</0>",
         "update_plan_increase_storage": "Chystáte se přidat {{changeNum}} GB úložiště a aktualizovat dobu předplatného. <0>Více informací</0>",
         "update_plan_remove_storage": "Chystáte se odstranit úložiště {{changeNum}} GB a aktualizovat období předplatného. <0>Více informací</0>",
         "unsubscribe_license": "Chystáte se odhlásit ILLA Cloud Plus. Po zrušení, počínaje dalším fakturačním cyklem, funkce Plus již nebudou dostupné. <0>Další informace</0>",
@@ -3827,15 +3827,15 @@
       },
       "description": {
         "remove_storage": "Pokud skladovací kapacita využívaná vašimi soubory překročí odebíranou skladovací kapacitu na začátku příštího fakturačního cyklu, všechny soubory budou zakázány, dokud neodstraníte soubory nebo nezvýšíte kapacitu úložiště v dostupném rozsahu. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
-        "update_plan_year": "Od příštího období se předplatné změní na roční předplatné, a poplatky se automaticky odečtou na základě roční ceny za předplatné. Pokud chcete snížit počet sedadel nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
-        "update_plan_monthly": "Od příštího období se předplatné změní na měsíční předplatné, a poplatky budou automaticky odečteny na základě měsíčních předplatných. Pokud chcete snížit počet sedadel nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
+        "update_plan_year": "Od příštího období se předplatné změní na roční předplatné, a poplatky se automaticky odečtou na základě roční ceny za předplatné. Pokud chcete snížit licence nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
+        "update_plan_monthly": "Od příštího období se předplatné změní na měsíční předplatné, a poplatky budou automaticky odečteny na základě měsíčních předplatných. Pokud chcete snížit licence nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "add_license": "Pravidla výpočtu s použitím měsíčního předplatného místa jako příkladu: zvažme scénář, kdy jste původně od 14. března přihlásili 5 sedadel, a zúčtovací cyklus sahá od 14. dne tohoto měsíce do 13. dne příštího měsíce. 10. května se rozhodnete přidat ještě jedno sedadlo. V tomto okamžiku ke třináctému květnu zbývaly čtyři dny do konce aktuálního cyklu (což je celkem 30 dnů od 14. dubna do 13. května). Pro výpočet upravené platby odečteme náklady na 1 sídlo. což činí přibližně 10 USD, úměrné délce 4 dnů v rámci 30denního cyklu. Odpočet se proto odhaduje na 1 sedadlo * $10 / 30 dnů * 4 dny, což znamená přibližně 1,33 $; Od příštího fakturačního cyklu budou všechny poplatky za sedadla konsolidovány a hrazeny společně. Pokud chcete snížit počet sedadel nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
-        "remove_license": "Pokud počet uživatelů s oprávněním k úpravám překročí počet sedadel na začátku příštího fakturačního cyklu, všichni uživatelé kromě vlastníka budou zakázáni, dokud neodstraníte členy nebo nezvětšíte počet sedadel v dostupném rozsahu. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
+        "remove_license": "Pokud počet uživatelů s oprávněním k úpravám překročí počet licencí na začátku příštího fakturačního cyklu, všichni uživatelé kromě vlastníka budou zakázáni, dokud neodstraníte členy nebo nezvyšujete počet licencí v dostupném rozsahu. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "add_traffic": "Po úspěšném odečtení se vaše doprava zvýší v reálném čase. Jakmile je provoz použit, poplatky nelze vrátit. Nevyužitý provoz může být vrácen v jednotkách GB. Například, pokud si zakoupíte 10GB dopravy a použijete 4.5GB, můžete požádat o vrácení 5GB. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "subscribe_storage_yearly": "Přihlásíte se k ročnímu odběru úložiště ILLA Drive. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. Skutečná odečtená částka závisí na tom, kolik skladovací kapacity jste se přihlásili v GB. Například, pokud zahajujete první předplatné 25. února 2023 s ročním předplatným 9 dolarů. za GB, a máte celkem 3 GB, odečítáme 29 dolarů. dne 25. února 2023. Přidáte-li 25. března 2023 2 GB, budeme nejdříve 25. března 2023 odečíst zbývajících 11 měsíců. Pak do 25. února 2024 odečteme platbu za 5 GB, což je (2+3)*9,9 $49 =49. . Pokud chcete snížit úložiště nebo provést další změny v předplatném, prosím aktualizujte je před začátkem následujícího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
-        "subscribe_license_monthly": "Přihlásíte se k měsíčnímu odběru ILLA Cloud Plus. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. Skutečná odečtená částka závisí na počtu sedadel, která máte. Například, pokud zahajujete první předplatné 25. února 2023 s měsíčním předplatným 12 USD za sedadlo, a máte celkem tři křesla, 25. února 2023 si odečteme 36 dolarů. Přidáte-li 21. března 2023 další dvě křesla, nejprve budeme 21. března 2023 odečíst zbývající pětidenní platbu. Do 25. března 2023 pak odečteme platbu za 5 křesel, což je (2+3)*$12 =60 dolarů. Pokud chcete snížit počet sedadel nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
+        "subscribe_license_monthly": "Přihlásíte se k měsíčnímu odběru ILLA Cloud Plus. Poplatky budeme automaticky odečíst z Vašeho účtu na začátku každého cyklu plateb. Skutečná odečtená částka závisí na počtu licencí, které máte. Například, pokud zahajujete první předplatné 25. února 2023 s měsíčním předplatným 12 USD za licenci, a máte celkem 3 licence, k 25. únoru 2023 si odečteme 36 dolarů. Přidáte-li 21. března 2023 další dvě licence, nejprve dne 21. března 2023 odečteme zbývajících 5 dní. Pak do 25. března 2023 odečítáme platbu za 5 licencí, což je (2+3)*$12 =$60. Pokud chcete snížit licence nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "update_plan_increase_license": "Poplatky budou automaticky odečteny na základě aktualizovaného počtu sedadel a ceny nového fakturačního cyklu od příštího období. Tentokrát budeme odečíst platbu za zvýšená místa podle současného fakturačního cyklu. Pravidla výpočtu pro zvýšení počtu sedadel za použití měsíčního předplatného sedadel jako příkladu: Pojďme zvážit scénář, kdy jste původně od 14. března předplatili 5 sedadel, a zúčtovací cyklus sahá od 14. dne tohoto měsíce do 13. dne příštího měsíce. 10. května se rozhodnete přidat ještě jedno sedadlo. V tomto okamžiku ke třináctému květnu zbývaly čtyři dny do konce aktuálního cyklu (což je celkem 30 dnů od 14. dubna do 13. května). Pro výpočet upravené platby odečteme náklady na 1 sídlo. což činí přibližně 10 USD, úměrné délce 4 dnů v rámci 30denního cyklu. Odpočet se proto odhaduje na 1 sedadlo * $10 / 30 dnů * 4 dny, což znamená přibližně 1,33 $; Od příštího fakturačního cyklu budou všechny poplatky za sedadla konsolidovány a hrazeny společně. Pokud chcete snížit počet sedadel nebo provést další změny v předplatném, prosím aktualizujte je před začátkem příštího období. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
-        "update_plan_remove_license": "Poplatky budou automaticky odečteny na základě aktualizovaného počtu sedadel a ceny nového fakturačního cyklu od příštího období. Pokud počet uživatelů s oprávněním k úpravám překročí počet sedadel na začátku příštího fakturačního cyklu, všichni uživatelé kromě vlastníka budou zakázáni, dokud neodstraníte členy nebo nezvětšíte počet sedadel v dostupném rozsahu. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
+        "update_plan_remove_license": "Poplatky budou automaticky odečteny na základě aktualizovaného počtu licencí a ceny nového fakturačního cyklu od příštího období. Pokud počet uživatelů s oprávněním k úpravám překročí počet licencí na začátku příštího fakturačního cyklu, všichni uživatelé kromě vlastníka budou zakázáni, dokud neodstraníte členy nebo nezvyšujete počet licencí v dostupném rozsahu. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>",
         "update_plan_remove_storage": "Poplatky budou automaticky odečteny na základě aktualizovaného ukládání a ceny nového fakturačního cyklu od příštího období. Pokud skladovací kapacita využívaná vašimi soubory překročí odebíranou skladovací kapacitu na začátku příštího fakturačního cyklu, všechny soubory budou zakázány, dokud neodstraníte soubory nebo nezvýšíte kapacitu úložiště v dostupném rozsahu. Další informace naleznete v <0>Zásadách ochrany osobních údajů</0> a <1>Podmínky služby</1>"
       },
       "colla_redeem": {
@@ -3850,8 +3850,8 @@
       "failed_to_add_traffic": "Nepodařilo se přidat provoz. Zkuste to prosím znovu. ",
       "failed_to_add_storage": "Nepodařilo se přidat úložiště. Zkuste to prosím znovu. ",
       "failed_to_remove_storage": "Nepodařilo se odstranit úložiště. Zkuste to prosím znovu. ",
-      "failed_to_add_licens": "Přidání sedadel se nezdařilo. Zkuste to prosím znovu. ",
-      "failed_to_remove_lic": "Odstranění sedadel se nezdařilo. Zkuste to prosím znovu. ",
+      "failed_to_add_licens": "Přidání licencí se nezdařilo. Zkuste to znovu. ",
+      "failed_to_remove_lic": "Nepodařilo se odstranit licence. Zkuste to prosím znovu. ",
       "failed_to_change_pla": "Změna plánu se nezdařila. Zkuste to prosím znovu. ",
       "failed_to_unsubscrib": "Odhlášení se nezdařilo. Zkuste to prosím znovu. ",
       "successfully_removed": "Úspěšně odstraněno. Změna se projeví od {{nextPaymentDate}}.",
@@ -3861,7 +3861,7 @@
       "successfully_changed": "Odběr úspěšně změněn. Bude platit za několik minut",
       "failed_to_change": "Změna předplatného se nezdařila",
       "unsubscription_suc": "Předplatné bylo úspěšně zrušeno a bude platit od příštího období",
-      "failed_to_join_no_license": "Nelze se připojit z důvodu nedostatku sedadel ",
+      "failed_to_join_no_license": "Nelze se připojit, protože licence týmu nejsou dostačující, kontaktujte prosím správce.",
       "storage_insufficient_modal": "Úložiště nebo provoz tohoto týmu nestačí. Kontaktujte svého správce.",
       "appsumo": {
         "suc": "Úspěšně vyplaceno",
@@ -3871,7 +3871,7 @@
       },
       "no_license_operate_failed": "Z důvodu nedostatku licencí se operace nezdařila.",
       "failed_to_invite_no_license": "Z důvodu nedostatečné licence se některé pozvánky členů nezdařily.",
-      "error_subscribe": "Nepodařilo se přihlásit. Opakujte akci později.",
+      "error_subscribe": "Nepodařilo se změnit tarif. Opakujte akci později.",
       "unsubscription_fail": "Nepodařilo se zrušit předplatné. Opakujte akci později.",
       "failed_to_update": "Nepodařilo se aktualizovat odběr. Zkuste to prosím znovu. ",
       "update_suc": "Předplatné úspěšně aktualizováno"
@@ -3885,7 +3885,7 @@
         "not_owner_description_drive": "Úložiště nebo provoz tohoto týmu nestačí. Kontaktujte svého správce.",
         "not_owner_button_drive": "Rozumím",
         "out_title_drive": "Stahování se nezdařilo",
-        "out_description_drive": "Z důvodu nedostatečného provozu se stahování nezdařilo. Kontaktujte prosím vlastníka souboru",
+        "out_description_drive": "Stahování se nezdařilo, kontaktujte prosím vlastníka souboru",
         "out_button_drive": "Rozumím"
       },
       "sub_suc": {
@@ -3893,7 +3893,7 @@
         "you_can_now_invite_m": "Za několik minut nabude účinku. Můžete pozvat členy a začít používat pokročilé funkce později. Pokračujte a zkuste to!",
         "you_can_now_upload_m": "To se projeví za několik minut. Nyní můžete nahrát více souborů.",
         "payment_successful": "Platba úspěšná",
-        "we_have_added_the_li": "To nabude účinnosti za několik minut. Přidali jsme pro vás křesla. Jakékoliv změny v předplatném období nabudou účinnosti od příštího fakturačního cyklu.",
+        "we_have_added_the_li": "To se projeví za několik minut. Přidali jsme pro Vás licenci. Jakékoliv změny v předplatném období nabudou účinnosti od příštího fakturačního cyklu.",
         "we_have_added_the_st": "To se projeví za několik minut. Přidali jsme pro Vás úložiště. Jakékoliv změny v předplatném období nabudou účinnosti od příštího fakturačního cyklu.",
         "we_have_added_the_tr": "To se projeví za několik minut. Provedeme vám provoz později. Nyní si můžete stáhnout více souborů.",
         "successfully_updated": "Úspěšně aktualizováno",
@@ -3909,15 +3909,15 @@
         "audit_logs": "Záznamy auditu",
         "learn_more": "Zjistit více",
         "upgrade": "Vylepšit",
-        "insufficient_license_title": "Nedostatek sedadel",
-        "insufficient_license_description": "Chcete-li pozvat více editorů, zvýšte prosím místo první. Všichni členové vašeho týmu mohou použít funkce pro ILLA Cloud Premium. Konkrétní přístup ke každému prvku závisí na úloze každého člena. ",
-        "insufficient_license_button": "Přidat místa",
+        "insufficient_license_title": "Nedostatek licencí",
+        "insufficient_license_description": "Chcete-li pozvat více editorů, zvyšte prosím nejprve licenci. Všichni členové vašeho týmu mohou používat funkce ILLA Cloud Plus. Konkrétní přístup ke každému prvku závisí na úloze každého člena. ",
+        "insufficient_license_button": "Přidat licence",
         "pricing": "/editor/měsíc, ročně"
       },
       "expired": {
         "owner": "Vaše předplatné vypršelo. Chcete-li pokračovat v používání, obnovte jej prosím.",
         "others": "Váš účet byl deaktivován, protože vypršela platnost předplatného týmu.",
-        "your_subscription_ha_not_owner": "Výjimka pro předplatné",
+        "your_subscription_ha_not_owner": "Nedostatek licencí",
         "all_members_except_f_not_owner": "Váš tým nemá dostatek licencí. Kontaktujte prosím vlastníka týmu.",
         "upgrade_not_owner": "Rozumím",
         "your_subscription_ha": "Předplatné vypršelo",
@@ -3925,11 +3925,11 @@
         "upgrade": "Vylepšit"
       },
       "blank_page": {
-        "insufficient_license_disable": "Váš účet byl deaktivován z důvodu nedostatečného počtu míst týmu. Kontaktujte prosím vlastníka týmu pro pomoc."
+        "insufficient_license_disable": "Váš účet byl z důvodu nedostatku licencí pro tým zakázán. Kontaktujte prosím vlastníka týmu pro pomoc."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Nedostatek sedadel",
-        "insufficient_license_description": "Z důvodu nedostatku sedadel se operace nezdařila. Kontaktujte prosím vlastníka týmu.",
+        "insufficient_license_title": "Nedostatek licencí",
+        "insufficient_license_description": "Chcete-li pozvat více editorů, připojte prosím svého administrátora pro zvýšení licencí.",
         "insufficient_license_button": "OK"
       },
       "storage_insufficient": {
@@ -3939,16 +3939,16 @@
         "not_owner_title": "Nedostatečná skladovací kapacita",
         "not_owner_description": "Chcete-li ukládat soubory normálně, obraťte se na správce pro zvýšení kapacity úložiště včas.",
         "not_owner_button": "OK",
-        "owner_pricing": "5 GB/Měsíčně"
+        "owner_pricing": "GB/Měsíčně"
       },
       "traffic_insufficient": {
         "owner_title": "Nedostatečná dopravní kapacita",
         "owner_description": "Chcete-li přistupovat k souborům normálně, zvýšte prosím včas provozní kapacitu. ",
         "owner_button": "Zvýšit kapacitu",
-        "not_owner_title": "Nedostatečný provoz",
+        "not_owner_title": "Nedostatečná skladovací kapacita",
         "not_owner_description": "Chcete-li přistupovat k souborům normálně, obraťte se na správce pro zvýšení dopravní kapacity včas.",
         "not_owner_button": "OK",
-        "owner_pricing": "5 GB"
+        "owner_pricing": "GB/Měsíčně"
       },
       "cancel_confirm": {
         "description": "Po zrušení se váš tým vrátí k bezplatnému tarifu počínaje dalším fakturačním cyklem. Funkce zahrnuté do plánů předplatného již nebudou přístupné.",
@@ -3963,7 +3963,7 @@
         "button_confirm": "Potvrdit"
       },
       "ai-agent": {
-        "string1": "Tento model je pro prémiový tým. ",
+        "string1": "GPT-4 je pro prémiový tým. ",
         "string2": "Chcete-li jej použít, proveďte upgrade na Premium. Proveďte upgrade na Premium, budete mít také přístup k následujícím funkcím. "
       }
     },
@@ -4065,7 +4065,7 @@
       "update_suc": "Úspěšně aktualizováno"
     },
     "button": {
-      "blank": "Vytvořit nový",
+      "blank": "Vytvořte svou první aplikaci",
       "blank-agent": "Vytvořit AI agenta"
     }
   },
@@ -4090,7 +4090,7 @@
       "undeploy": "Aplikace nebyla nasazena. Veřejný přístup a přístup k prohlížeči může narazit na chyby. "
     },
     "label": {
-      "contribute": "Přispět do komunity"
+      "contribute": "Přispějte na tržišti"
     },
     "default-text": {
       "social-media": {
