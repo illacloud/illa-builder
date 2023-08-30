@@ -249,6 +249,9 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
 
       {shareVisible && (
         <ShareAgentPC
+          title={t("user_management.modal.social_media.default_text.agent", {
+            agentName: aiAgentName,
+          })}
           redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier
           }/dashboard/ai-agents?list=team`}

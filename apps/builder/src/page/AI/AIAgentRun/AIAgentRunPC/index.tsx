@@ -133,7 +133,13 @@ export const AIAgentRunPC: FC = () => {
         <>
           {shareDialogVisible && (
             <ShareAgentPC
-              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${
+              title={t(
+                "user_management.modal.social_media.default_text.agent",
+                {
+                  agentName: agent.name,
+                },
+              )}
+              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${teamInfo.identifier}/ai-agent/${
                 agent.aiAgentID
               }/run`}
               onClose={() => {

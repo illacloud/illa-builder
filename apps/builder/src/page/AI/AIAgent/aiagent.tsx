@@ -910,9 +910,15 @@ export const AIAgent: FC = () => {
                   <>
                     {(shareDialogVisible || contributedDialogVisible) && (
                       <ShareAgentPC
+                        title={t(
+                          "user_management.modal.social_media.default_text.agent",
+                          {
+                            agentName: nameField.value,
+                          },
+                        )}
                         redirectURL={`${
                           import.meta.env.ILLA_BUILDER_URL
-                        }/ai-agent/${idField.value}`}
+                        }/${currentTeamInfo.identifier}/ai-agent/${idField.value}`}
                         onClose={() => {
                           setShareDialogVisible(false)
                           setContributedDialogVisible(false)
