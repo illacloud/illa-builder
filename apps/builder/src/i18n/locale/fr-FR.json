@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Valeur initiale",
           "tooltips": "Supporte des objets ou des valeurs primitives. Exemple: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -1340,7 +1340,7 @@
         },
         "recording": {
           "start_button_text": "Démarrer l'enregistrement",
-          "stop_button_text": "Stop",
+          "stop_button_text": "Arrêter",
           "clear_button_text": "Réinitialiser"
         },
         "rich_text": {
@@ -1714,7 +1714,7 @@
         },
         "previous_cursor": "Curseur précédent",
         "input": {
-          "type": "Type",
+          "type": "Type de texte",
           "show_visible_button": "Afficher le bouton visible"
         },
         "recording": {
@@ -2522,7 +2522,7 @@
       "history": "Historique",
       "more": "En savoir plus",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "<unk> S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "Rediriger",
   "oauth_redirect_description": "Redirection vers <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Anglais",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "af-ZA": "afrikaans",
+    "cs-CZ": "c<unk> es<unk> tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
     "fr-FR": "francais",
-    "it-IT": "italiano",
+    "it-IT": "Italien",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "Portugais",
+    "ro-RO": "roumaine",
+    "ru-RU": "русски<unk>",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "Mis à jour avec succès"
     },
     "button": {
-      "blank": "Créez votre première application",
+      "blank": "Créer un nouveau",
       "blank-agent": "Créer un Agent IA"
     }
   },
