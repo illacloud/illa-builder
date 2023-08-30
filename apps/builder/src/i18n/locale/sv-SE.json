@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Inledande värde",
           "tooltips": "Stöder objekt eller primitiva värden. Exempel: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Historik",
       "more": "Mer",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "<unk> S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "Omdirigera",
   "oauth_redirect_description": "Omdirigering till <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Engelska",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "cs-CZ": "c<unk> es<unk> tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "francône ais",
+    "it-IT": "Italiano",
+    "nl-NL": "Nederländerna",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "Portugue<unk> s",
+    "ro-RO": "roma<unk> na<unk>",
+    "ru-RU": "Gäster kan",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "Uppdaterades framgångsrikt"
     },
     "button": {
-      "blank": "Skapa din första app",
+      "blank": "Skapa ny",
       "blank-agent": "Skapa AI-agent"
     }
   },
