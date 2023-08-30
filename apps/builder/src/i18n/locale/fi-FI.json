@@ -3961,6 +3961,10 @@
         "title": "Vaihda suunnitelma?",
         "button_cancel": "Peruuta",
         "button_confirm": "Vahvista"
+      },
+      "ai-agent": {
+        "string1": "Tämä malli on Premium-tiimille. ",
+        "string2": "Jos haluat käyttää sitä, päivitä Premiumiin. Päivittämällä Premiumiin sinulla on myös pääsy seuraaviin ominaisuuksiin. "
       }
     },
     "homepage": {
