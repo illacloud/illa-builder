@@ -32,13 +32,13 @@
       "cancel": "annuleren",
       "delete": "Verwijderen",
       "delete_cancel_text": "annuleren",
-      "delete_content": "Dit zal Apps en Query Bibliotheek vragen die deze bron gebruiken breken",
+      "delete_content": "Na verwijdering is het niet mogelijk om de gegevens op alle manieren te gebruiken of te herstellen. Gelieve te bevestigen.",
       "delete_ok_text": "Verwijderen",
       "delete_title": "Weet je het zeker?",
       "error_button": "Opnieuw",
       "error_description": "Er is een probleem met uw operatie.",
       "error_title": "Foutmelding",
-      "marketplace": "Gemeenschap",
+      "marketplace": "Marktplaats",
       "run": "Uitvoeren",
       "fork": "Fork"
     },
@@ -57,22 +57,22 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Gemeenschap"
+      "marketplace": "Agent markt"
     },
     "sort-type": {
       "popular": "Meest populair",
-      "recent": "Onlangs bijgewerkt",
+      "recent": "Nieuwste",
       "star": "Sterren"
     },
     "search": "Zoeken",
     "no-result": "Geen resultaten gevonden. Gelieve uw zoektermen te vernieuwen of te wijzigen.",
     "message": {
       "next-page-error": "Fout bij laden van de volgende pagina. Probeer het opnieuw.",
-      "create-failed": "Kan agent niet maken. Probeer het opnieuw.",
+      "create-failed": "Kan agent niet opslaan. Probeer het opnieuw.",
       "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
       "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
       "fork-failed": "Fork mislukt, probeer het opnieuw.",
-      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
+      "create-suc": "Succesvol opgeslagen",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "Plaats-ID om te kopiëren",
             "sheet_to_copy_to": "Tafel om naar te kopiëren",
             "authentication": "Authenticatie",
-            "connect_with_oauth": "Maak verbinding met OAuth & Opslaan",
+            "connect_with_oauth": "Verbinden met Google",
             "reconnect_with_oauth": "Opnieuw verbinden met OAuth",
             "access_type": "Type toegang"
           },
@@ -2055,7 +2055,7 @@
           "title": "Stel de titel in voor weergave"
         },
         "page": {
-          "default_view": "Wanneer gebruikers een foutpad invoeren, wordt automatisch doorverwezen naar het standaard pad. Wanneer er geen standaard pad is, zullen we het eerste pad in de lijst behandelen als het standaardpad"
+          "default_view": "Wanneer gebruikers een fout-URL invoeren, wordt automatisch doorverwezen naar de standaard subpagina. Wanneer er geen standaard subpagina is, zullen we de eerste subpagina in de lijst behandelen als de standaard subpagina"
         },
         "chart": {
           "direction": "Stel de richting van de grafiek in. ",
@@ -2277,8 +2277,8 @@
       "label_name": {
         "add": "Toevoegen",
         "body": "Lichaam",
-        "default_view": "Standaard weergave",
-        "edit_view": "Pad bewerken",
+        "default_view": "Standaard subpagina",
+        "edit_view": "Subpagina bewerken",
         "footer": "Voettekst",
         "header": "Koptekst",
         "key": "Sleutel",
@@ -2287,8 +2287,8 @@
         "right_panel": "Rechter paneel",
         "set_as_homepage": "Instellen als startpagina",
         "show_fold_icon": "Plooi icoon weergeven",
-        "view_path": "Pad",
-        "views": "Weergaven",
+        "view_path": "naam",
+        "views": "Subpagina's",
         "width": "Width",
         "height": "Højde",
         "columns": "Kolommen",
@@ -2309,7 +2309,7 @@
       "tab_title": "Pagina",
       "tooltips": {
         "show_fold_icon": "Toon een knop om het paneel uit te klappen of uit te breiden",
-        "view_path": "Om toegang tot deze pagina te configureren, moet u het pad aanpassen. Bijvoorbeeld, als je het pad veranderd naar '**newPath**', en voeg het toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPath**.",
+        "view_path": "Om toegang tot deze pagina te configureren, moet u de naam aanpassen. Bijvoorbeeld, als je de naam wijzigt naar '**newPage**', en voeg deze toe als een subpagina van de homepage. Deze pagina kan dan worden geopend via de volgende URL: cloud.illacloud.com/yourTeam/deploy/app/appid/homepage/**newPage**.",
         "auto_canvas_width": "De breedte van de pagina als percentage van de browserbreedte."
       },
       "message": {
@@ -2574,7 +2574,7 @@
       "placeholder": {
         "name": "Geef een naam aan de agent",
         "desc": "Geef een korte beschrijving van waar deze agent voor bedoeld is.",
-        "prompt": "Voer {{ om een variabele te gebruiken in",
+        "prompt": "Voer {{variableName}} in om een variabele te gebruiken",
         "variable": {
           "key": "Naam variabele",
           "value": "Waarde"
@@ -2606,7 +2606,7 @@
       "save": "Opslaan",
       "start": "Beginnen",
       "restart": "Herstarten",
-      "contribute": "Draag bij aan de community",
+      "contribute": "Draag bij aan de marktplaats",
       "button": {
         "send": "Verzenden",
         "generating": "Genereren"
@@ -2618,7 +2618,7 @@
       },
       "message": {
         "click-start": "Klik op de Start knop om te starten.",
-        "insufficient_token": "Onvoldoende token",
+        "insufficient_token": "Onvoldoende Colla",
         "start-failed": "Starten mislukt. Probeer het opnieuw. ",
         "reconnect": "Verbinding verbroken. Opnieuw verbinden in uitvoering.",
         "token-not-enough": "Model limiet bereikt. Start opnieuw.",
@@ -2636,8 +2636,8 @@
         "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
       },
       "title-preview": {
-        "chat": "Voorbeeld venster",
-        "text-generation": "Voorbeeld venster"
+        "chat": "Chatten",
+        "text-generation": "Tekst genereren"
       }
     },
     "common": {
@@ -3056,12 +3056,12 @@
       "name": "JSON Schema formulier"
     },
     "page": {
-      "path_duplicated": "Het pad wordt gedupliceerd. Gebruik een uniek pad om fouten te voorkomen. ",
+      "path_duplicated": "De paginanaam is gedupliceerd. Gebruik een unieke naam om fouten te voorkomen. ",
       "tips": {
         "blank_view": "Deze module heeft geen onderliggende pagina's. Voeg ze eerst toe via het pagina paneel aan de rechterkant."
       },
       "label": {
-        "rename_url": "Pad bewerken",
+        "rename_url": "Subpagina bewerken",
         "rename_page_url": "Pagina bewerken"
       }
     }
@@ -3254,7 +3254,7 @@
         "copy": "Kopiëren",
         "turn_off": "Uitnodigingslinks uitschakelen",
         "update": "Uitnodigingslinks bijwerken",
-        "description": "Schakel leden in en nodig uit via link. ",
+        "description": "Deel een geheime link die mensen kunnen gebruiken om deel te nemen aan je team.",
         "turn_on": "Uitnodigingslinks inschakelen",
         "fail": "Fout bij het verkrijgen van de link, probeer het later opnieuw",
         "copied_suc": "Gekopieerd!",
@@ -3594,16 +3594,16 @@
     "apps": {
       "components": "Alle onderdelen",
       "resources": "Alle bronnen",
-      "plugins": "Onbeperkt aantal plugins(binnenkort beschikbaar)",
+      "plugins": "Onbeperkte plug-ins",
       "sql": "AI SQL Generatie",
       "watermark": "Watermerk verwijderen"
     },
     "security": {
-      "historic-7": "Historische versie bewaren en herstellen voor 7 dagen (binnenkort)",
-      "historic-30": "Blijf geïmplementeerde versies & revert(Binnenkort beschikbaar)",
-      "develop-environment": "Multi-omgeving (binnenkort beschikbaar)",
+      "historic-7": "Historische versie bewaren en herstellen gedurende 7 dagen",
+      "historic-30": "30 dagen oude versie bewaren en herstellen",
+      "develop-environment": "Ontwikkel omgeving",
       "app-public": "App publiek",
-      "restore-data": "Back-up bewerkingsgeschiedenis en herstel",
+      "restore-data": "Back-up maken en herstellen",
       "deployed": "Toegang tot ILLA ondersteuning",
       "dedicated": "Eigen oplossingen ingenieur"
     },
@@ -3612,7 +3612,7 @@
       "sql": "Voer natuurlijke taal in en genereer SQL statement",
       "staging": "Test je app tegen een stagingomgeving",
       "app-public": "Maak de app openbaar en iedereen met de link heeft toegang",
-      "restore-data": "Back-up of herstel geschiedenis op elk gewenst moment",
+      "restore-data": "Back-up of herstel data op elk gewenst moment",
       "deployed": "Deployed ingenieurs kunnen je sneller aan boord helpen",
       "dedicated": "Speciale klant oplossingen ingenieur via Slack/email/phone",
       "preview_insufficient": "Het bestand kan geen voorvertoning maken vanwege een ontoereikende capaciteit. Gelieve eerst de capaciteit uit te breiden."
@@ -3645,12 +3645,12 @@
     "free-members": "Slechts 1 lid voor persoonlijk gebruik",
     "unlimited-viewer": "GRATIS voor onbeperkte kijkers",
     "unlimited-members": "Onbeperkt aantal leden",
-    "free-btn": "Huidig abonnement",
-    "plus-btn": "Upgraden",
+    "free-btn": "Bouw gratis apps",
+    "plus-btn": "Probeer de gratis versie",
     "enterprise-btn": "Contacteer ons",
     "menu": {
       "billing": "Facturering",
-      "license": "Werkplek",
+      "license": "Licentie",
       "drive": "schijf",
       "colla": "Samenvatting",
       "appsumo": "Appsumo",
@@ -3659,7 +3659,7 @@
     },
     "title": {
       "billing": "Facturering",
-      "license": "Werkplek",
+      "license": "Licentie",
       "drive": "schijf",
       "colla": "Samenvatting",
       "appsumo": "Appsumo"
@@ -3681,7 +3681,7 @@
       "table_title": {
         "next_payment_date": "Volgende betalingsdatum",
         "expiration_date": "Vervaldatum",
-        "licenses": "Zitplaatsen",
+        "licenses": "Licenties",
         "storage": "Opslagruimte",
         "traffic": "Verkeer",
         "colla": "Samenvatting"
@@ -3693,22 +3693,22 @@
     },
     "subscription_card": {
       "title": {
-        "License": "Zitplaatsen",
+        "License": "Licentie",
         "Storage": "Opslagruimte",
         "Traffic": "Verkeer",
         "balance": "Saldo",
         "colla": "Samenvatting"
       },
       "button": {
-        "License": "Plaatsen beheren",
+        "License": "Licenties beheren",
         "Storage": "Opslagruimte beheren",
         "Traffic": "Verkeer uitbreiden",
         "colla": "Colla beheren"
       },
       "capacity": {
-        "License": "{{used}} gebruikt (totaal van {{total}} seats) ",
-        "Storage": "{{used}}GB gebruikt (totaal van {{total}}GB) ",
-        "Traffic": "{{used}}GB gebruikt (totaal van {{total}}GB) ",
+        "License": "{{used}} (totaal van {{total}} licenties) zijn gebruikt.",
+        "Storage": "{{used}} (totaal van {{total}} GB) zijn gebruikt.",
+        "Traffic": "{{used}} (totaal van {{total}} GB) zijn gebruikt.",
         "colla": "{{used}} Colla gebruikt (totaal van {{total}} Colla)"
       },
       "colla_usage": {
@@ -3733,19 +3733,19 @@
     "payment_sidebar": {
       "title": {
         "manage_storage": "Opslagruimte beheren",
-        "manage_licenses": "Plaatsen beheren",
+        "manage_licenses": "Licenties beheren",
         "expand_traffic_capac": "Data capaciteit uitvouwen",
         "colla": "Colla beheren"
       },
       "plan_label": {
-        "License": "Zitplaatsen",
+        "License": "Licenties",
         "Storage": "Opslagruimte",
         "Traffic": "Verkeer",
         "colla": "Samenvatting"
       },
       "plan_number_input_label": {
-        "License": "Zitplaatsen",
-        "Storage_traffic": "5GB",
+        "License": "Licenties",
+        "Storage_traffic": "GB",
         "colla": "Samenvatting"
       },
       "select_option": {
@@ -3770,14 +3770,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} Plaatsen × {{remainDays}} dagen / {{totalDays}} dagen",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} plaatsen",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} plaatsen",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} Plaatsen × {{remainDays}} dagen / {{totalDays}} dagen",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} plaatsen",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} plaatsen",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} plaatsen",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} plaatsen",
+        "this_period": "{{unitPrice}} × {{licenseNum}} licenties × {{remainDays}} dagen / {{totalDays}} dagen",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenties",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenties",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenties × {{remainDays}} dagen / {{totalDays}} dagen",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenties",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenties",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} licenties",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} licenties",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} dagen / {{totalDays}} dagen",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3794,8 +3794,8 @@
         "change_plan": "Verander uw abonnement",
         "storage_traffic_increase": "Verhoog {{changeNum}} GB",
         "storage_traffic_remove": "{{changeNum}} GB verwijderen",
-        "license_increase": "Verhoog {{changeNum}} zitplaatsen",
-        "license_remove": "Verwijder {{changeNum}} zitplaatsen",
+        "license_increase": "Verhoog {{changeNum}} licenties",
+        "license_remove": "Verwijder {{changeNum}} licenties",
         "colla_increase": "Verhoog {{changeNum}} Colla",
         "colla_remove": "Verwijder {{changeNum}} Colla"
       },
@@ -3804,13 +3804,13 @@
         "remove_storage": "U gaat {{changeNum}} GB opslag verwijderen. Eenmaal bevestigd, zullen de wijzigingen in de volgende factureringscyclus van kracht worden. <0>Meer informatie</0>",
         "update_plan_year": "U gaat bijwerken naar een jaarlijks betalingsplan. Eenmaal bevestigd, zal de wijziging van kracht worden vanaf het begin van de volgende factureringscyclus. <0>Meer informatie</0>",
         "update_plan_monthly": "U gaat bijwerken naar een maandelijks betalingsplan. Eenmaal bevestigd, zal de wijziging van kracht worden vanaf het begin van de volgende factureringscyclus. <0>Meer informatie</0>",
-        "add_license": "Je gaat {{changeNum}} zetels toevoegen. Eenmaal bevestigd, trekken we de betaling voor de nieuwe zitplaatsen onmiddellijk af. <0>Meer informatie</0>",
-        "remove_license": "U gaat {{changeNum}} zetels verwijderen. Eenmaal bevestigd, zullen de wijzigingen van kracht worden in de volgende factureringscyclus. <0>Meer informatie</0>",
+        "add_license": "Je gaat {{changeNum}} licenties toevoegen. Eenmaal bevestigd, trekken we de betaling voor de nieuwe licenties onmiddellijk af voor deze factureringscyclus. <0>Meer informatie</0>",
+        "remove_license": "U gaat {{changeNum}} licenties verwijderen. Eenmaal bevestigd, zullen de wijzigingen van kracht worden in de volgende factuurcyclus. <0>Meer informatie</0>",
         "add_traffic": "U gaat {{changeNum}}GB verkeer toevoegen. Eenmaal bevestigd, trekken we de kosten van het extra verkeer onmiddellijk af. <0>Meer informatie</0>",
         "subscribe_storage": "Je gaat je abonneren op ILLA Cloud Plus. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. <0>Meer informatie</0>",
         "subscribe_license": "Je gaat je abonneren op ILLA Drive. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. <0>Meer informatie</0>",
-        "update_plan_increase_license": "U gaat {{changeNum}} plaatsen toevoegen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
-        "update_plan_remove_license": "U gaat {{changeNum}} plaatsen verwijderen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
+        "update_plan_increase_license": "U gaat {{changeNum}} licenties toevoegen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
+        "update_plan_remove_license": "U gaat {{changeNum}} licenties verwijderen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
         "update_plan_increase_storage": "U gaat {{changeNum}} GB opslagruimte toevoegen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
         "update_plan_remove_storage": "U gaat {{changeNum}} GB opslag verwijderen en uw abonnementsperiode bijwerken. <0>Meer informatie</0>",
         "unsubscribe_license": "Je gaat je afmelden voor ILLA Cloud Plus. Na annulering, vanaf de volgende factureringscyclus, zullen de Plus functies niet meer toegankelijk zijn. <0>Meer informatie</0>",
@@ -3827,15 +3827,15 @@
       },
       "description": {
         "remove_storage": "Als de door uw bestanden bezette opslagcapaciteit de geabonneerde opslagcapaciteit overschrijdt aan het begin van de volgende factureringscyclus, alle bestanden zullen worden uitgeschakeld totdat u bestanden verwijdert of de opslagcapaciteit binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
-        "update_plan_year": "Vanaf de volgende periode zal het abonnement worden gewijzigd in een jaarabonnement, en de vergoedingen zullen automatisch worden afgetrokken op basis van de jaarlijkse abonnementsprijs. Als je de zitplaatsen wilt verminderen of andere wijzigingen wilt aanbrengen in het abonnement, werk dit dan bij voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
-        "update_plan_monthly": "Vanaf de volgende periode zal het abonnement worden gewijzigd in een maandabonnement, en de vergoedingen zullen automatisch worden afgetrokken op basis van de maandelijkse abonnementsprijs. Als je de zitplaatsen wilt verminderen of andere wijzigingen wilt aanbrengen in het abonnement, werk dit dan bij voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_year": "Vanaf de volgende periode zal het abonnement worden gewijzigd in een jaarabonnement, en de vergoedingen zullen automatisch worden afgetrokken op basis van de jaarlijkse abonnementsprijs. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_monthly": "Vanaf de volgende periode zal het abonnement worden gewijzigd in een maandabonnement, en de vergoedingen zullen automatisch worden afgetrokken op basis van de maandelijkse abonnementsprijs. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "add_license": "Berekeningsregels die gebruik maken van een maandelijkse zetel als voorbeeld: Laten we een scenario overwegen waarin u aanvankelijk geabonneerd bent op 5 zetels vanaf 14 maart en de factureringscyclus loopt van de 14e van deze maand naar de dertiende van de volgende maand. Op 10 mei besluit je 1 extra zetels toe te voegen. Op dat punt er waren vier dagen over tot het einde van de huidige cyclus op 13 mei (30 dagen in totaal van 14 april tot 13 mei). Om de aangepaste betaling te berekenen, trekken we de kosten van 1 zitplaats af, dit komt overeen met ongeveer $10 in verhouding tot de duur van vier dagen binnen de dertig dagen. Daarom wordt de inhouding geschat als 1 zetel * $10 / 30 dagen * 4 dagen, wat resulteert in ongeveer $1,33. Vanaf de volgende factureringscyclus worden alle zittingskosten gezamenlijk geconsolideerd en betaald. Als je de zitplaatsen wilt verminderen of andere wijzigingen wilt aanbrengen in het abonnement, werk dit dan bij voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
-        "remove_license": "Als het aantal gebruikers met bewerkingsrechten het aantal plaatsen aan het begin van de volgende factuurcyclus overschrijdt, alle gebruikers behalve de eigenaar zullen worden uitgeschakeld totdat u de leden verwijdert of het aantal zitplaatsen binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "remove_license": "Als het aantal gebruikers met bewerkingsrechten het aantal licenties aan het begin van de volgende factureringscyclus overschrijdt, alle gebruikers behalve de eigenaar zullen worden uitgeschakeld totdat u de leden verwijdert of het aantal licenties binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "add_traffic": "Na succesvolle aftrek, zal uw verkeer in real-time toenemen. Zodra het verkeer is gebruikt, kunnen de kosten niet meer worden terugbetaald, ongebruikt verkeer kan worden terugbetaald in eenheden van GB. Als je bijvoorbeeld 10GB aan verkeer aanschaft en 4.5GB gebruikt, kun je een restitutie van 5GB aanvragen. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "subscribe_storage_yearly": "U zult zich abonneren op het jaarlijkse abonnement van de opslag in ILLA Drive. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag hangt af van hoeveel opslagcapaciteit je hebt ingeschreven in GB. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een jaarlijkse abonnementskosten van $9. per GB, en u heeft een totaal van 3 GB, zullen we $29 aftrekken. op 25 februari 2023. Als je 2 GB toevoegt op 25 maart 2023, gaan we eerst de resterende 11 maanden betaling aftrekken op 25 maart 2023. Vervolgens zullen we op 25 februari 2024 de betaling voor 5 GB aftrekken, dat wil zeggen (2+3)*$9.9=$49. . Als u de opslag wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, moet u deze vóór het begin van de volgende periode bijwerken. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
-        "subscribe_license_monthly": "U abonneert zich op het maandelijkse abonnement van ILLA Cloud Plus. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag is afhankelijk van het aantal plaatsen dat je hebt. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een maandelijkse abonnementskosten van $12 per zitplaats, en u heeft in totaal 3 zetels, we brengen 36 dollar in rekening op 25 februari 2023. Als u nog 2 zetels extra toevoegt op 21 maart 2023, gaan we eerst de resterende 5 dagen in mindering op 21 maart 2023. Vervolgens zullen we op 25 maart 2023 de betaling voor 5 zetels aftrekken, dat wil zeggen (2+3)*$12=$60. Als je de zitplaatsen wilt verminderen of andere wijzigingen wilt aanbrengen in het abonnement, werk dit dan bij voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "subscribe_license_monthly": "U abonneert zich op het maandelijkse abonnement van ILLA Cloud Plus. We zullen de kosten automatisch van uw account aftrekken aan het begin van elke betalingscyclus. Het werkelijke bedrag is afhankelijk van het aantal licenties dat je hebt. Als u bijvoorbeeld uw eerste abonnement start op 25 februari 2023, met een maandelijkse abonnementskosten van $12 per licentie, en u heeft een totaal van 3 licenties, we zullen $36 aftrekken op 25 februari 2023. Als je nog 2 licenties toevoegt op 21 maart 2023, gaan we eerst de resterende 5 dagen betaling in mindering op 21 maart 2023. Vervolgens zullen we, op 25 maart 2023, de betaling voor 5 licenties aftrekken, dat wil zeggen (2+3)*$12=$60. Als je de licenties wilt verminderen of andere wijzigingen in het abonnement wilt aanbrengen, update deze dan voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "update_plan_increase_license": "De vergoedingen worden automatisch afgetrokken op basis van het bijgewerkte aantal plaatsen en de prijzen van de nieuwe factureringscyclus vanaf de volgende periode. Deze keer zullen we de betaling voor de hogere zetels aftrekken volgens de huidige factureringscyclus. Berekeningsregels voor het verhogen van de zetels met een maandelijkse zetelabonnement als voorbeeld: Laten we een scenario overwegen waarin u in eerste instantie hebt geabonneerd op 5 zetels vanaf 14 maart en de factureringscyclus loopt van de 14e van deze maand naar de dertiende van de volgende maand. Op 10 mei besluit je 1 extra zitplaats toe te voegen. Op dat punt er waren vier dagen over tot het einde van de huidige cyclus op 13 mei (30 dagen in totaal van 14 april tot 13 mei). Om de aangepaste betaling te berekenen, trekken we de kosten van 1 zitplaats af, dit komt overeen met ongeveer $10 in verhouding tot de duur van vier dagen binnen de dertig dagen. Daarom wordt de inhouding geschat als 1 zetel * $10 / 30 dagen * 4 dagen, wat resulteert in ongeveer $1,33. Vanaf de volgende factureringscyclus worden alle zittingskosten gezamenlijk geconsolideerd en betaald. Als je de zitplaatsen wilt verminderen of andere wijzigingen wilt aanbrengen in het abonnement, werk dit dan bij voor het begin van de volgende periode. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
-        "update_plan_remove_license": "De vergoedingen worden automatisch afgetrokken op basis van het bijgewerkte aantal plaatsen en de prijzen van de nieuwe factureringscyclus vanaf de volgende periode. Als het aantal gebruikers met bewerkingsrechten het aantal plaatsen aan het begin van de volgende factuurcyclus overschrijdt, alle gebruikers behalve de eigenaar zullen worden uitgeschakeld totdat u de leden verwijdert of het aantal zitplaatsen binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
+        "update_plan_remove_license": "De vergoedingen worden automatisch afgetrokken op basis van het bijgewerkte aantal licenties en de prijzen van de nieuwe factureringscyclus vanaf de volgende periode. Als het aantal gebruikers met bewerkingsrechten het aantal licenties aan het begin van de volgende factureringscyclus overschrijdt, alle gebruikers behalve de eigenaar zullen worden uitgeschakeld totdat u de leden verwijdert of het aantal licenties binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>",
         "update_plan_remove_storage": "De vergoedingen worden automatisch afgetrokken op basis van de bijgewerkte opslag en de prijzen van nieuwe factureringscyclus vanaf de volgende periode. Als de door uw bestanden bezette opslagcapaciteit de geabonneerde opslagcapaciteit overschrijdt aan het begin van de volgende factureringscyclus, alle bestanden zullen worden uitgeschakeld totdat u bestanden verwijdert of de opslagcapaciteit binnen het beschikbare bereik verhoogt. Raadpleeg voor meer informatie ons <0>Privacybeleid</0> en <1>Servicevoorwaarden</1>"
       },
       "colla_redeem": {
@@ -3850,8 +3850,8 @@
       "failed_to_add_traffic": "Mislukt om verkeer toe te voegen. Probeer opnieuw. ",
       "failed_to_add_storage": "Opslag toevoegen mislukt. Probeer het opnieuw. ",
       "failed_to_remove_storage": "Opslag verwijderen mislukt. Probeer het opnieuw. ",
-      "failed_to_add_licens": "Toevoegen van zitplaatsen mislukt. Probeer het opnieuw. ",
-      "failed_to_remove_lic": "Verwijderen van zitplaatsen mislukt. Probeer het opnieuw. ",
+      "failed_to_add_licens": "Toevoegen van licenties mislukt. Probeer het opnieuw. ",
+      "failed_to_remove_lic": "Verwijderen van de licenties is mislukt. Probeer het opnieuw. ",
       "failed_to_change_pla": "Abonnement wijzigen mislukt. Probeer het opnieuw. ",
       "failed_to_unsubscrib": "Afmelden mislukt. Probeer het opnieuw. ",
       "successfully_removed": "Succesvol verwijderd. De wijziging zal van kracht worden van {{nextPaymentDate}}.",
@@ -3861,7 +3861,7 @@
       "successfully_changed": "Abonnement succesvol gewijzigd. Het zal over enkele minuten van kracht worden",
       "failed_to_change": "Inschrijving wijzigen mislukt",
       "unsubscription_suc": "Het abonnement is met succes geannuleerd en zal vanaf de volgende periode van kracht worden",
-      "failed_to_join_no_license": "Kan niet deelnemen vanwege onvoldoende zitplaatsen ",
+      "failed_to_join_no_license": "Kan niet toetreden omdat teamlicenties niet toereikend zijn, neem contact op met de beheerder.",
       "storage_insufficient_modal": "De opslag of het verkeer van dit team is niet genoeg. Neem contact op met uw beheerder.",
       "appsumo": {
         "suc": "Succesvol ingewisseld",
@@ -3871,7 +3871,7 @@
       },
       "no_license_operate_failed": "Door onvoldoende licenties is de bewerking mislukt.",
       "failed_to_invite_no_license": "Vanwege onvoldoende licentie, zijn sommige uitnodigingen voor leden mislukt.",
-      "error_subscribe": "Abonnement mislukt. Probeer het later opnieuw.",
+      "error_subscribe": "Abonnement wijzigen mislukt. Probeer het later opnieuw.",
       "unsubscription_fail": "Het annuleren van het abonnement is mislukt. Probeer het later opnieuw.",
       "failed_to_update": "Bijwerken van abonnement mislukt. Probeer het opnieuw. ",
       "update_suc": "Abonnement succesvol bijgewerkt"
@@ -3885,7 +3885,7 @@
         "not_owner_description_drive": "De opslag of het verkeer van dit team is niet genoeg. Neem contact op met uw beheerder.",
         "not_owner_button_drive": "Ik snap het",
         "out_title_drive": "Downloaden mislukt",
-        "out_description_drive": "Door onvoldoende verkeer is het downloaden mislukt. Neem contact op met de bestandseigenaar",
+        "out_description_drive": "Downloaden mislukt, neem contact op met de eigenaar van het bestand",
         "out_button_drive": "Ik snap het"
       },
       "sub_suc": {
@@ -3893,7 +3893,7 @@
         "you_can_now_invite_m": "Het zal binnen enkele minuten van kracht worden. Je kunt later leden uitnodigen en gebruik maken van de geavanceerde functies. Probeer het eens uit!",
         "you_can_now_upload_m": "Het zal binnen enkele minuten van kracht worden. U kunt nu meer bestanden uploaden.",
         "payment_successful": "Betaling succesvol",
-        "we_have_added_the_li": "Het zal binnen enkele minuten van kracht worden. We hebben de zetels voor u toegevoegd. Alle wijzigingen in de abonnementsperiode zullen van kracht zijn vanaf de volgende factureringscyclus.",
+        "we_have_added_the_li": "Het zal binnen enkele minuten van kracht worden. We hebben de licenties voor je toegevoegd. Alle wijzigingen in de abonnementsperiode zullen van kracht zijn vanaf de volgende factureringscyclus.",
         "we_have_added_the_st": "Het zal binnen enkele minuten van kracht worden. We hebben de opslag voor je toegevoegd. Alle wijzigingen in de abonnementsperiode zullen van kracht zijn vanaf de volgende factureringscyclus.",
         "we_have_added_the_tr": "Over een paar minuten gaat het van kracht. We voegen het verkeer voor u toe. U kunt nu meer bestanden downloaden.",
         "successfully_updated": "Succesvol geüpdatet",
@@ -3909,15 +3909,15 @@
         "audit_logs": "Audit logs",
         "learn_more": "Meer informatie",
         "upgrade": "Upgraden",
-        "insufficient_license_title": "Onvoldoende plaatsen",
-        "insufficient_license_description": "Om meer tekstverwerkers uit te nodigen, moet je eerst de zitplaatsen verhogen. Alle leden van je team zouden de functies voor ILLA Cloud Plus kunnen gebruiken. De specifieke toegang tot elke functie is afhankelijk van de rol van elk lid. ",
-        "insufficient_license_button": "Plaatsen toevoegen",
+        "insufficient_license_title": "Onvoldoende licenties",
+        "insufficient_license_description": "Om meer tekstverwerkers uit te nodigen, moet je eerst de licenties verhogen. Alle leden van je team kunnen de functies voor ILLA Cloud Plus gebruiken. De specifieke toegang tot elke functie is afhankelijk van de rol van elk lid. ",
+        "insufficient_license_button": "Licenties toevoegen",
         "pricing": "/editor/maand, jaarlijks"
       },
       "expired": {
         "owner": "Uw abonnement is verlopen. Vernieuw uw abonnement om door te gaan met gebruiken.",
         "others": "Je account is uitgeschakeld omdat het abonnement van het team is verlopen.",
-        "your_subscription_ha_not_owner": "Uitzondering abonnement",
+        "your_subscription_ha_not_owner": "Niet genoeg licenties",
         "all_members_except_f_not_owner": "Je team heeft niet genoeg licenties. Neem contact op met je teameigenaar.",
         "upgrade_not_owner": "Ik snap het",
         "your_subscription_ha": "Abonnement verlopen",
@@ -3925,11 +3925,11 @@
         "upgrade": "Upgraden"
       },
       "blank_page": {
-        "insufficient_license_disable": "Je account is uitgeschakeld vanwege onvoldoende teamzetels. Neem voor hulp contact op met de eigenaar van het team."
+        "insufficient_license_disable": "Uw account is uitgeschakeld vanwege onvoldoende teamlicenties. Neem voor hulp contact op met de eigenaar van het team."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Onvoldoende plaatsen",
-        "insufficient_license_description": "Vanwege onvoldoende zitplaatsen is het beheer mislukt. Neem contact op met de eigenaar van het team.",
+        "insufficient_license_title": "Onvoldoende licenties",
+        "insufficient_license_description": "Om meer tekstverwerkers uit te nodigen, sluit u aan bij uw beheerder om eerst de licenties te verhogen.",
         "insufficient_license_button": "Ok"
       },
       "storage_insufficient": {
@@ -3939,16 +3939,16 @@
         "not_owner_title": "Onvoldoende opslagcapaciteit",
         "not_owner_description": "Om bestanden normaal op te slaan, neem alstublieft contact op met uw beheerder om de opslagcapaciteit op tijd te verhogen.",
         "not_owner_button": "Ok",
-        "owner_pricing": "5 GB/Maandelijks"
+        "owner_pricing": "GB/maandelijks"
       },
       "traffic_insufficient": {
         "owner_title": "Onvoldoende verkeerscapaciteit",
         "owner_description": "Om bestanden normaal te kunnen benaderen, verhoog alstublieft de verkeerscapaciteit op tijd. ",
         "owner_button": "Verhoog capaciteit",
-        "not_owner_title": "Onvoldoende verkeer",
+        "not_owner_title": "Onvoldoende opslagcapaciteit",
         "not_owner_description": "Om bestanden normaal te kunnen benaderen, neem alstublieft contact op met uw beheerder om de netwerkcapaciteit op tijd te verhogen.",
         "not_owner_button": "Ok",
-        "owner_pricing": "5 GB"
+        "owner_pricing": "GB/maandelijks"
       },
       "cancel_confirm": {
         "description": "Na annulering keert je team terug naar het gratis abonnement vanaf de volgende factureringscyclus. De in de abonnementsplannen opgenomen functies zullen niet langer toegankelijk zijn.",
@@ -3963,7 +3963,7 @@
         "button_confirm": "Bevestigen"
       },
       "ai-agent": {
-        "string1": "Dit model is voor Premium team. ",
+        "string1": "GPT-4 is voor Premium team. ",
         "string2": "Upgrade naar Premium om het te gebruiken. Je hebt ook toegang tot de volgende functies. "
       }
     },
@@ -4065,7 +4065,7 @@
       "update_suc": "Succesvol geüpdatet"
     },
     "button": {
-      "blank": "Nieuwe aanmaken",
+      "blank": "Maak je eerste app",
       "blank-agent": "Maak AI Agent"
     }
   },
@@ -4090,7 +4090,7 @@
       "undeploy": "De app is niet deployed. Openbare toegang en toegang tot de kijker kunnen fouten ondervinden. "
     },
     "label": {
-      "contribute": "Draag bij aan de community"
+      "contribute": "Draag bij aan de marktplaats"
     },
     "default-text": {
       "social-media": {
