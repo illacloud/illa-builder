@@ -110,7 +110,7 @@ export const MarketAgents = () => {
           <MarketAgentCard
             onClick={() => {
               navigate(
-                `/${teamInfo.identifier}/ai-agent/${agent.aiAgent.aiAgentID}`,
+                `/${teamInfo.identifier}/ai-agent/${agent.aiAgent.aiAgentID}/run`,
               )
             }}
             key={agent.aiAgent.aiAgentID}
