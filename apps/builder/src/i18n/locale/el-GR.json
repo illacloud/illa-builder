@@ -824,7 +824,7 @@
           "placeholder": {
             "query": "επιλέξτε * από τους χρήστες;",
             "table": "Επιλέξτε έναν πίνακα",
-            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+            "insert_record": "{Ş[{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
           "table": "Πίνακας",
           "insert_record": "Διάταξη των εγγραφών για εισαγωγή",
@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{Şos. { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Αρχική τιμή",
           "tooltips": "Υποστηρίζει αντικείμενα ή πρωτόγονες τιμές. Παράδειγμα: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{Şos. { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Ιστορικό",
       "more": "Περισσότερα",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "«Άρθρο S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "Ανακατεύθυνση",
   "oauth_redirect_description": "Ανακατεύθυνση σε <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Αγγλικά",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "Αφρικάανς",
+    "cs-CZ": "c´estina",
+    "de-DE": "Γερμανικά",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "φράγκο",
+    "it-IT": "ιταλιάνο",
+    "nl-NL": "Ολλανδικά",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugueśs",
+    "ro-RO": "ρομάνα;",
+    "ru-RU": "«Ομμ»",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "Επιτυχής ενημέρωση"
     },
     "button": {
-      "blank": "Δημιουργήστε την πρώτη σας εφαρμογή",
+      "blank": "Δημιουργία νέου",
       "blank-agent": "Δημιουργία Αντιπροσώπου Τεχνητή Νοημοσύνη"
     }
   },
