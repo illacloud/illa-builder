@@ -51,7 +51,7 @@ export const DashboardContentHeader: FC<DashboardContentHeaderProps> = (
         ) : null}
         {canCreate ? (
           <Button
-            ml="4px"
+            ml="8px"
             w="200px"
             colorScheme="techPurple"
             leftIcon={<PlusIcon size="10px" />}

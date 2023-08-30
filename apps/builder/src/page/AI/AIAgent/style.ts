@@ -23,6 +23,7 @@ export const leftPanelContainerStyle = css`
   display: flex;
   flex-direction: column;
   min-width: 528px;
+  padding-bottom: 40px;
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
 `
 

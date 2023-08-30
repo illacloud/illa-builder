@@ -37,7 +37,13 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
   )
 
   return (
-    <div css={cardStyle} {...otherProps}>
+    <div
+      css={cardStyle}
+      {...otherProps}
+      onClick={() => {
+        navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
+      }}
+    >
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <img css={agentIconStyle} src={agentInfo.icon} alt="" />

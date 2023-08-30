@@ -295,7 +295,7 @@ export const AIAgentRunPC: FC = () => {
         <span>{t("marketplace.star")}</span>
         {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 && (
           <span>
-            &#20;
+            {" "}
             {formatNumForAgent(marketplaceInfo?.marketplace.numStars ?? 0)}
           </span>
         )}
@@ -329,7 +329,7 @@ export const AIAgentRunPC: FC = () => {
           <span>{t("marketplace.fork")}</span>
           {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
             <span>
-              &#20;
+              {" "}
               {formatNumForAgent(marketplaceInfo?.marketplace.numForks ?? 0)}
             </span>
           )}
