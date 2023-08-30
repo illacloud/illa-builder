@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Space, Tag } from "@illa-design/react"
+import { AppCardProps } from "@/page/Dashboard/DashboardApps/AppCard/interface"
 import {
   appNameStyle,
   cardStyle,
@@ -27,19 +28,14 @@ import {
   titleInfoStyle,
 } from "@/page/Dashboard/DashboardApps/AppCard/style"
 import { AppCardActionItem } from "@/page/Dashboard/DashboardApps/AppCardActionItem"
-import AppConfigSelect from "@/page/Dashboard/DashboardApps/AppConfigSelect"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { AppConfigSelect } from "@/page/Dashboard/DashboardApps/AppConfigSelect"
 import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
 import { ActionButtonGroup } from "../ActionButtonGroup"
 
-interface AppCardProps {
-  appInfo: DashboardApp
-}
-
 export const AppCard: FC<AppCardProps> = (props) => {
   const { t } = useTranslation()
-  const { appInfo, ...rest } = props
+  const { appInfo } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
@@ -50,10 +46,6 @@ export const AppCard: FC<AppCardProps> = (props) => {
     ATTRIBUTE_GROUP.APP,
     ACTION_MANAGE.EDIT_APP,
   )
-
-  const stopPropagation = (e: MouseEvent) => {
-    e.stopPropagation()
-  }
 
   const onClickCard = useCallback(() => {
     if (canEditApp) {
@@ -105,12 +97,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
   }, [appInfo?.editedBy])
 
   return (
-    <div
-      css={cardStyle}
-      onClick={onClickCard}
-      onMouseEnter={handleMouseEnter}
-      {...rest}
-    >
+    <div css={cardStyle} onClick={onClickCard} onMouseEnter={handleMouseEnter}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <div css={appNameStyle}>{appInfo.appName}</div>
@@ -148,7 +135,11 @@ export const AppCard: FC<AppCardProps> = (props) => {
         <>
           {editors}
           <div css={footerStyle}>
-            <div className="public-info" onClick={stopPropagation}>
+            <div
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+            >
               <AppConfigSelect
                 appId={appInfo.appId}
                 isPublic={appInfo.config.public}

@@ -45,7 +45,7 @@ import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
 export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
-  const { appInfo, ...rest } = props
+  const { appInfo } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -277,7 +277,11 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   }, [appInfo.appId, appSettingVisible])
 
   return (
-    <div {...rest}>
+    <div
+      onClick={(e) => {
+        e.stopPropagation()
+      }}
+    >
       {canEditApp ? (
         <Dropdown
           position="bottom-end"
