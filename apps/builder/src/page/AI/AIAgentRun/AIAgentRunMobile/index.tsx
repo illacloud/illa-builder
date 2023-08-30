@@ -15,7 +15,11 @@ import {
   getCurrentUser,
   teamActions,
 } from "@illa-public/user-data"
-import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import {
+  canManage,
+  canManageInvite,
+  canUseUpgradeFeature,
+} from "@illa-public/user-role-utils"
 import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
@@ -188,10 +192,10 @@ export const AIAgentRunMobile: FC = () => {
               onClose={() => {
                 setShareDialogVisible(false)
               }}
-              canInvite={canManage(
-                currentTeamInfo.myRole,
-                ATTRIBUTE_GROUP.AGENT,
-                ACTION_MANAGE.CREATE_AGENT,
+              canInvite={canManageInvite(
+                teamInfo.myRole,
+                teamInfo.permission.allowEditorManageTeamMember,
+                teamInfo.permission.allowViewerManageTeamMember,
               )}
               defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
               defaultInviteUserRole={USER_ROLE.VIEWER}
