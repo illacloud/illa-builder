@@ -79,7 +79,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
       setLoadingState(true)
       if (isCloudVersion) {
         Promise.all([
-          fetchPrivateAppInitData(appId, version, teamID, controller.signal),
+          fetchPrivateAppInitData(appId, version, controller.signal),
           fetchResources(controller.signal),
           fetchTeamAgent(controller.signal),
         ])
@@ -100,7 +100,7 @@ export const useInitBuilderApp = (mode: IllaMode) => {
           })
       } else {
         Promise.all([
-          fetchPrivateAppInitData(appId, version, teamID, controller.signal),
+          fetchPrivateAppInitData(appId, version, controller.signal),
           fetchResources(controller.signal),
         ])
           .then((res) => {

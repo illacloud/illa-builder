@@ -52,7 +52,6 @@ export const fetchPubicAppInitData = (
 export const fetchPrivateAppInitData = async (
   appID: string,
   versionID: string,
-  teamID?: string,
   signal?: AbortSignal,
 ) => {
   return await builderRequest<CurrentAppResp>(
@@ -62,7 +61,7 @@ export const fetchPrivateAppInitData = async (
       signal: signal,
     },
     {
-      teamID,
+      teamID: getCurrentTeamID(),
     },
   )
 }
