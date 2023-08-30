@@ -54,6 +54,9 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
       </Button>
       {shareModalVisible && (
         <ShareAppPC
+          title={t("user_management.modal.social_media.default_text.app", {
+            appName: appInfo.appName,
+          })}
           defaultTab={"public"}
           editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier

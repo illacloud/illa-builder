@@ -66,6 +66,9 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
       </Button>
       {shareModalVisible && (
         <ShareAppPC
+          title={t("user_management.modal.social_media.default_text.app", {
+            appName: appInfo.appName,
+          })}
           editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
             teamInfo.identifier
           }/app/${appInfo.appId}`}

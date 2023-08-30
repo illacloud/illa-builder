@@ -395,6 +395,9 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       >
         {shareVisible && (
           <ShareAppPC
+            title={t("user_management.modal.social_media.default_text.app", {
+              appName: appName,
+            })}
             editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
               teamInfo.identifier
             }/app/${appId}`}
