@@ -4125,5 +4125,8 @@
     "before": "Φόρτωση περισσότερων"
   },
   "size_exceed_copied_tips": "Το περιεχόμενο είναι πολύ μεγάλο για αντιγραφή. (τρέχον μέγεθος: {{current_size}} bytes, όριο: {{limit_size}} bytes)",
-  "contribute": "Συνεισφέρετε"
+  "contribute": "Συνεισφέρετε",
+  "error_page": {
+    "fobidden": "Δεν υπάρχει δικαίωμα πρόσβασης"
+  }
 }
