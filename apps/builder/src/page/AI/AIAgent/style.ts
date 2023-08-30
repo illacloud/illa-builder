@@ -10,7 +10,7 @@ export const aiAgentContainerStyle = css`
 
 export const backTextStyle = css`
   color: ${getColor("grayBlue", "02")};
-  font-size: 18px;
+  font-size: 14px;
   margin-left: 8px;
   font-style: normal;
   font-weight: 500;
