@@ -487,9 +487,9 @@ export const AIAgent: FC = () => {
                     required
                   >
                     <RadioGroup
-                      {...field}
                       colorScheme={getColor("grayBlue", "02")}
                       w="100%"
+                      value={field.value}
                       type="button"
                       forceEqualWidth={true}
                       options={[
@@ -502,6 +502,15 @@ export const AIAgent: FC = () => {
                           label: t("editor.ai-agent.option.mode.text"),
                         },
                       ]}
+                      onChange={(value) => {
+                        if (isReceiving || isConnecting) {
+                          message.info({
+                            content: t("editor.ai-agent.message.generating"),
+                          })
+                          return
+                        }
+                        field.onChange(value)
+                      }}
                     />
                   </AIAgentBlock>
                 )}

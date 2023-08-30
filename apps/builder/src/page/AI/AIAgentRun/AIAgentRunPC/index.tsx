@@ -428,7 +428,7 @@ export const AIAgentRunPC: FC = () => {
                   tips={t("editor.ai-agent.tips.mode")}
                 >
                   <RadioGroup
-                    {...field}
+                    value={field.value}
                     colorScheme={getColor("grayBlue", "02")}
                     w="100%"
                     type="button"
@@ -443,6 +443,15 @@ export const AIAgentRunPC: FC = () => {
                         label: "Text Generation",
                       },
                     ]}
+                    onChange={(value) => {
+                      if (isReceiving || isConnecting) {
+                        message.info({
+                          content: t("editor.ai-agent.message.generating"),
+                        })
+                        return
+                      }
+                      field.onChange(value)
+                    }}
                   />
                 </AIAgentBlock>
               )}

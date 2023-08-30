@@ -39,6 +39,7 @@ import {
   LoadingIcon,
   PlayFillIcon,
   PreviousIcon,
+  RadioGroup,
   ResetIcon,
   Select,
   StarFillIcon,
@@ -263,6 +264,44 @@ export const AIAgentRunMobile: FC = () => {
   const configTab = (
     <div css={configContainerStyle}>
       <div css={agentControlContainerStyle}>
+        <Controller
+          name="agentType"
+          control={control}
+          shouldUnregister={false}
+          render={({ field }) => (
+            <AIAgentBlock
+              title={t("editor.ai-agent.label.mode")}
+              tips={t("editor.ai-agent.tips.mode")}
+            >
+              <RadioGroup
+                value={field.value}
+                colorScheme={getColor("grayBlue", "02")}
+                type="button"
+                w="100%"
+                forceEqualWidth={true}
+                options={[
+                  {
+                    value: AI_AGENT_TYPE.CHAT,
+                    label: "Chat",
+                  },
+                  {
+                    value: AI_AGENT_TYPE.TEXT_GENERATION,
+                    label: "Text Generation",
+                  },
+                ]}
+                onChange={(value) => {
+                  if (isReceiving || isConnecting) {
+                    message.info({
+                      content: t("editor.ai-agent.message.generating"),
+                    })
+                    return
+                  }
+                  field.onChange(value)
+                }}
+              />
+            </AIAgentBlock>
+          )}
+        />
         <Controller
           name="prompt"
           control={control}
