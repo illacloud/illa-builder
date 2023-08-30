@@ -4125,5 +4125,8 @@
     "before": "Charger plus"
   },
   "size_exceed_copied_tips": "Le contenu est trop long à copier. (taille actuelle: {{current_size}} octets, limite : {{limit_size}} octets)",
-  "contribute": "Contribuer"
+  "contribute": "Contribuer",
+  "error_page": {
+    "fobidden": "Aucune autorisation d'accès"
+  }
 }
