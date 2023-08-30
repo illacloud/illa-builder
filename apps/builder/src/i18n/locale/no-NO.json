@@ -824,7 +824,7 @@
           "placeholder": {
             "query": "velg * fra brukere;",
             "table": "Velg en tabell",
-            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1}, ...] }}"
           },
           "table": "Tabell",
           "insert_record": "Liste med poster som skal settes inn",
@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Opprinnelig verdi",
           "tooltips": "Støtter objekter eller primitive verdier. Eksempel: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "Omdiriger",
   "oauth_redirect_description": "Omdirigerer til <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Engelsk",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "Afrikansk",
+    "cs-CZ": "faresa tina",
+    "de-DE": "Tysk",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "francεais",
     "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "nl-NL": "Nederland",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugisisk",
+    "ro-RO": "romaεnaânia",
+    "ru-RU": "∙∙odarodarodarodarodarodarodarodarde",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "Oppdatering ferdig"
     },
     "button": {
-      "blank": "Opprett din første app",
+      "blank": "Opprett ny",
       "blank-agent": "Lag AI-Agent"
     }
   },
