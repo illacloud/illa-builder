@@ -1,9 +1,9 @@
+import { Avatar } from "@illa-public/avatar"
 import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
 import { Button, useMessage } from "@illa-design/react"
 import { Signal } from "@/api/ws/ILLA_PROTO"
-import { Avatar } from "@/illa-public-component/Avatar"
 import {
   ModifyHistory,
   Snapshot,

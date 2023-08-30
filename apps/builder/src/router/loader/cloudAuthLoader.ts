@@ -1,18 +1,20 @@
+import { ILLAMixpanel } from "@illa-public/mixpanel-utils"
+import {
+  currentUserActions,
+  getCurrentTeamInfo,
+  getCurrentUser,
+  teamActions,
+} from "@illa-public/user-data"
+import { canAccessManage } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { LoaderFunction, redirect } from "react-router-dom"
 import i18n from "@/i18n/config"
-import { ILLAMixpanel } from "@/illa-public-component/MixpanelUtils"
-import { canAccessManage } from "@/illa-public-component/UserRoleUtils"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { teamActions } from "@/redux/team/teamSlice"
 import { cloudUrl } from "@/router/constant"
 import { fetchMyTeamsInfo } from "@/services/team"
 import { fetchUserInfo } from "@/services/users"
 import store from "@/store"
 import { getAuthToken } from "@/utils/auth"
 import { ILLABuilderStorage } from "@/utils/storage"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const setTokenToLocalStorageLoader: LoaderFunction = async (args) => {
   const url = new URL(args.request.url)
@@ -29,7 +31,7 @@ export const getUserInfoLoader: LoaderFunction = async () => {
   const userInfo = getCurrentUser(store.getState())
   const currentLng = window.localStorage.getItem("i18nextLng")
 
-  if (userInfo.userId) {
+  if (userInfo.userID) {
     const lng = userInfo.language
     if (lng && currentLng !== lng) {
       i18n.changeLanguage(lng)
@@ -45,13 +47,7 @@ export const getUserInfoLoader: LoaderFunction = async () => {
         i18n.changeLanguage(lng)
         window.location.reload()
       }
-
-      store.dispatch(
-        currentUserActions.updateCurrentUserReducer({
-          ...response.data,
-          userId: response.data.userID,
-        }),
-      )
+      store.dispatch(currentUserActions.updateCurrentUserReducer(response.data))
       return null
     } catch (e) {
       return redirect("/403")

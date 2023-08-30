@@ -16,7 +16,6 @@ export const IllaApp: FC = () => {
 
   useEffect(() => {
     const abortController = new AbortController()
-
     fetchDashboardWsURL(abortController.signal)
       .then((res) => {
         Connection.enterDashboardRoom(fixedWsURL(res.data.wsURL))

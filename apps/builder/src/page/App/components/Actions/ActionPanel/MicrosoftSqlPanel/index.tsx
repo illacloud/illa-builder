@@ -120,7 +120,7 @@ const MicrosoftSqlPanel: FC = () => {
           <MSSQLGUIMode
             modeContent={guiModeInitial}
             onChange={handleQueryChange}
-            resourceId={cachedAction.resourceId}
+            resourceID={cachedAction.resourceID}
           />
         )}
         <TransformerComponent />

@@ -1,5 +1,10 @@
+import {
+  actionBasicRequest,
+  actionRequest,
+  builderRequest,
+} from "@illa-public/illa-net"
+import { BUILDER_REQUEST_PREFIX } from "@illa-public/illa-net/constant"
 import { AxiosRequestConfig, Method } from "axios"
-import { actionBasicRequest, actionRequest, builderRequest } from "@/api/http"
 import {
   ActionContent,
   ActionItem,
@@ -7,10 +12,10 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { ResourceContent, ResourceType } from "@/redux/resource/resourceState"
 import { getParamsFromIllaRoute } from "@/utils/routerHelper"
-import { BUILDER_REQUEST_PREFIX } from "../api/http/constant"
+import { getCurrentTeamID, getCurrentTeamIdentifier } from "../utils/team"
 
 interface IActionTestConnectionRequestData {
-  resourceId: string
+  resourceID: string
   resourceName: string
   resourceType: ResourceType
   content: ResourceContent
@@ -22,13 +27,13 @@ export const fetchActionTestConnection = (
   return actionRequest<null>(
     { url: "/resources/testConnection", method: "POST", data },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
 
 interface IActionRunResultRequestData {
-  resourceId: string
+  resourceID: string
   actionType: ActionType
   displayName: string
   content: ActionContent
@@ -42,19 +47,19 @@ export interface IActionRunResultResponseData<R = Record<string, any>[]> {
 
 export const fetchActionRunResult = (
   appID: string,
-  actionId: string,
+  actionID: string,
   data: IActionRunResultRequestData,
   isPublic: boolean,
   abortSignal?: AbortSignal,
 ) => {
   let url: string
-  let options: { needTeamIdentifier?: boolean; needTeamID?: boolean } = {}
+  let options: { teamIdentifier?: string; teamID?: string } = {}
   if (isPublic) {
-    url = `/apps/${appID}/publicActions/${actionId}/run`
-    options.needTeamIdentifier = true
+    url = `/apps/${appID}/publicActions/${actionID}/run`
+    options.teamIdentifier = getCurrentTeamIdentifier()
   } else {
-    url = `/apps/${appID}/actions/${actionId}/run`
-    options.needTeamID = true
+    url = `/apps/${appID}/actions/${actionID}/run`
+    options.teamID = getCurrentTeamID()
   }
   return actionRequest<IActionRunResultResponseData>(
     { url, method: "POST", data, signal: abortSignal },
@@ -77,13 +82,13 @@ export const fetchS3ActionRunResult = (
 }
 
 export const fetchCreateAction = (
-  data: Omit<ActionItem<ActionContent>, "actionId">,
+  data: Omit<ActionItem<ActionContent>, "actionID">,
 ) => {
   const appId = getParamsFromIllaRoute("appId") as string
   const url = `/apps/${appId}/actions`
   return builderRequest<
     ActionItem<ActionContent>,
-    Omit<ActionItem<ActionContent>, "actionId">
+    Omit<ActionItem<ActionContent>, "actionID">
   >(
     {
       url,
@@ -91,7 +96,7 @@ export const fetchCreateAction = (
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -109,7 +114,7 @@ export const fetchDeleteAction = (actionID: string) => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -126,10 +131,10 @@ export const fetchUpdateAction = (action: ActionItem<ActionContent>) => {
   return builderRequest<ActionItem<ActionContent>>(
     {
       method: "PUT",
-      url: `/apps/${appId}/actions/${action.actionId}`,
+      url: `/apps/${appId}/actions/${action.actionID}`,
       data: action,
     },
-    { needTeamID: true },
+    { teamID: getCurrentTeamID() },
   )
 }
 
@@ -142,6 +147,7 @@ interface IGenerateSQLRequest {
 interface IGenerateSQLResponse {
   payload: string
 }
+
 export const fetchGenerateSQL = async (
   appID: string,
   data: IGenerateSQLRequest,
@@ -153,7 +159,7 @@ export const fetchGenerateSQL = async (
       data,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
     BUILDER_REQUEST_PREFIX,
   )

@@ -19,6 +19,16 @@ export const selfRouter: RoutesObjectPro[] = [
     loader: selfHostLandingLoader,
   },
   {
+    path: "/privacy-policy",
+    accessByMobile: true,
+    element: lazyLoad(lazy(() => import("@/page/Policy/PrivacyPolicy"))),
+  },
+  {
+    path: "/terms-and-conditions",
+    accessByMobile: true,
+    element: lazyLoad(lazy(() => import("@/page/Policy/TermsAndConditions"))),
+  },
+  {
     path: "/:teamIdentifier/dashboard",
     element: lazyLoad(lazy(() => import("@/page/Dashboard"))),
     children: [

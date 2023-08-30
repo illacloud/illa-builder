@@ -1,3 +1,4 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -5,7 +6,6 @@ import {
   WindowLeftIcon,
   WindowRightIcon,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   isOpenBottomPanel,
   isOpenLeftPanel,

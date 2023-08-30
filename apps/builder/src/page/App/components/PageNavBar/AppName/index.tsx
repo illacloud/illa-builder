@@ -1,6 +1,6 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, useState } from "react"
 import { PenIcon } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { AppNameProps } from "@/page/App/components/PageNavBar/interface"
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { trackInEditor } from "@/utils/mixpanelHelper"
@@ -41,13 +41,13 @@ export const AppName: FC<AppNameProps> = (props) => {
         onVisibleChange={(visible) => {
           setAppSettingVisible(visible)
         }}
-        onOk={() => {
+        onSaveEvent={() => {
           trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
             element: "app_setting_modal_save",
             parameter5: appInfo.appId,
           })
         }}
-        onCancel={() => {
+        onCloseEvent={() => {
           trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
             element: "app_setting_modal_close",
             parameter5: appInfo.appId,

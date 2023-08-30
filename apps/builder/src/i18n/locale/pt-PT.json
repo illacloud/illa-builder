@@ -72,7 +72,7 @@
       "sort-failed": "Não foi possível alterar o tipo de filtro. Tente novamente.",
       "detail-load-failed": "Falha ao recuperar detalhes, por favor tente novamente.",
       "fork-failed": "Falha ao fazer o fork, por favor, tente novamente.",
-      "create-suc": "Falha ao criar. Por favor, tente novamente.",
+      "create-suc": "Salvo com Sucesso",
       "fork-suc": "Forkado com sucesso.",
       "delete-failed": "Falha ao excluir. Por favor, tente novamente. ",
       "delete-suc": "Excluído com sucesso. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "ID da Chapa para copiar",
             "sheet_to_copy_to": "Folha para a qual deseja copiar",
             "authentication": "Autenticação",
-            "connect_with_oauth": "Conectar com OAuth e Salvar",
+            "connect_with_oauth": "Conectar-se com Google",
             "reconnect_with_oauth": "Reconectar com OAuth",
             "access_type": "Tipo de acesso"
           },

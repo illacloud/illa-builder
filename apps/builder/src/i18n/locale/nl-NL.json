@@ -72,7 +72,7 @@
       "sort-failed": "Het wijzigen van het filtertype is mislukt. Probeer het opnieuw.",
       "detail-load-failed": "Gegevens ophalen mislukt, probeer het opnieuw.",
       "fork-failed": "Fork mislukt, probeer het opnieuw.",
-      "create-suc": "Aanmaken mislukt, probeer het opnieuw.",
+      "create-suc": "Succesvol opgeslagen",
       "fork-suc": "Succesvol opgeforkt.",
       "delete-failed": "Verwijderen mislukt. Probeer het opnieuw. ",
       "delete-suc": "Succesvol verwijderd. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "Plaats-ID om te kopiëren",
             "sheet_to_copy_to": "Tafel om naar te kopiëren",
             "authentication": "Authenticatie",
-            "connect_with_oauth": "Maak verbinding met OAuth & Opslaan",
+            "connect_with_oauth": "Verbinden met Google",
             "reconnect_with_oauth": "Opnieuw verbinden met OAuth",
             "access_type": "Type toegang"
           },

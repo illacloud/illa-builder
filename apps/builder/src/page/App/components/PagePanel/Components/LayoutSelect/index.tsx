@@ -1,3 +1,4 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
@@ -8,7 +9,6 @@ import { ReactComponent as PresetBIcon } from "@/assets/rightPagePanel/layout/pr
 import { ReactComponent as PresetCIcon } from "@/assets/rightPagePanel/layout/preset-c.svg"
 import { ReactComponent as PresetDIcon } from "@/assets/rightPagePanel/layout/preset-d.svg"
 import { ReactComponent as PresetEIcon } from "@/assets/rightPagePanel/layout/preset-e.svg"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import {

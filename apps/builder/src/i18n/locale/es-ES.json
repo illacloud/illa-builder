@@ -72,7 +72,7 @@
       "sort-failed": "Error al cambiar el tipo de filtro. Por favor, inténtalo de nuevo.",
       "detail-load-failed": "Error al recuperar los detalles, inténtalo de nuevo.",
       "fork-failed": "Error al bifurcar, inténtelo de nuevo.",
-      "create-suc": "Error al crear, inténtelo de nuevo.",
+      "create-suc": "Guardado correctamente",
       "fork-suc": "Bifurcado con éxito.",
       "delete-failed": "Error al eliminar. Por favor, inténtelo de nuevo. ",
       "delete-suc": "Eliminado correctamente. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "ID de hoja a copiar",
             "sheet_to_copy_to": "Hoja a copiar",
             "authentication": "Autenticación",
-            "connect_with_oauth": "Conectar con OAuth & Save",
+            "connect_with_oauth": "Conectar con Google",
             "reconnect_with_oauth": "Volver a conectar con OAuth",
             "access_type": "Tipo de acceso"
           },

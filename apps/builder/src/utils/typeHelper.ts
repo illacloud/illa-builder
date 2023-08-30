@@ -1,6 +1,6 @@
+import { ILLAApiError } from "@illa-public/illa-net"
 import { AxiosResponse } from "axios"
 import { isString } from "@illa-design/react"
-import { ILLAApiError } from "@/api/http"
 import { ActionType } from "../redux/currentApp/action/actionState"
 import { IActionRunResultResponseData } from "../services/action"
 
@@ -72,8 +72,6 @@ export const isInt = (val: string | number): boolean => {
 
 export const isValidDisplayName = (displayName: string): boolean =>
   DISPLAY_NAME_REGEX.test(displayName)
-
-export const isCloudVersion = import.meta.env.VITE_INSTANCE_ID === "CLOUD"
 
 export const isILLAAPiError = (
   error: unknown,

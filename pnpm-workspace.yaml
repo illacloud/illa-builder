@@ -1,3 +1,5 @@
 packages:
   - "apps/builder"
-  - "illa-design/packages/*"
+  - "packages/illa-design/packages/*"
+  - "packages/illa-public-component/*"
+  - "packages/*"

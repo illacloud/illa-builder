@@ -1,13 +1,21 @@
-import { FC, MouseEvent, useCallback, useMemo } from "react"
-import { useTranslation } from "react-i18next"
-import { useNavigate, useParams } from "react-router-dom"
-import { Tag } from "@illa-design/react"
-import { Avatar } from "@/illa-public-component/Avatar"
+import { Avatar } from "@illa-public/avatar"
 import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
-import { ActionButtonGroup } from "@/page/Dashboard/DashboardApps/AppCard/ActionButtonGroup"
+} from "@illa-public/mixpanel-utils"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
+import { FC, MouseEvent, useCallback, useMemo } from "react"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { useNavigate, useParams } from "react-router-dom"
+import { Space, Tag } from "@illa-design/react"
+import { AppCardProps } from "@/page/Dashboard/DashboardApps/AppCard/interface"
 import {
   appNameStyle,
   cardStyle,
@@ -20,40 +28,32 @@ import {
   titleInfoStyle,
 } from "@/page/Dashboard/DashboardApps/AppCard/style"
 import { AppCardActionItem } from "@/page/Dashboard/DashboardApps/AppCardActionItem"
-import AppConfigSelect from "@/page/Dashboard/DashboardApps/AppConfigSelect"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { AppConfigSelect } from "@/page/Dashboard/DashboardApps/AppConfigSelect"
 import { fromNow } from "@/utils/dayjs"
 import { track } from "@/utils/mixpanelHelper"
-import { isCloudVersion } from "@/utils/typeHelper"
-
-interface AppCardProps {
-  appInfo: DashboardApp
-  canEditApp: boolean
-}
+import { ActionButtonGroup } from "../ActionButtonGroup"
 
 export const AppCard: FC<AppCardProps> = (props) => {
   const { t } = useTranslation()
-  const { appInfo, canEditApp, ...rest } = props
+  const { appInfo } = props
   const { teamIdentifier } = useParams()
   const navigate = useNavigate()
 
-  const stopPropagation = (e: MouseEvent) => {
-    e.stopPropagation()
-  }
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
+
+  const canEditApp = canManage(
+    teamInfo.myRole,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.EDIT_APP,
+  )
 
   const onClickCard = useCallback(() => {
     if (canEditApp) {
       navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
-    } else if (appInfo.mainlineVersion !== 0) {
+    } else if (appInfo.deployed) {
       navigate(`/${teamIdentifier}/deploy/app/${appInfo.appId}`)
     }
-  }, [
-    appInfo.appId,
-    appInfo.mainlineVersion,
-    canEditApp,
-    navigate,
-    teamIdentifier,
-  ])
+  }, [appInfo.appId, appInfo.deployed, canEditApp, navigate, teamIdentifier])
 
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -67,7 +67,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
         )
       }
 
-      if (appInfo.mainlineVersion !== 0) {
+      if (appInfo.deployed) {
         track(
           ILLA_MIXPANEL_EVENT_TYPE.SHOW,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
@@ -75,7 +75,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
         )
       }
     },
-    [canEditApp, appInfo.appId, appInfo.mainlineVersion],
+    [canEditApp, appInfo.deployed, appInfo.appId],
   )
 
   const editors = useMemo(() => {
@@ -97,12 +97,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
   }, [appInfo?.editedBy])
 
   return (
-    <div
-      css={cardStyle}
-      onClick={onClickCard}
-      onMouseEnter={handleMouseEnter}
-      {...rest}
-    >
+    <div css={cardStyle} onClick={onClickCard} onMouseEnter={handleMouseEnter}>
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
           <div css={appNameStyle}>{appInfo.appName}</div>
@@ -112,7 +107,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
               user: appInfo.appActivity.modifier,
             })}
           </div>
-          <div className="deployed">
+          <Space>
             {appInfo.deployed ? (
               <Tag colorScheme="green" size="small">
                 {t("new_dashboard.status.deployed")}
@@ -122,14 +117,14 @@ export const AppCard: FC<AppCardProps> = (props) => {
                 {t("new_dashboard.status.undeploy")}
               </Tag>
             )}
-          </div>
+            {appInfo.config.publishedToMarketplace && (
+              <Tag size="small" colorScheme="techPurple">
+                {t("dashboard.common.marketplace")}
+              </Tag>
+            )}
+          </Space>
         </div>
-        <AppCardActionItem
-          appId={appInfo.appId}
-          canEditApp={canEditApp}
-          isDeploy={appInfo.mainlineVersion !== 0}
-          onClick={stopPropagation}
-        />
+        <AppCardActionItem appInfo={appInfo} />
       </div>
       <div>
         <div css={descriptionStyle}>
@@ -140,7 +135,11 @@ export const AppCard: FC<AppCardProps> = (props) => {
         <>
           {editors}
           <div css={footerStyle}>
-            <div className="public-info" onClick={stopPropagation}>
+            <div
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+            >
               <AppConfigSelect
                 appId={appInfo.appId}
                 isPublic={appInfo.config.public}

@@ -1,9 +1,6 @@
-export interface DashboardItemMenuProps {
-  appId: string
-  canEditApp: boolean
-  isDeploy: boolean
-}
+import { HTMLAttributes } from "react"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
-export interface DeleteDashboardAppResponse {
-  appID: string
+export interface AppCardActionItemProps extends HTMLAttributes<HTMLDivElement> {
+  appInfo: DashboardApp
 }

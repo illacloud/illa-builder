@@ -1,3 +1,8 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -9,8 +14,6 @@ import {
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -35,10 +38,9 @@ import {
 import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { validate } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onFinished, onBack } = props
+  const { resourceID, onFinished, onBack } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -46,7 +48,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   const content = useMemo(() => {
@@ -85,7 +87,7 @@ export const DynamoDBConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "dynamodb",
         onFinished,
         setSaving,

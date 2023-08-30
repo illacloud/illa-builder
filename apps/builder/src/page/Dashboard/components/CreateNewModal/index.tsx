@@ -1,13 +1,13 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Input, Modal, useMessage } from "@illa-design/react"
 import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchCreateApp } from "@/services/apps"
 import { track } from "@/utils/mixpanelHelper"

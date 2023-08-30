@@ -72,7 +72,7 @@
       "sort-failed": "フィルタの種類を変更できませんでした。もう一度やり直してください。",
       "detail-load-failed": "詳細の取得に失敗しました。もう一度やり直してください。",
       "fork-failed": "フォークに失敗しました。もう一度やり直してください。",
-      "create-suc": "作成に失敗しました。もう一度やり直してください。",
+      "create-suc": "正常に保存しました",
       "fork-suc": "フォークしました。",
       "delete-failed": "削除に失敗しました。もう一度やり直してください。 ",
       "delete-suc": "正常に削除しました。 ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "コピーするシートID",
             "sheet_to_copy_to": "コピー先のシート",
             "authentication": "認証",
-            "connect_with_oauth": "OAuth で接続して保存",
+            "connect_with_oauth": "Google と接続する",
             "reconnect_with_oauth": "OAuth で再接続する",
             "access_type": "アクセスの種類"
           },

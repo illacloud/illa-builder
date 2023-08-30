@@ -1,6 +1,6 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC } from "react"
 import { Switch } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { dynamicWidthStyle } from "@/page/App/components/PanelSetters/style"
 import { trackInEditor } from "@/utils/mixpanelHelper"
 import { BaseSwitchProps } from "./interface"

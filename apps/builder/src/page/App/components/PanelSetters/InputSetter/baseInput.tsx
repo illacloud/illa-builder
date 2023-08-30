@@ -1,3 +1,4 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -5,7 +6,6 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getNeedComputedValueWithList,
   realInputValueWithList,

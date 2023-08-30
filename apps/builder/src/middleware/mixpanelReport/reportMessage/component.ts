@@ -1,5 +1,5 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { PayloadAction } from "@reduxjs/toolkit"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getCanvas,
   searchDsl,

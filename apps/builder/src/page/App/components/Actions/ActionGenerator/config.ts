@@ -127,6 +127,13 @@ export const JsTransformer: ActionDataItem[] = [
   },
 ]
 
+export const AIAgent: ActionDataItem[] = [
+  {
+    actionType: "aiagent",
+    isDraft: false,
+  },
+]
+
 export const ActionTypeList = [
   {
     title: i18n.t("editor.action.type.database"),
@@ -142,5 +149,10 @@ export const ActionTypeList = [
     title: i18n.t("editor.action.type.js_transformer"),
     item: JsTransformer,
     category: "jsTransformer" as const,
+  },
+  {
+    title: "AI Agent",
+    item: AIAgent,
+    category: "aiAgent" as const,
   },
 ]

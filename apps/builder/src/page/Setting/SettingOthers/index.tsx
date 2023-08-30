@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@illa-public/user-data"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -5,7 +6,6 @@ import { Button, Select } from "@illa-design/react"
 import { LANG_OPTIONS } from "@/i18n/config"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { fetchChangeLanguage } from "@/services/setting"
 
 export const SettingOthers: FC = () => {

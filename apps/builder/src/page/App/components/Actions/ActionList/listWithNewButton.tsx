@@ -1,3 +1,4 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { isEqual } from "lodash"
 import { FC, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -11,7 +12,6 @@ import {
   useModal,
 } from "@illa-design/react"
 import { ReactComponent as ActionListEmptyState } from "@/assets/action-list-empty-state.svg"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import {
   getCachedAction,
   getSelectedAction,

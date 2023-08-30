@@ -1,3 +1,5 @@
+import { currentUserReducer, teamReducer } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   ListenerEffectAPI,
   TypedStartListening,
@@ -17,15 +19,13 @@ import dragShadowReducer from "@/redux/currentApp/dragShadow/dragShadowSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 import currentAppHistoryReducer from "@/redux/currentAppHistory/currentAppHistorySlice"
-import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
+import dashboardTeamAIAgentReducer from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import guideReducer from "@/redux/guide/guideSlice"
 import resourceReducer from "@/redux/resource/resourceSlice"
-import teamReducer from "@/redux/team/teamSlice"
 import { mixpanelReport } from "./middleware/mixpanelReport"
 import { UndoRedo } from "./middleware/undoRedo"
 import cursorSlice from "./redux/currentApp/cursor/cursorSlice"
-import { isCloudVersion } from "./utils/typeHelper"
 
 const listenerMiddleware = createListenerMiddleware()
 
@@ -45,11 +45,12 @@ const appReducer = combineReducers({
 
 const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
+  dashboardTeamAIAgents: dashboardTeamAIAgentReducer,
 })
 
 const middlewares = [reduxAsync, UndoRedo, guideAsync]
 
-if (import.meta.env.DEV) {
+if (import.meta.env.ILLA_APP_ENV === "development") {
   middlewares.push(logger)
 }
 
@@ -62,14 +63,14 @@ const store = configureStore({
     config: configReducer,
     currentApp: appReducer,
     dashboard: dashboardReducer,
-    currentUser: currentUserReducer,
     currentAppHistory: currentAppHistoryReducer,
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
-    team: teamReducer,
     guide: guideReducer,
+    currentUser: currentUserReducer,
+    team: teamReducer,
   },
-  devTools: import.meta.env.DEV,
+  devTools: import.meta.env.ILLA_APP_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

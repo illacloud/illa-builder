@@ -1,6 +1,6 @@
 // string for component
 import { Connection, getTextMessagePayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/ILLA_PROTO"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import {
   ActionContent,
   ActionItem,
@@ -43,8 +43,8 @@ export class DisplayNameGenerator {
     this.displayNameList.add(name)
     Connection.getTextRoom("app", this.appId)?.send(
       getTextMessagePayload(
-        Signal.BROADCAST_ONLY,
-        Target.DISPLAY_NAME,
+        TextSignal.BROADCAST_ONLY,
+        TextTarget.DISPLAY_NAME,
         true,
         { type: ADD_DISPLAY_NAME, payload: [name] },
         this.teamID,
@@ -86,8 +86,8 @@ export class DisplayNameGenerator {
     this.displayNameList.add(displayName)
     Connection.getTextRoom("app", this.appId)?.send(
       getTextMessagePayload(
-        Signal.BROADCAST_ONLY,
-        Target.DISPLAY_NAME,
+        TextSignal.BROADCAST_ONLY,
+        TextTarget.DISPLAY_NAME,
         true,
         {
           type: GENERATE_OR_UPDATE_DISPLAYNAME,
@@ -105,8 +105,8 @@ export class DisplayNameGenerator {
     this.displayNameList.delete(displayName)
     Connection.getTextRoom("app", this.appId)?.send(
       getTextMessagePayload(
-        Signal.BROADCAST_ONLY,
-        Target.DISPLAY_NAME,
+        TextSignal.BROADCAST_ONLY,
+        TextTarget.DISPLAY_NAME,
         true,
         { type: REMOVE_DISPLAY_NAME, payload: [displayName] },
         this.teamID,
@@ -122,8 +122,8 @@ export class DisplayNameGenerator {
     })
     Connection.getTextRoom("app", this.appId)?.send(
       getTextMessagePayload(
-        Signal.BROADCAST_ONLY,
-        Target.DISPLAY_NAME,
+        TextSignal.BROADCAST_ONLY,
+        TextTarget.DISPLAY_NAME,
         true,
         { type: REMOVE_DISPLAY_NAME, payload: displayNames },
         this.teamID,

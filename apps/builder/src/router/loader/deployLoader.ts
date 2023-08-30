@@ -1,5 +1,7 @@
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchTeamAgent } from "@/services/agent"
 import {
   fetchAPPPublicStatus,
   fetchPrivateAppInitData,
@@ -33,7 +35,7 @@ export const deployLoader: LoaderFunction = async (args) => {
         appInfo,
       })
     } else {
-      const teamInfo = getCurrentTeamInfo(store.getState())
+      let teamInfo = getCurrentTeamInfo(store.getState())
       if (teamInfo && teamInfo.identifier !== teamIdentifier) {
         return redirect("/403")
       }
@@ -42,19 +44,16 @@ export const deployLoader: LoaderFunction = async (args) => {
         if (teamInfoLoaderResponse) {
           return teamInfoLoaderResponse
         }
+        teamInfo = getCurrentTeamInfo(store.getState())
       }
-      const appInfo = fetchPrivateAppInitData(
-        appId,
-        "-2",
-        teamIdentifier,
-        args.request.signal,
-      )
+      const appInfo = fetchPrivateAppInitData(appId, "-2", args.request.signal)
       const resourceInfo = fetchResources(args.request.signal)
-
+      const teamAgentList = fetchTeamAgent(args.request.signal)
       return defer({
         isPublic,
         appInfo,
         resourceInfo,
+        teamAgentList: isCloudVersion ? teamAgentList : undefined,
       })
     }
   } catch (e) {

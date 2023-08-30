@@ -84,7 +84,7 @@ export type ResourceContent =
   | AirtableResource
 
 export interface Resource<T extends ResourceContent> {
-  resourceId: string
+  resourceID: string
   resourceName: string
   resourceType: ResourceType
   createdBy: string

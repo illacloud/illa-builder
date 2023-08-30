@@ -1,12 +1,12 @@
-import { getCurrentId } from "@/redux/team/teamSelector"
+import { getCurrentId } from "@illa-public/user-data"
 import { ILLARoute } from "@/router"
-import store from "@/store"
+import store from "../store"
 
-export const getTeamID = () => {
+export const getCurrentTeamID = () => {
   return getCurrentId(store.getState())
 }
 
 // maybe not same as current team
-export const getCurrentPageTeamIdentifier = () => {
+export const getCurrentTeamIdentifier = () => {
   return ILLARoute.state.matches[0].params.teamIdentifier
 }

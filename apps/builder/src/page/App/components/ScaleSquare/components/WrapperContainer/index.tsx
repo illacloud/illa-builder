@@ -1,9 +1,10 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { getCurrentUserId } from "@illa-public/user-data"
 import { cloneDeep, get } from "lodash"
 import { FC, MouseEvent, memo, useCallback, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DropList, DropListItem, Dropdown } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { useMouseHover } from "@/page/App/components/ScaleSquare/utils/useMouseHover"
 import {
   getHoveredComponents,
@@ -24,7 +25,6 @@ import {
   getExecutionWidgetLayoutInfo,
   getIsResizing,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { getCurrentUserId } from "@/redux/currentUser/currentUserSelector"
 import { isContainerType } from "@/utils/componentChecker"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"

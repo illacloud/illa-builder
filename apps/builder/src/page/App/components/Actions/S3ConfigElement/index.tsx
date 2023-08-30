@@ -1,3 +1,8 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -10,8 +15,6 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -40,10 +43,9 @@ import {
 } from "@/redux/resource/s3Resource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
@@ -52,7 +54,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
   const { track } = useContext(MixpanelTrackContext)
 
   const findResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   let content: S3Resource
@@ -92,7 +94,7 @@ export const S3ConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "s3",
         onFinished,
         setSaving,

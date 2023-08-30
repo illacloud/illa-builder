@@ -72,7 +72,7 @@
       "sort-failed": "Zmiana typu filtra nie powiodła się. Spróbuj ponownie.",
       "detail-load-failed": "Nie udało się pobrać szczegółów, spróbuj ponownie.",
       "fork-failed": "Nie udało się forkować, spróbuj ponownie.",
-      "create-suc": "Nie udało się utworzyć, spróbuj ponownie.",
+      "create-suc": "Zapisano pomyślnie",
       "fork-suc": "Pomyślnie rozwidlono.",
       "delete-failed": "Usunięcie nie powiodło się. Spróbuj ponownie. ",
       "delete-suc": "Usunięto pomyślnie. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "ID arkusza do skopiowania",
             "sheet_to_copy_to": "Arkusz do skopiowania",
             "authentication": "Uwierzytelnianie",
-            "connect_with_oauth": "Połącz z OAuth i Zapisz",
+            "connect_with_oauth": "Połącz z Google",
             "reconnect_with_oauth": "Połącz ponownie z OAuth",
             "access_type": "Typ dostępu"
           },

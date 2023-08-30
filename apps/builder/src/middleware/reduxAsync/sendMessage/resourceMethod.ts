@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit"
 import { Connection, getTextMessagePayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/ILLA_PROTO"
+import { TextSignal, TextTarget } from "@/api/ws/textSignal"
 import { RootState } from "@/store"
 
 export const resourcesAsync = (
@@ -18,8 +18,8 @@ export const resourcesAsync = (
       if (currentAppID) {
         Connection.getTextRoom("app", currentAppID)?.send(
           getTextMessagePayload(
-            Signal.GLOBAL_BROADCAST_ONLY,
-            Target.RESOURCE,
+            TextSignal.GLOBAL_BROADCAST_ONLY,
+            TextTarget.RESOURCE,
             true,
             action,
             teamID,
@@ -30,8 +30,8 @@ export const resourcesAsync = (
       } else {
         Connection.getTextRoom("dashboard", "")?.send(
           getTextMessagePayload(
-            Signal.GLOBAL_BROADCAST_ONLY,
-            Target.RESOURCE,
+            TextSignal.GLOBAL_BROADCAST_ONLY,
+            TextTarget.RESOURCE,
             true,
             action,
             teamID,
@@ -46,8 +46,8 @@ export const resourcesAsync = (
       if (currentAppID) {
         Connection.getTextRoom("app", currentAppID)?.send(
           getTextMessagePayload(
-            Signal.GLOBAL_BROADCAST_ONLY,
-            Target.RESOURCE,
+            TextSignal.GLOBAL_BROADCAST_ONLY,
+            TextTarget.RESOURCE,
             true,
             action,
             teamID,
@@ -58,8 +58,8 @@ export const resourcesAsync = (
       } else {
         Connection.getTextRoom("dashboard", "")?.send(
           getTextMessagePayload(
-            Signal.GLOBAL_BROADCAST_ONLY,
-            Target.RESOURCE,
+            TextSignal.GLOBAL_BROADCAST_ONLY,
+            TextTarget.RESOURCE,
             true,
             action,
             teamID,
@@ -75,8 +75,8 @@ export const resourcesAsync = (
       if (currentAppID) {
         Connection.getTextRoom("app", currentAppID)?.send(
           getTextMessagePayload(
-            Signal.GLOBAL_BROADCAST_ONLY,
-            Target.RESOURCE,
+            TextSignal.GLOBAL_BROADCAST_ONLY,
+            TextTarget.RESOURCE,
             true,
             action,
             teamID,
@@ -87,8 +87,8 @@ export const resourcesAsync = (
       } else {
         Connection.getTextRoom("dashboard", "")?.send(
           getTextMessagePayload(
-            Signal.GLOBAL_BROADCAST_ONLY,
-            Target.RESOURCE,
+            TextSignal.GLOBAL_BROADCAST_ONLY,
+            TextTarget.RESOURCE,
             true,
             action,
             teamID,
@@ -97,7 +97,6 @@ export const resourcesAsync = (
           ),
         )
       }
-
       break
     }
   }

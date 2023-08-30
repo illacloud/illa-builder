@@ -1,8 +1,8 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { cloneDeep } from "lodash"
 import { FC } from "react"
 import { useDrag } from "react-dnd"
 import { useSelector } from "react-redux"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { DropResultInfo } from "@/page/App/components/DotPanel/components/Canvas/interface"
 import { illaSnapshot } from "@/page/App/components/DotPanel/constant/snapshotNew"
 import {

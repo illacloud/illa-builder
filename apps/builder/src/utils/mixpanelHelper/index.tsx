@@ -1,10 +1,11 @@
-import { ILLAMixpanel } from "@/illa-public-component/MixpanelUtils"
 import {
+  ILLAMixpanel,
   ILLAProperties,
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
   ILLA_PAGE_NAME,
-} from "@/illa-public-component/MixpanelUtils/interface"
+} from "@illa-public/mixpanel-utils"
+import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
 import {
   getIllaMode,
   getIsILLAProductMode,
@@ -12,9 +13,7 @@ import {
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getGuideInfo } from "@/redux/guide/guideSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { ILLARoute } from "@/router"
 import store from "@/store"
 
@@ -95,8 +94,7 @@ const getPageInfo = () => {
 }
 
 const getTeamInfo = () => {
-  const rootState = store.getState()
-  const teamInfo = getCurrentTeamInfo(rootState)
+  const teamInfo = getCurrentTeamInfo(store.getState())
   return {
     role: teamInfo?.myRole || "-1",
   }
@@ -111,7 +109,7 @@ const getAppType = () => {
 const getAppIsPublish = () => {
   const rootState = store.getState()
   const appInfo = getAppInfo(rootState)
-  return appInfo.releaseVersion > 0
+  return appInfo.deployed
 }
 
 const getAppIsPublic = () => {
@@ -121,9 +119,8 @@ const getAppIsPublic = () => {
 }
 
 const getUserID = () => {
-  const rootState = store.getState()
-  const userInfo = getCurrentUser(rootState)
-  return userInfo?.userId || ""
+  const userInfo = getCurrentUser(store.getState())
+  return userInfo?.userID || ""
 }
 
 const getAPPMode = () => {

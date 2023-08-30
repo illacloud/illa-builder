@@ -1,7 +1,12 @@
-import { authCloudRequest, notNeedAuthCloudRequest } from "@/api/http"
+import {
+  authCloudRequest,
+  notNeedAuthCloudRequest,
+} from "@illa-public/illa-net"
+import { BaseUserInfo } from "@illa-public/user-data"
 import { RegisterResult } from "@/page/User/Register/interface"
 import { ResetPwdFields } from "@/page/User/ResetPassword/interface"
-import { UserInfoResponse } from "@/redux/currentUser/currentUserState"
+
+export interface UserInfoResponse extends BaseUserInfo {}
 
 export const fetchSignIn = async (data: unknown) => {
   return notNeedAuthCloudRequest<UserInfoResponse>({
@@ -11,8 +16,10 @@ export const fetchSignIn = async (data: unknown) => {
   })
 }
 
+interface RegisterResponse extends BaseUserInfo {}
+
 export const fetchSignUp = async (data: unknown) => {
-  return notNeedAuthCloudRequest<RegisterResult>({
+  return notNeedAuthCloudRequest<RegisterResponse>({
     method: "POST",
     url: "/auth/signup",
     data,
@@ -30,6 +37,7 @@ interface ISendEmail {
   email: string
   usage: "signup" | "forgetpwd"
 }
+
 export const fetchSendEmail = async (data: ISendEmail) => {
   return await notNeedAuthCloudRequest<{ verificationToken: string }>({
     method: "POST",

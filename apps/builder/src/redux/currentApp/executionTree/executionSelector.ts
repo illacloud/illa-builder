@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@illa-public/user-data"
 import { createSelector } from "@reduxjs/toolkit"
 import { cloneDeep, get } from "lodash"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
@@ -7,7 +8,6 @@ import {
   getOriginalGlobalData,
   getPageNameMapDescendantNodeDisplayNames,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { RootState } from "@/store"
 import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
 

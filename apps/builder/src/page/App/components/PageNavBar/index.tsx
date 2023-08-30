@@ -1,8 +1,13 @@
+import { UpgradeIcon } from "@illa-public/icon"
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
+import { useUpgradeModal } from "@illa-public/upgrade-modal"
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { canUseUpgradeFeature } from "@illa-public/user-role-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import {
   FC,
   MouseEvent,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useState,
@@ -28,13 +33,10 @@ import {
 } from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
-import { UpgradeIcon } from "@/illa-public-component/Icon/upgrade"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { UpgradeCloudContext } from "@/illa-public-component/UpgradeCloudProvider"
-import { canUseUpgradeFeature } from "@/illa-public-component/UserRoleUtils"
 import { AppName } from "@/page/App/components/PageNavBar/AppName"
 import { AppSizeButtonGroup } from "@/page/App/components/PageNavBar/AppSizeButtonGroup"
 import { CollaboratorsList } from "@/page/App/components/PageNavBar/CollaboratorsList"
+import { ContributeButton } from "@/page/App/components/PageNavBar/ContributeButton"
 import { DeployButtonGroup } from "@/page/App/components/PageNavBar/DeloyButtonGroup"
 import { ShareAppButton } from "@/page/App/components/PageNavBar/ShareAppButton"
 import { WindowIcons } from "@/page/App/components/PageNavBar/WindowIcons"
@@ -54,7 +56,6 @@ import {
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import {
   fetchDeployApp,
   forkCurrentApp,
@@ -63,7 +64,7 @@ import {
 import { takeSnapShot } from "@/services/history"
 import { fromNow } from "@/utils/dayjs"
 import { trackInEditor } from "@/utils/mixpanelHelper"
-import { isCloudVersion, isILLAAPiError } from "@/utils/typeHelper"
+import { isILLAAPiError } from "@/utils/typeHelper"
 import { isMAC } from "@/utils/userAgent"
 import {
   badgeStyle,
@@ -108,8 +109,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const debugMessageNumber = debuggerData ? Object.keys(debuggerData).length : 0
   const isEditMode = useSelector(getIsILLAEditMode)
   const isGuideMode = useSelector(getIsILLAGuideMode)
-  const teamInfo = useSelector(getCurrentTeamInfo)
-  const { handleUpgradeModalVisible } = useContext(UpgradeCloudContext)
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
+  const upgradeModal = useUpgradeModal()
 
   const [deployLoading, setDeployLoading] = useState<boolean>(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
@@ -119,9 +120,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     : t("exit_preview")
 
   const canUseBillingFeature = canUseUpgradeFeature(
-    teamInfo?.myRole,
-    teamInfo?.totalTeamLicense?.teamLicensePurchased,
-    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+    teamInfo.myRole,
+    teamInfo.totalTeamLicense.teamLicensePurchased,
+    teamInfo.totalTeamLicense.teamLicenseAllPaid,
   )
 
   const handleClickDebuggerIcon = useCallback(() => {
@@ -149,8 +150,24 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       setDeployLoading(true)
       try {
         await fetchDeployApp(appId, isPublic)
+        dispatch(appInfoActions.updateAppDeployedReducer(true))
+        dispatch(
+          dashboardAppActions.updateDashboardAppDeployedReducer({
+            appId,
+            deployed: true,
+          }),
+        )
+        dispatch(appInfoActions.updateAppPublicReducer(isPublic))
+        dispatch(
+          dashboardAppActions.updateDashboardAppPublicReducer({
+            appId,
+            isPublic,
+          }),
+        )
         window.open(
-          `${window.location.protocol}//${window.location.host}/${teamIdentifier}/deploy/app/${appId}`,
+          `${
+            import.meta.env.ILLA_BUILDER_URL
+          }/${teamIdentifier}/deploy/app/${appId}`,
           "_blank",
         )
         onSuccess?.()
@@ -163,31 +180,31 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         setDeployLoading(false)
       }
     },
-    [teamIdentifier, message, t],
+    [dispatch, teamIdentifier, message, t],
   )
 
   const forkGuideAppAndDeploy = useCallback(
     async (appName: string) => {
       setDeployLoading(true)
       const appId = await forkCurrentApp(appName)
-      deployApp(appId, false)
+      await deployApp(appId, false)
+      setDeployLoading(false)
     },
     [deployApp],
   )
 
   const handleClickDeploy = useCallback(async () => {
     if (isGuideMode) {
-      forkGuideAppAndDeploy(appInfo.appName)
+      await forkGuideAppAndDeploy(appInfo.appName)
     } else {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "deploy",
       })
-      await deployApp(appInfo.appId, appInfo.config?.public)
-      location.reload()
+      await deployApp(appInfo.appId, appInfo.config.public)
     }
   }, [
     appInfo.appId,
-    appInfo.config?.public,
+    appInfo.config.public,
     appInfo.appName,
     isGuideMode,
     deployApp,
@@ -197,13 +214,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const handleClickDeployMenu = useCallback(
     async (key: string | number) => {
       if (key === "public" && !canUseBillingFeature) {
-        handleUpgradeModalVisible(true, "upgrade")
+        upgradeModal({
+          modalType: "upgrade",
+        })
       } else {
         trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.REQUEST, {
           element: "invite_modal_public_switch",
           parameter1: "deploy",
           parameter2: "trigger",
-          parameter4: appInfo.config?.public ? "on" : "off",
+          parameter4: appInfo.config.public ? "on" : "off",
           parameter5: appInfo.appId,
         })
         await deployApp(
@@ -214,7 +233,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               element: "invite_modal_public_switch",
               parameter1: "deploy",
               parameter2: "suc",
-              parameter4: appInfo.config?.public ? "on" : "off",
+              parameter4: appInfo.config.public ? "on" : "off",
               parameter5: appInfo.appId,
             })
           },
@@ -226,20 +245,19 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               parameter3: isILLAAPiError(error)
                 ? error?.data?.errorFlag
                 : "unknown",
-              parameter4: appInfo.config?.public ? "on" : "off",
+              parameter4: appInfo.config.public ? "on" : "off",
               parameter5: appInfo.appId,
             })
           },
         )
-        location.reload()
       }
     },
     [
       appInfo.appId,
-      appInfo.config?.public,
-      deployApp,
+      appInfo.config.public,
       canUseBillingFeature,
-      handleUpgradeModalVisible,
+      deployApp,
+      upgradeModal,
     ],
   )
 
@@ -283,17 +301,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const handleOpenHistory = useCallback(() => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
     } else {
       navigate(`/${teamIdentifier}/appHistory/${appId}`)
     }
-  }, [
-    navigate,
-    teamIdentifier,
-    appId,
-    canUseBillingFeature,
-    handleUpgradeModalVisible,
-  ])
+  }, [appId, canUseBillingFeature, navigate, teamIdentifier, upgradeModal])
 
   const handleSaveToHistory = useCallback(async () => {
     if (appId) {
@@ -323,9 +337,11 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const checkUpgrade = useCallback(() => {
     if (!canUseBillingFeature) {
-      handleUpgradeModalVisible(true, "upgrade")
+      upgradeModal({
+        modalType: "upgrade",
+      })
     }
-  }, [canUseBillingFeature, handleUpgradeModalVisible])
+  }, [canUseBillingFeature, upgradeModal])
 
   const PreviewButton = useMemo(
     () => (
@@ -342,14 +358,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     [handlePreviewButtonClick, isEditMode, previewButtonText],
   )
 
-  const handleLogoClick = useCallback(() => {
-    navigate(`/${teamIdentifier}/dashboard/apps`)
-  }, [navigate, teamIdentifier])
-
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <Logo width="34px" onClick={handleLogoClick} css={logoCursorStyle} />
+        <Logo
+          width="34px"
+          onClick={() => {
+            navigate(`/${teamIdentifier}/dashboard/apps`)
+          }}
+          css={logoCursorStyle}
+        />
         <div css={informationStyle}>
           <AppName appInfo={appInfo} />
           {isOnline ? (
@@ -372,10 +390,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {!isGuideMode && (
           <>
             <CollaboratorsList />
-            <ShareAppButton
-              appInfo={appInfo}
-              canUseBillingFeature={canUseBillingFeature}
-            />
+            <ShareAppButton appInfo={appInfo} />
           </>
         )}
         {isEditMode ? (
@@ -461,9 +476,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Dropdown>
             )}
-            <ButtonGroup _css={buttonGroupStyle} spacing="8px">
+            <ButtonGroup css={buttonGroupStyle} spacing="8px">
               <Badge
-                _css={badgeStyle}
+                css={badgeStyle}
                 count={debuggerData && Object.keys(debuggerData).length}
               >
                 <Button
@@ -476,9 +491,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Badge>
               {PreviewButton}
+              {!isGuideMode && isCloudVersion && (
+                <ContributeButton appInfo={appInfo} />
+              )}
               <DeployButtonGroup
+                disPrivate={appInfo.config.publishedToMarketplace}
                 loading={deployLoading}
-                isPublic={appInfo?.config?.public}
+                isPublic={appInfo.config.public}
                 isGuideMode={isGuideMode}
                 canUseBillingFeature={canUseBillingFeature}
                 onClickDeploy={handleClickDeploy}

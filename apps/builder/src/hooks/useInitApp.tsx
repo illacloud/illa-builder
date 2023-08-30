@@ -1,3 +1,5 @@
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -11,8 +13,9 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { DashboardAppInitialState } from "@/redux/dashboard/apps/dashboardAppState"
+import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
+import { fetchTeamAgent } from "@/services/agent"
 import { fetchPrivateAppInitData } from "@/services/apps"
 import { fetchResources } from "@/services/resource"
 import store from "@/store"
@@ -51,9 +54,9 @@ export const useInitBuilderApp = (mode: IllaMode) => {
   const [loadingState, setLoadingState] = useState(true)
   const [errorState, setErrorState] = useState(false)
 
-  // versionId = -1 represents the latest edited version of the app.
-  // versionId = -2 represents the latest released version of the user.
-  const versionId = mode === "production" ? "-2" : "0"
+  // version = -1 represents the latest edited version of the app.
+  // version = -2 represents the latest released version of the user.
+  const version = mode === "production" ? "-2" : "0"
 
   const { uid, teamID } = {
     uid: teamInfo?.uid ?? "",
@@ -74,27 +77,50 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     if (isOnline) {
       setErrorState(false)
       setLoadingState(true)
-      Promise.all([
-        fetchPrivateAppInitData(appId, versionId, teamID, controller.signal),
-        fetchResources(controller.signal),
-      ])
-        .then((res) => {
-          dispatch(resourceActions.updateResourceListReducer(res[1].data))
-          handleCurrentApp(res[0].data)
-        })
-        .catch(() => {
-          setErrorState(true)
-        })
-        .finally(() => {
-          setLoadingState(false)
-        })
+      if (isCloudVersion) {
+        Promise.all([
+          fetchPrivateAppInitData(appId, version, controller.signal),
+          fetchResources(controller.signal),
+          fetchTeamAgent(controller.signal),
+        ])
+          .then((res) => {
+            dispatch(resourceActions.updateResourceListReducer(res[1].data))
+            handleCurrentApp(res[0].data)
+            dispatch(
+              dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
+                res[2].data.aiAgentList,
+              ),
+            )
+          })
+          .catch(() => {
+            setErrorState(true)
+          })
+          .finally(() => {
+            setLoadingState(false)
+          })
+      } else {
+        Promise.all([
+          fetchPrivateAppInitData(appId, version, controller.signal),
+          fetchResources(controller.signal),
+        ])
+          .then((res) => {
+            dispatch(resourceActions.updateResourceListReducer(res[1].data))
+            handleCurrentApp(res[0].data)
+          })
+          .catch(() => {
+            setErrorState(true)
+          })
+          .finally(() => {
+            setLoadingState(false)
+          })
+      }
     }
 
     return () => {
       controller.abort()
       dispatch(appInfoActions.updateAppInfoReducer(DashboardAppInitialState))
     }
-  }, [appId, dispatch, handleCurrentApp, isOnline, teamID, versionId])
+  }, [appId, dispatch, handleCurrentApp, isOnline, teamID, version])
 
   return { loadingState, errorState }
 }

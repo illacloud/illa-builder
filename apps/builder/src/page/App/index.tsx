@@ -1,3 +1,13 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
+import { getCurrentTeamInfo, getCurrentUser } from "@illa-public/user-data"
+import { canManage } from "@illa-public/user-role-utils"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+} from "@illa-public/user-role-utils/interface"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { motion, useAnimation } from "framer-motion"
 import { FC, MouseEvent, useCallback, useEffect } from "react"
@@ -11,15 +21,6 @@ import {
   ILLA_WEBSOCKET_STATUS,
 } from "@/api/ws/interface"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
-import { canManage } from "@/illa-public-component/UserRoleUtils"
-import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@/illa-public-component/UserRoleUtils/interface"
 import { ActionEditor } from "@/page/App/components/Actions"
 import { AppLoading } from "@/page/App/components/AppLoading"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
@@ -39,8 +40,6 @@ import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { collaboratorsActions } from "@/redux/currentApp/collaborators/collaboratorsSlice"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
 import { fetchAppBinaryWsUrl, fetchAppTextWsUrl } from "@/services/public"
 import { startAppListening } from "@/store"
 import {
@@ -95,7 +94,7 @@ export const Editor: FC = () => {
   }
   useEffect(() => {
     const abortController = new AbortController()
-    if (currentUser != null && currentUser.userId != "" && appId) {
+    if (currentUser != null && currentUser.userID != "" && appId) {
       Promise.all([
         fetchAppTextWsUrl(appId, abortController.signal),
         fetchAppBinaryWsUrl(appId, abortController.signal),

@@ -1,10 +1,9 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { AxiosError } from "axios"
-import { ILLARoute } from "@/router"
 import { cloudRedirect } from "@/router/constant"
 import { getQS } from "@/router/utils/translateQS"
 import { removeAuthToken } from "@/utils/auth"
 import { commonBillingErrorHandler } from "@/utils/billing/errorHandler"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 const getRedirectPathWhen401 = (searchParams: URLSearchParams) => {
   const inviteToken = searchParams.get("inviteToken")
@@ -19,7 +18,7 @@ const getRedirectPathWhen401 = (searchParams: URLSearchParams) => {
 export const errorHandlerInterceptor = (error: AxiosError) => {
   const { response } = error
   if (!response) return Promise.reject(error)
-  const { pathname, href } = location
+  const { href } = location
   const { status } = response
   switch (status) {
     // TODO: @aruseito maybe need custom error status, because of we'll have plugin to request other's api
@@ -27,7 +26,7 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
       removeAuthToken()
       if (isCloudVersion) {
         // navigate to illa cloud, avoid redirect loop
-        if (!href.includes("redirectUrl")) {
+        if (!href.includes("redirectURL")) {
           window.location.href = cloudRedirect
         }
       } else {
@@ -35,32 +34,38 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
         const url = new URL(href)
         const searchParams = url.searchParams
         const path = getRedirectPathWhen401(searchParams)
-        ILLARoute.navigate(`${path}`, {
-          replace: true,
-          state: {
-            from: pathname || "/",
-          },
-        })
+        window.location.pathname = path
+        // ILLARoute.navigate(`${path}`, {
+        //   replace: true,
+        //   state: {
+        //     from: pathname || "/",
+        //   },
+        // })
       }
       break
     }
     case 403: {
-      ILLARoute.navigate("/403", {
-        replace: true,
-      })
+      window.location.pathname = "/403"
+
+      // ILLARoute.navigate("/403", {
+      //   replace: true,
+      // })
       break
     }
     case 500: {
-      ILLARoute.navigate("/500", {
-        replace: true,
-      })
+      window.location.pathname = "/500"
+
+      // ILLARoute.navigate("/500", {
+      //   replace: true,
+      // })
       break
     }
     default: {
       if (status >= 500) {
-        ILLARoute.navigate("/500", {
-          replace: true,
-        })
+        window.location.pathname = "/500"
+        // ILLARoute.navigate("/500", {
+        //   replace: true,
+        // })
         break
       }
       commonBillingErrorHandler(response)

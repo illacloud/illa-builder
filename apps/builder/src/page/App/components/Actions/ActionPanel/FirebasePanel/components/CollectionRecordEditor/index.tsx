@@ -7,12 +7,12 @@ import {
   CODE_LANG,
   CODE_TYPE,
 } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { RecordEditor } from "@/components/RecordEditor"
 import {
   codeMirrorWrapperLabelStyle,
   codeMirrorWrapperValueStyle,
 } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/components/CollectionRecordEditor/style"
 import { actionItemRecordEditorStyle } from "@/page/App/components/Actions/ActionPanel/FirebasePanel/style"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import {
   OperationSelectList,
   Params,

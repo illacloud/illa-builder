@@ -1,3 +1,7 @@
+import {
+  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
+  ILLA_MIXPANEL_EVENT_TYPE,
+} from "@illa-public/mixpanel-utils"
 import { FC, Suspense, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -8,10 +12,6 @@ import {
   List,
   PreviousIcon,
 } from "@illa-design/react"
-import {
-  ILLA_MIXPANEL_BUILDER_PAGE_NAME,
-  ILLA_MIXPANEL_EVENT_TYPE,
-} from "@/illa-public-component/MixpanelUtils/interface"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
@@ -47,7 +47,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
     )
 
   const [selectedResourceId, setSelectedResourceId] = useState<string>(
-    resourceList[0]?.resourceId,
+    resourceList[0]?.resourceID,
   )
 
   const [loading, setLoading] = useState(false)
@@ -88,16 +88,16 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
         split={false}
         itemHeight={48}
         renderKey={(data) => {
-          return data.resourceId
+          return data.resourceID
         }}
         h="550px"
         renderRaw
         render={(r) => {
           return (
             <div
-              css={applyResourceItemStyle(r.resourceId === selectedResourceId)}
+              css={applyResourceItemStyle(r.resourceID === selectedResourceId)}
               onClick={() => {
-                setSelectedResourceId(r.resourceId)
+                setSelectedResourceId(r.resourceID)
               }}
             >
               <Suspense>

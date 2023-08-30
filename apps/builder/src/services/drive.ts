@@ -1,5 +1,6 @@
+import { driveRequest, publicDriveRequest } from "@illa-public/illa-net"
 import { stringify } from "qs"
-import { driveRequest, publicDriveRequest } from "@/api/http"
+import { getCurrentTeamID, getCurrentTeamIdentifier } from "../utils/team"
 
 export enum UPLOAD_FILE_DUPLICATION_HANDLER {
   COVER = "cover",
@@ -20,6 +21,7 @@ interface IFetchUploadFilesToAnonymousFolderRequest {
   size: number
   duplicationHandler: UPLOAD_FILE_DUPLICATION_HANDLER
 }
+
 interface IFetchUploadFilesToAnonymousFolderResponse {
   id: string
   name: string
@@ -43,7 +45,7 @@ export const fetchUploadFilesToAnonymous = async (
       },
     },
     {
-      needTeamIdentifier: true,
+      teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
 }
@@ -54,6 +56,7 @@ export enum UPLOAD_FILE_STATUS {
   PAUSED = "paused",
   CANCELED = "canceled",
 }
+
 export const fetchUploadFilesStatusAnonymous = async (
   appID: string,
   fileID: string,
@@ -68,7 +71,7 @@ export const fetchUploadFilesStatusAnonymous = async (
       },
     },
     {
-      needTeamIdentifier: true,
+      teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
 }
@@ -104,7 +107,7 @@ export const fetchGetUploadFileURL = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -122,7 +125,7 @@ export const fetchUpdateFileStatus = async (
       },
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -145,6 +148,7 @@ export const fetchDownloadURLByTinyURL = async (
     method: "GET",
   })
 }
+
 export enum FILE_UPLOAD_STATUS {
   COMPLETE = "complete",
   FAILED = "failed",
@@ -210,7 +214,7 @@ export const fetchFileList = async (
       signal: abortSignal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -230,7 +234,7 @@ export const fetchAnonymousFileList = async (
       signal: abortSignal,
     },
     {
-      needTeamIdentifier: true,
+      teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
 }
@@ -271,7 +275,7 @@ export const fetchBatchGenerateTinyUrl = async (
       signal: abortSignal,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -289,7 +293,7 @@ export const fetchBatchAnonymousGenerateTinyUrl = async (
       signal: abortSignal,
     },
     {
-      needTeamIdentifier: true,
+      teamIdentifier: getCurrentTeamIdentifier(),
     },
   )
 }
@@ -297,6 +301,7 @@ export const fetchBatchAnonymousGenerateTinyUrl = async (
 export interface IFetchAnonymousPermissionResponseData {
   anonymous: boolean
 }
+
 export const fetchAnonymousPermission = async () => {
   return await driveRequest<IFetchAnonymousPermissionResponseData>(
     {
@@ -304,7 +309,7 @@ export const fetchAnonymousPermission = async () => {
       method: "GET",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -316,7 +321,7 @@ export const fetchOpenAnonymousPermission = async () => {
       method: "POST",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -328,7 +333,7 @@ export const fetchCloseAnonymousPermission = async () => {
       method: "DELETE",
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

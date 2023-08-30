@@ -10,10 +10,22 @@ import checker from "vite-plugin-checker"
 import svgr from "vite-plugin-svgr"
 import pkg from "./package.json"
 
+const getUsedEnv = (env: Record<string, string>) => {
+  const usedEnv: Record<string, string> = {}
+  Object.keys(env).forEach((key) => {
+    if (key.startsWith("ILLA_")) {
+      usedEnv[`import.meta.env.${key}`] = JSON.stringify(env[key])
+      usedEnv[`process.env.${key}`] = JSON.stringify(env[key])
+    }
+  })
+  return usedEnv
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "")
-  const useHttps = env.VITE_USE_HTTPS === "true"
+
+  const useHttps = env.ILLA_USE_HTTPS === "true"
   const BASIC_PLUGIN = [
     mdx(),
     react({
@@ -29,7 +41,9 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     }),
-    visualizer(),
+    visualizer({
+      template: "network",
+    }),
   ]
 
   const plugin = BASIC_PLUGIN
@@ -38,7 +52,7 @@ export default defineConfig(({ command, mode }) => {
   if (command === "serve" && useHttps) {
     plugin.push(basicSsl())
   } else {
-    if (env.VITE_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
+    if (env.ILLA_INSTANCE_ID === "CLOUD" && env.ILLA_SENTRY_AUTH_TOKEN) {
       plugin.push(
         sentryVitePlugin({
           org: "sentry",
@@ -73,21 +87,8 @@ export default defineConfig(({ command, mode }) => {
         "@assets": resolve(__dirname, "src/assets"),
       },
     },
-    envPrefix: ["VITE_", "ILLA_"],
-    define: {
-      "import.meta.env.ILLA_APP_VERSION": JSON.stringify(pkg.version),
-      "import.meta.env.ILLA_APP_ENV": JSON.stringify(env.ILLA_APP_ENV),
-      "import.meta.env.ILLA_GOOGLE_MAP_KEY": JSON.stringify(
-        env.ILLA_GOOGLE_MAP_KEY,
-      ),
-      "import.meta.env.ILLA_MIXPANEL_API_KEY": JSON.stringify(
-        env.ILLA_MIXPANEL_API_KEY,
-      ),
-      "import.meta.env.VITE_API_BASE_URL": JSON.stringify(
-        env.VITE_API_BASE_URL,
-      ),
-      "import.meta.env.VITE_CLOUD_URL": JSON.stringify(env.VITE_CLOUD_URL),
-    },
+    envPrefix: ["ILLA_"],
+    define: getUsedEnv(env),
     build: {
       sourcemap: true,
       reportCompressedSize: false,

@@ -21,13 +21,13 @@ const RedisPanel: FC = () => {
   const [sqlTable, setSqlTable] = useState<Record<string, unknown>>()
 
   useEffect(() => {
-    if (action.resourceId == undefined) return
-    fetchResourceMeta(action.resourceId).then(
+    if (action.resourceID == undefined) return
+    fetchResourceMeta(action.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         setSqlTable(data?.schema ?? {})
       },
     )
-  }, [action.resourceId])
+  }, [action.resourceID])
 
   const currentContent = action.content as RedisAction
   const dispatch = useDispatch()

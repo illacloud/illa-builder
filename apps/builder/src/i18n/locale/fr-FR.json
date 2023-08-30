@@ -72,7 +72,7 @@
       "sort-failed": "Impossible de modifier le type de filtre. Veuillez réessayer.",
       "detail-load-failed": "Impossible de récupérer les détails, veuillez réessayer.",
       "fork-failed": "Échec du fork, veuillez réessayer.",
-      "create-suc": "Échec de la création, veuillez réessayer.",
+      "create-suc": "Sauvegardé avec succès",
       "fork-suc": "Forké avec succès.",
       "delete-failed": "Échec de la suppression. Veuillez réessayer. ",
       "delete-suc": "Supprimé avec succès. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "ID de la feuille à copier",
             "sheet_to_copy_to": "Feuille à copier vers",
             "authentication": "Authentification",
-            "connect_with_oauth": "Se connecter avec OAuth & Enregistrer",
+            "connect_with_oauth": "Se connecter avec Google",
             "reconnect_with_oauth": "Reconnecter avec OAuth",
             "access_type": "Type d'accès"
           },

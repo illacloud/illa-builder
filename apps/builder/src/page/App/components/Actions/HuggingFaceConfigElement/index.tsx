@@ -28,7 +28,7 @@ import { RootState } from "@/store"
 import { validate } from "@/utils/form"
 
 export const HuggingFaceConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, onFinished, resourceId } = props
+  const { onBack, onFinished, resourceID } = props
   const { t } = useTranslation()
 
   const { control, handleSubmit, formState } = useForm({
@@ -37,7 +37,7 @@ export const HuggingFaceConfigElement: FC<ConfigElementProps> = (props) => {
   })
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<HuggingFaceResource>
   })
   const [saving, setSaving] = useState(false)
@@ -48,7 +48,7 @@ export const HuggingFaceConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "huggingface",
         onFinished,
         setSaving,

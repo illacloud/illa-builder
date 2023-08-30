@@ -1,1 +1,1 @@
-export const hiddenFields = ["displayName", "userId"]
+export const hiddenFields = ["displayName", "userID"]

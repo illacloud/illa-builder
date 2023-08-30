@@ -1,5 +1,6 @@
-import { builderRequest } from "@/api/http"
+import { builderRequest } from "@illa-public/illa-net"
 import { BuilderCardInfo } from "@/page/Member/interface"
+import { getCurrentTeamID } from "../utils/team"
 
 export const fetchBuilderDesc = () => {
   return builderRequest<BuilderCardInfo>(
@@ -8,7 +9,7 @@ export const fetchBuilderDesc = () => {
       url: `/builder/desc`,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -25,7 +26,7 @@ export const fetchDashboardWsURL = async (abortSingle?: AbortSignal) => {
       signal: abortSingle,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -41,7 +42,7 @@ export const fetchAppTextWsUrl = async (
       signal: abortSingle,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }
@@ -57,7 +58,7 @@ export const fetchAppBinaryWsUrl = async (
       signal: abortSingle,
     },
     {
-      needTeamID: true,
+      teamID: getCurrentTeamID(),
     },
   )
 }

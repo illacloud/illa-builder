@@ -1,6 +1,7 @@
+import { getCurrentTeamInfo } from "@illa-public/user-data"
 import { PayloadAction } from "@reduxjs/toolkit"
-import { getCurrentTeamInfo } from "@/redux/team/teamSelector"
-import { RootState } from "@/store"
+import { agentAsync } from "@/middleware/reduxAsync/sendMessage/agentMethod"
+import store, { RootState } from "@/store"
 import { actionsAsync } from "./actionMethod"
 import { appInfoAsync } from "./appInfoMethod"
 import { appsAsync } from "./appsMethod"
@@ -13,7 +14,8 @@ export const sendMessage = (
   action: PayloadAction<any>,
 ) => {
   const currentAppID = nextRootState.currentApp.appInfo.appId ?? ""
-  const { id: teamID = "", id = "" } = getCurrentTeamInfo(nextRootState) ?? {}
+  const { id: teamID = "", id = "" } =
+    getCurrentTeamInfo(store.getState()) ?? {}
   const { type } = action
   const typeList = type.split("/")
   const reduxType = typeList[0]
@@ -69,6 +71,15 @@ export const sendMessage = (
     }
     case "resource": {
       resourcesAsync(
+        reduxAction,
+        currentAppID,
+        action,
+        teamID,
+        id,
+        prevRootState,
+        nextRootState,
+      )
+      agentAsync(
         reduxAction,
         currentAppID,
         action,

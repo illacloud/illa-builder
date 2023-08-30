@@ -17,7 +17,7 @@ const date = new Date(),
     description: "",
     start: "",
     end: "",
-    resourceId: "",
+    resourceID: "",
     resourceTitle: "",
     allDay: false,
   }
@@ -48,7 +48,7 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
         end: dayjs(new Date(fullYear, month, day - 1, hour + 2, minus)).format(
           formatDateTime,
         ),
-        resourceId: "Resource 1",
+        resourceID: "Resource 1",
         resourceTitle: "Resource 1",
         allDay: undefined,
       },
@@ -64,7 +64,7 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
         end: dayjs(new Date(fullYear, month, day, hour + 2, minus)).format(
           formatDateTime,
         ),
-        resourceId: "Resource 2",
+        resourceID: "Resource 2",
         resourceTitle: "Resource 2",
         allDay: undefined,
       },
@@ -80,22 +80,22 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
         end: dayjs(new Date(fullYear, month, day + 1, hour + 2, minus)).format(
           formatDateTime,
         ),
-        resourceId: "Resource 3",
+        resourceID: "Resource 3",
         resourceTitle: "Resource 3",
         allDay: undefined,
       },
     ],
     resourceMapList: [
       {
-        resourceId: "Resource 1",
+        resourceID: "Resource 1",
         resourceTitle: "Resource 1",
       },
       {
-        resourceId: "Resource 2",
+        resourceID: "Resource 2",
         resourceTitle: "Resource 2",
       },
       {
-        resourceId: "Resource 3",
+        resourceID: "Resource 3",
         resourceTitle: "Resource 3",
       },
     ],
@@ -117,7 +117,7 @@ export const EVENT_CALENDAR_WIDGET_CONFIG: WidgetConfig = {
     selectStartTime: "",
     selectEndTime: "",
     selectResource: {
-      resourceId: "",
+      resourceID: "",
       resourceTitle: "",
     },
     draggable: "{{true}}",

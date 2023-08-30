@@ -7,6 +7,5 @@ module.exports = {
       }
     },
   },
-  extends: ["../../.eslintrc.js"],
-  plugins: ["import"],
+  extends: ["illa"],
 }

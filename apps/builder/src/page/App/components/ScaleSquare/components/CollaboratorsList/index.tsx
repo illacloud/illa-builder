@@ -71,7 +71,7 @@ export const CollaboratorsList: FC<{
       <>
         {displayDataList.map(({ avatar, id, nickname }, index) => (
           <Avatar
-            userId={id}
+            userID={id}
             nickname={nickname}
             avatar={avatar}
             showType="components"
@@ -90,7 +90,7 @@ export const CollaboratorsList: FC<{
                 {users.map(({ avatar, id, nickname }, index) => (
                   <div key={index} css={listItemStyle}>
                     <Avatar
-                      userId={id}
+                      userID={id}
                       nickname={nickname}
                       avatar={avatar}
                       showType="components"

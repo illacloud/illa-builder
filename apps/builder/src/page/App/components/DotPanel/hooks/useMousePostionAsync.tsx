@@ -1,9 +1,9 @@
+import { getCurrentUser } from "@illa-public/user-data"
 import { RefObject, useCallback, useContext, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useWindowSize } from "react-use"
 import { getIsDragging } from "@/redux/currentApp/executionTree/executionSelector"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { MouseMoveContext } from "../context/mouseMoveContext"
 import { getMousePositionWithIllaUnit } from "../utils/calcMouse"
 import { sendMousePositionHandler } from "../utils/sendBinaryMessage"
@@ -126,7 +126,7 @@ export const useMousePositionAsync = (
     params.appId,
     unitWidth,
     userInfo.nickname,
-    userInfo.userId,
+    userInfo.userID,
     width,
     wrapperRef,
   ])

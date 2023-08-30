@@ -1,3 +1,4 @@
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useState } from "react"
 import { Trans, useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -20,15 +21,14 @@ import {
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
-  const { control, resourceId, watch } = props
+  const { control, resourceID, watch } = props
 
   const { t } = useTranslation()
   const findResource: Resource<ResourceContent> | undefined = useSelector(
     (state: RootState) => {
-      return state.resource.find((r) => r.resourceId === resourceId)
+      return state.resource.find((r) => r.resourceID === resourceID)
     },
   )
 

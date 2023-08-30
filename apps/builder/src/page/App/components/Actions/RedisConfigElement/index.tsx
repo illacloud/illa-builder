@@ -1,3 +1,8 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -10,8 +15,6 @@ import {
   PreviousIcon,
   getColor,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -39,17 +42,16 @@ import { Resource } from "@/redux/resource/resourceState"
 import { DATABASE_INDEX, DEFAULT_NAME } from "@/redux/resource/upstashResource"
 import { RootState } from "@/store"
 import { isContainLocalPath, validate } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished, type } = props
+  const { onBack, resourceID, onFinished, type } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
   const findResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   let content: RedisResource
@@ -124,7 +126,7 @@ export const RedisConfigElement: FC<RedisLikeConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         type,
         onFinished,
         setSaving,

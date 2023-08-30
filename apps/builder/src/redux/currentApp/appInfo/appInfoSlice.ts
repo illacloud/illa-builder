@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { SliceCaseReducers } from "@reduxjs/toolkit/src/createSlice"
 import {
+  updateAppContributeReducer,
+  updateAppDeployedReducer,
   updateAppInfoReducer,
   updateAppNameReducer,
-  updateAppVersionReducer,
+  updateAppPublicReducer,
 } from "@/redux/currentApp/appInfo/appInfoReducer"
 import {
   DashboardApp,
@@ -20,7 +22,9 @@ const appInfoSlice = createSlice<
   reducers: {
     updateAppInfoReducer,
     updateAppNameReducer,
-    updateAppVersionReducer,
+    updateAppContributeReducer,
+    updateAppPublicReducer,
+    updateAppDeployedReducer,
   },
 })
 

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { Select, SelectValue, Trigger } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { RecordEditor } from "@/components/RecordEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 import {
@@ -73,7 +73,7 @@ const RestApiPanel: FC = () => {
   const dispatch = useDispatch()
 
   const currentResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === cachedAction?.resourceId)
+    return state.resource.find((r) => r.resourceID === cachedAction?.resourceID)
   })
 
   const handleChangeMethod = useCallback(
@@ -83,7 +83,7 @@ const RestApiPanel: FC = () => {
 
       if (value !== "GET") {
         if (
-          selectedAction.resourceId === cachedAction.resourceId &&
+          selectedAction.resourceID === cachedAction.resourceID &&
           selectedAction.content.method === value
         ) {
           newBodyType = selectedAction.content.bodyType
@@ -109,7 +109,7 @@ const RestApiPanel: FC = () => {
       selectedAction.content.body,
       selectedAction.content.bodyType,
       selectedAction.content.method,
-      selectedAction.resourceId,
+      selectedAction.resourceID,
     ],
   )
 

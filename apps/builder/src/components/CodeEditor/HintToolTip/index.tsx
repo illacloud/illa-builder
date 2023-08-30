@@ -22,6 +22,7 @@ export const HintTooltipContent: FC<HintTooltipContentProps> = (props) => {
       copy(result)
     }
   }, [result])
+
   return (
     <div
       css={applyHintTooltipContentWrapperStyle(hasError)}

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
+import { RecordEditor } from "@/components/RecordEditor"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
@@ -68,7 +68,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
       let newBody = null
       const content = selectedAction?.content as RestApiAction<BodyContent>
       if (
-        selectedAction.resourceId === actionItem.resourceId &&
+        selectedAction.resourceID === actionItem.resourceID &&
         content.method !== "GET" &&
         content.bodyType !== "none" &&
         content.bodyType === value
@@ -104,7 +104,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
         }),
       )
     },
-    [actionItem, dispatch, selectedAction.content, selectedAction.resourceId],
+    [actionItem, dispatch, selectedAction.content, selectedAction.resourceID],
   )
 
   const handleOnBodyChange = useCallback(

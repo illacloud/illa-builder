@@ -72,7 +72,7 @@
       "sort-failed": "Det gick inte att ändra filtertypen. Försök igen.",
       "detail-load-failed": "Det gick inte att hämta detaljer, försök igen.",
       "fork-failed": "Det gick inte att fork, försök igen.",
-      "create-suc": "Det gick inte att skapa, försök igen.",
+      "create-suc": "Sparades framgångsrikt",
       "fork-suc": "Framgångsrikt forked.",
       "delete-failed": "Misslyckades att ta bort. Försök igen. ",
       "delete-suc": "Raderades framgångsrikt. ",
@@ -232,7 +232,7 @@
             "sheet_id_to_copy": "Id för att kopiera",
             "sheet_to_copy_to": "Ark att kopiera till",
             "authentication": "Autentisering",
-            "connect_with_oauth": "Anslut med OAuth & Spara",
+            "connect_with_oauth": "Anslut med Google",
             "reconnect_with_oauth": "Återanslut med OAuth",
             "access_type": "Åtkomsttyp"
           },

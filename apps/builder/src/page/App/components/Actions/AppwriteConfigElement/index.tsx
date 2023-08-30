@@ -1,3 +1,8 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -10,8 +15,6 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import {
   onActionConfigElementSubmit,
   onActionConfigElementTest,
@@ -37,10 +40,9 @@ import {
 } from "@/redux/resource/appWriteResource"
 import { RootState } from "@/store"
 import { urlValidate, validate } from "@/utils/form"
-import { isCloudVersion } from "@/utils/typeHelper"
 
 export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onBack, onFinished } = props
+  const { resourceID, onBack, onFinished } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -48,7 +50,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
   })
   const { track } = useContext(MixpanelTrackContext)
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
   let content: AppWriteResource
   if (!resource) {
@@ -87,7 +89,7 @@ export const AppWriteConfigElement: FC<ConfigElementProps> = (props) => {
     <form
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "appwrite",
         onFinished,
         setSaving,

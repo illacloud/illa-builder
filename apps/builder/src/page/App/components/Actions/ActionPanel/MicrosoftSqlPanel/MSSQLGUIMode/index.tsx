@@ -10,7 +10,7 @@ import { fetchResourceMeta } from "@/services/resource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
-  const { modeContent, onChange, resourceId } = props
+  const { modeContent, onChange, resourceID } = props
   const message = createMessage()
   const newModeContent = modeContent as MicrosoftSqlActionGUIMode
   const { t } = useTranslation()
@@ -28,11 +28,11 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
   }, [message, t])
 
   useEffect(() => {
-    if (!resourceId) {
+    if (!resourceID) {
       return
     }
     setLoading(true)
-    fetchResourceMeta(resourceId)
+    fetchResourceMeta(resourceID)
       .then(
         ({ data }: { data: ResourcesData }) => {
           const tables = Object.keys(data.schema ?? {}).map((key) => key)
@@ -47,7 +47,7 @@ export const MSSQLGUIMode: FC<MSSQLModeProps> = (props) => {
       .finally(() => {
         setLoading(false)
       })
-  }, [handleRequestError, resourceId])
+  }, [handleRequestError, resourceID])
 
   return (
     <>

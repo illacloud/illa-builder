@@ -1,10 +1,12 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button, ButtonGroup, Divider, PreviousIcon } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { BasicAuthConfig } from "@/page/App/components/Actions/SnowflakeConfigElement/BasicAuthConfig"
 import { KeyPairConfig } from "@/page/App/components/Actions/SnowflakeConfigElement/KeyPairConfig"
 import {
@@ -33,14 +35,14 @@ import { validate } from "@/utils/form"
 type SnowflakeType = SnowflakeResource<SnowflakeAuthenticationType>
 
 export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+  const { onBack, resourceID, onFinished } = props
   const { t } = useTranslation()
   const { control, handleSubmit, getValues, formState, watch } = useForm({
     mode: "onChange",
     shouldUnregister: true,
   })
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceID === resourceID)
   })
 
   const content = (resource?.content ??
@@ -87,7 +89,7 @@ export const SnowflakeConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "snowflake",
         onFinished,
         setSaving,

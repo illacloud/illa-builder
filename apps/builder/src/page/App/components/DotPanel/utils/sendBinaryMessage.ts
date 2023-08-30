@@ -1,7 +1,7 @@
+import { getCurrentUser } from "@illa-public/user-data"
 import { throttle } from "lodash"
 import { Connection, getBinaryMessagePayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/ILLA_PROTO"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { ILLARoute } from "@/router"
 import store from "@/store"
 
@@ -15,15 +15,14 @@ export const sendMousePosition = (
 ) => {
   if (cursorXInteger < 0 || cursorYInteger < 0) return
   const appID = ILLARoute.state.matches[0].params.appId
-  const rootState = store.getState()
-  const currentUserInfo = getCurrentUser(rootState)
-  if (!appID || !currentUserInfo.userId) return
+  const currentUserInfo = getCurrentUser(store.getState())
+  if (!appID || !currentUserInfo.userID) return
   const ws = Connection.getBinaryRoom("app", appID)
   const binMessage = getBinaryMessagePayload(
     Signal.MOVE_CURSOR,
     Target.CURSOR,
     true,
-    currentUserInfo.userId,
+    currentUserInfo.userID,
     currentUserInfo.nickname,
     isLeave ? -1 : 1,
     parentDisplayName,
@@ -68,15 +67,14 @@ export const sendShadowPosition = (
   )
     return
   const appID = ILLARoute.state.matches[0].params.appId
-  const rootState = store.getState()
-  const currentUserInfo = getCurrentUser(rootState)
-  if (!appID || !currentUserInfo.userId) return
+  const currentUserInfo = getCurrentUser(store.getState())
+  if (!appID || !currentUserInfo.userID) return
   const ws = Connection.getBinaryRoom("app", appID)
   const binMessage = getBinaryMessagePayload(
     Signal.MOVE_STATE,
     Target.COMPONENTS,
     true,
-    currentUserInfo.userId,
+    currentUserInfo.userID,
     currentUserInfo.nickname,
     status,
     parentDisplayName,

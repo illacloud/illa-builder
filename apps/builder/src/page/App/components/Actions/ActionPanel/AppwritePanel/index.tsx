@@ -48,8 +48,8 @@ const AppwritePanel: FC = () => {
   const [collectionIds, setCollectionIds] = useState<string[]>([])
 
   useEffect(() => {
-    if (cachedAction.resourceId == undefined) return
-    fetchResourceMeta(cachedAction.resourceId).then(
+    if (cachedAction.resourceID == undefined) return
+    fetchResourceMeta(cachedAction.resourceID).then(
       ({ data }: { data: ResourcesData }) => {
         const ids = ((data.schema?.collections as []) ?? []).map(
           (item: { id: string }) => item.id,
@@ -57,7 +57,7 @@ const AppwritePanel: FC = () => {
         setCollectionIds(ids)
       },
     )
-  }, [cachedAction.resourceId])
+  }, [cachedAction.resourceID])
 
   const handleMethodValueChange = useCallback(
     (value: AppwriteActionMethodsType) => {

@@ -1,5 +1,5 @@
+import { ILLAApiError } from "@illa-public/illa-net"
 import { AxiosResponse } from "axios"
-import { ILLAApiError } from "@/api/http"
 import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
 import { fetchS3ActionRunResult } from "@/services/action"
 import { downloadSingleFile } from "@/utils/file"

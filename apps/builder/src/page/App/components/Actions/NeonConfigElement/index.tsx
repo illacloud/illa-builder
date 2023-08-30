@@ -1,3 +1,8 @@
+import {
+  ILLA_MIXPANEL_EVENT_TYPE,
+  MixpanelTrackContext,
+} from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useContext, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Trans, useTranslation } from "react-i18next"
@@ -11,8 +16,6 @@ import {
   WarningCircleIcon,
   getColor,
 } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
-import { MixpanelTrackContext } from "@/illa-public-component/MixpanelUtils/mixpanelContext"
 import { ResourceDivider } from "@/page/App/components/Actions/ResourceDivider"
 import {
   onActionConfigElementSubmit,
@@ -46,7 +49,7 @@ import { Resource } from "@/redux/resource/resourceState"
 import { RootState } from "@/store"
 import { isContainLocalPath, urlValidate, validate } from "@/utils/form"
 import { handleLinkOpen } from "@/utils/navigate"
-import { isCloudVersion, isURL } from "@/utils/typeHelper"
+import { isURL } from "@/utils/typeHelper"
 
 const getParsedStringValue = (inputString: string) => {
   const regex = /^postgres:\/\/([^:]+)(?::([^@]*))?@([^\/]+)\/(.+)$/
@@ -94,7 +97,7 @@ const handleConnectionStringValidate = (inputString: string) => {
 }
 
 export const NeonConfigElement: FC<ConfigElementProps> = (props) => {
-  const { resourceId, onBack, onFinished } = props
+  const { resourceID, onBack, onFinished } = props
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -110,7 +113,7 @@ export const NeonConfigElement: FC<ConfigElementProps> = (props) => {
 
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === resourceId,
+      (r) => r.resourceID === resourceID,
     ) as Resource<NeonResource>
   })
   const hostValue = watch("host")
@@ -176,7 +179,7 @@ export const NeonConfigElement: FC<ConfigElementProps> = (props) => {
       autoComplete="off"
       onSubmit={onActionConfigElementSubmit(
         handleSubmit,
-        resourceId,
+        resourceID,
         "neon",
         onFinished,
         setSaving,

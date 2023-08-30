@@ -3,19 +3,19 @@ import { useDispatch } from "react-redux"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { getOAuthRefreshData } from "@/services/resource"
 
-export const useOAuthRefresh = (resourceId?: string) => {
+export const useOAuthRefresh = (resourceID?: string) => {
   const dispatch = useDispatch()
   useEffect(() => {
-    if (resourceId == undefined) {
+    if (resourceID == undefined) {
       return
     }
     const controller = new AbortController()
-    getOAuthRefreshData(resourceId, controller.signal).then((response) => {
+    getOAuthRefreshData(resourceID, controller.signal).then((response) => {
       const resourceData = response.data
       dispatch(resourceActions.updateResourceItemReducer(resourceData))
     })
     return () => {
       controller.abort()
     }
-  }, [dispatch, resourceId])
+  }, [dispatch, resourceID])
 }

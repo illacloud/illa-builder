@@ -1,6 +1,6 @@
+import { ILLA_MIXPANEL_EVENT_TYPE } from "@illa-public/mixpanel-utils"
 import { FC, useCallback, useState } from "react"
 import { Trigger } from "@illa-design/react"
-import { ILLA_MIXPANEL_EVENT_TYPE } from "@/illa-public-component/MixpanelUtils/interface"
 import { IconTriggerComponent } from "@/page/App/components/PanelSetters/IconSetter/IconTriggerComponent"
 import { BaseIconSetter } from "@/page/App/components/PanelSetters/IconSetter/baseIconSetter"
 import {

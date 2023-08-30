@@ -2,9 +2,9 @@ import { FC, useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Search } from "@illa-design/react"
 import { buildComponentList } from "@/page/App/components/ComponentPanel/componentListBuilder"
+import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
 import { FocusManager } from "@/utils/focusManager"
 import { ComponentSession } from "./ComponentSession"
-import { EmptySearchResult } from "./Empty"
 import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import {
   componentContainerStyle,

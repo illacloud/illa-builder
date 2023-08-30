@@ -267,12 +267,25 @@ export const transformDataFormat = (
             ...contents,
             config: {
               ...bulkDeleteConfig,
-              recordIds:
-                bulkDeleteConfig.recordIds === ""
+              recordIDs:
+                bulkDeleteConfig.recordIDs === ""
                   ? []
-                  : bulkDeleteConfig.recordIds,
+                  : bulkDeleteConfig.recordIDs,
             },
           }
+      }
+    }
+    case "aiagent": {
+      return {
+        agentType: contents.virtualResource.agentType,
+        model: contents.virtualResource.model,
+        input: contents.input,
+        modelConfig: {
+          maxTokens: contents.virtualResource.modelConfig.maxTokens,
+          stream: false,
+        },
+        variables: contents.variables,
+        virtualResource: contents.virtualResource,
       }
     }
     default:
