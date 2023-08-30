@@ -161,61 +161,57 @@ export function useAgentConnect(useAgentProps: UseAgentProps) {
             const dataList = m.split("\n")
             dataList.forEach((data: string) => {
               let callback: Callback<unknown> = JSON.parse(data)
-              switch (callback.broadcast?.type) {
-                case "enter/remote":
-                  const { inRoomUsers } = callback.broadcast.payload as {
-                    inRoomUsers: CollaboratorsInfo[]
-                  }
-                  onUpdateRoomUsers(inRoomUsers)
-                  cleanMessage()
-                  onSendClean()
-                  break
-                case "chat/remote":
-                  switch (callback.errorCode) {
-                    case 0:
-                      let chatCallback = callback.broadcast
-                        .payload as ChatWsAppendResponse
-                      if (agentType === AI_AGENT_TYPE.CHAT) {
-                        onUpdateChatMessage(chatCallback)
-                      } else {
-                        onUpdateGenerationMessage(chatCallback)
-                      }
-                      break
-                    case 15:
-                      onReceiving(false)
-                      break
-                  }
-                  break
-                case "stop_all/remote":
-                  break
-                case "clean/remote":
-                  onSendPrompt()
-                  break
-                default:
-                  if (callback.errorCode === 0 || callback.errorCode === 3) {
+              if (callback.errorCode === 0) {
+                switch (callback.broadcast?.type) {
+                  case "enter/remote":
+                    const { inRoomUsers } = callback.broadcast.payload as {
+                      inRoomUsers: CollaboratorsInfo[]
+                    }
+                    onUpdateRoomUsers(inRoomUsers)
+                    cleanMessage()
+                    onSendClean()
                     break
-                  }
-                  switch (callback.errorCode) {
-                    case 1:
-                      onReceiving(false)
-                      onRunning(false)
-                      message.error({
-                        content: t("editor.ai-agent.message.start-failed"),
-                      })
-                      break
-                    case 16:
-                      message.error({
-                        content: t("editor.ai-agent.message.token"),
-                      })
-                      break
-                    case 17:
-                    case 18:
-                      message.error({
-                        content: t("editor.ai-agent.message.token-not-enough"),
-                      })
-                      break
-                  }
-                  break
+                  case "chat/remote":
+                    let chatCallback = callback.broadcast
+                      .payload as ChatWsAppendResponse
+                    if (agentType === AI_AGENT_TYPE.CHAT) {
+                      onUpdateChatMessage(chatCallback)
+                    } else {
+                      onUpdateGenerationMessage(chatCallback)
+                    }
+                    break
+                  case "stop_all/remote":
+                    break
+                  case "clean/remote":
+                    onSendPrompt()
+                    break
+                }
+              } else {
+                switch (callback.errorCode) {
+                  case 1:
+                    onReceiving(false)
+                    onRunning(false)
+                    message.error({
+                      content: t("editor.ai-agent.message.start-failed"),
+                    })
+                    break
+                  case 15:
+                    onReceiving(false)
+                    break
+                  case 16:
+                    message.error({
+                      content: t("editor.ai-agent.message.token"),
+                    })
+                    break
+                  case 17:
+                  case 18:
+                    message.error({
+                      content: t("editor.ai-agent.message.token-not-enough"),
+                    })
+                    break
+                  case 3:
+                    break
+                }
               }
             })
           },

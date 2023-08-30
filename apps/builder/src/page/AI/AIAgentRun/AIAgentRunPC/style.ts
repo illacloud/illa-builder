@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { applyMobileStyle } from "@illa-public/utils"
 import { getColor } from "@illa-design/react"
 
 export const aiAgentContainerStyle = css`
@@ -15,6 +16,10 @@ export const leftPanelContainerStyle = css`
   flex-direction: column;
   overflow-y: auto;
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
+  flex: none;
+  ${applyMobileStyle(css`
+    display: none;
+  `)}
 `
 
 export const rightPanelContainerStyle = css`
