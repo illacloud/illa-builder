@@ -150,8 +150,24 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       setDeployLoading(true)
       try {
         await fetchDeployApp(appId, isPublic)
+        dispatch(appInfoActions.updateAppDeployedReducer(true))
+        dispatch(
+          dashboardAppActions.updateDashboardAppDeployedReducer({
+            appId,
+            deployed: true,
+          }),
+        )
+        dispatch(appInfoActions.updateAppPublicReducer(isPublic))
+        dispatch(
+          dashboardAppActions.updateDashboardAppPublicReducer({
+            appId,
+            isPublic,
+          }),
+        )
         window.open(
-          `${window.location.protocol}//${window.location.host}/${teamIdentifier}/deploy/app/${appId}`,
+          `${
+            import.meta.env.ILLA_BUILDER_URL
+          }/${teamIdentifier}/deploy/app/${appId}`,
           "_blank",
         )
         onSuccess?.()
@@ -164,27 +180,27 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         setDeployLoading(false)
       }
     },
-    [teamIdentifier, message, t],
+    [dispatch, teamIdentifier, message, t],
   )
 
   const forkGuideAppAndDeploy = useCallback(
     async (appName: string) => {
       setDeployLoading(true)
       const appId = await forkCurrentApp(appName)
-      deployApp(appId, false)
+      await deployApp(appId, false)
+      setDeployLoading(false)
     },
     [deployApp],
   )
 
   const handleClickDeploy = useCallback(async () => {
     if (isGuideMode) {
-      forkGuideAppAndDeploy(appInfo.appName)
+      await forkGuideAppAndDeploy(appInfo.appName)
     } else {
       trackInEditor(ILLA_MIXPANEL_EVENT_TYPE.CLICK, {
         element: "deploy",
       })
       await deployApp(appInfo.appId, appInfo.config?.public)
-      location.reload()
     }
   }, [
     appInfo.appId,
@@ -234,7 +250,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             })
           },
         )
-        location.reload()
       }
     },
     [

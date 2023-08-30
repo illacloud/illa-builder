@@ -109,7 +109,7 @@ const getAppType = () => {
 const getAppIsPublish = () => {
   const rootState = store.getState()
   const appInfo = getAppInfo(rootState)
-  return appInfo.releaseVersion > 0
+  return appInfo.deployed
 }
 
 const getAppIsPublic = () => {
