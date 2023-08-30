@@ -30,7 +30,7 @@ import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { useAsyncValue } from "react-router-dom"
+import { useAsyncValue, useNavigate } from "react-router-dom"
 import { v4 } from "uuid"
 import {
   Button,
@@ -58,7 +58,6 @@ import { PreviewChat } from "@/page/AI/components/PreviewChat"
 import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interface"
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
-import { ILLARoute } from "@/router"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { ChatContext } from "../../components/ChatContext"
@@ -86,6 +85,8 @@ export const AIAgentRunPC: FC = () => {
     agent: Agent
     marketplaceInfo: MarketAIAgent | undefined
   }
+
+  const navigate = useNavigate()
 
   const { control, handleSubmit, getValues, reset } = useForm<Agent>({
     mode: "onSubmit",
@@ -318,7 +319,7 @@ export const AIAgentRunPC: FC = () => {
             setForkLoading(true)
             try {
               const newAgent = await forkAIAgentToTeam(agent.aiAgentID)
-              await ILLARoute.navigate(
+              navigate(
                 `/${teamInfo.identifier}/ai-agent/${newAgent.data.aiAgentID}`,
               )
             } catch (e) {
@@ -370,7 +371,7 @@ export const AIAgentRunPC: FC = () => {
             <div
               css={backMenuStyle}
               onClick={() => {
-                window.history.back()
+                navigate(-1)
               }}
             >
               <PreviousIcon fs="16px" />
