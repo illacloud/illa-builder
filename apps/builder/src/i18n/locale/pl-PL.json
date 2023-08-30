@@ -2624,7 +2624,8 @@
         "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie.",
         "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki.",
         "purchase-required": "Colla nie wystarczy do uruchomienia, proszę doładować.",
-        "leave": "Istnieją niezapisane treści, czy na pewno chcesz opuścić?"
+        "leave": "Istnieją niezapisane treści, czy na pewno chcesz opuścić?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "🧬 Edytuj agenta SI",
       "generate-desc": {
