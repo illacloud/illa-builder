@@ -3961,6 +3961,10 @@
         "title": "Alterar plano?",
         "button_cancel": "cancelar",
         "button_confirm": "Confirmar"
+      },
+      "ai-agent": {
+        "string1": "Este modelo é para a equipe Premium. ",
+        "string2": "Para usá-lo, por favor, atualize para o Premium. Ao atualizar para o Premium, você também terá acesso aos seguintes recursos. "
       }
     },
     "homepage": {

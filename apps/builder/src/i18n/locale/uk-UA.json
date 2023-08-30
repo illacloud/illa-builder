@@ -3961,6 +3961,10 @@
         "title": "Змінити план?",
         "button_cancel": "Скасувати",
         "button_confirm": "Підтвердити"
+      },
+      "ai-agent": {
+        "string1": "This model is for Premium team. ",
+        "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
       }
     },
     "homepage": {
