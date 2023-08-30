@@ -116,6 +116,9 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
           }}
           onAppContribute={(isContributed) => {
             dispatch(appInfoActions.updateAppContributeReducer(isContributed))
+            if (isContributed) {
+              dispatch(appInfoActions.updateAppDeployedReducer(true))
+            }
           }}
           onCopyPublicLink={(link) => {
             copyToClipboard(

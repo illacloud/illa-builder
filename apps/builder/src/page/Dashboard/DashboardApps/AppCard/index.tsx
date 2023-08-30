@@ -58,16 +58,10 @@ export const AppCard: FC<AppCardProps> = (props) => {
   const onClickCard = useCallback(() => {
     if (canEditApp) {
       navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
-    } else if (appInfo.mainlineVersion !== 0) {
+    } else if (appInfo.deployed) {
       navigate(`/${teamIdentifier}/deploy/app/${appInfo.appId}`)
     }
-  }, [
-    appInfo.appId,
-    appInfo.mainlineVersion,
-    canEditApp,
-    navigate,
-    teamIdentifier,
-  ])
+  }, [appInfo.appId, appInfo.deployed, canEditApp, navigate, teamIdentifier])
 
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -81,7 +75,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
         )
       }
 
-      if (appInfo.mainlineVersion !== 0) {
+      if (appInfo.deployed) {
         track(
           ILLA_MIXPANEL_EVENT_TYPE.SHOW,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
@@ -89,7 +83,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
         )
       }
     },
-    [canEditApp, appInfo.appId, appInfo.mainlineVersion],
+    [canEditApp, appInfo.deployed, appInfo.appId],
   )
 
   const editors = useMemo(() => {
@@ -148,7 +142,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
           isContributed={false}
           appId={appInfo.appId}
           canEditApp={canEditApp}
-          isDeploy={appInfo.mainlineVersion !== 0}
+          isDeploy={appInfo.deployed}
           onClick={stopPropagation}
           appName={appInfo.appName}
         />

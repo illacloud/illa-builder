@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   AddDashboardAppPayload,
   ModifyDashboardAppContribute,
+  ModifyDashboardAppDeployed,
   ModifyDashboardAppPublic,
 } from "@/redux/dashboard/apps/dashboardAppPayload"
 import {
@@ -87,6 +88,21 @@ export const updateDashboardAppContributeReducer: CaseReducer<
         ...state.list[index]?.config,
         publishedToMarketplace: action.payload.publishedToMarketplace,
       },
+    }
+  }
+}
+
+export const updateDashboardAppDeployedReducer: CaseReducer<
+  DashboardAppsState,
+  PayloadAction<ModifyDashboardAppDeployed>
+> = (state, action) => {
+  let index = state.list.findIndex((element) => {
+    return element.appId == action.payload.appId
+  })
+  if (index != -1) {
+    state.list[index] = {
+      ...state.list[index],
+      deployed: action.payload.deployed,
     }
   }
 }

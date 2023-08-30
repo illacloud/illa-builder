@@ -42,6 +42,7 @@ export const appsAsync = (
       break
     case "updateDashboardAppPublicReducer":
     case "updateDashboardAppContributeReducer":
+    case "updateDashboardAppDeployedReducer":
     case "updateDashboardAppReducer":
       Connection.getTextRoom("dashboard", "")?.send(
         getTextMessagePayload(

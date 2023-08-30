@@ -16,6 +16,7 @@ export const appInfoAsync = (
   switch (reduxAction) {
     case "updateAppContributeReducer":
     case "updateAppPublicReducer":
+    case "updateAppDeployedReducer":
     case "updateAppNameReducer":
     case "updateAppInfoReducer": {
       Connection.getTextRoom("app", currentAppID)?.send(

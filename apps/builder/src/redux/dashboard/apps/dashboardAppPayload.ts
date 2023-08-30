@@ -14,3 +14,8 @@ export interface ModifyDashboardAppContribute {
   appId: string
   publishedToMarketplace: boolean
 }
+
+export interface ModifyDashboardAppDeployed {
+  appId: string
+  deployed: boolean
+}
