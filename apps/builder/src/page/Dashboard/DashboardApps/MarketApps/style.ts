@@ -9,11 +9,10 @@ export const cardListStyle = css`
 
 export const cardListContainerStyle = css`
   display: flex;
-  padding-top: 24px;
   flex-direction: column;
   overflow: auto;
   flex-grow: 1;
-  padding-bottom: 126px;
+  padding: 24px 15% 126px;
 `
 
 export const loadingStyle = css`
