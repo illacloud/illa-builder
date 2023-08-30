@@ -38,7 +38,7 @@
       "error_button": "Retry",
       "error_description": "There is a problem with your operation.",
       "error_title": "Error",
-      "marketplace": "Marketplace",
+      "marketplace": "Community",
       "run": "Run",
       "fork": "Fork"
     },
@@ -57,7 +57,7 @@
     },
     "list-type": {
       "team": "Team's",
-      "marketplace": "Agent market"
+      "marketplace": "Community"
     },
     "sort-type": {
       "popular": "Most popular",
@@ -75,8 +75,10 @@
       "create-suc": "Successfully saved",
       "fork-suc": "Successfully forked.",
       "delete-failed": "Faild to delete. Please try again. ",
-      "delete-suc": "Successfully deleted. "
-    }
+      "delete-suc": "Successfully deleted. ",
+      "mobile-fork-suc": "Forked successfully. Please edit on desktop."
+    },
+    "create": "Create"
   },
   "dayjs": {
     "just_now": "Just now"
@@ -2604,7 +2606,7 @@
       "save": "Save",
       "start": "Start",
       "restart": "Restart",
-      "contribute": "Contribute to marketplace",
+      "contribute": "Contribute to community",
       "button": {
         "send": "Send",
         "generating": "Generating"
@@ -2619,7 +2621,10 @@
         "insufficient_token": "Insufficient Colla",
         "start-failed": "Failed to start. Please try again. ",
         "reconnect": "Connection lost. Reconnecting...",
-        "token-not-enough": "Model limit reached. Please restart."
+        "token-not-enough": "Model limit reached. Please restart.",
+        "token": "The current value of Max tokens is low, which may cause incomplete returned results.",
+        "purchase-required": "Colla is not enough to run, please recharge.",
+        "leave": "There are unsaved content, are you sure you want to leave?"
       },
       "title": "🧬 Edit AI Agent",
       "generate-desc": {
@@ -3230,18 +3235,26 @@
       "owner": "Owner",
       "admin": "Administer",
       "editor": "Editor",
-      "viewer": "Viewer"
+      "viewer": "Viewer",
+      "tips": {
+        "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
+        "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
+        "viewer": "The member who can manage viewer members and view APPs"
+      }
     },
     "modal": {
       "title": {
-        "invite_members": "Invite members"
+        "invite_members": "Invite members",
+        "invite_to_use": "Invite to use",
+        "invite_to_edit": "Invite to edit",
+        "contribute": "Community"
       },
       "link": {
         "invite_title": "Invite link",
         "copy": "Copy",
         "turn_off": "Turn off invite links",
         "update": "Update invite links",
-        "description": "Share a secret link people can use to join your team.",
+        "description": "Turn on and invite members via link. ",
         "turn_on": "Turn on invite links",
         "fail": "Failed to obtain the link, please try again later",
         "copied_suc": "Copied!",
@@ -3249,7 +3262,10 @@
         "turn_off_fail": "Failed to turn off",
         "turn_on_fail": "Failed to turn on",
         "make_public_title": "Make the app public",
-        "make_public_copy": "Copy"
+        "make_public_copy": "Copy",
+        "marketplace": {
+          "label": "Share with link"
+        }
       },
       "email": {
         "invite_title": "Invite by email",
@@ -3257,8 +3273,8 @@
         "placeholder": "Enter email address",
         "invited": "Have invited",
         "in_list": "This user is already in your team.",
-        "notmail": "{{ email }} is not an email",
-        "duplicate": "{{ email }} is duplicated"
+        "duplicate": "{{ email }} is duplicated",
+        "not_mail": "{{ email }} is not an email"
       },
       "invalid_email": "Please enter a valid email",
       "message": {
@@ -3268,14 +3284,39 @@
       },
       "tab": {
         "invite": "Invite",
-        "public": "Public"
+        "public": "Public",
+        "with_team": "Share with team members"
       },
       "custom_copy_text_app_invite": "{{userName}} shared you an app of 「{{teamName}}」. Click the link to join the team and check the APP: {{inviteLink}}",
       "custom_copy_text_public": "{{userName}} shared an app with you from 「{{teamName}}」 . Click the link to check the APP: {{inviteLink}}",
       "custom_copy_text": "{{userName}} invites you to join 「{{teamName}}」 . Click the link to join the team: {{inviteLink}}",
       "tips": {
         "license_insufficient": "Remaining licenses"
-      }
+      },
+      "custom-copy-ai-agent": "{{userName}} shared you an AI Agent of 「{{teamName}}」. Click the link to join the team and try the AI Agent: {{inviteLink}}",
+      "contribute": {
+        "label": "Contribute to community",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
+        },
+        "desc": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources.",
+        "turn_off": "Cancel contribution"
+      },
+      "social_media": {
+        "label": "Share on",
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "reddit": "Reddit",
+        "facebook": "Facebook",
+        "whatsapp": "WhatsApp",
+        "hackernews": "Hacker News",
+        "default_text": {
+          "app": "I just discovered an impressive app called {{ appName }}",
+          "agent": "I just discovered an impressive AI Agent called {{ agentName }}"
+        }
+      },
+      "custom_copy_text_agent_invite": "{{ userName }} share you an AI Agent from 「{{ teamName }}」. Join team and check it: {{ inviteLink }}"
     },
     "mes": {
       "invite_suc": "Invited successfully",
@@ -3311,7 +3352,8 @@
       "cancel": "Cancel"
     },
     "status": {
-      "pending": "Pending"
+      "pending": "Pending",
+      "current-user": "You"
     },
     "settings": {
       "allow_editors_invite": "Allow editors and viewers to manage members",
@@ -3552,16 +3594,16 @@
     "apps": {
       "components": "All components",
       "resources": "All resources",
-      "plugins": "Unlimited plugins",
+      "plugins": "Unlimited plugins(Coming soon)",
       "sql": "AI SQL Generation",
       "watermark": "Remove watermark"
     },
     "security": {
-      "historic-7": "Historic version keep & recovery for 7 days",
-      "historic-30": "Historic version keep & recovery for 30 days",
-      "develop-environment": "Develop environment",
+      "historic-7": "Backup edit history & restore",
+      "historic-30": "Keep deployed versions & revert(Coming soon)",
+      "develop-environment": "Multi-environment(Coming soon)",
       "app-public": "App public",
-      "restore-data": "Backup and restore",
+      "restore-data": "Backup edit history & restore",
       "deployed": "Access to ILLA Support",
       "dedicated": "Dedicated Solutions engineer"
     },
@@ -3570,7 +3612,7 @@
       "sql": "Input natural language and generate SQL statement",
       "staging": "Test your app against a staging environment",
       "app-public": "Make the app public and anyone with the link can access it",
-      "restore-data": "Backup or restore data at any time you want",
+      "restore-data": "Backup or restore history at any time you want",
       "deployed": "Deployed engineers can help you onboard faster",
       "dedicated": "Dedicated customer solutions engineer via Slack/email/phone",
       "preview_insufficient": "The file cannot preview due to insufficient capacity, please expand the capacity first."
@@ -3603,19 +3645,24 @@
     "free-members": "Only 1 member for personal use",
     "unlimited-viewer": "FREE for unlimited viewers",
     "unlimited-members": "Unlimited members",
-    "free-btn": "Build apps for free",
-    "plus-btn": "Try the free version",
+    "free-btn": "Current plan",
+    "plus-btn": "Upgrade",
     "enterprise-btn": "Contact us",
     "menu": {
       "billing": "Billing",
-      "license": "License",
+      "license": "Seat",
       "drive": "Drive",
+      "colla": "Colla",
+      "appsumo": "Appsumo",
+      "colla_transaction": "Colla transaction history",
       "billing_portal": "Billing portal"
     },
     "title": {
       "billing": "Billing",
-      "license": "License",
-      "drive": "Drive"
+      "license": "Seat",
+      "drive": "Drive",
+      "colla": "Colla",
+      "appsumo": "Appsumo"
     },
     "subscription_general": {
       "plan": {
@@ -3624,7 +3671,8 @@
       },
       "sub_cycle": {
         "yearly": "Yearly",
-        "monthly": "Monthly"
+        "monthly": "Monthly",
+        "lifetime": "Lifetime"
       },
       "billing_cyle": {
         "year": "/ Year",
@@ -3633,9 +3681,10 @@
       "table_title": {
         "next_payment_date": "Next payment date",
         "expiration_date": "Expiration date",
-        "licenses": "Licenses",
+        "licenses": "Seats",
         "storage": "Storage",
-        "traffic": "Traffic"
+        "traffic": "Traffic",
+        "colla": "Colla"
       },
       "period": {
         "current": "Current",
@@ -3644,36 +3693,60 @@
     },
     "subscription_card": {
       "title": {
-        "License": "License",
+        "License": "Seats",
         "Storage": "Storage",
         "Traffic": "Traffic",
-        "balance": "Balance"
+        "balance": "Balance",
+        "colla": "Colla"
       },
       "button": {
-        "License": "Manage licenses",
+        "License": "Manage seats",
         "Storage": "Manage storage",
-        "Traffic": "Expand traffic"
+        "Traffic": "Expand traffic",
+        "colla": "Manage Colla"
       },
       "capacity": {
-        "License": "{{used}} (total of {{total}} licenses) have been used.",
-        "Storage": "{{used}} (total of {{total}} GB) have been used.",
-        "Traffic": "{{used}} (total of {{total}} GB) have been used."
+        "License": "{{used}} used (total of {{total}} seats) ",
+        "Storage": "{{used}}GB used (total of {{total}}GB) ",
+        "Traffic": "{{used}}GB used (total of {{total}}GB) ",
+        "colla": "{{used}} Colla used (total of {{total}} Colla)"
+      },
+      "colla_usage": {
+        "token": "Token"
+      }
+    },
+    "colla_transaction": {
+      "table_title": {
+        "month": "Month",
+        "event": "Event",
+        "usage": "Colla usage"
+      },
+      "event": {
+        "increase_storage": "Increase storage",
+        "increase_colla": "Increase Colla",
+        "increase_traffic": "Increase traffic"
+      },
+      "usage": {
+        "change_num": "{{changeNum}} Colla"
       }
     },
     "payment_sidebar": {
       "title": {
         "manage_storage": "Manage storage",
-        "manage_licenses": "Manage licenses",
-        "expand_traffic_capac": "Expand traffic capacity"
+        "manage_licenses": "Manage seats",
+        "expand_traffic_capac": "Expand traffic capacity",
+        "colla": "Manage Colla"
       },
       "plan_label": {
-        "License": "Licenses",
+        "License": "Seats",
         "Storage": "Storage",
-        "Traffic": "Traffic"
+        "Traffic": "Traffic",
+        "colla": "Colla"
       },
       "plan_number_input_label": {
-        "License": "Licenses",
-        "Storage_traffic": "GB"
+        "License": "Seats",
+        "Storage_traffic": "5GB",
+        "colla": "Colla"
       },
       "select_option": {
         "Yearly": "Yearly",
@@ -3697,14 +3770,14 @@
         "payment_description_traffic": "{{unitPrice}} × {{trafficNum}} GB"
       },
       "price_cal": {
-        "this_period": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} licenses",
-        "this_period_remove": "{{unitPrice}} × {{licenseNum}} licenses × {{remainDays}} days / {{totalDays}} days",
-        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_year": "{{unitPrice}} × {{licenseNum}} licenses",
-        "payment_month": "{{unitPrice}} × {{licenseNum}} licenses",
+        "this_period": "{{unitPrice}} × {{licenseNum}} seats × {{remainDays}} days / {{totalDays}} days",
+        "next_period_yearly": "{{unitPrice}} × {{licenseNum}} seats",
+        "next_period_monthly": "{{unitPrice}} × {{licenseNum}} seats",
+        "this_period_remove": "{{unitPrice}} × {{licenseNum}} seats × {{remainDays}} days / {{totalDays}} days",
+        "next_period_yearly_remove": "{{unitPrice}} × {{licenseNum}} seats",
+        "next_period_monthly_remove": "{{unitPrice}} × {{licenseNum}} seats",
+        "payment_year": "{{unitPrice}} × {{licenseNum}} seats",
+        "payment_month": "{{unitPrice}} × {{licenseNum}} seats",
         "this_period_storage": "{{unitPrice}} × {{storageNum}} GB × {{remainDays}} days / {{totalDays}} days",
         "next_period_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_storage": "{{unitPrice}} × {{storageNum}} GB",
@@ -3712,7 +3785,8 @@
         "next_period_yearly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "next_period_monthly_remove_storage": "{{unitPrice}} × {{storageNum}} GB",
         "payment_year_storage": "{{unitPrice}} × {{storageNum}} GB",
-        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB"
+        "payment_month_storage": "{{unitPrice}} × {{storageNum}} GB",
+        "colla": "{{unitPrice}} × {{purchaseNum}} Colla"
       },
       "button": {
         "unsubscribe": "Unsubscribe",
@@ -3720,21 +3794,23 @@
         "change_plan": "Change plan",
         "storage_traffic_increase": "Increase {{changeNum}} GB",
         "storage_traffic_remove": "Remove {{changeNum}} GB",
-        "license_increase": "Increase {{changeNum}} licenses",
-        "license_remove": "Remove {{changeNum}} licenses"
+        "license_increase": "Increase {{changeNum}} seats",
+        "license_remove": "Remove {{changeNum}} seats",
+        "colla_increase": "Increase {{changeNum}} Colla",
+        "colla_remove": "Remove {{changeNum}} Colla"
       },
       "description_title": {
         "add_storage": "You are going to add {{changeNum}} GB storage. Once confirmed, we will immediately deduct the payment for the new storage for this billing cycle. <0>Learn more</0>",
         "remove_storage": "You are going to remove {{changeNum}} GB storage. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
         "update_plan_year": "You are going to update to a yearly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
         "update_plan_monthly": "You are going to update to a monthly payment plan. Once confirmed, the change will take effect from the start of the next billing cycle. <0>Learn more</0>",
-        "add_license": "You are going to add {{changeNum}} licenses. Once confirmed, we will immediately deduct the payment for the new licenses for this billing cycle. <0>Learn more</0>",
-        "remove_license": "You are going to remove {{changeNum}} licenses. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
+        "add_license": "You are going to add {{changeNum}} seats. Once confirmed, we will immediately deduct the payment for the new seats for this billing cycle. <0>Learn more</0>",
+        "remove_license": "You are going to remove {{changeNum}} seats. Once confirmed, the changes will take effect in the next billing cycle. <0>Learn more</0>",
         "add_traffic": "You are going to add {{changeNum}}GB traffic. Once confirmed, we will deduct the cost of the additional traffic immediately. <0>Learn more</0>",
         "subscribe_storage": "You are going to subscribe to ILLA Cloud Premium. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
         "subscribe_license": "You are going to subscribe to ILLA Drive. We will automatically deduct the fees from your account at the beginning of each payment cycle. <0>Learn more</0>",
-        "update_plan_increase_license": "You are going to add {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
-        "update_plan_remove_license": "You are going to remove {{changeNum}} licenses and update your subscription period. <0>Learn more</0>",
+        "update_plan_increase_license": "You are going to add {{changeNum}} seats and update your subscription period. <0>Learn more</0>",
+        "update_plan_remove_license": "You are going to remove {{changeNum}} seats and update your subscription period. <0>Learn more</0>",
         "update_plan_increase_storage": "You are going to add {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
         "update_plan_remove_storage": "You are going to remove {{changeNum}} GB storage and update your subscription period. <0>Learn more</0>",
         "unsubscribe_license": "You are going to unsubscribe ILLA Cloud Premium. After cancellation, starting from the next billing cycle, the Premium features will no longer be accessible. <0>Learn more</0>",
@@ -3742,21 +3818,31 @@
         "subscribe_license_monthly": "You are going to subscribe to ILLA Cloud Premium monthly subscription. <0>Learn more</0>",
         "subscribe_license_yearly": "You are going to subscribe to ILLA Cloud Premium yearly subscription. <0>Learn more</0>",
         "subscribe_storage_monthly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>",
-        "subscribe_storage_yearly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>"
+        "subscribe_storage_yearly": "You are going to add {{changeNum}}GB storage. Once confirmed, we will deduct the cost of the storage immediately. <0>Learn more</0>",
+        "colla_sub": "You are going to subscribe to Colla. Once confirmed, we will automatically deduct the fees at the beginning of each billing cycle and upgrade your subscription automatically when you require more Colla. <0>Learn more</0>",
+        "colla_increase": "You are going to add {{changeNum}} Colla. Once confirmed, we will immediately deduct the remaining amount due for this billing cycle. <0>Learn more</0>",
+        "colla_remove": "You are going to remove {{changeNum}} Colla. Once confirmed, it will take effect from the next billing cycle. <0>Learn more</0>",
+        "colla_unsubscribe": "You are going to cancel your Colla subscription. Once confirmed, it will take effect from the next billing cycle. Please note that after cancellation, you may experience issues with your ILLA Drive and AI Agent usage. <0>Learn more</0>",
+        "colla_update": "You are going to modify your Colla subscription. Once confirmed, the changes will take effect from the next billing cycle. <0>Learn more</0>"
       },
       "description": {
-        "add_storage": "Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our user <0>Privacy Policy</0> and <1>Terms of Service</1>",
         "remove_storage": "If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our  <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_year": "Starting from the next period, the subscription will be changed to an annual subscription, and the fees will be automatically deducted based on the annual subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_monthly": "Starting from the next period, the subscription will be changed to a monthly subscription, and the fees will be automatically deducted based on the monthly subscription pricing. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "remove_license": "If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "update_plan_year": "Starting from the next period, the subscription will be changed to an annual subscription, and the fees will be automatically deducted based on the annual subscription pricing. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "update_plan_monthly": "Starting from the next period, the subscription will be changed to a monthly subscription, and the fees will be automatically deducted based on the monthly subscription pricing. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "add_license": "Calculation rules using a monthly seat subscription as an example: Let's consider a scenario where you initially subscribed to 5 seats starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional seats. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 seat, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 seat * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all seat fees will be consolidated and paid together. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "remove_license": "If the number of users with editing permissions exceeds the number of seats at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of seats within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
         "add_traffic": "After successful deduction, your traffic will increase in real-time. Once the traffic is used, the fees cannot be refunded. Unused traffic can be refunded in units of GB. For example, if you purchase 10GB of traffic and use 4.5GB, you can apply for a refund of 5GB. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
         "subscribe_storage_yearly": "You are going to subscribe to the annual subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an annual subscription fee of $9.9 per GB, and you have a total of 3 GB, we will deduct $29.7 on February 25, 2023. If you add 2 GB on March 25, 2023, we will first deduct the remaining 11 months' payment on March 25, 2023. Then, by February 25, 2024, we will deduct the payment for 5 GB, which is (2+3)*$9.9=$49.5. If you wish to reduce storage or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_storage_monthly": "You are going to subscribe to the monthly subscription of ILLA Drive storage. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on how much storage capacity you have subscribed in GB. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $0.99 per GB, and you have a total of 3 GB, we will deduct $2.97 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$0.99=$4.95. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "subscribe_license_monthly": "You are going to subscribe to the monthly subscription of ILLA Cloud Premium. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of licenses you have. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $12 per license, and you have a total of 3 licenses, we will deduct $36 on February 25, 2023. If you add 2 more licenses on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 licenses, which is (2+3)*$12=$60. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of licenses and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of licenses at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of licenses within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
-        "update_plan_increase_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased storage according to the current billing cycle. Calculation rules using a monthly storage subscription as an example: Let's consider a scenario where you initially subscribed to 5 GB starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 GB. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 GB, which amounts to approximately $0.99, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 license * $0.99 / 30 days * 4 days, resulting in approximately $0.132. Starting from the next billing cycle, all storage fees will be consolidated and paid together. If you wish to reduce licenses or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "subscribe_license_monthly": "You are going to subscribe to the monthly subscription of ILLA Cloud Plus. We will automatically deduct the fees from your account at the beginning of each payment cycle. The actual amount deducted depends on the number of seats you have. For example, if you start your first subscription on February 25, 2023, with an monthly subscription fee of $12 per seat, and you have a total of 3 seats, we will deduct $36 on February 25, 2023. If you add 2 more seats on March 21, 2023, we will first deduct the remaining 5 days' payment on March 21, 2023. Then, by March 25, 2023, we will deduct the payment for 5 seats, which is (2+3)*$12=$60. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "update_plan_increase_license": "The fees will be automatically deducted based on the updated number of seats and the pricing of new billing cycle from the next period. This time, we will deduct the payment for the increased seats according to the current billing cycle. Calculation rules of increasing seats using a monthly seat subscription as an example: Let's consider a scenario where you initially subscribed to 5 seats starting from March 14th, and the billing cycle spans from the 14th of this month to the 13th of next month. On May 10th, you decide to add 1 additional seat. At that point, there were 4 days remaining until the end of the current cycle on May 13th (which totals 30 days from April 14th to May 13th). To calculate the adjusted payment, we will deduct the cost of 1 seat, which amounts to approximately $10, proportionate to the duration of 4 days within the 30-day cycle. Therefore, the deduction is estimated as 1 seat * $10 / 30 days * 4 days, resulting in approximately $1.33. Starting from the next billing cycle, all seat fees will be consolidated and paid together. If you wish to reduce seats or make other changes to the subscription, please update it before the start of the next period. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
+        "update_plan_remove_license": "The fees will be automatically deducted based on the updated number of seats and the pricing of new billing cycle from the next period. If the number of users with editing permissions exceeds the number of seats at the start of the next billing cycle, all users except the owner will be disabled until you remove members or increase the number of seats within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>",
         "update_plan_remove_storage": "The fees will be automatically deducted based on the updated storage and the pricing of new billing cycle from the next period. If the storage capacity occupied by your files exceeds the subscribed storage capacity at the start of the next billing cycle, all files will be disabled until you delete files or increase the storage capacity within the available range. For more information, please refer to our <0>Privacy Policy</0> and <1>Terms of Service</1>"
+      },
+      "colla_redeem": {
+        "title": "With {{changeNum}} Colla, you can purchase: ",
+        "storage": "Storage",
+        "traffic": "Traffic",
+        "token": "Token"
       }
     },
     "message": {
@@ -3764,8 +3850,8 @@
       "failed_to_add_traffic": "Failed to add traffic. Please try again. ",
       "failed_to_add_storage": "Failed to add storage. Please try again. ",
       "failed_to_remove_storage": "Failed to remove storage. Please try again. ",
-      "failed_to_add_licens": "Failed to add licenses. Please try again. ",
-      "failed_to_remove_lic": "Failed to remove licenses. Please try again. ",
+      "failed_to_add_licens": "Failed to add seats. Please try again. ",
+      "failed_to_remove_lic": "Failed to remove seats. Please try again. ",
       "failed_to_change_pla": "Failed to change plan. Please try again. ",
       "failed_to_unsubscrib": "Failed to unsubscribe. Please try again. ",
       "successfully_removed": "Successfully removed.  The change will take effect from {{nextPaymentDate}}.",
@@ -3775,16 +3861,20 @@
       "successfully_changed": "Subscription changed successfully. It will take effect in a few minutes",
       "failed_to_change": "Subscription change failed",
       "unsubscription_suc": "The subscription has been canceled successfully and will take effect from the next period",
-      "failed_to_join_no_license": "Unable to join due to insufficient licenses ",
+      "failed_to_join_no_license": "Unable to join due to insufficient seats ",
       "storage_insufficient_modal": "The storage or traffic of this team is not enough. Please contact your admin.",
       "appsumo": {
+        "suc": "Successfully redeemed",
+        "fail": "Failed to redeem. Please try again later.",
         "transfer": "Operate failed. This user is bound to the lifetime subscription. ",
         "leave": "Operate failed. This user is bound to the lifetime subscription. "
       },
       "no_license_operate_failed": "Due to subscription exception, operation failed.",
       "failed_to_invite_no_license": "Due to insufficient licensing, some member invitations have failed.",
-      "error_subscribe": "Failed to change plan. Please try again later.",
-      "unsubscription_fail": "Failed to cancel the subscription. Please try again later."
+      "error_subscribe": "Failed to subscribe. Please try again later.",
+      "unsubscription_fail": "Failed to cancel the subscription. Please try again later.",
+      "failed_to_update": "Failed to update the subscription. Please try again. ",
+      "update_suc": "Subscription updated successfully"
     },
     "modal": {
       "storage_insufficient_modal": {
@@ -3795,7 +3885,7 @@
         "not_owner_description_drive": "The storage or traffic of this team is not enough. Please contact your admin.",
         "not_owner_button_drive": "Got it",
         "out_title_drive": "Failed to download",
-        "out_description_drive": "Failed to download, please contact the file owner",
+        "out_description_drive": "Due to insufficient traffic, downloading failed. Please contact the file owner",
         "out_button_drive": "Got it"
       },
       "sub_suc": {
@@ -3803,7 +3893,7 @@
         "you_can_now_invite_m": "It will take effect in a few minutes. You can invite members and start using the advanced features later. Go ahead and give it a try!",
         "you_can_now_upload_m": "It will take effect in a few minutes.  You can now upload more files.",
         "payment_successful": "Payment successful",
-        "we_have_added_the_li": "It will take effect in a few minutes. We have added the licenses for you. Any changes to the subscription period will take effect from the next billing cycle.",
+        "we_have_added_the_li": "It will take effect in a few minutes. We have added the seats for you. Any changes to the subscription period will take effect from the next billing cycle.",
         "we_have_added_the_st": "It will take effect in a few minutes. We have added the storage for you. Any changes to the subscription period will take effect from the next billing cycle.",
         "we_have_added_the_tr": "It will take effect in a few minutes. We will add the traffic for you later. You can now download more files.",
         "successfully_updated": "Successfully updated",
@@ -3819,24 +3909,27 @@
         "audit_logs": "Audit logs",
         "learn_more": "Learn more",
         "upgrade": "Upgrade",
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please increase licenses first. All members of your team could use the features for ILLA Cloud Plus. The specific access to each feature depends on the role of each member. ",
-        "insufficient_license_button": "Add licenses",
+        "insufficient_license_title": "Insufficient seats",
+        "insufficient_license_description": "To invite more editors, please increase seats first. All members of your team could use the features for ILLA Cloud Premium. The specific access to each feature depends on the role of each member. ",
+        "insufficient_license_button": "Add seats",
         "pricing": "editor/mo, yearly($20/editor, monthly)"
       },
       "expired": {
         "owner": "Your subscription has expired. To continue using, please renew it.",
         "others": "Your account has been disabled because the team's subscription has expired.",
-        "your_subscription_ha_not_owner": "Not enough licenses",
+        "your_subscription_ha_not_owner": "Subscription exception",
         "all_members_except_f_not_owner": "Your team's subscription has an exception, please contact the team owner.",
-        "upgrade_not_owner": "Got it"
+        "upgrade_not_owner": "Got it",
+        "your_subscription_ha": "Subscription expired",
+        "all_members_except_f": "Your team's subscription is expired. Please renew it in-time",
+        "upgrade": "Upgrade"
       },
       "blank_page": {
-        "insufficient_license_disable": "Your account has been disabled due to insufficient team licenses. Please contact the team Owner for assistance."
+        "insufficient_license_disable": "Your account has been disabled due to insufficient team seats. Please contact the team Owner for assistance."
       },
       "upgrade_not_admin": {
-        "insufficient_license_title": "Insufficient licenses",
-        "insufficient_license_description": "To invite more editors, please connect your admin to increase licenses first.",
+        "insufficient_license_title": "Insufficient seats",
+        "insufficient_license_description": "Due to insufficient seats, operation failed. Please contact team owner.",
         "insufficient_license_button": "OK"
       },
       "storage_insufficient": {
@@ -3846,16 +3939,16 @@
         "not_owner_title": "Insufficient storage capacity",
         "not_owner_description": "In order to store files normally, please contact your administrator to increase storage capacity in time.",
         "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_pricing": "5 GB/Monthly"
       },
       "traffic_insufficient": {
         "owner_title": "Insufficient traffic capacity",
         "owner_description": "In order to access files normally, please increase the traffic capacity in time. ",
         "owner_button": "Increase capacity",
-        "not_owner_title": "Insufficient storage capacity",
+        "not_owner_title": "Insufficient traffic",
         "not_owner_description": "In order to access files normally, please contact your administrator to increase traffic capacity in time.",
         "not_owner_button": "OK",
-        "owner_pricing": "GB/Monthly"
+        "owner_pricing": "5 GB"
       },
       "cancel_confirm": {
         "description": "After cancellation, your team will revert to the free plan starting from the next billing cycle. The features included in the subscription plans will no longer be accessible.",
@@ -3868,21 +3961,6 @@
         "title": "Change plan?",
         "button_cancel": "Cancel",
         "button_confirm": "Confirm"
-      },
-      "ai-agent": {
-        "string1": "GPT-4 is for Premium team. ",
-        "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
-      },
-      "upgrade_now_not_admin": {
-        "upgrade_title": "Feature for Premium teams",
-        "upgrade_title billing": {
-          "modal": {
-            "upgrade_now_not_admin": {
-              "upgrade_desc": "This feature is for the premium teams. Please contact your team admins to upgrade. "
-            }
-          }
-        },
-        "upgrade_button": "OK"
       }
     },
     "homepage": {
@@ -3890,18 +3968,65 @@
       "upgrade": "Upgrade",
       "cancel": "Cancel"
     },
-    "advanced": {
-      "feature": "Remove watermark"
+    "appsumo": {
+      "button": {
+        "redeem_appsumo": "Redeem AppSumo"
+      },
+      "modal": {
+        "title": "Redeem AppSumo",
+        "description": "Are you sure you want to redeem AppSumo in {{teamName}} team? ",
+        "cancel": "Cancel",
+        "confirm": "Redeem",
+        "select_team": {
+          "title": "Select a team to redeem",
+          "create_button": "Create new team",
+          "redeem_button": "Redeem"
+        }
+      },
+      "landingpage": {
+        "button": "Validate AppSumo email"
+      },
+      "forget_password": {
+        "button": "Create Account"
+      },
+      "update": "Update AppSumo plan"
+    },
+    "alert": {
+      "expired": {
+        "owner": "Insufficient seat or expired subscription, please upgrade in-time. ",
+        "others": "Due to insufficient seat, you have been disabled. Please contact team owner"
+      }
+    },
+    "yearly_discount": "(Save nearly 16.7%)",
+    "license_price_new": {
+      "monthly": "{{ price }}/editor/month",
+      "yearly": "{{ price }}/editor/year"
     },
     "redirect_page": {
+      "title": "Payment successful",
       "desc1": "Thank you for your purchase. ILLA Cloud will continue to provide you with more features.",
       "desc2": "Redirecting to ILLA Cloud in {{time}} seconds...",
-      "title": "Payment successful",
       "button": "Back to ILLA Cloud"
     },
     "redirect_to_stripe": "Redirecting to Stripe",
-    "appsumo": {
-      "update": "Update AppSumo plan"
+    "featureList": {
+      "free": {
+        "drive": {
+          "storage": "100 MB storage per month to store any files in ILLA Drive",
+          "traffic": "100 MB traffic to download files from ILLA Drive"
+        }
+      },
+      "drive": {
+        "title": "ILLA Drive",
+        "storage": "5 GB storage per month to store any files in ILLA Drive",
+        "traffic": "5 GB traffic to download files from ILLA Drive"
+      },
+      "enterprise": {
+        "drive": {
+          "storage": "Custom storage per month to store any files in ILLA Drive",
+          "traffic": "Custom traffic to download files from ILLA Drive"
+        }
+      }
     }
   },
   "network": {
@@ -3914,7 +4039,8 @@
     },
     "desc": {
       "no_description": "No description",
-      "blank": "No application"
+      "blank": "No application",
+      "blank-agent": "No AI Agent here"
     },
     "app_setting": {
       "app_setting": "App setting",
@@ -3935,7 +4061,8 @@
       "update_suc": "Successfully updated"
     },
     "button": {
-      "blank": "Create your first app"
+      "blank": "Create new",
+      "blank-agent": "Create AI Agent"
     }
   },
   "new_deploy": {
@@ -3953,37 +4080,16 @@
   },
   "new_share": {
     "title": {
-      "invite_to_edit": "Invite to edit",
-      "invite_to_use": "Invite to use",
-      "share-with-team": "Share with team",
-      "contribute": "Contribute"
+      "share-with-team": "Share with team"
     },
     "desc": {
-      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. ",
-      "contribute": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources."
-    },
-    "tips": {
-      "admin": "The member who can manage all members except Owner, edit APPs, and view APPs",
-      "editor": "The member who can manage editor and viewer members, edit APPs, and view APPs",
-      "viewer": "The member who can manage viewer members and view APPs"
+      "undeploy": "The app hasn't been deployed. Public access and viewer access may encounter errors. "
     },
     "label": {
-      "contribute": "Contribute to marketplace",
-      "social-media": "Share on"
-    },
-    "options": {
-      "social-media": {
-        "twitter": "Twitter",
-        "reddit": "Reddit",
-        "linkedin": "LinkedIn",
-        "facebook": "Facebook",
-        "whatsapp": "WhatsApp",
-        "hackernews": "Hacker News"
-      }
+      "contribute": "Contribute to community"
     },
     "default-text": {
       "social-media": {
-        "twitter": "Hey there! I just discovered this amazing AI Agent. You might be interested in giving it a try too! Check it out! {{promptName}}:{{promptLink}} #AIwriting #PromptManagement #ProductivityBoost",
         "reddit": "Check out this amazing AI Agent [{{promptName}}]",
         "linkedin": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
         "facebook": "Attention all AI enthusiasts and professionals looking to increase their productivity! I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!",
@@ -3993,14 +4099,34 @@
       "contribute": "I came across an AI Agent platform that offers cutting-edge solutions for simplifying complex tasks and integrating with your internal tools. I personally tried out [{{promptName}}] and was blown away by its capabilities. It's a game-changer for anyone looking to stay ahead of the curve. Check it out for yourself at {{promptLink}} and let me know what you think!"
     },
     "button": {
-      "contribute": "Contribute to marketplace",
       "share_contribute": "Copy & Share",
       "uncontribute": "Cancel contribution"
+    },
+    "default-text-apps": {
+      "social-media": {
+        "twitter": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "reddit": "Check out this amazing app [{{appName}}]",
+        "linkedin": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "facebook": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}",
+        "whatsapp": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
+      },
+      "social-mediak": {
+        "hackernews": "Easy-to-use web app template [{{appName}}]"
+      },
+      "contribute": "I just found an interesting app. Check it out! {{appName}}:{{appLink}}"
     }
   },
   "ai-agents": "AI Agents",
   "marketplace": {
     "star": "Star {{operationNum}}",
     "fork": "Fork {{operationNum}}"
+  },
+  "load": {
+    "before": "Load more"
+  },
+  "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
+  "contribute": "Contribute",
+  "error_page": {
+    "fobidden": "No access permission"
   }
 }
