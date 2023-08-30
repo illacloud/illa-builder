@@ -4125,5 +4125,8 @@
     "before": "Załaduj więcej"
   },
   "size_exceed_copied_tips": "Zawartość jest zbyt długa do skopiowania. (aktualny rozmiar: {{current_size}} bajtów, limit: {{limit_size}} bajtów)",
-  "contribute": "Wesprzyj"
+  "contribute": "Wesprzyj",
+  "error_page": {
+    "fobidden": "Brak uprawnień dostępu"
+  }
 }
