@@ -18,10 +18,10 @@
   },
   "actions": [
     {
-      "actionId": "ILAfx4p1C7uH",
+      "actionID": "ILAfx4p1C7uH",
       "uid": "ae9a691d-cc16-48fe-8f57-addfbfe55f0c",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
+      "resourceID": "ILAfx4p1C7cn",
       "displayName": "postgresql1",
       "actionType": "postgresql",
       "content": {

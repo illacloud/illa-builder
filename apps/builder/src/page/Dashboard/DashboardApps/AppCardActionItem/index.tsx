@@ -6,7 +6,6 @@ import {
 } from "@illa-public/mixpanel-utils"
 import { useUpgradeModal } from "@illa-public/upgrade-modal"
 import {
-  USER_ROLE,
   getCurrentTeamInfo,
   getCurrentUser,
   teamActions,
@@ -76,15 +75,15 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const [duplicateLoading, setDuplicateLoading] = useState(false)
 
   const showInvite = canManageInvite(
-    teamInfo?.myRole ?? USER_ROLE.VIEWER,
-    teamInfo?.permission?.allowEditorManageTeamMember,
-    teamInfo?.permission?.allowViewerManageTeamMember,
+    teamInfo.myRole,
+    teamInfo.permission.allowEditorManageTeamMember,
+    teamInfo.permission.allowViewerManageTeamMember,
   )
 
   const canUseBillingFeature = canUseUpgradeFeature(
-    teamInfo?.myRole,
-    teamInfo?.totalTeamLicense?.teamLicensePurchased,
-    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
+    teamInfo.myRole,
+    teamInfo.totalTeamLicense.teamLicensePurchased,
+    teamInfo.totalTeamLicense.teamLicenseAllPaid,
   )
 
   const handleDuplicateApp = () => {
@@ -346,7 +345,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             leftIcon={<MoreIcon size="14px" />}
           />
         </Dropdown>
-      ) : isDeploy && showInvite ? (
+      ) : isDeploy && (isPublic || isContributed || showInvite) ? (
         // for viewer
         <Dropdown
           position="bottom-end"
