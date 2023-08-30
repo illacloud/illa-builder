@@ -20,7 +20,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { formatNumForAgent, useCopyToClipboard } from "@illa-public/utils"
+import { formatNumForAgent } from "@illa-public/utils"
 import { motion } from "framer-motion"
 import { FC, useMemo, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
@@ -52,6 +52,7 @@ import { ChatSendRequestPayload } from "@/page/AI/components/PreviewChat/interfa
 import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentContentContainerStyle,
@@ -94,7 +95,6 @@ export const AIAgentRunMobile: FC = () => {
 
   const message = useMessage()
   const upgradeModal = useUpgradeModal()
-  const copyToClipboard = useCopyToClipboard()
 
   // page state
   const [isRunning, setIsRunning] = useState(false)
@@ -255,7 +255,6 @@ export const AIAgentRunMobile: FC = () => {
     agent.name,
     agent.teamID,
     control,
-    copyToClipboard,
     currentTeamInfo.id,
     currentTeamInfo.myRole,
     currentUserInfo.nickname,

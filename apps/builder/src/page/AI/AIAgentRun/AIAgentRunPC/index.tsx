@@ -21,7 +21,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { formatNumForAgent, useCopyToClipboard } from "@illa-public/utils"
+import { formatNumForAgent } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -56,6 +56,7 @@ import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { ILLARoute } from "@/router"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,
@@ -93,7 +94,6 @@ export const AIAgentRunPC: FC = () => {
 
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
   const currentUserInfo = useSelector(getCurrentUser)
-  const copyToClipboard = useCopyToClipboard()
 
   const message = useMessage()
 

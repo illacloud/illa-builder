@@ -8,13 +8,13 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
-import { useCopyToClipboard } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, ContributeIcon, getColor } from "@illa-design/react"
 import { ContributeButtonProps } from "@/page/App/components/PageNavBar/ContributeButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 
 export const ContributeButton: FC<ContributeButtonProps> = (props) => {
   const { appInfo } = props
@@ -28,8 +28,6 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
   const dispatch = useDispatch()
 
   const [shareModalVisible, setShareModalVisible] = useState(false)
-
-  const copyToClipboard = useCopyToClipboard()
 
   const showInvite = canManageInvite(
     teamInfo.myRole,

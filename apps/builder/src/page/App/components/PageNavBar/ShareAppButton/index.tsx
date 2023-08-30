@@ -10,13 +10,14 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, getColor } from "@illa-design/react"
 import { ShareAppButtonProps } from "@/page/App/components/PageNavBar/ShareAppButton/interface"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 
 export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
   const { t } = useTranslation()
@@ -34,7 +35,6 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
 
   const upgradeModal = useUpgradeModal()
   const [shareModalVisible, setShareModalVisible] = useState(false)
-  const copyToClipboard = useCopyToClipboard()
 
   const dispatch = useDispatch()
 

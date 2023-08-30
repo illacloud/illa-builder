@@ -20,7 +20,6 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { useCopyToClipboard } from "@illa-public/utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -61,6 +60,7 @@ import {
   putAgentDetail,
   uploadAgentIcon,
 } from "@/services/agent"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 import { ChatContext } from "../components/ChatContext"
 import {
   ChatSendRequestPayload,
@@ -118,7 +118,6 @@ export const AIAgent: FC = () => {
   const currentUserInfo = useSelector(getCurrentUser)
 
   const dispatch = useDispatch()
-  const copyToClipboard = useCopyToClipboard()
 
   // page state
   const [generateDescLoading, setGenerateDescLoading] = useState(false)
