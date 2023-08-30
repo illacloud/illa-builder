@@ -4125,5 +4125,8 @@
     "before": "Indlæs mere"
   },
   "size_exceed_copied_tips": "Indholdet er for langt til at kopiere. (nuværende størrelse: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Bidrag"
+  "contribute": "Bidrag",
+  "error_page": {
+    "fobidden": "Ingen adgangstilladelse"
+  }
 }
