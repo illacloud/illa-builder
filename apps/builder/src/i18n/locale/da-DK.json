@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Oprindelig værdi",
           "tooltips": "Understøtter objekter eller primitive værdier. Eksempel: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Historik",
       "more": "Mere",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "● S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,27 +3495,27 @@
   "oauth_redirect_title": "Omdiriger",
   "oauth_redirect_description": "Omdirigerer til <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Engelsk",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "cs-CZ": "cřesţtina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "franc- ais",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugue s",
+    "ro-RO": "romersk naŽe",
+    "ru-RU": "Rækkevidde - OG Rækkevidde",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
   "logout_failed": "Mislykkedes at logge ud. Prøv igen senere.",
   "drive": {
@@ -4061,7 +4061,7 @@
       "update_suc": "Opdatering lykkedes"
     },
     "button": {
-      "blank": "Opret din første app",
+      "blank": "Opret ny",
       "blank-agent": "Opret AI Agent"
     }
   },
@@ -4125,5 +4125,8 @@
     "before": "Indlæs mere"
   },
   "size_exceed_copied_tips": "Indholdet er for langt til at kopiere. (nuværende størrelse: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Bidrag"
+  "contribute": "Bidrag",
+  "error_page": {
+    "fobidden": "Ingen adgangstilladelse"
+  }
 }

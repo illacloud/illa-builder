@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Valor inicial",
           "tooltips": "Suporta objetos ou valores primitivos. Exemplo: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Histórico",
       "more": "MAIS",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "S.O.",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "Redirecionamento",
   "oauth_redirect_description": "Redirecionando para <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Portuguese-Brazil",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "africâner",
+    "cs-CZ": "cm tina",
+    "de-DE": "Alemão",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "francos",
+    "it-IT": "Italiano",
+    "nl-NL": "Nederlândia",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portuguequisa",
+    "ro-RO": "ranhura até",
+    "ru-RU": "rebenta&hrebenta&gina&gina&g&hrb&g&b&b&g&b&b&er&b&b&cax&b&h&r&b&b",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "Atualizado com Sucesso"
     },
     "button": {
-      "blank": "Crie seu primeiro aplicativo",
+      "blank": "Criar novo artigo",
       "blank-agent": "Criar Agente IA"
     }
   },
@@ -4125,5 +4125,8 @@
     "before": "Carregue mais"
   },
   "size_exceed_copied_tips": "O conteúdo é muito longo para ser copiado. (tamanho atual: {{current_size}} bytes, limite: {{limit_size}} bytes)",
-  "contribute": "Contribuir"
+  "contribute": "Contribuir",
+  "error_page": {
+    "fobidden": "Sem permissão de acesso"
+  }
 }

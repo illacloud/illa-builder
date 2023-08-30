@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Alkuarvo",
           "tooltips": "Tukee objekteja tai alkeellisia arvoja. Esimerkki: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Historia",
       "more": "Lisää",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "V- S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "Uudelleenohjaus",
   "oauth_redirect_description": "Uudelleenohjataan <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Englanti",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "cs-CZ": "c·espt tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "franc¢ ais",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portuguecomplies s",
+    "ro-RO": "romaE)",
+    "ru-RU": "infrastruktuuri, johon ei sisälly",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "Päivitys onnistui"
     },
     "button": {
-      "blank": "Luo ensimmäinen sovelluksesi",
+      "blank": "Luo uusi",
       "blank-agent": "Luo AI Agentti"
     }
   },
@@ -4125,5 +4125,8 @@
     "before": "Lataa lisää"
   },
   "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Osallistu"
+  "contribute": "Osallistu",
+  "error_page": {
+    "fobidden": "Ei käyttöoikeuksia"
+  }
 }

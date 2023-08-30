@@ -4061,7 +4061,7 @@
       "update_suc": "更新成功"
     },
     "button": {
-      "blank": "创建第一个项目",
+      "blank": "新建",
       "blank-agent": "创建AI Agent"
     }
   },
@@ -4125,5 +4125,8 @@
     "before": "加载更多"
   },
   "size_exceed_copied_tips": "内容太长，无法复制。（当前大小：{{current_size}} 字节，限制：{{limit_size}} 字节）",
-  "contribute": "贡献"
+  "contribute": "贡献",
+  "error_page": {
+    "fobidden": "没有访问权限"
+  }
 }
