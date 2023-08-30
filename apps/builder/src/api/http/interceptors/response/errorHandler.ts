@@ -35,37 +35,20 @@ export const errorHandlerInterceptor = (error: AxiosError) => {
         const searchParams = url.searchParams
         const path = getRedirectPathWhen401(searchParams)
         window.location.pathname = path
-        // ILLARoute.navigate(`${path}`, {
-        //   replace: true,
-        //   state: {
-        //     from: pathname || "/",
-        //   },
-        // })
       }
       break
     }
     case 403: {
       window.location.pathname = "/403"
-
-      // ILLARoute.navigate("/403", {
-      //   replace: true,
-      // })
       break
     }
     case 500: {
       window.location.pathname = "/500"
-
-      // ILLARoute.navigate("/500", {
-      //   replace: true,
-      // })
       break
     }
     default: {
       if (status >= 500) {
         window.location.pathname = "/500"
-        // ILLARoute.navigate("/500", {
-        //   replace: true,
-        // })
         break
       }
       commonBillingErrorHandler(response)

@@ -7,7 +7,7 @@ import {
 import { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
-import { LoadingIcon } from "@illa-design/react"
+import { Divider, LoadingIcon } from "@illa-design/react"
 import { AppCard } from "@/page/Dashboard/DashboardApps/AppCard"
 import { TeamContentEmpty } from "@/page/Dashboard/components/TeamContentEmpty"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
@@ -39,6 +39,8 @@ export const TeamApps: FC<TeamAppsProps> = (props) => {
       ? teamApps
       : fuse.search(keywords).map((item) => item.item)
 
+  const [showLine, setShowLine] = useState<boolean>(false)
+
   useEffect(() => {
     const controller = new AbortController()
     setUpdateLoading(true)
@@ -64,11 +66,24 @@ export const TeamApps: FC<TeamAppsProps> = (props) => {
       <LoadingIcon spin={true} />
     </div>
   ) : appList.length !== 0 ? (
-    <div css={cardContainerStyle}>
-      {appList?.map((item) => (
-        <AppCard key={item.appId} data-element="listItem" appInfo={item} />
-      ))}
-    </div>
+    <>
+      {showLine && <Divider direction="horizontal" />}
+      <div
+        css={cardContainerStyle}
+        onScroll={(e) => {
+          const target = e.target as HTMLDivElement
+          if (target.scrollTop >= 24) {
+            setShowLine(true)
+          } else {
+            setShowLine(false)
+          }
+        }}
+      >
+        {appList?.map((item) => (
+          <AppCard key={item.appId} data-element="listItem" appInfo={item} />
+        ))}
+      </div>
+    </>
   ) : (
     <TeamContentEmpty
       showCreate={canManage(

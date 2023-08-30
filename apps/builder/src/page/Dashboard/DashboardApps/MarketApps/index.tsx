@@ -11,7 +11,7 @@ import { getMarketLinkTemplate } from "@illa-public/utils"
 import { FC, useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useSearchParams } from "react-router-dom"
-import { Loading, LoadingIcon, useMessage } from "@illa-design/react"
+import { Divider, Loading, LoadingIcon, useMessage } from "@illa-design/react"
 import { EmptySearchResult } from "@/page/App/components/EmptySearchResult"
 import { getAuthToken } from "@/utils/auth"
 import {
@@ -35,6 +35,8 @@ export const MarketApps: FC = () => {
   const [marketApps, setMarketApps] = useState<ProductMarketApp[]>([])
 
   const [updateLoading, setUpdateLoading] = useState<boolean>(true)
+
+  const [showLine, setShowLine] = useState<boolean>(false)
 
   const sort =
     (searchParams.get("sort") as PRODUCT_SORT_BY) ?? PRODUCT_SORT_BY.POPULAR
@@ -74,65 +76,73 @@ export const MarketApps: FC = () => {
       <LoadingIcon spin={true} />
     </div>
   ) : marketApps.length > 0 ? (
-    <div
-      css={cardListContainerStyle}
-      onScroll={async (event) => {
-        const target = event.target as HTMLDivElement
-        if (
-          target.scrollHeight - target.scrollTop - target.clientHeight <=
-          800
-        ) {
-          if (fetching.current) {
-            return
+    <>
+      {showLine && <Divider direction="horizontal" />}
+      <div
+        css={cardListContainerStyle}
+        onScroll={async (event) => {
+          const target = event.target as HTMLDivElement
+          if (target.scrollTop >= 24) {
+            setShowLine(true)
+          } else {
+            setShowLine(false)
           }
-          if (!hasMore) {
-            return
-          }
-          fetching.current = true
-          try {
-            const marketAppResp = await fetchAppList({
-              page: page.current + 1,
-              sortedBy: sort,
-              limit: 40,
-              search: keywords,
-            })
-            page.current = page.current + 1
-            setMarketApps([...marketApps, ...marketAppResp.data.products])
-            if (!marketAppResp.data.hasMore) {
-              setHasMore(false)
+          if (
+            target.scrollHeight - target.scrollTop - target.clientHeight <=
+            800
+          ) {
+            if (fetching.current) {
               return
             }
-          } catch (e) {
-            message.error({
-              content: t("dashboard.message.next-page-error"),
-            })
-          } finally {
-            fetching.current = false
+            if (!hasMore) {
+              return
+            }
+            fetching.current = true
+            try {
+              const marketAppResp = await fetchAppList({
+                page: page.current + 1,
+                sortedBy: sort,
+                limit: 40,
+                search: keywords,
+              })
+              page.current = page.current + 1
+              setMarketApps([...marketApps, ...marketAppResp.data.products])
+              if (!marketAppResp.data.hasMore) {
+                setHasMore(false)
+                return
+              }
+            } catch (e) {
+              message.error({
+                content: t("dashboard.message.next-page-error"),
+              })
+            } finally {
+              fetching.current = false
+            }
           }
-        }
-      }}
-    >
-      <div css={cardListStyle}>
-        {marketApps.map((product) => (
-          <MarketAppCard
-            onClick={() => {
-              const newUrl = new URL(getMarketLinkTemplate(product.app.appId))
-              newUrl.searchParams.set("token", getAuthToken())
-              window.open(newUrl, "_blank")
-            }}
-            key={product.app.appId}
-            app={product.app}
-            marketplace={product.marketplace}
-            fallbackDescription={t("new_dashboard.desc.no_description")}
-          />
-        ))}
-      </div>
-      {hasMore && (
-        <div css={loadingStyle}>
-          <Loading colorScheme="techPurple" />
+        }}
+      >
+        <div css={cardListStyle}>
+          {marketApps.map((product) => (
+            <MarketAppCard
+              onClick={() => {
+                const newUrl = new URL(getMarketLinkTemplate(product.app.appId))
+                newUrl.searchParams.set("token", getAuthToken())
+                window.open(newUrl, "_blank")
+              }}
+              key={product.app.appId}
+              app={product.app}
+              marketplace={product.marketplace}
+              fallbackDescription={t("new_dashboard.desc.no_description")}
+            />
+          ))}
         </div>
-      )}
-    </div>
+        {hasMore && (
+          <div css={loadingStyle}>
+            <Loading colorScheme="techPurple" />
+          </div>
+        )}
+      </div>
+    </>
   ) : (
     <EmptySearchResult desc={t("dashboard.no-result")} />
   )
