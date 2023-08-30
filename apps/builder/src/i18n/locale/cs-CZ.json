@@ -4125,5 +4125,8 @@
     "before": "Načíst více"
   },
   "size_exceed_copied_tips": "Obsah je příliš dlouhý na kopírování. (aktuální velikost: {{current_size}} bajtů, limit: {{limit_size}} bajtů)",
-  "contribute": "Přispějte"
+  "contribute": "Přispějte",
+  "error_page": {
+    "fobidden": "Žádné přístupové oprávnění"
+  }
 }
