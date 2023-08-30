@@ -2,7 +2,7 @@ import { AI_AGENT_MODEL } from "@illa-public/market-agent/MarketAgentCard/interf
 import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Input, InputNumber } from "@illa-design/react"
+import { Input } from "@illa-design/react"
 import { ReactComponent as ModalOpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
@@ -17,7 +17,6 @@ import { ActionEventHandler } from "../ActionEventHandler"
 import HorizontalWithLabel from "../Layout/HorizontalWithLabel"
 import ActionPanelSpace from "../Layout/Space"
 import { TransformerComponent } from "../TransformerComponent"
-import { maxTokenInputStyle } from "./style"
 
 export const AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL = {
   [AI_AGENT_MODEL.GPT_3_5_TURBO]: "GPT 3.5",
@@ -111,12 +110,14 @@ const AIAgentPanel: FC = () => {
           }
         />
       </HorizontalWithLabel>
-      <RecordEditor
-        fillOnly
-        records={variables}
-        onChangeValue={handleChangeVariableValue}
-        label={t("editor.ai-agent.label.variable")}
-      />
+      {variables.length > 0 && (
+        <RecordEditor
+          fillOnly
+          records={variables}
+          onChangeValue={handleChangeVariableValue}
+          label={t("editor.ai-agent.label.variable")}
+        />
+      )}
       <HorizontalWithLabel
         labelName={t("editor.action.panel.label.ai-agent.input")}
       >
@@ -126,18 +127,6 @@ const AIAgentPanel: FC = () => {
           modalTitle={t("editor.action.panel.label.ai-agent.input")}
           value={aiAgentContent.input}
           onChange={handleChangeInput}
-        />
-      </HorizontalWithLabel>
-      <HorizontalWithLabel labelName={t("editor.ai-agent.label.max-token")}>
-        <InputNumber
-          readOnly
-          value={aiAgentContent.virtualResource.modelConfig.maxTokens}
-          mode="button"
-          colorScheme="techPurple"
-          size="large"
-          w="320px"
-          css={maxTokenInputStyle}
-          hideControl
         />
       </HorizontalWithLabel>
       <TransformerComponent />

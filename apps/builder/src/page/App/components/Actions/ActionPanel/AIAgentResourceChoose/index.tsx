@@ -11,11 +11,13 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import {
   ACTION_RUN_TIME,
+  ActionItem,
   ActionTriggerMode,
   IAdvancedConfig,
 } from "@/redux/currentApp/action/actionState"
 import { getDashboardTeamAIAgentList } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSelector"
 import { trackInEditor } from "@/utils/mixpanelHelper"
+import { AiAgentActionContent } from "../../../../../../redux/currentApp/action/aiAgentAction"
 import {
   itemContainer,
   itemText,
@@ -59,8 +61,11 @@ export const AIAgentResourceChoose: FC = () => {
                     // selected resource is same as action type
                     actionType: "aiagent",
                     resourceID: value as string,
-                    content: selectedAction.content,
-                  }),
+                    content: {
+                      ...selectedAction.content,
+                      virtualResource: resource,
+                    },
+                  } as ActionItem<AiAgentActionContent>),
                 )
               }
             }}

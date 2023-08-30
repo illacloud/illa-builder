@@ -7,9 +7,11 @@ import {
   fetchMarketAgentList,
 } from "@illa-public/market-agent/service"
 import { FC, useCallback, useState } from "react"
+import { useDispatch } from "react-redux"
 import { FixedSizeList, ListChildComponentProps } from "react-window"
 import InfiniteLoader from "react-window-infinite-loader"
 import { forkAIAgentToTeam } from "@/services/agent"
+import { dashboardTeamAIAgentActions } from "../../../../../../../../redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import { AGENT_LIST_HEIGHT, MARKET_AGENT_ITEM_HEIGHT } from "../../constants"
 import { EmptyState } from "../EmptyState"
 import { MarketListItem } from "../MarketListItem"
@@ -21,6 +23,7 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
     search,
     sortBy = MARKET_AGENT_SORTED_OPTIONS.POPULAR,
   } = props
+  const dispatch = useDispatch()
   const [marketList, setMarketList] = useState<MarketAIAgent[]>([])
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -30,11 +33,14 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
   const handleClickFork = useCallback(
     async (agent: Agent) => {
       const response = await forkAIAgentToTeam(agent.aiAgentID)
-      if (response.data.aiAgentID) {
-        onSelect(response.data)
-      }
+      dispatch(
+        dashboardTeamAIAgentActions.addTeamAIAgentReducer({
+          aiAgent: response.data,
+        }),
+      )
+      onSelect(response.data)
     },
-    [onSelect],
+    [dispatch, onSelect],
   )
 
   const loadMoreItems = useCallback(async () => {
