@@ -106,7 +106,7 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
             )
           }}
           defaultAppPublic={appInfo.config.public}
-          defaultAppContribute={false}
+          defaultAppContribute={appInfo.config.publishedToMarketplace}
           appID={appInfo.appId}
           userRoleForThisApp={teamInfo.myRole}
           ownerTeamID={teamInfo.id}

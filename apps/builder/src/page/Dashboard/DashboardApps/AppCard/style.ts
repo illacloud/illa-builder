@@ -31,6 +31,12 @@ export const headerStyle = css`
   gap: 16px;
 `
 
+export const tagGroupStyle = css`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`
+
 export const titleInfoStyle = css`
   display: flex;
   flex-direction: column;

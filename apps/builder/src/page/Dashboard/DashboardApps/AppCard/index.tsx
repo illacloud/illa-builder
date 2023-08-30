@@ -14,7 +14,7 @@ import { FC, MouseEvent, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { Tag } from "@illa-design/react"
+import { Space, Tag } from "@illa-design/react"
 import {
   appNameStyle,
   cardStyle,
@@ -126,7 +126,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
               user: appInfo.appActivity.modifier,
             })}
           </div>
-          <div className="deployed">
+          <Space>
             {appInfo.deployed ? (
               <Tag colorScheme="green" size="small">
                 {t("new_dashboard.status.deployed")}
@@ -136,7 +136,12 @@ export const AppCard: FC<AppCardProps> = (props) => {
                 {t("new_dashboard.status.undeploy")}
               </Tag>
             )}
-          </div>
+            {appInfo.config.publishedToMarketplace && (
+              <Tag size="small" colorScheme="techPurple">
+                {t("dashboard.common.marketplace")}
+              </Tag>
+            )}
+          </Space>
         </div>
         <AppCardActionItem
           isPublic={appInfo.config.public}

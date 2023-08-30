@@ -274,7 +274,6 @@ export const AIAgentRunMobile: FC = () => {
                 <AIAgentBlock title={"Prompt"}>
                   <CodeEditor
                     {...promptField}
-                    minHeight="200px"
                     editable={false}
                     completionOptions={variables.value}
                   />
