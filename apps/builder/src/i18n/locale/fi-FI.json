@@ -2636,8 +2636,8 @@
         "tooltips": "Käytä tekoälyä luodaksesi kuvakkeen agenttien nimen ja kuvauksen perusteella"
       },
       "title-preview": {
-        "chat": "Keskustelu",
-        "text-generation": "Tekstin luonti"
+        "chat": "Esikatsele ikkunaa",
+        "text-generation": "Esikatsele ikkunaa"
       }
     },
     "common": {
