@@ -22,7 +22,6 @@ export const leftPanelContainerStyle = css`
   width: 528px;
   display: flex;
   flex-direction: column;
-  min-width: 528px;
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
 `
 
@@ -72,7 +71,6 @@ export const leftPanelTitleTextStyle = css`
 export const rightPanelContainerStyle = css`
   height: 100%;
   display: flex;
-  min-width: 672px;
   flex-grow: 1;
   flex-direction: column;
 `
@@ -153,11 +151,6 @@ export const descTextStyle = css`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-`
-
-export const formContainerStyle = css`
-  flex-basis: 528px;
-  min-width: 528px;
 `
 
 export const temperatureContainerStyle = css`

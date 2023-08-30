@@ -1,3 +1,5 @@
 export interface DeployResp {
-  version: string
+  version: number
+  releaseVersion: number
+  mainlineVersion: number
 }

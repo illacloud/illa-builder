@@ -35,7 +35,7 @@ export const deployLoader: LoaderFunction = async (args) => {
         appInfo,
       })
     } else {
-      const teamInfo = getCurrentTeamInfo(store.getState())
+      let teamInfo = getCurrentTeamInfo(store.getState())
       if (teamInfo && teamInfo.identifier !== teamIdentifier) {
         return redirect("/403")
       }
@@ -44,13 +44,9 @@ export const deployLoader: LoaderFunction = async (args) => {
         if (teamInfoLoaderResponse) {
           return teamInfoLoaderResponse
         }
+        teamInfo = getCurrentTeamInfo(store.getState())
       }
-      const appInfo = fetchPrivateAppInitData(
-        appId,
-        "-2",
-        teamIdentifier,
-        args.request.signal,
-      )
+      const appInfo = fetchPrivateAppInitData(appId, "-2", args.request.signal)
       const resourceInfo = fetchResources(args.request.signal)
       const teamAgentList = fetchTeamAgent(args.request.signal)
       return defer({

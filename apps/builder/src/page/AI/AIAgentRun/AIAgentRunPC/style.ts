@@ -14,7 +14,6 @@ export const leftPanelContainerStyle = css`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  min-width: 528px;
   box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.06);
 `
 
@@ -22,7 +21,6 @@ export const rightPanelContainerStyle = css`
   height: 100%;
   display: flex;
   overflow-y: auto;
-  min-width: 672px;
   flex-grow: 1;
   flex-direction: column;
 `
