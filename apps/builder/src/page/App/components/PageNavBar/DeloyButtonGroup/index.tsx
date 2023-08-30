@@ -25,6 +25,7 @@ export interface DeployButtonGroupProps {
   loading: boolean
   isGuideMode: boolean
   canUseBillingFeature: boolean
+  disPrivate: boolean
   isPublic?: boolean
 }
 
@@ -36,6 +37,7 @@ export const DeployButtonGroup: FC<DeployButtonGroupProps> = (props) => {
     isGuideMode,
     canUseBillingFeature,
     onClickDeploy,
+    disPrivate,
     onClickDeployMenu,
   } = props
 
@@ -76,6 +78,7 @@ export const DeployButtonGroup: FC<DeployButtonGroupProps> = (props) => {
             <DropListItem
               key="private"
               value="private"
+              disabled={disPrivate}
               title={
                 <div css={deployMenuStyle}>
                   <div css={deployLabelStyle}>
