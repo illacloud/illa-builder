@@ -2624,7 +2624,8 @@
         "token-not-enough": "Model limit reached. Please restart.",
         "token": "The current value of Max tokens is low, which may cause incomplete returned results.",
         "purchase-required": "Colla is not enough to run, please recharge.",
-        "leave": "There are unsaved content, are you sure you want to leave?"
+        "leave": "There are unsaved content, are you sure you want to leave?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "🧬 Edit AI Agent",
       "generate-desc": {
