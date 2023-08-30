@@ -2636,8 +2636,8 @@
         "tooltips": "基于Agent的名称和描述，使用AI生成icon"
       },
       "title-preview": {
-        "chat": "对话",
-        "text-generation": "文本生成"
+        "chat": "运行结果预览",
+        "text-generation": "运行结果预览"
       }
     },
     "common": {

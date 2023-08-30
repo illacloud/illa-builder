@@ -2636,8 +2636,8 @@
         "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta"
       },
       "title-preview": {
-        "chat": "Chat",
-        "text-generation": "Generování textu"
+        "chat": "Náhled okna",
+        "text-generation": "Náhled okna"
       }
     },
     "common": {

@@ -2636,8 +2636,8 @@
         "tooltips": "Use AI to generate icon based on the agent name and description"
       },
       "title-preview": {
-        "chat": "Chat",
-        "text-generation": "Text generation"
+        "chat": "Preview window",
+        "text-generation": "Preview window"
       }
     },
     "common": {

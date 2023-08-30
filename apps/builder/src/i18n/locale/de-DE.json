@@ -2636,8 +2636,8 @@
         "tooltips": "Verwende KI um ein Icon basierend auf dem Agentennamen und der Beschreibung zu generieren"
       },
       "title-preview": {
-        "chat": "Chat",
-        "text-generation": "Textgenerierung"
+        "chat": "Vorschaufenster",
+        "text-generation": "Vorschaufenster"
       }
     },
     "common": {

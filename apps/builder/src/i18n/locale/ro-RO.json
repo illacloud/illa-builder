@@ -2636,8 +2636,8 @@
         "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere"
       },
       "title-preview": {
-        "chat": "Chat",
-        "text-generation": "Generare text"
+        "chat": "Previzualizare fereastră",
+        "text-generation": "Previzualizare fereastră"
       }
     },
     "common": {
