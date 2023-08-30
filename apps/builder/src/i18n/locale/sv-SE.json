@@ -2636,8 +2636,8 @@
         "tooltips": "Använd AI för att generera ikon baserat på agentens namn och beskrivning"
       },
       "title-preview": {
-        "chat": "Chatt",
-        "text-generation": "Generering av text"
+        "chat": "Förhandsgranska fönster",
+        "text-generation": "Förhandsgranska fönster"
       }
     },
     "common": {
@@ -3961,6 +3961,10 @@
         "title": "Ändra plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekräfta"
+      },
+      "ai-agent": {
+        "string1": "Den här modellen är för Premium-teamet. ",
+        "string2": "För att använda det, vänligen uppgradera till Premium. Genom att uppgradera till Premium, kommer du också att ha tillgång till följande funktioner. "
       }
     },
     "homepage": {

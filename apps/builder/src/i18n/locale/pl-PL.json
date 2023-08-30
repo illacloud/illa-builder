@@ -2636,8 +2636,8 @@
         "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela"
       },
       "title-preview": {
-        "chat": "Czat",
-        "text-generation": "Generowanie tekstu"
+        "chat": "Podgląd okna",
+        "text-generation": "Podgląd okna"
       }
     },
     "common": {
@@ -3961,6 +3961,10 @@
         "title": "Zmienić plan?",
         "button_cancel": "Anuluj",
         "button_confirm": "Potwierdź"
+      },
+      "ai-agent": {
+        "string1": "Ten model jest dla zespołu Premium. ",
+        "string2": "Aby go użyć, uaktualnij do wersji Premium. Uaktualniając do wersji Premium, będziesz miał również dostęp do następujących funkcji. "
       }
     },
     "homepage": {

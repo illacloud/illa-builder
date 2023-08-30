@@ -2622,7 +2622,7 @@
         "start-failed": "Failed to start. Please try again. ",
         "reconnect": "Connection lost. Reconnecting...",
         "token-not-enough": "Model limit reached. Please restart.",
-        "token": "The current value of Max tokens is low, which may cause incomplete returned results.",
+        "token": "The Max token is smaller than the number of tokens occupied by the prompt or exceeds the model's limit.",
         "purchase-required": "Colla is not enough to run, please recharge.",
         "leave": "There are unsaved content, are you sure you want to leave?"
       },
@@ -2636,8 +2636,8 @@
         "tooltips": "Use AI to generate icon based on the agent name and description"
       },
       "title-preview": {
-        "chat": "Chat",
-        "text-generation": "Text generation"
+        "chat": "Preview window",
+        "text-generation": "Preview window"
       }
     },
     "common": {
@@ -3961,6 +3961,10 @@
         "title": "Change plan?",
         "button_cancel": "Cancel",
         "button_confirm": "Confirm"
+      },
+      "ai-agent": {
+        "string1": "This model is for Premium team. ",
+        "string2": "To use it, please upgrade to Premium. By upgrading to Premium, you will also have access to the following features. "
       }
     },
     "homepage": {

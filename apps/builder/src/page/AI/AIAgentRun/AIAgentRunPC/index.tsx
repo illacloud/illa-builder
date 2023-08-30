@@ -429,7 +429,7 @@ export const AIAgentRunPC: FC = () => {
                   tips={t("editor.ai-agent.tips.mode")}
                 >
                   <RadioGroup
-                    {...field}
+                    value={field.value}
                     colorScheme={getColor("grayBlue", "02")}
                     w="100%"
                     type="button"
@@ -437,13 +437,22 @@ export const AIAgentRunPC: FC = () => {
                     options={[
                       {
                         value: AI_AGENT_TYPE.CHAT,
-                        label: "Chat",
+                        label: t("editor.ai-agent.option.mode.chat"),
                       },
                       {
                         value: AI_AGENT_TYPE.TEXT_GENERATION,
-                        label: "Text Generation",
+                        label: t("editor.ai-agent.option.mode.text"),
                       },
                     ]}
+                    onChange={(value) => {
+                      if (isReceiving || isConnecting) {
+                        message.info({
+                          content: t("editor.ai-agent.message.generating"),
+                        })
+                        return
+                      }
+                      field.onChange(value)
+                    }}
                   />
                 </AIAgentBlock>
               )}
@@ -534,10 +543,12 @@ export const AIAgentRunPC: FC = () => {
                           <div css={labelStyle}>
                             <OpenAIIcon />
                             <span css={labelTextStyle}>GPT-3.5-16k</span>
-                            <div css={premiumContainerStyle}>
-                              <UpgradeIcon />
-                              <div style={{ marginLeft: 4 }}>Premium</div>
-                            </div>
+                            {!canUseBillingFeature && (
+                              <div css={premiumContainerStyle}>
+                                <UpgradeIcon />
+                                <div style={{ marginLeft: 4 }}>Premium</div>
+                              </div>
+                            )}
                           </div>
                         ),
                         value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
@@ -547,10 +558,12 @@ export const AIAgentRunPC: FC = () => {
                           <div css={labelStyle}>
                             <OpenAIIcon />
                             <span css={labelTextStyle}>GPT-4</span>
-                            <div css={premiumContainerStyle}>
-                              <UpgradeIcon />
-                              <div style={{ marginLeft: 4 }}>Premium</div>
-                            </div>
+                            {!canUseBillingFeature && (
+                              <div css={premiumContainerStyle}>
+                                <UpgradeIcon />
+                                <div style={{ marginLeft: 4 }}>Premium</div>
+                              </div>
+                            )}
                           </div>
                         ),
                         value: AI_AGENT_MODEL.GPT_4,

@@ -231,7 +231,7 @@ export const PreviewChat: FC<PreviewChatProps> = (props) => {
               css={inputStyle}
               placeholder={t("editor.ai-agent.placeholder.send")}
               onKeyDown={(event) => {
-                if (event.key === "Enter" && !event.shiftKey) {
+                if (event.keyCode === 13 && !event.shiftKey) {
                   event.preventDefault()
                   if (isReceiving || blockInput) {
                     return
