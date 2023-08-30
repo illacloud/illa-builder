@@ -4125,5 +4125,8 @@
     "before": "Ladda mer"
   },
   "size_exceed_copied_tips": "Innehållet är för långt för att kopieras. (nuvarande storlek: {{current_size}} bytes, gräns: {{limit_size}} bytes)",
-  "contribute": "Bidra"
+  "contribute": "Bidra",
+  "error_page": {
+    "fobidden": "Ingen åtkomstbehörighet"
+  }
 }
