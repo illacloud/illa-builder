@@ -2624,7 +2624,8 @@
         "token-not-enough": "Modellgrensen nådd. Vennligst start på nytt.",
         "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater.",
         "purchase-required": "Colla er ikke nok til å kjøre, vennligst lade.",
-        "leave": "Det er ulagrede innhold, er du sikker på at du vil forlate?"
+        "leave": "Det er ulagrede innhold, er du sikker på at du vil forlate?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "🧬 Rediger AI Agent",
       "generate-desc": {
