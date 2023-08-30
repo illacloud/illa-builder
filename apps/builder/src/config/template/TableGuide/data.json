@@ -21,10 +21,10 @@
   },
   "actions": [
     {
-      "actionId": "ILAcx4p1C7rs",
+      "actionID": "ILAcx4p1C7rs",
       "uid": "b5716749-1d0a-455a-8118-3545ce0450c3",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7cn",
+      "resourceID": "ILAfx4p1C7cn",
       "displayName": "search_by_name",
       "actionType": "postgresql",
       "content": {
@@ -53,10 +53,10 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7rq",
+      "actionID": "ILAcx4p1C7rq",
       "uid": "ceccaca0-c1ee-4791-9e95-e29fb6cc118e",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
+      "resourceID": "ILAex4p1C7Qj",
       "displayName": "delete_product",
       "actionType": "restapi",
       "content": {
@@ -121,10 +121,10 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7rf",
+      "actionID": "ILAcx4p1C7rf",
       "uid": "31236b02-3798-40a2-a4e8-80c2e130d220",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
+      "resourceID": "ILAex4p1C7Qj",
       "displayName": "list_all_products",
       "actionType": "restapi",
       "content": {
@@ -173,10 +173,10 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7ru",
+      "actionID": "ILAcx4p1C7ru",
       "uid": "ba8d14f8-df87-4dce-892d-fb145bb1c69b",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
+      "resourceID": "ILAex4p1C7Qj",
       "displayName": "serverside_pagination",
       "actionType": "restapi",
       "content": {
@@ -225,10 +225,10 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7rt",
+      "actionID": "ILAcx4p1C7rt",
       "uid": "d07d6369-0802-479d-a6b8-27c602b344dd",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
+      "resourceID": "ILAex4p1C7Qj",
       "displayName": "delete_row_via_select_cell",
       "actionType": "restapi",
       "content": {
@@ -293,10 +293,10 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7rr",
+      "actionID": "ILAcx4p1C7rr",
       "uid": "f48902a6-a207-4294-8ce0-70061b4506f5",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
+      "resourceID": "ILAex4p1C7Qj",
       "displayName": "update_product",
       "actionType": "restapi",
       "content": {
@@ -364,10 +364,10 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7rp",
+      "actionID": "ILAcx4p1C7rp",
       "uid": "5a041c6c-fbcd-4b60-a6f1-a480ece7a7f2",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
+      "resourceID": "ILAex4p1C7Qj",
       "displayName": "update_row_via_select_cell",
       "actionType": "restapi",
       "content": {
@@ -435,10 +435,10 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7ro",
+      "actionID": "ILAcx4p1C7ro",
       "uid": "9c08f6e3-f87c-4bf0-81d6-43b10f0326ad",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAfx4p1C7d0",
+      "resourceID": "ILAfx4p1C7d0",
       "displayName": "currentDate",
       "actionType": "transformer",
       "content": {
@@ -466,10 +466,10 @@
       "updatedBy": "ILAfx4p1C7eb"
     },
     {
-      "actionId": "ILAcx4p1C7rn",
+      "actionID": "ILAcx4p1C7rn",
       "uid": "bdf23e84-00a6-401b-b235-a171a2b3ea1f",
       "teamID": "ILAfx4p1C7en",
-      "resourceId": "ILAex4p1C7Qj",
+      "resourceID": "ILAex4p1C7Qj",
       "displayName": "delete_product_via_id",
       "actionType": "restapi",
       "content": {
@@ -714,9 +714,7 @@
                     "y": 18,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "value"
-                      ],
+                      "$dynamicAttrPaths": ["value"],
                       "colorScheme": "grayBlue",
                       "disableMarkdown": false,
                       "dynamicHeight": "auto",
@@ -812,12 +810,7 @@
                           },
                           "header": "Boolean",
                           "id": "column-e8d0450e-a3e1-4ffa-a166-1a9cd97bb00c",
-                          "mappedValue": [
-                            true,
-                            false,
-                            false,
-                            false
-                          ],
+                          "mappedValue": [true, false, false, false],
                           "objectFit": "scale-down",
                           "tagColor": "auto",
                           "type": "boolean",
@@ -900,12 +893,7 @@
                           },
                           "header": "Currency",
                           "id": "column-3308598a-cd33-4a61-be10-012e5195150d",
-                          "mappedValue": [
-                            3700,
-                            5400,
-                            6000,
-                            8000
-                          ],
+                          "mappedValue": [3700, 5400, 6000, 8000],
                           "objectFit": "scale-down",
                           "tagColor": "auto",
                           "type": "currency",
@@ -1096,12 +1084,7 @@
                           },
                           "header": "Rating",
                           "id": "column-a836c590-0019-4002-965c-a763e8cbbf7a",
-                          "mappedValue": [
-                            1,
-                            2,
-                            3,
-                            5
-                          ],
+                          "mappedValue": [1, 2, 3, 5],
                           "objectFit": "scale-down",
                           "tagColor": "auto",
                           "type": "rating",
@@ -1124,44 +1107,18 @@
                           "header": "Tag",
                           "id": "column-b9725dc7-aea9-44f7-8679-a11c70c70b5b",
                           "mappedValue": [
-                            [
-                              "a tag",
-                              "b tag",
-                              "c tag"
-                            ],
-                            [
-                              "c tag",
-                              "d tag"
-                            ],
-                            [
-                              "a tag",
-                              "d tag"
-                            ],
-                            [
-                              "a tag",
-                              "d tag"
-                            ]
+                            ["a tag", "b tag", "c tag"],
+                            ["c tag", "d tag"],
+                            ["a tag", "d tag"],
+                            ["a tag", "d tag"]
                           ],
                           "objectFit": "scale-down",
                           "tagColor": "auto",
                           "tagLabel": [
-                            [
-                              "a tag",
-                              "b tag",
-                              "c tag"
-                            ],
-                            [
-                              "c tag",
-                              "d tag"
-                            ],
-                            [
-                              "a tag",
-                              "d tag"
-                            ],
-                            [
-                              "a tag",
-                              "d tag"
-                            ]
+                            ["a tag", "b tag", "c tag"],
+                            ["c tag", "d tag"],
+                            ["a tag", "d tag"],
+                            ["a tag", "d tag"]
                           ],
                           "type": "tag",
                           "visible": true
@@ -1202,12 +1159,7 @@
                           },
                           "header": "Percent",
                           "id": "incomes",
-                          "mappedValue": [
-                            0.4,
-                            0.87,
-                            1.2,
-                            1.4
-                          ],
+                          "mappedValue": [0.4, 0.87, 1.2, 1.4],
                           "objectFit": "scale-down",
                           "tagColor": "auto",
                           "type": "percent",
@@ -1742,9 +1694,7 @@
                           "users": 5400
                         }
                       ],
-                      "selectedRowIndex": [
-                        1
-                      ]
+                      "selectedRowIndex": [1]
                     }
                   }
                 ],
@@ -1826,10 +1776,7 @@
                     "y": 29,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "dataSourceJS",
-                        "pageSize"
-                      ],
+                      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"],
                       "columnMapper": {
                         "brand": {
                           "accessorKey": "brand",
@@ -2213,9 +2160,7 @@
                           "title": "Samsung Universe 9"
                         }
                       ],
-                      "selectedRowIndex": [
-                        2
-                      ]
+                      "selectedRowIndex": [2]
                     }
                   },
                   {
@@ -2645,10 +2590,7 @@
                             "y": 11,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "labelWidth",
-                                "value"
-                              ],
+                              "$dynamicAttrPaths": ["labelWidth", "value"],
                               "colorScheme": "blue",
                               "dynamicHeight": "limited",
                               "dynamicMaxHeight": 144,
@@ -2732,9 +2674,7 @@
                             "y": 0,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "loading"
-                              ],
+                              "$dynamicAttrPaths": ["loading"],
                               "colorScheme": "blue",
                               "events": [
                                 {
@@ -2766,9 +2706,7 @@
                             "y": 0,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "loading"
-                              ],
+                              "$dynamicAttrPaths": ["loading"],
                               "colorScheme": "blue",
                               "events": [
                                 {
@@ -2933,10 +2871,7 @@
                     "y": 30,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "dataSourceJS",
-                        "pageSize"
-                      ],
+                      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"],
                       "columnMapper": {
                         "brand": {
                           "accessorKey": "brand",
@@ -3380,12 +3315,7 @@
                           "title": "OPPOF19"
                         }
                       ],
-                      "selectedRowIndex": [
-                        0,
-                        1,
-                        2,
-                        3
-                      ]
+                      "selectedRowIndex": [0, 1, 2, 3]
                     }
                   },
                   {
@@ -3530,9 +3460,7 @@
                             "y": 0,
                             "z": 0,
                             "props": {
-                              "$dynamicAttrPaths": [
-                                "imageSrc"
-                              ],
+                              "$dynamicAttrPaths": ["imageSrc"],
                               "hidden": false,
                               "imageSrc": "{{list1.dataSources.map((currentItem) => (currentItem.thumbnail))}}",
                               "objectFit": "scale-down",
@@ -3562,10 +3490,7 @@
                     "y": 30,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "pageSize",
-                        "dataSources"
-                      ],
+                      "$dynamicAttrPaths": ["pageSize", "dataSources"],
                       "backgroundColor": "white",
                       "dataSources": "{{table4.selectedRow}}",
                       "dynamicHeight": "fixed",
@@ -3688,10 +3613,7 @@
                     "y": 30,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "dataSourceJS",
-                        "pageSize"
-                      ],
+                      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"],
                       "columnMapper": {
                         "brand": {
                           "accessorKey": "brand",
@@ -4079,9 +4001,7 @@
                           "title": "iPhone X"
                         }
                       ],
-                      "selectedRowIndex": [
-                        1
-                      ]
+                      "selectedRowIndex": [1]
                     }
                   },
                   {
@@ -4135,9 +4055,7 @@
                     "y": 53,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "loading"
-                      ],
+                      "$dynamicAttrPaths": ["loading"],
                       "colorScheme": "blue",
                       "events": [
                         {
@@ -4169,9 +4087,7 @@
                     "y": 53,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "loading"
-                      ],
+                      "$dynamicAttrPaths": ["loading"],
                       "colorScheme": "blue",
                       "events": [
                         {
@@ -4819,10 +4735,7 @@
                     "y": 68,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "dataSourceJS",
-                        "pageSize"
-                      ],
+                      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"],
                       "columnMapper": {
                         "brand": {
                           "accessorKey": "brand",
@@ -5210,9 +5123,7 @@
                           "title": "iPhone X"
                         }
                       ],
-                      "selectedRowIndex": [
-                        1
-                      ]
+                      "selectedRowIndex": [1]
                     }
                   },
                   {
@@ -7112,9 +7023,7 @@
                           "title": "iPhone 9"
                         }
                       ],
-                      "selectedRowIndex": [
-                        0
-                      ]
+                      "selectedRowIndex": [0]
                     }
                   },
                   {
@@ -7664,9 +7573,7 @@
                           "title": "Huawei P30"
                         }
                       ],
-                      "selectedRowIndex": [
-                        4
-                      ],
+                      "selectedRowIndex": [4],
                       "totalRowCount": ""
                     }
                   },
@@ -8762,9 +8669,7 @@
                           "start_time": "2023-01-05"
                         }
                       ],
-                      "selectedRowIndex": [
-                        4
-                      ]
+                      "selectedRowIndex": [4]
                     }
                   }
                 ],
@@ -9000,36 +8905,13 @@
                           "header": "calculated from the first two columns",
                           "id": "column-9a0230e5-c189-4371-bb0a-e5c60de2c270",
                           "mappedValue": [
-                            71.1504,
-                            161.28060000000002,
-                            193.0954,
-                            50.148,
-                            52.794200000000004,
-                            192.7398,
-                            62.20850000000001,
-                            153.3477,
-                            130.0117,
-                            67.9182,
-                            1.092,
-                            6.264,
-                            1.0582,
-                            18.72,
-                            3.297,
-                            2.5289,
-                            0.4908,
-                            5.24,
-                            4.9128,
-                            11.892999999999999,
-                            0.9619999999999999,
-                            2.1812,
-                            1.1256,
-                            7.728000000000001,
-                            9.506,
-                            7.3226,
-                            7.9458,
-                            3.2979999999999996,
-                            9.204,
-                            0.876
+                            71.1504, 161.28060000000002, 193.0954, 50.148,
+                            52.794200000000004, 192.7398, 62.20850000000001,
+                            153.3477, 130.0117, 67.9182, 1.092, 6.264, 1.0582,
+                            18.72, 3.297, 2.5289, 0.4908, 5.24, 4.9128,
+                            11.892999999999999, 0.9619999999999999, 2.1812,
+                            1.1256, 7.728000000000001, 9.506, 7.3226, 7.9458,
+                            3.2979999999999996, 9.204, 0.876
                           ],
                           "objectFit": "scale-down",
                           "tagColor": "auto",
@@ -9960,9 +9842,7 @@
                           "title": "iPhone X"
                         }
                       ],
-                      "selectedRowIndex": [
-                        1
-                      ]
+                      "selectedRowIndex": [1]
                     }
                   },
                   {
@@ -10128,10 +10008,7 @@
                     "y": 54,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "dataSourceJS",
-                        "pageSize"
-                      ],
+                      "$dynamicAttrPaths": ["dataSourceJS", "pageSize"],
                       "columnMapper": {
                         "brand": {
                           "accessorKey": "brand",
@@ -10518,9 +10395,7 @@
                     "y": 66,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "events[0].filters"
-                      ],
+                      "$dynamicAttrPaths": ["events[0].filters"],
                       "colorScheme": "blackAlpha",
                       "events": [
                         {
@@ -10817,10 +10692,7 @@
                     "y": 117,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "events[0].pageIndex",
-                        "text"
-                      ],
+                      "$dynamicAttrPaths": ["events[0].pageIndex", "text"],
                       "colorScheme": "blackAlpha",
                       "events": [
                         {
@@ -10979,10 +10851,7 @@
                     "y": 106,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "labelWidth",
-                        "value"
-                      ],
+                      "$dynamicAttrPaths": ["labelWidth", "value"],
                       "colorScheme": "blue",
                       "formDataKey": "",
                       "hidden": false,
@@ -11010,10 +10879,7 @@
                     "y": 81,
                     "z": 0,
                     "props": {
-                      "$dynamicAttrPaths": [
-                        "labelWidth",
-                        "value"
-                      ],
+                      "$dynamicAttrPaths": ["labelWidth", "value"],
                       "colorScheme": "blue",
                       "formDataKey": "",
                       "hidden": false,
@@ -11220,9 +11086,7 @@
                         "y": 2,
                         "z": 0,
                         "props": {
-                          "$dynamicAttrPaths": [
-                            "value"
-                          ],
+                          "$dynamicAttrPaths": ["value"],
                           "colorScheme": "grayBlue",
                           "disableMarkdown": false,
                           "dynamicHeight": "auto",
@@ -11533,9 +11397,7 @@
                         }
                       ],
                       "mode": "vertical",
-                      "selectedValues": [
-                        "subMenu1"
-                      ]
+                      "selectedValues": ["subMenu1"]
                     }
                   },
                   {
@@ -11636,9 +11498,7 @@
                   "viewDisplayName": "leftSection1-leftSectionContainer1"
                 }
               ],
-              "viewSortedKey": [
-                "leftSection1-leftSectionContainer1"
-              ]
+              "viewSortedKey": ["leftSection1-leftSectionContainer1"]
             }
           }
         ],
@@ -11690,9 +11550,7 @@
     "z": 0,
     "props": {
       "currentPageIndex": 0,
-      "pageSortedKey": [
-        "page1"
-      ]
+      "pageSortedKey": ["page1"]
     }
   },
   "dependenciesState": {},
