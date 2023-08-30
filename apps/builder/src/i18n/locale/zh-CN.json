@@ -3961,6 +3961,10 @@
         "title": "变更方案？",
         "button_cancel": "取消",
         "button_confirm": "确认"
+      },
+      "ai-agent": {
+        "string1": "这个模型是为Premium团队准备的功能",
+        "string2": "如果要使用它，请先升级到Premium。通过升级到Premium，您还可以解锁下述功能"
       }
     },
     "homepage": {
