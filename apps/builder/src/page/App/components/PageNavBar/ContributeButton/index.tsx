@@ -54,6 +54,7 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
       </Button>
       {shareModalVisible && (
         <ShareAppPC
+          isDeployed={appInfo.deployed}
           title={t("user_management.modal.social_media.default_text.app", {
             appName: appInfo.appName,
           })}

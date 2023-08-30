@@ -15,11 +15,10 @@ import {
   getCurrentUser,
   teamActions,
 } from "@illa-public/user-data"
-import { canManage, canUseUpgradeFeature } from "@illa-public/user-role-utils"
 import {
-  ACTION_MANAGE,
-  ATTRIBUTE_GROUP,
-} from "@illa-public/user-role-utils/interface"
+  canManageInvite,
+  canUseUpgradeFeature,
+} from "@illa-public/user-role-utils"
 import { isEqual } from "lodash"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm, useFormState, useWatch } from "react-hook-form"
@@ -923,10 +922,12 @@ export const AIAgent: FC = () => {
                           setShareDialogVisible(false)
                           setContributedDialogVisible(false)
                         }}
-                        canInvite={canManage(
+                        canInvite={canManageInvite(
                           currentTeamInfo.myRole,
-                          ATTRIBUTE_GROUP.AGENT,
-                          ACTION_MANAGE.CREATE_AGENT,
+                          currentTeamInfo.permission
+                            .allowEditorManageTeamMember,
+                          currentTeamInfo.permission
+                            .allowViewerManageTeamMember,
                         )}
                         defaultTab={
                           contributedDialogVisible

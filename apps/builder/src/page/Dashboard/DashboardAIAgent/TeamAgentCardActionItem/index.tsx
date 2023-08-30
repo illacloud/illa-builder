@@ -10,6 +10,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
   canManage,
+  canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
 import { isCloudVersion } from "@illa-public/utils"
@@ -258,10 +259,10 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
           onClose={() => {
             setShareVisible(false)
           }}
-          canInvite={canManage(
+          canInvite={canManageInvite(
             teamInfo.myRole,
-            ATTRIBUTE_GROUP.AGENT,
-            ACTION_MANAGE.CREATE_AGENT,
+            teamInfo.permission.allowEditorManageTeamMember,
+            teamInfo.permission.allowViewerManageTeamMember,
           )}
           defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
           defaultInviteUserRole={USER_ROLE.VIEWER}

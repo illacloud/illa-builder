@@ -1,10 +1,6 @@
-import {HTMLAttributes} from "react";
+import { HTMLAttributes } from "react"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
 export interface AppCardActionItemProps extends HTMLAttributes<HTMLDivElement> {
-  appId: string
-  appName: string
-  canEditApp: boolean
-  isDeploy: boolean
-  isPublic: boolean
-  isContributed: boolean
+  appInfo: DashboardApp
 }
