@@ -4125,5 +4125,8 @@
     "before": "Încarcă mai mult"
   },
   "size_exceed_copied_tips": "Conținutul este prea lung pentru a copia. (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)",
-  "contribute": "Contribuie"
+  "contribute": "Contribuie",
+  "error_page": {
+    "fobidden": "Fără permisiune de acces"
+  }
 }
