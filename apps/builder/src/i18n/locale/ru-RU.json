@@ -752,7 +752,7 @@
           "cc_email": "Cc email(s)",
           "from_email": "От email",
           "placeholder": {
-            "attachment": "{{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
+            "attachment": "{[{ data: 'exp', name: 'exp', contentType: 'exp' }]}}",
             "emails": "Используйте запятую для разделения писем, например {{[\"A\", \"B\"]}}"
           },
           "replay_email": "Ответить по электронной почте",
@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Начальное значение",
           "tooltips": "Поддерживает объекты или примитивные значения. Пример: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2129,7 +2129,7 @@
           "button": "Кнопка",
           "icon": "Иконка",
           "solid": "Solid",
-          "outline": "Outline",
+          "outline": "Контур",
           "auto": "Авто",
           "limited": "Ограниченный",
           "limit_offset_based": "Ограниченное смещение на основе",
@@ -2522,7 +2522,7 @@
       "history": "История",
       "more": "Ещё",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "<unk> S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,27 +3495,27 @@
   "oauth_redirect_title": "Перенаправление",
   "oauth_redirect_description": "Перенаправление на облако <0>ILLA </0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Russian",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "Африкаанс",
+    "cs-CZ": "c<unk> es<unk> tina",
+    "de-DE": "Немецкий",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "франк",
+    "it-IT": "итальяно",
+    "nl-NL": "Недерланд",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "португес",
+    "ro-RO": "романа",
+    "ru-RU": "Русский",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
   "logout_failed": "Не удалось выйти из системы. Пожалуйста, повторите попытку позже.",
   "drive": {
@@ -4061,7 +4061,7 @@
       "update_suc": "Успешно обновлено"
     },
     "button": {
-      "blank": "Создайте ваше первое приложение",
+      "blank": "Создать новый",
       "blank-agent": "Создать ИИ Агент"
     }
   },
