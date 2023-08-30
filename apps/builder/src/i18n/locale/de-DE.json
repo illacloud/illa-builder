@@ -501,7 +501,7 @@
             "couchdb": {
               "database": "Datenbank auswählen",
               "record": "{{ {\"x\":1, \"y\":2, ...} }}",
-              "mangoquery": "{{ {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
+              "mangoquery": "{{ { {\n  \"selector\": {},\n  \"limit\": 5\n} }}"
             },
             "restapi": {
               "consumer_key": "Verbraucherschlüssel",
@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Anfangswert",
           "tooltips": "Unterstützt Objekte oder primitive Werte. Beispiel: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Verlauf",
       "more": "Mehr",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "MP",
         "ctrls": "Strg+S"
       },
       "history_list": {
@@ -3495,27 +3495,27 @@
   "oauth_redirect_title": "Umleitung",
   "oauth_redirect_description": "Umleitung zu <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Englisch",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "af-ZA": "Afrikaner",
+    "cs-CZ": "c<unk> es<unk> tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "franc<unk> ais",
     "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "nl-NL": "Nederland",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
+    "pt-PT": "Portugiesisch",
+    "ro-RO": "roma<unk> na<unk>",
     "ru-RU": "русский",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
   "logout_failed": "Abmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut.",
   "drive": {
@@ -4061,7 +4061,7 @@
       "update_suc": "Erfolgreich aktualisiert"
     },
     "button": {
-      "blank": "Erstelle deine erste App",
+      "blank": "Neu erstellen",
       "blank-agent": "KI-Agent erstellen"
     }
   },
