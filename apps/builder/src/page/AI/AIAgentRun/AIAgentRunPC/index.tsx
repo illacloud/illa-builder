@@ -192,7 +192,7 @@ export const AIAgentRunPC: FC = () => {
               userRoleForThisAgent={
                 currentTeamInfo.id === agent.teamID
                   ? currentTeamInfo.myRole
-                  : USER_ROLE.CUSTOM
+                  : USER_ROLE.GUEST
               }
               ownerTeamID={agent.teamID}
               onBalanceChange={(balance) => {
