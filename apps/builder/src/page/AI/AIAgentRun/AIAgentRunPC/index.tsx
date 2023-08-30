@@ -139,9 +139,9 @@ export const AIAgentRunPC: FC = () => {
                   agentName: agent.name,
                 },
               )}
-              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${teamInfo.identifier}/ai-agent/${
-                agent.aiAgentID
-              }/run`}
+              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+                teamInfo.identifier
+              }/ai-agent/${agent.aiAgentID}/run`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}
@@ -192,7 +192,7 @@ export const AIAgentRunPC: FC = () => {
               userRoleForThisAgent={
                 currentTeamInfo.id === agent.teamID
                   ? currentTeamInfo.myRole
-                  : USER_ROLE.VIEWER
+                  : USER_ROLE.CUSTOM
               }
               ownerTeamID={agent.teamID}
               onBalanceChange={(balance) => {

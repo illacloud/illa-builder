@@ -76,7 +76,6 @@ import {
   tabsContainerStyle,
 } from "./style"
 
-
 export const AIAgentRunMobile: FC = () => {
   const { agent, marketplaceInfo } = useAsyncValue() as {
     agent: Agent
@@ -169,91 +168,93 @@ export const AIAgentRunMobile: FC = () => {
       },
     })
 
-  const dialog = <Controller
-    control={control}
-    name="publishedToMarketplace"
-    render={({ field }) => (
-      <>
-        {shareDialogVisible && (
-          <ShareAgentMobile
-            title={t(
-              "user_management.modal.social_media.default_text.agent",
-              {
-                agentName: agent.name,
-              },
-            )}
-            redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-              marketplaceInfo?.marketplace.contributorTeam.teamIdentify
-            }/ai-agent/${agent.aiAgentID}/run`}
-            onClose={() => {
-              setShareDialogVisible(false)
-            }}
-            canInvite={canManage(
-              currentTeamInfo.myRole,
-              ATTRIBUTE_GROUP.AGENT,
-              ACTION_MANAGE.CREATE_AGENT,
-            )}
-            defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
-            defaultInviteUserRole={USER_ROLE.VIEWER}
-            teamID={teamInfo.id}
-            currentUserRole={teamInfo.myRole}
-            defaultBalance={teamInfo.currentTeamLicense.balance}
-            defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
-            onInviteLinkStateChange={(enableInviteLink) => {
-              dispatch(
-                teamActions.updateTeamMemberPermissionReducer({
-                  teamID: teamInfo.id,
-                  newPermission: {
-                    ...teamInfo.permission,
-                    inviteLinkEnabled: enableInviteLink,
-                  },
-                }),
-              )
-            }}
-            agentID={agent.aiAgentID}
-            defaultAgentContributed={field.value}
-            onAgentContributed={(isAgentContributed) => {
-              field.onChange(isAgentContributed)
-            }}
-            onCopyInviteLink={(link: string) => {
-              copyToClipboard(
-                t("user_management.modal.custom_copy_text_agent_invite", {
-                  userName: currentUserInfo.nickname,
-                  teamName: teamInfo.name,
-                  inviteLink: link,
-                }),
-              )
-            }}
-            onCopyAgentMarketLink={(link: string) => {
-              copyToClipboard(
-                t("user_management.modal.contribute.default_text.agent", {
+  const dialog = (
+    <Controller
+      control={control}
+      name="publishedToMarketplace"
+      render={({ field }) => (
+        <>
+          {shareDialogVisible && (
+            <ShareAgentMobile
+              title={t(
+                "user_management.modal.social_media.default_text.agent",
+                {
                   agentName: agent.name,
-                  agentLink: link,
-                }),
-              )
-            }}
-            userRoleForThisAgent={
-              currentTeamInfo.id === agent.teamID
-                ? currentTeamInfo.myRole
-                : USER_ROLE.VIEWER
-            }
-            ownerTeamID={agent.teamID}
-            onBalanceChange={(balance) => {
-              dispatch(
-                teamActions.updateTeamMemberSubscribeReducer({
-                  teamID: teamInfo.id,
-                  subscribeInfo: {
-                    ...teamInfo.currentTeamLicense,
-                    balance: balance,
-                  },
-                }),
-              )
-            }}
-          />
-        )}
-      </>
-    )}
-  />
+                },
+              )}
+              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+                marketplaceInfo?.marketplace.contributorTeam.teamIdentify
+              }/ai-agent/${agent.aiAgentID}/run`}
+              onClose={() => {
+                setShareDialogVisible(false)
+              }}
+              canInvite={canManage(
+                currentTeamInfo.myRole,
+                ATTRIBUTE_GROUP.AGENT,
+                ACTION_MANAGE.CREATE_AGENT,
+              )}
+              defaultTab={ShareAgentTab.SHARE_WITH_TEAM}
+              defaultInviteUserRole={USER_ROLE.VIEWER}
+              teamID={teamInfo.id}
+              currentUserRole={teamInfo.myRole}
+              defaultBalance={teamInfo.currentTeamLicense.balance}
+              defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
+              onInviteLinkStateChange={(enableInviteLink) => {
+                dispatch(
+                  teamActions.updateTeamMemberPermissionReducer({
+                    teamID: teamInfo.id,
+                    newPermission: {
+                      ...teamInfo.permission,
+                      inviteLinkEnabled: enableInviteLink,
+                    },
+                  }),
+                )
+              }}
+              agentID={agent.aiAgentID}
+              defaultAgentContributed={field.value}
+              onAgentContributed={(isAgentContributed) => {
+                field.onChange(isAgentContributed)
+              }}
+              onCopyInviteLink={(link: string) => {
+                copyToClipboard(
+                  t("user_management.modal.custom_copy_text_agent_invite", {
+                    userName: currentUserInfo.nickname,
+                    teamName: teamInfo.name,
+                    inviteLink: link,
+                  }),
+                )
+              }}
+              onCopyAgentMarketLink={(link: string) => {
+                copyToClipboard(
+                  t("user_management.modal.contribute.default_text.agent", {
+                    agentName: agent.name,
+                    agentLink: link,
+                  }),
+                )
+              }}
+              userRoleForThisAgent={
+                currentTeamInfo.id === agent.teamID
+                  ? currentTeamInfo.myRole
+                  : USER_ROLE.CUSTOM
+              }
+              ownerTeamID={agent.teamID}
+              onBalanceChange={(balance) => {
+                dispatch(
+                  teamActions.updateTeamMemberSubscribeReducer({
+                    teamID: teamInfo.id,
+                    subscribeInfo: {
+                      ...teamInfo.currentTeamLicense,
+                      balance: balance,
+                    },
+                  }),
+                )
+              }}
+            />
+          )}
+        </>
+      )}
+    />
+  )
 
   const configTab = (
     <div css={configContainerStyle}>
