@@ -21,7 +21,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { isBoolean } from "lodash"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
@@ -33,6 +33,7 @@ import { DashboardContentHeader } from "@/page/Dashboard/components/DashboardCon
 import { openGuideModal } from "@/page/Template/gideModeModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchCreateApp } from "@/services/apps"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 import {
   track,
   trackPageDurationEnd,
@@ -40,7 +41,6 @@ import {
 } from "@/utils/mixpanelHelper"
 import { AppsContent } from "./AppContent"
 import { appsContainerStyle } from "./style"
-
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -56,7 +56,6 @@ export const DashboardApps: FC = () => {
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
   const teamInfo = useSelector(getCurrentTeamInfo)!!
-  const copyToClipboard = useCopyToClipboard()
 
   const canCreateApp = canManage(
     teamInfo.myRole,

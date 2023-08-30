@@ -4,6 +4,7 @@ import { FixedSizeList, ListChildComponentProps } from "react-window"
 import InfiniteLoader from "react-window-infinite-loader"
 import { fetchTeamAgentListByPage } from "@/services/agent"
 import { AGENT_LIST_HEIGHT, TEAM_AGENT_ITEM_HEIGHT } from "../../constants"
+import { EmptyState } from "../EmptyState"
 import { TeamListItem } from "../TeamListItem"
 import { TeamAgentListProps } from "./interface"
 
@@ -33,34 +34,38 @@ export const TeamAgentList: FC<TeamAgentListProps> = (props) => {
         return !hasNextPage || index < teamList.length
       }}
     >
-      {({ onItemsRendered, ref }) => (
-        <FixedSizeList
-          height={AGENT_LIST_HEIGHT}
-          width="100%"
-          itemCount={itemCount}
-          itemData={teamList}
-          itemSize={TEAM_AGENT_ITEM_HEIGHT}
-          onItemsRendered={onItemsRendered}
-          ref={ref}
-        >
-          {(props: ListChildComponentProps<Agent[]>) => {
-            const { index, style, data } = props
-            if (
-              !Array.isArray(data) ||
-              data.length === 0 ||
-              index >= data.length
-            )
-              return null
-            return (
-              <TeamListItem
-                item={data[index]}
-                style={style}
-                onSelected={onSelect}
-              />
-            )
-          }}
-        </FixedSizeList>
-      )}
+      {({ onItemsRendered, ref }) =>
+        itemCount === 0 ? (
+          <EmptyState />
+        ) : (
+          <FixedSizeList
+            height={AGENT_LIST_HEIGHT}
+            width="100%"
+            itemCount={itemCount}
+            itemData={teamList}
+            itemSize={TEAM_AGENT_ITEM_HEIGHT}
+            onItemsRendered={onItemsRendered}
+            ref={ref}
+          >
+            {(props: ListChildComponentProps<Agent[]>) => {
+              const { index, style, data } = props
+              if (
+                !Array.isArray(data) ||
+                data.length === 0 ||
+                index >= data.length
+              )
+                return null
+              return (
+                <TeamListItem
+                  item={data[index]}
+                  style={style}
+                  onSelected={onSelect}
+                />
+              )
+            }}
+          </FixedSizeList>
+        )
+      }
     </InfiniteLoader>
   )
 }

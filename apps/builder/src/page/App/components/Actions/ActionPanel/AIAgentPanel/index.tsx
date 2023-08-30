@@ -1,25 +1,22 @@
 import { AI_AGENT_MODEL } from "@illa-public/market-agent/MarketAgentCard/interface"
-import { FC, useCallback } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { Input, InputNumber } from "@illa-design/react"
+import { Input } from "@illa-design/react"
 import { ReactComponent as ModalOpenAIIcon } from "@/assets/agent/modal-openai.svg"
 import { CodeEditor } from "@/components/CodeEditor"
-import {
-  CODE_LANG,
-  CODE_TYPE,
-} from "@/components/CodeEditor/CodeMirror/extensions/interface"
+import { CODE_LANG } from "@/components/CodeEditor/CodeMirror/extensions/interface"
 import { RecordEditor } from "@/components/RecordEditor"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { AIAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
+import { AiAgentActionContent } from "@/redux/currentApp/action/aiAgentAction"
 import { Params } from "@/redux/resource/restapiResource"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { AIAgentResourceChoose } from "../AIAgentResourceChoose"
+import { ActionEventHandler } from "../ActionEventHandler"
 import HorizontalWithLabel from "../Layout/HorizontalWithLabel"
 import ActionPanelSpace from "../Layout/Space"
 import { TransformerComponent } from "../TransformerComponent"
-import { maxTokenInputStyle } from "./style"
 
 export const AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL = {
   [AI_AGENT_MODEL.GPT_3_5_TURBO]: "GPT 3.5",
@@ -32,7 +29,7 @@ const AIAgentPanel: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const aiAgentContent = currentAction.content as AIAgentActionContent
+  const aiAgentContent = currentAction.content as AiAgentActionContent
 
   const handleChangeInput = useCallback(
     (value: string) => {
@@ -66,6 +63,37 @@ const AIAgentPanel: FC = () => {
     [aiAgentContent, currentAction, dispatch],
   )
 
+  const variables = useMemo(() => {
+    const resourcesKeys = aiAgentContent.virtualResource.variables.map(
+      (item) => item.key,
+    )
+
+    let resourcesKeyValues: Record<string, string> = {}
+    if (aiAgentContent.virtualResource.variables.length > 0) {
+      aiAgentContent.virtualResource.variables.forEach((item) => {
+        if (!item) return
+        resourcesKeyValues[item.key] = item.value
+      })
+    }
+
+    let currentActionKeyValues: Record<string, string> = {}
+
+    if (aiAgentContent.variables.length > 0) {
+      aiAgentContent.variables.forEach((item) => {
+        if (!item) return
+        currentActionKeyValues[item.key] = item.value
+      })
+    }
+
+    const variable = resourcesKeys.map((item) => {
+      return {
+        key: item,
+        value: currentActionKeyValues[item] || resourcesKeyValues[item] || "",
+      }
+    })
+    return variable
+  }, [aiAgentContent.variables, aiAgentContent.virtualResource.variables])
+
   return (
     <div>
       <AIAgentResourceChoose />
@@ -76,16 +104,20 @@ const AIAgentPanel: FC = () => {
           colorScheme="techPurple"
           readOnly
           value={
-            AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL[aiAgentContent.aiAgentModel]
+            AI_AGENT_MODAL_TYPE_MAP_SHOW_LABEL[
+              aiAgentContent.virtualResource.model
+            ]
           }
         />
       </HorizontalWithLabel>
-      <RecordEditor
-        fillOnly
-        records={aiAgentContent.variables}
-        onChangeValue={handleChangeVariableValue}
-        label={t("editor.ai-agent.label.variable")}
-      />
+      {variables.length > 0 && (
+        <RecordEditor
+          fillOnly
+          records={variables}
+          onChangeValue={handleChangeVariableValue}
+          label={t("editor.ai-agent.label.variable")}
+        />
+      )}
       <HorizontalWithLabel
         labelName={t("editor.action.panel.label.ai-agent.input")}
       >
@@ -93,24 +125,12 @@ const AIAgentPanel: FC = () => {
           lang={CODE_LANG.JAVASCRIPT}
           expectValueType={VALIDATION_TYPES.STRING}
           modalTitle={t("editor.action.panel.label.ai-agent.input")}
-          codeType={CODE_TYPE.NO_METHOD_FUNCTION}
-          canShowCompleteInfo
           value={aiAgentContent.input}
           onChange={handleChangeInput}
         />
       </HorizontalWithLabel>
-      <HorizontalWithLabel labelName={t("editor.ai-agent.label.max-token")}>
-        <InputNumber
-          readOnly
-          value={aiAgentContent.maxTokens}
-          mode="button"
-          colorScheme="techPurple"
-          size="large"
-          w="320px"
-          css={maxTokenInputStyle}
-        />
-      </HorizontalWithLabel>
       <TransformerComponent />
+      <ActionEventHandler />
     </div>
   )
 }

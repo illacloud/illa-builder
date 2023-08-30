@@ -21,7 +21,7 @@ import {
   ACTION_MANAGE,
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
-import { formatNumForAgent, useCopyToClipboard } from "@illa-public/utils"
+import { formatNumForAgent } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { Controller, useForm, useFormState } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -56,6 +56,7 @@ import { useAgentConnect } from "@/page/AI/components/ws/useAgentConnect"
 import { CollaboratorsInfo } from "@/redux/currentApp/collaborators/collaboratorsState"
 import { ILLARoute } from "@/router"
 import { forkAIAgentToTeam, starAIAgent, unstarAIAgent } from "@/services/agent"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 import { ChatContext } from "../../components/ChatContext"
 import {
   agentAvatarStyle,
@@ -93,7 +94,6 @@ export const AIAgentRunPC: FC = () => {
 
   const currentTeamInfo = useSelector(getCurrentTeamInfo)!!
   const currentUserInfo = useSelector(getCurrentUser)
-  const copyToClipboard = useCopyToClipboard()
 
   const message = useMessage()
 
@@ -133,9 +133,15 @@ export const AIAgentRunPC: FC = () => {
         <>
           {shareDialogVisible && (
             <ShareAgentPC
-              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/ai-agent/${
-                agent.aiAgentID
-              }/run`}
+              title={t(
+                "user_management.modal.social_media.default_text.agent",
+                {
+                  agentName: agent.name,
+                },
+              )}
+              redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
+                teamInfo.identifier
+              }/ai-agent/${agent.aiAgentID}/run`}
               onClose={() => {
                 setShareDialogVisible(false)
               }}
@@ -186,7 +192,7 @@ export const AIAgentRunPC: FC = () => {
               userRoleForThisAgent={
                 currentTeamInfo.id === agent.teamID
                   ? currentTeamInfo.myRole
-                  : USER_ROLE.VIEWER
+                  : USER_ROLE.GUEST
               }
               ownerTeamID={agent.teamID}
               onBalanceChange={(balance) => {
@@ -289,7 +295,7 @@ export const AIAgentRunPC: FC = () => {
         <span>{t("marketplace.star")}</span>
         {(marketplaceInfo?.marketplace.numStars ?? 0) > 0 && (
           <span>
-            &#20;
+            {" "}
             {formatNumForAgent(marketplaceInfo?.marketplace.numStars ?? 0)}
           </span>
         )}
@@ -323,7 +329,7 @@ export const AIAgentRunPC: FC = () => {
           <span>{t("marketplace.fork")}</span>
           {(marketplaceInfo?.marketplace.numForks ?? 0) > 0 && (
             <span>
-              &#20;
+              {" "}
               {formatNumForAgent(marketplaceInfo?.marketplace.numForks ?? 0)}
             </span>
           )}

@@ -2834,9 +2834,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      react-i18next:
-        specifier: ^12.1.4
-        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       tsconfig:
         specifier: workspace:*
@@ -2874,9 +2871,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      react-i18next:
-        specifier: ^12.1.4
-        version: 12.1.5(i18next@22.4.9)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       tsconfig:
         specifier: workspace:*
@@ -3348,9 +3342,6 @@ importers:
       '@emotion/react':
         specifier: '*'
         version: 11.11.1(@types/react@18.2.20)(react@18.2.0)
-      '@illa-design/react':
-        specifier: workspace:*
-        version: link:../../illa-design/packages/react
       '@types/react':
         specifier: ^18.2.20
         version: 18.2.20

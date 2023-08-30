@@ -18,11 +18,7 @@ export const addTeamAIAgentReducer: CaseReducer<
   PayloadAction<AddTeamAIAgentPayload>
 > = (state, action) => {
   let payload = action.payload
-  if (payload.index == undefined) {
-    state.list = [payload.aiAgent, ...state.list]
-  } else {
-    state.list.splice(payload.index, 0, payload.aiAgent)
-  }
+  state.list = [payload.aiAgent, ...state.list]
 }
 
 export const removeTeamAIAgentReducer: CaseReducer<

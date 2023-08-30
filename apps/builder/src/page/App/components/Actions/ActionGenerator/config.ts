@@ -151,7 +151,7 @@ export const ActionTypeList = [
     category: "jsTransformer" as const,
   },
   {
-    title: i18n.t("editor.action.type.ai_agent"),
+    title: "AI Agent",
     item: AIAgent,
     category: "aiAgent" as const,
   },

@@ -34,10 +34,6 @@ export const itemContainer = css`
   align-items: center;
 `
 
-export const itemLogo = css`
-  flex-shrink: 0;
-`
-
 export const itemText = css`
   margin-left: 8px;
   flex-shrink: 1;

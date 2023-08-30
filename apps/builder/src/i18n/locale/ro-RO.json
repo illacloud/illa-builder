@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Valoare iniţială",
           "tooltips": "Suportă obiecte sau valori primitive. Exemplu: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Istoric",
       "more": "Mai",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "x",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "Redirecționare",
   "oauth_redirect_description": "Redirecționare către <0>Cloud ILLA </0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Română",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "af-ZA": "Afrikaani",
+    "cs-CZ": "cuv. tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "francitais",
+    "it-IT": "italiană",
+    "nl-NL": "Nederlanduri",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugueIe",
+    "ro-RO": "rumegătoare",
+    "ru-RU": "Nord Nord",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "Actualizare reușită"
     },
     "button": {
-      "blank": "Creează prima ta aplicație",
+      "blank": "Crează nou",
       "blank-agent": "Creează AI Agent"
     }
   },
@@ -4125,5 +4125,8 @@
     "before": "Încarcă mai mult"
   },
   "size_exceed_copied_tips": "Conținutul este prea lung pentru a copia. (dimensiunea curentă: {{current_size}} octeți, limită: {{limit_size}} octeți)",
-  "contribute": "Contribuie"
+  "contribute": "Contribuie",
+  "error_page": {
+    "fobidden": "Fără permisiune de acces"
+  }
 }

@@ -15,7 +15,7 @@ import {
   canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -39,6 +39,7 @@ import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
 import { RootState } from "@/store"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
@@ -73,7 +74,6 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const [shareVisible, setShareVisible] = useState(false)
   const [appSettingVisible, setAppSettingVisible] = useState(false)
   const [duplicateLoading, setDuplicateLoading] = useState(false)
-  const copyToClipboard = useCopyToClipboard()
 
   const showInvite = canManageInvite(
     teamInfo?.myRole ?? USER_ROLE.VIEWER,
@@ -395,6 +395,9 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       >
         {shareVisible && (
           <ShareAppPC
+            title={t("user_management.modal.social_media.default_text.app", {
+              appName: appName,
+            })}
             editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
               teamInfo.identifier
             }/app/${appId}`}

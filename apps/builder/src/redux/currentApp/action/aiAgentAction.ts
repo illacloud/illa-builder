@@ -1,9 +1,21 @@
-import { AI_AGENT_MODEL } from "@illa-public/market-agent/MarketAgentCard/interface"
+import {
+  AI_AGENT_MODEL,
+  AI_AGENT_TYPE,
+  Agent,
+} from "@illa-public/market-agent/MarketAgentCard/interface"
 import { Params } from "@/redux/resource/restapiResource"
 
-export interface AIAgentActionContent {
-  maxTokens: number
+export interface BaseAiAgentActionContent {
+  agentType: AI_AGENT_TYPE
+  model: AI_AGENT_MODEL
   variables: Params[]
-  aiAgentModel: AI_AGENT_MODEL
   input: string
+  modelConfig: {
+    maxTokens: number
+    stream: boolean
+  }
+}
+
+export interface AiAgentActionContent extends BaseAiAgentActionContent {
+  virtualResource: Agent
 }

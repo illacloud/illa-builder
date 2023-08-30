@@ -21,6 +21,7 @@ import { RestApiActionInitial } from "@/redux/currentApp/action/restapiAction"
 import { S3ActionInitial } from "@/redux/currentApp/action/s3Action"
 import { SMTPActionInitial } from "@/redux/currentApp/action/smtpAction"
 import { TransformerActionInitial } from "@/redux/currentApp/action/transformerAction"
+import { BaseAiAgentActionContent } from "./aiAgentAction"
 
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
@@ -75,11 +76,15 @@ export function getInitialContent(actionType: ActionType): ActionContent {
   }
 }
 
-export function getInitialAgentContent(agent: Agent): ActionContent {
+export function getInitialAgentContent(agent: Agent): BaseAiAgentActionContent {
   return {
-    aiAgentModel: agent.model,
-    maxTokens: agent.modelConfig.maxTokens,
+    agentType: agent.agentType,
+    model: agent.model,
     variables: agent.variables,
     input: "",
+    modelConfig: {
+      maxTokens: agent.modelConfig.maxTokens,
+      stream: false,
+    },
   }
 }

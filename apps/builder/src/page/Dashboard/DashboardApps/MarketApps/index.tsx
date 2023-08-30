@@ -1,4 +1,8 @@
-import { MarketAppCard, fetchAppList } from "@illa-public/market-app"
+import {
+  MarketAppCard,
+  fetchAppList,
+  fetchAuthMarketAppList,
+} from "@illa-public/market-app"
 import {
   PRODUCT_SORT_BY,
   ProductMarketApp,
@@ -39,7 +43,7 @@ export const MarketApps: FC = () => {
   useEffect(() => {
     const controller = new AbortController()
     setUpdateLoading(true)
-    fetchAppList(
+    fetchAuthMarketAppList(
       {
         page: 1,
         limit: 40,

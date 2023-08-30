@@ -12,7 +12,7 @@ import {
   canManage,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
-import { isCloudVersion, useCopyToClipboard } from "@illa-public/utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom"
 import { AgentContent } from "@/page/Dashboard/DashboardAIAgent/AgentContent"
 import { containerStyle } from "@/page/Dashboard/DashboardAIAgent/style"
 import { DashboardContentHeader } from "@/page/Dashboard/components/DashboardContentHeader"
+import { copyToClipboard } from "@/utils/copyToClipboard"
 
 const DashboardAIAgent: FC = () => {
   const { t } = useTranslation()
@@ -39,8 +40,6 @@ const DashboardAIAgent: FC = () => {
   )
 
   const upgradeModal = useUpgradeModal()
-
-  const copyToClipboard = useCopyToClipboard()
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo?.myRole,

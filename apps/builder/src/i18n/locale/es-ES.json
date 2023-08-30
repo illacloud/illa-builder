@@ -824,7 +824,7 @@
           "placeholder": {
             "query": "seleccionar * de usuarios;",
             "table": "Seleccione una tabla",
-            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
+            "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},}}"
           },
           "table": "Tabla",
           "insert_record": "Arreglo de registros a insertar",
@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Valor inicial",
           "tooltips": "Soporta objetos o valores primitivos. Ejemplo: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Historial",
       "more": "Más",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "SU",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,24 +3495,24 @@
   "oauth_redirect_title": "Redirigir",
   "oauth_redirect_description": "Redirigiendo a <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Inglés",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "cs-CZ": "tina de cl",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
+    "fr-FR": "Francoais",
+    "it-IT": "Italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
+    "pt-PT": "portugueм s",
+    "ro-RO": "roma na\"",
     "ru-RU": "русский",
     "sv-SE": "svenska",
     "uk-UA": "українська"
@@ -4061,7 +4061,7 @@
       "update_suc": "Actualizado correctamente"
     },
     "button": {
-      "blank": "Crea tu primera aplicación",
+      "blank": "Crear nuevo",
       "blank-agent": "Crear agente de IA"
     }
   },
@@ -4125,5 +4125,8 @@
     "before": "Cargar más"
   },
   "size_exceed_copied_tips": "El contenido es demasiado largo para copiar. (tamaño actual: {{current_size}} bytes, límite: {{limit_size}} bytes)",
-  "contribute": "Contribuir"
+  "contribute": "Contribuir",
+  "error_page": {
+    "fobidden": "Sin permiso de acceso"
+  }
 }
