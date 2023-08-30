@@ -2624,7 +2624,8 @@
         "token-not-enough": "Modellens gräns har uppnåtts. Vänligen starta om.",
         "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat.",
         "purchase-required": "Colla är inte tillräckligt för att köra, ladda om.",
-        "leave": "Det finns osparat innehåll, är du säker på att du vill lämna?"
+        "leave": "Det finns osparat innehåll, är du säker på att du vill lämna?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "🧬 Redigera AI agent",
       "generate-desc": {
