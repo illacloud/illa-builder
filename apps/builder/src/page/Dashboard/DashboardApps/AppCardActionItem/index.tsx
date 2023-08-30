@@ -11,6 +11,9 @@ import {
   teamActions,
 } from "@illa-public/user-data"
 import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
   canManageInvite,
   canUseUpgradeFeature,
 } from "@illa-public/user-role-utils"
@@ -37,21 +40,12 @@ import { duplicateApp } from "@/page/Dashboard/DashboardApps/AppCardActionItem/u
 import { AppSettingModal } from "@/page/Dashboard/components/AppSettingModal"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchDeleteApp } from "@/services/apps"
-import { RootState } from "@/store"
 import { copyToClipboard } from "@/utils/copyToClipboard"
 import { track } from "@/utils/mixpanelHelper"
 import { isILLAAPiError } from "@/utils/typeHelper"
 
 export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
-  const {
-    appId,
-    appName,
-    canEditApp,
-    isPublic,
-    isContributed,
-    isDeploy,
-    ...rest
-  } = props
+  const { appInfo, ...rest } = props
 
   const { t } = useTranslation()
   const message = useMessage()
@@ -60,12 +54,13 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const navigate = useNavigate()
   const { teamIdentifier } = useParams()
 
-  const app = useSelector((state: RootState) => {
-    return state.dashboard.dashboardApps.list.find(
-      (item) => item.appId === appId,
-    )!!
-  })
   const teamInfo = useSelector(getCurrentTeamInfo)!!
+
+  const canEditApp = canManage(
+    teamInfo.myRole,
+    ATTRIBUTE_GROUP.APP,
+    ACTION_MANAGE.EDIT_APP,
+  )
 
   const currentUserInfo = useSelector(getCurrentUser)
 
@@ -89,11 +84,11 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
   const handleDuplicateApp = () => {
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
       element: "app_duplicate",
-      parameter5: appId,
+      parameter5: appInfo.appId,
     })
     if (duplicateLoading) return
     setDuplicateLoading(true)
-    duplicateApp(appId, app.appName)
+    duplicateApp(appInfo.appId, appInfo.appName)
       .then(
         (response) => {
           dispatch(
@@ -124,14 +119,14 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
     setAppSettingVisible(true)
     track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
       element: "app_setting_modal",
-      parameter5: appId,
+      parameter5: appInfo.appId,
     })
   }
 
   const openInviteModal = useCallback(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
       element: "app_share",
-      parameter5: appId,
+      parameter5: appInfo.appId,
     })
     if (isCloudVersion && !canUseBillingFeature) {
       upgradeModal({
@@ -140,16 +135,16 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       return
     }
     setShareVisible(true)
-  }, [appId, canUseBillingFeature, upgradeModal])
+  }, [appInfo.appId, canUseBillingFeature, upgradeModal])
 
   const handleDeleteApp = useCallback(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.CLICK, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
       element: "app_delete",
-      parameter5: appId,
+      parameter5: appInfo.appId,
     })
     track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
       element: "app_delete_modal",
-      parameter5: appId,
+      parameter5: appInfo.appId,
     })
     const modalId = modal.show({
       w: "496px",
@@ -168,13 +163,13 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           {
             element: "app_delete_modal_delete",
-            parameter5: appId,
+            parameter5: appInfo.appId,
           },
         )
         modal.update(modalId, {
           okLoading: true,
         })
-        fetchDeleteApp(appId)
+        fetchDeleteApp(appInfo.appId)
           .then(
             (response) => {
               dispatch(
@@ -211,12 +206,12 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
           {
             element: "app_delete_modal_close",
-            parameter5: appId,
+            parameter5: appInfo.appId,
           },
         )
       },
     })
-  }, [appId, dispatch, modal, message, t])
+  }, [appInfo.appId, dispatch, modal, message, t])
 
   const onVisibleChange = useCallback(
     (visible: boolean) => {
@@ -224,38 +219,38 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         track(
           ILLA_MIXPANEL_EVENT_TYPE.CLICK,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-          { element: "app_more", parameter5: appId },
+          { element: "app_more", parameter5: appInfo.appId },
         )
         track(
           ILLA_MIXPANEL_EVENT_TYPE.SHOW,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-          { element: "app_duplicate", parameter5: appId },
+          { element: "app_duplicate", parameter5: appInfo.appId },
         )
         track(
           ILLA_MIXPANEL_EVENT_TYPE.SHOW,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-          { element: "app_delete", parameter5: appId },
+          { element: "app_delete", parameter5: appInfo.appId },
         )
-        isDeploy &&
+        appInfo.deployed &&
           track(
             ILLA_MIXPANEL_EVENT_TYPE.SHOW,
             ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-            { element: "app_share", parameter5: appId },
+            { element: "app_share", parameter5: appInfo.appId },
           )
       }
     },
-    [appId, isDeploy],
+    [appInfo.appId, appInfo.deployed],
   )
 
   useEffect(() => {
-    if (canEditApp || (isDeploy && showInvite)) {
+    if (canEditApp || (appInfo.deployed && showInvite)) {
       track(
         ILLA_MIXPANEL_EVENT_TYPE.SHOW,
         ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "app_more", parameter5: appId },
+        { element: "app_more", parameter5: appInfo.appId },
       )
     }
-  }, [canEditApp, isDeploy, showInvite, appId])
+  }, [canEditApp, appInfo.deployed, showInvite, appInfo.appId])
 
   useEffect(() => {
     track(ILLA_MIXPANEL_EVENT_TYPE.SHOW, ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP, {
@@ -268,18 +263,18 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       track(
         ILLA_MIXPANEL_EVENT_TYPE.SHOW,
         ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "invite_modal", parameter5: appId },
+        { element: "invite_modal", parameter5: appInfo.appId },
       )
-  }, [appId, shareVisible])
+  }, [appInfo.appId, shareVisible])
 
   useEffect(() => {
     appSettingVisible &&
       track(
         ILLA_MIXPANEL_EVENT_TYPE.SHOW,
         ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-        { element: "app_setting_modal", parameter5: appId },
+        { element: "app_setting_modal", parameter5: appInfo.appId },
       )
-  }, [appId, appSettingVisible])
+  }, [appInfo.appId, appSettingVisible])
 
   return (
     <div {...rest}>
@@ -345,7 +340,10 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             leftIcon={<MoreIcon size="14px" />}
           />
         </Dropdown>
-      ) : isDeploy && (isPublic || isContributed || showInvite) ? (
+      ) : appInfo.deployed &&
+        (appInfo.config.public ||
+          appInfo.config.publishedToMarketplace ||
+          showInvite) ? (
         // for viewer
         <Dropdown
           position="bottom-end"
@@ -356,12 +354,12 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
               track(
                 ILLA_MIXPANEL_EVENT_TYPE.CLICK,
                 ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                { element: "app_more", parameter5: appId },
+                { element: "app_more", parameter5: appInfo.appId },
               )
               track(
                 ILLA_MIXPANEL_EVENT_TYPE.SHOW,
                 ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
-                { element: "app_share", parameter5: appId },
+                { element: "app_share", parameter5: appInfo.appId },
               )
             }
           }}
@@ -394,15 +392,16 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
       >
         {shareVisible && (
           <ShareAppPC
+            isDeployed={appInfo.deployed}
             title={t("user_management.modal.social_media.default_text.app", {
-              appName: appName,
+              appName: appInfo.appName,
             })}
             editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
               teamInfo.identifier
-            }/app/${appId}`}
+            }/app/${appInfo.appId}`}
             useRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
               teamInfo.identifier
-            }/deploy/app/${appId}`}
+            }/deploy/app/${appInfo.appId}`}
             defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
             onInviteLinkStateChange={(enableInviteLink) => {
               dispatch(
@@ -433,16 +432,16 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                 }),
               )
             }}
-            defaultAppPublic={isPublic}
-            defaultAppContribute={isContributed}
-            appID={appId}
+            defaultAppPublic={appInfo.config.public}
+            defaultAppContribute={appInfo.config.publishedToMarketplace}
+            appID={appInfo.appId}
             userRoleForThisApp={teamInfo.myRole}
             ownerTeamID={teamInfo.id}
             ownerTeamIdentify={teamInfo.identifier}
             onAppPublic={(isPublic) => {
               dispatch(
                 dashboardAppActions.updateDashboardAppPublicReducer({
-                  appId: appId,
+                  appId: appInfo.appId,
                   isPublic: isPublic,
                 }),
               )
@@ -450,14 +449,14 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             onAppContribute={(isContributed) => {
               dispatch(
                 dashboardAppActions.updateDashboardAppContributeReducer({
-                  appId: appId,
+                  appId: appInfo.appId,
                   publishedToMarketplace: isContributed,
                 }),
               )
               if (isContributed) {
                 dispatch(
                   dashboardAppActions.updateDashboardAppDeployedReducer({
-                    appId: appId,
+                    appId: appInfo.appId,
                     deployed: true,
                   }),
                 )
@@ -475,7 +474,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             onCopyContributeLink={(link) => {
               copyToClipboard(
                 t("user_management.modal.contribute.default_text.app", {
-                  appName: appName,
+                  appName: appInfo.appName,
                   appLink: link,
                 }),
               )
@@ -503,7 +502,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
         )}
       </MixpanelTrackProvider>
       <AppSettingModal
-        appInfo={app}
+        appInfo={appInfo}
         visible={appSettingVisible}
         onVisibleChange={(visible) => {
           setAppSettingVisible(visible)
@@ -514,7 +513,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
             {
               element: "app_setting_modal_save",
-              parameter5: appId,
+              parameter5: appInfo.appId,
             },
           )
         }}
@@ -524,7 +523,7 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
             ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
             {
               element: "app_setting_modal_close",
-              parameter5: appId,
+              parameter5: appInfo.appId,
             },
           )
         }}
