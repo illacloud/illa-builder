@@ -163,7 +163,7 @@
           "configure": "{{ name }} を設定",
           "database": "データベース",
           "select": "リソースの種類を選択",
-          "huggingface": "Hugging Face",
+          "huggingface": "抱きしめる顔",
           "appwrite": "Appwrite",
           "couchdb": {
             "couchdb": "CouchDB"
@@ -172,7 +172,7 @@
             "oracle": "Oracle DB"
           },
           "gs": {
-            "google_sheets": "Google Sheets"
+            "google_sheets": "Google シート"
           },
           "neon": {
             "neon": "Neon"
@@ -185,8 +185,8 @@
           "required": "{name}入力してください"
         },
         "label": {
-          "inference_api": "Inference API",
-          "inference_endpoint": "Inference Endpoint",
+          "inference_api": "推論API",
+          "inference_endpoint": "推論エンドポイント",
           "s3": "公開アプリでは無効",
           "acl": "アップロードされたファイルのデフォルトS3 ACL",
           "appwrite": {
@@ -197,9 +197,9 @@
             "collectionid": "コレクション ID",
             "documentid": "ドキュメント ID",
             "data": "データ",
-            "filter": "Filter",
-            "order": "Order by",
-            "limit": "Limit"
+            "filter": "フィルター",
+            "order": "並び順",
+            "limit": "制限"
           },
           "oracle": {
             "sid": "データベース名",
@@ -218,8 +218,8 @@
             "spreadsheet": "スプレッドシート",
             "sheet_name": "シート名",
             "data_range": "データ範囲",
-            "limit": "Limit",
-            "offset": "Offset",
+            "limit": "制限",
+            "offset": "オフセット",
             "a1_notation": "A1表記",
             "values_to_append": "追加する値",
             "filter_by": "フィルタ条件",
@@ -251,10 +251,10 @@
             "projectid": "プロジェクトID",
             "secret": "••••••••••••••••••••",
             "filter": {
-              "attribute": "attribute",
+              "attribute": "属性",
               "value": "1234"
             },
-            "order": "attribute",
+            "order": "属性",
             "collectionid": "コレクションを選んでください",
             "data": "{{ }} で囲まれたオブジェクト。 たとえば、{{ { \"key\": \"value\" } }}"
           },
@@ -264,17 +264,17 @@
             }
           },
           "oracle": {
-            "username": "oracle",
+            "username": "オラクル",
             "password": "••••••••"
           },
           "gs": {
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "row_filter": {
-              "column_name": "column_name",
+              "column_name": "列名",
               "value": "値"
             },
             "update_value": "{{ [ {\n\"column1\":\"newValue1\",\n\"column2\":\"newValue2\"\n} ] }}",
-            "primary_key_column": "column_name",
+            "primary_key_column": "列名",
             "array_of_rows_to_upd": "{{ table1.recordUpdates }}",
             "filters_to_match_row": {
               "key": "キー値",
@@ -359,11 +359,11 @@
           },
           "restapi": {
             "authentication": {
-              "digest_auth": "Digest Auth",
+              "digest_auth": "ダイジェスト認証",
               "auth_1": "OAuth 1.0",
-              "hawk_authentication": "Hawk Authentication",
+              "hawk_authentication": "ホーク認証",
               "aws_v4": "AWS Signature V4",
-              "session_based_auth": "Session Based Auth (deprecated)"
+              "session_based_auth": "セッションベースの認証（非推奨）"
             },
             "certificates": "自己署名証明書を使用する",
             "ca_certificate": "サーバー証明書",
@@ -407,8 +407,8 @@
             "connection_string": "接続文字列"
           },
           "airtable": {
-            "access_token": "Access token",
-            "api_key": "API key"
+            "access_token": "アクセストークン",
+            "api_key": "API キー"
           }
         },
         "default": {
@@ -449,18 +449,18 @@
           "max_file": "ファイルサイズは 5M を超えることはできません。"
         },
         "firebase": {
-          "action_type": "Action Type",
-          "collection": "Collection",
+          "action_type": "アクションタイプ",
+          "collection": "コレクション",
           "database_ref": "データベース参照",
           "document_id": "ドキュメント ID",
           "email": "郵便",
-          "end_at": "End At",
+          "end_at": "終了",
           "len_of_list": "リストの長さ ",
           "limit": "Limit",
           "next_page_token": "次のページトークン",
           "object_to_set": "設定するオブジェクト",
-          "order_by": "Order by",
-          "ordering_direction": "Ordering direction",
+          "order_by": "並び順",
+          "ordering_direction": "順序の方向",
           "parent_document_id": "親ドキュメントID",
           "phone_number": "電話番号",
           "placeholder": {
@@ -472,20 +472,20 @@
             "select_collection": "コレクションを選択",
             "value": "値"
           },
-          "service_type": "Service Type",
-          "start_at": "Start At",
+          "service_type": "サービスタイプ",
+          "start_at": "開始日時",
           "tips": {
             "document_id": "自動生成された ID の場合は空白のままにします。",
             "parent_document_id_tips": "最上位コレクションの場合は空白のままにします。"
           },
           "uid": "UID",
           "use_a_dropdown": "ドロップダウンを使用",
-          "use_end_at": "Use endAt",
+          "use_end_at": "endAt を使用",
           "use_raw_id": "raw idを使用",
           "use_start_at": "Use startAt",
-          "user_object": "User object ",
+          "user_object": "ユーザーオブジェクト ",
           "value": "值",
-          "where": "where"
+          "where": "どこで"
         },
         "label": {
           "event_handler": "イベントハンドラ",
@@ -509,7 +509,7 @@
               "realm": "testrealm@example.com",
               "ext": "some-app-extra-data",
               "app": "アプリケーション ID",
-              "dig": "delegated-by",
+              "dig": "委任済み by",
               "us-east-1": "us-east-1",
               "authenticate_using_t": "クエリパラメータの代わりに HTTP Authorization ヘッダーを使用して認証します",
               "find_instructions_on": "<0>AWS ドキュメント</0>でアクセス キーの場所に関する説明を見つけてください。",
@@ -533,8 +533,8 @@
                 "find": "探す",
                 "get": "ビューを取得"
               },
-              "skip": "Skip",
-              "limit": "Limit",
+              "skip": "スキップ",
+              "limit": "制限",
               "include": "ドキュメントを含める",
               "des": "Descending order",
               "id": "_id",
@@ -592,7 +592,7 @@
                 "delete_record": "レコードを削除する"
               },
               "sort": {
-                "asc": "ASC",
+                "asc": "ASCの",
                 "desc": "DESC"
               }
             },
@@ -612,14 +612,14 @@
             "access_token": "アクセストークン",
             "token_secret": "トークンシークレット",
             "private_key": "Private key",
-            "realm": "Realm",
-            "hawk_auth_id": "Hawk Auth ID",
-            "hawk_auth_key": "Hawk Auth Key",
-            "algorithm": "Algorithm",
-            "user": "User",
+            "realm": "レルム",
+            "hawk_auth_id": "ホーク認証ID",
+            "hawk_auth_key": "ホーク認証キー",
+            "algorithm": "アルゴリズム",
+            "user": "ユーザー",
             "nonce": "Nonce",
             "ext": "ext",
-            "app": "app",
+            "app": "アプリ",
             "dig": "dig",
             "timestamp": "タイムスタンプ",
             "aws_region": "AWS リージョン",
@@ -658,11 +658,11 @@
             "periodically_run": "定期的に実行"
           },
           "airtable": {
-            "base_id": "Base ID",
+            "base_id": "ベースID",
             "table_name": "テーブル名",
             "method": "方法",
             "view": "ビュー",
-            "fields": "Fields",
+            "fields": "フィールド",
             "filter_by_formula": "数式でフィルター",
             "sort": "ソート",
             "max_records": "最大レコード数",
@@ -671,10 +671,10 @@
             "cell_format": "セルのフォーマット",
             "time_zone": "タイムゾーン",
             "user_locales": "ユーザーのロケール",
-            "record_id": "Record ID",
-            "records": "Records",
-            "record": "Record",
-            "record_ids": "Record IDs"
+            "record_id": "レコードID",
+            "records": "レコード",
+            "record": "レコード",
+            "record_ids": "レコードID"
           },
           "ai-agent": {
             "model": "モデル",
@@ -729,7 +729,7 @@
           "object_key_list": "オブジェクトのキー値リスト",
           "placeholder": {
             "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\n sXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNho30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\n YW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\n MFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}",
-            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.t\"]}}",
             "object_name": "export.csv",
             "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}"
           },
@@ -785,11 +785,11 @@
             "binary": "'@cats.jpg' \\",
             "use_cache": "ブール値、true の場合は空白のままにします",
             "min_length": "出力要約のトークンの最小長を定義する整数",
-            "top_k": "Integer to define the top tokens",
-            "top_p": "Float to define the tokens",
+            "top_k": "トップトークンを定義するための整数",
+            "top_p": "トークンを定義する浮動小数点数",
             "temperature": "Float(0.0-100.0),1.0 の場合は空白のままにする",
             "repetition_penalty": "Float (0.0-100.0)",
-            "max_time": "Float (0.0-120.0) to define the amount of time in seconds",
+            "max_time": "Float (0.0-120.0) で秒単位で時間を定義します",
             "selectParameterType": "タイプを選択"
           },
           "tips": {
@@ -800,15 +800,15 @@
           },
           "parameter": "パラメータ",
           "use_detail_parameters": "詳細パラメータを使用",
-          "use_cache": "Use cache",
-          "wait_for_model": "Wait for model",
-          "min_length": "Min length",
-          "max_length": "Max length",
-          "top_k": "Top k",
-          "top_p": "Top p",
-          "temperature": "Temperature",
-          "repetition_penalty": "Repetition penalty",
-          "max_time": "Max time"
+          "use_cache": "キャッシュを使用",
+          "wait_for_model": "モデルを待機する",
+          "min_length": "最小長さ",
+          "max_length": "最大長さ",
+          "top_k": "トップ k",
+          "top_p": "トップ p",
+          "temperature": "温度",
+          "repetition_penalty": "繰り返しペナルティ",
+          "max_time": "最大時間"
         },
         "sqlgc": {
           "placeholder": {
@@ -822,7 +822,7 @@
           "config_type": "構成タイプ",
           "query": "クエリ",
           "placeholder": {
-            "query": "select * from users;",
+            "query": "ユーザーから * を選択します;",
             "table": "リフレッシュ",
             "insert_record": "{{ [{x1:1, y1:1}, {x2:1, y2:1},...] }}"
           },
@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -917,13 +917,13 @@
             "ssl_options": "SSL オプション",
             "username_password": "ユーザー名/パスワード",
             "self_signed_certificate": "自己署名証明書を使用",
-            "disable_introspection": "Disable Introspection",
-            "value": "Value",
-            "add_to": "Add to",
-            "header_prefix": "Header prefix",
-            "key": "Key",
+            "disable_introspection": "イントロスペクションを無効にする",
+            "value": "値",
+            "add_to": "追加先",
+            "header_prefix": "ヘッダ接頭辞：",
+            "key": "キー",
             "introspection": "Introspection",
-            "bear_token": "Token",
+            "bear_token": "トークン",
             "connection_options": "接続設定",
             "account_name": "Account Identifier",
             "warehouse": "倉庫",
@@ -948,13 +948,13 @@
             "password": "パスワード",
             "private_key": "{\n  \"type\": \"service_account\",\n  \"project_id\": \"projectId\",\n  \"private_key_id\": \"privateKeyId\",\n  \"private_key\": \"-----BEGIN PRIVATE KEY-----\nprivateKey\n-----END PRIVATE KEY-----\",\n  \"client_email\": \"clientEmail\",\n  \"client_id\": \"100000000000000000000\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"token_uri\": \"https://oauth2.googleapis.com/token\",\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"client_x509_cert_url\": \"clientx509CertUrl\"\n}",
             "username": "ユーザー名",
-            "default": "default",
+            "default": "デフォルト",
             "hugging_face_url": "絶対 URL (例: https://api-conference.huggingface.co/models/) を使用してください。 ",
             "database_name": "データベース名",
             "account_name": "xy12345.us-east-2.aws",
             "warehouse": "WH",
             "snowflake_database": "SNOWFLAKE_SAMPLE_DATA_DESC",
-            "schema": "PUBLIC",
+            "schema": "公開",
             "role": "役割",
             "snowflake_username": "illa",
             "snowflake_password": "••••••••",
@@ -964,18 +964,18 @@
           "tip": {
             "connect_type": "クラウド サーバー: ILLA サーバーはデータベースに安全に接続します",
             "name": "このリソースにILLAで名前を付ける",
-            "private_key": "<0>Click here</0> to see how to obtain this key",
+            "private_key": "<0>ここをクリック</0>このキーを取得する方法を確認してください",
             "ssl_options": "可能な場合は SSL を使用する",
             "username_password": "資格情報は暗号化され、サーバーに安全に保存されます",
-            "introspection": "Turn on this if your GraphQL endpoint does not support introspection queries. Note that disabling introspection reduces the usability of GraphQL, as auto-complete and linting for this resource will no longer work.",
+            "introspection": "GraphQL エンドポイントがイントロスペクションクエリをサポートしていない場合は、これをオンにします。 イントロスペクションを無効にすると、このリソースの自動補完やリンクが機能しないため、GraphQLのユーザビリティが低下することに注意してください。",
             "hugging_face_url": "<0>Hugging Faceの詳細については、こちら</0>をクリックしてください。",
-            "bear_token": "Get a User Access or API token <0>in your Hugging Face profile settings.</0>",
+            "bear_token": "Hug Face プロファイルの設定で <0>ユーザアクセストークンまたは API トークンを取得します。</0>",
             "connection_options": "Add connection options for your connection. When the SSL option is enabled, we will add encrypt and trustServerCertificate by default. "
           },
           "title": {
             "advanced_option": "詳細設定",
             "general_option": "ユニバーサル",
-            "graphql_introspection": "GRAPHQL INTROSPECTION"
+            "graphql_introspection": "グラフの入力"
           }
         },
         "error": {
@@ -1128,12 +1128,12 @@
       "acl": {
         "option": {
           "blank": "—",
-          "private": "private",
+          "private": "非公開",
           "public_read": "public-read",
           "public_read_write": "public-read-write",
           "aws_exec_read": "aws-exec-read",
-          "auth": "authenticated-read",
-          "bucket_owner_read": "bucket-owner-read",
+          "auth": "認証された読み取り",
+          "bucket_owner_read": "Bucket-owner-read",
           "bucket_owner_full_control": "bucket-owner-full control"
         }
       }
@@ -2132,9 +2132,9 @@
           "outline": "概要",
           "auto": "自動",
           "limited": "制限",
-          "limit_offset_based": "Limit offset based",
+          "limit_offset_based": "リミットオフセットベース",
           "cursor_based": "カーソルベース",
-          "graphql_relay_cursor": "GraphQL Relay cursor"
+          "graphql_relay_cursor": "GraphQLリレーカーソル"
         },
         "input": {
           "input": "入力",
@@ -2522,7 +2522,7 @@
       "history": "沿革",
       "more": "もっと見る",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "⌘S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3337,7 +3337,7 @@
       "operation": "オペレーション",
       "transfer": "所有権の譲渡",
       "remove": "削除",
-      "ai-agent": "AI Agents"
+      "ai-agent": "AIエージェント"
     },
     "transfer_modal": {
       "title": "所有権を譲渡してもよろしいですか？",
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "이동",
   "oauth_redirect_description": "<0>ILLA Cloud</0> にリダイレクトしています...",
   "language": {
-    "en-US": "English",
+    "en-US": "日本語",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "アフリカーンス語",
+    "cs-CZ": "c<unk> es<unk> tina",
+    "de-DE": "ドイツ",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
+    "fr-FR": "francブドウ栽培format@@0",
     "it-IT": "italiano",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugue<unk> s",
+    "ro-RO": "roma<unk> na<unk>",
+    "ru-RU": "<unk> <unk> <unk> <unk> <unk> <unk>",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "正常に更新されました"
     },
     "button": {
-      "blank": "最初のアプリを作成する",
+      "blank": "新規作成",
       "blank-agent": "AIエージェントを作成"
     }
   },
