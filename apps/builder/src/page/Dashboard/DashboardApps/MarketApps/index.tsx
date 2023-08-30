@@ -21,7 +21,6 @@ import {
   loadingStyle,
 } from "./style"
 
-
 export const MarketApps: FC = () => {
   const { t } = useTranslation()
 
@@ -124,6 +123,7 @@ export const MarketApps: FC = () => {
             key={product.app.appId}
             app={product.app}
             marketplace={product.marketplace}
+            fallbackDescription={t("new_dashboard.desc.no_description")}
           />
         ))}
       </div>
