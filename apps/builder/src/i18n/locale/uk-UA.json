@@ -273,7 +273,7 @@
               "column_name": "назва_стовпця",
               "value": "значення"
             },
-            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "update_value": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
             "primary_key_column": "назва_стовпця",
             "array_of_rows_to_upd": "{{ [ { \"column1\":\"newValue1\", \"column2\":\"newValue2\" } ] }}",
             "filters_to_match_row": {
@@ -300,7 +300,7 @@
             "private_key": "Використовується для з'єднання з таблицями Google. Натисніть <0>тут</0> для створення проекту та отримання облікових даних OAuth. При аутентифікації сервісного облікового запису у нас буде тільки доступ до електронних таблиць, які ви поділяєте з адресою електронної пошти, що відповідає використаній сервісним обліковим записом. Дивіться <1>тут</1> по документації щодо створення акаунта й доступу до ключа.\n\nКористувачі можуть користуватись обмеженнями різних компонентів обробки, які не контролюються листами. Дізнайтеся більше про ліміти <2>квоти</2>",
             "leave_blank_to_selec": "Залиште поле порожнім, щоб вибрати першу аркуш",
             "to_select_the_first_": "Щоб вибрати перші п'ять клітин в першій колонці листа аркуші1, нотація A1 - простима!A1:A5. <0>Перегляньте документи Google для отримання додаткової інформації. </0>",
-            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} ] }}",
+            "values_to_append": "{{ [ {\r\n\"column1\":\"newValue1\",\r\n\"column2\":\"newValue2\"\r\n} }}",
             "a1_notation": "Щоб вибрати перші п'ять клітин в першій колонці листа аркуші1, нотація A1 - простима!A1:A5. <0>Перегляньте документи Google для отримання додаткової інформації. </0>",
             "sheet_id_to_copy": "Знайдіть це, глянувши на ?gid=123123 з URL ваших таблиць",
             "copy_to_sheet_name": "Обов'язково. Перейменуйте скопійований лист.",
@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Початкове значення",
           "tooltips": "Підтримує об'єкти або примітивні значення. Приклад: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Історія",
       "more": "Більше",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "О S",
         "ctrls": "Ctrl+S"
       },
       "history_list": {
@@ -3495,25 +3495,25 @@
   "oauth_redirect_title": "Перенаправлення",
   "oauth_redirect_description": "Перенаправлення на <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Українська",
     "zh-CN": "简体中文",
     "ko-KR": "한국인",
     "ja-JP": "日本語",
-    "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
-    "de-DE": "Deutsch",
+    "af-ZA": "Африкаанс",
+    "cs-CZ": "с.Ікра",
+    "de-DE": "Німецька мова",
     "da-DK": "dansk",
     "el-GR": "ελληνικά",
     "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
-    "nl-NL": "Nederlands",
+    "fr-FR": "франк",
+    "it-IT": "італіано",
+    "nl-NL": "Нідерланди",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "портюж",
+    "ro-RO": "рома",
+    "ru-RU": "докладно скинуто",
     "sv-SE": "svenska",
     "uk-UA": "українська"
   },
@@ -4061,7 +4061,7 @@
       "update_suc": "Вдало оновлено"
     },
     "button": {
-      "blank": "Створити свій перший додаток",
+      "blank": "Створити новий",
       "blank-agent": "Створити AI Agent"
     }
   },
