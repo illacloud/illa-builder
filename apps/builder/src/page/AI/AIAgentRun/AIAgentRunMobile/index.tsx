@@ -278,15 +278,16 @@ export const AIAgentRunMobile: FC = () => {
                 colorScheme={getColor("grayBlue", "02")}
                 type="button"
                 w="100%"
+                disp="flex"
                 forceEqualWidth={true}
                 options={[
                   {
                     value: AI_AGENT_TYPE.CHAT,
-                    label: "Chat",
+                    label: t("editor.ai-agent.option.mode.chat"),
                   },
                   {
                     value: AI_AGENT_TYPE.TEXT_GENERATION,
-                    label: "Text Generation",
+                    label: t("editor.ai-agent.option.mode.text"),
                   },
                 ]}
                 onChange={(value) => {

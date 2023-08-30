@@ -436,11 +436,11 @@ export const AIAgentRunPC: FC = () => {
                     options={[
                       {
                         value: AI_AGENT_TYPE.CHAT,
-                        label: "Chat",
+                        label: t("editor.ai-agent.option.mode.chat"),
                       },
                       {
                         value: AI_AGENT_TYPE.TEXT_GENERATION,
-                        label: "Text Generation",
+                        label: t("editor.ai-agent.option.mode.text"),
                       },
                     ]}
                     onChange={(value) => {
