@@ -4,7 +4,7 @@ import { FixedSizeList, ListChildComponentProps } from "react-window"
 import InfiniteLoader from "react-window-infinite-loader"
 import { fetchTeamAgentListByPage } from "@/services/agent"
 import { AGENT_LIST_HEIGHT, TEAM_AGENT_ITEM_HEIGHT } from "../../constants"
-import { EmptyState } from "../EmptyState"
+import { ListEmptyState } from "../ListEmptyState"
 import { TeamListItem } from "../TeamListItem"
 import { TeamAgentListProps } from "./interface"
 
@@ -36,7 +36,7 @@ export const TeamAgentList: FC<TeamAgentListProps> = (props) => {
     >
       {({ onItemsRendered, ref }) =>
         itemCount === 0 ? (
-          <EmptyState />
+          <ListEmptyState />
         ) : (
           <FixedSizeList
             height={AGENT_LIST_HEIGHT}

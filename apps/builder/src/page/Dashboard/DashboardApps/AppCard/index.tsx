@@ -14,7 +14,7 @@ import { FC, MouseEvent, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { Tag } from "@illa-design/react"
+import { Space, Tag } from "@illa-design/react"
 import {
   appNameStyle,
   cardStyle,
@@ -58,16 +58,10 @@ export const AppCard: FC<AppCardProps> = (props) => {
   const onClickCard = useCallback(() => {
     if (canEditApp) {
       navigate(`/${teamIdentifier}/app/${appInfo.appId}`)
-    } else if (appInfo.mainlineVersion !== 0) {
+    } else if (appInfo.deployed) {
       navigate(`/${teamIdentifier}/deploy/app/${appInfo.appId}`)
     }
-  }, [
-    appInfo.appId,
-    appInfo.mainlineVersion,
-    canEditApp,
-    navigate,
-    teamIdentifier,
-  ])
+  }, [appInfo.appId, appInfo.deployed, canEditApp, navigate, teamIdentifier])
 
   const handleMouseEnter = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
@@ -81,7 +75,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
         )
       }
 
-      if (appInfo.mainlineVersion !== 0) {
+      if (appInfo.deployed) {
         track(
           ILLA_MIXPANEL_EVENT_TYPE.SHOW,
           ILLA_MIXPANEL_BUILDER_PAGE_NAME.APP,
@@ -89,7 +83,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
         )
       }
     },
-    [canEditApp, appInfo.appId, appInfo.mainlineVersion],
+    [canEditApp, appInfo.deployed, appInfo.appId],
   )
 
   const editors = useMemo(() => {
@@ -126,7 +120,7 @@ export const AppCard: FC<AppCardProps> = (props) => {
               user: appInfo.appActivity.modifier,
             })}
           </div>
-          <div className="deployed">
+          <Space>
             {appInfo.deployed ? (
               <Tag colorScheme="green" size="small">
                 {t("new_dashboard.status.deployed")}
@@ -136,14 +130,19 @@ export const AppCard: FC<AppCardProps> = (props) => {
                 {t("new_dashboard.status.undeploy")}
               </Tag>
             )}
-          </div>
+            {appInfo.config.publishedToMarketplace && (
+              <Tag size="small" colorScheme="techPurple">
+                {t("dashboard.common.marketplace")}
+              </Tag>
+            )}
+          </Space>
         </div>
         <AppCardActionItem
           isPublic={appInfo.config.public}
           isContributed={false}
           appId={appInfo.appId}
           canEditApp={canEditApp}
-          isDeploy={appInfo.mainlineVersion !== 0}
+          isDeploy={appInfo.deployed}
           onClick={stopPropagation}
           appName={appInfo.appName}
         />

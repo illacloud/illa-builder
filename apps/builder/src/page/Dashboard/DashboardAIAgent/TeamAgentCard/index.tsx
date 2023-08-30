@@ -40,9 +40,9 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
     <div
       css={cardStyle}
       {...otherProps}
-      onClick={() => {
-        navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
-      }}
+      // onClick={() => {
+      //   navigate(`/${teamInfo.identifier}/ai-agent/${agentInfo.aiAgentID}/run`)
+      // }}
     >
       <div css={headerStyle}>
         <div css={titleInfoStyle}>
@@ -67,7 +67,7 @@ export const TeamAgentCard: FC<TeamAgentCardProps> = (props) => {
           colorScheme="techPurple"
           size="small"
         >
-          {t("Marketplace")}
+          {t("dashboard.common.marketplace")}
         </Tag>
         <Space
           direction="horizontal"

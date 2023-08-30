@@ -3,6 +3,7 @@ import {
   addDashboardAppReducer,
   removeDashboardAppReducer,
   updateDashboardAppContributeReducer,
+  updateDashboardAppDeployedReducer,
   updateDashboardAppListReducer,
   updateDashboardAppPublicReducer,
   updateDashboardAppReducer,
@@ -14,6 +15,7 @@ const dashboardAppSlice = createSlice({
   initialState: DashboardAppsInitialState,
   reducers: {
     addDashboardAppReducer,
+    updateDashboardAppDeployedReducer,
     removeDashboardAppReducer,
     updateDashboardAppReducer,
     updateDashboardAppListReducer,

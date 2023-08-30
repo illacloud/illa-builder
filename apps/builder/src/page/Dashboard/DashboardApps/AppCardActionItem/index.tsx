@@ -455,6 +455,14 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                   publishedToMarketplace: isContributed,
                 }),
               )
+              if (isContributed) {
+                dispatch(
+                  dashboardAppActions.updateDashboardAppDeployedReducer({
+                    appId: appId,
+                    deployed: true,
+                  }),
+                )
+              }
             }}
             onCopyPublicLink={(link) => {
               copyToClipboard(

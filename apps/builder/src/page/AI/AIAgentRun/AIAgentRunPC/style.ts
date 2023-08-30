@@ -129,4 +129,5 @@ export const agentControlContainerStyle = css`
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
+  padding-bottom: 40px;
 `

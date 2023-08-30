@@ -95,7 +95,7 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
             )
           }}
           defaultAppPublic={appInfo.config.public}
-          defaultAppContribute={false}
+          defaultAppContribute={appInfo.config.publishedToMarketplace}
           appID={appInfo.appId}
           userRoleForThisApp={teamInfo.myRole}
           ownerTeamID={teamInfo.id}
@@ -105,6 +105,9 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
           }}
           onAppContribute={(isContributed) => {
             dispatch(appInfoActions.updateAppContributeReducer(isContributed))
+            if (isContributed) {
+              dispatch(appInfoActions.updateAppDeployedReducer(true))
+            }
           }}
           onCopyPublicLink={(link) => {
             copyToClipboard(

@@ -28,3 +28,10 @@ export const updateAppPublicReducer: CaseReducer<
 > = (state, action) => {
   state.config.public = action.payload
 }
+
+export const updateAppDeployedReducer: CaseReducer<
+  DashboardApp,
+  PayloadAction<boolean>
+> = (state, action) => {
+  state.deployed = action.payload
+}

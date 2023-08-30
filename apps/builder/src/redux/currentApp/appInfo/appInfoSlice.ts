@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { SliceCaseReducers } from "@reduxjs/toolkit/src/createSlice"
 import {
   updateAppContributeReducer,
+  updateAppDeployedReducer,
   updateAppInfoReducer,
   updateAppNameReducer,
   updateAppPublicReducer,
@@ -23,6 +24,7 @@ const appInfoSlice = createSlice<
     updateAppNameReducer,
     updateAppContributeReducer,
     updateAppPublicReducer,
+    updateAppDeployedReducer,
   },
 })
 

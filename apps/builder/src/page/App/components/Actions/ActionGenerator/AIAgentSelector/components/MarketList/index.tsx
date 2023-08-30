@@ -13,7 +13,7 @@ import InfiniteLoader from "react-window-infinite-loader"
 import { dashboardTeamAIAgentActions } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSlice"
 import { forkAIAgentToTeam } from "@/services/agent"
 import { AGENT_LIST_HEIGHT, MARKET_AGENT_ITEM_HEIGHT } from "../../constants"
-import { EmptyState } from "../EmptyState"
+import { ListEmptyState } from "../ListEmptyState"
 import { MarketListItem } from "../MarketListItem"
 import { MarketAgentListProps } from "./interface"
 
@@ -62,7 +62,7 @@ export const MarketAgentList: FC<MarketAgentListProps> = (props) => {
     >
       {({ onItemsRendered, ref }) =>
         itemCount === 0 ? (
-          <EmptyState />
+          <ListEmptyState />
         ) : (
           <FixedSizeList
             height={AGENT_LIST_HEIGHT}
