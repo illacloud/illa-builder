@@ -232,23 +232,11 @@ export const AIAgent: FC = () => {
         e.returnValue = ""
       }
     }
-    const pop = (e: PopStateEvent) => {
-      if (isDirty) {
-        let confirm = window.confirm("搞不")
-        if (!confirm) {
-          window.history.pushState(e.state, "", window.location.href)
-        } else {
-          window.history.back()
-        }
-      }
-    }
     window.addEventListener("beforeunload", unload)
     window.addEventListener("onunload", unload)
-    window.addEventListener("popstate", pop)
     return () => {
       window.removeEventListener("beforeunload", unload)
       window.removeEventListener("onunload", unload)
-      window.addEventListener("popstate", pop)
     }
   }, [isDirty])
 
