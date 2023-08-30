@@ -8,6 +8,7 @@ export const cardListStyle = css`
 `
 
 export const cardListContainerStyle = css`
+  padding-top: 24px;
   display: flex;
   flex-direction: column;
   overflow: auto;

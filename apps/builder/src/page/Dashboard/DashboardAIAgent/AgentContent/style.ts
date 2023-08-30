@@ -11,7 +11,7 @@ export const agentContent = css`
 
 export const menuContainerStyle = css`
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   flex-direction: row;
   align-items: center;
 `

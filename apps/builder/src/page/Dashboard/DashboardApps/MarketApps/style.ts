@@ -9,6 +9,7 @@ export const cardListStyle = css`
 
 export const cardListContainerStyle = css`
   display: flex;
+  padding-top: 24px;
   flex-direction: column;
   overflow: auto;
   flex-grow: 1;
