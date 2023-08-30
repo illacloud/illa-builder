@@ -878,7 +878,7 @@
         "placeholder": {
           "restapi": {
             "body_type": {
-              "file": "{{ { data: binary string, filename: string } }}"
+              "file": "{{ { data: binary string, filename: string }}}"
             }
           }
         }
@@ -1164,7 +1164,7 @@
         "initial_value": {
           "label": "Wartość początkowa",
           "tooltips": "Obsługuje obiekty lub prymitywne wartości. Przykład: { count: 0 }",
-          "placeholder": "{{ { count: 0 } }}"
+          "placeholder": "{{ { count: 0 }}}"
         }
       }
     },
@@ -2522,7 +2522,7 @@
       "history": "Historia",
       "more": "Więcej",
       "save_keyboard": {
-        "cmds": "⌘ S",
+        "cmds": "<unk> S",
         "ctrls": "Ctrl + S"
       },
       "history_list": {
@@ -3495,27 +3495,27 @@
   "oauth_redirect_title": "Przekieruj",
   "oauth_redirect_description": "Przekierowanie do <0>ILLA Cloud</0>",
   "language": {
-    "en-US": "English",
+    "en-US": "Angielski",
     "zh-CN": "简体中文",
-    "ko-KR": "한국인",
+    "ko-KR": "한국인",
     "ja-JP": "日本語",
     "af-ZA": "Afrikaans",
-    "cs-CZ": "čeština",
+    "cs-CZ": "c<unk> tina",
     "de-DE": "Deutsch",
     "da-DK": "dansk",
-    "el-GR": "ελληνικά",
-    "es-ES": "español",
+    "el-GR": "ελληνικά",
+    "es-ES": "español",
     "fi-FI": "suomi",
-    "fr-FR": "français",
-    "it-IT": "italiano",
+    "fr-FR": "franczyza",
+    "it-IT": "kuralian",
     "nl-NL": "Nederlands",
     "no-NO": "norsk",
     "pl-PL": "polski",
-    "pt-PT": "português",
-    "ro-RO": "română",
-    "ru-RU": "русский",
+    "pt-PT": "portugue<unk> s",
+    "ro-RO": "roma<unk> na",
+    "ru-RU": "<unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk>",
     "sv-SE": "svenska",
-    "uk-UA": "українська"
+    "uk-UA": "українська"
   },
   "logout_failed": "Wylogowanie nie powiodło się. Spróbuj ponownie później.",
   "drive": {
@@ -4061,7 +4061,7 @@
       "update_suc": "Pomyślnie zaktualizowano"
     },
     "button": {
-      "blank": "Utwórz swoją pierwszą aplikację",
+      "blank": "Utwórz nowy",
       "blank-agent": "Utwórz agenta AI"
     }
   },
