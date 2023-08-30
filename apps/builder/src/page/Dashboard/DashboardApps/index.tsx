@@ -71,8 +71,8 @@ export const DashboardApps: FC = () => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
-    teamInfo.totalTeamLicense?.teamLicensePurchased,
-    teamInfo.totalTeamLicense?.teamLicenseAllPaid,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
   const canEditApp = canManage(

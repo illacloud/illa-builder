@@ -29,7 +29,7 @@ interface AppConfigSelectProps {
   isDeployed: boolean
 }
 
-const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
+export const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
   const { canEditApp, appId, isPublic, isDeployed } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -177,5 +177,3 @@ const AppConfigSelect: FC<AppConfigSelectProps> = (props) => {
 }
 
 AppConfigSelect.displayName = "AppConfigSelect"
-
-export default AppConfigSelect

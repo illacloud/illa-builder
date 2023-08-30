@@ -461,9 +461,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 />
               </Dropdown>
             )}
-            <ButtonGroup _css={buttonGroupStyle} spacing="8px">
+            <ButtonGroup css={buttonGroupStyle} spacing="8px">
               <Badge
-                _css={badgeStyle}
+                css={badgeStyle}
                 count={debuggerData && Object.keys(debuggerData).length}
               >
                 <Button

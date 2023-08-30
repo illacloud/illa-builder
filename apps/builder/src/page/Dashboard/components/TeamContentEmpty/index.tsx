@@ -10,7 +10,6 @@ import {
 import { TeamContentEmptyProps } from "./interface"
 import { emptyStyle, emptyTextStyle } from "./style"
 
-
 export const TeamContentEmpty: FC<TeamContentEmptyProps> = (props) => {
   const { t } = useTranslation()
 

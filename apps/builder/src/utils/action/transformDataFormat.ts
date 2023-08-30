@@ -279,6 +279,7 @@ export const transformDataFormat = (
       return {
         agentType: contents.virtualResource.agentType,
         model: contents.virtualResource.model,
+        input: contents.input,
         modelConfig: {
           maxTokens: contents.virtualResource.modelConfig.maxTokens,
           stream: false,

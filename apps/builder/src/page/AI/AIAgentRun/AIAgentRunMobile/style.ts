@@ -134,6 +134,7 @@ export const dividerStyle = css`
 
 export const tabContainerStyle = css`
   display: inline-flex;
+  padding-top: 5px;
   flex-direction: column;
 `
 
@@ -148,6 +149,7 @@ export const tabStyle = css`
 
 export const lineStyle = css`
   width: 100%;
+  margin-top: 3px;
   height: 2px;
   background: ${getColor("grayBlue", "02")};
 `

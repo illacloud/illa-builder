@@ -12,7 +12,7 @@ export const cardListContainerStyle = css`
   flex-direction: column;
   overflow: auto;
   flex-grow: 1;
-  padding-bottom: 126px;
+  padding: 24px 15% 126px;
 `
 
 export const loadingStyle = css`

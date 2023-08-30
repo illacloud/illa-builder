@@ -1,8 +1,13 @@
 import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
 import { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { LoadingIcon } from "@illa-design/react"
+import { Divider, LoadingIcon } from "@illa-design/react"
 import { TeamAgentCard } from "@/page/Dashboard/DashboardAIAgent/TeamAgentCard"
 import { TeamContentEmpty } from "@/page/Dashboard/components/TeamContentEmpty"
 import { getDashboardTeamAIAgentList } from "@/redux/dashboard/teamAIAgents/dashboardTeamAIAgentSelector"
@@ -59,18 +64,38 @@ export const TeamAgents: FC = () => {
       ? agentList
       : fuse.search(keywords).map((item) => item.item)
 
+  const [showLine, setShowLine] = useState<boolean>(false)
+
   return updateLoading ? (
     <div css={fallbackLoadingStyle}>
       <LoadingIcon spin={true} />
     </div>
   ) : list.length > 0 ? (
-    <div css={cardListStyle}>
-      {list.map((item) => (
-        <TeamAgentCard key={item.aiAgentID} agentInfo={item} />
-      ))}
-    </div>
+    <>
+      {showLine && <Divider direction="horizontal" />}
+      <div
+        css={cardListStyle}
+        onScroll={(e) => {
+          const target = e.target as HTMLDivElement
+          if (target.scrollTop >= 24) {
+            setShowLine(true)
+          } else {
+            setShowLine(false)
+          }
+        }}
+      >
+        {list.map((item) => (
+          <TeamAgentCard key={item.aiAgentID} agentInfo={item} />
+        ))}
+      </div>
+    </>
   ) : (
     <TeamContentEmpty
+      showCreate={canManage(
+        teamInfo.myRole,
+        ATTRIBUTE_GROUP.AGENT,
+        ACTION_MANAGE.CREATE_AGENT,
+      )}
       loading={false}
       navigate={() => {
         navigate(`/${teamInfo.identifier}/ai-agent`)

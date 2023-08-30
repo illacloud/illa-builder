@@ -9,3 +9,11 @@ export const fallbackLoadingStyle = css`
   justify-content: center;
   color: ${getColor("techPurple", "01")};
 `
+export const cardContainerStyle = css`
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 24px 24px;
+  overflow: auto;
+  padding-bottom: 126px;
+`

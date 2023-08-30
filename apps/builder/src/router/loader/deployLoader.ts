@@ -1,4 +1,5 @@
 import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import { LoaderFunction, defer, redirect } from "react-router-dom"
 import { fetchTeamAgent } from "@/services/agent"
 import {
@@ -52,12 +53,11 @@ export const deployLoader: LoaderFunction = async (args) => {
       )
       const resourceInfo = fetchResources(args.request.signal)
       const teamAgentList = fetchTeamAgent(args.request.signal)
-
       return defer({
         isPublic,
         appInfo,
         resourceInfo,
-        teamAgentList,
+        teamAgentList: isCloudVersion ? teamAgentList : undefined,
       })
     }
   } catch (e) {

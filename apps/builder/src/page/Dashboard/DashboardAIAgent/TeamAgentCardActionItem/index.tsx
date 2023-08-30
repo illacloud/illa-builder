@@ -75,7 +75,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
       })
       return
     }
-    setShareVisible(false)
+    setShareVisible(true)
   }, [canUseBillingFeature, upgradeModal])
 
   const handleDuplicateApp = () => {
@@ -167,12 +167,15 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
   )
 
   return (
-    <>
+    <div
+      onClick={(e) => {
+        e.stopPropagation()
+      }}
+    >
       {canEdit ? (
         <Dropdown
           position="bottom-end"
           trigger="click"
-          triggerProps={{ closeDelay: 0, openDelay: 0 }}
           dropList={
             <DropList w="184px">
               <DropListItem
@@ -247,7 +250,6 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
           />
         </Dropdown>
       ) : null}
-
       {shareVisible && (
         <ShareAgentPC
           title={t("user_management.modal.social_media.default_text.agent", {
@@ -318,7 +320,7 @@ export const TeamAgentCardActionItem: FC<TeamAgentCardActionItemProps> = (
           }}
         />
       )}
-    </>
+    </div>
   )
 }
 

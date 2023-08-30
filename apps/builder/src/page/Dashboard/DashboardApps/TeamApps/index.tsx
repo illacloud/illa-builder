@@ -1,16 +1,21 @@
+import { getCurrentTeamInfo } from "@illa-public/user-data"
+import {
+  ACTION_MANAGE,
+  ATTRIBUTE_GROUP,
+  canManage,
+} from "@illa-public/user-role-utils"
 import { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
 import { LoadingIcon } from "@illa-design/react"
 import { AppCard } from "@/page/Dashboard/DashboardApps/AppCard"
-import { cardContainerStyle } from "@/page/Dashboard/DashboardApps/AppContent/style"
 import { TeamContentEmpty } from "@/page/Dashboard/components/TeamContentEmpty"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { fetchTeamAppList } from "@/services/apps"
 import { useFuse } from "@/utils/useFuse"
 import { TeamAppsProps } from "./interface"
-import { fallbackLoadingStyle } from "./style"
+import { cardContainerStyle, fallbackLoadingStyle } from "./style"
 
 export const TeamApps: FC<TeamAppsProps> = (props) => {
   const teamApps = useSelector(getDashboardApps)
@@ -22,6 +27,8 @@ export const TeamApps: FC<TeamAppsProps> = (props) => {
   const fuse = useFuse(teamApps, {
     keys: ["appName", "config.description"],
   })
+
+  const teamInfo = useSelector(getCurrentTeamInfo)!!
 
   const [searchParams] = useSearchParams()
 
@@ -63,6 +70,14 @@ export const TeamApps: FC<TeamAppsProps> = (props) => {
       ))}
     </div>
   ) : (
-    <TeamContentEmpty loading={props.loading} navigate={props.navigate} />
+    <TeamContentEmpty
+      showCreate={canManage(
+        teamInfo.myRole,
+        ATTRIBUTE_GROUP.APP,
+        ACTION_MANAGE.CREATE_APP,
+      )}
+      loading={props.loading}
+      navigate={props.navigate}
+    />
   )
 }
