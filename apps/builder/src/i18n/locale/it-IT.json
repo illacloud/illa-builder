@@ -4125,5 +4125,8 @@
     "before": "Carica altro"
   },
   "size_exceed_copied_tips": "Il contenuto è troppo lungo per copiare. (dimensione corrente: {{current_size}} byte, limite: {{limit_size}} bytes)",
-  "contribute": "Contribuisci"
+  "contribute": "Contribuisci",
+  "error_page": {
+    "fobidden": "Nessuna autorizzazione di accesso"
+  }
 }
