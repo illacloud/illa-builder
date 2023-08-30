@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { ReactComponent as EmptyIcon } from "./emptyIcon.svg"
 import { emptyContainerStyle, emptyTipsStyle } from "./style"
 
-export const EmptyState: FC = () => {
+export const ListEmptyState: FC = () => {
   const { t } = useTranslation()
   return (
     <div css={emptyContainerStyle}>
