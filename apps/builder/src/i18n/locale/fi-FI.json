@@ -4125,5 +4125,8 @@
     "before": "Lataa lisää"
   },
   "size_exceed_copied_tips": "The content is too long to copy.  (current size: {{current_size}} bytes, limit: {{limit_size}} bytes)",
-  "contribute": "Osallistu"
+  "contribute": "Osallistu",
+  "error_page": {
+    "fobidden": "Ei käyttöoikeuksia"
+  }
 }
