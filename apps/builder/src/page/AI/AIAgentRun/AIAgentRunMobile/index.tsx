@@ -1,5 +1,6 @@
 import { Avatar } from "@illa-public/avatar"
 import { CodeEditor } from "@illa-public/code-editor"
+import { UpgradeIcon } from "@illa-public/icon"
 import { ShareAgentMobile, ShareAgentTab } from "@illa-public/invite-modal"
 import {
   AI_AGENT_MODEL,
@@ -49,7 +50,11 @@ import {
 } from "@illa-design/react"
 import { TextSignal } from "@/api/ws/textSignal"
 import { ReactComponent as OpenAIIcon } from "@/assets/agent/modal-openai.svg"
-import { labelStyle, labelTextStyle } from "@/page/AI/AIAgent/style"
+import {
+  labelStyle,
+  labelTextStyle,
+  premiumContainerStyle,
+} from "@/page/AI/AIAgent/style"
 import { buttonContainerStyle } from "@/page/AI/AIAgentRun/AIAgentRunPC/style"
 import AIAgentBlock from "@/page/AI/components/AIAgentBlock"
 import { PreviewChat } from "@/page/AI/components/PreviewChat"
@@ -387,6 +392,12 @@ export const AIAgentRunMobile: FC = () => {
                       <div css={labelStyle}>
                         <OpenAIIcon />
                         <span css={labelTextStyle}>GPT-3.5-16k</span>
+                        {!canUseBillingFeature && (
+                          <div css={premiumContainerStyle}>
+                            <UpgradeIcon />
+                            <div style={{ marginLeft: 4 }}>Premium</div>
+                          </div>
+                        )}
                       </div>
                     ),
                     value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
@@ -396,6 +407,12 @@ export const AIAgentRunMobile: FC = () => {
                       <div css={labelStyle}>
                         <OpenAIIcon />
                         <span css={labelTextStyle}>GPT-4</span>
+                        {!canUseBillingFeature && (
+                          <div css={premiumContainerStyle}>
+                            <UpgradeIcon />
+                            <div style={{ marginLeft: 4 }}>Premium</div>
+                          </div>
+                        )}
                       </div>
                     ),
                     value: AI_AGENT_MODEL.GPT_4,

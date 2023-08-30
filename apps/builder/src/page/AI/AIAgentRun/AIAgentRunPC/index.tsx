@@ -542,10 +542,12 @@ export const AIAgentRunPC: FC = () => {
                           <div css={labelStyle}>
                             <OpenAIIcon />
                             <span css={labelTextStyle}>GPT-3.5-16k</span>
-                            <div css={premiumContainerStyle}>
-                              <UpgradeIcon />
-                              <div style={{ marginLeft: 4 }}>Premium</div>
-                            </div>
+                            {!canUseBillingFeature && (
+                              <div css={premiumContainerStyle}>
+                                <UpgradeIcon />
+                                <div style={{ marginLeft: 4 }}>Premium</div>
+                              </div>
+                            )}
                           </div>
                         ),
                         value: AI_AGENT_MODEL.GPT_3_5_TURBO_16K,
@@ -555,10 +557,12 @@ export const AIAgentRunPC: FC = () => {
                           <div css={labelStyle}>
                             <OpenAIIcon />
                             <span css={labelTextStyle}>GPT-4</span>
-                            <div css={premiumContainerStyle}>
-                              <UpgradeIcon />
-                              <div style={{ marginLeft: 4 }}>Premium</div>
-                            </div>
+                            {!canUseBillingFeature && (
+                              <div css={premiumContainerStyle}>
+                                <UpgradeIcon />
+                                <div style={{ marginLeft: 4 }}>Premium</div>
+                              </div>
+                            )}
                           </div>
                         ),
                         value: AI_AGENT_MODEL.GPT_4,
