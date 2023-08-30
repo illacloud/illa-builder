@@ -2636,8 +2636,8 @@
         "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent"
       },
       "title-preview": {
-        "chat": "Discuter",
-        "text-generation": "Génération de texte"
+        "chat": "Aperçu de la fenêtre",
+        "text-generation": "Aperçu de la fenêtre"
       }
     },
     "common": {
