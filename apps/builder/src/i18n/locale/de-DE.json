@@ -4125,5 +4125,8 @@
     "before": "Mehr laden"
   },
   "size_exceed_copied_tips": "Der Inhalt ist zu lang zum Kopieren. (aktuelle Größe: {{current_size}} Bytes, Limit: {{limit_size}} Bytes)",
-  "contribute": "Mitwirken"
+  "contribute": "Mitwirken",
+  "error_page": {
+    "fobidden": "Keine Zugriffsberechtigung"
+  }
 }
