@@ -2636,8 +2636,8 @@
         "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
       },
       "title-preview": {
-        "chat": "Chatten",
-        "text-generation": "Tekst genereren"
+        "chat": "Voorbeeld venster",
+        "text-generation": "Voorbeeld venster"
       }
     },
     "common": {
@@ -3961,6 +3961,10 @@
         "title": "Abonnement wijzigen?",
         "button_cancel": "annuleren",
         "button_confirm": "Bevestigen"
+      },
+      "ai-agent": {
+        "string1": "Dit model is voor Premium team. ",
+        "string2": "Upgrade naar Premium om het te gebruiken. Je hebt ook toegang tot de volgende functies. "
       }
     },
     "homepage": {

@@ -2636,8 +2636,8 @@
         "tooltips": "Usar IA para generar un icono basado en el nombre del agente y la descripción"
       },
       "title-preview": {
-        "chat": "Chatear",
-        "text-generation": "Generación de texto"
+        "chat": "Vista previa",
+        "text-generation": "Vista previa"
       }
     },
     "common": {
@@ -3961,6 +3961,10 @@
         "title": "¿Cambiar plan?",
         "button_cancel": "Cancelar",
         "button_confirm": "Confirmar"
+      },
+      "ai-agent": {
+        "string1": "Este modelo es para el equipo Premium. ",
+        "string2": "Para usarlo, actualice a Premium. Al actualizar a Premium, también tendrá acceso a las siguientes características. "
       }
     },
     "homepage": {

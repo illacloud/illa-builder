@@ -2636,8 +2636,8 @@
         "tooltips": "Bruk AI til å generere ikon basert på agent navn og beskrivelse"
       },
       "title-preview": {
-        "chat": "Samtale",
-        "text-generation": "Generering av tekst"
+        "chat": "Forhåndsvis vindu",
+        "text-generation": "Forhåndsvis vindu"
       }
     },
     "common": {
@@ -3961,6 +3961,10 @@
         "title": "Endre plan?",
         "button_cancel": "Avbryt",
         "button_confirm": "Bekreft"
+      },
+      "ai-agent": {
+        "string1": "Denne modellen er for premium-lag. ",
+        "string2": "Hvis du vil bruke den, vennligst oppgrader til Premium. Ved å oppgradere til Premium vil du også ha tilgang til følgende funksjoner. "
       }
     },
     "homepage": {

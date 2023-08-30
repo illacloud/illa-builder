@@ -2636,8 +2636,8 @@
         "tooltips": "Usa AI per generare icona in base al nome e alla descrizione dell'agente"
       },
       "title-preview": {
-        "chat": "Chat",
-        "text-generation": "Generazione testo"
+        "chat": "Finestra di anteprima",
+        "text-generation": "Finestra di anteprima"
       }
     },
     "common": {
@@ -3961,6 +3961,10 @@
         "title": "Cambiare il piano?",
         "button_cancel": "Annulla",
         "button_confirm": "Conferma"
+      },
+      "ai-agent": {
+        "string1": "Questo modello è per il team Premium. ",
+        "string2": "Per usarlo, aggiorna a Premium. Aggiornando a Premium, avrai anche accesso alle seguenti funzionalità. "
       }
     },
     "homepage": {
