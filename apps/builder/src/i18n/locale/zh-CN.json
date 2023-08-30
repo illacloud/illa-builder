@@ -2622,7 +2622,7 @@
         "start-failed": "开始失败，请重试。",
         "reconnect": "连接已断开，正在重连",
         "token-not-enough": "运行已达模型上限，请重新开始。",
-        "token": "当前Max token较小，可能导致返回结果不完整",
+        "token": "当前Max token设置小于Prompt占用的token或超出了模型限制",
         "purchase-required": "Colla不足无法运行，请充值",
         "leave": "有未保存的内容，确认要离开吗？"
       },
