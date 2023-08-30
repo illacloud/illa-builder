@@ -1,4 +1,5 @@
 import { getCurrentTeamInfo } from "@illa-public/user-data"
+import { isCloudVersion } from "@illa-public/utils"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -76,26 +77,43 @@ export const useInitBuilderApp = (mode: IllaMode) => {
     if (isOnline) {
       setErrorState(false)
       setLoadingState(true)
-      Promise.all([
-        fetchPrivateAppInitData(appId, version, teamID, controller.signal),
-        fetchResources(controller.signal),
-        fetchTeamAgent(controller.signal),
-      ])
-        .then((res) => {
-          dispatch(resourceActions.updateResourceListReducer(res[1].data))
-          handleCurrentApp(res[0].data)
-          dispatch(
-            dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
-              res[2].data.aiAgentList,
-            ),
-          )
-        })
-        .catch(() => {
-          setErrorState(true)
-        })
-        .finally(() => {
-          setLoadingState(false)
-        })
+      if (isCloudVersion) {
+        Promise.all([
+          fetchPrivateAppInitData(appId, version, teamID, controller.signal),
+          fetchResources(controller.signal),
+          fetchTeamAgent(controller.signal),
+        ])
+          .then((res) => {
+            dispatch(resourceActions.updateResourceListReducer(res[1].data))
+            handleCurrentApp(res[0].data)
+            dispatch(
+              dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
+                res[2].data.aiAgentList,
+              ),
+            )
+          })
+          .catch(() => {
+            setErrorState(true)
+          })
+          .finally(() => {
+            setLoadingState(false)
+          })
+      } else {
+        Promise.all([
+          fetchPrivateAppInitData(appId, version, teamID, controller.signal),
+          fetchResources(controller.signal),
+        ])
+          .then((res) => {
+            dispatch(resourceActions.updateResourceListReducer(res[1].data))
+            handleCurrentApp(res[0].data)
+          })
+          .catch(() => {
+            setErrorState(true)
+          })
+          .finally(() => {
+            setLoadingState(false)
+          })
+      }
     }
 
     return () => {

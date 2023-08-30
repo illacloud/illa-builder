@@ -112,7 +112,7 @@ export const fixedWsURL = (wsURL: string) => {
     const wsPREFIX = `${wsProtocol}${
       new URL(HTTP_REQUEST_PUBLIC_BASE_URL).host
     }`
-    wsURL = `${wsPREFIX}${wsURL}`
+    wsURL = `${wsPREFIX}${wsURL.replace("/builder-ws", "")}`
   }
   return wsURL
 }

@@ -77,8 +77,8 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
-    teamInfo.totalTeamLicense.teamLicensePurchased,
-    teamInfo.totalTeamLicense.teamLicenseAllPaid,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
   const handleDuplicateApp = () => {
