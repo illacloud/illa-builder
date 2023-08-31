@@ -2625,9 +2625,9 @@
         "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki.",
         "purchase-required": "Colla nie wystarczy do uruchomienia, proszę doładować.",
         "leave": "Istnieją niezapisane treści, czy na pewno chcesz opuścić?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Poczekaj aż generacja zakończy lub przerwie proces"
       },
-      "title": "Edit AI Agent",
+      "title": "Edytuj agenta AI",
       "generate-desc": {
         "button": "Wygeneruj SI",
         "tooltips": "Użyj AI do wygenerowania opisu na podstawie Twojego pytania. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Niestandardowy ruch do pobierania plików z Dysku ILLA"
         }
       }
+    },
+    "advanced": {
+      "feature": "Usuń znak wodny"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "Agenci SI",
   "marketplace": {
-    "star": "Star",
+    "star": "Gwiazdka",
     "fork": "Fork"
   },
   "load": {
