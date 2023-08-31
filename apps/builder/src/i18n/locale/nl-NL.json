@@ -2625,9 +2625,9 @@
         "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten.",
         "purchase-required": "Colla is niet genoeg om te draaien, gelieve te herladen.",
         "leave": "Er zijn niet-opgeslagen inhoud, weet u zeker dat u wilt verlaten?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Wacht tot de generatie het proces voltooit of onderbreekt"
       },
-      "title": "Edit AI Agent",
+      "title": "Bewerk AI Agent",
       "generate-desc": {
         "button": "AI genereren",
         "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Aangepast verkeer om bestanden van ILLA Drive te downloaden"
         }
       }
+    },
+    "advanced": {
+      "feature": "Watermerk verwijderen"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "AI agenten",
   "marketplace": {
-    "star": "Star",
+    "star": "Ster",
     "fork": "Fork"
   },
   "load": {
