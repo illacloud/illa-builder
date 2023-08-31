@@ -2625,9 +2625,9 @@
         "token": "Der aktuelle Wert von Max Token ist niedrig, was unvollständige Ergebnisse verursachen kann.",
         "purchase-required": "Colla reicht nicht aus, bitte laden Sie auf.",
         "leave": "Es gibt ungespeicherte Inhalte. Sind Sie sicher, dass Sie verlassen möchten?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Bitte warten Sie, bis die Generation den Prozess beendet oder unterbricht"
       },
-      "title": "Edit AI Agent",
+      "title": "KI-Agent bearbeiten",
       "generate-desc": {
         "button": "KI generieren",
         "tooltips": "Verwenden Sie die KI um die Beschreibung basierend auf Ihrem Prompt zu generieren. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Benutzerdefinierter Datenverkehr zum Herunterladen von Dateien von ILLA Drive"
         }
       }
+    },
+    "advanced": {
+      "feature": "Wasserzeichen entfernen"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "KI-Agenten",
   "marketplace": {
-    "star": "Star",
+    "star": "Stern",
     "fork": "Fork"
   },
   "load": {
