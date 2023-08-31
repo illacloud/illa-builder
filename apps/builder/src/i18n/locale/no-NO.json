@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla er ikke nok til å kjøre, vennligst lade.",
         "leave": "Det er ulagrede innhold, er du sikker på at du vil forlate?"
       },
-      "title": "🧬 Rediger AI Agent",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "AI genererer",
         "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
