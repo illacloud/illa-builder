@@ -3301,7 +3301,10 @@
           "agent": "Acabo de descobrir um impressionante Agente IA chamado {{ agentName }}. Confira: {{ agentLink }}"
         },
         "desc": "Após contribuir para o Marketplace, todos os usuários podem executar, estrelar e bifurcar o seu Agente. Quando usuários de outras equipes executam este Agente, não consumirá seus recursos.",
-        "turn_off": "Cancelar contribuição"
+        "turn_off": "Cancelar contribuição",
+        "app": {
+          "desc": "Depois de contribuir com seu aplicativo para a comunidade, outros usuários podem ver sua interface, executar suas ações e bifurcá-lo. Ao criar um aplicativo, as informações de configuração de recursos não estão incluídas, não há necessidade de se preocupar com a divulgação das informações de configuração de recursos."
+        }
       },
       "social_media": {
         "label": "Compartilhar em",
