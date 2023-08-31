@@ -2606,7 +2606,7 @@
       "save": "保存",
       "start": "开始",
       "restart": "重新开始",
-      "contribute": "贡献到Marketplace",
+      "contribute": "贡献到社区",
       "button": {
         "send": "发送",
         "generating": "正在生成"
@@ -2624,7 +2624,8 @@
         "token-not-enough": "运行已达模型上限，请重新开始。",
         "token": "当前Max token设置小于Prompt占用的token或超出了模型限制",
         "purchase-required": "Colla不足无法运行，请充值",
-        "leave": "有未保存的内容，确认要离开吗？"
+        "leave": "有未保存的内容，确认要离开吗？",
+        "generating": "请等待生成结束或中断生成后再切换"
       },
       "title": "编辑AI Agent",
       "generate-desc": {
@@ -4093,7 +4094,7 @@
       "undeploy": "应用程序尚未部署。公开访问和浏览者访问可能遇到错误。 "
     },
     "label": {
-      "contribute": "贡献到Marketplace"
+      "contribute": "贡献到社区"
     },
     "default-text": {
       "social-media": {
@@ -4125,8 +4126,8 @@
   },
   "ai-agents": "AI Agents",
   "marketplace": {
-    "star": "Star {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
   },
   "load": {
     "before": "加载更多"
