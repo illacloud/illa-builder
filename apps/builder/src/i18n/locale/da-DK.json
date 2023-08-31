@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla er ikke nok til at køre, genopbyd venligst",
         "leave": "Der er ikke-gemt indhold, er du sikker på, at du vil forlade?"
       },
-      "title": "🧬 Rediger AI Agent",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "AI generere",
         "tooltips": "Brug AI til at generere beskrivelsen baseret på din prompt. ",
