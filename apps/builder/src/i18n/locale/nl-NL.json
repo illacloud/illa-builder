@@ -3301,7 +3301,10 @@
           "agent": "Ik heb net een indrukwekkende AI Agent genaamd {{ agentName }}ontdekt. Controleer het: {{ agentLink }}"
         },
         "desc": "Na het bijdragen aan de Marketplace, kunnen alle gebruikers uw agent draaien, ster maken en forken. Wanneer gebruikers van andere teams deze Agent uitvoeren, zal het uw bronnen niet verbruiken.",
-        "turn_off": "Annuleer bijdrage"
+        "turn_off": "Annuleer bijdrage",
+        "app": {
+          "desc": "Na het bijdragen van je app aan de community, kunnen andere gebruikers de interface bekijken, de acties uitvoeren en deze forken. Bij het forken van een app wordt de resource configuratie informatie niet opgenomen, dus er is geen reden om je zorgen te maken over de openbaarmaking van de resource configuratie informatie."
+        }
       },
       "social_media": {
         "label": "Delen op",
