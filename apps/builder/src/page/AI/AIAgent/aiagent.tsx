@@ -736,10 +736,7 @@ export const AIAgent: FC = () => {
                 let updateIconURL = data.icon
                 if (data.icon !== undefined && data.icon !== "") {
                   const iconURL = new URL(data.icon)
-                  if (
-                    iconURL.protocol !== "http:" &&
-                    iconURL.protocol !== "https:"
-                  ) {
+                  if (iconURL.pathname.includes("illa-cloud-team-storage")) {
                     updateIconURL = await uploadAgentIcon(data.icon)
                   }
                 }
