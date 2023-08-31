@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla is not enough to run, please recharge.",
         "leave": "There are unsaved content, are you sure you want to leave?"
       },
-      "title": "🧬 Edit AI Agent",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "AI generate",
         "tooltips": "Use AI to generate the description based on your prompt. ",
