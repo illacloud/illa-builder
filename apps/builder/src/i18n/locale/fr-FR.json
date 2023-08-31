@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla ne suffit pas pour fonctionner, veuillez recharger.",
         "leave": "Il y a du contenu non enregistré, êtes-vous sûr de vouloir quitter ?"
       },
-      "title": "🧬 Modifier l'Agent IA",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "Générer une IA",
         "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
