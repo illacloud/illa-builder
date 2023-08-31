@@ -3301,7 +3301,10 @@
           "agent": "Acabo de descubrir un impresionante agente de AI llamado {{ agentName }}. Échale un vistazo: {{ agentLink }}"
         },
         "desc": "Después de contribuir al mercado, todos los usuarios pueden ejecutar, estrellar y bifurcar a su agente. Cuando los usuarios de otros equipos ejecutan este agente, no consumirá sus recursos.",
-        "turn_off": "Cancelar contribución"
+        "turn_off": "Cancelar contribución",
+        "app": {
+          "desc": "Después de contribuir con tu aplicación a la comunidad, otros usuarios pueden ver su interfaz, ejecutar sus acciones y bifurcarla. Al bifurcar una aplicación, la información de configuración de recursos no está incluida, por lo que no hay necesidad de preocuparse por la divulgación de información de configuración de recursos."
+        }
       },
       "social_media": {
         "label": "Compartir en",
