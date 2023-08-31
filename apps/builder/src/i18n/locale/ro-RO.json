@@ -3301,7 +3301,10 @@
           "agent": "Tocmai am descoperit un impresionant AI Agent numit {{ agentName }}. Verificați: {{ agentLink }}"
         },
         "desc": "După ce ați contribuit la bazar, toți utilizatorii pot rula, steaua și furca Agentul. Când utilizatorii din alte echipe execută acest agent, nu vor consuma resursele.",
-        "turn_off": "Anulează contribuția"
+        "turn_off": "Anulează contribuția",
+        "app": {
+          "desc": "După ce a contribuit aplicația ta la comunitate, alți utilizatori își pot vizualiza interfața, pot executa acțiunile și îl pot furca. Atunci când forjezi o aplicație, informațiile de configurare a resurselor nu sunt incluse, deci nu este nevoie să îți faci griji cu privire la publicarea informațiilor de configurare a resurselor."
+        }
       },
       "social_media": {
         "label": "Distribuie pe",
