@@ -2,6 +2,7 @@ import {
   ILLA_MIXPANEL_BUILDER_PAGE_NAME,
   ILLA_MIXPANEL_EVENT_TYPE,
 } from "@illa-public/mixpanel-utils"
+import { isCloudVersion } from "@illa-public/utils"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { AxiosResponse } from "axios"
 import { FC, useEffect } from "react"
@@ -61,12 +62,14 @@ export const DeployContent: FC = () => {
       if (!asyncValue.isPublic) {
         const resourceInfo = await resourceResponse
         dispatch(resourceActions.updateResourceListReducer(resourceInfo.data))
-        const agentList = await teamAgentList
-        dispatch(
-          dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
-            agentList.data.aiAgentList,
-          ),
-        )
+        if (isCloudVersion) {
+          const agentList = await teamAgentList
+          dispatch(
+            dashboardTeamAIAgentActions.updateTeamAIAgentListReducer(
+              agentList.data.aiAgentList,
+            ),
+          )
+        }
         dispatch(configActions.updateIllaMode("production"))
         dispatch(appInfoActions.updateAppInfoReducer(appInfo.data.appInfo))
         const fixedComponents = fixedComponentsToNewComponents(

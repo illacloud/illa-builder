@@ -136,7 +136,7 @@ export const DashboardTitleBar: FC<PageLoadingProps> = (props) => {
     {
       key: "members",
       title: t("user_management.page.member"),
-      hidden: isCloudVersion,
+      hidden: isCloudVersion || !canEditApp,
     },
     {
       key: "ai-agents",

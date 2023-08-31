@@ -48,12 +48,14 @@ export const deployLoader: LoaderFunction = async (args) => {
       }
       const appInfo = fetchPrivateAppInitData(appId, "-2", args.request.signal)
       const resourceInfo = fetchResources(args.request.signal)
-      const teamAgentList = fetchTeamAgent(args.request.signal)
+      const teamAgentList = isCloudVersion
+        ? fetchTeamAgent(args.request.signal)
+        : undefined
       return defer({
         isPublic,
         appInfo,
         resourceInfo,
-        teamAgentList: isCloudVersion ? teamAgentList : undefined,
+        teamAgentList,
       })
     }
   } catch (e) {

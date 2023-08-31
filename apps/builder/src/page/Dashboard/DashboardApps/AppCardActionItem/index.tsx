@@ -300,17 +300,19 @@ export const AppCardActionItem: FC<AppCardActionItemProps> = (props) => {
                 }
                 onClick={handleOpenAppSettingModal}
               />
-              <DropListItem
-                key="share"
-                value="share"
-                title={
-                  <div>
-                    <DependencyIcon mr="8px" />
-                    <span>{t("share")}</span>
-                  </div>
-                }
-                onClick={openInviteModal}
-              />
+              {showInvite && (
+                <DropListItem
+                  key="share"
+                  value="share"
+                  title={
+                    <div>
+                      <DependencyIcon mr="8px" />
+                      <span>{t("share")}</span>
+                    </div>
+                  }
+                  onClick={openInviteModal}
+                />
+              )}
               <DropListItem
                 key="duplicate"
                 value="duplicate"
