@@ -22,7 +22,6 @@ import {
   ATTRIBUTE_GROUP,
 } from "@illa-public/user-role-utils/interface"
 import { isCloudVersion } from "@illa-public/utils"
-import { isBoolean } from "lodash"
 import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
@@ -105,7 +104,7 @@ export const DashboardApps: FC = () => {
   }, [dispatch, navigate, teamInfo.identifier, message, t])
 
   useEffect(() => {
-    if (!isBoolean(isTutorialViewed) && canEditApp) {
+    if (!isTutorialViewed && canEditApp) {
       openGuideModal(teamInfo.identifier)
       dispatch(currentUserActions.updateUserIsTutorialViewedReducer(true))
     }
