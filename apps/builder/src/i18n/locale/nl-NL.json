@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla is niet genoeg om te draaien, gelieve te herladen.",
         "leave": "Er zijn niet-opgeslagen inhoud, weet u zeker dat u wilt verlaten?"
       },
-      "title": "🧬 Bewerk de AI Agent",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "AI genereren",
         "tooltips": "Gebruik AI om de beschrijving te genereren op basis van je prompt. ",
