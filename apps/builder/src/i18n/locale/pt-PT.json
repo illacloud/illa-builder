@@ -2624,7 +2624,8 @@
         "token-not-enough": "Limite de modelos atingido. Por favor reinicie.",
         "token": "O valor atual do Max de tokens é baixo, o que pode causar resultados incompletos retornados.",
         "purchase-required": "Colla não é suficiente para funcionar, por favor recarregue.",
-        "leave": "Existem conteúdos não salvos, você tem certeza que deseja sair?"
+        "leave": "Existem conteúdos não salvos, você tem certeza que deseja sair?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "Edit AI Agent",
       "generate-desc": {
@@ -4125,8 +4126,8 @@
   },
   "ai-agents": "Agentes de IA",
   "marketplace": {
-    "star": "Estrela {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
   },
   "load": {
     "before": "Carregue mais"
