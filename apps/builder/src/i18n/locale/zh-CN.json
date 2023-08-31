@@ -72,7 +72,7 @@
       "sort-failed": "筛选类型过滤失败，请重试",
       "detail-load-failed": "详细信息查询失败，请重试",
       "fork-failed": "Fork失败，请重试",
-      "create-suc": "创建失败，请重试",
+      "create-suc": "创建成功",
       "fork-suc": "Fork成功",
       "delete-failed": "删除失败，请重试",
       "delete-suc": "删除成功",
