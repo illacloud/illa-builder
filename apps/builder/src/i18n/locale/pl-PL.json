@@ -2624,7 +2624,8 @@
         "token-not-enough": "Osiągnięto limit modelu. Uruchom ponownie.",
         "token": "Obecna wartość Max tokens jest niska, co może spowodować niekompletne zwrócone wyniki.",
         "purchase-required": "Colla nie wystarczy do uruchomienia, proszę doładować.",
-        "leave": "Istnieją niezapisane treści, czy na pewno chcesz opuścić?"
+        "leave": "Istnieją niezapisane treści, czy na pewno chcesz opuścić?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "Edit AI Agent",
       "generate-desc": {
@@ -4125,8 +4126,8 @@
   },
   "ai-agents": "Agenci SI",
   "marketplace": {
-    "star": "Gwiazdka {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
   },
   "load": {
     "before": "Załaduj więcej"
