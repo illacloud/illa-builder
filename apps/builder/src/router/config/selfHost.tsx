@@ -6,6 +6,7 @@ import { SettingOthers } from "@/page/Setting/SettingOthers"
 import { SettingPassword } from "@/page/Setting/SettingPassword"
 import { RoutesObjectPro } from "../interface"
 import { selfHostLandingLoader } from "../loader/landingLoader"
+import { teamMemberLoader } from "../loader/teamMemberLoader"
 import { lazyLoad } from "../utils/lazyLoad"
 import {
   publicDashboardChildrenRouter,
@@ -37,6 +38,7 @@ export const selfRouter: RoutesObjectPro[] = [
         path: "members",
         element: <Member />,
         needLogin: true,
+        loader: teamMemberLoader,
       },
     ],
   },

@@ -155,15 +155,15 @@ export const DashboardApps: FC = () => {
       <AppsContent onCreatedApp={handleCreateApp} loading={loading} />
       {inviteModalVisible && (
         <InviteMemberPC
-          redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-            teamInfo?.identifier
-          }/dashboard/apps`}
+          redirectURL={`${window.location.origin}/${teamInfo?.identifier}/dashboard/apps`}
           onClose={() => setInviteModalVisible(false)}
           canInvite={showInvite}
           currentUserRole={teamInfo.myRole}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           defaultInviteUserRole={USER_ROLE.VIEWER}
-          defaultBalance={teamInfo.currentTeamLicense.balance}
+          defaultBalance={
+            isCloudVersion ? teamInfo.currentTeamLicense.balance : Infinity
+          }
           onCopyInviteLink={(inviteLink) => {
             copyToClipboard(
               t("user_management.modal.custom_copy_text", {

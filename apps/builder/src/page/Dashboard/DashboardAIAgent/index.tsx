@@ -74,9 +74,7 @@ const DashboardAIAgent: FC = () => {
       </div>
       {showInvite && (
         <InviteMemberPC
-          redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-            teamInfo?.identifier
-          }/dashboard/ai-agents`}
+          redirectURL={`${window.location.origin}/${teamInfo?.identifier}/dashboard/ai-agents`}
           onClose={() => setShowInvite(false)}
           canInvite={showInvite}
           currentUserRole={teamInfo.myRole}

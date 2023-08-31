@@ -121,8 +121,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const canUseBillingFeature = canUseUpgradeFeature(
     teamInfo.myRole,
-    teamInfo.totalTeamLicense.teamLicensePurchased,
-    teamInfo.totalTeamLicense.teamLicenseAllPaid,
+    teamInfo?.totalTeamLicense?.teamLicensePurchased,
+    teamInfo?.totalTeamLicense?.teamLicenseAllPaid,
   )
 
   const handleClickDebuggerIcon = useCallback(() => {
@@ -165,9 +165,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           }),
         )
         window.open(
-          `${
-            import.meta.env.ILLA_BUILDER_URL
-          }/${teamIdentifier}/deploy/app/${appId}`,
+          `${window.location.origin}/${teamIdentifier}/deploy/app/${appId}`,
           "_blank",
         )
         onSuccess?.()

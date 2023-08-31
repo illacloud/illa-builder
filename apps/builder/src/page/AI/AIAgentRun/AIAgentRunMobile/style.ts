@@ -26,6 +26,7 @@ export const headerContainerStyle = css`
 export const previewChatContainer = css`
   height: 100%;
   width: 100%;
+  overflow: hidden;
 `
 
 export const agentIconStyle = css`

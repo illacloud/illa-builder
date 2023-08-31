@@ -4,7 +4,10 @@ import { createMessage } from "@illa-design/react"
 import { GUIDE_DEFAULT_ACTION_ID } from "@/config/guide"
 import i18n from "@/i18n/config"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
-import { getIsILLAGuideMode } from "@/redux/config/configSelector"
+import {
+  getIsILLAGuideMode,
+  getIsILLAProductMode,
+} from "@/redux/config/configSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import {
   ActionContent,
@@ -109,6 +112,7 @@ export const runActionWithExecutionResult = async (
   const rootState = store.getState()
   const appId = getAppId(rootState)
   const isGuideMode = getIsILLAGuideMode(rootState)
+  const isProductionMode = getIsILLAProductMode(rootState)
   const {
     successEvent: _successEvent = [],
     failedEvent: _failedEvent = [],
@@ -152,7 +156,7 @@ export const runActionWithExecutionResult = async (
           | AxiosResponse<BlobPart, unknown>
           | AxiosResponse<ILLAApiError, any>
         )[] = (await fetchActionResult(
-      action.config?.public ?? false,
+      !isProductionMode ? false : action.config?.public ?? false,
       ($resourceID as string) || "",
       actionType as ActionType,
       displayName,

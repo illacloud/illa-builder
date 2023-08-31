@@ -70,12 +70,8 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
           title={t("user_management.modal.social_media.default_text.app", {
             appName: appInfo.appName,
           })}
-          editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-            teamInfo.identifier
-          }/app/${appInfo.appId}`}
-          useRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-            teamInfo.identifier
-          }/deploy/app/${appInfo.appId}`}
+          editRedirectURL={`${window.location.origin}/${teamInfo.identifier}/app/${appInfo.appId}`}
+          useRedirectURL={`${window.location.origin}/${teamInfo.identifier}/deploy/app/${appInfo.appId}`}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           onInviteLinkStateChange={(enableInviteLink) => {
             dispatch(
@@ -92,7 +88,9 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
             setShareModalVisible(false)
           }}
           canInvite={showInvite}
-          defaultBalance={teamInfo.currentTeamLicense.balance}
+          defaultBalance={
+            isCloudVersion ? teamInfo.currentTeamLicense.balance : Infinity
+          }
           teamID={teamInfo.id}
           currentUserRole={teamInfo.myRole}
           onBalanceChange={(balance) => {
