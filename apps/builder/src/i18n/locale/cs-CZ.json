@@ -3301,7 +3301,10 @@
           "agent": "Právě jsem objevil působivý AI agent s názvem {{ agentName }}. Podívejte se: {{ agentLink }}"
         },
         "desc": "Po přispění do obchodu Marketplace mohou běžet, hvězda a rozštěpit vašeho agenta. Když uživatelé z jiných týmů spustí tohoto agenta, nebudou vaše zdroje spotřebovávat.",
-        "turn_off": "Zrušit příspěvek"
+        "turn_off": "Zrušit příspěvek",
+        "app": {
+          "desc": "Po přispění vaší aplikace do komunity si ostatní uživatelé mohou prohlédnout její rozhraní, spustit její akce a rozštěpit ji. Při vytváření aplikace nejsou zahrnuty informace o konfiguraci zdrojů, takže není třeba se znepokojovat zveřejněním informací o konfiguraci zdrojů."
+        }
       },
       "social_media": {
         "label": "Sdílet na",
