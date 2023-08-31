@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla nu este suficient pentru a rula, vă rugăm reîncărcați.",
         "leave": "Există conținut nesalvat, ești sigur că vrei să ieși?"
       },
-      "title": "🧬 Editare agent AI",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "Generare AI",
         "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
