@@ -2624,7 +2624,8 @@
         "token-not-enough": "モデルの上限に達しました。再起動してください。",
         "token": "Maxトークンの現在の値が低いため、結果が不完全になる可能性があります。",
         "purchase-required": "Collaは実行するのに十分ではありません。充電してください。",
-        "leave": "保存されていないコンテンツがあります。本当に退出しますか？"
+        "leave": "保存されていないコンテンツがあります。本当に退出しますか？",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "Edit AI Agent",
       "generate-desc": {
@@ -4125,8 +4126,8 @@
   },
   "ai-agents": "AIエージェント",
   "marketplace": {
-    "star": "スター {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
   },
   "load": {
     "before": "さらに読み込む"
