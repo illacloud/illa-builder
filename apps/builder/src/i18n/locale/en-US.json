@@ -4035,6 +4035,9 @@
           "traffic": "Custom traffic to download files from ILLA Drive"
         }
       }
+    },
+    "advanced": {
+      "feature": "Remove watermark"
     }
   },
   "network": {
