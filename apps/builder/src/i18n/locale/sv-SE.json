@@ -2625,9 +2625,9 @@
         "token": "Det aktuella värdet av Max tokens är låg, vilket kan orsaka ofullständiga returnerade resultat.",
         "purchase-required": "Colla är inte tillräckligt för att köra, ladda om.",
         "leave": "Det finns osparat innehåll, är du säker på att du vill lämna?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Vänta på att generationen ska slutföra eller avbryta processen"
       },
-      "title": "Edit AI Agent",
+      "title": "Redigera AI Agent",
       "generate-desc": {
         "button": "AI generera",
         "tooltips": "Använd AI för att generera beskrivningen baserat på din prompt. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Anpassad trafik för att ladda ner filer från ILLA Drive"
         }
       }
+    },
+    "advanced": {
+      "feature": "Ta bort vattenstämpel"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "AI agenter",
   "marketplace": {
-    "star": "Star",
+    "star": "Stjärna",
     "fork": "Fork"
   },
   "load": {
