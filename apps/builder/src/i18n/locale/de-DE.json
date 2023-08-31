@@ -3301,7 +3301,10 @@
           "agent": "Ich habe gerade einen beeindruckenden KI-Agent namens {{ agentName }}entdeckt. Überprüfe es: {{ agentLink }}"
         },
         "desc": "Nachdem Sie zum Marketplace beigetragen haben, können alle Benutzer Ihren Agent ausführen, markieren und forken. Wenn Benutzer aus anderen Teams diesen Agent betreiben, wird er Ihre Ressourcen nicht verbrauchen.",
-        "turn_off": "Beitrag abbrechen"
+        "turn_off": "Beitrag abbrechen",
+        "app": {
+          "desc": "Nachdem Sie Ihre App zur Community beigetragen haben, können andere Benutzer ihre Schnittstelle einsehen, ihre Aktionen ausführen und sie forken. Beim Forking einer App sind die Informationen zur Ressourcen-Konfiguration nicht enthalten, so dass keine Sorgen um die Offenlegung von Ressourcen-Konfigurationsinformationen bestehen."
+        }
       },
       "social_media": {
         "label": "Teilen auf",
