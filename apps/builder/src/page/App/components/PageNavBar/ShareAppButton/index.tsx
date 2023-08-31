@@ -92,7 +92,9 @@ export const ShareAppButton: FC<ShareAppButtonProps> = (props) => {
             setShareModalVisible(false)
           }}
           canInvite={showInvite}
-          defaultBalance={teamInfo.currentTeamLicense.balance}
+          defaultBalance={
+            isCloudVersion ? teamInfo.currentTeamLicense.balance : Infinity
+          }
           teamID={teamInfo.id}
           currentUserRole={teamInfo.myRole}
           onBalanceChange={(balance) => {

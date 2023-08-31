@@ -163,7 +163,9 @@ export const DashboardApps: FC = () => {
           currentUserRole={teamInfo.myRole}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           defaultInviteUserRole={USER_ROLE.VIEWER}
-          defaultBalance={teamInfo.currentTeamLicense.balance}
+          defaultBalance={
+            isCloudVersion ? Infinity : teamInfo.currentTeamLicense.balance
+          }
           onCopyInviteLink={(inviteLink) => {
             copyToClipboard(
               t("user_management.modal.custom_copy_text", {
