@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla reicht nicht aus, bitte laden Sie auf.",
         "leave": "Es gibt ungespeicherte Inhalte. Sind Sie sicher, dass Sie verlassen möchten?"
       },
-      "title": "🧬 KI-Agent bearbeiten",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "KI generieren",
         "tooltips": "Verwenden Sie die KI um die Beschreibung basierend auf Ihrem Prompt zu generieren. ",
