@@ -2624,7 +2624,8 @@
         "token-not-enough": "Model limiet bereikt. Start opnieuw.",
         "token": "De huidige waarde van Max Tokens is laag, wat kan leiden tot onvolledige resultaten.",
         "purchase-required": "Colla is niet genoeg om te draaien, gelieve te herladen.",
-        "leave": "Er zijn niet-opgeslagen inhoud, weet u zeker dat u wilt verlaten?"
+        "leave": "Er zijn niet-opgeslagen inhoud, weet u zeker dat u wilt verlaten?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "Edit AI Agent",
       "generate-desc": {
@@ -4125,8 +4126,8 @@
   },
   "ai-agents": "AI agenten",
   "marketplace": {
-    "star": "Ster {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
   },
   "load": {
     "before": "Meer laden"
