@@ -3301,7 +3301,10 @@
           "agent": "Jeg oppdaget nettopp en imponerende AI Agent kalt {{ agentName }}. Sjekk det: {{ agentLink }}"
         },
         "desc": "Etter at du har bidratt til markedsplassen, kan alle brukere kjøre, stjerne og gaffel din agent. Når brukere fra en annen gruppe kjører denne agenten vil det ikke forbruke ressursene dine.",
-        "turn_off": "Avbryt bidrag"
+        "turn_off": "Avbryt bidrag",
+        "app": {
+          "desc": "Etter at du har bidratt med appen til samfunnet, kan andre brukere se grensesnittet, kjøre handlingene dens og gaffke den. Når du har lagt til en app, er ikke ressurskonfigurasjonsinformasjonen inkludert, så det er ikke nødvendig å bekymre deg om utlevering av informasjon om ressurskonfigurasjon."
+        }
       },
       "social_media": {
         "label": "Del på",
