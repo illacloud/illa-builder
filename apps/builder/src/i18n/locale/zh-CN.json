@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla不足无法运行，请充值",
         "leave": "有未保存的内容，确认要离开吗？"
       },
-      "title": "🧬 编辑AI Agent",
+      "title": "编辑AI Agent",
       "generate-desc": {
         "button": "AI生成",
         "tooltips": "基于您的Prompt，使用AI生成描述信息",
