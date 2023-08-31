@@ -3301,7 +3301,10 @@
           "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
         },
         "desc": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources.",
-        "turn_off": "Cancel contribution"
+        "turn_off": "Cancel contribution",
+        "app": {
+          "desc": "After contributing your app to the community, other users can view its interface, run its actions, and fork it. When forking an app, the resource configuration information is not included, so there is no need to worry about the disclosure of resource configuration information."
+        }
       },
       "social_media": {
         "label": "Share on",
