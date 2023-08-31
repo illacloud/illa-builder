@@ -2625,9 +2625,9 @@
         "token": "Поточне значення Max токенів низьке, що може спричинити незавершені результати.",
         "purchase-required": "Colla недостатньо для запуску, будь ласка, повторіть зарядку.",
         "leave": "Є незбережений зміст, ви впевнені, що хочете вийти?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Дочекайтеся завершення або переривання процесу"
       },
-      "title": "Edit AI Agent",
+      "title": "Змінити AI Agent",
       "generate-desc": {
         "button": "Згенерувати ШІ",
         "tooltips": "Використовуйте AI для створення опису, заснованого на вашому підказці. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Довільний трафік для завантаження файлів з диска ILLA"
         }
       }
+    },
+    "advanced": {
+      "feature": "Видалити водяний знак"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "Агенти ШІ",
   "marketplace": {
-    "star": "Star",
+    "star": "Зірка",
     "fork": "Fork"
   },
   "load": {
