@@ -55,13 +55,14 @@ export const inputTextContainerStyle = css`
   flex-direction: column;
   box-sizing: border-box;
   border-top: 1px solid ${getColor("grayBlue", "08")};
+  flex: none;
 `
 
 export const chatContainerStyle = css`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  height: 100%;
   padding-bottom: 110px;
 `
 
