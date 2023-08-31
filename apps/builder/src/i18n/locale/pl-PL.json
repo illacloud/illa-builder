@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla nie wystarczy do uruchomienia, proszę doładować.",
         "leave": "Istnieją niezapisane treści, czy na pewno chcesz opuścić?"
       },
-      "title": "🧬 Edytuj agenta SI",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "Wygeneruj SI",
         "tooltips": "Użyj AI do wygenerowania opisu na podstawie Twojego pytania. ",
