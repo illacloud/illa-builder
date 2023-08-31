@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla não é suficiente para funcionar, por favor recarregue.",
         "leave": "Existem conteúdos não salvos, você tem certeza que deseja sair?"
       },
-      "title": "🧬 Editar Agente IA",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "Gerar IA",
         "tooltips": "Usar AI para gerar a descrição baseada no seu prompt. ",
