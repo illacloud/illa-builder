@@ -2624,7 +2624,8 @@
         "token-not-enough": "Достигнут лимит модели. Пожалуйста, перезапустите.",
         "token": "Текущее значение токенов Max является низким, что может привести к неполному результату.",
         "purchase-required": "Колла не хватает для запуска, пожалуйста, зарядите его.",
-        "leave": "Есть несохраненный контент, вы уверены, что хотите выйти?"
+        "leave": "Есть несохраненный контент, вы уверены, что хотите выйти?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "Edit AI Agent",
       "generate-desc": {
@@ -4125,8 +4126,8 @@
   },
   "ai-agents": "Агенты ИИ",
   "marketplace": {
-    "star": "Звёздная {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
   },
   "load": {
     "before": "Загрузить еще"
