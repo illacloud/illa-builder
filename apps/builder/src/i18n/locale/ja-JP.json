@@ -2625,9 +2625,9 @@
         "token": "Maxトークンの現在の値が低いため、結果が不完全になる可能性があります。",
         "purchase-required": "Collaは実行するのに十分ではありません。充電してください。",
         "leave": "保存されていないコンテンツがあります。本当に退出しますか？",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "世代が完了するか、プロセスを中断するまでお待ちください"
       },
-      "title": "Edit AI Agent",
+      "title": "AI エージェントを編集",
       "generate-desc": {
         "button": "AI 生成",
         "tooltips": "AIを使用して、プロンプトに基づいて説明を生成します。 ",
@@ -4035,6 +4035,9 @@
           "traffic": "ILLAドライブからファイルをダウンロードするためのカスタムトラフィック"
         }
       }
+    },
+    "advanced": {
+      "feature": "透かしを削除"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "AIエージェント",
   "marketplace": {
-    "star": "Star",
+    "star": "スター",
     "fork": "Fork"
   },
   "load": {
