@@ -2625,9 +2625,9 @@
         "token": "Dagens verdi av Max tokens er lav, noe som kan føre til ufullstendige resultater.",
         "purchase-required": "Colla er ikke nok til å kjøre, vennligst lade.",
         "leave": "Det er ulagrede innhold, er du sikker på at du vil forlate?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Vennligst vent på generasjonen for å fullføre eller avbryte prosessen"
       },
-      "title": "Edit AI Agent",
+      "title": "Rediger AI-Agent",
       "generate-desc": {
         "button": "AI genererer",
         "tooltips": "Bruk AI til å generere beskrivelsen basert på ledeteksten din. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Tilpasset trafikk til nedlasting av filer fra ILLA-stasjon"
         }
       }
+    },
+    "advanced": {
+      "feature": "Fjern vannmerke"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "AI agenter",
   "marketplace": {
-    "star": "Star",
+    "star": "Stjerne",
     "fork": "Fork"
   },
   "load": {
