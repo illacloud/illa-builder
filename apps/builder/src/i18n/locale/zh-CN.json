@@ -4035,6 +4035,9 @@
           "traffic": "自定义流量额度，用于从ILLA Drive中下载文件"
         }
       }
+    },
+    "advanced": {
+      "feature": "移除水印"
     }
   },
   "network": {
