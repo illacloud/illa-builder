@@ -3301,7 +3301,10 @@
           "agent": "Właśnie odkryłem imponującego agenta AI o nazwie {{ agentName }}. Sprawdź to: {{ agentLink }}"
         },
         "desc": "Po wniesieniu wkładu do Marketplace, wszyscy użytkownicy mogą działać, gwiazdkę i rozwidlić swojego przedstawiciela. Gdy użytkownicy z innych drużyn uruchamiają tego agenta, nie zużywają twoich zasobów.",
-        "turn_off": "Anuluj wkład"
+        "turn_off": "Anuluj wkład",
+        "app": {
+          "desc": "Po przekazaniu aplikacji do społeczności, inni użytkownicy mogą przeglądać swój interfejs, uruchamiać swoje działania i je rozwikłać. Przy forkowaniu aplikacji informacje o konfiguracji zasobów nie są uwzględniane, więc nie ma potrzeby obawiania się o ujawnienie informacji o konfiguracji zasobów."
+        }
       },
       "social_media": {
         "label": "Udostępnij na",
