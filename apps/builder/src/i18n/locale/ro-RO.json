@@ -2625,9 +2625,9 @@
         "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate.",
         "purchase-required": "Colla nu este suficient pentru a rula, vă rugăm reîncărcați.",
         "leave": "Există conținut nesalvat, ești sigur că vrei să ieși?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Vă rugăm să așteptați ca generația să finalizeze sau să întrerupă procesul"
       },
-      "title": "Edit AI Agent",
+      "title": "Editează Agent AI",
       "generate-desc": {
         "button": "Generare AI",
         "tooltips": "Utilizaţi AI pentru a genera descrierea pe baza solicitării. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Trafic personalizat pentru descărcarea fişierelor de pe ILLA Drive"
         }
       }
+    },
+    "advanced": {
+      "feature": "Elimină filigran"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "Agenți AI",
   "marketplace": {
-    "star": "Star",
+    "star": "Stea",
     "fork": "Fork"
   },
   "load": {
