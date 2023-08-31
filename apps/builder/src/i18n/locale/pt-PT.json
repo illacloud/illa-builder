@@ -4035,6 +4035,9 @@
           "traffic": "Tráfego personalizado para download de arquivos do disco ILLA"
         }
       }
+    },
+    "advanced": {
+      "feature": "Remove watermark"
     }
   },
   "network": {
