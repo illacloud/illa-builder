@@ -6,7 +6,7 @@ import i18n from "@/i18n/config"
 import { isFileOversize } from "@/page/App/components/Actions/ActionPanel/utils/calculateFileSize"
 import {
   getIsILLAGuideMode,
-  getIsLikeProductMode,
+  getIsILLAProductMode,
 } from "@/redux/config/configSelector"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import {
@@ -112,7 +112,7 @@ export const runActionWithExecutionResult = async (
   const rootState = store.getState()
   const appId = getAppId(rootState)
   const isGuideMode = getIsILLAGuideMode(rootState)
-  const isProductionMode = getIsLikeProductMode(rootState)
+  const isProductionMode = getIsILLAProductMode(rootState)
   const {
     successEvent: _successEvent = [],
     failedEvent: _failedEvent = [],
