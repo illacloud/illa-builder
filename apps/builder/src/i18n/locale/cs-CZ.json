@@ -2626,7 +2626,7 @@
         "purchase-required": "Colla nestačí k spuštění, prosím znovu nabit.",
         "leave": "Existuje neuložený obsah, jste si jisti, že chcete odejít?"
       },
-      "title": "🧬 Úprava AI agenta",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "Generovat AI",
         "tooltips": "Použijte AI k vygenerování popisu na základě vaší výzvy. ",
