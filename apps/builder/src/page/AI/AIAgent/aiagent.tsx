@@ -736,7 +736,10 @@ export const AIAgent: FC = () => {
                 let updateIconURL = data.icon
                 if (data.icon !== undefined && data.icon !== "") {
                   const iconURL = new URL(data.icon)
-                  if (!iconURL.pathname.includes("illa-cloud-team-storage")) {
+                  if (
+                    iconURL.protocol !== "http:" &&
+                    iconURL.protocol !== "https:"
+                  ) {
                     updateIconURL = await uploadAgentIcon(data.icon)
                   }
                 }
@@ -924,7 +927,7 @@ export const AIAgent: FC = () => {
                         )}
                         redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
                           currentTeamInfo.identifier
-                        }/ai-agent/${idField.value}/run`}
+                        }/ai-agent/${idField.value}`}
                         onClose={() => {
                           setShareDialogVisible(false)
                           setContributedDialogVisible(false)
