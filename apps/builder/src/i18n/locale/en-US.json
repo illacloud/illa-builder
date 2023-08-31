@@ -2624,9 +2624,10 @@
         "token-not-enough": "Model limit reached. Please restart.",
         "token": "The Max token is smaller than the number of tokens occupied by the prompt or exceeds the model's limit.",
         "purchase-required": "Colla is not enough to run, please recharge.",
-        "leave": "There are unsaved content, are you sure you want to leave?"
+        "leave": "There are unsaved content, are you sure you want to leave?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
-      "title": "🧬 Edit AI Agent",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "AI generate",
         "tooltips": "Use AI to generate the description based on your prompt. ",
@@ -3300,8 +3301,11 @@
           "app": "I just discovered an impressive app called {{ appName }}. Check it: {{ appLink }}",
           "agent": "I just discovered an impressive AI Agent called {{ agentName }}. Check it: {{ agentLink }}"
         },
-        "desc": "After contributing to the Marketplace, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources.",
-        "turn_off": "Cancel contribution"
+        "desc": "After contributing to the community, all users can run, star, and fork your Agent. When users from other teams run this Agent, it will not consume your resources.",
+        "turn_off": "Cancel contribution",
+        "app": {
+          "desc": "After contributing your app to the community, other users can view its interface, run its actions, and fork it. When forking an app, the resource configuration information is not included, so there is no need to worry about the disclosure of resource configuration information."
+        }
       },
       "social_media": {
         "label": "Share on",
@@ -4031,6 +4035,9 @@
           "traffic": "Custom traffic to download files from ILLA Drive"
         }
       }
+    },
+    "advanced": {
+      "feature": "Remove watermark"
     }
   },
   "network": {
@@ -4122,8 +4129,8 @@
   },
   "ai-agents": "AI Agents",
   "marketplace": {
-    "star": "Star {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
   },
   "load": {
     "before": "Load more"
