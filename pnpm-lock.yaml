@@ -3332,6 +3332,9 @@ importers:
       '@illa-public/user-data':
         specifier: workspace:*
         version: link:../UserData
+      '@illa-public/utils':
+        specifier: workspace:*
+        version: link:../utils
     devDependencies:
       tsconfig:
         specifier: workspace:*

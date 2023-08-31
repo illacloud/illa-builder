@@ -59,12 +59,8 @@ export const ContributeButton: FC<ContributeButtonProps> = (props) => {
             appName: appInfo.appName,
           })}
           defaultTab={"public"}
-          editRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-            teamInfo.identifier
-          }/app/${appInfo.appId}`}
-          useRedirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
-            teamInfo.identifier
-          }/deploy/app/${appInfo.appId}`}
+          editRedirectURL={`${window.location.origin}/${teamInfo.identifier}/app/${appInfo.appId}`}
+          useRedirectURL={`${window.location.origin}/${teamInfo.identifier}/deploy/app/${appInfo.appId}`}
           defaultAllowInviteLink={teamInfo.permission.inviteLinkEnabled}
           onInviteLinkStateChange={(enableInviteLink) => {
             dispatch(
