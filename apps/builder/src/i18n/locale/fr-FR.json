@@ -2625,9 +2625,9 @@
         "token": "La valeur actuelle des jetons Max est faible, ce qui peut causer des retours incomplets.",
         "purchase-required": "Colla ne suffit pas pour fonctionner, veuillez recharger.",
         "leave": "Il y a du contenu non enregistré, êtes-vous sûr de vouloir quitter ?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Veuillez attendre que la génération soit terminée ou interrompre le processus"
       },
-      "title": "Edit AI Agent",
+      "title": "Modifier l'Agent IA",
       "generate-desc": {
         "button": "Générer une IA",
         "tooltips": "Utilisez l'IA pour générer la description en fonction de votre prompt. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Trafic personnalisé pour télécharger des fichiers depuis le lecteur ILLA"
         }
       }
+    },
+    "advanced": {
+      "feature": "Supprimer le filigrane"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "Agents IA",
   "marketplace": {
-    "star": "Star",
+    "star": "Étoiles",
     "fork": "Fork"
   },
   "load": {
