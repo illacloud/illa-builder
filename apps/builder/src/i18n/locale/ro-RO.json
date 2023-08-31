@@ -2624,7 +2624,8 @@
         "token-not-enough": "Limita modelului a fost atinsă. Vă rugăm să reporniţi.",
         "token": "Valoarea curentă a token-urilor Max este scăzută, ceea ce poate cauza rezultate incomplete returnate.",
         "purchase-required": "Colla nu este suficient pentru a rula, vă rugăm reîncărcați.",
-        "leave": "Există conținut nesalvat, ești sigur că vrei să ieși?"
+        "leave": "Există conținut nesalvat, ești sigur că vrei să ieși?",
+        "generating": "Please wait for the generation to complete or interrupt the process"
       },
       "title": "Edit AI Agent",
       "generate-desc": {
@@ -4125,8 +4126,8 @@
   },
   "ai-agents": "Agenți AI",
   "marketplace": {
-    "star": "Star {{operationNum}}",
-    "fork": "Fork {{operationNum}}"
+    "star": "Star",
+    "fork": "Fork"
   },
   "load": {
     "before": "Încarcă mai mult"
