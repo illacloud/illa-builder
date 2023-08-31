@@ -2626,7 +2626,7 @@
         "purchase-required": "Collaは実行するのに十分ではありません。充電してください。",
         "leave": "保存されていないコンテンツがあります。本当に退出しますか？"
       },
-      "title": "🧬 AI エージェントの編集",
+      "title": "Edit AI Agent",
       "generate-desc": {
         "button": "AI 生成",
         "tooltips": "AIを使用して、プロンプトに基づいて説明を生成します。 ",
