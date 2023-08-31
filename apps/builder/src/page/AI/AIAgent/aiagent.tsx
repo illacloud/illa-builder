@@ -924,7 +924,7 @@ export const AIAgent: FC = () => {
                         )}
                         redirectURL={`${import.meta.env.ILLA_BUILDER_URL}/${
                           currentTeamInfo.identifier
-                        }/ai-agent/${idField.value}`}
+                        }/ai-agent/${idField.value}/run`}
                         onClose={() => {
                           setShareDialogVisible(false)
                           setContributedDialogVisible(false)
