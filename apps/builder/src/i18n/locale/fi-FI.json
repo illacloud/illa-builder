@@ -2625,9 +2625,9 @@
         "token": "Max rahakkeiden tämänhetkinen arvo on alhainen, mikä voi aiheuttaa epätäydellisiä palautettuja tuloksia.",
         "purchase-required": "Colla ei riitä juoksemaan, ole hyvä ja lataa.",
         "leave": "Sisältöä ei ole tallennettu, oletko varma, että haluat lähteä?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Odota, että sukupolvi on valmis tai keskeytä prosessi"
       },
-      "title": "Edit AI Agent",
+      "title": "Muokkaa AI Agenttia",
       "generate-desc": {
         "button": "tekoälyn luominen",
         "tooltips": "Käytä tekoälyä luodaksesi kehotuksesi perustuvan kuvauksen. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Mukautettu liikenne ladattaessa tiedostoja ILLA Drivesta"
         }
       }
+    },
+    "advanced": {
+      "feature": "Poista vesileima"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "AI Agents",
   "marketplace": {
-    "star": "Star",
+    "star": "Tähti",
     "fork": "Fork"
   },
   "load": {
