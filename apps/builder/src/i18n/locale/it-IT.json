@@ -2625,9 +2625,9 @@
         "token": "Il valore attuale di Max token è basso, il che può causare risultati restituiti incompleti.",
         "purchase-required": "Colla non è sufficiente per funzionare, si prega di ricaricare.",
         "leave": "Ci sono contenuti non salvati, sei sicuro di voler uscire?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Attendere che la generazione completi o interrompa il processo"
       },
-      "title": "Edit AI Agent",
+      "title": "Modifica Agente AI",
       "generate-desc": {
         "button": "Generazione AI",
         "tooltips": "Usa AI per generare la descrizione in base al tuo prompt. ",
@@ -4035,6 +4035,9 @@
           "traffic": "Traffico personalizzato per scaricare file da ILLA Drive"
         }
       }
+    },
+    "advanced": {
+      "feature": "Rimuovi filigrana"
     }
   },
   "network": {
@@ -4126,7 +4129,7 @@
   },
   "ai-agents": "Agenti AI",
   "marketplace": {
-    "star": "Star",
+    "star": "Stella",
     "fork": "Fork"
   },
   "load": {
