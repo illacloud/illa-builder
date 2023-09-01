@@ -2634,7 +2634,8 @@
         "failed": "Mislykkedes at generere. Prøv igen senere. "
       },
       "generate-icon": {
-        "tooltips": "Brug AI til at generere ikon baseret på agentens navn og beskrivelse"
+        "tooltips": "Brug AI til at generere ikon baseret på agentens navn og beskrivelse",
+        "blank": "Udfyld venligst navnefeltet først"
       },
       "title-preview": {
         "chat": "Chat",
