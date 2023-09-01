@@ -2634,7 +2634,8 @@
         "failed": "Generarea a eșuat. Te rugăm să încerci din nou mai târziu. "
       },
       "generate-icon": {
-        "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere"
+        "tooltips": "Utilizează AI pentru a genera pictograma bazată pe numele agentului și descriere",
+        "blank": "Vă rugăm să completaţi mai întâi câmpul nume"
       },
       "title-preview": {
         "chat": "Chat",
