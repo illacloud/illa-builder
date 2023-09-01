@@ -2634,7 +2634,8 @@
         "failed": "Aanmaken mislukt. Probeer het later opnieuw. "
       },
       "generate-icon": {
-        "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent"
+        "tooltips": "Gebruik AI om een pictogram te genereren gebaseerd op de naam en beschrijving van de agent",
+        "blank": "Gelieve eerst het naam veld in te vullen"
       },
       "title-preview": {
         "chat": "Chatten",
