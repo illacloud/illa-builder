@@ -2634,7 +2634,8 @@
         "failed": "Échec de la génération. Veuillez réessayer plus tard. "
       },
       "generate-icon": {
-        "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent"
+        "tooltips": "Utiliser l'IA pour générer une icône en fonction du nom et de la description de l'agent",
+        "blank": "Veuillez d'abord remplir le champ de nom"
       },
       "title-preview": {
         "chat": "Discuter",
