@@ -2634,7 +2634,8 @@
         "failed": "Nie udało się wygenerować. Spróbuj ponownie później. "
       },
       "generate-icon": {
-        "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela"
+        "tooltips": "Użyj AI, aby wygenerować ikonę na podstawie nazwy i opisu przedstawiciela",
+        "blank": "Proszę wypełnić najpierw nazwę pola"
       },
       "title-preview": {
         "chat": "Czat",
