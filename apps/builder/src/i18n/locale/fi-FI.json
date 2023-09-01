@@ -2634,7 +2634,8 @@
         "failed": "Ei voitu luoda. Yritä myöhemmin uudelleen. "
       },
       "generate-icon": {
-        "tooltips": "Käytä tekoälyä luodaksesi kuvakkeen agenttien nimen ja kuvauksen perusteella"
+        "tooltips": "Käytä tekoälyä luodaksesi kuvakkeen agenttien nimen ja kuvauksen perusteella",
+        "blank": "Ole hyvä ja täytä nimikenttä ensin"
       },
       "title-preview": {
         "chat": "Keskustelu",
