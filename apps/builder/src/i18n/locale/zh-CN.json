@@ -2634,7 +2634,8 @@
         "failed": "生成失败，请稍后重试"
       },
       "generate-icon": {
-        "tooltips": "基于Agent的名称和描述，使用AI生成icon"
+        "tooltips": "基于Agent的名称和描述，使用AI生成icon",
+        "blank": "请先填写名称字段"
       },
       "title-preview": {
         "chat": "运行结果预览",
