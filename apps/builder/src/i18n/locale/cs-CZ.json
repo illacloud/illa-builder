@@ -2634,7 +2634,8 @@
         "failed": "Generování se nezdařilo. Opakujte akci později. "
       },
       "generate-icon": {
-        "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta"
+        "tooltips": "Použijte AI k vygenerování ikony na základě názvu a popisu agenta",
+        "blank": "Nejprve prosím vyplňte pole jména"
       },
       "title-preview": {
         "chat": "Chat",
