@@ -2625,16 +2625,17 @@
         "token": "O valor atual do Max de tokens é baixo, o que pode causar resultados incompletos retornados.",
         "purchase-required": "Colla não é suficiente para funcionar, por favor recarregue.",
         "leave": "Existem conteúdos não salvos, você tem certeza que deseja sair?",
-        "generating": "Please wait for the generation to complete or interrupt the process"
+        "generating": "Por favor, aguarde a geração concluir ou interrompa o processo"
       },
-      "title": "Edit AI Agent",
+      "title": "Editar Agente IA",
       "generate-desc": {
         "button": "Gerar IA",
         "tooltips": "Usar AI para gerar a descrição baseada no seu prompt. ",
         "failed": "Falha ao gerar. Por favor, tente novamente mais tarde. "
       },
       "generate-icon": {
-        "tooltips": "Use AI para gerar um ícone com base no nome e descrição do agente"
+        "tooltips": "Use AI para gerar um ícone com base no nome e descrição do agente",
+        "blank": "Por favor, preencha o campo nome primeiro"
       },
       "title-preview": {
         "chat": "Bate-papo",
@@ -4037,7 +4038,7 @@
       }
     },
     "advanced": {
-      "feature": "Remove watermark"
+      "feature": "Remover marca d'agua"
     }
   },
   "network": {
@@ -4129,7 +4130,7 @@
   },
   "ai-agents": "Agentes de IA",
   "marketplace": {
-    "star": "Star",
+    "star": "Estrela",
     "fork": "Fork"
   },
   "load": {
